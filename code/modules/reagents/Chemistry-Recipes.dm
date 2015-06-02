@@ -1028,33 +1028,7 @@
 /datum/chemical_reaction/cheesewheel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel(location)
-	return
-
-/datum/chemical_reaction/meatball
-	name = "Meatball"
-	id = "meatball"
-	result = null
-	required_reagents = list("protein" = 3, "flour" = 5)
-	result_amount = 3
-
-/datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/meatball(location)
-	return
-
-/datum/chemical_reaction/dough
-	name = "Dough"
-	id = "dough"
-	result = null
-	required_reagents = list("egg" = 3, "flour" = 10)
-	result_amount = 1
-
-/datum/chemical_reaction/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/dough(location)
+		new /obj/item/weapon/reagent_containers/food/snacks/cheesewheel(location)
 	return
 
 /datum/chemical_reaction/syntiflesh
@@ -1067,7 +1041,7 @@
 /datum/chemical_reaction/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh(location)
+		new /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synth(location)
 	return
 
 /datum/chemical_reaction/hot_ramen

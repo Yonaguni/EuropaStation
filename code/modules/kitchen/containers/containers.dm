@@ -56,10 +56,6 @@
 	// Process food output.
 	var/turf/T = get_turf(src)
 
-	// Try and make anything that the container specifically creates when heated.
-	if(attempt_inherent_product())
-		return
-
 	for(var/obj/item/I in contents)
 		// Apply heat and track progress for this item.
 		var/objref = "\ref[I]"
@@ -69,7 +65,7 @@
 			cooking_objects[objref] += current_heat
 
 		// See if there is a valid food transition for this item.
-		var/datum/food_transition/F = get_food_transition(I, cooking_method, cooking_objects[objref], reagents, src)
+		var/decl/food_transition/F = get_food_transition(I, cooking_method, cooking_objects[objref], reagents, src)
 		if(F)
 			cooking_objects[objref] = null
 
@@ -160,6 +156,3 @@
 	cooking_objects.Cut()
 	update_overlays()
 	..()
-
-/obj/item/weapon/reagent_containers/kitchen/proc/attempt_inherent_product()
-	return

@@ -207,21 +207,6 @@
 						user << "You add the newly-formed wood to the stack. It now contains [NG.amount] planks."
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["potato"]))
-					user << "You slice \the [src] into sticks."
-					new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
-					qdel(src)
-					return
-				else if(!isnull(seed.chems["carrotjuice"]))
-					user << "You slice \the [src] into sticks."
-					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
-					qdel(src)
-					return
-				else if(!isnull(seed.chems["soymilk"]))
-					user << "You roughly chop up \the [src]."
-					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
-					qdel(src)
-					return
 				else if(seed.get_trait(TRAIT_FLESH_COLOUR))
 					user << "You slice up \the [src]."
 					var/slices = rand(3,5)

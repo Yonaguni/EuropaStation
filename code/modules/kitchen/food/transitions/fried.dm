@@ -1,31 +1,43 @@
-/datum/food_transition/fried
+/decl/food_transition/fried
 	cooking_method = METHOD_FRYING
 	cooking_message = "sizzles"
 
-/datum/food_transition/fried/egg
+/decl/food_transition/fried/egg
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/egg/frying
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/egg/fried
 
-/datum/food_transition/fried/cutlet
+/decl/food_transition/fried/cutlet
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet
 
-/datum/food_transition/fried/potato_chips
+/decl/food_transition/fried/patty
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/patty
+
+/decl/food_transition/fried/soypatty
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/tofu/patty
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/tofu/cookedpatty
+
+/decl/food_transition/fried/meatball
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatball
+
+/decl/food_transition/fried/potato_chips
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
 	cooking_message = "turn a rich golden-brown"
 
-/datum/food_transition/fried/steak
+/decl/food_transition/fried/steak
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatsteak
 	cooking_message = "is seared to perfection"
 
-/datum/food_transition/fried/hash
+/decl/food_transition/fried/hash
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/hash
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/friedhash
 	cooking_message = "turns a rich golden-brown"
 
-/datum/food_transition/fried/hash/get_output_product(var/obj/item/source)
+/decl/food_transition/fried/hash/get_output_product(var/obj/item/source)
 	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/hash/S = source
 	var/obj/item/food = new output_type(source.loc)
 	if(istype(S))
@@ -35,12 +47,12 @@
 		food.color = source.color
 	return food
 
-/datum/food_transition/fried/pancakes
+/decl/food_transition/fried/pancakes
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/muffin
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/pancakes
 	cooking_message = "turn a rich golden-brown"
 
-/datum/food_transition/fried/pancakes/get_output_product(var/obj/item/source)
+/decl/food_transition/fried/pancakes/get_output_product(var/obj/item/source)
 	var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/S = source
 	var/obj/item/food = new output_type(source.loc)
 	if(istype(S))

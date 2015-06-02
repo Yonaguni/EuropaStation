@@ -1053,7 +1053,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"\red <b>Your [name] becomes a mangled mess!</b>",	\
 			"\red You hear a sickening crack.")
 		else
-			owner.visible_message("\red \The [owner]'s [name] melts away, turning into mangled mess!",	\
+			owner.visible_message("\red \The [owner]'s [name] melts away, turning into a mangled mess!",	\
 			"\red <b>Your [name] melts away!</b>",	\
 			"\red You hear a sickening sizzle.")
 	disfigured = 1

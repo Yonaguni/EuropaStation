@@ -1,7 +1,6 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
 	matter = list(DEFAULT_WALL_MATERIAL = 8000)
-	origin_tech = "materials=1"
 	unbreakable = 1
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	w_class = 2
@@ -24,7 +23,6 @@
 /obj/item/weapon/material/kitchen/utensil
 	w_class = 1
 	thrown_force_divisor = 1
-	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 1
 	edge = 1
@@ -50,6 +48,9 @@
 			return eyestab(M,user)
 		else
 			return ..()
+
+	if(!M.can_eat(src))
+		return
 
 	if (reagents.total_volume > 0)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
@@ -92,6 +93,17 @@
 	icon_state = "knife"
 	force_divisor = 0.2 // 12 when wielded with hardness 60 (steel)
 
+// Identical to the tactical knife but nowhere near as stabby.
+// Kind of like the toy esword compared to the real thing.
+/obj/item/weapon/material/kitchen/utensil/knife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	applies_material_colour = 0
+	unbreakable = 1
+
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You accidentally cut yourself with the [src]."
@@ -121,11 +133,3 @@
 	default_material = "wood"
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
 	thrown_force_divisor = 1 // as above
-
-/obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red The [src] slips out of your hand and hits your head."
-		user.take_organ_damage(10)
-		user.Paralyse(2)
-		return
-	return ..()

@@ -14,7 +14,7 @@
  */
 
 /obj/item/weapon/storage/fancy/
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/kitchen/packaging/donuts.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
@@ -42,20 +42,20 @@
  */
 
 /obj/item/weapon/storage/fancy/egg_box
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/kitchen/packaging/eggs.dmi'
 	icon_state = "eggbox"
 	icon_type = "egg"
 	name = "egg box"
 	storage_slots = 12
 	can_hold = list(
-		/obj/item/weapon/reagent_containers/food/snacks/egg,
-		/obj/item/weapon/reagent_containers/food/snacks/boiledegg
+		/obj/item/weapon/reagent_containers/food/snacks/egg/rawegg,
+		/obj/item/weapon/reagent_containers/food/snacks/egg/boiled
 		)
 
 /obj/item/weapon/storage/fancy/egg_box/New()
 	..()
 	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/rawegg(src)
 	return
 
 /*

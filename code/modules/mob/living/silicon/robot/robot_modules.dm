@@ -514,7 +514,6 @@ var/global/list/robot_modules = list(
 	L.lit = 1
 	src.modules += L
 
-	src.modules += new /obj/item/weapon/tray/robotray(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/service(src)
 	src.emag = new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
 

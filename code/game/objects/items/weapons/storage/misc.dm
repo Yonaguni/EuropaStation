@@ -12,7 +12,7 @@
  */
 
 /obj/item/weapon/storage/box/donut
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/kitchen/packaging/donuts.dmi'
 	icon_state = "donutbox"
 	name = "donut box"
 	var/startswith = 6
@@ -30,7 +30,7 @@
 	overlays.Cut()
 	var/i = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
-		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
+		overlays += image(icon, "[i][D.overlay_state]")
 		i++
 
 /obj/item/weapon/storage/box/donut/empty

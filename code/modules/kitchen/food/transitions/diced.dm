@@ -1,25 +1,36 @@
-/datum/food_transition/diced
-	input_type = /obj/item/weapon/reagent_containers/food/snacks/grown
+/decl/food_transition/diced
 	cooking_method = METHOD_DICING
-	cooking_message = "dices up"
+	cooking_message = "slices up"
 	cooking_time = 0
 
-/datum/food_transition/diced/chocchips
+/decl/food_transition/diced/spaghetti
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/slice
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/spagetti
+
+/decl/food_transition/diced/chocchips
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/chocolatechips
 	cooking_message = "roughly chops"
 
-/datum/food_transition/diced/hash
+/decl/food_transition/diced/sticks
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/grown
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
+	var/modifier = "sliced"
+
+/decl/food_transition/diced/sticks/get_output_product(var/obj/item/source)
+	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/output = new output_type(source.loc)
+	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/input = source
+	if(istype(input))
+		output.base_grown = input.base_grown
+	else
+		output.base_grown = source.name
+	output.color = source.color
+	output.name = "[modifier] [output.base_grown]"
+	output.desc += " It's made from [output.base_grown]."
+	return output
+
+/decl/food_transition/diced/sticks/hash
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/hash
-
-/datum/food_transition/diced/hash/get_output_product(var/obj/item/source)
-	var/obj/item/food = new output_type(source.loc)
-	update_strings(food, source)
-	if(source.color) food.color = source.color
-	return food
-
-/datum/food_transition/diced/hash/proc/update_strings(var/obj/item/I, var/obj/item/source)
-	I.name = "diced [source.name]"
-	I.desc += " It's made from [source.name]."
-	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/hash/H = I
-	if(istype(H)) H.base_grown = source.name
+	modifier = "diced"
+	cooking_message = "dices up"

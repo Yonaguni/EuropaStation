@@ -1,36 +1,70 @@
-/datum/food_transition/baked
+/decl/food_transition/baked
 	cooking_method = METHOD_BAKING
 	cooking_message = "smells delicious"
 	req_container = /obj/item/weapon/reagent_containers/kitchen/bakingtray
 
-/datum/food_transition/baked/cracker
+/decl/food_transition/baked/cracker
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/slice
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/cracker
 
-/datum/food_transition/baked/meatball
+/decl/food_transition/baked/cutlet
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet
+
+/decl/food_transition/baked/meatball
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatball
 
-/datum/food_transition/baked/bread
+/decl/food_transition/baked/patty
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/patty
+
+/decl/food_transition/baked/soypatty
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/tofu/patty
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/tofu/cookedpatty
+
+/decl/food_transition/baked/bread
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/bread
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/bread
 
-/datum/food_transition/baked/bread/get_output_product(var/obj/item/source)
+/decl/food_transition/baked/bread/get_output_product(var/obj/item/source)
 	var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/D = source
 	var/obj/item/food = new output_type(source.loc)
 	if(istype(D) && D.content_descriptor != "")
 		food.name = "[D.content_descriptor] [food.name]"
 	return food
 
-/datum/food_transition/baked/bread/bun
+/decl/food_transition/baked/bread/pretzel
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/raw_pretzel
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/pretzel
+
+/decl/food_transition/baked/bread/bun
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/bun
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/bun
 
-/datum/food_transition/baked/bread/muffin
+/decl/food_transition/baked/bread/muffin
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/muffin
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/muffin
 
-/datum/food_transition/baked/bread/cake
+/decl/food_transition/baked/bread/cake
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/batter
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/complex/cake
 	req_container = /obj/item/weapon/reagent_containers/kitchen/caketin
+
+/decl/food_transition/baked/bread/pizza
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/flat
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/complex/pizza
+
+/decl/food_transition/baked/bread/pizza/get_output_product(var/obj/item/source)
+	if(source.contents.len)
+		return new output_type(source.loc)
+	else
+		var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/D = source
+		var/obj/item/food = new /obj/item/weapon/reagent_containers/food/snacks/baked/flatbread(source.loc)
+		if(istype(D) && D.content_descriptor != "")
+			food.name = "[D.content_descriptor] [food.name]"
+		return food
+
+/decl/food_transition/baked/meatloaf
+	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/mince
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/loaf

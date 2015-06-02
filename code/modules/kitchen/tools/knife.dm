@@ -8,7 +8,6 @@
 	edge = 1
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
-	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
 
@@ -50,17 +49,8 @@
 			qdel(A)
 			return
 
-	var/datum/food_transition/F = get_food_transition(A, METHOD_SLICING, 1)
-	if(F)
-		var/obj/item/food = F.get_output_product(A)
-		food.loc = get_turf(A)
-		user.visible_message("\The [user] [F.cooking_message ? F.cooking_message : "slices up"] \the [A].")
-		qdel(A)
-		return
-
 	// It dices!
-	F = null
-	F = get_food_transition(A, METHOD_DICING, 1)
+	var/decl/food_transition/F = get_food_transition(A, METHOD_DICING, 1)
 	if(F)
 		var/obj/item/food = F.get_output_product(A)
 		food.loc = get_turf(A)
@@ -69,10 +59,6 @@
 		return
 
 	return ..()
-
-/obj/item/weapon/material/knife/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>\The [user] is slitting \his [pick(list("wrists","throat","stomach"))] with the [src.name]! It looks like \he's trying to commit suicide.")
-	return (BRUTELOSS)
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"

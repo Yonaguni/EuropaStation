@@ -549,8 +549,8 @@
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder
 
-	name = "All-In-One Grinder"
-	icon = 'icons/obj/kitchen.dmi'
+	name = "food processor"
+	icon = 'icons/obj/kitchen/inedible/machines.dmi'
 	icon_state = "juicer1"
 	layer = 2.9
 	density = 0
@@ -562,7 +562,10 @@
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/limit = 10
 	var/list/holdingitems = list()
-	var/list/sheet_reagents = list(
+	var/global/list/grind_products = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/slab = /obj/item/weapon/reagent_containers/food/snacks/meat/mince
+		)
+	var/global/list/sheet_reagents = list(
 		/obj/item/stack/material/iron = "iron",
 		/obj/item/stack/material/uranium = "uranium",
 		/obj/item/stack/material/gold = "gold",
@@ -642,7 +645,7 @@
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/reagentgrinder/interact(mob/user as mob)
 	if(inoperable())
 		return
 	user.set_machine(src)
@@ -746,6 +749,18 @@
 
 	// Process.
 	for (var/obj/item/O in holdingitems)
+
+		var/product_made
+		for(var/check_type in grind_products)
+			if(istype(O, check_type))
+				var/product_type = grind_products[check_type]
+				new product_type(get_turf(src))
+				holdingitems -= O
+				qdel(O)
+				product_made = 1
+				break
+		if(product_made)
+			return
 
 		var/remaining_volume = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 		if(remaining_volume <= 0)

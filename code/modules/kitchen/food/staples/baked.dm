@@ -36,11 +36,19 @@
 	name = "bread"
 	icon_state = "Some plain old Earthen bread."
 	icon_state = "bread"
+	slices_to = /obj/item/weapon/reagent_containers/food/snacks/baked/breadslice
+	slice_count = 4
 
 /obj/item/weapon/reagent_containers/food/snacks/baked/breadslice
 	name = "bread slice"
 	desc = "A slice of home."
 	icon_state = "breadslice"
+
+/obj/item/weapon/reagent_containers/food/snacks/raw_pretzel
+	name = "raw pretzel"
+	desc = "A rolled segment of dough."
+	icon = 'icons/obj/kitchen/staples/dough.dmi'
+	icon_state = "rolled dough"
 
 /obj/item/weapon/reagent_containers/food/snacks/baked/pretzel
 	name = "pretzel"

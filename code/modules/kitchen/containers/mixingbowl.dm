@@ -27,8 +27,8 @@
 	if(!(contents || (reagents && reagents.total_volume)))
 		user << "<span class='notice'>There is nothing else to mix in \the [src].</span>"
 		return
-	T.visible_message("<span class='notice'>\The [user] briskly stirs \the [src] with \the [O].")
-	var/datum/food_transition/F = get_food_transition(null, cooking_method, 0, reagents, src)
+	T.visible_message("<span class='notice'>\The [user] briskly stirs \the [src] with \the [O].</span>")
+	var/decl/food_transition/F = get_food_transition(null, cooking_method, 0, reagents, src)
 	if(F)
 		// Clear out the reagent list if they were used up by something being cooked.
 		for(var/reagent_tag in F.req_reagents)

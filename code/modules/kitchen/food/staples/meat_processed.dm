@@ -13,10 +13,30 @@
 	desc = "A raw meatball."
 	icon_state = "rawmeatball"
 
+/obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball/attack_self(var/mob/user)
+	user.unEquip(src)
+	var/obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty/patty = new(get_turf(user))
+	var/mob/living/carbon/human/H = user
+	if(istype(H))
+		H.put_in_hands(patty)
+	user.visible_message("<span class='notice'>\The [user] flattens \the [src] into a patty.</span>")
+	qdel(src)
+	return
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty
+	name = "raw patty"
+	desc = "A raw burger patty."
+	icon_state = "rawpatty"
+
 /obj/item/weapon/reagent_containers/food/snacks/meat/meatball
 	name = "meatball"
 	desc = "A great meal all round."
 	icon_state = "meatball"
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/patty
+	name = "patty"
+	desc = "A cooked burger patty."
+	icon_state = "patty"
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/sausage
 	name = "sausage"
@@ -38,3 +58,15 @@
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
 	icon_state = "meatstake"
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/mince
+	name = "mincemeat"
+	desc = "It's completely unidentifiable."
+	icon_state = "mincemeat"
+	slices_to = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
+	slice_count = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/loaf
+	name = "meatloaf"
+	desc = "Don't ask what it's made of."
+	icon_state = "meatloaf"

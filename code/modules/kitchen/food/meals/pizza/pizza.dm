@@ -1,1 +1,2 @@
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
+/obj/item/weapon/reagent_containers/food/snacks/complex/pizza
+	name = "pizza"

@@ -1,4 +1,4 @@
-/datum/food_transition
+/decl/food_transition
 	var/input_type
 	var/output_type
 	var/cooking_message
@@ -8,7 +8,7 @@
 	var/req_container
 	var/priority = 1
 
-/datum/food_transition/proc/matches_input_type(var/obj/item/I, var/obj/item/container)
+/decl/food_transition/proc/matches_input_type(var/obj/item/I, var/obj/item/container)
 	if(input_type)
 		if(!I || !istype(I, input_type))
 			return 0
@@ -17,10 +17,10 @@
 			return 0
 	return 1
 
-/datum/food_transition/proc/get_output_product(var/obj/item/source)
+/decl/food_transition/proc/get_output_product(var/obj/item/source)
 	return new output_type(source.loc)
 
-/datum/food_transition/proc/check_for_reagents(var/datum/reagents/available_reagents)
+/decl/food_transition/proc/check_for_reagents(var/datum/reagents/available_reagents)
 	var/list/temp_reagents = req_reagents.Copy()
 
 	if(req_reagents.len)

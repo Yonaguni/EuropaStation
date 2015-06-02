@@ -22,6 +22,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/waffles
 	name = "waffles"
 	desc = "Mmm, waffles"
+	icon = 'icons/obj/kitchen/meals/dessert.dmi'
 	icon_state = "waffles"
 	filling_color = "#E6DEB5"
 
@@ -32,7 +33,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/pancakes
 	name = "pancakes"
 	desc = "Pass the syrup."
-	icon_state = "waffles"
+	icon = 'icons/obj/kitchen/meals/dessert.dmi'
+	icon_state = "pancakes"
 	filling_color = "#E6DEB5"
 
 /obj/item/weapon/reagent_containers/food/snacks/pancakes/New()
