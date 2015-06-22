@@ -51,23 +51,6 @@
 	..()
 	H.holder_type = holder_type
 
-/datum/species/monkey/get_random_name()
-	return "[lowertext(name)] ([rand(100,999)])"
-
-/datum/species/monkey/tajaran
-	name = "Farwa"
-	name_plural = "Farwa"
-
-	icobase = 'icons/mob/human_races/monkeys/r_farwa.dmi'
-	deform = 'icons/mob/human_races/monkeys/r_farwa.dmi'
-
-	greater_form = "Tajaran"
-	default_language = "Farwa"
-	flesh_color = "#AFA59E"
-	base_color = "#333333"
-	tail = "farwatail"
-	holder_type = /obj/item/weapon/holder/monkey/farwa
-
 /datum/species/monkey/skrell
 	name = "Neara"
 	name_plural = "Neara"
@@ -92,18 +75,3 @@
 		"eyes" =     /obj/item/organ/eyes,
 		"gills" =    /obj/item/organ/gills
 		)
-
-/datum/species/monkey/unathi
-	name = "Stok"
-	name_plural = "Stok"
-
-	icobase = 'icons/mob/human_races/monkeys/r_stok.dmi'
-	deform = 'icons/mob/human_races/monkeys/r_stok.dmi'
-
-	tail = "stoktail"
-	greater_form = "Unathi"
-	default_language = "Stok"
-	flesh_color = "#34AF10"
-	base_color = "#066000"
-	reagent_tag = IS_UNATHI
-	holder_type = /obj/item/weapon/holder/monkey/stok
