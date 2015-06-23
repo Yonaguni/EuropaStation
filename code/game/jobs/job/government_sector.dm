@@ -7,4 +7,4 @@
 	spawn_positions = 4
 	supervisors = "Jovian naval officials and Sol colonial law"
 	access = list()
-	minimal_access = list("Sub Pilot", "Peace Officer")
+	alt_titles = list("Sub Pilot", "Peace Officer")
