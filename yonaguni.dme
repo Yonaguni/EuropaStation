@@ -372,7 +372,6 @@
 #include "code\game\gamemodes\events\holidays\Holidays.dm"
 #include "code\game\gamemodes\events\holidays\Other.dm"
 #include "code\game\gamemodes\extended\extended.dm"
-#include "code\game\gamemodes\heist\heist.dm"
 #include "code\game\gamemodes\malfunction\malf_hardware.dm"
 #include "code\game\gamemodes\malfunction\malf_research.dm"
 #include "code\game\gamemodes\malfunction\malf_research_ability.dm"
@@ -382,9 +381,7 @@
 #include "code\game\gamemodes\malfunction\newmalf_ability_trees\tree_interdiction.dm"
 #include "code\game\gamemodes\malfunction\newmalf_ability_trees\tree_manipulation.dm"
 #include "code\game\gamemodes\malfunction\newmalf_ability_trees\tree_networking.dm"
-#include "code\game\gamemodes\meteor\meteor.dm"
 #include "code\game\gamemodes\meteor\meteors.dm"
-#include "code\game\gamemodes\ninja\ninja.dm"
 #include "code\game\gamemodes\nuclear\nuclear.dm"
 #include "code\game\gamemodes\nuclear\pinpointer.dm"
 #include "code\game\gamemodes\revolution\revolution.dm"
@@ -1830,4 +1827,5 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\europa-1.dmm"
+#include "maps\europa-2.dmm"
 // END_INCLUDE

@@ -14,11 +14,14 @@ var/image/ocean_overlay
 /turf/unsimulated/ocean/New()
 	..()
 	processing_turfs |= src
+	overlays.Cut()
+	if(prob(20))
+		overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 	if(!ocean_overlay)
 		ocean_overlay = image('icons/effects/liquid.dmi', "deep_still")
 		ocean_overlay.color = "#66D1FF"
 		ocean_overlay.alpha = FLUID_MAX_ALPHA
-		ocean_overlay.layer = 5.1
+		ocean_overlay.layer = 4.9
 	overlays |= ocean_overlay
 
 /turf/unsimulated/ocean/Destroy()
