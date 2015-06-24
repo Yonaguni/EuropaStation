@@ -138,8 +138,6 @@
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
-	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
-		return
 	src.add_fingerprint(user)
 	if(density)
 		if(allowed(user))	open()
@@ -431,10 +429,12 @@
 	update_nearby_tiles()
 
 	//I shall not add a check every x ticks if a door has closed over some fire.
+	/*
 	var/obj/fire/fire = locate() in loc
 	if(fire)
 		qdel(fire)
 	return
+	*/
 
 /obj/machinery/door/proc/requiresID()
 	return 1
@@ -451,7 +451,6 @@
 
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
-		air_master.mark_for_update(turf)
 
 	return 1
 

@@ -999,8 +999,10 @@ FIRE ALARM
 		src.updateDialog()
 	last_process = world.timeofday
 
+	/*
 	if(locate(/obj/fire) in loc)
 		alarm()
+	*/
 
 	return
 

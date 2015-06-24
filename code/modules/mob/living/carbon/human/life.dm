@@ -857,12 +857,6 @@
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
 
-		var/total_phoronloss = 0
-		for(var/obj/item/I in src)
-			if(I.contaminated)
-				total_phoronloss += vsc.plc.CONTAMINATION_LOSS
-		if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
-
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	var/obj/item/organ/diona/node/light_organ = locate() in internal_organs
