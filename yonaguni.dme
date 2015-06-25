@@ -1241,6 +1241,7 @@
 #include "code\modules\mob\living\aquatic\_aquatic_setup.dm"
 #include "code\modules\mob\living\aquatic\aquatic.dm"
 #include "code\modules\mob\living\aquatic\behavior.dm"
+#include "code\modules\mob\living\aquatic\hostile.dm"
 #include "code\modules\mob\living\aquatic\life.dm"
 #include "code\modules\mob\living\blob\blob.dm"
 #include "code\modules\mob\living\bot\bot.dm"
