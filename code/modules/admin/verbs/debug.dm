@@ -1048,10 +1048,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!found_the_pump && response == "Setup Completely")
 		src << "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter"
 		var/turf/simulated/T = SM.loc
-		T.zone.air.gas["nitrogen"] += 450
-		T.zone.air.temperature = 50
-		T.zone.air.update_values()
-
+		if(istype(T))
+			var/datum/gas_mixture/GM = T.return_air()
+			if(GM)
+				GM.adjust_gas("nitrogen", 450)
+				GM.temperature = 50
 
 	log_admin("[key_name(usr)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
 	message_admins("\blue [key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]", 1)

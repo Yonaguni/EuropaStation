@@ -469,12 +469,9 @@ datum/projectile_data
 	for(var/dir in cardinal)
 		var/turf/simulated/T=get_turf(get_step(loc,dir))
 		var/cp=0
-		if(T && istype(T) && T.zone)
+		if(T && istype(T))
 			var/datum/gas_mixture/environment = T.return_air()
 			cp = environment.return_pressure()
-		else
-			if(istype(T,/turf/simulated))
-				continue
 		if(cp<minp)minp=cp
 		if(cp>maxp)maxp=cp
 	return abs(minp-maxp)
@@ -500,7 +497,7 @@ datum/projectile_data
 				direction = 4
 		var/turf/simulated/T=get_turf(get_step(loc,dir))
 		var/list/rstats = new /list(stats.len)
-		if(T && istype(T) && T.zone)
+		if(T && istype(T))
 			var/datum/gas_mixture/environment = T.return_air()
 			for(var/i=1;i<=stats.len;i++)
 				if(stats[i] == "pressure")

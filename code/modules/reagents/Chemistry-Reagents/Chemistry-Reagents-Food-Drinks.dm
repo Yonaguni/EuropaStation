@@ -107,6 +107,7 @@
 	if(!istype(T))
 		return
 
+	/*
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
@@ -114,6 +115,7 @@
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
+	*/
 
 	if(volume >= 3)
 		if(T.wet >= 1)
