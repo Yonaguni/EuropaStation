@@ -1,0 +1,46 @@
+"a" = (/turf/unsimulated/ocean,/area/space)
+"b" = (/turf/unsimulated/ocean,/area/shuttle/arrival/station)
+"c" = (/turf/simulated/wall,/area/shuttle/arrival/station)
+"d" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/obj/structure/window/reinforced{tag = "icon-rwindow (WEST)"; icon_state = "rwindow"; dir = 8},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"e" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"f" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{tag = "icon-rwindow (EAST)"; icon_state = "rwindow"; dir = 4},/obj/structure/window/reinforced{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"g" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_y = 24},/obj/structure/cable{tag = "icon-0-2"; icon_state = "0-2"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"h" = (/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"i" = (/obj/effect/landmark/start{name = "AI"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"j" = (/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"k" = (/obj/effect/landmark/start{name = "Cyborg"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"l" = (/obj/machinery/light{tag = "icon-tube1 (EAST)"; icon_state = "tube1"; dir = 4},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"m" = (/obj/structure/cable{tag = "icon-1-4"; icon_state = "1-4"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"n" = (/obj/structure/cable{tag = "icon-4-8"; icon_state = "4-8"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"o" = (/obj/structure/cable{tag = "icon-4-8"; icon_state = "4-8"},/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"p" = (/obj/machinery/power/fractal_reactor,/obj/structure/cable{tag = "icon-0-8"; icon_state = "0-8"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"q" = (/obj/structure/grille,/obj/structure/window/reinforced{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"r" = (/obj/machinery/door/airlock,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"s" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/obj/structure/window/reinforced{tag = "icon-rwindow (WEST)"; icon_state = "rwindow"; dir = 8},/obj/structure/window/reinforced{tag = "icon-rwindow (EAST)"; icon_state = "rwindow"; dir = 4},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"t" = (/turf/space,/area/shuttle/arrival/station)
+"u" = (/obj/structure/grille,/obj/structure/window/reinforced{tag = "icon-rwindow (EAST)"; icon_state = "rwindow"; dir = 4},/obj/structure/window/reinforced{tag = "icon-rwindow (WEST)"; icon_state = "rwindow"; dir = 8},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"v" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"w" = (/obj/effect/landmark{name = "Observer-Start"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"x" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{tag = "icon-rwindow (EAST)"; icon_state = "rwindow"; dir = 4},/obj/structure/window/reinforced{tag = "icon-rwindow (WEST)"; icon_state = "rwindow"; dir = 8},/turf/simulated/floor/plating,/area/shuttle/arrival/station)
+"y" = (/obj/effect/landmark/start{name = "Marshal"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"z" = (/obj/effect/landmark/start{name = "Corporate Contact Officer"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"A" = (/obj/effect/landmark/start{name = "Factory Worker"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"B" = (/obj/effect/landmark/start{name = "Scientist"},/turf/simulated/floor,/area/shuttle/arrival/station)
+"C" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"D" = (/obj/effect/landmark/start{name = "Citizen"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"E" = (/obj/effect/landmark/start{name = "Civil Engineer"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"F" = (/obj/effect/landmark/start{name = "Petty Officer"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+"G" = (/obj/effect/landmark/start{name = "Colony Liaison"},/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/shuttle/arrival/station)
+
+(1,1,1) = {"
+abbbbbbbba
+cccdeefccc
+cghijjkhlc
+cmnonnopjc
+cdqefrsccc
+ctuvwjvctc
+crxyzABcrc
+cCjDEFGjlc
+cccdeefccc
+abbbbbbbba
+"}
