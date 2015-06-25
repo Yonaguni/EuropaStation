@@ -9,6 +9,9 @@
 	var/last_share
 	var/tmp/fuel_burnt = 0
 
+/datum/gas_mixture/New(vol = CELL_VOLUME)
+	volume = vol
+
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
 	if(moles == 0)
