@@ -83,6 +83,8 @@
 		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
 	sharer.temperature = temperature
 
+	update_values()
+
 	return 1
 
 //Returns the heat capacity of the gas mix based on the specific heat of the gases.
@@ -437,6 +439,9 @@
 			sharer.gas[gas_id] = cdelta
 		else
 			sharer.gas[gas_id] += cdelta
+
+	update_values()
+	sharer.update_values()
 
 	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
 		var/delta_pressure = temperature_archived*(total_moles + moved_moles) - sharer.temperature_archived*(sharer.total_moles - moved_moles)
