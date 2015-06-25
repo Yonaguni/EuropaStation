@@ -9,6 +9,8 @@
 
 
 /turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
+	if(!air_master)
+		return
 	var/datum/gas_mixture/air_contents = return_air()
 	if(!air_contents)
 		return 0
