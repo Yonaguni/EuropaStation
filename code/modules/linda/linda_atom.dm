@@ -32,7 +32,7 @@
 /atom/movable/proc/update_nearby_tiles(need_rebuild)
 	if(!air_master)
 		return 0
-
+	air_update_turf()
 	return 1
 
 //Basically another way of calling CanPass(null, other, 0, 0) and CanPass(null, other, 1.5, 1).

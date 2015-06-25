@@ -9,6 +9,7 @@
 /obj/update_nearby_tiles(need_rebuild)
 	. = ..(need_rebuild)
 	update_fluids(get_turf(src))
+	air_update_turf(1)
 
 // Fluid icon cache retriever
 /proc/get_fluid_icon(var/img_state)

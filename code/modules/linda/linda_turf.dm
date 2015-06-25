@@ -11,6 +11,7 @@
 	return
 
 /turf/simulated/update_air_properties()
+	return
 
 /turf/proc/post_update_air_properties()
 	//if(connections) connections.update_all()
@@ -34,8 +35,8 @@
 	return GM
 
 /turf/remove_air(amount as num)
+	air_update_turf(src)
 	var/datum/gas_mixture/GM = new
-
 	var/sum = oxygen + carbon_dioxide + nitrogen + phoron
 	if(sum>0)
 		GM.gas["oxygen"] = (oxygen/sum)*amount
@@ -49,10 +50,12 @@
 	return GM
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
+	air_update_turf(src)
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
 
 /turf/simulated/assume_gas(gasid, moles, temp = null)
+	air_update_turf(src)
 	var/datum/gas_mixture/my_air = return_air()
 
 	if(isnull(temp))
@@ -63,6 +66,7 @@
 	return 1
 
 /turf/simulated/remove_air(amount as num)
+	air_update_turf(src)
 	var/datum/gas_mixture/my_air = return_air()
 	return my_air.remove(amount)
 

@@ -1156,6 +1156,7 @@
 #include "code\modules\linda\linda_system.dm"
 #include "code\modules\linda\linda_turf.dm"
 #include "code\modules\linda\linda_turf_tile.dm"
+#include "code\modules\linda\linda_update.dm"
 #include "code\modules\maps\dmm_suite.dm"
 #include "code\modules\maps\reader.dm"
 #include "code\modules\maps\swapmaps.dm"
