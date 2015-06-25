@@ -315,4 +315,7 @@
 	return PROCESS_KILL
 
 /turf/proc/is_ocean()
+	var/obj/effect/fluid/F = locate() in src
+	if(F && F.depth > 30)
+		return 1
 	return 0
