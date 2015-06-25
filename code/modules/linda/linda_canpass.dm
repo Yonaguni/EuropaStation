@@ -32,7 +32,7 @@
 	if(!R)
 		return 1
 
-/atom/movable/proc/CanAtmosPass()
+/atom/movable/proc/CanAtmosPass(var/turf/T)
 	return 1
 
 /turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)

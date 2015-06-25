@@ -9,7 +9,7 @@
  */
 
 
-obj/structure/windoor_assembly
+/obj/structure/windoor_assembly
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
@@ -24,7 +24,13 @@ obj/structure/windoor_assembly
 	var/secure = ""		//Whether or not this creates a secure windoor
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 
-obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
+/obj/structure/windoor_assembly/CanAtmosPass(var/turf/T)
+	if(get_dir(loc, T) == dir)
+		return !density
+	else
+		return 1
+
+/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
@@ -37,7 +43,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 	update_nearby_tiles(need_rebuild=1)
 
-obj/structure/windoor_assembly/Destroy()
+/obj/structure/windoor_assembly/Destroy()
 	density = 0
 	update_nearby_tiles()
 	..()
