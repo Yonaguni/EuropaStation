@@ -1152,6 +1152,7 @@
 #include "code\modules\linda\linda_atom.dm"
 #include "code\modules\linda\linda_canpass.dm"
 #include "code\modules\linda\linda_contamination.dm"
+#include "code\modules\linda\linda_controller.dm"
 #include "code\modules\linda\linda_fire.dm"
 #include "code\modules\linda\linda_system.dm"
 #include "code\modules\linda\linda_turf.dm"

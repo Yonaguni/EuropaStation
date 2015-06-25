@@ -1,13 +1,18 @@
+#define MINIMUM_HEAT_CAPACITY 0.0003
+
 /datum/gas_mixture
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas = list()
-	var/temperature = 0         //Temperature in Kelvin of this gas mix.
-	var/total_moles = 0         //Sum of all the gas moles in this mix.  Updated by update_values()
-	var/volume = CELL_VOLUME    //Volume of this mix.
-	var/list/graphic = list()   //List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
-	var/last_share
-	var/tmp/fuel_burnt = 0
+	var/list/archived_gas = list()     // Used for calculating deltas, might as well be magic.
+	var/temperature = 0                // Temperature in Kelvin of this gas mix.
+	var/temperature_archived = 0       // Archive
+	var/total_moles = 0                // Sum of all the gas moles in this mix.  Updated by update_values()
+	var/volume = CELL_VOLUME           // Volume of this mix.
+	var/list/graphic = list()          // List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
+	var/list/graphic_archived = list() // Archive
+	var/last_share                     // Last gas amount shared.
+	var/tmp/fuel_burnt = 0             // Something to do with fire.
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
@@ -86,6 +91,15 @@
 	for(var/g in gas)
 		. += gas_data.specific_heat[g] * gas[g]
 	.
+
+/datum/gas_mixture/proc/heat_capacity_archived()
+	var/heat_capacity_archived = 0
+	for(var/gas_id in gas)
+		if(!(gas_id in gas_data.gases))
+			continue
+		if(isnull(archived_gas[gas_id])) archived_gas[gas_id] = 0
+		heat_capacity_archived += archived_gas[gas_id] * gas_data.specific_heat[gas_id]
+	return heat_capacity_archived
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
@@ -347,17 +361,198 @@
 
 	return 1
 
-/datum/gas_mixture/proc/check_turf()
-	return
-
-/datum/gas_mixture/proc/mimic()
-	return
-
 /datum/gas_mixture/proc/archive()
-	return
+	archived_gas = list()
+	for(var/gas_id in gas)
+		archived_gas[gas_id] = gas[gas_id]
+	temperature_archived = temperature
+	graphic_archived = graphic
+	return 1
 
-/datum/gas_mixture/proc/temperature_share()
+/datum/gas_mixture/proc/get_gas_deltas(var/datum/gas_mixture/sharer, var/adjacent_turfs)
+	var/list/cdeltas = list()
+	for(var/gas_id in archived_gas)
+		var/current_level = (!isnull(archived_gas[gas_id]) ? archived_gas[gas_id] : 0)
+		var/sharer_level = 0
+		if(sharer.archived_gas && !isnull(sharer.archived_gas[gas_id]))
+			sharer_level = sharer.archived_gas[gas_id]
+		cdeltas[gas] = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+	return cdeltas
 
-/datum/gas_mixture/proc/temperature_turf_share()
+/datum/gas_mixture/proc/get_temperature_delta(var/datum/gas_mixture/sharer)
+	return (temperature_archived - sharer.temperature_archived)
 
-/datum/gas_mixture/proc/temperature_mimic(turf/model, conduction_coefficient)
+// Shares gas between two datums.
+/datum/gas_mixture/proc/share(var/datum/gas_mixture/sharer, var/atmos_adjacent_turfs = 4)
+
+	if(!sharer)	return 0
+
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/old_self_heat_capacity = 0
+	var/old_sharer_heat_capacity = 0
+	var/heat_capacity_self_to_sharer = 0
+	var/heat_capacity_sharer_to_self = 0
+
+	var/moved_moles = 0
+	last_share = 0
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+	for(var/gas_id in current_deltas)
+		var/cdelta = current_deltas[gas_id]
+		moved_moles += cdelta
+		last_share += abs(cdelta)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+
+		for(var/gas_id in gas)
+			if(!(gas_id in gas_data.gases))
+				continue
+			var/gas_delta = current_deltas[gas_id]
+			if(gas_delta)
+				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas[gas_id]
+				if(gas_delta > 0)
+					heat_capacity_self_to_sharer += gas_heat_capacity
+				else
+					heat_capacity_sharer_to_self -= gas_heat_capacity
+
+		old_self_heat_capacity = heat_capacity()
+		old_sharer_heat_capacity = sharer.heat_capacity()
+
+		var/new_self_heat_capacity = old_self_heat_capacity + heat_capacity_sharer_to_self - heat_capacity_self_to_sharer
+		var/new_sharer_heat_capacity = old_sharer_heat_capacity + heat_capacity_self_to_sharer - heat_capacity_sharer_to_self
+
+		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			temperature = (old_self_heat_capacity*temperature - heat_capacity_self_to_sharer*temperature_archived + heat_capacity_sharer_to_self*sharer.temperature_archived)/new_self_heat_capacity
+
+		if(new_sharer_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			sharer.temperature = (old_sharer_heat_capacity*sharer.temperature-heat_capacity_sharer_to_self*sharer.temperature_archived + heat_capacity_self_to_sharer*temperature_archived)/new_sharer_heat_capacity
+
+			if(abs(old_sharer_heat_capacity) > MINIMUM_HEAT_CAPACITY)
+				if(abs(new_sharer_heat_capacity/old_sharer_heat_capacity - 1) < 0.10) // <10% change in sharer heat capacity
+					temperature_share(sharer, OPEN_HEAT_TRANSFER_COEFFICIENT)
+
+	for(var/gas_id in gas)
+		var/cdelta = current_deltas[gas_id]
+		gas[gas_id] -= cdelta
+		if(isnull(sharer.gas[gas_id]))
+			sharer.gas[gas_id] = cdelta
+		else
+			sharer.gas[gas_id] += cdelta
+
+	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/delta_pressure = temperature_archived*(total_moles + moved_moles) - sharer.temperature_archived*(sharer.total_moles - moved_moles)
+		return delta_pressure*R_IDEAL_GAS_EQUATION/volume
+
+/datum/gas_mixture/proc/mimic(turf/model, border_multiplier, var/atmos_adjacent_turfs = 4)
+
+	var/datum/gas_mixture/sharer = model.return_air()
+	if(!sharer)
+		return
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/heat_transferred = 0
+	var/old_self_heat_capacity = 0
+	var/heat_capacity_transferred = 0
+
+	var/moved_moles = 0
+	last_share = 0
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+	for(var/gas_id in current_deltas)
+		var/cdelta = current_deltas[gas_id]
+		moved_moles += cdelta
+		last_share += abs(cdelta)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+
+		for(var/gas_id in gas)
+			if(!gas_id in gas_data.gases)
+				continue
+			var/gas_delta = current_deltas[gas_id]
+			if(gas_delta)
+				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas[gas_id]
+				heat_transferred -= gas_heat_capacity*sharer.temperature
+				heat_capacity_transferred -= gas_heat_capacity
+
+		old_self_heat_capacity = heat_capacity()
+
+	for(var/gas_id in gas)
+		if(!gas_id in gas_data.gases)
+			continue
+		var/gas_delta = current_deltas[gas_id]
+		if(border_multiplier)
+			gas_delta *= border_multiplier
+		gas[gas_id] -= gas_delta
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/new_self_heat_capacity = old_self_heat_capacity - heat_capacity_transferred
+		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			if(border_multiplier)
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*border_multiplier*temperature_archived)/new_self_heat_capacity
+			else
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*temperature_archived)/new_self_heat_capacity
+
+		temperature_mimic(model, model.thermal_conductivity, border_multiplier)
+
+	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/delta_pressure = temperature_archived*(total_moles + moved_moles) - sharer.temperature*sharer.total_moles
+		return delta_pressure*R_IDEAL_GAS_EQUATION/volume
+	else
+		return 0
+
+/datum/gas_mixture/proc/check_turf(var/turf/model, var/atmos_adjacent_turfs = 4)
+
+	var/datum/gas_mixture/sharer = model.return_air()
+	if(isnull(sharer))
+		return
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+		return 0
+	for(var/gas_id in current_deltas)
+		var/cdelta = abs(current_deltas[gas_id])
+		if(cdelta > MINIMUM_AIR_TO_SUSPEND)
+			var/compare_val = archived_gas[gas_id] ? (archived_gas[gas_id]*MINIMUM_AIR_RATIO_TO_SUSPEND) : 0
+			if(cdelta > compare_val)
+				return 0
+	return 1
+
+/datum/gas_mixture/proc/temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+
+	var/delta_temperature = (temperature_archived - sharer.temperature_archived)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity_archived()
+		var/sharer_heat_capacity = sharer.heat_capacity_archived()
+
+		if((sharer_heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*sharer_heat_capacity/(self_heat_capacity+sharer_heat_capacity))
+
+			temperature -= heat/self_heat_capacity
+			sharer.temperature += heat/sharer_heat_capacity
+
+/datum/gas_mixture/proc/temperature_mimic(turf/model, conduction_coefficient, border_multiplier)
+	var/delta_temperature = (temperature - model.temperature)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity()//_archived()
+
+		if((model.heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*model.heat_capacity/(self_heat_capacity+model.heat_capacity))
+
+			if(border_multiplier)
+				temperature -= heat*border_multiplier/self_heat_capacity
+			else
+				temperature -= heat/self_heat_capacity
+
+/datum/gas_mixture/proc/temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	var/delta_temperature = (temperature_archived - sharer.temperature)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity()
+
+		if((sharer.heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*sharer.heat_capacity/(self_heat_capacity+sharer.heat_capacity))
+
+			temperature -= heat/self_heat_capacity
+			sharer.temperature += heat/sharer.heat_capacity
+
+#undef MINIMUM_HEAT_CAPACITY

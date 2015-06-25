@@ -28,8 +28,10 @@ var/image/ocean_overlay
 	processing_turfs -= src
 	..()
 
-/turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target, var/flow_dir)
-	for(var/obj/O in target)
+/turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target)
+	if (!target || target.density || !Adjacent(target))
+		return 0
+	for(var/obj/O in target.contents)
 		if(!O.CanAtmosPass(src))
 			return 0
 	return 1
@@ -46,14 +48,8 @@ var/image/ocean_overlay
 			blocked_dirs |= W.dir
 		for(var/obj/machinery/door/window/D in src)
 			blocked_dirs |= D.dir
-
 		for(var/turf/simulated/T in range(1,src))
-			if(T.density)
-				continue
-			var/flowdir = get_dir(src,T)
-			if(flowdir in blocked_dirs)
-				continue
-			if(!can_spread_into(T, flowdir))
+			if(!can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 				continue
 			var/obj/effect/fluid/F = locate(/obj/effect/fluid) in T
 			if(!F)
