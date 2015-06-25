@@ -15,6 +15,8 @@
 	//List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
 	var/list/graphic = list()
 
+	var/last_share
+	var/tmp/fuel_burnt = 0
 
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
@@ -304,7 +306,7 @@
 
 
 /datum/gas_mixture/proc/react(atom/dump_location)
-	zburn(null, force_burn=0, no_check=0) //could probably just call zburn() here with no args but I like being explicit.
+	//zburn(null, force_burn=0, no_check=0) //could probably just call zburn() here with no args but I like being explicit.
 
 
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
@@ -456,3 +458,18 @@
 			gasmix.multiply(gasmix.volume)
 
 	return 1
+
+/datum/gas_mixture/proc/check_turf()
+	return
+
+/datum/gas_mixture/proc/mimic()
+	return
+
+/datum/gas_mixture/proc/archive()
+	return
+
+/datum/gas_mixture/proc/temperature_share()
+
+/datum/gas_mixture/proc/temperature_turf_share()
+
+/datum/gas_mixture/proc/temperature_mimic(turf/model, conduction_coefficient)

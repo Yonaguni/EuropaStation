@@ -389,13 +389,6 @@
 		defer_powernet_rebuild = 0
 	return
 
-
-/obj/machinery/power/supermatter/GotoAirflowDest(n) //Supermatter not pushed around by airflow
-	return
-
-/obj/machinery/power/supermatter/RepelAirflowDest(n)
-	return
-
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "Supermatter Shard"
 	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. \red You get headaches just from looking at it."

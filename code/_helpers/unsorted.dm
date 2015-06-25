@@ -798,12 +798,10 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
 					var/turf/simulated/ST = T
-					if(istype(ST) && ST.zone)
+					if(istype(ST))
 						var/turf/simulated/SX = X
 						if(!SX.air)
 							SX.make_air()
-						SX.air.copy_from(ST.zone.air)
-						ST.zone.remove(ST)
 
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
 					if(direction && findtext(X.icon_state, "swall_s"))
@@ -1310,3 +1308,6 @@ var/list/WALLITEMS = list(
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
+
+/proc/soft_assert(thing,fail)
+	if(!thing) message_admins(fail)
