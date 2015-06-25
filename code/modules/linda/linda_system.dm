@@ -30,10 +30,15 @@ var/global/datum/controller/process/air_system/air_master
 	if(kill_air)
 		return 1
 	current_cycle++
+	scheck()
 	process_active_turfs()
+	scheck()
 	process_excited_groups()
+	scheck()
 	process_high_pressure_delta()
+	scheck()
 	process_hotspots()
+	scheck()
 	process_super_conductivity()
 	scheck()
 	return 1

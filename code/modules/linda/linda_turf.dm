@@ -78,5 +78,4 @@
 	air = new/datum/gas_mixture
 	air.temperature = temperature
 	air.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, "phoron", phoron)
-	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
