@@ -2,7 +2,6 @@
 	// Basic checks.
 	if (!target || target.density || !Adjacent(target))
 		return 0
-	var/flowdir = get_dir(src,target)
 	for(var/obj/O in target.contents)
 		if(!O.CanAtmosPass(base_turf))
 			return 0
