@@ -87,7 +87,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		sharer.temperature += heat/sharer.heat_capacity
 
 /turf/simulated/proc/process_cell()
-
+	if(!air_master)
+		return
 	if(archived_cycle < air_master.current_cycle) //archive self if not already done
 		archive()
 	current_cycle = air_master.current_cycle
@@ -174,12 +175,16 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 
 /turf/simulated/proc/archive()
+	if(!air_master)
+		return
 	if(air) //For open space like floors
 		air.archive()
 	temperature_archived = temperature
 	archived_cycle = air_master.current_cycle
 
 /turf/simulated/proc/update_visuals(datum/gas_mixture/model)
+	if(!air_master)
+		return
 	overlays.Cut()
 	var/siding_icon_state = return_siding_icon_state()
 	if(siding_icon_state)
@@ -204,6 +209,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	*/
 
 /turf/proc/consider_pressure_difference(var/turf/simulated/T, var/difference)
+	if(!air_master)
+		return
 	air_master.high_pressure_delta |= src
 	if(difference > pressure_difference)
 		pressure_direction = get_dir(src, T)
@@ -236,6 +243,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	reset_cooldowns()
 
 /datum/excited_group/proc/merge_groups(var/datum/excited_group/E)
+	if(!air_master)
+		return
 	if(turf_list.len > E.turf_list.len)
 		air_master.excited_groups -= E
 		for(var/turf/simulated/T in E.turf_list)
@@ -256,6 +265,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	return
 
 /datum/excited_group/proc/dismantle()
+	if(!air_master)
+		return
 	for(var/turf/simulated/T in turf_list)
 		T.excited = 0
 		T.recently_active = 0
@@ -271,6 +282,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 
 turf/simulated/proc/super_conduct()
+	if(!air_master)
+		return
 	var/conductivity_directions = 0
 	if(blocks_air)
 		//Does not participate in air exchange, so will conduct heat across all four borders at this time
