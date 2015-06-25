@@ -22,7 +22,7 @@
 	id = "phoron"
 	name = "Phoron"
 	specific_heat = 200	// J/(mol*K)
-	
+
 	//Hypothetical group 14 (same as carbon), period 8 element.
 	//Using multiplicity rule, it's atomic number is 162
 	//and following a N/Z ratio of 1.5, the molar mass of a monatomic gas is:
@@ -49,8 +49,10 @@
 	tile_overlay = "sleeping_agent"
 	overlay_limit = 1
 
-/decl/xgm_gas/oxygen_agent_b
-	id = "oxygen_agent_b"
-	name = "Oxygen Agent-B"	//what is this?
-	specific_heat = 300	// J/(mol*K)
-	molar_mass = 0.032	// kg/mol
+/decl/xgm_gas/water
+	id = "water"
+	name = "Water"
+	specific_heat = 420	// J/(mol*K)
+	molar_mass = 0.018	// kg/mol
+
+	flags = XGM_GAS_LIQUID
