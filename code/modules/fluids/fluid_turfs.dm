@@ -10,9 +10,17 @@ var/image/ocean_overlay
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
 	var/isolated
+	var/datum/gas_mixture/water
 
 /turf/unsimulated/ocean/New()
 	..()
+
+	// Make our 'air', freezing water.
+	water = new/datum/gas_mixture
+	water.temperature = 250         // -24C
+	water.adjust_gas("water", 1500) // Should be higher.
+	water.volume = 1500
+
 	processing_turfs |= src
 	overlays.Cut()
 	if(prob(20))
@@ -62,5 +70,8 @@ var/image/ocean_overlay
 
 /turf/unsimulated/ocean/is_ocean()
 	return 1
+
+/turf/unsimulated/ocean/return_air()
+	return water
 
 #undef OCEAN_SPREAD_DEPTH
