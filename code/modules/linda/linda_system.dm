@@ -62,6 +62,7 @@ var/global/datum/controller/process/air_system/air_master
 
 /datum/controller/process/air_system/proc/process_active_turfs()
 	for(var/turf/simulated/T in active_turfs)
+		world << "processing [T]"
 		T.process_cell()
 
 /datum/controller/process/air_system/proc/remove_from_active(var/turf/simulated/T)

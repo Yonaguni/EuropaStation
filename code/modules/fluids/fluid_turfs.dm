@@ -30,7 +30,7 @@ var/image/ocean_overlay
 
 /turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target, var/flow_dir)
 	for(var/obj/O in target)
-		if(!O.can_liquid_pass(flow_dir))
+		if(!O.CanAtmosPass(src))
 			return 0
 	return 1
 
