@@ -168,6 +168,9 @@
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
+/obj/structure/simple_door/CanAtmosPass()
+	return !density
+
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
 	..(newloc, "iron")
 

@@ -59,6 +59,9 @@
 
 	..()
 
+/obj/machinery/shield/CanAtmosPass(var/turf/T)
+	return !density
+
 /obj/machinery/shield/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
@@ -267,7 +270,7 @@
 		else
 			user << "The device must first be secured to the floor."
 	return
-	
+
 /obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
 	if(!malfunction)
 		malfunction = 1

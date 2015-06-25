@@ -10,9 +10,17 @@ var/image/ocean_overlay
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
 	var/isolated
+	var/datum/gas_mixture/water
 
 /turf/unsimulated/ocean/New()
 	..()
+
+	// Make our 'air', freezing water.
+	water = new/datum/gas_mixture
+	water.temperature = 250         // -24C
+	water.adjust_gas("water", 1500) // Should be higher.
+	water.volume = 1500
+
 	processing_turfs |= src
 	overlays.Cut()
 	if(prob(20))
@@ -28,9 +36,11 @@ var/image/ocean_overlay
 	processing_turfs -= src
 	..()
 
-/turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target, var/flow_dir)
-	for(var/obj/O in target)
-		if(!O.can_liquid_pass(flow_dir))
+/turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target)
+	if (!target || target.density || !Adjacent(target))
+		return 0
+	for(var/obj/O in target.contents)
+		if(!O.CanAtmosPass(src))
 			return 0
 	return 1
 
@@ -46,14 +56,8 @@ var/image/ocean_overlay
 			blocked_dirs |= W.dir
 		for(var/obj/machinery/door/window/D in src)
 			blocked_dirs |= D.dir
-
 		for(var/turf/simulated/T in range(1,src))
-			if(T.density)
-				continue
-			var/flowdir = get_dir(src,T)
-			if(flowdir in blocked_dirs)
-				continue
-			if(!can_spread_into(T, flowdir))
+			if(!can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 				continue
 			var/obj/effect/fluid/F = locate(/obj/effect/fluid) in T
 			if(!F)
@@ -66,5 +70,8 @@ var/image/ocean_overlay
 
 /turf/unsimulated/ocean/is_ocean()
 	return 1
+
+/turf/unsimulated/ocean/return_air()
+	return water
 
 #undef OCEAN_SPREAD_DEPTH

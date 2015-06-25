@@ -1,80 +1,59 @@
+#define MINIMUM_HEAT_CAPACITY 0.0003
+
 /datum/gas_mixture
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas = list()
-	//Temperature in Kelvin of this gas mix.
-	var/temperature = 0
+	var/list/archived_gas = list()     // Used for calculating deltas, might as well be magic.
+	var/temperature = 0                // Temperature in Kelvin of this gas mix.
+	var/temperature_archived = 0       // Archive
+	var/total_moles = 0                // Sum of all the gas moles in this mix.  Updated by update_values()
+	var/volume = CELL_VOLUME           // Volume of this mix.
+	var/list/graphic = list()          // List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
+	var/list/graphic_archived = list() // Archive
+	var/last_share                     // Last gas amount shared.
+	var/tmp/fuel_burnt = 0             // Something to do with fire.
 
-	//Sum of all the gas moles in this mix.  Updated by update_values()
-	var/total_moles = 0
-	//Volume of this mix.
-	var/volume = CELL_VOLUME
-	//Size of the group this gas_mixture is representing.  1 for singletons.
-	var/group_multiplier = 1
-
-	//List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
-	var/list/graphic = list()
-
-	var/last_share
-	var/tmp/fuel_burnt = 0
+/datum/gas_mixture/New(vol = CELL_VOLUME)
+	volume = vol
 
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
 	if(moles == 0)
 		return
-
-	if (group_multiplier != 1)
-		gas[gasid] += moles/group_multiplier
-	else
-		gas[gasid] += moles
-
+	gas[gasid] += moles
 	if(update)
 		update_values()
-
 
 //Same as adjust_gas(), but takes a temperature which is mixed in with the gas.
 /datum/gas_mixture/proc/adjust_gas_temp(gasid, moles, temp, update = 1)
 	if(moles == 0)
 		return
-
 	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
-
-	if (group_multiplier != 1)
-		gas[gasid] += moles/group_multiplier
-	else
-		gas[gasid] += moles
-
+	gas[gasid] += moles
 	if(update)
 		update_values()
-
 
 //Variadic version of adjust_gas().  Takes any number of gas and mole pairs and applies them.
 /datum/gas_mixture/proc/adjust_multi()
 	ASSERT(!(args.len % 2))
-
 	for(var/i = 1; i < args.len; i += 2)
 		adjust_gas(args[i], args[i+1], update = 0)
-
 	update_values()
-
 
 //Variadic version of adjust_gas_temp().  Takes any number of gas, mole and temperature associations and applies them.
 /datum/gas_mixture/proc/adjust_multi_temp()
 	ASSERT(!(args.len % 3))
-
 	for(var/i = 1; i < args.len; i += 3)
 		adjust_gas_temp(args[i], args[i + 1], args[i + 2], update = 0)
-
 	update_values()
 
-
-//Merges all the gas from another mixture into this one.  Respects group_multipliers and adjusts temperature correctly.
-//Does not modify giver in any way.
+//Merges all the gas from another mixture into this one. Does not modify giver in any way.
 /datum/gas_mixture/proc/merge(const/datum/gas_mixture/giver)
 	if(!giver)
 		return
@@ -85,16 +64,10 @@
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (giver.temperature*giver_heat_capacity + temperature*self_heat_capacity)/combined_heat_capacity
-
-	if((group_multiplier != 1)||(giver.group_multiplier != 1))
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g] * giver.group_multiplier / group_multiplier
-	else
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g]
+	for(var/g in giver.gas)
+		gas[g] += giver.gas[g]
 
 	update_values()
-
 
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
 	for(var/g in sharer.gas)
@@ -110,16 +83,25 @@
 		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
 	sharer.temperature = temperature
 
-	return 1
+	update_values()
 
+	return 1
 
 //Returns the heat capacity of the gas mix based on the specific heat of the gases.
 /datum/gas_mixture/proc/heat_capacity()
 	. = 0
 	for(var/g in gas)
 		. += gas_data.specific_heat[g] * gas[g]
-	. *= group_multiplier
+	.
 
+/datum/gas_mixture/proc/heat_capacity_archived()
+	var/heat_capacity_archived = 0
+	for(var/gas_id in gas)
+		if(!(gas_id in gas_data.gases))
+			continue
+		if(isnull(archived_gas[gas_id])) archived_gas[gas_id] = 0
+		heat_capacity_archived += archived_gas[gas_id] * gas_data.specific_heat[gas_id]
+	return heat_capacity_archived
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
@@ -139,10 +121,8 @@
 /datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
 	return heat_capacity()*(max(new_temperature, 0) - temperature)
 
-
 //Technically vacuum doesn't have a specific entropy. Just use a really big number (infinity would be ideal) here so that it's easy to add gas to vacuum and hard to take gas out.
 #define SPECIFIC_ENTROPY_VACUUM		150000
-
 
 //Returns the ideal gas specific entropy of the whole mix. This is the entropy per mole of /mixed/ gas.
 /datum/gas_mixture/proc/specific_entropy()
@@ -153,7 +133,6 @@
 	for(var/g in gas)
 		. += gas[g] * specific_entropy_gas(g)
 	. /= total_moles
-
 
 /*
 	It's arguable whether this should even be called entropy anymore. It's more "based on" entropy than actually entropy now.
@@ -170,15 +149,9 @@
 	if (!(gasid in gas) || gas[gasid] == 0)
 		return SPECIFIC_ENTROPY_VACUUM	//that gas isn't here
 
-	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/molar_mass = gas_data.molar_mass[gasid]
 	var/specific_heat = gas_data.specific_heat[gasid]
 	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * temperature)) * (molar_mass*specific_heat*temperature)**(2/3) + 1 ) +  15 )
-
-	//alternative, simpler equation
-	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
-	//return R_IDEAL_GAS_EQUATION * ( log (1 + IDEAL_GAS_ENTROPY_CONSTANT/partial_pressure) + 20 )
-
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
@@ -189,17 +162,15 @@
 		else
 			total_moles += gas[g]
 
-
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
 	if(volume)
 		return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 	return 0
 
-
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
-	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
+	amount = min(amount, total_moles) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
 
@@ -207,7 +178,7 @@
 
 	for(var/g in gas)
 		removed.gas[g] = QUANTIZE((gas[g] / total_moles) * amount)
-		gas[g] -= removed.gas[g] / group_multiplier
+		gas[g] -= removed.gas[g]
 
 	removed.temperature = temperature
 	update_values()
@@ -215,20 +186,16 @@
 
 	return removed
 
-
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
-/datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = 1)
+/datum/gas_mixture/proc/remove_ratio(ratio)
 	if(ratio <= 0)
 		return null
-	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
 
 	ratio = min(ratio, 1)
 
 	var/datum/gas_mixture/removed = new
-	removed.group_multiplier = out_group_multiplier
-
 	for(var/g in gas)
-		removed.gas[g] = (gas[g] * ratio * group_multiplier / out_group_multiplier)
+		removed.gas[g] = (gas[g] * ratio)
 		gas[g] = gas[g] * (1 - ratio)
 
 	removed.temperature = temperature
@@ -239,7 +206,7 @@
 
 //Removes a volume of gas from the mixture and returns a gas_mixture containing the removed air with the given volume
 /datum/gas_mixture/proc/remove_volume(removed_volume)
-	var/datum/gas_mixture/removed = remove_ratio(removed_volume/(volume*group_multiplier), 1)
+	var/datum/gas_mixture/removed = remove_ratio(removed_volume/volume, 1)
 	removed.volume = removed_volume
 	return removed
 
@@ -258,7 +225,7 @@
 	for(var/g in gas)
 		if(gas_data.flags[g] & flag)
 			removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
-			gas[g] -= removed.gas[g] / group_multiplier
+			gas[g] -= removed.gas[g]
 
 	removed.temperature = temperature
 	update_values()
@@ -266,16 +233,12 @@
 
 	return removed
 
-
 //Copies gas and temperature from another gas_mixture.
 /datum/gas_mixture/proc/copy_from(const/datum/gas_mixture/sample)
 	gas = sample.gas.Copy()
 	temperature = sample.temperature
-
 	update_values()
-
 	return 1
-
 
 //Checks if we are within acceptable range of another gas_mixture to suspend processing or merge.
 /datum/gas_mixture/proc/compare(const/datum/gas_mixture/sample)
@@ -304,10 +267,8 @@
 
 	return 1
 
-
 /datum/gas_mixture/proc/react(atom/dump_location)
-	//zburn(null, force_burn=0, no_check=0) //could probably just call zburn() here with no args but I like being explicit.
-
+	return
 
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
@@ -335,8 +296,7 @@
 		graphic -= graphic_remove
 		. = 1
 
-
-//Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
+//Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
 	for(var/g in right_side.gas)
 		gas[g] += right_side.gas[g]
@@ -344,15 +304,13 @@
 	update_values()
 	return 1
 
-
-//Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.
+//Simpler version of remove(), adjusts gas amounts directly.
 /datum/gas_mixture/proc/subtract(datum/gas_mixture/right_side)
 	for(var/g in right_side.gas)
 		gas[g] -= right_side.gas[g]
 
 	update_values()
 	return 1
-
 
 //Multiply all gas amounts by a factor.
 /datum/gas_mixture/proc/multiply(factor)
@@ -362,7 +320,6 @@
 	update_values()
 	return 1
 
-
 //Divide all gas amounts by a factor.
 /datum/gas_mixture/proc/divide(factor)
 	for(var/g in gas)
@@ -370,59 +327,6 @@
 
 	update_values()
 	return 1
-
-
-//Shares gas with another gas_mixture based on the amount of connecting tiles and a fixed lookup table.
-/datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, share_size = null, one_way = 0)
-	var/static/list/sharing_lookup_table = list(0.30, 0.40, 0.48, 0.54, 0.60, 0.66)
-	//Shares a specific ratio of gas between mixtures using simple weighted averages.
-	var/ratio = sharing_lookup_table[6]
-
-	var/size = max(1, group_multiplier)
-	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
-
-	var/full_heat_capacity = heat_capacity()
-	var/s_full_heat_capacity = other.heat_capacity()
-
-	var/list/avg_gas = list()
-
-	for(var/g in gas)
-		avg_gas[g] += gas[g] * size
-
-	for(var/g in other.gas)
-		avg_gas[g] += other.gas[g] * share_size
-
-	for(var/g in avg_gas)
-		avg_gas[g] /= (size + share_size)
-
-	var/temp_avg = 0
-	if(full_heat_capacity + s_full_heat_capacity)
-		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
-
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
-		ratio = sharing_lookup_table[connecting_tiles]
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
-
-	for(var/g in avg_gas)
-		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-		if(!one_way)
-			other.gas[g] = max(0, (other.gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-
-	temperature = max(0, (temperature - temp_avg) * (1-ratio) + temp_avg)
-	if(!one_way)
-		other.temperature = max(0, (other.temperature - temp_avg) * (1-ratio) + temp_avg)
-
-	update_values()
-	other.update_values()
-
-	return compare(other)
-
-
-//A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
-/datum/gas_mixture/proc/share_space(datum/gas_mixture/unsim_air)
-	return share_ratio(unsim_air, unsim_air.group_multiplier, max(1, max(group_multiplier + 3, 1) + unsim_air.group_multiplier), one_way = 1)
-
 
 //Equalizes a list of gas mixtures.  Used for pipe networks.
 /proc/equalize_gases(datum/gas_mixture/list/gases)
@@ -459,17 +363,201 @@
 
 	return 1
 
-/datum/gas_mixture/proc/check_turf()
-	return
-
-/datum/gas_mixture/proc/mimic()
-	return
-
 /datum/gas_mixture/proc/archive()
-	return
+	archived_gas = list()
+	for(var/gas_id in gas)
+		archived_gas[gas_id] = gas[gas_id]
+	temperature_archived = temperature
+	graphic_archived = graphic
+	return 1
 
-/datum/gas_mixture/proc/temperature_share()
+/datum/gas_mixture/proc/get_gas_deltas(var/datum/gas_mixture/sharer, var/adjacent_turfs)
+	var/list/cdeltas = list()
+	for(var/gas_id in archived_gas)
+		var/current_level = (!isnull(archived_gas[gas_id]) ? archived_gas[gas_id] : 0)
+		var/sharer_level = 0
+		if(sharer.archived_gas && !isnull(sharer.archived_gas[gas_id]))
+			sharer_level = sharer.archived_gas[gas_id]
+		cdeltas[gas] = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+	return cdeltas
 
-/datum/gas_mixture/proc/temperature_turf_share()
+/datum/gas_mixture/proc/get_temperature_delta(var/datum/gas_mixture/sharer)
+	return (temperature_archived - sharer.temperature_archived)
 
-/datum/gas_mixture/proc/temperature_mimic(turf/model, conduction_coefficient)
+// Shares gas between two datums.
+/datum/gas_mixture/proc/share(var/datum/gas_mixture/sharer, var/atmos_adjacent_turfs = 4)
+
+	if(!sharer)	return 0
+
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/old_self_heat_capacity = 0
+	var/old_sharer_heat_capacity = 0
+	var/heat_capacity_self_to_sharer = 0
+	var/heat_capacity_sharer_to_self = 0
+
+	var/moved_moles = 0
+	last_share = 0
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+	for(var/gas_id in current_deltas)
+		var/cdelta = current_deltas[gas_id]
+		moved_moles += cdelta
+		last_share += abs(cdelta)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+
+		for(var/gas_id in gas)
+			if(!(gas_id in gas_data.gases))
+				continue
+			var/gas_delta = current_deltas[gas_id]
+			if(gas_delta)
+				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas[gas_id]
+				if(gas_delta > 0)
+					heat_capacity_self_to_sharer += gas_heat_capacity
+				else
+					heat_capacity_sharer_to_self -= gas_heat_capacity
+
+		old_self_heat_capacity = heat_capacity()
+		old_sharer_heat_capacity = sharer.heat_capacity()
+
+		var/new_self_heat_capacity = old_self_heat_capacity + heat_capacity_sharer_to_self - heat_capacity_self_to_sharer
+		var/new_sharer_heat_capacity = old_sharer_heat_capacity + heat_capacity_self_to_sharer - heat_capacity_sharer_to_self
+
+		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			temperature = (old_self_heat_capacity*temperature - heat_capacity_self_to_sharer*temperature_archived + heat_capacity_sharer_to_self*sharer.temperature_archived)/new_self_heat_capacity
+
+		if(new_sharer_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			sharer.temperature = (old_sharer_heat_capacity*sharer.temperature-heat_capacity_sharer_to_self*sharer.temperature_archived + heat_capacity_self_to_sharer*temperature_archived)/new_sharer_heat_capacity
+
+			if(abs(old_sharer_heat_capacity) > MINIMUM_HEAT_CAPACITY)
+				if(abs(new_sharer_heat_capacity/old_sharer_heat_capacity - 1) < 0.10) // <10% change in sharer heat capacity
+					temperature_share(sharer, OPEN_HEAT_TRANSFER_COEFFICIENT)
+
+	for(var/gas_id in gas)
+		var/cdelta = current_deltas[gas_id]
+		gas[gas_id] -= cdelta
+		if(isnull(sharer.gas[gas_id]))
+			sharer.gas[gas_id] = cdelta
+		else
+			sharer.gas[gas_id] += cdelta
+
+	update_values()
+	sharer.update_values()
+
+	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/delta_pressure = temperature_archived*(total_moles + moved_moles) - sharer.temperature_archived*(sharer.total_moles - moved_moles)
+		return delta_pressure*R_IDEAL_GAS_EQUATION/volume
+
+/datum/gas_mixture/proc/mimic(turf/model, border_multiplier, var/atmos_adjacent_turfs = 4)
+
+	var/datum/gas_mixture/sharer = model.return_air()
+	if(!sharer)
+		return
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/heat_transferred = 0
+	var/old_self_heat_capacity = 0
+	var/heat_capacity_transferred = 0
+
+	var/moved_moles = 0
+	last_share = 0
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+	for(var/gas_id in current_deltas)
+		var/cdelta = current_deltas[gas_id]
+		moved_moles += cdelta
+		last_share += abs(cdelta)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+
+		for(var/gas_id in gas)
+			if(!gas_id in gas_data.gases)
+				continue
+			var/gas_delta = current_deltas[gas_id]
+			if(gas_delta)
+				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas[gas_id]
+				heat_transferred -= gas_heat_capacity*sharer.temperature
+				heat_capacity_transferred -= gas_heat_capacity
+
+		old_self_heat_capacity = heat_capacity()
+
+	for(var/gas_id in gas)
+		if(!gas_id in gas_data.gases)
+			continue
+		var/gas_delta = current_deltas[gas_id]
+		if(border_multiplier)
+			gas_delta *= border_multiplier
+		gas[gas_id] -= gas_delta
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/new_self_heat_capacity = old_self_heat_capacity - heat_capacity_transferred
+		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			if(border_multiplier)
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*border_multiplier*temperature_archived)/new_self_heat_capacity
+			else
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*temperature_archived)/new_self_heat_capacity
+
+		temperature_mimic(model, model.thermal_conductivity, border_multiplier)
+
+	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/delta_pressure = temperature_archived*(total_moles + moved_moles) - sharer.temperature*sharer.total_moles
+		return delta_pressure*R_IDEAL_GAS_EQUATION/volume
+	else
+		return 0
+
+/datum/gas_mixture/proc/check_turf(var/turf/model, var/atmos_adjacent_turfs = 4)
+
+	var/datum/gas_mixture/sharer = model.return_air()
+	if(isnull(sharer))
+		return
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+		return 0
+	for(var/gas_id in current_deltas)
+		var/cdelta = abs(current_deltas[gas_id])
+		if(cdelta > MINIMUM_AIR_TO_SUSPEND)
+			var/compare_val = archived_gas[gas_id] ? (archived_gas[gas_id]*MINIMUM_AIR_RATIO_TO_SUSPEND) : 0
+			if(cdelta > compare_val)
+				return 0
+	return 1
+
+/datum/gas_mixture/proc/temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+
+	var/delta_temperature = (temperature_archived - sharer.temperature_archived)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity_archived()
+		var/sharer_heat_capacity = sharer.heat_capacity_archived()
+
+		if((sharer_heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*sharer_heat_capacity/(self_heat_capacity+sharer_heat_capacity))
+
+			temperature -= heat/self_heat_capacity
+			sharer.temperature += heat/sharer_heat_capacity
+
+/datum/gas_mixture/proc/temperature_mimic(turf/model, conduction_coefficient, border_multiplier)
+	var/delta_temperature = (temperature - model.temperature)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity()//_archived()
+
+		if((model.heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*model.heat_capacity/(self_heat_capacity+model.heat_capacity))
+
+			if(border_multiplier)
+				temperature -= heat*border_multiplier/self_heat_capacity
+			else
+				temperature -= heat/self_heat_capacity
+
+/datum/gas_mixture/proc/temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	var/delta_temperature = (temperature_archived - sharer.temperature)
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/self_heat_capacity = heat_capacity()
+
+		if((sharer.heat_capacity > MINIMUM_HEAT_CAPACITY) && (self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(self_heat_capacity*sharer.heat_capacity/(self_heat_capacity+sharer.heat_capacity))
+
+			temperature -= heat/self_heat_capacity
+			sharer.temperature += heat/sharer.heat_capacity
+
+#undef MINIMUM_HEAT_CAPACITY

@@ -182,21 +182,18 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	temperature_archived = temperature
 	archived_cycle = air_master.current_cycle
 
-/turf/simulated/proc/update_visuals(datum/gas_mixture/model)
+/turf/simulated/proc/update_visuals(var/datum/gas_mixture/model)
 	if(!air_master)
 		return
 	overlays.Cut()
 	var/siding_icon_state = return_siding_icon_state()
 	if(siding_icon_state)
 		overlays += image('icons/turf/floors.dmi',siding_icon_state)
-	switch(model.graphic)
-		if("phoron")
-			overlays.Add(air_master.air_overlay_cache["phoron"])
-		if("sleeping_agent")
-			overlays.Add(air_master.air_overlay_cache["n2o"])
+	if(model.graphic.len)
+		for(var/gas_overlay in model.graphic)
+			overlays |= gas_overlay
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
-	/*
 	if(T.current_cycle < current_cycle)
 		var/difference
 		difference = air.share(T.air, atmos_adjacent_turfs_amount)
@@ -206,7 +203,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			else
 				T.consider_pressure_difference(src, difference)
 		last_share_check()
-	*/
 
 /turf/proc/consider_pressure_difference(var/turf/simulated/T, var/difference)
 	if(!air_master)
