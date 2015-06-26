@@ -23,6 +23,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
 
 /datum/emergency_shuttle_controller/proc/process()
+	if(!shuttle) return
 	if (wait_for_launch)
 		if (auto_recall && world.time >= auto_recall_time)
 			recall()
@@ -41,6 +42,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 //called when the shuttle has arrived.
 
 /datum/emergency_shuttle_controller/proc/shuttle_arrived()
+	if(!shuttle) return
 	if (!shuttle.location)	//at station
 		if (autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
@@ -114,6 +116,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		priority_announcement.Announce("The scheduled crew transfer has been cancelled.")
 
 /datum/emergency_shuttle_controller/proc/can_call()
+	if(!shuttle)
+		return 0
 	if (!universe.OnShuttleCall(null))
 		return 0
 	if (deny_shuttle)
@@ -128,6 +132,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 //e.g. the shuttle is already at the station or wasn't called to begin with
 //other reasons for the shuttle not being recallable should be handled elsewhere
 /datum/emergency_shuttle_controller/proc/can_recall()
+	if(!shuttle)
+		return 0
 	if (shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
 		return 0
 	if (!shuttle.location)	//already at the station.
@@ -137,6 +143,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	return 1
 
 /datum/emergency_shuttle_controller/proc/get_shuttle_prep_time()
+	if(!shuttle) return
 	// During mutiny rounds, the shuttle takes twice as long.
 	if(ticker && ticker.mode)
 		return SHUTTLE_PREPTIME * ticker.mode.shuttle_delay
@@ -150,6 +157,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns 1 if the shuttle is docked at the station and waiting to leave
 /datum/emergency_shuttle_controller/proc/waiting_to_leave()
+	if(!shuttle) return
 	if (shuttle.location)
 		return 0	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
@@ -162,6 +170,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns the time left until the shuttle arrives at it's destination, in seconds
 /datum/emergency_shuttle_controller/proc/estimate_arrival_time()
+	if(!shuttle) return
 	var/eta
 	if (shuttle.has_arrive_time())
 		//we are in transition and can get an accurate ETA
@@ -185,6 +194,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns 1 if the shuttle is not idle at centcom
 /datum/emergency_shuttle_controller/proc/online()
+	if(!shuttle) return
 	if (!shuttle.location)	//not at centcom
 		return 1
 	if (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
@@ -193,10 +203,12 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to the station
 /datum/emergency_shuttle_controller/proc/going_to_station()
+	if(!shuttle) return
 	return (!shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to centcom
 /datum/emergency_shuttle_controller/proc/going_to_centcom()
+	if(!shuttle) return
 	return (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 
