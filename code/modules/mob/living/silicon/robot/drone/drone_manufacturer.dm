@@ -108,7 +108,7 @@
 	if(jobban_isbanned(src,"Cyborg"))
 		usr << "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>"
 		return
-		
+
 	if(!MayRespawn(1))
 		return
 

@@ -117,7 +117,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
+	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = 0
@@ -225,12 +225,12 @@
 		if(M.back)
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
-		
+
 		//flush away reagents on the skin
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
-		
+
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/washgloves = 1

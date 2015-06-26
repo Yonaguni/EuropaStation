@@ -31,7 +31,7 @@
 		return 1
 
 /obj/item/weapon/gun/projectile/sec
-	desc = "A NanoTrasen designed sidearm, found pretty much everywhere humans are. Uses .45 rounds."
+	desc = "A robust and well-designed sidearm, found pretty much everywhere humans are. Uses .45 rounds."
 	name = "\improper NT Mk58"
 	icon_state = "secguncomp"
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
@@ -45,7 +45,7 @@
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 
 /obj/item/weapon/gun/projectile/sec/wood
-	desc = "A Nanotrasen designed sidearm, this one has a sweet wooden grip. Uses .45 rounds."
+	desc = "A robust and well-designed sidearm, this one has a sweet wooden grip. Uses .45 rounds."
 	name = "\improper Custom NT Mk58"
 	icon_state = "secgundark"
 
