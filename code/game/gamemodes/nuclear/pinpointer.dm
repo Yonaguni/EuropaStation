@@ -1,3 +1,5 @@
+var/list/nuke_disks = list()
+
 /obj/item/weapon/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/device.dmi'
