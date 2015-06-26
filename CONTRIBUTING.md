@@ -2,7 +2,8 @@ Yonaguni-specific CONTRIBUTING.md:
 - Anything that can safely target Bay and fits the Bay content requirements should go to Bay.
 - Anything that breaks compatibility with Bay's dev branch should be as self-contained and modular as possible.
 - PRs require a signoff from a maintainer before being merged by a second maintainer, or 24 hours to pass for discussion, whichever comes first.
-
+- If your PR adds sprites or changes the map, it should include pictures of the end product.
+- PRs should include a changelog - see the changelogs folder for a readme on how to use the system.
 
 Baystation CONTRIBUTING.md:
 
