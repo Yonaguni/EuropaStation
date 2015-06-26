@@ -14,9 +14,9 @@ var/blobevent   = 0
 	spawn(3000)
 		blobevent = 0
 	spawn(rand(1000, 2000)) //Delayed announcements to keep the crew on their toes.
-		command_announcement.Announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
+		command_announcement.Announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All hands must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
 
-/proc/dotheblobbaby()
+/proc/dotheblobbaby() // Worst proc name this side of the microwave.
 	if (blobevent)
 		if(blob_cores.len)
 			for(var/i = 1 to 5)

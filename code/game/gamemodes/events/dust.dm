@@ -30,8 +30,8 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 
 
 /obj/effect/space_dust
-	name = "Space Dust"
-	desc = "Dust in space."
+	name = "debris"
+	desc = "Rock and metal hurled through the ocean currents."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "space_dust"
 	density = 1

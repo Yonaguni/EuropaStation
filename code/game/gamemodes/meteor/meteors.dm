@@ -2,14 +2,11 @@
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
-/var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
-						  /obj/effect/meteor/flaming=1, /obj/effect/meteor/irradiated=3) //for normal meteor event
+/var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3)
 
-/var/list/meteors_threatening = list(/obj/effect/meteor/medium=4, /obj/effect/meteor/big=8, \
-						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3) //for threatening meteor event
+/var/list/meteors_threatening = list(/obj/effect/meteor/medium=4, /obj/effect/meteor/big=8)
 
-/var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
+/var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
 
 /var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
 
@@ -181,7 +178,7 @@
 
 //Dust
 /obj/effect/meteor/dust
-	name = "space dust"
+	name = "debris"
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
@@ -191,7 +188,7 @@
 
 //Medium-sized
 /obj/effect/meteor/medium
-	name = "meteor"
+	name = "debris chunk"
 	dropamt = 3
 
 /obj/effect/meteor/medium/meteor_effect()
@@ -200,7 +197,7 @@
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "big meteor"
+	name = "large debris chunk"
 	icon_state = "large"
 	hits = 6
 	heavy = 1
@@ -211,6 +208,7 @@
 	explosion(src.loc, 1, 2, 3, 4, 0)
 
 //Flaming meteor
+/*
 /obj/effect/meteor/flaming
 	name = "flaming meteor"
 	icon_state = "flaming"
@@ -237,10 +235,11 @@
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
 	for(var/mob/living/L in view(5, src))
 		L.apply_effect(40, IRRADIATE)
+*/
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "immense debris chunk"
 	icon_state = "flaming"
 	desc = "Your life briefly passes before your eyes the moment you lay them on this monstruosity"
 	hits = 30

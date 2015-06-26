@@ -2069,16 +2069,6 @@
 				if(choice == "Badmin")
 					message_admins("[key_name_admin(usr)] has spawned carp.", 1)
 					new /datum/event/carp_migration
-			if("radiation")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","R")
-				message_admins("[key_name_admin(usr)] has has irradiated the station", 1)
-				new /datum/event/radiation_storm
-			if("immovable")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","IR")
-				message_admins("[key_name_admin(usr)] has sent an immovable rod to the station", 1)
-				immovablerod()
 			if("prison_break")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","PB")
