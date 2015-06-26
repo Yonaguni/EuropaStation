@@ -1356,3 +1356,9 @@
 	if(W in organs)
 		return
 	..()
+
+/mob/living/carbon/human/is_bleeding()
+	for(var/obj/item/organ/external/E in organs)
+		if(E.status & ORGAN_BLEEDING)
+			return 1
+	return 0

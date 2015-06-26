@@ -1243,6 +1243,8 @@
 #include "code\modules\mob\living\aquatic\behavior.dm"
 #include "code\modules\mob\living\aquatic\hostile.dm"
 #include "code\modules\mob\living\aquatic\life.dm"
+#include "code\modules\mob\living\aquatic\school.dm"
+#include "code\modules\mob\living\aquatic\schooling.dm"
 #include "code\modules\mob\living\blob\blob.dm"
 #include "code\modules\mob\living\bot\bot.dm"
 #include "code\modules\mob\living\bot\cleanbot.dm"

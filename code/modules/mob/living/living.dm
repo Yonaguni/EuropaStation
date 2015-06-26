@@ -800,3 +800,6 @@ default behaviour is:
 				return
 
 	..()
+
+/mob/living/proc/is_bleeding()
+	return (bruteloss > 0)
