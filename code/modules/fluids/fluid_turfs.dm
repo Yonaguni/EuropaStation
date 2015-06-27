@@ -7,8 +7,8 @@ var/image/ocean_overlay
 	density = 0
 	opacity = 0
 	var/sleeping = 0
-	icon = 'icons/turf/desert.dmi'
-	icon_state = "desert"
+	icon = 'icons/turf/seafloor.dmi'
+	icon_state = "seafloor"
 	var/isolated
 	var/datum/gas_mixture/water
 
