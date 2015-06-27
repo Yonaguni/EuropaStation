@@ -1,8 +1,6 @@
 /mob/living/aquatic/Life()
-	if(!..() || stat > 0)
-		return
-
-	handle_behavior()
+	..()
+	if(!stat) handle_behavior()
 
 /mob/living/aquatic/handle_breathing()
 
@@ -19,7 +17,7 @@
 		if(G && G.gas[required_gas] > gas_amount)
 			suffocating = 0
 
-	if(suffocating).
+	if(suffocating)
 		SetStunned(3)
 		adjustOxyLoss(rand(5,10))
 

@@ -4,15 +4,13 @@
 	announceWhen	= 90
 	var/spawncount = 1
 
-
 /datum/event/spider_infestation/setup()
 	announceWhen = rand(announceWhen, announceWhen + 60)
 	spawncount = rand(4 * severity, 6 * severity)	//spiderlings only have a 50% chance to grow big and strong
 	sent_spiders_to_station = 0
 
 /datum/event/spider_infestation/announce()
-	command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
-
+	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All hands must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /datum/event/spider_infestation/start()
 	var/list/vents = list()

@@ -61,7 +61,7 @@
 	if(!module) module = new module_type(src)
 
 	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
-	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
+	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
 	spawn(1)
 		if(camera && ("Robots" in camera.network))
@@ -137,7 +137,7 @@
 		return
 
 	..()
-	
+
 /mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
 	if(!client || stat == 2)
 		user << "<span class='danger'>There's not much point subverting this heap of junk.</span>"

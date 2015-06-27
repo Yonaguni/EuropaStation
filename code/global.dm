@@ -24,12 +24,17 @@ var/global/list/global_map = null
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
-var/diary          = null
-var/href_logfile   = null
-var/station_name   = "NSS Exodus"
-var/game_version   = "Baystation12"
-var/changelog_hash = ""
-var/game_year      = (text2num(time2text(world.realtime, "YYYY")) + 544)
+var/diary               = null
+var/href_logfile        = null
+var/station_name        = "Europa Station"
+var/station_short       = "Yonaguni Dome"
+var/const/boss_name     = "Department of Planetary Exploitation"
+var/const/boss_short    = "SDPE"
+var/const/company_name  = "P&B Mining and Fabrication"
+var/const/company_short = "Company"
+var/game_version        = "Yonaguni"
+var/changelog_hash      = ""
+var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/round_progressing = 1
 var/master_mode       = "extended" // "extended"

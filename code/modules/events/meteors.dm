@@ -10,9 +10,9 @@
 /datum/event/meteor_wave/announce()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Meteors have been detected on collision course with the station.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			command_announcement.Announce("Large volumes of debris have been detected on a collision course with [station_name()].", "Debris Field Alert")
 		else
-			command_announcement.Announce("The station is now in a meteor shower.", "Meteor Alert")
+			command_announcement.Announce("The facility is now in a debris field.", "Meteor Alert")
 
 //meteor showers are lighter and more common,
 /datum/event/meteor_wave/tick()
@@ -23,11 +23,7 @@
 		endWhen = (waves ? next_meteor + 1 : activeFor + 15)
 
 /datum/event/meteor_wave/end()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The station has cleared the meteor storm.", "Meteor Alert")
-		else
-			command_announcement.Announce("The station has cleared the meteor shower", "Meteor Alert")
+	command_announcement.Announce("The debris field has cleared the facility.", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
