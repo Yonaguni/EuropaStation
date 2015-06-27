@@ -80,11 +80,11 @@
 	icon_state = "purpleberet"
 /obj/item/clothing/head/beret/centcom/officer
 	name = "officers beret"
-	desc = "A black beret adorned with the shield—a silver kite shield with an engraved sword—of the NanoTrasen security forces."
+	desc = "A black beret adorned with the shieldâ€”a silver kite shield with an engraved swordâ€”of the NanoTrasen security forces."
 	icon_state = "centcomofficerberet"
 /obj/item/clothing/head/beret/centcom/captain
 	name = "captains beret"
-	desc = "A white beret adorned with the shield—a silver kite shield with an engraved sword—of the NanoTrasen security forces."
+	desc = "A white beret adorned with the shieldâ€”a silver kite shield with an engraved swordâ€”of the NanoTrasen security forces."
 	icon_state = "centcomcaptain"
 
 //Medical
@@ -105,3 +105,10 @@
 /obj/item/clothing/head/surgery/green
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is dark green."
 	icon_state = "surgcap_green"
+
+
+//Government
+/obj/item/clothing/head/petty_officer
+	name = "petty officer's hat"
+	desc = "A sturdy grey formal hat that announces your official presence."
+	icon_state = "officercap"
