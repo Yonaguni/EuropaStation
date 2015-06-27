@@ -80,11 +80,11 @@
 	icon_state = "purpleberet"
 /obj/item/clothing/head/beret/centcom/officer
 	name = "officers beret"
-	desc = "A black beret adorned with the shield—a silver kite shield with an engraved sword—of the NanoTrasen security forces."
+	desc = "A black beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
 	icon_state = "centcomofficerberet"
 /obj/item/clothing/head/beret/centcom/captain
 	name = "captains beret"
-	desc = "A white beret adorned with the shield—a silver kite shield with an engraved sword—of the NanoTrasen security forces."
+	desc = "A white beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
 	icon_state = "centcomcaptain"
 
 //Medical

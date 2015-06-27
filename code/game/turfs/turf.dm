@@ -314,8 +314,8 @@
 /turf/proc/process()
 	return PROCESS_KILL
 
-/turf/proc/is_ocean()
+/turf/proc/is_ocean(var/lying_mob)
 	var/obj/effect/fluid/F = locate() in src
-	if(F && F.depth > 30)
+	if(F && F.depth > (lying_mob ? 30 : 70))
 		return 1
 	return 0
