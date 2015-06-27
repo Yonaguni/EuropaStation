@@ -10,7 +10,7 @@
 	alt_titles = list("Sub Pilot", "Peace Officer")
 
 
-	equip(var/mob/living/carbon/human/H)
+	/datum/job/government/equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/petty_officer(H), slot_w_uniform)
