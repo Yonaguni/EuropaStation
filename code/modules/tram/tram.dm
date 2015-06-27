@@ -11,6 +11,9 @@
 
 	var/list/collide_list = list()
 
+	var/list/crash_list = list()
+	var/list/gibbed() = list()
+
 	var/list/stored_anchor = list()
 	var/obj/tram/rail/last_played_rail = null
 
@@ -23,7 +26,7 @@
 	var/delay_timer = 0
 
 	var/list/blacklist = list(/obj/tram/rail,/atom/movable/lighting_overlay)
-	var/list/ancwhitelist = list(/obj/tram, /obj/vehicle, /obj/structure/bed/chair, /obj/structure/grille, /obj/structure/window)
+	var/list/ancwhitelist = list(/obj/tram, /obj/vehicle, /obj/structure/bed/chair, /obj/structure/grille, /obj/structure/window, /obj/structure/table)
 
 /obj/tram/tram_controller/New()
 	spawn(1)
@@ -205,6 +208,11 @@
 						if(A.density)
 							if(tram.Find(A))	continue
 							collisions += cdir
+							crash_list[A] = cdir
+						else
+							if(istype(A,/mob/living))
+								crash_list[A] = cdir
+
 	for(var/obj/tram/floor/F in tram_floors)
 		for(var/cdir in cardinal)
 			var/turf/T = get_step(F, cdir)
@@ -216,11 +224,21 @@
 						if(A.density)
 							if(tram.Find(A))	continue
 							collisions += cdir
+							crash_list[A] = cdir
+						else
+							if(istype(A,/mob/living))
+								crash_list[A] = cdir
 	collide_list = collisions
 
 /obj/tram/tram_controller/proc/handle_move(var/dir)
 	delay_timer = null //reset delay
 	gen_collision() //Look for collisions
+	for(var/atom/movable/A in crash_list)
+		if(crash_list[A] == dir) //if something is in our way crush it
+			handle_crash(A,dir)
+		else
+			crash_list -= A
+	crash_list.Cut() //get rid of all the old crashes, so they can get calculated again
 	if(dir in collide_list) //Prevent moving if there are collisions in that direction
 		return 0
 	for(var/atom/movable/A in tram)
@@ -229,7 +247,37 @@
 		if(A.light_range)
 			A.set_light()
 	gen_collision() //Generate collision again
+	for(var/atom/movable/A in crash_list)
+		if(crash_list[A] == dir)
+			handle_crash(A,dir)
+		else
+			crash_list -= A
 	return 1
+
+
+obj/tram/tram_controller/proc/handle_crash(var/atom/movable/A,var/dir)
+	if(!istype(A)) return
+	if((A in gibbed)) return //so we don't gib things multiple times
+	if(istype(A,/mob/living))
+		if(istype(A,/mob/living/carbon))
+			if(A:lying)
+				crash_list -= A
+				A:gib()
+				gibbed += A
+			else //if it's not lying down, push it and break its face
+				A:apply_damage(5) //brute by default, 50 damage in one second
+				if(prob(2)) A:Weaken(2) //RNGesus is not in your favor, RIP buddy...
+				step_towards(A, get_step(get_turf(A),dir))
+				crash_list -= A
+		else
+			crash_list -= A
+			A:gib() //gib all non-carbon things like simple mobs
+			gibbed += A
+	else
+		A.ex_act(1.0) //explodify all non-mobs into their little non-dense pieces
+
+
+
 
 //////////////////////DAMAGE PROCS
 /obj/tram/ex_act(severity)
