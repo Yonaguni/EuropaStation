@@ -199,7 +199,6 @@
 		gas[g] = gas[g] * (1 - ratio)
 
 	removed.temperature = temperature
-	removed.volume = volume * group_multiplier / out_group_multiplier
 	update_values()
 	removed.update_values()
 
