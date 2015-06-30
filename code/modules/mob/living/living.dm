@@ -780,7 +780,7 @@ default behaviour is:
 	if(W in internal_organs)
 		return
 	..()
-
+/*
 //damage/heal the mob ears and adjust the deaf amount
 /mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
@@ -792,6 +792,6 @@ default behaviour is:
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
-
+*/
 /mob/living/proc/is_bleeding()
 	return (bruteloss > 0)
