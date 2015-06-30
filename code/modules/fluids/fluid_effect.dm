@@ -70,8 +70,10 @@
 			overlays |= get_fluid_icon("shallow_still")
 		if(FLUID_SHALLOW to FLUID_DEEP)
 			overlays |= get_fluid_icon("mid_still")
-		if(FLUID_DEEP to INFINITY)
+		if(FLUID_DEEP to FLUID_OCEAN_DEPTH)
 			overlays |= get_fluid_icon("deep_still")
+		if(FLUID_OCEAN_DEPTH to INFINITY)
+			overlays |= get_fluid_icon("ocean")
 
 /obj/effect/fluid/proc/schedule_icon_update()
 	if(depth == FLUID_DELETING)
