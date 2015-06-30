@@ -781,8 +781,17 @@ default behaviour is:
 		return
 	..()
 
-/mob/living/touch_map_edge()
-	..()
+//damage/heal the mob ears and adjust the deaf amount
+/mob/living/adjustEarDamage(var/damage, var/deaf)
+	ear_damage = max(0, ear_damage + damage)
+	ear_deaf = max(0, ear_deaf + deaf)
+
+//pass a negative argument to skip one of the variable
+/mob/living/setEarDamage(var/damage, var/deaf)
+	if(damage >= 0)
+		ear_damage = damage
+	if(deaf >= 0)
+		ear_deaf = deaf
 
 /mob/living/proc/is_bleeding()
 	return (bruteloss > 0)

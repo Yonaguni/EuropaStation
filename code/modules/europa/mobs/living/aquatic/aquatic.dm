@@ -1,7 +1,7 @@
 /mob/living/aquatic
 	name = "fish"
 	desc = "Here, fishy fishy."
-	icon = 'icons/mob/aquatic.dmi'
+	icon = 'icons/mob/europa/aquatic.dmi'
 	icon_state =      "fish"
 	var/icon_living = "fish"
 	var/icon_dying =  "fish_dying"
