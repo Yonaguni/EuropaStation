@@ -25,7 +25,7 @@ script:
   - (! grep 'step_[xy]' maps/**/*.dmm)
   - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
   - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; [ $num -le 1355 ])
-  - (  md5sum -c - <<< "ab5bb664d35a8319b53cdf815b2b70b7 *yonaguni.int")
+  - (  md5sum -c - <<< "d2362e3e81213689d5affbe5b55f2687 *yonaguni.int")
   - python tools/TagMatcher/tag-matcher.py ../..
   - python tools/GenerateChangelog/ss13_genchangelog.py html/changelog.html html/changelogs
   - DreamMaker yonaguni.dme
