@@ -258,30 +258,8 @@
 obj/tram/tram_controller/proc/handle_crash(var/atom/movable/A,var/dir)
 	if(!istype(A)) return
 	if((A in gibbed)) return //so we don't gib things multiple times
-	if(istype(A,/mob/living))
-		handle_mob_crash(A,dir)
-	else
-		handle_obj_crash(A,dir)
+	A.tram_act(src,dir)
 
-obj/tram/tram_controller/proc/handle_obj_crash(var/obj/A,dir)
-	if(istype(A)) A.ex_act(1.0)
-
-
-obj/tram/tram_controller/proc/handle_mob_crash(var/mob/living/carbon/A,dir)
-	if(istype(A,/mob/living/carbon))
-		if(A.lying)
-			crash_list -= A
-			A.gib()
-			gibbed += A
-		else //if it's not lying down, push it and break its face
-			A.apply_damage(5) //brute by default, 50 damage in one second
-			if(prob(2)) A.Weaken(2) //RNGesus is not in your favor, RIP buddy...
-			step_towards(A, get_step(get_turf(A),dir))
-			crash_list -= A
-	else
-		crash_list -= A
-		A.gib() //gib all non-carbon things like simple mobs
-		gibbed += A
 
 
 
