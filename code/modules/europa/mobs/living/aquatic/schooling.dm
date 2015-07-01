@@ -27,4 +27,4 @@
 		leader = null
 	if(!leader)
 		leader = pick(members)
-	leader.set_school(src)
+	//leader.set_school(src)
