@@ -1,4 +1,4 @@
-#define OCEAN_SPREAD_DEPTH 1000
+#define OCEAN_SPREAD_DEPTH 500
 #define OCEAN_OVERLAY_LAYER 4.9
 
 var/list/ocean_overlay_cache = list()
@@ -41,6 +41,7 @@ var/list/ocean_overlay_cache = list()
 		detail_decal = "asteroid[rand(0,9)]"
 	spawn(5)
 		update_icon()
+	processing_turfs -= src
 
 /turf/unsimulated/ocean/proc/update_icon()
 	overlays.Cut()
@@ -75,10 +76,10 @@ var/list/ocean_overlay_cache = list()
 	return 1
 
 /turf/unsimulated/ocean/proc/refresh()
-	sleeping = 0
-	processing_turfs |= src
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		sleeping = 0
+		processing_turfs |= src
 
-/*
 /turf/unsimulated/ocean/process()
 	sleeping = 1
 	if(!isolated)
@@ -99,7 +100,6 @@ var/list/ocean_overlay_cache = list()
 	if(sleeping)
 		processing_turfs -= src
 	spawn(1) update_icon()
-*/
 
 /turf/unsimulated/ocean/is_ocean()
 	return 1
