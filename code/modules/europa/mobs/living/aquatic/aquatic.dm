@@ -1,7 +1,7 @@
 /mob/living/aquatic
 	name = "fish"
 	desc = "Here, fishy fishy."
-	icon = 'icons/mob/aquatic.dmi'
+	icon = 'icons/mob/europa/aquatic.dmi'
 	icon_state =      "fish"
 	var/icon_living = "fish"
 	var/icon_dying =  "fish_dying"
@@ -31,3 +31,21 @@
 		icon_state = icon_living
 	else
 		icon_state = initial(icon_state)
+
+/mob/living/aquatic/grump
+	icon_state =  "grump"
+	icon_living = "grump"
+	icon_dying =  "grump_dying"
+	icon_dead =   "grump_dead"
+
+/mob/living/aquatic/content
+	icon_state =  "content"
+	icon_living = "content"
+	icon_dying =  "content_dying"
+	icon_dead =   "content_dead"
+
+/mob/living/aquatic/judge
+	icon_state =  "judge"
+	icon_living = "judge"
+	icon_dying =  "judge_dying"
+	icon_dead =   "judge_dead"

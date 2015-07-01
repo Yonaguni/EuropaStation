@@ -13,6 +13,7 @@
 #define FLUID_DEEP 80                      // Depth deep icon is used
 #define FLUID_PROCESSING_CUTOFF 1000       // Max number of fluids to check per list per cycle.
 #define FLUID_MAX_ALPHA 180
+#define FLUID_OCEAN_DEPTH 200
 
 var/global/fluid_controller_exists         // Todo make this a better check for an existing fluid controller datum.
 var/global/list/fluid_images =      list() // Shared overlays for all fluid turfs (to sync animation)

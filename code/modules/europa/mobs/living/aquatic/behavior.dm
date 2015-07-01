@@ -1,6 +1,7 @@
 /mob/living/aquatic/proc/handle_behavior()
 	if(client && key)
 		return
+/*
 	already_moved = null
 	if(behavior_flags & FISH_FORM_SCHOOLS)
 		update_flocking()
@@ -66,3 +67,4 @@
 	school.disperse()
 	school = new_school
 	update_followers()
+*/

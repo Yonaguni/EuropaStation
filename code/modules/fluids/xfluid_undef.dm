@@ -8,3 +8,4 @@
 #undef FLUID_DELETING
 #undef FLUID_SHALLOW
 #undef FLUID_DEEP
+#undef FLUID_OCEAN_DEPTH
