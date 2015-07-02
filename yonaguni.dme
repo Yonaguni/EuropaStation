@@ -1732,6 +1732,7 @@
 #include "code\modules\tables\tables.dm"
 #include "code\modules\tables\update_triggers.dm"
 #include "code\modules\tram\tram.dm"
+#include "code\modules\tram\tram_act.dm"
 #include "code\modules\tram\tram_control_pad.dm"
 #include "code\modules\tram\tram_floor.dm"
 #include "code\modules\tram\tram_rail.dm"
