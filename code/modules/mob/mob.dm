@@ -392,6 +392,7 @@
 		'html/hard-hat-exclamation.png',
 		'html/image-minus.png',
 		'html/image-plus.png',
+		'html/map-pencil.png',
 		'html/music-minus.png',
 		'html/music-plus.png',
 		'html/tick-circle.png',
@@ -496,12 +497,8 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC"
-	reset_view(null)
 	unset_machine()
-	if(istype(src, /mob/living))
-		var/mob/living/M = src
-		if(M.cameraFollow)
-			M.cameraFollow = null
+	reset_view(null)
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
