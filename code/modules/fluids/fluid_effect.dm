@@ -15,6 +15,7 @@
 	var/need_colour_update              // Set to avoid calculating reagent colour multiple times per cycle.
 	var/spread_chance = 1               // Inverse viscosity, lower == more viscous.
 	var/list/fluid_flows = list()
+	var/started_evaporating
 
 /obj/effect/fluid/New()
 	..()
@@ -89,9 +90,18 @@
 	evaporate()
 
 /obj/effect/fluid/process()
+
 	if(!base_turf)
 		evaporate()
 		return
+
+	if(started_evaporating && world.time > started_evaporating+FLUID_EVAP_TIME)
+		evaporate()
+		return
+
+	if(base_turf.wet && depth > FLUID_DROWN_LEVEL_RESTING)
+		base_turf.wet = 0
+
 	if(fluid_flows)
 		apply_flow()
 	else

@@ -18,8 +18,8 @@
 	if(depth == FLUID_DELETING)
 		return 0
 	set_depth(depth - amt)
-	if(depth <= 0)
-		evaporate()
+	if(depth <= 0 && isnull(started_evaporating))
+		started_evaporating = world.time
 	else
 		schedule_icon_update()
 	return 1
@@ -27,6 +27,7 @@
 /obj/effect/fluid/proc/recieve_fluid(var/amt)
 	if(depth == FLUID_DELETING)
 		return 0
+	started_evaporating = null
 	set_depth(depth + amt)
 	schedule_icon_update()
 	return 1
@@ -116,7 +117,6 @@
 	fluid_flows.Cut()
 
 /obj/effect/fluid/proc/evaporate()
-
 	if(depth == FLUID_DELETING || (src in new_fluids))
 		return
 
@@ -131,5 +131,8 @@
 /obj/effect/fluid/ex_act()
 	evaporate()
 
-/obj/effect/fluid/fire_act()
+/obj/effect/fluid/tram_act()
 	evaporate()
+
+/obj/effect/fluid/fire_act(var/datum/gas_mixture/air, var/exposed_temperature, var/exposed_volume)
+	lose_fluid((exposed_volume * exposed_temperature)/100) //todo
