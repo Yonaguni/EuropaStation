@@ -1357,6 +1357,11 @@
 		return
 	..()
 
+/mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
+	..()
+	if(update_hud)
+		handle_regular_hud_updates()
+
 /mob/living/carbon/human/is_bleeding()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.status & ORGAN_BLEEDING)
