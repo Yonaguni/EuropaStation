@@ -2,8 +2,8 @@
 // Fluid controller!
 ////
 
-#define FLUID_PROCESSING_OFFSET 3          // Ticks for various non-cycle-locked behaviors
-#define FLUID_SCHEDULE_INTERVAL 5          // Ticks per cycle
+#define FLUID_PROCESSING_OFFSET 2          // Ticks for various non-cycle-locked behaviors
+#define FLUID_SCHEDULE_INTERVAL 3          // Ticks per cycle
 #define FLUID_PUSH_THRESHOLD 30            // Depth that will shove a mob when flowing
 #define FLUID_EVAPORATION_POINT 10         // Depth a fluid begins self-deleting
 #define FLUID_DELETING -1                  // Depth a fluid counts as qdel'd
@@ -14,6 +14,7 @@
 #define FLUID_PROCESSING_CUTOFF 1000       // Max number of fluids to check per list per cycle.
 #define FLUID_MAX_ALPHA 180
 #define FLUID_OCEAN_DEPTH 200
+#define FLUID_EVAP_TIME 30
 
 var/global/fluid_controller_exists         // Todo make this a better check for an existing fluid controller datum.
 var/global/list/fluid_images =      list() // Shared overlays for all fluid turfs (to sync animation)
