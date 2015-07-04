@@ -1,6 +1,6 @@
 /datum/random_map/noise/seafloor
 	descriptor = "Europan seafloor (roundstart)"
-	smoothing_iterations = 1
+	smoothing_iterations = 3
 	target_turf_type = /turf/unsimulated/ocean
 
 /datum/random_map/noise/seafloor/get_appropriate_path(var/value)
@@ -41,7 +41,7 @@
 				new /obj/structure/seaweed/glow(T)
 
 	switch(val)
-		if(6)
+		if(5 to 6)
 			T.icon_state = "mud_light"
 		if(7 to 9)
 			T.icon_state = "mud_dark"
