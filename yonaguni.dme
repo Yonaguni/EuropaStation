@@ -1748,4 +1748,5 @@
 #include "interface\skin.dmf"
 #include "maps\europa-1.dmm"
 #include "maps\europa-2.dmm"
+#include "maps\europa-3.dmm"
 // END_INCLUDE

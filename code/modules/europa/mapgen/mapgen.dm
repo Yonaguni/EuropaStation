@@ -25,10 +25,23 @@
 				new /obj/structure/seaweed(T)
 			else if(prob(30))
 				new /obj/structure/seaweed/large(T)
+			else
+				new /obj/structure/seaweed/glow(T)
 		if(8)
-			if(prob(20))
+			if(prob(60))
+				new /obj/structure/seaweed/glow(T)
+			else if(prob(30))
 				new /obj/structure/seaweed(T)
 			else
 				new /obj/structure/seaweed/large(T)
 		if(9)
-			new /obj/structure/seaweed/large(T)
+			if(prob(70))
+				new /obj/structure/seaweed/large(T)
+			else
+				new /obj/structure/seaweed/glow(T)
+
+	switch(val)
+		if(6)
+			T.icon_state = "mud_light"
+		if(7 to 9)
+			T.icon_state = "mud_dark"
