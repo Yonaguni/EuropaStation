@@ -1,3 +1,53 @@
+/mob/living/proc/can_drown()
+	return 1
+
+/mob/living/bot/can_drown()
+	return 0
+
+/mob/living/simple_animal/construct/can_drown()
+	return 0
+
+/mob/living/simple_animal/borer/can_drown()
+	return 0
+
+/mob/living/carbon/can_drown()
+	var/obj/item/organ/gills/G = locate() in internal_organs
+	if(!G || G.is_broken())
+		return 1
+	return 0
+
+/mob/living/proc/handle_drowning()
+	if(!can_drown())
+		return 0
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	if(!T.is_ocean(lying))
+		return 0
+	if(prob(5))
+		src << "<span class='danger'>You choke and splutter as you inhale water!</span>"
+	return 1 // Presumably chemical smoke can't be breathed while you're underwater.
+
+/datum/admins/proc/spawn_gas() //todo
+	set category = "Debug"
+	set desc = "Spawn an amount of a particular kind of gas."
+	set name = "Spawn Fluid"
+
+	if(!check_rights(R_SPAWN)) return
+	var/fluid_amt = input("Enter volume:") as num|null
+	if(fluid_amt && isnum(fluid_amt))
+		var/turf/simulated/T = get_turf(usr)
+		if(!istype(T))
+			usr << "<span class='danger'>Gas can only be spawned on simulated turfs.</span>"
+			return
+	/*
+		var/obj/effect/fluid/F = locate() in T
+		if(!F) F = PoolOrNew(/obj/effect/fluid, T)
+		F.set_depth(fluid_amt)
+	*/
+		log_admin("[key_name(usr)] spawned [fluid_amt] units of gas at ([usr.x],[usr.y],[usr.z])")
+	return
+
 /atom/proc/water_act(var/depth, var/flowdir)
 	return
 
@@ -16,9 +66,9 @@
 	if(anchored || buckled)
 		return
 	if(!isnull(flowdir))
-		if(depth >= FLUID_DROWN_LEVEL_RESTING)
+		if(depth >= 30)
 			var/flow_msg = "pushed away"
-			if(!lying && depth >= FLUID_DROWN_LEVEL_STANDING && prob(depth))
+			if(!lying && depth >= 70 && prob(depth))
 				Weaken(rand(2,4))
 				flow_msg = "knocked down"
 			src << "<span class='danger'>You are [flow_msg] by the rush of water!</span>"

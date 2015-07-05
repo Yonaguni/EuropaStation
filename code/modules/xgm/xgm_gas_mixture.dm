@@ -11,6 +11,7 @@
 	var/volume = CELL_VOLUME           // Volume of this mix.
 	var/list/graphic = list()          // List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
 	var/list/graphic_archived = list() // Archive
+	var/graphic_alpha = 0              // Used by tile overlays.
 	var/last_share                     // Last gas amount shared.
 	var/tmp/fuel_burnt = 0             // Something to do with fire.
 
@@ -273,6 +274,7 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
+	graphic_alpha = 0
 	for(var/g in gas_data.overlay_limit)
 		if(graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
@@ -283,11 +285,13 @@
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
+				graphic_alpha += gas[g] //todo
 				if(!graphic_add)
 					graphic_add = list()
 				graphic_add += gas_data.tile_overlay[g]
-
+	graphic_alpha = min(GAS_MAX_ALPHA, graphic_alpha)
 	. = 0
+
 	//Apply changes
 	if(graphic_add && graphic_add.len)
 		graphic += graphic_add
@@ -404,7 +408,6 @@
 		last_share += abs(cdelta)
 
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
-
 		for(var/gas_id in gas)
 			if(!(gas_id in gas_data.gases))
 				continue

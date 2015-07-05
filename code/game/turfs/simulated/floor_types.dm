@@ -1,8 +1,6 @@
 /turf/simulated/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
 	temperature = TCMB
 
 	New()
@@ -59,9 +57,6 @@
 	heat_capacity = 325000
 	intact = 0
 
-/turf/simulated/floor/engine/nitrogen
-	oxygen = 0
-
 /turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	if(!C)
 		return
@@ -84,16 +79,13 @@
 /turf/simulated/floor/engine/cult/cultify()
 	return
 
-/turf/simulated/floor/engine/n20
-	New()
-		. = ..()
-		assume_gas("sleeping_agent", 2000)
+/turf/simulated/floor/engine/n20/New()
+	. = ..()
+	assume_gas("sleeping_agent", 2000)
 
 /turf/simulated/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
-	oxygen = 0
-	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/plating
@@ -105,13 +97,11 @@
 /turf/simulated/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
-	oxygen = 0
-	nitrogen = 0
 	temperature = TCMB
 
-	New()
-		..()
-		name = "plating"
+/turf/simulated/floor/plating/airless/New()
+	..()
+	name = "plating"
 
 /turf/simulated/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
@@ -120,7 +110,6 @@
 /turf/simulated/floor/greengrid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gcircuit"
-
 
 /turf/simulated/shuttle
 	name = "shuttle"
@@ -145,18 +134,12 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-/turf/simulated/shuttle/plating/vox	//Skipjack plating
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
-
 /turf/simulated/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
 /turf/simulated/shuttle/floor4/vox	//skipjack floors
 	name = "skipjack floor"
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
 /turf/simulated/floor/snow
 	name = "Snow"

@@ -186,11 +186,13 @@ update_flag
 
 	..()
 
+	var/altered_env
 	if(valve_open)
 		var/datum/gas_mixture/environment
 		if(holding)
 			environment = holding.air_contents
 		else
+			if(istype(loc, /turf)) altered_env = 1
 			environment = loc.return_air()
 
 		var/env_pressure = environment.return_pressure()
@@ -210,6 +212,10 @@ update_flag
 		can_label = 0
 
 	air_contents.react() //cooking up air cans - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
+
+	if(altered_env) // Checked type earlier.
+		var/turf/T = loc
+		T.air_update_turf(1)
 
 /obj/machinery/portable_atmospherics/canister/return_air()
 	return air_contents

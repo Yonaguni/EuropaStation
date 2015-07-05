@@ -9,7 +9,6 @@
 	var/list/overlay_limit = list()  // Overlay limits.  There must be at least this many moles for the overlay to appear.
 	var/list/flags = list()          // Flags.
 
-
 /decl/xgm_gas
 	var/id = ""
 	var/name = "Unnamed Gas"

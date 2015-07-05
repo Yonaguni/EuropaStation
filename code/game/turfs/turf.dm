@@ -5,29 +5,18 @@
 	//for floors, use is_plating(), is_steel_floor() and is_light_floor()
 	var/intact = 1
 
-	//Properties for open tiles (/floor)
-	var/oxygen = 0
-	var/carbon_dioxide = 0
-	var/nitrogen = 0
-	var/phoron = 0
-
-	//Properties for airtight tiles (/wall)
+	//Properties for tiles
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
-
-	//Properties for both
 	var/temperature = T20C
-
 	var/blocks_air = 0
 	var/icon_old = null
 	var/pathweight = 1
+	var/obj/effect/gas_overlay/gas_overlay
+	var/depth
 
 	// Flick animation
 	var/atom/movable/overlay/c_animation = null
-
-	// holy water
-	var/holy = 0
-
 	var/dynamic_lighting = 1
 
 /turf/New()
@@ -40,6 +29,7 @@
 	return
 
 /turf/Destroy()
+	if(gas_overlay) qdel(gas_overlay)
 	turfs -= src
 	..()
 
@@ -315,7 +305,6 @@
 	return PROCESS_KILL
 
 /turf/proc/is_ocean(var/lying_mob)
-	var/obj/effect/fluid/F = locate() in src
-	if(F && F.depth > (lying_mob ? 30 : 70))
+	if(depth && depth > (lying_mob ? 30 : 70))
 		return 1
 	return 0
