@@ -9,7 +9,7 @@
 	var/suffocating = 1
 
 	var/turf/T = loc
-	if(istype(T) && T.is_ocean())
+	if(istype(T) && T.is_flooded())
 		suffocating = 0
 
 	if(suffocating)

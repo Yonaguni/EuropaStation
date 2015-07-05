@@ -56,8 +56,9 @@
 		blocked_dirs |= W.dir
 	for(var/obj/machinery/door/window/D in src)
 		blocked_dirs |= D.dir
-	for(var/turf/simulated/T in range(1,src))
-		if(!can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
+	for(var/step_dir in cardinal)
+		var/turf/simulated/T = get_step(src, step_dir)
+		if(istype(T) || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 			continue
 		var/datum/gas_mixture/GM = T.return_air()
 		if(GM)
@@ -67,7 +68,7 @@
 	if(sleeping)
 		processing_turfs -= src
 
-/turf/unsimulated/ocean/is_ocean()
+/turf/unsimulated/ocean/is_flooded()
 	return 1
 
 /turf/unsimulated/ocean/return_air()

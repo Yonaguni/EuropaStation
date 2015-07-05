@@ -13,7 +13,6 @@
 	var/icon_old = null
 	var/pathweight = 1
 	var/obj/effect/gas_overlay/gas_overlay
-	var/depth
 
 	// Flick animation
 	var/atom/movable/overlay/c_animation = null
@@ -304,7 +303,10 @@
 /turf/proc/process()
 	return PROCESS_KILL
 
-/turf/proc/is_ocean(var/lying_mob)
-	if(depth && depth > (lying_mob ? 30 : 70))
-		return 1
+/turf/proc/is_flooded(var/lying_mob)
+	var/datum/gas_mixture/GM = return_air()
+	if(GM)
+		var/depth = GM.get_fluid_depth()
+		if(depth && depth > (lying_mob ? 30 : 70))
+			return 1
 	return 0

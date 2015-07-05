@@ -22,7 +22,7 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	if(!T.is_ocean(lying))
+	if(!T.is_flooded(lying))
 		return 0
 	if(prob(5))
 		src << "<span class='danger'>You choke and splutter as you inhale water!</span>"
