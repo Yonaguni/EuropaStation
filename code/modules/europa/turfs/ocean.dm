@@ -8,7 +8,6 @@
 	var/sleeping = 0
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
-	var/isolated
 	var/datum/gas_mixture/water
 	var/detail_decal
 
@@ -16,7 +15,7 @@
 	..()
 	water = new/datum/gas_mixture   // Make our 'air', freezing water.
 	water.temperature = 250         // -24C
-	water.adjust_gas("water", 1500) // Should be higher.
+	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = 1500
 	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
 	processing_turfs |= src
@@ -50,28 +49,23 @@
 		sleeping = 0
 		processing_turfs |= src
 
-/*
 /turf/unsimulated/ocean/process()
 	sleeping = 1
-	if(!isolated)
-		var/list/blocked_dirs = list()
-		for(var/obj/structure/window/W in src)
-			blocked_dirs |= W.dir
-		for(var/obj/machinery/door/window/D in src)
-			blocked_dirs |= D.dir
-		for(var/turf/simulated/T in range(1,src))
-			if(!can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
-				continue
-			var/obj/effect/fluid/F = locate(/obj/effect/fluid) in T
-			if(!F)
-				F = PoolOrNew(/obj/effect/fluid, T)
-				new_fluids |= F
-			F.set_depth(OCEAN_SPREAD_DEPTH)
-			sleeping = 0
+	var/list/blocked_dirs = list()
+	for(var/obj/structure/window/W in src)
+		blocked_dirs |= W.dir
+	for(var/obj/machinery/door/window/D in src)
+		blocked_dirs |= D.dir
+	for(var/turf/simulated/T in range(1,src))
+		if(!can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
+			continue
+		var/datum/gas_mixture/GM = T.return_air()
+		if(GM)
+			GM.adjust_gas("water", 1500, 1)
+			GM.temperature = water.temperature //todo make this a proper temperature share instead of arbitrary/magical.
+		sleeping = 0
 	if(sleeping)
 		processing_turfs -= src
-	spawn(1) update_icon()
-*/
 
 /turf/unsimulated/ocean/is_ocean()
 	return 1

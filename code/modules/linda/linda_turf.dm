@@ -234,7 +234,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 					remove = 0
 
 	if(!excited_group && remove == 1)
-		world << "not excited"
 		air_master.remove_from_active(src)
 
 /turf/simulated/proc/archive()
