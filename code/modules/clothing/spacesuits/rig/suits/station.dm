@@ -1,6 +1,8 @@
 /obj/item/clothing/head/helmet/space/rig/industrial
 	camera_networks = list("Mine")
 
+/obj/item/clothing/head/helmet/space/rig/industrial/deepsea
+
 /obj/item/clothing/head/helmet/space/rig/ce
 	camera_networks = list("Engineering")
 
@@ -83,6 +85,15 @@
 		/obj/item/rig_module/device/rcd,
 		/obj/item/rig_module/vision/meson
 		)
+
+/obj/item/weapon/rig/industrial/deepsea
+	name = "deepsea suit control module"
+	suit_type = "deepsea hardsuit"
+	desc = "A bulking, deepsea rig used for mining operations in high pressure environments."
+	icon_state = "deepsea_rig"
+	offline_vision_restriction = 0
+
+	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial/deepsea
 
 /obj/item/weapon/rig/eva
 	name = "EVA suit control module"
