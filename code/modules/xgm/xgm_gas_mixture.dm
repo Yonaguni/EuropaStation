@@ -284,8 +284,10 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
-	graphic_alpha = 0
+	var/next_alpha = 0
 	for(var/g in gas_data.overlay_limit)
+		if(!isnull(gas[g]))
+			next_alpha += gas[g]
 		if(graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
 			if(gas[g] <= gas_data.overlay_limit[g])
@@ -299,15 +301,16 @@
 				if(!graphic_add)
 					graphic_add = list()
 				graphic_add += gas_data.tile_overlay[g]
-	graphic_alpha = min(GAS_MAX_ALPHA, graphic_alpha)
 	. = 0
-
 	//Apply changes
 	if(graphic_add && graphic_add.len)
 		graphic += graphic_add
 		. = 1
 	if(graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
+		. = 1
+	if(next_alpha != graphic_alpha)
+		graphic_alpha = min(GAS_MAX_ALPHA, next_alpha)
 		. = 1
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature.

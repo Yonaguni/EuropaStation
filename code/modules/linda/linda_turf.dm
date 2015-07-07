@@ -17,12 +17,6 @@
 	var/temperature_archived //USED ONLY FOR SOLIDS
 	var/open_directions
 
-/turf/simulated/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
-	if(graphic_add && graphic_add.len)
-		overlays += graphic_add
-	if(graphic_remove && graphic_remove.len)
-		overlays -= graphic_remove
-
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	return 0
 
