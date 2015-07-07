@@ -6,6 +6,7 @@
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	density = 1
 	anchored = 1
+	waterproof = 0
 
 /obj/machinery/artillerycontrol/process()
 	if(src.reload<180)

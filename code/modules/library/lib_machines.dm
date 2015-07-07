@@ -236,7 +236,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
 	onclose(user, "library")
-	
+
 /obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
 	if (src.density && !src.emagged)
 		src.emagged = 1
@@ -453,7 +453,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	icon_state = "binder"
 	anchored = 1
 	density = 1
-
+	waterproof = -1 //kaboom
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper))
 		user.drop_item()

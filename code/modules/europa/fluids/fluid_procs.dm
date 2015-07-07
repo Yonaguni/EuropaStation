@@ -95,3 +95,20 @@
 
 /obj/effect/decal/cleanable/water_act()
 	qdel(src)
+
+
+
+obj/machinery/water_act()
+	if(!waterproof)
+		if(prob(2))
+			ex_act(3.0)
+	if(waterproof < 0)
+		ex_act(3.0)
+
+	else
+		return
+
+
+//waterproof = 1, no damage
+//waterproof = -1, insta damage
+//waterproof = 0, slow damage

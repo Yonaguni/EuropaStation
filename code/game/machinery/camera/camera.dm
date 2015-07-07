@@ -7,6 +7,7 @@
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = 5
+	waterproof = 0
 
 	var/list/network = list(NETWORK_EXODUS)
 	var/c_tag = null

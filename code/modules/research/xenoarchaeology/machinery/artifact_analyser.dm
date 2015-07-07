@@ -6,6 +6,7 @@
 	icon_state = "isolator"
 	anchored = 1
 	density = 1
+	waterproof = 0
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj
