@@ -99,6 +99,8 @@
 
 
 obj/machinery/water_act()
+	if(stat & NOPOWER)
+		return //don't explode if the machine isn't powered
 	if(!waterproof)
 		if(prob(2))
 			ex_act(3.0)
