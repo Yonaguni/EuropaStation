@@ -33,4 +33,4 @@
 	icon_state = "deepsea_rig"
 	offline_vision_restriction = 0
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial/deepsea
+	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial/
