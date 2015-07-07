@@ -4,6 +4,8 @@ Yonaguni-specific CONTRIBUTING.md:
 - PRs require a signoff from a maintainer before being merged by a second maintainer, or 24 hours to pass for discussion, whichever comes first.
 - If your PR adds sprites or changes the map, it should include pictures of the end product.
 - PRs should include a changelog - see the changelogs folder for a readme on how to use the system.
+- New code or object definitions that are not modifying or replacing an existing system should go in code/modules/europa
+- New sprites should go in the relative europa folder.
 
 Baystation CONTRIBUTING.md:
 
