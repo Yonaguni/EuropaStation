@@ -92,6 +92,10 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 	last_power_draw = 0
 
 	build_network()
+	spawn(1)
+		if(last_power_draw > 0)
+			var/turf/T = get_turf(src)
+			if(istype(T)) T.air_update_turf(1)
 
 /obj/machinery/atmospherics/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	// Check to see if should be added to network. Add self if so and adjust variables appropriately.

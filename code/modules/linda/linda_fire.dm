@@ -1,12 +1,11 @@
+/atom/movable/proc/BlockSuperconductivity() // objects that block air and don't let superconductivity act. Only firelocks atm.
+	return 0
 
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
-
-
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	return
-
 
 /turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(!air_master)
@@ -92,7 +91,6 @@
 
 	return 0
 
-
 /obj/effect/hotspot/process()
 	if(just_spawned)
 		just_spawned = 0
@@ -153,7 +151,6 @@
 	return 1
 
 // Garbage collect itself by nulling reference to it
-
 /obj/effect/hotspot/proc/Kill()
 	air_master.hotspots -= src
 	DestroyTurf()
@@ -169,7 +166,6 @@
 	return ..()
 
 /obj/effect/hotspot/proc/DestroyTurf()
-
 	if(istype(loc, /turf/simulated))
 		var/turf/simulated/T = loc
 		if(T.to_be_destroyed)
@@ -179,7 +175,7 @@
 			else
 				chance_of_deletion = 100
 			if(prob(chance_of_deletion))
-				T.ChangeTurf(/turf/space)
+				T.ChangeTurf(get_base_turf(src.z))
 			else
 				T.to_be_destroyed = 0
 				T.max_fire_temperature_sustained = 0

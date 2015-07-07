@@ -41,7 +41,7 @@
 				new /obj/structure/seaweed/glow(T)
 
 	switch(val)
-		if(5 to 6)
+		if(6)
 			T.icon_state = "mud_light"
 		if(7 to 9)
 			T.icon_state = "mud_dark"

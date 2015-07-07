@@ -291,10 +291,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(usr.invisibility <= SEE_INVISIBLE_LIVING || (usr.mind in cult.current_antagonists))
 		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.holy)
-				L+=T
-			else
+			if(is_holy(T))
 				holyblock = 1
+			else
+				L+=T
+
 	else
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T
@@ -348,7 +349,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights(R_ADMIN|R_FUN, 0, src))
 		return 0
 
-	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING || (mind in cult.current_antagonists))
+	return (T && is_holy(T)) && (invisibility <= SEE_INVISIBLE_LIVING || (mind in cult.current_antagonists))
 
 /mob/dead/observer/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"

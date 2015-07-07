@@ -28,7 +28,8 @@
 	//and following a N/Z ratio of 1.5, the molar mass of a monatomic gas is:
 	molar_mass = 0.405	// kg/mol
 
-	tile_overlay = "phoron"
+	tile_overlay = "gas_dense"
+	tile_overlay_colour = "#FFBB00"
 	overlay_limit = 0.7
 	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT
 
@@ -46,7 +47,7 @@
 	specific_heat = 40	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol. N2O
 
-	tile_overlay = "sleeping_agent"
+	tile_overlay = "gas_sparse"
 	overlay_limit = 1
 
 /decl/xgm_gas/water
@@ -56,3 +57,6 @@
 	molar_mass = 0.018	// kg/mol
 
 	flags = XGM_GAS_LIQUID
+	tile_overlay = "water_mid"
+	tile_overlay_colour = "#66D1FF"
+	overlay_limit = 1

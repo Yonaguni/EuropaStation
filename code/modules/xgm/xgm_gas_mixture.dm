@@ -11,8 +11,19 @@
 	var/volume = CELL_VOLUME           // Volume of this mix.
 	var/list/graphic = list()          // List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
 	var/list/graphic_archived = list() // Archive
+	var/graphic_alpha = 0              // Used by tile overlays.
 	var/last_share                     // Last gas amount shared.
 	var/tmp/fuel_burnt = 0             // Something to do with fire.
+
+/datum/gas_mixture/proc/get_fluid_depth()
+	if(!gas || !gas.len)
+		return 0
+	var/return_volume = 0
+	for(var/gasid in gas)
+		if(!gas_data.flags[gasid] || !(gas_data.flags[gasid] & XGM_GAS_LIQUID))
+			continue
+		return_volume += gas[gasid]
+	return return_volume
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
@@ -273,7 +284,10 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
+	var/next_alpha = 0
 	for(var/g in gas_data.overlay_limit)
+		if(!isnull(gas[g]))
+			next_alpha += gas[g]
 		if(graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
 			if(gas[g] <= gas_data.overlay_limit[g])
@@ -283,10 +297,10 @@
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
+				graphic_alpha += gas[g] //todo
 				if(!graphic_add)
 					graphic_add = list()
 				graphic_add += gas_data.tile_overlay[g]
-
 	. = 0
 	//Apply changes
 	if(graphic_add && graphic_add.len)
@@ -294,6 +308,9 @@
 		. = 1
 	if(graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
+		. = 1
+	if(next_alpha != graphic_alpha)
+		graphic_alpha = min(GAS_MAX_ALPHA, next_alpha)
 		. = 1
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature.
@@ -378,7 +395,8 @@
 		var/sharer_level = 0
 		if(sharer.archived_gas && !isnull(sharer.archived_gas[gas_id]))
 			sharer_level = sharer.archived_gas[gas_id]
-		cdeltas[gas] = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+		var/cdelta = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+		if(cdelta) cdeltas[gas_id] = cdelta
 	return cdeltas
 
 /datum/gas_mixture/proc/get_temperature_delta(var/datum/gas_mixture/sharer)
@@ -404,7 +422,6 @@
 		last_share += abs(cdelta)
 
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
-
 		for(var/gas_id in gas)
 			if(!(gas_id in gas_data.gases))
 				continue
@@ -435,10 +452,7 @@
 	for(var/gas_id in gas)
 		var/cdelta = current_deltas[gas_id]
 		gas[gas_id] -= cdelta
-		if(isnull(sharer.gas[gas_id]))
-			sharer.gas[gas_id] = cdelta
-		else
-			sharer.gas[gas_id] += cdelta
+		sharer.adjust_gas(gas_id, cdelta)
 
 	update_values()
 	sharer.update_values()

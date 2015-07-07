@@ -5,29 +5,17 @@
 	//for floors, use is_plating(), is_steel_floor() and is_light_floor()
 	var/intact = 1
 
-	//Properties for open tiles (/floor)
-	var/oxygen = 0
-	var/carbon_dioxide = 0
-	var/nitrogen = 0
-	var/phoron = 0
-
-	//Properties for airtight tiles (/wall)
+	//Properties for tiles
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
-
-	//Properties for both
 	var/temperature = T20C
-
 	var/blocks_air = 0
 	var/icon_old = null
 	var/pathweight = 1
+	var/obj/effect/gas_overlay/gas_overlay
 
 	// Flick animation
 	var/atom/movable/overlay/c_animation = null
-
-	// holy water
-	var/holy = 0
-
 	var/dynamic_lighting = 1
 
 /turf/New()
@@ -40,6 +28,7 @@
 	return
 
 /turf/Destroy()
+	if(gas_overlay) qdel(gas_overlay)
 	turfs -= src
 	..()
 
@@ -207,6 +196,10 @@
 	if (!N)
 		return
 
+	if(gas_overlay)
+		qdel(gas_overlay)
+		gas_overlay = null
+
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
 		var/turf/controller = locate(1, 1, src.z)
@@ -314,8 +307,10 @@
 /turf/proc/process()
 	return PROCESS_KILL
 
-/turf/proc/is_ocean(var/lying_mob)
-	var/obj/effect/fluid/F = locate() in src
-	if(F && F.depth > (lying_mob ? 30 : 70))
-		return 1
+/turf/proc/is_flooded(var/lying_mob)
+	var/datum/gas_mixture/GM = return_air()
+	if(GM)
+		var/depth = GM.get_fluid_depth()
+		if(depth && depth > (lying_mob ? 30 : 70))
+			return 1
 	return 0
