@@ -1,0 +1,7 @@
+author: Skowron
+
+delete-after: false
+
+changes: 
+  - rscadd: "Basic functional deepsea rig with all new spriteset"
+  - rscadd: "Various structure and turf sprites: Rockwall, abyssal rockwall, abyss, girder, windows, and grilles."
