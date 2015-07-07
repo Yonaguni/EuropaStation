@@ -170,7 +170,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 				enemy_simulated.archive()
 
 		/******************* GROUP HANDLING START *****************************************************************/
-
 			if(enemy_simulated.excited)
 				if(excited_group)
 					if(enemy_simulated.excited_group)

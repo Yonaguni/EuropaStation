@@ -392,7 +392,8 @@
 		var/sharer_level = 0
 		if(sharer.archived_gas && !isnull(sharer.archived_gas[gas_id]))
 			sharer_level = sharer.archived_gas[gas_id]
-		cdeltas[gas] = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+		var/cdelta = QUANTIZE((current_level - sharer_level)/adjacent_turfs)
+		if(cdelta) cdeltas[gas_id] = cdelta
 	return cdeltas
 
 /datum/gas_mixture/proc/get_temperature_delta(var/datum/gas_mixture/sharer)
@@ -448,10 +449,7 @@
 	for(var/gas_id in gas)
 		var/cdelta = current_deltas[gas_id]
 		gas[gas_id] -= cdelta
-		if(isnull(sharer.gas[gas_id]))
-			sharer.gas[gas_id] = cdelta
-		else
-			sharer.gas[gas_id] += cdelta
+		sharer.adjust_gas(gas_id, cdelta)
 
 	update_values()
 	sharer.update_values()
