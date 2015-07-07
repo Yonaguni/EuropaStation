@@ -25,3 +25,14 @@
 	name = "armoured diving suit"
 	desc = "A heavy, armoured diving suit suitable for extended excursions."
 	icon_state = "diving_heavy"
+	
+/obj/item/clothing/head/helmet/space/rig/industrial/deepsea
+	
+/obj/item/weapon/rig/industrial/deepsea
+	name = "deepsea suit control module"
+	suit_type = "deepsea hardsuit"
+	desc = "A bulking, deepsea rig used for mining operations in high pressure environments."
+	icon_state = "deepsea_rig"
+	offline_vision_restriction = 0
+
+	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial/deepsea
