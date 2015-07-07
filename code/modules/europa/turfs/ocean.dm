@@ -62,10 +62,8 @@
 		if(!istype(T) || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 			continue
 		var/datum/gas_mixture/GM = T.return_air()
-		if(GM)
-			if(GM.gas["water"] < 1500)
-				GM.adjust_gas("water", 1500, 1)
-			GM.temperature = water.temperature //todo make this a proper temperature share instead of arbitrary/magical.
+		if(GM && GM.gas["water"] < 1500)
+			GM.adjust_gas("water", 1500, 1)
 		sleeping = 0
 	if(sleeping)
 		processing_turfs -= src

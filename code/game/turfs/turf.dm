@@ -196,6 +196,10 @@
 	if (!N)
 		return
 
+	if(gas_overlay)
+		qdel(gas_overlay)
+		gas_overlay = null
+
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
 		var/turf/controller = locate(1, 1, src.z)

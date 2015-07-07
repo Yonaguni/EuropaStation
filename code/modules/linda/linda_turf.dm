@@ -46,6 +46,8 @@
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
+	if(my_air.check_tile_graphic())
+		update_visuals(my_air)
 
 /turf/simulated/assume_gas(gasid, moles, temp = null)
 	air_update_turf(1)
@@ -55,13 +57,17 @@
 		my_air.adjust_gas(gasid, moles)
 	else
 		my_air.adjust_gas_temp(gasid, moles, temp)
-
+	if(my_air.check_tile_graphic())
+		update_visuals(my_air)
 	return 1
 
 /turf/simulated/remove_air(amount as num)
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
-	return my_air.remove(amount)
+	var/returnval = my_air.remove(amount)
+	if(my_air.check_tile_graphic())
+		update_visuals(my_air)
+	return returnval
 
 /turf/simulated/return_air()
 	if(!air)
@@ -77,29 +83,27 @@
 		air.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
 	air.temperature = (isnull(override_temp) ? T20C : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
+	if(air.check_tile_graphic())
+		update_visuals(air)
 
-turf/simulated/New()
+/turf/simulated/New()
 	..()
 	if(!blocks_air)
 		make_air()
 
-turf/simulated/Destroy()
+/turf/simulated/Destroy()
 	if(active_hotspot)
 		qdel(active_hotspot)
 	..()
 
-turf/simulated/assume_air(datum/gas_mixture/giver)
+/turf/simulated/assume_air(datum/gas_mixture/giver)
 	if(!giver)	return 0
 	var/datum/gas_mixture/receiver = air
 	if(istype(receiver))
-
 		air.merge(giver)
-
 		if(air.check_tile_graphic())
 			update_visuals(air)
-
 		return 1
-
 	else return ..()
 
 turf/simulated/proc/copy_air_with_tile(turf/simulated/T)
@@ -113,20 +117,6 @@ turf/simulated/proc/copy_air(datum/gas_mixture/copy)
 turf/simulated/return_air()
 	if(air)
 		return air
-
-	else
-		return ..()
-
-turf/simulated/remove_air(amount as num)
-	if(air)
-		var/datum/gas_mixture/removed = null
-
-		removed = air.remove(amount)
-
-		if(air.check_tile_graphic())
-			update_visuals(air)
-
-		return removed
 
 	else
 		return ..()
@@ -234,6 +224,9 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 	if(!excited_group && remove == 1)
 		air_master.remove_from_active(src)
+
+	if(air.check_tile_graphic())
+		update_visuals(air)
 
 /turf/simulated/proc/archive()
 	if(!air_master)
