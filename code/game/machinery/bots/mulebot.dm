@@ -17,6 +17,7 @@
 	maxhealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
+	waterproof = 0 //all other bots got moved to mob, don't wanna mess with water_act on those yet
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
 	var/control_freq = AI_FREQ

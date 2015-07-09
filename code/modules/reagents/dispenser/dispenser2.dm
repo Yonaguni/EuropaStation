@@ -17,6 +17,7 @@
 	idle_power_usage = 100
 	density = 1
 	anchored = 1
+	waterproof = 0
 
 /obj/machinery/chemical_dispenser/New()
 	..()

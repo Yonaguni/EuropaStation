@@ -10,6 +10,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	active_power_usage = 10000
+	waterproof = -1
 
 /obj/machinery/robotic_fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/stack/material/steel))

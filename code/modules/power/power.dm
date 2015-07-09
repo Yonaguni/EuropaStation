@@ -14,6 +14,7 @@
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
+	waterproof = 0 //this may or may not be a really bad idea :X
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()

@@ -17,7 +17,7 @@
 	var/charge_rate = 250					// How much charge is restored per tick
 	var/weld_rate = 0						// How much brute damage is repaired per tick
 	var/wire_rate = 0						// How much burn damage is repaired per tick
-
+	waterproof = -1
 /obj/machinery/recharge_station/New()
 	..()
 

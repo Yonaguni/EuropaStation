@@ -110,6 +110,7 @@ Class Procs:
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
+	var/waterproof = 1 //How does water affect the machine? 1 = no effect, 0 = slow efect, -1 = instant death
 
 /obj/machinery/New(l, d=0)
 	..(l)
