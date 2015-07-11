@@ -1,5 +1,7 @@
 /datum/job/government
 	title = "Petty Officer"
+	flag = OFFICER
+	department_flag = GOVERNMENT
 	department = "Government Sector"
 	faction = "Station"
 	total_positions = 2

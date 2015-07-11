@@ -190,7 +190,7 @@ datum/preferences
 				qdel(I)
 		var/jobflag
 		var/dept
-		if (job_civilian_low & ASSISTANT)
+		if (job_civilian_low & CITIZEN)
 			jobflag = job_civilian_low
 			dept = CIVILIAN
 		else if(job_civilian_high)
@@ -198,10 +198,10 @@ datum/preferences
 			dept = CIVILIAN
 		else if (job_medsci_high)
 			jobflag = job_medsci_high
-			dept = MEDSCI
+			dept = GOVERNMENT
 		else if (job_engsec_high)
 			jobflag = job_engsec_high
-			dept = ENGSEC
+			dept = INDUSTRY
 		if(jobflag && dept && job_master)
 			for (var/datum/job/J in job_master.occupations)
 				if((J.department_flag & dept) && (J.flag & jobflag))

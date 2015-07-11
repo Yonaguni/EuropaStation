@@ -335,7 +335,6 @@
 #include "code\game\jobs\job\heads.dm"
 #include "code\game\jobs\job\industrial_sector.dm"
 #include "code\game\jobs\job\job.dm"
-#include "code\game\jobs\job\science_sector.dm"
 #include "code\game\jobs\job\silicon.dm"
 #include "code\game\machinery\adv_med.dm"
 #include "code\game\machinery\ai_slipper.dm"

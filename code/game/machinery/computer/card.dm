@@ -98,11 +98,11 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["engineering_jobs"] = format_jobs(engineering_positions)
-	data["medical_jobs"] = format_jobs(medical_positions)
-	data["science_jobs"] = format_jobs(science_positions)
-	data["security_jobs"] = format_jobs(security_positions)
-	data["civilian_jobs"] = format_jobs(civilian_positions)
+	data["engineering_jobs"] = format_jobs(europa_civ_positions)
+	data["medical_jobs"] = format_jobs(europa_civ_positions)
+	data["science_jobs"] = format_jobs(europa_ind_positions)
+	data["security_jobs"] = format_jobs(europa_gov_positions)
+	data["civilian_jobs"] = format_jobs(europa_civ_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
 	if (modify && is_centcom())

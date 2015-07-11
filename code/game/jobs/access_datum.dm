@@ -473,3 +473,42 @@
 /datum/access/crate_cash
 	id = access_crate_cash
 	access_type = ACCESS_TYPE_NONE
+
+/*****************
+* Europa Station *
+*****************/
+
+/var/const/es_access_civdome = 301
+/datum/access/es_civdome
+	id = es_access_civdome
+	desc = "Dome 1"
+
+/var/const/es_access_govdome = 302
+/datum/access/es_govdome
+	id = es_access_govdome
+	desc = "Dome 2"
+
+/var/const/es_access_inddome = 303
+/datum/access/es_inddome
+	id = es_access_inddome
+	desc = "Dome 3"
+
+/var/const/es_access_dorms = 310
+/datum/access/es_dorms
+	id = es_access_dorms
+	desc = "Dorms"
+
+/var/const/es_access_maint = 311
+/datum/access/es_maint
+	id = es_access_maint
+	desc = "Maintenance"
+
+/var/const/es_access_waste = 312
+/datum/access/es_waste
+	id = es_access_waste
+	desc = "Waste Treatment"
+
+/var/const/es_access_medical = 313
+/datum/access/es_medical
+	id = es_access_medical
+	desc = "Medical"

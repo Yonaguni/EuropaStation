@@ -1,7 +1,7 @@
 /datum/job/head
 	title = "Colony Liaison"
-	flag = SCIENTIST
-	department_flag = MEDSCI
+	flag = LIAISON
+	department_flag = CIVILIAN
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Jovian authorities"
@@ -16,10 +16,14 @@
 
 /datum/job/head/marshal
 	title = "Marshal"
+	flag = MARSHAL
+	department_flag = GOVERNMENT
 	department = "Government Sector"
 	selection_color = "#ccccff"
 
 /datum/job/head/coordinator
+	flag = CCO
+	department_flag = INDUSTRY
 	title = "Corporate Contact Officer"
 	supervisors = "your corporate overseers"
 	selection_color = "#ffeeff"
