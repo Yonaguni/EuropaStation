@@ -17,6 +17,7 @@
 	// Flick animation
 	var/atom/movable/overlay/c_animation = null
 	var/dynamic_lighting = 1
+	luminosity = 1
 
 /turf/New()
 	..()
@@ -25,7 +26,6 @@
 			src.Entered(AM)
 			return
 	turfs |= src
-	return
 
 /turf/Destroy()
 	if(gas_overlay) qdel(gas_overlay)
@@ -216,6 +216,7 @@
 	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
+	var/old_lighting_overlay = lighting_overlay
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
@@ -253,6 +254,7 @@
 		W.levelupdate()
 		. =  W
 
+	lighting_overlay = old_lighting_overlay
 	affecting_lights = old_affecting_lights
 	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
 		reconsider_lights()
@@ -306,6 +308,14 @@
 
 /turf/proc/process()
 	return PROCESS_KILL
+
+/turf/proc/contains_dense_objects()
+	if(density)
+		return 1
+	for(var/atom/A in src)
+		if(A.density && !(A.flags & ON_BORDER))
+			return 1
+	return 0
 
 /turf/proc/is_flooded(var/lying_mob)
 	var/datum/gas_mixture/GM = return_air()
