@@ -285,22 +285,23 @@
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
 	var/next_alpha = 0
-	for(var/g in gas_data.overlay_limit)
-		if(!isnull(gas[g]))
-			next_alpha += gas[g]
-		if(graphic.Find(gas_data.tile_overlay[g]))
-			//Overlay is already applied for this gas, check if it's still valid.
-			if(gas[g] <= gas_data.overlay_limit[g])
-				if(!graphic_remove)
-					graphic_remove = list()
-				graphic_remove += gas_data.tile_overlay[g]
-		else
-			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
-			if(gas[g] > gas_data.overlay_limit[g])
-				graphic_alpha += gas[g] //todo
-				if(!graphic_add)
-					graphic_add = list()
-				graphic_add += gas_data.tile_overlay[g]
+	if(gas_data)
+		for(var/g in gas_data.overlay_limit)
+			if(!isnull(gas[g]))
+				next_alpha += gas[g]
+			if(graphic.Find(gas_data.tile_overlay[g]))
+				//Overlay is already applied for this gas, check if it's still valid.
+				if(gas[g] <= gas_data.overlay_limit[g])
+					if(!graphic_remove)
+						graphic_remove = list()
+					graphic_remove += gas_data.tile_overlay[g]
+			else
+				//Overlay isn't applied for this gas, check if it's valid and needs to be added.
+				if(gas[g] > gas_data.overlay_limit[g])
+					graphic_alpha += gas[g] //todo
+					if(!graphic_add)
+						graphic_add = list()
+					graphic_add += gas_data.tile_overlay[g]
 	. = 0
 	//Apply changes
 	if(graphic_add && graphic_add.len)
