@@ -960,6 +960,8 @@ datum/preferences
 				var/datum/gear/G = gear_datums[gear_name]
 				if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
 					continue
+				if(G.vip_only && !is_vip(user.client))
+					continue
 				valid_gear_choices += gear_name
 
 			var/choice = input(user, "Select gear to add: ") as null|anything in valid_gear_choices
@@ -1440,7 +1442,13 @@ datum/preferences
 								rlimb_data[second_limb] = null
 
 						if("Prothesis")
-							var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in chargen_robolimbs
+							var/list/available_robolimbs = list()
+							for(var/company in chargen_robolimbs)
+								available_robolimbs[company] = chargen_robolimbs[company]
+							if(is_vip(user.client))
+								for(var/company in vip_robolimbs)
+									available_robolimbs[company] = vip_robolimbs[company]
+							var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in available_robolimbs
 							if(!choice)
 								return
 							rlimb_data[limb] = choice

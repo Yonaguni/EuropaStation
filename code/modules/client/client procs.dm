@@ -131,8 +131,8 @@
 	if(holder)
 		admins += src
 		holder.owner = src
-		add_vip_verbs()
-	else if(ckey in vips)
+
+	if(is_vip(src))
 		add_vip_verbs()
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)

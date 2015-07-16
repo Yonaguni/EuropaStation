@@ -1,4 +1,5 @@
 var/global/list/all_robolimbs = list()
+var/global/list/vip_robolimbs = list()
 var/global/list/chargen_robolimbs = list()
 var/global/datum/robolimb/basic_robolimb
 
@@ -7,15 +8,18 @@ var/global/datum/robolimb/basic_robolimb
 	for(var/limb_type in typesof(/datum/robolimb))
 		var/datum/robolimb/R = new limb_type()
 		all_robolimbs[R.company] = R
-		world << "Adding [R.company] as [R], [R.type]"
 		if(!R.unavailable_at_chargen)
-			chargen_robolimbs[R.company] = R
+			if(R.vip_only)
+				vip_robolimbs[R.company] = R
+			else
+				chargen_robolimbs[R.company] = R
 
 /datum/robolimb
 	var/company = "Unbranded"                            // Shown when selecting the limb.
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
+	var/vip_only                                         // Must be admin or ckey in vips to use.
 
 /datum/robolimb/bishop
 	company = "Bishop Cybernetics"

@@ -1,9 +1,12 @@
+/proc/is_vip(var/client/C)
+	return istype(C) && ((C.ckey in vips) || (C in admins))
+
 /client/proc/cmd_vip_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Vsay"
 	set hidden = 1
 
-	if(!(src.ckey in vips) && !(src in admins))
+	if(!is_vip(src))
 		return
 
 	if(say_disabled)
@@ -14,7 +17,7 @@
 	if (!msg)
 		return
 	for(var/client/C in clients)
-		if(!C.holder && !(C.ckey in vips))
+		if(!is_vip(C))
 			continue
 		C << "<span class='vip_channel'>" + create_text_tag("vip", "VIP:", C) + " <span class='name'>[src.key]</span>: <span class='message'>[msg]</span></span>"
 
