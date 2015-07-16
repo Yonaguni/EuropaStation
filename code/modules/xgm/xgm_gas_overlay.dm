@@ -10,13 +10,3 @@
 	simulated = 0
 	anchored = 0
 	density = 0
-
-var/image/ocean_overlay_img
-/obj/effect/gas_overlay/ocean
-	alpha = GAS_MAX_ALPHA
-	color = "#66D1FF"
-
-/obj/effect/gas_overlay/ocean/New()
-	..()
-	if(!ocean_overlay_img) ocean_overlay_img = image('icons/effects/xgm_overlays.dmi', "ocean")
-	overlays |= ocean_overlay_img

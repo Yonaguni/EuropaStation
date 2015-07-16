@@ -85,3 +85,7 @@
 //Flags for zone sleeping
 #define ZONE_ACTIVE   1
 #define ZONE_SLEEPING 0
+
+//xgm
+#define GAS_OVERLAY_LAYER 4.9
+#define GAS_MAX_ALPHA 180
