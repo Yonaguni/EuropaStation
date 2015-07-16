@@ -1,4 +1,17 @@
 #define OCEAN_SPREAD_DEPTH 500
+/turf/unsimulated/fake_ocean
+	name = "seafloor"
+	desc = "Silty."
+	density = 0
+	opacity = 0
+	blocks_air = 1
+	icon = 'icons/turf/seafloor.dmi'
+	icon_state = "seafloor"
+
+/turf/unsimulated/fake_ocean/New()
+	..()
+	if(prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
+	overlays |= get_ocean_overlay()
 
 /turf/unsimulated/ocean
 	name = "seafloor"

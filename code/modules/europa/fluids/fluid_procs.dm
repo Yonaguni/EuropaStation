@@ -96,8 +96,6 @@
 /obj/effect/decal/cleanable/water_act()
 	qdel(src)
 
-
-
 obj/machinery/water_act()
 	if(stat & NOPOWER)
 		return //don't explode if the machine isn't powered
@@ -110,7 +108,18 @@ obj/machinery/water_act()
 	else
 		return
 
+var/image/ocean_overlay_img
 
-//waterproof = 1, no damage
-//waterproof = -1, insta damage
-//waterproof = 0, slow damage
+/obj/effect/gas_overlay/ocean
+	alpha = GAS_MAX_ALPHA
+	color = "#66D1FF"
+
+/proc/get_ocean_overlay()
+	if(!ocean_overlay_img)
+		ocean_overlay_img = image('icons/effects/xgm_overlays.dmi', "ocean")
+		ocean_overlay_img.layer = FLY_LAYER
+	return ocean_overlay_img
+
+/obj/effect/gas_overlay/ocean/New()
+	..()
+	overlays |= get_ocean_overlay()
