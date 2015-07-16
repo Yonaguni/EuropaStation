@@ -14,22 +14,19 @@
 
 /turf/unsimulated/ocean/New()
 	..()
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		initialize()
+	else
+		// See startup hook do_ocean_initialisation()
+		processing_turfs -= src
+
+/turf/unsimulated/ocean/proc/initialize()
 	water = new/datum/gas_mixture   // Make our 'air', freezing water.
 	water.temperature = 250         // -24C
 	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = 1500
 	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
-	processing_turfs |= src
-	if(prob(20))
-		detail_decal = "asteroid[rand(0,9)]"
-	spawn(5)
-		update_icon()
-	processing_turfs -= src
-
-/turf/unsimulated/ocean/proc/update_icon()
-	overlays.Cut()
-	if(detail_decal)
-		overlays |= get_mining_overlay(detail_decal)
+	if(prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
 /turf/unsimulated/ocean/Destroy()
 	for(var/obj/effect/gas_overlay/ocean/O in src)

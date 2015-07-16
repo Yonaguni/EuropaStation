@@ -237,13 +237,14 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	var/siding_icon_state = return_siding_icon_state()
 	if(siding_icon_state)
 		overlays += image('icons/turf/floors.dmi',siding_icon_state)
-	if(!gas_overlay)
-		gas_overlay = PoolOrNew(/obj/effect/gas_overlay,src)
-	gas_overlay.overlays.Cut()
+	if(gas_overlay)
+		gas_overlay.overlays.Cut()
 	if(model.graphic.len)
+		if(!gas_overlay)
+			gas_overlay = PoolOrNew(/obj/effect/gas_overlay,src)
 		for(var/gas_icon in model.graphic)
 			gas_overlay.overlays |= gas_icon
-	if(!isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
+	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
 		animate(gas_overlay, time=3, alpha=model.graphic_alpha)
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)

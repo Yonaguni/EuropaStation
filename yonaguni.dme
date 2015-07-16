@@ -993,6 +993,7 @@
 #include "code\modules\europa\clothing\suit.dm"
 #include "code\modules\europa\clothing\under.dm"
 #include "code\modules\europa\fluids\fluid_procs.dm"
+#include "code\modules\europa\hooks\ocean.dm"
 #include "code\modules\europa\mapgen\mapgen.dm"
 #include "code\modules\europa\mapgen\seaweed.dm"
 #include "code\modules\europa\mobs\living\aquatic\aquatic.dm"
