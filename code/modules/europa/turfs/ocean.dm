@@ -19,12 +19,12 @@
 	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = 1500
 	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
-	processing_turfs |= src
+//	processing_turfs |= src
 	if(prob(20))
 		detail_decal = "asteroid[rand(0,9)]"
-	spawn(5)
-		update_icon()
-	processing_turfs -= src
+//	spawn(5)
+	update_icon()
+//	processing_turfs -= src
 
 /turf/unsimulated/ocean/proc/update_icon()
 	overlays.Cut()
