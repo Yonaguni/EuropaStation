@@ -1,35 +1,16 @@
-/turf/simulated/floor/airless
-	icon_state = "floor"
-	name = "airless floor"
-	temperature = TCMB
-
-	New()
-		..()
-		name = "floor"
-
-/turf/simulated/floor/airless/lava
-	name = "lava"
-	icon_state = "lava"
-	lava = 1
-	light_range = 2
-	light_color = "#CC0000"
-
-/turf/simulated/floor/airless/ceiling
-	icon_state = "rockvault"
-
 /turf/simulated/floor/light
 	name = "Light floor"
 	light_range = 5
 	icon_state = "light_on"
 	floor_type = /obj/item/stack/tile/light
 
-	New()
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
+/turf/simulated/floor/light/New()
+	var/n = name //just in case commands rename it in the ..() call
+	..()
+	spawn(4)
+		if(src)
+			update_icon()
+			name = n
 
 /turf/simulated/floor/wood
 	name = "floor"
@@ -39,9 +20,9 @@
 /turf/simulated/floor/vault
 	icon_state = "rockvault"
 
-	New(location,type)
-		..()
-		icon_state = "[type]vault"
+/turf/simulated/floor/vault/New(location,type)
+	..()
+	icon_state = "[type]vault"
 
 /turf/simulated/wall/vault
 	icon_state = "rockvault"
@@ -79,29 +60,11 @@
 /turf/simulated/floor/engine/cult/cultify()
 	return
 
-/turf/simulated/floor/engine/n20/New()
-	. = ..()
-	assume_gas("sleeping_agent", 2000)
-
-/turf/simulated/floor/engine/vacuum
-	name = "vacuum floor"
-	icon_state = "engine"
-	temperature = TCMB
-
 /turf/simulated/floor/plating
 	name = "plating"
 	icon_state = "plating"
 	floor_type = null
 	intact = 0
-
-/turf/simulated/floor/plating/airless
-	icon_state = "plating"
-	name = "airless plating"
-	temperature = TCMB
-
-/turf/simulated/floor/plating/airless/New()
-	..()
-	name = "plating"
 
 /turf/simulated/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
