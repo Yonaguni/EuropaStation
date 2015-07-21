@@ -16,6 +16,8 @@
 	var/obj/effect/hotspot/active_hotspot
 	var/temperature_archived //USED ONLY FOR SOLIDS
 	var/open_directions
+	var/list/initial_air
+	var/initial_temperature = T20C
 
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	return 0
@@ -74,8 +76,12 @@
 /turf/simulated/make_air(var/override_mix, var/override_volume, var/override_temp)
 	air = new/datum/gas_mixture
 	if(!override_mix)
-		air.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
-	air.temperature = (isnull(override_temp) ? T20C : override_temp)
+		if(initial_air && islist(initial_air))
+			for(var/gastype in initial_air)
+				air.adjust_gas(gastype, initial_air[gastype])
+		else
+			air.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
+	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
 	if(air.check_tile_graphic())
 		update_visuals(air)
