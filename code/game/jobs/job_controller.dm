@@ -508,6 +508,22 @@ var/global/datum/controller/occupations/job_master
 			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
 			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 
+		// Create passport.
+		if(H.client && H.client.prefs && !isnull(H.client.prefs.citizenship) && H.client.prefs.citizenship != "None")
+			var/obj/item/weapon/card/id/europa/passport/P = new(H)
+			P.sync_to(H)
+			// If they have a wallet, great. If not, try to put it in the ID slot,
+			// then pockets. If that fails, put it on the ground.
+			var/obj/item/weapon/storage/wallet/W = locate() in H.contents
+			if(istype(W))
+				W.handle_item_insertion(P)
+			else
+				if(!H.equip_to_slot_if_possible(P, slot_wear_id, disable_warning = 1))
+					if(!H.equip_to_slot_if_possible(P, slot_l_store, disable_warning = 1))
+						if(!H.equip_to_slot_if_possible(P, slot_r_store, disable_warning = 1))
+							P.loc = get_turf(H)
+							H << "<span class='danger'>Your pockets and ID slot were full, so it looks like you dropped your passport. Whoops.</span>"
+
 		if(job.req_admin_notify)
 			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
 
@@ -542,11 +558,10 @@ var/global/datum/controller/occupations/job_master
 				C.access = job.get_access()
 		else
 			C = new /obj/item/weapon/card/id(H)
+
 		if(C)
-			C.registered_name = H.real_name
 			C.rank = rank
-			C.assignment = title ? title : rank
-			C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+			C.set_name(H.real_name)
 
 			//put the player's account number onto the ID
 			if(H.mind && H.mind.initial_account)

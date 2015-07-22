@@ -10,7 +10,7 @@
 	supervisors = "Jovian naval officials and Sol colonial law"
 	access = list()
 	alt_titles = list("Sub Pilot", "Peace Officer")
-
+	idtype = /obj/item/weapon/card/id/europa/dogtags
 
 /datum/job/government/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -20,5 +20,6 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer(H), slot_head)
 	return 1

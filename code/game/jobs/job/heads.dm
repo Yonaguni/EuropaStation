@@ -8,7 +8,6 @@
 	department = "Civil Sector"
 	faction = "Station"
 	head_position = 1
-	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
 	access = list()
 	minimal_access = list()
@@ -20,6 +19,7 @@
 	department_flag = GOVERNMENT
 	department = "Government Sector"
 	selection_color = "#ccccff"
+	idtype = /obj/item/weapon/card/id/europa/dogtags
 
 /datum/job/head/coordinator
 	flag = CCO
@@ -28,3 +28,4 @@
 	supervisors = "your corporate overseers"
 	selection_color = "#ffeeff"
 	department = "Industrial Sector"
+	idtype = /obj/item/weapon/card/id/europa/lanyard

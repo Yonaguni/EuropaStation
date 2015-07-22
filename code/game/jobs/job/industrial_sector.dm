@@ -1,5 +1,5 @@
 /datum/job/industry
-	title = "Factory Worker"
+	title = "Employee"
 	flag = WORKER
 	department_flag = INDUSTRY
 	department = "Industrial Sector"
@@ -10,7 +10,8 @@
 	selection_color = "#ffeeff"
 	access = list()
 	minimal_access = list()
-	alt_titles = list("Miner", "Shipping Clerk", "Fabrication Technician")
+	alt_titles = list("Factory Worker", "Miner", "Shipping Clerk", "Fabrication Technician")
+	idtype = /obj/item/weapon/card/id/europa/corpcard
 
 /datum/job/industry/science
 	title = "Scientist"
@@ -19,3 +20,4 @@
 	spawn_positions = 3
 	supervisors = "the funding committee and colonial law"
 	alt_titles = list("Xenobiologist","Field Technician")
+	idtype = /obj/item/weapon/card/id/europa/lanyard

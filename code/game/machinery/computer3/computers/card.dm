@@ -310,12 +310,11 @@
 				set_default_access(t1)
 
 				writer.assignment = t1
-				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				writer.set_name()
 
 		if("reg" in href_list)
 			if(auth)
-				writer.registered_name = href_list["reg"]
-				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				writer.set_name(href_list["reg"])
 
 		computer.updateUsrDialog()
 		return
