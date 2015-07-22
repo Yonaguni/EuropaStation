@@ -429,7 +429,7 @@
 				continue
 			var/gas_delta = current_deltas[gas_id]
 			if(gas_delta)
-				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas[gas_id]
+				var/gas_heat_capacity = gas_data.specific_heat[gas_id] * gas_delta
 				if(gas_delta > 0)
 					heat_capacity_self_to_sharer += gas_heat_capacity
 				else
