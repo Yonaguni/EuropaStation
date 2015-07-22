@@ -178,7 +178,7 @@
 			if(ATM_OUTPUT)
 				ic_on += "_out_glow"
 				ic_off += "_out"
-			if(ATM_O2 to ATM_N2O)
+			if(ATM_MIN_GAS to ATM_MAX_GAS)
 				ic_on += "_filter"
 				ic_off += "_out"
 

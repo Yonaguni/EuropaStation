@@ -36,6 +36,9 @@
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
 
+/obj/structure/inflatable/CanAtmosPass(turf/T)
+	return 0
+
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
 	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
 		return
@@ -161,6 +164,9 @@
 		return state
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+	return !density
+
+/obj/structure/inflatable/door/CanAtmosPass(turf/T)
 	return !density
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
