@@ -36,7 +36,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer(H), slot_head)
 	return 1
 
 /datum/job/head/coordinator
