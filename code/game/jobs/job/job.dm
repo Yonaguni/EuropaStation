@@ -20,7 +20,7 @@
 	var/head_position = 0                 // Is this position Command?
 	var/idtype                            // The type of the ID the player will have
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
 
 	var/list/uniforms = list(
 		/obj/item/clothing/under/soviet,
@@ -30,23 +30,24 @@
 		/obj/item/clothing/under/det,
 		/obj/item/clothing/under/brown,
 		)
-
-	var/list/shoes = list(
-		/obj/item/clothing/shoes/jackboots,
-		/obj/item/clothing/shoes/workboots,
-		/obj/item/clothing/shoes/brown,
-		/obj/item/clothing/shoes/laceup
-		)
-
-	var/new_shoes = pick(shoes)
 	var/new_uniform = pick(uniforms)
-	H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
-	if(!H.shoes)
-		var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
-		H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
 	H.equip_to_slot_or_del(new new_uniform(H),slot_w_uniform)
 
-	if(prob(40))
+	if(!skip_shoes)
+		var/list/shoes = list(
+			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/workboots,
+			/obj/item/clothing/shoes/brown,
+			/obj/item/clothing/shoes/laceup
+			)
+
+		var/new_shoes = pick(shoes)
+		H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
+		if(!H.shoes)
+			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
+			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
+
+	if(!skip_hat && prob(40))
 		var/list/hats = list(
 			/obj/item/clothing/head/ushanka,
 			/obj/item/clothing/head/bandana
@@ -54,7 +55,7 @@
 		var/new_hat = pick(hats)
 		H.equip_to_slot_or_del(new new_hat(H),slot_head)
 
-	if(prob(40))
+	if(!skip_suit && prob(40))
 		var/list/suits = list(
 			/obj/item/clothing/suit/storage/toggle/bomber,
 			/obj/item/clothing/suit/storage/leather_jacket,
