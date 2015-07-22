@@ -19,6 +19,8 @@
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
 	var/idtype                            // The type of the ID the player will have
+	var/headsettype                       // Type of headset if any.
+	var/pdatype                           // If set, job will spawn with a PDA.
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
 

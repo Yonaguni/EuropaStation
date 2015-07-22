@@ -505,7 +505,8 @@ var/global/datum/controller/occupations/job_master
 
 		if(job.idtype)
 			spawnId(H, rank, alt_title)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
+		if(job.headsettype)
+			H.equip_to_slot_or_del(new job.headsettype(H), slot_l_ear)
 			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 
 		// Create passport.
@@ -567,15 +568,21 @@ var/global/datum/controller/occupations/job_master
 			if(H.mind && H.mind.initial_account)
 				C.associated_account_number = H.mind.initial_account.account_number
 
-			H.equip_to_slot_or_del(C, slot_wear_id)
+			// If they have a wallet, jam their ID in there.
+			var/obj/item/weapon/storage/wallet/W = locate() in H
+			if(istype(W))
+				W.handle_item_insertion(C)
+			else
+				H.equip_to_slot_or_del(C, slot_wear_id)
 
-		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
-		if(locate(/obj/item/device/pda,H))
-			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
-			pda.owner = H.real_name
-			pda.ownjob = C.assignment
-			pda.ownrank = C.rank
-			pda.name = "PDA-[H.real_name] ([pda.ownjob])"
+		if(job.pdatype)
+			H.equip_to_slot_or_del(new job.pdatype(H), slot_belt)
+			if(locate(/obj/item/device/pda,H))
+				var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
+				pda.owner = H.real_name
+				pda.ownjob = C.assignment
+				pda.ownrank = C.rank
+				pda.name = "PDA-[H.real_name] ([pda.ownjob])"
 
 		return 1
 

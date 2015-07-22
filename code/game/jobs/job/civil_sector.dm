@@ -12,7 +12,7 @@
 	minimal_access = list()
 	alt_titles = list("Colonist", "Visitor", "Doctor", "Janitor", "Gardener")
 
-/datum/job/civilian/equip(
+/datum/job/civilian/equip(var/mob/living/carbon/human/H)
 	if(!H) return
 	switch(H.mind.role_alt_title)
 		if("Doctor")

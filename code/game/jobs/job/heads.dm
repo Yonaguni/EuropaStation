@@ -25,11 +25,11 @@
 	department = "Government Sector"
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/europa/dogtags
+	headsettype = /obj/item/device/radio/headset/headset_sec
 
 /datum/job/head/marshal/equip(var/mob/living/carbon/human/H)
 	//TODO: Proper Marshal uniform.
 	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/petty_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
