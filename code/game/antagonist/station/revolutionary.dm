@@ -114,7 +114,7 @@ datum/antagonist/revolutionary/finalize(var/datum/mind/target)
 
 	var/list/heads = list()
 	for(var/mob/player in mob_list)
-		if(player.mind && (player.mind.assigned_role in command_positions))
+		if(player.mind && (player.mind.assigned_role in europa_head_positions))
 			heads += player.mind
 
 	text = "<FONT size = 2><B>The heads of staff were:</B></FONT>"
@@ -171,7 +171,7 @@ datum/antagonist/revolutionary/finalize(var/datum/mind/target)
 /datum/antagonist/revolutionary/can_become_antag(var/datum/mind/player)
 	return ..() && istype(player) && \
 		istype(player.current, /mob/living/carbon/human) && \
-		!(player.assigned_role in command_positions)
+		!(player.assigned_role in europa_head_positions)
 
 // Used by RP-rev.
 /mob/living/carbon/human/proc/convert_to_rev(mob/M as mob in oview(src))

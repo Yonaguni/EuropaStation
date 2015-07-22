@@ -1,6 +1,6 @@
 /datum/job/civilian
 	title = "Citizen"
-	flag = ASSISTANT
+	flag = CITIZEN
 	department = "Civil Sector"
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -14,4 +14,5 @@
 
 /datum/job/civilian/engineering
 	title = "Civil Engineer"
+	flag = ENGINEER
 	alt_titles = list("Emergency Services","Electrician")
