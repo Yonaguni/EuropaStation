@@ -1,6 +1,16 @@
 var/datum/ai_icon/default_ai_icon = new/datum/ai_icon/blue()
 var/list/datum/ai_icon/ai_icons
 
+/proc/ai_icons(mob/user)
+	var/list/icons = list()
+	for(var/datum/ai_icon/AI in ai_icons)
+		if(AI.CanUse(user))
+			dd_insertObjectList(icons, AI)
+	return icons
+
+/datum/ai_icon/dd_SortValue()
+	return name
+
 /datum/ai_icon
 	var/name
 	var/alive_icon
@@ -23,6 +33,9 @@ var/list/datum/ai_icon/ai_icons
 		ai_icons = list()
 		init_subtypes(/datum/ai_icon, ai_icons)
 	..()
+
+/datum/ai_icon/proc/CanUse(mob/user)
+	return !isnull(name)
 
 /datum/ai_icon/red
 	name = "Red"
@@ -144,7 +157,7 @@ var/list/datum/ai_icon/ai_icons
 	name = "Trapped"
 	alive_icon = "ai-hades"
 
-/datum/ai_icon/triumvirate_static
+/datum/ai_icon/triumvirate
 	name = "Triumvirate"
 	alive_icon = "ai-triumvirate"
 	alive_light = "#020B2B"
@@ -153,3 +166,19 @@ var/list/datum/ai_icon/ai_icons
 	name = "Triumvirate Static"
 	alive_icon = "ai-static"
 	alive_light = "#020B2B"
+
+/datum/ai_icon/malfunction/CanUse(mob/user)
+	return ..() && user.mind && malf.is_antagonist(user.mind)
+
+/datum/ai_icon/malfuction/malf
+	name = "Malfunction"
+	alive_icon = "ai-malf"
+	alive_light = "#00FF99"
+
+/datum/ai_icon/vip/CanUse(mob/user)
+	return ..() && user.client && is_vip(user.client)
+
+/datum/ai_icon/vip/rainbow2
+	name = "Rainbow 2"
+	alive_icon = "ai-clown2"
+	alive_light = "#E50213"
