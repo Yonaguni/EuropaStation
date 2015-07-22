@@ -282,8 +282,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if( search_id && istype(A,/obj/item/weapon/card/id) )
 				var/obj/item/weapon/card/id/ID = A
 				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
+					ID.set_name(newname)
 					if(!search_pda)	break
 					search_id = 0
 

@@ -13,10 +13,10 @@ var/global/list/seen_religions = list()
 	return
 
 var/global/list/citizenship_choices = list(
-	"Earth",
-	"Mars",
-	"Moghes",
-	"Ahdomai",
+	"Europan",
+	"Terran",
+	"Lunar",
+	"Martian",
 	"Qerrbalak"
 	)
 

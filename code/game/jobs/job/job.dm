@@ -13,14 +13,62 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/list/alt_titles                   // List of alternate titles, if any
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
+	var/idtype                            // The type of the ID the player will have
+	var/headsettype                       // Type of headset if any.
+	var/pdatype                           // If set, job will spawn with a PDA.
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
+
+	var/list/uniforms = list(
+		/obj/item/clothing/under/soviet,
+		/obj/item/clothing/under/redcoat,
+		/obj/item/clothing/under/serviceoveralls,
+		/obj/item/clothing/under/captain_fly,
+		/obj/item/clothing/under/det,
+		/obj/item/clothing/under/brown,
+		)
+	var/new_uniform = pick(uniforms)
+	H.equip_to_slot_or_del(new new_uniform(H),slot_w_uniform)
+
+	if(!skip_shoes)
+		var/list/shoes = list(
+			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/workboots,
+			/obj/item/clothing/shoes/brown,
+			/obj/item/clothing/shoes/laceup
+			)
+
+		var/new_shoes = pick(shoes)
+		H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
+		if(!H.shoes)
+			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
+			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
+
+	if(!skip_hat && prob(40))
+		var/list/hats = list(
+			/obj/item/clothing/head/ushanka,
+			/obj/item/clothing/head/bandana
+			)
+		var/new_hat = pick(hats)
+		H.equip_to_slot_or_del(new new_hat(H),slot_head)
+
+	if(!skip_suit && prob(40))
+		var/list/suits = list(
+			/obj/item/clothing/suit/storage/toggle/bomber,
+			/obj/item/clothing/suit/storage/leather_jacket,
+			/obj/item/clothing/suit/storage/toggle/brown_jacket,
+			/obj/item/clothing/suit/storage/toggle/hoodie,
+			/obj/item/clothing/suit/storage/toggle/hoodie/black,
+			/obj/item/clothing/suit/poncho
+			)
+		var/new_suit = pick(suits)
+		H.equip_to_slot_or_del(new new_suit(H),slot_wear_suit)
+
 	return 1
 
 /datum/job/proc/equip_backpack(var/mob/living/carbon/human/H)

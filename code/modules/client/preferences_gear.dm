@@ -44,6 +44,13 @@ var/global/list/gear_datums = list()
 		sort_category = "[slot]"
 
 // This is sorted both by slot and alphabetically! Don't fuck it up!
+//ID slot items
+/datum/gear/wallet
+	display_name = "wallet"
+	path = /obj/item/weapon/storage/wallet
+	cost = 1
+	slot = slot_wear_id
+
 // Headslot items
 /datum/gear/gbandana
 	display_name = "bandana, green"

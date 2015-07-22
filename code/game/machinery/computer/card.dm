@@ -145,7 +145,7 @@
 		if ("modify")
 			if (modify)
 				data_core.manifest_modify(modify.registered_name, modify.assignment)
-				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+				modify.set_name()
 				if(ishuman(usr))
 					modify.loc = usr.loc
 					if(!usr.get_active_hand())
@@ -277,8 +277,8 @@
 
 				callHook("terminate_employee", list(modify))
 
-	if (modify)
-		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+	if(modify)
+		modify.set_name()
 
 	return 1
 
