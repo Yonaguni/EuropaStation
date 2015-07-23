@@ -37,7 +37,7 @@
 	water = new/datum/gas_mixture   // Make our 'air', freezing water.
 	water.temperature = 250         // -24C
 	water.adjust_gas("water", 1500, 1) // Should be higher.
-	water.volume = 1500
+	water.volume = CELL_VOLUME
 	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
 	if(prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
@@ -83,5 +83,35 @@
 
 /turf/unsimulated/ocean/return_air()
 	return water
+
+
+/turf/unsimulated/ocean/attackby(obj/item/C as obj, mob/user as mob)
+
+	if (istype(C, /obj/item/stack/rods))
+		if(!locate(/obj/structure/lattice, src))
+			var/obj/item/stack/rods/R = C
+			if (R.use(1))
+				user << "<span class='notice'>Constructing support lattice ...</span>"
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				new /obj/structure/lattice(src)
+		else
+			user << "<span class='warning'>There's already a lattice here!</span>"
+		return
+
+	if (istype(C, /obj/item/stack/tile/steel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/steel/S = C
+			if(S.use(1))
+				qdel(L)
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				ChangeTurf(/turf/simulated/floor/plating/flooded)
+			else
+				user << "<span class='warning'>You don't have enough tiles!</span>"
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
+		return
+
+	return ..()
 
 #undef OCEAN_SPREAD_DEPTH
