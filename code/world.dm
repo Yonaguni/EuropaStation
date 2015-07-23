@@ -82,7 +82,7 @@ var/global/datum/global_init/init = new ()
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.updateMineralOverlays()
-		for(var/turf/simulated/floor/plating/airless/asteroid/M in world) // Uuuuuugh.
+		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
 			M.updateMineralOverlays()
 	// Europa-specific - generate and apply the water terrain map.
 	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
