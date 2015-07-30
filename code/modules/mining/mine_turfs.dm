@@ -404,8 +404,7 @@ proc/get_mining_overlay(var/overlay_key)
 	base_icon_state = "asteroid"
 
 	initial_flooring = null
-	oxygen = 0
-	nitrogen = 0
+	initial_air = list()
 	temperature = TCMB
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail

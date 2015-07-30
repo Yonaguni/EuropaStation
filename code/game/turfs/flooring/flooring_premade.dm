@@ -77,47 +77,64 @@
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
-	name = "vacuum floor"
-	oxygen = 0
-	nitrogen = 0
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/tiled/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/bluegrid/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/greengrid/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/tiled/white/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/plating/airless
+	temperature = TCMB
+	initial_air = list()
+
+/turf/simulated/floor/plating/airless/New()
+	..()
+	name = "plating"
+
+/turf/simulated/floor/reinforced/airless
+	initial_air = list()
 	temperature = TCMB
 
 /turf/simulated/floor/reinforced/nitrogen
-	oxygen = 0
+	initial_air = list("nitrogen" = 5000)
 
-/turf/simulated/floor/reinforced/n20/New()
-	. = ..()
-	assume_gas("sleeping_agent", 2000)
+/turf/simulated/floor/reinforced/oxygen
+	initial_air = list("oxygen" = 5000)
 
-/turf/simulated/floor/airless
-	name = "airless plating"
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB
+/turf/simulated/floor/reinforced/phoron
+	initial_air = list("phoron" = 5000)
 
-/turf/simulated/floor/tiled/airless
-	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB
+/turf/simulated/floor/reinforced/carbon_dioxide
+	initial_air = list("carbon_dioxide" = 5000)
 
-/turf/simulated/floor/bluegrid/airless
-	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB
+/turf/simulated/floor/reinforced/n20
+	initial_air = list("sleeping_agent" = 5000)
 
-/turf/simulated/floor/greengrid/airless
-	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB
+/turf/simulated/floor/flooded
+	color = "#66D1FF"
+	initial_temperature = 250
+	initial_air = list("water" = 1500)
 
-/turf/simulated/floor/tiled/white/airless
-	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB
+/turf/simulated/floor/flooded/New()
+	..()
+	color = null
 
 // Placeholders
 /turf/simulated/floor/airless/lava

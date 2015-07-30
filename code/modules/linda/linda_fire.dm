@@ -120,7 +120,10 @@
 	if(bypassing)
 		icon_state = "3"
 		set_light(7,3)
-		location.burn_tile()
+		//Todo fix this
+		if(istype(location, /turf/simulated/floor))
+			var/turf/simulated/floor/F = location
+			F.burn_tile()
 
 		//Possible spread due to radiated heat
 		if(location.air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_SPREAD)

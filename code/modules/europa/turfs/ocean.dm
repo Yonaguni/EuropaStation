@@ -98,14 +98,14 @@
 			user << "<span class='warning'>There's already a lattice here!</span>"
 		return
 
-	if (istype(C, /obj/item/stack/tile/steel))
+	if (istype(C, /obj/item/stack/tile/floor))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/steel/S = C
+			var/obj/item/stack/tile/floor/S = C
 			if(S.use(1))
 				qdel(L)
 				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-				ChangeTurf(/turf/simulated/floor/plating/flooded)
+				ChangeTurf(/turf/simulated/floor/flooded)
 			else
 				user << "<span class='warning'>You don't have enough tiles!</span>"
 		else
