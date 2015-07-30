@@ -97,3 +97,25 @@
 	colour = "cult"
 	key = "y"
 	flags = RESTRICTED | HIVEMIND
+
+/datum/language/kharmaani
+	name = "Kharmaani Vocal"
+	desc = "A curt, sharp language used by the vicious aliens of the Ascent."
+	speech_verb = "clicks"
+	ask_verb = "chirps"
+	exclaim_verb = "rasps"
+	colour = "alien"
+	syllables = list("-","=","+","±","¯","_","¦","|","/")
+	space_chance = 10
+	key = "|"
+	flags = RESTRICTED
+
+/datum/language/kharmaani_nonvocal
+	key = "]"
+	name = "Kharmaani Nonvocal"
+	desc = "A complex visual language of bright bio-luminescent flashes."
+	colour = "alien"
+	speech_verb = "flashes"
+	ask_verb = "gleams"
+	exclaim_verb = "flares"
+	flags = RESTRICTED
