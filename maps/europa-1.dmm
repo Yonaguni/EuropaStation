@@ -581,7 +581,7 @@
 "li" = (/obj/structure/closet/secure_closet/medical1,/turf/simulated/floor{tag = "icon-whiteblue (NORTH)"; icon_state = "whiteblue"; dir = 1},/area/medical/ward)
 "lj" = (/obj/structure/sign/chemistry{pixel_y = 30},/turf/simulated/floor{tag = "icon-whiteblue (NORTH)"; icon_state = "whiteblue"; dir = 1},/area/medical/ward)
 "lk" = (/turf/simulated/floor{tag = "icon-whitebluecorner (NORTH)"; icon_state = "whitebluecorner"; dir = 1},/area/medical/ward)
-"ll" = (/obj/structure/table/standard,/obj/machinery/bunsen_burner,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor{tag = "icon-white"; icon_state = "white"},/area/medical/ward)
+"ll" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor{tag = "icon-white"; icon_state = "white"},/area/medical/ward)
 "lm" = (/turf/simulated/floor/carpet,/area/medical/ward)
 "ln" = (/turf/simulated/floor/wood,/area/medical/ward)
 "lo" = (/obj/structure/bed/chair,/turf/simulated/floor/plating,/area/space)

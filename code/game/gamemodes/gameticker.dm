@@ -91,6 +91,8 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode = config.pick_mode(master_mode)
 
+	src.mode.pre_setup()
+
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!mode_started && !src.mode.can_start())
@@ -110,6 +112,7 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode.announce()
 
+	setup_economy()
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
 	collect_minds()
@@ -117,9 +120,6 @@ var/global/datum/controller/gameticker/ticker
 	data_core.manifest()
 
 	callHook("roundstart")
-
-	//here to initialize the random events nicely at round start
-	setup_economy()
 
 	shuttle_controller.setup_shuttle_docks()
 
@@ -342,7 +342,7 @@ var/global/datum/controller/gameticker/ticker
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "<span class='notice><b>An admin has delayed the round end</b></span>"
+						world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
 				else
 					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
 
