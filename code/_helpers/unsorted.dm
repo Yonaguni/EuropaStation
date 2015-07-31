@@ -1286,31 +1286,42 @@ var/list/WALLITEMS = list(
 			colour += temp_col
 	return colour
 
+var/mob/dview/dview_mob = new
+
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
 
-	var/global/mob/dview/DV
-	if(!DV)
-		DV = new
+	dview_mob.loc = center
 
-	DV.loc = center
+	dview_mob.see_invisible = invis_flags
 
-	DV.see_in_dark = range
-	DV.see_invisible = invis_flags
-
-	. = view(range, DV)
-	DV.loc = null
+	. = view(range, dview_mob)
+	dview_mob.loc = null
 
 /mob/dview
 	invisibility = 101
 	density = 0
 
+	anchored = 1
+	simulated = 0
+
+	see_in_dark = 1e6
+
 /atom/proc/get_light_and_color(var/atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
+
+/mob/dview/New()
+	..()
+	// We don't want to be in any mob lists; we're a dummy not a mob.
+	mob_list -= src
+	if(stat == DEAD)
+		dead_mob_list -= src
+	else
+		living_mob_list -= src
 
 /proc/soft_assert(thing,fail)
 	if(!thing) message_admins(fail)
