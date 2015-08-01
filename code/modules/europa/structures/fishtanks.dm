@@ -156,17 +156,6 @@ var/list/fishtank_cache = list()
 		if(!AM.simulated)
 			continue
 		overlays += AM
-	//	cache_key = "obj-[AM.icon_state]-[AM.dir]"
-	//	if(AM.color) cache_key += AM.color
-	//	if(!fishtank_cache[cache_key])
-	//	I = image(AM.icon, AM.icon_state)
-	//	I.dir = AM.dir
-	//	I.color = AM.color
-	//	I.layer = MOB_LAYER
-	//	I.overlays = AM.overlays
-	//	I.underlays = AM.underlays
-	//		fishtank_cache[cache_key] = I
-	//	overlays |= I //fishtank_cache[cache_key]
 
 	if(propagate)
 		for(var/obj/structure/aquarium/A in orange(1, src))
@@ -224,12 +213,13 @@ var/list/fishtank_cache = list()
 	else
 		usr << "<span class='warning'>There's nowhere to climb out to!</span>"
 
-/turf/MouseDrop_T(mob/target, mob/living/user)
-
-	var/obj/structure/aquarium/A = locate() in user.loc
-	if(A && istype(user) && target == user && Adjacent(A))
-		A.do_climb_out(user, src)
-		return
+/mob/living/MouseDrop(atom/over)
+	if(usr == src && isturf(over))
+		var/turf/T = over
+		var/obj/structure/aquarium/A = locate() in usr.loc
+		if(A && A.Adjacent(usr) && A.Adjacent(T))
+			A.do_climb_out(usr, T)
+			return
 
 	return ..()
 
