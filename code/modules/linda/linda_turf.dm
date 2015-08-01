@@ -25,9 +25,6 @@
 /turf/proc/assume_gas(gasid, moles, temp = 0)
 	return 0
 
-/turf/simulated/proc/burn_tile()
-	return
-
 /turf/return_air()
 	var/datum/gas_mixture/GM = new
 	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
@@ -238,11 +235,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 /turf/simulated/proc/update_visuals(var/datum/gas_mixture/model)
 	if(!air_master)
-		return
+		return 0
 	overlays.Cut()
-	var/siding_icon_state = return_siding_icon_state()
-	if(siding_icon_state)
-		overlays += image('icons/turf/floors.dmi',siding_icon_state)
 	if(gas_overlay)
 		gas_overlay.overlays.Cut()
 	if(model.graphic.len)
@@ -252,6 +246,11 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			gas_overlay.overlays |= gas_icon
 	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
 		animate(gas_overlay, time=3, alpha=model.graphic_alpha)
+	return 1
+
+/turf/simulated/floor/update_visuals(var/datum/gas_mixture/model)
+	if(..())
+		update_icon()
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
 	if(T.current_cycle < current_cycle)

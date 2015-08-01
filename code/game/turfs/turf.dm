@@ -1,23 +1,19 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
-	level = 1.0
-
-	//for floors, use is_plating(), is_steel_floor() and is_light_floor()
-	var/intact = 1
-
-	//Properties for tiles
+	level = 1
+	var/intact
+	var/holy = 0
+	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
-	var/temperature = T20C
-	var/blocks_air = 0
+	var/temperature = T20C      // Initial turf temperature.
+	var/blocks_air = 0          // Does this turf contain air/let air through?
+	// General properties.
 	var/icon_old = null
-	var/pathweight = 1
+	var/pathweight = 1          // How much does it cost to pathfind over this turf?
+	var/blessed = 0             // Has the turf been blessed?
+	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 	var/obj/effect/gas_overlay/gas_overlay
-
-	// Flick animation
-	var/atom/movable/overlay/c_animation = null
-	var/dynamic_lighting = 1
-	luminosity = 1
 
 /turf/New()
 	..()
@@ -33,6 +29,9 @@
 	..()
 
 /turf/ex_act(severity)
+	return 0
+
+/turf/proc/is_space()
 	return 0
 
 /turf/attack_hand(mob/user)
@@ -58,7 +57,6 @@
 		return
 	if (!mover || !isturf(mover.loc))
 		return 1
-
 
 	//First, check objects to block exit that are not on the border
 	for(var/obj/obstacle in mover.loc)
@@ -94,68 +92,44 @@
 				return 0
 	return 1 //Nothing found to block so return success!
 
-
+var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
+
 	if(movement_disabled)
 		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 	..()
-//vvvvv Infared beam stuff vvvvv
-
-	if ((atom && atom.density && !( istype(atom, /obj/effect/beam) )))
-		for(var/obj/effect/beam/i_beam/I in src)
-			spawn( 0 )
-				if (I)
-					I.hit()
-				break
-
-//^^^^^ Infared beam stuff ^^^^^
 
 	if(!istype(atom, /atom/movable))
 		return
 
 	var/atom/movable/A = atom
 
-	var/loopsanity = 100
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
 		if(M.lastarea.has_gravity == 0)
 			inertial_drift(M)
-
-		else if(!istype(src, /turf/space))
+		else if(is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
 	..()
 	var/objects = 0
-	for(var/atom/O as mob|obj|turf|area in range(1))
-		if(objects > loopsanity)	break
-		objects++
-		spawn( 0 )
-			if ((O && A))
-				O.HasProximity(A, 1)
-			return
+	if(A && (A.flags & PROXMOVE))
+		for(var/atom/thing as mob|obj|turf|area in range(1))
+			if(objects > enterloopsanity) break
+			objects++
+			spawn(0)
+				thing.HasProximity(A, 1)
+				if ((thing && A) && (thing.flags & PROXMOVE))
+					thing.HasProximity(A, 1)
 	return
 
 /turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
 	return
 
 /turf/proc/is_plating()
-	return 0
-/turf/proc/is_asteroid_floor()
-	return 0
-/turf/proc/is_steel_floor()
-	return 0
-/turf/proc/is_light_floor()
-	return 0
-/turf/proc/is_grass_floor()
-	return 0
-/turf/proc/is_wood_floor()
-	return 0
-/turf/proc/is_carpet_floor()
-	return 0
-/turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
 	return 0
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
@@ -176,7 +150,7 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.level == 1)
+		if(O.hides_under_flooring())
 			O.hide(src.intact)
 
 // override for space turfs, since they should never hide anything
@@ -293,6 +267,7 @@
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
+
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)
 		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
