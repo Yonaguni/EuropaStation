@@ -199,18 +199,3 @@
 	icon_state = "wardenblueclothes"
 	item_state = "ba_suit"
 	worn_state = "wardenblueclothes"
-
-
-
-
-/*
- * Government Uniforms
- */
-
-
-/obj/item/clothing/under/rank/petty_officer
-	name = "petty officer's uniform"
-	desc = "A well-kept uniform with well-shined buttons. The insignia denotes the wearer to be a colonial petty officer under the administration of the SDPE."
-	icon_state = "petty_officer"
-	item_state = "ba_suit"
-	worn_state = "petty_officer"

@@ -89,7 +89,7 @@
 	return 1
 
 /obj/item/weapon/card/id
-	name = "identification card"
+	name = "\improper ID Card"
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
 	item_state = "card-id"
@@ -114,6 +114,14 @@
 		blood_type = H.dna.b_type
 		dna_hash = H.dna.unique_enzymes
 		fingerprint_hash = md5(H.dna.uni_identity)
+
+/obj/item/weapon/card/id/proc/set_name(var/new_name)
+	if(!new_name)
+		if(!registered_name)
+			registered_name = "Unknown"
+	else
+		registered_name = new_name
+	name = "[registered_name]'s [initial(name)] ([assignment])"
 
 /obj/item/weapon/card/id/attack_self(mob/user as mob)
 	for(var/mob/O in viewers(user, null))
@@ -165,7 +173,7 @@
 	else
 		registered_name = "Agent Card"
 	assignment = "Agent"
-	name = "[registered_name]'s ID Card ([assignment])"
+	set_name()
 
 /obj/item/weapon/card/id/syndicate/afterattack(var/obj/item/weapon/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
@@ -191,7 +199,7 @@
 			src.registered_name = ""
 			return
 		src.assignment = u
-		src.name = "[src.registered_name]'s ID Card ([src.assignment])"
+		set_name()
 		user << "<span class='notice'>You successfully forge the ID card.</span>"
 		registered_user = user
 	else if(!registered_user || registered_user == user)
@@ -211,7 +219,7 @@
 					alert("Invalid assignment.")
 					return
 				src.assignment = u
-				src.name = "[src.registered_name]'s ID Card ([src.assignment])"
+				set_name()
 				user << "<span class='notice'>You successfully forge the ID card.</span>"
 				return
 			if("Show")

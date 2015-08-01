@@ -53,7 +53,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Arrivals dock" = "nuke_shuttle_dock_airlock",
 		)
 
-	MS.announcer = "NSV Icarus"
+	MS.announcer = "NDV Icarus"
 	MS.arrival_message = "Attention, [station_short], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
 	MS.departure_message = "Your visitors are on their way out of the system, [station_short], burning delta-v like it's nothing. Good riddance."
 	MS.interim = locate(/area/syndicate_station/transit)

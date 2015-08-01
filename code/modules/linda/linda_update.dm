@@ -31,8 +31,14 @@
 	air_update_turf(1)
 
 /obj/structure/Destroy()
-	air_update_turf(1)
+	var/atom/A = loc
 	..()
+	if(istype(A, /turf))
+		var/turf/T = A
+		T.air_update_turf(1)
+	else if(istype(A, /atom/movable))
+		var/atom/movable/AM = A
+		AM.air_update_turf(1)
 
 /obj/structure/Move()
 	var/turf/T = loc
@@ -49,8 +55,14 @@
 	move_update_air(T)
 
 /obj/effect/Destroy()
-	air_update_turf(1)
-	return ..()
+	var/atom/A = loc
+	..()
+	if(istype(A, /turf))
+		var/turf/T = A
+		T.air_update_turf(1)
+	else if(istype(A, /atom/movable))
+		var/atom/movable/AM = A
+		AM.air_update_turf(1)
 
 /obj/effect/New()
 	..()

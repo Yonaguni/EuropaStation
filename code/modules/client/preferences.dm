@@ -499,10 +499,10 @@ datum/preferences
 			var/available_in_days = job.available_in_days(user.client)
 			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
+		if((job_civilian_low & CITIZEN) && (rank != "Assistant"))
 			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in europa_gov_positions) || (rank == "AI"))//Bold head jobs
 			HTML += "<b>[rank]</b>"
 		else
 			HTML += "[rank]"
@@ -512,7 +512,7 @@ datum/preferences
 		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
 		if(rank == "Assistant")//Assistant is special
-			if(job_civilian_low & ASSISTANT)
+			if(job_civilian_low & CITIZEN)
 				HTML += " <font color=green>\[Yes]</font>"
 			else
 				HTML += " <font color=red>\[No]</font>"
@@ -807,7 +807,7 @@ datum/preferences
 					return job_civilian_med
 				if(3)
 					return job_civilian_low
-		if(MEDSCI)
+		if(GOVERNMENT)
 			switch(level)
 				if(1)
 					return job_medsci_high
@@ -815,7 +815,7 @@ datum/preferences
 					return job_medsci_med
 				if(3)
 					return job_medsci_low
-		if(ENGSEC)
+		if(INDUSTRY)
 			switch(level)
 				if(1)
 					return job_engsec_high
@@ -852,7 +852,7 @@ datum/preferences
 					job_civilian_low &= ~job.flag
 				else
 					job_civilian_low |= job.flag
-		if(MEDSCI)
+		if(GOVERNMENT)
 			switch(level)
 				if(2)
 					job_medsci_high = job.flag
@@ -862,7 +862,7 @@ datum/preferences
 					job_medsci_low &= ~job.flag
 				else
 					job_medsci_low |= job.flag
-		if(ENGSEC)
+		if(INDUSTRY)
 			switch(level)
 				if(2)
 					job_engsec_high = job.flag
@@ -959,6 +959,8 @@ datum/preferences
 			for(var/gear_name in gear_datums)
 				var/datum/gear/G = gear_datums[gear_name]
 				if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
+					continue
+				if(G.vip_only && !is_vip(user.client))
 					continue
 				valid_gear_choices += gear_name
 
@@ -1440,7 +1442,13 @@ datum/preferences
 								rlimb_data[second_limb] = null
 
 						if("Prothesis")
-							var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in chargen_robolimbs
+							var/list/available_robolimbs = list()
+							for(var/company in chargen_robolimbs)
+								available_robolimbs[company] = chargen_robolimbs[company]
+							if(is_vip(user.client))
+								for(var/company in vip_robolimbs)
+									available_robolimbs[company] = vip_robolimbs[company]
+							var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in available_robolimbs
 							if(!choice)
 								return
 							rlimb_data[limb] = choice

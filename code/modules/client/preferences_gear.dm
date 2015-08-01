@@ -36,6 +36,7 @@ var/global/list/gear_datums = list()
 	var/list/allowed_roles //Roles that can spawn with this item.
 	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category
+	var/vip_only
 
 /datum/gear/New()
 	..()
@@ -43,8 +44,14 @@ var/global/list/gear_datums = list()
 		sort_category = "[slot]"
 
 // This is sorted both by slot and alphabetically! Don't fuck it up!
-// Headslot items
+//ID slot items
+/datum/gear/wallet
+	display_name = "wallet"
+	path = /obj/item/weapon/storage/wallet
+	cost = 1
+	slot = slot_wear_id
 
+// Headslot items
 /datum/gear/gbandana
 	display_name = "bandana, green"
 	path = /obj/item/clothing/head/greenbandana

@@ -28,3 +28,9 @@
 	desc = "A heavy, armoured diving helmet suitable for extended excursions."
 	icon_state = "diving_heavy"
 	light_overlay = "helmet_light_dual"
+
+//Government
+/obj/item/clothing/head/petty_officer
+	name = "petty officer's hat"
+	desc = "A sturdy grey formal hat that announces your official presence."
+	icon_state = "officercap"

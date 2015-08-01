@@ -12,8 +12,8 @@ var/list/global/wall_cache = list()
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	var/damage = 0
-	var/damage_overlay
-	var/global/damage_overlays[8]
+	var/damage_overlay = 0
+	var/global/damage_overlays[16]
 	var/active
 	var/can_open = 0
 	var/material/material
@@ -35,7 +35,7 @@ var/list/global/wall_cache = list()
 
 /turf/simulated/wall/Destroy()
 	processing_turfs -= src
-	dismantle_wall(null,null,1)
+	dismantle_wall(null,null,1,0)
 	..()
 
 
@@ -152,7 +152,7 @@ var/list/global/wall_cache = list()
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
+/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product, var/change_turf=1)
 
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
@@ -174,7 +174,8 @@ var/list/global/wall_cache = list()
 	reinf_material = null
 	check_relatives()
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	if(change_turf)
+		ChangeTurf(/turf/simulated/floor/plating)
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)

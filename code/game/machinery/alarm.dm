@@ -578,6 +578,7 @@
 				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]))
 				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]))
 				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]))
+				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Water",			"command" = "water_scrub","val" = info["filter_water"]))
 			data["scrubbers"] = scrubbers
 		if(AALARM_SCREEN_MODE)
 			var/modes[0]
@@ -688,6 +689,7 @@
 					"co2_scrub",
 					"tox_scrub",
 					"n2o_scrub",
+					"water_scrub",
 					"panic_siphon",
 					"scrubbing")
 
@@ -921,7 +923,7 @@ FIRE ALARM
 /obj/machinery/firealarm/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/firealarm/bullet_act(BLAH)
+/obj/machinery/firealarm/bullet_act()
 	return src.alarm()
 
 /obj/machinery/firealarm/emp_act(severity)
