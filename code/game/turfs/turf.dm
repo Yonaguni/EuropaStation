@@ -25,6 +25,8 @@
 	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 	var/obj/effect/gas_overlay/gas_overlay
 
+	var/list/decals
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
