@@ -1,6 +1,6 @@
 var/list/flooring_types
 
-/proc/get_flooring_by_name(var/flooring_path)
+/proc/get_flooring_data(var/flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
 	if(!flooring_types["[flooring_path]"])
@@ -65,7 +65,7 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
 /decl/flooring/carpet/blue
-	name = "blue carpet"
+	name = "carpet"
 	icon_base = "bcarpet"
 	build_type = null
 	flags = TURF_HAS_EDGES
@@ -75,6 +75,7 @@ var/list/flooring_types
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "steel"
+	has_damage_range = 4
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
@@ -85,16 +86,37 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 
+/decl/flooring/tiling/red
+	name = "floor"
+	icon_base = "red"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_red
+
+/decl/flooring/tiling/steel
+	name = "floor"
+	icon_base = "steel"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_steel
+
 /decl/flooring/tiling/white
-	name = "white floor"
+	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_white
 
+/decl/flooring/tiling/yellow
+	name = "floor"
+	icon_base = "yellow"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_yellow
+
 /decl/flooring/tiling/dark
-	name = "dark floor"
+	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
 	has_damage_range = null
@@ -102,7 +124,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor_dark
 
 /decl/flooring/tiling/freezer
-	name = "tiled floor"
+	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
 	has_damage_range = null
@@ -133,14 +155,13 @@ var/list/flooring_types
 	apply_heat_capacity = 325000
 
 /decl/flooring/reinforced/circuit
-	name = "blue processing strata"
+	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 
 /decl/flooring/reinforced/circuit/green
-	name = "green processing strata"
 	icon_base = "gcircuit"
 
 /decl/flooring/reinforced/cult

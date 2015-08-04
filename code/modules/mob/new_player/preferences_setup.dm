@@ -178,46 +178,94 @@ datum/preferences
 		b_skin = blue
 
 
-	proc/update_preview_icon()		//seriously. This is horrendous. //less so now
-		if(!dummy)
-			dummy = new(null, species)
-		dummy.set_species(species)
-		dummy.flags |= GODMODE
-		copy_to(dummy)
-		for (var/obj/item/I in dummy)
-			dummy.drop_from_inventory(I)
-			if(I.loc != dummy)
-				qdel(I)
-		var/jobflag
-		var/dept
-		if (job_civilian_low & CITIZEN)
-			jobflag = job_civilian_low
-			dept = CIVILIAN
-		else if(job_civilian_high)
-			jobflag = job_civilian_high
-			dept = CIVILIAN
-		else if (job_medsci_high)
-			jobflag = job_medsci_high
-			dept = GOVERNMENT
-		else if (job_engsec_high)
-			jobflag = job_engsec_high
-			dept = INDUSTRY
-		if(jobflag && dept && job_master)
-			for (var/datum/job/J in job_master.occupations)
-				if((J.department_flag & dept) && (J.flag & jobflag))
-					var/alt = GetPlayerAltTitle(J)
-					if(alt)	//more hacks
-						if(!dummy.mind)
-							dummy.mind = new
-						dummy.mind.role_alt_title = alt
-					J.equip_preview(dummy)
-					break
-		dummy.update_eyes()
-		dummy.force_update_limbs()
-		dummy.regenerate_icons()
-		preview_icon = icon(dummy.icon)
-		for(var/image/I in dummy.overlays_standing)
-			if(I && I.icon)
-				preview_icon.Blend(icon(I.icon, I.icon_state), ICON_OVERLAY)
+	proc/update_preview_icon()		//seriously. This is horrendous.
+		qdel(preview_icon_front)
+		qdel(preview_icon_side)
+		qdel(preview_icon)
+
+		var/g = "m"
+		if(gender == FEMALE)	g = "f"
+
+		var/icon/icobase
+		var/datum/species/current_species = all_species[species]
+
+		if(current_species)
+			icobase = current_species.icobase
+		else
+			icobase = 'icons/mob/human_races/r_human.dmi'
+
+		preview_icon = new /icon(icobase, "torso_[g]")
+		preview_icon.Blend(new /icon(icobase, "groin_[g]"), ICON_OVERLAY)
+		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
+
+		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
+			if(organ_data[name] == "amputated") continue
+			if(organ_data[name] == "cyborg")
+				var/datum/robolimb/R
+				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
+				if(!R) R = basic_robolimb
+				preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
+				continue
+			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)
+
+		//Tail
+		if(current_species && (current_species.tail))
+			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+			preview_icon.Blend(temp, ICON_OVERLAY)
+
+		// Skin color
+		if(current_species && (current_species.flags & HAS_SKIN_COLOR))
+			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+
+		// Skin tone
+		if(current_species && (current_species.flags & HAS_SKIN_TONE))
+			if (s_tone >= 0)
+				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+			else
+				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+
+		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
+		if ((current_species && (current_species.flags & HAS_EYE_COLOR)))
+			eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
+
+		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		if(hair_style)
+			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+			hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+			eyes_s.Blend(hair_s, ICON_OVERLAY)
+
+		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		if(facial_hair_style)
+			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
+			facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+			eyes_s.Blend(facial_s, ICON_OVERLAY)
+
+		var/icon/underwear_s = null
+		if(underwear && current_species.flags & HAS_UNDERWEAR)
+			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
+
+		var/icon/undershirt_s = null
+		if(undershirt && current_species.flags & HAS_UNDERWEAR)
+			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
+
+		// HA HA NO PREVIEW ICONS FOR YOU UNTIL WE CAN BE FUCKED RECODING THIS
+		// (or chinsky fixes his rewrite to avoid crashing people)
+		//var/icon/clothes_s = null
+
+		if(disabilities & NEARSIGHTED)
+			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
+
+		preview_icon.Blend(eyes_s, ICON_OVERLAY)
+		if(underwear_s)
+			preview_icon.Blend(underwear_s, ICON_OVERLAY)
+		if(undershirt_s)
+			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
+		//if(clothes_s)
+		//	preview_icon.Blend(clothes_s, ICON_OVERLAY)
 		preview_icon_front = new(preview_icon, dir = SOUTH)
 		preview_icon_side = new(preview_icon, dir = WEST)
+
+		qdel(eyes_s)
+		qdel(underwear_s)
+		qdel(undershirt_s)
+		//qdel(clothes_s)

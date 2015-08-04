@@ -15,6 +15,7 @@ proc/get_mining_overlay(var/overlay_key)
 	name = "Rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	initial_air = list()
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -404,14 +405,14 @@ proc/get_mining_overlay(var/overlay_key)
 	base_icon_state = "asteroid"
 
 	initial_flooring = null
-	initial_air = list()
+	oxygen = 0
+	nitrogen = 0
 	temperature = TCMB
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
 	has_resources = 1
 
 /turf/simulated/floor/asteroid/New()
-
 	if(prob(20))
 		overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 

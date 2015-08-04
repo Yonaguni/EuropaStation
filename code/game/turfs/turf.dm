@@ -3,11 +3,21 @@
 	level = 1
 	var/intact
 	var/holy = 0
+
+	// Initial air contents (in moles)
+	var/oxygen = 0
+	var/carbon_dioxide = 0
+	var/nitrogen = 0
+	var/phoron = 0
+
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
+
+	//Properties for both
 	var/temperature = T20C      // Initial turf temperature.
 	var/blocks_air = 0          // Does this turf contain air/let air through?
+
 	// General properties.
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
@@ -24,7 +34,6 @@
 	turfs |= src
 
 /turf/Destroy()
-	if(gas_overlay) qdel(gas_overlay)
 	turfs -= src
 	..()
 
@@ -152,113 +161,6 @@ var/const/enterloopsanity = 100
 	for(var/obj/O in src)
 		if(O.hides_under_flooring())
 			O.hide(src.intact)
-
-// override for space turfs, since they should never hide anything
-/turf/space/levelupdate()
-	for(var/obj/O in src)
-		if(O.level == 1)
-			O.hide(0)
-
-// Removes all signs of lattice on the pos of the turf -Donkieyo
-/turf/proc/RemoveLattice()
-	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L)
-		qdel(L)
-
-//Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	if (!N)
-		return
-
-	if(gas_overlay)
-		qdel(gas_overlay)
-		gas_overlay = null
-
-///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
-	if(N == /turf/space)
-		var/turf/controller = locate(1, 1, src.z)
-		for(var/obj/effect/landmark/zcontroller/c in controller)
-			if(c.down)
-				var/turf/W = src.ChangeTurf(/turf/simulated/floor/open)
-				var/list/temp = list()
-				temp += W
-				c.add(temp,3,1) // report the new open space to the zcontroller
-				return W
-///// Z-Level Stuff
-
-	//var/obj/fire/old_fire = fire
-	var/old_opacity = opacity
-	var/old_dynamic_lighting = dynamic_lighting
-	var/list/old_affecting_lights = affecting_lights
-	var/old_lighting_overlay = lighting_overlay
-
-	Destroy()
-
-	if(ispath(N, /turf/simulated/floor))
-		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
-		/*
-		if(old_fire)
-			fire = old_fire
-		*/
-		if (istype(W,/turf/simulated/floor))
-			W.RemoveLattice()
-
-		if(tell_universe)
-			universe.OnTurfChange(W)
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		. = W
-
-	else
-
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
-
-		/*
-		if(old_fire)
-			old_fire.RemoveFire()
-		*/
-
-		if(tell_universe)
-			universe.OnTurfChange(W)
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		. =  W
-
-	lighting_overlay = old_lighting_overlay
-	affecting_lights = old_affecting_lights
-	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
-		reconsider_lights()
-	if(dynamic_lighting != old_dynamic_lighting)
-		if(dynamic_lighting)
-			lighting_build_overlays()
-		else
-			lighting_clear_overlays()
-
-/turf/proc/ReplaceWithLattice()
-	src.ChangeTurf(get_base_turf(src.z))
-	spawn()
-		new /obj/structure/lattice( locate(src.x, src.y, src.z) )
-
-/turf/proc/kill_creatures(mob/U = null)//Will kill people/creatures and damage mechs./N
-//Useful to batch-add creatures to the list.
-	for(var/mob/living/M in src)
-		if(M==U)	continue//Will not harm U. Since null != M, can be excluded to kill everyone.
-		spawn(0)
-			M.gib()
-	for(var/obj/mecha/M in src)//Mecha are not gibbed but are damaged.
-		spawn(0)
-			M.take_damage(100, "brute")
-
-/turf/proc/Bless()
-	if(flags & NOJAUNT)
-		return
-	flags |= NOJAUNT
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
