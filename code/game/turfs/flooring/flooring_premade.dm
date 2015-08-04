@@ -65,10 +65,25 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/tiled/red
+	name = "red floor"
+	icon_state = "red"
+	initial_flooring = /decl/flooring/tiling/red
+
+/turf/simulated/floor/tiled/steel
+	name = "steel floor"
+	icon_state = "steel_dirty"
+	initial_flooring = /decl/flooring/tiling/steel
+
 /turf/simulated/floor/tiled/white
 	name = "white floor"
 	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/white
+
+/turf/simulated/floor/tiled/yellow
+	name = "yellow floor"
+	icon_state = "yellow"
+	initial_flooring = /decl/flooring/tiling/yellow
 
 /turf/simulated/floor/tiled/freezer
 	name = "tiles"
@@ -83,28 +98,34 @@
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
+	name = "vacuum floor"
 	temperature = TCMB
 	initial_air = list()
 
 /turf/simulated/floor/airless
-	temperature = TCMB
+	name = "airless plating"
 	initial_air = list()
+	temperature = TCMB
 
 /turf/simulated/floor/tiled/airless
-	temperature = TCMB
+	name = "airless floor"
 	initial_air = list()
+	temperature = TCMB
 
 /turf/simulated/floor/bluegrid/airless
-	temperature = TCMB
+	name = "airless floor"
 	initial_air = list()
+	temperature = TCMB
 
 /turf/simulated/floor/greengrid/airless
-	temperature = TCMB
+	name = "airless floor"
 	initial_air = list()
+	temperature = TCMB
 
 /turf/simulated/floor/tiled/white/airless
-	temperature = TCMB
+	name = "airless floor"
 	initial_air = list()
+	temperature = TCMB
 
 /turf/simulated/floor/plating/airless
 	temperature = TCMB
@@ -116,7 +137,6 @@
 
 /turf/simulated/floor/reinforced/airless
 	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/reinforced/nitrogen
 	initial_air = list("nitrogen" = 5000)

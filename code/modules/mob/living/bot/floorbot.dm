@@ -15,7 +15,7 @@
 	var/list/path = list()
 	var/list/ignorelist = list()
 	var/turf/target
-	var/floor_build_type = "floor" // Basic steel floor.
+	var/floor_build_type = /decl/flooring/tiling // Basic steel floor.
 
 /mob/living/bot/floorbot/update_icons()
 	if(repairing)
