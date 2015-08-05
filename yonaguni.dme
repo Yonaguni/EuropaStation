@@ -1757,7 +1757,10 @@
 #include "code\TriDimension\Turfs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\europa-1.dmm"
-#include "maps\europa-2.dmm"
-#include "maps\europa-3.dmm"
+#include "maps\box-1.dmm"
+#include "maps\box-2.dmm"
+#include "maps\box-3.dmm"
+#include "maps\box-4.dmm"
+#include "maps\box-5.dmm"
+#include "maps\box-6.dmm"
 // END_INCLUDE
