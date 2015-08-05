@@ -122,6 +122,9 @@
 	initial_air = list()
 	temperature = TCMB
 
+/turf/simulated/floor/greengrid/nitrogen
+	initial_air = list("nitrogen" = MOLES_N2STANDARD)
+
 /turf/simulated/floor/tiled/white/airless
 	name = "airless floor"
 	initial_air = list()
