@@ -183,16 +183,16 @@
 					else if (shuttle.can_cancel())
 						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel launch</A>"
 					else
-						dat += "*Shuttle is busy*"
+						dat += "*Vessel is busy*"
 					dat += "<BR>\n<BR>"
 				else
 					dat += "Away<BR>"
 					if (shuttle.can_launch())
-						dat += "<A href='?src=\ref[src];send=1'>Request supply shuttle</A>"
+						dat += "<A href='?src=\ref[src];send=1'>Request supply submarine</A>"
 					else if (shuttle.can_cancel())
 						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel request</A>"
 					else
-						dat += "*Shuttle is busy*"
+						dat += "*Vessel is busy*"
 					dat += "<BR>\n<BR>"
 
 

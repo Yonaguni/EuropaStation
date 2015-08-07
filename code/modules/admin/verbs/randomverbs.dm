@@ -736,7 +736,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/admin_call_shuttle()
 
 	set category = "Admin"
-	set name = "Call Shuttle"
+	set name = "Call Evac"
 
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
@@ -768,7 +768,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
-	set name = "Cancel Shuttle"
+	set name = "Cancel Evac"
 
 	if(!check_rights(R_ADMIN))	return
 
@@ -786,7 +786,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/admin_deny_shuttle()
 	set category = "Admin"
-	set name = "Toggle Deny Shuttle"
+	set name = "Toggle Deny Evac"
 
 	if (!ticker)
 		return

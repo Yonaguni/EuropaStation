@@ -80,12 +80,17 @@ var/global/datum/global_init/init = new ()
 		new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
 		// Update all turfs to ensure everything looks good post-generation. Yes,
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
+		/*
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.updateMineralOverlays()
 		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
 			M.updateMineralOverlays()
+		*/
+
 	// Europa-specific - generate and apply the water terrain map.
-	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
+	spawn(0)
+		sleep(-1)
+		new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
 
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()

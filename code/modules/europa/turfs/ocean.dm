@@ -25,6 +25,17 @@
 	var/datum/gas_mixture/water
 	var/detail_decal
 
+/turf/unsimulated/ocean/abyss
+	name = "sand"
+	desc = "Uncomfortably gritty."
+	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon_state = "asteroid"
+
+/turf/unsimulated/ocean/abyss/plating
+	name = "stone floor"
+	desc = "Waterlogged and decrepit."
+	icon_state = "asteroidfloor"
+
 /turf/unsimulated/ocean/New()
 	..()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)

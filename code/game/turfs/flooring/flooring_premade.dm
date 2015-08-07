@@ -166,7 +166,6 @@
 	color = null
 
 // Placeholders
-/turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
 /turf/simulated/floor/snow
 /turf/simulated/floor/beach

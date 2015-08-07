@@ -107,6 +107,7 @@
 							for(var/obj/item/weapon/ore/ore in range(chassis,1))
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
+				/*
 				else if(istype(target, /turf/simulated/floor/asteroid))
 					for(var/turf/simulated/floor/asteroid/M in range(chassis,1))
 						if(get_dir(chassis,M)&chassis.dir)
@@ -118,6 +119,7 @@
 							for(var/obj/item/weapon/ore/ore in range(chassis,1))
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
+				*/
 				else if(target.loc == C)
 					log_message("Drilled through [target]")
 					target.ex_act(2)
@@ -161,6 +163,7 @@
 							for(var/obj/item/weapon/ore/ore in range(chassis,1))
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
+				/*
 				else if(istype(target,/turf/simulated/floor/asteroid))
 					for(var/turf/simulated/floor/asteroid/M in range(target,1))
 						M.gets_dug()
@@ -170,6 +173,7 @@
 						if(ore_box)
 							for(var/obj/item/weapon/ore/ore in range(target,1))
 								ore.Move(ore_box)
+				*/
 				else if(target.loc == C)
 					log_message("Drilled through [target]")
 					target.ex_act(2)

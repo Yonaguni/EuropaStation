@@ -15,17 +15,16 @@ proc/get_mining_overlay(var/overlay_key)
 	name = "Rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	initial_air = list()
 	opacity = 1
 	density = 1
 	blocks_air = 1
 	temperature = T0C
-	var/mined_turf = /turf/simulated/floor/asteroid
+
+	var/mined_turf = /turf/unsimulated/ocean
 	var/ore/mineral
 	var/mined_ore = 0
 	var/last_act = 0
 	var/emitter_blasts_taken = 0 // EMITTER MINING! Muhehe.
-
 	var/datum/geosample/geologic_data
 	var/excavation_level = 0
 	var/list/finds
@@ -38,12 +37,15 @@ proc/get_mining_overlay(var/overlay_key)
 	has_resources = 1
 
 /turf/simulated/mineral/New()
+	color = null
 	spawn(0)
 		MineralSpread()
 	spawn(2)
 		updateMineralOverlays(1)
 
 /turf/simulated/mineral/proc/updateMineralOverlays(var/update_neighbors)
+	return
+	/*
 	var/list/step_overlays = list("s" = NORTH, "n" = SOUTH, "w" = EAST, "e" = WEST)
 	for(var/direction in step_overlays)
 		var/turf/turf_to_check = get_step(src,step_overlays[direction])
@@ -52,6 +54,7 @@ proc/get_mining_overlay(var/overlay_key)
 			T.updateMineralOverlays()
 		else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor))
 			turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]")
+	*/
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
@@ -284,13 +287,10 @@ proc/get_mining_overlay(var/overlay_key)
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
 
-
+	/*
 	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
-
 	//Add some rubble,  you did just clear out a big chunk of rock.
-
-	var/turf/simulated/floor/asteroid/N = ChangeTurf(mined_turf)
-
+	var/turf/N = ChangeTurf(mined_turf)
 	// Kill and update the space overlays around us.
 	for(var/direction in step_overlays)
 		var/turf/space/T = get_step(src, step_overlays[direction])
@@ -299,10 +299,10 @@ proc/get_mining_overlay(var/overlay_key)
 			for(var/next_direction in step_overlays)
 				if(istype(get_step(T, step_overlays[next_direction]),/turf/simulated/mineral))
 					T.overlays += image('icons/turf/walls.dmi', "rock_side_[next_direction]")
-
 	if(istype(N))
 		N.overlay_detail = "asteroid[rand(0,9)]"
 		N.updateMineralOverlays(1)
+	*/
 
 /turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
@@ -393,6 +393,7 @@ proc/get_mining_overlay(var/overlay_key)
 
 /**********************Asteroid**************************/
 
+/*
 // Setting icon/icon_state initially will use these values when the turf is built on/replaced.
 // This means you can put grass on the asteroid etc.
 /turf/simulated/floor/asteroid
@@ -403,15 +404,19 @@ proc/get_mining_overlay(var/overlay_key)
 	base_desc = "Gritty and unpleasant."
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	base_icon_state = "asteroid"
-	initial_air = list()
 	initial_flooring = null
 	temperature = TCMB
+
+	color = "#66D1FF"
+	initial_temperature = 250
+	initial_air = list("water" = 1500)
 
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
 	has_resources = 1
 
 /turf/simulated/floor/asteroid/New()
+	color = null
 	if(prob(20))
 		overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
@@ -530,3 +535,23 @@ proc/get_mining_overlay(var/overlay_key)
 				attackby(R.module_state_3,R)
 			else
 				return
+*/
+
+/*
+/turf/simulated/floor/plating/asteroid
+	icon_state = "asteroidplating"
+	base_name = "stone flooring"
+	base_desc = "Gritty and unpleasant."
+	base_icon_state = "asteroidplating"
+
+	color = "#66D1FF"
+	initial_temperature = 250
+	initial_air = list("water" = 1500)
+
+//Placeholder
+/turf/simulated/floor/plating/asteroid/lava
+
+/turf/simulated/floor/plating/asteroid/New()
+	color = null
+	..()
+*/

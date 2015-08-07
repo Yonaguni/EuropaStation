@@ -1,5 +1,5 @@
 /obj/machinery/computer/shuttle_control
-	name = "shuttle control console"
+	name = "vessel control console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	circuit = null
@@ -15,7 +15,7 @@
 	if(!allowed(user))
 		user << "\red Access Denied."
 		return 1
-	
+
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -40,7 +40,7 @@
 			else
 				shuttle_status = "Standing-by at offsite location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has recieved command and will depart shortly."
+			shuttle_status = "Vessel has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)
 			shuttle_status = "Proceeding to destination."
 		if(WAIT_FINISH)
@@ -60,7 +60,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
+		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Engine Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

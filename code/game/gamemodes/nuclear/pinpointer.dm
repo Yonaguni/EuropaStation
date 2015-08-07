@@ -194,7 +194,7 @@ var/list/nuke_disks = list()
 			user << "<span class='notice'>Authentication Disk Locator active.</span>"
 		else
 			worklocation()
-			user << "<span class='notice'>Shuttle Locator active.</span>"
+			user << "<span class='notice'>Submarine Locator active.</span>"
 	else
 		active = 0
 		icon_state = "pinoff"
@@ -210,7 +210,7 @@ var/list/nuke_disks = list()
 		mode = 1	//Ensures worklocation() continues to work
 		worklocation()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
-		visible_message("Shuttle Locator active.")			//Lets the mob holding it know that the mode has changed
+		visible_message("Submarine Locator active.")			//Lets the mob holding it know that the mode has changed
 		return		//Get outta here
 	if(!the_disk)
 		the_disk = locate()

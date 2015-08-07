@@ -205,9 +205,9 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (temp)
 		dat = temp
 	else
-		dat  = {"<BR><B>Special Operations Shuttle</B><HR>
+		dat  = {"<BR><B>Special Operations Submarine</B><HR>
 		\nLocation: [syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "Departing for [station_name] in ([syndicate_elite_shuttle_timeleft] seconds.)":syndicate_elite_shuttle_at_station ? "Station":"Dock"]<BR>
-		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Shuttle Offline</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Depart to [station_name]</A><BR>\n<BR>"]
+		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Vessel Offline</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Depart to [station_name]</A><BR>\n<BR>"]
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
@@ -224,19 +224,19 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (href_list["sendtodock"])
 		if(!syndicate_elite_shuttle_at_station|| syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
-		usr << "<span class='notice'>The Syndicate will not allow the Elite Squad shuttle to return.</span>"
+		usr << "<span class='notice'>The Syndicate will not allow the Elite Squad submarine to return.</span>"
 		return
 
 	else if (href_list["sendtostation"])
 		if(syndicate_elite_shuttle_at_station || syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
 		if (!specops_can_move())
-			usr << "<span class='warning'>The Syndicate Elite shuttle is unable to leave.</span>"
+			usr << "<span class='warning'>The Syndicate Elite submarine is unable to leave.</span>"
 			return
 
-		usr << "<span class='notice'>The Syndicate Elite shuttle will arrive on [station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds.</span>"
+		usr << "<span class='notice'>The Syndicate Elite submarine will arrive on [station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds.</span>"
 
-		temp  = "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+		temp  = "Submarine departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		var/area/syndicate_mothership/elite_squad/elite_squad = locate()

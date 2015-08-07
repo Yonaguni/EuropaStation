@@ -1,7 +1,5 @@
 // Returns the lowest turf available on a given Z-level, defaults to space.
-var/global/list/base_turf_by_z = list(
-	"5" = /turf/simulated/floor/asteroid // Moonbase.
-	)
+var/global/list/base_turf_by_z = list()
 
 proc/get_base_turf(var/z)
 	if(!base_turf_by_z["[z]"])
@@ -21,7 +19,7 @@ proc/get_base_turf(var/z)
 
 	var/new_base_path = input("Please select a turf path (cancel to reset to /turf/space).") as null|anything in typesof(/turf)
 	if(!new_base_path)
-		new_base_path = /turf/space
+		new_base_path = world.turf
 	base_turf_by_z["[choice]"] = new_base_path
 	message_admins("[key_name_admin(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")
 	log_admin("[key_name(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")

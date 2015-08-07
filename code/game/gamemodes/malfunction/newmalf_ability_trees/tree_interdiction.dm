@@ -13,7 +13,7 @@
 	ability = new/datum/game_mode/malfunction/verb/recall_shuttle()
 	price = 75
 	next = new/datum/malf_research_ability/interdiction/unlock_cyborg()
-	name = "Recall Shuttle"
+	name = "Recall Evacuation"
 
 
 /datum/malf_research_ability/interdiction/unlock_cyborg
@@ -39,7 +39,7 @@
 // BEGIN ABILITY VERBS
 
 /datum/game_mode/malfunction/verb/recall_shuttle()
-	set name = "Recall Shuttle"
+	set name = "Recall Evacuation"
 	set desc = "25 CPU - Sends termination signal to quantum relay aborting current shuttle call."
 	set category = "Software"
 	var/price = 25
