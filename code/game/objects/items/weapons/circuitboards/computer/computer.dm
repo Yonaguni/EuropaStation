@@ -1,5 +1,5 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it! 
+#error T_BOARD macro is not defined but we need it!
 #endif
 
 /obj/item/weapon/circuitboard/message_monitor
@@ -60,11 +60,11 @@
 /obj/item/weapon/circuitboard/stationalert_engineering
 	name = T_BOARD("station alert console (engineering)")
 	build_path = /obj/machinery/computer/station_alert
-	
+
 /obj/item/weapon/circuitboard/stationalert_security
 	name = T_BOARD("station alert console (security)")
 	build_path = /obj/machinery/computer/station_alert
-	
+
 /obj/item/weapon/circuitboard/stationalert_all
 	name = T_BOARD("station alert console (all)")
 	build_path = /obj/machinery/computer/station_alert/all
@@ -158,17 +158,17 @@
 	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/mining_shuttle
-	name = T_BOARD("mining shuttle console")
+	name = T_BOARD("mining elevator console")
 	build_path = /obj/machinery/computer/shuttle_control/mining
 	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/engineering_shuttle
-	name = T_BOARD("engineering shuttle console")
+	name = T_BOARD("engineering elevator console")
 	build_path = /obj/machinery/computer/shuttle_control/engineering
 	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/research_shuttle
-	name = T_BOARD("research shuttle console")
+	name = T_BOARD("research elevator console")
 	build_path = /obj/machinery/computer/shuttle_control/research
 	origin_tech = list(TECH_DATA = 2)
 

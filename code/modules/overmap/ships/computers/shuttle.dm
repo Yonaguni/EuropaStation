@@ -27,7 +27,7 @@
 	if(destination && shuttle_controller.shuttles[shuttle_tag])
 		var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 		shuttle.area_offsite = destination.shuttle_landing
-		testing("Shuttle controller [shuttle_tag] now sends shuttle to [destination]")
+		testing("Vessel controller [shuttle_tag] now sends vessel to [destination]")
 		shuttle_controller.shuttles[shuttle_tag] = shuttle
 
 //Gets all sectors with landing zones in shuttle's range
@@ -84,7 +84,7 @@
 			else
 				shuttle_status = "Standing-by at offsite location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has recieved command and will depart shortly."
+			shuttle_status = "Vessel has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)
 			shuttle_status = "Proceeding to destination."
 		if(WAIT_FINISH)
@@ -106,7 +106,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "shuttle_control_console_exploration.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
+		ui = new(user, src, ui_key, "shuttle_control_console_exploration.tmpl", "[shuttle_tag] Vessel Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -128,7 +128,7 @@
 			var/list/possible_d = get_possible_destinations()
 			var/obj/effect/map/D
 			if(possible_d.len)
-				D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
+				D = input("Choose vessel destination", "Vessel Destination") as null|anything in possible_d
 			update_destination(D)
 
 	if(href_list["move"])

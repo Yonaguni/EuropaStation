@@ -82,7 +82,7 @@
 	if(!istype(MS)) return
 
 	var/dat
-	dat = "<center>[shuttle_tag] Ship Control<hr>"
+	dat = "<center>[shuttle_tag] Control<hr>"
 
 
 	if(MS.moving_status != SHUTTLE_IDLE)
@@ -136,11 +136,11 @@
 	if(MS.skip_docking_checks() || MS.docking_controller.can_launch())
 		return 1
 
-	var/choice = alert("The shuttle is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
+	var/choice = alert("The vessel is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
 	if(choice == "Cancel")
 		return 0
 
-	choice = alert("Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", "Force Launch", "Cancel")
+	choice = alert("Forcing a launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", "Force Launch", "Cancel")
 	if(choice == "Cancel")
 		return 0
 

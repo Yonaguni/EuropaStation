@@ -1760,7 +1760,4 @@
 #include "maps\box-1.dmm"
 #include "maps\box-2.dmm"
 #include "maps\box-3.dmm"
-#include "maps\box-4.dmm"
-#include "maps\box-5.dmm"
-#include "maps\box-6.dmm"
 // END_INCLUDE

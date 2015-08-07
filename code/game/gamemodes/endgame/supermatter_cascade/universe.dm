@@ -9,7 +9,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
-		user << "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no shuttle call today.</span>"
+		user << "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no evacuation today.</span>"
 	return 0
 
 /datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
@@ -70,7 +70,7 @@ You have five minutes before the universe collapses. Good l\[\[###!!!-
 
 AUTOMATED ALERT: Link to [command_name()] lost.
 
-The access requirements on the Asteroid Shuttles' consoles have now been revoked.
+The access requirements on colony elevator consoles have now been revoked.
 "}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 

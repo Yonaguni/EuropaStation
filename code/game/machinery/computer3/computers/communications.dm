@@ -296,9 +296,9 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];changeseclevel'>Change alert level</A> \]"
 			if(emergency_shuttle.location())
 				if (emergency_shuttle.online())
-					dat += "<BR>\[ <A HREF='?src=\ref[src];cancelshuttle'>Cancel Shuttle Call</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];cancelshuttle'>Cancel Vessel Call</A> \]"
 				else
-					dat += "<BR>\[ <A HREF='?src=\ref[src];callshuttle'>Call Emergency Shuttle</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];callshuttle'>Call Emergency Submarine</A> \]"
 
 			dat += "<BR>\[ <A HREF='?src=\ref[src];status'>Set Status Display</A> \]"
 		else
@@ -349,7 +349,7 @@
 				dat += "Set Status Displays<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=blank'>Clear</A> \]<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=time'>Station Time</A> \]"
-				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=shuttle'>Vessel ETA</A> \]<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=message'>Message</A> \]"
 				dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 				dat += "<li> Line 2: <A HREF='?src=\ref[src];setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"

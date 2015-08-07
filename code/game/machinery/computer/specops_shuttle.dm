@@ -265,9 +265,9 @@ var/specops_shuttle_timeleft = 0
 	if (temp)
 		dat = temp
 	else
-		dat += {"<BR><B>Special Operations Shuttle</B><HR>
+		dat += {"<BR><B>Special Operations Submarine</B><HR>
 		\nLocation: [specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "Departing for [station_name] in ([specops_shuttle_timeleft] seconds.)":specops_shuttle_at_station ? "Station":"Dock"]<BR>
-		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Depart to [station_name]</A><BR>\n<BR>"]
+		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Vessel standing by...</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Depart to [station_name]</A><BR>\n<BR>"]
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
@@ -285,16 +285,16 @@ var/specops_shuttle_timeleft = 0
 		if(!specops_shuttle_at_station|| specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			usr << "<span class='notice'>[boss_name] will not allow the Special Operations shuttle to return yet.</span>"
+			usr << "<span class='notice'>[boss_name] will not allow the Special Operations submarine to return yet.</span>"
 			if(world.timeofday <= specops_shuttle_timereset)
 				if (((world.timeofday - specops_shuttle_timereset)/10) > 60)
 					usr << "<span class='notice'>[-((world.timeofday - specops_shuttle_timereset)/10)/60] minutes remain!</span>"
 				usr << "<span class='notice'>[-(world.timeofday - specops_shuttle_timereset)/10] seconds remain!</span>"
 			return
 
-		usr << "<span class='notice'>The Special Operations shuttle will arrive at [boss_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>"
+		usr << "<span class='notice'>The Special Operations submarine will arrive at [boss_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>"
 
-		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "Submarine departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		specops_shuttle_moving_to_centcom = 1
@@ -306,12 +306,12 @@ var/specops_shuttle_timeleft = 0
 		if(specops_shuttle_at_station || specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			usr << "<span class='warning'>The Special Operations shuttle is unable to leave.</span>"
+			usr << "<span class='warning'>The Special Operations submarine is unable to leave.</span>"
 			return
 
-		usr << "<span class='notice'>The Special Operations shuttle will arrive on [station_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>"
+		usr << "<span class='notice'>The Special Operations submarine will arrive on [station_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>"
 
-		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "Submarine departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		var/area/centcom/specops/special_ops = locate()

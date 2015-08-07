@@ -28,12 +28,12 @@ var/list/mechtoys = list(
 	var/is_copy = 1
 
 /area/supply/station
-	name = "Supply Shuttle"
+	name = "Supply Submarine"
 	icon_state = "shuttle3"
 	requires_power = 0
 
 /area/supply/dock
-	name = "Supply Shuttle"
+	name = "Supply Submarine"
 	icon_state = "shuttle3"
 	requires_power = 0
 

@@ -90,7 +90,7 @@
 	name = "Research Outpost Hallway"
 
 /area/outpost/research/dock
-	name = "Research Outpost Shuttle Dock"
+	name = "Research Outpost Elevator Station"
 
 /area/outpost/research/eva
 	name = "Research Outpost EVA"

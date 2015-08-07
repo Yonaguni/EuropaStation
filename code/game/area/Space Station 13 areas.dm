@@ -144,7 +144,7 @@ area/space/atmosalert()
 	requires_power = 0
 
 /area/shuttle/arrival
-	name = "\improper Arrival Shuttle"
+	name = "\improper Arrival Submarine"
 
 /area/shuttle/arrival/pre_game
 	icon_state = "shuttle2"
@@ -153,19 +153,19 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/escape
-	name = "\improper Emergency Shuttle"
+	name = "\improper Emergency Submarine"
 	music = "music/escape.ogg"
 
 /area/shuttle/escape/station
-	name = "\improper Emergency Shuttle Station"
+	name = "\improper Emergency Submarine Station"
 	icon_state = "shuttle2"
 
 /area/shuttle/escape/centcom
-	name = "\improper Emergency Shuttle Centcom"
+	name = "\improper Emergency Submarine Rhadamanthus"
 	icon_state = "shuttle"
 
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
-	name = "\improper Emergency Shuttle Transit"
+	name = "\improper Emergency Submarine Transit"
 	icon_state = "shuttle"
 
 /area/shuttle/escape_pod1
@@ -221,7 +221,7 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/mining
-	name = "\improper Mining Shuttle"
+	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
 
 /area/shuttle/mining/station
@@ -232,24 +232,24 @@ area/space/atmosalert()
 
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle Centcom"
+	name = "\improper Transport Submarine Rhadamanthus"
 
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle"
+	name = "\improper Transport Submarine"
 
 /area/shuttle/alien/base
 	icon_state = "shuttle"
-	name = "\improper Alien Shuttle Base"
+	name = "\improper Alien Pod Base"
 	requires_power = 1
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
-	name = "\improper Alien Shuttle Mine"
+	name = "\improper Alien Pod Mine"
 	requires_power = 1
 
 /area/shuttle/prison/
-	name = "\improper Prison Shuttle"
+	name = "\improper Prison Submarine"
 
 /area/shuttle/prison/station
 	icon_state = "shuttle"
@@ -258,38 +258,38 @@ area/space/atmosalert()
 	icon_state = "shuttle2"
 
 /area/shuttle/specops/centcom
-	name = "\improper Special Ops Shuttle"
+	name = "\improper Special Ops Submarine"
 	icon_state = "shuttlered"
 
 /area/shuttle/specops/station
-	name = "\improper Special Ops Shuttle"
+	name = "\improper Special Ops Submarine"
 	icon_state = "shuttlered2"
 
 /area/shuttle/syndicate_elite/mothership
-	name = "\improper Merc Elite Shuttle"
+	name = "\improper Merc Elite Submarine"
 	icon_state = "shuttlered"
 
 /area/shuttle/syndicate_elite/station
-	name = "\improper Merc Elite Shuttle"
+	name = "\improper Merc Elite Submarine"
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle Centcom"
+	name = "\improper Administration Submarine Rhadamanthus"
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
-	name = "\improper Administration Shuttle"
+	name = "\improper Administration Submarine"
 	icon_state = "shuttlered2"
 
 /area/shuttle/thunderdome
 	name = "honk"
 
 /area/shuttle/thunderdome/grnshuttle
-	name = "\improper Thunderdome GRN Shuttle"
+	name = "\improper Thunderdome GRN Submarine"
 	icon_state = "green"
 
 /area/shuttle/thunderdome/grnshuttle/dome
-	name = "\improper GRN Shuttle"
+	name = "\improper GRN Submarine"
 	icon_state = "shuttlegrn"
 
 /area/shuttle/thunderdome/grnshuttle/station
@@ -297,11 +297,11 @@ area/space/atmosalert()
 	icon_state = "shuttlegrn2"
 
 /area/shuttle/thunderdome/redshuttle
-	name = "\improper Thunderdome RED Shuttle"
+	name = "\improper Thunderdome RED Submarine"
 	icon_state = "red"
 
 /area/shuttle/thunderdome/redshuttle/dome
-	name = "\improper RED Shuttle"
+	name = "\improper RED Submarine"
 	icon_state = "shuttlered"
 
 /area/shuttle/thunderdome/redshuttle/station
@@ -310,7 +310,7 @@ area/space/atmosalert()
 // === Trying to remove these areas:
 
 /area/shuttle/research
-	name = "\improper Research Shuttle"
+	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
 
 /area/shuttle/research/station
@@ -345,34 +345,34 @@ area/space/atmosalert()
 // CENTCOM
 
 /area/centcom
-	name = "\improper Centcom"
+	name = "\improper Rhadamanthus"
 	icon_state = "centcom"
 	requires_power = 0
 	lighting_use_dynamic = 0
 
 /area/centcom/control
-	name = "\improper Centcom Control"
+	name = "\improper Rhadamanthus Control"
 
 /area/centcom/evac
-	name = "\improper Centcom Emergency Shuttle"
+	name = "\improper Rhadamanthus Emergency Submarine"
 
 /area/centcom/suppy
-	name = "\improper Centcom Supply Shuttle"
+	name = "\improper Rhadamanthus Supply Submarine"
 
 /area/centcom/ferry
-	name = "\improper Centcom Transport Shuttle"
+	name = "\improper Rhadamanthus Transport Submarine"
 
 /area/centcom/shuttle
-	name = "\improper Centcom Administration Shuttle"
+	name = "\improper Rhadamanthus Administration Submarine"
 
 /area/centcom/test
-	name = "\improper Centcom Testing Facility"
+	name = "\improper Rhadamanthus Testing Facility"
 
 /area/centcom/living
-	name = "\improper Centcom Living Quarters"
+	name = "\improper Rhadamanthus Living Quarters"
 
 /area/centcom/specops
-	name = "\improper Centcom Special Ops"
+	name = "\improper Rhadamanthus Special Ops"
 
 /area/centcom/creed
 	name = "Creed's Office"
@@ -674,7 +674,7 @@ area/space/atmosalert()
 	icon_state = "asmaint"
 
 /area/maintenance/engi_shuttle
-	name = "Engineering Shuttle Access"
+	name = "Engineering Elevator Access"
 	icon_state = "maint_e_shuttle"
 
 /area/maintenance/engi_engine
@@ -746,7 +746,7 @@ area/space/atmosalert()
 	icon_state = "maint_research_starboard"
 
 /area/maintenance/research_shuttle
-	name = "Research Shuttle Dock Maintenance"
+	name = "Research Elevator Maintenance"
 	icon_state = "maint_research_shuttle"
 
 /area/maintenance/security_port
@@ -829,7 +829,7 @@ area/space/atmosalert()
 	icon_state = "hallC3"
 
 /area/hallway/secondary/exit
-	name = "\improper Escape Shuttle Hallway"
+	name = "\improper Escape Submarine Hallway"
 	icon_state = "escape"
 
 /area/hallway/secondary/construction
@@ -837,19 +837,19 @@ area/space/atmosalert()
 	icon_state = "construction"
 
 /area/hallway/secondary/entry/fore
-	name = "\improper Arrival Shuttle Hallway - Fore"
+	name = "\improper Arrival Submarine Hallway - Fore"
 	icon_state = "entry_1"
 
 /area/hallway/secondary/entry/port
-	name = "\improper Arrival Shuttle Hallway - Port"
+	name = "\improper Arrival Submarine Hallway - Port"
 	icon_state = "entry_2"
 
 /area/hallway/secondary/entry/starboard
-	name = "\improper Arrival Shuttle Hallway - Starboard"
+	name = "\improper Arrival Submarine Hallway - Starboard"
 	icon_state = "entry_3"
 
 /area/hallway/secondary/entry/aft
-	name = "\improper Arrival Shuttle Hallway - Aft"
+	name = "\improper Arrival Submarine Hallway - Aft"
 	icon_state = "entry_4"
 
 //Command
@@ -1683,14 +1683,14 @@ area/space/atmosalert()
 //HALF-BUILT STATION (REPLACES DERELICT IN BAYCODE, ABOVE IS LEFT FOR DOWNSTREAM)
 
 /area/shuttle/constructionsite
-	name = "\improper Construction Site Shuttle"
+	name = "\improper Construction Site Elevator"
 	icon_state = "yellow"
 
 /area/shuttle/constructionsite/station
-	name = "\improper Construction Site Shuttle"
+	name = "\improper Construction Site Elevator"
 
 /area/shuttle/constructionsite/site
-	name = "\improper Construction Site Shuttle"
+	name = "\improper Construction Site Elevator"
 
 /area/constructionsite
 	name = "\improper Construction Site"
@@ -1742,14 +1742,6 @@ area/space/atmosalert()
 	name = "Construction Site Teleporter"
 	icon_state = "yellow"
 
-
-//area/constructionsite
-//	name = "\improper Construction Site Shuttle"
-
-//area/constructionsite
-//	name = "\improper Construction Site Shuttle"
-
-
 //Construction
 
 /area/construction
@@ -1757,7 +1749,7 @@ area/space/atmosalert()
 	icon_state = "yellow"
 
 /area/construction/supplyshuttle
-	name = "\improper Supply Shuttle"
+	name = "\improper Supply Submarine"
 	icon_state = "yellow"
 
 /area/construction/quarters
@@ -1785,7 +1777,6 @@ area/space/atmosalert()
 	icon_state = "yellow"
 
 //AI
-
 /area/ai_monitored/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"

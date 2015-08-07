@@ -324,12 +324,12 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	set category = "AI Commands"
-	set name = "Call Emergency Shuttle"
+	set name = "Call Evacuation"
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")
+	var/confirm = alert("Are you sure you want to call the evacuation submarine?", "Confirm Evac Call", "Yes", "No")
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
@@ -345,12 +345,12 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
 	set category = "AI Commands"
-	set name = "Recall Emergency Shuttle"
+	set name = "Recall Evac"
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert("Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
+	var/confirm = alert("Are you sure you want to recall the evacuation submarine?", "Confirm Evac Recall", "Yes", "No")
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
