@@ -1362,6 +1362,11 @@
 	if(update_hud)
 		handle_regular_hud_updates()
 
+/mob/living/carbon/human/Check_Shoegrip()
+	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.flags & NOSLIP))  //magboots + dense_object = no floating
+		return 1
+	return 0
+
 /mob/living/carbon/human/is_bleeding()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.status & ORGAN_BLEEDING)
