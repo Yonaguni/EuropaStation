@@ -100,11 +100,9 @@ var/global/list/supply_drop_random_loot_types = list(
 	return ..()
 
 /datum/random_map/droppod/get_appropriate_path(var/value)
-	if(value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
+	if(value == SD_DOOR_TILE || value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
 		return floor_type
 	else if(value == SD_WALL_TILE)
-		return wall_type
-	else if(value == SD_DOOR_TILE )
 		return wall_type
 	return null
 
