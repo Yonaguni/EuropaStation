@@ -2,7 +2,7 @@ var/list/mining_overlays = list()
 
 proc/get_mining_overlay(var/overlay_key)
 	if(!mining_overlays[overlay_key])
-		mining_overlays[overlay_key] = image('icons/turf/floors.dmi',overlay_key)
+		mining_overlays[overlay_key] = image('icons/turf/flooring/decals.dmi',overlay_key)
 	return mining_overlays[overlay_key]
 
 /**********************Mineral deposits**************************/

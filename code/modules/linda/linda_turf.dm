@@ -82,6 +82,7 @@
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
 	if(air.check_tile_graphic())
 		update_visuals(air)
+	if(air_master) air_master.add_to_active(src)
 
 /turf/simulated/New()
 	..()
@@ -245,7 +246,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		for(var/gas_icon in model.graphic)
 			gas_overlay.overlays |= gas_icon
 	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
-		animate(gas_overlay, time=3, alpha=model.graphic_alpha)
+		gas_overlay.alpha = model.graphic_alpha
+		//animate(gas_overlay, time=3, alpha=model.graphic_alpha) // Too costly.
 	return 1
 
 /turf/simulated/floor/update_visuals(var/datum/gas_mixture/model)
