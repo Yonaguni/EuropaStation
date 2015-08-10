@@ -102,7 +102,7 @@
 
 	holder.remove_reagent("lexorin", 3 * removed)
 
-/datum/reagent/tricordrazine
+/datum/reagent/
 	name = "Tricordrazine"
 	id = "tricordrazine"
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."

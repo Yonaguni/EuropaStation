@@ -85,6 +85,7 @@
 		var/datum/gas_mixture/GM = T.return_air()
 		if(GM && GM.gas["water"] < 1500)
 			GM.adjust_gas("water", 1500, 1)
+			if(air_master) air_master.add_to_active(T)
 		sleeping = 0
 	if(sleeping)
 		processing_turfs -= src
