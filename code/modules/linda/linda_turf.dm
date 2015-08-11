@@ -80,8 +80,7 @@
 			air.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
 	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
-	if(air.check_tile_graphic())
-		update_visuals(air)
+	update_visuals(air)
 	if(air_master) air_master.add_to_active(src)
 
 /turf/simulated/New()

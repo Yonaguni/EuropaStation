@@ -53,6 +53,8 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		if(air_master)
+			air_master.add_to_active(W)
 		. = W
 
 	else
