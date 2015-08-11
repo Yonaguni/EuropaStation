@@ -188,9 +188,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 						EG.add_turf(src)
 						EG.add_turf(enemy_simulated)
 					share_air(enemy_simulated) //share
-
 		/******************* GROUP HANDLING FINISH *********************************************************************/
-
 		else
 			if(!air.check_turf(enemy_tile, atmos_adjacent_turfs_amount))
 				var/difference = air.mimic(enemy_tile,,atmos_adjacent_turfs_amount)
@@ -202,28 +200,21 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 				remove = 0
 				if(excited_group)
 					last_share_check()
-
 	if(air)
 		air.react()
-
-		if(air.check_tile_graphic())
-			update_visuals(air)
-
 		if(air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			hotspot_expose(air.temperature, CELL_VOLUME)
 			for(var/atom/movable/item in src)
 				item.temperature_expose(air, air.temperature, CELL_VOLUME)
 			temperature_expose(air, air.temperature, CELL_VOLUME)
-
 			if(air.temperature > MINIMUM_TEMPERATURE_START_SUPERCONDUCTION)
 				if(consider_superconductivity(starting = 1))
 					remove = 0
+		if(air.check_tile_graphic())
+			update_visuals(air)
 
 	if(!excited_group && remove == 1)
 		air_master.remove_from_active(src)
-
-	if(air.check_tile_graphic())
-		update_visuals(air)
 
 /turf/simulated/proc/archive()
 	if(!air_master)
