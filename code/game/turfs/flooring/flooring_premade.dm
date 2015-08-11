@@ -141,6 +141,9 @@
 /turf/simulated/floor/reinforced/airless
 	initial_air = list()
 
+/turf/simulated/floor/reinforced/airmix
+	initial_air = list("oxygen" = MOLES_O2ATMOS, "nitrogen" = MOLES_N2ATMOS)
+
 /turf/simulated/floor/reinforced/nitrogen
 	initial_air = list("nitrogen" = 5000)
 
