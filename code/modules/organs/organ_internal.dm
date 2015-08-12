@@ -82,7 +82,7 @@
 		owner.b_eyes ? owner.b_eyes : 0
 		)
 
-/obj/item/organ/eyes/take_damage()
+/obj/item/organ/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
