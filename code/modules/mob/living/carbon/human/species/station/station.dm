@@ -1,7 +1,6 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	language = "Sol Common"
 	primitive_form = "Monkey"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
@@ -9,6 +8,8 @@
 	While the central Sol government maintains control of its far-flung people, powerful corporate \
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
+	num_alternate_languages = 2
+	secondary_langs = list("Sol Common")
 
 	flags = CAN_JOIN | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
@@ -18,7 +19,6 @@
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	eyes = "skrell_eyes_s"
-	language = "Skrellian"
 	primitive_form = "Neara"
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	blurb = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
@@ -26,6 +26,8 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
+	num_alternate_languages = 2
+	secondary_langs = list("Skrellian")
 
 	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
@@ -61,6 +63,7 @@
 	language = "Encoded Audio Language"
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	rarity_value = 2
+	num_alternate_languages = 1 // potentially could be 2?
 
 	eyes = "blank_eyes"
 	brute_mod = 1.875 // 100% * 1.875 * 0.8 (robolimbs) ~= 150%

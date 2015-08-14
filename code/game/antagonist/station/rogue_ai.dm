@@ -98,3 +98,4 @@ var/datum/antagonist/rogue_ai/malf
 	if (newname)
 		player.SetName(newname)
 	if(player.mind) player.mind.name = player.name
+
