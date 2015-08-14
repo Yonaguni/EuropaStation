@@ -1009,6 +1009,10 @@
 
 		// Check everything else.
 
+		//Periodically double-check embedded_flag
+		if(embedded_flag && !(life_tick % 10))
+			if(!embedded_needs_process())
+				embedded_flag = 0
 		//Vision
 		var/obj/item/organ/vision
 		if(species.vision_organ)

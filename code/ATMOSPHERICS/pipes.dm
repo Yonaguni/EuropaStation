@@ -2,7 +2,6 @@
 
 	var/datum/gas_mixture/air_temporary // used when reconstructing a pipeline that broke
 	var/datum/pipeline/parent
-	var/under_flooring = 1              // Set to 0 for the pipe to begin above the floor; useful for mapping.
 	var/volume = 0
 	force = 20
 
@@ -22,11 +21,11 @@
 /obj/machinery/atmospherics/pipe/New()
 	..()
 	//so pipes under walls are hidden
-	if(under_flooring && istype(get_turf(src), /turf/simulated/wall) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall))
+	if(hides_under_flooring() && (istype(get_turf(src), /turf/simulated/wall) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall)))
 		level = 1
 
 /obj/machinery/atmospherics/pipe/hides_under_flooring()
-	return 1
+	return level != 2
 
 /obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
 	return null
@@ -1123,20 +1122,8 @@
 		return
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
-		for (var/mob/O in viewers(user, null))
-			O << "<span class='notice'>\The [user] has used \the [W] on \the [src] \icon[src]</span>"
-
-		var/pressure = parent.air.return_pressure()
-		var/total_moles = parent.air.total_moles
-
-		user << "<span class='notice'>Results of analysis of \the [src] \icon[src]</span>"
-		if (total_moles>0)
-			user << "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
-			for(var/g in parent.air.gas)
-				user << "<span class='notice'>[gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%</span>"
-			user << "<span class='notice'>Temperature: [round(parent.air.temperature-T0C)]&deg;C</span>"
-		else
-			user << "<span class='notice'>Tank is empty!</span>"
+		var/obj/item/device/analyzer/A = W
+		A.analyze_gases(src, user)
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
