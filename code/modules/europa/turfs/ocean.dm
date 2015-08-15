@@ -23,7 +23,14 @@
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	var/datum/gas_mixture/water
-	var/detail_decal
+	var/detail_decal = 1
+
+/turf/unsimulated/ocean/abyss_open
+	name = "abyss"
+	desc = "You're pretty sure it's staring into you."
+	density = 1
+	icon_state = "abyss"
+	detail_decal = 0
 
 /turf/unsimulated/ocean/abyss
 	name = "sand"
@@ -35,6 +42,7 @@
 	name = "stone floor"
 	desc = "Waterlogged and decrepit."
 	icon_state = "asteroidfloor"
+	detail_decal  =0
 
 /turf/unsimulated/ocean/New()
 	..()
@@ -50,7 +58,7 @@
 	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = CELL_VOLUME
 	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
-	if(prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
+	if(detail_decal && prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
 /turf/unsimulated/ocean/Destroy()
 	for(var/obj/effect/gas_overlay/ocean/O in src)
