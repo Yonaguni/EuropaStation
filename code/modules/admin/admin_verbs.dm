@@ -185,7 +185,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
-	/client/proc/dsay
+	/client/proc/dsay,
+	/datum/admins/proc/force_turf_init
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

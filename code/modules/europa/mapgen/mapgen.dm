@@ -8,6 +8,11 @@
 
 /datum/random_map/noise/seafloor/get_additional_spawns(var/value, var/turf/T)
 	var/val = min(9,max(0,round((value/cell_range)*10)))
+
+	var/turf/unsimulated/ocean/O = T
+	if(!istype(O) || !O.detail_decal) // Only draw over naked ocean turfs.
+		return
+
 	if(isnull(val)) val = 0
 	switch(val)
 		if(2)
