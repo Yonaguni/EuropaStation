@@ -3,7 +3,6 @@ var/kill_air = 0
 var/global/datum/controller/process/air_system/air_master
 
 /datum/controller/process/air_system
-	var/list/excited_groups = list()
 	var/list/active_turfs = list()
 	var/list/hotspots = list()
 	var/list/air_overlay_cache = list()
@@ -31,7 +30,6 @@ var/global/datum/controller/process/air_system/air_master
 		return 1
 	current_cycle++
 	process_active_turfs()
-	process_excited_groups()
 	scheck()
 	process_high_pressure_delta()
 	process_hotspots()
@@ -64,15 +62,11 @@ var/global/datum/controller/process/air_system/air_master
 	if(istype(T))
 		T.excited = 0
 		active_turfs -= T
-		if(T.excited_group)
-			T.excited_group.garbage_collect()
 
 /datum/controller/process/air_system/proc/add_to_active(var/turf/simulated/T, var/blockchanges = 1)
 	if(istype(T) && T.air)
 		T.excited = 1
 		active_turfs |= T
-		if(blockchanges && T.excited_group)
-			T.excited_group.garbage_collect()
 	else
 		for(var/direction in cardinal)
 			if(!(T.atmos_adjacent_turfs & direction))
@@ -102,12 +96,3 @@ var/global/datum/controller/process/air_system/air_master
 				else
 					T.excited = 1
 					active_turfs |= T
-
-/datum/controller/process/air_system/proc/process_excited_groups()
-	for(var/datum/excited_group/EG in excited_groups)
-		EG.breakdown_cooldown ++
-		if(EG.breakdown_cooldown == 10)
-			EG.self_breakdown()
-			return
-		if(EG.breakdown_cooldown > 20)
-			EG.dismantle()

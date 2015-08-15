@@ -156,39 +156,9 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			if(current_cycle > enemy_simulated.current_cycle)
 				enemy_simulated.archive()
 
-		/******************* GROUP HANDLING START *****************************************************************/
-			if(enemy_simulated.excited)
-				if(excited_group)
-					if(enemy_simulated.excited_group)
-						if(excited_group != enemy_simulated.excited_group)
-							excited_group.merge_groups(enemy_simulated.excited_group) //combine groups
-						share_air(enemy_simulated) //share
-					else
-						if((recently_active == 1 && enemy_simulated.recently_active == 1) || !air.compare(enemy_simulated.air))
-							excited_group.add_turf(enemy_simulated) //add enemy to our group
-							share_air(enemy_simulated) //share
-				else
-					if(enemy_simulated.excited_group)
-						if((recently_active == 1 && enemy_simulated.recently_active == 1) || !air.compare(enemy_simulated.air))
-							enemy_simulated.excited_group.add_turf(src) //join self to enemy group
-							share_air(enemy_simulated) //share
-					else
-						if((recently_active == 1 && enemy_simulated.recently_active == 1) || !air.compare(enemy_simulated.air))
-							var/datum/excited_group/EG = new //generate new group
-							EG.add_turf(src)
-							EG.add_turf(enemy_simulated)
-							share_air(enemy_simulated) //share
-			else
-				if(!air.compare(enemy_simulated.air)) //compare if
-					air_master.add_to_active(enemy_simulated) //excite enemy
-					if(excited_group)
-						excited_group.add_turf(enemy_simulated) //add enemy to group
-					else
-						var/datum/excited_group/EG = new //generate new group
-						EG.add_turf(src)
-						EG.add_turf(enemy_simulated)
-					share_air(enemy_simulated) //share
-		/******************* GROUP HANDLING FINISH *********************************************************************/
+			if(!air.compare(enemy_simulated.air)) //compare if
+				air_master.add_to_active(enemy_simulated) //excite enemy
+				share_air(enemy_simulated) //share
 		else
 			if(!air.check_turf(enemy_tile, atmos_adjacent_turfs_amount))
 				var/difference = air.mimic(enemy_tile,,atmos_adjacent_turfs_amount)
@@ -264,8 +234,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		pressure_difference = difference
 
 /turf/simulated/proc/last_share_check()
-	if(air.last_share > MINIMUM_AIR_TO_SUSPEND)
-		excited_group.reset_cooldowns()
+	return
 
 /turf/proc/high_pressure_movements()
 	for(var/atom/movable/M in src)
@@ -279,56 +248,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/list/turf_list = list()
 	var/breakdown_cooldown = 0
 
-/datum/excited_group/New()
-	if(air_master)
-		air_master.excited_groups += src
-
-/datum/excited_group/proc/add_turf(var/turf/simulated/T)
-	turf_list += T
-	T.excited_group = src
-	T.recently_active = 1
-	reset_cooldowns()
-
-/datum/excited_group/proc/merge_groups(var/datum/excited_group/E)
-	if(!air_master)
-		return
-	if(turf_list.len > E.turf_list.len)
-		air_master.excited_groups -= E
-		for(var/turf/simulated/T in E.turf_list)
-			T.excited_group = src
-			turf_list += T
-			reset_cooldowns()
-	else
-		air_master.excited_groups -= src
-		for(var/turf/simulated/T in turf_list)
-			T.excited_group = E
-			E.turf_list += T
-			E.reset_cooldowns()
-
-/datum/excited_group/proc/reset_cooldowns()
-	breakdown_cooldown = 0
-
-/datum/excited_group/proc/self_breakdown()
-	return
-
-/datum/excited_group/proc/dismantle()
-	if(!air_master)
-		return
-	for(var/turf/simulated/T in turf_list)
-		T.excited = 0
-		T.recently_active = 0
-		T.excited_group = null
-		air_master.active_turfs -= T
-	garbage_collect()
-
-/datum/excited_group/proc/garbage_collect()
-	for(var/turf/simulated/T in turf_list)
-		T.excited_group = null
-	turf_list.Cut()
-	air_master.excited_groups -= src
-
-
-turf/simulated/proc/super_conduct()
+/turf/simulated/proc/super_conduct()
 	if(!air_master)
 		return
 	var/conductivity_directions = 0

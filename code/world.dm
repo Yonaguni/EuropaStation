@@ -76,9 +76,8 @@ var/global/datum/global_init/init = new ()
 		//Create the mining Z-level.
 		new /datum/random_map/automata/cave_system(null,1,1,3,255,255)
 		new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
-	sleep(-1)
-	do_ocean_initialisation()
 
+	sleep(-1)
 	// Europa-specific - generate and apply the water terrain map.
 	spawn(0)
 		sleep(-1)
