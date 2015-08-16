@@ -32,6 +32,12 @@
 	icon_state = "abyss"
 	detail_decal = 0
 
+/turf/unsimulated/ocean/plating
+	name = "plating"
+	desc = "The naked hull."
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_state = "plating"
+
 /turf/unsimulated/ocean/abyss
 	name = "sand"
 	desc = "Uncomfortably gritty."
