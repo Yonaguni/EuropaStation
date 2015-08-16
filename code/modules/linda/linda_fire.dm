@@ -101,9 +101,6 @@
 		Kill()
 		return
 
-	if(location.excited_group)
-		location.excited_group.reset_cooldowns()
-
 	if((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
 		Kill()
 		return
