@@ -37,6 +37,7 @@
 	desc = "The naked hull."
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
+	detail_decal = 0
 
 /turf/unsimulated/ocean/abyss
 	name = "sand"
@@ -48,7 +49,7 @@
 	name = "stone floor"
 	desc = "Waterlogged and decrepit."
 	icon_state = "asteroidfloor"
-	detail_decal  =0
+	detail_decal = 0
 
 /turf/unsimulated/ocean/New()
 	..()
