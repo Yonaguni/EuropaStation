@@ -37,6 +37,7 @@
 	desc = "The naked hull."
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
+	detail_decal = 0
 
 /turf/unsimulated/ocean/abyss
 	name = "sand"
@@ -48,7 +49,7 @@
 	name = "stone floor"
 	desc = "Waterlogged and decrepit."
 	icon_state = "asteroidfloor"
-	detail_decal  =0
+	detail_decal = 0
 
 /turf/unsimulated/ocean/New()
 	..()
@@ -63,7 +64,7 @@
 	water.temperature = 250         // -24C
 	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = CELL_VOLUME
-	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
+	//PoolOrNew(/obj/effect/gas_overlay/ocean,src)
 	if(detail_decal && prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
 /turf/unsimulated/ocean/Destroy()

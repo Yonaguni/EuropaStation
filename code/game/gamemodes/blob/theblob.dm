@@ -32,6 +32,8 @@
 
 
 	Destroy()
+		var/turf/simulated/T = get_turf(src)
+		if(istype(T) && air_master) air_master.add_to_active(T)
 		blobs -= src
 		..()
 		return
@@ -186,6 +188,8 @@
 		return
 
 //////////////////////////////****IDLE BLOB***/////////////////////////////////////
+/obj/effect/blob/CanAtmosPass()
+	return 0
 
 /obj/effect/blob/idle
 	name = "blob"
