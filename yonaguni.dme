@@ -1018,7 +1018,6 @@
 #include "code\modules\europa\mobs\living\aquatic\school.dm"
 #include "code\modules\europa\mobs\living\aquatic\schooling.dm"
 #include "code\modules\europa\structures\fishtanks.dm"
-#include "code\modules\europa\turfs\abyss.dm"
 #include "code\modules\europa\turfs\ocean.dm"
 #include "code\modules\europa\vip\gear.dm"
 #include "code\modules\europa\vip\robolimbs.dm"
