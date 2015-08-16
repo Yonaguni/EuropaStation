@@ -54,6 +54,10 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/area/area in all_areas)
 		area.initialize()
 
+	admin_notice("<span class='danger'>Initializing ocean and walls</span>", R_DEBUG)
+	sleep(-1)
+	do_ocean_initialisation()
+
 	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
