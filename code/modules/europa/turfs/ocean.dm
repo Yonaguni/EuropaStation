@@ -63,7 +63,7 @@
 	water.temperature = 250         // -24C
 	water.adjust_gas("water", 1500, 1) // Should be higher.
 	water.volume = CELL_VOLUME
-	PoolOrNew(/obj/effect/gas_overlay/ocean,src)
+	//PoolOrNew(/obj/effect/gas_overlay/ocean,src)
 	if(detail_decal && prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
 
 /turf/unsimulated/ocean/Destroy()
