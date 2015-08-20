@@ -20,7 +20,7 @@
 	waterproof = 0 //all other bots got moved to mob, don't wanna mess with water_act on those yet
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
-	var/control_freq = AI_FREQ
+	var/control_freq = BOT_FREQ
 
 	suffix = ""
 
@@ -712,10 +712,6 @@
 				M.Weaken(5)
 				M.lying = 1
 	..()
-
-/obj/machinery/bot/mulebot/alter_health()
-	return get_turf(src)
-
 
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc

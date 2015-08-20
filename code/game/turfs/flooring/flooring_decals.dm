@@ -7,8 +7,15 @@ var/list/floor_decals = list()
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals.dmi'
 	layer = TURF_LAYER + 0.01
+	var/supplied_dir
+
+/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
+	supplied_dir = newdir
+	if(newcolour) color = newcolour
+	..(newloc)
 
 /obj/effect/floor_decal/initialize()
+	if(supplied_dir) set_dir(supplied_dir)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
@@ -24,8 +31,28 @@ var/list/floor_decals = list()
 	qdel(src)
 	return
 
+/obj/effect/floor_decal/reset
+	name = "reset marker"
+
+/obj/effect/floor_decal/reset/initialize()
+	var/turf/T = get_turf(src)
+	if(T.decals && T.decals.len)
+		T.decals.Cut()
+		T.update_icon()
+	return
+
 /obj/effect/floor_decal/corner
 	icon_state = "corner_white"
+
+/obj/effect/floor_decal/corner/black
+	name = "black corner"
+	color = "#333333"
+
+/obj/effect/floor_decal/corner/black/diagonal
+	icon_state = "corner_white_diagonal"
+
+/obj/effect/floor_decal/corner/black/full
+	icon_state = "corner_white_full"
 
 /obj/effect/floor_decal/corner/blue
 	name = "blue corner"
@@ -167,6 +194,27 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/corner/grey/full
 	icon_state = "corner_white_full"
 
+/obj/effect/floor_decal/spline/plain
+	name = "spline - plain"
+	icon_state = "spline_plain"
+
+/obj/effect/floor_decal/spline/fancy
+	name = "spline - fancy"
+	icon_state = "spline_fancy"
+
+/obj/effect/floor_decal/spline/fancy/wood
+	name = "spline - wood"
+	color = "#CB9E04"
+
+/obj/effect/floor_decal/spline/fancy/wood/corner
+	icon_state = "spline_fancy_corner"
+
+/obj/effect/floor_decal/spline/fancy/wood/cee
+	icon_state = "spline_fancy_cee"
+
+/obj/effect/floor_decal/spline/fancy/wood/full
+	icon_state = "spline_fancy_full"
+
 /obj/effect/floor_decal/industrial/warning
 	name = "hazard stripes"
 	icon_state = "warning"
@@ -191,6 +239,8 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/industrial/hatch
 	name = "hatched marking"
 	icon_state = "delivery"
+
+/obj/effect/floor_decal/industrial/hatch/yellow
 	color = "#CFCF55"
 
 /obj/effect/floor_decal/industrial/outline
@@ -216,6 +266,16 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/plaque
 	name = "plaque"
 	icon_state = "plaque"
+
+/obj/effect/floor_decal/carpet
+	name = "carpet"
+	icon = 'icons/turf/flooring/carpet.dmi'
+	icon_state = "carpet_edges"
+
+/obj/effect/floor_decal/carpet/corners
+	name = "carpet"
+	icon = 'icons/turf/flooring/carpet.dmi'
+	icon_state = "carpet_corners"
 
 /obj/effect/floor_decal/asteroid
 	name = "random asteroid rubble"
@@ -292,3 +352,37 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/ss13/l16
 	name = "L16"
 	icon_state = "L16"
+
+/obj/effect/floor_decal/sign
+	name = "floor sign"
+	icon_state = "white_1"
+
+/obj/effect/floor_decal/sign/two
+	icon_state = "white_2"
+
+/obj/effect/floor_decal/sign/a
+	icon_state = "white_a"
+
+/obj/effect/floor_decal/sign/b
+	icon_state = "white_b"
+
+/obj/effect/floor_decal/sign/c
+	icon_state = "white_c"
+
+/obj/effect/floor_decal/sign/d
+	icon_state = "white_d"
+
+/obj/effect/floor_decal/sign/ex
+	icon_state = "white_ex"
+
+/obj/effect/floor_decal/sign/m
+	icon_state = "white_m"
+
+/obj/effect/floor_decal/sign/cmo
+	icon_state = "white_cmo"
+
+/obj/effect/floor_decal/sign/v
+	icon_state = "white_v"
+
+/obj/effect/floor_decal/sign/p
+	icon_state = "white_p"

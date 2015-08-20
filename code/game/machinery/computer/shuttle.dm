@@ -1,7 +1,8 @@
 /obj/machinery/computer/shuttle
 	name = "Submarine"
 	desc = "For submarine control."
-	icon_state = "shuttle"
+	icon_keyboard = "tech_key"
+	icon_screen = "shuttle"
 	light_color = "#00ffff"
 	var/auth_need = 3.0
 	var/list/authorized = list(  )

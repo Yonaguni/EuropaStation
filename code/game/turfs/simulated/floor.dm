@@ -31,17 +31,11 @@
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
-		set_flooring(floortype)
+		set_flooring(get_flooring_data(floortype))
 
-	//TEMPORARY DEBUGGING LINES, REMOVE LATER
-	if(!flooring && icon_state != "plating")
-		name = "OLDCODE FLOORING WOOP WOOP"
-
-/turf/simulated/floor/proc/set_flooring(var/flooring_type)
+/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	make_plating(defer_icon_update = 1)
-	if(flooring_type)
-		flooring = get_flooring_data(flooring_type)
-	intact = 1
+	flooring = newflooring
 	update_icon(1)
 	levelupdate()
 
@@ -63,10 +57,8 @@
 		if(flooring.build_type && place_product)
 			new flooring.build_type(src)
 		flooring = null
-		intact = 0
 
 	set_light(0)
-	intact = 0
 	broken = null
 	burnt = null
 	flooring_override = null
