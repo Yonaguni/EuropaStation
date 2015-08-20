@@ -4,6 +4,7 @@ var/image/ocean_overlay_img
 /proc/get_ocean_overlay()
 	if(!ocean_overlay_img)
 		ocean_overlay_img = image('icons/effects/xgm_overlays.dmi', "ocean")
+		ocean_overlay_img.color = "#66D1FF"
 		ocean_overlay_img.layer = GAS_OVERLAY_LAYER+0.1 //So it renders over other gas mixes (hypothetically)
 		ocean_overlay_img.alpha = GAS_MAX_ALPHA
 	return ocean_overlay_img
@@ -33,6 +34,9 @@ var/image/ocean_overlay_img
 	icon_state = "seafloor"
 	var/datum/gas_mixture/water
 	var/detail_decal = 1
+
+/turf/unsimulated/ocean/get_fluid_depth()
+	return 1200
 
 /turf/unsimulated/ocean/abyss_open
 	name = "abyss"
@@ -109,7 +113,7 @@ var/image/ocean_overlay_img
 		var/datum/gas_mixture/GM = T.return_air()
 		if(GM && GM.gas["water"] < 1500)
 			GM.adjust_gas("water", 1500, 1)
-			if(air_master) air_master.add_to_active(T)
+			T.air_update_turf()
 		sleeping = 0
 	if(sleeping)
 		processing_turfs -= src

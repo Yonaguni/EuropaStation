@@ -72,6 +72,8 @@
 	return
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
+	if(environment && environment.get_fluid_depth())
+		water_act(environment.get_fluid_depth())
 	return
 
 /mob/living/proc/handle_stomach()

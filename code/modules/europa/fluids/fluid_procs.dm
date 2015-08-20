@@ -40,44 +40,23 @@
 		if(!istype(T))
 			usr << "<span class='danger'>Gas can only be spawned on simulated turfs.</span>"
 			return
-	/*
-		var/obj/effect/fluid/F = locate() in T
-		if(!F) F = PoolOrNew(/obj/effect/fluid, T)
-		F.set_depth(fluid_amt)
-	*/
 		log_admin("[key_name(usr)] spawned [fluid_amt] units of gas at ([usr.x],[usr.y],[usr.z])")
 	return
 
-/atom/proc/water_act(var/depth, var/flowdir)
+/atom/proc/water_act(var/depth)
 	return
 
-/obj/item/water_act(var/depth, var/flowdir)
-	if(!isnull(flowdir))
-		if(anchored || depth <= w_class*10)
-			return
-		step_towards(src, get_step(get_turf(src),flowdir))
-
-/mob/living/water_act(var/depth, var/flowdir)
+/mob/living/water_act(var/depth)
+	..()
 	if(on_fire)
 		visible_message("<span class='danger'>A cloud of steam rises up as the water hits \the [src]!</span>")
 		ExtinguishMob()
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-round(depth/2))
-	if(anchored || buckled)
-		return
-	if(!isnull(flowdir))
-		if(depth >= 30)
-			var/flow_msg = "pushed away"
-			if(!lying && depth >= 70 && prob(depth))
-				Weaken(rand(2,4))
-				flow_msg = "knocked down"
-			src << "<span class='danger'>You are [flow_msg] by the rush of water!</span>"
-			step_towards(src, get_step(get_turf(src),flowdir))
 
-/mob/living/carbon/human/water_act(var/depth, var/flowdir)
+/mob/living/carbon/human/water_act(var/depth)
 	species.water_act(src, depth)
-	if(!((species.flags & NO_SLIP) || (shoes && (shoes.flags & NOSLIP))))
-		..(depth, flowdir)
+	..(depth)
 
 /datum/species/proc/water_act(var/mob/living/carbon/human/H, var/depth)
 	return
@@ -94,9 +73,11 @@
 			H << "<span class='notice'>The water ripples gently over your skin in a soothing balm.</span>"
 
 /obj/effect/decal/cleanable/water_act()
+	..()
 	qdel(src)
 
-obj/machinery/water_act()
+/obj/machinery/water_act()
+	..()
 	if(stat & NOPOWER)
 		return //don't explode if the machine isn't powered
 	if(waterproof > 0)

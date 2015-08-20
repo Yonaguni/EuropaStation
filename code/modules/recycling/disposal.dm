@@ -383,7 +383,7 @@
 		var/transfer_moles = (PUMP_MAX_FLOW_RATE/env.volume)*env.total_moles	//group_multiplier is divided out here
 		power_draw = pump_gas(src, env, air_contents, transfer_moles, active_power_usage)
 		var/turf/simulated/T = get_turf(src)
-		if(istype(T) && air_master) air_master.add_to_active(T)
+		if(istype(T)) T.air_update_turf()
 
 	if (power_draw > 0)
 		use_power(power_draw)

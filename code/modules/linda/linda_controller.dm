@@ -20,13 +20,6 @@ var/global/datum/controller/process/air_system/air_master
 	schedule_interval = 5
 	air_master = src
 
-	/*
-	admin_notice("<span class='danger'>Processing geometry...</span>")
-	var/start_time = world.timeofday
-	setup_allturfs() // Get all currently active tiles that need processing each atmos tick.
-	admin_notice("<span class='danger'>Geometry processed in [(world.timeofday-start_time)/10] seconds!</span>")
-	*/
-
 /datum/controller/process/air_system/doWork()
 	if(kill_air)
 		return 1

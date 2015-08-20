@@ -20,8 +20,8 @@
 	var/blessed = 0             // Has the turf been blessed?
 	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 	var/obj/effect/gas_overlay/gas_overlay
-
 	var/list/decals
+	var/liquid = -1
 
 /turf/New()
 	..()
@@ -200,9 +200,17 @@ var/const/enterloopsanity = 100
 	return 0
 
 /turf/proc/is_flooded(var/lying_mob)
-	var/datum/gas_mixture/GM = return_air()
-	if(GM)
-		var/depth = GM.get_fluid_depth()
-		if(depth && depth > (lying_mob ? 30 : 70))
-			return 1
+	var/depth = get_fluid_depth()
+	if(depth && depth > (lying_mob ? 30 : 70))
+		return 1
 	return 0
+
+/turf/proc/get_fluid_depth()
+	return 0
+
+/turf/simulated/get_fluid_depth()
+	if(liquid == -1)
+		var/datum/gas_mixture/GM = return_air()
+		if(GM)
+			liquid = GM.get_fluid_depth()
+	return liquid

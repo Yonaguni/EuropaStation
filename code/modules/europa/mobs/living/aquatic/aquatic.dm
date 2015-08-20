@@ -32,6 +32,9 @@
 	else
 		icon_state = initial(icon_state)
 
+/mob/living/aquatic/water_act(var/depth)
+	return
+
 /mob/living/aquatic/grump
 	icon_state =  "grump"
 	icon_living = "grump"

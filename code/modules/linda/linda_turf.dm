@@ -240,9 +240,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	for(var/atom/movable/M in src)
 		M.experience_pressure_difference(pressure_difference, pressure_direction)
 
-atom/movable/var/last_forced_movement = 0
-
-atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
+/atom/movable/var/last_forced_movement = 0
 
 /datum/excited_group
 	var/list/turf_list = list()

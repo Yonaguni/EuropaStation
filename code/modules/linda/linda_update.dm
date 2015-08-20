@@ -21,6 +21,10 @@
 	if(air_master)
 		air_master.add_to_active(src,command)
 
+/turf/simulated/air_update_turf(var/command = 0)
+	liquid = -1
+	..(command)
+
 /atom/movable/proc/move_update_air(var/turf/T)
     if(istype(T,/turf))
         T.air_update_turf(1)
