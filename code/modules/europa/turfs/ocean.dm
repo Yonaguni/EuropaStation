@@ -1,4 +1,13 @@
 #define OCEAN_SPREAD_DEPTH 500
+
+var/image/ocean_overlay_img
+/proc/get_ocean_overlay()
+	if(!ocean_overlay_img)
+		ocean_overlay_img = image('icons/effects/xgm_overlays.dmi', "ocean")
+		ocean_overlay_img.layer = GAS_OVERLAY_LAYER+0.1 //So it renders over other gas mixes (hypothetically)
+		ocean_overlay_img.alpha = GAS_MAX_ALPHA
+	return ocean_overlay_img
+
 /turf/unsimulated/fake_ocean
 	name = "seafloor"
 	desc = "Silty."
@@ -60,16 +69,16 @@
 		processing_turfs -= src
 
 /turf/unsimulated/ocean/proc/initialize()
-	water = new/datum/gas_mixture   // Make our 'air', freezing water.
-	water.temperature = 250         // -24C
-	water.adjust_gas("water", 1500, 1) // Should be higher.
-	water.volume = CELL_VOLUME
-	//PoolOrNew(/obj/effect/gas_overlay/ocean,src)
-	if(detail_decal && prob(20)) overlays |= get_mining_overlay("asteroid[rand(0,9)]")
+	update_icon()
+
+/turf/unsimulated/ocean/update_icon()
+	overlays.Cut()
+	..()
+	if(detail_decal && prob(20))
+		overlays |= get_mining_overlay("asteroid[rand(0,9)]")
+	overlays |= get_ocean_overlay()
 
 /turf/unsimulated/ocean/Destroy()
-	for(var/obj/effect/gas_overlay/ocean/O in src)
-		qdel(O)
 	processing_turfs -= src
 	..()
 
@@ -109,8 +118,12 @@
 	return 1
 
 /turf/unsimulated/ocean/return_air()
+	if(!water)
+		water = new/datum/gas_mixture      // Make our 'air', freezing water.
+		water.temperature = 250            // -24C
+		water.adjust_gas("water", 1500, 1) // Should be higher.
+		water.volume = CELL_VOLUME
 	return water
-
 
 /turf/unsimulated/ocean/attackby(obj/item/C as obj, mob/user as mob)
 

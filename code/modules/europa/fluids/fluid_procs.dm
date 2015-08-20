@@ -107,19 +107,3 @@ obj/machinery/water_act()
 
 	else
 		return
-
-var/image/ocean_overlay_img
-
-/obj/effect/gas_overlay/ocean
-	alpha = GAS_MAX_ALPHA
-	color = "#66D1FF"
-
-/proc/get_ocean_overlay()
-	if(!ocean_overlay_img)
-		ocean_overlay_img = image('icons/effects/xgm_overlays.dmi', "ocean")
-		ocean_overlay_img.layer = FLY_LAYER
-	return ocean_overlay_img
-
-/obj/effect/gas_overlay/ocean/New()
-	..()
-	overlays |= get_ocean_overlay()
