@@ -3,7 +3,6 @@
 	name = "Oxygen"
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.032	// kg/mol
-
 	flags = XGM_GAS_OXIDIZER
 
 /decl/xgm_gas/nitrogen
@@ -22,6 +21,7 @@
 	id = "phoron"
 	name = "Phoron"
 	specific_heat = 200	// J/(mol*K)
+	layer_offset = 0.3
 
 	//Hypothetical group 14 (same as carbon), period 8 element.
 	//Using multiplicity rule, it's atomic number is 162
@@ -38,6 +38,7 @@
 	name = "Volatile Fuel"
 	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
 	molar_mass = 0.114	// kg/mol. 		same.
+	layer_offset = 0.2
 
 	flags = XGM_GAS_FUEL
 
@@ -46,6 +47,7 @@
 	name = "Sleeping Agent"
 	specific_heat = 40	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol. N2O
+	layer_offset = 0.1
 
 	tile_overlay = "gas_sparse"
 	overlay_limit = 1

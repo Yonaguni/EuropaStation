@@ -14,10 +14,10 @@
 	var/name = "Unnamed Gas"
 	var/specific_heat = 20	// J/(mol*K)
 	var/molar_mass = 0.032	// kg/mol
-
 	var/tile_overlay = null
 	var/tile_overlay_colour = null
 	var/overlay_limit = null
+	var/layer_offset = 0
 
 	var/flags = 0
 
@@ -34,7 +34,8 @@
 		gas_data.specific_heat[gas.id] = gas.specific_heat
 		gas_data.molar_mass[gas.id] = gas.molar_mass
 		if(gas.tile_overlay)
-			var/image/I = image('icons/effects/xgm_overlays.dmi', gas.tile_overlay, FLY_LAYER)
+			var/image/I = image('icons/effects/xgm_overlays.dmi', gas.tile_overlay)
+			I.layer = FLY_LAYER + gas.layer_offset
 			if(gas.tile_overlay_colour) I.color = gas.tile_overlay_colour
 			gas_data.tile_overlay[gas.id] = I
 		if(gas.overlay_limit) gas_data.overlay_limit[gas.id] = gas.overlay_limit

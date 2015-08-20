@@ -207,7 +207,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			gas_overlay.overlays |= gas_icon
 	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
 		gas_overlay.alpha = model.graphic_alpha
-		//animate(gas_overlay, time=3, alpha=model.graphic_alpha) // Too costly.
 	return 1
 
 /turf/simulated/floor/update_visuals(var/datum/gas_mixture/model)
