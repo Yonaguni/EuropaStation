@@ -1103,6 +1103,7 @@
 #include "code\modules\linda\linda_contamination.dm"
 #include "code\modules\linda\linda_controller.dm"
 #include "code\modules\linda\linda_fire.dm"
+#include "code\modules\linda\linda_object_procs.dm"
 #include "code\modules\linda\linda_turf.dm"
 #include "code\modules\linda\linda_update.dm"
 #include "code\modules\maps\dmm_suite.dm"

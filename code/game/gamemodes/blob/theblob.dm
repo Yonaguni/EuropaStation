@@ -33,7 +33,7 @@
 
 	Destroy()
 		var/turf/simulated/T = get_turf(src)
-		if(istype(T) && air_master) air_master.add_to_active(T)
+		if(istype(T)) T.air_update_turf()
 		blobs -= src
 		..()
 		return

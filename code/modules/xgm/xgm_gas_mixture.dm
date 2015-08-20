@@ -14,15 +14,19 @@
 	var/graphic_alpha = 0              // Used by tile overlays.
 	var/last_share                     // Last gas amount shared.
 	var/tmp/fuel_burnt = 0             // Something to do with fire.
+	var/last_fluid = -1
 
 /datum/gas_mixture/proc/get_fluid_depth()
 	if(!gas || !gas.len)
 		return 0
+	if(last_fluid > -1)
+		return last_fluid
 	var/return_volume = 0
 	for(var/gasid in gas)
 		if(!gas_data.flags[gasid] || !(gas_data.flags[gasid] & XGM_GAS_LIQUID))
 			continue
 		return_volume += gas[gasid]
+	last_fluid = return_volume
 	return return_volume
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
@@ -166,6 +170,7 @@
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
+	last_fluid = -1
 	total_moles = 0
 	for(var/g in gas)
 		if(gas[g] <= 0)
