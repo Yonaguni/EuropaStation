@@ -12,6 +12,11 @@
 	minimal_access = list()
 	alt_titles = list("Factory Worker", "Miner", "Shipping Clerk", "Fabrication Technician")
 	idtype = /obj/item/weapon/card/id/europa/corpcard
+	access = list(access_tox, access_genetics, access_morgue,
+			      access_tox_storage, access_teleporter, access_sec_doors,
+			      access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
+			      access_RC_announce, access_tcomsat, access_gateway, access_xenoarch, access_maint_tunnels,
+			      access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
 /datum/job/industry/science
 	title = "Scientist"

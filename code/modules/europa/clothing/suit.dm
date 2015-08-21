@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/europa
+/obj/item/clothing/suit/space/europa
 	name = "Europan suit"
 	desc = "An undersea colonist suit."
 	icon = 'icons/obj/europa/clothing/suit.dmi'
@@ -11,26 +11,26 @@
 		slot_r_hand_str = 'icons/mob/europa/righthand_suit.dmi'
 		)
 
-/obj/item/clothing/suit/europa/diving
+/obj/item/clothing/suit/space/europa/diving
 	name = "diving suit"
 	desc = "A light diving suit suitable for shallow excursions."
 	icon_state = "diving_light"
 
-/obj/item/clothing/suit/europa/diving/medium
+/obj/item/clothing/suit/space/europa/diving/medium
 	name = "reinforced diving suit"
 	desc = "A reinforced diving suit suitable for excursions of brief duration."
 	icon_state = "diving_medium"
 
-/obj/item/clothing/suit/europa/diving/heavy
+/obj/item/clothing/suit/space/europa/diving/heavy
 	name = "armoured diving suit"
 	desc = "A heavy, armoured diving suit suitable for extended excursions."
 	icon_state = "diving_heavy"
-		
+
 /obj/item/weapon/rig/industrial/deepsea
 	name = "deepsea suit control module"
 	suit_type = "deepsea hardsuit"
-	desc = "A huge, bulking deepsea rig used for mining operations at extreme sea depths."
+	desc = "A huge, bulky deepsea rig used for mining operations at extreme sea depths."
 	icon_state = "deepsea_rig"
 	offline_vision_restriction = 0
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial/
+	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial

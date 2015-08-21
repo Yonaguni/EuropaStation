@@ -11,6 +11,10 @@
 	access = list()
 	minimal_access = list()
 	alt_titles = list("Colonist", "Visitor", "Doctor", "Janitor", "Gardener")
+	access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
+            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
+            access_construction, access_sec_doors, access_medical, access_medical_equip, access_morgue,
+			access_genetics, access_chemistry, access_virology, access_surgery, access_RC_announce,access_psychiatrist)
 
 /datum/job/civilian/equip(var/mob/living/carbon/human/H)
 	if(!H) return
