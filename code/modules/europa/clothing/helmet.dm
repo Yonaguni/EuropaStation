@@ -1,4 +1,4 @@
-/obj/item/clothing/head/europa
+/obj/item/clothing/head/helmet/space/europa
 	name = "Europan hat"
 	desc = "An undersea colonist hat."
 	icon = 'icons/obj/europa/clothing/helmet.dmi'
@@ -11,19 +11,19 @@
 		slot_r_hand_str = 'icons/mob/europa/righthand_helmet.dmi'
 		)
 
-/obj/item/clothing/head/europa/diving
+/obj/item/clothing/head/helmet/space/europa/diving
 	name = "diving helmet"
 	desc = "A light diving helmet suitable for shallow excursions."
 	icon_state = "diving_light"
 	light_overlay = "hardhat_light"
 
-/obj/item/clothing/head/europa/diving/medium
+/obj/item/clothing/head/helmet/space/europa/diving/medium
 	name = "reinforced diving helmet"
 	desc = "A reinforced diving helmet suitable for excursions of brief duration."
 	icon_state = "diving_medium"
 	light_overlay = "helmet_light"
 
-/obj/item/clothing/head/europa/diving/heavy
+/obj/item/clothing/head/helmet/space/europa/diving/heavy
 	name = "armoured diving helmet"
 	desc = "A heavy, armoured diving helmet suitable for extended excursions."
 	icon_state = "diving_heavy"
