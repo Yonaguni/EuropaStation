@@ -197,7 +197,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 /turf/simulated/proc/update_visuals(var/datum/gas_mixture/model)
 	if(!air_master)
 		return 0
-	overlays.Cut()
 	if(gas_overlay)
 		gas_overlay.overlays.Cut()
 	if(model.graphic.len)
@@ -207,11 +206,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			gas_overlay.overlays |= gas_icon
 	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
 		gas_overlay.alpha = model.graphic_alpha
+	update_icon()
 	return 1
-
-/turf/simulated/floor/update_visuals(var/datum/gas_mixture/model)
-	if(..())
-		update_icon()
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
 	if(T.current_cycle < current_cycle)

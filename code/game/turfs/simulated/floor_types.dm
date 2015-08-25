@@ -5,18 +5,6 @@
 /turf/simulated/floor/diona/attackby()
 	return
 
-/turf/simulated/floor/light
-	name = "Light floor"
-	light_range = 5
-	icon_state = "light_on"
-
-	New()
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
 
 /turf/simulated/shuttle
 	name = "shuttle"

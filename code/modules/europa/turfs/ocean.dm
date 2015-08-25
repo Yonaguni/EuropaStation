@@ -7,6 +7,8 @@ var/image/ocean_overlay_img
 		ocean_overlay_img.color = "#66D1FF"
 		ocean_overlay_img.layer = GAS_OVERLAY_LAYER+0.1 //So it renders over other gas mixes (hypothetically)
 		ocean_overlay_img.alpha = GAS_MAX_ALPHA
+		ocean_overlay_img.mouse_opacity = 0
+
 	return ocean_overlay_img
 
 /turf/unsimulated/fake_ocean

@@ -1162,7 +1162,6 @@
 
 #define LOCKED 1
 #define OCCUPIED 2
-#undefine
 
 /obj/mecha/proc/move_inside_passenger()
 	set category = "Object"
@@ -1215,3 +1214,6 @@
 			usr << "<span class='danger'>All of the passenger compartments are already occupied or locked!</span>"
 		if (0)
 			usr << "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>"
+
+#undef LOCKED
+#undef OCCUPIED

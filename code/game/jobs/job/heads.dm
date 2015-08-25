@@ -31,10 +31,10 @@
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/europa/dogtags
 	headsettype = /obj/item/device/radio/headset/headset_sec
-	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_court,
-			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_forensics_lockers,
+			access_morgue, access_maint_tunnels, access_all_personal_lockers, access_research, access_engine,
+			access_mining, access_medical, access_construction, access_mailsorting, access_heads, access_hos,
+			access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 
 /datum/job/head/marshal/equip(var/mob/living/carbon/human/H)
 	//TODO: Proper Marshal uniform.

@@ -4,19 +4,6 @@
 #define SD_EMPTY_TILE 3
 #define SD_SUPPLY_TILE 7
 
-var/global/list/supply_drop_random_loot_types = list(
-	"guns",
-	"seeds",
-	"materials",
-	"food",
-	"armour",
-	"medical",
-	"power",
-	"hydroponics",
-	"lasers",
-	"ballistics"
-	)
-
 /datum/random_map/droppod
 	descriptor = "drop pod"
 	initial_wall_cell = 0
@@ -96,13 +83,15 @@ var/global/list/supply_drop_random_loot_types = list(
 		var/turf/T = locate((origin_x + n_ceil(limit_x / 2)-1), (origin_y + n_ceil(limit_y / 2)-1), origin_z)
 		if(istype(T))
 			explosion(T, placement_explosion_dev, placement_explosion_heavy, placement_explosion_light, placement_explosion_flash)
-			sleep(5) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
+			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
 	return ..()
 
 /datum/random_map/droppod/get_appropriate_path(var/value)
-	if(value == SD_DOOR_TILE || value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
+	if(value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
 		return floor_type
 	else if(value == SD_WALL_TILE)
+		return wall_type
+	else if(value == SD_DOOR_TILE )
 		return wall_type
 	return null
 
@@ -122,14 +111,9 @@ var/global/list/supply_drop_random_loot_types = list(
 
 	// Splatter anything under us that survived the explosion.
 	if(value != SD_EMPTY_TILE && T.contents.len)
-		for(var/atom/A in T)
-			if(!A.simulated || istype(A, /mob/dead))
-				continue
-			if(istype(A, /mob/living))
-				var/mob/living/M = A
-				M.gib()
-			else
-				qdel(A)
+		for(var/atom/movable/AM in T)
+			if(AM.simulated && !istype(AM, /mob/dead))
+				qdel(AM)
 
 	// Also spawn doors and loot.
 	if(value == SD_DOOR_TILE)
@@ -152,16 +136,15 @@ var/global/list/supply_drop_random_loot_types = list(
 			drop = pick(supplied_drop_types)
 			supplied_drop_types -= drop
 			if(istype(drop))
+				drop.tag = null
 				if(drop.buckled)
 					drop.buckled = null
-				drop.loc = T
 				drop.forceMove(T)
 	else if(ispath(drop_type))
 		drop = new drop_type(T)
 		if(istype(drop))
 			if(drop.buckled)
 				drop.buckled = null
-			drop.loc = T
 			drop.forceMove(T)
 
 /datum/admins/proc/call_drop_pod()
@@ -170,11 +153,6 @@ var/global/list/supply_drop_random_loot_types = list(
 	set name = "Call Drop Pod"
 
 	if(!check_rights(R_FUN)) return
-
-	var/turf/holder_turf = locate(157,254,2) // This is in the admin jails, will need adjusting for other mobs.
-	if(!istype(holder_turf))
-		usr << "Nowhere to put the mobs, aborting."
-		return
 
 	var/client/selected_player
 	var/mob/living/spawned_mob
@@ -189,7 +167,9 @@ var/global/list/supply_drop_random_loot_types = list(
 		if(spawn_count <= 0)
 			return
 		for(var/i=0;i<spawn_count;i++)
-			spawned_mobs |= new spawn_path(holder_turf)
+			var/mob/living/M = new spawn_path()
+			M.tag = "awaiting drop"
+			spawned_mobs |= M
 	else
 		var/list/candidates = list()
 		for(var/client/player in clients)
@@ -206,7 +186,8 @@ var/global/list/supply_drop_random_loot_types = list(
 			return
 
 		// Spawn the mob in nullspace for now.
-		spawned_mob = new spawn_path(holder_turf)
+		spawned_mob = new spawn_path()
+		spawned_mob.tag = "awaiting drop"
 
 		// Equip them, if they are human and it is desirable.
 		if(istype(spawned_mob, /mob/living/carbon/human))
@@ -221,6 +202,7 @@ var/global/list/supply_drop_random_loot_types = list(
 		if(spawned_mobs.len)
 			for(var/mob/living/M in spawned_mobs)
 				spawned_mobs -= M
+				M.tag = null
 				qdel(M)
 			spawned_mobs.Cut()
 		return
