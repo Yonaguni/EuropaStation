@@ -680,17 +680,6 @@ var/image/default_abstract_uplink_icon
 	ion_storm_announcement()
 	return 1
 
-/datum/uplink_item/abstract/announcements/fake_radiation
-	name = "Radiation Storm Announcement"
-	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
-	item_cost = 3
-
-/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
-	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
-	new/datum/event/radiation_storm/syndicate(EM)
-	return 1
-
-
 /****************
 * Support procs *
 ****************/

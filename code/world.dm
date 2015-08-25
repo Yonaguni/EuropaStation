@@ -174,12 +174,12 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(T == "manifest")
 		var/list/positions = list()
 		var/list/set_names = list(
-				"heads" = command_positions,
-				"sec" = security_positions,
-				"eng" = engineering_positions,
-				"med" = medical_positions,
-				"sci" = science_positions,
-				"civ" = civilian_positions,
+				"heads" = europa_head_positions,
+				"sec" = europa_gov_positions,
+				"eng" = europa_ind_positions,
+				"med" = europa_civ_positions,
+				"sci" = europa_ind_positions,
+				"civ" = europa_civ_positions,
 				"bot" = nonhuman_positions
 			)
 
