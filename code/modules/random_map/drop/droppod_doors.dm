@@ -10,9 +10,6 @@
 	var/deploying
 	var/deployed
 
-/obj/structure/droppod_door/CanAtmosPass(var/turf/T)
-	return !density
-
 /obj/structure/droppod_door/New(var/newloc, var/autoopen)
 	..(newloc)
 	if(autoopen)

@@ -10,6 +10,9 @@
 		return (!mover.density || !density || lying)
 	return
 
+/mob/proc/setMoveCooldown(var/timeout)
+	if(client) 
+		client.move_delay = max(world.time + timeout, client.move_delay)
 
 /client/North()
 	..()
@@ -27,8 +30,8 @@
 	..()
 
 
-/client/proc/client_dir(input)
-	return turn(input, -dir2angle(dir))
+/client/proc/client_dir(input, direction=-1)
+	return turn(input, direction*dir2angle(dir))
 
 /client/Northeast()
 	diagonal_action(NORTHEAST)
@@ -40,7 +43,7 @@
 	diagonal_action(SOUTHWEST)
 
 /client/proc/diagonal_action(direction)
-	switch(client_dir(direction))
+	switch(client_dir(direction, 1))
 		if(NORTHEAST)
 			swap_hand()
 			return
@@ -230,7 +233,6 @@
 
 	if(Process_Grab())	return
 
-
 	if(!mob.canmove)
 		return
 
@@ -242,7 +244,6 @@
 
 	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
 		if(!mob.Process_Spacemove(0))	return 0
-
 
 	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
 		var/atom/O = mob.loc

@@ -28,6 +28,7 @@
 		emergency_shuttle.departed = 1
 	priority_announcement.Announce("The [(emergency_shuttle.evac ? "Emergency" : "Crew Transfer")] Submarine has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until the submarine docks at Rhadamanthus.")
 
+
 /datum/shuttle/ferry/emergency/can_launch(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
