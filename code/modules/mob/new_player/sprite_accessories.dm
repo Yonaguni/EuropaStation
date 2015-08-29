@@ -304,10 +304,10 @@
 		icon_state = "hair_himecut"
 		gender = FEMALE
 
-	braid
+/*	braid
 		name = "Floorlength Braid"
 		icon_state = "hair_braid"
-		gender = FEMALE
+		gender = FEMALE				*/
 
 	mbraid
 		name = "Medium Braid"
