@@ -37,6 +37,9 @@ var/image/ocean_overlay_img
 	var/datum/gas_mixture/water
 	var/detail_decal = 1
 
+/turf/unsimulated/ocean/is_plating()
+	return 1
+
 /turf/unsimulated/ocean/get_fluid_depth()
 	return 1200
 
@@ -132,6 +135,11 @@ var/image/ocean_overlay_img
 	return water
 
 /turf/unsimulated/ocean/attackby(obj/item/C as obj, mob/user as mob)
+
+	if (istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/cable = C
+		cable.turf_place(src, user)
+		return
 
 	if (istype(C, /obj/item/stack/rods))
 		if(!locate(/obj/structure/lattice, src))
