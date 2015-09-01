@@ -82,9 +82,9 @@
  * Phoron
  */
 /obj/item/weapon/tank/phoron
-	name = "phoron tank"
-	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
-	icon_state = "fuel"
+	name = "fuel tank"
+	desc = "Contains dangerous fuel. Do not inhale. Warning: extremely flammable."
+	icon_state = "phoron"
 	flags = CONDUCT
 	slot_flags = null	//they have no straps!
 

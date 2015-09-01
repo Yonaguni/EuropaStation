@@ -2,8 +2,11 @@
 	return
 
 /mob/living/carbon/human/experience_pressure_difference(var/pressure_difference, var/direction)
-	if(!((species.flags & NO_SLIP) || (shoes && (shoes.flags & NOSLIP))))
-		..(pressure_difference, direction)
+	if(species.flags & NO_SLIP)
+		return
+	if(shoes && (shoes.item_flags & NOSLIP))
+		return
+	..(pressure_difference, direction)
 
 /mob/living/experience_pressure_difference(var/pressure_difference, var/direction)
 	if(anchored || buckled || pressure_difference < 30)
