@@ -120,11 +120,10 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-///// Z-Level Stuff
-		if(src.d1 == 12 || src.d2 == 12)
+		if(d1 == 12 || d2 == 12)
 			user << "<span class='warning'>You must cut this cable from above.</span>"
 			return
-///// Z-Level Stuff
+
 		if(breaker_box)
 			user << "\red This cable is connected to nearby breaker box. Use breaker box to interact with it."
 			return
@@ -140,16 +139,13 @@ By design, d1 is the smallest direction and d2 is the highest
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 
-///// Z-Level Stuff
-		if(src.d1 == 11 || src.d2 == 11)
-			var/turf/controllerlocation = locate(1, 1, z)
-			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-				if(controller.down)
-					var/turf/below = locate(src.x, src.y, controller.down_target)
-					for(var/obj/structure/cable/c in below)
-						if(c.d1 == 12 || c.d2 == 12)
-							qdel(c)
-///// Z-Level Stuff
+		if(d1 == 11 || d2 == 11)
+			var/turf/turf = GetBelow(src)
+			if(turf)
+				for(var/obj/structure/cable/c in turf)
+					if(c.d1 == 12 || c.d2 == 12)
+						qdel(c)
+
 		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
 
 		qdel(src)
@@ -341,19 +337,20 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
-///// Z-Level Stuff
-	if (d1 == 11 || d1 == 12)
-		var/turf/controllerlocation = locate(1, 1, z)
-		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-			if(controller.up && d1 == 12)
-				T = locate(src.x, src.y, controller.up_target)
-				if(T)
-					. += power_list(T, src, 11, 1)
-			if(controller.down && d1 == 11)
-				T = locate(src.x, src.y, controller.down_target)
-				if(T)
-					. += power_list(T, src, 12, 1)
-///// Z-Level Stuff
+	// Handle z-level connections.
+	if(d1 == 11 || d1 == 12)
+		// Connections below.
+		if(d1 == 11)
+			var/turf/turf = GetBelow(src)
+			if(turf)
+				. += power_list(turf, src, 12, 1)
+
+		// Connections above.
+		if(d1 == 12)
+			var/turf/turf = GetAbove(src)
+			if(turf)
+				. += power_list(turf, src, 11, 1)
+
 	//get matching cables from the first direction
 	else if(d1) //if not a node cable
 		T = get_step(src, d1)
@@ -370,19 +367,22 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 	. += power_list(loc, src, d1, powernetless_only) //get on turf matching cables
 
-///// Z-Level Stuff
+
+	// Second direction.
+	// Handle z-level connections.
 	if(d2 == 11 || d2 == 12)
-		var/turf/controllerlocation = locate(1, 1, z)
-		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-			if(controller.up && d2 == 12)
-				T = locate(src.x, src.y, controller.up_target)
-				if(T)
-					. += power_list(T, src, 11, 1)
-			if(controller.down && d2 == 11)
-				T = locate(src.x, src.y, controller.down_target)
-				if(T)
-					. += power_list(T, src, 12, 1)
-///// Z-Level Stuff
+		// Connections below.
+		if(d2 == 11)
+			var/turf/turf = GetBelow(src)
+			if(turf)
+				. += power_list(turf, src, 12, 1)
+
+		// Connections above.
+		if(d2 == 12)
+			var/turf/turf = GetAbove(src)
+			if(turf)
+				. += power_list(turf, src, 11, 1)
+
 	else
 		//do the same on the second direction (which can't be 0)
 		T = get_step(src, d2)
@@ -663,21 +663,16 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else
 		dirn = get_dir(F, user)
 
-	for(var/obj/structure/cable/LC in F)
-		if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-			user << "<span class='warning'>There's already a cable at that position.</span>"
-			return
 
 	// check if the target is open space
-	if(istype(F, /turf/simulated/floor/open))
+	if(istype(F, /turf/simulated/open))
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
 				user << "<span class='warning'>There's already a cable at that position.</span>"
 				return
 
-		var/turf/simulated/floor/open/temp = F
 		var/obj/structure/cable/C = new(F)
-		var/obj/structure/cable/D = new(temp.floorbelow)
+		var/obj/structure/cable/D = new(GetBelow(F))
 
 		C.cableColor(color)
 

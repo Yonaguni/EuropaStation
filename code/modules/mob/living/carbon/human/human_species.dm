@@ -13,5 +13,5 @@
 /mob/living/carbon/human/monkey/New(var/new_loc)
 	..(new_loc, "Monkey")
 
-/mob/living/carbon/human/neara/New(var/new_loc)
-	..(new_loc, "Neara")
+/mob/living/carbon/human/neaera/New(var/new_loc)
+	..(new_loc, "Neaera")
