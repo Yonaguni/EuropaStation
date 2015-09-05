@@ -208,3 +208,6 @@ var/const/enterloopsanity = 100
 		if(A.density && !(A.flags & ON_BORDER))
 			return 1
 	return 0
+
+/turf/proc/update_blood_overlays()
+	return
