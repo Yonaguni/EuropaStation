@@ -72,6 +72,7 @@ var/global/ManifestJSON
 	var/eng[0]
 	var/med[0]
 	var/sci[0]
+	var/car[0]
 	var/civ[0]
 	var/bot[0]
 	var/misc[0]
@@ -134,6 +135,7 @@ var/global/ManifestJSON
 		"eng" = eng,\
 		"med" = med,\
 		"sci" = sci,\
+		"car" = car,\
 		"civ" = civ,\
 		"bot" = bot,\
 		"misc" = misc\

@@ -17,17 +17,11 @@
 		qdel(gas_overlay)
 		gas_overlay = null
 
-///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
+	// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
-		var/turf/controller = locate(1, 1, src.z)
-		for(var/obj/effect/landmark/zcontroller/c in controller)
-			if(c.down)
-				var/turf/W = src.ChangeTurf(/turf/simulated/floor/open)
-				var/list/temp = list()
-				temp += W
-				c.add(temp,3,1) // report the new open space to the zcontroller
-				return W
-///// Z-Level Stuff
+		var/turf/below = GetBelow(src)
+		if(istype(below))
+			N = /turf/simulated/open
 
 	//var/obj/fire/old_fire = fire
 	var/old_opacity = opacity

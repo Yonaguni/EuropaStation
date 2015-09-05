@@ -70,7 +70,7 @@
 			flick("e_flash", M.flash)
 
 			if(ishuman(M) && ishuman(user) && M.stat!=DEAD)
-				if(user.mind && user.mind in revs.head_revolutionaries)
+				if(user.mind && user.mind in revs.current_antagonists)
 					var/revsafe = 0
 					for(var/obj/item/weapon/implant/loyalty/L in M)
 						if(L && L.implanted)
@@ -194,8 +194,6 @@
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
-	var/construction_cost = list(DEFAULT_WALL_MATERIAL=750,"glass"=750)
-	var/construction_time=100
 
 /obj/item/device/flash/synthetic/attack(mob/living/M as mob, mob/user as mob)
 	..()

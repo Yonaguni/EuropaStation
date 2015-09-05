@@ -31,6 +31,11 @@
 			return
 	turfs |= src
 
+	if(dynamic_lighting)
+		luminosity = 0
+	else
+		luminosity = 1
+
 /turf/proc/update_icon()
 	return
 
@@ -68,6 +73,9 @@
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
+
+	..()
+
 	if (!mover || !isturf(mover.loc))
 		return 1
 

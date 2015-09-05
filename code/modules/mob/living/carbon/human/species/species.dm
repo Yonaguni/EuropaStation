@@ -30,6 +30,7 @@
 	var/is_small
 	var/show_ssd = "fast asleep"
 	var/virus_immune
+	var/short_sighted
 
 	// Language/culture vars.
 	var/default_language = "Galactic Common" // Default language is used when 'say' is used without modifiers.
@@ -108,6 +109,7 @@
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
+	var/holder_type
 	var/gluttonous                // Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/rarity_value = 1          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
@@ -305,3 +307,6 @@
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	return
+
+/datum/species/proc/get_vision_flags(var/mob/living/carbon/human/H)
+	return vision_flags
