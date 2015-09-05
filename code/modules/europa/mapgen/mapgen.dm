@@ -15,14 +15,9 @@
 
 	if(isnull(val)) val = 0
 	switch(val)
-		if(2)
-			if(prob(5))
-				new /mob/living/simple_animal/europa_fish(T)
 		if(6)
 			if(prob(60))
 				new /obj/structure/seaweed(T)
-			if(prob(5))
-				new /mob/living/simple_animal/europa_fish(T)
 		if(7)
 			if(prob(60))
 				new /obj/structure/seaweed(T)
@@ -42,7 +37,7 @@
 				new /obj/structure/seaweed/large(T)
 			else
 				new /obj/structure/seaweed/glow(T)
-			if(prob(5))
+			if(prob(1))
 				new /mob/living/simple_animal/hostile/retaliate/europa_shark(T)
 	switch(val)
 		if(6)
