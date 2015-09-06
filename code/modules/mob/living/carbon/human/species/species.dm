@@ -25,6 +25,7 @@
 	var/base_color                                       // Used by changelings. Should also be used for icon previes..
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
+	var/tail_hair
 	var/race_key = 0       	                             // Used for mob icon cache string.
 	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
 	var/is_small
@@ -47,8 +48,12 @@
 		/datum/unarmed_attack/bite
 		)
 	var/list/unarmed_attacks = null          // For empty hand harm-intent attack
-	var/brute_mod = 1                        // Physical damage multiplier.
-	var/burn_mod = 1                         // Burn damage multiplier.
+	var/brute_mod =     1                    // Physical damage multiplier.
+	var/burn_mod =      1                    // Burn damage multiplier.
+	var/oxy_mod =       1                    // Oxyloss modifier
+	var/toxins_mod =    1                    // Toxloss modifier
+	var/radiation_mod = 1                    // Radiation modifier
+	var/flash_mod =     1                    // Stun from blindness modifier.
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
 
 	// Death vars.
