@@ -280,7 +280,7 @@
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.name == "Human") //apes go bald
+			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
 					src << "<span class='warning'>Your hair falls out.</span>"
 					h_style = "Bald"
@@ -298,6 +298,7 @@
 				emote("gasp")
 
 		if(damage)
+			damage *= species.radiation_mod
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			updatehealth()
 			if(organs.len)
@@ -1671,35 +1672,11 @@
 	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
-		if(mind)
-
-			// TODO: Update to new antagonist system.
-			switch(mind.special_role)
-				if("traitor","Mercenary")
-					holder.icon_state = "hudsyndicate"
-				if("Revolutionary")
-					holder.icon_state = "hudrevolutionary"
-				if("Head Revolutionary")
-					holder.icon_state = "hudheadrevolutionary"
-				if("Cultist")
-					holder.icon_state = "hudcultist"
-				if("Changeling")
-					holder.icon_state = "hudchangeling"
-				if("Wizard","Fake Wizard")
-					holder.icon_state = "hudwizard"
-				if("Death Commando")
-					holder.icon_state = "huddeathsquad"
-				if("Ninja")
-					holder.icon_state = "hudninja"
-				if("head_loyalist")
-					holder.icon_state = "hudloyalist"
-				if("loyalist")
-					holder.icon_state = "hudloyalist"
-				if("head_mutineer")
-					holder.icon_state = "hudmutineer"
-				if("mutineer")
-					holder.icon_state = "hudmutineer"
-
+		if(mind && mind.special_role)
+			if(hud_icon_reference[mind.special_role])
+				holder.icon_state = hud_icon_reference[mind.special_role]
+			else
+				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
 	hud_updateflag = 0
 
