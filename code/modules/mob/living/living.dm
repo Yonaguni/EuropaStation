@@ -655,7 +655,7 @@ default behaviour is:
 	set category = "IC"
 
 	resting = !resting
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>"
+	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	return isnull(get_inventory_slot(carried_item))

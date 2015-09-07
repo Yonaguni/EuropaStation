@@ -10,6 +10,7 @@
 	worlds tumultous at best."
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
+	name_language = null // Use the first-name last-name generator rather than a language scrambler
 
 	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
@@ -17,6 +18,7 @@
 /datum/species/human/get_bodytype()
 	return "Human"
 
+	name_language = "Sinta'unathi"
 
 
 /datum/species/skrell
@@ -34,6 +36,7 @@
 	the secrets of their empire to their allies."
 	num_alternate_languages = 2
 	secondary_langs = list("Skrellian")
+	name_language = null
 
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
@@ -72,6 +75,7 @@
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	rarity_value = 2
 	num_alternate_languages = 1 // potentially could be 2?
+	name_language = "Encoded Audio Language"
 
 	eyes = "blank_eyes"
 	brute_mod = 1.875 // 100% * 1.875 * 0.8 (robolimbs) ~= 150%
