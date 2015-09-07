@@ -222,3 +222,6 @@ var/const/enterloopsanity = 100
 		if(GM)
 			liquid = GM.get_fluid_depth()
 	return liquid
+
+/turf/proc/update_blood_overlays()
+	return

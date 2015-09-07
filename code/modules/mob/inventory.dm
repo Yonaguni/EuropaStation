@@ -237,6 +237,7 @@ var/list/slot_equipment_priority = list( \
 	if(slot && !I.mob_can_unequip(src, slot))
 		return 0
 
+	drop_from_inventory(I)
 	return 1
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
