@@ -53,6 +53,7 @@
 	icon_state = "holdingpack"
 	max_w_class = 4
 	max_storage_space = 56
+	storage_cost = 29
 
 	New()
 		..()
@@ -77,7 +78,6 @@
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = 4.0
-	storage_slots = 20
 	max_w_class = 3
 	max_storage_space = 400 // can store a ton of shit!
 	item_state_slots = null
