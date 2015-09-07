@@ -1068,6 +1068,7 @@
 #include "code\modules\europa\mapgen\mapgen.dm"
 #include "code\modules\europa\mapgen\seaweed.dm"
 #include "code\modules\europa\mobs\living\fish.dm"
+#include "code\modules\europa\mobs\living\slugs.dm"
 #include "code\modules\europa\structures\fishtanks.dm"
 #include "code\modules\europa\turfs\ocean.dm"
 #include "code\modules\europa\vip\gear.dm"
