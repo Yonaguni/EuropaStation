@@ -127,8 +127,7 @@ var/global/datum/controller/gameticker/ticker
 			if (S.name != "AI")
 				qdel(S)
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
-		world << sound('sound/AI/welcome.ogg') // Skie
-		//Holiday Round-start stuff	~Carn
+		world << sound('sound/misc/welcome.ogg')
 		Holiday_Game_Start()
 
 	//start_events() //handles random events and space dust.
