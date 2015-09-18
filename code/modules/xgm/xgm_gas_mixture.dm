@@ -304,7 +304,7 @@
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
-				graphic_alpha += gas[g] //todo
+				graphic_alpha += gas[g]
 				if(!graphic_add)
 					graphic_add = list()
 				graphic_add += gas_data.tile_overlay[g]
@@ -316,7 +316,7 @@
 	if(graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
 		. = 1
-	if(next_alpha != graphic_alpha)
+	if(next_alpha != graphic_alpha || graphic_alpha > GAS_MAX_ALPHA)
 		graphic_alpha = min(GAS_MAX_ALPHA, next_alpha)
 		. = 1
 
