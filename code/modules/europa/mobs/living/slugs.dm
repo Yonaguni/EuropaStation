@@ -1,8 +1,9 @@
 var/list/slug_cache = list()
 
-/mob/living/simple_animal/sea_slug
+/mob/living/simple_animal/europa_fish/sea_slug
 	name = "sea slug"
 	desc = "A colourful slimy friend! Probably poisonous."
+	icon_state = "slug"
 	icon = 'icons/mob/europa/slugs.dmi'
 	wander = 1
 	holder_type = /obj/item/weapon/holder
@@ -10,8 +11,8 @@ var/list/slug_cache = list()
 	var/list/base_colour = list()
 	var/list/rider
 
-/mob/living/simple_animal/sea_slug/New(var/newloc, var/mob/living/simple_animal/sea_slug/spawner)
-	..(newloc)
+/mob/living/simple_animal/europa_fish/sea_slug/New(var/newloc, var/mob/living/simple_animal/europa_fish/sea_slug/spawner)
+	icon_state = null
 	if(spawner)
 		base_colour = spawner.base_colour.Copy()
 		rider = spawner.rider.Copy()
@@ -42,5 +43,6 @@ var/list/slug_cache = list()
 				slug_cache[slug_key] = base
 		slug_cache[cache_key] = blank
 	icon = slug_cache[cache_key]
-
+	..(newloc)
+	icon_state = null
 	set_light(2,2,base_colour["eyes"])
