@@ -22,12 +22,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
 
-/datum/emergency_shuttle_controller/New()
-	if(locate(/datum/shuttle/ferry/emergency) in world)
-		shuttle = /datum/shuttle/ferry/emergency
-	else
-		shuttle = new
-
 /datum/emergency_shuttle_controller/proc/process()
 	if (wait_for_launch)
 		if (evac && auto_recall && world.time >= auto_recall_time)
@@ -52,9 +46,9 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
 			if (evac)
-				emergency_shuttle_docked.Announce("The Emergency Submarine has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Submarine.")
+				emergency_shuttle_docked.Announce("The Emergency Shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
 			else
-				priority_announcement.Announce("The scheduled Crew Transfer Submarine has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
+				priority_announcement.Announce("The scheduled Crew Transfer Shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
 
 		//arm the escape pods
 		if (evac)
@@ -110,7 +104,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	shuttle.cancel_launch(src)
 
 	if (evac)
-		emergency_shuttle_recalled.Announce("The emergency submarine has been recalled.")
+		emergency_shuttle_recalled.Announce("The emergency shuttle has been recalled.")
 
 		for(var/area/A in world)
 			if(istype(A, /area/hallway))

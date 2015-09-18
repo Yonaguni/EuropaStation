@@ -87,6 +87,8 @@
 	..()
 	if(!blocks_air)
 		make_air()
+	if(initial_air)
+		nonstandard_atmos_turfs |= src
 
 /turf/simulated/Destroy()
 	if(active_hotspot)

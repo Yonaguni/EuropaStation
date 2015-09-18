@@ -81,7 +81,7 @@
 					center_of_mass = list("x"=16, "y"=6)
 				if("sodiumchloride")
 					name = "Salt Shaker"
-					desc = "Salt. From space oceans, presumably."
+					desc = "Salt. From the ocean, presumably."
 					icon_state = "saltshaker"
 					center_of_mass = list("x"=16, "y"=10)
 				if("blackpepper")
@@ -128,7 +128,7 @@
 
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
-	desc = "Salt. From space oceans, presumably."
+	desc = "Salt. From the ocean, presumably."
 	icon_state = "saltshakersmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
