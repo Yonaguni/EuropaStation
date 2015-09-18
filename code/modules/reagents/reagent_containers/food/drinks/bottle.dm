@@ -4,10 +4,9 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
-	volume = 100
+	volume = 120
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	force = 5
-	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
+	var/const/duration = 13 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
@@ -37,7 +36,7 @@
 			src.smash(loc, hit_atom)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
-	if(!isGlass || !smash_duration)
+	if(!isGlass || !duration)
 		return 0
 
 	var/list/chance_table = list(90, 90, 85, 85, 60, 35, 15) //starting from distance 0
@@ -47,9 +46,11 @@
 	return prob(chance_table[idx])
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+	var/mob/user
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src)
+		user = M
 
 	//Creates a shattering noise and replaces the bottle with a broken_bottle
 	var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
@@ -68,6 +69,7 @@
 		L.IgniteMob()
 
 	playsound(src, "shatter", 70, 1)
+	if(user) user.put_in_active_hand(B)
 	src.transfer_fingerprints_to(B)
 
 	qdel(src)
@@ -118,11 +120,15 @@
 		set_light(0)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attack(mob/living/target as mob, mob/living/user as mob)
+
 	if(!target)
 		return
 
 	if(user.a_intent != I_HURT || !isGlass)
 		return ..()
+
+
+	force = 15 //Smashing bottles over someoen's head hurts.
 
 	var/obj/item/organ/external/affecting = user.zone_sel.selecting //Find what the player is aiming at
 
@@ -133,7 +139,7 @@
 	armor_block = target.run_armor_check(affecting, "melee")
 
 	//force will counteract armour, but will never increase duration
-	armor_duration = smash_duration + min(0, force - target.getarmor(affecting, "melee") + 10)
+	armor_duration = duration + min(0, force - target.getarmor(affecting, "melee") + 10)
 
 	//Apply the damage!
 	target.apply_damage(force, BRUTE, affecting, armor_block, sharp=0)
@@ -432,7 +438,6 @@
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
-	smash_duration = 1
 	flags = 0 //starts closed
 	rag_underlay = "rag_small"
 

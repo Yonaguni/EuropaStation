@@ -783,6 +783,8 @@
 	if(offline || !cell || !cell.charge || locked_down)
 		if(user) user << "<span class='warning'>Your host rig is unpowered and unresponsive.</span>"
 		return 0
+	if(!control_overridden)
+		return
 	if(!wearer || wearer.back != src)
 		if(user) user << "<span class='warning'>Your host rig is not being worn.</span>"
 		return 0
