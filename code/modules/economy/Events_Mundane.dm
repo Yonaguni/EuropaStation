@@ -11,7 +11,7 @@
 	if(!event_type)
 		return
 
-	var/author = "Nyx Daily"
+	var/author = "Copernican Daily"
 	var/channel = author
 
 	//see if our location has custom event info for this event
@@ -120,7 +120,7 @@
 			if(TOURISM)
 				body += "Tourists are flocking to [affected_dest.name] after the surprise announcement of [pick("major shopping bargains by a wily retailer",\
 				"a huge new ARG by a popular entertainment company","a secret tour by popular artiste [random_name(pick(MALE,FEMALE))]")]. \
-				Nyx Daily is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
+				Copernican Daily is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
 

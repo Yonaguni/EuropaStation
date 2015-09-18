@@ -24,16 +24,14 @@ datum/track/New(var/title_name, var/audio)
 
 	var/datum/track/current_track
 	var/list/datum/track/tracks = list(
-		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
-		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
-		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
-		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
-		new/datum/track("Floating", 'sound/music/main.ogg'),
-		new/datum/track("Endless Space", 'sound/music/space.ogg'),
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-		new/datum/track("Scratch", 'sound/music/title1.ogg'),
-		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
-		new/datum/track("The Sea", 'sound/music/Sealab2021.mid'),
+		new/datum/track("In Orbit", 'sound/music/europa/Chronox_-_03_-_In_Orbit.ogg'),
+		new/datum/track("Juno", 'sound/music/europa/Chronox_-_04_-_Juno.ogg'),
+		new/datum/track("Torn", 'sound/music/europa/Macamoto_-_05_-_Torn.ogg'),
+		new/datum/track("Nebula", 'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg'),
+		new/datum/track("Monument", 'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg'),
+		new/datum/track("The And of the World", 'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg'),
+		new/datum/track("Moonlight Sonata", 'sound/music/europa/Moonlight.ogg'),
+		new/datum/track("The Sea", 'sound/music/Sealab2021.mid')
 	)
 
 

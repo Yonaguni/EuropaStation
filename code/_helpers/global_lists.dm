@@ -59,6 +59,17 @@ var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
 var/datum/visualnet/cult/cultnet = new()
 
+// Music.
+var/global/list/ambient_tracks = list(
+	'sound/music/europa/Chronox_-_03_-_In_Orbit.ogg',
+	'sound/music/europa/Chronox_-_04_-_Juno.ogg',
+	'sound/music/europa/Macamoto_-_05_-_Torn.ogg',
+	'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg',
+	'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg',
+	'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg',
+	'sound/music/europa/Moonlight.ogg'
+	)
+
 // Runes
 var/global/list/rune_list = new()
 var/global/list/escape_list = list()

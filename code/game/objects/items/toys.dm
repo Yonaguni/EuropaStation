@@ -103,8 +103,8 @@
 	w_class = 4.0
 
 /obj/item/toy/nanotrasenballoon
-	name = "criminal balloon"
-	desc = "Across the balloon the following is printed: \"Man, I love NanoTrasen soooo much. I use only NT products. You have NO idea.\""
+	name = "loyal balloon"
+	desc = "Across the balloon the following is printed: \"Man, I love the government soooo much. I use only SDPE products. You have NO idea.\""
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -800,7 +800,7 @@
 
 /obj/structure/plushie/carp
 	name = "plush carp"
-	desc = "A plushie of an elated carp! Straight from the wilds of the Nyx frontier, now right here in your hands."
+	desc = "A plushie of an elated carp! Straight from the wilds of the Europan oceans, now right here in your hands."
 	icon_state = "carpplushie"
 	phrase = "Glorf!"
 
