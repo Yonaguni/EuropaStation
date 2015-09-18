@@ -39,12 +39,12 @@
 /datum/job/head/marshal/equip(var/mob/living/carbon/human/H)
 	//TODO: Proper Marshal uniform.
 	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/petty_officer(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/petty_officer/marshal(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer/marshal(H), slot_head)
 	return 1
 
 /datum/job/head/coordinator
