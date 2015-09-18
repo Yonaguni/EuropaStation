@@ -21,6 +21,9 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+/mob/living/simple_animal/europa_fish/can_drown()
+	return 0
+
 /mob/living/simple_animal/europa_fish/New()
 	..()
 	icon_state = "[pick(list("fish","grump","content","judge"))]"
@@ -50,3 +53,6 @@
 	max_n2 = 0
 	minbodytemp = 0
 	break_stuff_probability = 0
+
+/mob/living/simple_animal/hostile/retaliate/europa_shark/can_drown()
+	return 0
