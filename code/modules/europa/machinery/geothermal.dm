@@ -15,7 +15,7 @@ var/list/global/geothermal_cache = list()
 	var/vent_min_power = 5000
 	var/vent_max_power = 22000
 	var/destroyed
-	var/datum/effect/effect/system/smoke_spread/steam
+	var/datum/effect/effect/system/steam_spread/steam
 
 /obj/structure/underwater_vent/New()
 	..()
