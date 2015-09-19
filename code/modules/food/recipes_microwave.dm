@@ -712,6 +712,11 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/spagetti)
 	result = /obj/item/weapon/reagent_containers/food/snacks/pastatomato
 
+/datum/recipe/poppypretzel
+	fruit = list("poppy" = 1)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
+	result = /obj/item/weapon/reagent_containers/food/snacks/poppypretzel
+
 /datum/recipe/meatballspagetti
 	reagents = list("water" = 5)
 	items = list(
