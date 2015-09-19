@@ -207,7 +207,11 @@ var/const/enterloopsanity = 100
 			return 1
 	return 0
 
-/turf/proc/is_flooded(var/lying_mob)
+/atom/proc/is_flooded(var/lying_mob)
+	var/turf/T = get_turf(src)
+	return T.is_flooded(lying_mob)
+
+/turf/is_flooded(var/lying_mob)
 	var/depth = get_fluid_depth()
 	if(depth && depth > (lying_mob ? 30 : 70))
 		return 1
