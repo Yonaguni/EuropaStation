@@ -1860,20 +1860,6 @@
 	glass_desc = "A glass of this is sure to prevent a meltdown."
 	glass_center_of_mass = list("x"=16, "y"=2)
 
-/datum/reagent/ethanol/toxins_special
-	name = "Toxins Special"
-	id = "phoronspecial"
-	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
-	reagent_state = LIQUID
-	color = "#664300"
-	strength = 10
-	adj_temp = 15
-	targ_temp = 330
-
-	glass_icon_state = "toxinsspecialglass"
-	glass_name = "glass of Toxins Special"
-	glass_desc = "Whoah, this thing is on FIRE"
-
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
 	id = "vodkamartini"

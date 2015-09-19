@@ -161,30 +161,6 @@
 		qdel(src)
 	return O
 
-//human -> alien
-/mob/living/carbon/human/proc/Alienize()
-	if (transforming)
-		return
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-	regenerate_icons()
-	transforming = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
-
-	var/alien_caste = pick("Hunter","Sentinel","Drone")
-	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
-
-	new_xeno.a_intent = I_HURT
-	new_xeno.key = key
-
-	new_xeno << "<B>You are now an alien.</B>"
-	qdel(src)
-	return
-
 /mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
 	if (transforming)
 		return
@@ -268,7 +244,6 @@
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
 
-
 	new_mob << "You suddenly feel more... animalistic."
 	spawn()
 		qdel(src)
@@ -301,22 +276,8 @@
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
 		return 0	//Sanity, this should never happen.
-
-	if(ispath(MP, /mob/living/simple_animal/space_worm))
-		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
-
-	if(ispath(MP, /mob/living/simple_animal/construct/behemoth))
-		return 0 //I think this may have been an unfinished WiP or something. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/builder))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
+	if(ispath(MP, /mob/living/simple_animal/construct))
+		return 0
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_animal/cat))
 		return 1

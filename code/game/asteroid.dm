@@ -1,6 +1,5 @@
 
-var/global/list/space_surprises = list(		/obj/item/clothing/mask/facehugger				=4,
-											/obj/item/weapon/pickaxe/silver					=4,
+var/global/list/space_surprises = list(		/obj/item/weapon/pickaxe/silver					=4,
 											/obj/item/weapon/pickaxe/drill					=4,
 											/obj/item/weapon/pickaxe/jackhammer				=4,
 											//mob/living/simple_animal/hostile/carp			=3,
@@ -22,7 +21,7 @@ proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , va
 
 	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"
 	if(!wall)
-		wall = pick(/turf/simulated/wall/r_wall,/turf/simulated/wall,/obj/effect/alien/resin)
+		wall = pick(/turf/simulated/wall/r_wall,/turf/simulated/wall)
 	if(!floor)
 		floor = pick(/turf/simulated/floor,/turf/simulated/floor/tiled,/turf/simulated/floor/reinforced)
 
@@ -43,12 +42,8 @@ proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , va
 
 
 			if(x == 0 || x==x_size-1 || y==0 || y==y_size-1)
-				if(wall == /obj/effect/alien/resin)
-					T = new floor(cur_loc)
-					new /obj/effect/alien/resin(T)
-				else
-					T = new wall(cur_loc)
-					room_turfs["walls"] += T
+				T = new wall(cur_loc)
+				room_turfs["walls"] += T
 			else
 				T = new floor(cur_loc)
 				room_turfs["floors"] += T
@@ -67,13 +62,11 @@ proc/admin_spawn_room_at_pos()
 	var/x_len = input("Desired length.","Length",5)
 	var/y_len = input("Desired width.","Width",5)
 	var/clean = input("Delete existing items in area?" , "Clean area?", 0)
-	switch(alert("Wall type",null,"Reinforced wall","Regular wall","Resin wall"))
+	switch(alert("Wall type",null,"Reinforced wall","Regular wall"))
 		if("Reinforced wall")
 			wall=/turf/simulated/wall/r_wall
 		if("Regular wall")
 			wall=/turf/simulated/wall
-		if("Resin wall")
-			wall=/obj/effect/alien/resin
 	switch(alert("Floor type",null,"Regular floor","Reinforced floor"))
 		if("Regular floor")
 			floor=/turf/simulated/floor/tiled

@@ -1,11 +1,13 @@
-var/datum/antagonist/xenos/borer/borers
+var/datum/antagonist/borer/borers
 
-/datum/antagonist/xenos/borer
+/datum/antagonist/borer
 	id = MODE_BORER
+	role_type = BE_ALIEN
 	role_text = "Cortical Borer"
 	role_text_plural = "Cortical Borers"
 	mob_path = /mob/living/simple_animal/borer
 	bantype = "Borer"
+	flags = ANTAG_OVERRIDE_MOB | ANTAG_RANDSPAWN | ANTAG_OVERRIDE_JOB | ANTAG_VOTABLE
 	welcome_text = "Use your Infest power to crawl into the ear of a host and fuse with their brain. You can only take control temporarily, and at risk of hurting your host, so be clever and careful; your host is encouraged to help you however they can. Talk to your fellow borers with :x."
 	antag_indicator = "brainworm"
 	antaghud_indicator = "hudborer"
@@ -14,24 +16,34 @@ var/datum/antagonist/xenos/borer/borers
 	faction_descriptor = "Unity"
 	faction_welcome = "You are now a thrall to a cortical borer. Please listen to what they have to say; they're in your head."
 
+	hard_cap = 5
+	hard_cap_round = 8
 	initial_spawn_req = 3
 	initial_spawn_target = 5
 
-/datum/antagonist/xenos/borer/New()
-	..(1)
+	spawn_announcement = "Unidentified lifesigns detected coming aboard the station. Secure any exterior access, including ducting and ventilation."
+	spawn_announcement_title = "Lifesign Alert"
+	spawn_announcement_sound = 'sound/AI/aliens.ogg'
+	spawn_announcement_delay = 5000
+
+/datum/antagonist/borer/New()
+	..()
 	borers = src
 
-/datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
+/datum/antagonist/borer/attempt_random_spawn()
+	if(config.aliens_allowed) ..()
+
+/datum/antagonist/borer/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
 
-/datum/antagonist/xenos/borer/create_objectives(var/datum/mind/player)
+/datum/antagonist/borer/create_objectives(var/datum/mind/player)
 	if(!..())
 		return
 	player.objectives += new /datum/objective/borer_survive()
 	player.objectives += new /datum/objective/borer_reproduce()
 	player.objectives += new /datum/objective/escape()
 
-/datum/antagonist/xenos/borer/place_mob(var/mob/living/mob)
+/datum/antagonist/borer/place_mob(var/mob/living/mob)
 	var/mob/living/simple_animal/borer/borer = mob
 	if(istype(borer))
 		var/mob/living/carbon/human/host
@@ -51,4 +63,12 @@ var/datum/antagonist/xenos/borer/borers
 			borer.host_brain.name = host.name
 			borer.host_brain.real_name = host.real_name
 			return
-	..() // Place them at a vent if they can't get a host.
+	borer.loc = get_turf(pick(get_vents()))
+
+/datum/antagonist/borer/proc/get_vents()
+	var/list/vents = list()
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in config.station_levels)
+			if(temp_vent.network.normal_members.len > 50)
+				vents += temp_vent
+	return vents

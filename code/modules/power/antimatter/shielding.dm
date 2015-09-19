@@ -9,8 +9,6 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding
 	name = "antimatter reactor section"
-	desc = "This device was built using a phoron life-form that seems to increase phoron's natural ability to react with neutrinos while reducing the combustibility."
-
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
 	anchored = 1
@@ -23,7 +21,7 @@ proc/cardinalrange(var/center)
 	var/obj/machinery/power/am_control_unit/control_unit = null
 	var/processing = 0//To track if we are in the update list or not, we need to be when we are damaged and if we ever
 	var/stability = 100//If this gets low bad things tend to happen
-	var/efficiency = 1//How many cores this core counts for when doing power processing, phoron in the air and stability could affect this
+	var/efficiency = 1
 
 
 /obj/machinery/am_shielding/New(loc)
@@ -81,8 +79,6 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding/process()
 	if(!processing) . = PROCESS_KILL
-	//TODO: core functions and stability
-	//TODO: think about checking the airmix for phoron and increasing power output
 	return
 
 

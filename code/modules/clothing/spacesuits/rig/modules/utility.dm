@@ -132,7 +132,7 @@
 	charges = list(
 		list("tricordrazine", "tricordrazine", 0, 80),
 		list("tramadol",      "tramadol",      0, 80),
-		list("dexalin plus",  "dexalinp",      0, 80),
+		list("dexalin plu",   "dexalin",       0, 80),
 		list("antibiotics",   "spaceacillin",  0, 80),
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "nutriment",     0, 80),
@@ -149,7 +149,7 @@
 	charges = list(
 		list("tricordrazine", "tricordrazine", 0, 20),
 		list("tramadol",      "tramadol",      0, 20),
-		list("dexalin plus",  "dexalinp",      0, 20),
+		list("dexalin",       "dexalin",       0, 20),
 		list("antibiotics",   "spaceacillin",  0, 20),
 		list("antitoxins",    "anti_toxin",    0, 20),
 		list("nutrients",     "nutriment",     0, 80),
@@ -240,7 +240,7 @@
 	charges = list(
 		list("synaptizine",   "synaptizine",   0, 30),
 		list("hyperzine",     "hyperzine",     0, 30),
-		list("oxycodone",     "oxycodone",     0, 30),
+		list("morphine",      "morphine",      0, 30),
 		list("nutrients",     "nutriment",     0, 80),
 		)
 

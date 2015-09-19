@@ -144,8 +144,8 @@ research holder datum.
 	id = TECH_ENGINEERING
 
 /datum/tech/phorontech
-	name = "Phoron Research"
-	desc = "Research into the mysterious substance colloqually known as 'phoron'."
+	name = "Fuel Efficiency Research"
+	desc = "Research into power generation methodologies."
 	id = TECH_PHORON
 
 /datum/tech/powerstorage

@@ -34,7 +34,7 @@ var/list/be_special_flags = list(
 	"Malf AI"          = BE_MALF,
 	"Revolutionary"    = BE_REV,
 	"Loyalist"         = BE_LOYALIST,
-	"Xenomorph"        = BE_ALIEN,
+	"Alien"            = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
 	"Monkey"           = BE_MONKEY,
@@ -63,7 +63,7 @@ var/list/be_special_flags = list(
 
 // Mode/antag template macros.
 #define MODE_BORER "borer"
-#define MODE_XENOMORPH "xeno"
+#define  "xeno"
 #define MODE_LOYALIST "loyalist"
 #define MODE_MUTINEER "mutineer"
 #define MODE_COMMANDO "commando"

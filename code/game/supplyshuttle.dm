@@ -172,9 +172,6 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
-		var/phoron_count = 0
-		var/plat_count = 0
-
 		for(var/atom/movable/MA in area_shuttle)
 			if(MA.anchored)	continue
 
@@ -196,18 +193,11 @@ var/list/mechtoys = list(
 						continue
 
 					// Sell phoron and platinum
-					if(istype(A, /obj/item/stack))
-						var/obj/item/stack/P = A
-						switch(P.get_material_name())
-							if("phoron") phoron_count += P.get_amount()
-							if("platinum") plat_count += P.get_amount()
+					if(istype(A, /obj/item/stack/material))
+						var/obj/item/stack/material/P = A
+						if(P.material.cargo_sell_amt)
+							points += P.material.cargo_sell_amt * P.get_amount()
 			qdel(MA)
-
-		if(phoron_count)
-			points += phoron_count * points_per_phoron
-
-		if(plat_count)
-			points += plat_count * points_per_platinum
 
 	//Buyin
 	proc/buy()

@@ -499,7 +499,7 @@ datum/objective/steal
 
 				for(var/obj/item/I in all_items) //Check for phoron tanks
 					if(istype(I, steal_target))
-						found_amount += (target_name=="28 moles of phoron (full tank)" ? (I:air_contents:gas["phoron"]) : (I:amount))
+						found_amount += (target_name=="28 moles of fuel (full tank)" ? (I:air_contents:gas["fuel"]) : (I:amount))
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")
@@ -733,7 +733,7 @@ datum/objective/heist/loot
 datum/objective/heist/salvage
 
 	choose_target()
-		switch(rand(1,8))
+		switch(rand(1,7))
 			if(1)
 				target = DEFAULT_WALL_MATERIAL
 				target_amount = 300
@@ -744,18 +744,15 @@ datum/objective/heist/salvage
 				target = "plasteel"
 				target_amount = 100
 			if(4)
-				target = "phoron"
-				target_amount = 100
-			if(5)
 				target = "silver"
 				target_amount = 50
-			if(6)
+			if(5)
 				target = "gold"
 				target_amount = 20
-			if(7)
+			if(6)
 				target = "uranium"
 				target_amount = 20
-			if(8)
+			if(7)
 				target = "diamond"
 				target_amount = 20
 

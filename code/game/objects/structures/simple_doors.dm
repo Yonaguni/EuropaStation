@@ -189,9 +189,6 @@
 /obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
 	..(newloc, "sandstone")
 
-/obj/structure/simple_door/phoron/New(var/newloc,var/material_name)
-	..(newloc, "phoron")
-
 /obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
 	..(newloc, "diamond")
 

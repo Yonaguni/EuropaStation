@@ -402,7 +402,7 @@
 	if(species.poison_type)
 		poison_type = species.poison_type
 	else
-		poison_type = "phoron"
+		poison_type = "fuel"
 	poison = breath.gas[poison_type]
 
 	if(species.exhale_type)
@@ -567,7 +567,6 @@
 	if(!environment)
 		return
 
-	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.
@@ -1514,12 +1513,6 @@
 		if(R.id in tachycardics)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++
-		if(R.id in heartstopper) //To avoid using fakedeath
-			temp = PULSE_NONE
-		if(R.id in cheartstopper) //Conditional heart-stoppage
-			if(R.volume >= R.overdose)
-				temp = PULSE_NONE
-
 	return temp
 
 /mob/living/carbon/human/proc/handle_heartbeat()
