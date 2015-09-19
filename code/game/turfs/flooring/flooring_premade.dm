@@ -152,7 +152,7 @@
 	initial_air = list("oxygen" = 5000)
 
 /turf/simulated/floor/reinforced/phoron
-	initial_air = list("phoron" = 5000)
+	initial_air = list("fuel" = 5000)
 
 /turf/simulated/floor/reinforced/carbon_dioxide
 	initial_air = list("carbon_dioxide" = 5000)

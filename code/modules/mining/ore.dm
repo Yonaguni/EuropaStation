@@ -30,12 +30,6 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	material = "sand"
 
-/obj/item/weapon/ore/phoron
-	name = "phoron crystals"
-	icon_state = "ore_phoron"
-	origin_tech = list(TECH_MATERIAL = 2)
-	material = "phoron"
-
 /obj/item/weapon/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"

@@ -352,7 +352,7 @@
 	name = "Jetpack module"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	id = "borg_jetpack_module"
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "phoron" = 15000, "uranium" = 20000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "uranium" = 20000)
 	build_path = /obj/item/borg/upgrade/jetpack
 
 /datum/design/item/robot_upgrade/syndicate
@@ -427,14 +427,6 @@
 	id = "mech_passenger"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
-
-//obj/item/mecha_parts/mecha_equipment/repair_droid,
-//obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
-
-/datum/design/item/mecha/generator
-	name = "Phoron generator"
-	id = "mech_generator"
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator
 
 /datum/design/item/mecha/taser
 	name = "PBT \"Pacifier\" mounted taser"
@@ -515,7 +507,7 @@
 	desc = "An exosuit-mounted rapid construction device."
 	id = "mech_rcd"
 	time = 120
-	materials = list(DEFAULT_WALL_MATERIAL = 30000, "phoron" = 25000, "silver" = 20000, "gold" = 20000)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, "silver" = 20000, "gold" = 20000)
 	req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
 
@@ -533,13 +525,6 @@
 	req_tech = list(TECH_MAGNET = 3, TECH_DATA = 3, TECH_ENGINEERING = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "gold" = 1000, "silver" = 2000, "glass" = 5000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
-
-/datum/design/item/mecha/phoron_generator
-	desc = "Phoron reactor."
-	id = "mech_phoron_generator"
-	req_tech = list(TECH_PHORON = 2, TECH_POWER= 2, TECH_ENGINEERING = 2)
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "silver" = 500, "glass" = 1000)
 
 /datum/design/item/mecha/energy_relay
 	name = "Energy relay"
@@ -570,14 +555,6 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "diamond" = 6500)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
-
-/datum/design/item/mecha/generator_nuclear
-	name = "Nuclear reactor"
-	desc = "Exosuit-held nuclear reactor. Converts uranium and everyone's health to energy."
-	id = "mech_generator_nuclear"
-	req_tech = list(TECH_POWER= 3, TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "silver" = 500, "glass" = 1000)
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
 
 /datum/design/item/synthetic_flash
 	name = "Synthetic flash"

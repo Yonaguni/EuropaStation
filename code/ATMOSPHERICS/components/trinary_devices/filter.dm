@@ -40,7 +40,7 @@
 	..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons
-			filtered_out = list("phoron")
+			filtered_out = list("fuel")
 		if(1) //removing O2
 			filtered_out = list("oxygen")
 		if(2) //removing N2
@@ -160,7 +160,7 @@
 	var/current_filter_type
 	switch(filter_type)
 		if(0)
-			current_filter_type = "Phoron"
+			current_filter_type = "Fuel"
 		if(1)
 			current_filter_type = "Oxygen"
 		if(2)
@@ -205,7 +205,7 @@
 		filtered_out.Cut()	//no need to create new lists unnecessarily
 		switch(filter_type)
 			if(0) //removing hydrocarbons
-				filtered_out += "phoron"
+				filtered_out += "fuel"
 				filtered_out += "oxygen_agent_b"
 			if(1) //removing O2
 				filtered_out += "oxygen"

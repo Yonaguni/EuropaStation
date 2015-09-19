@@ -37,30 +37,6 @@
 	color = "#003333"
 	strength = 10
 
-/datum/reagent/toxin/phoron
-	name = "Phoron"
-	id = "phoron"
-	description = "Phoron in its liquid form."
-	reagent_state = LIQUID
-	color = "#9D14DB"
-	strength = 30
-	touch_met = 5
-
-/datum/reagent/toxin/phoron/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
-		L.adjust_fire_stacks(amount / 5)
-
-/datum/reagent/toxin/phoron/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	M.take_organ_damage(0, removed * 0.1) //being splashed directly with phoron causes minor chemical burns
-	if(prob(50))
-		M.pl_effects()
-
-/datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T)
-	if(!istype(T))
-		return
-	T.assume_gas("volatile_fuel", volume, T20C)
-	remove_self(volume)
-
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
 	id = "cyanide"
@@ -74,44 +50,6 @@
 	..()
 	M.adjustOxyLoss(20 * removed)
 	M.sleeping += 1
-
-/datum/reagent/toxin/potassium_chloride
-	name = "Potassium Chloride"
-	id = "potassium_chloride"
-	description = "A delicious salt that stops the heart when injected into cardiac muscle."
-	reagent_state = SOLID
-	color = "#FFFFFF"
-	strength = 0
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/toxin/potassium_chloride/overdose(var/mob/living/carbon/M, var/alien)
-	..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.stat != 1)
-			if(H.losebreath >= 10)
-				H.losebreath = max(10, H.losebreath - 10)
-			H.adjustOxyLoss(2)
-			H.Weaken(10)
-
-/datum/reagent/toxin/potassium_chlorophoride
-	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
-	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
-	reagent_state = SOLID
-	color = "#FFFFFF"
-	strength = 10
-	overdose = 20
-
-/datum/reagent/toxin/potassium_chlorophoride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.stat != 1)
-			if(H.losebreath >= 10)
-				H.losebreath = max(10, M.losebreath-10)
-			H.adjustOxyLoss(2)
-			H.Weaken(10)
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"

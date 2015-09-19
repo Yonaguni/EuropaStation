@@ -72,7 +72,7 @@
 		if(63 to 64)
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
-				var/newcoin = pick(/obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/diamond, /obj/item/weapon/coin/phoron, /obj/item/weapon/coin/uranium, /obj/item/weapon/coin/platinum)
+				var/newcoin = pick(/obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/diamond, /obj/item/weapon/coin/uranium, /obj/item/weapon/coin/platinum)
 				new newcoin(src)
 		if(65 to 66)
 			new/obj/item/clothing/suit/ianshirt(src)
@@ -168,8 +168,8 @@
 			var/turf/T = get_turf(src.loc)
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
-	
-/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)	
+
+/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
 		user << "<span class='notice'>The crate unlocks!</span>"
 		locked = 0
@@ -177,7 +177,7 @@
 /obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
 	if(length(input) != codelen)
 		return 0
-	
+
 	. = 1
 	lastattempt.Cut()
 	for(var/i in 1 to codelen)
@@ -197,7 +197,7 @@
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
-				
+
 				var/list/code_contents = code.Copy()
 				for(var/i in 1 to codelen)
 					if(lastattempt[i] == code[i])

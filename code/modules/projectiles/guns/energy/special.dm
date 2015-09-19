@@ -90,8 +90,8 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/weapon/gun/energy/toxgun
-	name = "phoron pistol"
-	desc = "A specialized firearm designed to fire lethal bolts of phoron."
+	name = "radpistol"
+	desc = "A specialized firearm designed to fire lethal bolts of gamma radiation."
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0

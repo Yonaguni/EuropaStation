@@ -71,8 +71,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			return_name = "Gold"
 		if("silver")
 			return_name = "Silver"
-		if("phoron")
-			return_name = "Solid Phoron"
 		if("uranium")
 			return_name = "Uranium"
 		if("diamond")
@@ -374,8 +372,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					res_amount = "gold_amount"
 				if("silver")
 					res_amount = "silver_amount"
-				if("phoron")
-					res_amount = "phoron_amount"
 				if("uranium")
 					res_amount = "uranium_amount"
 				if("diamond")

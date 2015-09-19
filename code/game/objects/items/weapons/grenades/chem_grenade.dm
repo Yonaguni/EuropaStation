@@ -225,8 +225,7 @@
 		var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
 		B1.reagents.add_reagent("aluminum", 15)
-		B1.reagents.add_reagent("fuel",20)
-		B2.reagents.add_reagent("phoron", 15)
+		B1.reagents.add_reagent("fuel",35)
 		B2.reagents.add_reagent("sacid", 15)
 		B1.reagents.add_reagent("fuel",20)
 

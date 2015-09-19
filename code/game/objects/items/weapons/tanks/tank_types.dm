@@ -84,7 +84,7 @@
 /obj/item/weapon/tank/phoron
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
-	icon_state = "phoron"
+	icon_state = "fuel"
 	flags = CONDUCT
 	slot_flags = null	//they have no straps!
 
@@ -92,7 +92,7 @@
 /obj/item/weapon/tank/phoron/New()
 	..()
 
-	src.air_contents.adjust_gas("phoron", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas("fuel", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/weapon/tank/phoron/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -154,7 +154,7 @@
 	force = 4.0
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	volume = 2
-	
+
 	New()
 		..()
 		src.air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))

@@ -678,16 +678,11 @@
 	..()
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
-
 		user << "You inject the solution into the [src]."
-
-		if(S.reagents.has_reagent("phoron", 5))
-
-			log_admin("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-
+		if(S.reagents.has_reagent("fuel", 5))
+			log_admin("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
+			message_admins("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
 			rigged = 1
-
 		S.reagents.clear_reagents()
 	else
 		..()

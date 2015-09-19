@@ -137,7 +137,7 @@
 	OT.master = V
 
 	PT.air_contents.temperature = PHORON_FLASHPOINT
-	PT.air_contents.adjust_multi("phoron", 12, "carbon_dioxide", 8)
+	PT.air_contents.adjust_multi("fuel", 12, "carbon_dioxide", 8)
 
 	OT.air_contents.temperature = PHORON_FLASHPOINT
 	OT.air_contents.adjust_gas("oxygen", 20)

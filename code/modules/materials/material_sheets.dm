@@ -108,11 +108,6 @@
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
 
-/obj/item/stack/material/phoron
-	name = "solid phoron"
-	icon_state = "sheet-phoron"
-	default_type = "phoron"
-
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"

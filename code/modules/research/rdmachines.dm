@@ -24,8 +24,6 @@
 			return /obj/item/stack/material/gold
 		if("silver")
 			return /obj/item/stack/material/silver
-		if("phoron")
-			return /obj/item/stack/material/phoron
 		if("uranium")
 			return /obj/item/stack/material/uranium
 		if("diamond")
@@ -42,8 +40,6 @@
 			return "gold"
 		if(/obj/item/stack/material/silver)
 			return "silver"
-		if(/obj/item/stack/material/phoron)
-			return "phoron"
 		if(/obj/item/stack/material/uranium)
 			return "uranium"
 		if(/obj/item/stack/material/diamond)

@@ -11,7 +11,7 @@
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent")
+	var/list/filtered_gases = list("fuel", "sleeping_agent")
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 75, rad = 0)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
@@ -46,7 +46,7 @@
 /obj/item/clothing/mask/gas/swat/vox
 	name = "\improper alien mask"
 	desc = "Clearly not designed for a human face."
-	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask. 
+	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
 	species_restricted = list("Vox")
 
 /obj/item/clothing/mask/gas/syndicate

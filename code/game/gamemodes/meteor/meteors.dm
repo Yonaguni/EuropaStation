@@ -246,7 +246,7 @@
 	hitpwr = 1
 	heavy = 1
 	meteorsound = 'sound/effects/bamf.ogg'
-	meteordrop = /obj/item/weapon/ore/phoron
+	meteordrop = /obj/item/weapon/ore/hydrogen
 
 /obj/effect/meteor/tunguska/meteor_effect()
 	..(heavy)

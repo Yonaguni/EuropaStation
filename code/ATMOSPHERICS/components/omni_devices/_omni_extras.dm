@@ -107,7 +107,7 @@
 		if(ATM_CO2)
 			return "carbon_dioxide"
 		if(ATM_P)
-			return "phoron"
+			return "fuel"
 		if(ATM_N2O)
 			return "sleeping_agent"
 		if(ATM_WATER)

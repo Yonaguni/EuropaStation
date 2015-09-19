@@ -240,7 +240,6 @@
 			possible_spawns += /obj/item/stack/material/plasteel
 			possible_spawns += /obj/item/stack/material/glass
 			possible_spawns += /obj/item/stack/material/glass/reinforced
-			possible_spawns += /obj/item/stack/material/phoron
 			possible_spawns += /obj/item/stack/material/gold
 			possible_spawns += /obj/item/stack/material/silver
 			possible_spawns += /obj/item/stack/material/uranium
@@ -501,7 +500,7 @@
 		if(prob(30))
 			descriptors.Add("is encircled with bands of [pick("quadrinium","cordite","ferritic-alloy","plasteel","duranium")]")
 		if(prob(30))
-			descriptors.Add("menaces with spikes of [pick("solid phoron","uranium","white pearl","black steel")]")
+			descriptors.Add("menaces with spikes of [pick("uranium","white pearl","black steel")]")
 		if(descriptors.len > 0)
 			decorations = "It "
 			for(var/index=1, index <= descriptors.len, index++)

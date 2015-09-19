@@ -143,7 +143,7 @@ var/list/valid_secondary_effect_types = list(\
 			else if(env.temperature > 375)
 				trigger_hot = 1
 
-			if(env.gas["phoron"] >= 10)
+			if(env.gas["fuel"] >= 10)
 				trigger_phoron = 1
 			if(env.gas["oxygen"] >= 10)
 				trigger_oxy = 1
@@ -262,7 +262,7 @@ var/list/valid_secondary_effect_types = list(\
 				my_effect.ToggleActivate()
 			if(secondary_effect && secondary_effect.trigger == TRIGGER_ACID && prob(25))
 				secondary_effect.ToggleActivate(0)
-		else if(W.reagents.has_reagent("phoron", 1) || W.reagents.has_reagent("thermite", 1))
+		else if(W.reagents.has_reagent("fuel", 1) || W.reagents.has_reagent("thermite", 1))
 			if(my_effect.trigger == TRIGGER_VOLATILE)
 				my_effect.ToggleActivate()
 			if(secondary_effect && secondary_effect.trigger == TRIGGER_VOLATILE && prob(25))

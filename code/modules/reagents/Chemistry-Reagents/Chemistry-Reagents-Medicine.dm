@@ -85,24 +85,7 @@
 
 	holder.remove_reagent("lexorin", 2 * removed)
 
-/datum/reagent/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
-	reagent_state = LIQUID
-	color = "#0040FF"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-
-/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 9)
-	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
-
-	holder.remove_reagent("lexorin", 3 * removed)
-
-/datum/reagent/
+/datum/reagent/tricordrazine
 	name = "Tricordrazine"
 	id = "tricordrazine"
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
@@ -184,19 +167,19 @@
 	..()
 	M.hallucination = max(M.hallucination, 2)
 
-/datum/reagent/oxycodone
-	name = "Oxycodone"
-	id = "oxycodone"
+/datum/reagent/morphine
+	name = "Morphine"
+	id = "morphine"
 	description = "An effective and very addictive painkiller."
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
 	metabolism = 0.02
 
-/datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 
-/datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/morphine/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.druggy = max(M.druggy, 10)
 	M.hallucination = max(M.hallucination, 3)

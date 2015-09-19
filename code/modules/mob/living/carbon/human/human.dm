@@ -73,7 +73,7 @@
 
 		var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 		if(P)
-			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
+			stat(null, "Fuel Stored: [P.stored_plasma]/[P.max_plasma]")
 
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back
@@ -701,21 +701,21 @@
 /mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
 	if(!species.has_organ[brain_tag])
 		return 0
-	
+
 	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
-	
+
 	target_zone = check_zone(target_zone)
 	if(!affecting || affecting.parent_organ != target_zone)
 		return 0
-	
+
 	//if the parent organ is significantly larger than the brain organ, then hitting it is not guaranteed
 	var/obj/item/organ/parent = get_organ(target_zone)
 	if(!parent)
 		return 0
-	
+
 	if(parent.w_class > affecting.w_class + 1)
 		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
-	
+
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)

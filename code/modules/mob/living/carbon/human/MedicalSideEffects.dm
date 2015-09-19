@@ -83,7 +83,7 @@
 /datum/medical_effect/headache
 	name = "Headache"
 	triggers = list("cryoxadone" = 10, "bicaridine" = 15, "tricordrazine" = 15)
-	cures = list("alkysine", "tramadol", "paracetamol", "oxycodone")
+	cures = list("alkysine", "tramadol", "paracetamol", "morphine")
 	cure_message = "Your head stops throbbing..."
 
 /datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)

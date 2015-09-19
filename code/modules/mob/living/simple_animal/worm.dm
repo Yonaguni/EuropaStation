@@ -91,9 +91,6 @@
 			if(next)
 				Detach(1)
 
-		if(prob(stomachProcessProbability))
-			ProcessStomach()
-
 		update_icon()
 
 		return
@@ -171,30 +168,3 @@
 
 		qdel(src)
 
-	proc/ProcessStomach()
-		for(var/atom/movable/stomachContent in contents)
-			if(prob(digestionProbability))
-				if(istype(stomachContent,/obj/item/stack)) //converts to plasma, keeping the stack value
-					if(!istype(stomachContent,/obj/item/stack/material/phoron))
-						var/obj/item/stack/oldStack = stomachContent
-						new /obj/item/stack/material/phoron(src, oldStack.get_amount())
-						qdel(oldStack)
-						continue
-				else if(istype(stomachContent,/obj/item)) //converts to plasma, keeping the w_class
-					var/obj/item/oldItem = stomachContent
-					new /obj/item/stack/material/phoron(src, oldItem.w_class)
-					qdel(oldItem)
-					continue
-				else
-					new /obj/item/stack/material/phoron(src, flatPlasmaValue) //just flat amount
-					qdel(stomachContent)
-					continue
-
-		if(previous)
-			for(var/atom/movable/stomachContent in contents) //transfer it along the digestive tract
-				previous.contents += stomachContent
-		else
-			for(var/atom/movable/stomachContent in contents) //or poop it out
-				loc.contents += stomachContent
-
-		return

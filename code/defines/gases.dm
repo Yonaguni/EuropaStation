@@ -18,8 +18,8 @@
 	molar_mass = 0.044	// kg/mol
 
 /decl/xgm_gas/phoron
-	id = "phoron"
-	name = "Phoron"
+	id = "fuel"
+	name = "Fuel"
 	specific_heat = 200	// J/(mol*K)
 	layer_offset = 0.3
 
@@ -32,15 +32,6 @@
 	tile_overlay_colour = "#FFBB00"
 	overlay_limit = 0.7
 	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT
-
-/decl/xgm_gas/volatile_fuel
-	id = "volatile_fuel"
-	name = "Volatile Fuel"
-	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
-	molar_mass = 0.114	// kg/mol. 		same.
-	layer_offset = 0.2
-
-	flags = XGM_GAS_FUEL
 
 /decl/xgm_gas/sleeping_agent
 	id = "sleeping_agent"
