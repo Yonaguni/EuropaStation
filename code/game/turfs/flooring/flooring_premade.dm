@@ -23,7 +23,7 @@
 	initial_flooring = /decl/flooring/wood
 
 /turf/simulated/floor/wood/broken
-	icon_state = "wood_broken0"
+	icon_state = "broken_preview"
 
 /turf/simulated/floor/wood/broken/New()
 	break_tile()
