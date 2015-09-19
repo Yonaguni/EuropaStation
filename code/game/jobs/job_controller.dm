@@ -488,6 +488,7 @@ var/global/datum/controller/occupations/job_master
 
 		if(job.idtype)
 			spawnId(H, rank, alt_title)
+
 		if(job.headsettype)
 			H.equip_to_slot_or_del(new job.headsettype(H), slot_l_ear)
 			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
@@ -495,7 +496,7 @@ var/global/datum/controller/occupations/job_master
 		// Create passport.
 		if(H.client && H.client.prefs && !isnull(H.client.prefs.citizenship) && H.client.prefs.citizenship != "None")
 			var/obj/item/weapon/card/id/europa/passport/P = new(H)
-			P.sync_to(H)
+			H.set_id_info(P)
 			// If they have a wallet, great. If not, try to put it in the ID slot,
 			// then pockets. If that fails, put it on the ground.
 			var/obj/item/weapon/storage/wallet/W = locate() in H.contents
