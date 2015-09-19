@@ -1,5 +1,5 @@
 /obj/item/clothing/head/helmet/space/europa
-	name = "Spaceproof Europan hat"
+	name = "spaceproof europan hat"
 	desc = "An undersea colonist hat."
 	icon = 'icons/obj/europa/clothing/helmet.dmi'
 	item_state_slots = null
@@ -12,7 +12,7 @@
 		)
 		
 /obj/item/clothing/head/europa
-	name = "Europan hat"
+	name = "europan hat"
 	desc = "An undersea colonist hat. You shouldn't see this."
 	icon = 'icons/obj/europa/clothing/helmet.dmi'
 	item_state_slots = null
