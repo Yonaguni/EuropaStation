@@ -1,12 +1,8 @@
 /obj/item/weapon/card/id/europa
-	name = "ID card"
+	name = "citizenship card"
 	icon = 'icons/obj/europa/items/cards.dmi'
 	icon_state = "card"
 	assignment = "Citizen"
-
-/obj/item/weapon/card/id/europa/proc/sync_to(var/mob/living/owner)
-	registered_name = owner.real_name
-	set_name()
 
 /obj/item/weapon/card/id/europa/corpcard
 	name = "corporate ID"
@@ -26,14 +22,7 @@
 	icon_state = "passport"
 	var/citizenship = "Europan"
 
-/obj/item/weapon/card/id/europa/passport/sync_to(var/mob/living/owner)
-	if(!owner) return
-	if(owner.client && owner.client.prefs && !isnull(owner.client.prefs.citizenship) && owner.client.prefs.citizenship != "None")
-		citizenship = owner.client.prefs.citizenship
-	..(owner)
-
-/obj/item/weapon/card/id/europa/passport/set_name(var/new_name)
-	..(new_name)
+/obj/item/weapon/card/id/europa/passport/update_name()
 	name = "[registered_name]'s [citizenship] [initial(name)]"
 
 /obj/item/weapon/card/id/europa/dogtags

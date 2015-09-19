@@ -137,7 +137,7 @@
 	return
 
 /obj/item/weapon/card/id/proc/update_name()
-	name = "[src.registered_name]'s ID Card ([src.assignment])"
+	name = "[src.registered_name]'s [initial(name)] ([src.assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
 	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
@@ -148,6 +148,11 @@
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
 	id_card.set_id_photo(src)
+
+	if(istype(id_card, /obj/item/weapon/card/id/europa/passport) && \
+	 client && client.prefs && !isnull(client.prefs.citizenship) && client.prefs.citizenship != "None")
+		var/obj/item/weapon/card/id/europa/passport/P = id_card
+		P.citizenship = client.prefs.citizenship
 
 	if(dna)
 		id_card.blood_type		= dna.b_type
