@@ -1,6 +1,19 @@
 /obj/item/clothing/head/helmet/space/europa
-	name = "Europan hat"
+	name = "Spaceproof Europan hat"
 	desc = "An undersea colonist hat."
+	icon = 'icons/obj/europa/clothing/helmet.dmi'
+	item_state_slots = null
+	sprite_sheets = null
+	species_restricted = null
+	item_icons = list(
+		slot_head_str = 'icons/mob/europa/worn_helmet.dmi',
+		slot_l_hand_str = 'icons/mob/europa/lefthand_helmet.dmi',
+		slot_r_hand_str = 'icons/mob/europa/righthand_helmet.dmi'
+		)
+		
+/obj/item/clothing/head/europa
+	name = "Europan hat"
+	desc = "An undersea colonist hat. You shouldn't see this."
 	icon = 'icons/obj/europa/clothing/helmet.dmi'
 	item_state_slots = null
 	sprite_sheets = null
@@ -31,22 +44,22 @@
 
 //Government
 
-/obj/item/clothing/head/petty_officer/marshal
+/obj/item/clothing/head/europa/petty_officer/marshal
 	name = "marshal's cap"
 	desc = "A soft grey camo cap with a golden insignia for a government marshal."
 	icon_state = "marshal_cap"
 
-/obj/item/clothing/head/petty_officer/
+/obj/item/clothing/head/europa/petty_officer/
 	name = "petty officer's cap"
 	desc = "A soft grey camo cap for government petty pfficers."
 	icon_state = "petty_officer_cap"
 
-/obj/item/clothing/head/petty_officer/parade
+/obj/item/clothing/head/europa/petty_officer/parade
 	name = "petty officer's parade cap"
 	desc = "A sturdy grey hat fit for formal occasions."
 	icon_state = "petty_officer_parade_cap"
 
-/obj/item/clothing/head/petty_officer/parade/marshal
+/obj/item/clothing/head/europa/petty_officer/parade/marshal
 	name = "marshal's parade hat"
 	desc = "A decorated formal hat that announces your official presence."
 	icon_state = "marshal_parade_cap"
