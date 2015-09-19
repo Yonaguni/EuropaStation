@@ -855,6 +855,11 @@
 		return cabin_air
 	return get_turf_air()
 
+/obj/mecha/is_flooded(var/lying_mob)
+	if(use_internal_tank)
+		return 0
+	return ..(lying_mob)
+
 /obj/mecha/proc/return_pressure()
 	. = 0
 	if(use_internal_tank)
