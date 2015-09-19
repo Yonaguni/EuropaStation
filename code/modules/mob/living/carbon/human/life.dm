@@ -567,7 +567,6 @@
 	if(!environment)
 		return
 
-	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.

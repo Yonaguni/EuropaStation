@@ -9,12 +9,6 @@
 		return 1
 	return 0
 
-/proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
-		return istype(H.species, /datum/species/xenos)
-	return 0
-
 /proc/issmall(A)
 	if(A && istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
@@ -644,7 +638,7 @@ proc/is_blind(A)
 	// A proper	CentCom id is hard currency.
 	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
 		return SAFE_PERP
-	
+
 	if(check_access && !access_obj.allowed(src))
 		threatcount += 4
 

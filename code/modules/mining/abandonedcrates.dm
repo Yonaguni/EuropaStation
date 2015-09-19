@@ -104,7 +104,7 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(89)
-			new/obj/item/organ/xenos/plasmavessel(src)
+			new/obj/item/organ/liver(src)
 		if(90)
 			new/obj/item/organ/heart(src)
 		if(91)
