@@ -1,7 +1,9 @@
-// Placeholder file, will get to the mechanics and icons at some point.
+// Placeholder file, will get to the mechanics at some point.
 /obj/item/weapon/gun/railgun
 	name = "rail rifle"
 	desc = "A bulky, reliable ballistic weapon that uses induced magnetic fields to fire slugs. Weapon of choice for the mercenary on the go."
+	icon_state = "railgun"
+	icon = 'icons/obj/railguns.dmi'
 
 /obj/item/weapon/gun/railgun/semiauto
 	name = "modified rail rifle"
