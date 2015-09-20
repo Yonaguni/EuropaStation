@@ -117,7 +117,7 @@
 		return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
-	name = "\improper PBT \"Pacifier\" mounted taser"
+	name = "\improper \"Suppressor\" mounted electrolaser"
 	icon_state = "mecha_taser"
 	energy_drain = 20
 	equip_cooldown = 8

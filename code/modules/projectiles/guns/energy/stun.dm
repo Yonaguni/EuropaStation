@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/taser
-	name = "taser gun"
-	desc = "The NT Mk30 NL is a small, low capacity gun used for non-lethal takedowns. Produced by NT, it's actually a licensed version of a W-T design."
+	name = "electroshock pistol"
+	desc = "This small, rather cheapy produced weapon is a staple non-lethal takedown method. It uses a laser-induced plasma channel to stun and incapacitate unarmoured individuals."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
@@ -8,7 +8,7 @@
 	projectile_type = /obj/item/projectile/beam/stun
 
 /obj/item/weapon/gun/energy/taser/mounted
-	name = "mounted taser gun"
+	name = "mounted electroshock gun"
 	self_recharge = 1
 	use_external_power = 1
 
@@ -20,7 +20,7 @@
 
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "stun revolver"
-	desc = "A LAEP20 Zeus. Designed by Lawson Arms and produced under the wing of the FTU, several TSCs have been trying to get a hold of the blueprints for half a decade."
+	desc = "A variant of the electroshock pistol that uses a revolving cylinder of self-contained charges rather than a single battery."
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
