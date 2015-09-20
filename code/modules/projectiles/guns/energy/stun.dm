@@ -17,7 +17,6 @@
 	max_shots = 6
 	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
-
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "stun revolver"
 	desc = "A variant of the electroshock pistol that uses a revolving cylinder of self-contained piezo-electric shells rather than a battery and projector plate."
@@ -27,7 +26,6 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	projectile_type = /obj/item/projectile/energy/electrode
 	max_shots = 8
-
 
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
