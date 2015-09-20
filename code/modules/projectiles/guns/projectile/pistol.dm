@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/colt
 	name = "vintage .45 pistol"
-	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
+	desc = "A cheap knock-off of a Colt M1911. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
 	caliber = ".45"
@@ -31,7 +31,7 @@
 
 /obj/item/weapon/gun/projectile/sec
 	name = ".45 pistol"
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Found pretty much everywhere humans are. Uses .45 rounds."
+	desc = "A cheap, ubiquitous sidearm found pretty much everywhere humans are. Uses .45 rounds."
 	icon_state = "secguncomp"
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
 	caliber = ".45"
@@ -44,7 +44,7 @@
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 
 /obj/item/weapon/gun/projectile/sec/wood
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip. Uses .45 rounds."
+	desc = "A cheap, ubiquitous sidearm. This one has a sweet wooden grip. Uses .45 rounds."
 	name = "custom .45 Pistol"
 	icon_state = "secgundark"
 
@@ -71,7 +71,7 @@
 	auto_eject = 1
 
 /obj/item/weapon/gun/projectile/deagle/gold
-	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
+	desc = "A gold plated gun folded over a million times by superior Martian gunsmiths. Uses .50 AE ammo."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
@@ -85,7 +85,7 @@
 
 /obj/item/weapon/gun/projectile/gyropistol
 	name = "gyrojet pistol"
-	desc = "A bulky pistol designed to fire self propelled rounds"
+	desc = "A bulky pistol designed to fire self-propelled rounds."
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = "75"
@@ -106,7 +106,7 @@
 
 /obj/item/weapon/gun/projectile/pistol
 	name = "holdout pistol"
-	desc = "The Lumoco Arms P3 Whisper. A small, easily concealable gun. Uses 9mm rounds."
+	desc = "A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
 	item_state = null
 	w_class = 2
