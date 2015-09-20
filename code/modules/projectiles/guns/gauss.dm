@@ -5,6 +5,7 @@
 
 /obj/item/weapon/gun/railgun/semiauto
 	name = "modified rail rifle"
+	desc = "A bulky, reliable ballistic weapon that uses induced magnetic fields to fire slugs. This one is has been fitted with a custom firing mechanism."
 
 /obj/item/weapon/gun/railgun/pistol
 	name = "rail pistol"
@@ -18,4 +19,4 @@
 // One-shot, destroyed after use.
 /obj/item/weapon/gun/railgun/gauss
 	name = "improvised coilgun"
-	desc = "The forces leashed in this jury-rigged piece of crap are enough to put a hole in six inches of plate steel. Keep pointed away from face.
+	desc = "The forces leashed in this jury-rigged piece of crap are enough to put a hole in six inches of plate steel. Keep pointed away from face."
