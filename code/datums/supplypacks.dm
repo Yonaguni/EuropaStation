@@ -710,8 +710,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Weapons crate"
 	contains = list(/obj/item/weapon/melee/baton,
 					/obj/item/weapon/melee/baton,
-					/obj/item/weapon/gun/energy/gun,
-					/obj/item/weapon/gun/energy/gun,
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/projectile/sec,
@@ -734,20 +732,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Flare gun crate"
 	access = access_security
-	group = "Security"
-
-/datum/supply_packs/eweapons
-	name = "Experimental weapons crate"
-	contains = list(/obj/item/weapon/gun/energy/xray,
-					/obj/item/weapon/gun/energy/xray,
-					/obj/item/weapon/shield/energy,
-					/obj/item/weapon/shield/energy,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof)
-	cost = 125
-	containertype = /obj/structure/closet/crate/secure/weapon
-	containername = "Experimental weapons crate"
-	access = access_heads
 	group = "Security"
 
 /datum/supply_packs/randomised/armor
@@ -798,17 +782,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_armory
 	group = "Security"
 
-/datum/supply_packs/energyweapons
-	name = "Energy weapons crate"
-	contains = list(/obj/item/weapon/gun/energy/laser,
-					/obj/item/weapon/gun/energy/laser,
-					/obj/item/weapon/gun/energy/laser)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "energy weapons crate"
-	access = access_armory
-	group = "Security"
-
 /datum/supply_packs/shotgun
 	name = "Shotgun crate"
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
@@ -820,18 +793,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 65
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Shotgun crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/erifle
-	name = "Energy marksman crate"
-	contains = list(/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/weapon/gun/energy/sniperrifle,
-					/obj/item/weapon/gun/energy/sniperrifle)
-	cost = 90
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Energy marksman crate"
 	access = access_armory
 	group = "Security"
 
@@ -878,29 +839,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Automatic weapon ammunition crate"
-	access = access_armory
-	group = "Security"
-
-/*
-/datum/supply_packs/loyalty
-	name = "Loyalty implant crate"
-	contains = list (/obj/item/weapon/storage/lockbox/loyalty)
-	cost = 60
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Loyalty implant crate"
-	access = access_armory
-	group = "Security"
-*/
-
-/datum/supply_packs/expenergy
-	name = "Experimental energy gear crate"
-	contains = list(/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/weapon/gun/energy/gun,
-					/obj/item/weapon/gun/energy/gun)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Experimental energy gear crate"
 	access = access_armory
 	group = "Security"
 

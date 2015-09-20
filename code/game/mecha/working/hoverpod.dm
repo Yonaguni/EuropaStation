@@ -51,7 +51,7 @@
 			ion_trail.start()
 		if (stabilization_enabled)
 			return 1
-	
+
 	return ..()
 
 //these three procs overriden to play different sounds
@@ -72,24 +72,6 @@
 	if(result)
 		playsound(src,'sound/machines/hiss.ogg',40,1)
 	return result
-
-
-//Hoverpod variants
-/obj/mecha/working/hoverpod/combatpod
-	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
-	name = "Combat Hoverpod"
-	health = 200
-	internal_damage_threshold = 35
-	cargo_capacity = 2
-	max_equip = 2
-
-/obj/mecha/working/hoverpod/combatpod/New()
-	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
-	ME.attach(src)
-
 
 /obj/mecha/working/hoverpod/shuttlepod
 	desc = "Who knew a tiny ball could fit three people?"

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/taser
 	name = "electroshock pistol"
-	desc = "This small, rather cheapy produced weapon is a staple non-lethal takedown method. It uses a laser-induced plasma channel to stun and incapacitate unarmoured individuals."
+	desc = "This small, rather cheaply produced weapon is a staple non-lethal takedown method. It uses a laser-induced plasma channel to stun and incapacitate unarmoured targets."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
@@ -13,14 +13,14 @@
 	use_external_power = 1
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
-	name = "taser gun"
+	name = "mounted electrolaser"
 	max_shots = 6
 	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
 
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "stun revolver"
-	desc = "A variant of the electroshock pistol that uses a revolving cylinder of self-contained charges rather than a single battery."
+	desc = "A variant of the electroshock pistol that uses a revolving cylinder of self-contained piezo-electric shells rather than a battery and projector plate."
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Gunshot.ogg'

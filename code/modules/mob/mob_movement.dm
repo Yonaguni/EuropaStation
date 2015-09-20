@@ -11,7 +11,7 @@
 	return
 
 /mob/proc/setMoveCooldown(var/timeout)
-	if(client) 
+	if(client)
 		client.move_delay = max(world.time + timeout, client.move_delay)
 
 /client/North()
@@ -220,16 +220,6 @@
 					if(item.zoom)
 						item.zoom()
 						break
-				/*
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-				if(locate(/obj/item/device/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/device/binoculars/b = locate() in mob
-					if(b.zoom)
-						b.zoom()
-				*/
 
 	if(Process_Grab())	return
 

@@ -10,7 +10,7 @@
 	var/fire_sound //Sound played while firing.
 	var/fire_volume = 50 //How loud it is played.
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
-	required_type = list(/obj/mecha/combat, /obj/mecha/working/hoverpod/combatpod)
+	required_type = list(/obj/mecha/combat)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target)
 	if(projectiles <= 0)
@@ -60,61 +60,6 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	auto_rearm = 1
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
-	equip_cooldown = 8
-	name = "\improper CH-PS \"Immolator\" laser"
-	icon_state = "mecha_laser"
-	energy_drain = 30
-	projectile = /obj/item/projectile/beam
-	fire_sound = 'sound/weapons/Laser.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
-	equip_cooldown = 30
-	name = "jury-rigged welder-laser"
-	desc = "While not regulation, this inefficient weapon can be attached to working exo-suits in desperate, or malicious, times."
-	icon_state = "mecha_laser"
-	energy_drain = 80
-	projectile = /obj/item/projectile/beam
-	fire_sound = 'sound/weapons/Laser.ogg'
-	required_type = list(/obj/mecha/combat, /obj/mecha/working)
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
-	equip_cooldown = 15
-	name = "\improper CH-LC \"Solaris\" laser cannon"
-	icon_state = "mecha_laser"
-	energy_drain = 60
-	projectile = /obj/item/projectile/beam/heavylaser
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
-	equip_cooldown = 40
-	name = "mkIV ion heavy cannon"
-	icon_state = "mecha_ion"
-	energy_drain = 120
-	projectile = /obj/item/projectile/ion
-	fire_sound = 'sound/weapons/Laser.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
-	equip_cooldown = 30
-	name = "eZ-13 mk2 heavy pulse rifle"
-	icon_state = "mecha_pulse"
-	energy_drain = 120
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 6, TECH_POWER = 4)
-	projectile = /obj/item/projectile/beam/pulse/heavy
-	fire_sound = 'sound/weapons/marauder.ogg'
-
-/obj/item/projectile/beam/pulse/heavy
-	name = "heavy pulse laser"
-	icon_state = "pulse1_bl"
-	var/life = 20
-
-	Bump(atom/A)
-		A.bullet_act(src, def_zone)
-		src.life -= 10
-		if(life <= 0)
-			qdel(src)
-		return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 	name = "\improper \"Suppressor\" mounted electrolaser"

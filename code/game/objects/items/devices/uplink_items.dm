@@ -197,11 +197,6 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/syndie_kit/g9mm
 
-/datum/uplink_item/item/visible_weapons/riggedlaser
-	name = "Exosuit Rigged Laser"
-	item_cost = 6
-	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
-
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
 	item_cost = 6
@@ -460,9 +455,9 @@ datum/uplink_item/dd_SortValue()
 	path = /obj/item/rig_module/maneuvering_jets
 
 /datum/uplink_item/item/hardsuit_modules/egun
-	name = "Mounted Energy Gun"
+	name = "Mounted Electroshock Gun"
 	item_cost = 6
-	path = /obj/item/rig_module/mounted/egun
+	path = /obj/item/rig_module/mounted
 
 /datum/uplink_item/item/hardsuit_modules/power_sink
 	name = "Power Sink"

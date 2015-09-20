@@ -176,8 +176,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "energykill100"
 	item_to_spawn()
-		return pick(prob(2);/obj/item/weapon/gun/energy/laser,\
-					prob(2);/obj/item/weapon/gun/energy/gun,\
+		return pick(prob(2);/obj/item/weapon/gun/energy/taser,\
 					prob(1);/obj/item/weapon/gun/energy/stunrevolver)
 
 /obj/random/projectile

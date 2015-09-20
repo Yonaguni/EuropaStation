@@ -91,19 +91,19 @@
 
 /obj/item/rig_module/mounted
 
-	name = "mounted laser cannon"
-	desc = "A shoulder-mounted battery-powered laser cannon mount."
+
+	name = "mounted electrolaser"
+	desc = "A palm-mounted nonlethal energy projector."
+	icon_state = "taser"
+	usable = 0
+	suit_overlay_active = "mounted-taser"
+	suit_overlay_inactive = "mounted-taser"
+	interface_name = "mounted electrolaser"
+	interface_desc = "A shoulder-mounted cell-powered electroshock gun."
 	selectable = 1
-	usable = 1
 	module_cooldown = 0
-	icon_state = "lcannon"
-
 	engage_string = "Configure"
-
-	interface_name = "mounted laser cannon"
-	interface_desc = "A shoulder-mounted cell-powered laser cannon."
-
-	var/gun_type = /obj/item/weapon/gun/energy/lasercannon/mounted
+	var/gun_type = /obj/item/weapon/gun/energy/taser/mounted
 	var/obj/item/weapon/gun/gun
 
 /obj/item/rig_module/mounted/New()
@@ -121,33 +121,6 @@
 
 	gun.Fire(target,holder.wearer)
 	return 1
-
-/obj/item/rig_module/mounted/egun
-
-	name = "mounted energy gun"
-	desc = "A forearm-mounted energy projector."
-	icon_state = "egun"
-
-	interface_name = "mounted energy gun"
-	interface_desc = "A forearm-mounted suit-powered energy gun."
-
-	gun_type = /obj/item/weapon/gun/energy/gun/mounted
-
-/obj/item/rig_module/mounted/taser
-
-	name = "mounted electrolaser"
-	desc = "A palm-mounted nonlethal energy projector."
-	icon_state = "taser"
-
-	usable = 0
-
-	suit_overlay_active = "mounted-taser"
-	suit_overlay_inactive = "mounted-taser"
-
-	interface_name = "mounted energy gun"
-	interface_desc = "A shoulder-mounted cell-powered energy gun."
-
-	gun_type = /obj/item/weapon/gun/energy/taser/mounted
 
 /obj/item/rig_module/mounted/energy_blade
 
