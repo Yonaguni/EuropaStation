@@ -74,14 +74,13 @@
  * Government Uniforms
  */
 
-/obj/item/clothing/under/rank/petty_officer
+/obj/item/clothing/under/europa/petty_officer
 	name = "petty officer's fatigues"
 	desc = "Standard government fatigues sporting a grey camo design. The insignia on the collar denotes the wearer to be a colonial petty officer under the administration of the SDPE."
 	icon_state = "petty_officer"
-	item_state = "ba_suit"
 	worn_state = "petty_officer"
 
-/obj/item/clothing/under/rank/petty_officer/marshal
+/obj/item/clothing/under/europa/petty_officer/marshal
 	name = "marshal's fatigues"
 	desc = "High ranking government fatigues with a grey digital camo design and gold embroidery. The gold trims denote the wearer to be a colonial marshall under the administration of the SDPE."
 	icon_state = "marshal"
