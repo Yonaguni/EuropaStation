@@ -143,7 +143,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/standard
 	name = "standard robot module"
 	sprites = list(	"Basic" = "robot_old",
-					"Android" = "droid",
+					"Droid" = "droid",
 					"Default" = "robot",
 					"Drone" = "drone-standard"
 				  )
@@ -411,7 +411,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/melee/baton/robot(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src)
 	src.modules += new /obj/item/taperoll/police(src)
-	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	..()
 
 /obj/item/weapon/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -623,7 +622,6 @@ var/global/list/robot_modules = list(
 	loc = R
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/melee/energy/sword(src)
-	src.modules += new /obj/item/weapon/gun/energy/pulse_rifle/destroyer(src)
 	src.modules += new /obj/item/weapon/card/emag(src)
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
@@ -640,16 +638,14 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/combat
 	name = "combat robot module"
-	sprites = list("Combat Android" = "droid-combat")
+	sprites = list("Combat Droid" = "droid-combat")
 
 /obj/item/weapon/robot_module/combat/New()
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
-	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
 	..()
 
 /obj/item/weapon/robot_module/drone

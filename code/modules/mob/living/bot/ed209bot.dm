@@ -166,7 +166,7 @@
 
 		if(7)
 			if(istype(W, /obj/item/weapon/gun/energy/taser))
-				name = "taser ED-209 assembly"
+				name = "electrolaser ED-209 assembly"
 				build_step++
 				user << "<span class='notice'>You add [W] to [src].</span>"
 				item_state = "ed209_taser"
@@ -183,7 +183,7 @@
 				if(get_turf(user) == T && build_step == 8)
 					build_step++
 					name = "armed [name]"
-					user << "<span class='notice'>Taser gun attached.</span>"
+					user << "<span class='notice'>Electrolaser attached.</span>"
 
 		if(9)
 			if(istype(W, /obj/item/weapon/cell))

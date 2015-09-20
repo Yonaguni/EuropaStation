@@ -582,7 +582,7 @@
 				<ul>
 				  <li>Stun Baton</li>
 				  <li>Handcuffs</li>
-				  <li>Taser</li>
+				  <li>Electrolaser</li>
 				</ul>
 
 				<h3>Janitor Cyborg</h3>

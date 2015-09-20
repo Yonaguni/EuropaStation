@@ -21,32 +21,13 @@
 	description_antag = "This is a stealthy weapon which fires poisoned bolts at your target.  When it hits someone, they will suffer a stun effect, in \
 	addition to toxins.  The energy crossbow recharges itself slowly, and can be concealed in your pocket or bag."
 
-/obj/item/weapon/gun/energy/gun
-	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
-	then click where you want to fire.  Most energy weapons can fire through windows harmlessly.  To switch between stun and lethal, click the weapon \
-	in your hand.  To recharge this weapon, use a weapon recharger."
-
-/obj/item/weapon/gun/energy/gun/taser
+/obj/item/weapon/gun/energy/taser
 	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
 	then click where you want to fire.  Most energy weapons can fire through windows harmlessly. To recharge this weapon, use a weapon recharger."
 
-/obj/item/weapon/gun/energy/gun/stunrevolver
+/obj/item/weapon/gun/energy/stunrevolver
 	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
 	then click where you want to fire.  Most energy weapons can fire through windows harmlessly. To recharge this weapon, use a weapon recharger."
-
-/obj/item/weapon/gun/energy/gun/nuclear
-	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
-	then click where you want to fire.  Most energy weapons can fire through windows harmlessly.  To switch between stun and lethal, click the weapon \
-	in your hand.  Unlike most weapons, this weapon recharges itself."
-
-/obj/item/weapon/gun/energy/captain
-	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
-	then click where you want to fire.  Most energy weapons can fire through windows harmlessly. Unlike most weapons, this weapon recharges itself."
-
-/obj/item/weapon/gun/energy/sniperrifle
-	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
-	then click where you want to fire.  Most energy weapons can fire through windows harmlessly.  To recharge this weapon, use a weapon recharger. \
-	To use the scope, use the appropriate verb in the object tab."
 
 /obj/item/weapon/gun/projectile
 	description_info = "This is a ballistic weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \

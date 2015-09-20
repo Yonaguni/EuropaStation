@@ -27,7 +27,7 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/installation = /obj/item/weapon/gun/energy/gun		//the type of weapon installed
+	var/installation = /obj/item/weapon/gun/energy/taser		//the type of weapon installed
 	var/gun_charge = 0		//the charge of the gun inserted
 	var/projectile = null	//holder for bullettype
 	var/eprojectile = null	//holder for the shot when emagged
@@ -73,7 +73,7 @@
 /obj/machinery/porta_turret/stationary
 	ailock = 1
 	lethal = 1
-	installation = /obj/item/weapon/gun/energy/laser
+	installation = /obj/item/weapon/gun/energy/taser
 
 /obj/machinery/porta_turret/New()
 	..()
@@ -110,43 +110,12 @@
 
 /obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
 	switch(guntype)
-		if(/obj/item/weapon/gun/energy/laser/practice)
-			iconholder = 1
-			eprojectile = /obj/item/projectile/beam
-
-//			if(/obj/item/weapon/gun/energy/laser/practice/sc_laser)
-//				iconholder = 1
-//				eprojectile = /obj/item/projectile/beam
-
-		if(/obj/item/weapon/gun/energy/retro)
-			iconholder = 1
-
-//			if(/obj/item/weapon/gun/energy/retro/sc_retro)
-//				iconholder = 1
-
-		if(/obj/item/weapon/gun/energy/captain)
-			iconholder = 1
-
-		if(/obj/item/weapon/gun/energy/lasercannon)
-			iconholder = 1
-
 		if(/obj/item/weapon/gun/energy/taser)
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/weapons/Laser.ogg'
-
 		if(/obj/item/weapon/gun/energy/stunrevolver)
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/weapons/Laser.ogg'
-
-		if(/obj/item/weapon/gun/energy/gun)
-			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
-			eshot_sound = 'sound/weapons/Laser.ogg'
-			egun = 1
-
-		if(/obj/item/weapon/gun/energy/gun/nuclear)
-			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
-			eshot_sound = 'sound/weapons/Laser.ogg'
-			egun = 1
 
 var/list/turret_icons
 

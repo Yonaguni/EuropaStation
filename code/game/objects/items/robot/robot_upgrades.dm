@@ -95,8 +95,8 @@
 
 
 /obj/item/borg/upgrade/tasercooler
-	name = "robotic Rapid Taser Cooling Module"
-	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
+	name = "robotic rapid cooling module"
+	desc = "Used to cool a mounted weapon system, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 

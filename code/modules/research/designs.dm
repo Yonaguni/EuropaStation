@@ -475,21 +475,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
 	sort_string = "TAAAA"
 
-/datum/design/item/weapon/nuclear_gun
-	id = "nuclear_gun"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "uranium" = 500)
-	build_path = /obj/item/weapon/gun/energy/gun/nuclear
-	sort_string = "TAAAB"
-
-/datum/design/item/weapon/lasercannon
-	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
-	id = "lasercannon"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1000, "diamond" = 2000)
-	build_path = /obj/item/weapon/gun/energy/lasercannon
-	sort_string = "TAAAC"
-
 /datum/design/item/weapon/phoronpistol
 	id = "ppistol"
 	req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
@@ -637,16 +622,6 @@ other types of metals and chemistry for reagents).
 	materials = list("glass" = 1000, "gold" = 200)
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
-
-/datum/design/item/posibrain
-	name = "Positronic brain"
-	id = "posibrain"
-	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
-	build_type = PROTOLATHE | MECHFAB
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "diamond" = 100)
-	build_path = /obj/item/device/mmi/digital/posibrain
-	category = "Misc"
-	sort_string = "VACAB"
 
 /datum/design/item/mmi
 	name = "Man-machine interface"

@@ -6,7 +6,7 @@
 	max_damage = 50 //made same as arm, since it is not vital
 	min_broken_damage = 30
 	encased = null
-	
+
 /obj/item/organ/external/head/ipc/New()
 	robotize("Morpheus Cyberkinetics")
 	..()
@@ -143,14 +143,13 @@
 
 /obj/item/organ/mmi_holder/posibrain/New()
 	robotize()
-	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)
+	stored_mmi = new /obj/item/device/mmi/digital(src)
 	..()
 	spawn(1)
 		if(owner)
-			stored_mmi.name = "positronic brain ([owner.name])"
+			stored_mmi.name = "CPU ([owner.name])"
 			stored_mmi.brainmob.real_name = owner.name
 			stored_mmi.brainmob.name = stored_mmi.brainmob.real_name
-			stored_mmi.icon_state = "posibrain-occupied"
 			update_from_mmi()
 		else
 			stored_mmi.loc = get_turf(src)

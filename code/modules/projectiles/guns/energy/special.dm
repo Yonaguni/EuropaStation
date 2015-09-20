@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/ionrifle
-	name = "ion rifle"
-	desc = "The NT Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
+	name = "directed-energy particle rifle"
+	desc = "Although the name is rather menacing, this bulky, power-hungry energy weapon is designed to damage and incapacitate machinery and causes little to no damage to organic flesh."
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
 	fire_sound = 'sound/weapons/Laser.ogg'

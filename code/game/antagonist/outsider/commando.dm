@@ -29,7 +29,6 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 	player.equip_to_slot_or_del(new /obj/item/weapon/storage/box(player), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45(player), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/weapon/rig/merc(player), slot_back)
-	player.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(player), slot_r_hand)
 
 	create_id("Commando", player)
 	create_radio(SYND_FREQ, player)

@@ -15,8 +15,6 @@ var/datum/antagonist/renegade/renegades
 	initial_spawn_target = 6
 
 	var/list/spawn_guns = list(
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/laser,
 		/obj/item/weapon/gun/projectile,
 		/obj/item/weapon/gun/projectile/revolver/detective,
 		/obj/item/weapon/gun/projectile/automatic/c20r,

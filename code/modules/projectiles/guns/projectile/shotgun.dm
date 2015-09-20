@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
-	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
+	desc = "A favourite of police and security forces on many worlds. Useful for sweeping streets."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
-	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders."
+	desc = "Built for close quarters combat, a combat shotgun is widely regarded as a weapon of choice for repelling boarders."
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -65,7 +65,7 @@
 	caliber = "shotgun"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	
+
 	burst_delay = 0
 	firemodes = list(
 		list(name="fire one barrel at a time", burst=1),

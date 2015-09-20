@@ -1,7 +1,7 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage = 60
+	damage = 40
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
@@ -100,18 +100,18 @@
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
 /obj/item/projectile/bullet/pistol
-	damage = 20
+	damage = 10
 
 /obj/item/projectile/bullet/pistol/medium
-	damage = 25
+	damage = 12
 
 /obj/item/projectile/bullet/pistol/strong //revolvers and matebas
-	damage = 60
+	damage = 30
 
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
 	damage = 10
-	agony = 40
+	agony = 25
 	embed = 0
 	sharp = 0
 
@@ -119,13 +119,13 @@
 
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
-	damage = 50
+	damage = 35
 	armor_penetration = 15
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
-	damage = 20
-	agony = 60
+	damage = 15
+	agony = 40
 	embed = 0
 	sharp = 0
 
@@ -151,7 +151,7 @@
 	damage = 35
 
 /obj/item/projectile/bullet/rifle/a145
-	damage = 80
+	damage = 60
 	stun = 3
 	weaken = 3
 	penetrating = 5

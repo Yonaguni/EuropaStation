@@ -122,7 +122,7 @@
 		return 1
 
 	// Okay, it wasn't a terminal being touched, check for all the simple insertions.
-	if(input_device.type in list(/obj/item/device/paicard, /obj/item/device/mmi, /obj/item/device/mmi/digital/posibrain))
+	if(input_device.type in list(/obj/item/device/paicard, /obj/item/device/mmi))
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
 			// If the transfer was successful, we can clear out our vars.
