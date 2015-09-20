@@ -1,6 +1,5 @@
 // This system is used to grab a ghost from observers with the required preferences and
 // lack of bans set. See posibrain.dm for an example of how they are called/used. ~Z
-
 var/list/ghost_traps
 
 proc/get_ghost_trap(var/trap_key)
@@ -78,6 +77,8 @@ proc/populate_ghost_traps()
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
+	return
+	/*
 	target << "<b>You are a positronic brain, brought into existence on [station_name()].</b>"
 	target << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
 	target << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
@@ -90,6 +91,7 @@ proc/populate_ghost_traps()
 	P.searching = 0
 	P.name = "positronic brain ([P.brainmob.name])"
 	P.icon_state = "posibrain-occupied"
+	*/
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)

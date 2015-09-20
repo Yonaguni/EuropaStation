@@ -143,7 +143,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/standard
 	name = "standard robot module"
 	sprites = list(	"Basic" = "robot_old",
-					"Android" = "droid",
+					"Droid" = "droid",
 					"Default" = "robot",
 					"Drone" = "drone-standard"
 				  )
@@ -640,7 +640,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/combat
 	name = "combat robot module"
-	sprites = list("Combat Android" = "droid-combat")
+	sprites = list("Combat Droid" = "droid-combat")
 
 /obj/item/weapon/robot_module/combat/New()
 	src.modules += new /obj/item/device/flash(src)
