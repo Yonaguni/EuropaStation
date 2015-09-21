@@ -1050,6 +1050,7 @@
 #include "code\modules\economy\TradeDestinations.dm"
 #include "code\modules\europa\icon_helpers.dm"
 #include "code\modules\europa\access\cards.dm"
+#include "code\modules\europa\clothing\accessories.dm"
 #include "code\modules\europa\clothing\helmet.dm"
 #include "code\modules\europa\clothing\suit.dm"
 #include "code\modules\europa\clothing\under.dm"
