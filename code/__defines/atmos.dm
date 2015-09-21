@@ -1,3 +1,4 @@
+#define GAS_SATURATION_POINT 1000
 
 #define CELL_VOLUME        2500 // Liters in a cell.
 #define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION)) // Moles in a 2.5 m^3 cell at 101.325 kPa and 20 C.
@@ -91,6 +92,7 @@
 //xgm
 #define GAS_OVERLAY_LAYER 4.9
 #define GAS_MAX_ALPHA 180
+#define GAS_MIN_ALPHA 60
 
 // Defines how much of certain gas do the Atmospherics tanks start with. Values are in kpa per tile (assuming 20C)
 #define ATMOSTANK_NITROGEN      90000 // A lot of N2 is needed to produce air mix, that's why we keep 90MPa of it

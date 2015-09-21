@@ -5,6 +5,7 @@
 	icon = 'icons/obj/railguns.dmi'
 	load_method = SPEEDLOADER
 	max_shells = 12
+	fire_sound = 'sound/weapons/pulse.ogg'
 	ammo_type = /obj/item/ammo_casing/railgun
 	magazine_type = /obj/item/ammo_magazine/railgun
 	caliber = "railgun slug"
@@ -12,7 +13,7 @@
 	force = 5
 
 	var/rail_damage =           0
-	var/rail_damage_threshold = 1
+	var/rail_damage_threshold = 2
 	var/rail_deformed =         0
 	var/rail_damage_prob =      10
 	var/rail_repair_time =      50

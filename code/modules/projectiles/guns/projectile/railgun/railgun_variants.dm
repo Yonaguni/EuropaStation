@@ -6,9 +6,10 @@
 	icon_state = "railgun"
 	max_shells = 32
 	magazine_type = /obj/item/ammo_magazine/railgun/large
-	rail_damage_threshold = 3 // Chance of damaging itself when firing beyond a 3-round burst.
+	rail_damage_threshold = 4 // Chance of damaging itself when firing beyond a 3-round burst.
 	rail_damage_prob = 15
 	rail_repair_time = 100
+	fire_sound = 'sound/weapons/marauder.ogg'
 
 	slot_flags = SLOT_BACK
 	firemodes = list(
@@ -24,7 +25,7 @@
 	magazine_type = /obj/item/ammo_magazine/railgun/shell
 	caliber = "railgun shell"
 	max_shells = 16
-	rail_damage_threshold = 2
+	rail_damage_threshold = 3
 	rail_damage_prob = 20 // Almost guaranteed to break it if you fire faster than the threshold.
 
 /obj/item/weapon/gun/projectile/railgun/rifle/heavy/auto
@@ -37,10 +38,10 @@
 
 	firemodes = list(
 		list(name="short bursts",	burst=8, move_delay=20, burst_accuracy = list(0,-1,-1,-2,-2),          dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=15, move_delay=30, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="long bursts",	burst=12, move_delay=30, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 	rail_damage_threshold = 10 // Risk of warping every time it's fired.
-	rail_damage_prob = 10      // 100% chance of warping when firing a long burst. GG.
+	rail_damage_prob = 7       // Near-100% chance of warping when firing a long burst. GG.
 
 // Mostly a fluff distinction. Build these out of an SMES core, a cable coil and some metal rods.
 // Single-shot, hand-loaded, most likely destroyed after use.
@@ -57,9 +58,9 @@
 	force = 8
 	rail_damage_threshold = 0
 	rail_damage_prob = 100
+	fire_sound = 'sound/weapons/pulse.ogg'
 
 /obj/item/weapon/gun/projectile/railgun/gauss/check_damage()
-	..()
 	if(!src || !loc)
 		return
 	var/mob/living/M = loc
