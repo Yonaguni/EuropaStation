@@ -22,25 +22,33 @@
 	name = "osmium slug"
 	desc = "A railgun slug made of osmium."
 	caliber = "railgun slug"
-	projectile_type = /obj/item/projectile/bullet/railgun
+	projectile_type = /obj/item/projectile/beam/railgun
 	matter = list("osmium" = 1500)
 
 /obj/item/ammo_casing/railgun/shell
 	name = "osmium shell"
 	desc = "A railgun shell made of osmium."
 	caliber = "railgun shell"
-	projectile_type = /obj/item/projectile/bullet/railgun/shell
+	projectile_type = /obj/item/projectile/beam/railgun/shell
 	matter = list("osmium" = 7500)
 
-/obj/item/projectile/bullet/railgun
+/obj/item/projectile/beam/railgun
 	name = "railgun slug"
 	damage= 50
 	armor_penetration = 60
 	hitscan = 1
 	penetrating = 3
+	damage_type = BRUTE
+	check_armour = "bullet"
+	embed = 1
+	sharp = 1
+	pass_flags = PASSTABLE
 
-/obj/item/projectile/bullet/railgun/shell
+/obj/item/projectile/beam/railgun/shell
 	name = "railgun shell"
 	armor_penetration = 80
 	damage= 70
 	penetrating = 5
+	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
+	tracer_type = /obj/effect/projectile/laser_pulse/tracer
+	impact_type = /obj/effect/projectile/laser_pulse/impact
