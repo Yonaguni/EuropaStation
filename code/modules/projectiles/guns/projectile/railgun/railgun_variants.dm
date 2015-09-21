@@ -42,6 +42,12 @@
 	rail_damage_threshold = 10 // Risk of warping every time it's fired.
 	rail_damage_prob = 7       // Near-100% chance of warping when firing a long burst. GG.
 
+// Adminspawn/testing/debug only.
+/obj/item/weapon/gun/projectile/railgun/rifle/heavy/auto/reason
+	name = "\improper RHR accelerator"
+	desc = "A hefty prototype automatic railgun. Very high-tech. On the barrel is stamped <i>Ultima Ratio Regum</i>."
+	rail_damage_prob = 0
+
 // Mostly a fluff distinction. Build these out of an SMES core, a cable coil and some metal rods.
 // Single-shot, hand-loaded, most likely destroyed after use.
 /obj/item/weapon/gun/projectile/railgun/gauss
