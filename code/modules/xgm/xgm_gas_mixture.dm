@@ -335,8 +335,8 @@
 	if(graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
 		. = 1
-	if(next_alpha != graphic_alpha || graphic_alpha > GAS_MAX_ALPHA)
-		graphic_alpha = min(GAS_MAX_ALPHA, next_alpha)
+	if(next_alpha != graphic_alpha || graphic_alpha > GAS_MAX_ALPHA || graphic_alpha < GAS_MIN_ALPHA)
+		graphic_alpha = max(min(GAS_MAX_ALPHA, next_alpha),GAS_MIN_ALPHA)
 		. = 1
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature.
