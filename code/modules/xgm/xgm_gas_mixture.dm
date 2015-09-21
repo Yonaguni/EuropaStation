@@ -292,26 +292,45 @@
 	var/next_alpha = 0
 	if(!gas_data)
 		return // ??? Runtiming for some reason.
+
 	for(var/g in gas_data.overlay_limit)
-		if(!isnull(gas[g]))
-			next_alpha += gas[g]
-		if(graphic.Find(gas_data.tile_overlay[g]))
+
+		if(isnull(gas[g]))
+			continue
+
+		var/gas_amount = gas[g]
+		next_alpha += gas_amount
+		var/image/tile_overlay = gas_data.tile_overlay[g]
+		if(graphic.Find(tile_overlay))
 			//Overlay is already applied for this gas, check if it's still valid.
-			if(gas[g] <= gas_data.overlay_limit[g])
+			if(gas_amount <= gas_data.overlay_limit[g] || gas_amount >= GAS_SATURATION_POINT)
 				if(!graphic_remove)
 					graphic_remove = list()
-				graphic_remove += gas_data.tile_overlay[g]
+				graphic_remove |= tile_overlay
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
-			if(gas[g] > gas_data.overlay_limit[g])
-				graphic_alpha += gas[g]
+			if(gas_amount > gas_data.overlay_limit[g] && gas_amount < GAS_SATURATION_POINT)
+				graphic_alpha += gas_amount
 				if(!graphic_add)
 					graphic_add = list()
-				graphic_add += gas_data.tile_overlay[g]
+				graphic_add |= tile_overlay
+
+		var/image/saturated_overlay = gas_data.saturated_overlay[g]
+		if(graphic.Find(saturated_overlay))
+			if(gas_amount < GAS_SATURATION_POINT)
+				if(!graphic_remove)
+					graphic_remove = list()
+				graphic_remove |= saturated_overlay
+		else
+			if(gas_amount >= GAS_SATURATION_POINT)
+				if(!graphic_add)
+					graphic_add = list()
+				graphic_add |= saturated_overlay
+
 	. = 0
 	//Apply changes
 	if(graphic_add && graphic_add.len)
-		graphic += graphic_add
+		graphic |= graphic_add
 		. = 1
 	if(graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
