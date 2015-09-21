@@ -5,7 +5,7 @@
 	icon = 'icons/obj/railguns.dmi'
 	load_method = SPEEDLOADER
 	max_shells = 12
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'sound/effects/railgun.ogg'
 	ammo_type = /obj/item/ammo_casing/railgun
 	magazine_type = /obj/item/ammo_magazine/railgun
 	caliber = "railgun slug"

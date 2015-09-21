@@ -9,7 +9,6 @@
 	rail_damage_threshold = 4 // Chance of damaging itself when firing beyond a 3-round burst.
 	rail_damage_prob = 15
 	rail_repair_time = 100
-	fire_sound = 'sound/weapons/marauder.ogg'
 
 	slot_flags = SLOT_BACK
 	firemodes = list(
