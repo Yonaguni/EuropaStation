@@ -142,6 +142,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_attack_animation(atom/A)
 
+	var/first_pixel_x = pixel_x
+	var/first_pixel_y = pixel_y
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
 	var/direction = get_dir(src, A)
@@ -167,7 +169,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			pixel_x_diff = -8
 			pixel_y_diff = -8
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
+	animate(pixel_x = first_pixel_x, pixel_y = first_pixel_y, time = 2)
 
 /mob/do_attack_animation(atom/A)
 	..()

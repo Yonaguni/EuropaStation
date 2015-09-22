@@ -16,19 +16,19 @@
 
 	var/armor = getarmor(def_zone, attack_flag)
 	var/absorb = 0
-	
+
 	//Roll armour
 	if(prob(armor))
 		absorb += 1
 	if(prob(armor))
 		absorb += 1
-	
+
 	//Roll penetration
 	if(prob(armour_pen))
 		absorb -= 1
 	if(prob(armour_pen))
 		absorb -= 1
-	
+
 	if(absorb >= 2)
 		if(absorb_text)
 			show_message("[absorb_text]")
@@ -56,7 +56,7 @@
 	if(C && C.active)
 		C.attack_self(src)//Should shut it off
 		update_icons()
-		src << "\blue Your [C.name] was disrupted!"
+		src << "<span class='notice'>Your [C.name] was disrupted!</span>"
 		Stun(2)
 
 	//Being hit while using a deadman switch
@@ -64,13 +64,13 @@
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
 		if(signaler.deadman && prob(80))
 			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("\red [src] triggers their deadman's switch!")
+			src.visible_message("<span class='danger'>\The [src] triggers their deadman's switch!</span>")
 			signaler.signal()
 
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
+		src <<"<span class='danger'>You have been hit by [P]!</span>"
 		qdel(P)
 		return
 
@@ -124,10 +124,10 @@
 			miss_chance = max(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
+			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
-		src.visible_message("\red [src] has been hit by [O].")
+		src.visible_message("<span class='danger'>\The [src] has been hit by [O].</span>")
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
@@ -262,7 +262,7 @@
 		return 0
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
-	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame. 
+	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
 	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
 
 /mob/living/proc/reagent_permeability()

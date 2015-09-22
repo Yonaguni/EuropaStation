@@ -197,7 +197,7 @@
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
 		user.do_attack_animation(src)
 		usr.visible_message("<span class='danger'>[usr.name] bangs against the [src.name]!</span>",
-							"<<span class='danger'>You bang against the [src.name]!</span>",
+							"<span class='danger'>You bang against the [src.name]!</span>",
 							"You hear a banging sound.")
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
@@ -219,7 +219,9 @@
 	return 1
 
 /obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
+
 	if(!istype(W)) return//I really wish I did not need this
+
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
 		if(istype(G.affecting,/mob/living))
@@ -304,7 +306,7 @@
 
 	if(usr.incapacitated())
 		return 0
-	
+
 	if(anchored)
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0

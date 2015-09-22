@@ -49,6 +49,12 @@ default behaviour is:
 		if ((!( yes ) || now_pushing) || !loc)
 			return
 		now_pushing = 1
+
+		//TODO: make it dependant on mass, user strength, etc.
+		if (istype(AM, /mob/living/heavy_vehicle))
+			now_pushing = 0
+			return
+
 		if (istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 
