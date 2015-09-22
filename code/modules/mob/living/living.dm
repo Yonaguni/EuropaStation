@@ -574,19 +574,10 @@ default behaviour is:
 	set category = "IC"
 
 	if(!(stat || next_move > world.time))
-		next_move = world.time + 20
+		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
 			process_resist()
-
-/mob/living/proc/can_resist()
-	//need to allow !canmove, or otherwise neck grabs can't be resisted
-	//similar thing with weakened and pinning
-	if(stat)
-		return 0
-	if(!canClick())
-		return 0
-	return 1
 
 /mob/living/proc/process_resist()
 	//Getting out of someone's inventory.
