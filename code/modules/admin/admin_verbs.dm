@@ -181,6 +181,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
+	/client/proc/callproc_target,
 	/client/proc/toggledebuglogs,
 	/client/proc/SDQL_query,
 	/client/proc/SDQL2_query,
@@ -193,6 +194,7 @@ var/list/admin_verbs_debug = list(
 
 var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/callproc,
+	/client/proc/callproc_target,
 	/client/proc/debug_controller
 	)
 
@@ -261,6 +263,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
+	/client/proc/callproc_target,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
@@ -543,8 +546,8 @@ var/list/admin_verbs_mentor = list(
 		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			C << "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes."
-			qdel(C)
+			C << "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</font>"
+			del(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
 		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
