@@ -14,6 +14,9 @@
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 
+/obj/item/device/flashlight/mech
+	brightness_on = 8
+
 /obj/item/device/flashlight/initialize()
 	..()
 	update_icon()
@@ -27,7 +30,7 @@
 		set_light(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
-	if(!isturf(user.loc))
+	if(!isturf(user.loc) && !istype(user, /mob/living/mecha))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return 0
 	on = !on

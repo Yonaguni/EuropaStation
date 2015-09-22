@@ -1,4 +1,4 @@
-proc/createRandomZlevel()
+proc/setup_away_mission()
 	if(awaydestinations.len)	//crude, but it saves another var!
 		return
 

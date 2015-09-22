@@ -214,13 +214,12 @@ var/list/fishtank_cache = list()
 		usr << "<span class='warning'>There's nowhere to climb out to!</span>"
 
 /mob/living/MouseDrop(atom/over)
-	if(usr == src && isturf(over))
+	if(isturf(over))
 		var/turf/T = over
 		var/obj/structure/aquarium/A = locate() in usr.loc
 		if(A && A.Adjacent(usr) && A.Adjacent(T))
 			A.do_climb_out(usr, T)
 			return
-
 	return ..()
 
 /obj/structure/aquarium/proc/do_climb_out(mob/living/user, turf/target)

@@ -56,8 +56,18 @@
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
 
-	in_stasis = istype(loc, /obj/structure/closet/body_bag/cryobag) && loc:opened == 0
-	if(in_stasis) loc:used++
+	// Prevent the person from losing health if in an appropriate container.
+	if(istype(loc, /obj/structure/closet/body_bag/cryobag))
+		var/obj/structure/closet/body_bag/cryobag/C = loc
+		if(!C.opened)
+			in_stasis = 1
+			C.used++
+		else
+			in_stasis = 0
+	else if(istype(loc, /obj/item/weapon/mecha_equipment/sleeper))
+		in_stasis = 1
+	else
+		in_stasis = 0
 
 	..()
 
@@ -1232,6 +1242,11 @@
 			sight |= species.get_vision_flags(src)
 		if(!seer && !glasses_processed)
 			see_invisible = SEE_INVISIBLE_LIVING
+
+		// Todo find a better place/way to do this.
+		if(istype(loc, /mob/living/mecha))
+			var/mob/living/mecha/M = loc
+			sight |= M.sight
 
 		if(healths)
 			if (analgesic > 100)

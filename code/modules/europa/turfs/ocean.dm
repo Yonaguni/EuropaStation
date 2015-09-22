@@ -37,6 +37,10 @@ var/image/ocean_overlay_img
 	var/datum/gas_mixture/water
 	var/detail_decal
 
+/turf/unsimulated/ocean/New()
+	..()
+	ocean_turfs += src
+
 /turf/unsimulated/ocean/is_plating()
 	return 1
 

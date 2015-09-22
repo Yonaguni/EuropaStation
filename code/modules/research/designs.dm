@@ -897,13 +897,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/mechfab
 	sort_string = "HABAE"
 
-/datum/design/circuit/mech_recharger
-	name = "mech recharger"
-	id = "mech_recharger"
-	req_tech = list(TECH_DATA = 2, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	build_path = /obj/item/weapon/circuitboard/mech_recharger
-	sort_string = "HACAA"
-
 /datum/design/circuit/recharge_station
 	name = "cyborg recharge station"
 	id = "recharge_station"
