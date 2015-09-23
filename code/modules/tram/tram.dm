@@ -207,7 +207,7 @@
 					for(var/atom/movable/A in T)
 						if(A.density)
 							if(tram.Find(A))	continue
-							collisions += cdir
+							if(istype(A,/turf)) collisions += cdir
 							crash_list[A] = cdir
 						else
 							if(istype(A,/mob/living))
@@ -223,7 +223,7 @@
 					for(var/atom/movable/A in T)
 						if(A.density)
 							if(tram.Find(A))	continue
-							collisions += cdir
+							if(istype(A,/turf)) collisions += cdir
 							crash_list[A] = cdir
 						else
 							if(istype(A,/mob/living))
@@ -240,6 +240,7 @@
 			crash_list -= A
 	crash_list.Cut() //get rid of all the old crashes, so they can get calculated again
 	if(dir in collide_list) //Prevent moving if there are collisions in that direction
+		activated = 0
 		return 0
 	for(var/atom/movable/A in tram)
 		var/turf/T = get_step(A,dir)
@@ -247,20 +248,20 @@
 		if(A.light_range)
 			A.set_light()
 	gen_collision() //Generate collision again
-	for(var/atom/movable/A in crash_list)
-		if(crash_list[A] == dir)
-			handle_crash(A,dir)
-		else
-			crash_list -= A
 	return 1
 
 
 obj/tram/tram_controller/proc/handle_crash(var/atom/movable/A,var/dir)
 	if(!istype(A)) return
 	if((A in gibbed)) return //so we don't gib things multiple times
+	if(!can_crash(A)) return
 	A.tram_act(src,dir)
 
-
+obj/tram/tram_controller/proc/can_crash(var/atom/movable/A)
+	. = 1
+	var/turf/T = A.loc
+	for(var/atom/movable/AO in T)
+		if(tram.Find(AO)) return 0
 
 
 //////////////////////DAMAGE PROCS
