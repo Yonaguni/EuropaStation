@@ -236,7 +236,7 @@
 			electronics = null
 
 	else if(istype(W, /obj/item/stack/material) && !glass)
-		var/obj/item/stack/S = W
+		var/obj/item/stack/material/S = W
 		var/material_name = S.get_material_name()
 		if (S)
 			if (S.get_amount() >= 1)
@@ -257,7 +257,7 @@
 						user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 						if(do_after(user, 40) && !glass)
 							if (S.use(2))
-								user << "<span class='notice'>You installed [material_display_name(material_name)] plating into the airlock assembly.</span>"
+								user << "<span class='notice'>You installed [S.material.display_name] plating into the airlock assembly.</span>"
 								glass = material_name
 
 	else if(istype(W, /obj/item/weapon/screwdriver) && state == 2 )

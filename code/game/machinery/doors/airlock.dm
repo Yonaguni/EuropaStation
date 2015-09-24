@@ -51,7 +51,7 @@
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
 		return get_material_by_name(mineral)
-	return get_material_by_name(DEFAULT_WALL_MATERIAL)
+	return get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
 
 /obj/machinery/door/airlock/command
 	name = "Airlock"

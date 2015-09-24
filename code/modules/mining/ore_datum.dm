@@ -26,7 +26,7 @@ var/global/list/ore_data = list()
 /ore/uranium
 	name = "uranium"
 	display_name = "pitchblende"
-	smelts_to = "uranium"
+	smelts_to = /material/uranium
 	result_amount = 5
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/uranium
@@ -40,7 +40,7 @@ var/global/list/ore_data = list()
 /ore/hematite
 	name = "hematite"
 	display_name = "hematite"
-	smelts_to = "iron"
+	smelts_to = /material/iron
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
@@ -50,7 +50,7 @@ var/global/list/ore_data = list()
 /ore/coal
 	name = "carbon"
 	display_name = "raw carbon"
-	smelts_to = "plastic"
+	smelts_to = /material/plastic
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
@@ -60,20 +60,20 @@ var/global/list/ore_data = list()
 /ore/glass
 	name = "sand"
 	display_name = "impure silicates"
-	smelts_to = "glass"
-	compresses_to = "sandstone"
+	smelts_to = /material/glass
+	compresses_to = /material/stone
 
 /ore/silver
 	name = "silver"
 	display_name = "native silver"
-	smelts_to = "silver"
+	smelts_to = /material/silver
 	result_amount = 5
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/silver
 	scan_icon = "mineral_uncommon"
 
 /ore/gold
-	smelts_to = "gold"
+	smelts_to = /material/gold
 	name = "gold"
 	display_name = "native gold"
 	result_amount = 5
@@ -90,7 +90,7 @@ var/global/list/ore_data = list()
 /ore/diamond
 	name = "diamond"
 	display_name = "diamond"
-	compresses_to = "diamond"
+	compresses_to = /material/diamond
 	result_amount = 5
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/diamond
@@ -100,8 +100,8 @@ var/global/list/ore_data = list()
 /ore/platinum
 	name = "platinum"
 	display_name = "raw platinum"
-	smelts_to = "platinum"
-	compresses_to = "osmium"
+	smelts_to = /material/platinum
+	compresses_to = /material/osmium
 	alloy = 1
 	result_amount = 5
 	spread_chance = 10
@@ -111,6 +111,6 @@ var/global/list/ore_data = list()
 /ore/hydrogen
 	name = "mhydrogen"
 	display_name = "metallic hydrogen"
-	smelts_to = "tritium"
-	compresses_to = "mhydrogen"
+	smelts_to = /material/tritium
+	compresses_to = /material/mhydrogen
 	scan_icon = "mineral_rare"

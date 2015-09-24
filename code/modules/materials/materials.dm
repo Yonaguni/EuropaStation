@@ -25,7 +25,7 @@
 */
 
 // Assoc list containing all material datums indexed by name.
-var/list/name_to_material
+var/global/list/all_materials = list()
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
@@ -38,28 +38,16 @@ var/list/name_to_material
 	if(material)
 		return material.name
 
-// Builds the datum list above.
-/proc/populate_material_list(force_remake=0)
-	if(name_to_material && !force_remake) return // Already set up!
-	name_to_material = list()
-	for(var/type in typesof(/material) - /material)
-		var/material/new_mineral = new type
-		if(!new_mineral.name)
-			continue
-		name_to_material[lowertext(new_mineral.name)] = new_mineral
-	return 1
-
-// Safety proc to make sure the material list exists before trying to grab from it.
-/proc/get_material_by_name(name)
-	if(!name_to_material)
-		populate_material_list()
-	return name_to_material[name]
-
-/proc/material_display_name(name)
-	var/material/material = get_material_by_name(name)
-	if(material)
-		return material.display_name
+/proc/get_material_by_name(var/material_name)
+	for(var/mtype in typesof(/material) - /material)
+		var/material/M = get_material_by_path(mtype)
+		if(M.name == material_name) return M
 	return null
+
+/proc/get_material_by_path(var/material_type)
+	if(!all_materials[material_type])
+		all_materials[material_type] = new material_type
+	return all_materials[material_type]
 
 // Material definition and procs follow.
 /material

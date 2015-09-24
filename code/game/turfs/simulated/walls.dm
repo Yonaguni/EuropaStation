@@ -172,7 +172,7 @@
 			O.loc = src
 
 	clear_plants()
-	material = get_material_by_name("placeholder")
+	material = get_material_by_path(/material/placeholder)
 	reinf_material = null
 	update_connections(1)
 

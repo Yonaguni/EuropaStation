@@ -67,9 +67,6 @@ var/global/datum/global_init/init = new ()
 	// Set up roundstart seed list.
 	plant_controller = new()
 
-	// This is kinda important. Set up details of what the hell things are made of.
-	populate_material_list()
-
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// If you do not use the official Baycode moonbase map, you will need to change them.

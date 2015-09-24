@@ -285,7 +285,7 @@
 	if(full_return || prob(20))
 		new /obj/item/stack/material/steel(src.loc)
 	else
-		var/material/M = get_material_by_name(DEFAULT_WALL_MATERIAL)
+		var/material/M = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
 		S = M.place_shard(loc)
 		if(S) shards += S
 	qdel(src)
