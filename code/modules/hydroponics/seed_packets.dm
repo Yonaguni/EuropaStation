@@ -12,9 +12,14 @@ var/global/list/plant_seed_sprites = list()
 	var/modified = 0
 
 /obj/item/seeds/New()
+	all_seeds += src
 	while(!plant_controller)
 		sleep(30)
 	update_seed()
+	..()
+
+/obj/item/seeds/Destroy()
+	all_seeds -= src
 	..()
 
 //Grabs the appropriate seed datum from the global list.

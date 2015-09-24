@@ -49,10 +49,12 @@
 
 /obj/structure/New()
 	..()
+	all_structures += src
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/Destroy()
+	all_structures -= src
 	..()
 
 /obj/structure/proc/climb_on()

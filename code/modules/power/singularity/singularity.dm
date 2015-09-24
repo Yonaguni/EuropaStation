@@ -1,5 +1,6 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+var/global/list/singularities = list()
 
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 /obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -30,6 +31,9 @@
 	var/chained = 0//Adminbus chain-grab
 
 /obj/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
+
+	singularities += src
+
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 	energy = starting_energy
@@ -46,6 +50,7 @@
 			break
 
 /obj/singularity/Destroy()
+	singularities -= src
 	processing_objects -= src
 	..()
 

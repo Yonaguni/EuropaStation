@@ -5,7 +5,10 @@
 
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
+var/global/list/all_seeds                = list()
 var/global/list/all_areas                = list()
+var/global/list/all_structures           = list()
+var/global/list/all_movable_atoms        = list() // Only required for worldstart pre-ticker initialize() calls.
 var/global/list/machines                 = list()
 var/global/list/processing_objects       = list()
 var/global/list/processing_power_items   = list()
@@ -14,6 +17,7 @@ var/global/list/med_hud_users            = list() // List of all entities using 
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
 var/global/list/hud_icon_reference       = list()
 var/global/list/nonstandard_atmos_turfs  = list()
+var/global/list/ocean_turfs              = list()
 
 var/global/list/global_mutations  = list() // List of hidden mutation things.
 

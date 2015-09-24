@@ -10,7 +10,7 @@
 
 /obj/structure/ladder/New()
 	spawn(8)
-		for(var/obj/structure/ladder/L in world)
+		for(var/obj/structure/ladder/L in all_structures)
 			if(L.id == id)
 				if(L.height == (height - 1))
 					down = L

@@ -1039,7 +1039,6 @@
 #include "code\modules\europa\clothing\suit.dm"
 #include "code\modules\europa\clothing\under.dm"
 #include "code\modules\europa\fluids\fluid_procs.dm"
-#include "code\modules\europa\hooks\ocean.dm"
 #include "code\modules\europa\hooks\vip.dm"
 #include "code\modules\europa\machinery\geothermal.dm"
 #include "code\modules\europa\mapgen\mapgen.dm"

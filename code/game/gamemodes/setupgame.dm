@@ -16,7 +16,7 @@
 	//testing("[name] assigned to block #[assigned].")
 	return assigned
 
-/proc/setupgenetics()
+/proc/setup_genetics()
 
 	if (prob(50))
 		// Currently unused.  Will revisit. - N3X

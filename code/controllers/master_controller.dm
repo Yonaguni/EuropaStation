@@ -32,38 +32,44 @@ datum/controller/game_controller/New()
 
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
-
-	spawn(20)
-		createRandomZlevel()
-
+	//spawn(20) setup_away_mission()
 	setup_objects()
-	setupgenetics()
-	SetupXenoarch()
-
+	setup_genetics()
+	//setup_xenoarch()
 	transfer_controller = new
 
-
 datum/controller/game_controller/proc/setup_objects()
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
-	sleep(-1)
-	for(var/atom/movable/object in world)
-		object.initialize()
 
-	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
+	var/otod = world.timeofday
+	admin_notice("<span class='danger'>Initializing objects...</span>", R_DEBUG)
 	sleep(-1)
-	for(var/area/area in all_areas)
-		area.initialize()
+	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing
+		var/atom/movable/AM = object     // in world and var/atom/movable thing in all_movable_atoms.
+		AM.initialize()
 
-	admin_notice("<span class='danger'>Initializing ocean and walls</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initializing areas...</span>", R_DEBUG)
 	sleep(-1)
-	do_ocean_initialisation()
+	for(var/area in all_areas)
+		var/area/A = area
+		A.initialize()
 
-	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initializing ocean overlays...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/ocean in ocean_turfs)
+		var/turf/unsimulated/ocean/O = ocean
+		O.initialize()
+
+	admin_notice("<span class='danger'>Initializing nonstandard turf atmospherics...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/F in nonstandard_atmos_turfs)
+		air_master.add_to_active(F)
+
+	admin_notice("<span class='danger'>Initializing pipe networks...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initializing atmos machinery...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
@@ -73,11 +79,9 @@ datum/controller/game_controller/proc/setup_objects()
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 
-	// Set up antagonists.
+	world << "<span class='danger'>Setting up antagonists...</span>"
 	populate_antag_type_list()
-
-	//Set up spawn points.
+	world << "<span class='danger'>Setting up spawn points...</span>"
 	populate_spawn_points()
-
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initialization completed in [round((world.timeofday-otod)/10)] second(s).</span>", R_DEBUG)
 	sleep(-1)

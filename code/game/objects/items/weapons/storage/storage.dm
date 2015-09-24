@@ -479,7 +479,7 @@
 		remove_from_storage(I, T)
 
 /obj/item/weapon/storage/New()
-
+	..()
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
 	else

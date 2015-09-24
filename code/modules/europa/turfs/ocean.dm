@@ -35,7 +35,7 @@ var/image/ocean_overlay_img
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	var/datum/gas_mixture/water
-	var/detail_decal = 1
+	var/detail_decal
 
 /turf/unsimulated/ocean/is_plating()
 	return 1
@@ -71,6 +71,7 @@ var/image/ocean_overlay_img
 
 /turf/unsimulated/ocean/New()
 	..()
+	ocean_turfs += src
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
 	else
@@ -83,11 +84,17 @@ var/image/ocean_overlay_img
 /turf/unsimulated/ocean/update_icon()
 	overlays.Cut()
 	..()
-	if(detail_decal && prob(20))
-		overlays |= get_mining_overlay("asteroid[rand(0,9)]")
+	if(isnull(detail_decal))
+		if(prob(20))
+			detail_decal = "asteroid[rand(0,9)]"
+		else
+			detail_decal = 0
+	if(detail_decal)
+		overlays |= get_mining_overlay(detail_decal)
 	overlays |= get_ocean_overlay()
 
 /turf/unsimulated/ocean/Destroy()
+	ocean_turfs -= src
 	processing_turfs -= src
 	..()
 
