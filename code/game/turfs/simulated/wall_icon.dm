@@ -8,7 +8,7 @@
 	else
 		construction_stage = null
 	if(!material)
-		material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+		material = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
 	if(material)
 		explosion_resistance = material.explosion_resistance
 	if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)

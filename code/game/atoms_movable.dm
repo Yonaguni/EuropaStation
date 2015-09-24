@@ -20,6 +20,7 @@
 	..()
 	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
+	all_movable_atoms += src
 
 /proc/generate_debug_runtime() // Guaranteed to runtime and print a stack trace to the runtime log
 	var/t = 0 // BYOND won't let us do var/t = 1/0 directly, but it's fine with this.
@@ -37,6 +38,7 @@
 
 /atom/movable/Destroy()
 	. = ..()
+	all_movable_atoms -= src
 	if(reagents)
 		qdel(reagents)
 		reagents = null

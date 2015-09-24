@@ -145,7 +145,9 @@
 #define WALL_OPENING 2
 
 #define DEFAULT_TABLE_MATERIAL "plastic"
+#define DEFAULT_TABLE_MATERIAL_PATH /material/plastic
 #define DEFAULT_WALL_MATERIAL "steel"
+#define DEFAULT_WALL_MATERIAL_PATH /material/steel
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

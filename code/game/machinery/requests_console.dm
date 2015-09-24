@@ -79,7 +79,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		req_console_supplies |= department
 	if (departmentType & RC_INFO)
 		req_console_information |= department
-	
+
 	set_light(1)
 
 /obj/machinery/requests_console/Destroy()
@@ -165,7 +165,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		var/log_msg = message
 		var/pass = 0
 		screen = RCS_SENTFAIL
-		for (var/obj/machinery/message_server/MS in world)
+		for (var/obj/machinery/message_server/MS in machines)
 			if(!MS.active) continue
 			MS.send_rc_message(ckey(href_list["department"]),department,log_msg,msgStamped,msgVerified,priority)
 			pass = 1

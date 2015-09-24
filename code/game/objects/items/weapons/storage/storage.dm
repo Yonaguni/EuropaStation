@@ -49,9 +49,6 @@
 
 	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
-			return
-
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 			src.open(usr)
 			return
@@ -482,7 +479,7 @@
 		remove_from_storage(I, T)
 
 /obj/item/weapon/storage/New()
-
+	..()
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
 	else

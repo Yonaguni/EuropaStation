@@ -51,7 +51,7 @@
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
 		return get_material_by_name(mineral)
-	return get_material_by_name(DEFAULT_WALL_MATERIAL)
+	return get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
 
 /obj/machinery/door/airlock/command
 	name = "Airlock"
@@ -1005,7 +1005,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/initialize()
 	if(src.closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in world)
+		for (var/obj/machinery/door/airlock/A in machines)
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break

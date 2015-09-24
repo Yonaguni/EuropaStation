@@ -160,7 +160,7 @@ var/list/admin_verbs_server = list(
 	/client/proc/nanomapgen_DumpImage
 	)
 var/list/admin_verbs_debug = list(
-        /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
+    /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
 	/client/proc/cmd_debug_make_powernets,
@@ -188,8 +188,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
-	/client/proc/dsay,
-	/datum/admins/proc/force_turf_init
+	/client/proc/dsay
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

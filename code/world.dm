@@ -64,31 +64,6 @@ var/global/datum/global_init/init = new ()
 
 	sleep_offline = 1
 
-	// Set up roundstart seed list.
-	plant_controller = new()
-
-	// This is kinda important. Set up details of what the hell things are made of.
-	populate_material_list()
-
-	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// If you do not use the official Baycode moonbase map, you will need to change them.
-		//Create the mining Z-level.
-		new /datum/random_map/automata/cave_system(null,1,1,3,255,255)
-		new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
-
-	sleep(-1)
-	// Europa-specific - generate and apply the water terrain map.
-	spawn(0)
-		sleep(-1)
-		new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
-
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
-
-	// Create robolimbs for chargen.
-	populate_robolimb_list()
-
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)

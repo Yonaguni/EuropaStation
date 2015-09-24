@@ -74,7 +74,7 @@
 	. = ..()
 
 /obj/machinery/door/firedoor/get_material()
-	return get_material_by_name(DEFAULT_WALL_MATERIAL)
+	return get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..(user, 1)
@@ -120,13 +120,6 @@
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(mecha.occupant)
-			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
-			M.last_bumped = world.time
-			attack_hand(M)
 	return 0
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)

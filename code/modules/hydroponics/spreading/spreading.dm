@@ -2,6 +2,10 @@
 #define VINE_GROWTH_STAGES 5
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
+
+	if(!plant_controller)
+		plant_controller = new()
+
 	spawn() //to stop the secrets panel hanging
 		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
 		for(var/areapath in typesof(/area/hallway))
@@ -71,8 +75,7 @@
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 
 /obj/effect/plant/Destroy()
-	if(plant_controller)
-		plant_controller.remove_plant(src)
+	plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
 	..()
@@ -88,11 +91,7 @@
 		parent = newparent
 
 	if(!plant_controller)
-		sleep(250) // ugly hack, should mean roundstart plants are fine.
-	if(!plant_controller)
-		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
-		qdel(src)
-		return
+		plant_controller = new()
 
 	if(!istype(newseed))
 		newseed = plant_controller.seeds[DEFAULT_SEED]

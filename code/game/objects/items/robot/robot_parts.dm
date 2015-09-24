@@ -1,5 +1,6 @@
 /obj/item/robot_parts
 	name = "robot parts"
+	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon = 'icons/obj/robot_parts.dmi'
 	item_state = "buildpipe"
 	icon_state = "blank"
@@ -17,7 +18,7 @@
 	..(newloc)
 	if(model_info && model)
 		model_info = model
-		var/datum/robolimb/R = all_robolimbs[model]
+		var/datum/robolimb/R = get_robolimb_by_name(model)
 		if(R)
 			name = "[R.company] [initial(name)]"
 			desc = "[R.desc]"
@@ -28,28 +29,24 @@
 
 /obj/item/robot_parts/l_arm
 	name = "left arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
 	part = list("l_arm","l_hand")
 	model_info = 1
 
 /obj/item/robot_parts/r_arm
 	name = "right arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
 	part = list("r_arm","r_hand")
 	model_info = 1
 
 /obj/item/robot_parts/l_leg
 	name = "left leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
 	part = list("l_leg","l_foot")
 	model_info = 1
 
 /obj/item/robot_parts/r_leg
 	name = "right leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
 	part = list("r_leg","r_foot")
 	model_info = 1

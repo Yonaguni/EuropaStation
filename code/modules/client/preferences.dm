@@ -352,10 +352,10 @@ datum/preferences
 			if(ind > 1)
 				dat += ", "
 			var/datum/robolimb/R
-			if(rlimb_data[name] && all_robolimbs[rlimb_data[name]])
-				R = all_robolimbs[rlimb_data[name]]
+			if(rlimb_data[name])
+				R = get_robolimb_by_name(rlimb_data[name])
 			else
-				R = basic_robolimb
+				R = get_robolimb_by_path(/datum/robolimb)
 			dat += "\t[R.company] [organ_name] prothesis"
 		else if(status == "amputated")
 			++ind
@@ -1498,15 +1498,22 @@ datum/preferences
 
 						if("Prothesis")
 							var/tmp_species = species ? species : "Human"
+
+							if(!chargen_robolimbs)
+								chargen_robolimbs = list()
+								for(var/rtype in typesof(/datum/robolimb))
+									var/datum/robolimb/R = get_robolimb_by_path(rtype)
+									if(R.unavailable_at_chargen)
+										continue
+									chargen_robolimbs += R
+
 							var/list/usable_manufacturers = list()
-							for(var/company in chargen_robolimbs)
-								var/datum/robolimb/M = chargen_robolimbs[company]
-								if(tmp_species in M.species_cannot_use)
+							for(var/datum/robolimb/R in chargen_robolimbs)
+								if(tmp_species in R.species_cannot_use)
 									continue
-								usable_manufacturers[company] = M
-							if(is_vip(user.client))
-								for(var/company in vip_robolimbs)
-									usable_manufacturers[company] = vip_robolimbs[company]
+								if(R.vip_only && !is_vip(user.client))
+									continue
+								usable_manufacturers += R.company
 							if(!usable_manufacturers.len)
 								return
 							var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in usable_manufacturers

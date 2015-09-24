@@ -8,8 +8,7 @@ var/global/list/space_surprises = list(		/obj/item/weapon/pickaxe/silver					=4,
 											/obj/item/weapon/pickaxe/gold					=3,
 											/obj/item/weapon/pickaxe/plasmacutter			=2,
 											/obj/structure/closet/syndicate/resources		=2,
-											/obj/item/weapon/melee/energy/sword/pirate		=1,
-											/obj/mecha/working/ripley/mining				=1
+											/obj/item/weapon/melee/energy/sword/pirate		=1
 											)
 
 var/global/list/spawned_surprises = list()

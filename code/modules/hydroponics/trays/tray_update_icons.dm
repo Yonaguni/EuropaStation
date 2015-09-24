@@ -1,5 +1,9 @@
 //Refreshes the icon and sets the luminosity
 /obj/machinery/portable_atmospherics/hydroponics/update_icon()
+
+	if(!plant_controller)
+		plant_controller = new()
+
 	// Update name.
 	if(seed)
 		if(mechanical)

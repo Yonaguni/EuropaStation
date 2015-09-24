@@ -26,6 +26,8 @@
 	var/datum/seed/seed
 
 /datum/effect/effect/system/smoke_spread/chem/spores/New(seed_name)
+	if(!plant_controller)
+		plant_controller = new()
 	if(seed_name && plant_controller)
 		seed = plant_controller.seeds[seed_name]
 	if(!seed)

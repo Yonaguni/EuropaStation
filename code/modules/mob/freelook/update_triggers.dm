@@ -1,7 +1,5 @@
 //UPDATE TRIGGERS, when the chunk (and the surrounding chunks) should update.
-
 // TURFS
-
 /proc/updateVisibility(atom/A, var/opacity_check = 1)
 	if(ticker)
 		for(var/datum/visualnet/VN in visual_nets)
@@ -23,16 +21,15 @@
 
 
 // STRUCTURES
-
 /obj/structure/Destroy()
-	updateVisibility(src)
 	..()
+	updateVisibility(src)
 
 /obj/structure/New()
+	..()
 	updateVisibility(src)
 
 // EFFECTS
-
 /obj/effect/Destroy()
 	updateVisibility(src)
 	return ..()

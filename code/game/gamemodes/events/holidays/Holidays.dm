@@ -157,24 +157,6 @@ var/global/Holiday = null
 		if("",null)			//no Holiday today! Back to work!
 			return
 
-		if("Easter")		//I'll make this into some helper procs at some point
-/*			var/list/turf/simulated/floor/Floorlist = list()
-			for(var/turf/simulated/floor/T)
-				if(T.contents)
-					Floorlist += T
-			var/turf/simulated/floor/F = Floorlist[rand(1,Floorlist.len)]
-			Floorlist = null
-			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
-			var/obj/item/weapon/reagent_containers/food/snacks/chocolateegg/wrapped/Egg
-			if( C )			Egg = new(C)
-			else			Egg = new(F)
-*/
-/*			var/list/obj/containers = list()
-			for(var/obj/item/weapon/storage/S in world)
-				if(isNotStationLevel(S.z))	continue
-				containers += S
-
-			message_admins("<span class='notice'>DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])</span>")*/
 		if("End of the World")
 			if(prob(eventchance))	GameOver()
 

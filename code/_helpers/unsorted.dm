@@ -229,14 +229,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 #define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
 /proc/getcircle(turf/center, var/radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
 	if(!radius) return list(center)
-	
+
 	var/x = 0
 	var/y = radius
 	var/p = 3 - 2 * radius
-	
+
 	. = list()
 	while(y >= x) // only formulate 1/8 of circle
-		
+
 		. += LOCATE_COORDS(center.x - x, center.y - y, center.z) //upper left left
 		. += LOCATE_COORDS(center.x - y, center.y - x, center.z) //upper upper left
 		. += LOCATE_COORDS(center.x + y, center.y - x, center.z) //upper upper right
@@ -247,7 +247,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += LOCATE_COORDS(center.x + x, center.y + y, center.z) //lower right right
 
 		if(p < 0)
-			p += 4*x++ + 6; 
+			p += 4*x++ + 6;
 		else
 			p += 4*(x++ - y--) + 10;
 
@@ -495,10 +495,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
-//	for(var/mob/living/silicon/hivebot/M in world)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in world)
-//		mob_list.Add(M)
 	return moblist
 
 //Forces a variable to be posative
@@ -695,7 +691,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 //Returns: all the areas in the world
 /proc/return_areas()
 	var/list/area/areas = list()
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		areas += A
 	return areas
 
@@ -713,7 +709,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/areas = new/list()
-	for(var/area/N in world)
+	for(var/area/N in all_areas)
 		if(istype(N, areatype)) areas += N
 	return areas
 
@@ -727,7 +723,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/turfs = new/list()
-	for(var/area/N in world)
+	for(var/area/N in all_areas)
 		if(istype(N, areatype))
 			for(var/turf/T in N) turfs += T
 	return turfs
@@ -742,7 +738,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/atoms = new/list()
-	for(var/area/N in world)
+	for(var/area/N in all_areas)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms += A

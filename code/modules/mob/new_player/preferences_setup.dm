@@ -202,8 +202,9 @@ datum/preferences
 			if(organ_data[name] == "amputated") continue
 			if(organ_data[name] == "cyborg")
 				var/datum/robolimb/R
-				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
-				if(!R) R = basic_robolimb
+				if(rlimb_data[name])
+					R = get_robolimb_by_name(rlimb_data[name])
+				if(!R) R = get_robolimb_by_path(/datum/robolimb)
 				preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
 				continue
 			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)

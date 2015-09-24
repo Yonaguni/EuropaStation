@@ -15,18 +15,12 @@
 	..()
 	if( iscarbon(O) )
 		turretTargets |= O
-	else if( istype(O, /obj/mecha) )
-		var/obj/mecha/Mech = O
-		if( Mech.occupant )
-			turretTargets |= Mech
 	else if(istype(O,/mob/living/simple_animal))
 		turretTargets |= O
 	return 1
 
 /area/turret_protected/Exited(O)
 	if( ismob(O) && !issilicon(O) )
-		turretTargets -= O
-	else if( istype(O, /obj/mecha) )
 		turretTargets -= O
 	..()
 	return 1
@@ -159,10 +153,6 @@
 			if( !MC.stat )
 				if( !MC.lying || lasers )
 					return 1
-		else if( istype(T, /obj/mecha) )
-			var/obj/mecha/ME = T
-			if( ME.occupant )
-				return 1
 		else if(istype(T,/mob/living/simple_animal))
 			var/mob/living/simple_animal/A = T
 			if( !A.stat )
@@ -177,9 +167,6 @@
 		if(!M.stat)
 			if(!M.lying || lasers)
 				new_targets += M
-	for(var/obj/mecha/M in protected_area.turretTargets)
-		if(M.occupant)
-			new_targets += M
 	for(var/mob/living/simple_animal/M in protected_area.turretTargets)
 		if(!M.stat)
 			new_targets += M
@@ -266,7 +253,7 @@
 	else
 		A = new /obj/item/projectile/energy/electrode( loc )
 		use_power(200)
-	
+
 	//Turrets aim for the center of mass by default.
 	//If the target is grabbing someone then the turret smartly aims for extremities
 	var/obj/item/weapon/grab/G = locate() in target
@@ -274,7 +261,7 @@
 		A.def_zone = pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
 	else
 		A.def_zone = pick("chest", "groin")
-	
+
 	A.current = T
 	A.starting = T
 	A.yo = U.y - T.y
@@ -380,7 +367,7 @@
 	var/atom/cur_target
 	var/scan_range = 7
 	var/health = 40
-	var/list/scan_for = list("human"=0,"cyborg"=0,"mecha"=0,"alien"=1)
+	var/list/scan_for = list("human"=0,"cyborg"=0,"alien"=1)
 	var/on = 0
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "gun_turret"
@@ -452,8 +439,6 @@
 			var/mob/M = target
 			if(!M.stat && !M.lying)//ninjas can't catch you if you're lying
 				return 1
-		else if(istype(target, /obj/mecha))
-			return 1
 		return 0
 
 
@@ -481,11 +466,6 @@
 		if(scan_for["cyborg"])
 			for(var/mob/living/silicon/M in oview(scan_range,src))
 				if(M.stat || M.lying || M in exclude)
-					continue
-				pos_targets += M
-		if(scan_for["mecha"])
-			for(var/obj/mecha/M in oview(scan_range, src))
-				if(M in exclude)
 					continue
 				pos_targets += M
 		if(scan_for["alien"])

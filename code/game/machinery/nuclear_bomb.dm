@@ -420,6 +420,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	nuke_disks |= src
 
 /obj/item/weapon/disk/nuclear/Destroy()
+	nuke_disks -= src
 	if(!nuke_disks.len && blobstart.len > 0)
 		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")

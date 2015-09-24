@@ -942,11 +942,6 @@
 			expel(H, T, 0)
 	..()
 
-// *** TEST verb
-//client/verb/dispstop()
-//	for(var/obj/structure/disposalholder/H in world)
-//		H.active = 0
-
 // a straight or bent segment
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"

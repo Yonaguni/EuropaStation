@@ -32,38 +32,57 @@ datum/controller/game_controller/New()
 
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
-
-	spawn(20)
-		createRandomZlevel()
-
 	setup_objects()
-	setupgenetics()
-	SetupXenoarch()
-
+	setup_genetics()
+	//setup_xenoarch()
 	transfer_controller = new
 
-
 datum/controller/game_controller/proc/setup_objects()
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
-	sleep(-1)
-	for(var/atom/movable/object in world)
-		object.initialize()
 
-	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
-	sleep(-1)
-	for(var/area/area in all_areas)
-		area.initialize()
+	world << "<span class='notice'><b>Setting up the game world.</b></span>"
 
-	admin_notice("<span class='danger'>Initializing ocean and walls</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initializing.</span>", R_DEBUG)
+	var/otod = world.timeofday
 	sleep(-1)
-	do_ocean_initialisation()
+	if(config.generate_asteroid)
+		admin_notice("<span class='warning'>Generating mining level...</span>", R_DEBUG)
+		sleep(-1)
+		// These values determine the specific area that the map is applied to.
+		new /datum/random_map/automata/cave_system(null,1,1,3,255,255)
+	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
+	sleep(-1)
+	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
+	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
+	sleep(-1)
+	new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
+	sleep(-1)
+	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
+	admin_notice("<span class='warning'>Initializing objects...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing
+		var/atom/movable/AM = object     // in world and var/atom/movable thing in all_movable_atoms.
+		AM.initialize()
+	admin_notice("<span class='warning'>Initializing areas...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/area in all_areas)
+		var/area/A = area
+		A.initialize()
+	admin_notice("<span class='warning'>Initializing ocean overlays...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/ocean in ocean_turfs)
+		var/turf/unsimulated/ocean/O = ocean
+		O.initialize()
+	admin_notice("<span class='warning'>Initializing nonstandard turf atmospherics...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/F in nonstandard_atmos_turfs)
+		air_master.add_to_active(F)
 
-	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
+	admin_notice("<span class='warning'>Initializing pipe networks...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	admin_notice("<span class='warning'>Initializing atmos machinery...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
@@ -73,11 +92,11 @@ datum/controller/game_controller/proc/setup_objects()
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 
-	// Set up antagonists.
+	admin_notice("<span class='warning'>Setting up antagonists...</span>", R_DEBUG)
 	populate_antag_type_list()
-
-	//Set up spawn points.
+	admin_notice("<span class='warning'>Setting up spawn points...</span>", R_DEBUG)
 	populate_spawn_points()
-
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
+	sleep(-1)
+	admin_notice("<span class='danger'>Done.</span>", R_DEBUG)
+	world << "<span class='notice'>World created in [round((world.timeofday-otod)/10)] second(s).</span>"
 	sleep(-1)
