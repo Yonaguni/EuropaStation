@@ -2,6 +2,9 @@
 	if(!istype(target))
 		return 0
 
+	if(!plant_controller)
+		plant_controller = new()
+
 	//This is a terrible hack and I should be ashamed.
 	var/datum/seed/diona = plant_controller.seeds["diona"]
 	if(!diona)
@@ -10,7 +13,7 @@
 	spawn(1) // So it has time to be thrown about by the gib() proc.
 		var/mob/living/carbon/alien/diona/D = new(target)
 		var/datum/ghosttrap/plant/P = get_ghost_trap("living plant")
-		P.request_player(D, "A diona nymph has split off from its gestalt. ")
+		P.request_player(D, "A diona nymph has split off from its gestalt.")
 		spawn(60)
 			if(D)
 				if(!D.ckey || !D.client)

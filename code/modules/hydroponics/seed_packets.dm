@@ -13,8 +13,8 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/New()
 	all_seeds += src
-	while(!plant_controller)
-		sleep(30)
+	if(!plant_controller)
+		plant_controller = new()
 	update_seed()
 	..()
 
@@ -81,6 +81,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = null
 
 /obj/item/seeds/random/New()
+	..()
 	seed = plant_controller.create_random_seed()
 	seed_type = seed.name
 	update_seed()

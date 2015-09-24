@@ -12,10 +12,6 @@
 
 	if(!holder)	return
 
-	if(!plant_controller || !plant_controller.gene_tag_masks)
-		usr << "Gene masks not set."
-		return
-
 	for(var/mask in plant_controller.gene_tag_masks)
 		usr << "[mask]: [plant_controller.gene_tag_masks[mask]]"
 
@@ -100,7 +96,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 /datum/controller/plants/proc/create_random_seed(var/survive_on_station)
 	var/datum/seed/seed = new()
 	seed.randomize()
-	seed.uid = plant_controller.seeds.len + 1
+	seed.uid = seeds.len + 1
 	seed.name = "[seed.uid]"
 	seeds[seed.name] = seed
 

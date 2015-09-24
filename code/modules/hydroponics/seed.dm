@@ -326,6 +326,9 @@
 //Creates a random seed. MAKE SURE THE LINE HAS DIVERGED BEFORE THIS IS CALLED.
 /datum/seed/proc/randomize()
 
+	if(!plant_controller)
+		plant_controller = new()
+
 	roundstart = 0
 	seed_name = "strange plant"     // TODO: name generator.
 	display_name = "strange plants" // TODO: name generator.
