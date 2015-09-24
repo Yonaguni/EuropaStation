@@ -188,12 +188,6 @@
 				parent.children = list()
 			parent.children.Add(src)
 
-/obj/item/organ/external/robotize()
-	..()
-	//robit limbs take reduced damage
-	brute_mod = 0.8
-	burn_mod = 0.8
-
 /****************************************************
 			   DAMAGE PROCS
 ****************************************************/
@@ -894,6 +888,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/robotize(var/company)
 	..()
 
+	brute_mod = 0.8
+	burn_mod = 0.8
+
 	if(company)
 		model = company
 		var/datum/robolimb/R = get_robolimb_by_name(company)
@@ -910,7 +907,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	unmutate()
 	for (var/obj/item/organ/external/T in children)
 		if(T)
-			T.robotize()
+			T.robotize(company)
 
 /obj/item/organ/external/proc/mutate()
 	if(src.status & ORGAN_ROBOT)

@@ -54,10 +54,9 @@ datum/controller/game_controller/proc/setup_objects()
 	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
 	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
 	sleep(-1)
-
-	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
-
 	new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
+	sleep(-1)
+	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
 	admin_notice("<span class='warning'>Initializing objects...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing

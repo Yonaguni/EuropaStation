@@ -2,7 +2,7 @@
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
 	name = "Exosuit Fabricator"
-	desc = "A machine used for construction of robotcs and mechas."
+	desc = "A machine used for the fabrication of parts for robots and exosuits."
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -27,7 +27,6 @@
 
 /obj/machinery/mecha_part_fabricator/New()
 	..()
-
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/mechfab(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -36,13 +35,12 @@
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
-
 	files = new /datum/research(src) //Setup the research data holder.
 	return
 
 /obj/machinery/mecha_part_fabricator/initialize()
-	manufacturer = get_robolimb_by_path(/datum/robolimb)
 	update_categories()
+	manufacturer = get_robolimb_by_path(/datum/robolimb)
 
 /obj/machinery/mecha_part_fabricator/process()
 	..()
@@ -105,8 +103,9 @@
 		var/datum/robolimb/R = get_robolimb_by_path(rpath)
 		if(R.unbuildable)
 			continue
-		T |= R.company
+		T += list(list("company" = R.company, "id" = R.company)) //this is dumb but the template expects it.
 	data["manufacturers"] = T
+	if(!manufacturer) manufacturer = get_robolimb_by_path(/datum/robolimb)
 	data["manufacturer"] = manufacturer.company
 
 	data["materials"] = get_materials()

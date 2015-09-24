@@ -1,5 +1,5 @@
 var/global/list/all_robolimb_data = list()
-var/global/list/chargen_robolimbs = list()
+var/global/list/chargen_robolimbs
 
 /proc/get_robolimb_by_name(var/model)
 	for(var/mtype in typesof(/datum/robolimb))
