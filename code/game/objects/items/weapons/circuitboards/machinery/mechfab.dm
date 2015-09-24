@@ -22,7 +22,7 @@
 
 	var/list/categories = list()
 	var/category = null
-	var/manufacturer = null
+	var/datum/robolimb/manufacturer = null
 	var/sync_message = ""
 
 /obj/machinery/mecha_part_fabricator/New()
@@ -41,7 +41,7 @@
 	return
 
 /obj/machinery/mecha_part_fabricator/initialize()
-	manufacturer = basic_robolimb.company
+	manufacturer = get_robolimb_by_path(/datum/robolimb)
 	update_categories()
 
 /obj/machinery/mecha_part_fabricator/process()
@@ -99,13 +99,16 @@
 	data["buildable"] = get_build_options()
 	data["category"] = category
 	data["categories"] = categories
-	if(all_robolimbs)
-		var/list/T = list()
-		for(var/A in all_robolimbs)
-			var/datum/robolimb/R = all_robolimbs[A]
-			T += list(list("id" = A, "company" = R.company))
-		data["manufacturers"] = T
-		data["manufacturer"] = manufacturer
+
+	var/list/T = list()
+	for(var/rpath in typesof(/datum/robolimb))
+		var/datum/robolimb/R = get_robolimb_by_path(rpath)
+		if(R.unbuildable)
+			continue
+		T |= R.company
+	data["manufacturers"] = T
+	data["manufacturer"] = manufacturer.company
+
 	data["materials"] = get_materials()
 	data["maxres"] = res_max_amount
 	data["sync"] = sync_message
@@ -134,8 +137,7 @@
 			category = href_list["category"]
 
 	if(href_list["manufacturer"])
-		if(href_list["manufacturer"] in all_robolimbs)
-			manufacturer = href_list["manufacturer"]
+		manufacturer = get_robolimb_by_name(href_list["manufacturer"])
 
 	if(href_list["eject"])
 		eject_materials(href_list["eject"], text2num(href_list["amount"]))
@@ -252,7 +254,7 @@
 	for(var/M in D.materials)
 		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
 	if(D.build_path)
-		var/obj/new_item = new D.build_path(loc, manufacturer)
+		var/obj/new_item = new D.build_path(loc, manufacturer.company)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(new_item.matter && new_item.matter.len > 0)

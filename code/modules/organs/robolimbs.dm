@@ -1,25 +1,25 @@
-var/global/list/all_robolimbs = list()
-var/global/list/vip_robolimbs = list()
+var/global/list/all_robolimb_data = list()
 var/global/list/chargen_robolimbs = list()
-var/global/datum/robolimb/basic_robolimb
 
-/proc/populate_robolimb_list()
-	basic_robolimb = new()
-	for(var/limb_type in typesof(/datum/robolimb))
-		var/datum/robolimb/R = new limb_type()
-		all_robolimbs[R.company] = R
-		if(!R.unavailable_at_chargen)
-			if(R.vip_only)
-				vip_robolimbs[R.company] = R
-			else
-				chargen_robolimbs[R.company] = R
+/proc/get_robolimb_by_name(var/model)
+	for(var/mtype in typesof(/datum/robolimb))
+		var/datum/robolimb/R = get_robolimb_by_path(mtype)
+		if(R.company == model)
+			return R
+	return null
+
+/proc/get_robolimb_by_path(var/model_path)
+	if(!all_robolimb_data[model_path])
+		all_robolimb_data[model_path] = new model_path
+	return all_robolimb_data[model_path]
 
 /datum/robolimb
 	var/company = "Unbranded"                            // Shown when selecting the limb.
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
-	var/list/species_cannot_use = list("Resomi")
+	var/unbuildable                                      // Cannot be built in a fabricator.
+	var/list/species_cannot_use = list("Resomi")         // Cannot be used by this species.
 	var/vip_only                                         // Must be admin or ckey in vips to use.
 
 /datum/robolimb/bishop
