@@ -25,15 +25,7 @@
 	return 1
 
 /obj/machinery/mech_sensor/proc/is_blocked(O as obj)
-	if(istype(O, /obj/mecha/medical/odysseus))
-		var/obj/mecha/medical/odysseus/M = O
-		for(var/obj/item/mecha_parts/mecha_equipment/ME in M.equipment)
-			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/tool/sleeper))
-				var/obj/item/mecha_parts/mecha_equipment/tool/sleeper/S = ME
-				if(S.occupant != null)
-					return 0
-
-	return istype(O, /obj/mecha) || istype(O, /obj/vehicle)
+	return istype(O, /obj/vehicle)
 
 /obj/machinery/mech_sensor/proc/give_feedback(O as obj)
 	var/block_message = "<span class='warning'>Movement control overridden. Area denial active.</span>"
@@ -41,11 +33,7 @@
 	if(feedback_timer)
 		return
 
-	if(istype(O, /obj/mecha))
-		var/obj/mecha/R = O
-		if(R && R.occupant)
-			R.occupant << block_message
-	else if(istype(O, /obj/vehicle/train/cargo/engine))
+	if(istype(O, /obj/vehicle/train/cargo/engine))
 		var/obj/vehicle/train/cargo/engine/E = O
 		if(E && E.load && E.is_train_head())
 			E.load << block_message

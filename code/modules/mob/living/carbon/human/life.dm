@@ -581,10 +581,7 @@
 
 	if(!istype(get_turf(src), /turf/space)) //space is not meant to change your body temperature.
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			loc_temp =  M.return_temperature()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			loc_temp = loc:air_contents.temperature
 		else
 			loc_temp = environment.temperature

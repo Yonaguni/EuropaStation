@@ -84,8 +84,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/simple_door/proc/SwitchState()
 	if(state)
