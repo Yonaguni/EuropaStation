@@ -144,12 +144,6 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 15000, "diamond" = 10000)
 	build_path = /obj/item/borg/upgrade/syndicate
 
-/datum/design/item/mecha
-	build_type = MECHFAB
-	category = "Exosuit Equipment"
-	time = 10
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
-
 /datum/design/item/synthetic_flash
 	name = "Synthetic flash"
 	id = "sflash"
