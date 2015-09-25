@@ -14,11 +14,11 @@ proc/populate_ghost_traps()
 		ghost_traps[G.object] = G
 
 /datum/ghosttrap
-	var/object = "positronic brain"
+	var/object = "computer brain"
 	var/list/ban_checks = list("AI","Cyborg")
 	var/pref_check = BE_AI
-	var/ghost_trap_message = "They are occupying a positronic brain now."
-	var/ghost_trap_role = "Positronic Brain"
+	var/ghost_trap_message = "They are occupying a cybernetic brain now."
+	var/ghost_trap_role = "Cybernetic Brain"
 
 // Check for bans, proper atom types, etc.
 /datum/ghosttrap/proc/assess_candidate(var/mob/dead/observer/candidate)
@@ -77,13 +77,10 @@ proc/populate_ghost_traps()
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	return
-	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
-	var/turf/T = get_turf(target)
-	T.visible_message("<span class='notice'>\The [src] chimes quietly.</span>")
 	var/obj/item/device/mmi/digital/P = target.loc
-	if(!istype(P))
-		return
+	if(!istype(P)) return
+	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
+	P.visible_message("<span class='notice'>\The [P] chimes quietly.</span>")
 	P.searching = 0
 	P.set_occupied()
 
