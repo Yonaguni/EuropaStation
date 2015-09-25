@@ -145,12 +145,10 @@
 	O.loc = loc
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
-		if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/device/mmi/digital/robot(O)
-		else
-			O.mmi = new /obj/item/device/mmi(O)
-
-		O.mmi.transfer_identity(src)
+		O.mmi = new /obj/item/device/mmi(O)
+	else
+		O.mmi = new /obj/item/device/mmi/digital(O)
+	O.mmi.transfer_identity(src)
 
 	callHook("borgify", list(O))
 	O.Namepick()

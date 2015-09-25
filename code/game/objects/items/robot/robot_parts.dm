@@ -267,7 +267,6 @@
 	return
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
-	..()
 	if(istype(W, /obj/item/device/flash))
 		if(istype(user,/mob/living/silicon/robot))
 			var/current_module = user.get_active_hand()
@@ -278,14 +277,8 @@
 				add_flashes(W,user)
 		else
 			add_flashes(W,user)
-	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
-		user << "<span class='notice'>You install some manipulators and modify the head, creating a functional spider-bot!</span>"
-		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.drop_item()
-		qdel(W)
-		qdel(src)
 		return
-	return
+	return ..()
 
 /obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob) //Made into a seperate proc to avoid copypasta
 	if(src.flash1 && src.flash2)

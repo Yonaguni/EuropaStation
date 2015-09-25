@@ -135,7 +135,6 @@ var/global/list/limb_icon_cache = list()
 
 	dir = EAST
 	icon = mob_icon
-
 	return mob_icon
 
 // new damage icon system

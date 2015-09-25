@@ -17,6 +17,7 @@
 	var/brute_mod = 1
 	var/burn_mod = 1
 
+	var/robotize_children = 1
 	var/icon_name = null
 	var/body_part = null
 	var/icon_position = 0
@@ -886,7 +887,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return 1
 
 /obj/item/organ/external/robotize(var/company)
-	..()
 
 	brute_mod = 0.8
 	burn_mod = 0.8
@@ -901,13 +901,26 @@ Note that amputating the affected organ does in fact remove the infection from t
 			name = "[R.company] [initial(name)]"
 			desc = "[R.desc]"
 
-	dislocated = -1 //TODO, make robotic limbs a separate type, remove snowflake
+	dislocated = -1
 	cannot_break = 1
 	get_icon()
 	unmutate()
-	for (var/obj/item/organ/external/T in children)
-		if(T)
-			T.robotize(company)
+
+	..()
+
+	// Make out children robots too.
+	if(robotize_children)
+		for(var/obj/item/organ/external/T in children)
+			if(T && !(T.status & ORGAN_ROBOT)) T.robotize(company)
+	// Likewise for any organs we contain.
+	if(owner)
+		for(var/obj/item/organ/O in owner.internal_organs)
+			if(O.parent_organ == limb_name)
+				O.robotize()
+	else // Not in a body, we may have organs inside us.
+		for(var/obj/item/organ/O in contents)
+			if(O.parent_organ == limb_name)
+				O.robotize()
 
 /obj/item/organ/external/proc/mutate()
 	if(src.status & ORGAN_ROBOT)
@@ -1094,6 +1107,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	cannot_amputate = 1
 	parent_organ = null
 	encased = "ribcage"
+	robotize_children = 0
+
+/obj/item/organ/external/chest/robotize()
+	..()
+	if(owner)
+		owner.internal_organs_by_name["cell"] = new /obj/item/organ/cell(owner,1)
+	else
+		new /obj/item/organ/cell(src)
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -1109,6 +1130,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	joint = "hip"
 	dislocated = -1
 	gendered_icon = 1
+	robotize_children = 0
 
 /obj/item/organ/external/arm
 	limb_name = "l_arm"
@@ -1220,6 +1242,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "neck"
 	gendered_icon = 1
 	encased = "skull"
+	robotize_children = 0
 
 /obj/item/organ/external/head/removed()
 	if(owner)

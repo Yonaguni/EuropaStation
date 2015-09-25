@@ -78,20 +78,14 @@ proc/populate_ghost_traps()
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
 	return
-	/*
-	target << "<b>You are a positronic brain, brought into existence on [station_name()].</b>"
-	target << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
-	target << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
-	target << "<b>Use say :b to speak to other artificial intelligences.</b>"
+	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
 	var/turf/T = get_turf(target)
 	T.visible_message("<span class='notice'>\The [src] chimes quietly.</span>")
-	var/obj/item/device/mmi/digital/posibrain/P = target.loc
-	if(!istype(P)) //wat
+	var/obj/item/device/mmi/digital/P = target.loc
+	if(!istype(P))
 		return
 	P.searching = 0
-	P.name = "positronic brain ([P.brainmob.name])"
-	P.icon_state = "posibrain-occupied"
-	*/
+	P.set_occupied()
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)
