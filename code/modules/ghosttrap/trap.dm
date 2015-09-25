@@ -77,12 +77,10 @@ proc/populate_ghost_traps()
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
-	var/turf/T = get_turf(target)
 	var/obj/item/device/mmi/digital/P = target.loc
+	if(!istype(P)) return
+	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
 	P.visible_message("<span class='notice'>\The [P] chimes quietly.</span>")
-	if(!istype(P))
-		return
 	P.searching = 0
 	P.set_occupied()
 
