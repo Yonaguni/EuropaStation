@@ -16,17 +16,18 @@
 	if(!..(user))
 		return
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
+	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n</span>"
 
-	if(src.brainmob && src.brainmob.key)
-		switch(src.brainmob.stat)
-			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	else
+	if(!brainmob || !brainmob.key)
 		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+	else
+		if(brainmob.stat == CONSCIOUS && !brainmob.client)
+			msg += "<span class='warning'>It appears to be in stand-by mode.</span>\n"
+		else if(brainmob.stat == UNCONSCIOUS)
+			msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
+		else if(brainmob.stat == DEAD)
+			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+
 	msg += "<span class='info'>*---------*</span>"
 	user << msg
 	return
