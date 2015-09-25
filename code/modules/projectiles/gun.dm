@@ -22,6 +22,8 @@
 
 /datum/firemode/proc/apply_to(obj/item/weapon/gun/gun)
 	for(var/propname in settings)
+		if(propname == "name")
+			continue
 		gun.vars[propname] = settings[propname]
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
@@ -124,7 +126,6 @@
 	if(user && user.client && !(A in aim_targets))
 		if(user.client.gun_mode)
 			aiming = PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-
 	if (!aiming)
 		if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
 			user << "\red You refrain from firing your [src] as your intent is set to help."
@@ -132,7 +133,7 @@
 			Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
+	if (A == user && ishuman(user) && user.zone_sel.selecting == "mouth" && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -140,6 +141,7 @@
 		return ..() //Pistolwhippin'
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+
 	if(!user || !target) return
 
 	add_fingerprint(user)
@@ -368,7 +370,7 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
 
-/obj/item/weapon/gun/proc/switch_firemodes()
+/obj/item/weapon/gun/proc/switch_firemodes(var/mob/user)
 	if(firemodes.len <= 1)
 		return null
 
@@ -377,7 +379,7 @@
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
-
+	if(user) user << "<span class='notice'>You set \the [src] to [new_mode.name] mode.</span>"
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)

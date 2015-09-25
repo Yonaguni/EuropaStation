@@ -43,7 +43,7 @@
 		screen_loc = "[screen_loc_X[1]]:[pix_X],[screen_loc_Y[1]]:[pix_Y]"
 
 	moved = TRUE
-
+	return 1
 
 //Debug procs
 /client/proc/test_movable_UI()

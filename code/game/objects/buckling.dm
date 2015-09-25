@@ -1,3 +1,6 @@
+/mob/var/can_buckle = 1
+/mob/var/buckle_fail_message
+
 /obj
 	var/can_buckle = 0
 	var/buckle_movable = 0
@@ -27,7 +30,7 @@
 
 
 /obj/proc/buckle_mob(mob/living/M)
-	if(!can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
+	if(!can_buckle || !M.can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
 
 	M.buckled = src
@@ -57,8 +60,11 @@
 	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
 		return
 
-	if(istype(M, /mob/living/carbon/slime))
-		user << "<span class='warning'>The [M] is too squishy to buckle in.</span>"
+	if(!M.can_buckle)
+		if(M.buckle_fail_message)
+			user << "<span class='warning'>\The [M] [M.buckle_fail_message]</span>"
+		else
+			user << "<span class='warning'>You cannot restrain \the [M].</span>"
 		return
 
 	add_fingerprint(user)

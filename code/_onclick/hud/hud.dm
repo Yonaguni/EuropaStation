@@ -272,6 +272,10 @@ datum/hud/New(mob/owner)
 	else
 		mymob.instantiate_hud(src)
 
+	if(istype(mymob.loc, /mob/living/mecha))
+		var/mob/living/mecha/M = mymob.loc
+		M.refresh_hud()
+
 /mob/proc/instantiate_hud(var/datum/hud/HUD)
 	return
 
