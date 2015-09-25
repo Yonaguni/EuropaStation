@@ -1,77 +1,3 @@
-// IPC limbs.
-/obj/item/organ/external/head/ipc
-	dislocated = -1
-	can_intake_reagents = 0
-	vital = 0
-	max_damage = 50 //made same as arm, since it is not vital
-	min_broken_damage = 30
-	encased = null
-
-/obj/item/organ/external/head/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/chest/ipc
-	dislocated = -1
-	encased = null
-/obj/item/organ/external/chest/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/groin/ipc
-	dislocated = -1
-/obj/item/organ/external/groin/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/arm/ipc
-	dislocated = -1
-/obj/item/organ/external/arm/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/arm/right/ipc
-	dislocated = -1
-/obj/item/organ/external/arm/right/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/leg/ipc
-	dislocated = -1
-/obj/item/organ/external/leg/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/leg/right/ipc
-	dislocated = -1
-/obj/item/organ/external/leg/right/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/foot/ipc
-	dislocated = -1
-/obj/item/organ/external/foot/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/foot/right/ipc
-	dislocated = -1
-/obj/item/organ/external/foot/right/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/hand/ipc
-	dislocated = -1
-/obj/item/organ/external/hand/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
-/obj/item/organ/external/hand/right/ipc
-	dislocated = -1
-/obj/item/organ/external/hand/right/ipc/New()
-	robotize("Morpheus Cyberkinetics")
-	..()
-
 /obj/item/organ/cell
 	name = "microbattery"
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
@@ -87,30 +13,24 @@
 
 /obj/item/organ/cell/replaced()
 	..()
-	// This is very ghetto way of rebooting an IPC. TODO better way.
-	if(owner && owner.stat == DEAD)
+	if(owner && owner.isSynthetic() && owner.stat == DEAD)
 		owner.stat = 0
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
-
-/obj/item/organ/optical_sensor
-	name = "optical sensor"
-	organ_tag = "eyes"
-	parent_organ = "head"
-	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "camera"
-	dead_icon = "camera_broken"
-
-/obj/item/organ/optical_sensor/New()
-	robotize()
-	..()
 
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/mmi_holder
 	name = "brain"
 	organ_tag = "brain"
-	parent_organ = "chest"
+	parent_organ = "head"
 	vital = 1
 	var/obj/item/device/mmi/stored_mmi
+
+/obj/item/organ/mmi_holder/New()
+	..()
+	spawn(1)
+		if(owner && owner.isSynthetic() && owner.stat == DEAD)
+			owner.stat = 0
+			owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
 /obj/item/organ/mmi_holder/proc/update_from_mmi()
 	if(!stored_mmi)
@@ -132,25 +52,3 @@
 	if(istype(holder_mob))
 		holder_mob.drop_from_inventory(src)
 	qdel(src)
-
-/obj/item/organ/mmi_holder/New()
-	..()
-	// This is very ghetto way of rebooting an IPC. TODO better way.
-	spawn(1)
-		if(owner && owner.stat == DEAD)
-			owner.stat = 0
-			owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
-
-/obj/item/organ/mmi_holder/posibrain/New()
-	robotize()
-	stored_mmi = new /obj/item/device/mmi/digital(src)
-	..()
-	spawn(1)
-		if(owner)
-			stored_mmi.name = "CPU ([owner.name])"
-			stored_mmi.brainmob.real_name = owner.name
-			stored_mmi.brainmob.name = stored_mmi.brainmob.real_name
-			update_from_mmi()
-		else
-			stored_mmi.loc = get_turf(src)
-			qdel(src)

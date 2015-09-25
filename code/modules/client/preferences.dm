@@ -342,8 +342,16 @@ datum/preferences
 				organ_name = "left hand"
 			if("r_hand")
 				organ_name = "right hand"
+			if("groin")
+				organ_name = "groin"
+			if("chest")
+				organ_name = "chest"
+			if("head")
+				organ_name = "head"
 			if("heart")
 				organ_name = "heart"
+			if("brain")
+				organ_name = "brain"
 			if("eyes")
 				organ_name = "eyes"
 
@@ -1447,12 +1455,16 @@ datum/preferences
 						user << browse(null, "window=disabil")
 
 				if("limbs")
-					var/limb_name = input(user, "Which limb do you want to change?") as null|anything in list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand")
+					var/limb_name = input(user, "Which limb do you want to change?") as null|anything in list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand","Head","Chest","Groin")
 					if(!limb_name) return
 
 					var/limb = null
 					var/second_limb = null // if you try to change the arm, the hand should also change
 					var/third_limb = null  // if you try to unchange the hand, the arm should also change
+
+					var/list/state_choices = list("Normal","Amputated","Prothesis")
+					if(limb_name in list("Head", "Groin", "Chest")) state_choices -= "Amputated"
+
 					switch(limb_name)
 						if("Left Leg")
 							limb = "l_leg"
@@ -1478,8 +1490,16 @@ datum/preferences
 						if("Right Hand")
 							limb = "r_hand"
 							third_limb = "r_arm"
+						if("Chest")
+							limb = "chest"
+							second_limb = "groin"
+						if("Groin")
+							limb = "groin"
+							second_limb = "chest"
+						if("Head")
+							limb = "head"
 
-					var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in list("Normal","Amputated","Prothesis")
+					var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in state_choices
 					if(!new_state) return
 
 					switch(new_state)
@@ -1527,16 +1547,10 @@ datum/preferences
 							if(third_limb && organ_data[third_limb] == "amputated")
 								organ_data[third_limb] = null
 				if("organs")
-					var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes")
+					var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Brain")
 					if(!organ_name) return
 
-					var/organ = null
-					switch(organ_name)
-						if("Heart")
-							organ = "heart"
-						if("Eyes")
-							organ = "eyes"
-
+					var/organ = lowertext(organ_name)
 					var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in list("Normal","Assisted","Mechanical")
 					if(!new_state) return
 

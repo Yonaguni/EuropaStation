@@ -240,35 +240,31 @@ var/list/organ_cache = list()
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-/obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
+// Being used to make robutt hearts, etc
+/obj/item/organ/proc/robotize()
 	robotic = 2
-	src.status &= ~ORGAN_BROKEN
-	src.status &= ~ORGAN_BLEEDING
-	src.status &= ~ORGAN_SPLINTED
-	src.status &= ~ORGAN_CUT_AWAY
-	src.status &= ~ORGAN_DESTROYED
-	src.status |= ORGAN_ROBOT
-	src.status |= ORGAN_ASSISTED
+	status = ORGAN_ROBOT
 
-/obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
-	robotize()
-	src.status &= ~ORGAN_ROBOT
+// Used to add things like pacemakers, etc
+// Only called at chargen, so we don't need to care
+// about restoring the rest of the organ flags.
+/obj/item/organ/proc/mechassist()
+	status = ORGAN_ASSISTED
 	robotic = 1
-	min_bruised_damage = 15
-	min_broken_damage = 35
+	min_bruised_damage = min_bruised_damage*1.5
+	min_broken_damage = min_broken_damage*1.25
 
 /obj/item/organ/emp_act(severity)
-	if(!(status & ORGAN_ROBOT))
+
+	if(!robotic)
 		return
-	switch (severity)
-		if (1.0)
-			take_damage(0,20)
-			return
-		if (2.0)
-			take_damage(0,7)
-			return
-		if(3.0)
-			take_damage(0,3)
+
+	// I hate the way severity is lower for more severe damage.
+	var/damage_modifier = severity * 4
+	if(status & ORGAN_ROBOT)
+		take_damage(0, 20-damage_modifier)
+	else if(status & ORGAN_ASSISTED)
+		take_damage(0, 13-damage_modifier)
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 
