@@ -60,7 +60,8 @@
 		qdel(assembly)
 		assembly = null
 	qdel(wires)
-	..()
+	wires = null
+	return ..()
 
 /obj/machinery/camera/emp_act(severity)
 	if(!isEmpProof())
@@ -304,7 +305,7 @@
 	var/turf/pos = get_turf(src)
 	if(!pos)
 		return list()
-	
+
 	if(isXRay())
 		see = range(view_range, pos)
 	else
