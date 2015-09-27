@@ -68,7 +68,8 @@
 
 /turf/simulated/floor/tiled/red
 	name = "red floor"
-	icon_state = "red"
+	color = COLOR_RED_GRAY
+	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/red
 
 /turf/simulated/floor/tiled/steel
@@ -83,7 +84,8 @@
 
 /turf/simulated/floor/tiled/yellow
 	name = "yellow floor"
-	icon_state = "yellow"
+	color = COLOR_BROWN
+	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/yellow
 
 /turf/simulated/floor/tiled/freezer

@@ -1345,5 +1345,9 @@ var/mob/dview/dview_mob = new
 	else
 		living_mob_list -= src
 
+// call to generate a stack trace and print to runtime logs
+/proc/crash_with(msg)
+	CRASH(msg)
+
 /proc/soft_assert(thing,fail)
 	if(!thing) message_admins(fail)
