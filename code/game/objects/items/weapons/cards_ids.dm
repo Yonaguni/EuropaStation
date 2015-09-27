@@ -98,7 +98,7 @@
 		"Resomi" = 'icons/mob/species/resomi/id.dmi'
 		)
 
-	var/access = list()
+	var/list/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	slot_flags = SLOT_ID
 
