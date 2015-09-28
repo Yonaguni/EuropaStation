@@ -12,10 +12,15 @@
 	var/global/overlay_map = list()
 
 /turf/simulated/open/New()
-	. = ..()
-	spawn(1)
-		below = GetBelow(src)
-		ASSERT(HasBelow(z))
+	..()
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		initialize()
+	else
+		init_turfs += src
+
+/turf/simulated/open/initialize()
+	below = GetBelow(src)
+	ASSERT(HasBelow(z))
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	// only fall down in defined areas (read: areas with artificial gravitiy)

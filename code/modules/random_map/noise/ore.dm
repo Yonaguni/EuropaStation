@@ -51,7 +51,7 @@
 			T.resources["silicates"] = rand(3,5)
 			T.resources["carbonaceous rock"] = rand(3,5)
 
-			var/current_cell = map[get_map_cell(x,y)]
+			var/current_cell = map[GET_MAP_CELL(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
 				T.resources["iron"] =     rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
 				T.resources["gold"] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
