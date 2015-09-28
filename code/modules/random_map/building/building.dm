@@ -4,9 +4,9 @@
 	limit_y = 7
 
 /datum/random_map/building/generate_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell)
 				continue
 			if(x == 1 || y == 1 || x == limit_x || y == limit_y)
@@ -16,9 +16,9 @@
 
 /datum/random_map/building/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	var/list/possible_doors
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell)
 				continue
 			if(!(x == 1 || y == 1 || x == limit_x || y == limit_y))
@@ -39,7 +39,10 @@
 
 
 			if(place_door)
-				possible_doors |= target_map.get_map_cell(tx+x,ty+y)
+				var/olx = limit_x
+				limit_x = target_map.limit_x
+				possible_doors |= GET_MAP_CELL(tx+x,ty+y)
+				limit_x = olx
 
 	if(possible_doors.len)
 		// Place at least one door.

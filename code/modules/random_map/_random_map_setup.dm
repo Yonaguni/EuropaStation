@@ -20,3 +20,7 @@
 #define MONSTER_CHAR 5
 #define ARTIFACT_TURF_CHAR 6
 #define ARTIFACT_CHAR 7
+
+#define GET_MAP_CELL(X, Y) min(map.len, max(0,(((Y-1)*limit_x)+X)))
+#define IS_P_TWO(VAL) ((VAL & (VAL-1)) == 0)
+#define ROUND_TO_P_TWO(VAL) (2 ** -round(-log(2,VAL)))

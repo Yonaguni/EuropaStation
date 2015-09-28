@@ -19,10 +19,10 @@
 /datum/random_map/noise/set_map_size()
 	// Make sure the grid is a square with limits that are
 	// (n^2)+1, otherwise diamond-square won't work.
-	if(!IsPowerOfTwo((limit_x-1)))
-		limit_x = RoundUpToPowerOfTwo(limit_x) + 1
-	if(!IsPowerOfTwo((limit_y-1)))
-		limit_y = RoundUpToPowerOfTwo(limit_y) + 1
+	if(!IS_P_TWO((limit_x-1)))
+		limit_x = ROUND_TO_P_TWO(limit_x) + 1
+	if(!IS_P_TWO((limit_y-1)))
+		limit_y = ROUND_TO_P_TWO(limit_y) + 1
 	// Sides must be identical lengths.
 	if(limit_x > limit_y)
 		limit_y = limit_x
@@ -33,15 +33,15 @@
 // Diamond-square algorithm.
 /datum/random_map/noise/seed_map()
 	// Instantiate the grid.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			map[get_map_cell(x,y)] = 0
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			map[GET_MAP_CELL(x,y)] = 0
 
 	// Now dump in the actual random data.
-	map[get_map_cell(1,1)]             = cell_base+rand(initial_cell_range)
-	map[get_map_cell(1,limit_y)]       = cell_base+rand(initial_cell_range)
-	map[get_map_cell(limit_x,limit_y)] = cell_base+rand(initial_cell_range)
-	map[get_map_cell(limit_x,1)]       = cell_base+rand(initial_cell_range)
+	map[GET_MAP_CELL(1,1)]             = cell_base+rand(initial_cell_range)
+	map[GET_MAP_CELL(1,limit_y)]       = cell_base+rand(initial_cell_range)
+	map[GET_MAP_CELL(limit_x,limit_y)] = cell_base+rand(initial_cell_range)
+	map[GET_MAP_CELL(limit_x,1)]       = cell_base+rand(initial_cell_range)
 
 /datum/random_map/noise/generate_map()
 	// Begin recursion.
@@ -69,33 +69,33 @@
 	(x,y)----------(x+hsize,y)----------(x+isize,y)
 	*/
 	// Central edge values become average of corners.
-	map[get_map_cell(x+hsize,y+isize)] = round((\
-		map[get_map_cell(x,y+isize)] +          \
-		map[get_map_cell(x+isize,y+isize)] \
+	map[GET_MAP_CELL(x+hsize,y+isize)] = round((\
+		map[GET_MAP_CELL(x,y+isize)] +          \
+		map[GET_MAP_CELL(x+isize,y+isize)] \
 		)/2)
 
-	map[get_map_cell(x+hsize,y)] = round((  \
-		map[get_map_cell(x,y)] +            \
-		map[get_map_cell(x+isize,y)]   \
+	map[GET_MAP_CELL(x+hsize,y)] = round((  \
+		map[GET_MAP_CELL(x,y)] +            \
+		map[GET_MAP_CELL(x+isize,y)]   \
 		)/2)
 
-	map[get_map_cell(x,y+hsize)] = round((  \
-		map[get_map_cell(x,y+isize)] + \
-		map[get_map_cell(x,y)]              \
+	map[GET_MAP_CELL(x,y+hsize)] = round((  \
+		map[GET_MAP_CELL(x,y+isize)] + \
+		map[GET_MAP_CELL(x,y)]              \
 		)/2)
 
-	map[get_map_cell(x+isize,y+hsize)] = round((  \
-		map[get_map_cell(x+isize,y+isize)] + \
-		map[get_map_cell(x+isize,y)]        \
+	map[GET_MAP_CELL(x+isize,y+hsize)] = round((  \
+		map[GET_MAP_CELL(x+isize,y+isize)] + \
+		map[GET_MAP_CELL(x+isize,y)]        \
 		)/2)
 
 	// Centre value becomes the average of all other values + possible random variance.
-	var/current_cell = get_map_cell(x+hsize,y+hsize)
+	var/current_cell = GET_MAP_CELL(x+hsize,y+hsize)
 	map[current_cell] = round(( \
-		map[get_map_cell(x+hsize,y+isize)] + \
-		map[get_map_cell(x+hsize,y)] + \
-		map[get_map_cell(x,y+hsize)] + \
-		map[get_map_cell(x+isize,y)] \
+		map[GET_MAP_CELL(x+hsize,y+isize)] + \
+		map[GET_MAP_CELL(x+hsize,y)] + \
+		map[GET_MAP_CELL(x,y+hsize)] + \
+		map[GET_MAP_CELL(x+isize,y)] \
 		)/4)
 
 	if(prob(random_variance_chance))
@@ -113,46 +113,46 @@
 
 /datum/random_map/noise/cleanup()
 
-	for(var/i = 1;i<=smoothing_iterations;i++)
+	for(var/i = 1 to smoothing_iterations)
 		var/list/next_map[limit_x*limit_y]
-		for(var/x = 1, x <= limit_x, x++)
-			for(var/y = 1, y <= limit_y, y++)
+		for(var/x = 1 to limit_x)
+			for(var/y = 1 to limit_y)
 
-				var/current_cell = get_map_cell(x,y)
+				var/current_cell = GET_MAP_CELL(x,y)
 				next_map[current_cell] = map[current_cell]
 				var/val_count = 0
 				var/total = 0
 
 				// Get the average neighboring value.
-				var/tmp_cell = get_map_cell(x+1,y+1)
+				var/tmp_cell = GET_MAP_CELL(x+1,y+1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x-1,y-1)
+				tmp_cell = GET_MAP_CELL(x-1,y-1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x+1,y-1)
+				tmp_cell = GET_MAP_CELL(x+1,y-1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x-1,y+1)
+				tmp_cell = GET_MAP_CELL(x-1,y+1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x-1,y)
+				tmp_cell = GET_MAP_CELL(x-1,y)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x,y-1)
+				tmp_cell = GET_MAP_CELL(x,y-1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x+1,y)
+				tmp_cell = GET_MAP_CELL(x+1,y)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++
-				tmp_cell = get_map_cell(x,y+1)
+				tmp_cell = GET_MAP_CELL(x,y+1)
 				if(tmp_cell)
 					total += map[tmp_cell]
 					val_count++

@@ -67,15 +67,6 @@ var/global/list/map_count = list()
 			return
 	if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map.</span>", R_DEBUG)
 
-/datum/random_map/proc/get_map_cell(var/x,var/y)
-	if(!islist(map))
-		set_map_size()
-	var/cell = ((y-1)*limit_x)+x
-	if((cell < 1) || (cell > map.len))
-		return null
-	else
-		return cell
-
 /datum/random_map/proc/get_map_char(var/value)
 	switch(value)
 		if(WALL_CHAR)
@@ -101,9 +92,9 @@ var/global/list/map_count = list()
 		user = world
 
 	var/dat = "<code>+------+<br>"
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(current_cell)
 				dat += get_map_char(map[current_cell])
 		dat += "<br>"
@@ -114,18 +105,18 @@ var/global/list/map_count = list()
 	map.len = limit_x * limit_y
 
 /datum/random_map/proc/seed_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(prob(initial_wall_cell))
 				map[current_cell] = WALL_CHAR
 			else
 				map[current_cell] = FLOOR_CHAR
 
 /datum/random_map/proc/clear_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			map[get_map_cell(x,y)] = 0
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			map[GET_MAP_CELL(x,y)] = 0
 
 /datum/random_map/proc/generate()
 	seed_map()
@@ -154,13 +145,13 @@ var/global/list/map_count = list()
 	if(!origin_y) origin_y = 1
 	if(!origin_z) origin_z = 1
 
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
 			if(!priority_process) sleep(-1)
 			apply_to_turf(x,y)
 
 /datum/random_map/proc/apply_to_turf(var/x,var/y)
-	var/current_cell = get_map_cell(x,y)
+	var/current_cell = GET_MAP_CELL(x,y)
 	if(!current_cell)
 		return 0
 	var/turf/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
@@ -194,16 +185,22 @@ var/global/list/map_count = list()
 		return
 	tx-- // Update origin so that x/y index
 	ty-- // doesn't push it off-kilter by one.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell)
 				continue
 			if(tx+x > target_map.limit_x)
 				continue
 			if(ty+y > target_map.limit_y)
 				continue
-			target_map.map[target_map.get_map_cell(tx+x,ty+y)] = map[current_cell]
+
+			// Var juggling due to GET_MAP_CELL becoming a macro.
+			var/olx = limit_x
+			limit_x = target_map.limit_x
+			target_map.map[GET_MAP_CELL(tx+x,ty+y)] = map[current_cell]
+			limit_x = olx
+
 	handle_post_overlay_on(target_map,tx,ty)
 
 /datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)

@@ -66,30 +66,30 @@
 
 // This is disgusting.
 /datum/random_map/automata/diona/proc/search_neighbors_for(var/search_val, var/x, var/y)
-	var/current_cell = get_map_cell(x-1,y-1)
+	var/current_cell = GET_MAP_CELL(x-1,y-1)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x-1,y)
+	current_cell = GET_MAP_CELL(x-1,y)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x-1,y+1)
+	current_cell = GET_MAP_CELL(x-1,y+1)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x,y-1)
+	current_cell = GET_MAP_CELL(x,y-1)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x,y+1)
+	current_cell = GET_MAP_CELL(x,y+1)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x+1,y-1)
+	current_cell = GET_MAP_CELL(x+1,y-1)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x+1,y)
+	current_cell = GET_MAP_CELL(x+1,y)
 	if(current_cell && map[current_cell] == search_val) return 1
-	current_cell = get_map_cell(x+1,y+1)
+	current_cell = GET_MAP_CELL(x+1,y+1)
 	if(current_cell && map[current_cell] == search_val) return 1
 	return 0
 
 /datum/random_map/automata/diona/cleanup()
 
 	// Hollow out the interior spaces.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell) continue
 			if(map[current_cell] == WALL_CHAR)
 				if(!search_neighbors_for(FLOOR_CHAR,x,y) && !search_neighbors_for(DOOR_CHAR,x,y) && !(x == 1 || y == 1 || x == limit_x || y == limit_y))
@@ -98,10 +98,10 @@
 	// Prune exposed floor turfs away from the edges.
 	var/changed = 1
 	while(changed)
-		for(var/x = 1, x <= limit_x, x++)
-			for(var/y = 1, y <= limit_y, y++)
+		for(var/x = 1 to limit_x)
+			for(var/y = 1 to limit_y)
 				changed = 0
-				var/current_cell = get_map_cell(x,y)
+				var/current_cell = GET_MAP_CELL(x,y)
 				if(!current_cell) continue
 				if(map[current_cell] == EMPTY_CHAR)
 					if((search_neighbors_for(FLOOR_CHAR,x,y)) || (x == 1 || y == 1 || x == limit_x || y == limit_y))
@@ -110,17 +110,17 @@
 
 	// Count and track the floors.
 	var/list/floor_turfs = list()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell) continue
 			if(map[current_cell] == EMPTY_CHAR)
 				floor_turfs |= current_cell
 
 	// Add vine decals.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(!current_cell || map[current_cell] != EMPTY_CHAR) continue
 			if(search_neighbors_for(WALL_CHAR,x,y))
 				map[current_cell] = DOOR_CHAR

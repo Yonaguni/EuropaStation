@@ -27,18 +27,14 @@
 			return "X"
 	return ..(value)
 
-/datum/random_map/automata/cave_system/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs |= target_cell
-
-/datum/random_map/automata/cave_system/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs -= target_cell
-
 // Create ore turfs.
 /datum/random_map/automata/cave_system/cleanup()
+
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			if(map[GET_MAP_CELL(x,y)] == WALL_CHAR)
+				ore_turfs += GET_MAP_CELL(x,y)
+
 	var/ore_count = round(map.len/20)
 	while((ore_count>0) && (ore_turfs.len>0))
 		if(!priority_process) sleep(-1)
