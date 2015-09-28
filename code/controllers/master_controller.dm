@@ -67,21 +67,16 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/area in all_areas)
 		var/area/A = area
 		A.initialize()
-	admin_notice("<span class='warning'>Initializing ocean overlays...</span>", R_DEBUG)
+	admin_notice("<span class='warning'>Initializing turfs...</span>", R_DEBUG)
 	sleep(-1)
-	for(var/ocean in ocean_turfs)
-		var/turf/unsimulated/ocean/O = ocean
-		O.initialize()
-	admin_notice("<span class='warning'>Initializing nonstandard turf atmospherics...</span>", R_DEBUG)
-	sleep(-1)
-	for(var/F in nonstandard_atmos_turfs)
-		air_master.add_to_active(F)
-
+	for(var/turf in init_turfs)
+		var/turf/T = turf
+		T.initialize()
+	init_turfs.Cut()
 	admin_notice("<span class='warning'>Initializing pipe networks...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
-
 	admin_notice("<span class='warning'>Initializing atmos machinery...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in machines)

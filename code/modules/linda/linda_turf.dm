@@ -81,14 +81,22 @@
 	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
 	update_visuals(air)
-	if(air_master) air_master.add_to_active(src)
+	if(air_master)
+		air_master.add_to_active(src)
+
+/turf/simulated/initialize()
+	..()
+	make_air()
 
 /turf/simulated/New()
 	..()
 	if(!blocks_air)
 		make_air()
 	if(initial_air)
-		nonstandard_atmos_turfs |= src
+		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+			initialize()
+		else
+			init_turfs += src
 
 /turf/simulated/Destroy()
 	if(active_hotspot)

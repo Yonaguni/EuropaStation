@@ -71,14 +71,14 @@ var/image/ocean_overlay_img
 
 /turf/unsimulated/ocean/New()
 	..()
-	ocean_turfs += src
+	processing_turfs -= src
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
 	else
-		// See startup hook do_ocean_initialisation()
-		processing_turfs -= src
+		init_turfs += src
 
-/turf/unsimulated/ocean/proc/initialize()
+/turf/unsimulated/ocean/initialize()
+	processing_turfs += src
 	update_icon()
 
 /turf/unsimulated/ocean/update_icon()
@@ -94,7 +94,6 @@ var/image/ocean_overlay_img
 	overlays |= get_ocean_overlay()
 
 /turf/unsimulated/ocean/Destroy()
-	ocean_turfs -= src
 	processing_turfs -= src
 	..()
 
