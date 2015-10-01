@@ -65,6 +65,11 @@
 		qdel(src)
 	else ..()
 
+/obj/structure/sign/New() // grime for rectangular signs
+	..()
+	if((icon_state in list("doors", "space", "deathsposal", "pods", "examroom", "xenobio", "science1", "science2", "chemistry1", "chemistry2", "hydro1", "hyrdo2", "hydro3", "xenobio2" )) && prob(80))
+		overlays += "grime[rand(1,9)]"
+
 /obj/structure/sign/double/map
 	name = "station map"
 	desc = "A framed picture of the station."
