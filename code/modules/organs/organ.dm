@@ -240,8 +240,10 @@ var/list/organ_cache = list()
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-// Being used to make robutt hearts, etc
-/obj/item/organ/proc/robotize()
+/obj/item/organ/proc/bruise()
+	damage = max(damage, min_bruised_damage)
+
+/obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
 	robotic = 2
 	status = ORGAN_ROBOT
 
