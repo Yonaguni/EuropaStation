@@ -20,6 +20,9 @@
 /decl/xgm_gas/phoron
 	id = "fuel"
 	name = "Fuel"
+	
+	//Note that this has a significant impact on TTV yield.
+	//Because it is so high, any leftover phoron soaks up a lot of heat and drops the yield pressure.
 	specific_heat = 200	// J/(mol*K)
 	layer_offset = 0.3
 

@@ -67,7 +67,6 @@
 		for(var/x in verbs)
 			verbs -= x
 		set_broken()
-		density = 0
 
 /obj/machinery/computer/update_icon()
 	overlays.Cut()
@@ -136,11 +135,4 @@
 			M.deconstruct(src)
 			qdel(src)
 	else
-		src.attack_hand(user)
-	return
-
-
-
-
-
-
+		..()

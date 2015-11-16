@@ -342,11 +342,28 @@
 			internals.icon_state = "internal0"
 	return null
 
+/mob/living/carbon/human/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)
+	var/datum/gas_mixture/breath = ..()
+
+	if(breath)
+		//exposure to extreme pressures can rupture lungs
+		var/check_pressure = breath.return_pressure()
+		if(check_pressure < ONE_ATMOSPHERE / 5 || check_pressure > ONE_ATMOSPHERE * 5)
+			if(!is_lung_ruptured() && prob(5))
+				rupture_lung()
+
+	return breath
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
 
+	//exposure to extreme pressures can rupture lungs
+	if(breath && (breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5))
+		if(!is_lung_ruptured() && prob(5))
+			rupture_lung()
+
+	//check if we actually need to process breath
 	if(!breath || (breath.total_moles == 0) || suiciding)
 		failed_last_breath = 1
 		if(suiciding)
@@ -359,10 +376,9 @@
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
 		oxygen_alert = max(oxygen_alert, 1)
-
 		return 0
 
-	var/safe_pressure_min = 16 // Minimum safe partial pressure of breathable gas in kPa
+	var/safe_pressure_min = species.breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
 	// Lung damage increases the minimum safe pressure.
 	if(species.has_organ["lungs"])
@@ -579,7 +595,14 @@
 			pl_effects()
 			break
 
-	if(!istype(get_turf(src), /turf/space)) //space is not meant to change your body temperature.
+	if(istype(get_turf(src), /turf/space))
+		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
+		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
+			//Thermal radiation into space
+			var/heat_loss = HUMAN_EXPOSED_SURFACE_AREA * STEFAN_BOLTZMANN_CONSTANT * ((bodytemperature - COSMIC_RADIATION_TEMPERATURE)**4)
+			var/temperature_loss = heat_loss/HUMAN_HEAT_CAPACITY
+			bodytemperature -= temperature_loss
+	else
 		var/loc_temp = T0C
 		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			loc_temp = loc:air_contents.temperature
@@ -590,7 +613,7 @@
 			pressure_alert = 0
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
-		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
+		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 		var/temp_adj = 0
 		if(loc_temp < bodytemperature)			//Place is colder than we are
 			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
@@ -683,13 +706,15 @@
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.
 		bodytemperature += species.passive_temp_gain
+	if (species.body_temperature == null)
+		return //this species doesn't have metabolic thermoregulation
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
 	if (on_fire)
-		return //too busy for pesky convection
+		return //too busy for pesky metabolic regulation
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
@@ -910,11 +935,7 @@
 	if(status_flags & GODMODE)	return 0
 
 	//SSD check, if a logged player is awake put them back to sleep!
-	if(species.show_ssd && !client && !aghosted)
-		sleeping = 2
-
-	//SSD check, if a logged player is awake put them back to sleep!
-	if(species.show_ssd && !client && !aghosted)
+	if(species.show_ssd && !client && !teleop)
 		Sleeping(2)
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
@@ -948,11 +969,11 @@
 			for(var/atom/a in hallucinations)
 				qdel(a)
 
-		if(halloss > 100)
-			src << "<span class='notice'>You're in too much pain to keep going...</span>"
-			src.visible_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.")
-			Paralyse(10)
-			setHalLoss(99)
+			if(halloss > 100)
+				src << "<span class='warning'>[species.halloss_message_self]</span>"
+				src.visible_message("<B>[src]</B> [species.halloss_message].")
+				Paralyse(10)
+				setHalLoss(99)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -1290,31 +1311,36 @@
 					if(260 to 280)			bodytemp.icon_state = "temp-3"
 					else					bodytemp.icon_state = "temp-4"
 			else
+				//TODO: precalculate all of this stuff when the species datum is created
+				var/base_temperature = species.body_temperature
+				if(base_temperature == null) //some species don't have a set metabolic temperature
+					base_temperature = (species.heat_level_1 + species.cold_level_1)/2
+				
 				var/temp_step
-				if (bodytemperature >= species.body_temperature)
-					temp_step = (species.heat_level_1 - species.body_temperature)/4
+				if (bodytemperature >= base_temperature)
+					temp_step = (species.heat_level_1 - base_temperature)/4
 
 					if (bodytemperature >= species.heat_level_1)
 						bodytemp.icon_state = "temp4"
-					else if (bodytemperature >= species.body_temperature + temp_step*3)
+					else if (bodytemperature >= base_temperature + temp_step*3)
 						bodytemp.icon_state = "temp3"
-					else if (bodytemperature >= species.body_temperature + temp_step*2)
+					else if (bodytemperature >= base_temperature + temp_step*2)
 						bodytemp.icon_state = "temp2"
-					else if (bodytemperature >= species.body_temperature + temp_step*1)
+					else if (bodytemperature >= base_temperature + temp_step*1)
 						bodytemp.icon_state = "temp1"
 					else
 						bodytemp.icon_state = "temp0"
 
-				else if (bodytemperature < species.body_temperature)
-					temp_step = (species.body_temperature - species.cold_level_1)/4
+				else if (bodytemperature < base_temperature)
+					temp_step = (base_temperature - species.cold_level_1)/4
 
 					if (bodytemperature <= species.cold_level_1)
 						bodytemp.icon_state = "temp-4"
-					else if (bodytemperature <= species.body_temperature - temp_step*3)
+					else if (bodytemperature <= base_temperature - temp_step*3)
 						bodytemp.icon_state = "temp-3"
-					else if (bodytemperature <= species.body_temperature - temp_step*2)
+					else if (bodytemperature <= base_temperature - temp_step*2)
 						bodytemp.icon_state = "temp-2"
-					else if (bodytemperature <= species.body_temperature - temp_step*1)
+					else if (bodytemperature <= base_temperature - temp_step*1)
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
