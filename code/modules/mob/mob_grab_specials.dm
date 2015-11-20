@@ -1,8 +1,8 @@
 
 /obj/item/weapon/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
-	
+
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
-	
+
 	if(!E || (E.status & ORGAN_DESTROYED))
 		user << "<span class='notice'>[H] is missing that bodypart.</span>"
 		return
@@ -14,7 +14,7 @@
 		user << "<span class='warning'>You find [E.get_wounds_desc()]</span>"
 	else
 		user << "<span class='notice'>You find no visible wounds.</span>"
-	
+
 	user << "<span class='notice'>Checking bones now...</span>"
 	if(!do_mob(user, H, 20))
 		user << "<span class='notice'>You must stand still to feel [E] for fractures.</span>"
@@ -23,7 +23,7 @@
 		H.custom_pain("Your [E.name] hurts where it's poked.")
 	else
 		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>"
-	
+
 	user << "<span class='notice'>Checking skin now...</span>"
 	if(!do_mob(user, H, 10))
 		user << "<span class='notice'>You must stand still to check [H]'s skin for abnormalities.</span>"
@@ -45,7 +45,7 @@
 	if(state < GRAB_AGGRESSIVE)
 		attacker << "<span class='warning'>You require a better grab to do this.</span>"
 		return
-	
+
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
 	if(!organ || organ.dislocated == -1)
 		return
@@ -61,7 +61,7 @@
 		return
 
 	var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(target, "eyes")
-	
+
 	if(!attack)
 		return
 	if(state < GRAB_NECK)
@@ -78,16 +78,16 @@
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Attacked [target.name]'s eyes using grab ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Had eyes attacked by [attacker.name]'s grab ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] attacked [key_name(target)]'s eyes using a grab action.")
-	
+
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/weapon/grab/proc/headbut(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/weapon/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
 		return
 	attacker.visible_message("<span class='danger'>[attacker] thrusts \his head into [target]'s skull!</span>")
-	
+
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
 	if(istype(hat))
@@ -105,7 +105,7 @@
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Headbutted [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Headbutted by [attacker.name] ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
-	
+
 	attacker.drop_from_inventory(src)
 	src.loc = null
 	qdel(src)
@@ -125,7 +125,7 @@
 		return
 	if(force_down)
 		attacker << "<span class='warning'>You are already pinning [target] to the ground.</span>"
-	
+
 	attacker.visible_message("<span class='danger'>[attacker] starts forcing [target] to the ground!</span>")
 	if(do_after(attacker, 20) && target)
 		last_action = world.time

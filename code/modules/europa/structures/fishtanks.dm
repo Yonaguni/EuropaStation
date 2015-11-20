@@ -220,7 +220,6 @@ var/list/fishtank_cache = list()
 		if(A && A.Adjacent(usr) && A.Adjacent(T))
 			A.do_climb_out(usr, T)
 			return
-
 	return ..()
 
 /obj/structure/aquarium/proc/do_climb_out(mob/living/user, turf/target)

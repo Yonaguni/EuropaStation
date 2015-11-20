@@ -11,11 +11,20 @@
 	slot_flags = 0
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/effects/bang.ogg'
-	
+
 	release_force = 15
 	throw_distance = 30
 	var/max_rockets = 1
 	var/list/rockets = new/list()
+
+/obj/item/weapon/gun/launcher/rocket/mech
+	name = "mounted missile pod"
+	max_rockets = 6
+
+/obj/item/weapon/gun/launcher/rocket/mech/New()
+	..()
+	while(rockets.len < max_rockets)
+		rockets += new /obj/item/ammo_casing/rocket(src)
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
 	if(!..(user, 2))

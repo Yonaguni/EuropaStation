@@ -174,7 +174,7 @@
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	load_ammo(A, user)
 
-/obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
+/obj/item/weapon/gun/projectile/attack_self(var/mob/user)
 	if(firemodes.len > 1)
 		switch_firemodes(user)
 	else

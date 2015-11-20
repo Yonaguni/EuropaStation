@@ -12,7 +12,7 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			H << "\red You can't use your hand."
+			H << "<span class='warning'>You can't use your hand.</span>"
 			return
 
 	..()
@@ -28,7 +28,7 @@
 			var/damage = rand(0, 9)
 			if(!damage)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
+				visible_message("<span class='danger'>\The [H] has attempted to punch [src]!</span>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
@@ -38,11 +38,11 @@
 
 			playsound(loc, "punch", 25, 1, -1)
 
-			visible_message("\red <B>[H] has punched [src]!</B>")
+			visible_message("<span class='danger'>\The [H] has punched [src]!</span>")
 
 			apply_damage(damage, HALLOSS, affecting, armor_block)
 			if(damage >= 9)
-				visible_message("\red <B>[H] has weakened [src]!</B>")
+				visible_message("<span class='danger'>\The [H] has weakened [src]!</span>")
 				apply_effect(4, WEAKEN, armor_block)
 
 			return
@@ -178,14 +178,14 @@
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != "chest") // Missed!
 					if(!src.lying)
-						attack_message = "[H] attempted to strike [src], but missed!"
+						attack_message = "\The [H] attempted to strike [src], but missed!"
 					else
-						attack_message = "[H] attempted to strike [src], but \he rolled out of the way!"
+						attack_message = "\The [H] attempted to strike [src], but \he rolled out of the way!"
 						src.set_dir(pick(cardinal))
 					miss_type = 1
 
 			if(!miss_type && block)
-				attack_message = "[H] went for [src]'s [affecting.name] but was blocked!"
+				attack_message = "\The [H] went for [src]'s [affecting.name] but was blocked!"
 				miss_type = 2
 
 			// See what attack they use

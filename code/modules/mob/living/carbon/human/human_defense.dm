@@ -229,7 +229,7 @@ emp_act
 				if(prob(effective_force + 10))
 					apply_effect(6, WEAKEN, armor)
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
-		
+
 		//Apply blood
 		if(bloody)
 			switch(hit_area)
@@ -310,7 +310,7 @@ emp_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
+		src.visible_message("<span class='danger'>\The [src] has been hit in the [hit_area] by [O]!</span>")
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 2)
