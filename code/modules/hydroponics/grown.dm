@@ -35,6 +35,7 @@
 		return
 
 	name = "[seed.seed_name]"
+	trash = seed.get_trash_type()
 
 	update_icon()
 
