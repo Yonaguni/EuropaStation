@@ -85,10 +85,3 @@
 	robotic = 2
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
-
-/obj/item/organ/brain/golem
-	name = "chem"
-	desc = "A tightly furled roll of paper, covered with indecipherable runes."
-	robotic = 2
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "scroll"

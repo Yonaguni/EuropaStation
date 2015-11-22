@@ -67,7 +67,6 @@
 		/obj/item/organ/brain, //to insert into MMIs.
 		/obj/item/stack/cable_coil, //again, for borg building
 		/obj/item/weapon/circuitboard,
-		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
 
