@@ -4,7 +4,6 @@ var/global/list/syndicate_ids = list()
 	name = "agent card"
 	icon_state = "syndicate"
 	assignment = "Agent"
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/electronic_warfare = 1
 	var/registered_user = null
 

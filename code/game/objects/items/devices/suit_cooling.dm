@@ -13,7 +13,6 @@
 	throw_speed = 1
 	throw_range = 4
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?

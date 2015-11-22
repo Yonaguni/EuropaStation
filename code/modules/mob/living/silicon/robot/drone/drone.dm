@@ -55,7 +55,7 @@ var/list/mob_hat_cache = list()
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
 
-	holder_type = /obj/item/weapon/holder/drone
+	holder_type = /obj/item/weapon/holder
 
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)

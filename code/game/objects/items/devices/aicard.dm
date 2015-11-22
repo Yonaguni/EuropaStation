@@ -6,8 +6,6 @@
 	w_class = 2.0
 	slot_flags = SLOT_BELT
 	var/flush = null
-	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-
 	var/mob/living/silicon/ai/carded_ai
 
 /obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)

@@ -2,7 +2,6 @@
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/banglet = 0
 
 	prime()

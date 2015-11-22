@@ -5,23 +5,23 @@
 /obj/item/proc/disguise(var/newtype)
 	//this is necessary, unfortunately, as initial() does not play well with list vars
 	var/obj/item/copy = new newtype(null) //so that it is GCed once we exit
-	
+
 	desc = copy.desc
 	name = copy.name
 	icon_state = copy.icon_state
 	item_state = copy.item_state
 	body_parts_covered = copy.body_parts_covered
-	
+
 	item_icons = copy.item_icons.Copy()
 	item_state_slots = copy.item_state_slots.Copy()
 	sprite_sheets = copy.sprite_sheets.Copy()
 	//copying sprite_sheets_obj should be unnecessary as chameleon items are not refittable.
-	
+
 	return copy //for inheritance
 
 /proc/generate_chameleon_choices(var/basetype, var/blacklist=list())
 	. = list()
-	
+
 	var/i = 1 //in case there is a collision with both name AND icon_state
 	for(var/typepath in typesof(basetype) - blacklist)
 		var/obj/O = typepath
@@ -40,7 +40,6 @@
 	item_state = "bl_suit"
 	worn_state = "black"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/under/chameleon/New()
@@ -76,7 +75,6 @@
 	name = "grey cap"
 	icon_state = "greysoft"
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	body_parts_covered = 0
 	var/global/list/clothing_choices
 
@@ -100,7 +98,7 @@
 
 	if(!ispath(clothing_choices[picked]))
 		return
-	
+
 	disguise(clothing_choices[picked])
 	update_clothing_icon()	//so our overlays update.
 
@@ -113,7 +111,6 @@
 	icon_state = "armor"
 	item_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/suit/chameleon/New()
@@ -148,7 +145,6 @@
 	icon_state = "black"
 	item_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
@@ -184,7 +180,6 @@
 	icon_state = "backpack"
 	item_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/weapon/storage/backpack/chameleon/New()
@@ -227,7 +222,6 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
@@ -262,7 +256,6 @@
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/mask/chameleon/New()
@@ -297,7 +290,6 @@
 	icon_state = "meson"
 	item_state = "glasses"
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
 
 /obj/item/clothing/glasses/chameleon/New()
@@ -331,21 +323,20 @@
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "deagle"
 	w_class = 3
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	matter = list()
-	
+
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0
 	charge_cost = 20 //uses next to no power, since it's just holograms
 	max_shots = 50
-	
+
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices
 
 /obj/item/weapon/gun/energy/chameleon/New()
 	..()
-	
+
 	if(!gun_choices)
 		gun_choices = list()
 		for(var/gun_type in typesof(/obj/item/weapon/gun/) - src.type)

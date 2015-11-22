@@ -12,7 +12,6 @@
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = 14 //enough to hold all starting contents
-	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
 
 /obj/item/weapon/storage/toolbox/emergency
@@ -67,7 +66,6 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = 7.0
 
 	New()
