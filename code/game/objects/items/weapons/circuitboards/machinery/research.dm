@@ -21,7 +21,7 @@ obj/item/weapon/circuitboard/rdserver
 
 /obj/item/weapon/circuitboard/autolathe
 	name = T_BOARD("autolathe")
-	build_path = "/obj/machinery/autolathe"
+	build_path = "/obj/machinery/fabricator"
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/weapon/stock_parts/matter_bin" = 3,
