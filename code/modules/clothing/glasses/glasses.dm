@@ -104,7 +104,7 @@
 	item_state = "glasses"
 	prescription = 1
 	body_parts_covered = 0
-	
+
 /obj/item/clothing/glasses/regular/scanners
 	name = "Scanning Goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
@@ -182,6 +182,14 @@
 	icon_state = "blindfold"
 	item_state = "blindfold"
 	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
+
+/obj/item/clothing/glasses/sunglasses/blindfold/tape
+	name = "length of tape"
+	desc = "It's a robust DIY blindfold!"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "tape_cross"
+	item_state = null
+	w_class = 1
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
