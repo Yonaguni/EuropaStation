@@ -9,25 +9,21 @@
 /obj/item/weapon/ore/uranium
 	name = "pitchblende"
 	icon_state = "ore_uranium"
-	origin_tech = list(TECH_MATERIAL = 5)
 	material = "uranium"
 
 /obj/item/weapon/ore/iron
 	name = "hematite"
 	icon_state = "ore_iron"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = "hematite"
 
 /obj/item/weapon/ore/coal
 	name = "raw carbon"
 	icon_state = "ore_coal"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = "carbon"
 
 /obj/item/weapon/ore/glass
 	name = "sand"
 	icon_state = "ore_glass"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = "sand"
 	slot_flags = SLOT_HOLSTER
 
@@ -39,24 +35,21 @@
 		H << "<span class='danger'>Some of \the [src] gets in your eyes!</span>"
 		H.eye_blind += 5
 		H.eye_blurry += 10
-
+		qdel(src)
 
 /obj/item/weapon/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"
-	origin_tech = list(TECH_MATERIAL = 3)
 	material = "silver"
 
 /obj/item/weapon/ore/gold
 	name = "native gold ore"
 	icon_state = "ore_gold"
-	origin_tech = list(TECH_MATERIAL = 4)
 	material = "gold"
 
 /obj/item/weapon/ore/diamond
 	name = "diamonds"
 	icon_state = "ore_diamond"
-	origin_tech = list(TECH_MATERIAL = 6)
 	material = "diamond"
 
 /obj/item/weapon/ore/osmium
@@ -78,10 +71,3 @@
 /obj/item/weapon/ore/New()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
-
-/obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/core_sampler))
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-	else
-		return ..()

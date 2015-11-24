@@ -107,13 +107,13 @@
 //Freezers
 /obj/machinery/atmospherics/unary/freezer
 	description_info = "Cools down the gas of the pipe it is connected to.  It uses massive amounts of electricity while on. \
-	It can be upgraded by replacing the capacitors, manipulators, and matter bins.  It can be deconstructed by screwing the maintenance panel open with a \
+	It can be upgraded by replacing the capacitors, manipulators, and matter compressors.  It can be deconstructed by screwing the maintenance panel open with a \
 	screwdriver, and then using a crowbar."
 
 //Heaters
 /obj/machinery/atmospherics/unary/heater
 	description_info = "Heats up the gas of the pipe it is connected to.  It uses massive amounts of electricity while on. \
-	It can be upgraded by replacing the capacitors, manipulators, and matter bins.  It can be deconstructed by screwing the maintenance panel open with a \
+	It can be upgraded by replacing the capacitors, manipulators, and matter compressors.  It can be deconstructed by screwing the maintenance panel open with a \
 	screwdriver, and then using a crowbar."
 
 //Gas injectors

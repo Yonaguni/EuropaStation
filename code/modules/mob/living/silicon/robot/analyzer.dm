@@ -2,7 +2,7 @@
 //Robotic Component Analyser, basically a health analyser for robots
 //
 /obj/item/device/robotanalyzer
-	name = "cyborg analyzer"
+	name = "hardware diagnostic analyzer"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
@@ -12,7 +12,6 @@
 	w_class = 2.0
 	throw_speed = 5
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
 

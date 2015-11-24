@@ -26,8 +26,6 @@
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
-	if(islist(material.stack_origin_tech))
-		origin_tech = material.stack_origin_tech.Copy()
 	perunit = SHEET_MATERIAL_AMOUNT
 
 	if(apply_colour)

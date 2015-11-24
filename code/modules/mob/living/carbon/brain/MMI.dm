@@ -4,7 +4,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = 3
-	origin_tech = list(TECH_BIO = 3)
 	req_access = list(access_robotics)
 
 	var/locked = 0
@@ -167,7 +166,6 @@
 /obj/item/device/mmi/digital
 	name = "cyberbrain mounting bracket"
 	desc = "A universal interface for robot brains. It just looks like a complex cube of circuitry."
-	origin_tech = list(TECH_DATA = 3)
 	// TEMPORARY ICONS.
 	icon_state = "posibrain"
 	icon_occupied = "posibrain_occupied"

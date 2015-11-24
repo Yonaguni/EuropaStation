@@ -4,7 +4,6 @@
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
 	fire_sound = 'sound/weapons/Laser.ogg'
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = 4
 	force = 10
 	flags =  CONDUCT
@@ -29,7 +28,6 @@
 	icon_state = "decloner"
 	item_state = "decloner"
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
 	max_shots = 10
 	projectile_type = /obj/item/projectile/energy/declone
 
@@ -42,7 +40,6 @@
 	charge_cost = 100
 	max_shots = 10
 	projectile_type = /obj/item/projectile/energy/floramut
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
 	self_recharge = 1
 
@@ -95,7 +92,6 @@
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0
-	origin_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
 	projectile_type = /obj/item/projectile/energy/phoron
 
 /* Staves */
@@ -113,7 +109,6 @@
 	w_class = 4.0
 	max_shots = 5
 	projectile_type = /obj/item/projectile/change
-	origin_tech = null
 	self_recharge = 1
 	charge_meter = 0
 

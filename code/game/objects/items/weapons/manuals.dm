@@ -489,9 +489,9 @@
 				Once the device reaches a certain minimum reliability, you'll gain technological advancements from it.
 
 				<h2>Building a Better Machine</h2>
-				Many machines produced from circuit boards inserted into a machine frames require a variety of parts to construct. These are parts like capacitors, batteries, matter bins, and so forth. As your knowledge of science improves, more advanced versions are unlocked.
+				Many machines produced from circuit boards inserted into a machine frames require a variety of parts to construct. These are parts like capacitors, batteries, matter compressors, and so forth. As your knowledge of science improves, more advanced versions are unlocked.
 				If you use these parts when constructing something, its attributes may be improved.
-				For example, if you use an advanced matter bin when constructing an autolathe (rather than a regular one), it'll hold more materials. Experiment around with stock parts of various qualities to see how they affect the end results! Be warned, however:
+				For example, if you use an advanced matter compressor when constructing an autolathe (rather than a regular one), it'll hold more materials. Experiment around with stock parts of various qualities to see how they affect the end results! Be warned, however:
 				Tier 3 and higher stock parts don't have 100% reliability and their low reliability may affect the reliability of the end machine.
 				</body>
 			</html>
