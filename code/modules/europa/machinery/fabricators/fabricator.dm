@@ -92,6 +92,8 @@
 		return
 
 	var/list/stored_material = feed_network.get_resources()
+	var/list/stored_reagents = feed_network.get_reagents()
+
 	var/dat = "<center><h1>[capitalize(name)] control panel</h1><hr/>"
 
 	if(!disabled)
@@ -135,21 +137,38 @@
 				var/multiplier_string = ""
 				var/max_sheets
 				var/comma
-				if(!R.resources || !R.resources.len)
+				if((!R.resources || !R.resources.len) && (!R.reagents || !R.reagents.len))
 					material_string = "No resources required.</td>"
 				else
+
 					//Make sure it's buildable and list requires resources.
-					for(var/material in R.resources)
-						var/sheets = round(stored_material[material]/max(1,round(R.resources[material]*mat_efficiency)))
-						if(isnull(max_sheets) || max_sheets > sheets)
-							max_sheets = sheets
-						if(!isnull(stored_material[material]) && stored_material[material] < round(R.resources[material]*mat_efficiency))
-							can_make = 0
-						if(!comma)
-							comma = 1
-						else
-							material_string += ", "
-						material_string += "[round(R.resources[material] * mat_efficiency)] [material]"
+					if(R.resources)
+						for(var/material in R.resources)
+							if(!isnull(stored_material[material]))
+								var/sheets = round(stored_material[material]/max(1,round(R.resources[material]*mat_efficiency)))
+								if(isnull(max_sheets) || max_sheets > sheets)
+									max_sheets = sheets
+							if(isnull(stored_material[material]) || (stored_material[material] < round(R.resources[material]*mat_efficiency)))
+								can_make = 0
+							if(!comma)
+								comma = 1
+							else
+								material_string += ", "
+							material_string += "[round(R.resources[material] * mat_efficiency)] [material]"
+					if(R.reagents)
+						for(var/reagent in R.reagents)
+							if(!isnull(stored_reagents[reagent]))
+								var/sheets = round(stored_reagents[reagent]/max(1,round(R.reagents[reagent]*mat_efficiency)))
+								if(isnull(max_sheets) || max_sheets > sheets)
+									max_sheets = sheets
+							if(isnull(stored_reagents[reagent]) || stored_reagents[reagent] < round(R.reagents[reagent]*mat_efficiency))
+								can_make = 0
+							if(!comma)
+								comma = 1
+							else
+								material_string += ", "
+							material_string += "[round(R.reagents[reagent] * mat_efficiency)] [reagent]"
+
 					material_string += ".<br></td>"
 					//Build list of multipliers for sheets.
 					if(R.is_stack)
@@ -194,6 +213,11 @@
 /obj/machinery/fabricator/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
+
+/obj/machinery/fabricator/examine()
+	..()
+	if(Adjacent(usr) && feed_network)
+		usr << "It is connected to [feed_network.name]."
 
 /obj/machinery/fabricator/Topic(href, href_list)
 
@@ -268,18 +292,28 @@
 		return
 
 	var/list/stored_material = feed_network.get_resources()
+	var/list/stored_reagents = feed_network.get_reagents()
+
 	var/can_make = 1
 	for(var/material in making.resources)
 		if(isnull(stored_material[material]) || (stored_material[material] < round(making.resources[material] * mat_efficiency) * multiplier))
 			can_make = 0
 			break
+	if(can_make)
+		for(var/reagent in making.reagents)
+			if(isnull(stored_reagents[reagent]) || (stored_reagents[reagent] < round(making.reagents[reagent] * mat_efficiency) * multiplier))
+				can_make = 0
+				break
 
 	busy = 1
 	update_use_power(2)
 
 	if(can_make)
 
-		feed_network.remove_resources(making.resources)
+		if(making.resources && making.resources.len)
+			feed_network.remove_resources(making.resources)
+		if(making.reagents && making.reagents.len)
+			feed_network.remove_reagents(making.reagents)
 
 		icon_state = "[initial(icon_state)]_on"
 		sleep(build_time)

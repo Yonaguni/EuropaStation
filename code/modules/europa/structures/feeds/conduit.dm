@@ -4,7 +4,7 @@ var/list/feed_cache = list()
 /obj/structure/conduit
 
 	name = "feed conduit"
-	icon_state = "feed_conduit"
+	icon_state = "matter_feed"
 	icon = 'icons/obj/europa/structures/feeds.dmi'
 	anchored = 1
 	density = 0
@@ -16,8 +16,9 @@ var/list/feed_cache = list()
 	var/deconstruct_verb = "removed"
 	var/deconstruct_adj = "removing"
 	var/deconstruct_sound = 'sound/items/Ratchet.ogg'
-	var/feed_type
 
+	var/feed_icon
+	var/feed_type
 	var/feed_layer = 0
 	var/network_type = /datum/conduit_network
 	var/datum/conduit_network/network
@@ -45,6 +46,7 @@ var/list/feed_cache = list()
 		return ..()
 
 /obj/structure/conduit/New(var/newloc, var/build_layer)
+	icon_state = feed_icon
 	var/turf/T = get_turf(newloc)
 	feed_layer = build_layer
 	if(T)
@@ -89,7 +91,6 @@ var/list/feed_cache = list()
 	return ..()
 
 /obj/structure/conduit/proc/build_network(var/recursive = 1)
-	color = null
 	var/turf/T = get_turf(src)
 	if(!T) return
 
@@ -138,9 +139,9 @@ var/list/feed_cache = list()
 	overlays.Cut()
 	for(var/con_dir in connections)
 		if(connections[con_dir])
-			var/cache_key = "[feed_type]_[con_dir]_[feed_layer]"
+			var/cache_key = "[feed_icon]_[con_dir]_[feed_layer]"
 			if(!feed_cache[cache_key])
-				var/image/I = image(icon, "[feed_type]_con_[con_dir]")
+				var/image/I = image(icon, "[feed_icon]_con_[con_dir]")
 				I.layer = src.layer-0.1
 				feed_cache[cache_key] = I
 			overlays += feed_cache[cache_key]

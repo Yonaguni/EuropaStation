@@ -12,6 +12,7 @@
 	var/path
 	var/fabtype = FABRICATOR_BASIC
 	var/list/resources
+	var/list/reagents
 	var/hidden
 	var/category
 	var/power_use = 0

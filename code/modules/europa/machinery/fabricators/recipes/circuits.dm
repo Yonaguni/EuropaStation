@@ -2,6 +2,8 @@
 	name = "airlock electronics"
 	path = /obj/item/weapon/airlock_electronics
 	category = "Engineering"
+	resources = list("glass" = 2500)
+	reagents = list("Sulphuric acid" = 20)
 	fabtype = FABRICATOR_CIRCUITS
 
 /decl/fabricator_design/circuit/airalarm

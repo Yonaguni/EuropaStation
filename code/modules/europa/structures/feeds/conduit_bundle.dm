@@ -3,7 +3,6 @@
 	desc = "A bundle of heavy pipes."
 	icon = 'icons/obj/europa/items/conduits.dmi'
 	icon_state = "conduits"
-	color = "#FF0000"
 	max_amount = 30
 	amount = 30
 
