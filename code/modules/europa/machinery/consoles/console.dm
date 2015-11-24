@@ -5,8 +5,6 @@ var/console_count = 0
 	desc = "A computer terminal. Very 2100-chic."
 	icon = 'icons/obj/europa/machines/consoles.dmi'
 	icon_state = "console"
-	anchored = 1
-	density = 1
 	is_data_console = 1
 
 	var/on = 1

@@ -1,6 +1,8 @@
 // Do not use this object for anything.
 /obj/machinery/europa
 	layer = 4
+	anchored = 1
+	density = 1
 	var/connect_to_datanet = 1
 	var/connect_to_feednet = 0
 	var/is_data_console = 0
@@ -47,3 +49,6 @@
 			if(usr.Adjacent(C) && C.on)
 				return 0
 	return 1
+
+/obj/machinery/europa/proc/pulsed()
+	return

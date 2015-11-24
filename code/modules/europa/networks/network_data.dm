@@ -35,3 +35,7 @@
 				connected_machines |= M
 	for(var/obj/structure/europa/sensor/S in T.contents)
 		connected_sensors |= S
+
+/datum/conduit_network/data_cable/proc/pulse()
+	for(var/obj/machinery/europa/M in connected_machines)
+		M.pulsed()

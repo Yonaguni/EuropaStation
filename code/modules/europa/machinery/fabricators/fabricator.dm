@@ -4,7 +4,6 @@
 	icon = 'icons/obj/europa/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	dir = SOUTH
-	density = 1
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 10
