@@ -104,3 +104,7 @@
 /decl/fabricator_design/matter/rods
 	name = "metal rods"
 	path = /obj/item/stack/rods
+
+/decl/fabricator_design/matter/large_grenade
+	name = "large grenade casing"
+	path = /obj/item/weapon/grenade/chem_grenade/large

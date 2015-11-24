@@ -20,13 +20,32 @@
 	return
 
 /obj/item/stack/conduit/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+
 	if(!proximity || !istype(target, /turf))
 		return
 
 	var/turf/T = target
 	for(var/obj/structure/conduit/C in T.contents)
-		if(C.feed_layer == place_row && C.feed_type == build_type)
-			user << "<span class='warning'>There is already \a [build_type] in row [place_row+1] at that location.</span>"
+		if(C.feed_type == build_type)
+			user << "<span class='warning'>There is already \a [build_type] in that location.</span>"
 			return
+		if(C.feed_layer == place_row)
+			user << "<span class='warning'>There is \a [C] in row [place_row+1] at that location.</span>"
+			return
+
+	use(1)
 	var/obj/structure/thing = new build_path(T, place_row)
 	thing.color = color
+
+/obj/item/stack/conduit/data
+	name = "network cable bundle"
+	build_type = "data_cable"
+	build_path = /obj/structure/conduit/data
+	icon_state = "network_cable"
+	color = "#000077"
+
+/obj/item/stack/conduit/matter
+	name = "matter feed bundle"
+	build_type = "matter_feed"
+	build_path = /obj/structure/conduit/matter
+	color = "#999999"

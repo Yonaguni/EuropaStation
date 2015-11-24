@@ -422,7 +422,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10,"glass" = 20)
 
 /obj/item/weapon/stock_parts/matter_bin
-	name = "matter bin"
+	name = "matter compressor"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "matter_bin"
 	matter = list(DEFAULT_WALL_MATERIAL = 80)
@@ -457,7 +457,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10,"glass" = 20)
 
 /obj/item/weapon/stock_parts/matter_bin/adv
-	name = "advanced matter bin"
+	name = "advanced matter compressor"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "advanced_matter_bin"
 	rating = 2
@@ -492,7 +492,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10,"glass" = 20)
 
 /obj/item/weapon/stock_parts/matter_bin/super
-	name = "super matter bin"
+	name = "super matter compressor"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "super_matter_bin"
 	rating = 3

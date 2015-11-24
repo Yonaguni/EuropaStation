@@ -1,7 +1,7 @@
-/obj/machinery/fabricator
+/obj/machinery/europa/fabricator
 	name = "tool fabricator"
 	desc = "It produces simple tools."
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/europa/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	dir = SOUTH
 	density = 1
@@ -10,6 +10,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 	waterproof = -1
+	connect_to_feednet = 1
 
 	var/show_category = "All"
 
@@ -31,10 +32,10 @@
 	var/image/panel_image
 	var/image/load_image
 
-	var/connecting_feed_type = "matter_feed"
-	var/datum/conduit_network/matter_feed/feed_network
+	var/list/display_materials = list("steel", "glass", "plastic")
+	var/list/display_reagents = list()
 
-/obj/machinery/fabricator/New()
+/obj/machinery/europa/fabricator/New()
 
 	..()
 	wires = new(src)
@@ -49,23 +50,12 @@
 	RefreshParts()
 	output_dir = dir
 
-/obj/machinery/fabricator/initialize()
-	..()
-	find_feed_network()
-
-/obj/machinery/fabricator/proc/find_feed_network()
-	var/turf/T = get_turf(src)
-	for(var/obj/structure/conduit/matter/MF in T.contents)
-		if(!MF.network) MF.build_network()
-		feed_network = MF.network
-		break
-
-/obj/machinery/fabricator/Destroy()
+/obj/machinery/europa/fabricator/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/fabricator/proc/update_recipe_list()
+/obj/machinery/europa/fabricator/proc/update_recipe_list()
 	if(!fabricator_recipes)
 		populate_fabricator_recipes()
 	var/datum/fabricator_design_list/FDL = fabricator_recipes[fabricator_type]
@@ -74,7 +64,8 @@
 	if(!machine_recipes) //No supplied recipes, let's avoid a runtime.
 		machine_recipes = list()
 
-/obj/machinery/fabricator/interact(mob/user as mob)
+// TODO: BETTER DAMN INTERFACE
+/obj/machinery/europa/fabricator/interact(mob/user as mob)
 
 	update_recipe_list()
 
@@ -87,12 +78,14 @@
 
 	if(!feed_network)
 		find_feed_network()
-	if(!feed_network)
-		user << "<span class='warning'>\The [src] is not connected to a matter feed and is inoperable.</span>"
-		return
+	if(!data_network)
+		find_data_network()
 
-	var/list/stored_material = feed_network.get_resources()
-	var/list/stored_reagents = feed_network.get_reagents()
+	var/list/stored_material = list()
+	var/list/stored_reagents = list()
+	if(feed_network)
+		stored_material = feed_network.get_resources()
+		stored_reagents = feed_network.get_reagents()
 
 	var/dat = "<center><h1>[capitalize(name)] control panel</h1><hr/>"
 
@@ -101,18 +94,28 @@
 		var/material_top = "<tr>"
 		var/material_bottom = "<tr>"
 
-		for(var/material in stored_material)
-			material_top += "<td width = '25%' align = center><b>[material]</b></td>"
-			material_bottom += "<td width = '25%' align = center>[stored_material[material]]</td>"
+		if(display_materials && display_materials.len)
+			for(var/material in display_materials)
+				material_top += "<td width = '25%' align = center><b>[material]</b></td>"
+				material_bottom += "<td width = '25%' align = center>[stored_material[material] ? stored_material[material] : 0]</td>"
+		if(display_reagents && display_reagents.len)
+			for(var/reagent in display_reagents)
+				material_top += "<td width = '25%' align = center><b>[reagent]</b></td>"
+				material_bottom += "<td width = '25%' align = center>[stored_reagents[reagent] ? stored_reagents[reagent] : 0]</td>"
 
-		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
-		dat += "<br>\[<a href='?src=\ref[src];change_output_dir=1'>set output direction</a>\]<br>"
+		dat += "[material_top]</tr>[material_bottom]</tr></table><hr><br>"
+
+		dat += "<h3>Configuration</h3>"
+		dat += "\[<a href='?src=\ref[src];change_output_dir=1'>set output direction</a>\]<br>"
 		if(feed_network)
-			dat += "<br>\[<a href='?src=\ref[src];select_feed_network=1'>taking from [feed_network.name]</a>\]<br>"
+			dat += "\[<a href='?src=\ref[src];select_feed_network=1'>taking from [feed_network.name]</a>\]<br>"
 		else
-			dat += "<br>CANNOT LOCATE FEED NETWORK.<br>"
+			dat += "CANNOT LOCATE FEED NETWORK.<br>"
+		if(data_network)
+			dat += "\[<a href='?src=\ref[src];select_data_network=1'>connected to [data_network.name]</a>\]<br>"
+		else
+			dat += "CANNOT LOCATE DATA NETWORK.<br>"
 
-		// TODO: BETTER DAMN INTERFACE
 		dat += "<h2>Build Queue</h2><table width = '100%'>"
 		if(build_queue.len)
 			var/index = 1
@@ -189,10 +192,10 @@
 		dat += wires.GetInteractWindow()
 		dat += "<hr>"
 
-	user << browse(dat, "window=autolathe")
+	user << browse(dat, "window=[fabricator_type]")
 	onclose(user, "autolathe")
 
-/obj/machinery/fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/europa/fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
 		user << "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>"
 		return
@@ -210,16 +213,16 @@
 		return
 	return
 
-/obj/machinery/fabricator/attack_hand(mob/user as mob)
+/obj/machinery/europa/fabricator/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/fabricator/examine()
+/obj/machinery/europa/fabricator/examine()
 	..()
 	if(Adjacent(usr) && feed_network)
 		usr << "It is connected to [feed_network.name]."
 
-/obj/machinery/fabricator/Topic(href, href_list)
+/obj/machinery/europa/fabricator/Topic(href, href_list)
 
 	if(..())
 		return
@@ -269,6 +272,18 @@
 		if(!choice) return
 		feed_network = feed_networks[choice]
 
+	if(href_list["select_feed_network"])
+		var/list/data_networks = list()
+		var/turf/T = get_turf(src)
+		for(var/obj/structure/conduit/data/D in T.contents)
+			if(!D.network) D.build_network()
+			data_networks[D.network.name] = D.network
+		if(!data_networks.len)
+			return
+		var/choice = input("Which data network do you wish to connect to?") as null|anything in data_networks
+		if(!choice) return
+		data_network = data_networks[choice]
+
 	if(href_list["make"] && machine_recipes && machine_recipes.len)
 		if(build_queue.len > MAX_FAB_QUEUE)
 			return
@@ -277,7 +292,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/fabricator/proc/check_queue()
+/obj/machinery/europa/fabricator/proc/check_queue()
 	if(busy || build_queue.len == 0)
 		return
 	var/datum/fabricator_queue_entry/build_item = build_queue[1]
@@ -285,7 +300,7 @@
 	build_item(build_item.design, build_item.multiplier)
 	del(build_item)
 
-/obj/machinery/fabricator/proc/build_item(var/decl/fabricator_design/making, var/multiplier = 1, var/mob/user)
+/obj/machinery/europa/fabricator/proc/build_item(var/decl/fabricator_design/making, var/multiplier = 1, var/mob/user)
 
 	//Exploit detection, not sure if necessary after rewrite.
 	if(!making || multiplier < 0 || multiplier > 100)
@@ -343,7 +358,7 @@
 	check_queue()
 	updateUsrDialog()
 
-/obj/machinery/fabricator/update_icon()
+/obj/machinery/europa/fabricator/update_icon()
 	if(!panel_image)
 		panel_image = image(icon, "[initial(icon_state)]_panel")
 		panel_image.layer = layer+0.1
@@ -353,7 +368,7 @@
 		overlays -= panel_image
 
 //Updates overall lathe storage size.
-/obj/machinery/fabricator/RefreshParts()
+/obj/machinery/europa/fabricator/RefreshParts()
 	..()
 	var/mb_rating = 0
 	var/man_rating = 0

@@ -8,6 +8,7 @@ var/list/feed_cache = list()
 	icon = 'icons/obj/europa/structures/feeds.dmi'
 	anchored = 1
 	density = 0
+	layer = 2.5
 
 	// Track type and nature of connections.
 	var/deconstruct_tool = /obj/item/weapon/wrench
@@ -46,9 +47,9 @@ var/list/feed_cache = list()
 		return ..()
 
 /obj/structure/conduit/New(var/newloc, var/build_layer)
-	icon_state = feed_icon
 	var/turf/T = get_turf(newloc)
-	feed_layer = build_layer
+	if(build_layer)
+		feed_layer = build_layer
 	if(T)
 		for(var/obj/structure/conduit/C in T.contents)
 			if(C == src)
@@ -71,6 +72,8 @@ var/list/feed_cache = list()
 
 /obj/structure/conduit/initialize()
 	build_network()
+	spawn(1)
+		update_icon()
 
 /obj/structure/conduit/Destroy()
 	if(network)
@@ -135,6 +138,7 @@ var/list/feed_cache = list()
 
 /obj/structure/conduit/update_icon()
 
+	icon_state = feed_icon
 	layer = initial(layer) + (feed_layer/10)
 	overlays.Cut()
 	for(var/con_dir in connections)

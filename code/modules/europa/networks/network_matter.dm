@@ -1,17 +1,3 @@
-/obj/item/stack/conduit/matter
-	name = "matter feed bundle"
-	build_type = "matter_feed"
-	build_path = /obj/structure/conduit/matter
-	color = "#FF0000"
-
-/obj/structure/conduit/matter
-	name = "matter feed"
-	desc = "A reinforced pipeline for transporting materials."
-	feed_type = "matter_feed"
-	feed_icon = "matter_feed"
-	network_type = /datum/conduit_network/matter_feed
-	color = "#FF0000"
-
 /datum/conduit_network/matter_feed
 	name = "matter feed network"
 	var/list/compiled_resources = list()
@@ -32,7 +18,7 @@
 
 /datum/conduit_network/matter_feed/proc/compile_resources()
 	compiled_resources = list()
-	for(var/obj/structure/conduit_storage/CS in connected_storage)
+	for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
 		for(var/material in CS.stored_material)
 			if(CS.stored_material[material])
 				if(compiled_resources[material])
@@ -43,7 +29,7 @@
 
 /datum/conduit_network/matter_feed/proc/compile_reagents()
 	compiled_reagents = list()
-	for(var/obj/structure/conduit_storage/CS in connected_storage)
+	for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
 		if(CS.reagents)
 			for(var/datum/reagent/R in CS.reagents.reagent_list)
 				if(compiled_reagents[R.id])
@@ -55,7 +41,7 @@
 /datum/conduit_network/matter_feed/proc/remove_resources(var/list/resources)
 	resources = resources.Copy() // Make sure we aren't killing the resource list of a recipe.
 	for(var/material in resources)
-		for(var/obj/structure/conduit_storage/CS in connected_storage)
+		for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
 			var/cs_amt = CS.stored_material[material]
 			if(cs_amt)
 				if(cs_amt >= resources[material])
@@ -71,7 +57,7 @@
 /datum/conduit_network/matter_feed/proc/remove_reagents(var/list/rem_reagents)
 	rem_reagents = rem_reagents.Copy()
 	for(var/reagent_id in rem_reagents)
-		for(var/obj/structure/conduit_storage/CS in connected_storage)
+		for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
 			if(!CS.reagents || !CS.reagents.total_volume)
 				continue
 			var/r_amt = CS.reagents.get_reagent_amount(reagent_id)
@@ -96,11 +82,17 @@
 		merging.connected_storage.Cut()
 	..()
 
-/obj/structure/conduit/matter/initialize()
+/datum/conduit_network/matter_feed/add_conduit(var/obj/structure/conduit/new_feed)
 	..()
-	if(!network)
+	var/turf/T = get_turf(new_feed)
+	if(!T || !T.contents.len)
 		return
-	var/datum/conduit_network/matter_feed/feed_network = network
-	var/turf/T = get_turf(src)
-	for(var/obj/structure/conduit_storage/S in T.contents)
-		feed_network.connected_storage |= S
+	for(var/obj/machinery/europa/M in T.contents)
+		if(M.feed_network)
+			continue
+		if(M.connect_to_feednet)
+			M.feed_network = src
+	for(var/obj/structure/europa/conduit_storage/CS in T.contents)
+		connected_storage |= CS
+		need_material_update = 1
+		need_reagent_update = 1

@@ -3,6 +3,12 @@
 	path = /obj/item/ammo_magazine/a357
 	category = "Arms and Ammunition"
 	fabtype = FABRICATOR_AMMO
+	reagents = list("gunpowder" = 5)
+
+/decl/fabricator_design/ammo/magazine_9mm
+	name = "ammunition box (9mm)"
+	path = /obj/item/ammo_magazine/c9mm
+	hidden = 1
 
 /decl/fabricator_design/ammo/magazine_revolver_2
 	name = "ammunition (.45)"

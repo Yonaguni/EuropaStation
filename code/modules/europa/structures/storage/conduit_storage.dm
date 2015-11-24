@@ -1,5 +1,5 @@
 //Sheet storage.
-/obj/structure/conduit_storage
+/obj/structure/europa/conduit_storage
 
 	name = "matter storage bin"
 	desc = "It's a large matter storage system."
@@ -13,7 +13,7 @@
 	var/list/storage_capacity = list("steel" = 10000, "glass" = 10000)
 	var/datum/conduit_network/matter_feed/feed_network
 
-/obj/structure/conduit_storage/examine()
+/obj/structure/europa/conduit_storage/examine()
 	..()
 	if(Adjacent(usr))
 		if(feed_network)
@@ -28,7 +28,7 @@
 				for(var/datum/reagent/R in reagents.reagent_list)
 					usr << "[R.volume] units of [R.name]"
 
-/obj/structure/conduit_storage/initialize()
+/obj/structure/europa/conduit_storage/initialize()
 	..()
 
 	// Set up liquid storage if needed.
@@ -47,14 +47,14 @@
 		feed_network.need_reagent_update = 1
 		break
 
-/obj/structure/conduit_storage/Destroy()
+/obj/structure/europa/conduit_storage/Destroy()
 	if(feed_network)
 		feed_network.connected_storage -= src
 		feed_network.need_material_update = 1
 		feed_network.need_reagent_update = 1
 	return ..()
 
-/obj/structure/conduit_storage/attackby(var/obj/item/O, var/mob/user)
+/obj/structure/europa/conduit_storage/attackby(var/obj/item/O, var/mob/user)
 
 	//Resources are being loaded.
 	var/obj/item/eating = O
@@ -111,23 +111,7 @@
 	if(feed_network)
 		feed_network.need_material_update = 1
 
-/*
-/obj/structure/conduit_storage/dismantle()
-
-	for(var/mat in stored_material)
-		var/material/M = get_material_by_name(mat)
-		if(!istype(M))
-			continue
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		if(stored_material[mat] > S.perunit)
-			S.amount = round(stored_material[mat] / S.perunit)
-		else
-			qdel(S)
-	..()
-	return 1
-*/
-
-/obj/structure/conduit_storage/tank
+/obj/structure/europa/conduit_storage/tank
 	name = "reagent tank"
 	desc = "A tank for the storing of reagents."
 	icon_state = "liquid_storage"

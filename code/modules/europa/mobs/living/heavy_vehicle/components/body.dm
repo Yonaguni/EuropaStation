@@ -24,6 +24,8 @@
 	var/changed
 	if(!take_from_supply || open_cabin)
 		var/turf/T = get_turf(src)
+		if(!T)
+			return
 		cockpit.equalize(T.return_air())
 		T.air_update_turf(1)
 		changed = 1

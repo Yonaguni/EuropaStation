@@ -5,6 +5,10 @@
 	fabtype = FABRICATOR_ELECTRONICS
 	category = "General"
 
+/decl/fabricator_design/electronics/paicard
+	name = "personal artificial intelligence device"
+	path = /obj/item/device/paicard
+
 /decl/fabricator_design/electronics/floor_light
 	name = "floor light"
 	path = /obj/machinery/floor_light
@@ -22,16 +26,38 @@
 	path = /obj/item/device/taperecorder
 
 // ENGINEERING.
-/decl/fabricator_design/electronics/camera_assembly
+/decl/fabricator_design/electronics/engineering
 	name = "camera assembly"
 	path = /obj/item/weapon/camera_assembly
 	category = "Engineering"
+
+/decl/fabricator_design/electronics/engineering/binaryencrypt
+	name = "binary encryption key"
+	path = /obj/item/device/encryptionkey/binary
+	hidden = 1
 
 // MEDICAL.
 /decl/fabricator_design/electronics/medical
 	name = "circular saw"
 	path = /obj/item/weapon/circular_saw
 	category = "Medical"
+
+/decl/fabricator_design/electronics/medical/mmi
+	name = "man-machine interface"
+	path = /obj/item/device/mmi
+
+/decl/fabricator_design/electronics/medical/rapidsyringegun
+	name = "rapid syringe gun"
+	path = /obj/item/weapon/gun/launcher/syringe/rapid
+	hidden = 1
+
+/decl/fabricator_design/electronics/medical/reagent_scanner
+	name = "reagent scanner"
+	path = /obj/item/device/reagent_scanner
+
+/decl/fabricator_design/electronics/medical/laser_scalpel
+	name = "laser scalpel"
+	path = /obj/item/weapon/scalpel/laser1
 
 /decl/fabricator_design/electronics/medical/surgicaldrill
 	name = "surgical drill"
@@ -74,6 +100,34 @@
 	name = "welding tool"
 	path = /obj/item/weapon/weldingtool
 
+/decl/fabricator_design/electronics/tool/jackhammer
+	name = "jackhammer"
+	path = /obj/item/weapon/pickaxe/jackhammer
+
+/decl/fabricator_design/electronics/tool/plasmacutter
+	name = "plasma cutter"
+	path = /obj/item/weapon/pickaxe/plasmacutter
+
+/decl/fabricator_design/electronics/tool/drill
+	name = "mining drill"
+	path = /obj/item/weapon/pickaxe/drill
+
+/decl/fabricator_design/electronics/tool/drill/diamond
+	name = "mining drill (diamond-tipped)"
+	path = /obj/item/weapon/pickaxe/diamonddrill
+
+/decl/fabricator_design/electronics/tool/robot_scanner
+	name = "hardware diagnostic scanner"
+	path = /obj/item/device/robotanalyzer
+
+/decl/fabricator_design/electronics/tool/mass_spectrometer
+	name = "mass spectrometer"
+	path = /obj/item/device/mass_spectrometer
+
+/decl/fabricator_design/electronics/tool/light_replacer
+	name = "light replacer"
+	path = /obj/item/device/lightreplacer
+
 /decl/fabricator_design/electronics/tool/multi
 	name = "multitool"
 	path = /obj/item/device/multitool
@@ -82,3 +136,33 @@
 	name = "industrial welding tool"
 	path = /obj/item/weapon/weldingtool/largetank
 	hidden = 1
+
+/decl/fabricator_design/electronics/device/capacitor
+	name = "capacitor"
+	path = /obj/item/weapon/stock_parts/capacitor
+
+/decl/fabricator_design/electronics/device/micro_mani
+	name = "micro manipulator"
+	path = /obj/item/weapon/stock_parts/manipulator
+
+/decl/fabricator_design/electronics/device/matter_compressor
+	name = "matter compressor"
+	path = /obj/item/weapon/stock_parts/matter_bin
+
+/decl/fabricator_design/electronics/device/micro_laser
+	name = "micro laser"
+	path = /obj/item/weapon/stock_parts/micro_laser
+
+/decl/fabricator_design/electronics/device/basic_sensor
+	name = "sensor module"
+	path = /obj/item/weapon/stock_parts/scanning_module
+
+/decl/fabricator_design/electronics/device/powercell
+	name = "basic powercell"
+	path = /obj/item/weapon/cell
+	category = "Batteris"
+
+/decl/fabricator_design/electronics/device/powercell/high
+	name = "high-capacity powercell"
+	path = /obj/item/weapon/cell/high
+

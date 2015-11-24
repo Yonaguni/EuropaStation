@@ -528,6 +528,13 @@
 	required_reagents = list("pacid" = 1, "plasticide" = 2)
 	result_amount = 1
 
+/datum/chemical_reaction/gunpowder
+	name = "Gunpowder"
+	id = "gunpowder"
+	result = "gunpowder"
+	required_reagents = list("carbon" = 1, "potassium" = 1, "nitrogen" = 1, "sulfur" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
