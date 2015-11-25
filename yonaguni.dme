@@ -1089,6 +1089,8 @@
 #include "code\modules\europa\networks\network.dm"
 #include "code\modules\europa\networks\network_data.dm"
 #include "code\modules\europa\networks\network_matter.dm"
+#include "code\modules\europa\structures\_europa.dm"
+#include "code\modules\europa\structures\parts.dm"
 #include "code\modules\europa\structures\feeds\conduit.dm"
 #include "code\modules\europa\structures\feeds\conduit_bundles.dm"
 #include "code\modules\europa\structures\feeds\conduit_data.dm"

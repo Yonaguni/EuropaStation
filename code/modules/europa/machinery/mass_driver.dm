@@ -7,6 +7,7 @@
 	idle_power_usage = 2
 	active_power_usage = 50
 	density = 0
+	can_remote_trigger = 1
 	var/firing = 0
 
 /obj/machinery/europa/mass_driver/pulsed()

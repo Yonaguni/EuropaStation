@@ -81,6 +81,12 @@
 	hidden = 1
 	category = "Devices and Components"
 
+/decl/fabricator_design/cannonframe
+	name = "pneumatic cannon frame"
+	path = /obj/item/weapon/cannonframe
+	category = "Devices and Components"
+	hidden = 1
+
 /decl/fabricator_design/handcuffs
 	name = "handcuffs"
 	path = /obj/item/weapon/handcuffs
@@ -91,7 +97,6 @@
 	name = "steel sheets"
 	path = /obj/item/stack/material/steel
 	category = "General"
-	is_stack = 1
 
 /decl/fabricator_design/matter/glass
 	name = "glass sheets"
@@ -108,3 +113,77 @@
 /decl/fabricator_design/matter/large_grenade
 	name = "large grenade casing"
 	path = /obj/item/weapon/grenade/chem_grenade/large
+
+/decl/fabricator_design/matter/floor_tile
+	name = "steel floor tile"
+	path = /obj/item/stack/tile/floor
+
+/decl/fabricator_design/matter/floor_tile_dark
+	name = "dark floor tile"
+	path = /obj/item/stack/tile/floor_dark
+
+/decl/fabricator_design/matter/floor_tile_white
+	name = "white floor tile"
+	path = /obj/item/stack/tile/floor_white
+
+/decl/fabricator_design/matter/floor_tile_freezer
+	name = "ceramic floor tile"
+	path = /obj/item/stack/tile/floor_freezer
+
+/decl/fabricator_design/matter/small_grenade
+	name = "small grenade casing"
+	path = /obj/item/weapon/grenade/chem_grenade
+
+/decl/fabricator_design/matter/knife_handle
+	name = "knife handle"
+	hidden = 1
+	path = /obj/item/weapon/material/butterflyhandle
+
+/decl/fabricator_design/matter/crate
+	name = "plastic crate"
+	path = /obj/structure/closet/crate/plastic
+
+/decl/fabricator_design/matter/plastic_bag
+	name = "plastic bag"
+	path = /obj/item/weapon/storage/bag/plasticbag
+
+/decl/fabricator_design/matter/blood_pack
+	name = "blood pack (empty)"
+	path = /obj/item/weapon/reagent_containers/blood/empty
+
+/decl/fabricator_design/matter/chem_disp_large
+	name = "reagent cartridge (large)"
+	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge
+
+/decl/fabricator_design/matter/chem_disp_med
+	name = "reagent cartridge (medium)"
+	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge/medium
+
+/decl/fabricator_design/matter/chem_disp_small
+	name = "reagent cartridge (small)"
+	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge/small
+
+/decl/fabricator_design/matter/baseballbat
+	name = "metal baseball bat"
+	path = /obj/item/weapon/material/twohanded/baseballbat
+
+/decl/fabricator_design/matter/ashtray
+	name = "ash tray"
+	path = /obj/item/weapon/material/ashtray
+
+/decl/fabricator_design/matter/spoon
+	name = "spoon"
+	path = /obj/item/weapon/material/kitchen/utensil/spoon
+
+/decl/fabricator_design/matter/fork
+	name = "fork"
+	path = /obj/item/weapon/material/kitchen/utensil/fork
+
+/decl/fabricator_design/matter/butterknife
+	name = "butter knife"
+	path = /obj/item/weapon/material/kitchen/utensil/knife
+
+/decl/fabricator_design/matter/knife_blade
+	name = "knife blade"
+	hidden = 1
+	path = /obj/item/weapon/material/butterflyblade

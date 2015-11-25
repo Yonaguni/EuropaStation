@@ -3,6 +3,9 @@
 	layer = 4
 	anchored = 1
 	density = 1
+
+	var/can_remote_trigger
+	var/can_remote_connect
 	var/connect_to_datanet = 1
 	var/connect_to_feednet = 0
 	var/is_data_console = 0
