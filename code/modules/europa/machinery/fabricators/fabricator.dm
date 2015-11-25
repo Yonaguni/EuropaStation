@@ -10,6 +10,7 @@
 	active_power_usage = 2000
 	waterproof = -1
 	connect_to_feednet = 1
+	can_remote_connect = 1
 
 	var/show_category = "All"
 
