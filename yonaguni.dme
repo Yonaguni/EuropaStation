@@ -1040,6 +1040,7 @@
 #include "code\modules\europa\machinery\_europa.dm"
 #include "code\modules\europa\machinery\mass_driver.dm"
 #include "code\modules\europa\machinery\consoles\console.dm"
+#include "code\modules\europa\machinery\consoles\console_software.dm"
 #include "code\modules\europa\machinery\fabricators\_fabricator_setup.dm"
 #include "code\modules\europa\machinery\fabricators\fabricator.dm"
 #include "code\modules\europa\machinery\fabricators\fabricator_ammo.dm"

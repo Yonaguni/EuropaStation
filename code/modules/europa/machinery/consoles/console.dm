@@ -7,16 +7,21 @@ var/console_count = 0
 	icon_state = "console"
 	is_data_console = 1
 
-	var/show_terminals = 1
-	var/show_machines = 1
-	var/show_sensors = 1
-
+	var/list/installed_software = list()
+	var/global/list/default_software = list(
+		/datum/console_module/configuration,
+		/datum/console_module/basic_interface,
+		/datum/console_module/sensor_data
+		)
 	var/on = 1
 
 /obj/machinery/europa/console/initialize()
 	..()
 	if(name == "terminal")
 		name = "terminal (#[++console_count])"
+	for(var/module_type in default_software)
+		var/datum/console_module/module = new module_type(src)
+		installed_software[module.name] = module
 
 /obj/machinery/europa/console/attack_hand(var/mob/user)
 	interact(user)
@@ -28,53 +33,28 @@ var/console_count = 0
 
 	var/dat = "<body bgcolor='#101010'><font color='#00FF00' size=2 face='fixedsys'><center>[capitalize(name)]</center>"
 
-	dat += "<br><br>============================================================<br><br>"
+	dat += "<br>============================<br>"
+
 	if(data_network)
-		dat += "<b>\The [src] is connected to [data_network].</b><br>"
-
-		dat += "<br>Connected console(s): [data_network.connected_consoles.len] \[<a href='?src=\ref[src];toggle_show_consoles=1'>show/hide</a>\]<br>"
-		if(show_terminals)
-			if(data_network.connected_consoles.len)
-				for(var/obj/thing in data_network.connected_consoles)
-					dat += "- <a href='?src=\ref[src];remote_connection=\ref[thing];remote_connection_user=\ref[user]'>\the [thing]</a><br>"
-			else
-				dat += "None."
-			dat += "<br>"
-
-		dat += "<br>Connected machine(s): [data_network.connected_machines.len] \[<a href='?src=\ref[src];toggle_show_machines=1'>show/hide</a>\]<br>"
-		if(show_machines)
-			if(data_network.connected_machines.len)
-				for(var/obj/machinery/europa/thing in data_network.connected_machines)
-					dat += "- "
-					if(thing.can_remote_connect)
-						dat += "<a href='?src=\ref[src];remote_connection=\ref[thing];remote_connection_user=\ref[user]'>\the [thing]</a>"
-					else
-						dat += "\the [thing]"
-					if(thing.can_remote_trigger)
-						dat += " <a href='?src=\ref[src];remote_pulse=\ref[thing];remote_connection_user=\ref[user]'>\[activate\]</a>"
-					dat += "<br>"
-
-			else
-				dat += "None."
-			dat += "<br>"
-
-		dat += "<br>Connected sensor(s): [data_network.connected_sensors.len] \[<a href='?src=\ref[src];toggle_show_sensors=1'>show/hide</a>\]<br>"
-		if(show_sensors)
-			if(data_network.connected_sensors.len)
-				for(var/obj/structure/europa/sensor/sensor in data_network.connected_sensors)
-					dat += "<b>- [sensor.report_name]:</b><br>"
-					var/list/sensor_data = sensor.get_sensor_data()
-					for(var/sdata in sensor_data)
-						dat += "---- [sdata]: [sensor_data[sdata]]<br>"
-			else
-				dat += "None."
-			dat += "<br>"
+		dat += "<br><b>\The [src] is connected to [data_network].</b><br>"
 	else
-		dat += "\The [src] is not connected to a network.<br>"
-	dat += "<br>============================================================</font></body>"
+		dat += "<br>\The [src] is not connected to a network.<br>"
 
-	user << browse(dat, "window=et_[name]")
-	onclose(user, "europa_terminal")
+	dat += "<br>============================<br>"
+
+	if(installed_software.len)
+		for(var/module in installed_software)
+			var/datum/console_module/smodule = installed_software[module]
+			dat += "<br>[smodule.get_header()] \[<a href='?src=\ref[src];toggle_show=[module]'>show/hide</a>\]<br>"
+			if(smodule.visible)
+				dat += "<br>[smodule.get_interface_data(user)]"
+	else
+		dat += "No software modules installed, please contact your hardware vendor.<br>"
+
+	dat += "<br>============================</font></body>"
+
+	user << browse(dat, "window=term_[name]")
+	onclose(user, "window=term_[name]")
 
 /obj/machinery/europa/console/Topic(href, href_list)
 
@@ -95,11 +75,8 @@ var/console_count = 0
 		if(istype(E) && istype(user))
 			E.pulsed(user)
 
-	if(href_list["toggle_show_consoles"])
-		show_terminals = !show_terminals
-	if(href_list["toggle_show_machines"])
-		show_machines = !show_machines
-	if(href_list["toggle_show_sensors"])
-		show_sensors = !show_sensors
+	if(href_list["toggle_show"])
+		var/datum/console_module/module = installed_software[href_list["toggle_show"]]
+		module.visible = !module.visible
 
 	updateUsrDialog()
