@@ -1,73 +1,69 @@
-/obj/structure/table
+/obj/structure/table/standard
+	icon_state = "plain_preview"
+	color = "#EEEEEE"
 
-	standard
-		icon_state = "plain_preview"
-		color = "#EEEEEE"
-		New()
-			material = get_material_by_path(DEFAULT_TABLE_MATERIAL_PATH)
-			..()
+/obj/structure/table/standard/New(var/newloc)
+	..(newloc, DEFAULT_TABLE_MATERIAL)
 
-	steel
-		icon_state = "plain_preview"
-		color = "#666666"
-		New()
-			material = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
-			..()
+/obj/structure/table/steel
+	icon_state = "plain_preview"
+	color = "#666666"
 
-	marble
-		icon_state = "stone_preview"
-		color = "#CCCCCC"
-		New()
-			material = get_material_by_name("marble")
-			..()
+/obj/structure/table/steel/New(var/newloc)
+	..(newloc, DEFAULT_WALL_MATERIAL)
 
-	reinforced
-		icon_state = "reinf_preview"
-		color = "#EEEEEE"
-		New()
-			material = get_material_by_path(DEFAULT_TABLE_MATERIAL_PATH)
-			reinforced = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
-			..()
+/obj/structure/table/marble
+	icon_state = "stone_preview"
+	color = "#CCCCCC"
 
-	steel_reinforced
-		icon_state = "reinf_preview"
-		color = "#666666"
-		New()
-			material = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
-			reinforced = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
-			..()
+/obj/structure/table/marble/New(var/newloc)
+	..(newloc, "marble")
 
-	woodentable
-		icon_state = "plain_preview"
-		color = "#824B28"
-		New()
-			material = get_material_by_path(/material/wood)
-			..()
+/obj/structure/table/reinforced
+	icon_state = "reinf_preview"
+	color = "#EEEEEE"
 
-	gamblingtable
-		icon_state = "gamble_preview"
-		New()
-			material = get_material_by_path(/material/wood)
-			carpeted = 1
-			..()
+/obj/structure/table/reinforced/New(var/newloc)
+	..(newloc, DEFAULT_TABLE_MATERIAL, DEFAULT_WALL_MATERIAL)
 
-	glass
-		icon_state = "plain_preview"
-		color = "#00E1FF"
-		alpha = 77 // 0.3 * 255
-		New()
-			material = get_material_by_path(/material/glass)
-			..()
+/obj/structure/table/steel_reinforced
+	icon_state = "reinf_preview"
+	color = "#666666"
 
-	holotable
-		icon_state = "holo_preview"
-		color = "#EEEEEE"
-		New()
-			material = get_material_by_name("holo[DEFAULT_TABLE_MATERIAL]")
-			..()
+/obj/structure/table/steel_reinforced/New(var/newloc)
+	..(newloc, DEFAULT_WALL_MATERIAL, DEFAULT_WALL_MATERIAL)
 
-	woodentable/holotable
-		icon_state = "holo_preview"
-		New()
-			material = get_material_by_path(/material/wood/holographic)
-			..()
+/obj/structure/table/woodentable
+	icon_state = "plain_preview"
+	color = "#824B28"
+
+/obj/structure/table/woodentable/New(var/newloc)
+	..(newloc, "wood")
+
+/obj/structure/table/gamblingtable
+	icon_state = "gamble_preview"
+
+/obj/structure/table/gamblingtable/New(var/newloc)
+	carpeted = 1
+	..(newloc, "wood")
+
+/obj/structure/table/glass
+	icon_state = "plain_preview"
+	color = "#00E1FF"
+	alpha = 77 // 0.3 * 255
+
+/obj/structure/table/glass/New(var/newloc)
+	..(newloc, "glass")
+
+/obj/structure/table/holotable
+	icon_state = "holo_preview"
+	color = "#EEEEEE"
+
+/obj/structure/table/holotable/New(var/newloc)
+	..(newloc, "holo[DEFAULT_TABLE_MATERIAL]")
+
+/obj/structure/table/woodentable/holotable
+	icon_state = "holo_preview"
+
+/obj/structure/table/woodentable/holotable/New(var/newloc)
+	..(newloc, "holowood")

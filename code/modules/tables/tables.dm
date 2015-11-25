@@ -51,8 +51,18 @@
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
-/obj/structure/table/New()
-	..()
+/obj/structure/table/New(var/newloc, var/new_material, var/new_reinf_material)
+	..(newloc)
+	color = null
+	if(!new_material)
+		new_material = DEFAULT_WALL_MATERIAL
+	material = get_material_by_name(new_material)
+	if(!istype(material))
+		qdel(src)
+		return
+	if(new_reinf_material) reinforced = get_material_by_name(new_reinf_material)
+	update_icon()
+
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)
 		if(T != src)

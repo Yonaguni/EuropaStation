@@ -13,6 +13,14 @@
 	name = "floor light"
 	path = /obj/machinery/floor_light
 
+/decl/fabricator_design/electronics/tube_light
+	name = "light frame (tube)"
+	path = /obj/item/frame/light
+
+/decl/fabricator_design/electronics/small_light
+	name = "light frame (bulb)"
+	path = /obj/item/frame/light/small
+
 /decl/fabricator_design/electronics/radio_headset
 	name = "radio headset"
 	path = /obj/item/device/radio/headset

@@ -17,6 +17,7 @@
 	var/category
 	var/power_use = 0
 	var/is_stack
+	var/stack_max
 
 // These are basically just to avoid having to deal with lists of lists.
 /datum/fabricator_design_list
@@ -49,6 +50,10 @@ var/global/list/fabricator_recipes
 		var/decl/fabricator_design/recipe = new R
 		fabricator_categories |= recipe.category
 		var/obj/item/I = new recipe.path
+		if(istype(I, /obj/item/stack))
+			var/obj/item/stack/S = I
+			recipe.is_stack = 1
+			recipe.stack_max = S.max_amount
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
 			for(var/material in I.matter)
