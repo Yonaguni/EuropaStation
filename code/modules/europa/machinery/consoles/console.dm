@@ -15,6 +15,14 @@ var/console_count = 0
 		)
 	var/on = 1
 
+/obj/machinery/europa/console/Destroy()
+	for(var/module in installed_software)
+		qdel(installed_software[module])
+	installed_software.Cut()
+	if(data_network)
+		data_network.connected_consoles -= src
+	return ..()
+
 /obj/machinery/europa/console/initialize()
 	..()
 	if(name == "terminal")

@@ -9,6 +9,13 @@
 		return
 	owner = new_owner
 
+/datum/console_module/Destroy()
+	if(owner)
+		owner.installed_software[name] = null
+		owner.installed_software -= name
+		owner = null
+	return ..()
+
 /datum/console_module/proc/get_header()
 	return "[name]"
 
@@ -20,7 +27,7 @@
 	visible = 0
 
 /datum/console_module/configuration/get_header()
-	return "Aperture 12 release 122.8 (Final)<br>Kernel 6.7.32-71.e16.x86_64 on an x86_64"
+	return "Aperture 12 release 122.8 (Final)<br>Kernel 6.x86_64 on an x86_64"
 
 /datum/console_module/configuration/get_interface_data(var/mob/user)
 	return "About<br>Configuration<br>Reboot<br>Shutdown<br>"
