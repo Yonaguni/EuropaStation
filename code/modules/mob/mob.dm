@@ -225,6 +225,14 @@
 	face_atom(A)
 	return 1
 
+//TODO: Fix this pile of WTF.
+/obj/effect/list_container
+	name = "list container"
+
+/obj/effect/list_container/mobl
+	name = "mobl"
+	var/master = null
+	var/list/container = list(  )
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))

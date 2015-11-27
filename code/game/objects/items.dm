@@ -12,6 +12,8 @@
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
+
+	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	pass_flags = PASSTABLE
 	pressure_resistance = 5
 //	causeerrorheresoifixthis

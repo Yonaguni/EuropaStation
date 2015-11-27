@@ -7,3 +7,309 @@
 	spawn(0)
 		..()
 	return
+
+/obj/item/weapon/phone
+	name = "red phone"
+	desc = "Should anything ever go wrong..."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "red_phone"
+	flags = CONDUCT
+	force = 3.0
+	throwforce = 2.0
+	throw_speed = 1
+	throw_range = 4
+	w_class = 2
+	attack_verb = list("called", "rang")
+	hitsound = 'sound/weapons/ring.ogg'
+
+/obj/item/weapon/rsp
+	name = "\improper Rapid-Seed-Producer (RSP)"
+	desc = "A device used to rapidly deploy seeds."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "rcd"
+	opacity = 0
+	density = 0
+	anchored = 0.0
+	var/stored_matter = 0
+	var/mode = 1
+	w_class = 3.0
+
+/obj/item/weapon/soap
+	name = "soap"
+	desc = "A cheap bar of soap. Doesn't smell."
+	gender = PLURAL
+	icon = 'icons/obj/items.dmi'
+	icon_state = "soap"
+	w_class = 2.0
+	throwforce = 0
+	throw_speed = 4
+	throw_range = 20
+
+/obj/item/weapon/soap/nanotrasen
+	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
+	icon_state = "soapnt"
+
+/obj/item/weapon/soap/deluxe
+	icon_state = "soapdeluxe"
+
+/obj/item/weapon/soap/deluxe/New()
+	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+
+/obj/item/weapon/soap/syndie
+	desc = "An untrustworthy bar of soap. Smells of fear."
+	icon_state = "soapsyndie"
+
+/obj/item/weapon/bikehorn
+	name = "bike horn"
+	desc = "A horn off of a bicycle."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "bike_horn"
+	item_state = "bike_horn"
+	throwforce = 3
+	w_class = 2
+	throw_speed = 3
+	throw_range = 15
+	attack_verb = list("HONKED")
+	var/spam_flag = 0
+
+
+/obj/item/weapon/c_tube
+	name = "cardboard tube"
+	desc = "A tube... of cardboard."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "c_tube"
+	throwforce = 1
+	w_class = 2.0
+	throw_speed = 4
+	throw_range = 5
+
+/obj/item/weapon/cane
+	name = "cane"
+	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "cane"
+	item_state = "stick"
+	flags = CONDUCT
+	force = 5.0
+	throwforce = 7.0
+	w_class = 2.0
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+
+/obj/item/weapon/cane/concealed
+	var/concealed_blade
+
+/obj/item/weapon/cane/concealed/New()
+	..()
+	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
+	concealed_blade = temp_blade
+	temp_blade.attack_self()
+
+/obj/item/weapon/cane/concealed/attack_self(var/mob/user)
+	if(concealed_blade)
+		user.visible_message("<span class='warning'>[user] has unsheathed \a [concealed_blade] from \his [src]!</span>", "You unsheathe \the [concealed_blade] from \the [src].")
+		// Calling drop/put in hands to properly call item drop/pickup procs
+		playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		user.drop_from_inventory(src)
+		user.put_in_hands(concealed_blade)
+		user.put_in_hands(src)
+		user.update_inv_l_hand(0)
+		user.update_inv_r_hand()
+		concealed_blade = null
+	else
+		..()
+
+/obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
+	if(!src.concealed_blade && istype(W))
+		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into \his [src]!</span>", "You sheathe \the [W] into \the [src].")
+		user.drop_from_inventory(W)
+		W.loc = src
+		src.concealed_blade = W
+		update_icon()
+	else
+		..()
+
+/obj/item/weapon/cane/concealed/update_icon()
+	if(concealed_blade)
+		name = initial(name)
+		icon_state = initial(icon_state)
+		item_state = initial(icon_state)
+	else
+		name = "cane shaft"
+		icon_state = "nullrod"
+		item_state = "foldcane"
+
+/obj/item/weapon/disk
+	name = "disk"
+	icon = 'icons/obj/items.dmi'
+
+/obj/item/weapon/disk/nuclear
+	name = "nuclear authentication disk"
+	desc = "Better keep this safe."
+	icon_state = "nucleardisk"
+	item_state = "card-id"
+	w_class = 2.0
+
+/obj/item/weapon/gift
+	name = "gift"
+	desc = "A wrapped item."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "gift3"
+	var/size = 3.0
+	var/obj/item/gift = null
+	item_state = "gift"
+	w_class = 4.0
+
+/obj/item/weapon/legcuffs
+	name = "legcuffs"
+	desc = "Use this to keep prisoners in line."
+	gender = PLURAL
+	icon = 'icons/obj/items.dmi'
+	icon_state = "handcuff"
+	flags = CONDUCT
+	throwforce = 0
+	w_class = 3.0
+	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/handcuffs.dmi')
+
+/obj/item/weapon/caution
+	desc = "Caution! Wet Floor!"
+	name = "wet floor sign"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "caution"
+	force = 1.0
+	throwforce = 3.0
+	throw_speed = 1
+	throw_range = 5
+	w_class = 2.0
+	attack_verb = list("warned", "cautioned", "smashed")
+
+/obj/item/weapon/caution/cone
+	desc = "This cone is trying to warn you of something!"
+	name = "warning cone"
+	icon_state = "cone"
+
+/obj/item/weapon/SWF_uplink
+	name = "station-bounced radio"
+	desc = "used to comunicate it appears."
+	icon = 'icons/obj/radio.dmi'
+	icon_state = "radio"
+	var/temp = null
+	var/uses = 4.0
+	var/selfdestruct = 0.0
+	var/traitor_frequency = 0.0
+	var/obj/item/device/radio/origradio = null
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	item_state = "radio"
+	throwforce = 5
+	w_class = 2.0
+	throw_speed = 4
+	throw_range = 20
+	matter = list(DEFAULT_WALL_MATERIAL = 100)
+
+/obj/item/weapon/staff
+	name = "wizards staff"
+	desc = "Apparently a staff used by the wizard."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "staff"
+	force = 3.0
+	throwforce = 5.0
+	throw_speed = 1
+	throw_range = 5
+	w_class = 2.0
+	attack_verb = list("bludgeoned", "whacked", "disciplined")
+
+/obj/item/weapon/staff/broom
+	name = "broom"
+	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "broom"
+
+/obj/item/weapon/staff/gentcane
+	name = "Gentlemans Cane"
+	desc = "An ebony can with an ivory tip."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "cane"
+	item_state = "stick"
+
+/obj/item/weapon/staff/stick
+	name = "stick"
+	desc = "A great tool to drag someone else's drinks across the bar."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "stick"
+	item_state = "stick"
+	force = 3.0
+	throwforce = 5.0
+	throw_speed = 1
+	throw_range = 5
+	w_class = 2.0
+
+/obj/item/weapon/module
+	icon = 'icons/obj/module.dmi'
+	icon_state = "std_module"
+	w_class = 2.0
+	item_state = "electronic"
+	flags = CONDUCT
+	var/mtype = 1						// 1=electronic 2=hardware
+
+/obj/item/weapon/module/power_control
+	name = "power control module"
+	icon_state = "power_mod"
+	desc = "Heavy-duty switching circuits for power control."
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+
+/obj/item/weapon/module/power_control/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if (istype(W, /obj/item/device/multitool))
+		var/obj/item/weapon/circuitboard/ghettosmes/newcircuit = new/obj/item/weapon/circuitboard/ghettosmes(user.loc)
+		qdel(src)
+		user.put_in_hands(newcircuit)
+
+/obj/item/weapon/pai_cable
+	desc = "A flexible coated cable with a universal jack on one end."
+	name = "data cable"
+	icon = 'icons/obj/power.dmi'
+	icon_state = "wire1"
+
+	var/obj/machinery/machine
+
+/obj/item/weapon/storage/part_replacer
+	name = "rapid part exchange device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	icon_state = "RPED"
+	item_state = "RPED"
+	w_class = 5
+	can_hold = list(/obj/item/europa/component)
+	storage_slots = 50
+	use_to_pickup = 1
+	allow_quick_gather = 1
+	allow_quick_empty = 1
+	collection_mode = 1
+	display_contents_with_number = 1
+	max_w_class = 3
+	max_storage_space = 100
+
+/obj/item/weapon/ectoplasm
+	name = "ectoplasm"
+	desc = "Spooky."
+	gender = PLURAL
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "ectoplasm"
+
+/obj/item/weapon/beach_ball
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "ball"
+	name = "beach ball"
+	item_state = "beachball"
+	density = 0
+	anchored = 0
+	w_class = 4
+	force = 0.0
+	throwforce = 0.0
+	throw_speed = 1
+	throw_range = 20
+	flags = CONDUCT
+
+/obj/item/weapon/beach_ball/afterattack(var/atom/target, var/mob/user)
+	user.drop_item()
+	src.throw_at(target, throw_range, throw_speed, user)
