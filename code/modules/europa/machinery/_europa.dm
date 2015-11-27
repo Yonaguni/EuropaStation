@@ -12,6 +12,28 @@
 	var/is_data_console = 0
 	var/datum/conduit_network/data_cable/data_network
 	var/datum/conduit_network/matter_feed/feed_network
+	var/global/build_components = list()
+	var/global/dismantle_sound = 'sound/items/Crowbar.ogg'
+
+/obj/machinery/europa/New(var/newloc, var/skip_components)
+	..(newloc)
+	if(!skip_components)
+		component_parts = list()
+		for(var/component in build_components)
+			component_parts += new component(src)
+
+/obj/machinery/europa/RefreshParts()
+	return
+
+// Casing is handled by the component list for these machines.
+/obj/machinery/europa/dismantle()
+	var/turf/T = get_turf(src)
+	if(T)
+		playsound(T, dismantle_sound, 50, 1)
+		for(var/obj/I in component_parts)
+			I.loc = T
+	qdel(src)
+	return 1
 
 /obj/machinery/europa/initialize()
 	..()
@@ -19,6 +41,7 @@
 		find_data_network()
 	if(connect_to_feednet)
 		find_data_network()
+	RefreshParts()
 
 /obj/machinery/europa/proc/find_feed_network()
 	if(feed_network)
@@ -79,7 +102,6 @@
 			data_network = data_networks[choice]
 
 /obj/machinery/europa/attack_hand(var/mob/user)
-
 	if(console_interface_only)
 		var/mob/living/carbon/human/H = user
 		if(!istype(H) || !istype(H.wear_id, /obj/item/device/europa/wrist_computer))
@@ -92,7 +114,15 @@
 	if(istype(O, /obj/item/device/multitool))
 		select_data_network()
 		return 1
-	return 0
+	else if(default_deconstruction_screwdriver(user, O))
+		updateUsrDialog()
+		return 1
+	else if(default_deconstruction_crowbar(user, O))
+		return 1
+	else if(default_part_replacement(user, O))
+		return 1
+	else
+		return 0
 
 /obj/machinery/europa/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))

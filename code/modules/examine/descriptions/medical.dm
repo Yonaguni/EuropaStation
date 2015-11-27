@@ -23,12 +23,6 @@
 	Press the button on the menu to activate it. Once they have reached 100 health, right-click the cell and click 'Eject Occupant' to remove them. \
 	Remember to turn it off, once you've finished, to save power and chemicals!"
 
-/obj/machinery/optable
-	description_info = "Click your target with Grab intent, then click on the table with an empty hand, to place them on it."
-
-/obj/machinery/computer/operating
-	description_info = "This console gives information on the status of the patient on the adjacent operating table, notably their consciousness."
-
 /obj/machinery/sleeper
 	description_info = "The sleeper allows you to clean the blood by means of dialysis, and to administer medication in a controlled environment.<br>\
 	<br>\

@@ -202,13 +202,6 @@
 		return
 	if(..())
 		return
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
-		return
 	if(stat)
 		return
 	if(panel_open && istype(O, /obj/item/weapon/wirecutters))

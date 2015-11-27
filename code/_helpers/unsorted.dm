@@ -1220,10 +1220,13 @@ proc/is_hot(obj/item/W as obj)
 
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	if(M.lying)
+		if(locate(/obj/structure/bed/roller, M.loc) && prob(75))
+			return 1
+		var/obj/structure/table/T = locate() in M.loc
+		if(T && prob(T.op_success_chance))
+			return 1
+	return 0
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
