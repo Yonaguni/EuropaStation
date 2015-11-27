@@ -1,5 +1,16 @@
 var/bomb_set
 
+/obj/item/weapon/disk
+	name = "disk"
+	icon = 'icons/obj/items.dmi'
+
+/obj/item/weapon/disk/nuclear
+	name = "nuclear authentication disk"
+	desc = "Better keep this safe."
+	icon_state = "nucleardisk"
+	item_state = "card-id"
+	w_class = 2.0
+
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
 	desc = "Uh oh. RUN!!!!"
@@ -24,8 +35,6 @@ var/bomb_set
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = 0
-
-
 
 /obj/machinery/nuclearbomb/New()
 	..()
