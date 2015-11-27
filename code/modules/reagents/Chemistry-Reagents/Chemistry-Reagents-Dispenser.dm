@@ -14,16 +14,8 @@
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
-		return
-	if(istype(O, /obj/item/weapon/book))
-		if(volume < 5)
-			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
-		var/obj/item/weapon/book/affectedbook = O
-		affectedbook.dat = null
-		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
+	else if(istype(O, /obj/item/weapon/book/tome))
+		usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
 	return
 
 /datum/reagent/aluminum
@@ -151,16 +143,8 @@
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
-		return
-	if(istype(O, /obj/item/weapon/book))
-		if(volume < 5)
-			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
-		var/obj/item/weapon/book/affectedbook = O
-		affectedbook.dat = null
-		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
+	else if(istype(O, /obj/item/weapon/book/tome))
+		usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
 	return
 
 /datum/reagent/hydrazine
