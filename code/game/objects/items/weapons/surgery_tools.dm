@@ -61,11 +61,6 @@
 	w_class = 3
 	attack_verb = list("drilled")
 
-	suicide_act(mob/user)
-		viewers(user) << pick("<span class='danger'>\The [user] is pressing \the [src] to \his temple and activating it! It looks like \he's trying to commit suicide.</span>",
-		                       "<span class='danger'>\The [user] is pressing \the [src] to \his chest and activating it! It looks like \he's trying to commit suicide.</span>")
-		return (BRUTELOSS)
-
 /*
  * Scalpel
  */
@@ -85,12 +80,6 @@
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << pick("<span class='danger'>\The [user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>")
-		return (BRUTELOSS)
 
 /*
  * Researchable Scalpels
