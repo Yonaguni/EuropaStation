@@ -69,7 +69,6 @@
 	icon_state = "officer"
 	item_state = "lawyer_black"
 	worn_state = "officer"
-	displays_id = 0
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral.\""
@@ -77,7 +76,6 @@
 	icon_state = "officer"
 	item_state = "lawyer_black"
 	worn_state = "officer"
-	displays_id = 0
 
 /obj/item/clothing/under/rank/centcom_captain
 	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral-Executive.\""
@@ -85,7 +83,6 @@
 	icon_state = "centcom"
 	item_state = "lawyer_black"
 	worn_state = "centcom"
-	displays_id = 0
 
 /obj/item/clothing/under/ert
 	name = "ERT tactical uniform"

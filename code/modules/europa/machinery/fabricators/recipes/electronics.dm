@@ -147,23 +147,23 @@
 
 /decl/fabricator_design/electronics/device/capacitor
 	name = "capacitor"
-	path = /obj/item/weapon/stock_parts/capacitor
+	path = /obj/item/europa/component/capacitor
 
 /decl/fabricator_design/electronics/device/micro_mani
 	name = "micro manipulator"
-	path = /obj/item/weapon/stock_parts/manipulator
+	path = /obj/item/europa/component/manipulator
 
 /decl/fabricator_design/electronics/device/matter_compressor
 	name = "matter compressor"
-	path = /obj/item/weapon/stock_parts/matter_bin
+	path = /obj/item/europa/component/matter_bin
 
 /decl/fabricator_design/electronics/device/micro_laser
 	name = "micro laser"
-	path = /obj/item/weapon/stock_parts/micro_laser
+	path = /obj/item/europa/component/micro_laser
 
 /decl/fabricator_design/electronics/device/basic_sensor
 	name = "sensor module"
-	path = /obj/item/weapon/stock_parts/scanning_module
+	path = /obj/item/europa/component/scanning_module
 
 /decl/fabricator_design/electronics/device/powercell
 	name = "basic powercell"

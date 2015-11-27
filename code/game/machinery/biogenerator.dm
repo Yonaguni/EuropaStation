@@ -24,8 +24,8 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/biogenerator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
 
 	RefreshParts()
 
@@ -247,10 +247,10 @@
 	var/man_rating = 0
 	var/bin_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/europa/component/P in component_parts)
+		if(istype(P, /obj/item/europa/component/matter_bin))
 			bin_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/europa/component/manipulator))
 			man_rating += P.rating
 
 	build_eff = man_rating

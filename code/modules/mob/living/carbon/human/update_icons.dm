@@ -521,25 +521,23 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_wear_id(var/update_icons=1)
 	if(wear_id)
-		wear_id.screen_loc = ui_id	//TODO
-		if(w_uniform && w_uniform:displays_id)
-			var/image/standing
-			if(wear_id.icon_override)
-				standing = image("icon" = wear_id.icon_override, "icon_state" = "[icon_state]")
-			else if(wear_id.sprite_sheets && wear_id.sprite_sheets[species.get_bodytype()])
-				standing = image("icon" = wear_id.sprite_sheets[species.get_bodytype()], "icon_state" = "[icon_state]")
-			else
-				standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
-			overlays_standing[ID_LAYER] = standing
+		wear_id.screen_loc = ui_id
+		var/image/standing
+		if(wear_id.icon_override)
+			standing = image("icon" = wear_id.icon_override, "icon_state" = "[wear_id.icon_state]")
+		else if(wear_id.sprite_sheets && wear_id.sprite_sheets[species.get_bodytype()])
+			standing = image("icon" = wear_id.sprite_sheets[species.get_bodytype()], "icon_state" = "[wear_id.icon_state]")
 		else
-			overlays_standing[ID_LAYER]	= null
+			standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
+		overlays_standing[ID_LAYER] = standing
 	else
 		overlays_standing[ID_LAYER]	= null
 
 	BITSET(hud_updateflag, ID_HUD)
 	BITSET(hud_updateflag, WANTED_HUD)
 
-	if(update_icons)   update_icons()
+	if(update_icons)
+		update_icons()
 
 /mob/living/carbon/human/update_inv_gloves(var/update_icons=1)
 	if(gloves)

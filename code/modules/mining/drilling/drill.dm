@@ -43,9 +43,9 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/miningdrill(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/capacitor(src)
+	component_parts += new /obj/item/europa/component/micro_laser(src)
 	component_parts += new /obj/item/weapon/cell/high(src)
 
 	RefreshParts()
@@ -205,12 +205,12 @@
 	capacity = 0
 	charge_use = 50
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
+	for(var/obj/item/europa/component/P in component_parts)
+		if(istype(P, /obj/item/europa/component/micro_laser))
 			harvest_speed = P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/europa/component/matter_bin))
 			capacity = 200 * P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+		if(istype(P, /obj/item/europa/component/capacitor))
 			charge_use -= 10 * P.rating
 	cell = locate(/obj/item/weapon/cell) in component_parts
 

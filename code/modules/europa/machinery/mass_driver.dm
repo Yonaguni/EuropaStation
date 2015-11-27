@@ -8,7 +8,11 @@
 	active_power_usage = 50
 	density = 0
 	can_remote_trigger = 1
+	console_interface_only = 1
 	var/firing = 0
+
+/obj/machinery/europa/mass_driver/interact()
+	drive()
 
 /obj/machinery/europa/mass_driver/pulsed()
 	drive()
@@ -33,11 +37,5 @@
 			spawn(0)
 				O.throw_at(target, 50, 1)
 	flick("mass_driver1", src)
-	sleep(30)
+	sleep(10)
 	firing = 0
-
-/obj/machinery/europa/mass_driver/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
-		return
-	drive()
-	..(severity)
