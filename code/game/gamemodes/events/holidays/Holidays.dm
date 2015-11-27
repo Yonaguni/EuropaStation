@@ -142,12 +142,6 @@ var/global/Holiday = null
 	if(Holiday)
 		world << "<font color='blue'>and...</font>"
 		world << "<h4>Happy [Holiday] Everybody!</h4>"
-		switch(Holiday)			//special holidays
-			if("Easter")
-				//do easter stuff
-			if("Christmas Eve","Christmas")
-				Christmas_Game_Start()
-
 	return
 
 //Nested in the random events loop. Will be triggered every 2 minutes
@@ -158,7 +152,5 @@ var/global/Holiday = null
 			return
 
 		if("End of the World")
-			if(prob(eventchance))	GameOver()
-
-		if("Christmas","Christmas Eve")
-			if(prob(eventchance))	ChristmasEvent()
+			if(prob(eventchance))
+				GameOver()

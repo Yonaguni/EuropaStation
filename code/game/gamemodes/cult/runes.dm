@@ -750,18 +750,12 @@ var/global/list/runes = list()
 			if (istype(W,/obj/item/weapon/paper/talisman))
 				rad = 4
 				go = 1
-			if (istype(W,/obj/item/weapon/nullrod))
-				rad = 1
-				go = 1
 			if(go)
 				for(var/obj/effect/rune/R in orange(rad,src))
 					if(R!=src)
 						R:visibility=15
 					S=1
 			if(S)
-				if(istype(W,/obj/item/weapon/nullrod))
-					usr << "<span class='warning'>Arcane markings suddenly glow from underneath a thin layer of dust!</span>"
-					return
 				if(istype(W,/obj/effect/rune))
 					usr.say("Nikt[pick("'","`")]o barada kla'atu!")
 					for (var/mob/V in viewers(src))
@@ -890,9 +884,6 @@ var/global/list/runes = list()
 				for(var/mob/living/carbon/C in range(7,src))
 					if (iscultist(C))
 						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
-						continue
 					C.ear_deaf += 50
 					C.show_message("<span class='warning'>The world around you suddenly becomes quiet.</span>", 3)
 					affected += C
@@ -909,9 +900,6 @@ var/global/list/runes = list()
 				var/list/affected = new()
 				for(var/mob/living/carbon/C in range(7,usr))
 					if (iscultist(C))
-						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
 						continue
 					C.ear_deaf += 30
 					//talismans is weaker.
@@ -932,9 +920,6 @@ var/global/list/runes = list()
 				for(var/mob/living/carbon/C in viewers(src))
 					if (iscultist(C))
 						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
-						continue
 					C.eye_blurry += 50
 					C.eye_blind += 20
 					if(prob(5))
@@ -954,9 +939,6 @@ var/global/list/runes = list()
 				var/list/affected = new()
 				for(var/mob/living/carbon/C in view(2,usr))
 					if (iscultist(C))
-						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
 						continue
 					C.eye_blurry += 30
 					C.eye_blind += 10
@@ -986,9 +968,6 @@ var/global/list/runes = list()
 			if(cultists.len>=3)
 				for(var/mob/living/carbon/M in viewers(usr))
 					if(iscultist(M))
-						continue
-					var/obj/item/weapon/nullrod/N = locate() in M
-					if(N)
 						continue
 					M.take_overall_damage(51,51)
 					M << "<span class='danger'>Your blood boils!</span>"
@@ -1062,13 +1041,9 @@ var/global/list/runes = list()
 				qdel(src)
 			else                        ///When invoked as talisman, stun and mute the target mob.
 				usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
-				var/obj/item/weapon/nullrod/N = locate() in T
-				if(N)
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("<span class='warning'><B>[] invokes a talisman at [], but they are unaffected!</B></span>", usr, T), 1)
-				else
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("<span class='warning'><B>[] invokes a talisman at []</B></span>", usr, T), 1)
+
+				for(var/mob/O in viewers(T, null))
+					O.show_message(text("<span class='warning'><B>[] invokes a talisman at []</B></span>", usr, T), 1)
 
 					if(issilicon(T))
 						T.Weaken(15)

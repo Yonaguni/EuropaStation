@@ -27,10 +27,9 @@
 	if(destination)
 		var/prey = 0
 		for(var/mob/living/M in targets)
-			if(!findNullRod(M))
-				M.forceMove(destination)
-				if(M != user)
-					prey = 1
+			M.forceMove(destination)
+			if(M != user)
+				prey = 1
 		user << "<span class='sinister'>You warp back to Nar-Sie[prey ? " along with your prey":""].</span>"
 	else
 		user << "<span class='danger'>...something's wrong!</span>"//There shouldn't be an instance of Harvesters when Nar-Sie isn't in the world.
