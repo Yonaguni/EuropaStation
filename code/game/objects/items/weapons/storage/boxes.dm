@@ -581,30 +581,6 @@
 		for(var/i=1; i <= 8; i++)
 			new /obj/item/toy/snappop(src)
 
-/obj/item/weapon/storage/box/matches
-	name = "matchbox"
-	desc = "A small box of 'Space-Proof' premium matches."
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "matchbox"
-	item_state = "zippo"
-	w_class = 1
-	slot_flags = SLOT_BELT
-	can_hold = list(/obj/item/weapon/flame/match)
-
-	New()
-		..()
-		for(var/i=1; i <= 10; i++)
-			new /obj/item/weapon/flame/match(src)
-
-	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
-		if(istype(W) && !W.lit && !W.burnt)
-			W.lit = 1
-			W.damtype = "burn"
-			W.icon_state = "match_lit"
-			processing_objects.Add(W)
-		W.update_icon()
-		return
-
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
@@ -622,7 +598,7 @@
 	item_state = "syringe_kit"
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
-	
+
 /obj/item/weapon/storage/box/lights/New()
 	..()
 	make_exact_fit()
