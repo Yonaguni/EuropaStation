@@ -1,80 +1,3 @@
-//cleansed 9/15/2012 17:48
-
-/*
-CONTAINS:
-MATCHES
-CIGARETTES
-CIGARS
-SMOKING PIPES
-CHEAP LIGHTERS
-ZIPPO
-
-CIGARETTE PACKETS ARE IN FANCY.DM
-*/
-
-//For anything that can light stuff on fire
-/obj/item/weapon/flame
-	var/lit = 0
-
-/proc/isflamesource(A)
-	if(istype(A, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = A
-		return (WT.isOn())
-	else if(istype(A, /obj/item/weapon/flame))
-		var/obj/item/weapon/flame/F = A
-		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
-		return 1
-	return 0
-
-///////////
-//MATCHES//
-///////////
-/obj/item/weapon/flame/match
-	name = "match"
-	desc = "A simple match stick, used for lighting fine smokables."
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "match_unlit"
-	var/burnt = 0
-	var/smoketime = 5
-	w_class = 1.0
-	slot_flags = SLOT_EARS
-	attack_verb = list("burnt", "singed")
-
-/obj/item/weapon/flame/match/process()
-	if(isliving(loc))
-		var/mob/living/M = loc
-		M.IgniteMob()
-	var/turf/location = get_turf(src)
-	smoketime--
-	if(smoketime < 1)
-		burn_out()
-		return
-	if(location)
-		location.hotspot_expose(700, 5)
-		return
-
-/obj/item/weapon/flame/match/dropped(mob/user as mob)
-	//If dropped, put ourselves out
-	//not before lighting up the turf we land on, though.
-	if(lit)
-		spawn(0)
-			var/turf/location = src.loc
-			if(istype(location))
-				location.hotspot_expose(700, 5)
-			burn_out()
-	return ..()
-
-/obj/item/weapon/flame/match/proc/burn_out()
-	lit = 0
-	burnt = 1
-	damtype = "brute"
-	icon_state = "match_burnt"
-	item_state = "cigoff"
-	name = "burnt match"
-	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
-
 //////////////////
 //FINE SMOKABLES//
 //////////////////
@@ -116,7 +39,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.remove_any(REM)
 
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
+
 	if(!src.lit)
+		var/turf/T = get_turf(src)
+		if(T && T.is_flooded())
+			usr << "<span class='warning'>It's far too wet to light \the [src]!</span>"
+			return 0
 		src.lit = 1
 		damtype = "fire"
 		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
@@ -124,7 +52,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
 			e.start()
 			qdel(src)
-			return
+			return 0
 		flags &= ~NOREACT // allowing reagents to react after being lit
 		reagents.handle_reactions()
 		icon_state = icon_on
@@ -134,40 +62,41 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			M.update_inv_wear_mask(0)
 			M.update_inv_l_hand(0)
 			M.update_inv_r_hand(1)
-		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
 		set_light(2, 0.25, "#E38F46")
 		processing_objects.Add(src)
+		return 1
+	return 0
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
-	var/turf/T = get_turf(src)
+
+	if(!lit)
+		return 0
+
 	set_light(0)
-	if (type_butt)
-		var/obj/item/butt = new type_butt(T)
-		transfer_fingerprints_to(butt)
-		if(ismob(loc))
-			var/mob/living/M = loc
+	lit = 0
+
+	var/turf/T = get_turf(src)
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_wear_mask(0)
+		M.update_inv_l_hand(0)
+		M.update_inv_r_hand(1)
+
+		if(type_butt)
+			M.unEquip(src)
 			if (!nomessage)
 				M << "<span class='notice'>Your [name] goes out.</span>"
-			M.remove_from_mob(src) //un-equip it so the overlays can update
-			M.update_inv_wear_mask(0)
-			M.update_inv_l_hand(0)
-			M.update_inv_r_hand(1)
-		processing_objects.Remove(src)
+
+	processing_objects.Remove(src)
+
+	if(type_butt)
+		var/obj/item/butt = new type_butt(T)
+		transfer_fingerprints_to(butt)
 		qdel(src)
 	else
-		new /obj/effect/decal/cleanable/ash(T)
-		if(ismob(loc))
-			var/mob/living/M = loc
-			if (!nomessage)
-				M << "<span class='notice'>Your [name] goes out, and you empty the ash.</span>"
-			lit = 0
-			icon_state = icon_off
-			item_state = icon_off
-			M.update_inv_wear_mask(0)
-			M.update_inv_l_hand(0)
-			M.update_inv_r_hand(1)
-		processing_objects.Remove(src)
+		update_icon()
+	return 1
 
 /obj/item/clothing/mask/smokable/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -296,7 +225,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-
 	user.update_inv_wear_mask(0)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand(1)
@@ -323,28 +251,36 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	..()
 	name = "empty [initial(name)]"
 
+/obj/item/clothing/mask/smokable/pipe/die(var/nomessage = 0)
+	if(lit)
+		new /obj/effect/decal/cleanable/ash(get_turf(src))
+		if(!nomessage && ismob(loc))
+			loc << "<span class='notice'>Your [name] goes out, and you empty the ash.</span>"
+		return ..()
+	return 0
+
 /obj/item/clothing/mask/smokable/pipe/light(var/flavor_text = "[usr] lights the [name].")
-	if(!src.lit && src.smoketime)
+	if(!..())
+		return 0
+	if(src.smoketime)
 		src.lit = 1
 		damtype = "fire"
 		icon_state = icon_on
 		item_state = icon_on
-		var/turf/T = get_turf(src)
-		T.visible_message(flavor_text)
+		loc.visible_message(flavor_text)
 		processing_objects.Add(src)
 		if(ismob(loc))
 			var/mob/living/M = loc
 			M.update_inv_wear_mask(0)
 			M.update_inv_l_hand(0)
 			M.update_inv_r_hand(1)
+		return 1
+	return 0
 
 /obj/item/clothing/mask/smokable/pipe/attack_self(mob/user as mob)
 	if(lit == 1)
 		user.visible_message("<span class='notice'>[user] puts out [src].</span>", "<span class='notice'>You put out [src].</span>")
-		lit = 0
-		icon_state = icon_off
-		item_state = icon_off
-		processing_objects.Remove(src)
+		die(1)
 	else if (smoketime)
 		var/turf/location = get_turf(user)
 		user.visible_message("<span class='notice'>[user] empties out [src].</span>", "<span class='notice'>You empty out [src].</span>")

@@ -140,8 +140,10 @@ Class Procs:
 		return PROCESS_KILL
 	if(loc)
 		var/datum/gas_mixture/environment = loc.return_air()
-		if(environment && environment.get_fluid_depth())
-			water_act(environment.get_fluid_depth())
+		if(environment)
+			var/depth = environment.get_fluid_depth()
+			if(depth)
+				water_act(depth)
 	return
 
 /obj/machinery/emp_act(severity)
