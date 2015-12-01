@@ -31,16 +31,18 @@
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/hash
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/friedhash
 	cooking_message = "turns a rich golden-brown"
+	var/modifier = "hashbrown"
 
 /decl/food_transition/fried/hash/potato_chips
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
+	modifier = "fries"
 
 /decl/food_transition/fried/hash/get_output_product(var/obj/item/source)
-	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/hash/S = source
+	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/S = source
 	var/obj/item/food = new output_type(source.loc)
 	if(istype(S))
-		food.name = "[S.base_grown] hashbrown"
+		food.name = "[S.base_grown] [modifier]"
 		food.desc += "[S.base_grown]."
 	if(source.color)
 		food.color = source.color
