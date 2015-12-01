@@ -23,7 +23,7 @@
 	// Gambling tables. I'd prefer reinforced with carpet/felt/cloth/whatever, but AFAIK it's either harder or impossible to get /obj/item/stack/material of those.
 	// Convert if/when you can easily get stacks of these.
 	var/carpeted = 0
-
+	var/global/op_success_chance = 85
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
 /obj/structure/table/proc/update_material()

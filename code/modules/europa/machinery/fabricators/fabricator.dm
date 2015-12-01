@@ -42,11 +42,11 @@
 	//Create parts for lathe.
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/europa/component/console_screen(src)
 	RefreshParts()
 	output_dir = dir
 
@@ -200,23 +200,14 @@
 	if(busy)
 		user << "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>"
 		return
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+	if(..())
 		return
 	if(stat)
 		return
-	if(panel_open && (istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/wirecutters)))
+	if(panel_open && istype(O, /obj/item/weapon/wirecutters))
 		attack_hand(user)
 		return
 	return
-
-/obj/machinery/europa/fabricator/attack_hand(mob/user as mob)
-	user.set_machine(src)
-	interact(user)
 
 /obj/machinery/europa/fabricator/examine()
 	..()
@@ -233,16 +224,15 @@
 
 	if(href_list["remove_from_queue"])
 		var/index = text2num(href_list["remove_from_queue"])
-		if(index < 1 || index > build_queue.len)
-			return
-		var/datum/fabricator_queue_entry/FQE = build_queue[index]
-		build_queue -= FQE
+		if(index > 0 && index <= build_queue.len)
+			var/datum/fabricator_queue_entry/FQE = build_queue[index]
+			build_queue -= FQE
 
 	if(href_list["change_category"])
 
 		var/choice = input("Which category do you wish to display?") as null|anything in fabricator_categories+"All"
-		if(!choice) return
-		show_category = choice
+		if(choice)
+			show_category = choice
 
 	if(href_list["change_output_dir"])
 
@@ -258,8 +248,8 @@
 		output_dirs["northwest"] = NORTHWEST
 
 		var/choice = input("Which direction would you like to output items to?") as null|anything in output_dirs
-		if(!choice) return
-		output_dir = output_dirs[choice]
+		if(choice)
+			output_dir = output_dirs[choice]
 
 	if(href_list["select_feed_network"])
 		var/list/feed_networks = list()
@@ -267,29 +257,15 @@
 		for(var/obj/structure/conduit/matter/MF in T.contents)
 			if(!MF.network) MF.build_network()
 			feed_networks[MF.network.name] = MF.network
-		if(!feed_networks.len)
-			return
-		var/choice = input("Which feed network do you wish to take matter from?") as null|anything in feed_networks
-		if(!choice) return
-		feed_network = feed_networks[choice]
-
-	if(href_list["select_feed_network"])
-		var/list/data_networks = list()
-		var/turf/T = get_turf(src)
-		for(var/obj/structure/conduit/data/D in T.contents)
-			if(!D.network) D.build_network()
-			data_networks[D.network.name] = D.network
-		if(!data_networks.len)
-			return
-		var/choice = input("Which data network do you wish to connect to?") as null|anything in data_networks
-		if(!choice) return
-		data_network = data_networks[choice]
+		if(feed_networks.len)
+			var/choice = input("Which feed network do you wish to take matter from?") as null|anything in feed_networks
+			if(choice)
+				feed_network = feed_networks[choice]
 
 	if(href_list["make"] && machine_recipes && machine_recipes.len)
-		if(build_queue.len > MAX_FAB_QUEUE)
-			return
-		build_queue += new /datum/fabricator_queue_entry(machine_recipes[text2num(href_list["make"])], text2num(href_list["multiplier"]))
-		check_queue()
+		if(build_queue.len < MAX_FAB_QUEUE)
+			build_queue += new /datum/fabricator_queue_entry(machine_recipes[text2num(href_list["make"])], text2num(href_list["multiplier"]))
+			check_queue()
 
 	updateUsrDialog()
 
@@ -373,9 +349,9 @@
 	..()
 	var/mb_rating = 0
 	var/man_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/europa/component/matter_bin/MB in component_parts)
 		mb_rating += MB.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/europa/component/manipulator/M in component_parts)
 		man_rating += M.rating
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3

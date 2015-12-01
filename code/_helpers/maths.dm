@@ -122,3 +122,7 @@
 
 /proc/norm(x, y)
 	return sqrt(squaredNorm(x, y))
+
+/proc/n_ceil(var/num)
+	if(isnum(num))
+		return round(num)+1

@@ -484,13 +484,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	charge_costs = list(1)
 	stacktype = /obj/item/stack/cable_coil
 
-/obj/item/stack/cable_coil/suicide_act(mob/user)
-	if(locate(/obj/item/weapon/stool) in user.loc)
-		user.visible_message("<span class='suicide'>[user] is making a noose with the [src.name]! It looks like \he's trying to commit suicide.</span>")
-	else
-		user.visible_message("<span class='suicide'>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
-	return(OXYLOSS)
-
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
 	src.amount = length

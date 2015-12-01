@@ -166,3 +166,15 @@ var/last_chew = 0
 	icon = 'icons/obj/bureaucracy.dmi'
 	breakouttime = 200
 	cuff_type = "duct tape"
+
+/obj/item/weapon/legcuffs
+	name = "legcuffs"
+	desc = "Use this to keep prisoners in line."
+	gender = PLURAL
+	icon = 'icons/obj/items.dmi'
+	icon_state = "handcuff"
+	flags = CONDUCT
+	throwforce = 0
+	w_class = 3.0
+	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/handcuffs.dmi')

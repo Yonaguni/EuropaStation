@@ -23,7 +23,7 @@
 
 /decl/fabricator_design/glass/consolescreen
 	name = "console screen"
-	path = /obj/item/weapon/stock_parts/console_screen
+	path = /obj/item/europa/component/console_screen
 	category = "Devices and Components"
 
 /decl/fabricator_design/glass/bulb

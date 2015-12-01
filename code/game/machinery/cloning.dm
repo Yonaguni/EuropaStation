@@ -48,11 +48,11 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/clonepod(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/europa/component/scanning_module(src)
+	component_parts += new /obj/item/europa/component/scanning_module(src)
+	component_parts += new /obj/item/europa/component/console_screen(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 
 	RefreshParts()
@@ -143,7 +143,6 @@
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
-	H.suiciding = 0
 	attempting = 0
 	return 1
 
@@ -157,7 +156,7 @@
 		return
 
 	if((occupant) && (occupant.loc == src))
-		if((occupant.stat == DEAD) || (occupant.suiciding) || !occupant.key)  //Autoeject corpses and suiciding dudes.
+		if((occupant.stat == DEAD) || !occupant.key)  //Autoeject corpses and suiciding dudes.
 			locked = 0
 			go_out()
 			connected_message("Clone Rejected: Deceased.")
@@ -268,8 +267,8 @@
 /obj/machinery/clonepod/RefreshParts()
 	..()
 	var/rating = 0
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/scanning_module) || istype(P, /obj/item/weapon/stock_parts/manipulator))
+	for(var/obj/item/europa/component/P in component_parts)
+		if(istype(P, /obj/item/europa/component/scanning_module) || istype(P, /obj/item/europa/component/manipulator))
 			rating += P.rating
 
 	heal_level = rating * 10 - 20

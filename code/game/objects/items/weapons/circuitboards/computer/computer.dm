@@ -118,10 +118,6 @@
 	name = T_BOARD("crew monitoring console")
 	build_path = /obj/machinery/computer/crew
 
-/obj/item/weapon/circuitboard/operating
-	name = T_BOARD("patient monitoring console")
-	build_path = /obj/machinery/computer/operating
-
 /obj/item/weapon/circuitboard/curefab
 	name = T_BOARD("cure fabricator")
 	build_path = /obj/machinery/computer/curer

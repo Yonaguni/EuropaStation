@@ -19,7 +19,6 @@
 			new /obj/item/clothing/accessory/storage/brown_vest(src)
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
-		new /obj/item/blueprints(src)
 		new /obj/item/clothing/under/rank/chief_engineer(src)
 		new /obj/item/clothing/head/hardhat/white(src)
 		new /obj/item/clothing/head/welding(src)

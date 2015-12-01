@@ -508,7 +508,6 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/list/accessories = list()
-	var/displays_id = 1
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/uniform.dmi',
