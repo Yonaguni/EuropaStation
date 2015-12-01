@@ -7,15 +7,23 @@
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/slice
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/baked/cracker
 
-/decl/food_transition/baked/cutlet
+/decl/food_transition/baked/meat
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet
 
-/decl/food_transition/baked/meatball
+/decl/food_transition/baked/meat/get_output_product(var/obj/item/source)
+	var/obj/item/weapon/reagent_containers/food/snacks/meat/food = ..()
+	if(istype(food) && istype(source, /obj/item/weapon/reagent_containers/food/snacks/meat))
+		var/obj/item/weapon/reagent_containers/food/snacks/meat/other_food = source
+		food.set_source_mob(other_food.source_mob)
+		food.color = other_food.color
+	return
+
+/decl/food_transition/baked/meat/meatball
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatball
 
-/decl/food_transition/baked/patty
+/decl/food_transition/baked/meat/patty
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/patty
 

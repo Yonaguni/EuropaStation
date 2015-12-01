@@ -754,11 +754,20 @@
 		for(var/check_type in grind_products)
 			if(istype(O, check_type))
 				var/product_type = grind_products[check_type]
-				new product_type(get_turf(src))
+				var/obj/item/product = new product_type(get_turf(src))
+				product.color = O.color
+
+				// Snowflakey as fuck, but so far the machine only uses meat so ehhhh.
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = O
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/output = product
+				if(istype(meatsource) && istype(output))
+					output.set_source_mob(meatsource.source_mob)
+
 				holdingitems -= O
 				qdel(O)
 				product_made = 1
 				break
+
 		if(product_made)
 			return
 

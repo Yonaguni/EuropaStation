@@ -7,18 +7,20 @@
 	bitesize = 3
 	slices_to = /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
 	slice_count = 3
+	var/source_mob
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/New()
 	..()
 	reagents.add_reagent("protein", 9)
+	if(source_mob) set_source_mob(source_mob)
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab
-	var/source_mob
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/New()
-	..()
+/obj/item/weapon/reagent_containers/food/snacks/meat/proc/set_source_mob(new_source_mob)
+	source_mob = new_source_mob
 	if(source_mob)
 		name = "[source_mob] [initial(name)]"
+	else
+		name = "[initial(name)]"
+	return
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synth
 	source_mob = "synthetic"

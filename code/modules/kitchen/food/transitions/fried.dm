@@ -6,6 +6,14 @@
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/egg/frying
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/egg/fried
 
+/decl/food_transition/fried/get_output_product(var/obj/item/source)
+	var/obj/item/weapon/reagent_containers/food/snacks/meat/food = ..()
+	if(istype(food) && istype(source, /obj/item/weapon/reagent_containers/food/snacks/meat))
+		var/obj/item/weapon/reagent_containers/food/snacks/meat/other_food = source
+		food.set_source_mob(other_food.source_mob)
+		food.color = other_food.color
+	return
+
 /decl/food_transition/fried/cutlet
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet
@@ -33,11 +41,6 @@
 	cooking_message = "turns a rich golden-brown"
 	var/modifier = "hashbrown"
 
-/decl/food_transition/fried/hash/potato_chips
-	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
-	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
-	modifier = "fries"
-
 /decl/food_transition/fried/hash/get_output_product(var/obj/item/source)
 	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/S = source
 	var/obj/item/food = new output_type(source.loc)
@@ -47,6 +50,11 @@
 	if(source.color)
 		food.color = source.color
 	return food
+
+/decl/food_transition/fried/hash/potato_chips
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
+	modifier = "fries"
 
 /decl/food_transition/fried/pancakes
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/muffin
