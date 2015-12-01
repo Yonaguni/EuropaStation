@@ -123,9 +123,33 @@
 		return 1
 	return 0
 
+/obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
+	if(src.loc == user && contents.len)
+		var/obj/item/grabbed = pick(contents)
+		grabbed.forceMove(get_turf(src))
+		var/mob/living/carbon/human/H = user
+		if(istype(H) && (!H.l_hand || !H.r_hand))
+			H.put_in_hands(grabbed)
+		user.visible_message("<span class='notice'>\The [user] fishes \the [grabbed] out of \the [src] with their bare hands.</span>")
+		return
+	return ..()
+
 /obj/item/weapon/reagent_containers/kitchen/attackby(var/obj/item/O, var/mob/user) //Put things inside
+
 	if(O.is_open_container())
 		return ..(O, user)
+
+	if(istype(O, /obj/item/weapon/material/kitchen/spatula))
+		if(!contents.len)
+			user << "<span class='warning'>There is nothing in \the [src].</span>"
+			return
+		var/obj/item/grabbed = pick(contents)
+		grabbed.forceMove(get_turf(src))
+		var/mob/living/carbon/human/H = user
+		if(istype(H) && (!H.l_hand || !H.r_hand))
+			H.put_in_hands(grabbed)
+		user.visible_message("<span class='notice'>\The [user] fishes \the [grabbed] out of \the [src] with \the [O].</span>")
+		return
 
 	if(contents.len >= max_items)
 		user << "<span class='notice'>\The [src] can't fit anymore!</span>"

@@ -20,6 +20,10 @@
 	icon_state = "spatula"
 	desc = "A general purpose kitchen tool."
 
+/obj/item/weapon/material/kitchen/spatula/tongs
+	name = "tongs"
+	icon_state = "tongs"
+
 /obj/item/weapon/material/kitchen/utensil
 	w_class = 1
 	thrown_force_divisor = 1
