@@ -53,7 +53,8 @@
 	var/decl/food_transition/F = get_food_transition(A, METHOD_DICING, 1)
 	if(F)
 		var/obj/item/food = F.get_output_product(A)
-		food.loc = get_turf(A)
+		food.forceMove(get_turf(A))
+		food.name = "[trim(food.name)]"
 		user.visible_message("\The [user] [F.cooking_message ? F.cooking_message : "dices up"] \the [A].")
 		qdel(A)
 		return

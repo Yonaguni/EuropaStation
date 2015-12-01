@@ -76,6 +76,7 @@
 			// Make the food object.
 			var/obj/item/food = F.get_output_product(I)
 			food.loc = src
+			food.name = "[trim(food.name)]"
 			for(var/obj/item/subitem in I)
 				if(subitem.reagents && subitem.reagents.total_volume)
 					subitem.reagents.trans_to_obj(food,subitem.reagents.total_volume)

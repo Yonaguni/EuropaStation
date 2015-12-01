@@ -19,7 +19,7 @@
 	filling_color = "#FFF700"
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatebar
-	name = "chocolate bar"
+	name = "chocolate"
 	desc = "Such sweet, fattening food."
 	icon = 'icons/obj/kitchen/staples/dairy.dmi'
 	icon_state = "chocolatebar"
@@ -32,7 +32,7 @@
 	reagents.add_reagent("coco", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatechips
-	name = "chocolate chips"
+	name = "chocolate chip"
 	desc = "Such sweet, tiny, fattening food."
 	icon = 'icons/obj/kitchen/staples/dairy.dmi'
 	icon_state = "chocolatebar"

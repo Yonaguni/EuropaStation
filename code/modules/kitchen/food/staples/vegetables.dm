@@ -7,12 +7,12 @@
 	reagents.add_reagent("nutriment", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
-	name = "raw potato sticks"
+	name = "sticks"
 	desc = "Raw fries, not very tasty."
 	icon_state = "rawsticks"
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
-	name = "potato fries"
+	name = "fries"
 	desc = "Chips, if you're Space British."
 	icon_state = "fries"
 

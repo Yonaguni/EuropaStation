@@ -22,11 +22,6 @@
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatball
 
-/decl/food_transition/fried/potato_chips
-	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
-	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
-	cooking_message = "turn a rich golden-brown"
-
 /decl/food_transition/fried/steak
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/meat/meatsteak
@@ -36,6 +31,10 @@
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/hash
 	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/friedhash
 	cooking_message = "turns a rich golden-brown"
+
+/decl/food_transition/fried/hash/potato_chips
+	input_type =  /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
+	output_type = /obj/item/weapon/reagent_containers/food/snacks/vegetable/fries
 
 /decl/food_transition/fried/hash/get_output_product(var/obj/item/source)
 	var/obj/item/weapon/reagent_containers/food/snacks/vegetable/hash/S = source

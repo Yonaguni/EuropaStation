@@ -35,7 +35,8 @@
 			reagents.remove_reagent(reagent_tag,F.req_reagents[reagent_tag])
 		// Make the food object.
 		var/obj/item/food = F.get_output_product(src)
-		food.loc = src
+		food.name = "[trim(food.name)]"
+		food.forceMove(src)
 		T.visible_message("\The [food] in \the [src] [F.cooking_message ? F.cooking_message : "is ready"].")
 	else
 		var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/D = locate() in src.contents
