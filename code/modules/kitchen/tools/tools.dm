@@ -5,6 +5,11 @@
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	w_class = 2
 
+/obj/item/weapon/material/kitchen/New()
+	..()
+	pixel_x = rand(-5,5)
+	pixel_y = rand(-5,5)
+
 /obj/item/weapon/material/kitchen/whisk
 	name = "whisk"
 	icon_state = "whisk"

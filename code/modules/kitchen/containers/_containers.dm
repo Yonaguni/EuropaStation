@@ -36,6 +36,8 @@
 	..()
 	if(processes) processing_objects |= src
 	create_reagents(80)
+	pixel_x = rand(-5,5)
+	pixel_y = rand(-5,5)
 
 /obj/item/weapon/reagent_containers/kitchen/proc/recieve_heat(var/temperature)
 	current_heat = min(max_heat_capacity,max(0,current_heat+temperature))
