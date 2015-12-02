@@ -100,6 +100,8 @@
 	var/is_critical = 0
 	var/global/status_overlays = 0
 	var/updating_icon = 0
+	var/failure_timer = 0
+	var/force_update = 0
 	var/global/list/status_overlays_lock
 	var/global/list/status_overlays_charging
 	var/global/list/status_overlays_equipment
@@ -183,6 +185,9 @@
 		hacker.hacked_apcs -= src
 
 	return ..()
+
+/obj/machinery/power/apc/proc/energy_fail(var/duration)
+	failure_timer = max(failure_timer, duration)
 
 /obj/machinery/power/apc/proc/make_terminal()
 	// create a terminal object at the same position as original turf loc
@@ -354,7 +359,7 @@
 			update_state |= UPDATE_OPENED1
 		if(opened==2)
 			update_state |= UPDATE_OPENED2
-	else if(emagged || hacker)
+	else if(emagged || hacker || failure_timer)
 		update_state |= UPDATE_BLUESCREEN
 	else if(wiresexposed)
 		update_state |= UPDATE_WIREEXP
@@ -493,8 +498,6 @@
 					user << "<span class='warning'>There is nothing to secure.</span>"
 					return
 				update_icon()
-		else if(emagged)
-			user << "The interface is broken."
 		else
 			wiresexposed = !wiresexposed
 			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
@@ -623,8 +626,9 @@
 			qdel(W)
 			stat &= ~BROKEN
 			// Malf AI, removes the APC from AI's hacked APCs list.
-			if(hacker && hacker.hacked_apcs && src in hacker.hacked_apcs)
+			if(hacker && hacker.hacked_apcs && (src in hacker.hacked_apcs))
 				hacker.hacked_apcs -= src
+				hacker = null
 			if (opened==2)
 				opened = 1
 			update_icon()
@@ -720,11 +724,6 @@
 	// do APC interaction
 	src.interact(user)
 
-/obj/machinery/power/apc/attack_ghost(user as mob)
-	if(stat & (BROKEN|MAINT))
-		return
-	return ui_interact(user)
-
 /obj/machinery/power/apc/interact(mob/user)
 	if(!user)
 		return
@@ -740,7 +739,7 @@
 		return
 
 	var/list/data = list(
-		"locked" = locked,
+		"locked" = (locked && !emagged) ? 1 : 0,
 		"isOperating" = operating,
 		"externalPower" = main_status,
 		"powerCellStatus" = cell ? cell.percent() : null,
@@ -749,6 +748,7 @@
 		"totalLoad" = round(lastused_total),
 		"totalCharging" = round(lastused_charging),
 		"coverLocked" = coverlocked,
+		"failTime" = failure_timer * 2,
 		"siliconUser" = istype(user, /mob/living/silicon),
 
 		"powerChannels" = list(
@@ -802,7 +802,7 @@
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
 
 /obj/machinery/power/apc/proc/update()
-	if(operating && !shorted)
+	if(operating && !shorted && !failure_timer)
 		area.power_light = (lighting > 1)
 		area.power_equip = (equipment > 1)
 		area.power_environ = (environ > 1)
@@ -853,7 +853,7 @@
 				user << "<span class='danger'>\The [src] have AI control disabled!</span>"
 			return 0
 	else
-		if ((!in_range(src, user) || !istype(src.loc, /turf) || hacker)) // AI-hacked APCs cannot be controlled by other AIs, unlinked cyborgs or humans.
+		if (!in_range(src, user) || !istype(src.loc, /turf))
 			return 0
 	var/mob/living/carbon/human/H = user
 	if (istype(H))
@@ -872,7 +872,7 @@
 	if(!can_use(usr, 1))
 		return 1
 
-	if(!istype(usr, /mob/living/silicon) && locked)
+	if(!istype(usr, /mob/living/silicon) && (locked && !emagged))
 		// Shouldn't happen, this is here to prevent href exploits
 		usr << "You must unlock the panel to use this!"
 		return 1
@@ -882,6 +882,11 @@
 
 	else if (href_list["breaker"])
 		toggle_breaker()
+
+	else if( href_list["reboot"] )
+		failure_timer = 0
+		update_icon()
+		update()
 
 	else if (href_list["cmode"])
 		chargemode = !chargemode
@@ -977,6 +982,12 @@
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
+		return
+	if(failure_timer)
+		update()
+		queue_icon_update()
+		failure_timer--
+		force_update = 1
 		return
 
 	lastused_light = area.usage(LIGHT)
@@ -1077,7 +1088,8 @@
 		autoflag = 0
 
 	// update icon & area power if anything changed
-	if(last_lt != lighting || last_eq != equipment || last_en != environ)
+	if(last_lt != lighting || last_eq != equipment || last_en != environ || force_update)
+		force_update = 0
 		queue_icon_update()
 		update()
 	else if (last_ch != charging)
@@ -1177,12 +1189,6 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 				if (cell && prob(25))
 					cell.ex_act(3.0)
 	return
-
-/obj/machinery/power/apc/blob_act()
-	if (prob(75))
-		set_broken()
-		if (cell && prob(5))
-			cell.blob_act()
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)

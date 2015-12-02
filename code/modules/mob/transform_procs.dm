@@ -157,6 +157,7 @@
 		qdel(src)
 	return O
 
+
 /mob/living/carbon/human/proc/corgize()
 	if (transforming)
 		return

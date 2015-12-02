@@ -166,11 +166,6 @@
 	emergencyShutdown()
 	..()
 
-
-/obj/machinery/computer/HolodeckControl/blob_act()
-	emergencyShutdown()
-	..()
-
 /obj/machinery/computer/HolodeckControl/power_change()
 	var/oldstat
 	..()

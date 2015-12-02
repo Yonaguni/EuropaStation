@@ -16,6 +16,7 @@
 
 // callproc moved to code/modules/admin/callproc
 
+
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
@@ -99,6 +100,7 @@
 		if(candidate.key == choice.key)
 			paiController.pai_candidates.Remove(candidate)
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()

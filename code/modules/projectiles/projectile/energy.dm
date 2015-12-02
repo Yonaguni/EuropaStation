@@ -22,7 +22,7 @@
 
 	//blind adjacent people
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
-		if(M.eyecheck() < 1)
+		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			flick("e_flash", M.flash)
 
 	//snap pop

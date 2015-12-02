@@ -25,15 +25,16 @@ var/global/datum/controller/process/air_system/air_master
 		return 1
 	current_cycle++
 	process_active_turfs()
-	scheck()
+	SCHECK
 	process_high_pressure_delta()
 	process_hotspots()
 	process_super_conductivity()
-	scheck()
+	SCHECK
 	return 1
 
-/datum/controller/process/air_system/getStatName()
-	return ..()+"([active_turfs.len])"
+/datum/controller/process/air_system/statProcess()
+	..()
+	stat(null, "[active_turfs.len] active turfs")
 
 /datum/controller/process/air_system/proc/process_hotspots()
 	for(var/obj/effect/hotspot/H in hotspots)

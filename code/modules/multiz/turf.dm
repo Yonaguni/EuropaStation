@@ -11,12 +11,7 @@
 	var/list/underlay_references
 	var/global/overlay_map = list()
 
-/turf/simulated/open/New()
-	..()
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
-	else
-		init_turfs += src
+
 
 /turf/simulated/open/initialize()
 	below = GetBelow(src)

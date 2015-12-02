@@ -97,13 +97,6 @@
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
-/mob/living/silicon/blob_act()
-	if (src.stat != 2)
-		src.adjustBruteLoss(60)
-		src.updatehealth()
-		return 1
-	return 0
-
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
 
 	if(!Proj.nodamage)
@@ -138,9 +131,6 @@
 			drowsyness = max(drowsyness,(effect/(blocked+1)))
 	updatehealth()
 	return 1*/
-
-/mob/living/silicon/attack_throat()
-	return
 
 /proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))

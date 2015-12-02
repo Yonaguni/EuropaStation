@@ -8,6 +8,7 @@ var/list/VVlocked = list("vars", "client", "virus", "viruses", "cuffed", "last_e
 var/list/VVicon_edit_lock = list("icon", "icon_state", "overlays", "underlays")
 var/list/VVckey_edit = list("key", "ckey")
 
+
 /client/proc/cmd_modify_ticker_variables()
 	set category = "Debug"
 	set name = "Edit Ticker Variables"

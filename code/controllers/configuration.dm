@@ -6,6 +6,8 @@ var/list/gamemode_cache = list()
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
+	var/list/lobby_screens = list("title") // Which lobby screens are available
+
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
@@ -21,6 +23,7 @@ var/list/gamemode_cache = list()
 	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
+	var/log_world_output = 0			// log world.log << messages
 	var/sql_enabled = 1					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
@@ -59,7 +62,7 @@ var/list/gamemode_cache = list()
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 1					// allow ai job
 	var/hostedby = null
-	var/respawn = 1
+	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
@@ -153,7 +156,8 @@ var/list/gamemode_cache = list()
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/use_age_restriction_for_jobs = 0   //Do jobs use account age restrictions?   --requires database
+	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
 
 	var/simultaneous_pm_warning_timeout = 100
 
@@ -212,6 +216,8 @@ var/list/gamemode_cache = list()
 
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
+	var/ghosts_can_possess_animals = 0
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -268,6 +274,9 @@ var/list/gamemode_cache = list()
 				if ("use_age_restriction_for_jobs")
 					config.use_age_restriction_for_jobs = 1
 
+				if ("use_age_restriction_for_antags")
+					config.use_age_restriction_for_antags = 1
+
 				if ("jobs_have_minimal_access")
 					config.jobs_have_minimal_access = 1
 
@@ -318,6 +327,9 @@ var/list/gamemode_cache = list()
 
 				if ("log_pda")
 					config.log_pda = 1
+
+				if ("log_world_output")
+					config.log_world_output = 1
 
 				if ("log_hrefs")
 					config.log_hrefs = 1
@@ -379,8 +391,8 @@ var/list/gamemode_cache = list()
 //				if ("authentication")
 //					config.enable_authentication = 1
 
-				if ("norespawn")
-					config.respawn = 0
+				if ("respawn_delay")
+					config.respawn_delay = text2num(value)
 
 				if ("servername")
 					config.server_name = value
@@ -411,6 +423,9 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("ghosts_can_possess_animals")
+					config.ghosts_can_possess_animals = value
 
 				if ("guest_jobban")
 					config.guest_jobban = 1
@@ -685,6 +700,9 @@ var/list/gamemode_cache = list()
 					var/list/values = text2list(value, " ")
 					if(values.len > 0)
 						language_prefixes = values
+
+				if ("lobby_screens")
+					config.lobby_screens = text2list(value, ";")
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
