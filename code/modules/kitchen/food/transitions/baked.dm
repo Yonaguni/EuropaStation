@@ -17,7 +17,7 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/meat/other_food = source
 		food.set_source_mob(other_food.source_mob)
 		food.color = other_food.color
-	return
+	return food
 
 /decl/food_transition/baked/meat/meatball
 	input_type = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
