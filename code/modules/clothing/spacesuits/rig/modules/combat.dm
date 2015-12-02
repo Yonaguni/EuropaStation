@@ -122,6 +122,7 @@
 	gun.Fire(target,holder.wearer)
 	return 1
 
+
 /obj/item/rig_module/mounted/energy_blade
 
 	name = "energy blade projector"
