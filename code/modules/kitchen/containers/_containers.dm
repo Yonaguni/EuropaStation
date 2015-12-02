@@ -1,12 +1,4 @@
-/*
- * Containers
- */
-
-// Each container is specialized to make a specific 'type' of food, such as pizza, cake, pie, etc.
-// Depending on the contents of the container, you can make different kinds of pizza/cake/whatever, with just one path
-// For example, if a majority of the contents are apple, and there's also some banana in, you'd get a pie named 'apple banana pie'.
-// When cooking, and at prolonged amounts of heat, the contents of the container are converted into the finished food,
-// and for simplicity's sake, the heat of the pan is reset, as processing the pan cooling down is unneccessary.
+#define BURN_HEAT 999999 //Debug.
 
 /obj/item/weapon/reagent_containers/kitchen
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
@@ -17,10 +9,10 @@
 
 	var/cooking_method = METHOD_BOILING
 	var/warning_cook_time = 100            // Time before being warned about burning.
-	var/max_cook_time = 200                // Time before burning.
+	var/max_cook_time = 300                // Time before burning.
 
 	var/current_heat = 0                   // Current heat that the object is holding.
-	var/max_heat_capacity = 500            // Heat cap.
+	var/max_heat_capacity = 200            // Heat cap.
 	var/recieved_heat                      // If not set, object will cool to ambient each tick.
 	var/cool_amount = 5                    // Amount that the container will cool per tick.
 
@@ -38,6 +30,10 @@
 	create_reagents(80)
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
+
+/obj/item/weapon/reagent_containers/kitchen/proc/do_burn(var/mob/living/carbon/human/victim)
+	victim.adjustFireLoss(rand(2,8))
+	return
 
 /obj/item/weapon/reagent_containers/kitchen/proc/recieve_heat(var/temperature)
 	current_heat = min(max_heat_capacity,max(0,current_heat+temperature))
@@ -108,6 +104,19 @@
 /obj/item/weapon/reagent_containers/kitchen/proc/make_smoke()
 	return
 
+/obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
+	if(current_heat > BURN_HEAT)
+		var/mob/living/carbon/human/H = user
+		if(istype(H) && !H.gloves)
+			H << "<span class='danger'>You burn your hand on \the [src]!</span>"
+			do_burn(H)
+			if(!(H.species.flags & NO_PAIN))
+				H.visible_message("<span class='danger'>\The [H] cries out and drops \the [src]!</span>")
+				H.unEquip(src)
+				src.forceMove(get_turf(H))
+				return
+	return ..()
+
 /obj/item/weapon/reagent_containers/kitchen/examine(var/user as mob)
 	..()
 	user << "You can see [english_list(src.contents, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )] inside."
@@ -126,14 +135,38 @@
 		return 1
 	return 0
 
+/obj/item/weapon/reagent_containers/kitchen/proc/transfer_to_environment(var/obj/item/thing, var/mob/user)
+	if(!(thing in contents))
+		return
+	thing.forceMove(get_turf(src))
+	var/list/transferrable_places = list()
+	for(var/obj/item/weapon/dish/D in range(user,1))
+		if(user.Adjacent(D))
+			transferrable_places += D
+	if(transferrable_places.len)
+		var/obj/item/plate = pick(transferrable_places)
+		thing.forceMove(get_turf(plate))
+		thing.visible_message("<span class='notice'>\The [thing] lands on \the [plate].</span>")
+	else
+		thing.forceMove(get_turf(user))
+		thing.visible_message("<span class='notice'>\The [thing] lands on the floor.</span>")
+
 /obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
 	if(src.loc == user && contents.len)
 		var/obj/item/grabbed = pick(contents)
 		grabbed.forceMove(get_turf(src))
-		var/mob/living/carbon/human/H = user
-		if(istype(H) && (!H.l_hand || !H.r_hand))
-			H.put_in_hands(grabbed)
 		user.visible_message("<span class='notice'>\The [user] fishes \the [grabbed] out of \the [src] with their bare hands.</span>")
+		if(current_heat > BURN_HEAT).
+			var/mob/living/carbon/human/H = user
+			if(istype(H) && !H.gloves)
+				H << "<span class='danger'>You burn your hand on \the [src]!</span>"
+				do_burn(H)
+				if(!(H.species.flags & NO_PAIN))
+					H.visible_message("<span class='danger'>\The [H] cries out and drops \the [src]!</span>")
+					H.unEquip(src)
+					src.forceMove(get_turf(H))
+					return
+		transfer_to_environment(grabbed, user)
 		return
 	return ..()
 
@@ -147,11 +180,8 @@
 			user << "<span class='warning'>There is nothing in \the [src].</span>"
 			return
 		var/obj/item/grabbed = pick(contents)
-		grabbed.forceMove(get_turf(src))
-		var/mob/living/carbon/human/H = user
-		if(istype(H) && (!H.l_hand || !H.r_hand))
-			H.put_in_hands(grabbed)
 		user.visible_message("<span class='notice'>\The [user] fishes \the [grabbed] out of \the [src] with \the [O].</span>")
+		transfer_to_environment(grabbed, user)
 		return
 
 	if(contents.len >= max_items)
@@ -177,8 +207,20 @@
 		user.visible_message("\The [user] puts \the [O] into \the [src].")
 
 /obj/item/weapon/reagent_containers/kitchen/attack_self(var/mob/user as mob) //Take things out
+
+	if(current_heat > BURN_HEAT).
+		var/mob/living/carbon/human/H = user
+		if(istype(H) && !H.gloves)
+			H << "<span class='danger'>You burn your hand on \the [src]!</span>"
+			do_burn(H)
+			if(!(H.species.flags & NO_PAIN))
+				H.visible_message("<span class='danger'>\The [H] cries out and drops \the [src]!</span>")
+				H.unEquip(src)
+				src.forceMove(get_turf(H))
+				return
+
 	for(var/obj/O in contents)
-		O.loc = get_turf(src)
+		O.forceMove(get_turf(src))
 	reagents.clear_reagents()
 	user << "<span class='notice'>You tip the [src] upside-down.</span>"
 	cooking_objects.Cut()

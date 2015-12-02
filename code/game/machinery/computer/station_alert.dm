@@ -46,7 +46,7 @@
 
 /obj/machinery/computer/station_alert/update_icon()
 	if(!(stat & (BROKEN|NOPOWER)))
-		var/list/alarms = alarm_monitor.major_alarms()
+		var/list/alarms = alarm_monitor ? alarm_monitor.major_alarms() : list()
 		if(alarms.len)
 			icon_screen = "alert:2"
 		else

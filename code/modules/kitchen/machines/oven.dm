@@ -77,20 +77,18 @@
 	src.add_fingerprint(usr)
 	return 1
 
+/obj/machinery/kitchen/oven/try_remove_container(var/mob/living/carbon/human/user)
+	if(open && food_inside)
+		//TODO: burn your hands pulling out a hot tray.
+		food_inside.loc = get_turf(src)
+		visible_message("\The [user] pulls \the [food_inside] out of \the [src].")
+		user.put_in_hands(food_inside)
+		food_inside = null
+		update_icon()
+	return
+
 // Opens or closes the oven.
 /obj/machinery/kitchen/oven/AltClick()
-	if(!usr.stat && !usr.lying && Adjacent(usr))
-		if(open && food_inside)
-			//TODO: burn your hands pulling out a hot tray.
-			food_inside.loc = get_turf(src)
-			visible_message("\The [usr] pulls \the [food_inside] out of \the [src].")
-			if(istype(usr, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = usr
-				if(!(H.l_hand && H.r_hand))
-					H.put_in_hands(food_inside)
-			food_inside = null
-			update_icon()
-		else
-			toggle_open(usr)
-		return
-	return ..()
+	var/mob/living/carbon/human/H = usr
+	if(istype(H) && H.Adjacent(src) && !H.incapacitated())
+		toggle_open(usr)

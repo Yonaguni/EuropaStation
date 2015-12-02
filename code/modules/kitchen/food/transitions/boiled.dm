@@ -23,6 +23,11 @@
 	else
 		output.base_grown = source.name
 	output.color = source.color
+	if(!output.color)
+		var/obj/item/weapon/reagent_containers/food/filling = source
+		if(istype(filling))
+			output.color = filling.filling_color
+
 	output.name = "cooked [output.base_grown]"
 	output.desc += " It's made from [output.base_grown]."
 	return output

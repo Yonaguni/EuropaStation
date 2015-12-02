@@ -28,14 +28,15 @@ var/global/list/minor_air_alarms = list()
 	var/major_alarms[0]
 	var/minor_alarms[0]
 
-	for(var/datum/alarm/alarm in atmosphere_alarm.major_alarms())
-		major_alarms[++major_alarms.len] = list("name" = sanitize(alarm.alarm_name()), "ref" = "\ref[alarm]")
+	if(atmosphere_alarm)
+		for(var/datum/alarm/alarm in atmosphere_alarm.major_alarms())
+			major_alarms[++major_alarms.len] = list("name" = sanitize(alarm.alarm_name()), "ref" = "\ref[alarm]")
 
-	for(var/datum/alarm/alarm in atmosphere_alarm.minor_alarms())
-		minor_alarms[++minor_alarms.len] = list("name" = sanitize(alarm.alarm_name()), "ref" = "\ref[alarm]")
+		for(var/datum/alarm/alarm in atmosphere_alarm.minor_alarms())
+			minor_alarms[++minor_alarms.len] = list("name" = sanitize(alarm.alarm_name()), "ref" = "\ref[alarm]")
 
-	data["priority_alarms"] = major_alarms
-	data["minor_alarms"] = minor_alarms
+		data["priority_alarms"] = major_alarms
+		data["minor_alarms"] = minor_alarms
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -46,11 +47,11 @@ var/global/list/minor_air_alarms = list()
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	if(!(stat & (NOPOWER|BROKEN)))
-		var/list/alarms = atmosphere_alarm.major_alarms()
+		var/list/alarms = atmosphere_alarm ? atmosphere_alarm.major_alarms() : list()
 		if(alarms.len)
 			icon_screen = "alert:2"
 		else
-			alarms = atmosphere_alarm.minor_alarms()
+			alarms = atmosphere_alarm ? atmosphere_alarm.minor_alarms() : list()
 			if(alarms.len)
 				icon_screen = "alert:1"
 			else
@@ -62,6 +63,7 @@ var/global/list/minor_air_alarms = list()
 		return 1
 
 	if(href_list["clear_alarm"])
+		if(!atmosphere_alarm) return
 		var/datum/alarm/alarm = locate(href_list["clear_alarm"]) in atmosphere_alarm.alarms
 		if(alarm)
 			for(var/datum/alarm_source/alarm_source in alarm.sources)

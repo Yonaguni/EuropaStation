@@ -2,7 +2,7 @@
 	var/input_type
 	var/output_type
 	var/cooking_message
-	var/cooking_time = 10
+	var/cooking_time = 45
 	var/cooking_method
 	var/list/req_reagents = list()
 	var/req_container

@@ -3,3 +3,4 @@
 	desc = "A tray used to bake things from bread to pizza, and everything inbetween."
 	icon_state = "bakingtray"
 	cooking_method = METHOD_BAKING
+	max_items = 8

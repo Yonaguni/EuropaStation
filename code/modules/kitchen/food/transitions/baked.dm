@@ -17,6 +17,10 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/meat/other_food = source
 		food.set_source_mob(other_food.source_mob)
 		food.color = other_food.color
+		if(!food.color)
+			var/obj/item/weapon/reagent_containers/food/filling = source
+			if(istype(filling))
+				food.color = filling.filling_color
 	return food
 
 /decl/food_transition/baked/meat/meatball

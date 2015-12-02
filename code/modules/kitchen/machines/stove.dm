@@ -106,11 +106,8 @@
 	return 1
 
 
-/obj/machinery/kitchen/stove/AltClick()
-	if(!usr.stat && !usr.lying && Adjacent(usr))
-		remove_burner(null,usr)
-		return
-	return ..()
+/obj/machinery/kitchen/stove/try_remove_container(var/mob/living/carbon/human/user)
+	remove_burner(null, user)
 
 // Remove a random item from the stove. You're in a hurry!
 /obj/machinery/kitchen/stove/proc/remove_burner(var/burner, var/mob/living/user)

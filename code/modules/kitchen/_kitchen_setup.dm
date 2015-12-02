@@ -42,11 +42,3 @@ proc/get_food_transition(var/obj/item/I, var/method, var/cooking_time, var/datum
 			if(!high_priority || high_priority.priority < F.priority)
 				high_priority = F
 	return high_priority
-
-/datum/admins/proc/debug_food_transitions()
-	set category = "Debug"
-	set name = "Show Recipe List"
-	set desc = "List all recipes."
-
-	if(!check_rights(R_SPAWN)) return
-	usr << "Not implemented yet, sry."

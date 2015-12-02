@@ -55,7 +55,7 @@
 	icon_state = "appendix"
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/meatsteak
-	name = "Meat steak"
+	name = "meat steak"
 	desc = "A piece of hot spicy meat."
 	icon_state = "meatstake"
 
@@ -65,6 +65,10 @@
 	icon_state = "mincemeat"
 	slices_to = /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball
 	slice_count = 3
+
+// Mincemeat is mysteriously unidentifiable.
+/obj/item/weapon/reagent_containers/food/snacks/meat/mince/set_source_mob(new_source_mob)
+	source_mob = new_source_mob
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/loaf
 	name = "meatloaf"

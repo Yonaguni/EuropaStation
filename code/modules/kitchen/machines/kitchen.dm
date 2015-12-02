@@ -44,6 +44,16 @@ var/list/stove_overlay_cache = list()
 	..()
 	update_icon()
 
+/obj/machinery/kitchen/MouseDrop(var/atom/over)
+	var/mob/living/carbon/human/H = over
+	if(istype(H) && H.Adjacent(src) && !H.incapacitated())
+		try_remove_container(H)
+		return
+	return ..()
+
+/obj/machinery/kitchen/proc/try_remove_container(var/mob/living/carbon/human/user)
+	return
+
 /obj/machinery/kitchen/examine()
 	..()
 	usr << "It is turned [(use_power == 2) ? "on" : "off"]."

@@ -12,7 +12,11 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/meat/other_food = source
 		food.set_source_mob(other_food.source_mob)
 		food.color = other_food.color
-	return
+		if(!food.color)
+			var/obj/item/weapon/reagent_containers/food/filling = source
+			if(istype(filling))
+				food.color = filling.filling_color
+	return food
 
 /decl/food_transition/fried/cutlet
 	input_type =  /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet
@@ -47,8 +51,11 @@
 	if(istype(S))
 		food.name = "[S.base_grown] [modifier]"
 		food.desc += "[S.base_grown]."
-	if(source.color)
-		food.color = source.color
+	food.color = source.color
+	if(!food.color)
+		var/obj/item/weapon/reagent_containers/food/filling = source
+		if(istype(filling))
+			food.color = filling.filling_color
 	return food
 
 /decl/food_transition/fried/hash/potato_chips
@@ -67,6 +74,9 @@
 	if(istype(S))
 		if(S.examined_descriptor && S.examined_descriptor != "") food.desc += " [S.examined_descriptor]"
 		if(S.content_descriptor && S.content_descriptor != "")   food.name =  "[S.content_descriptor] [food.name]"
-	if(S.color)
-		food.color = source.color
+	food.color = source.color
+	if(!food.color)
+		var/obj/item/weapon/reagent_containers/food/filling = source
+		if(istype(filling))
+			food.color = filling.filling_color
 	return food
