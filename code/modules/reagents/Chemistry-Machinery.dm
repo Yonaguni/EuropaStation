@@ -759,9 +759,9 @@
 
 				// Snowflakey as fuck, but so far the machine only uses meat so ehhhh.
 				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = O
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/output = product
-				if(istype(meatsource) && istype(output))
-					output.set_source_mob(meatsource.source_mob)
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatoutput = product
+				if(istype(meatsource) && istype(meatoutput))
+					meatoutput.set_source_mob(meatsource.source_mob)
 
 				holdingitems -= O
 				qdel(O)

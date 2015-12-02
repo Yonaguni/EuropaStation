@@ -14,10 +14,19 @@
 	var/dry = 0
 	var/trash
 
+/obj/item/weapon/reagent_containers/food/snacks/proc/get_taste()
+	return
+
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)
 		return 0
+
+	// Handle taste.
+	var/taste = get_taste()
+	if(taste)
+		M << "<span class='notice'>[taste]</span>"
+
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>\The [M] finishes eating \the [src].</span>")
 		M.unEquip(src)

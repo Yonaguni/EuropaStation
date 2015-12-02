@@ -40,18 +40,18 @@
 			// Snowflakey as fuck.
 			var/is_meat = 0
 			var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = S
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/output = slice
-			if(istype(source) && istype(output))
+			var/obj/item/weapon/reagent_containers/food/snacks/meat/meatoutput = slice
+			if(istype(meatsource) && istype(meatoutput))
 				is_meat = 1
-				output.set_source_mob(meatsource.source_mob)
+				meatoutput.set_source_mob(meatsource.source_mob)
 
 			// Repeate for remaining slices.
 			if(S.slice_count > 1)
 				for(var/i=1;i<=(S.slice_count-1);i++)
 					slice = new S.slices_to(get_turf(S))
 					if(is_meat)
-						output = slice
-						output.set_source_mob(meatsource.source_mob)
+						meatoutput = slice
+						meatoutput.set_source_mob(meatsource.source_mob)
 					if(is_mix && D)
 						slice.base_ingredients = D.base_ingredients.Copy()
 						slice.reagent_ingredients = D.reagent_ingredients.Copy()
