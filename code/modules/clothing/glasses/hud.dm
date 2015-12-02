@@ -4,10 +4,12 @@
 	flags = 0 //doesn't protect eyes because it's a monocle, duh
 	var/list/icon/current = list() //the current hud icons
 
-	proc
-		process_hud(var/mob/M)	return
+/obj/item/clothing/glasses/proc/process_hud(var/mob/M)
+	if(hud)
+		hud.process_hud(M)
 
-
+/obj/item/clothing/glasses/hud/process_hud(var/mob/M)
+	return
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"

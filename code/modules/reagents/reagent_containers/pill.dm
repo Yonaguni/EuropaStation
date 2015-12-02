@@ -18,6 +18,8 @@
 			icon_state = "pill[rand(1, 20)]"
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
+		//TODO: replace with standard_feed_mob() call.
+		
 		if(M == user)
 			if(!M.can_eat(src))
 				return
@@ -35,6 +37,7 @@
 
 			user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow \the [src].</span>")
 
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M))
 				return
 

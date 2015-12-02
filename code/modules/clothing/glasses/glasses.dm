@@ -12,6 +12,7 @@
 	var/active = 1
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null
+	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
@@ -19,6 +20,8 @@
 			active = 0
 			icon_state = off_state
 			user.update_inv_glasses()
+			flash_protection = FLASH_PROTECTION_NONE
+			tint = TINT_NONE
 			usr << "You deactivate the optical matrix on the [src]."
 		else
 			active = 1
@@ -26,6 +29,8 @@
 			user.update_inv_glasses()
 			if(activation_sound)
 				usr << activation_sound
+			flash_protection = initial(flash_protection)
+			tint = initial(tint)
 			usr << "You activate the optical matrix on the [src]."
 		user.update_action_buttons()
 
@@ -133,6 +138,7 @@
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = -1
+	flash_protection = FLASH_PROTECTION_MODERATE
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -141,6 +147,8 @@
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
 	var/up = 0
+	flash_protection = FLASH_PROTECTION_MAJOR
+	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
@@ -157,12 +165,16 @@
 			flags_inv |= HIDEEYES
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
+			flash_protection = initial(flash_protection)
+			tint = initial(tint)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
 			src.up = !src.up
 			flags_inv &= ~HIDEEYES
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"
+			flash_protection = FLASH_PROTECTION_NONE
+			tint = TINT_NONE
 			usr << "You push \the [src] up out of your face."
 		update_clothing_icon()
 		usr.update_action_buttons()
@@ -172,13 +184,22 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
+	tint = TINT_MODERATE
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
+	tint = TINT_BLIND
+
+/obj/item/clothing/glasses/sunglasses/blindfold/tape
+	name = "length of tape"
+	desc = "It's a robust DIY blindfold!"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "tape_cross"
+	item_state = null
+	w_class = 1
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"
@@ -201,7 +222,6 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
-	var/obj/item/clothing/glasses/hud/security/hud = null
 
 	New()
 		..()
@@ -220,6 +240,8 @@
 	item_state = "glasses"
 	toggleable = 1
 	vision_flags = SEE_MOBS
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
+	flash_protection = FLASH_PROTECTION_REDUCED
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))

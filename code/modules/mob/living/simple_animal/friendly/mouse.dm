@@ -29,6 +29,7 @@
 	universal_understand = 1
 	holder_type = /obj/item/weapon/holder/mouse
 	mob_size = MOB_MINISCULE
+	possession_candidate = 1
 
 /mob/living/simple_animal/mouse/Life()
 	..()
@@ -69,12 +70,9 @@
 
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
-	src.stat = DEAD
+	src.death()
 	src.icon_dead = "mouse_[body_color]_splat"
 	src.icon_state = "mouse_[body_color]_splat"
-	layer = MOB_LAYER
-	if(client)
-		client.time_died_as_mouse = world.time
 
 /mob/living/simple_animal/mouse/MouseDrop(atom/over_object)
 
@@ -106,8 +104,6 @@
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
-	if(client)
-		client.time_died_as_mouse = world.time
 	..()
 
 /*

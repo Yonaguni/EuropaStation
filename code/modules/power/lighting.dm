@@ -172,6 +172,10 @@
 	brightness_power = 2
 	brightness_color = "#da0205"
 
+/obj/machinery/light/small/red
+	brightness_range = 5
+	brightness_power = 1
+	brightness_color = "#da0205"
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -549,10 +553,6 @@
 	return
 
 //blob effect
-
-/obj/machinery/light/blob_act()
-	if(prob(75))
-		broken()
 
 
 // timed process

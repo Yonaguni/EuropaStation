@@ -62,9 +62,6 @@
 				deflate(1)
 				return
 
-/obj/structure/inflatable/blob_act()
-	deflate(1)
-
 /obj/structure/inflatable/attack_hand(mob/user as mob)
 		add_fingerprint(user)
 		return
@@ -87,6 +84,9 @@
 	if(health <= 0)
 		deflate(1)
 
+/obj/structure/inflatable/CtrlClick()
+	hand_deflate()
+
 /obj/structure/inflatable/proc/deflate(var/violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
@@ -107,7 +107,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(isobserver(usr)) //to stop ghosts from deflating
+	if(isobserver(usr) || usr.restrained() || !usr.Adjacent(src))
 		return
 
 	verbs -= /obj/structure/inflatable/verb/hand_deflate

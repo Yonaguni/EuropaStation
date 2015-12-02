@@ -45,7 +45,11 @@
 
 /obj/proc/CouldUseTopic(var/mob/user)
 	var/atom/host = nano_host()
-	host.add_hiddenprint(user)
+	if(!isAI(user) && host.Adjacent(user))
+		// We are -probably- in physical contact with the object, better than how Topics() previously did it and always applied fingerprints.
+		host.add_fingerprint(user)
+	else
+		host.add_hiddenprint(user)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
 	// Nada
@@ -111,6 +115,9 @@
 
 		if(!ai_in_use && !is_in_use)
 			in_use = 0
+
+/obj/attack_ghost(mob/user)
+	ui_interact(user)
 
 /obj/proc/interact(mob/user)
 	return

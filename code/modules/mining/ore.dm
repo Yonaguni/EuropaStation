@@ -35,7 +35,9 @@
 		H << "<span class='danger'>Some of \the [src] gets in your eyes!</span>"
 		H.eye_blind += 5
 		H.eye_blurry += 10
-		qdel(src)
+		spawn(1)
+			if(istype(loc, /turf/)) qdel(src)
+
 
 /obj/item/weapon/ore/silver
 	name = "native silver ore"

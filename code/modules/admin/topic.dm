@@ -1113,6 +1113,7 @@
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
+
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 

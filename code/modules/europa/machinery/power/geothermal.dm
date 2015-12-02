@@ -40,9 +40,6 @@ var/list/global/geothermal_cache = list()
 /obj/structure/underwater_vent/ex_act()
 	return
 
-/obj/structure/underwater_vent/blob_act()
-	return
-
 /obj/structure/underwater_vent/update_icon(var/update_neighbors)
 
 	var/turf/origin = get_turf(src)
