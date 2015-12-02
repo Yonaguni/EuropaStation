@@ -115,3 +115,11 @@
 
 /datum/reagent/proc/reaction_mob(var/mob/target)
 	touch_mob(target)
+
+
+/datum/reagent/gelatine
+	name = "Gelatine"
+	id = "gelatine"
+	description = "A coarse powder made from animal connective tissue and bones."
+	reagent_state = LIQUID
+	color = "#B97A57"
