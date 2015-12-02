@@ -13,7 +13,6 @@
 	throw_speed = 1
 	throw_range = 4
 
-	origin_tech = "magnets=2;materials=2"
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
@@ -61,10 +60,7 @@
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		if(istype(H.loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			return M.return_temperature()
-		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		if(istype(H) && istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			return H.loc:air_contents.temperature
 
 	var/turf/T = get_turf(src)

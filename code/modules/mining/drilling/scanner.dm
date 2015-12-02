@@ -5,7 +5,6 @@
 	icon_state = "forensic0-old" //GET A BETTER SPRITE.
 	item_state = "electronic"
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
-	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
 	user << "You begin sweeping \the [src] about, scanning for metal deposits."
@@ -20,7 +19,7 @@
 		"exotic matter" = 0
 		)
 
-	for(var/turf/T in range(2, get_turf(user)))
+	for(var/turf/simulated/T in range(2, get_turf(user)))
 
 		if(!T.has_resources)
 			continue
@@ -32,7 +31,7 @@
 				if("silicates", "carbonaceous rock", "iron")	ore_type = "surface minerals"
 				if("gold", "silver", "diamond")					ore_type = "precious metals"
 				if("uranium")									ore_type = "nuclear fuel"
-				if("phoron", "osmium", "hydrogen")				ore_type = "exotic matter"
+				if("osmium", "hydrogen")						ore_type = "exotic matter"
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 

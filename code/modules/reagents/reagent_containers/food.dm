@@ -1,4 +1,4 @@
-#define CELLS 4
+#define CELLS 8
 #define CELLSIZE (32/CELLS)
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -7,8 +7,7 @@
 /obj/item/weapon/reagent_containers/food
 	possible_transfer_amounts = null
 	volume = 50 //Sets the default container amount for all food items.
-	var/filling_color = "#FFFFFF" //Used by sandwiches.
-
+	var/filling_color = "#FFFFFF" //Used by sandwiches and cooking.
 	var/list/center_of_mass = list() // Used for table placement
 
 /obj/item/weapon/reagent_containers/food/New()

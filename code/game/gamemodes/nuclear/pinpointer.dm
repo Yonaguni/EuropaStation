@@ -1,3 +1,5 @@
+var/list/nuke_disks = list()
+
 /obj/item/weapon/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/device.dmi'
@@ -17,11 +19,11 @@
 		if(!active)
 			active = 1
 			workdisk()
-			usr << "\blue You activate the pinpointer"
+			usr << "<span class='notice'>You activate the pinpointer</span>"
 		else
 			active = 0
 			icon_state = "pinoff"
-			usr << "\blue You deactivate the pinpointer"
+			usr << "<span>You deactivate the pinpointer</span>"
 
 	proc/workdisk()
 		if(!active) return
@@ -44,7 +46,7 @@
 
 	examine(mob/user)
 		..(user)
-		for(var/obj/machinery/nuclearbomb/bomb in world)
+		for(var/obj/machinery/nuclearbomb/bomb in machines)
 			if(bomb.timing)
 				user << "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
 
@@ -69,11 +71,11 @@
 				worklocation()
 			if(mode == 2)
 				workobj()
-			usr << "\blue You activate the pinpointer"
+			usr << "<span class='notice'>You activate the pinpointer</span>"
 		else
 			active = 0
 			icon_state = "pinoff"
-			usr << "\blue You deactivate the pinpointer"
+			usr << "<span class='notice'>You deactivate the pinpointer</span>"
 
 
 	proc/worklocation()
@@ -192,7 +194,7 @@
 			user << "<span class='notice'>Authentication Disk Locator active.</span>"
 		else
 			worklocation()
-			user << "<span class='notice'>Shuttle Locator active.</span>"
+			user << "<span class='notice'>Submarine Locator active.</span>"
 	else
 		active = 0
 		icon_state = "pinoff"
@@ -208,7 +210,7 @@
 		mode = 1	//Ensures worklocation() continues to work
 		worklocation()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
-		visible_message("Shuttle Locator active.")			//Lets the mob holding it know that the mode has changed
+		visible_message("Submarine Locator active.")			//Lets the mob holding it know that the mode has changed
 		return		//Get outta here
 	if(!the_disk)
 		the_disk = locate()

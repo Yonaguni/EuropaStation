@@ -67,12 +67,6 @@
 
 	if(maxcharge < amount)	return 0
 	var/amount_used = min(maxcharge-charge,amount)
-	if(crit_fail)	return 0
-	if(!prob(reliability))
-		minor_fault++
-		if(prob(minor_fault))
-			crit_fail = 1
-			return 0
 	charge += amount_used
 	return amount_used
 
@@ -85,25 +79,17 @@
 		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
 		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
-	if(crit_fail)
-		user << "\red This power cell seems to be faulty."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
-
 		user << "You inject the solution into the power cell."
-
-		if(S.reagents.has_reagent("phoron", 5))
-
+		if(S.reagents.has_reagent("fuel", 5))
 			rigged = 1
-
-			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
-
+			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with fuel, rigging it to explode.")
+			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with fuel, rigging it to explode.")
 		S.reagents.clear_reagents()
-
 
 /obj/item/weapon/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
@@ -147,8 +133,6 @@
 	charge -= maxcharge / severity
 	if (charge < 0)
 		charge = 0
-	if(reliability != 100 && prob(50/severity))
-		reliability -= 10 / severity
 	..()
 
 /obj/item/weapon/cell/ex_act(severity)
@@ -170,10 +154,6 @@
 			if (prob(25))
 				corrupt()
 	return
-
-/obj/item/weapon/cell/blob_act()
-	if(prob(75))
-		explode()
 
 /obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)

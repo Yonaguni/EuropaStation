@@ -121,7 +121,6 @@
 	if (empty) return
 	new /obj/item/weapon/storage/pill_bottle/bicaridine(src)
 	new /obj/item/weapon/storage/pill_bottle/dermaline(src)
-	new /obj/item/weapon/storage/pill_bottle/dexalin_plus(src)
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
@@ -161,7 +160,6 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1
-	storage_slots = 14
 	use_sound = null
 
 /obj/item/weapon/storage/pill_bottle/antitox
@@ -191,20 +189,6 @@
     new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
     new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
     new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-
-/obj/item/weapon/storage/pill_bottle/dexalin_plus
-	name = "bottle of Dexalin Plus pills"
-	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
-
-/obj/item/weapon/storage/pill_bottle/dexalin_plus/New()
-    ..()
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
 
 /obj/item/weapon/storage/pill_bottle/dermaline
 	name = "bottle of Dermaline pills"

@@ -13,7 +13,6 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 750,"waste" = 750)
 
-	origin_tech = "powerstorage=3;syndicate=5"
 	var/drain_rate = 1500000		// amount of power to drain per tick
 	var/apc_drain_rate = 5000 		// Max. amount drained from single APC. In Watts.
 	var/dissipation_rate = 20000	// Passive dissipation of drained power. In Watts.
@@ -34,7 +33,7 @@
 	if(istype(I, /obj/item/weapon/screwdriver))
 		if(mode == 0)
 			var/turf/T = loc
-			if(isturf(T) && !T.intact)
+			if(isturf(T) && !!T.is_plating())
 				attached = locate() in T
 				if(!attached)
 					user << "No exposed cable here to attach to."

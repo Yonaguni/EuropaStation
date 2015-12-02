@@ -28,12 +28,12 @@ var/list/mechtoys = list(
 	var/is_copy = 1
 
 /area/supply/station
-	name = "Supply Shuttle"
+	name = "Supply Submarine"
 	icon_state = "shuttle3"
 	requires_power = 0
 
 /area/supply/dock
-	name = "Supply Shuttle"
+	name = "Supply Submarine"
 	icon_state = "shuttle3"
 	requires_power = 0
 
@@ -70,11 +70,7 @@ var/list/mechtoys = list(
 		for(var/mob_type in mobs_can_pass)
 			if(istype(A, mob_type))
 				return ..()
-		if(istype(A, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.is_small)
-				return ..()
-		return 0
+		return issmall(M)
 
 	return ..()
 
@@ -172,9 +168,6 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
-		var/phoron_count = 0
-		var/plat_count = 0
-
 		for(var/atom/movable/MA in area_shuttle)
 			if(MA.anchored)	continue
 
@@ -196,18 +189,11 @@ var/list/mechtoys = list(
 						continue
 
 					// Sell phoron and platinum
-					if(istype(A, /obj/item/stack))
-						var/obj/item/stack/P = A
-						switch(P.get_material_name())
-							if("phoron") phoron_count += P.get_amount()
-							if("platinum") plat_count += P.get_amount()
+					if(istype(A, /obj/item/stack/material))
+						var/obj/item/stack/material/P = A
+						if(P.material.cargo_sell_amt)
+							points += P.material.cargo_sell_amt * P.get_amount()
 			qdel(MA)
-
-		if(phoron_count)
-			points += phoron_count * points_per_phoron
-
-		if(plat_count)
-			points += plat_count * points_per_platinum
 
 	//Buyin
 	proc/buy()

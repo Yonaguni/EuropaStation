@@ -5,13 +5,13 @@
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
-	small = 1
+	mob_size = MOB_SMALL
 	speak_emote = list("clicks")
 	emote_hear = list("clicks")
 	emote_see = list("clacks")
 	speak_chance = 1
 	turns_per_move = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
@@ -20,6 +20,7 @@
 	mob_size = 5
 	var/obj/item/inventory_head
 	var/obj/item/inventory_mask
+	possession_candidate = 1
 
 /mob/living/simple_animal/crab/Life()
 	..()

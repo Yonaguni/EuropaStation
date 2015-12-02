@@ -21,7 +21,6 @@
 		"gold" = /obj/item/weapon/ore/gold,
 		"silver" = /obj/item/weapon/ore/silver,
 		"diamond" = /obj/item/weapon/ore/diamond,
-		"phoron" = /obj/item/weapon/ore/phoron,
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
 		"silicates" = /obj/item/weapon/ore/glass,
@@ -44,9 +43,9 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/miningdrill(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/europa/component/matter_bin(src)
+	component_parts += new /obj/item/europa/component/capacitor(src)
+	component_parts += new /obj/item/europa/component/micro_laser(src)
 	component_parts += new /obj/item/weapon/cell/high(src)
 
 	RefreshParts()
@@ -74,17 +73,13 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated/floor/plating/airless/asteroid))
-		var/turf/simulated/floor/plating/airless/asteroid/T = get_turf(src)
-		if(!T.dug)
-			T.gets_dug()
-	else if(istype(get_turf(src), /turf/simulated/floor))
+	if(istype(get_turf(src), /turf/simulated/floor))
 		var/turf/simulated/floor/T = get_turf(src)
 		T.ex_act(2.0)
 
 	//Dig out the tasty ores.
 	if(resource_field.len)
-		var/turf/harvesting = pick(resource_field)
+		var/turf/simulated/harvesting = pick(resource_field)
 
 		while(resource_field.len && !harvesting.resources)
 			harvesting.has_resources = 0
@@ -210,12 +205,12 @@
 	capacity = 0
 	charge_use = 50
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
+	for(var/obj/item/europa/component/P in component_parts)
+		if(istype(P, /obj/item/europa/component/micro_laser))
 			harvest_speed = P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/europa/component/matter_bin))
 			capacity = 200 * P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+		if(istype(P, /obj/item/europa/component/capacitor))
 			charge_use -= 10 * P.rating
 	cell = locate(/obj/item/weapon/cell) in component_parts
 
@@ -253,7 +248,7 @@
 
 	var/tx = T.x - 2
 	var/ty = T.y - 2
-	var/turf/mine_turf
+	var/turf/simulated/mine_turf
 	for(var/iy = 0,iy < 5, iy++)
 		for(var/ix = 0, ix < 5, ix++)
 			mine_turf = locate(tx + ix, ty + iy, T.z)

@@ -11,7 +11,7 @@
 	var/obj/item/weapon/cell/cell = null
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
 	var/charging = 0
-
+	waterproof = -1
 	var/charging_power			// W. Power rating used for charging the cyborg. 120 kW if un-upgraded
 	var/restore_power_active	// W. Power drawn from APC when an occupant is charging. 40 kW if un-upgraded
 	var/restore_power_passive	// W. Power drawn from APC when idle. 7 kW if un-upgraded
@@ -26,10 +26,10 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/recharge_station(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/europa/component/capacitor(src)
+	component_parts += new /obj/item/europa/component/capacitor(src)
 	component_parts += new /obj/item/weapon/cell/high(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 
@@ -143,10 +143,10 @@
 	var/man_rating = 0
 	var/cap_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/europa/component/P in component_parts)
+		if(istype(P, /obj/item/europa/component/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/europa/component/manipulator))
 			man_rating += P.rating
 	cell = locate(/obj/item/weapon/cell) in component_parts
 
@@ -205,8 +205,7 @@
 	if(occupant)
 		return
 
-	// TODO :  Change to incapacitated() on merge.
-	if(R.stat || R.lying || R.resting || R.buckled)
+	if(R.incapacitated())
 		return
 	if(!R.cell)
 		return
@@ -232,8 +231,7 @@
 	set name = "Eject Recharger"
 	set src in oview(1)
 
-	// TODO :  Change to incapacitated() on merge.
-	if(usr.stat || usr.lying || usr.resting || usr.buckled)
+	if(usr.incapacitated())
 		return
 
 	go_out()

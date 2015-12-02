@@ -132,7 +132,7 @@ var/global/list/engineering_networks = list(
 		number = 1
 		var/area/A = get_area(src)
 		if(A)
-			for(var/obj/machinery/camera/autoname/C in world)
+			for(var/obj/machinery/camera/autoname/C in machines)
 				if(C == src) continue
 				var/area/CA = get_area(C)
 				if(CA.type == A.type)
@@ -149,7 +149,7 @@ var/global/list/engineering_networks = list(
 	return O
 
 /obj/machinery/camera/proc/isXRay()
-	var/obj/item/weapon/stock_parts/scanning_module/O = locate(/obj/item/weapon/stock_parts/scanning_module) in assembly.upgrades
+	var/obj/item/europa/component/scanning_module/O = locate(/obj/item/europa/component/scanning_module) in assembly.upgrades
 	if (O && O.rating >= 2)
 		return O
 	return null
@@ -166,7 +166,7 @@ var/global/list/engineering_networks = list(
 	update_coverage()
 
 /obj/machinery/camera/proc/upgradeXRay()
-	assembly.upgrades.Add(new /obj/item/weapon/stock_parts/scanning_module/adv(assembly))
+	assembly.upgrades.Add(new /obj/item/europa/component/scanning_module(assembly))
 	setPowerUsage()
 	update_coverage()
 

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
-	desc = "Useful for sweeping alleys."
+	desc = "A favourite of police and security forces on many worlds. Useful for sweeping streets."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
@@ -9,7 +9,6 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
-	origin_tech = "combat=4;materials=2"
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
@@ -41,9 +40,9 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
+	desc = "Built for close quarters combat, a combat shotgun is widely regarded as a weapon of choice for repelling boarders."
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
-	origin_tech = "combat=5;materials=2"
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/shotgun
 
@@ -62,13 +61,12 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
-	origin_tech = "combat=3;materials=1"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	
+
 	burst_delay = 0
 	firemodes = list(
-		list(name="fire one barrel at a time", burst=1),
-		list(name="fire both barrels at once", burst=2),
+		list(mode_name="fire one barrel at a time", burst=1),
+		list(mode_name="fire both barrels at once", burst=2),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet

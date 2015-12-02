@@ -14,6 +14,7 @@
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
+	waterproof = 0 //this may or may not be a really bad idea :X
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
@@ -119,20 +120,12 @@
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
 /obj/machinery/power/attackby(obj/item/weapon/W, mob/user)
-
 	if(istype(W, /obj/item/stack/cable_coil))
-
 		var/obj/item/stack/cable_coil/coil = W
-
-		var/turf/T = user.loc
-
-		if(T.intact || !istype(T, /turf/simulated/floor))
+		if(coil.amount < 2)
 			return
-
-		if(get_dist(src, user) > 1)
-			return
-
-		coil.turf_place(T, user)
+		coil.turf_place(user.loc, user)
+		coil.turf_place(get_turf(src), user)
 		return
 	else
 		..()
@@ -312,7 +305,6 @@
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
-	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	var/area/source_area
 	if(istype(power_source,/area))
 		source_area = power_source

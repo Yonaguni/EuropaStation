@@ -4,8 +4,6 @@
 				INTERNAL ORGANS DEFINES
 ****************************************************/
 
-
-// Brain is defined in brain_item.dm.
 /obj/item/organ/heart
 	name = "heart"
 	icon_state = "heart-on"
@@ -19,6 +17,9 @@
 	gender = PLURAL
 	organ_tag = "lungs"
 	parent_organ = "chest"
+
+/obj/item/organ/lungs/proc/breathes_water()
+	return 0
 
 /obj/item/organ/lungs/process()
 	..()
@@ -69,6 +70,13 @@
 	organ_tag = "eyes"
 	parent_organ = "head"
 	var/list/eye_colour = list(0,0,0)
+
+/obj/item/organ/eyes/robotize()
+	..()
+	name = "optical sensors"
+	icon = 'icons/obj/robot_component.dmi'
+	icon_state = "camera"
+	dead_icon = "camera_broken"
 
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)

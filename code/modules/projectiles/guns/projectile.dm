@@ -6,7 +6,6 @@
 	name = "gun"
 	desc = "A gun that fires bullets."
 	icon_state = "revolver"
-	origin_tech = "combat=2;materials=2"
 	w_class = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	recoil = 1
@@ -67,6 +66,16 @@
 
 /obj/item/weapon/gun/projectile/proc/process_chambered()
 	if (!chambered) return
+
+	// Aurora forensics port, gunpowder residue.
+	if(chambered.leaves_residue)
+		var/mob/living/carbon/human/H = loc
+		if(istype(H))
+			if(!H.gloves)
+				H.gunshot_residue = chambered.caliber
+			else
+				var/obj/item/clothing/G = H.gloves
+				G.gunshot_residue = chambered.caliber
 
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
@@ -164,7 +173,7 @@
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	load_ammo(A, user)
 
-/obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
+/obj/item/weapon/gun/projectile/attack_self(var/mob/user)
 	if(firemodes.len > 1)
 		switch_firemodes(user)
 	else

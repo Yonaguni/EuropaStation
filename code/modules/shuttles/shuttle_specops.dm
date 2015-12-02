@@ -62,19 +62,19 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message("\blue Central Command will not allow the Special Operations shuttle to launch yet.")
+			C.visible_message("\blue [boss_name] will not allow the Special Operations submarine to launch yet.")
 			if (((world.time - reset_time)/10) > 60)
 				C.visible_message("\blue [-((world.time - reset_time)/10)/60] minutes remain!")
 			else
 				C.visible_message("\blue [-(world.time - reset_time)/10] seconds remain!")
 			return
 
-		C.visible_message("\blue The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds.")
+		C.visible_message("\blue The Special Operations submarine will depart in [(specops_countdown_time/10)] seconds.")
 
 	if (location)	//returning
-		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN")
+		radio_announce("THE SPECIAL OPERATIONS SUBMARINE IS PREPARING TO RETURN.")
 	else
-		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH")
+		radio_announce("THE SPECIAL OPERATIONS SUBMARINE IS PREPARING FOR LAUNCH.")
 
 	sleep_until_launch()
 
@@ -83,23 +83,23 @@
 		if(light) light.set_state(0)
 
 	//launch
-	radio_announce("ALERT: INITIATING LAUNCH SEQUENCE")
+	radio_announce("ALERT: INITIATING LAUNCH SEQUENCE.")
 	..(user)
 
 /datum/shuttle/ferry/multidock/specops/move(var/area/origin,var/area/destination)
 	..(origin, destination)
-	
+
 	spawn(20)
 		if (!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(destination))
 				var/mob/M = locate(/mob) in T
-				M << "\red You have arrived at Central Command. Operation has ended!"
+				M << "<span class='danger'>You have arrived at [boss_name]. Operation has ended!</span>"
 		else	//just left for the station
 			launch_mauraders()
 			for(var/turf/T in get_area_turfs(destination))
 				var/mob/M = locate(/mob) in T
-				M << "\red You have arrived at [station_name]. Commence operation!"
-				
+				M << "<span class='danger'>You have arrived at [station_name]. Commence operation!</span>"
+
 				var/obj/machinery/light/small/readylight/light = locate() in T
 				if(light) light.set_state(1)
 
@@ -180,10 +180,10 @@
 		sleep(10)
 
 		var/spawn_marauder[] = new()
-		for(var/obj/effect/landmark/L in world)
+		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)
-		for(var/obj/effect/landmark/L in world)
+		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Exit")
 				var/obj/effect/portal/P = new(L.loc)
 				P.invisibility = 101//So it is not seen by anyone.

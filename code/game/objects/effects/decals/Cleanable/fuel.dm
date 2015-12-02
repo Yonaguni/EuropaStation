@@ -45,7 +45,7 @@
 				else
 					new/obj/effect/decal/cleanable/liquid_fuel(target, amount*0.25,1)
 				amount *= 0.75
-						
+
 
 	flamethrower_fuel
 		icon_state = "mustard"

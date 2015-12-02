@@ -140,6 +140,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	waterproof = -1
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness_range = 8	// luminosity when on, also used in power calculation
@@ -169,6 +170,11 @@
 /obj/machinery/light/small/emergency
 	brightness_range = 6
 	brightness_power = 2
+	brightness_color = "#da0205"
+
+/obj/machinery/light/small/red
+	brightness_range = 5
+	brightness_power = 1
 	brightness_color = "#da0205"
 
 /obj/machinery/light/spot
@@ -548,10 +554,6 @@
 
 //blob effect
 
-/obj/machinery/light/blob_act()
-	if(prob(75))
-		broken()
-
 
 // timed process
 // use power
@@ -594,7 +596,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 2
+	w_class = 1
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -676,16 +678,11 @@
 	..()
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
-
 		user << "You inject the solution into the [src]."
-
-		if(S.reagents.has_reagent("phoron", 5))
-
-			log_admin("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-
+		if(S.reagents.has_reagent("fuel", 5))
+			log_admin("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
+			message_admins("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
 			rigged = 1
-
 		S.reagents.clear_reagents()
 	else
 		..()

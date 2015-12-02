@@ -298,6 +298,31 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
+/obj/item/weapon/storage/box/smokes
+	name = "box of smoke bombs"
+	desc = "A box containing 5 smoke bombs."
+	icon_state = "flashbang"
+
+/obj/item/weapon/storage/box/smokes/New()
+		..()
+		new /obj/item/weapon/grenade/smokebomb(src)
+		new /obj/item/weapon/grenade/smokebomb(src)
+		new /obj/item/weapon/grenade/smokebomb(src)
+		new /obj/item/weapon/grenade/smokebomb(src)
+		new /obj/item/weapon/grenade/smokebomb(src)
+
+/obj/item/weapon/storage/box/anti_photons
+	name = "box of anti-photon grenades"
+	desc = "A box containing 5 experimental photon disruption grenades."
+	icon_state = "flashbang"
+
+/obj/item/weapon/storage/box/anti_photons/New()
+		..()
+		new /obj/item/weapon/grenade/anti_photon(src)
+		new /obj/item/weapon/grenade/anti_photon(src)
+		new /obj/item/weapon/grenade/anti_photon(src)
+		new /obj/item/weapon/grenade/anti_photon(src)
+		new /obj/item/weapon/grenade/anti_photon(src)
 
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
@@ -411,12 +436,12 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
 
 /obj/item/weapon/storage/box/sinpockets
 	name = "box of sin-pockets"
@@ -425,19 +450,18 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
 
 /obj/item/weapon/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/kitchen/packaging/monkeycube.dmi'
 	icon_state = "monkeycubebox"
-	storage_slots = 7
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 	New()
 		..()
@@ -551,37 +575,11 @@
 	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
-	storage_slots = 8
 	can_hold = list(/obj/item/toy/snappop)
 	New()
 		..()
-		for(var/i=1; i <= storage_slots; i++)
+		for(var/i=1; i <= 8; i++)
 			new /obj/item/toy/snappop(src)
-
-/obj/item/weapon/storage/box/matches
-	name = "matchbox"
-	desc = "A small box of 'Space-Proof' premium matches."
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "matchbox"
-	item_state = "zippo"
-	storage_slots = 10
-	w_class = 1
-	slot_flags = SLOT_BELT
-	can_hold = list(/obj/item/weapon/flame/match)
-
-	New()
-		..()
-		for(var/i=1; i <= storage_slots; i++)
-			new /obj/item/weapon/flame/match(src)
-
-	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
-		if(istype(W) && !W.lit && !W.burnt)
-			W.lit = 1
-			W.damtype = "burn"
-			W.icon_state = "match_lit"
-			processing_objects.Add(W)
-		W.update_icon()
-		return
 
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
@@ -589,7 +587,7 @@
 	icon_state = "syringe"
 	New()
 		..()
-		for (var/i; i < storage_slots; i++)
+		for (var/i; i < 7; i++)
 			new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 
 /obj/item/weapon/storage/box/lights
@@ -598,8 +596,9 @@
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state = "syringe_kit"
+	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
-	
+
 /obj/item/weapon/storage/box/lights/New()
 	..()
 	make_exact_fit()
@@ -628,3 +627,14 @@
 	for(var/i = 0; i < 7; i++)
 		new /obj/item/weapon/light/bulb(src)
 	..()
+
+/obj/item/weapon/storage/box/freezer
+	name = "portable freezer"
+	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "portafreezer"
+	item_state = "medicalpack"
+	max_w_class = 3
+	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
+	max_storage_space = 21
+	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try

@@ -11,7 +11,7 @@
 	language = null
 	default_language = "Chimpanzee"
 	greater_form = "Human"
-	is_small = 1
+	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
 	show_ssd = null
 
@@ -25,19 +25,20 @@
 	unarmed_types = list(/datum/unarmed_attack/bite, /datum/unarmed_attack/claws)
 	inherent_verbs = list(/mob/living/proc/ventcrawl)
 	hud_type = /datum/hud_data/monkey
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/monkey
-	holder_type = /obj/item/weapon/holder/monkey
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/monkey
 
 	rarity_value = 0.1
 	total_health = 75
 	brute_mod = 1.5
 	burn_mod = 1.5
 
-	flags = IS_RESTRICTED
+	spawn_flags = IS_RESTRICTED
 
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
+
+	pass_flags = PASSTABLE
 
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
@@ -49,20 +50,6 @@
 
 /datum/species/monkey/get_random_name()
 	return "[lowertext(name)] ([rand(100,999)])"
-
-/datum/species/monkey/tajaran
-	name = "Farwa"
-	name_plural = "Farwa"
-
-	icobase = 'icons/mob/human_races/monkeys/r_farwa.dmi'
-	deform = 'icons/mob/human_races/monkeys/r_farwa.dmi'
-
-	greater_form = "Tajaran"
-	default_language = "Farwa"
-	flesh_color = "#AFA59E"
-	base_color = "#333333"
-	tail = "farwatail"
-	holder_type = /obj/item/weapon/holder/monkey/farwa
 
 /datum/species/monkey/skrell
 	name = "Neaera"
@@ -77,19 +64,13 @@
 	blood_color = "#1D2CBF"
 	reagent_tag = IS_SKRELL
 	tail = null
-	holder_type = /obj/item/weapon/holder/monkey/neaera
 
-/datum/species/monkey/unathi
-	name = "Stok"
-	name_plural = "Stok"
-
-	icobase = 'icons/mob/human_races/monkeys/r_stok.dmi'
-	deform = 'icons/mob/human_races/monkeys/r_stok.dmi'
-
-	tail = "stoktail"
-	greater_form = "Unathi"
-	default_language = "Stok"
-	flesh_color = "#34AF10"
-	base_color = "#066000"
-	reagent_tag = IS_UNATHI
-	holder_type = /obj/item/weapon/holder/monkey/stok
+	has_organ = list(
+		"heart" =    /obj/item/organ/heart,
+		"lungs" =    /obj/item/organ/lungs,
+		"liver" =    /obj/item/organ/liver,
+		"kidneys" =  /obj/item/organ/kidneys,
+		"brain" =    /obj/item/organ/brain,
+		"eyes" =     /obj/item/organ/eyes,
+		"gills" =    /obj/item/organ/gills
+		)

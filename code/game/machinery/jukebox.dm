@@ -24,15 +24,14 @@ datum/track/New(var/title_name, var/audio)
 
 	var/datum/track/current_track
 	var/list/datum/track/tracks = list(
-		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
-		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
-		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
-		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
-		new/datum/track("Floating", 'sound/music/main.ogg'),
-		new/datum/track("Endless Space", 'sound/music/space.ogg'),
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-		new/datum/track("Scratch", 'sound/music/title1.ogg'),
-		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
+		new/datum/track("In Orbit", 'sound/music/europa/Chronox_-_03_-_In_Orbit.ogg'),
+		new/datum/track("Juno", 'sound/music/europa/Chronox_-_04_-_Juno.ogg'),
+		new/datum/track("Torn", 'sound/music/europa/Macamoto_-_05_-_Torn.ogg'),
+		new/datum/track("Nebula", 'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg'),
+		new/datum/track("Monument", 'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg'),
+		new/datum/track("The And of the World", 'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg'),
+		new/datum/track("Moonlight Sonata", 'sound/music/europa/Moonlight.ogg'),
+		new/datum/track("The Sea", 'sound/music/Sealab2021.mid')
 	)
 
 
@@ -174,16 +173,15 @@ datum/track/New(var/title_name, var/audio)
 		power_change()
 		update_icon()
 		return
-	if(istype(W, /obj/item/weapon/card/emag))
-		if(!emagged)
-			emagged = 1
-			StopPlaying()
-			visible_message("<span class='danger'>\the [src] makes a fizzling sound.</span>")
-			log_and_message_admins("emagged \the [src]")
-			update_icon()
-			return
-
 	return ..()
+
+/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+	if(!emagged)
+		emagged = 1
+		StopPlaying()
+		visible_message("<span class='danger'>\The [src] makes a fizzling sound.</span>")
+		update_icon()
+		return 1
 
 /obj/machinery/media/jukebox/proc/StopPlaying()
 	var/area/main_area = get_area(src)

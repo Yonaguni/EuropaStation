@@ -3,7 +3,7 @@
 /area/mine
 	icon_state = "mining"
 	music = 'sound/ambience/song_game.ogg'
-	sound_env = 5 //stoneroom
+	sound_env = ASTEROID
 
 /area/mine/explored
 	name = "Mine"
@@ -90,7 +90,7 @@
 	name = "Research Outpost Hallway"
 
 /area/outpost/research/dock
-	name = "Research Outpost Shuttle Dock"
+	name = "Research Outpost Elevator Station"
 
 /area/outpost/research/eva
 	name = "Research Outpost EVA"

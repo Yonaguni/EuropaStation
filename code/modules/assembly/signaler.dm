@@ -4,7 +4,6 @@
 	icon_state = "signaller"
 	item_state = "signaler"
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 200, "waste" = 100)
-	origin_tech = "magnets=1"
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
 	secured = 1
@@ -79,8 +78,8 @@
 
 		if (href_list["freq"])
 			var/new_frequency = (frequency + text2num(href_list["freq"]))
-			if(new_frequency < 1200 || new_frequency > 1600)
-				new_frequency = sanitize_frequency(new_frequency)
+			if(new_frequency < RADIO_LOW_FREQ || new_frequency > RADIO_HIGH_FREQ)
+				new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 			set_frequency(new_frequency)
 
 		if(href_list["code"])
@@ -108,15 +107,6 @@
 		signal.data["message"] = "ACTIVATE"
 		radio_connection.post_signal(src, signal)
 		return
-/*
-		for(var/obj/item/device/assembly/signaler/S in world)
-			if(!S)	continue
-			if(S == src)	continue
-			if((S.frequency == src.frequency) && (S.code == src.code))
-				spawn(0)
-					if(S)	S.pulse(0)
-		return 0*/
-
 
 	pulse(var/radio = 0)
 		if(src.connected && src.wires)

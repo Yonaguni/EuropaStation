@@ -16,7 +16,7 @@
 		/obj/item/weapon/airlock_electronics,
 		/obj/item/weapon/tracker_electronics,
 		/obj/item/weapon/module/power_control,
-		/obj/item/weapon/stock_parts,
+		/obj/item/europa/component,
 		/obj/item/frame,
 		/obj/item/weapon/camera_assembly,
 		/obj/item/weapon/tank,
@@ -36,7 +36,7 @@
 
 	can_hold = list(
 	/obj/item/weapon/cell,
-	/obj/item/weapon/stock_parts
+	/obj/item/europa/component
 	)
 
 /obj/item/weapon/gripper/paperwork
@@ -59,7 +59,7 @@
 
 	can_hold = list(
 		/obj/item/weapon/cell,
-		/obj/item/weapon/stock_parts,
+		/obj/item/europa/component,
 		/obj/item/device/mmi,
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
@@ -67,7 +67,6 @@
 		/obj/item/organ/brain, //to insert into MMIs.
 		/obj/item/stack/cable_coil, //again, for borg building
 		/obj/item/weapon/circuitboard,
-		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
 

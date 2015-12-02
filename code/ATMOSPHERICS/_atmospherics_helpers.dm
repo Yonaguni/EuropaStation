@@ -15,7 +15,7 @@
 
 /obj/machinery/atmospherics/var/debug = 0
 
-/client/proc/atmos_toggle_debug(var/obj/machinery/atmospherics/M in view())
+/client/proc/atmos_toggle_debug(var/obj/machinery/atmospherics/M in range(world.view))
 	set name = "Toggle Debug Messages"
 	set category = "Debug"
 	M.debug = !M.debug
@@ -429,8 +429,8 @@
 /proc/calculate_transfer_moles(datum/gas_mixture/source, datum/gas_mixture/sink, var/pressure_delta, var/sink_volume_mod=0)
 	if(source.temperature == 0 || source.total_moles == 0) return 0
 
-	var/output_volume = (sink.volume * sink.group_multiplier) + sink_volume_mod
-	var/source_total_moles = source.total_moles * source.group_multiplier
+	var/output_volume = sink.volume + sink_volume_mod
+	var/source_total_moles = source.total_moles
 
 	var/air_temperature = source.temperature
 	if(sink.total_moles > 0 && sink.temperature > 0)
@@ -439,19 +439,11 @@
 		var/sink_heat_capacity = sink.heat_capacity()
 		var/transfer_heat_capacity = source.heat_capacity()*estimate_moles/source_total_moles
 		air_temperature = (sink.temperature*sink_heat_capacity  + source.temperature*transfer_heat_capacity) / (sink_heat_capacity + transfer_heat_capacity)
-	
+
 	//get the number of moles that would have to be transfered to bring sink to the target pressure
 	return pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
 
 //Calculates the APPROXIMATE amount of moles that would need to be transferred to bring source and sink to the same pressure
 /proc/calculate_equalize_moles(datum/gas_mixture/source, datum/gas_mixture/sink)
 	if(source.temperature == 0) return 0
-
-	//Make the approximation that the sink temperature is unchanged after transferring gas
-	var/source_volume = source.volume * source.group_multiplier
-	var/sink_volume = sink.volume * sink.group_multiplier
-
-	var/source_pressure = source.return_pressure()
-	var/sink_pressure = sink.return_pressure()
-
-	return (source_pressure - sink_pressure)/(R_IDEAL_GAS_EQUATION * (source.temperature/source_volume + sink.temperature/sink_volume))
+	return (source.return_pressure() - sink.return_pressure())/(R_IDEAL_GAS_EQUATION * (source.temperature/source.volume + sink.temperature/sink.volume))

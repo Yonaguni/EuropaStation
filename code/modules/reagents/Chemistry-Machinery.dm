@@ -44,14 +44,6 @@
 				qdel(src)
 				return
 
-/obj/machinery/chem_master/blob_act()
-	if (prob(50))
-		qdel(src)
-
-/obj/machinery/chem_master/meteorhit()
-	qdel(src)
-	return
-
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
@@ -557,8 +549,8 @@
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder
 
-	name = "All-In-One Grinder"
-	icon = 'icons/obj/kitchen.dmi'
+	name = "food processor"
+	icon = 'icons/obj/kitchen/inedible/machines.dmi'
 	icon_state = "juicer1"
 	layer = 2.9
 	density = 0
@@ -570,10 +562,12 @@
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/limit = 10
 	var/list/holdingitems = list()
-	var/list/sheet_reagents = list(
+	var/global/list/grind_products = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/slab = /obj/item/weapon/reagent_containers/food/snacks/meat/mince
+		)
+	var/global/list/sheet_reagents = list(
 		/obj/item/stack/material/iron = "iron",
 		/obj/item/stack/material/uranium = "uranium",
-		/obj/item/stack/material/phoron = "phoron",
 		/obj/item/stack/material/gold = "gold",
 		/obj/item/stack/material/silver = "silver",
 		/obj/item/stack/material/mhydrogen = "hydrogen"
@@ -651,7 +645,7 @@
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/reagentgrinder/interact(mob/user as mob)
 	if(inoperable())
 		return
 	user.set_machine(src)
@@ -755,6 +749,27 @@
 
 	// Process.
 	for (var/obj/item/O in holdingitems)
+
+		var/product_made
+		for(var/check_type in grind_products)
+			if(istype(O, check_type))
+				var/product_type = grind_products[check_type]
+				var/obj/item/product = new product_type(get_turf(src))
+				product.color = O.color
+
+				// Snowflakey as fuck, but so far the machine only uses meat so ehhhh.
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = O
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatoutput = product
+				if(istype(meatsource) && istype(meatoutput))
+					meatoutput.set_source_mob(meatsource.source_mob)
+
+				holdingitems -= O
+				qdel(O)
+				product_made = 1
+				break
+
+		if(product_made)
+			return
 
 		var/remaining_volume = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 		if(remaining_volume <= 0)

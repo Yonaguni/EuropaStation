@@ -2,7 +2,7 @@
 /obj/machinery/gibber
 	name = "gibber"
 	desc = "The name isn't descriptive enough?"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen/inedible/machines.dmi'
 	icon_state = "grinder"
 	density = 1
 	anchored = 1
@@ -52,20 +52,20 @@
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+	src.overlays += image(icon, "grjam")
 
 /obj/machinery/gibber/update_icon()
 	overlays.Cut()
 	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+		src.overlays += image(icon, "grbloody")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		src.overlays += image(icon, "grjam")
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		src.overlays += image(icon, "gruse")
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		src.overlays += image(icon, "gridle")
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()
@@ -84,16 +84,12 @@
 	..()
 	usr << "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
 
+/obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
+	emagged = !emagged
+	user << "<span class='danger'>You [emagged ? "disable" : "enable"] the gibber safety guard.</span>"
+	return 1
+
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
-
-	if(istype(W,/obj/item/weapon/card))
-		if(!allowed(user) && !istype(W,/obj/item/weapon/card/emag))
-			user << "<span class='danger'>Access denied.</span>"
-			return
-		emagged = !emagged
-		user << "<span class='danger'>You [emagged ? "disable" : "enable"] the gibber safety guard.</span>"
-		return
-
 	var/obj/item/weapon/grab/G = W
 
 	if(!istype(G))
@@ -134,10 +130,10 @@
 		user << "<span class='danger'>Subject may not have abiotic items on.</span>"
 		return
 
-	user.visible_message("\red [user] starts to put [victim] into the gibber!")
+	user.visible_message("<span class='danger'>[user] starts to put [victim] into the gibber!</span>")
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("\red [user] stuffs [victim] into the gibber!")
+		user.visible_message("<span class='danger'>[user] stuffs [victim] into the gibber!</span>")
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src
@@ -183,7 +179,7 @@
 
 	var/slab_name = occupant.name
 	var/slab_count = 3
-	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab
 	var/slab_nutrition = src.occupant.nutrition / 15
 
 	// Some mobs have specific meat item types.
@@ -199,12 +195,12 @@
 		slab_type = H.species.meat_type
 
 	// Small mobs don't give as much nutrition.
-	if(src.occupant.small)
+	if(issmall(src.occupant))
 		slab_nutrition *= 0.5
 	slab_nutrition /= slab_count
 
 	for(var/i=1 to slab_count)
-		var/obj/item/weapon/reagent_containers/food/snacks/meat/new_meat = new slab_type(src)
+		var/obj/item/weapon/reagent_containers/food/snacks/meat/slab/new_meat = new slab_type(src)
 		new_meat.name = "[slab_name] [new_meat.name]"
 		new_meat.reagents.add_reagent("nutriment",slab_nutrition)
 

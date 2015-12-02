@@ -387,7 +387,7 @@ Programs are a file that can be executed
 	volume = 7000
 
 /datum/file/program/EmergencyShuttle
-	name = "Shuttle Console"
+	name = "Submarine Console"
 	active_state = "shuttle"
 	volume = 10000
 

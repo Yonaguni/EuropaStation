@@ -6,6 +6,7 @@
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	density = 1
 	anchored = 1
+	waterproof = 0
 
 /obj/machinery/artillerycontrol/process()
 	if(src.reload<180)
@@ -26,7 +27,7 @@
 	dat += "Locked on<BR>"
 	dat += "<B>Charge progress: [reload]/180:</B><BR>"
 	dat += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
-	dat += "Deployment of weapon authorized by <br>Nanotrasen Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
+	dat += "Deployment of weapon authorized by <br>[company_name] Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
 	user << browse(dat, "window=scroll")
 	onclose(user, "scroll")
 	return

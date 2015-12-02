@@ -41,10 +41,9 @@ mob/eye/Destroy()
 		updateallghostimages()
 	..()
 
-// Movement code. Returns 0 to stop air movement from moving it.
 /mob/eye/Move(n, direct)
 	if(owner == src)
-		EyeMove(n, direct)
+		return EyeMove(n, direct)
 	return 0
 
 /mob/eye/examinate()
@@ -110,3 +109,4 @@ mob/eye/Destroy()
 		sprint = min(sprint + 0.5, max_sprint)
 	else
 		sprint = initial
+	return 1

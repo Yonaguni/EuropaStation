@@ -77,13 +77,13 @@ var/list/slot_equipment_priority = list( \
 	// Try put it in their backpack
 	if(istype(src.back,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/backpack = src.back
-		if(backpack.contents.len < backpack.storage_slots)
-			newitem.forceMove(src.back)
+		if(backpack.can_be_inserted(newitem, 1))
+			newitem.forceMove(backpack)
 			return 1
 
 	// Try to place it in any item that can store stuff, on the mob.
 	for(var/obj/item/weapon/storage/S in src.contents)
-		if (S.contents.len < S.storage_slots)
+		if(S.can_be_inserted(newitem, 1))
 			newitem.forceMove(S)
 			return 1
 	return 0
@@ -157,7 +157,7 @@ var/list/slot_equipment_priority = list( \
 		update_inv_r_hand()
 		return 1
 	else
-		W.forceMove(get_turf(src))
+		W.loc = get_turf(src)
 		W.layer = initial(W.layer)
 		W.dropped()
 		return 0
@@ -216,11 +216,9 @@ var/list/slot_equipment_priority = list( \
 		update_inv_wear_mask(0)
 	return
 
-//This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/canUnEquip(obj/item/I)
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
 		return 1
-
 	var/slot = get_inventory_slot(I)
 	if(slot && !I.mob_can_unequip(src, slot))
 		return 0
@@ -235,6 +233,24 @@ var/list/slot_equipment_priority = list( \
 			slot = s
 			break
 	return slot
+
+	if(slot && !I.mob_can_unequip(src, slot))
+		return 0
+
+	drop_from_inventory(I)
+	return 1
+
+//This differs from remove_from_mob() in that it checks if the item can be unequipped first.
+/mob/proc/unEquip(obj/item/I, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
+	if(!I) //If there's nothing to drop, the drop is automatically successful.
+		return 1
+
+	var/slot = get_inventory_slot(I)
+	if(slot && !I.mob_can_unequip(src, slot))
+		return 0
+
+	drop_from_inventory(I)
+	return 1
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)

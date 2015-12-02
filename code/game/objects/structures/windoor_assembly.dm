@@ -9,7 +9,7 @@
  */
 
 
-obj/structure/windoor_assembly
+/obj/structure/windoor_assembly
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
@@ -24,7 +24,13 @@ obj/structure/windoor_assembly
 	var/secure = ""		//Whether or not this creates a secure windoor
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 
-obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
+/obj/structure/windoor_assembly/CanAtmosPass(var/turf/T)
+	if(get_dir(loc, T) == dir)
+		return !density
+	else
+		return 1
+
+/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
@@ -37,7 +43,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 	update_nearby_tiles(need_rebuild=1)
 
-obj/structure/windoor_assembly/Destroy()
+/obj/structure/windoor_assembly/Destroy()
 	density = 0
 	update_nearby_tiles()
 	..()
@@ -75,13 +81,13 @@ obj/structure/windoor_assembly/Destroy()
 
 					if(do_after(user, 40))
 						if(!src || !WT.isOn()) return
-						user << "\blue You dissasembled the windoor assembly!"
+						user << "<span class='notice'>You dissasembled the windoor assembly!</span>"
 						new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
 						if(secure)
 							PoolOrNew(/obj/item/stack/rods, list(get_turf(src), 4))
 						qdel(src)
 				else
-					user << "\blue You need more welding fuel to dissassemble the windoor assembly."
+					user << "<span class='notice'>You need more welding fuel to dissassemble the windoor assembly.</span>"
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
@@ -91,7 +97,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				if(do_after(user, 40))
 					if(!src) return
-					user << "\blue You've secured the windoor assembly!"
+					user << "<span class='notice'>You've secured the windoor assembly!</span>"
 					src.anchored = 1
 					if(src.secure)
 						src.name = "Secure Anchored Windoor Assembly"
@@ -105,7 +111,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				if(do_after(user, 40))
 					if(!src) return
-					user << "\blue You've unsecured the windoor assembly!"
+					user << "<span class='notice'>You've unsecured the windoor assembly!</span>"
 					src.anchored = 0
 					if(src.secure)
 						src.name = "Secure Windoor Assembly"
@@ -155,7 +161,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(do_after(user, 40))
 					if(!src) return
 
-					user << "\blue You cut the windoor wires.!"
+					user << "<span class='notice'>You cut the windoor wires.!</span>"
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					src.state = "01"
 					if(src.secure)
@@ -173,7 +179,7 @@ obj/structure/windoor_assembly/Destroy()
 
 					user.drop_item()
 					W.loc = src
-					user << "\blue You've installed the airlock electronics!"
+					user << "<span class='notice'>You've installed the airlock electronics!</span>"
 					src.name = "Near finished Windoor Assembly"
 					src.electronics = W
 				else
@@ -186,7 +192,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				if(do_after(user, 40))
 					if(!src || !src.electronics) return
-					user << "\blue You've removed the airlock electronics!"
+					user << "<span class='notice'>You've removed the airlock electronics!</span>"
 					if(src.secure)
 						src.name = "Secure Wired Windoor Assembly"
 					else
@@ -198,7 +204,7 @@ obj/structure/windoor_assembly/Destroy()
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(istype(W, /obj/item/weapon/crowbar))
 				if(!src.electronics)
-					usr << "\red The assembly is missing electronics."
+					usr << "<span class='warning'>The assembly is missing electronics.</span>"
 					return
 				usr << browse(null, "window=windoor_access")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
@@ -209,7 +215,7 @@ obj/structure/windoor_assembly/Destroy()
 					if(!src) return
 
 					density = 1 //Shouldn't matter but just incase
-					user << "\blue You finish the windoor!"
+					user << "<span class='notice'>You finish the windoor!</span>"
 
 					if(secure)
 						var/obj/machinery/door/window/brigdoor/windoor = new /obj/machinery/door/window/brigdoor(src.loc)

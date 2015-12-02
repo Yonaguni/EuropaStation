@@ -102,7 +102,6 @@
 	handle_stunned()
 	handle_weakened()
 	handle_paralysed()
-	update_canmove()
 	handle_supernatural()
 
 	//Movement
@@ -167,30 +166,33 @@
 			if( abs(Environment.temperature - bodytemperature) > 40 )
 				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
 
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas["phoron"] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas["phoron"] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+			if(handle_drowning())
+				atmos_suitable = 0
+			else
+				if(min_oxy)
+					if(Environment.gas["oxygen"] < min_oxy)
+						atmos_suitable = 0
+				if(max_oxy)
+					if(Environment.gas["oxygen"] > max_oxy)
+						atmos_suitable = 0
+				if(min_tox)
+					if(Environment.gas["fuel"] < min_tox)
+						atmos_suitable = 0
+				if(max_tox)
+					if(Environment.gas["fuel"] > max_tox)
+						atmos_suitable = 0
+				if(min_n2)
+					if(Environment.gas["nitrogen"] < min_n2)
+						atmos_suitable = 0
+				if(max_n2)
+					if(Environment.gas["nitrogen"] > max_n2)
+						atmos_suitable = 0
+				if(min_co2)
+					if(Environment.gas["carbon_dioxide"] < min_co2)
+						atmos_suitable = 0
+				if(max_co2)
+					if(Environment.gas["carbon_dioxide"] > max_co2)
+						atmos_suitable = 0
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
@@ -270,7 +272,6 @@
 
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/stack/medical))
-		user.changeNext_move(4)
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
 			if(health < maxHealth)
@@ -288,28 +289,25 @@
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		attacked_with_item(O, user)
+		if(!O.force)
+			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
+		else
+			O.attack(src, user, user.zone_sel.selecting)
 
-//TODO: refactor mob attackby(), attacked_by(), and friends.
-/mob/living/simple_animal/proc/attacked_with_item(var/obj/item/O, var/mob/user)
-	user.changeNext_move(8)
-	if(!O.force)
-		visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
-		return
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	if(O.force > resistance)
-		var/damage = O.force
-		if (O.damtype == HALLOSS)
-			damage = 0
-		if(supernatural && istype(O,/obj/item/weapon/nullrod))
-			damage *= 2
-			purge = 3
-		adjustBruteLoss(damage)
-	else
-		usr << "<span class='danger>This weapon is ineffective, it does no damage.</span>"
+	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
 
-	visible_message("<span class='danger'>\The [src] has been attacked with the [O] by [user].</span>")
-	user.do_attack_animation(src)
+	if(O.force <= resistance)
+		user << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
+		return 2
+
+	var/damage = O.force
+	if (O.damtype == HALLOSS)
+		damage = 0
+	adjustBruteLoss(damage)
+
+	return 0
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
@@ -357,10 +355,6 @@
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
 			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
-			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		if(B.health > 0)
@@ -398,10 +392,20 @@
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
-		if(small)
+		if(issmall(src))
 			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
 			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
 			gib()
+
+/mob/living/simple_animal/handle_fire()
+	return
+
+/mob/living/simple_animal/update_fire()
+	return
+/mob/living/simple_animal/IgniteMob()
+	return
+/mob/living/simple_animal/ExtinguishMob()
+	return

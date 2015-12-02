@@ -5,7 +5,16 @@
  * /obj/item/rig_module/mounted/taser
  * /obj/item/rig_module/shield
  * /obj/item/rig_module/fabricator
+ * /obj/item/rig_module/device/flash
  */
+
+/obj/item/rig_module/device/flash
+	name = "mounted flash"
+	desc = "You are the law."
+	icon_state = "flash"
+	interface_name = "mounted flash"
+	interface_desc = "Stuns your target by blinding them with a bright light."
+	device_type = /obj/item/device/flash
 
 /obj/item/rig_module/grenade_launcher
 
@@ -76,25 +85,25 @@
 
 	charge.charges--
 	var/obj/item/weapon/grenade/new_grenade = new charge.product_type(get_turf(H))
-	H.visible_message("<span class='danger'>[H] launches \a [new_grenade]!")
+	H.visible_message("<span class='danger'>[H] launches \a [new_grenade]!</span>")
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
 /obj/item/rig_module/mounted
 
-	name = "mounted laser cannon"
-	desc = "A shoulder-mounted battery-powered laser cannon mount."
+
+	name = "mounted electrolaser"
+	desc = "A palm-mounted nonlethal energy projector."
+	icon_state = "taser"
+	usable = 0
+	suit_overlay_active = "mounted-taser"
+	suit_overlay_inactive = "mounted-taser"
+	interface_name = "mounted electrolaser"
+	interface_desc = "A shoulder-mounted cell-powered electroshock gun."
 	selectable = 1
-	usable = 1
 	module_cooldown = 0
-	icon_state = "lcannon"
-
 	engage_string = "Configure"
-
-	interface_name = "mounted laser cannon"
-	interface_desc = "A shoulder-mounted cell-powered laser cannon."
-
-	var/gun_type = /obj/item/weapon/gun/energy/lasercannon/mounted
+	var/gun_type = /obj/item/weapon/gun/energy/taser/mounted
 	var/obj/item/weapon/gun/gun
 
 /obj/item/rig_module/mounted/New()
@@ -113,32 +122,6 @@
 	gun.Fire(target,holder.wearer)
 	return 1
 
-/obj/item/rig_module/mounted/egun
-
-	name = "mounted energy gun"
-	desc = "A forearm-mounted energy projector."
-	icon_state = "egun"
-
-	interface_name = "mounted energy gun"
-	interface_desc = "A forearm-mounted suit-powered energy gun."
-
-	gun_type = /obj/item/weapon/gun/energy/gun/mounted
-
-/obj/item/rig_module/mounted/taser
-
-	name = "mounted taser"
-	desc = "A palm-mounted nonlethal energy projector."
-	icon_state = "taser"
-
-	usable = 0
-
-	suit_overlay_active = "mounted-taser"
-	suit_overlay_inactive = "mounted-taser"
-
-	interface_name = "mounted energy gun"
-	interface_desc = "A shoulder-mounted cell-powered energy gun."
-
-	gun_type = /obj/item/weapon/gun/energy/taser/mounted
 
 /obj/item/rig_module/mounted/energy_blade
 
@@ -230,7 +213,7 @@
 		firing.throw_at(target,fire_force,fire_distance)
 	else
 		if(H.l_hand && H.r_hand)
-			H << "<span class='danger'>Your hands are full."
+			H << "<span class='danger'>Your hands are full.</span>"
 		else
 			var/obj/item/new_weapon = new fabrication_type()
 			new_weapon.forceMove(H)

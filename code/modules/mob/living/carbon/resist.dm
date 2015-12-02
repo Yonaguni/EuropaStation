@@ -20,17 +20,18 @@
 		return
 
 	..()
-	
+
 	if(handcuffed)
 		spawn() escape_handcuffs()
 	else if(legcuffed)
 		spawn() escape_legcuffs()
 
 /mob/living/carbon/proc/escape_handcuffs()
-	if(!(last_special <= world.time)) return
+	//if(!(last_special <= world.time)) return
 
-	next_move = world.time + 100
-	last_special = world.time + 100
+	//These two lines represent a significant buff to grabs...
+	if(!canClick()) return
+	setClickCooldown(100)
 
 	if(can_break_cuffs()) //Don't want to do a lot of logic gating here.
 		break_handcuffs()
@@ -45,6 +46,11 @@
 	if(istype(HC))
 		breakouttime = HC.breakouttime
 		displaytime = breakouttime / 600 //Minutes
+
+	var/mob/living/carbon/human/H = src
+	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
+		breakouttime /= 2
+		displaytime /= 2
 
 	visible_message(
 		"<span class='danger'>[src] attempts to remove \the [HC]!</span>",
@@ -61,10 +67,10 @@
 		drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
-	if(!(last_special <= world.time)) return
+	if(!canClick())
+		return
 
-	next_move = world.time + 100
-	last_special = world.time + 100
+	setClickCooldown(100)
 
 	if(can_break_cuffs()) //Don't want to do a lot of logic gating here.
 		break_legcuffs()
@@ -149,14 +155,15 @@
 	return ..()
 
 /mob/living/carbon/escape_buckle()
+	if(!canClick())
+		return
+
+	setClickCooldown(100)
 	if(!buckled) return
-	if(!(last_special <= world.time)) return
 
 	if(!restrained())
 		..()
 	else
-		next_move = world.time + 100
-		last_special = world.time + 100
 		visible_message(
 			"<span class='danger'>[usr] attempts to unbuckle themself!</span>",
 			"<span class='warning'>You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>"

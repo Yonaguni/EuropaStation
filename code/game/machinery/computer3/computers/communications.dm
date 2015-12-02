@@ -60,7 +60,7 @@
 		if(!interactable() || !computer.radio || ..(href,href_list) )
 			return
 		if (computer.z > 1)
-			usr << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+			usr << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 			return
 
 		if("main" in href_list)
@@ -192,12 +192,12 @@
 				if(centcomm_message_cooldown)
 					usr << "Arrays recycling.  Please stand by."
 					return
-				var/input = sanitize(input("Please choose a message to transmit to Centcomm via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", ""))
+				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", ""))
 				if(!input || !interactable())
 					return
 				Centcomm_announce(input, usr)
 				usr << "Message transmitted."
-				log_say("[key_name(usr)] has made a Centcomm announcement: [input]")
+				log_say("[key_name(usr)] has made a [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(600)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -288,7 +288,7 @@
 			if (authenticated==2)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];announce'>Make An Announcement</A> \]"
 				if(computer.emagged == 0)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageCentcomm'>Send an emergency message to Centcomm</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageCentcomm'>Send an emergency message to [boss_short]</A> \]"
 				else
 					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];RestoreBackup'>Restore Backup Routing Data</A> \]"
@@ -296,9 +296,9 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];changeseclevel'>Change alert level</A> \]"
 			if(emergency_shuttle.location())
 				if (emergency_shuttle.online())
-					dat += "<BR>\[ <A HREF='?src=\ref[src];cancelshuttle'>Cancel Shuttle Call</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];cancelshuttle'>Cancel Vessel Call</A> \]"
 				else
-					dat += "<BR>\[ <A HREF='?src=\ref[src];callshuttle'>Call Emergency Shuttle</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];callshuttle'>Call Emergency Submarine</A> \]"
 
 			dat += "<BR>\[ <A HREF='?src=\ref[src];status'>Set Status Display</A> \]"
 		else
@@ -349,12 +349,12 @@
 				dat += "Set Status Displays<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=blank'>Clear</A> \]<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=time'>Station Time</A> \]"
-				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=shuttle'>Vessel ETA</A> \]<BR>"
 				dat += "\[ <A HREF='?src=\ref[src];setstat;statdisp=message'>Message</A> \]"
 				dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 				dat += "<li> Line 2: <A HREF='?src=\ref[src];setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
 				dat += "\[ Alert: <A HREF='?src=\ref[src];setstat;statdisp=alert;alert=default'>None</A> |"
-				dat += " <A HREF='?src=\ref[src];setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
+				dat += " <A HREF='?src=\ref[src];setstat;statdisp=alert;alert=redalert'>Martial Law</A> |"
 				dat += " <A HREF='?src=\ref[src];setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
 				dat += " <A HREF='?src=\ref[src];setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
 			if(STATE_ALERT_LEVEL)

@@ -1,8 +1,9 @@
-SET z_levels=6
+SET z_levels=3
 cd ../../maps
 
 FOR /L %%i IN (1,1,%z_levels%) DO (
-  copy exodus-%%i.dmm exodus-%%i.dmm.backup
+  copy europa-%%i.dmm europa-%%i.dmm.backup
+  copy box-%%i.dmm box-%%i.dmm.backup
 )
 
 pause

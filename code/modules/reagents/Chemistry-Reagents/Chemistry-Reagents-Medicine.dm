@@ -85,23 +85,6 @@
 
 	holder.remove_reagent("lexorin", 2 * removed)
 
-/datum/reagent/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
-	reagent_state = LIQUID
-	color = "#0040FF"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-
-/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 9)
-	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
-
-	holder.remove_reagent("lexorin", 3 * removed)
-
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
 	id = "tricordrazine"
@@ -184,19 +167,19 @@
 	..()
 	M.hallucination = max(M.hallucination, 2)
 
-/datum/reagent/oxycodone
-	name = "Oxycodone"
-	id = "oxycodone"
+/datum/reagent/morphine
+	name = "Morphine"
+	id = "morphine"
 	description = "An effective and very addictive painkiller."
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
 	metabolism = 0.02
 
-/datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 
-/datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/morphine/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.druggy = max(M.druggy, 10)
 	M.hallucination = max(M.hallucination, 3)
@@ -344,7 +327,7 @@
 	scannable = 1
 
 /datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.radiation = max(M.radiation - 30 * removed, 0)
+	M.apply_effect(max(M.radiation - 30 * removed, 0), IRRADIATE, check_protection = 0)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -357,7 +340,7 @@
 	scannable = 1
 
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.radiation = max(M.radiation - 70 * removed, 0)
+	M.apply_effect(max(M.radiation - 70 * removed, 0), IRRADIATE, check_protection = 0)
 	M.adjustToxLoss(-10 * removed)
 	if(prob(60))
 		M.take_organ_damage(4 * removed, 0)
@@ -375,19 +358,27 @@
 /datum/reagent/sterilizine
 	name = "Sterilizine"
 	id = "sterilizine"
-	description = "Sterilizes wounds in preparation for surgery."
+	description = "Sterilizes wounds in preparation for surgery and thoroughly removes blood."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	touch_met = 5
 
 /datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.germ_level -= min(removed*20, M.germ_level)
+	for(var/obj/item/I in M.contents)
+		I.was_bloodied = null
+	M.was_bloodied = null
 
 /datum/reagent/sterilizine/touch_obj(var/obj/O)
 	O.germ_level -= min(volume*20, O.germ_level)
+	O.was_bloodied = null
 
 /datum/reagent/sterilizine/touch_turf(var/turf/T)
 	T.germ_level -= min(volume*20, T.germ_level)
+	for(var/obj/item/I in T.contents)
+		I.was_bloodied = null
+	for(var/obj/effect/decal/cleanable/blood/B in T)
+		qdel(B)
 
 /datum/reagent/leporazine
 	name = "Leporazine"

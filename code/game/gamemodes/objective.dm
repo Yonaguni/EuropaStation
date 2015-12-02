@@ -126,7 +126,7 @@ datum/objective/anti_revolution/demote
 	find_target()
 		..()
 		if(target && target.current)
-			explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
+			explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [company_name]'s goals. Demote \him[target.current] to assistant."
 		else
 			explanation_text = "Free Objective"
 		return target
@@ -134,7 +134,7 @@ datum/objective/anti_revolution/demote
 	find_target_by_role(role, role_type=0)
 		..(role, role_type)
 		if(target && target.current)
-			explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
+			explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [company_name]'s goals. Demote \him[target.current] to assistant."
 		else
 			explanation_text = "Free Objective"
 		return target
@@ -148,7 +148,7 @@ datum/objective/anti_revolution/demote
 
 			if(!istype(I)) return 1
 
-			if(I.assignment == "Assistant")
+			if(I.assignment == "[default_role]")
 				return 1
 			else
 				return 0
@@ -422,18 +422,15 @@ datum/objective/steal
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
-		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
-		"a sample of slime extract" = /obj/item/slime_extract,
-		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/corgi,
 		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
 		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
 		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
@@ -446,7 +443,6 @@ datum/objective/steal
 
 	var/global/possible_items_special[] = list(
 		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
-		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
 		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/hyper,
@@ -499,7 +495,7 @@ datum/objective/steal
 
 				for(var/obj/item/I in all_items) //Check for phoron tanks
 					if(istype(I, steal_target))
-						found_amount += (target_name=="28 moles of phoron (full tank)" ? (I:air_contents:gas["phoron"]) : (I:amount))
+						found_amount += (target_name=="28 moles of fuel (full tank)" ? (I:air_contents:gas["fuel"]) : (I:amount))
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")
@@ -519,7 +515,7 @@ datum/objective/steal
 						if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
 							return 1
 
-				for(var/mob/living/silicon/ai/ai in world)
+				for(var/mob/living/silicon/ai/ai in living_mob_list)
 					var/turf/T = get_turf(ai)
 					if(istype(T))
 						var/area/check_area = get_area(ai)
@@ -540,39 +536,6 @@ datum/objective/steal
 						return 1
 		return 0
 
-
-
-datum/objective/download
-	proc/gen_amount_goal()
-		target_amount = rand(10,20)
-		explanation_text = "Download [target_amount] research levels."
-		return target_amount
-
-
-	check_completion()
-		if(!ishuman(owner.current))
-			return 0
-		if(!owner.current || owner.current.stat == 2)
-			return 0
-
-		var/current_amount
-		var/obj/item/weapon/rig/S
-		if(istype(owner.current,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = owner.current
-			S = H.back
-
-		if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
-			return 0
-
-		var/obj/item/rig_module/datajack/stolen_data = locate() in S.installed_modules
-		if(!istype(stolen_data))
-			return 0
-
-		for(var/datum/tech/current_data in stolen_data.stored_research)
-			if(current_data.level > 1)
-				current_amount += (current_data.level-1)
-
-		return (current_amount<target_amount) ? 0 : 1
 
 datum/objective/capture
 	proc/gen_amount_goal()
@@ -676,7 +639,7 @@ datum/objective/heist/loot
 
 	choose_target()
 		var/loot = "an object"
-		switch(rand(1,8))
+		switch(rand(1,5))
 			if(1)
 				target = /obj/structure/particle_accelerator
 				target_amount = 6
@@ -697,18 +660,6 @@ datum/objective/heist/loot
 				target = /obj/item/weapon/gun
 				target_amount = 6
 				loot = "six guns"
-			if(6)
-				target = /obj/item/weapon/gun/energy
-				target_amount = 4
-				loot = "four energy guns"
-			if(7)
-				target = /obj/item/weapon/gun/energy/laser
-				target_amount = 2
-				loot = "two laser guns"
-			if(8)
-				target = /obj/item/weapon/gun/energy/ionrifle
-				target_amount = 1
-				loot = "an ion gun"
 
 		explanation_text = "It's a buyer's market out here. Steal [loot] for resale."
 
@@ -733,7 +684,7 @@ datum/objective/heist/loot
 datum/objective/heist/salvage
 
 	choose_target()
-		switch(rand(1,8))
+		switch(rand(1,7))
 			if(1)
 				target = DEFAULT_WALL_MATERIAL
 				target_amount = 300
@@ -744,18 +695,15 @@ datum/objective/heist/salvage
 				target = "plasteel"
 				target_amount = 100
 			if(4)
-				target = "phoron"
-				target_amount = 100
-			if(5)
 				target = "silver"
 				target_amount = 50
-			if(6)
+			if(5)
 				target = "gold"
 				target_amount = 20
-			if(7)
+			if(6)
 				target = "uranium"
 				target_amount = 20
-			if(8)
+			if(7)
 				target = "diamond"
 				target_amount = 20
 

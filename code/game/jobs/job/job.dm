@@ -13,14 +13,64 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/list/alt_titles                   // List of alternate titles, if any
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
+	var/idtype                            // The type of the ID the player will have
+	var/headsettype                       // Type of headset if any.
+	var/pdatype                           // If set, job will spawn with a PDA.
+	var/account_allowed = 1				  // Does this job type come with a station account?
+	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
+
+	var/list/uniforms = list(
+		/obj/item/clothing/under/soviet,
+		/obj/item/clothing/under/redcoat,
+		/obj/item/clothing/under/serviceoveralls,
+		/obj/item/clothing/under/captain_fly,
+		/obj/item/clothing/under/det,
+		/obj/item/clothing/under/brown,
+		)
+	var/new_uniform = pick(uniforms)
+	H.equip_to_slot_or_del(new new_uniform(H),slot_w_uniform)
+
+	if(!skip_shoes)
+		var/list/shoes = list(
+			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/workboots,
+			/obj/item/clothing/shoes/brown,
+			/obj/item/clothing/shoes/laceup
+			)
+
+		var/new_shoes = pick(shoes)
+		H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
+		if(!H.shoes)
+			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
+			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
+
+	if(!skip_hat && prob(40))
+		var/list/hats = list(
+			/obj/item/clothing/head/ushanka,
+			/obj/item/clothing/head/bandana
+			)
+		var/new_hat = pick(hats)
+		H.equip_to_slot_or_del(new new_hat(H),slot_head)
+
+	if(!skip_suit && prob(40))
+		var/list/suits = list(
+			/obj/item/clothing/suit/storage/toggle/bomber,
+			/obj/item/clothing/suit/storage/leather_jacket,
+			/obj/item/clothing/suit/storage/toggle/brown_jacket,
+			/obj/item/clothing/suit/storage/toggle/hoodie,
+			/obj/item/clothing/suit/storage/toggle/hoodie/black,
+			/obj/item/clothing/suit/poncho
+			)
+		var/new_suit = pick(suits)
+		H.equip_to_slot_or_del(new new_suit(H),slot_wear_suit)
+
 	return 1
 
 /datum/job/proc/equip_backpack(var/mob/living/carbon/human/H)
@@ -33,6 +83,41 @@
 	if(!H)	return 0
 	H.species.equip_survival_gear(H,0)
 	return 1
+
+/datum/job/proc/setup_account(var/mob/living/carbon/human/H)
+	if(!account_allowed || (H.mind && H.mind.initial_account))
+		return
+
+	var/loyalty = 1
+	if(H.client)
+		switch(H.client.prefs.nanotrasen_relation)
+			if(COMPANY_LOYAL)		loyalty = 1.30
+			if(COMPANY_SUPPORTATIVE)loyalty = 1.15
+			if(COMPANY_NEUTRAL)		loyalty = 1
+			if(COMPANY_SKEPTICAL)	loyalty = 0.85
+			if(COMPANY_OPPOSED)		loyalty = 0.70
+
+	//give them an account in the station database
+	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * (H.species ? economic_species_modifier[H.species.type] : 2)
+	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	if(H.mind)
+		var/remembered_info = ""
+		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
+		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
+		remembered_info += "<b>Your account funds are:</b> $[M.money]<br>"
+
+		if(M.transaction_log.len)
+			var/datum/transaction/T = M.transaction_log[1]
+			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
+		H.mind.store_memory(remembered_info)
+
+		H.mind.initial_account = M
+
+	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
+
+// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/del()
+/datum/job/proc/equip_preview(mob/living/carbon/human/H)
+	return equip(H)
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)

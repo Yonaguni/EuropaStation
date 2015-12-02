@@ -42,18 +42,13 @@
 /obj/structure/closet/syndicate/nuclear/New()
 	..()
 
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
+	new /obj/item/ammo_magazine/a10mm(src)
+	new /obj/item/ammo_magazine/a10mm(src)
+	new /obj/item/ammo_magazine/a10mm(src)
+	new /obj/item/ammo_magazine/a10mm(src)
+	new /obj/item/ammo_magazine/a10mm(src)
 	new /obj/item/weapon/storage/box/handcuffs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
 	new /obj/item/weapon/pinpointer/nukeop(src)
 	new /obj/item/weapon/pinpointer/nukeop(src)
 	new /obj/item/weapon/pinpointer/nukeop(src)
@@ -96,10 +91,6 @@
 		if(pickednum >= 10)
 			new /obj/item/stack/material/plasteel(src, rand(common_min, common_max))
 
-		//Phoron (rare ore)
-		if(pickednum >= 15)
-			new /obj/item/stack/material/phoron(src, rand(rare_min, rare_max))
-
 		//Silver (rare ore)
 		if(pickednum >= 20)
 			new /obj/item/stack/material/silver(src, rand(rare_min, rare_max))
@@ -131,7 +122,6 @@
 		/obj/item/stack/material/glass,
 		/obj/item/stack/material/gold,
 		/obj/item/stack/material/silver,
-		/obj/item/stack/material/phoron,
 		/obj/item/stack/material/uranium,
 		/obj/item/stack/material/diamond,
 		/obj/item/stack/material/plasteel,

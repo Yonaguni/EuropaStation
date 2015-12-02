@@ -84,8 +84,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/simple_door/proc/SwitchState()
 	if(state)
@@ -171,6 +169,9 @@
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
+/obj/structure/simple_door/CanAtmosPass()
+	return !density
+
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
 	..(newloc, "iron")
 
@@ -185,9 +186,6 @@
 
 /obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
 	..(newloc, "sandstone")
-
-/obj/structure/simple_door/phoron/New(var/newloc,var/material_name)
-	..(newloc, "phoron")
 
 /obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
 	..(newloc, "diamond")

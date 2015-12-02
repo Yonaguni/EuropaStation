@@ -64,9 +64,9 @@
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/a12mm
-	desc = "A 12mm bullet casing."
-	caliber = "12mm"
+/obj/item/ammo_casing/a10mm
+	desc = "A 10mm bullet casing."
+	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
 
@@ -110,7 +110,7 @@
 //is blocked by clothing that stops tasers and is vulnerable to EMP
 /obj/item/ammo_casing/shotgun/stunshell
 	name = "stun shell"
-	desc = "A 12 gauge taser cartridge."
+	desc = "A 12 gauge electrolaser cartridge."
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
@@ -159,20 +159,9 @@
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
 
-/obj/item/ammo_casing/chameleon
-	name = "chameleon bullets"
-	desc = "A set of bullets for the Chameleon Gun."
-	projectile_type = /obj/item/projectile/bullet/chameleon
-	caliber = ".45"
-
-/*
-/obj/item/ammo_casing/a418
-	desc = "A .418 bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/suffocationbullet
-
-/obj/item/ammo_casing/a666
-	desc = "A .666 bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/cyanideround
-*/
+/obj/item/ammo_casing/cap
+	name = "cap"
+	desc = "A cap for children toys."
+	caliber = "caps"
+	color = "#FF0000"
+	projectile_type = /obj/item/projectile/bullet/pistol/cap

@@ -7,7 +7,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 75, 1)
-		user << "\blue You inflate [src]."
+		user << "<span class='notice'>You inflate [src].</span>"
 		var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
@@ -25,7 +25,6 @@
 
 	var/health = 50.0
 
-
 /obj/structure/inflatable/New(location)
 	..()
 	update_nearby_tiles(need_rebuild=1)
@@ -37,11 +36,14 @@
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
 
+/obj/structure/inflatable/CanAtmosPass(turf/T)
+	return 0
+
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		return
-	
-	health -= Proj.damage
+	var/proj_damage = Proj.get_structure_damage()
+	if(!proj_damage) return
+
+	health -= proj_damage
 	..()
 	if(health <= 0)
 		deflate(1)
@@ -60,12 +62,6 @@
 				deflate(1)
 				return
 
-/obj/structure/inflatable/blob_act()
-	deflate(1)
-
-/obj/structure/inflatable/meteorhit()
-	deflate(1)
-
 /obj/structure/inflatable/attack_hand(mob/user as mob)
 		add_fingerprint(user)
 		return
@@ -74,7 +70,7 @@
 	if(!istype(W)) return
 
 	if (can_puncture(W))
-		visible_message("\red <b>[user] pierces [src] with [W]!</b>")
+		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
 		deflate(1)
 	if(W.damtype == BRUTE || W.damtype == BURN)
 		hit(W.force)
@@ -88,6 +84,9 @@
 	if(health <= 0)
 		deflate(1)
 
+/obj/structure/inflatable/CtrlClick()
+	hand_deflate()
+
 /obj/structure/inflatable/proc/deflate(var/violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
@@ -96,7 +95,7 @@
 		src.transfer_fingerprints_to(R)
 		qdel(src)
 	else
-		//user << "\blue You slowly deflate the inflatable wall."
+		//user << "<span class='notice'>You slowly deflate the inflatable wall.</span>"
 		visible_message("[src] slowly deflates.")
 		spawn(50)
 			var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
@@ -108,7 +107,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(isobserver(usr)) //to stop ghosts from deflating
+	if(isobserver(usr) || usr.restrained() || !usr.Adjacent(src))
 		return
 
 	verbs -= /obj/structure/inflatable/verb/hand_deflate
@@ -132,7 +131,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 75, 1)
-		user << "\blue You inflate [src]."
+		user << "<span class='notice'>You inflate [src].</span>"
 		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
@@ -167,6 +166,9 @@
 		return !opacity
 	return !density
 
+/obj/structure/inflatable/door/CanAtmosPass(turf/T)
+	return !density
+
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
 	if(isSwitchingStates) return
 	if(ismob(user))
@@ -179,8 +181,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)
@@ -236,7 +236,7 @@
 	icon_state = "folded_wall_torn"
 
 	attack_self(mob/user)
-		user << "\blue The inflatable wall is too torn to be inflated!"
+		user << "<span class='notice'>The inflatable wall is too torn to be inflated!</span>"
 		add_fingerprint(user)
 
 /obj/item/inflatable/door/torn
@@ -246,7 +246,7 @@
 	icon_state = "folded_door_torn"
 
 	attack_self(mob/user)
-		user << "\blue The inflatable door is too torn to be inflated!"
+		user << "<span class='notice'>The inflatable door is too torn to be inflated!</span>"
 		add_fingerprint(user)
 
 /obj/item/weapon/storage/briefcase/inflatable

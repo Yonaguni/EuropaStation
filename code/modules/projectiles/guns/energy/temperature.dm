@@ -6,7 +6,6 @@
 	var/temperature = T20C
 	var/current_temperature = T20C
 	charge_cost = 100
-	origin_tech = "combat=3;materials=4;powerstorage=3;magnets=2"
 	slot_flags = SLOT_BELT|SLOT_BACK
 
 	projectile_type = /obj/item/projectile/temp

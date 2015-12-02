@@ -43,6 +43,13 @@
 		return
 	..()
 
+/datum/reagent/nutriment/honey
+	name = "Honey"
+	id = "honey"
+	description = "A golden yellow syrup, loaded with sugary sweetness."
+	nutriment_factor = 10
+	color = "#FFFF00"
+
 /datum/reagent/nutriment/flour
 	name = "flour"
 	id = "flour"
@@ -107,6 +114,7 @@
 	if(!istype(T))
 		return
 
+	/*
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
@@ -114,6 +122,7 @@
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
+	*/
 
 	if(volume >= 3)
 		if(T.wet >= 1)
@@ -219,10 +228,6 @@
 	description = "This is what makes chilis hot."
 	reagent_state = LIQUID
 	color = "#B31008"
-	var/agony_dose = 5
-	var/agony_amount = 2
-	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
-	var/slime_temp_adj = 10
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -230,85 +235,98 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
+	if(alien == IS_DIONA || alien == IS_MACHINE)
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN | IS_SYNTHETIC)))
+		if(H.species && (H.species.flags & (NO_PAIN)))
 			return
-	if(dose < agony_dose)
-		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
-			M << discomfort_message
-	else
-		M.apply_effect(agony_amount, AGONY, 0)
+	if(dose < 5 && (dose == metabolism || prob(5)))
+		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	if(dose >= 5)
+		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
-			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-			M << "<span class='danger'>You feel like your insides are burning!</span>"
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(0, 15) + slime_temp_adj
+		M.bodytemperature += rand(10, 25)
 	holder.remove_reagent("frostoil", 5)
 
-/datum/reagent/capsaicin/condensed
+/datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	reagent_state = LIQUID
 	touch_met = 50 // Get rid of it quickly
 	color = "#B31008"
-	agony_dose = 0.5
-	agony_amount = 4
-	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
-	slime_temp_adj = 15
 
-/datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/condensedcapsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.adjustToxLoss(0.5 * removed)
+
+/datum/reagent/condensedcapsaicin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	var/eyes_covered = 0
 	var/mouth_covered = 0
-	var/no_pain = 0
-	var/obj/item/eye_protection = null
-	var/obj/item/face_protection = null
-
-	var/list/protection
+	var/obj/item/safe_thing = null
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		protection = list(H.head, H.glasses, H.wear_mask)
 		if(H.species && (H.species.flags & NO_PAIN))
-			no_pain = 1 //TODO: living-level can_feel_pain() proc
-	else
-		protection = list(M.wear_mask)
-
-	for(var/obj/item/I in protection)
-		if(I)
-			if(I.flags & MASKCOVERSEYES)
+			return
+		if(H.head)
+			if(H.head.body_parts_covered & EYES)
 				eyes_covered = 1
-				eye_protection = I.name
-			if(I.flags & MASKCOVERSMOUTH)
+				safe_thing = H.head
+			if((H.head.body_parts_covered & FACE) && !(H.head.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
-				face_protection = I.name
-
-	var/message = null
-	if(eyes_covered)
-		if(!mouth_covered)
-			message = "<span class='warning'>Your [eye_protection] protects your eyes from the pepperspray!</span>"
-	else
-		message = "<span class='warning'>The pepperspray gets in your eyes!</span>"
-		if(mouth_covered)
-			M.eye_blurry = max(M.eye_blurry, 15)
-			M.eye_blind = max(M.eye_blind, 5)
-		else
-			M.eye_blurry = max(M.eye_blurry, 25)
-			M.eye_blind = max(M.eye_blind, 10)
-
-	if(mouth_covered)
-		if(!message) 
-			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
-	else if(!no_pain)
-		message = "<span class='danger'>Your face and throat burn!</span>"
-		if(prob(25))
-			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
+				safe_thing = H.head
+		if(H.wear_mask)
+			if(!eyes_covered && H.wear_mask.body_parts_covered & EYES)
+				eyes_covered = 1
+				safe_thing = H.wear_mask
+			if(!mouth_covered && (H.wear_mask.body_parts_covered & FACE) && !(H.wear_mask.item_flags & FLEXIBLEMATERIAL))
+				mouth_covered = 1
+				safe_thing = H.wear_mask
+		if(H.glasses && H.glasses.body_parts_covered & EYES)
+			if(!eyes_covered)
+				eyes_covered = 1
+				if(!safe_thing)
+					safe_thing = H.glasses
+	if(eyes_covered && mouth_covered)
+		M << "<span class='warning'>Your [safe_thing] protects you from the pepperspray!</span>"
+		return
+	else if(eyes_covered)
+		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 15)
+		M.eye_blind = max(M.eye_blind, 5)
 		M.Stun(5)
 		M.Weaken(5)
+		return
+	else if (mouth_covered) // Mouth cover is better than eye cover
+		M << "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 5)
+		return
+	else // Oh dear :D
+		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 25)
+		M.eye_blind = max(M.eye_blind, 10)
+		M.Stun(5)
+		M.Weaken(5)
+		return
 
-	M << message
+/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species && (H.species.flags & (NO_PAIN)))
+			return
+	if(dose == metabolism)
+		M << "<span class='danger'>You feel like your insides are burning!</span>"
+	else
+		M.apply_effect(4, AGONY, 0)
+		if(prob(5))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
+	if(istype(M, /mob/living/carbon/slime))
+		M.bodytemperature += rand(15, 30)
+	holder.remove_reagent("frostoil", 5)
 
 /* Drinks */
 
@@ -1154,7 +1172,7 @@
 
 	glass_icon_state = "acidspitglass"
 	glass_name = "glass of Acid Spit"
-	glass_desc = "A drink from Nanotrasen. Made from live aliens."
+	glass_desc = "A drink from the company archives. Made from live aliens."
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/alliescocktail
@@ -1184,7 +1202,7 @@
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
 	id = "amasec"
-	description = "Official drink of the NanoTrasen Gun-Club!"
+	description = "Official drink of the Gun Club!"
 	reagent_state = LIQUID
 	color = "#664300"
 	strength = 25
@@ -1231,7 +1249,7 @@
 
 	glass_icon_state = "atomicbombglass"
 	glass_name = "glass of Atomic Bomb"
-	glass_desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
+	glass_desc = "We cannot take legal responsibility for your actions after imbibing."
 	glass_center_of_mass = list("x"=15, "y"=7)
 
 /datum/reagent/ethanol/b52
@@ -1444,7 +1462,7 @@
 /datum/reagent/ethanol/grog
 	name = "Grog"
 	id = "grog"
-	description = "Watered down rum, NanoTrasen approves!"
+	description = "Watered-down rum, pirate approved!"
 	reagent_state = LIQUID
 	color = "#664300"
 	strength = 100

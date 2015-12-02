@@ -45,14 +45,14 @@
 				if(output&4)
 					signal.data["oxygen"] = round(100*air_sample.gas["oxygen"]/total_moles,0.1)
 				if(output&8)
-					signal.data["phoron"] = round(100*air_sample.gas["phoron"]/total_moles,0.1)
+					signal.data["fuel"] = round(100*air_sample.gas["fuel"]/total_moles,0.1)
 				if(output&16)
 					signal.data["nitrogen"] = round(100*air_sample.gas["nitrogen"]/total_moles,0.1)
 				if(output&32)
 					signal.data["carbon_dioxide"] = round(100*air_sample.gas["carbon_dioxide"]/total_moles,0.1)
 			else
 				signal.data["oxygen"] = 0
-				signal.data["phoron"] = 0
+				signal.data["fuel"] = 0
 				signal.data["nitrogen"] = 0
 				signal.data["carbon_dioxide"] = 0
 		signal.data["sigtype"]="status"
@@ -74,7 +74,8 @@ obj/machinery/air_sensor/Destroy()
 
 /obj/machinery/computer/general_air_control
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "tank"
+	icon_keyboard = "atmos_key"
+	icon_screen = "tank"
 
 	name = "Computer"
 
@@ -122,7 +123,7 @@ obj/machinery/computer/general_air_control/Destroy()
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data["oxygen"]||data["phoron"]||data["nitrogen"]||data["carbon_dioxide"])
+				if(data["oxygen"]||data["fuel"]||data["nitrogen"]||data["carbon_dioxide"])
 					sensor_part += "   <B>Gas Composition :</B>"
 					if(data["oxygen"])
 						sensor_part += "[data["oxygen"]]% O2; "
@@ -130,8 +131,8 @@ obj/machinery/computer/general_air_control/Destroy()
 						sensor_part += "[data["nitrogen"]]% N; "
 					if(data["carbon_dioxide"])
 						sensor_part += "[data["carbon_dioxide"]]% CO2; "
-					if(data["phoron"])
-						sensor_part += "[data["phoron"]]% TX; "
+					if(data["fuel"])
+						sensor_part += "[data["fuel"]]% TX; "
 				sensor_part += "<HR>"
 
 			else
@@ -158,7 +159,6 @@ obj/machinery/computer/general_air_control/Destroy()
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "tank"
 
 	frequency = 1441
 	var/input_tag
@@ -278,7 +278,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "tank"
 
 	frequency = 1438
 	var/input_tag
@@ -398,7 +397,7 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "atmos"
+	icon_screen = "alert:0"
 
 	var/device_tag
 	var/list/device_info

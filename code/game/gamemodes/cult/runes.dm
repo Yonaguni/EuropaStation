@@ -1,4 +1,5 @@
 var/list/sacrificed = list()
+var/global/list/runes = list()
 
 /obj/effect/rune/cultify()
 	return
@@ -14,6 +15,15 @@ var/list/sacrificed = list()
 
 
 /////////////////////////////////////////FIRST RUNE
+
+	New()
+		..()
+		runes |= src
+
+	Destroy()
+		runes -= src
+		..()
+
 	proc
 		teleport(var/key)
 			var/mob/living/user = usr
@@ -21,7 +31,7 @@ var/list/sacrificed = list()
 			allrunesloc = new/list()
 			var/index = 0
 		//	var/tempnum = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in runes)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
@@ -59,7 +69,7 @@ var/list/sacrificed = list()
 			var/runecount = 0
 			var/obj/effect/rune/IP = null
 			var/mob/living/user = usr
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in runes)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["other"] && R.word3 == key)
@@ -225,7 +235,7 @@ var/list/sacrificed = list()
 
 		drain()
 			var/drain = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in runes)
 				if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
 					for(var/mob/living/carbon/D in R.loc)
 						if(D.stat!=2)
@@ -311,7 +321,7 @@ var/list/sacrificed = list()
 
 			is_sacrifice_target = 0
 			find_sacrifice:
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in runes)
 					if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
 						for(var/mob/living/carbon/human/N in R.loc)
 							if(cult && N.mind && N.mind == cult.sacrifice_target)
@@ -740,18 +750,12 @@ var/list/sacrificed = list()
 			if (istype(W,/obj/item/weapon/paper/talisman))
 				rad = 4
 				go = 1
-			if (istype(W,/obj/item/weapon/nullrod))
-				rad = 1
-				go = 1
 			if(go)
 				for(var/obj/effect/rune/R in orange(rad,src))
 					if(R!=src)
 						R:visibility=15
 					S=1
 			if(S)
-				if(istype(W,/obj/item/weapon/nullrod))
-					usr << "<span class='warning'>Arcane markings suddenly glow from underneath a thin layer of dust!</span>"
-					return
 				if(istype(W,/obj/effect/rune))
 					usr.say("Nikt[pick("'","`")]o barada kla'atu!")
 					for (var/mob/V in viewers(src))
@@ -880,9 +884,6 @@ var/list/sacrificed = list()
 				for(var/mob/living/carbon/C in range(7,src))
 					if (iscultist(C))
 						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
-						continue
 					C.ear_deaf += 50
 					C.show_message("<span class='warning'>The world around you suddenly becomes quiet.</span>", 3)
 					affected += C
@@ -899,9 +900,6 @@ var/list/sacrificed = list()
 				var/list/affected = new()
 				for(var/mob/living/carbon/C in range(7,usr))
 					if (iscultist(C))
-						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
 						continue
 					C.ear_deaf += 30
 					//talismans is weaker.
@@ -922,9 +920,6 @@ var/list/sacrificed = list()
 				for(var/mob/living/carbon/C in viewers(src))
 					if (iscultist(C))
 						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
-						continue
 					C.eye_blurry += 50
 					C.eye_blind += 20
 					if(prob(5))
@@ -944,9 +939,6 @@ var/list/sacrificed = list()
 				var/list/affected = new()
 				for(var/mob/living/carbon/C in view(2,usr))
 					if (iscultist(C))
-						continue
-					var/obj/item/weapon/nullrod/N = locate() in C
-					if(N)
 						continue
 					C.eye_blurry += 30
 					C.eye_blind += 10
@@ -977,9 +969,6 @@ var/list/sacrificed = list()
 				for(var/mob/living/carbon/M in viewers(usr))
 					if(iscultist(M))
 						continue
-					var/obj/item/weapon/nullrod/N = locate() in M
-					if(N)
-						continue
 					M.take_overall_damage(51,51)
 					M << "<span class='danger'>Your blood boils!</span>"
 					victims += M
@@ -1008,7 +997,7 @@ var/list/sacrificed = list()
 				if(iscultist(C) && !C.stat)
 					culcount++
 			if(culcount >= 5)
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in runes)
 					if(R.blood_DNA == src.blood_DNA)
 						for(var/mob/living/M in orange(2,R))
 							M.take_overall_damage(0,15)
@@ -1018,7 +1007,7 @@ var/list/sacrificed = list()
 								M << "<span class='danger'>Rune suddenly ignites, burning you!</span>"
 							var/turf/T = get_turf(R)
 							T.hotspot_expose(700,125)
-				for(var/obj/effect/decal/cleanable/blood/B in world)
+				for(var/obj/effect/decal/cleanable/blood/B in blood_decals)
 					if(B.blood_DNA == src.blood_DNA)
 						for(var/mob/living/M in orange(1,B))
 							M.take_overall_damage(0,5)
@@ -1052,13 +1041,9 @@ var/list/sacrificed = list()
 				qdel(src)
 			else                        ///When invoked as talisman, stun and mute the target mob.
 				usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
-				var/obj/item/weapon/nullrod/N = locate() in T
-				if(N)
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("<span class='warning'><B>[] invokes a talisman at [], but they are unaffected!</B></span>", usr, T), 1)
-				else
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("<span class='warning'><B>[] invokes a talisman at []</B></span>", usr, T), 1)
+
+				for(var/mob/O in viewers(T, null))
+					O.show_message(text("<span class='warning'><B>[] invokes a talisman at []</B></span>", usr, T), 1)
 
 					if(issilicon(T))
 						T.Weaken(15)

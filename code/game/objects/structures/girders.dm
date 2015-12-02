@@ -28,11 +28,10 @@
 	if(Proj.original != src && !prob(cover))
 		return PROJECTILE_CONTINUE //pass through
 
-	//Tasers and the like should not damage girders.
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
+	var/damage = Proj.get_structure_damage()
+	if(!damage)
 		return
 
-	var/damage = Proj.damage
 	if(!istype(Proj, /obj/item/projectile/beam))
 		damage *= 0.4 //non beams do reduced damage
 
@@ -130,7 +129,7 @@
 		user << "<span class='notice'>There isn't enough material here to construct a wall.</span>"
 		return 0
 
-	var/material/M = name_to_material[S.default_type]
+	var/material/M = get_material_by_name(S.default_type)
 	if(!istype(M))
 		return 0
 
@@ -171,7 +170,7 @@
 		user << "<span class='notice'>There isn't enough material here to reinforce the girder.</span>"
 		return 0
 
-	var/material/M = name_to_material[S.default_type]
+	var/material/M = get_material_by_name(S.default_type)
 	if(!istype(M) || M.integrity < 50)
 		user << "You cannot reinforce \the [src] with that; it is too soft."
 		return 0
@@ -202,10 +201,6 @@
 		dismantle()
 		return
 	return ..()
-
-/obj/structure/girder/blob_act()
-	if(prob(40))
-		qdel(src)
 
 
 /obj/structure/girder/ex_act(severity)

@@ -1,12 +1,12 @@
 /mob/living/carbon/human/proc/monkeyize()
-	if (monkeyizing)
+	if (transforming)
 		return
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
 		drop_from_inventory(W)
 	regenerate_icons()
-	monkeyizing = 1
+	transforming = 1
 	canmove = 0
 	stunned = 1
 	icon = null
@@ -21,7 +21,7 @@
 	sleep(48)
 	//animation = null
 
-	monkeyizing = 0
+	transforming = 0
 	stunned = 0
 	update_canmove()
 	invisibility = initial(invisibility)
@@ -46,7 +46,7 @@
 	return ..()
 
 /mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
-	if (monkeyizing)
+	if (transforming)
 		return
 	for(var/t in organs)
 		qdel(t)
@@ -54,11 +54,11 @@
 	return ..(move)
 
 /mob/living/carbon/AIize()
-	if (monkeyizing)
+	if (transforming)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
-	monkeyizing = 1
+	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -98,8 +98,6 @@
 					loc_landmark = sloc
 
 		O.loc = loc_landmark.loc
-		for (var/obj/item/device/radio/intercom/comm in O.loc)
-			comm.ai += O
 
 	O.on_mob_init()
 
@@ -112,12 +110,12 @@
 
 //human -> robot
 /mob/living/carbon/human/proc/Robotize()
-	if (monkeyizing)
+	if (transforming)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	monkeyizing = 1
+	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -147,14 +145,10 @@
 	O.loc = loc
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
-		if(O.mind.role_alt_title == "Android")
-			O.mmi = new /obj/item/device/mmi/digital/posibrain(O)
-		else if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/device/mmi/digital/robot(O)
-		else
-			O.mmi = new /obj/item/device/mmi(O)
-
-		O.mmi.transfer_identity(src)
+		O.mmi = new /obj/item/device/mmi(O)
+	else
+		O.mmi = new /obj/item/device/mmi/digital(O)
+	O.mmi.transfer_identity(src)
 
 	callHook("borgify", list(O))
 	O.Namepick()
@@ -163,71 +157,14 @@
 		qdel(src)
 	return O
 
-//human -> alien
-/mob/living/carbon/human/proc/Alienize()
-	if (monkeyizing)
-		return
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-	regenerate_icons()
-	monkeyizing = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
-
-	var/alien_caste = pick("Hunter","Sentinel","Drone")
-	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
-
-	new_xeno.a_intent = I_HURT
-	new_xeno.key = key
-
-	new_xeno << "<B>You are now an alien.</B>"
-	qdel(src)
-	return
-
-/mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
-	if (monkeyizing)
-		return
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-	regenerate_icons()
-	monkeyizing = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
-
-	var/mob/living/carbon/slime/new_slime
-	if(reproduce)
-		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
-		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
-			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
-			M.nutrition = round(nutrition/number)
-			step_away(M,src)
-			babies += M
-		new_slime = pick(babies)
-	else
-		new_slime = new /mob/living/carbon/slime(loc)
-		if(adult)
-			new_slime.is_adult = 1
-		else
-	new_slime.key = key
-
-	new_slime << "<B>You are now a slime. Skreee!</B>"
-	qdel(src)
-	return
 
 /mob/living/carbon/human/proc/corgize()
-	if (monkeyizing)
+	if (transforming)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	monkeyizing = 1
+	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -251,13 +188,13 @@
 		usr << "\red Sorry but this mob type is currently unavailable."
 		return
 
-	if(monkeyizing)
+	if(transforming)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 
 	regenerate_icons()
-	monkeyizing = 1
+	transforming = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
@@ -269,7 +206,6 @@
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
-
 
 	new_mob << "You suddenly feel more... animalistic."
 	spawn()
@@ -303,22 +239,8 @@
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
 		return 0	//Sanity, this should never happen.
-
-	if(ispath(MP, /mob/living/simple_animal/space_worm))
-		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
-
-	if(ispath(MP, /mob/living/simple_animal/construct/behemoth))
-		return 0 //I think this may have been an unfinished WiP or something. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/builder))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
+	if(ispath(MP, /mob/living/simple_animal/construct))
+		return 0
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_animal/cat))
 		return 1

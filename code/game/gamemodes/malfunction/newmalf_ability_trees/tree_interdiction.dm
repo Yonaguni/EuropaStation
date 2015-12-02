@@ -13,7 +13,7 @@
 	ability = new/datum/game_mode/malfunction/verb/recall_shuttle()
 	price = 75
 	next = new/datum/malf_research_ability/interdiction/unlock_cyborg()
-	name = "Recall Shuttle"
+	name = "Recall Evacuation"
 
 
 /datum/malf_research_ability/interdiction/unlock_cyborg
@@ -39,8 +39,8 @@
 // BEGIN ABILITY VERBS
 
 /datum/game_mode/malfunction/verb/recall_shuttle()
-	set name = "Recall Shuttle"
-	set desc = "25 CPU - Sends termination signal to CentCom quantum relay aborting current shuttle call."
+	set name = "Recall Evacuation"
+	set desc = "25 CPU - Sends termination signal to quantum relay aborting current shuttle call."
 	set category = "Software"
 	var/price = 25
 	var/mob/living/silicon/ai/user = usr
@@ -82,7 +82,7 @@
 	if(!target)
 		var/list/robots = list()
 		var/list/robot_names = list()
-		for(var/mob/living/silicon/robot/R in world)
+		for(var/mob/living/silicon/robot/R in mob_list)
 			if(istype(R, /mob/living/silicon/robot/drone))	// No drones.
 				continue
 			if(R.connected_ai != user)						// No robots linked to other AIs

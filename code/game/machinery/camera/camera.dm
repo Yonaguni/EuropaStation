@@ -7,8 +7,9 @@
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = 5
+	waterproof = 0
 
-	var/list/network = list("Exodus")
+	var/list/network = list(NETWORK_EXODUS)
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
@@ -59,7 +60,8 @@
 		qdel(assembly)
 		assembly = null
 	qdel(wires)
-	..()
+	wires = null
+	return ..()
 
 /obj/machinery/camera/emp_act(severity)
 	if(!isEmpProof())
@@ -79,8 +81,7 @@
 			..()
 
 /obj/machinery/camera/bullet_act(var/obj/item/projectile/P)
-	if(P.damage_type == BRUTE || P.damage_type == BURN)
-		take_damage(P.damage)
+	take_damage(P.get_structure_damage())
 
 /obj/machinery/camera/ex_act(severity)
 	if(src.invuln)
@@ -91,10 +92,6 @@
 		destroy()
 
 	..() //and give it the regular chance of being deleted outright
-
-
-/obj/machinery/camera/blob_act()
-	return
 
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
@@ -140,9 +137,19 @@
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc
-				assembly.state = 1
+				assembly.anchored = 1
+				assembly.camera_name = c_tag
+				assembly.camera_network = english_list(network, "Exodus", ",", ",")
+				assembly.update_icon()
+				assembly.dir = src.dir
 				assembly = null //so qdel doesn't eat it.
-				new /obj/item/stack/cable_coil(src.loc, length=2)
+				if(stat & BROKEN)
+					assembly.state = 2
+					user << "<span class='notice'>You repaired \the [src] frame.</span>"
+				else
+					assembly.state = 1
+					user << "<span class='notice'>You cut \the [src] free from the wall.</span>"
+					new /obj/item/stack/cable_coil(src.loc, length=2)
 			qdel(src)
 
 	// OTHER
@@ -176,16 +183,17 @@
 
 	else if (istype(W, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
-			user << "\blue Camera non-functional"
+			user << "<span class='warning'>Camera non-functional.</span>"
 			return
 		if (src.bugged)
-			user << "\blue Camera bug removed."
+			user << "<span class='notice'>Camera bug removed.</span>"
 			src.bugged = 0
 		else
-			user << "\blue Camera bugged."
+			user << "<span class='notice'>Camera bugged.</span>"
 			src.bugged = 1
 
 	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
 			visible_message("<span class='warning'><b>[src] has been [pick(W.attack_verb)] with [W] by [user]!</b></span>")
@@ -301,6 +309,9 @@
 /obj/machinery/camera/proc/can_see()
 	var/list/see = null
 	var/turf/pos = get_turf(src)
+	if(!pos)
+		return list()
+
 	if(isXRay())
 		see = range(view_range, pos)
 	else

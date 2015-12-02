@@ -5,7 +5,6 @@
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "waste" = 100)
-	origin_tech = "magnets=2"
 
 	wires = WIRE_PULSE
 
@@ -171,9 +170,7 @@
 
 
 /obj/effect/beam/i_beam/proc/hit()
-	//world << "beam \ref[src]: hit"
 	if(master)
-		//world << "beam hit \ref[src]: calling master \ref[master].hit"
 		master.trigger_beam()
 	qdel(src)
 	return

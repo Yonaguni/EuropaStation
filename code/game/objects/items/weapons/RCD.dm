@@ -14,7 +14,6 @@
 	throw_range = 5
 	w_class = 3.0
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
-	origin_tech = "engineering=4;materials=2"
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/working = 0
@@ -100,10 +99,10 @@
 		build_delay = 50
 		build_type = "airlock"
 		build_other = /obj/machinery/door/airlock
-	else if(!deconstruct && istype(T,/turf/space))
+	else if(!deconstruct && (istype(T,/turf/space) || istype(T,get_base_turf(T.z))))
 		build_cost =  1
 		build_type =  "floor"
-		build_turf =  /turf/simulated/floor/plating/airless
+		build_turf =  /turf/simulated/floor/airless
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		build_delay = deconstruct ? 50 : 40
@@ -114,7 +113,7 @@
 		build_delay = deconstruct ? 50 : 20
 		build_cost =  deconstruct ? 10 : 3
 		build_type =  deconstruct ? "floor" : "wall"
-		build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
+		build_turf =  deconstruct ? get_base_turf(T.z) : /turf/simulated/wall
 	else
 		return 0
 
@@ -123,7 +122,6 @@
 		return 0
 
 	if(!useResource(build_cost, user))
-		user << "Insufficient resources."
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
@@ -156,20 +154,24 @@
 	icon_state = "rcd"
 	item_state = "rcdammo"
 	w_class = 2
-	origin_tech = "materials=2"
 	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
 
 /obj/item/weapon/rcd/borg
 	canRwall = 1
 
 /obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
+	var/cost = amount*30
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)
-			var/cost = amount*30
 			if(R.cell.charge >= cost)
 				R.cell.use(cost)
 				return 1
+	else if(istype(loc, /mob/living/heavy_vehicle))
+		var/mob/living/heavy_vehicle/mech = loc
+		if(mech.body.cell && mech.body.cell.charge >= cost)
+			mech.body.cell.use(cost)
+			return 1
 	return 0
 
 /obj/item/weapon/rcd/borg/attackby()

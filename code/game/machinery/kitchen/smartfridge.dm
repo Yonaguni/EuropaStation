@@ -35,7 +35,8 @@
 
 /obj/machinery/smartfridge/Destroy()
 	qdel(wires)
-	..()
+	wires = null
+	return ..()
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
@@ -52,16 +53,6 @@
 
 /obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/extract
-	name = "\improper Slime Extract Storage"
-	desc = "A refrigerated storage unit for slime extracts"
-	req_access = list(access_research)
-
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/slime_extract))
 		return 1
 	return 0
 
@@ -236,14 +227,12 @@
 		user << "<span class='notice'>\The [src] smartly refuses [O].</span>"
 		return 1
 
-/obj/machinery/smartfridge/secure/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/emag))
+/obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
+	if(!emagged)
 		emagged = 1
 		locked = -1
 		user << "You short out the product lock on [src]."
-		return
-
-	..()
+		return 1
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
 	attack_hand(user)
@@ -339,7 +328,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("\red <b>[src] launches [throw_item.name] at [target.name]!</b>")
+	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
 	return 1
 
 /************************

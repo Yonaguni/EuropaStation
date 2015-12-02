@@ -35,13 +35,13 @@
 		var jobs_all = ""
 		jobs_all += "<table><tr><td></td><td><b>Command</b></td>"
 
-		jobs_all += "</tr><tr height='20'><td><b>Special</b></font></td>"//Captain in special because he is head of heads ~Intercross21
+		jobs_all += "</tr><tr height='20'><td><b>Special</b></td>"//Captain in special because he is head of heads ~Intercross21
 		jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Captain'>Captain</a></td>"
 		jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Custom'>Custom</a></td>"
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#A50000'><b>Security</b></font></td>"//Red
-		for(var/job in security_positions)
+		for(var/job in europa_gov_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -50,7 +50,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#FFA500'><b>Engineering</b></font></td>"//Orange
-		for(var/job in engineering_positions)
+		for(var/job in europa_civ_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -59,7 +59,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#008000'><b>Medical</b></font></td>"//Green
-		for(var/job in medical_positions)
+		for(var/job in europa_civ_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -68,7 +68,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#800080'><b>Science</b></font></td>"//Purple
-		for(var/job in science_positions)
+		for(var/job in europa_ind_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -77,7 +77,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#808080'><b>Civilian</b></font></td>"//Grey
-		for(var/job in civilian_positions)
+		for(var/job in europa_civ_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -310,12 +310,11 @@
 				set_default_access(t1)
 
 				writer.assignment = t1
-				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				writer.set_name()
 
 		if("reg" in href_list)
 			if(auth)
-				writer.registered_name = href_list["reg"]
-				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				writer.set_name(href_list["reg"])
 
 		computer.updateUsrDialog()
 		return
@@ -333,7 +332,7 @@
 		return get_all_centcom_jobs() + "Custom"
 
 	accessblock()
-		var/accesses = "<h5>Central Command:</h5>"
+		var/accesses = "<h5>[boss_name]:</h5>"
 		for(var/A in get_all_centcom_access())
 			if(A in writer.access)
 				accesses += topic_link(src,"access=[A]","<font color='red'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font>") + " "

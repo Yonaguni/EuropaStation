@@ -159,7 +159,7 @@
 		precision = max(rand(1,100)*bagholding.len,100)
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
-			MM << "<span class='danger>The Bluespace interface on your [teleatom] interferes with the teleport!</span>"
+			MM << "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>"
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
@@ -176,10 +176,6 @@
 		return 0
 
 	if(destination.z in config.admin_levels) //centcomm z-level
-		if(istype(teleatom, /obj/mecha))
-			var/obj/mecha/MM = teleatom
-			MM.occupant << "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>"
-			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 			return 0

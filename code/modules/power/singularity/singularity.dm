@@ -1,5 +1,6 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+var/global/list/singularities = list()
 
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 /obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -30,6 +31,9 @@
 	var/chained = 0//Adminbus chain-grab
 
 /obj/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
+
+	singularities += src
+
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 	energy = starting_energy
@@ -46,15 +50,13 @@
 			break
 
 /obj/singularity/Destroy()
+	singularities -= src
 	processing_objects -= src
 	..()
 
 /obj/singularity/attack_hand(mob/user as mob)
 	consume(user)
 	return 1
-
-/obj/singularity/blob_act(severity)
-	return
 
 /obj/singularity/ex_act(severity)
 	if(current_size == STAGE_SUPER)//IT'S UNSTOPPABLE
@@ -270,8 +272,6 @@
 	return 1
 
 /obj/singularity/proc/eat()
-	set background = BACKGROUND_ENABLED
-
 	for(var/atom/X in orange(grav_pull, src))
 		var/dist = get_dist(X, src)
 		var/obj/singularity/S = src

@@ -5,8 +5,8 @@
 	var
 		round_time // time of the round at which this should be announced, in seconds
 		message // body of the message
-		author = "NanoTrasen Editor"
-		channel_name = "Nyx Daily"
+		author = "DeptInf Press Office"
+		channel_name = "Copernican Daily"
 		can_be_redacted = 0
 		message_type = "Story"
 
@@ -14,7 +14,7 @@
 
 		paycuts_suspicion
 			round_time = 60*10
-			message = {"Reports have leaked that Nanotrasen Inc. is planning to put paycuts into
+			message = {"Reports have leaked that NanoTrasen is planning to put paycuts into
 						effect on many of its Research Stations in Tau Ceti. Apparently these research
 						stations haven't been able to yield the expected revenue, and thus adjustments
 						have to be made."}
@@ -35,7 +35,7 @@
 			 			on live humans, including virology research, genetic manipulation, and \"feeding them
 			 			to the slimes to see what happens\". Allegedly, these test subjects were neither
 			 			humanified monkeys nor volunteers, but rather unqualified staff that were forced into
-			 			the experiments, and reported to have died in a \"work accident\" by Nanotrasen Inc."}
+			 			the experiments, and reported to have died in a \"work accident\" by NanoTrasen."}
 			author = "Unauthorized"
 
 	bluespace_research
@@ -66,19 +66,19 @@
 			round_time = 60 * 50
 
 		found_ssd
-			channel_name = "Nyx Daily"
+			channel_name = "Copernican Daily"
 			author = "Doctor Eric Hanfield"
 
-			message = {"Several people have been found unconscious at their terminals. It is thought that it was due
-						to a lack of sleep or of simply migraines from staring at the screen too long. Camera footage
-						reveals that many of them were playing games instead of working and their pay has been docked
-						accordingly."}
+			message = {"Several people have been found unconscious at their terminals on numerous orbital stations throughout
+						Sol. It is thought that it was due 	to a lack of sleep or of simply migraines from staring at the
+						screen too long. Camera footage reveals that many of them were playing games instead of working and
+						in many cases their pay has been docked accordingly."}
 			round_time = 60 * 90
 
 	lotus_tree
 
 		explosions
-			channel_name = "Nyx Daily"
+			channel_name = "Copernican Daily"
 			author = "Reporter Leland H. Howards"
 
 			message = {"The newly-christened civillian transport Lotus Tree suffered two very large explosions near the
@@ -92,25 +92,25 @@
 	food_riots
 
 		breaking_news
-			channel_name = "Nyx Daily"
+			channel_name = "Copernican Daily"
 			author = "Reporter Ro'kii Ar-Raqis"
 
 			message = {"Breaking news: Food riots have broken out throughout the Refuge asteroid colony in the Tenebrae
-						Lupus system. This comes only hours after NanoTrasen officials announced they will no longer trade with the
-						colony, citing the increased presence of \"hostile factions\" on the colony has made trade too dangerous to
-						continue. NanoTrasen officials have not given any details about said factions. More on that at the top of
-						the hour."}
+						Lupus system. This comes only hours after Free Trade Union officials announced they will no longer
+						offer subsidies for traders visiting the remote colony, citing the increased presence of \"hostile
+						factions\" has made trade too dangerous to 	continue. Union representatives have not given any details
+						about said factions. More on that at the top of the hour."}
 			round_time = 60 * 10
 
 		more
-			channel_name = "Nyx Daily"
+			channel_name = "Copernican Daily"
 			author = "Reporter Ro'kii Ar-Raqis"
 
-			message = {"More on the Refuge food riots: The Refuge Council has condemned NanoTrasen's withdrawal from
-			the colony, claiming \"there has been no increase in anti-NanoTrasen activity\", and \"\[the only] reason
-			NanoTrasen withdrew was because the \[Tenebrae Lupus] system's Phoron deposits have been completely mined out.
-			We have little to trade with them now\". NanoTrasen officials have denied these allegations, calling them
-			\"further proof\" of the colony's anti-NanoTrasen stance. Meanwhile, Refuge Security has been unable to quell
+			message = {"More on the Refuge food riots: The Refuge Council has condemned the Free Trade Union's withdrawal
+			from the colony, claiming \"there has been no increase in pirate activity\", and \"\[the only] reason
+			the FTU withdrew was because the \[Tenebrae Lupus] system's phoron deposits have been completely mined out.
+			We have little to trade with them now\". Union officials have denied these allegations, calling them
+			\"further proof\" of the colony's anti-FTU stance. Meanwhile, Refuge Security has been unable to quell
 			the riots. More on this at 6."}
 			round_time = 60 * 60
 

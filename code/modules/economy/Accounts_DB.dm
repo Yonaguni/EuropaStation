@@ -7,12 +7,14 @@
 	density = 1
 	req_one_access = list(access_hop, access_captain, access_cent_captain)
 	anchored = 1
+	waterproof = 0
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card
 	var/datum/money_account/detailed_account_view
 	var/creating_new_account = 0
 	var/const/fund_cap = 1000000
+
 
 	proc/get_access_level()
 		if (!held_card)
