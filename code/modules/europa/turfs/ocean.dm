@@ -36,6 +36,7 @@ var/image/ocean_overlay_img
 	icon_state = "seafloor"
 	var/datum/gas_mixture/water
 	var/detail_decal
+	accept_lattice = 1
 
 /turf/unsimulated/ocean/is_plating()
 	return 1
@@ -119,7 +120,7 @@ var/image/ocean_overlay_img
 		blocked_dirs |= D.dir
 	for(var/step_dir in cardinal)
 		var/turf/simulated/T = get_step(src, step_dir)
-		if(!istype(T) || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
+		if(!istype(T) || istype(T, /turf/simulated/open) || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 			continue
 		var/datum/gas_mixture/GM = T.return_air()
 		if(GM && GM.gas["water"] < 1500)
@@ -140,38 +141,11 @@ var/image/ocean_overlay_img
 		water.volume = CELL_VOLUME
 	return water
 
-/turf/unsimulated/ocean/attackby(obj/item/C as obj, mob/user as mob)
-
-	if (istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/cable = C
-		cable.turf_place(src, user)
-		return
-
-	if (istype(C, /obj/item/stack/rods))
-		if(!locate(/obj/structure/lattice, src))
-			var/obj/item/stack/rods/R = C
-			if (R.use(1))
-				user << "<span class='notice'>Constructing support lattice ...</span>"
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-				new /obj/structure/lattice(src)
-		else
-			user << "<span class='warning'>There's already a lattice here!</span>"
-		return
-
-	if (istype(C, /obj/item/stack/tile/floor))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/floor/S = C
-			if(S.use(1))
-				qdel(L)
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-				ChangeTurf(/turf/simulated/floor/flooded)
-			else
-				user << "<span class='warning'>You don't have enough tiles!</span>"
-		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
-		return
-
-	return ..()
-
 #undef OCEAN_SPREAD_DEPTH
+
+/turf/simulated/floor/fixed/dirt
+	name = "seafloor"
+	desc = "Silthy."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "seafloor"
+	accept_lattice = 1
