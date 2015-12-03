@@ -1,7 +1,7 @@
-/mob/living/silicon/robot/slip_chance(var/prob_slip)
+/mob/living/silicon/robot/Check_Shoegrip()
 	if(module && module.no_slip)
-		return 0
-	..(prob_slip)
+		return 1
+	return ..()
 
 /mob/living/silicon/robot/Process_Spacemove()
 	if(module)

@@ -1,18 +1,11 @@
 /atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	return
 
-/mob/living/carbon/human/experience_pressure_difference(var/pressure_difference, var/direction)
-	if(species.flags & NO_SLIP)
-		return
-	if(shoes && (shoes.item_flags & NOSLIP))
-		return
-	..(pressure_difference, direction)
-
 /mob/living/experience_pressure_difference(var/pressure_difference, var/direction)
-	if(anchored || buckled || pressure_difference < 30)
+	if(anchored || buckled || pressure_difference < 30 || !prob(slip_chance()))
 		return
 	var/flow_msg = "pushed away"
-	if(!lying && pressure_difference >= 70 && prob(pressure_difference))
+	if(!lying && (pressure_difference >= mob_size*2))
 		Weaken(rand(2,4))
 		flow_msg = "knocked down"
 	src << "<span class='danger'>You are [flow_msg] by the rush!</span>"

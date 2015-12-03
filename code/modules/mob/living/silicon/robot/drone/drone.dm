@@ -272,10 +272,6 @@ var/list/mob_hat_cache = list()
 		return
 	..()
 
-//DRONE MOVEMENT.
-/mob/living/silicon/robot/drone/slip_chance(var/prob_slip)
-	return 0
-
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
