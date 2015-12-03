@@ -1807,7 +1807,7 @@
 #include "code\modules\wireless\interfaces.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\box-1.dmm"
-#include "maps\box-2.dmm"
-#include "maps\box-3.dmm"
+#include "maps\europa-1.dmm"
+#include "maps\europa-2.dmm"
+#include "maps\europa-3.dmm"
 // END_INCLUDE
