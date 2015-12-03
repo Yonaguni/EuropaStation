@@ -9,14 +9,21 @@
 	accept_lattice = 1
 
 	var/turf/below
-	var/list/underlay_references
 	var/global/overlay_map = list()
+	var/need_appearance_update
+
+/turf/simulated/open/ex_act()
+	return
 
 /turf/simulated/open/initialize()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
+	if(below) queue_open_turf_update(src)
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
+
+	..()
+
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
@@ -35,6 +42,13 @@
 		return
 
 	// See if something prevents us from falling.
+
+	if(below.density)
+		return
+
+	if(locate(/obj/structure/ladder) in src)
+		return
+
 	var/soft = 0
 	for(var/atom/A in below)
 		if(A.density)
@@ -49,7 +63,7 @@
 			soft = 1
 
 	// We've made sure we can move, now.
-	mover.Move(below)
+	mover.forceMove(below)
 
 	if(!soft)
 		if(!istype(mover, /mob))

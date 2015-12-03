@@ -6,6 +6,6 @@
 /turf/simulated/open/flooded
 	name = "abyss"
 
-/turf/simulated/open/flooded/initialize()
+/turf/simulated/open/flooded/update_appearance()
 	..()
 	overlays |= get_ocean_overlay()

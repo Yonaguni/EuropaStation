@@ -1,7 +1,7 @@
 // Returns the lowest turf available on a given Z-level, defaults to the world turf.
 var/global/list/base_turf_by_z = list(
 	"1" = /turf/simulated/floor/fixed/dirt,
-	"3" = /turf/simulated/floor/fixed/dirt
+	"2" = /turf/simulated/floor/fixed/dirt
 	)
 
 proc/get_base_turf(var/z)
