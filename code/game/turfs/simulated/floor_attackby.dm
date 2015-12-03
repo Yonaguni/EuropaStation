@@ -88,3 +88,5 @@
 						broken = null
 					else
 						user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					return
+	return ..()

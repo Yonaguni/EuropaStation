@@ -3,9 +3,6 @@
 	level = 1
 	var/holy = 0
 
-	// Initial air contents (in moles)
-	var/phoron = 0
-
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
@@ -22,6 +19,7 @@
 	var/obj/effect/gas_overlay/gas_overlay
 	var/list/decals
 	var/liquid = -1
+	var/accept_lattice
 
 /turf/New()
 	..()
@@ -35,6 +33,30 @@
 		luminosity = 0
 	else
 		luminosity = 1
+
+/turf/attackby(var/obj/item/C as obj, var/mob/user)
+	if(accept_lattice)
+		if(istype(C, /obj/item/stack/rods))
+			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+			if(L) return
+			var/obj/item/stack/rods/R = C
+			if (R.use(1))
+				user << "<span class='notice'>Constructing support lattice ...</span>"
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				new /obj/structure/lattice(src)
+			return
+		if(istype(C, /obj/item/stack/tile/floor))
+			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+			if(L)
+				var/obj/item/stack/tile/floor/S = C
+				if (S.get_amount() < 1) return
+				qdel(L)
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				S.use(1)
+				ChangeTurf(/turf/simulated/floor)
+			else
+				user << "<span class='warning'>The plating is going to need some support.</span>"
+			return
 
 /turf/proc/initialize()
 	return
