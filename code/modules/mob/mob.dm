@@ -1135,3 +1135,6 @@ mob/proc/yank_out_object()
 	src.in_throw_mode = 1
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
+
+/mob/proc/isSynthetic()
+	return 0

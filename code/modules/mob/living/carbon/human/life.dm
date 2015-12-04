@@ -270,12 +270,7 @@
 
 	if (radiation)
 
-		// TODO.
-		if(isSynthetic())
-			radiation = 0
-			return
-
-		var/obj/item/organ/diona/nutrients/rad_organ = locate() in internal_organs
+		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
 			radiation -= rads
@@ -295,34 +290,36 @@
 		if (radiation > 50)
 			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << "<span class='warning'>You feel weak.</span>"
-				Weaken(3)
-				if(!lying)
-					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
-				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << "<span class='warning'>Your hair falls out.</span>"
-					h_style = "Bald"
-					f_style = "Shaved"
-					update_hair()
+			if(!isSynthetic())
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					radiation -= 5 * RADIATION_SPEED_COEFFICIENT
+					src << "<span class='warning'>You feel weak.</span>"
+					Weaken(3)
+					if(!lying)
+						emote("collapse")
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
+					if((h_style != "Bald" || f_style != "Shaved" ))
+						src << "<span class='warning'>Your hair falls out.</span>"
+						h_style = "Bald"
+						f_style = "Shaved"
+						update_hair()
 
 		if (radiation > 75)
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			damage = 3
-			if(prob(5))
-				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
-			if(prob(1))
-				src << "<span class='warning'>You feel strange!</span>"
-				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
-				emote("gasp")
+			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
+			if(!isSynthetic())
+				if(prob(5))
+					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
+				if(prob(1))
+					src << "<span class='warning'>You feel strange!</span>"
+					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+					emote("gasp")
 
 		if(damage)
-			damage *= species.radiation_mod
+			damage *= isSynthetic() ? 0.5 : species.radiation_mod
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			updatehealth()
-			if(organs.len)
+			if(!isSynthetic() && organs.len)
 				var/obj/item/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
 
@@ -402,8 +399,8 @@
 	var/safe_pressure_min = species.breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
 	// Lung damage increases the minimum safe pressure.
-	if(should_have_organ("lungs"))
-		var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
+	if(should_have_organ(O_LUNGS))
+		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 		if(isnull(L))
 			safe_pressure_min = INFINITY //No lungs, how are you breathing?
 		else if(L.is_broken())
@@ -556,24 +553,24 @@
 
 		if(breath.temperature >= species.heat_level_1)
 			if(breath.temperature < species.heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 			else if(breath.temperature < species.heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 			else
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 
 		else if(breath.temperature <= species.cold_level_1)
 			if(breath.temperature > species.cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 			else if(breath.temperature > species.cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 			else
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 
 
@@ -729,15 +726,21 @@
 */
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if (species.passive_temp_gain) // We produce heat naturally.
+	// We produce heat naturally.
+	if (species.passive_temp_gain)
 		bodytemperature += species.passive_temp_gain
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
+
+	// Robolimbs cause overheating too.
+	if(robolimb_count)
+		bodytemperature += round(robolimb_count/2)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
+
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 
@@ -902,7 +905,7 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	var/obj/item/organ/diona/node/light_organ = locate() in internal_organs
+	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
 
 	if(!isSynthetic())
 		if(light_organ && !light_organ.is_broken())
@@ -1376,7 +1379,7 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(!internal_organs_by_name["heart"])
+	if(!internal_organs_by_name[O_HEART])
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)
@@ -1410,7 +1413,7 @@
 	if(pulse == PULSE_NONE)
 		return
 
-	var/obj/item/organ/heart/H = internal_organs_by_name["heart"]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
 
 	if(!H || (H.status & ORGAN_ROBOT))
 		return

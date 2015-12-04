@@ -88,7 +88,7 @@
 
 //Processes the occupant, drawing from the internal power cell if needed.
 /obj/machinery/recharge_station/proc/process_occupant()
-	if(isrobot(occupant))
+	if(istype(occupant, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = occupant
 
 		if(R.module)
@@ -103,8 +103,18 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
-	else if(ishuman(occupant))
+
+	else if(istype(occupant, /mob/living/carbon/human))
+
 		var/mob/living/carbon/human/H = occupant
+
+		// In case they somehow end up with positive values for otherwise unobtainable damage...
+		if(H.getToxLoss()>0)   H.adjustToxLoss(-(rand(1,3)))
+		if(H.getOxyLoss()>0)   H.adjustOxyLoss(-(rand(1,3)))
+		if(H.getCloneLoss()>0) H.adjustCloneLoss(-(rand(1,3)))
+		if(H.getBrainLoss()>0) H.adjustBrainLoss(-(rand(1,3)))
+
+		// Also recharge their internal battery.
 		if(!isnull(H.internal_organs_by_name["cell"]) && H.nutrition < 450)
 			H.nutrition = min(H.nutrition+10, 450)
 			cell.use(7000/450*10)
@@ -205,29 +215,37 @@
 /obj/machinery/recharge_station/Bumped(var/mob/living/silicon/robot/R)
 	go_in(R)
 
-/obj/machinery/recharge_station/proc/go_in(var/mob/M)
+/obj/machinery/recharge_station/proc/go_in(var/mob/living/silicon/robot/R)
+
 	if(occupant)
 		return
-	if(!hascell(M))
-		return
 
-	add_fingerprint(M)
-	M.reset_view(src)
-	M.forceMove(src)
-	occupant = M
-	update_icon()
-	return 1
+	if(istype(R, /mob/living/silicon/robot))
 
-/obj/machinery/recharge_station/proc/hascell(var/mob/M)
-	if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
-		if(R.cell)
-			return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		if(R.incapacitated())
+			return
+
+		if(!R.cell)
+			return
+
+		add_fingerprint(R)
+		R.reset_view(src)
+		R.forceMove(src)
+		occupant = R
+		update_icon()
+		return 1
+
+	else if(istype(R,  /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = R
 		if(!isnull(H.internal_organs_by_name["cell"]))
+			add_fingerprint(H)
+			H.reset_view(src)
+			H.forceMove(src)
+			occupant = H
+			update_icon()
 			return 1
-	return 0
+	else
+		return
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
@@ -255,6 +273,4 @@
 	set name = "Enter Recharger"
 	set src in oview(1)
 
-	if(!usr.incapacitated())
-		return
 	go_in(usr)
