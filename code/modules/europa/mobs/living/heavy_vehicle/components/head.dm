@@ -14,6 +14,11 @@
 	radio = new(src)
 	camera = new(src)
 
+/obj/item/mech_component/sensors/update_components()
+	radio = locate() in src
+	camera = locate() in src
+	software = locate() in src
+
 /obj/item/mech_component/sensors/ready_to_install()
 	return (radio && camera)
 

@@ -8,6 +8,9 @@
 /obj/item/mech_component/propulsion/ready_to_install()
 	return motivator
 
+/obj/item/mech_component/propulsion/update_components()
+	motivator = locate() in src
+
 /obj/item/mech_component/propulsion/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing,/obj/item/robot_parts/robot_component/actuator))
 		if(motivator)

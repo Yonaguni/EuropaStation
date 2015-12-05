@@ -15,6 +15,12 @@
 	var/hatch_descriptor = "cockpit"
 	var/pilot_coverage = 100
 
+/obj/item/mech_component/chassis/update_components()
+	diagnostics = locate() in src
+	cell = locate() in src
+	armour = locate() in src
+	air_supply = locate() in src
+
 /obj/item/mech_component/chassis/New()
 	..()
 	cockpit = new(200)
