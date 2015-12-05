@@ -29,9 +29,9 @@
 		if(legs)
 			anchored = 1
 		density = 1
-		overlays += get_mech_image("[body.icon_state]_cockpit", body.icon)
+		overlays += get_mech_image("[body.icon_state]_cockpit", body.icon, body.color)
 		if(body.open_cabin)
-			overlays |= get_mech_image("[body.icon_state]_open_overlay", body.icon)
+			overlays |= get_mech_image("[body.icon_state]_open_overlay", body.icon, body.color)
 	else
 		anchored = 0
 		density = 0

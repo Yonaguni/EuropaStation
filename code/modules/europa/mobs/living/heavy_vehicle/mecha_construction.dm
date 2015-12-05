@@ -1,5 +1,8 @@
 /mob/living/heavy_vehicle/proc/dismantle()
+
+	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	var/obj/structure/heavy_vehicle_frame/frame = new(get_turf(src))
+
 	frame.arms = arms
 	frame.body = body
 	frame.head = head

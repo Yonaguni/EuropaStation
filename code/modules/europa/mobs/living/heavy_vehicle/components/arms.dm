@@ -23,3 +23,6 @@
 		install_component(thing, user)
 	else
 		return ..()
+
+/obj/item/mech_component/manipulators/update_components()
+	motivator = locate() in src

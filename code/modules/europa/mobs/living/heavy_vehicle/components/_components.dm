@@ -54,14 +54,12 @@
 		total_damage = max_damage
 
 /obj/item/mech_component/proc/take_component_damage(var/brute, var/burn)
-	world << "[src] taking component damage"
 	var/list/damageable_components = list()
 	for(var/obj/item/robot_parts/robot_component/RC in contents)
 		damageable_components += RC
 	if(!damageable_components.len) return
 	var/obj/item/robot_parts/robot_component/RC = pick(damageable_components)
 	if(RC.take_damage(brute, burn))
-		world << "[RC] broke"
 		qdel(RC)
 
 /obj/item/mech_component/attackby(var/obj/item/thing, var/mob/user)
@@ -71,7 +69,11 @@
 			user.visible_message("<span class='notice'>\The [user] removes \the [removed] from \the [src].</span>")
 			user.put_in_hands(removed)
 			playsound(user.loc, 'sound/effects/pop.ogg', 50, 0)
+			update_components()
 		else
 			user << "<span class='warning'>There is nothing to remove.</span>"
 		return
 	return ..()
+
+/obj/item/mech_component/proc/update_components()
+	return
