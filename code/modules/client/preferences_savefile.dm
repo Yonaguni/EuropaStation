@@ -75,6 +75,7 @@
 
 	player_setup.load_character(S)
 
+
 	return 1
 
 /datum/preferences/proc/save_character()
