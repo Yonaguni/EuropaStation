@@ -26,10 +26,12 @@
 	if(user != pilot && user != src)
 		return
 
-	if(!canClick())
+	// Are we facing the target?
+	if(!(get_dir(src, A) & dir))
 		return
 
-	face_atom(A)
+	if(!canClick())
+		return
 
 	if(!arms)
 		user << "<span class='warning'>\The [src] has no manipulators!</span>"
