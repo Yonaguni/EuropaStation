@@ -110,6 +110,8 @@ datum/preferences
 
 	var/client/client = null
 
+	var/savefile/loaded_preferences
+	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 
 /datum/preferences/New(client/C)
@@ -124,9 +126,14 @@ datum/preferences
 		client = C
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
-			if(load_preferences())
-				if(load_character())
-					return
+			load_preferences()
+			load_and_update_character()
+
+/datum/preferences/proc/load_and_update_character(var/slot)
+	load_character(slot)
+	if(update_setup(loaded_preferences, loaded_character))
+		save_preferences()
+		save_character()
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
@@ -221,7 +228,7 @@ datum/preferences
 
 			if("reload")
 				load_preferences()
-				load_character()
+				load_and_update_character()
 
 			if("open_load_dialog")
 				if(!IsGuestKey(user.key))
@@ -229,7 +236,7 @@ datum/preferences
 					return 1
 
 			if("changeslot")
-				load_character(text2num(href_list["num"]))
+				load_and_update_character(text2num(href_list["num"]))
 				close_load_dialog(user)
 
 
