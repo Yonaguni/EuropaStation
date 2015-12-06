@@ -159,11 +159,10 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/standard
 	name = "standard robot module"
-	sprites = list(	"Basic" = "robot_old",
-					"Droid" = "droid",
-					"Default" = "robot",
-					"Drone" = "drone-standard"
-				  )
+	sprites = list(
+		"Default" = "robot",
+		"Droid" = "droid",
+		  )
 
 /obj/item/weapon/robot_module/standard/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -181,16 +180,13 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	can_be_pushed = 0
+	sprites = list(
+		"Default" = "surgeon",
+		"Needles" = "medicalrobot"
+		)
 
 /obj/item/weapon/robot_module/medical/surgeon
 	name = "surgeon robot module"
-	sprites = list(
-					"Basic" = "Medbot",
-					"Standard" = "surgeon",
-					"Advanced Droid" = "droid-medical",
-					"Needles" = "medicalrobot",
-					"Drone" = "drone-surgery"
-					)
 
 /obj/item/weapon/robot_module/medical/surgeon/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -234,14 +230,6 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/medical/crisis
 	name = "crisis robot module"
-	sprites = list(
-					"Basic" = "Medbot",
-					"Standard" = "surgeon",
-					"Advanced Droid" = "droid-medical",
-					"Needles" = "medicalrobot",
-					"Drone - Medical" = "drone-medical",
-					"Drone - Chemistry" = "drone-chemistry"
-					)
 
 /obj/item/weapon/robot_module/medical/crisis/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -300,12 +288,9 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/mob/living/silicon/proc/subsystem_power_monitor)
 	sprites = list(
-					"Basic" = "Engineering",
-					"Antique" = "engineerrobot",
-					"Landmate" = "landmate",
-					"Landmate - Treaded" = "engiborg+tread",
-					"Drone" = "drone-engineer"
-					)
+		"Default" = "landmate",
+		"Treaded" = "engiborg+tread"
+		)
 
 /obj/item/weapon/robot_module/engineering/construction
 	name = "construction robot module"
@@ -413,12 +398,8 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/general
 	sprites = list(
-					"Basic" = "secborg",
-					"Red Knight" = "Security",
-					"Black Knight" = "securityrobot",
-					"Bloodhound" = "bloodhound",
-					"Bloodhound - Treaded" = "secborg+tread",
-					"Drone" = "drone-sec"
+					"Default" = "bloodhound",
+					"Treaded" = "secborg+tread"
 				)
 
 /obj/item/weapon/robot_module/security/general/New()
@@ -446,11 +427,9 @@ var/global/list/robot_modules = list(
 	name = "janitorial robot module"
 	channels = list("Service" = 1)
 	sprites = list(
-					"Basic" = "JanBot2",
-					"Mopbot"  = "janitorrobot",
-					"Mop Gear Rex" = "mopgearrex",
-					"Drone" = "drone-janitor"
-					)
+		"Default" = "mopgearrex",
+		"Drone" = "drone-janitor"
+		)
 
 /obj/item/weapon/robot_module/janitor/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -474,6 +453,9 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/clerical
 	name = "service robot module"
 	channels = list("Service" = 1)
+	sprites = list(
+		"Default" = "toiletbot"
+	  	)
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
 					LANGUAGE_UNATHI		= 1,
@@ -484,16 +466,6 @@ var/global/list/robot_modules = list(
 					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_GUTTER		= 1
 					)
-
-/obj/item/weapon/robot_module/clerical/butler
-	sprites = list(	"Waitress" = "Service",
-					"Kent" = "toiletbot",
-					"Bro" = "Brobot",
-					"Rich" = "maximillion",
-					"Default" = "Service2",
-					"Drone - Service" = "drone-service",
-					"Drone - Hydro" = "drone-hydro"
-				  	)
 
 /obj/item/weapon/robot_module/clerical/butler/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -527,14 +499,6 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/clerical/general
 	name = "clerical robot module"
-	sprites = list(
-					"Waitress" = "Service",
-					"Kent" = "toiletbot",
-					"Bro" = "Brobot",
-					"Rich" = "maximillion",
-					"Default" = "Service2",
-					"Drone" = "drone-service"
-					)
 
 /obj/item/weapon/robot_module/clerical/general/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -558,11 +522,8 @@ var/global/list/robot_modules = list(
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 	sprites = list(
-					"Basic" = "Miner_old",
-					"Advanced Droid" = "droid-miner",
-					"Treadhead" = "Miner",
-					"Drone" = "drone-miner"
-				)
+		"Default" = "Miner"
+		)
 	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 /obj/item/weapon/robot_module/miner/New()
@@ -583,9 +544,8 @@ var/global/list/robot_modules = list(
 	name = "research module"
 	channels = list("Science" = 1)
 	sprites = list(
-					"Droid" = "droid-science",
-					"Drone" = "drone-science"
-					)
+		"Default" = "toiletbot"
+		)
 
 /obj/item/weapon/robot_module/research/New()
 	src.modules += new /obj/item/device/flash(src)
@@ -625,8 +585,8 @@ var/global/list/robot_modules = list(
 					LANGUAGE_GUTTER = 1
 					)
 	sprites = list(
-					"Dread" = "securityrobot",
-				)
+		"Default" = "droid-combat",
+		)
 	var/id
 
 /obj/item/weapon/robot_module/syndicate/New(var/mob/living/silicon/robot/R)
@@ -649,7 +609,9 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/combat
 	name = "combat robot module"
-	sprites = list("Combat Droid" = "droid-combat")
+	sprites = list(
+		"Default" = "droid-combat"
+		)
 
 /obj/item/weapon/robot_module/combat/New()
 	src.modules += new /obj/item/device/flash(src)

@@ -43,18 +43,18 @@
 				src << "Alert cancelled. Power has been restored without our assistance."
 				aiRestorePowerRoutine = 0
 				src.blind.layer = 0
-				updateicon()
+				update_icons()
 				return
 			else if (aiRestorePowerRoutine==3)
 				src << "Alert cancelled. Power has been restored."
 				aiRestorePowerRoutine = 0
 				src.blind.layer = 0
-				updateicon()
+				update_icons()
 				return
 			else if (APU_power)
 				aiRestorePowerRoutine = 0
 				src.blind.layer = 0
-				updateicon()
+				update_icons()
 				return
 		else
 			var/area/current_area = get_area(src)
@@ -120,7 +120,7 @@
 									aiRestorePowerRoutine = 3
 									src << "Here are your current laws:"
 									show_laws()
-									updateicon()
+									update_icons()
 							sleep(50)
 							theAPC = null
 
@@ -153,7 +153,7 @@
 
 /mob/living/silicon/ai/update_sight()
 	if(is_blinded())
-		updateicon()
+		update_icons()
 		src.blind.screen_loc = ui_entire_screen
 		if (src.blind.layer!=18)
 			src.blind.layer = 18
