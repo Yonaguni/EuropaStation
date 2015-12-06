@@ -26,9 +26,6 @@
 
 	var/turf/T = target
 	for(var/obj/structure/conduit/C in T.contents)
-		if(C.feed_type == build_type)
-			user << "<span class='warning'>There is already \a [build_type] in that location.</span>"
-			return
 		if(C.feed_layer == place_row)
 			user << "<span class='warning'>There is \a [C] in row [place_row+1] at that location.</span>"
 			return
@@ -49,3 +46,8 @@
 	build_type = "matter_feed"
 	build_path = /obj/structure/conduit/matter
 	color = "#999999"
+
+/obj/item/stack/conduit/disposals
+	name = "disposals pipe bundle"
+	build_type = "disposals"
+	build_path = /obj/structure/conduit/disposals

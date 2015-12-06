@@ -1,6 +1,8 @@
 /obj/structure/conduit/data
 	name = "data cable"
 	desc = "A length of cabling for networked devices."
+	icon_state = "data_cable_single"
+	icon = 'icons/obj/europa/structures/conduits/data_conduit.dmi'
 	feed_type = "data_cable"
 	feed_icon = "data_cable"
 	feed_layer = 1

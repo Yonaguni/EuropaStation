@@ -5,7 +5,7 @@ var/list/feed_cache = list()
 
 	name = "feed conduit"
 	icon_state = "matter_feed"
-	icon = 'icons/obj/europa/structures/feeds.dmi'
+	icon = 'icons/obj/europa/structures/conduits/matter_feed.dmi'
 	anchored = 1
 	density = 0
 	layer = 2.5
@@ -23,11 +23,17 @@ var/list/feed_cache = list()
 	var/feed_layer = 0
 	var/network_type = /datum/conduit_network
 	var/datum/conduit_network/network
-	var/list/connections = list()
+
+	var/list/connected_to = list()
+	var/connection_dir = 0
 
     // Used for calculating offset.
 	var/conduit_width = 4
 	var/conduit_offset = 10
+
+/obj/structure/conduit/examine()
+	..()
+	usr << "<span class='notice'>It has been placed in row [feed_layer+1].</span>"
 
 /obj/structure/conduit/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, deconstruct_tool))
@@ -79,25 +85,28 @@ var/list/feed_cache = list()
 	if(network)
 		qdel(network)
 		network = null
-	feed_layer = -1
-	feed_type = "deleting"
-	var/turf/T = get_turf(src)
-	for(var/check_dir in list(NORTH, SOUTH, EAST, WEST))
-		var/turf/check_turf = get_step(T, check_dir)
+	for(var/turf/check_turf in orange(src,1))
 		if(!check_turf || !check_turf.contents.len)
 			continue
 		for(var/obj/structure/conduit/check_feed in check_turf.contents)
-			if(check_feed.feed_type == src.feed_type && check_feed.feed_layer == src.feed_layer)
-				check_feed.connections["[get_dir(check_feed, src)]"] = null
-				check_feed.update_icon()
-
+			if(!(src in check_feed.connected_to))
+				continue
+			if(check_feed.feed_layer == src.feed_layer)
+				check_feed.connected_to -= src
+				check_feed.connection_dir &= ~(get_dir(check_feed, src))
+				spawn(1)
+					check_feed.update_icon()
+	feed_layer = -1
+	feed_type = "deleting"
 	return ..()
 
 /obj/structure/conduit/proc/build_network(var/recursive = 1)
 	var/turf/T = get_turf(src)
 	if(!T) return
 
-	connections = list()
+	connected_to = list()
+	connection_dir = 0
+
 	for(var/check_dir in list(NORTH, SOUTH, EAST, WEST))
 		var/turf/check_turf = get_step(T, check_dir)
 		if(!check_turf || !check_turf.contents.len)
@@ -106,14 +115,15 @@ var/list/feed_cache = list()
 			if(check_feed.feed_type == src.feed_type && check_feed.feed_layer == src.feed_layer)
 				if(!network && check_feed.network)
 					check_feed.network.add_conduit(src)
-				connections["[check_dir]"] = check_feed
-				check_feed.connections["[get_dir(check_feed, src)]"] = src
+				connected_to |= check_feed
+				connection_dir |= get_dir(src, check_feed)
+				check_feed.connected_to |= src
+				check_feed.connection_dir |= get_dir(check_feed, src)
 				check_feed.update_icon()
 				break
 
-	if(connections.len)
-		for(var/check_dir in connections)
-			var/obj/structure/conduit/F = connections[check_dir]
+	if(connected_to.len)
+		for(var/obj/structure/conduit/F in connected_to)
 			if(network)
 				if(F.network)
 					if(network == F.network)
@@ -138,17 +148,26 @@ var/list/feed_cache = list()
 
 /obj/structure/conduit/update_icon()
 
-	icon_state = feed_icon
-	layer = initial(layer) + (feed_layer/10)
-	overlays.Cut()
-	for(var/con_dir in connections)
-		if(connections[con_dir])
-			var/cache_key = "[feed_icon]_[con_dir]_[feed_layer]"
-			if(!feed_cache[cache_key])
-				var/image/I = image(icon, "[feed_icon]_con_[con_dir]")
-				I.layer = src.layer-0.1
-				feed_cache[cache_key] = I
-			overlays += feed_cache[cache_key]
+	if(!connected_to || !connected_to.len)
+		dir = 0
+		icon_state = "[feed_icon]_single"
+	else if(connected_to.len == 1 || (connection_dir == NORTHEAST || connection_dir == NORTHWEST || connection_dir == SOUTHEAST || connection_dir == SOUTHWEST))
+		icon_state = "[feed_icon]"
+		dir = connection_dir
+	else
+		if(connected_to.len == 4)
+			dir = 0
+			icon_state = "[feed_icon]_full"
+		else if(connected_to.len == 2 && (((connection_dir & NORTH) && (connection_dir & SOUTH)) || ((connection_dir & EAST) && (connection_dir & WEST))))
+			icon_state = "[feed_icon]_straight"
+			if(connection_dir & NORTH)
+				dir = NORTH
+			else
+				dir = EAST
+		else
+			icon_state = "[feed_icon]_manifold"
+			dir = (15 & (~connection_dir)) // Get the solitary unconnected dir.
 
+	layer = initial(layer) + (feed_layer/10)
 	pixel_x = (feed_layer * conduit_width) - conduit_offset
 	pixel_y = pixel_x

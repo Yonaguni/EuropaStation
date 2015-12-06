@@ -3,7 +3,7 @@
 
 	name = "matter storage bin"
 	desc = "It's a large matter storage system."
-	icon = 'icons/obj/europa/structures/feeds.dmi'
+	icon = 'icons/obj/europa/structures/conduits/matter_bins.dmi'
 	icon_state = "matter_storage"
 	layer = 4
 	anchored = 4
