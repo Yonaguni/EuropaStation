@@ -37,6 +37,11 @@ var/list/mob_hat_cache = list()
 	integrated_light_power = 3
 	local_transmit = 1
 	possession_candidate = 1
+	speed = -1
+
+	speak_statement = "beeps"
+	speak_exclamation = "buzzes"
+	speak_query = "chimes"
 
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL
@@ -55,6 +60,7 @@ var/list/mob_hat_cache = list()
 	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
+	var/mob/living/master
 
 	holder_type = /obj/item/weapon/holder
 
@@ -87,15 +93,6 @@ var/list/mob_hat_cache = list()
 	if(hat)
 		hat.loc = get_turf(src)
 	..()
-
-/mob/living/silicon/robot/drone/construction
-	icon_state = "constructiondrone"
-	law_type = /datum/ai_laws/construction_drone
-	module_type = /obj/item/weapon/robot_module/drone/construction
-	can_pull_size = 5
-	can_pull_mobs = 1
-	hat_x_offset = 1
-	hat_y_offset = -12
 
 /mob/living/silicon/robot/drone/New()
 
@@ -143,7 +140,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/update_icons()
 
 	overlays.Cut()
-	if(stat == 0)ooo
+	if(stat == 0)
 		overlays += "eyes-[icon_state]"
 	else
 		overlays -= "eyes"
@@ -337,36 +334,13 @@ var/list/mob_hat_cache = list()
 	src << "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>"
 	src << "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows."
 
-/mob/living/silicon/robot/drone/start_pulling(var/atom/movable/AM)
-
-	if(!(istype(AM,/obj/item/pipe) || istype(AM,/obj/structure/disposalconstruct)))
-		if(istype(AM,/obj/item))
-			var/obj/item/O = AM
-			if(O.w_class > can_pull_size)
-				src << "<span class='warning'>You are too small to pull that.</span>"
-				return
-		else
-			if(!can_pull_mobs)
-				src << "<span class='warning'>You are too small to pull that.</span>"
-				return
-	..()
-
 /mob/living/silicon/robot/drone/add_robot_verbs()
 	src.verbs |= silicon_subsystems
 
 /mob/living/silicon/robot/drone/remove_robot_verbs()
 	src.verbs -= silicon_subsystems
 
-/mob/living/silicon/robot/drone/construction/welcome_drone()
-	src << "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>."
-	src << "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible."
-	src << "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows."
-	src << "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>."
-
-/mob/living/silicon/robot/drone/construction/init()
-	..()
-	flavor_text = "It's a bulky construction drone stamped with a Sol Central glyph."
-
-/mob/living/silicon/robot/drone/construction/updatename()
-	real_name = "construction drone ([rand(100,999)])"
-	name = real_name
+/mob/living/silicon/robot/drone/proc/set_master(var/mob/living/new_master)
+	master = new_master
+	if(!laws) full_law_reset()
+	laws.set_zeroth_law("Your master is \the [new_master]. Obey their instructions and serve them well. This law overrides all other laws.")
