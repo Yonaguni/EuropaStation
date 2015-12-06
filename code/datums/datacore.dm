@@ -164,7 +164,7 @@
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 
-		var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
+		var/id = generate_record_id()
 		//General Record
 		var/datum/data/record/G = CreateGeneralRecord(H, id)
 		G.fields["name"]		= H.real_name
@@ -220,7 +220,10 @@
 		locked += L
 	return
 
-proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
+/proc/generate_record_id()
+	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
+
+/proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	var/icon/preview_icon = null
 
 	var/g = "m"
