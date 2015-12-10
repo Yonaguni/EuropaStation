@@ -84,15 +84,15 @@
 			if(istype(I,/obj/item/organ))
 				continue
 			removable_objects |= I
-	if(!removable_objects.len)
-		return ..()
-	var/obj/item/I = pick(removable_objects)
-	if(!istype(I))
-		return ..()
-	I.loc = get_turf(user)
-	if(!(user.l_hand && user.r_hand))
-		user.put_in_hands(I)
-	user.visible_message("<span class='danger'>\The [user] rips \the [I] out of \the [src]!</span>")
+	if(removable_objects.len)
+		var/obj/item/I = pick(removable_objects)
+		I.loc = get_turf(user) //just in case something was embedded that is not an item
+		if(istype(I))
+			if(!(user.l_hand && user.r_hand))
+				user.put_in_hands(I)
+		user.visible_message("<span class='danger'>\The [user] rips \the [I] out of \the [src]!</span>")
+		return //no eating the limb until everything's been removed
+	return ..()
 
 /obj/item/organ/external/examine()
 	..()
@@ -165,8 +165,8 @@
 	return
 
 
-/obj/item/organ/external/New(var/mob/living/carbon/holder, var/internal)
-	..()
+/obj/item/organ/external/New(var/mob/living/carbon/holder)
+	..(holder, 0)
 	if(owner)
 		replaced(owner)
 		sync_colour_to_human(owner)
@@ -198,8 +198,6 @@
 
 /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
 	if((brute <= 0) && (burn <= 0))
-		return 0
-	if(status & ORGAN_DESTROYED)
 		return 0
 
 	brute *= brute_mod
@@ -475,7 +473,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 */
 /obj/item/organ/external/proc/update_germs()
 
-	if(status & (ORGAN_ROBOT|ORGAN_DESTROYED) || (owner.species && owner.species.flags & IS_PLANT)) //Robotic limbs shouldn't be infected, nor should nonexistant limbs.
+	if(status & (ORGAN_ROBOT) || (owner.species && owner.species.flags & IS_PLANT)) //Robotic limbs shouldn't be infected, nor should nonexistant limbs.
 		germ_level = 0
 		return
 
@@ -652,8 +650,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 // new damage icon system
 // returns just the brute/burn damage code
 /obj/item/organ/external/proc/damage_state_text()
-	if(status & ORGAN_DESTROYED)
-		return "--"
 
 	var/tburn = 0
 	var/tbrute = 0
@@ -682,13 +678,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 ****************************************************/
 
 //Handles dismemberment
-/obj/item/organ/external/proc/droplimb(var/clean, var/disintegrate, var/ignore_children)
+/obj/item/organ/external/proc/droplimb(var/clean, var/disintegrate = DROPLIMB_EDGE, var/ignore_children = null)
 
 	if(cannot_amputate || !owner)
 		return
-
-	if(!disintegrate)
-		disintegrate = DROPLIMB_EDGE
 
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
@@ -713,16 +706,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='danger'>You hear the [gore_sound].</span>")
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
+	var/obj/item/organ/external/parent_organ = parent
 	removed(null, ignore_children)
 	victim.traumatic_shock += 60
 
 	wounds.Cut()
-	if(parent)
+	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
-		parent.children -= src
 		if(clean)
-			parent.wounds |= W
-			parent.update_damages()
+			parent_organ.wounds |= W
+			parent_organ.update_damages()
 		else
 			var/obj/item/organ/external/stump/stump = new (victim, 0, src)
 			if(status & ORGAN_ROBOT)
@@ -730,7 +723,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			stump.wounds |= W
 			victim.organs |= stump
 			stump.update_damages()
-		parent = null
 
 	spawn(1)
 		victim.updatehealth()
@@ -990,7 +982,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		H.drop_from_inventory(W)
 	W.loc = owner
 
-/obj/item/organ/external/removed(var/mob/living/user, var/ignore_children)
+/obj/item/organ/external/removed(var/mob/living/user, var/ignore_children = 0)
 
 	if(!owner)
 		return
@@ -999,14 +991,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	..()
 
-	status |= ORGAN_DESTROYED
 	victim.bad_external_organs -= src
 
-	for(var/obj/item/implant in implants)
-		if(!istype(implant))
-			return
-		if(implant.w_class <= 2)
-			qdel(implant)
+	for(var/atom/movable/implant in implants)
+		//large items and non-item objs fall to the floor, everything else stays
+		var/obj/item/I = implant
+		if(istype(I) && I.w_class < 3)
+			implant.loc = get_turf(victim.loc)
 		else
 			implant.loc = src
 	implants.Cut()
@@ -1024,6 +1015,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for(var/obj/item/organ/organ in internal_organs)
 		organ.removed()
 		organ.loc = src
+
+	// Remove parent references
+	parent.children -= src
+	parent = null
 
 	release_restraints(victim)
 	victim.organs -= src
@@ -1101,7 +1096,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(wound_descriptors.len)
 		var/list/flavor_text = list()
 		var/list/no_exclude = list("gaping wound", "big gaping wound", "massive wound", "large bruise",\
-		"huge bruise", "massive bruise", "severe burn", "large burn", "deep burn", "carbonised area")
+		"huge bruise", "massive bruise", "severe burn", "large burn", "deep burn", "carbonised area") //note to self make this more robust
 		for(var/wound in wound_descriptors)
 			switch(wound_descriptors[wound])
 				if(1)

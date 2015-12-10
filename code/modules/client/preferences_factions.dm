@@ -21,33 +21,29 @@ var/global/list/citizenship_choices = list(
 	)
 
 var/global/list/home_system_choices = list(
-	"Sol",
-	"Nyx",
-	"Tau Ceti",
-	"Epsilon Ursae Minoris",
-	"S'randarr"
+	"Mercury",
+	"Venus",
+	"Earth",
+	"Luna",
+	"Mars",
+	"Jupiter",
+	"Saturn",
+	"Uranus",
+	"Neptune"
 	)
 
 var/global/list/faction_choices = list(
 	"Sol Central",
-	"Vey Med",
-	"Einstein Engines",
-	"Free Trade Union",
-	"NanoTrasen",
-	"Ward-Takahashi GMB",
-	"Gilthari Exports",
-	"Grayson Manufactories Ltd.",
-	"Aether Atmospherics",
-	"Zeng-Hu Pharmaceuticals",
-	"Hesphaistos Industries"
+	"Jovian Navy",
+	"Free Trade Union"
 	)
 
 var/global/list/religion_choices = list(
-	"Unitarianism",
 	"Hinduism",
 	"Buddhist",
 	"Islamic",
 	"Christian",
+	"Pagan",
 	"Agnostic",
 	"Deist"
 	)

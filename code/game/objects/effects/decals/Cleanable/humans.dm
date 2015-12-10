@@ -46,6 +46,10 @@ var/global/list/blood_decals = list()
 /obj/effect/decal/cleanable/blood/New()
 	..()
 	blood_decals += src
+	drytime = world.time + DRYING_TIME * (amount+1)
+
+/obj/effect/decal/cleanable/blood/initialize()
+	..()
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -56,7 +60,6 @@ var/global/list/blood_decals = list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	drytime = world.time + DRYING_TIME * (amount+1)
 	processing_objects += src
 
 /obj/effect/decal/cleanable/blood/process()
@@ -76,7 +79,7 @@ var/global/list/blood_decals = list()
 	var/obj/item/organ/external/l_foot = perp.get_organ("l_foot")
 	var/obj/item/organ/external/r_foot = perp.get_organ("r_foot")
 	var/hasfeet = 1
-	if((!l_foot || l_foot.status & ORGAN_DESTROYED) && (!r_foot || r_foot.status & ORGAN_DESTROYED))
+	if((!l_foot || l_foot.is_stump()) && (!r_foot || r_foot.is_stump()))
 		hasfeet = 0
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes
