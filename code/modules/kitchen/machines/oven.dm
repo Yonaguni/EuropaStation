@@ -44,7 +44,7 @@
 
 /obj/machinery/kitchen/oven/proc/toggle_open(var/mob/user)
 	open = !open
-	user << "You [open ? "open" : "close"] the [src]."
+	if(user) user << "You [open ? "open" : "close"] the [src]."
 	update_icon()
 
 /obj/machinery/kitchen/oven/get_data()

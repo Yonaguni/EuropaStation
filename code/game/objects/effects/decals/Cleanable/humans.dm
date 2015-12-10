@@ -46,6 +46,10 @@ var/global/list/blood_decals = list()
 /obj/effect/decal/cleanable/blood/New()
 	..()
 	blood_decals += src
+	drytime = world.time + DRYING_TIME * (amount+1)
+
+/obj/effect/decal/cleanable/blood/initialize()
+	..()
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -56,7 +60,6 @@ var/global/list/blood_decals = list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	drytime = world.time + DRYING_TIME * (amount+1)
 	processing_objects += src
 
 /obj/effect/decal/cleanable/blood/process()
