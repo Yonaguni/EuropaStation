@@ -64,7 +64,7 @@ var/list/organ_cache = list()
 		var/mob/living/carbon/human/H = holder
 		if(istype(H))
 			if(internal)
-				var/obj/item/organ/external/E = H.organs_by_name[src.parent_organ]
+				var/obj/item/organ/external/E = H.get_organ(parent_organ)
 				if(E)
 					if(E.internal_organs == null)
 						E.internal_organs = list()
@@ -246,6 +246,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
 	robotic = 2
 	status = ORGAN_ROBOT
+
 
 // Used to add things like pacemakers, etc
 // Only called at chargen, so we don't need to care

@@ -23,6 +23,7 @@
 	//Check to see if pressure is within acceptable limits
 	var/pressure = air.return_pressure()
 	if(pressure > alert_pressure)
+
 		for(var/obj/machinery/atmospherics/pipe/member in members)
 			if(!member.check_pressure(pressure))
 				break //Only delete 1 pipe per process
