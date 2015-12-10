@@ -64,6 +64,7 @@ var/global/datum/global_init/init = new ()
 
 	sleep_offline = 1
 
+
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)

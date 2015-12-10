@@ -12,9 +12,7 @@
 /datum/random_map/large_cave
 	descriptor = "large cave"
 	initial_wall_cell = 100
-	wall_type =  /turf/simulated/mineral
-	floor_type = /turf/unsimulated/ocean
-	target_turf_type = /turf/unsimulated/mask
+
 	var/digger_count = 10
 	var/digger_target_percentile = 0.5
 	var/smoothing_iterations = 5
@@ -108,3 +106,19 @@
 
 /datum/random_map/large_cave/check_map_sanity()
 	return 1
+
+/datum/random_map/large_cave/get_appropriate_path(var/value)
+	return
+
+/datum/random_map/large_cave/apply_to_turf(var/x,var/y)
+	var/current_cell = GET_MAP_CELL(x,y)
+	if(!current_cell)
+		return 0
+	var/turf/simulated/mineral/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
+	if(istype(T) && !T.ignore_mapgen)
+		if(map[current_cell] == FLOOR_CHAR)
+			T.make_floor()
+		else
+			T.make_wall()
+		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+	return T

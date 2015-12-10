@@ -45,10 +45,23 @@ datum/controller/game_controller/proc/setup_objects()
 	var/otod = world.timeofday
 	sleep(-1)
 	if(config.generate_asteroid)
-		admin_notice("<span class='warning'>Generating mining level...</span>", R_DEBUG)
+
+		/*
+		admin_notice("<span class='warning'>Generating shallow caverns...</span>", R_DEBUG)
 		sleep(-1)
-		// These values determine the specific area that the map is applied to.
-		new /datum/random_map/automata/cave_system(null,1,1,1,255,255)
+
+		// TODO: layer-specific caves
+		new /datum/random_map/large_cave(null,8,8,2,127,127)
+		new /datum/random_map/large_cave(null,120,8,2,127,127)
+		new /datum/random_map/large_cave(null,8,120,2,127,127)
+		new /datum/random_map/large_cave(null,120,120,2,127,127)
+		new /datum/random_map/large_cave(null,64,64,2,127,127)
+		*/
+		admin_notice("<span class='warning'>Generating deep caverns...</span>", R_DEBUG)
+		sleep(-1)
+		for(var/i = 3 to (rand(5)+3))
+			sleep(-1)
+			new /datum/random_map/large_cave(null,rand(220)+8,rand(220)+8,1,rand(32)+32,rand(32)+32)
 
 	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
 	sleep(-1)
