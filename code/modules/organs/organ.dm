@@ -262,6 +262,7 @@ var/list/organ_cache = list()
 	if(!robotic)
 		return
 
+
 	// I hate the way severity is lower for more severe damage.
 	var/damage_modifier = severity * 4
 	if(status & ORGAN_ROBOT)
