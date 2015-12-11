@@ -101,6 +101,10 @@
 				if(count <= 1)
 					changed = 1
 					map[GET_MAP_CELL(x,y)] = FLOOR_CHAR
+				else if(count > 3)
+					changed = 1
+					map[GET_MAP_CELL(x,y)] = WALL_CHAR
+
 		if(!changed)
 			break
 

@@ -56,8 +56,7 @@
 				signal.data["nitrogen"] = 0
 				signal.data["carbon_dioxide"] = 0
 		signal.data["sigtype"]="status"
-		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
-
+		if(radio_connection) radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
