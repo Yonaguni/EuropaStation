@@ -50,6 +50,7 @@
 	id = new_id
 	if(istype(O))
 		parent = O
+	..()
 
 /datum/wifi/Destroy(var/wifi/device)
 	parent = null
