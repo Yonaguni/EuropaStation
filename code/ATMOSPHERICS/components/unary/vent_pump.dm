@@ -195,6 +195,7 @@
 			spawn(rand(100,200))	//hibernate for 10 or 20 seconds randomly
 				hibernate = 0
 
+	update_nearby_tiles()
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
