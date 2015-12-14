@@ -150,6 +150,8 @@ obj/machinery/airlock_sensor
 	anchored = 1
 	power_channel = ENVIRON
 
+	waterproof = 0
+
 	var/id_tag
 	var/master_tag
 	var/frequency = 1379
@@ -160,6 +162,10 @@ obj/machinery/airlock_sensor
 	var/on = 1
 	var/alert = 0
 	var/previousPressure
+
+	var/_airlock_function = 4	//airlock chamber by default
+	var/_wifi_id
+	var/datum/wifi/receiver/airlock_sensor/wifi_receiver
 
 obj/machinery/airlock_sensor/update_icon()
 	if(on)
@@ -202,10 +208,13 @@ obj/machinery/airlock_sensor/process()
 obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+	if(frequency)
+		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 obj/machinery/airlock_sensor/initialize()
 	set_frequency(frequency)
+	if(_wifi_id)
+		wifi_receiver = new(_wifi_id, src)
 
 obj/machinery/airlock_sensor/New()
 	..()
@@ -215,6 +224,8 @@ obj/machinery/airlock_sensor/New()
 obj/machinery/airlock_sensor/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
+	qdel(wifi_receiver)
+	wifi_receiver = null
 	..()
 
 obj/machinery/airlock_sensor/airlock_interior
