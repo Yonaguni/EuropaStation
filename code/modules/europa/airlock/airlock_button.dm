@@ -3,6 +3,7 @@
 //  Set _airlock_function to either AL_INTERIOR to cycle to interior, or AL_EXTERIOR to cycle to exterior
 //-------------------------------
 /obj/machinery/button/alternate/airlock
+	waterproof = 0
 	var/_airlock_function = AL_INTERIOR
 
 /obj/machinery/button/alternate/airlock/exterior

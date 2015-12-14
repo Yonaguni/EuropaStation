@@ -16,6 +16,7 @@
 	use_power = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
+	waterproof = 0
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
@@ -39,6 +40,7 @@
 	var/external_pressure_bound_default = EXTERNAL_PRESSURE_BOUND
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
+
 
 	var/welded = 0 // Added for aliens -- TLE
 
@@ -189,7 +191,7 @@
 		//If we're in an area that is fucking ideal, and we don't have to do anything, chances are we won't next tick either so why redo these calculations?
 		//JESUS FUCK.  THERE ARE LITERALLY 250 OF YOU MOTHERFUCKERS ON ZLEVEL ONE AND YOU DO THIS SHIT EVERY TICK WHEN VERY OFTEN THERE IS NO REASON TO
 
-		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && controller_iteration > 10)	//99% of all vents
+		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && frequency && controller_iteration > 10)	//99% of all vents
 			//Fucking hibernate because you ain't doing shit.
 			hibernate = 1
 			spawn(rand(100,200))	//hibernate for 10 or 20 seconds randomly

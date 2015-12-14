@@ -150,6 +150,8 @@ obj/machinery/airlock_sensor
 	anchored = 1
 	power_channel = ENVIRON
 
+	waterproof = 0
+
 	var/id_tag
 	var/master_tag
 	var/frequency = 1379

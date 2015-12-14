@@ -139,7 +139,11 @@ var/image/ocean_overlay_img
 		water.temperature = 250            // -24C
 		water.adjust_gas("water", 1500, 1) // Should be higher.
 		water.volume = CELL_VOLUME
-	return water
+
+	var/datum/gas_mixture/infiniwater = new()
+	infiniwater.copy_from(water)
+
+	return infiniwater
 
 #undef OCEAN_SPREAD_DEPTH
 

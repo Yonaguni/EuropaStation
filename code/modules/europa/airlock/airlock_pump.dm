@@ -3,8 +3,7 @@
 	desc = "An air vent with additional electronics for airlock control functionality."
 	power_channel = EQUIP
 	power_rating = 15000	//15 kW ~ 20 HP
-	use_power = 0
-	hibernate = 1	//these pumps only process when needed, so by default are off until switched on
+	use_power = 0	//these pumps only process when needed, so by default are off until switched on
 	frequency = null
 
 	var/_airlock_function
@@ -30,7 +29,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump
 	name = "airlock water pump"
 	desc = "A gas pump that has been upgraded with a motor powerful enough to pump water in high pressure environments."
-	power_rating = 75000	//75 kW ~ 100 HP - because damnit it's a high pressure underwater environment
+	power_rating = 30000	//30 kW ~ 40 HP - because damnit it's a high pressure underwater environment
 
 /obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump/New()
 	..()
@@ -77,5 +76,4 @@
 	if(!istype(A))
 		return
 	A.use_power = 0
-	A.hibernate = 1
 	A.update_icon()

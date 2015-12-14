@@ -3,50 +3,81 @@
 //  Manages the actual airlock control sequences, turning devices on and off and opening and closing doors.
 //-------------------------------
 /datum/wifi/sender/airlock
-	var/abort = 0
+	var/mode = AL_IDLE
+	var/stage = ALS_IDLE
+	var/target_pressure
+	var/current_pressure
+
+/datum/wifi/sender/airlock/proc/process()
+	if(!mode)
+		return
+
+	update_chamber_pressure()
+	stage_check()
+
+	if(stage > ALS_DRAIN)
+		switch(stage)
+			if(ALS_FILL)
+				cycle_fill()
+			if(ALS_DONE)
+				cycle_finish()
 
 //-------------------------------
 // Primary sequences (functions)
 //  These are the event sequences of what order events happen in
 //-------------------------------
-/datum/wifi/sender/airlock/proc/cycle_exterior(var/target_pressure = 0)
+/datum/wifi/sender/airlock/proc/cycle_exterior(var/targ_pressure = 0)
+	target_pressure = targ_pressure
+	mode = AL_EXTERIOR
+
 	//close doors
 	doors_close_all()
 
-	//drain via interior pump
-	if(drain_airlock(ALP_DRAININT))
-		return		//cancel here if drain_airlock() returns 1 (abort has been called)
+	//start drain cycle
+	drain_airlock(ALP_DRAININT)
 
-	//fill via exterior pump
-	if(fill_airlock(ALP_FILLEXT, target_pressure))
-		return		//cancel here if fill_airlock() returns 1 (abort has been called)
+/datum/wifi/sender/airlock/proc/cycle_interior(var/targ_pressure = ONE_ATMOSPHERE)
+	target_pressure = targ_pressure
+	mode = AL_INTERIOR
 
-	//open exterior doors
-	doors_close(AL_INTERIOR)	//confirm interior doors are closed and locked
-	doors_open(AL_EXTERIOR)
-
-	return 0
-
-/datum/wifi/sender/airlock/proc/cycle_interior(var/target_pressure = ONE_ATMOSPHERE)
 	//close exterior doors
 	doors_close_all()
 
-	//drain via exterior pump
-	if(drain_airlock(ALP_DRAINEXT))
-		return		//cancel here if drain_airlock() returns 1 (abort has been called)
-
-	//fill via interior pump
-	if(fill_airlock(ALP_FILLINT, target_pressure))
-		return		//cancel here if fill_airlock() returns 1 (abort has been called)
-
-	//open interior doors
-	doors_close(AL_EXTERIOR)	//confirm exterior doors are closed and locked
-	doors_open(AL_INTERIOR)
+	//start drain cycle
+	drain_airlock(ALP_DRAINEXT)
 
 //-------------------------------
 // Secondary functions
 //  Auxilliary functions that may be called by the airlock controller
 //-------------------------------
+
+/datum/wifi/sender/airlock/proc/cycle_fill()
+	//turn all pumps off
+	pumps_off()
+
+	//start fill cycle
+	switch(mode)
+		if(AL_INTERIOR)
+			fill_airlock(ALP_FILLINT)
+		if(AL_EXTERIOR)
+			fill_airlock(ALP_FILLEXT)
+
+/datum/wifi/sender/airlock/proc/cycle_finish()
+	//turn all pumps off
+	pumps_off()
+
+	switch(mode)
+		if(AL_INTERIOR)
+			//open interior doors
+			doors_close(AL_EXTERIOR)	//confirm exterior doors are closed and locked
+			doors_open(AL_INTERIOR)
+		if(AL_EXTERIOR)
+			//open exterior doors
+			doors_close(AL_INTERIOR)	//confirm interior doors are closed and locked
+			doors_open(AL_EXTERIOR)
+
+	mode = AL_IDLE
+	stage = ALS_IDLE
 
 //find the chamber sensor to retrieve and cache the current chamber pressure
 /datum/wifi/sender/airlock/proc/update_chamber_pressure()
@@ -62,57 +93,47 @@
 			break
 
 	if(test_sensor)
-		A.chamber_pressure = test_sensor.return_pressure()
+		current_pressure = test_sensor.return_pressure()
+		A.chamber_pressure = current_pressure
 
 //deactivate all pumps and set the abort var, this will cause any in-progress fill or drain cycles to cancel on the next tick
 /datum/wifi/sender/airlock/proc/abort()
-	abort = 1
+	pumps_off()
+	mode = AL_IDLE
+	stage = ALS_IDLE
 
-	//shut down all the pumps
-	var/datum/spawn_sync/S = new()
-	for(var/datum/wifi/receiver/airlock_pump/A in connected_devices)
-		if(A.airlock_function)
-			S.start_worker(A, "pump_off")
-	S.wait_until_done()
+/datum/wifi/sender/airlock/proc/stage_check()
+	switch(stage)
+		if(ALS_DRAIN)
+			if(check_pressure())
+				stage = ALS_FILL
+		if(ALS_FILL)
+			if(check_pressure())
+				stage = ALS_DONE
+
+/datum/wifi/sender/airlock/proc/check_pressure()
+	switch(stage)
+		if(ALS_DRAIN)
+			if(current_pressure < 10)	//drain until less than 10 kPa
+				return 1
+		if(ALS_FILL)
+			if(current_pressure > target_pressure * 0.90)	//fill until 90% of target pressure
+				return 1
 
 //-------------------------------
 // Airlock draining and filling functions
 //-------------------------------
-/datum/wifi/sender/airlock/proc/drain_airlock(var/drain_target, var/target_pressure = 0)	//either ALP_DRAININT or ALP_DRAINEXT
+/datum/wifi/sender/airlock/proc/drain_airlock(var/drain_target)	//either ALP_DRAININT or ALP_DRAINEXT
 	var/datum/spawn_sync/S = new()
 
 	for(var/datum/wifi/receiver/airlock_pump/A in connected_devices)
 		if(A.airlock_function & drain_target)
-			S.start_worker(A, "drain", target_pressure)
+			S.start_worker(A, "drain", 0)
 	S.wait_until_done()
 
-	//find a sensor in the connected devices to check the pressure of
-	var/datum/wifi/receiver/airlock_sensor/test_sensor
-	for(var/datum/wifi/receiver/airlock_sensor/A in connected_devices)
-		if(A.airlock_function & AL_CHAMBER)
-			test_sensor = A
-			break
+	stage = ALS_DRAIN
 
-	if(test_sensor)
-		//wait until the chamber pressure is close enough to continue
-		while(test_sensor.return_pressure() > max(target_pressure, 10))
-			if(abort)
-				abort = 0
-				return 1
-			sleep(1)
-	else
-		log_debug("airlock controller for network: \[[id]\]was unable to find a chamber pressure sensor.")
-
-	//turn all pumps off
-	S.reset()
-	for(var/datum/wifi/receiver/airlock_pump/A in connected_devices)
-		if(A.airlock_function)
-			S.start_worker(A, "pump_off")
-	S.wait_until_done()
-
-	return
-
-/datum/wifi/sender/airlock/proc/fill_airlock(var/fill_target, var/target_pressure = ONE_ATMOSPHERE)	//either ALP_FILLINT or ALP_FillEXT
+/datum/wifi/sender/airlock/proc/fill_airlock(var/fill_target)	//either ALP_FILLINT or ALP_FillEXT
 	var/datum/spawn_sync/S = new()
 
 	for(var/datum/wifi/receiver/airlock_pump/A in connected_devices)
@@ -121,31 +142,16 @@
 	
 	S.wait_until_done()
 
-	//find a sensor in the connected devices to check the pressure of
-	var/datum/wifi/receiver/airlock_sensor/test_sensor
-	for(var/datum/wifi/receiver/airlock_sensor/A in connected_devices)
-		if(A.airlock_function & AL_CHAMBER)
-			test_sensor = A
-			break
+	stage = ALS_FILL
 
-	if(test_sensor)
-		//wait until the pressure delta is low enough
-		while(test_sensor.return_pressure() < target_pressure * 0.90)
-			if(abort)
-				abort = 0
-				return 1
-			sleep(1)
-	else
-		log_debug("airlock controller for network: \[[id]\]was unable to find a chamber pressure sensor.")
+/datum/wifi/sender/airlock/proc/pumps_off()
+	var/datum/spawn_sync/S = new()
 
-	//turn all pumps off
-	S.reset()
 	for(var/datum/wifi/receiver/airlock_pump/A in connected_devices)
 		if(A.airlock_function)
 			S.start_worker(A, "pump_off")
-	S.wait_until_done()
 	
-	return
+	S.wait_until_done()
 
 //-------------------------------
 // Door opening and closing sequences
@@ -197,9 +203,8 @@
 
 //-------------------------------
 // Airlock receiver for receiving commands from buttons
+//  currently only has two functions: cycle to interior or cycle to exterior
 //-------------------------------
-
-//currently only has two functions: cycle to interior or cycle to exterior
 /datum/wifi/receiver/button/airlock/activate(var/mode)
 	var/obj/machinery/airlock/A = parent
 	if(!istype(A))
