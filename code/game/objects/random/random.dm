@@ -284,9 +284,9 @@
 	icon_state = "nymphplushie"
 	item_to_spawn()
 		return pick(/obj/item/weapon/material/shard,\
-					/obj/item/weapon/material/shard/shrapnel\
+					/obj/item/weapon/material/shard/shrapnel,\
 					/obj/item/stack/material/cardboard,\
-					/obj/item/weapon/storage/box/lights/mix,\
+					/obj/item/weapon/storage/box/lights/mixed,\
 					/obj/item/weapon/storage/box/matches)
 
 
