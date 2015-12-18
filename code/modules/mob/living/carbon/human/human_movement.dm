@@ -16,7 +16,7 @@
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
-	if (!(species && (species.flags & NO_PAIN)))
+	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80

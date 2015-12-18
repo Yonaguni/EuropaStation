@@ -654,23 +654,18 @@
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ["eyes"]) //No eyes, can't hurt them.
+
+	var/obj/item/organ/I = internal_organs_by_name["eyes"]
+	if(!I || I.status & (ORGAN_CUT_AWAY|ORGAN_DESTROYED))
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name["eyes"]
-		if(I.status & ORGAN_CUT_AWAY)
-			return FLASH_PROTECTION_MAJOR
-	else
-		return
+	var/number = 0
 
 	return flash_protection
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
 /mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
-	if(!species.has_organ[brain_tag])
-		return 0
 
 	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
 
@@ -724,7 +719,10 @@
 			xylophone=0
 	return
 
-/mob/living/carbon/human/proc/check_has_mouth()
+/mob/living/proc/check_has_mouth()
+	return 1
+
+/mob/living/carbon/human/check_has_mouth()
 	// Todo, check stomach organ when implemented.
 	var/obj/item/organ/external/head/H = get_organ("head")
 	if(!H || !H.can_intake_reagents)
@@ -826,12 +824,14 @@
 	if(new_style)
 		f_style = new_style
 
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
+	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female", "Neutral")
 	if (new_gender)
 		if(new_gender == "Male")
 			gender = MALE
-		else
+		else if(new_gender == "Female")
 			gender = FEMALE
+		else
+			gender = NEUTER
 	regenerate_icons()
 	check_dna()
 
@@ -916,13 +916,12 @@
 
 /mob/living/carbon/human/revive()
 
-	if(species && !(species.flags & NO_BLOOD))
+	if(should_have_organ("heart"))
 		vessel.add_reagent("blood",560-vessel.total_volume)
 		fixblood()
 
-	// Fix up all organs.
-	// This will ignore any prosthetics in the prefs currently.
-	species.create_organs(src)
+	species.create_organs(src) // Reset our organs/limbs.
+	restore_all_organs()       // Reapply robotics/amputated status from preferences.
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for (var/obj/item/organ/brain/H in world)
@@ -1037,7 +1036,7 @@
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
-				if(species.flags & NO_PAIN)
+				if(!can_feel_pain(organ.limb_name))
 					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
 				else
 					var/msg = pick( \
@@ -1047,7 +1046,7 @@
 					src << msg
 
 				organ.take_damage(rand(1,3), 0, 0)
-				if(!(organ.status & ORGAN_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
+				if(!(organ.status & ORGAN_ROBOT) && !should_have_organ("heart")) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
 					src.adjustToxLoss(rand(1,3))
 
@@ -1282,10 +1281,14 @@
 /mob/living/carbon/human/getDNA()
 	if(species.flags & NO_SCAN)
 		return null
+	if(isSynthetic())
+		return
 	..()
 
 /mob/living/carbon/human/setDNA()
 	if(species.flags & NO_SCAN)
+		return
+	if(isSynthetic())
 		return
 	..()
 
@@ -1442,3 +1445,23 @@
 	src << "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>"
 	return
 
+/mob/living/carbon/human/should_have_organ(var/organ_check)
+
+	var/obj/item/organ/external/affecting
+	if(organ_check in list("heart","lungs"))
+		affecting = organs_by_name["chest"]
+	else if(organ_check in list("liver","kidneys"))
+		affecting = organs_by_name["groin"]
+
+	if(affecting && (affecting.status & ORGAN_ROBOT))
+		return 0
+	return (species && species.has_organ[organ_check])
+
+/mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
+	if(isSynthetic())
+		return 0
+	if(check_organ)
+		if(!istype(check_organ))
+			return 0
+		return check_organ.can_feel_pain()
+	return !(species.flags & NO_PAIN)
