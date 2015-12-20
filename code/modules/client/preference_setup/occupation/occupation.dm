@@ -89,9 +89,9 @@
 			var/available_in_days = job.available_in_days(user.client)
 			. += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		if((pref.job_civilian_low & ASSISTANT) && (rank != "Assistant"))
+/*		if((pref.job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 			. += "<font color=orange>[rank]</font></td><td></td></tr>"
-			continue
+			continue*/
 		if((rank in europa_gov_positions) || (rank == "AI"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
@@ -100,7 +100,7 @@
 		. += "</td><td width='40%'>"
 
 		. += "<a href='?src=\ref[src];set_job=[rank]'>"
-
+/*
 		if(rank == "Assistant")//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
 				. += " <font color=green>\[Yes]</font>"
@@ -110,7 +110,7 @@
 				. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 			. += "</a></td></tr>"
 			continue
-
+*/
 		if(pref.GetJobDepartment(job, 1) & job.flag)
 			. += " <font color=blue>\[High]</font>"
 		else if(pref.GetJobDepartment(job, 2) & job.flag)
@@ -131,7 +131,7 @@
 		if(GET_RANDOM_JOB)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
 		if(BE_ASSISTANT)
-			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
+			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be citizen if preference unavailable</font></a></u></center><br>"
 		if(RETURN_TO_LOBBY)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 
@@ -175,14 +175,14 @@
 	var/datum/job/job = job_master.GetJob(role)
 	if(!job)
 		return 0
-
+/*
 	if(role == "Assistant")
 		if(pref.job_civilian_low & job.flag)
 			pref.job_civilian_low &= ~job.flag
 		else
 			pref.job_civilian_low |= job.flag
 		return 1
-
+*/
 	if(pref.GetJobDepartment(job, 1) & job.flag)
 		SetJobDepartment(job, 1)
 	else if(pref.GetJobDepartment(job, 2) & job.flag)
@@ -221,7 +221,7 @@
 					pref.job_civilian_low &= ~job.flag
 				else
 					pref.job_civilian_low |= job.flag
-		if(MEDSCI)
+		if(GOVERNMENT)
 			switch(level)
 				if(2)
 					pref.job_medsci_high = job.flag
@@ -231,7 +231,7 @@
 					pref.job_medsci_low &= ~job.flag
 				else
 					pref.job_medsci_low |= job.flag
-		if(ENGSEC)
+		if(INDUSTRY)
 			switch(level)
 				if(2)
 					pref.job_engsec_high = job.flag
@@ -263,5 +263,29 @@
 
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)	return 0
-	return job_civilian_high //TODO
+	switch(job.department_flag)
+		if(CIVILIAN)
+			switch(level)
+				if(1)
+					return job_civilian_high
+				if(2)
+					return job_civilian_med
+				if(3)
+					return job_civilian_low
+		if(GOVERNMENT)	//medsci
+			switch(level)
+				if(1)
+					return job_medsci_high
+				if(2)
+					return job_medsci_med
+				if(3)
+					return job_medsci_low
+		if(INDUSTRY)	//engsec
+			switch(level)
+				if(1)
+					return job_engsec_high
+				if(2)
+					return job_engsec_med
+				if(3)
+					return job_engsec_low
 	return 0

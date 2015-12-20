@@ -19,7 +19,7 @@
             access_construction, access_sec_doors, access_medical, access_medical_equip, access_morgue,
 			access_genetics, access_chemistry, access_virology, access_surgery, access_RC_announce,access_psychiatrist)
 
-/datum/job/civilian/equip(var/mob/living/carbon/human/H)
+/datum/job/civilian/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	if(!H) return
 	switch(H.mind.role_alt_title)
 		if("Doctor")
@@ -29,6 +29,11 @@
 			..(H, skip_shoes = 1, skip_suit = 1, skip_hat = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/galoshes(H),slot_shoes)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/purple(H),slot_head)
+		if("Gardener")
+			..(H, skip_suit = 1)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/botanic_leather(H), slot_gloves)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/device/analyzer/plant_analyzer(H), slot_s_store)
 		else
 			..(H)
 	return 1
@@ -37,3 +42,22 @@
 	title = "Civil Engineer"
 	flag = ENGINEER
 	alt_titles = list("Emergency Services","Electrician")
+
+/datum/job/civilian/engineering/equip(var/mob/living/carbon/human/H)
+	if(!H) return
+	switch(H.mind.role_alt_title)
+		if("Civil Engineer")
+			..(H, skip_hat = 1)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/engineer(H), slot_belt)
+		if("Emergency Services")
+			..(H, skip_hat = 1)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/red(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/emergency(H), slot_belt)
+		if("Electrician")
+			..(H)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/electrician(H), slot_belt)
+		else
+			..(H)
+	return 1

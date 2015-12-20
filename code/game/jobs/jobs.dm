@@ -1,7 +1,7 @@
 var/const/CIVILIAN		=(1<<0)
 
-var/const/LIAISON		=(1<<0)
-var/const/CITIZEN		=(1<<1)
+var/const/CITIZEN		=(1<<0)
+var/const/LIAISON		=(1<<1)
 var/const/ENGINEER		=(1<<2)
 var/const/AI			=(1<<3)
 var/const/CYBORG		=(1<<4)
