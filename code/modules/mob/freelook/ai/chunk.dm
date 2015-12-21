@@ -47,3 +47,19 @@
 
 /mob/living/silicon/ai/proc/seen_camera_turfs()
 	return seen_turfs_in_range(src, world.view)
+
+/mob/living/proc/seen_turfs()
+	return seen_turfs_in_range(src, 3)
+
+/mob/living/silicon/seen_turfs()
+	return list()
+
+/mob/living/simple_animal/seen_turfs()
+	return seen_turfs_in_range(src, 1)
+
+/mob/living/simple_animal/shade/narsie/seen_turfs()
+	return view(2, src)
+
+/proc/seen_turfs_in_range(var/source, var/range)
+	var/turf/pos = get_turf(source)
+	return hear(range, pos)

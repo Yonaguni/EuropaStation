@@ -14,8 +14,6 @@
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
-	else if(istype(O, /obj/item/weapon/book/tome))
-		usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
 	return
 
 /datum/reagent/aluminum
@@ -143,8 +141,6 @@
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
-	else if(istype(O, /obj/item/weapon/book/tome))
-		usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
 	return
 
 /datum/reagent/hydrazine

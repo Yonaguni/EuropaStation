@@ -238,17 +238,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Replacement lights"
 	group = "Engineering"
 
-/datum/supply_packs/wizard
-	name = "Wizard costume"
-	contains = list(/obj/item/weapon/staff,
-					/obj/item/clothing/suit/wizrobe/fake,
-					/obj/item/clothing/shoes/sandal,
-					/obj/item/clothing/head/wizard/fake)
-	cost = 20
-	containertype = /obj/structure/closet/crate
-	containername = "Wizard costume crate"
-	group = "Miscellaneous"
-
 /datum/supply_packs/mule
 	name = "MULEbot Crate"
 	contains = list(/obj/machinery/bot/mulebot)
@@ -1293,17 +1282,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/europa/component/capacitor,
 					/obj/item/europa/component/matter_bin,
 					/obj/item/weapon/circuitboard/pacman/super)
-
-/datum/supply_packs/witch
-	name = "Witch costume"
-	containername = "Witch costume"
-	containertype = /obj/structure/closet
-	cost = 20
-	contains = list(/obj/item/clothing/suit/wizrobe/marisa/fake,
-					/obj/item/clothing/shoes/sandal,
-					/obj/item/clothing/head/wizard/marisa/fake,
-					/obj/item/weapon/staff/broom)
-	group = "Miscellaneous"
 
 /datum/supply_packs/randomised/costume_hats
 	name = "Costume hats"

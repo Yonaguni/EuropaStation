@@ -57,7 +57,6 @@ var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
 
 // Music.
 var/global/list/ambient_tracks = list(
