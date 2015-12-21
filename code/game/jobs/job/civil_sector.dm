@@ -26,7 +26,7 @@
 			..(H, skip_suit = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 		if("Janitor")
-			..(H, skip_shoes = 1, skip_suit = 1, skip_hat = 1)
+			..(H, skip_suit = 1, skip_hat = 1, skip_shoes = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/galoshes(H),slot_shoes)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/purple(H),slot_head)
 		if("Gardener")
@@ -35,8 +35,14 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/device/analyzer/plant_analyzer(H), slot_s_store)
 		else
-			..(H)
+			..(H, skip_suit, skip_hat, skip_shoes)
 	return 1
+
+/datum/job/civilian/equip_survival(var/mob/living/carbon/human/H)
+	if(!H) return
+	if(H.mind.role_alt_title == "Visitor")
+		return
+	..()
 
 /datum/job/civilian/engineering
 	title = "Civil Engineer"
@@ -54,10 +60,18 @@
 			..(H, skip_hat = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/red(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/emergency(H), slot_belt)
+			if(H.backbag == 1)
+				H.equip_to_slot_or_del(new /obj/item/weapon/pickaxe/plasmacutter(H), slot_r_hand)
+			else
+				H.equip_to_backpack_or_del(new /obj/item/weapon/pickaxe/plasmacutter(H))
 		if("Electrician")
 			..(H)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/electrician(H), slot_belt)
+			if(H.backbag == 1)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/lights/mixed(H), slot_r_hand)
+			else
+				H.equip_to_backpack_or_del(new /obj/item/weapon/storage/box/lights/mixed(H))
 		else
 			..(H)
 	return 1
