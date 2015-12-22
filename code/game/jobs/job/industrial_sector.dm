@@ -29,7 +29,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_belt)
 		else
-			..(H)
+			..(H, skip_suit, skip_hat, skip_shoes)
 	return 1
 
 /datum/job/industry/science
@@ -43,7 +43,6 @@
 
 /datum/job/industry/science/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
+	..(H, skip_suit = 1)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)
 	return 1
