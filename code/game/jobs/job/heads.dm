@@ -52,6 +52,10 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/europa/petty_officer/marshal(H), slot_head)
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy(H), slot_r_hand)
+	else
+		H.equip_to_backpack_or_del(new /obj/item/weapon/gun/energy(H))
 	return 1
 
 /datum/job/head/coordinator

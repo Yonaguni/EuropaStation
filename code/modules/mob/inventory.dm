@@ -73,6 +73,16 @@ var/list/slot_equipment_priority = list( \
 
 	return 0
 
+//only used by initial character creation
+/mob/proc/equip_to_backpack_or_del(obj/item/newitem)
+	if(istype(src.back,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/backpack = src.back
+		if(istype(backpack))
+			newitem.forceMove(backpack)
+			return 1
+	qdel(newitem)
+	return 0
+
 /mob/proc/equip_to_storage(obj/item/newitem)
 	// Try put it in their backpack
 	if(istype(src.back,/obj/item/weapon/storage))

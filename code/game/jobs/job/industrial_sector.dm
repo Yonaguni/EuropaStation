@@ -21,6 +21,17 @@
 			      access_RC_announce, access_tcomsat, access_gateway, access_xenoarch, access_maint_tunnels,
 			      access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
+/datum/job/industry/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+	if(!H)	return 0
+	switch(H.mind.role_alt_title)
+		if("Miner")
+			..(H)
+			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_belt)
+		else
+			..(H, skip_suit, skip_hat, skip_shoes)
+	return 1
+
 /datum/job/industry/science
 	title = "Scientist"
 	flag = SCIENTIST
@@ -32,7 +43,6 @@
 
 /datum/job/industry/science/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
+	..(H, skip_suit = 1)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)
 	return 1

@@ -1047,6 +1047,7 @@
 #include "code\modules\europa\clothing\wrist_computer.dm"
 #include "code\modules\europa\fluids\fluid_procs.dm"
 #include "code\modules\europa\hooks\vip.dm"
+#include "code\modules\europa\items\boxes.dm"
 #include "code\modules\europa\items\components\components.dm"
 #include "code\modules\europa\items\components\components_casings.dm"
 #include "code\modules\europa\items\components\components_old.dm"

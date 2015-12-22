@@ -391,9 +391,9 @@ var/global/datum/controller/occupations/job_master
 						else
 							spawn_in_storage += thing
 			//Equip job items.
+			job.equip_backpack(H)	//backpack first so equip() can put things in it
 			job.equip(H)
 			job.setup_account(H)
-			job.equip_backpack(H)
 			job.equip_survival(H)
 			job.apply_fingerprints(H)
 

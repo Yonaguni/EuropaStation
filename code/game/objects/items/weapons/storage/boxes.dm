@@ -53,8 +53,8 @@
 /obj/item/weapon/storage/box/survival/
 	New()
 		..()
-		new /obj/item/clothing/mask/breath( src )
-		new /obj/item/weapon/tank/emergency_oxygen( src )
+		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/bottle/water(src)
 
 /obj/item/weapon/storage/box/vox/
 	New()

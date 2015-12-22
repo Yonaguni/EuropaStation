@@ -409,6 +409,17 @@
 		..()
 		reagents.add_reagent("limejuice", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/water
+	name = "water bottle"
+	desc = "Fresh, refreshing, water."
+	icon_state = "space-up_bottle"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=6)
+	isGlass = 0
+	New()
+		..()
+		reagents.add_reagent("water", 100)
+
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
