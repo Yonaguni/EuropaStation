@@ -26,6 +26,7 @@
 	icon_state = "broken_preview"
 
 /turf/simulated/floor/wood/broken/New()
+	..()
 	break_tile()
 
 /turf/simulated/floor/grass
