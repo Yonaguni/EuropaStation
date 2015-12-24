@@ -140,6 +140,7 @@ var/list/ai_verbs_default = list(
 
 	//Languages
 	add_language("Robot Talk", 1)
+	add_language("Drone Talk", 0)
 	add_language("Galactic Common", 1)
 	add_language("Sol Common", 0)
 	add_language("Sinta'unathi", 0)
@@ -227,7 +228,7 @@ var/list/ai_verbs_default = list(
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
 			selected_sprite = default_ai_icon
-	updateicon()
+	update_icons()
 
 /mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
 	set popup_menu = 0
@@ -294,7 +295,7 @@ var/list/ai_verbs_default = list(
 	if (!custom_sprite)
 		var/new_sprite = input("Select an icon!", "AI", selected_sprite) as null|anything in ai_icons(src)
 		if(new_sprite) selected_sprite = new_sprite
-	updateicon()
+	update_icons()
 
 // this verb lets the ai see the stations manifest
 /mob/living/silicon/ai/proc/ai_roster()
@@ -682,7 +683,7 @@ var/list/ai_verbs_default = list(
 		return
 	..()
 
-/mob/living/silicon/ai/updateicon()
+/mob/living/silicon/ai/update_icons()
 	if(!selected_sprite) selected_sprite = default_ai_icon
 
 	if(stat == DEAD)

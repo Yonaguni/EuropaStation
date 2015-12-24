@@ -493,7 +493,9 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+
+	if (usr.contents.Find(src) || istype(usr, /mob/living/silicon) || get_dist(get_turf(src), get_turf(usr)) <= 1)
+
 		usr.set_machine(src)
 		if(href_list["set_channel_name"])
 			src.channel_name = sanitizeSafe(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""), MAX_LNAME_LEN)
@@ -902,7 +904,7 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 obj/item/weapon/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
 	..()
-	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
+	if ((src in U.contents) || ((istype(loc, /mob/living/silicon/robot/drone) || istype(loc, /turf)) && in_range(get_turf(src), get_turf(U))))
 		U.set_machine(src)
 		if(href_list["next_page"])
 			if(curr_page==src.pages+1)

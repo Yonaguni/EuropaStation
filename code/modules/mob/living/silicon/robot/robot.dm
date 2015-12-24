@@ -3,7 +3,7 @@
 /mob/living/silicon/robot
 	name = "Cyborg"
 	real_name = "Cyborg"
-	icon = 'icons/mob/robots.dmi'
+	icon = 'icons/mob/robots/drones_advanced.dmi'
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
@@ -107,7 +107,7 @@
 	module_sprites["Basic"] = "robot"
 	icontype = "Basic"
 	updatename("Default")
-	updateicon()
+	update_icons()
 
 	radio = new /obj/item/device/radio/borg(src)
 	common_radio = radio
@@ -228,7 +228,7 @@
 		else
 			icontype = module_sprites[1]
 		icon_state = module_sprites[icontype]
-	updateicon()
+	update_icons()
 	return module_sprites
 
 /mob/living/silicon/robot/proc/pick_module()
@@ -303,7 +303,7 @@
 			custom_name = newname
 
 		updatename()
-		updateicon()
+		update_icons()
 
 // this verb lets cyborgs see the stations manifest
 /mob/living/silicon/robot/verb/cmd_station_manifest()
@@ -474,7 +474,7 @@
 			if(cell)
 				user << "You close the cover."
 				opened = 0
-				updateicon()
+				update_icons()
 			else if(wiresexposed && wires.IsAllCut())
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
@@ -523,7 +523,7 @@
 			else
 				user << "You open the cover."
 				opened = 1
-				updateicon()
+				update_icons()
 
 	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
@@ -555,14 +555,14 @@
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-		updateicon()
+		update_icons()
 
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			user << "Unable to locate a radio."
-		updateicon()
+		update_icons()
 
 	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
@@ -579,7 +579,7 @@
 			if(allowed(usr))
 				locked = !locked
 				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
-				updateicon()
+				update_icons()
 			else
 				user << "\red Access denied."
 
@@ -625,7 +625,7 @@
 			cell = null
 			cell_component.wrapped = null
 			cell_component.installed = 0
-			updateicon()
+			update_icons()
 		else if(cell_component.installed == -1)
 			cell_component.installed = 0
 			var/obj/item/broken_device = cell_component.wrapped
@@ -665,8 +665,10 @@
 			return 1
 	return 0
 
-/mob/living/silicon/robot/updateicon()
+/mob/living/silicon/robot/update_icons()
+
 	overlays.Cut()
+
 	if(stat == CONSCIOUS)
 		overlays += "eyes-[module_sprites[icontype]]"
 
@@ -693,7 +695,7 @@
 /mob/living/silicon/robot/update_targeted()
 	if(!targeted_by && target_locked)
 		qdel(target_locked)
-	updateicon()
+	update_icons()
 	if (targeted_by && target_locked)
 		overlays += target_locked
 
@@ -907,7 +909,7 @@
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot", icontype, null) in module_sprites
 	icon_state = module_sprites[icontype]
-	updateicon()
+	update_icons()
 
 	if (module_sprites.len > 1 && triesleft >= 1 && client)
 		icon_selection_tries--
@@ -1046,7 +1048,7 @@
 						if(rebuild)
 							src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
 							src.module.rebuild()
-					updateicon()
+					update_icons()
 			else
 				user << "You fail to hack [src]'s interface."
 				src << "Hack attempt detected."

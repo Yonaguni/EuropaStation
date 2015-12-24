@@ -84,7 +84,7 @@
 	living_mob_list -= src
 	dead_mob_list |= src
 
-	updateicon()
+	update_icons()
 
 	if(ticker && ticker.mode)
 		ticker.mode.check_win()
