@@ -323,8 +323,8 @@ obj/random/closet //A couple of random closets to spice up main
 obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
-	icon = 'icons/obj/paper.dmi'
-	icon_state = "paper"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "sheet-metal"
 	item_to_spawn()
 		return pick(/obj/item/stack/material/steel{amount = 10},\
 					/obj/item/stack/material/glass{amount = 10},\
