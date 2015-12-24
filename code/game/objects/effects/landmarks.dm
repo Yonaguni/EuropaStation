@@ -201,21 +201,10 @@
 	new /obj/item/clothing/suit/holidaypriest(src.loc)
 	qdel(src)
 
-/obj/effect/landmark/costume/marisawizard/fake/New()
-	new /obj/item/clothing/head/wizard/marisa/fake(src.loc)
-	new/obj/item/clothing/suit/wizrobe/marisa/fake(src.loc)
-	qdel(src)
-
 /obj/effect/landmark/costume/cutewitch/New()
 	new /obj/item/clothing/under/sundress(src.loc)
 	new /obj/item/clothing/head/witchwig(src.loc)
 	new /obj/item/weapon/staff/broom(src.loc)
-	qdel(src)
-
-/obj/effect/landmark/costume/fakewizard/New()
-	new /obj/item/clothing/suit/wizrobe/fake(src.loc)
-	new /obj/item/clothing/head/wizard/fake(src.loc)
-	new /obj/item/weapon/staff/(src.loc)
 	qdel(src)
 
 /obj/effect/landmark/costume/sexyclown/New()

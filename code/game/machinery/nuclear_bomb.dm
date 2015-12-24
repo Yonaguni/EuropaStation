@@ -409,19 +409,5 @@ if(!N.lighthack)
 	item_state = "card-id"
 	w_class = 1.0
 
-/obj/item/weapon/disk/nuclear/New()
-	..()
-	nuke_disks |= src
-
-/obj/item/weapon/disk/nuclear/Destroy()
-	nuke_disks -= src
-	/*
-	if(!nuke_disks.len && blobstart.len > 0)
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
-		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-	*/
-	..()
-
 /obj/item/weapon/disk/nuclear/touch_map_edge()
 	qdel(src)

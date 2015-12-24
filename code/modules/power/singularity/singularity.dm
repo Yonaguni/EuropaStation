@@ -44,10 +44,6 @@ var/global/list/singularities = list()
 
 	..()
 	processing_objects += src
-	for(var/obj/machinery/power/singularity_beacon/singubeacon in machines)
-		if(singubeacon.active)
-			target = singubeacon
-			break
 
 /obj/singularity/Destroy()
 	singularities -= src

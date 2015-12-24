@@ -167,14 +167,6 @@ var/list/datum/ai_icon/ai_icons
 	alive_icon = "ai-static"
 	alive_light = "#020B2B"
 
-/datum/ai_icon/malfunction/CanUse(mob/user)
-	return ..() && user.mind && malf.is_antagonist(user.mind)
-
-/datum/ai_icon/malfuction/malf
-	name = "Malfunction"
-	alive_icon = "ai-malf"
-	alive_light = "#00FF99"
-
 /datum/ai_icon/vip/CanUse(mob/user)
 	return ..() && user.client && is_vip(user.client)
 

@@ -75,14 +75,14 @@
 
 		var/obj/item/organ/external/E = H.organs_by_name["head"]
 		if(!E || E.is_stump())
-			src << "\The [H] does not have a head!"
+			src << "<span class='warning'>\The [H] does not have a head!</span>"
 
 		if(!H.species.has_organ["brain"])
-			src << "\The [H] does not seem to have an ear canal to breach."
+			src << "<span class='warning'>\The [H] does not seem to have an ear canal to breach.</span>"
 			return
 
 		if(H.check_head_coverage())
-			src << "You cannot get through that host's protective gear."
+			src << "<span class='warning'>You cannot get through that host's protective gear.</span>"
 			return
 
 	M << "Something slimy begins probing at the opening of your ear canal..."
@@ -106,10 +106,6 @@
 		src.host = M
 		src.host.status_flags |= PASSEMOTES
 		src.loc = M
-
-		//Update their traitor status.
-		if(host.mind)
-			borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
 
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
