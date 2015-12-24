@@ -24,8 +24,6 @@
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)
 		data["name"] = carded_ai.name
-		data["hardware_integrity"] = carded_ai.hardware_integrity()
-		data["backup_capacitor"] = carded_ai.backup_capacitor()
 		data["radio"] = !carded_ai.aiRadio.disabledAi
 		data["wireless"] = !carded_ai.control_disabled
 		data["operational"] = carded_ai.stat != DEAD

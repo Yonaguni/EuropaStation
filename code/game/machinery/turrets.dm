@@ -243,8 +243,6 @@
 			if(3)
 				A = new /obj/item/projectile/beam/pulse( loc )
 			if(4)
-				A = new /obj/item/projectile/change( loc )
-			if(5)
 				A = new /obj/item/projectile/beam/lastertag/blue( loc )
 			if(6)
 				A = new /obj/item/projectile/beam/lastertag/red( loc )

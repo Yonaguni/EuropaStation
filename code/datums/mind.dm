@@ -35,31 +35,17 @@
 	var/mob/living/current
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = 0
-
 	var/memory
-
 	var/assigned_role
 	var/special_role
-
 	var/role_alt_title
-
 	var/datum/job/assigned_job
-
 	var/list/datum/objective/objectives = list()
 	var/list/datum/objective/special_verbs = list()
-
-	var/has_been_rev = 0//Tracks if this mind has been a rev or not
-
-	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
-
-	var/rev_cooldown = 0
-
-	// the world.time since the mob has been brigged, or -1 if not at all
-	var/brigged_since = -1
-
-	//put this here for easier tracking ingame
-	var/datum/money_account/initial_account
+	var/datum/faction/faction 			            // associated faction
+	var/brigged_since = -1                          // the world.time since the mob has been brigged, or -1 if not at all
+	var/datum/money_account/initial_account         // put this here for easier tracking ingame
+	var/faction_conversion_cooldown = 0             // used by antagonist factions that convert minds to their cause.
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -69,20 +55,14 @@
 	if(!istype(new_character))
 		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
 	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
-			current.remove_changeling_powers()
-			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
-
 		nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
-
-	if(changeling)
-		new_character.make_changeling()
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
@@ -191,7 +171,7 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "harm", "brig", "escape", "survive", "steal", "custom")
 		if (!new_obj_type) return
 
 		var/datum/objective/new_objective = null
@@ -229,24 +209,12 @@
 					new_objective:target = M.mind
 					new_objective.explanation_text = "[objective_type] [M.real_name], the [M.mind.special_role ? M.mind:special_role : M.mind:assigned_role]."
 
-			if ("prevent")
-				new_objective = new /datum/objective/block
-				new_objective.owner = src
-
-			if ("hijack")
-				new_objective = new /datum/objective/hijack
-				new_objective.owner = src
-
 			if ("escape")
 				new_objective = new /datum/objective/escape
 				new_objective.owner = src
 
 			if ("survive")
 				new_objective = new /datum/objective/survive
-				new_objective.owner = src
-
-			if ("mercenary")
-				new_objective = new /datum/objective/nuclear
 				new_objective.owner = src
 
 			if ("steal")
@@ -258,25 +226,6 @@
 				var/datum/objective/steal/steal = new_objective
 				if (!steal.select_target())
 					return
-
-			if("download","capture","absorb")
-				var/def_num
-				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
-					def_num = objective.target_amount
-
-				var/target_number = input("Input target number:", "Objective", def_num) as num|null
-				if (isnull(target_number))//Ordinarily, you wouldn't need isnull. In this case, the value may already exist.
-					return
-
-				switch(new_obj_type)
-					if("capture")
-						new_objective = new /datum/objective/capture
-						new_objective.explanation_text = "Accumulate [target_number] capture points."
-					if("absorb")
-						new_objective = new /datum/objective/absorb
-						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
-				new_objective.owner = src
-				new_objective.target_amount = target_number
 
 			if ("custom")
 				var/expl = sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text|null)
@@ -434,13 +383,9 @@
 	special_role =    null
 	role_alt_title =  null
 	assigned_job =    null
-	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
 	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
-	has_been_rev =    0
-	rev_cooldown =    0
 	brigged_since =   -1
 
 //Antagonist role check

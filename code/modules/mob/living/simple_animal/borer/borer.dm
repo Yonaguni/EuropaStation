@@ -34,11 +34,6 @@
 /mob/living/simple_animal/borer/roundstart
 	roundstart = 1
 
-/mob/living/simple_animal/borer/Login()
-	..()
-	if(mind)
-		borers.add_antagonist(mind)
-
 /mob/living/simple_animal/borer/New()
 	..()
 
@@ -153,9 +148,6 @@
 /mob/living/simple_animal/borer/proc/leave_host()
 
 	if(!host) return
-
-	if(host.mind)
-		borers.remove_antagonist(host.mind)
 
 	src.loc = get_turf(host)
 
