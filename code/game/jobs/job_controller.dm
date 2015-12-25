@@ -415,11 +415,13 @@ var/global/datum/controller/occupations/job_master
 
 		if(!joined_late)
 			var/obj/S = null
+			var/list/loc_list = new()
 			for(var/obj/effect/landmark/start/sloc in landmarks_list)
 				if(sloc.name != rank)	continue
 				if(locate(/mob/living) in sloc.loc)	continue
-				S = sloc
-				break
+				loc_list += sloc
+			if(loc_list.len)
+				S = pick(loc_list)
 			if(!S)
 				S = locate("start*[rank]") // use old stype
 			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
