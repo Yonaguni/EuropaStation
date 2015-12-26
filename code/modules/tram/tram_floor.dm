@@ -5,7 +5,7 @@
 	icon_state = "steel"
 	var/obj/tram/tram_controller/controller
 	anchored = 1
-	layer = TURF_LAYER + 0.2
+	layer = TURF_LAYER + 0.44	//above cables and pipes
 
 /obj/tram/floor/proc/spread_floors()
 	var/turf/T = get_turf(src)
