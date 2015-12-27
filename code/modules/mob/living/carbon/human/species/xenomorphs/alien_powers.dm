@@ -260,5 +260,5 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 
 	src.visible_message("<span class='danger'>\The [src] regurgitates something into \the [M]'s torso!</span>")
 	M << "<span class='danger'>A hideous lump of alien mass strains your ribcage as it settles within!</span>"
-	var/obj/item/organ/xenos/hivenode/node = new(affecting)
+	var/obj/item/organ/internal/xenos/hivenode/node = new(affecting)
 	node.replaced(M,affecting)

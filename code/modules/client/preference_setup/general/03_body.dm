@@ -135,32 +135,32 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				R = all_robolimbs[pref.rlimb_data[name]]
 			else
 				R = basic_robolimb
-			. += "\t[R.company] [organ_name] prothesis"
+			. += "\n[R.company] [organ_name] prothesis"
 		else if(status == "amputated")
 			++ind
 			if(ind > 1)
 				. += ", "
-			. += "\tAmputated [organ_name]"
+			. += "\nAmputated [organ_name]"
 		else if(status == "mechanical")
 			++ind
 			if(ind > 1)
 				. += ", "
-			. += "\tSynthetic [organ_name]"
+			. += "\nSynthetic [organ_name]"
 		else if(status == "assisted")
 			++ind
 			if(ind > 1)
 				. += ", "
 			switch(organ_name)
 				if("heart")
-					. += "\tPacemaker-assisted [organ_name]"
+					. += "\nPacemaker-assisted [organ_name]"
 				if("voicebox") //on adding voiceboxes for speaking skrell/similar replacements
-					. += "\tSurgically altered [organ_name]"
+					. += "\nSurgically altered [organ_name]"
 				if("eyes")
-					. += "\tRetinal overlayed [organ_name]"
+					. += "\nRetinal overlayed [organ_name]"
 				if("brain")
-					. += "\tAssisted-interface [organ_name]"
+					. += "\nAssisted-interface [organ_name]"
 				else
-					. += "\tMechanically assisted [organ_name]"
+					. += "\nMechanically assisted [organ_name]"
 	if(!ind)
 		. += "\[...\]<br><br>"
 	else
@@ -356,7 +356,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		// Full prosthetic bodies without a brain are borderline unkillable so make sure they have a brain to remove/destroy.
 		var/datum/species/current_species = all_species[pref.species]
-		if(!current_species.has_organ["brain"])
+		if(!current_species.has_organ[O_BRAIN] || !is_alien_whitelisted(preference_mob(),"Machine"))
 			limb_selection_list -= "Full Body"
 
 		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list

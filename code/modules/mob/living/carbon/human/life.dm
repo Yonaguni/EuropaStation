@@ -1257,7 +1257,7 @@
 				var/base_temperature = species.body_temperature
 				if(base_temperature == null) //some species don't have a set metabolic temperature
 					base_temperature = (species.heat_level_1 + species.cold_level_1)/2
-				
+
 				var/temp_step
 				if (bodytemperature >= base_temperature)
 					temp_step = (species.heat_level_1 - base_temperature)/4
@@ -1602,6 +1602,7 @@
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()
+	full_prosthetic = null
 	..()
 
 /mob/living/carbon/human/handle_vision()

@@ -640,14 +640,13 @@
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-
-	var/obj/item/organ/I = internal_organs_by_name[O_EYES]
-	if(!I || I.status & (ORGAN_CUT_AWAY|ORGAN_DESTROYED))
+	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name["eyes"]
+		if(I.status & ORGAN_CUT_AWAY)
+			return FLASH_PROTECTION_MAJOR
+		return
+	else
 		return FLASH_PROTECTION_MAJOR
-
-	var/number = 0
-
-	return flash_protection
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
@@ -714,32 +713,6 @@
 	if(!H || !H.can_intake_reagents)
 		return 0
 	return 1
-
-/mob/living/carbon/human/proc/vomit()
-
-	if(!check_has_mouth())
-		return
-	if(stat == DEAD)
-		return
-	if(!lastpuke)
-		lastpuke = 1
-		src << "<span class='warning'>You feel nauseous...</span>"
-		spawn(150)	//15 seconds until second warning
-			src << "<span class='warning'>You feel like you are about to throw up!</span>"
-			spawn(100)	//and you have 10 more for mad dash to the bucket
-				Stun(5)
-
-				src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
-				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
-
-				var/turf/location = loc
-				if (istype(location, /turf/simulated))
-					location.add_vomit_floor(src, 1)
-
-				nutrition -= 40
-				adjustToxLoss(-3)
-				spawn(350)	//wait 35 seconds before next volley
-					lastpuke = 0
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"

@@ -66,7 +66,7 @@
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
 		O_EYES =     /obj/item/organ/internal/eyes,
-		"stack" =    /obj/item/organ/internal/stack/vox
+		O_STACK =    /obj/item/organ/internal/stack/vox
 		)
 
 /datum/species/vox/get_random_name(var/gender)

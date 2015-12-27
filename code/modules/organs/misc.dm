@@ -47,7 +47,7 @@
 	name = "cortical stack"
 	parent_organ = BP_HEAD
 	icon_state = "brain-prosthetic"
-	organ_tag = "stack"
+	organ_tag = O_STACK
 	vital = 1
 	var/backup_time = 0
 	var/datum/mind/backup
