@@ -355,7 +355,7 @@
 		H.eye_blind = max(H.eye_blind, 1)
 
 	if(H.blind)
-		H.blind.layer = (H.eye_blind ? 18 : 0)
+		H.blind.layer = (H.eye_blind && !H.equipment_prescription ? 18 : 0)
 
 	if(!H.client)//no client, no screen to update
 		return 1
