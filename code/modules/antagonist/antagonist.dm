@@ -48,6 +48,7 @@
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
 	var/minimum_player_age = 7            	// Players need to be at least minimum_player_age days old before they are eligable for auto-spawning
 	var/suspicion_chance = 50               // Prob of being on the initial Command report
+	var/has_dead_drop = 1                   // Does the antag get a dead drop?
 	var/flags = 0                           // Various runtime options.
 
 	// Used for setting appearance.

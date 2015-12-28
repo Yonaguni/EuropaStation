@@ -29,7 +29,12 @@ var/list/global/geothermal_cache = list()
 	destroyed = 1
 	update_icon(1)
 	processing_objects -= src
-	..()
+	var/turf/T = loc
+	if(istype(T) && T.contents.len)
+		for(var/obj/machinery/power/geothermal/G in T.contents)
+			if(G.vent == src)
+				G.vent = null
+	return ..()
 
 /obj/structure/underwater_vent/process()
 	if(covered || world.time < next_vent_time)
@@ -116,8 +121,7 @@ var/list/global/geothermal_cache = list()
 	..()
 	vent = locate() in get_turf(src)
 	if(vent) vent.covered = 1
-	if(powernet)
-		connect_to_network()
+	connect_to_network()
 	update_neighbors(1)
 
 /obj/machinery/power/geothermal/proc/update_neighbors(var/propagate_update)
@@ -164,7 +168,10 @@ var/list/global/geothermal_cache = list()
 /obj/machinery/power/geothermal/process()
 	last_produced = 0
 	if(!(stat & BROKEN))
-		if(vent && powernet)
-			last_produced = (rand(vent.vent_min_power, vent.vent_max_power) * efficiency)
-			add_avail(last_produced)
-	update_icon()
+		if(vent)
+			if(!powernet)
+				connect_to_network()
+			if(powernet)
+				last_produced = (rand(vent.vent_min_power, vent.vent_max_power) * efficiency)
+				add_avail(last_produced)
+	update_icon() //todo optimize
