@@ -5,15 +5,18 @@ datum/preferences
 		var/datum/species/current_species = all_species[species]
 
 		if(current_species)
-			if(current_species.flags & HAS_SKIN_TONE)
+			if(current_species.appearance_flags & HAS_SKIN_TONE)
 				s_tone = random_skin_tone()
-			if(current_species.flags & HAS_EYE_COLOR)
+			if(current_species.appearance_flags & HAS_EYE_COLOR)
 				randomize_eyes_color()
-			if(current_species.flags & HAS_SKIN_COLOR)
+			if(current_species.appearance_flags & HAS_SKIN_COLOR)
 				randomize_skin_color()
-			if(current_species.flags & HAS_UNDERWEAR)
-				underwear = rand(1,underwear_m.len)
-				undershirt = rand(1,undershirt_t.len)
+			if(current_species.appearance_flags & HAS_UNDERWEAR)
+				if(gender == FEMALE)
+					underwear = underwear_f[pick(underwear_f)]
+				else
+					underwear = underwear_m[pick(underwear_m)]
+				undershirt = undershirt_t[pick(undershirt_t)]
 
 
 		var/use_head_species
@@ -262,7 +265,8 @@ datum/preferences
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
 
-		if ((current_species && (current_species.flags & HAS_EYE_COLOR)))
+
+		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
@@ -278,11 +282,11 @@ datum/preferences
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 		var/icon/underwear_s = null
-		if(underwear && current_species.flags & HAS_UNDERWEAR)
+		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
 			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
 
 		var/icon/undershirt_s = null
-		if(undershirt && current_species.flags & HAS_UNDERWEAR)
+		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
 			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
 
 		var/icon/clothes_s = null

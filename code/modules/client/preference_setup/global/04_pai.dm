@@ -23,6 +23,9 @@
 	candidate.savefile_save(preference_mob())
 
 /datum/category_item/player_setup_item/player_global/pai/content(var/mob/user)
+	if(!candidate)
+		candidate = new()
+
 	. += "<b>pAI:</b><br>"
 	if(!candidate)
 		log_debug("[user] pAI prefs have a null candidate var.")

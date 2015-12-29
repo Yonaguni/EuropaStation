@@ -1039,13 +1039,6 @@
 		else
 			stat = CONSCIOUS
 
-		//Periodically double-check embedded_flag
-		if(embedded_flag && !(life_tick % 10))
-			var/list/E
-			E = get_visible_implants(0)
-			if(!E.len)
-				embedded_flag = 0
-
 		// Check everything else.
 
 		//Periodically double-check embedded_flag
@@ -1616,7 +1609,6 @@
 			sight |= viewflags
 	else if(eyeobj)
 		if(eyeobj.owner != src)
-
 			reset_view(null)
 	else
 		var/isRemoteObserve = 0
@@ -1627,6 +1619,8 @@
 			remoteview_target = null
 			reset_view(null, 0)
 
+	eye_blind =  0
+	blinded = 0
 	update_equipment_vision()
 	species.handle_vision(src)
 
