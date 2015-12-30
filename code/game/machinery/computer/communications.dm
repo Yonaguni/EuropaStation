@@ -29,7 +29,6 @@
 	var/const/STATE_STATUSDISPLAY = 7
 	var/const/STATE_ALERT_LEVEL = 8
 	var/const/STATE_CONFIRM_LEVEL = 9
-	var/const/STATE_CREWTRANSFER = 10
 
 	var/status_display_freq = "1435"
 	var/stat_msg1
@@ -431,23 +430,23 @@
 		return
 
 	if(!universe.OnShuttleCall(usr))
-		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
+		user << "<span class='notice'>Tracking systems cannot establish orbital telemetery. The emergency evacuation system cannot fire.</span>"
 		return
 
 	if(emergency_shuttle.deny_shuttle)
-		user << "The emergency shuttle may not be sent at this time. Please try again later."
+		user << "The emergency evacuation system is offline. Please contact your system administrator."
 		return
 
 	if(world.time < 6000) // Ten minute grace period to let the game get going without lolmetagaming. -- TLE
-		user << "The emergency shuttle is refueling. Please wait another [round((6000-world.time)/600)] minute\s before trying again."
+		user << "The emergency evacuation system is being reset. Please wait another [round((6000-world.time)/600)] minute\s before trying again."
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The emergency shuttle may not be called while returning to [boss_short]."
+		user << "The emergency evacuation system already fired."
 		return
 
 	if(emergency_shuttle.online())
-		user << "The emergency shuttle is already on its way."
+		user << "The emergency evacuation system is being prepared."
 		return
 
 	if(ticker.mode.name == "blob")
@@ -455,64 +454,20 @@
 		return
 
 	emergency_shuttle.call_evac()
-	log_game("[key_name(user)] has called the shuttle.")
-	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
+	log_game("[key_name(user)] has declared an evacuation.")
+	message_admins("[key_name_admin(user)] has declared an evacuation.", 1)
 
-
-	return
-
-/proc/init_shift_change(var/mob/user, var/force = 0)
-	if ((!( ticker ) || !emergency_shuttle.location()))
-		return
-
-	if(emergency_shuttle.going_to_centcom())
-		user << "The shuttle may not be called while returning to [boss_short]."
-		return
-
-	if(emergency_shuttle.online())
-		user << "The shuttle is already on its way."
-		return
-
-	// if force is 0, some things may stop the shuttle call
-	if(!force)
-		if(emergency_shuttle.deny_shuttle)
-			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
-			return
-
-		if(world.time < 54000) // 30 minute grace period to let the game get going
-			user << "The shuttle is refueling. Please wait another [round((54000-world.time)/60)] minutes before trying again."
-			return
-
-		if(ticker.mode.auto_recall_shuttle)
-			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
-			emergency_shuttle.auto_recall = 1
-
-		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
-			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
-			return
-
-	emergency_shuttle.call_transfer()
-
-	//delay events in case of an autotransfer
-	if (isnull(user))
-		event_manager.delay_events(EVENT_LEVEL_MODERATE, 9000) //15 minutes
-		event_manager.delay_events(EVENT_LEVEL_MAJOR, 9000)
-
-	log_game("[user? key_name(user) : "Autotransfer"] has called the shuttle.")
-	message_admins("[user? key_name_admin(user) : "Autotransfer"] has called the shuttle.", 1)
 
 	return
 
 /proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
 		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
-		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
 		emergency_shuttle.recall()
-		log_game("[key_name(user)] has recalled the shuttle.")
-		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
+		log_game("[key_name(user)] has cancelled evac.")
+		message_admins("[key_name_admin(user)] has cancelled evac.", 1)
 	return
 
 

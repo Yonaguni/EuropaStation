@@ -107,8 +107,8 @@
 	icon_state = "deathsposal"
 
 /obj/structure/sign/pods
-	name = "\improper ESCAPE PODS"
-	desc = "A warning sign which reads 'ESCAPE PODS'."
+	name = "\improper ESCAPE POD"
+	desc = "A warning sign which reads 'ESCAPE POD'."
 	icon_state = "pods"
 
 /obj/structure/sign/fire

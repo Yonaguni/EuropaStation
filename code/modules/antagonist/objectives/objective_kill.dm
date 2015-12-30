@@ -64,7 +64,6 @@
 /datum/objective/silence/check_completion()
 	if(!emergency_shuttle.returned())
 		return 0
-
 	for(var/mob/living/player in player_list)
 		if(player == owner.current)
 			continue
@@ -73,7 +72,7 @@
 				var/turf/T = get_turf(player)
 				if(!T)	continue
 				switch(T.loc.type)
-					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
+					if(/area/shuttle/escape/centcom)
 						return 0
 	return 1
 
