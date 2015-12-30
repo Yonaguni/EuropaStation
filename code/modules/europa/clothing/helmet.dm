@@ -29,6 +29,7 @@
 	desc = "A light diving helmet suitable for shallow excursions."
 	icon_state = "diving_light"
 	light_overlay = "hardhat_light"
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | BLOCKHAIR
 
 /obj/item/clothing/head/helmet/space/europa/diving/medium
 	name = "reinforced diving helmet"

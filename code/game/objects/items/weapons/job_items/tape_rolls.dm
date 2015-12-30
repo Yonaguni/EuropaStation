@@ -16,6 +16,7 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
+	layer = 3.2
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
