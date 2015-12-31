@@ -77,6 +77,10 @@ datum/controller/game_controller/proc/setup_objects()
 	sleep(-1)
 	new /datum/random_map/noise/seafloor(null,1,1,2,255,255)
 
+	admin_notice("<span class='warning'>Generating tundra...</span>", R_DEBUG)
+	sleep(-1)
+	new /datum/random_map/noise/tundra(null,1,1,4,255,255)
+
 	sleep(-1)
 	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
 

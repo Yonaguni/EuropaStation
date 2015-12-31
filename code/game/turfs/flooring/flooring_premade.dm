@@ -163,6 +163,20 @@
 /turf/simulated/floor/reinforced/n20
 	initial_air = list("sleeping_agent" = 5000)
 
+/turf/simulated/floor/snow
+	name = "snow"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "snow"
+	base_name = "snow"
+	base_icon = 'icons/turf/floors.dmi'
+	base_icon_state = "snow"
+
+/turf/simulated/floor/snow/ice
+	name = "ice"
+	icon_state = "ice"
+	base_name = "ice"
+	base_icon_state = "ice"
+
 /turf/simulated/floor/flooded
 	color = "#66D1FF"
 	initial_temperature = 250
@@ -174,7 +188,6 @@
 
 // Placeholders
 /turf/simulated/floor/light
-/turf/simulated/floor/snow
 /turf/simulated/floor/beach
 /turf/simulated/floor/beach/sand
 /turf/simulated/floor/beach/sand/desert
