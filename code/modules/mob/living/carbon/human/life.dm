@@ -409,7 +409,7 @@
 			safe_pressure_min *= 1.25
 
 	var/safe_exhaled_max = 10
-	var/safe_toxins_max = 0.005
+	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 	var/inhaled_gas_used = 0
@@ -1182,7 +1182,7 @@
 
 		if(healths)
 			if (analgesic > 100)
-				healths.icon_state = "health_health_numb"
+				healths.icon_state = "health_numb"
 			else
 				switch(hal_screwyhud)
 					if(1)	healths.icon_state = "health6"

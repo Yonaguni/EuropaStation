@@ -203,5 +203,6 @@ var/global/list/map_count = list()
 
 	handle_post_overlay_on(target_map,tx,ty)
 
+
 /datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	return

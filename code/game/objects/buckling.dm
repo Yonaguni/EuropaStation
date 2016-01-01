@@ -59,7 +59,8 @@
 		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
 	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
 		return
-
+	if(M == buckled_mob)
+		return
 	if(!M.can_buckle)
 		if(M.buckle_fail_message)
 			user << "<span class='warning'>\The [M] [M.buckle_fail_message]</span>"

@@ -58,20 +58,23 @@
 		else
 			return ..()
 
-	if(!M.can_eat(src))
-		return
-
 	if (reagents.total_volume > 0)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		if(M == user)
+			if(!M.can_eat(loaded))
+				return
 			M.visible_message("<span class='notice'>\The [user] eats some [loaded] from \the [src].</span>")
 		else
+			user.visible_message("<span class='warning'>\The [user] begins to feed \the [M]!</span>")
+			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
+				return
 			M.visible_message("<span class='notice'>\The [user] feeds some [loaded] to \the [M] with \the [src].</span>")
 		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
 		overlays.Cut()
 		return
 	else
-		..()
+		user << "<span class='warning'>You don't have anything on \the [src].</span>"	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
+		return
 
 /obj/item/weapon/material/kitchen/utensil/fork
 	name = "fork"
@@ -115,14 +118,14 @@
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You accidentally cut yourself with the [src]."
+		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You somehow managed to cut yourself with the [src]."
+		user << "<span class='warning'>You somehow managed to cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()
@@ -142,3 +145,4 @@
 	default_material = "wood"
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
 	thrown_force_divisor = 1 // as above
+
