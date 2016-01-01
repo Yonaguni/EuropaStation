@@ -94,42 +94,6 @@
 	w_class = 3.0
 	projectile_type = /obj/item/projectile/energy/phoron
 
-/* Adminbus guns */
-
-// Serves as a target spotter for the Icarus.
-/obj/item/weapon/gun/energy/icarus
-	name = "rubber ducky"
-	desc = "It's a cute rubber duck.  With an evil gleam in it's eye."
-	projectile_type = /obj/item/projectile/icarus/pointdefense
-	icon = 'icons/obj/watercloset.dmi'
-	item_icons = null
-	icon_state = "rubberducky"
-	item_state = "rubberducky"
-	charge_cost = 0
-	silenced = 1
-
-/obj/item/weapon/gun/energy/icarus/attack_self(mob/living/user as mob)
-	if(projectile_type == /obj/item/projectile/icarus/pointdefense)
-		projectile_type = /obj/item/projectile/icarus/guns
-		user << "You inform the Icarus to switch to the main guns."
-	else
-		projectile_type = /obj/item/projectile/icarus/pointdefense
-		user << "You inform the Icarus to switch to the point-defense lasers."
-
-	. = ..()
-
-/obj/item/weapon/gun/energy/icarus/update_icon()
-	return
-
-/obj/item/weapon/gun/energy/icarus/verb/SetIcarusAngle()
-	set src in usr
-	set name = "Set Firing Angle"
-	set desc = "Sets the angle from which the icarus will fire."
-	set category = "Object"
-
-	Icarus_SetPosition(usr)
-
-
 /obj/item/weapon/gun/energy/variable
 	name = "abstract weapon"
 	desc = "It seems to shift and flow as you watch."
