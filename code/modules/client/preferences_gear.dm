@@ -343,6 +343,10 @@ var/global/list/gear_datums = list()
 
 // Mask
 
+/datum/gear/bandanamask/ipc_monitor
+	display_name = "display monitor (prosthetic head only)"
+	path = /obj/item/clothing/mask/monitor
+
 /datum/gear/sterilemask
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
