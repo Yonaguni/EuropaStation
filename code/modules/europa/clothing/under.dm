@@ -48,7 +48,7 @@
 /obj/item/clothing/under/europa/pants/khakis
 	name = "khaki pants"
 	desc = "A smooth pair of tan khakis. Now you're getting things done."
-	icon_state = "khakis"
+	icon_state = "khakipants"
 
 /obj/item/clothing/under/europa/pants/shorts
 	name = "shorts"
@@ -85,6 +85,12 @@
 	desc = "High ranking government fatigues with a grey digital camo design and gold embroidery. The gold trims denote the wearer to be a colonial marshall under the administration of the SDPE."
 	icon_state = "marshal"
 	worn_state = "marshal"
+
+/obj/item/clothing/under/europa/sailor
+	name = "sailor's fatigues"
+	desc = "Standard pair of sailor's fatigues. Featuring dark blue trims with a gold logo."
+	icon_state = "sailor"
+	worn_state = "sailor"
 
 
 /*
