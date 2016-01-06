@@ -55,6 +55,36 @@
 	desc = "A pair of shorts cut off just above the knee. For when the air gets a bit stuffy."
 	icon_state = "shorts"
 
+/obj/item/clothing/under/europa/skirts
+	name = "gray skirt"
+	desc = "A casual grey skirt for around the office."
+	icon_state = "skirt-gray"
+
+/obj/item/clothing/under/europa/skirts/blue
+	name = "blue skirt"
+	desc = "A casual navy blue skirt for around the office."
+	icon_state = "skirt-blue"
+
+/obj/item/clothing/under/europa/skirts/black
+	name = "black skirt"
+	desc = "A casual black skirt for around the office."
+	icon_state = "skirt-black"
+
+/obj/item/clothing/under/europa/skirts/skater
+	name = "red skater skirt"
+	desc = "Skates not include,"
+	icon_state = "skateskirt-red"
+
+/obj/item/clothing/under/europa/skirts/skater/pink
+	name = "pink skater skirt"
+	desc = "Skates not include,"
+	icon_state = "skateskirt-pink"
+
+/obj/item/clothing/under/europa/skirts/skater/blue
+	name = "blue skater skirt"
+	desc = "Skates not include,"
+	icon_state = "skateskirt-blue"
+
 /*
  * Civilian One Piece Outfits
  */
