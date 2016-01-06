@@ -1,6 +1,6 @@
 # ES13
 
-[Website](http://wetskrell.org/water/index.php/) - [Code](https://github.com/Yonaguni/EuropaStation) - [IRC](http://chat.mibbit.com/?server=webirc.sorcery.net&channel=%23yonaguni)
+[Website](http://wetskrell.org/water/index.php) - [Code](https://github.com/Yonaguni/EuropaStation) - [IRC](http://chat.mibbit.com/?server=webirc.sorcery.net&channel=%23yonaguni)
 
 ---
 
