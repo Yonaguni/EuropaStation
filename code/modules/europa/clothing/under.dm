@@ -72,17 +72,17 @@
 
 /obj/item/clothing/under/europa/skirts/skater
 	name = "red skater skirt"
-	desc = "Skates not include,"
+	desc = "Skates not included."
 	icon_state = "skateskirt-red"
 
 /obj/item/clothing/under/europa/skirts/skater/pink
 	name = "pink skater skirt"
-	desc = "Skates not include,"
+	desc = "Skates not included."
 	icon_state = "skateskirt-pink"
 
 /obj/item/clothing/under/europa/skirts/skater/blue
 	name = "blue skater skirt"
-	desc = "Skates not include,"
+	desc = "Skates not included."
 	icon_state = "skateskirt-blue"
 
 /*
