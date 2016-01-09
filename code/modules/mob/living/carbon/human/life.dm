@@ -41,6 +41,7 @@
 	if (transforming)
 		return
 
+	blinded = 0
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 	//TODO: seperate this out
