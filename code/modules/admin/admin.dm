@@ -1297,7 +1297,7 @@ proc/admin_notice(var/message, var/rights)
 
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN))
 		usr << "Error: you are not an admin!"
 		return
 
@@ -1308,3 +1308,19 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name(usr)] attempting to force mode latespawn.")
 	ticker.mode.next_spawn = 0
 	ticker.mode.process_autoantag()
+
+/datum/admins/proc/paralyze_mob(mob/living/H as mob)
+	set category = "Admin"
+	set name = "Toggle Paralyze"
+	set desc = "Paralyzes a player. Or unparalyses them."
+
+	var/msg
+
+	if(check_rights(R_ADMIN))
+		if (H.paralysis == 0)
+			H.paralysis = 8000
+			msg = "has paralyzed [key_name(H)]."
+		else
+			H.paralysis = 0
+			msg = "has unparalyzed [key_name(H)]."
+		log_and_message_admins(msg)

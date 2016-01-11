@@ -91,7 +91,8 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/reload_vips,
 	/datum/admins/proc/show_vips,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI
+	/client/proc/makePAI,
+	/datum/admins/proc/paralyze_mob
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -128,9 +129,6 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,
 	/client/proc/respawn_character,
-	/client/proc/FireLaser,
-	/client/proc/FireCannons,
-	/client/proc/ChangeIcarusPosition,
 	/client/proc/virus2_editor,
 	/client/proc/spawn_chemdisp_cartridge
 	)
@@ -290,7 +288,8 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,
-	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
+	/client/proc/cmd_admin_subtle_message, 	/*send an message to somebody as a 'voice in their head'*/
+	/datum/admins/proc/paralyze_mob
 )
 
 var/list/admin_verbs_mentor = list(
