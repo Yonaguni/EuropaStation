@@ -305,7 +305,7 @@ var/global/datum/controller/gameticker/ticker
 			game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
 			mode_finished = (!post_game && mode.check_finished())
 		else
-			game_finished = (mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)) || universe_has_ended
+			game_finished = (mode.check_finished() || emergency_shuttle.returned()) || universe_has_ended
 			mode_finished = game_finished
 
 		if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
@@ -344,15 +344,12 @@ var/global/datum/controller/gameticker/ticker
 
 		else if (mode_finished)
 			post_game = 1
-
 			mode.cleanup()
-
-			//call a transfer shuttle vote
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					world << "<span class='danger'>The round has ended!</span>"
 					round_end_announced = 1
-				vote.autotransfer()
+
 
 		return 1
 
@@ -362,7 +359,7 @@ var/global/datum/controller/gameticker/ticker
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.departed && emergency_shuttle.evac)
+				if(emergency_shuttle.departed)
 					if(isNotAdminLevel(playerTurf.z))
 						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
 					else

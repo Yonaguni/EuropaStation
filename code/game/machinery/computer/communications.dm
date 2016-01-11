@@ -29,7 +29,6 @@
 	var/const/STATE_STATUSDISPLAY = 7
 	var/const/STATE_ALERT_LEVEL = 8
 	var/const/STATE_CONFIRM_LEVEL = 9
-	var/const/STATE_CREWTRANSFER = 10
 
 	var/status_display_freq = "1435"
 	var/stat_msg1
@@ -110,7 +109,7 @@
 				if(message_cooldown)
 					usr << "Please allow at least one minute to pass between announcements"
 					return
-				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement")
+				var/input = input(usr, "Please write a message to announce to the colony.", "Priority Announcement")
 				if(!input || !(usr in view(1,src)))
 					return
 				crew_announcement.Announce(input)
@@ -185,12 +184,12 @@
 		if("MessageCentcomm")
 			if(src.authenticated==1)
 				if(centcomm_message_cooldown)
-					usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
+					usr << "<span class='warning'>Arrays cycling. Please stand by.</span>"
 					return
 				if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
-					usr <<"<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>"
+					usr <<"<span class='warning'>No emergency relay detected. Unable to transmit message.</span>"
 					return
-				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via maser burst.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
 				Centcomm_announce(input, usr)
@@ -205,9 +204,9 @@
 		if("MessageSyndicate")
 			if((src.authenticated==1) && (src.emagged))
 				if(centcomm_message_cooldown)
-					usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
+					usr << "<span class='warning'>Arrays cycling. Please stand by.</span>"
 					return
-				var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+				var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via maser burst.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
 				Syndicate_announce(input, usr)
@@ -302,28 +301,28 @@
 			if (src.authenticated)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]"
 				if (src.authenticated==1)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
 					if(src.emagged == 0)
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send an emergency message to [boss_short]</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore backup routing data</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
 				if(emergency_shuttle.location())
 					if (emergency_shuttle.online())
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Submarine Call</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel evacuation</A> \]"
 					else
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Submarine</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Declare evacuation</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
 			else
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"
 		if(STATE_CALLSHUTTLE)
-			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
+			dat += "Are you sure you want to call an evacuation? \[ <A HREF='?src=\ref[src];operation=callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_CANCELSHUTTLE)
-			dat += "Are you sure you want to cancel the shuttle? \[ <A HREF='?src=\ref[src];operation=cancelshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
+			dat += "Are you sure you want to cancel the evacuation? \[ <A HREF='?src=\ref[src];operation=cancelshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; i<=src.messagetitle.len; i++)
@@ -348,7 +347,7 @@
 			dat += "Set Status Displays<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Vessel ETA</A> \]<BR>"
+			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evac ETA</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
@@ -380,11 +379,11 @@
 	switch(src.aistate)
 		if(STATE_DEFAULT)
 			if(emergency_shuttle.location() && !emergency_shuttle.online())
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Submarine</A> \]"
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Declare evacuation</A> \]"
+			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message list</A> \]"
+			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set status display</A> \]"
 		if(STATE_CALLSHUTTLE)
-			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=ai-main'>Cancel</A> \]"
+			dat += "Are you sure you want to call an evacuation? \[ <A HREF='?src=\ref[src];operation=ai-callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=ai-main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; i<=src.messagetitle.len; i++)
@@ -409,7 +408,7 @@
 			dat += "Set Status Displays<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Vessel ETA</A> \]<BR>"
+			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evac ETA</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
@@ -431,23 +430,23 @@
 		return
 
 	if(!universe.OnShuttleCall(usr))
-		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
+		user << "<span class='notice'>Tracking systems cannot establish orbital telemetery. The emergency evacuation system cannot fire.</span>"
 		return
 
 	if(emergency_shuttle.deny_shuttle)
-		user << "The emergency shuttle may not be sent at this time. Please try again later."
+		user << "The emergency evacuation system is offline. Please contact your system administrator."
 		return
 
 	if(world.time < 6000) // Ten minute grace period to let the game get going without lolmetagaming. -- TLE
-		user << "The emergency shuttle is refueling. Please wait another [round((6000-world.time)/600)] minute\s before trying again."
+		user << "The emergency evacuation system is being reset. Please wait another [round((6000-world.time)/600)] minute\s before trying again."
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The emergency shuttle may not be called while returning to [boss_short]."
+		user << "The emergency evacuation system already fired."
 		return
 
 	if(emergency_shuttle.online())
-		user << "The emergency shuttle is already on its way."
+		user << "The emergency evacuation system is being prepared."
 		return
 
 	if(ticker.mode.name == "blob")
@@ -455,64 +454,20 @@
 		return
 
 	emergency_shuttle.call_evac()
-	log_game("[key_name(user)] has called the shuttle.")
-	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
+	log_game("[key_name(user)] has declared an evacuation.")
+	message_admins("[key_name_admin(user)] has declared an evacuation.", 1)
 
-
-	return
-
-/proc/init_shift_change(var/mob/user, var/force = 0)
-	if ((!( ticker ) || !emergency_shuttle.location()))
-		return
-
-	if(emergency_shuttle.going_to_centcom())
-		user << "The shuttle may not be called while returning to [boss_short]."
-		return
-
-	if(emergency_shuttle.online())
-		user << "The shuttle is already on its way."
-		return
-
-	// if force is 0, some things may stop the shuttle call
-	if(!force)
-		if(emergency_shuttle.deny_shuttle)
-			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
-			return
-
-		if(world.time < 54000) // 30 minute grace period to let the game get going
-			user << "The shuttle is refueling. Please wait another [round((54000-world.time)/60)] minutes before trying again."
-			return
-
-		if(ticker.mode.auto_recall_shuttle)
-			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
-			emergency_shuttle.auto_recall = 1
-
-		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
-			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
-			return
-
-	emergency_shuttle.call_transfer()
-
-	//delay events in case of an autotransfer
-	if (isnull(user))
-		event_manager.delay_events(EVENT_LEVEL_MODERATE, 9000) //15 minutes
-		event_manager.delay_events(EVENT_LEVEL_MAJOR, 9000)
-
-	log_game("[user? key_name(user) : "Autotransfer"] has called the shuttle.")
-	message_admins("[user? key_name_admin(user) : "Autotransfer"] has called the shuttle.", 1)
 
 	return
 
 /proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
 		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
-		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
 		emergency_shuttle.recall()
-		log_game("[key_name(user)] has recalled the shuttle.")
-		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
+		log_game("[key_name(user)] has cancelled evac.")
+		message_admins("[key_name_admin(user)] has cancelled evac.", 1)
 	return
 
 

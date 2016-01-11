@@ -10,6 +10,9 @@ proc/get_mining_overlay(var/overlay_key)
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
+	density = 1
+	opacity = 1
+	blocks_air = 1
 
 /turf/simulated/mineral //wall piece
 	name = "rock"

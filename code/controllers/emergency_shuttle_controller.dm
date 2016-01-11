@@ -6,12 +6,9 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 /datum/emergency_shuttle_controller
 	var/datum/shuttle/ferry/emergency/shuttle
-	var/list/escape_pods
-
 	var/launch_time			//the time at which the shuttle will be launched
 	var/auto_recall = 0		//if set, the shuttle will be auto-recalled
 	var/auto_recall_time	//the time at which the shuttle will be auto-recalled
-	var/evac = 0			//1 = emergency evacuation, 0 = crew transfer
 	var/wait_for_launch = 0	//if the shuttle is waiting to launch
 	var/autopilot = 1		//set to 0 to disable the shuttle automatically launching
 
@@ -24,17 +21,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 /datum/emergency_shuttle_controller/proc/process()
 	if (wait_for_launch)
-		if (evac && auto_recall && world.time >= auto_recall_time)
+		if (auto_recall && world.time >= auto_recall_time)
 			recall()
 		if (world.time >= launch_time)	//time to launch the shuttle
 			stop_launch_countdown()
-
-			if (!shuttle.location)	//leaving from the station
-				//launch the pods!
-				for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-					if (!pod.arming_controller || pod.arming_controller.armed)
-						pod.launch(src)
-
 			if (autopilot)
 				shuttle.launch(src)
 
@@ -44,17 +34,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	if (!shuttle.location)	//at station
 		if (autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
-
-			if (evac)
-				emergency_shuttle_docked.Announce("The Emergency Shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
-			else
-				priority_announcement.Announce("The scheduled Crew Transfer Shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
-
-		//arm the escape pods
-		if (evac)
-			for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-				if (pod.arming_controller)
-					pod.arming_controller.arm()
+			emergency_shuttle_docked.Announce("The emergency evacuation system is now prepared to fire. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the evacuation pod.")
 
 //begins the launch countdown and sets the amount of time left until launch
 /datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
@@ -76,25 +56,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
-	evac = 1
-	emergency_shuttle_called.Announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time()/60)] minutes.")
+	emergency_shuttle_called.Announce("An emergency evacuation has been scheduled. Evacuation systems will be prepared to fire in approximately [round(estimate_arrival_time()/60)] minutes.")
 	for(var/area/A in all_areas)
 		if(istype(A, /area/hallway))
 			A.readyalert()
-
-//calls the shuttle for a routine crew transfer
-/datum/emergency_shuttle_controller/proc/call_transfer()
-	if(!can_call()) return
-
-	//set the launch timer
-	autopilot = 1
-	set_launch_countdown(get_shuttle_prep_time())
-	auto_recall_time = rand(world.time + 300, launch_time - 300)
-
-	//reset the shuttle transit time if we need to
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
-
-	priority_announcement.Announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time()/60)] minutes.")
 
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
@@ -103,15 +68,11 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	wait_for_launch = 0
 	shuttle.cancel_launch(src)
 
-	if (evac)
-		emergency_shuttle_recalled.Announce("The emergency shuttle has been recalled.")
+	emergency_shuttle_recalled.Announce("The emergency evacuation has been cancelled.")
 
-		for(var/area/A in all_areas)
-			if(istype(A, /area/hallway))
-				A.readyreset()
-		evac = 0
-	else
-		priority_announcement.Announce("The scheduled crew transfer has been cancelled.")
+	for(var/area/A in all_areas)
+		if(istype(A, /area/hallway))
+			A.readyreset()
 
 /datum/emergency_shuttle_controller/proc/can_call()
 	if (!universe.OnShuttleCall(null))

@@ -1,7 +1,7 @@
 /obj/effect/landmark/map_data/europa
 	name = "Yonaguni Dome"
-	desc = "The main dome level and the mining abyss level."
-	height = 2
+	desc = "The main dome level, the mining abyss level, the transit level and the surface."
+	height = 4
 
 /turf/simulated/open/flooded
 	name = "abyss"

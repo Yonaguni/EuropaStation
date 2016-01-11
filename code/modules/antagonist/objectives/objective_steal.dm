@@ -104,14 +104,6 @@
 					var/area/check_area = get_area(ai)
 					if(istype(check_area, /area/shuttle/escape/centcom))
 						return 1
-					if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod5/centcom))
-						return 1
 		else
 			for(var/obj/I in all_items) //Check for items
 				if(istype(I, steal_target))

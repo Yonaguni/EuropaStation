@@ -26,11 +26,7 @@
 
 	if (origin == area_station)	//leaving the station
 		emergency_shuttle.departed = 1
-
-		if (emergency_shuttle.evac)
-			priority_announcement.Announce("The Emergency Shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until the shuttle docks at [boss_name].")
-		else
-			priority_announcement.Announce("The Crew Transfer Shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until the shuttle docks at [boss_name].")
+		priority_announcement.Announce("Evacuation pod ejection complete. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until leaving atmosphere and pickup by the Jovian navy.")
 
 /datum/shuttle/ferry/emergency/can_launch(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
@@ -62,11 +58,11 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence initiated!</b></span>"
+			world << "<span class='notice'><b>Alert: automatic systems overridden. Launch sequence initiated!</b></span>"
 
 	if(usr)
-		log_admin("[key_name(usr)] has overridden the shuttle autopilot and activated launch sequence")
-		message_admins("[key_name_admin(usr)] has overridden the shuttle autopilot and activated launch sequence")
+		log_admin("[key_name(usr)] has assumed manual control and activated launch sequence")
+		message_admins("[key_name_admin(usr)] has assumed manual control and activated launch sequence")
 
 	..(user)
 

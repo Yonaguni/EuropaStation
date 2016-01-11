@@ -51,3 +51,10 @@
 	name = "disposals pipe bundle"
 	build_type = "disposals"
 	build_path = /obj/structure/conduit/disposals
+
+/obj/item/stack/conduit/power
+	name = "power cable"
+	icon_state = "power"
+	build_type = "power"
+	build_path = /obj/structure/conduit/power
+	color = "#FF0000"

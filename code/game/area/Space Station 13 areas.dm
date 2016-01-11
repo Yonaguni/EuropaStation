@@ -173,58 +173,6 @@ area/space/atmosalert()
 	name = "\improper Emergency Submarine Transit"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod1
-	name = "\improper Escape Pod One"
-	music = "music/escape.ogg"
-
-/area/shuttle/escape_pod1/station
-	icon_state = "shuttle2"
-
-/area/shuttle/escape_pod1/centcom
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod1/transit
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod2
-	name = "\improper Escape Pod Two"
-	music = "music/escape.ogg"
-
-/area/shuttle/escape_pod2/station
-	icon_state = "shuttle2"
-
-/area/shuttle/escape_pod2/centcom
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod2/transit
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod3
-	name = "\improper Escape Pod Three"
-	music = "music/escape.ogg"
-
-/area/shuttle/escape_pod3/station
-	icon_state = "shuttle2"
-
-/area/shuttle/escape_pod3/centcom
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod3/transit
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod5 //Pod 4 was lost to meteors
-	name = "\improper Escape Pod Five"
-	music = "music/escape.ogg"
-
-/area/shuttle/escape_pod5/station
-	icon_state = "shuttle2"
-
-/area/shuttle/escape_pod5/centcom
-	icon_state = "shuttle"
-
-/area/shuttle/escape_pod5/transit
-	icon_state = "shuttle"
-
 /area/shuttle/mining
 	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
@@ -2129,10 +2077,6 @@ area/space/atmosalert()
 var/list/centcom_areas = list (
 	/area/centcom,
 	/area/shuttle/escape/centcom,
-	/area/shuttle/escape_pod1/centcom,
-	/area/shuttle/escape_pod2/centcom,
-	/area/shuttle/escape_pod3/centcom,
-	/area/shuttle/escape_pod5/centcom,
 	/area/shuttle/transport1/centcom,
 	/area/shuttle/administration/centcom,
 	/area/shuttle/specops/centcom,
@@ -2142,10 +2086,6 @@ var/list/centcom_areas = list (
 var/list/the_station_areas = list (
 	/area/shuttle/arrival,
 	/area/shuttle/escape/station,
-	/area/shuttle/escape_pod1/station,
-	/area/shuttle/escape_pod2/station,
-	/area/shuttle/escape_pod3/station,
-	/area/shuttle/escape_pod5/station,
 	/area/shuttle/mining/station,
 	/area/shuttle/transport1/station,
 	// /area/shuttle/transport2/station,

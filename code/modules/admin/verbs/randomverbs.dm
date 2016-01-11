@@ -699,12 +699,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
+	emergency_shuttle.call_evac()
 
-	choice = input("Is this an emergency evacuation or a crew transfer?") in list("Emergency", "Crew Transfer")
-	if (choice == "Emergency")
-		emergency_shuttle.call_evac()
-	else
-		emergency_shuttle.call_transfer()
 
 
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
