@@ -207,19 +207,7 @@
 		msg += "[T.He] [T.is] covered in some liquid.\n"
 	if(on_fire)
 		msg += "<span class='warning'>[T.He] [T.is] on fire!.</span>\n"
-	msg += "<span class='warning'>"
-
-	/*
-	if(nutrition < 100)
-		msg += "[T.He] [T.is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		/*if(usr.nutrition < 100)
-			msg += "[T.He] [T.is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
-		msg += "[T.He] [T.is] quite chubby.\n"
-	*/
-
-	msg += "</span>"
+	msg += "<span class='warning'></span>"
 
 	if(getBrainLoss() >= 60)
 		msg += "[T.He] [T.has] a stupid expression on [T.his] face.\n"
@@ -258,9 +246,9 @@
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.His] [parent.name].</span><br>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [parent.name].</span><br>"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.His] [temp.name].</span><br>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].</span><br>"
 				if(temp.status & ORGAN_BLEEDING)
 					is_bleeding["[temp.name]"] = "<span class='danger'>[T.His] [temp.name] is bleeding!</span><br>"
 			else

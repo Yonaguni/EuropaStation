@@ -537,6 +537,7 @@
 #include "code\game\objects\items\weapons\extinguisher.dm"
 #include "code\game\objects\items\weapons\gift_wrappaper.dm"
 #include "code\game\objects\items\weapons\handcuffs.dm"
+
 #include "code\game\objects\items\weapons\paint.dm"
 #include "code\game\objects\items\weapons\power_cells.dm"
 #include "code\game\objects\items\weapons\RCD.dm"
@@ -805,7 +806,6 @@
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\dice.dm"
 #include "code\modules\admin\verbs\getlogs.dm"
-#include "code\modules\admin\verbs\icarus.dm"
 #include "code\modules\admin\verbs\mapping.dm"
 #include "code\modules\admin\verbs\massmodvar.dm"
 #include "code\modules\admin\verbs\modifyvariables.dm"
