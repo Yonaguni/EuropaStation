@@ -46,3 +46,8 @@ var/global/list/chargen_robolimbs
 	company = "Morpheus"
 	desc = "This limb is simple and functional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/ipc.dmi'
+
+/datum/robolimb/wardtakahashi
+	company = "Ward-Takahashi"
+	desc = "This limb features sleek black and white polymers."
+	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi.dmi'
