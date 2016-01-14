@@ -241,6 +241,7 @@
 #include "code\game\area\areas.dm"
 #include "code\game\area\areas_ai_monitored.dm"
 #include "code\game\area\areas_hallway.dm"
+#include "code\game\area\areas_maintenance.dm"
 #include "code\game\area\areas_ocean.dm"
 #include "code\game\area\areas_offstation.dm"
 #include "code\game\area\areas_shuttles.dm"

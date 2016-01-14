@@ -30,10 +30,15 @@
 // Slum areas.
 /area/slums
 	name = "Slums"
+	icon_state = "slums"
+
 /area/slums/east
 	name = "Slums - East"
+	icon_state = "slums_east"
+
 /area/slums/west
 	name = "Slums - West"
+	icon_state = "slums_west"
 
 // Dome 1 - Civilian Dome.
 /area/dome_civ
@@ -64,20 +69,3 @@
 	name = "Industrial Dome - Foyer"
 /area/dome_ind/shops
 	name = "Industrial Dome - Shops"
-
-// Maintenance.
-/area/maintenance
-	flags = RAD_SHIELDED
-	sound_env = TUNNEL_ENCLOSED
-
-/area/maintenance/industrial_south
-	name = "Industrial Dome - South Maintenance"
-/area/maintenance/industrial_north
-	name = "Industrial Dome - North Maintenance"
-/area/maintenance/civil_core
-	name = "Civilian Dome - Core Maintenance"
-/area/maintenance/civil_north
-	name = "Civilian Dome - North Maintenance"
-
-/area/mining
-	name = "Mining Station"
