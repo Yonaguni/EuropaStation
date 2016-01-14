@@ -1,11 +1,46 @@
-// Areas.dm
-
-
-
-// ===
 /area
+
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+
+	level = null
+	layer = 10
+	luminosity = 0
+	mouse_opacity = 0
+
 	var/global/global_uid = 0
 	var/uid
+
+	var/eject = null
+	var/debug = 0
+	var/requires_power = 1
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+	var/power_equip = 1
+	var/power_light = 1
+	var/power_environ = 1
+	var/music = null
+	var/used_equip = 0
+	var/used_light = 0
+	var/used_environ = 0
+	var/has_gravity = 1
+	var/obj/machinery/power/apc/apc = null
+	var/no_air = null
+	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/air_doors_activated = 0
+	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
+
+	var/fire = null
+	var/atmos = 1
+	var/atmosalm = 0
+	var/poweralm = 1
+	var/party = null
+
+	// Ambient sound data.
+	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/list/forced_ambience = null
+	var/sound_env = STANDARD_STATION
+
 
 /area/New()
 	icon_state = ""

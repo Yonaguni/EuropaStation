@@ -1,6 +1,8 @@
 // the light switch
 // can have multiple per area
 // can also operate on non-loc area through "otherarea" var
+var/list/area_switch_states = list()
+
 /obj/machinery/light_switch
 	name = "light switch"
 	desc = "It turns lights on and off. What are you, simple?"
@@ -23,7 +25,7 @@
 		if(!name)
 			name = "light switch ([area.name])"
 
-		src.on = src.area.lightswitch
+		src.on = area_switch_states["[area.uid]"] ? 1 : 0
 		updateicon()
 
 
@@ -41,10 +43,7 @@
 /obj/machinery/light_switch/attack_hand(mob/user)
 
 	on = !on
-
-	area.lightswitch = on
-	area.updateicon()
-
+	area_switch_states["[area.uid]"] = on
 	for(var/obj/machinery/light_switch/L in area)
 		L.on = on
 		L.updateicon()
