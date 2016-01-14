@@ -33,7 +33,7 @@
 				for(var/obj/structure/closet/C in all_structures)
 					possible_targets |= C
 			if("Vent")
-				for(var/obj/machinery/atmospherics/pipe/vent/V in machines) // Almost certainly the wrong path.
+				for(var/obj/machinery/atmospherics/unary/vent_pump/V in machines) // Almost certainly the wrong path.
 					possible_targets |= V
 			if("Disposals")
 				for(var/obj/machinery/disposal/D in machines)
