@@ -37,5 +37,13 @@
 	..(newloc,"voxalloy")
 /turf/simulated/wall/voxshuttle/attackby()
 	return
+
+/turf/simulated/wall/titanium
+	icon = 'icons/turf/wall_masks.dmi'
+	icon_state = "metal_preview"
+	color = "#D1E6E3"
+
 /turf/simulated/wall/titanium/New(var/newloc)
+	icon_state = null
+	color = null
 	..(newloc,"titanium")
