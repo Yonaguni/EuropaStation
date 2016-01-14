@@ -42,26 +42,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "centcom_dock"
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	//shuttle.docking_controller_tag = "supply_shuttle"
-	//shuttle.dock_target_station = "cargo_bay"
 	shuttles["Escape"] = shuttle
 	process_shuttles += shuttle
 
 	//give the emergency shuttle controller it's shuttle
 	emergency_shuttle.shuttle = shuttles["Escape"]
-
-	// Supply shuttle
-	shuttle = new/datum/shuttle/ferry/supply()
-	shuttle.location = 1
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/supply/dock)
-	shuttle.area_station = locate(/area/supply/station)
-	shuttle.docking_controller_tag = "supply_shuttle"
-	shuttle.dock_target_station = "cargo_bay"
-	shuttles["Supply"] = shuttle
-	process_shuttles += shuttle
-
-	supply_controller.shuttle = shuttle
 
 	shuttle = new()
 	shuttle.warmup_time = 10
