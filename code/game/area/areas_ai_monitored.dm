@@ -1,3 +1,5 @@
+/area/turret_protected
+
 /area/ai_monitored
 	name = "AI Monitored Area"
 	var/obj/machinery/camera/motioncamera = null

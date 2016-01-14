@@ -133,7 +133,7 @@ var/hadevent    = 0
 
 	var/list/area/areas = list()
 	for(var/area/A in all_areas)
-		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
+		if(A.flags & SECURE_AREA)
 			areas += A
 
 	if(areas && areas.len > 0)

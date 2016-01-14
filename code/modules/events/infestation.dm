@@ -1,14 +1,3 @@
-#define LOC_KITCHEN 0
-#define LOC_ATMOS 1
-#define LOC_INCIN 2
-#define LOC_CHAPEL 3
-#define LOC_LIBRARY 4
-#define LOC_HYDRO 5
-#define LOC_VAULT 6
-#define LOC_CONSTR 7
-#define LOC_TECH 8
-#define LOC_TACTICAL 9
-
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
 #define VERM_SPIDERS 2
@@ -23,46 +12,20 @@
 
 /datum/event/infestation/start()
 
-	location = rand(0,9)
-	var/list/turf/simulated/floor/turfs = list()
-	var/spawn_area_type
-	switch(location)
-		if(LOC_KITCHEN)
-			spawn_area_type = /area/crew_quarters/kitchen
-			locstring = "the kitchen"
-		if(LOC_ATMOS)
-			spawn_area_type = /area/engineering/atmos
-			locstring = "atmospherics"
-		if(LOC_INCIN)
-			spawn_area_type = /area/maintenance/incinerator
-			locstring = "the incinerator"
-		if(LOC_CHAPEL)
-			spawn_area_type = /area/chapel/main
-			locstring = "the chapel"
-		if(LOC_LIBRARY)
-			spawn_area_type = /area/library
-			locstring = "the library"
-		if(LOC_HYDRO)
-			spawn_area_type = /area/hydroponics
-			locstring = "hydroponics"
-		if(LOC_VAULT)
-			spawn_area_type = /area/security/nuke_storage
-			locstring = "the vault"
-		if(LOC_CONSTR)
-			spawn_area_type = /area/construction
-			locstring = "the construction area"
-		if(LOC_TECH)
-			spawn_area_type = /area/storage/tech
-			locstring = "technical storage"
-		if(LOC_TACTICAL)
-			spawn_area_type = /area/security/tactical
-			locstring = "tactical equipment storage"
+	var/list/valid_spawn_areas = list()
+	for(var/area/A in all_areas)
+		if(A.flags & INFESTATION_TARGET)
+			valid_spawn_areas += A
 
-	for(var/areapath in typesof(spawn_area_type))
-		var/area/A = locate(areapath)
-		for(var/turf/simulated/floor/F in A.contents)
-			if(turf_clear(F))
-				turfs += F
+	if(!valid_spawn_areas.len)
+		return
+
+	var/list/turf/simulated/floor/turfs = list()
+	var/area/spawning_in = pick(valid_spawn_areas)
+	locstring = "\the [spawning_in]"
+	for(var/turf/simulated/floor/F in spawning_in.contents)
+		if(turf_clear(F))
+			turfs += F
 
 	var/list/spawn_types = list()
 	var/max_number
@@ -95,9 +58,8 @@
 				var/spawn_type = pick(spawn_types)
 				new spawn_type(T)
 
-
 /datum/event/infestation/announce()
-	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
+	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in \the [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS

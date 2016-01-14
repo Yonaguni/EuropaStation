@@ -13,7 +13,7 @@
 			C.energy_fail(rand(30 * severity,60 * severity))
 
 /proc/power_restore(var/announce = 1)
-	var/list/skipped_areas = list(/area/turret_protected/ai)
+	var/list/skipped_areas = list() ///area/turret_protected/ai)
 
 	if(announce)
 		command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')

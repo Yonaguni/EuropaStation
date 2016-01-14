@@ -1,6 +1,6 @@
-"a" = (/turf/unsimulated/ocean,/area/space)
-"b" = (/turf/unsimulated/mineral,/area/space)
-"c" = (/turf/simulated/open,/area/space)
+"a" = (/turf/unsimulated/ocean,/area/ocean)
+"b" = (/turf/unsimulated/mineral,/area/ocean)
+"c" = (/turf/simulated/open,/area/ocean)
 "d" = (/turf/simulated/open,/area/shuttle/escape/transit)
 
 (1,1,1) = {"
