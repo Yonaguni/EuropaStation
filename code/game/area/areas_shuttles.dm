@@ -26,8 +26,8 @@
 
 /area/shuttle/mining/station
 	icon_state = "shuttle_origin"
-	base_turf = /turf/simulated/open
+	base_turf = /turf/simulated/floor
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle_end"
-	base_turf = /turf/simulated/floor
+	base_turf = /turf/simulated/open

@@ -10,11 +10,13 @@
 	var/uid                            // Unique identifier for this area instance.
 	var/global/global_uid = 0          // Global area UID reference.
 	var/turf/base_turf                 // Area base turf type, overrides the base z turf
+	var/lights_switched_on = 1         // Global state for light switches in this area instance.
 
 /area/New()
 	icon_state = ""
 	layer = 10
 	uid = ++global_uid
+
 	all_areas += src
 
 	if(!requires_power)
@@ -26,6 +28,7 @@
 		luminosity = 0
 	else
 		luminosity = 1
+
 
 	..()
 
