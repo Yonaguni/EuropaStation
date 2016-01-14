@@ -175,7 +175,7 @@
 			else
 				chance_of_deletion = 100
 			if(prob(chance_of_deletion))
-				T.ChangeTurf(get_base_turf(src.z))
+				T.ChangeTurf(get_base_turf_by_area(src))
 			else
 				T.to_be_destroyed = 0
 				T.max_fire_temperature_sustained = 0
