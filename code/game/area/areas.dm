@@ -43,29 +43,66 @@
 // Dome 1 - Civilian Dome.
 /area/dome_civ
 	name = "Civilian Dome - Foyer"
+
 /area/dome_civ/kitchen
 	name = "Civilian Dome - Cafeteria"
+	icon_state = "cafe"
+
 /area/dome_civ/medical
 	name = "Civilian Dome - Hospital"
+	icon_state = "medical"
+
 /area/dome_civ/garden
 	name = "Civilian Dome - Garden"
-/area/dome_civ/evac
-	name = "Civilian Dome - Evacuation Driver"
+	icon_state = "garden"
+
+/area/docks_civil
+	name = "Civilian Dome - Docks"
+	icon_state = "docks"
+
+/area/docks_evac
+	name = "Civilian Dome - Evacuation Bay"
+	icon_state = "docks"
+
+/area/docks_navy
+	name = "Naval Dome - Docks"
+	icon_state = "docks"
+
+/area/docks_industrial
+	name = "Industrial Dome - Docks"
+	icon_state = "docks"
+
+/area/dome_civ/admin
+	name = "Civilian Dome - Administration"
+	icon_state = "admin"
+
 /area/dome_civ/dorms_general
 	name = "Civilian Dome - Flophouse"
+	icon_state = "dorms_general"
+
 /area/dome_civ/dorms_east
 	name = "Civilian Dome - East Dorms"
+	icon_state = "dorms_east"
+
 /area/dome_civ/dorms_west
 	name = "Civilian Dome - West Dorms"
+	icon_state = "dorms_west"
+
 /area/dome_civ/apartments
 	name = "Civilian Dome - Apartments"
+	icon_state = "dorms"
+
 /area/dome_civ/engineering
 	name = "Civilian Dome - Engineering Storage"
+	icon_state = "engineering"
+
 /area/dome_civ/atmos
 	name = "Civilian Dome - Life Support"
+	icon_state = "atmospherics"
 
 // Dome 2 - Industrial/Science Dome.
 /area/dome_ind
 	name = "Industrial Dome - Foyer"
+
 /area/dome_ind/shops
 	name = "Industrial Dome - Shops"
