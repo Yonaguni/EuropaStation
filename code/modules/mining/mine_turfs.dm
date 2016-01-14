@@ -40,6 +40,7 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
+	blocks_air = 0
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
