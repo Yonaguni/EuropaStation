@@ -58,7 +58,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 	emergency_shuttle_called.Announce("An emergency evacuation has been scheduled. Evacuation systems will be prepared to fire in approximately [round(estimate_arrival_time()/60)] minutes.")
 	for(var/area/A in all_areas)
-		if(istype(A, /area/hallway))
+		if(A.flags & SHOW_EVAC_ALERT)
 			A.readyalert()
 
 //recalls the shuttle
@@ -71,7 +71,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	emergency_shuttle_recalled.Announce("The emergency evacuation has been cancelled.")
 
 	for(var/area/A in all_areas)
-		if(istype(A, /area/hallway))
+		if(A.flags & SHOW_EVAC_ALERT)
 			A.readyreset()
 
 /datum/emergency_shuttle_controller/proc/can_call()

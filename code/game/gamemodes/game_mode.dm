@@ -292,7 +292,7 @@ var/global/list/additional_antag_types = list()
 	var/escaped_total = 0
 	var/escaped_on_shuttle = 0
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom)
+	var/list/area/escape_locations = list(/area/shuttle/escape/outpost)
 
 	for(var/mob/M in player_list)
 		if(M.client)
@@ -306,9 +306,6 @@ var/global/list/additional_antag_types = list()
 				surviving_total++
 				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
 					escaped_total++
-
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape/centcom)
-					escaped_on_shuttle++
 
 			if(isobserver(M))
 				ghosts++

@@ -12,21 +12,15 @@
 	var/otherarea = null
 	//	luminosity = 1
 
-/obj/machinery/light_switch/New()
+/obj/machinery/light_switch/initialize()
 	..()
-	spawn(5)
-		src.area = get_area(src)
-
-		if(otherarea)
-			src.area = locate(text2path("/area/[otherarea]"))
-
-		if(!name)
-			name = "light switch ([area.name])"
-
-		src.on = src.area.lightswitch
-		updateicon()
-
-
+	src.area = get_area(src)
+	if(otherarea)
+		src.area = locate(text2path("/area/[otherarea]"))
+	if(!name)
+		name = "light switch ([area.name])"
+	src.on = area.lights_switched_on
+	updateicon()
 
 /obj/machinery/light_switch/proc/updateicon()
 	if(stat & NOPOWER)
@@ -39,26 +33,19 @@
 		user << "A light switch. It is [on? "on" : "off"]."
 
 /obj/machinery/light_switch/attack_hand(mob/user)
-
 	on = !on
-
-	area.lightswitch = on
-	area.updateicon()
-
+	area.lights_switched_on = on
 	for(var/obj/machinery/light_switch/L in area)
 		L.on = on
 		L.updateicon()
-
 	area.power_change()
 
 /obj/machinery/light_switch/power_change()
-
 	if(!otherarea)
 		if(powered(LIGHT))
 			stat &= ~NOPOWER
 		else
 			stat |= NOPOWER
-
 		updateicon()
 
 /obj/machinery/light_switch/emp_act(severity)

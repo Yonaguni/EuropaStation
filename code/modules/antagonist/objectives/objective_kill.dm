@@ -72,7 +72,7 @@
 				var/turf/T = get_turf(player)
 				if(!T)	continue
 				switch(T.loc.type)
-					if(/area/shuttle/escape/centcom)
+					if(/area/shuttle/escape/outpost)
 						return 0
 	return 1
 

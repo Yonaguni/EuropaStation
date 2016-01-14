@@ -40,6 +40,7 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
+	blocks_air = 0
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -50,8 +51,7 @@ proc/get_mining_overlay(var/overlay_key)
 	density = 0
 	opacity = 0
 	blocks_air = 0
-	update_icon()
-	reconsider_lights()
+	update_general()
 
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
@@ -59,8 +59,13 @@ proc/get_mining_overlay(var/overlay_key)
 	density = 1
 	opacity = 1
 	blocks_air = 1
-	update_icon()
-	reconsider_lights()
+	update_general()
+
+/turf/simulated/mineral/proc/update_general()
+	update_icon(1)
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		reconsider_lights()
+		if(air_master) air_master.add_to_active(src)
 
 /turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
 	. = ..()
@@ -283,3 +288,33 @@ proc/get_mining_overlay(var/overlay_key)
 		mineral = ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
+
+/* EUROPA MINING LEVEL SHIT - this is a hackfix for the level,
+        DO NOT LEAVE THIS INDEFINITELY, ZUHAYR. */
+/turf/simulated/mineral/var/flooded
+/turf/simulated/mineral/var/datum/gas_mixture/water
+/turf/simulated/mineral/flooded/flooded = 1
+/turf/simulated/mineral/floor/flooded/flooded = 1
+
+/turf/simulated/mineral/update_icon(var/update_neighbors)
+	..()
+	if(flooded)
+		overlays += get_ocean_overlay()
+
+/turf/simulated/mineral/is_flooded()
+	return flooded
+
+/turf/simulated/mineral/return_air()
+	if(!flooded)
+		return ..()
+	if(!water)
+		water = new/datum/gas_mixture      // Make our 'air', freezing water.
+		water.temperature = 250            // -24C
+		water.adjust_gas("water", 1500, 1) // Should be higher.
+		water.volume = CELL_VOLUME
+	var/datum/gas_mixture/infiniwater = new()
+	infiniwater.copy_from(water)
+	return infiniwater
+
+/turf/simulated/mineral/get_fluid_depth()
+	return flooded ? 1200 : ..()

@@ -1,4 +1,4 @@
-var/global/list/uplink_locations = list("PDA", "Headset", "None")
+var/list/uplink_locations = list("Locker", "Vent", "Disposals")
 
 /datum/category_item/player_setup_item/antagonism/basic
 	name = "Basic"
@@ -16,7 +16,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	pref.uplinklocation	= sanitize_inlist(pref.uplinklocation, uplink_locations, initial(pref.uplinklocation))
 
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
-	. +="<b>Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a></b>"
+	. +="<b>Dead drop type: <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a></b>"
 	. +="<br>"
 	. +="<b>Exploitable information:</b><br>"
 	if(jobban_isbanned(user, "Records"))

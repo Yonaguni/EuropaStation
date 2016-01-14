@@ -8,10 +8,6 @@
 	if(!holder)	return
 	usr = null
 	src = null
-	switch(controller)
-		if("Supply")
-			supply_controller.process()
-			feedback_add_details("admin_verb","RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
 
@@ -25,7 +21,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Wireless"))
+/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Wireless"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -53,9 +49,6 @@
 		if("Radio")
 			debug_variables(radio_controller)
 			feedback_add_details("admin_verb","DRadio")
-		if("Supply")
-			debug_variables(supply_controller)
-			feedback_add_details("admin_verb","DSupply")
 		if("Shuttles")
 			debug_variables(shuttle_controller)
 			feedback_add_details("admin_verb","DShuttles")

@@ -1,7 +1,7 @@
 /turf/simulated/open
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
-	icon_state = "black"
+	icon_state = "openspace"
 	alpha = 16
 	layer = 0
 	density = 0
@@ -9,13 +9,13 @@
 	accept_lattice = 1
 
 	var/turf/below
-	var/global/overlay_map = list()
 	var/need_appearance_update
 
 /turf/simulated/open/ex_act()
 	return
 
 /turf/simulated/open/initialize()
+	..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
 	if(below) queue_open_turf_update(src)

@@ -401,7 +401,7 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
 	var/area/A = get_area(src)
-	return A && A.lightswitch && (!A.requires_power || A.power_light)
+	return A && A.lights_switched_on && (!A.requires_power || A.power_light)
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return

@@ -103,7 +103,7 @@ datum/preferences
 
 	var/nanotrasen_relation = "Neutral"
 
-	var/uplinklocation = "PDA"
+	var/uplinklocation = "Locker"
 
 	// OOC Metadata:
 	var/metadata = ""

@@ -118,9 +118,6 @@
 
 #define DEFAULT_JOB_TYPE /datum/job/civilian
 
-//Area flags, possibly more to come
-#define RAD_SHIELDED 1 //shielded from radiation, clearly
-
 // Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
