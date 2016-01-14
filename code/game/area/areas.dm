@@ -1,18 +1,31 @@
 // Tram tunnels.
 /area/tram
 	name = "Tram"
+	icon_state = "tram"
+
 /area/tram/tunnel_south
 	name = "Tram Tunnel - South"
+	icon_state = "tram_tunnel_south"
+
 /area/tram/stop_south
 	name = "Tram Stop - South"
+	icon_state = "tram_stop_south"
+
 /area/tram/tunnel_north
 	name = "Tram Tunnel - North"
+	icon_state = "tram_tunnel_north"
+
 /area/tram/stop_north
 	name = "Tram Stop - North"
+	icon_state = "tram_stop_north"
+
 /area/tram/tunnel_east
 	name = "Tram Tunnel - East"
+	icon_state = "tram_tunnel_east"
+
 /area/tram/stop_east
 	name = "Tram Stop - East"
+	icon_state = "tram_stop_east"
 
 // Slum areas.
 /area/slums
@@ -65,3 +78,6 @@
 	name = "Civilian Dome - Core Maintenance"
 /area/maintenance/civil_north
 	name = "Civilian Dome - North Maintenance"
+
+/area/mining
+	name = "Mining Station"

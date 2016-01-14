@@ -1,6 +1,6 @@
 /area/ocean
 	name = "Ocean"
-	icon_state = "space"
+	icon_state = "ocean"
 	requires_power = 1
 	always_unpowered = 1
 	lighting_use_dynamic = 1
@@ -27,3 +27,12 @@ area/ocean/atmosalert()
 
 /area/ocean/partyalert()
 	return
+
+/area/ocean/abyss
+	name = "Abyss Floor"
+	icon_state = "abyss"
+	sound_env = ASTEROID
+
+/area/ocean/surface
+	name = "Icy Wastes"
+	icon_state = "surface"

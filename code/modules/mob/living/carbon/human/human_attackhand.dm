@@ -27,30 +27,6 @@
 			H.do_attack_animation(src)
 			return 0
 
-		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
-			H.do_attack_animation(src)
-			var/damage = rand(0, 9)
-			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("<span class='danger'>\The [H] has attempted to punch [src]!</span>")
-				return 0
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
-			var/armor_block = run_armor_check(affecting, "melee")
-
-			if(HULK in H.mutations)
-				damage += 5
-
-			playsound(loc, "punch", 25, 1, -1)
-
-			visible_message("<span class='danger'>\The [H] has punched [src]!</span>")
-
-			apply_damage(damage, HALLOSS, affecting, armor_block)
-			if(damage >= 9)
-				visible_message("<span class='danger'>\The [H] has weakened [src]!</span>")
-				apply_effect(4, WEAKEN, armor_block)
-
-			return
-
 	if(istype(M,/mob/living/carbon))
 		M.spread_disease_to(src, "Contact")
 

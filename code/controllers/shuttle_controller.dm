@@ -34,7 +34,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle = new/datum/shuttle/ferry/emergency()
 	shuttle.location = 1
 	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/escape/centcom)
+	shuttle.area_offsite = locate(/area/shuttle/escape/outpost)
 	shuttle.area_station = locate(/area/shuttle/escape/station)
 	shuttle.area_transition = locate(/area/shuttle/escape/transit)
 	shuttle.docking_controller_tag = "escape_shuttle"

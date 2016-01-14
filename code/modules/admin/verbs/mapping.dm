@@ -31,7 +31,7 @@ var/intercom_range_display_status = 0
 		src.pixel_y = -224
 
 /obj/effect/debugging/marker
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/areas/markers.dmi'
 	icon_state = "yellow"
 
 /obj/effect/debugging/marker/Move()

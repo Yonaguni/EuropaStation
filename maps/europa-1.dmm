@@ -1,13 +1,13 @@
-"a" = (/turf/unsimulated/mineral,/area/ocean)
-"b" = (/turf/simulated/mineral,/area/ocean)
-"c" = (/turf/simulated/wall,/area/ocean)
-"d" = (/turf/simulated/shuttle/wall,/area/ocean)
-"e" = (/obj/structure/ore_box,/turf/simulated/floor/tiled,/area/ocean)
-"f" = (/turf/simulated/floor/tiled,/area/ocean)
-"g" = (/turf/simulated/shuttle/floor,/area/ocean)
-"h" = (/obj/machinery/door/airlock/external,/turf/simulated/shuttle/floor,/area/ocean)
-"i" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/ocean)
-"j" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled,/area/ocean)
+"a" = (/turf/unsimulated/mineral,/area/ocean/abyss)
+"b" = (/turf/simulated/mineral,/area/ocean/abyss)
+"c" = (/turf/simulated/wall,/area/ocean/abyss)
+"d" = (/turf/simulated/shuttle/wall,/area/shuttle/mining/station)
+"e" = (/obj/structure/ore_box,/turf/simulated/floor/tiled,/area/ocean/abyss)
+"f" = (/turf/simulated/floor/tiled,/area/ocean/abyss)
+"g" = (/turf/simulated/shuttle/floor,/area/shuttle/mining/station)
+"h" = (/obj/machinery/door/airlock/external,/turf/simulated/shuttle/floor,/area/shuttle/mining/station)
+"i" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/ocean/abyss)
+"j" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled,/area/ocean/abyss)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

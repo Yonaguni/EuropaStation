@@ -102,7 +102,7 @@
 				var/turf/T = get_turf(ai)
 				if(istype(T))
 					var/area/check_area = get_area(ai)
-					if(istype(check_area, /area/shuttle/escape/centcom))
+					if(istype(check_area, /area/shuttle/escape/outpost))
 						return 1
 		else
 			for(var/obj/I in all_items) //Check for items
