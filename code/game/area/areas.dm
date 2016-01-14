@@ -64,14 +64,6 @@
 	name = "Civilian Dome - Evacuation Bay"
 	icon_state = "docks"
 
-/area/docks_navy
-	name = "Naval Dome - Docks"
-	icon_state = "docks"
-
-/area/docks_industrial
-	name = "Industrial Dome - Docks"
-	icon_state = "docks"
-
 /area/dome_civ/admin
 	name = "Civilian Dome - Administration"
 	icon_state = "admin"
@@ -101,8 +93,47 @@
 	icon_state = "atmospherics"
 
 // Dome 2 - Industrial/Science Dome.
+/area/docks_industrial
+	name = "Industrial Dome - Docks"
+	icon_state = "docks"
+
 /area/dome_ind
 	name = "Industrial Dome - Foyer"
+	icon_state = "hallway"
 
 /area/dome_ind/shops
 	name = "Industrial Dome - Shops"
+	icon_state = "shops"
+
+/area/dome_ind/commons
+	name = "Industrial Dome - Common Area"
+	icon_state = "dorms"
+
+/area/dome_ind/foundry
+	name = "Industrial Dome - Foundry"
+	icon_state = "mining"
+
+// Dome 3 - Naval Dome
+/area/docks_navy
+	name = "Naval Dome - Docks"
+	icon_state = "docks"
+
+/area/dome_navy
+	name = "Naval Dome - Offices"
+	icon_state = "admin"
+
+/area/dome_navy/medical
+	name = "Naval Dome - First Aid"
+	icon_state = "medical"
+
+/area/dome_navy/armory
+	name = "Naval Dome - Armory"
+	icon_state = "armory"
+
+/area/dome_navy/marshal
+	name = "Naval Dome - Marshal Quarters"
+	icon_state = "dorms"
+
+/area/dome_navy/lockers
+	name = "Naval Dome - Locker Room"
+	icon_state = "storage"
