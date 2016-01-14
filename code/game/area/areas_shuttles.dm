@@ -23,10 +23,11 @@
 /area/shuttle/mining
 	name = "Mining Elevator"
 	music = "music/escape.ogg"
-	icon_state = "shuttle_transit"
 
 /area/shuttle/mining/station
 	icon_state = "shuttle_origin"
+	base_turf = /turf/simulated/open
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle_end"
+	base_turf = /turf/simulated/floor
