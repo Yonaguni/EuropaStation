@@ -67,7 +67,7 @@ proc/get_mining_overlay(var/overlay_key)
 	update_icon(1)
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		reconsider_lights()
-		if(air_master) air_master.add_to_active(src)
+		air_update_turf()
 
 /turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
 	. = ..()
