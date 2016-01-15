@@ -61,6 +61,9 @@ var/list/open_space_cache = list()
 				open_space_cache["[tempdir]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = tempdir)
 			overlays += open_space_cache["[tempdir]"]
 
+	if(flooded)
+		overlays |= get_ocean_overlay()
+
 /turf/initialize()
 	..()
 	refresh_above()

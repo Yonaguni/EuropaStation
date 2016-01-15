@@ -1,5 +1,3 @@
-var/list/shallow_layers = list()
-
 /obj/effect/landmark/map_data/europa
 	name = "Yonaguni Dome"
 	desc = "The main dome level, the mining abyss level, the transit level and the surface."
@@ -8,19 +6,9 @@ var/list/shallow_layers = list()
 /turf/simulated/open/flooded
 	name = "abyss"
 	drop_state = "rockwall"
-
-/turf/simulated/open/flooded/update_appearance()
-	..()
-	overlays |= get_ocean_overlay()
+	flooded = 1
 
 // TODO
+var/list/shallow_layers = list()
 /proc/layer_is_shallow(var/layer)
-	switch(layer)
-		if(1)
-			return 0
-		if(2)
-			return 0
-		if(3)
-			return 0
-		if(4)
-			return 1
+	return 0

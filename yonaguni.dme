@@ -1457,6 +1457,7 @@
 #include "code\modules\multiz\basic.dm"
 #include "code\modules\multiz\europa_multiz.dm"
 #include "code\modules\multiz\movement.dm"
+#include "code\modules\multiz\object_damage.dm"
 #include "code\modules\multiz\pipes.dm"
 #include "code\modules\multiz\structures.dm"
 #include "code\modules\multiz\turf.dm"
