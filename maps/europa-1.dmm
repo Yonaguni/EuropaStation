@@ -1,5 +1,5 @@
 "a" = (/turf/unsimulated/mineral,/area/ocean/abyss)
-"b" = (/turf/simulated/mineral,/area/ocean/abyss)
+"b" = (/turf/simulated/mineral/flooded,/area/ocean/abyss)
 "c" = (/turf/simulated/wall,/area/dome_ind/foundry)
 "d" = (/obj/item/weapon/cigbutt,/obj/effect/decal/warning_stripes{tag = "icon-N"; icon_state = "N"},/turf/simulated/floor,/area/shuttle/mining/station)
 "e" = (/obj/structure/ore_box,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/tiled,/area/dome_ind/foundry)
