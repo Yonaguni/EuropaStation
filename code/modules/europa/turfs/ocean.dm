@@ -11,6 +11,8 @@ var/image/ocean_overlay_img
 
 	return ocean_overlay_img
 
+var/list/ocean_edge_cache = list()
+
 /turf/unsimulated/fake_ocean
 	name = "seafloor"
 	desc = "Silty."
@@ -31,12 +33,16 @@ var/image/ocean_overlay_img
 	density = 0
 	opacity = 0
 	blocks_air = 1
-	var/sleeping = 0
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
+	accept_lattice = 1
+	drop_state = "rockwall"
+
+	var/sleeping = 0
 	var/datum/gas_mixture/water
 	var/detail_decal
-	accept_lattice = 1
+	var/updating_icon
+	var/blend_with_neighbors = 1
 
 /turf/unsimulated/ocean/is_plating()
 	return 1
@@ -44,25 +50,20 @@ var/image/ocean_overlay_img
 /turf/unsimulated/ocean/get_fluid_depth()
 	return 1200
 
-/turf/unsimulated/ocean/abyss_open
-	name = "abyss"
-	desc = "You're pretty sure it's staring into you."
-	density = 1
-	icon_state = "abyss"
-	detail_decal = 0
-
 /turf/unsimulated/ocean/plating
 	name = "plating"
 	desc = "The naked hull."
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	detail_decal = 0
+	blend_with_neighbors = 0
 
 /turf/unsimulated/ocean/abyss
 	name = "sand"
 	desc = "Uncomfortably gritty."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
+	blend_with_neighbors = 0
 
 /turf/unsimulated/ocean/abyss/plating
 	name = "stone floor"
@@ -80,22 +81,37 @@ var/image/ocean_overlay_img
 
 /turf/unsimulated/ocean/initialize()
 	processing_turfs += src
-	update_icon()
+	if(isnull(detail_decal) && prob(20))
+		detail_decal = "asteroid[rand(0,9)]"
+	update_icon(1)
 
-/turf/unsimulated/ocean/update_icon()
+/turf/unsimulated/ocean/update_icon(var/update_neighbors)
 	overlays.Cut()
 	..()
-	if(isnull(detail_decal))
-		if(prob(20))
-			detail_decal = "asteroid[rand(0,9)]"
-		else
-			detail_decal = 0
 	if(detail_decal)
 		overlays |= get_mining_overlay(detail_decal)
+
+	if(blend_with_neighbors)
+		for(var/checkdir in cardinal)
+			var/turf/unsimulated/ocean/T = get_step(src, checkdir)
+			if(istype(T) && T.blend_with_neighbors && blend_with_neighbors > T.blend_with_neighbors && icon_state != T.icon_state)
+				var/cache_key = "[T.icon_state]-[checkdir]"
+				if(!ocean_edge_cache[cache_key])
+					ocean_edge_cache[cache_key] = image(icon = src.icon, icon_state = "[T.icon_state]-edge", dir = checkdir)
+				overlays |= ocean_edge_cache[cache_key]
+
 	overlays |= get_ocean_overlay()
+
+	if(update_neighbors)
+		for(var/checkdir in cardinal)
+			var/turf/unsimulated/ocean/T = get_step(src, checkdir)
+			if(istype(T))
+				T.update_icon()
 
 /turf/unsimulated/ocean/Destroy()
 	processing_turfs -= src
+	for(var/turf/T in range(src, 1))
+		spawn() T.update_icon()
 	..()
 
 /turf/unsimulated/ocean/proc/can_spread_into(var/turf/simulated/target)
@@ -149,7 +165,7 @@ var/image/ocean_overlay_img
 
 /turf/simulated/floor/fixed/dirt
 	name = "seafloor"
-	desc = "Silthy."
+	desc = "Silty."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "seafloor"
 	accept_lattice = 1

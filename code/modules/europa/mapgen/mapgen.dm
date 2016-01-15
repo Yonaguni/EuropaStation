@@ -34,8 +34,13 @@
 				new /obj/structure/seaweed/glow(T)
 			if(prob(1))
 				new /mob/living/simple_animal/hostile/retaliate/europa_shark(T)
-	switch(val)
-		if(6)
-			T.icon_state = "mud_light"
-		if(7 to 9)
-			T.icon_state = "mud_dark"
+
+	var/turf/unsimulated/ocean/O = T
+	if(istype(O))
+		switch(val)
+			if(6)
+				O.icon_state = "mud_light"
+				O.blend_with_neighbors = 2
+			if(7 to 9)
+				O.icon_state = "mud_dark"
+				O.blend_with_neighbors = 3

@@ -13,6 +13,7 @@ proc/get_mining_overlay(var/overlay_key)
 	density = 1
 	opacity = 1
 	blocks_air = 1
+	drop_state = "rockwall"
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -23,6 +24,7 @@ proc/get_mining_overlay(var/overlay_key)
 	blocks_air = 1
 	temperature = T0C
 	has_resources = 1
+	drop_state = "rockwall"
 
 	var/ore/mineral
 	var/sand_dug
@@ -65,7 +67,7 @@ proc/get_mining_overlay(var/overlay_key)
 	update_icon(1)
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		reconsider_lights()
-		if(air_master) air_master.add_to_active(src)
+		air_update_turf()
 
 /turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
 	. = ..()

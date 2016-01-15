@@ -1,15 +1,18 @@
+/turf/var/drop_state = "metalwall"
+
 /turf/simulated/open
 	name = "open space"
-	icon = 'icons/turf/space.dmi'
+	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "openspace"
-	alpha = 16
-	layer = 0
+	layer = 1.9
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	accept_lattice = 1
+	drop_state = null
 
 	var/turf/below
 	var/need_appearance_update
+	var/flooded = 0
 
 /turf/simulated/open/ex_act()
 	return
@@ -20,6 +23,7 @@
 	ASSERT(HasBelow(z))
 	if(below) queue_open_turf_update(src)
 
+/mob/var/fall_counter = 0
 /turf/simulated/open/Entered(var/atom/movable/mover)
 
 	..()
@@ -30,9 +34,12 @@
 		if(!below)
 			return
 
+	if(flooded) // Swimmers can just go right across flooded turfs.
+		return
+
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
-	if(area.name == "Space")
+	if(!area.has_gravity)
 		return
 
 	// Prevent pipes from falling into the void... if there is a pipe to support it.
@@ -41,55 +48,48 @@
 		 locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return
 
-	// See if something prevents us from falling.
-
-	if(below.density)
-		return
-
+	// See if something prevents us from falling. Long drops don't care.
 	if(locate(/obj/structure/ladder) in src)
 		return
 
 	var/soft = 0
-	for(var/atom/A in below)
-		if(A.density)
-			if(!istype(A, /obj/structure/window))
-				return
-			else
-				var/obj/structure/window/W = A
-				if(W.is_fulltile())
+	if(layer_is_shallow(z))
+		if(below.density)
+			return
+		for(var/atom/A in below)
+			if(A.density)
+				if(!istype(A, /obj/structure/window))
 					return
-		// Dont break here, since we still need to be sure that it isnt blocked
-		if(istype(A, /obj/structure/stairs))
-			soft = 1
+				else
+					var/obj/structure/window/W = A
+					if(W.is_fulltile())
+						return
+			// Dont break here, since we still need to be sure that it isnt blocked
+			if(istype(A, /obj/structure/stairs))
+				soft = 1
 
 	// We've made sure we can move, now.
 	mover.forceMove(below)
 
 	if(!soft)
-		if(!istype(mover, /mob))
+		//todo - loop over below.contents, call handle_falling_collision() on objects
+		if(!istype(mover, /mob/living))
 			if(istype(below, /turf/simulated/open))
-				mover.visible_message("\The [mover] falls from above and plummets through \the [below]!", "You hear a whoosh of displaced air.")
+				mover.visible_message("<span class='warning'>\The [mover] falls into view from above!</span>", "<span class='warning'>You hear a whoosh of displaced air.</span>")
 			else
-				mover.visible_message("\The [mover] falls from above and slams into \the [below]!", "You hear something slam into the ground.")
+				mover.visible_message("<span class='warning'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='warning'>You hear something slam into the ground.</span>")
 		else
-			var/mob/M = mover
+			var/mob/living/M = mover
 			if(istype(below, /turf/simulated/open))
-				below.visible_message("\The [mover] falls from above and plummets through \the [below]!", "You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]")
+				below.visible_message("<span class='warning'>\The [mover] falls from above and plummets through \the [below]!</span>", "<span class='warning'>You hear a soft whoosh[M.stat ? "" : " and some screaming"].</span>")
+				M.fall_counter += (layer_is_shallow(z) ? 1 : 10)
 			else
-				M.visible_message("\The [mover] falls above and slams into \the [below]!", "You land on \the [below].", "You hear a soft whoosh and a crunch")
-
-			// Handle people getting hurt, it's funny!
-			if (istype(mover, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = mover
-				var/damage = 5
-				H.apply_damage(rand(0, damage), BRUTE, "head")
-				H.apply_damage(rand(0, damage), BRUTE, "chest")
-				H.apply_damage(rand(0, damage), BRUTE, "l_leg")
-				H.apply_damage(rand(0, damage), BRUTE, "r_leg")
-				H.apply_damage(rand(0, damage), BRUTE, "l_arm")
-				H.apply_damage(rand(0, damage), BRUTE, "r_arm")
-				H.weakened = max(H.weakened,2)
-				H.updatehealth()
+				M.visible_message("<span class='danger'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='danger'>You collide with \the [below]!</span>", "<span class='warning'>You hear a soft whoosh and a crunch.</span>")
+				// Handle people getting hurt, it's funny!
+				M.adjustBruteLoss(M.fall_counter * rand(15,30))
+				M.fall_counter = 0
+				M.Weaken(M.fall_counter * rand(2,3))
+				M.updatehealth()
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()

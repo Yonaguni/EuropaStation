@@ -1,51 +1,56 @@
-/obj/item/weapon/tank/jetpack/verb/moveup()
-	set name = "Move Upwards"
-	set category = "Object"
+/mob/proc/do_maneuvering_check(var/dir)
+	return 0
 
-	. = 1
-	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
-		return
+/mob/dead/do_maneuvering_check(var/dir)
+	return 1
+
+/mob/verb/moveup()
+	set name = "Move Upwards"
+	set category = "IC"
 
 	var/turf/above = GetAbove(src)
 	if(!istype(above))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << "<span class='notice'>There is nothing of interest in that direction.</span>"
 		return
 
-	if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
-		usr << "<span class='warning'>You bump against \the [above].</span>"
+	if(!do_maneuvering_check(UP))
 		return
 
-	for(var/atom/A in above)
-		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+	if(!istype(src, /mob/dead))
+		if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
+			usr << "<span class='warning'>You bump against the roof.</span>"
 			return
+		for(var/atom/A in above)
+			if(A.density)
+				usr << "<span class='warning'>You cannot move that way; \the [A] blocks you.</span>"
+				return
 
 	usr.Move(above)
-	usr << "<span class='notice'>You move upwards.</span>"
+	return 1
 
-/obj/item/weapon/tank/jetpack/verb/movedown()
+/mob/verb/movedown()
 	set name = "Move Downwards"
-	set category = "Object"
+	set category = "IC"
 
-	. = 1
-	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
+	if(!do_maneuvering_check(DOWN))
 		return
 
 	var/turf/below = GetBelow(src)
 	if(!istype(below))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << "<span class='notice'>There is nothing of interest in that direction.</span>"
 		return
 
-	if(below.density)
-		usr << "<span class='warning'>You bump against \the [below].</span>"
-		return
-
-	for(var/atom/A in below)
-		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+	if(!istype(src, /mob/dead))
+		if(!istype(loc, /turf/simulated/open))
+			usr << "<span class='warning'>You are prevented from moving downwards by \the [loc].</span>"
 			return
+		if(below.density)
+			usr << "<span class='warning'>You are prevented from moving downwards by \the [below].</span>"
+			return
+		for(var/atom/A in below)
+			if(A.density)
+				usr << "<span class='warning'>You cannot move that way; \the [A] blocks you.</span>"
+				return
 
 	usr.Move(below)
-	usr << "<span class='notice'>You move downwards.</span>"
+	return 1

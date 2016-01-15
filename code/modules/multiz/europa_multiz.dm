@@ -5,7 +5,10 @@
 
 /turf/simulated/open/flooded
 	name = "abyss"
+	drop_state = "rockwall"
+	flooded = 1
 
-/turf/simulated/open/flooded/update_appearance()
-	..()
-	overlays |= get_ocean_overlay()
+// TODO
+var/list/shallow_layers = list()
+/proc/layer_is_shallow(var/layer)
+	return 0
