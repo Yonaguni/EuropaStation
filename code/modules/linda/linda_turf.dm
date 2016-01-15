@@ -154,7 +154,15 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	current_cycle = air_master.current_cycle
 
 	var/remove = 1 //set by non simulated turfs who are sharing with this turf
-	for(var/direction in cardinal)
+
+	// Check if we are moving gas up or down.
+	var/list/extradirs = list()
+	if(istype(GetAbove(src), /turf/simulated/open))
+		extradirs += UP
+	if(istype(src, /turf/simulated/open))
+		extradirs += DOWN
+
+	for(var/direction in (cardinal+extradirs))
 		if(!(atmos_adjacent_turfs & direction))
 			continue
 
@@ -255,6 +263,15 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	if(!air_master)
 		return
 	var/conductivity_directions = 0
+
+	// TODO make this a set of turf vars
+	// Check if we are moving gas up or down.
+	var/list/extradirs = list()
+	if(istype(GetAbove(src), /turf/simulated/open))
+		extradirs += UP
+	if(istype(src, /turf/simulated/open))
+		extradirs += DOWN
+
 	if(blocks_air)
 		//Does not participate in air exchange, so will conduct heat across all four borders at this time
 		conductivity_directions = NORTH|SOUTH|EAST|WEST
@@ -263,13 +280,13 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			archive()
 	else
 		//Does particate in air exchange so only consider directions not considered during process_cell()
-		for(var/direction in cardinal)
+		for(var/direction in (cardinal+extradirs))
 			if(!(atmos_adjacent_turfs & direction) && !(atmos_supeconductivity & direction))
 				conductivity_directions += direction
 
 	if(conductivity_directions>0)
 		//Conduct with tiles around me
-		for(var/direction in cardinal)
+		for(var/direction in (cardinal+extradirs))
 			if(conductivity_directions&direction)
 				var/turf/neighbor = get_step(src,direction)
 
@@ -342,8 +359,15 @@ turf/simulated/proc/consider_superconductivity(starting)
 	return 1
 
 /turf/proc/CalculateAdjacentTurfs()
+
+	var/list/extradirs = list()
+	if(istype(GetAbove(src), /turf/simulated/open))
+		extradirs += UP
+	if(istype(src, /turf/simulated/open))
+		extradirs += DOWN
+
 	atmos_adjacent_turfs_amount = 0
-	for(var/direction in cardinal)
+	for(var/direction in (cardinal+extradirs))
 		var/turf/T = get_step(src, direction)
 		if(!istype(T))
 			continue
