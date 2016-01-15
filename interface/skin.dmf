@@ -457,6 +457,14 @@ macro "macro"
 		name = "F12"
 		command = "F12"
 		is-disabled = false
+	elem 
+		name = "SHIFT+,"
+		command = "Move-Upwards"
+		is-disabled = false
+	elem 
+		name = "SHIFT+."
+		command = "Move-Downwards"
+		is-disabled = false
 
 macro "hotkeymode"
 	elem 
@@ -1366,6 +1374,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "eject"
 		type = BUTTON
 		pos = 264,4
@@ -1532,6 +1542,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "child1"
 		type = CHILD
 		pos = 0,40
@@ -1653,6 +1665,8 @@ window "chemdispenser_reagents"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 
 window "mainwindow"
 	elem "mainwindow"
