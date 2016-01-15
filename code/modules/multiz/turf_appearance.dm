@@ -10,52 +10,53 @@ var/list/open_space_cache = list()
 	if(!below)
 		return
 
-	name = initial(name)
-	desc = initial(desc)
-	var/old_lum = luminosity
-	overlays.Cut()
-	appearance = below.appearance
-	luminosity = old_lum
-	overlays += open_space_overlay
 	need_appearance_update = 0
 
-	var/neighbor_dirs = 0
-	for(var/check_dir in cardinal)
-		var/turf/T = get_step(src, check_dir)
-		if(!istype(T, /turf/simulated/open))
-			neighbor_dirs |= check_dir
+	overlays.Cut()
 
-	/*
-	// This does not currently work, sadly.
-	var/corner_dirs = 0
-	for(var/check_dir in cornerdirs)
-		var/turf/T = get_step(src, check_dir)
-		if(!istype(T, /turf/simulated/open))
-			corner_dirs |= check_dir
+	// Shallow layers just show the layer below.
+	if(layer_is_shallow(z))
+		var/old_lum = luminosity
+		appearance = below.appearance
+		name = initial(name)
+		desc = initial(desc)
+		opacity = initial(opacity)
+		luminosity = old_lum
+		overlays += open_space_overlay
+		layer = 0
+	// Apply drop icon and fadeout for non-shallow layers.
+	else
+		var/turf/simulated/open/check_turf = get_step(src, NORTH)
+		if(!below.drop_state || istype(check_turf))
+			icon_state = "abyss"
+		else
+			icon_state = below.drop_state
 
-	if((corner_dirs & NORTHEAST) && !(neighbor_dirs & (NORTH|EAST)))
-		if(!open_space_cache["[NORTHEAST]"])
-			open_space_cache["[NORTHEAST]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = NORTHEAST)
-		overlays += open_space_cache["[NORTHEAST]"]
+			var/cache_key = "[below.drop_state]-fadeout-[NORTH]"
+			if(!ocean_edge_cache[cache_key])
+				ocean_edge_cache[cache_key] = image(icon = 'icons/turf/seafloor.dmi', icon_state = "[below.drop_state]-fadeout", dir = NORTH)
+			overlays |= ocean_edge_cache[cache_key]
 
-	if((corner_dirs & SOUTHEAST) && !(neighbor_dirs & (SOUTH|EAST)))
-		if(!open_space_cache["[SOUTHEAST]"])
-			open_space_cache["[SOUTHEAST]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = SOUTHEAST)
-		overlays += open_space_cache["[SOUTHEAST]"]
+			for(var/checkdir in list(EAST, WEST))
+				var/turf/simulated/open/O = get_step(src, checkdir)
+				if(!istype(O))
+					cache_key = "[below.drop_state]-fadeout-[checkdir]"
+					if(!ocean_edge_cache[cache_key])
+						ocean_edge_cache[cache_key] = image(icon = 'icons/turf/seafloor.dmi', icon_state = "[below.drop_state]-fadeout", dir = checkdir)
+					overlays |= ocean_edge_cache[cache_key]
 
-	if((corner_dirs & NORTHWEST) && !(neighbor_dirs & NORTH|WEST)))
-		if(!open_space_cache["[NORTHWEST]"])
-			open_space_cache["[NORTHWEST]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = NORTHWEST)
-		overlays += open_space_cache["[NORTHWEST]"]
-
-	if((corner_dirs & SOUTHWEST) && !((neighbor_dirs & SOUTH|WEST)))
-		if(!open_space_cache["[SOUTHWEST]"])
-			open_space_cache["[SOUTHWEST]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = SOUTHWEST)
-		overlays += open_space_cache["[SOUTHWEST]"]
-	*/
-
+	// Apply edging and shadowing as appropriate.
 	for(var/tempdir in cardinal)
-		if(neighbor_dirs & tempdir)
+		var/turf/T = get_step(src, tempdir)
+		if(istype(T, /turf/unsimulated/ocean))
+			var/turf/unsimulated/ocean/O = T
+			if(O.blend_with_neighbors)
+				var/cache_key = "[O.icon_state]-[tempdir]"
+				if(!ocean_edge_cache[cache_key])
+					ocean_edge_cache[cache_key] = image(icon = 'icons/turf/seafloor.dmi', icon_state = "[O.icon_state]-edge", dir = tempdir)
+				overlays |= ocean_edge_cache[cache_key]
+		else if(!istype(T, /turf/simulated/open))
+			// Add the black edging that shows depth.
 			if(!open_space_cache["[tempdir]"])
 				open_space_cache["[tempdir]"] = image(icon= 'icons/turf/space.dmi', icon_state = "openspace_edges", dir = tempdir)
 			overlays += open_space_cache["[tempdir]"]

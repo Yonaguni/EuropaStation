@@ -1,12 +1,14 @@
+/turf/var/drop_state = "metalwall"
+
 /turf/simulated/open
 	name = "open space"
-	icon = 'icons/turf/space.dmi'
+	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "openspace"
-	alpha = 16
-	layer = 0
+	layer = 1.9
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	accept_lattice = 1
+	drop_state = null
 
 	var/turf/below
 	var/need_appearance_update
