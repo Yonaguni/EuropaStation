@@ -21,6 +21,6 @@
 		return 0
 	if(!loc.is_flooded(lying))
 		return 0
-	if(prob(5))
+	if(prob(15))
 		src << "<span class='danger'>You choke and splutter as you inhale water!</span>"
 	return 1 // Presumably chemical smoke can't be breathed while you're underwater.

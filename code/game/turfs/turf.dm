@@ -78,8 +78,9 @@ var/list/turf_edge_cache = list()
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
 				overlays |= turf_edge_cache[cache_key]
 
-	if(flooded)
-		overlays |= get_ocean_overlay()
+	var/area/A = get_area(src)
+	if(flooded && istype(A) && !(A.flags & IS_OCEAN))
+		overlays |= ocean_overlay_img //set in code/modules/europa/turfs/ocean.dm
 
 	if(update_neighbors)
 		for(var/check_dir in alldirs)

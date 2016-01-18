@@ -20,11 +20,6 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	..()
 	verbs.Cut()
 
-/proc/get_ocean_overlay()
-	if(!ocean_overlay_img)
-		ocean_overlay_img = new
-	return ocean_overlay_img
-
 /turf/unsimulated/ocean
 	name = "seafloor"
 	desc = "Silty."

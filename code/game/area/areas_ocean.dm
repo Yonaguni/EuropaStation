@@ -7,7 +7,16 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	flags = HIDE_DEATH_LOCATION | DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | RAD_SHIELDED | DENY_TELEPORT | IGNORE_BLACKOUTS
+	flags = HIDE_DEATH_LOCATION | DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | RAD_SHIELDED | DENY_TELEPORT | IGNORE_BLACKOUTS | IS_OCEAN
+
+/area/initialize()
+	..()
+	if(flags & IS_OCEAN)
+		color = "#66D1FF"
+		icon = 'icons/effects/xgm_overlays.dmi'
+		icon_state = "ocean"
+		layer = GAS_OVERLAY_LAYER+0.1
+		alpha = GAS_MAX_ALPHA
 
 /area/ocean/New()
 	ambience = ambient_tracks.Copy()
