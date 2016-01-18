@@ -1,3 +1,5 @@
+var/list/turf_edge_cache = list()
+
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
@@ -20,15 +22,15 @@
 	var/list/decals
 	var/liquid = -1
 	var/accept_lattice
+	var/blend_with_neighbors = 0
 
 /turf/New()
 	..()
+	turfs |= src
 	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
+		spawn(0)
 			src.Entered(AM)
 			return
-	turfs |= src
-
 	if(dynamic_lighting)
 		luminosity = 0
 	else
@@ -59,14 +61,41 @@
 			return
 
 /turf/proc/initialize()
+	if(flooded)
+		fluid_master.water_sources += src
+	update_icon(ticker && ticker.current_state == GAME_STATE_PLAYING)
 	return
 
-/turf/proc/update_icon()
-	return
+// overlays.Cut() should always be called before calling this, for the sake of safety.
+/turf/proc/update_icon(var/update_neighbors = 0)
+
+	if(blend_with_neighbors)
+		for(var/checkdir in cardinal)
+			var/turf/T = get_step(src, checkdir)
+			if(istype(T) && T.blend_with_neighbors && blend_with_neighbors < T.blend_with_neighbors && icon_state != T.icon_state)
+				var/cache_key = "[T.icon_state]-[checkdir]"
+				if(!turf_edge_cache[cache_key])
+					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
+				overlays |= turf_edge_cache[cache_key]
+
+	if(flooded)
+		overlays |= get_ocean_overlay()
+
+	if(update_neighbors)
+		for(var/check_dir in alldirs)
+			var/turf/T = get_step(src, check_dir)
+			if(istype(T))
+				T.update_icon()
 
 /turf/Destroy()
 	turfs -= src
-	..()
+	processing_turfs -= src
+	var/turf/self = src
+	spawn(1)
+		for(var/checkdir in cardinal)
+			var/turf/T = get_step(self, checkdir)
+			T.update_icon()
+	return ..()
 
 /turf/ex_act(severity)
 	return 0
@@ -155,10 +184,8 @@ var/const/enterloopsanity = 100
 		var/mob/M = A
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
-		if(M.lastarea.has_gravity == 0)
+		if(!M.lastarea.has_gravity)
 			inertial_drift(M)
-		else if(is_space())
-			M.inertia_dir = 0
 			M.make_floating(0)
 	..()
 	var/objects = 0
@@ -259,19 +286,22 @@ var/const/enterloopsanity = 100
 	return T.is_flooded(lying_mob)
 
 /turf/is_flooded(var/lying_mob)
+	if(flooded)
+		return 1
 	var/depth = get_fluid_depth()
 	if(depth && depth > (lying_mob ? 30 : 70))
 		return 1
 	return 0
 
 /turf/proc/get_fluid_depth()
-	return 0
+	return flooded ? 1200 : 0
 
 /turf/simulated/get_fluid_depth()
+	if(flooded)
+		return 1200
 	if(liquid == -1)
-		var/datum/gas_mixture/GM = return_air()
-		if(GM)
-			liquid = GM.get_fluid_depth()
+		var/datum/gas_mixture/fluid/LM = return_fluids()
+		if(LM) liquid = LM.total_moles //todo
 	return liquid
 
 /turf/proc/update_blood_overlays()

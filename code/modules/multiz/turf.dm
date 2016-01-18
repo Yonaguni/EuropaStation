@@ -1,4 +1,5 @@
 /turf/var/drop_state = "metalwall"
+/turf/var/open_space
 
 /turf/simulated/open
 	name = "open space"
@@ -13,7 +14,6 @@
 
 	var/turf/below
 	var/need_appearance_update
-	var/flooded = 0
 
 /turf/simulated/open/ex_act()
 	return

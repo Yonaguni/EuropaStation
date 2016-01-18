@@ -1,16 +1,16 @@
 /turf
-	var/pressure_difference = 0
-	var/pressure_direction = 0
+	var/air_pressure_difference = 0
+	var/air_pressure_direction = 0
 	var/atmos_adjacent_turfs = 0
 	var/atmos_adjacent_turfs_amount = 0
 	var/needs_air_update
-	var/open_space
 
 /turf/simulated
-	var/recently_active = 0
+	var/air_recently_active = 0
+	var/air_archived_cycle = 0
+	var/air_current_cycle = 0
+
 	var/datum/gas_mixture/air
-	var/archived_cycle = 0
-	var/current_cycle = 0
 	var/obj/effect/hotspot/active_hotspot
 	var/temperature_archived //USED ONLY FOR SOLIDS
 	var/list/initial_air
@@ -83,22 +83,14 @@
 
 /turf/simulated/initialize()
 	..()
-	make_air()
-
-/turf/simulated/New()
-	..()
 	if(!blocks_air)
 		make_air()
-	if(initial_air)
-		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-			initialize()
-		else
-			init_turfs += src
+	air_update_turf(1)
 
 /turf/simulated/Destroy()
 	if(active_hotspot)
 		qdel(active_hotspot)
-	..()
+	return ..()
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
 	if(!giver)	return 0
@@ -109,21 +101,6 @@
 			update_visuals(air)
 		return 1
 	else return ..()
-
-turf/simulated/proc/copy_air_with_tile(turf/simulated/T)
-	if(istype(T) && T.air && air)
-		air.copy_from(T.air)
-
-turf/simulated/proc/copy_air(datum/gas_mixture/copy)
-	if(air && copy)
-		air.copy_from(copy)
-
-turf/simulated/return_air()
-	if(air)
-		return air
-
-	else
-		return ..()
 
 turf/simulated/proc/mimic_temperature_solid(turf/model, conduction_coefficient)
 	var/delta_temperature = (temperature_archived - model.temperature)
@@ -146,13 +123,13 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 /turf/simulated/proc/process_cell()
 	if(!air_master)
 		return
-	if(archived_cycle < air_master.current_cycle) //archive self if not already done
-		archive()
-	current_cycle = air_master.current_cycle
+	if(air_archived_cycle < air_master.current_cycle) //archive self if not already done
+		archive_air()
+	air_current_cycle = air_master.current_cycle
 
 	var/remove = 1 //set by non simulated turfs who are sharing with this turf
 
-	for(var/direction in (atmos_dirs))
+	for(var/direction in atmos_dirs)
 		if(!(atmos_adjacent_turfs & direction))
 			continue
 
@@ -161,8 +138,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
 
-			if(current_cycle > enemy_simulated.current_cycle)
-				enemy_simulated.archive()
+			if(air_current_cycle > enemy_simulated.air_current_cycle)
+				enemy_simulated.archive_air()
 
 			if(!air.compare(enemy_simulated.air)) //compare if
 				air_master.add_to_active(enemy_simulated) //excite enemy
@@ -187,15 +164,15 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			update_visuals(air)
 
 	if(remove == 1)
-		air_master.remove_from_active(src)
+		air_master.active_turfs -= src
 
-/turf/simulated/proc/archive()
+/turf/simulated/proc/archive_air()
 	if(!air_master)
 		return
 	if(air) //For open space like floors
 		air.archive()
 	temperature_archived = temperature
-	archived_cycle = air_master.current_cycle
+	air_archived_cycle = air_master.current_cycle
 
 /turf/simulated/proc/update_visuals(var/datum/gas_mixture/model)
 	if(!air_master)
@@ -213,7 +190,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	return 1
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
-	if(T.current_cycle >= current_cycle)
+	if(T.air_current_cycle >= air_current_cycle)
 		return
 	var/difference
 	difference = air.share(T.air, atmos_adjacent_turfs_amount)
@@ -227,13 +204,13 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	if(!air_master)
 		return
 	air_master.high_pressure_delta |= src
-	if(difference > pressure_difference)
-		pressure_direction = get_dir(src, T)
-		pressure_difference = difference
+	if(difference > air_pressure_difference)
+		air_pressure_direction = get_dir(src, T)
+		air_pressure_difference = difference
 
 /turf/proc/high_pressure_movements()
 	for(var/atom/movable/M in src)
-		M.experience_pressure_difference(pressure_difference, pressure_direction)
+		M.experience_pressure_difference(air_pressure_difference, air_pressure_direction)
 
 /turf/proc/CalculateAdjacentTurfs()
 	atmos_adjacent_turfs_amount = 0

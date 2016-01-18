@@ -139,9 +139,9 @@ Class Procs:
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
 	if(loc)
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/gas_mixture/fluid/environment = loc.return_fluids()
 		if(environment)
-			var/depth = environment.get_fluid_depth()
+			var/depth = environment.total_moles
 			if(depth)
 				water_act(depth)
 	return

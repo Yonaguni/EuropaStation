@@ -4,25 +4,24 @@
 #endif
 
 // Items that ask to be called every cycle.
-var/global/datum/datacore/data_core = null
-var/global/list/all_seeds                = list()
-var/global/list/all_areas                = list()
-var/global/list/all_structures           = list()
-var/global/list/all_movable_atoms        = list() // Only required for worldstart pre-ticker initialize() calls.
-var/global/list/machines                 = list()
-var/global/list/processing_objects       = list()
-var/global/list/processing_power_items   = list()
-var/global/list/active_diseases          = list()
-var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
-var/global/list/hud_icon_reference       = list()
-var/global/list/init_turfs               = list()
+var/datum/datacore/data_core = null
+var/list/all_seeds                = list()
+var/list/all_areas                = list()
+var/list/all_structures           = list()
+var/list/all_movable_atoms        = list() // Only required for worldstart pre-ticker initialize() calls.
+var/list/machines                 = list()
+var/list/processing_objects       = list()
+var/list/processing_power_items   = list()
+var/list/active_diseases          = list()
+var/list/med_hud_users            = list() // List of all entities using a medical HUD.
+var/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/list/hud_icon_reference       = list()
+var/list/global_mutations  = list() // List of hidden mutation things.
+var/list/init_turfs = list()
 
-var/global/list/global_mutations  = list() // List of hidden mutation things.
+var/datum/universal_state/universe = new
 
-var/global/datum/universal_state/universe = new
-
-var/global/list/global_map = null
+var/list/global_map = null
 
 // Noises made when hit while typing.
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")

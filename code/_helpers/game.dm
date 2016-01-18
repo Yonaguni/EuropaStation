@@ -514,7 +514,6 @@ datum/projectile_data
 		else if(istype(T, /turf/simulated))
 			rstats = null // Exclude zone (wall, door, etc).
 		else if(istype(T, /turf))
-			// Should still work.  (/turf/return_air())
 			var/datum/gas_mixture/environment = T.return_air()
 			for(var/i=1;i<=stats.len;i++)
 				if(stats[i] == "pressure")

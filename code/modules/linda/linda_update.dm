@@ -14,8 +14,6 @@
 			T.air_update_turf(command)
 
 /turf/proc/air_update_turf(var/command = 0)
-	for(var/turf/unsimulated/ocean/O in range(1,src))
-		O.refresh()
 	if(command)
 		CalculateAdjacentTurfs()
 	if(air_master)
@@ -29,10 +27,6 @@
     if(istype(T,/turf))
         T.air_update_turf(1)
     air_update_turf(1)
-
-/turf/simulated/New()
-	..()
-	air_update_turf(1)
 
 /obj/structure/Destroy()
 	var/atom/A = loc

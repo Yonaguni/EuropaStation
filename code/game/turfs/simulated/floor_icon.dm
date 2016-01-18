@@ -2,6 +2,8 @@ var/list/flooring_cache = list()
 
 /turf/simulated/floor/update_icon(var/update_neighbors)
 
+	overlays.Cut()
+
 	if(lava)
 		return
 
@@ -72,11 +74,7 @@ var/list/flooring_cache = list()
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","[flooring.icon_base]_burned[burnt]")
 
-	if(update_neighbors)
-		for(var/turf/simulated/floor/F in range(src, 1))
-			if(F == src)
-				continue
-			F.update_icon()
+	..(update_neighbors)
 
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])

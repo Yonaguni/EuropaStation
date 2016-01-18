@@ -20,7 +20,7 @@ var/list/open_turf_list = list()
 
 /datum/controller/process/open_space/doWork()
 	for(var/turf/simulated/open/open_turf in open_turf_list)
-		open_turf.update_appearance()
+		open_turf.update_icon()
 		open_turf_list -= open_turf
 
 /datum/controller/process/open_space/statProcess()

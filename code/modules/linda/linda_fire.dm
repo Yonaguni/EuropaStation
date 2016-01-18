@@ -35,7 +35,7 @@
 		active_hotspot.temperature = exposed_temperature
 		active_hotspot.volume = exposed_volume
 
-		active_hotspot.just_spawned = (current_cycle < air_master.current_cycle)
+		active_hotspot.just_spawned = (air_current_cycle < air_master.current_cycle)
 			//remove just_spawned protection if no longer processing this cell
 		air_master.add_to_active(src, 0)
 	return igniting

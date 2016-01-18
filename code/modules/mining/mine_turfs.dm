@@ -14,6 +14,7 @@ proc/get_mining_overlay(var/overlay_key)
 	opacity = 1
 	blocks_air = 1
 	drop_state = "rockwall"
+	blend_with_neighbors = 10 // Blend over EVERYTHING.
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -25,6 +26,7 @@ proc/get_mining_overlay(var/overlay_key)
 	temperature = T0C
 	has_resources = 1
 	drop_state = "rockwall"
+	blend_with_neighbors = 5
 
 	var/ore/mineral
 	var/sand_dug
@@ -33,9 +35,6 @@ proc/get_mining_overlay(var/overlay_key)
 	var/overlay_detail
 	var/ignore_mapgen
 
-/turf/simulated/mineral/ignore_mapgen
-	ignore_mapgen = 1
-
 /turf/simulated/mineral/floor
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
@@ -43,9 +42,37 @@ proc/get_mining_overlay(var/overlay_key)
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	blend_with_neighbors = 4
+
+/turf/simulated/mineral/flooded
+	flooded = 1
+	color = "#0000FF"
+
+/turf/simulated/mineral/floor/flooded
+	flooded = 1
+	color = "#0000FF"
+
+/turf/simulated/mineral/ignore_mapgen
+	ignore_mapgen = 1
+	color = "#00FF00"
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
+	color = "#00FF00"
+
+/turf/simulated/mineral/ignore_mapgen/flooded
+	ignore_mapgen = 1
+	flooded = 1
+	color = "#00FFFF"
+
+/turf/simulated/mineral/floor/ignore_mapgen/flooded
+	ignore_mapgen = 1
+	flooded = 1
+	color = "#00FFFF"
+
+/turf/simulated/mineral/New()
+	..()
+	color = null
 
 /turf/simulated/mineral/proc/make_floor()
 	if(!density && !opacity)
@@ -94,7 +121,6 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/update_icon(var/update_neighbors)
 
 	overlays.Cut()
-	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
 
 	if(density)
 		if(mineral)
@@ -104,37 +130,26 @@ proc/get_mining_overlay(var/overlay_key)
 
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
-
-		for(var/direction in step_overlays)
-			var/turf/T = get_step(src,step_overlays[direction])
-			if(istype(T) && !T.density)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side", dir = turn(step_overlays[direction], 180))
+		blend_with_neighbors = 5
 	else
 
 		name = "sand"
 		icon = 'icons/turf/flooring/asteroid.dmi'
 		icon_state = "asteroid"
+		blend_with_neighbors = 4
 
 		if(sand_dug)
 			overlays += image('icons/turf/flooring/asteroid.dmi', "dug_overlay")
 
-		for(var/direction in step_overlays)
-			if(istype(get_step(src, step_overlays[direction]), /turf/space))
-				overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction])
-			else
-				var/turf/simulated/mineral/M = get_step(src, step_overlays[direction])
-				if(istype(M) && M.density)
-					overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[direction])
+		for(var/direction in cardinal)
+			var/turf/T = get_step(src, direction)
+			if(istype(T) && T.open_space)
+				overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = direction)
 
 		if(overlay_detail)
 			overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
 
-		if(update_neighbors)
-			var/list/all_step_directions = list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST)
-			for(var/direction in all_step_directions)
-				if(istype(get_step(src, direction), /turf/simulated/mineral))
-					var/turf/simulated/mineral/M = get_step(src, direction)
-					M.update_icon()
+	..(update_neighbors)
 
 /turf/simulated/mineral/ex_act(severity)
 
@@ -290,33 +305,3 @@ proc/get_mining_overlay(var/overlay_key)
 		mineral = ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
-
-/* EUROPA MINING LEVEL SHIT - this is a hackfix for the level,
-        DO NOT LEAVE THIS INDEFINITELY, ZUHAYR. */
-/turf/simulated/mineral/var/flooded
-/turf/simulated/mineral/var/datum/gas_mixture/water
-/turf/simulated/mineral/flooded/flooded = 1
-/turf/simulated/mineral/floor/flooded/flooded = 1
-
-/turf/simulated/mineral/update_icon(var/update_neighbors)
-	..()
-	if(flooded)
-		overlays += get_ocean_overlay()
-
-/turf/simulated/mineral/is_flooded()
-	return flooded
-
-/turf/simulated/mineral/return_air()
-	if(!flooded)
-		return ..()
-	if(!water)
-		water = new/datum/gas_mixture      // Make our 'air', freezing water.
-		water.temperature = 250            // -24C
-		water.adjust_gas("water", 1500, 1) // Should be higher.
-		water.volume = CELL_VOLUME
-	var/datum/gas_mixture/infiniwater = new()
-	infiniwater.copy_from(water)
-	return infiniwater
-
-/turf/simulated/mineral/get_fluid_depth()
-	return flooded ? 1200 : ..()
