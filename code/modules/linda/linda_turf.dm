@@ -7,7 +7,6 @@
 	var/needs_air_update
 
 /turf/simulated
-	var/datum/excited_group/excited_group
 	var/excited = 0
 	var/recently_active = 0
 	var/datum/gas_mixture/air
@@ -186,8 +185,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 					else
 						enemy_tile.consider_pressure_difference(src, difference)
 				remove = 0
-				if(excited_group)
-					last_share_check()
 	if(air)
 		air.react()
 		if(air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
@@ -201,7 +198,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		if(air.check_tile_graphic())
 			update_visuals(air)
 
-	if(!excited_group && remove == 1)
+	if(remove == 1)
 		air_master.remove_from_active(src)
 
 /turf/simulated/proc/archive()
@@ -254,10 +251,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		M.experience_pressure_difference(pressure_difference, pressure_direction)
 
 /atom/movable/var/last_forced_movement = 0
-
-/datum/excited_group
-	var/list/turf_list = list()
-	var/breakdown_cooldown = 0
 
 /turf/simulated/proc/super_conduct()
 	if(!air_master)
