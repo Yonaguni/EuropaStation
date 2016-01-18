@@ -4,16 +4,15 @@
 	var/atmos_adjacent_turfs = 0
 	var/atmos_adjacent_turfs_amount = 0
 	var/needs_air_update
+	var/open_space
 
 /turf/simulated
-	//var/excited = 0
 	var/recently_active = 0
 	var/datum/gas_mixture/air
 	var/archived_cycle = 0
 	var/current_cycle = 0
 	var/obj/effect/hotspot/active_hotspot
 	var/temperature_archived //USED ONLY FOR SOLIDS
-	var/open_directions
 	var/list/initial_air
 	var/initial_temperature = T20C
 
@@ -214,15 +213,15 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	return 1
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
-	if(T.current_cycle < current_cycle)
-		var/difference
-		difference = air.share(T.air, atmos_adjacent_turfs_amount)
-		if(difference)
-			if(difference > 0)
-				consider_pressure_difference(T, difference)
-			else
-				T.consider_pressure_difference(src, difference)
-		last_share_check()
+	if(T.current_cycle >= current_cycle)
+		return
+	var/difference
+	difference = air.share(T.air, atmos_adjacent_turfs_amount)
+	if(difference)
+		if(difference > 0)
+			consider_pressure_difference(T, difference)
+		else
+			T.consider_pressure_difference(src, difference)
 
 /turf/proc/consider_pressure_difference(var/turf/simulated/T, var/difference)
 	if(!air_master)
@@ -232,23 +231,13 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 		pressure_direction = get_dir(src, T)
 		pressure_difference = difference
 
-/turf/simulated/proc/last_share_check()
-	return
-
 /turf/proc/high_pressure_movements()
 	for(var/atom/movable/M in src)
 		M.experience_pressure_difference(pressure_difference, pressure_direction)
 
 /turf/proc/CalculateAdjacentTurfs()
-
-	var/list/extradirs = list()
-	if(istype(GetAbove(src), /turf/simulated/open))
-		extradirs += UP
-	if(istype(src, /turf/simulated/open))
-		extradirs += DOWN
-
 	atmos_adjacent_turfs_amount = 0
-	for(var/direction in (cardinal+extradirs))
+	for(var/direction in atmos_dirs)
 		var/turf/T = get_step(src, direction)
 		if(!istype(T))
 			continue

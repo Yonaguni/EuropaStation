@@ -659,7 +659,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 
 	// check if the target is open space
-	if(istype(F, /turf/simulated/open))
+	if(F.open_space)
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
 				user << "<span class='warning'>There's already a cable at that position.</span>"

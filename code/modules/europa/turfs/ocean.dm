@@ -136,7 +136,7 @@ var/list/ocean_edge_cache = list()
 		blocked_dirs |= D.dir
 	for(var/step_dir in cardinal)
 		var/turf/simulated/T = get_step(src, step_dir)
-		if(!istype(T) || istype(T, /turf/simulated/open) || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
+		if(!istype(T) || T.open_space || !can_spread_into(T) || (get_dir(src,T) in blocked_dirs))
 			continue
 		var/datum/gas_mixture/GM = T.return_air()
 		if(GM && GM.gas["water"] < 1500)

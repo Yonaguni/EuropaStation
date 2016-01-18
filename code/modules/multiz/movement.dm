@@ -17,7 +17,7 @@
 		return
 
 	if(!istype(src, /mob/dead))
-		if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
+		if(!above.open_space)
 			usr << "<span class='warning'>You bump against the roof.</span>"
 			return
 		for(var/atom/A in above)
@@ -41,7 +41,8 @@
 		return
 
 	if(!istype(src, /mob/dead))
-		if(!istype(loc, /turf/simulated/open))
+		var/turf/T = loc
+		if(!istype(T) || !T.open_space)
 			usr << "<span class='warning'>You are prevented from moving downwards by \the [loc].</span>"
 			return
 		if(below.density)
