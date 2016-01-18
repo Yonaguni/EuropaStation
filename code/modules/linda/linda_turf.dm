@@ -3,11 +3,10 @@
 	var/pressure_direction = 0
 	var/atmos_adjacent_turfs = 0
 	var/atmos_adjacent_turfs_amount = 0
-	var/atmos_supeconductivity = 0
 	var/needs_air_update
 
 /turf/simulated
-	var/excited = 0
+	//var/excited = 0
 	var/recently_active = 0
 	var/datum/gas_mixture/air
 	var/archived_cycle = 0
@@ -154,14 +153,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 	var/remove = 1 //set by non simulated turfs who are sharing with this turf
 
-	// Check if we are moving gas up or down.
-	var/list/extradirs = list()
-	if(istype(GetAbove(src), /turf/simulated/open))
-		extradirs += UP
-	if(istype(src, /turf/simulated/open))
-		extradirs += DOWN
-
-	for(var/direction in (cardinal+extradirs))
+	for(var/direction in (atmos_dirs))
 		if(!(atmos_adjacent_turfs & direction))
 			continue
 
@@ -192,9 +184,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			for(var/atom/movable/item in src)
 				item.temperature_expose(air, air.temperature, CELL_VOLUME)
 			temperature_expose(air, air.temperature, CELL_VOLUME)
-			if(air.temperature > MINIMUM_TEMPERATURE_START_SUPERCONDUCTION)
-				if(consider_superconductivity(starting = 1))
-					remove = 0
 		if(air.check_tile_graphic())
 			update_visuals(air)
 
@@ -249,107 +238,6 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 /turf/proc/high_pressure_movements()
 	for(var/atom/movable/M in src)
 		M.experience_pressure_difference(pressure_difference, pressure_direction)
-
-/atom/movable/var/last_forced_movement = 0
-
-/turf/simulated/proc/super_conduct()
-	if(!air_master)
-		return
-	var/conductivity_directions = 0
-
-	// TODO make this a set of turf vars
-	// Check if we are moving gas up or down.
-	var/list/extradirs = list()
-	if(istype(GetAbove(src), /turf/simulated/open))
-		extradirs += UP
-	if(istype(src, /turf/simulated/open))
-		extradirs += DOWN
-
-	if(blocks_air)
-		//Does not participate in air exchange, so will conduct heat across all four borders at this time
-		conductivity_directions = NORTH|SOUTH|EAST|WEST
-
-		if(archived_cycle < air_master.current_cycle)
-			archive()
-	else
-		//Does particate in air exchange so only consider directions not considered during process_cell()
-		for(var/direction in (cardinal+extradirs))
-			if(!(atmos_adjacent_turfs & direction) && !(atmos_supeconductivity & direction))
-				conductivity_directions += direction
-
-	if(conductivity_directions>0)
-		//Conduct with tiles around me
-		for(var/direction in (cardinal+extradirs))
-			if(conductivity_directions&direction)
-				var/turf/neighbor = get_step(src,direction)
-
-				if(!neighbor.thermal_conductivity)
-					continue
-
-				if(istype(neighbor, /turf/simulated)) //anything under this subtype will share in the exchange
-					var/turf/simulated/T = neighbor
-
-					if(T.archived_cycle < air_master.current_cycle)
-						T.archive()
-
-					if(T.air)
-						if(air) //Both tiles are open
-							air.temperature_share(T.air, WINDOW_HEAT_TRANSFER_COEFFICIENT)
-						else //Solid but neighbor is open
-							T.air.temperature_turf_share(src, T.thermal_conductivity)
-						air_master.add_to_active(T, 0)
-					else
-						if(air) //Open but neighbor is solid
-							air.temperature_turf_share(T, T.thermal_conductivity)
-						else //Both tiles are solid
-							share_temperature_mutual_solid(T, T.thermal_conductivity)
-						T.temperature_expose(null, T.temperature, null)
-
-					T.consider_superconductivity()
-
-				else
-					if(air) //Open
-						air.temperature_mimic(neighbor, neighbor.thermal_conductivity)
-					else
-						mimic_temperature_solid(neighbor, neighbor.thermal_conductivity)
-
-	if(temperature > T0C) //Considering 0 degC as te break even point for radiation in and out
-		var/delta_temperature = (temperature_archived - 2.7) //hardcoded space temperature
-		if((heat_capacity > 0) && (abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER))
-
-			var/heat = thermal_conductivity*delta_temperature* \
-				(heat_capacity*700000/(heat_capacity+700000)) //700000 is the heat_capacity from a space turf, hardcoded here
-			temperature -= heat/heat_capacity
-
-	//Conduct with air on my tile if I have it
-	if(air)
-		air.temperature_turf_share(src, thermal_conductivity)
-
-		//Make sure still hot enough to continue conducting heat
-		if(air.temperature < MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION)
-			air_master.active_super_conductivity -= src
-			return 0
-
-	else
-		if(temperature < MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION)
-			air_master.active_super_conductivity -= src
-			return 0
-
-turf/simulated/proc/consider_superconductivity(starting)
-	if(!thermal_conductivity)
-		return 0
-
-	if(air)
-		if(air.temperature < (starting?MINIMUM_TEMPERATURE_START_SUPERCONDUCTION:MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION))
-			return 0
-		if(air.heat_capacity() < M_CELL_WITH_RATIO) // Was: MOLES_CELLSTANDARD*0.1*0.05 Since there are no variables here we can make this a constant.
-			return 0
-	else
-		if(temperature < (starting?MINIMUM_TEMPERATURE_START_SUPERCONDUCTION:MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION))
-			return 0
-
-	air_master.active_super_conductivity |= src
-	return 1
 
 /turf/proc/CalculateAdjacentTurfs()
 

@@ -1193,6 +1193,7 @@
 #include "code\modules\lighting\lighting_turf.dm"
 #include "code\modules\lighting\~lighting_undefs.dm"
 #include "code\modules\linda\_linda_setup.dm"
+#include "code\modules\linda\linda_atoms.dm"
 #include "code\modules\linda\linda_canpass.dm"
 #include "code\modules\linda\linda_contamination.dm"
 #include "code\modules\linda\linda_controller.dm"

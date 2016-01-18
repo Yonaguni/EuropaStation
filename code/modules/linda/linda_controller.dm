@@ -6,9 +6,6 @@ var/global/datum/controller/process/air_system/air_master
 	var/list/active_turfs = list()
 	var/list/hotspots = list()
 	var/list/air_overlay_cache = list()
-
-	//Special functions lists
-	var/list/turf/simulated/active_super_conductivity = list()
 	var/list/turf/simulated/high_pressure_delta = list()
 
 	var/current_cycle = 0
@@ -28,7 +25,6 @@ var/global/datum/controller/process/air_system/air_master
 	SCHECK
 	process_high_pressure_delta()
 	process_hotspots()
-	process_super_conductivity()
 	SCHECK
 	return 1
 
@@ -39,10 +35,6 @@ var/global/datum/controller/process/air_system/air_master
 /datum/controller/process/air_system/proc/process_hotspots()
 	for(var/obj/effect/hotspot/H in hotspots)
 		H.process()
-
-/datum/controller/process/air_system/proc/process_super_conductivity()
-	for(var/turf/simulated/T in active_super_conductivity)
-		T.super_conduct()
 
 /datum/controller/process/air_system/proc/process_high_pressure_delta()
 	for(var/turf/T in high_pressure_delta)
@@ -56,12 +48,10 @@ var/global/datum/controller/process/air_system/air_master
 
 /datum/controller/process/air_system/proc/remove_from_active(var/turf/simulated/T)
 	if(istype(T))
-		T.excited = 0
 		active_turfs -= T
 
 /datum/controller/process/air_system/proc/add_to_active(var/turf/simulated/T, var/blockchanges = 1)
 	if(istype(T) && T.air)
-		T.excited = 1
 		active_turfs |= T
 	else
 		for(var/direction in cardinal)
@@ -86,9 +76,7 @@ var/global/datum/controller/process/air_system/air_master
 				if(istype(enemy_tile,/turf/simulated/))
 					var/turf/simulated/enemy_simulated = enemy_tile
 					if(!my_air.compare(enemy_simulated.air))
-						T.excited = 1
 						active_turfs |= T
 						break
 				else
-					T.excited = 1
 					active_turfs |= T
