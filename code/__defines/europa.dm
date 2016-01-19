@@ -11,3 +11,7 @@
 #define MEDSCI 2
 #define ENGSEC 3
 #define SHEET_MATERIAL_AMOUNT 2750
+
+//depth in bars (each bar is 1 atmosphere and approximately 10 meters)
+#define OCEAN_DEPTH 15
+#define OCEAN_PRESSURE (OCEAN_DEPTH * ONE_ATMOSPHERE)
