@@ -197,6 +197,7 @@ var/list/slot_equipment_priority = list( \
 		update_inv_wear_mask(0)
 	return
 
+
 /mob/proc/canUnEquip(obj/item/I)
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
 		return 1
