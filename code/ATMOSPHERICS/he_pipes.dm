@@ -55,18 +55,20 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 		if(!parent)
 			..()
 		else
+			var/turf/T = loc
 			var/datum/gas_mixture/pipe_air = return_air()
-			if(istype(loc, /turf/simulated/))
-				var/environment_temperature = 0
-				if(loc:blocks_air)
-					environment_temperature = loc:temperature
-				else
-					var/datum/gas_mixture/environment = loc.return_air()
-					environment_temperature = environment.temperature
-				if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
-					parent.temperature_interact(loc, volume, thermal_conductivity)
-			else if(istype(loc, /turf/space/) || istype(loc, /turf/unsimulated/ocean)) //THIS IS A HACK but regular temp doesn't seem to be implemented.
-				parent.radiate_heat_to_space(surface, 1)
+			if(istype(T))
+				if(T.flooded || istype(T, /turf/space))
+					parent.radiate_heat_to_space(surface, 1)
+				else if(istype(loc, /turf/simulated/))
+					var/environment_temperature = 0
+					if(loc:blocks_air)
+						environment_temperature = loc:temperature
+					else
+						var/datum/gas_mixture/environment = loc.return_air()
+						environment_temperature = environment.temperature
+					if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
+						parent.temperature_interact(loc, volume, thermal_conductivity)
 
 			if(buckled_mob)
 				var/hc = pipe_air.heat_capacity()

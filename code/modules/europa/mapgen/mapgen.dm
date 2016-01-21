@@ -1,7 +1,7 @@
 /datum/random_map/noise/seafloor
 	descriptor = "Europan seafloor (roundstart)"
 	smoothing_iterations = 3
-	target_turf_type = /turf/unsimulated/ocean
+	target_turf_type = /turf/simulated/ocean
 
 /datum/random_map/noise/seafloor/get_appropriate_path(var/value)
 	return
@@ -35,7 +35,7 @@
 			if(prob(1))
 				new /mob/living/simple_animal/hostile/retaliate/europa_shark(T)
 
-	var/turf/unsimulated/ocean/O = T
+	var/turf/simulated/ocean/O = T
 	if(istype(O))
 		switch(val)
 			if(6)

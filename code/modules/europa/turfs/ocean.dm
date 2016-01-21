@@ -20,7 +20,7 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	..()
 	verbs.Cut()
 
-/turf/unsimulated/ocean
+/turf/simulated/ocean
 	name = "seafloor"
 	desc = "Silty."
 	density = 0
@@ -34,10 +34,10 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	blend_with_neighbors = 1
 	var/detail_decal
 
-/turf/unsimulated/ocean/is_plating()
+/turf/simulated/ocean/is_plating()
 	return 1
 
-/turf/unsimulated/ocean/New()
+/turf/simulated/ocean/New()
 	if(isnull(detail_decal) && prob(20))
 		detail_decal = "asteroid[rand(0,9)]"
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
@@ -46,7 +46,7 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 		init_turfs |= src
 	..()
 
-/turf/unsimulated/ocean/update_icon(var/update_neighbors)
+/turf/simulated/ocean/update_icon(var/update_neighbors)
 	overlays.Cut()
 	if(detail_decal)
 		overlays |= get_mining_overlay(detail_decal)

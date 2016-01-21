@@ -83,9 +83,9 @@
 
 /turf/simulated/initialize()
 	..()
-	if(!blocks_air)
+	if(!blocks_air && initial_air && initial_air.len)
 		make_air()
-	air_update_turf(1)
+		air_update_turf(1)
 
 /turf/simulated/Destroy()
 	if(active_hotspot)

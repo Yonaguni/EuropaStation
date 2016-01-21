@@ -25,7 +25,13 @@ var/list/turf_edge_cache = list()
 	var/blend_with_neighbors = 0
 
 /turf/New()
+
 	..()
+
+	var/area/A = get_area(src)
+	if(istype(A) && (A.flags & IS_OCEAN))
+		flooded = 1
+
 	turfs |= src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)

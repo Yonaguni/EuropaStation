@@ -48,8 +48,8 @@ var/list/open_space_cache = list()
 	// Apply edging and shadowing as appropriate.
 	for(var/tempdir in cardinal)
 		var/turf/T = get_step(src, tempdir)
-		if(istype(T, /turf/unsimulated/ocean))
-			var/turf/unsimulated/ocean/O = T
+		if(istype(T, /turf/simulated/ocean))
+			var/turf/simulated/ocean/O = T
 			if(O.blend_with_neighbors)
 				var/cache_key = "[O.icon_state]-[tempdir]"
 				if(!turf_edge_cache[cache_key])
