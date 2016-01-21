@@ -23,6 +23,8 @@
 	return 0
 
 /turf/return_air()
+	if(flooded)
+		return
 	var/datum/gas_mixture/GM = new
 	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
 	GM.temperature = T20C
@@ -33,6 +35,8 @@
 	return
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
+	if(flooded)
+		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
@@ -40,6 +44,8 @@
 		update_visuals(my_air)
 
 /turf/simulated/assume_gas(gasid, moles, temp = null)
+	if(flooded)
+		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
 
@@ -52,6 +58,8 @@
 	return 1
 
 /turf/simulated/remove_air(amount as num)
+	if(flooded)
+		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
 	var/returnval = my_air.remove(amount)
@@ -60,6 +68,8 @@
 	return returnval
 
 /turf/simulated/return_air()
+	if(flooded)
+		return
 	if(!air)
 		make_air()
 	return air
@@ -68,6 +78,8 @@
 	return
 
 /turf/simulated/make_air(var/override_mix, var/override_volume, var/override_temp)
+	if(flooded)
+		return
 	air = new/datum/gas_mixture
 	if(!override_mix)
 		if(initial_air && islist(initial_air))
@@ -83,7 +95,7 @@
 
 /turf/simulated/initialize()
 	..()
-	if(!blocks_air && initial_air && initial_air.len)
+	if(!flooded && !blocks_air && initial_air && initial_air.len)
 		make_air()
 		air_update_turf(1)
 
@@ -93,6 +105,8 @@
 	return ..()
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
+	if(flooded)
+		return
 	if(!giver)	return 0
 	var/datum/gas_mixture/receiver = air
 	if(istype(receiver))
@@ -123,6 +137,11 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 /turf/simulated/proc/process_cell()
 	if(!air_master)
 		return
+
+	if(flooded)
+		air_master.active_turfs -= src
+		return
+
 	if(air_archived_cycle < air_master.current_cycle) //archive self if not already done
 		archive_air()
 	air_current_cycle = air_master.current_cycle
@@ -137,6 +156,12 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
+
+			if(!enemy_simulated.air)
+				enemy_simulated.make_air()
+
+			if(!enemy_simulated.air)
+				continue
 
 			if(air_current_cycle > enemy_simulated.air_current_cycle)
 				enemy_simulated.archive_air()
@@ -190,6 +215,8 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	return 1
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
+	if(flooded)
+		return
 	if(T.air_current_cycle >= air_current_cycle)
 		return
 	var/difference
@@ -201,7 +228,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			T.consider_pressure_difference(src, difference)
 
 /turf/proc/consider_pressure_difference(var/turf/simulated/T, var/difference)
-	if(!air_master)
+	if(flooded || !air_master)
 		return
 	air_master.high_pressure_delta |= src
 	if(difference > air_pressure_difference)

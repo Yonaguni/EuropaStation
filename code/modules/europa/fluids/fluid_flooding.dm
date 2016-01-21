@@ -9,12 +9,12 @@
 	if(need_fluid_recalc)
 		update_fluid_neighbors()
 
-	if(fluid_adjacent_turfs_amount == 0)
+	if(!atmos_adjacent_turfs_amount)
 		fluid_master.water_sources -= src
 		return
 
 	for(var/step_dir in fluid_dirs)
-		if(!(fluid_adjacent_turfs & step_dir))
+		if(!(atmos_adjacent_turfs & step_dir))
 			continue
 		var/turf/simulated/T = get_step(src, step_dir)
 		if(istype(T))
@@ -32,8 +32,8 @@
 	for(var/obj/machinery/door/window/D in src)
 		blocked_dirs |= D.dir
 
-	fluid_adjacent_turfs_amount = 0
-	fluid_adjacent_turfs = 0
+	atmos_adjacent_turfs_amount = 0
+	atmos_adjacent_turfs = 0
 
 	for(var/step_dir in fluid_dirs)
 		if(blocked_dirs & step_dir)
@@ -41,7 +41,7 @@
 		var/turf/simulated/T = get_step(src, step_dir)
 		if(!istype(T) || !CanFluidPass(T))
 			continue
-		fluid_adjacent_turfs_amount++
-		fluid_adjacent_turfs |= step_dir
+		atmos_adjacent_turfs_amount++
+		atmos_adjacent_turfs |= step_dir
 
 	need_fluid_recalc = 0

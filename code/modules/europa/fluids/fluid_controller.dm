@@ -21,7 +21,7 @@ var/global/datum/controller/process/fluids/fluid_master
 		return 1
 	current_cycle++
 	// Process water sources.
-	for(var/turf/T in water_sources)
+	for(var/turf/simulated/T in water_sources)
 		T.flood_neighbors()
 		SCHECK
 	// Process general fluid spread/equalizing.
@@ -30,9 +30,10 @@ var/global/datum/controller/process/fluids/fluid_master
 		SCHECK
 	return 1
 
-/datum/controller/process/fluids/proc/add_to_active(var/turf/simulated/T, var/blockchanges = 1)
-	if(T.flooded)
-		water_sources |= T
-	else if(istype(T) && T.fluids)
-		active_turfs |= T
+/datum/controller/process/fluids/proc/add_to_active(var/turf/simulated/T)
+	if(istype(T))
 		T.need_fluid_recalc = 1
+		if(T.flooded)
+			water_sources |= T
+		else
+			active_turfs |= T

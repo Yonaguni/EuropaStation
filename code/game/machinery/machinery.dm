@@ -138,8 +138,9 @@ Class Procs:
 /obj/machinery/process()//If you dont use process or power why are you here
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
-	if(loc)
-		var/datum/gas_mixture/fluid/environment = loc.return_fluids()
+	if(loc && istype(loc, /turf))
+		var/turf/T = loc
+		var/datum/gas_mixture/fluid/environment = T.return_fluids()
 		if(environment)
 			var/depth = environment.total_moles
 			if(depth)

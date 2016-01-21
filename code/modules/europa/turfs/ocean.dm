@@ -32,6 +32,7 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	drop_state = "rockwall"
 	flooded = 1
 	blend_with_neighbors = 1
+	initial_air = list()
 	var/detail_decal
 
 /turf/simulated/ocean/is_plating()

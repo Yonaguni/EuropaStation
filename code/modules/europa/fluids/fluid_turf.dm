@@ -1,11 +1,8 @@
 /turf
-	var/need_fluid_recalc = 0
-	var/fluid_adjacent_turfs = 0
-	var/fluid_adjacent_turfs_amount = 0
+	var/need_fluid_recalc = 1
 
 /turf/simulated
 	var/datum/gas_mixture/fluid/fluids
-	var/fluid_recently_active = 0
 	var/fluid_archived_cycle = 0
 	var/fluid_current_cycle = 0
 
@@ -52,9 +49,7 @@
 		update_visuals(my_fluid)
 	return returnval
 
-/atom/proc/return_fluids()
-
-/turf/return_fluids()
+/turf/proc/return_fluids()
 	if(flooded)
 		var/datum/gas_mixture/infiniwater = new()
 		infiniwater.copy_from(get_global_ocean())
@@ -80,21 +75,27 @@
 		return
 	if(T.fluid_current_cycle >= fluid_current_cycle)
 		return
-	fluids.share(T.fluids, fluid_adjacent_turfs_amount)
+	fluids.share(T.fluids, atmos_adjacent_turfs_amount)
 
 /turf/simulated/proc/process_fluids()
 	if(!fluid_master || flooded)
 		return
+	if(!fluids)
+		make_fluids()
 	if(fluid_archived_cycle < fluid_master.current_cycle) //archive self if not already done
 		archive_fluids()
 	fluid_current_cycle = fluid_master.current_cycle
 	var/remove = 1
 	for(var/direction in fluid_dirs)
-		if(!(fluid_adjacent_turfs & direction))
+		if(!(atmos_adjacent_turfs & direction))
 			continue
 		var/turf/enemy_tile = get_step(src, direction)
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
+			if(!enemy_simulated.fluids)
+				enemy_simulated.make_fluids()
+			if(!enemy_simulated.fluids)
+				continue
 			if(fluid_current_cycle > enemy_simulated.fluid_current_cycle)
 				enemy_simulated.archive_fluids()
 			if(!fluids.compare(enemy_simulated.return_fluids()))
@@ -102,9 +103,7 @@
 				share_fluids(enemy_simulated)
 			if(remove && !fluids.check_turf_fluid(enemy_tile, atmos_adjacent_turfs_amount))
 				remove = 0
-
-	if(fluids)
-		if(fluids.check_tile_graphic())
-			update_visuals(fluids)
+	if(fluids && fluids.check_tile_graphic())
+		update_visuals(fluids)
 	if(remove == 1)
 		fluid_master.active_turfs -= src

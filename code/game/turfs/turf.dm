@@ -67,7 +67,7 @@ var/list/turf_edge_cache = list()
 			return
 
 /turf/proc/initialize()
-	if(flooded)
+	if(flooded && fluid_master)
 		fluid_master.water_sources += src
 	update_icon(ticker && ticker.current_state == GAME_STATE_PLAYING)
 	return
