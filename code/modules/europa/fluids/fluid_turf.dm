@@ -59,7 +59,14 @@
 		var/datum/gas_mixture/infiniwater = new()
 		infiniwater.copy_from(get_global_ocean())
 		return infiniwater
-	return make_fluids()
+	return null
+
+/turf/simulated/return_fluids()
+	if(flooded)
+		return ..()
+	if(!fluids)
+		make_fluids()
+	return fluids
 
 /turf/proc/make_fluids()
 	return
@@ -69,49 +76,35 @@
 	return fluids
 
 /turf/simulated/proc/share_fluids(var/turf/simulated/T)
+	if(flooded)
+		return
 	if(T.fluid_current_cycle >= fluid_current_cycle)
 		return
 	fluids.share(T.fluids, fluid_adjacent_turfs_amount)
 
 /turf/simulated/proc/process_fluids()
-
-	if(!fluid_master)
+	if(!fluid_master || flooded)
 		return
-
 	if(fluid_archived_cycle < fluid_master.current_cycle) //archive self if not already done
 		archive_fluids()
-
 	fluid_current_cycle = fluid_master.current_cycle
-
 	var/remove = 1
 	for(var/direction in fluid_dirs)
-		if(!(fluid_adjacent_turfs & direction)) // This should be fine.
+		if(!(fluid_adjacent_turfs & direction))
 			continue
-
 		var/turf/enemy_tile = get_step(src, direction)
-
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
-
 			if(fluid_current_cycle > enemy_simulated.fluid_current_cycle)
 				enemy_simulated.archive_fluids()
-
-			if(!fluids.compare(enemy_simulated.return_fluids())) //compare if
-				fluid_master.add_to_active(enemy_simulated) //excite enemy
-				share_fluids(enemy_simulated) //share
-		else
-			if(!fluids.check_turf(enemy_tile, fluid_adjacent_turfs_amount))
-				var/difference = fluids.mimic(enemy_tile,,fluid_adjacent_turfs_amount)
-				if(difference)
-					if(difference > 0)
-						consider_pressure_difference(enemy_tile, difference)
-					else
-						enemy_tile.consider_pressure_difference(src, difference)
+			if(!fluids.compare(enemy_simulated.return_fluids()))
+				fluid_master.add_to_active(enemy_simulated)
+				share_fluids(enemy_simulated)
+			if(remove && !fluids.check_turf_fluid(enemy_tile, atmos_adjacent_turfs_amount))
 				remove = 0
+
 	if(fluids)
-		//TODO: react() and burning fluids.
 		if(fluids.check_tile_graphic())
 			update_visuals(fluids)
-
 	if(remove == 1)
 		fluid_master.active_turfs -= src

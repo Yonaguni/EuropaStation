@@ -995,7 +995,6 @@
 #include "code\modules\europa\fluids\fluid_drowning.dm"
 #include "code\modules\europa\fluids\fluid_flooding.dm"
 #include "code\modules\europa\fluids\fluid_turf.dm"
-#include "code\modules\europa\fluids\fluid_update.dm"
 #include "code\modules\europa\fluids\fluid_water_act.dm"
 #include "code\modules\europa\hooks\vip.dm"
 #include "code\modules\europa\items\boxes.dm"
