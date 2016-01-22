@@ -5,7 +5,7 @@
 	w_class = 3
 	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.
 	max_shells = 22
-	caliber = "9mm"
+	caliber = CALIBER_PISTOL_MEDIUM
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/c9mm
 	multi_aim = 1
@@ -24,7 +24,7 @@
 	w_class = 3
 	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.
 	max_shells = 15
-	caliber = ".45"
+	caliber = CALIBER_45
 	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/projectile/automatic/c20r
@@ -34,7 +34,7 @@
 	item_state = "c20r"
 	w_class = 3
 	force = 10
-	caliber = "10mm"
+	caliber = CALIBER_PISTOL_LARGE
 	slot_flags = SLOT_BELT|SLOT_BACK
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
@@ -57,7 +57,7 @@
 	item_state = null
 	w_class = 4
 	force = 10
-	caliber = "a762"
+	caliber = CALIBER_RIFLE_LARGE
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c762
@@ -79,7 +79,7 @@
 	icon_state = "wt550"
 	item_state = "wt550"
 	w_class = 3
-	caliber = "9mm"
+	caliber = CALIBER_PISTOL_MEDIUM
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
@@ -101,7 +101,7 @@
 	item_state = "z8carbine"
 	w_class = 4
 	force = 10
-	caliber = "a556"
+	caliber = CALIBER_RIFLE_SMALL
 	ammo_type = "/obj/item/ammo_casing/a556"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	slot_flags = SLOT_BACK
@@ -168,7 +168,7 @@
 	force = 10
 	slot_flags = 0
 	max_shells = 50
-	caliber = "a762"
+	caliber = CALIBER_RIFLE_LARGE
 	slot_flags = SLOT_BACK
 	ammo_type = "/obj/item/ammo_casing/a762"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
@@ -219,3 +219,33 @@
 		user << "<span class='warning'>You need to open the cover to unload [src].</span>"
 		return
 	..()
+
+/obj/item/weapon/gun/projectile/automatic/as24
+	name = "\improper AS-24 automatic shotgun"
+	desc = "A durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
+	icon_state = "ashot"
+	item_state = null
+	w_class = 4
+	force = 10
+	caliber = CALIBER_SHOTGUN
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
+	slot_flags = SLOT_BACK
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/g12
+
+	firemodes = list(
+		list(mode_name="semiauto", burst=1, fire_delay=0),
+		list(mode_name="3-round bursts", burst=3, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.0, 0.6, 0.6)),
+//		list(mode_name="6-round bursts", burst=6, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2, 1.2)),
+		)
+
+/obj/item/weapon/gun/projectile/automatic/as24/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "ashot-[round(ammo_magazine.stored_ammo.len,12)]"
+	else
+		icon_state = "ashot"
+	return
+
+
+

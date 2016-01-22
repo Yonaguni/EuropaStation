@@ -8,7 +8,7 @@
 	force = 10
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = CALIBER_SHOTGUN
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
-		return chambered.BB
+		return chambered.projectile
 	return null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
@@ -60,7 +60,7 @@
 	force = 10
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = CALIBER_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
 	burst_delay = 0

@@ -6,13 +6,13 @@
 	w_class = 4
 	force = 10
 	slot_flags = SLOT_BACK
-	caliber = "14.5mm"
+	caliber = CALIBER_RIFLE_SNIPER
 	recoil = 2 //extra kickback
 	//fire_sound = 'sound/weapons/sniper.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
-	ammo_type = /obj/item/ammo_casing/a145
+	ammo_type = /obj/item/ammo_casing/a50bmg
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = -1
 	scoped_accuracy = 2
