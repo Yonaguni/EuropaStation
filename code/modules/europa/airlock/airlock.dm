@@ -17,7 +17,7 @@
 
 	//target pressures for cycling to interior and exterior - configurable in dream maker
 	var/_interior_target = ONE_ATMOSPHERE
-	var/_exterior_target = ONE_ATMOSPHERE*15	//Who lives in a pineapple under the sea? We do!
+	var/_exterior_target = OCEAN_PRESSURE	//Who lives in a pineapple under the sea? We do!
 
 	var/_wifi_id
 	var/datum/wifi/sender/airlock/wifi_sender
