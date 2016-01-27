@@ -92,7 +92,7 @@
 
 //xgm
 #define GAS_OVERLAY_LAYER 4.9
-#define GAS_MAX_ALPHA 180
+#define GAS_MAX_ALPHA 130
 #define GAS_MIN_ALPHA 60
 
 // Defines how much of certain gas do the Atmospherics tanks start with. Values are in kpa per tile (assuming 20C)

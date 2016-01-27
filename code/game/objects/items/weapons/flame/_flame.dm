@@ -43,7 +43,10 @@
 		var/turf/location = get_turf(src)
 		if(istype(location))
 			location.hotspot_expose(700, 5)
-			var/depth = location.get_fluid_depth()
+			var/datum/gas_mixture/fluid/LM = location.return_fluids()
+			var/depth = 0
+			if(istype(LM))
+				depth = LM.total_moles
 			if(depth) water_act(depth)
 		update_icon()
 	return lit

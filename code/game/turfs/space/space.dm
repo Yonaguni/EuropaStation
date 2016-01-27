@@ -4,6 +4,7 @@
 	icon_state = "0"
 	dynamic_lighting = 0
 	accept_lattice = 1
+	open_space = 1
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT

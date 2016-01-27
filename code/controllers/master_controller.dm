@@ -89,17 +89,17 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing
 		var/atom/movable/AM = object     // in world and var/atom/movable thing in all_movable_atoms.
 		AM.initialize()
-	admin_notice("<span class='warning'>Initializing areas...</span>", R_DEBUG)
-	sleep(-1)
-	for(var/area in all_areas)
-		var/area/A = area
-		A.initialize()
 	admin_notice("<span class='warning'>Initializing turfs...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/turf in init_turfs)
 		var/turf/T = turf
 		T.initialize()
 	init_turfs.Cut()
+	admin_notice("<span class='warning'>Initializing areas...</span>", R_DEBUG)
+	sleep(-1)
+	for(var/area in all_areas)
+		var/area/A = area
+		A.initialize()
 	admin_notice("<span class='warning'>Initializing pipe networks...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)

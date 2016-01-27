@@ -10,3 +10,4 @@
 #define SHOW_EVAC_ALERT      256 // Evacuation will cause flashing alert lights in these areas.
 #define SECURE_AREA          512 // This area counts as the brig for the sake of objectives.
 #define HIDE_DEATH_LOCATION 1024 // Death alarms do not reveal deaths in these areas.
+#define IS_OCEAN            2048 // This area needs to be tinted blue.

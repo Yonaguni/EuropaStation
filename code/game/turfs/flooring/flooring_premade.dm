@@ -170,17 +170,18 @@
 	base_name = "snow"
 	base_icon = 'icons/turf/floors.dmi'
 	base_icon_state = "snow"
+	init_turf = 0
 
 /turf/simulated/floor/snow/ice
 	name = "ice"
 	icon_state = "ice"
 	base_name = "ice"
 	base_icon_state = "ice"
+	init_turf = 0
 
 /turf/simulated/floor/flooded
 	color = "#66D1FF"
-	initial_temperature = 250
-	initial_air = list("water" = 1500)
+	flooded = 1
 
 /turf/simulated/floor/flooded/New()
 	..()

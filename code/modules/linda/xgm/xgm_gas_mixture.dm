@@ -16,19 +16,6 @@
 	var/tmp/fuel_burnt = 0             // Something to do with fire.
 	var/last_fluid = -1
 
-/datum/gas_mixture/proc/get_fluid_depth()
-	if(!gas || !gas.len)
-		return 0
-	if(last_fluid > -1)
-		return last_fluid
-	var/return_volume = 0
-	for(var/gasid in gas)
-		if(!gas_data.flags[gasid] || !(gas_data.flags[gasid] & XGM_GAS_LIQUID))
-			continue
-		return_volume += gas[gasid]
-	last_fluid = return_volume
-	return return_volume
-
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
 
@@ -547,9 +534,26 @@
 	else
 		return 0
 
-/datum/gas_mixture/proc/check_turf(var/turf/model, var/atmos_adjacent_turfs = 4)
+/datum/gas_mixture/proc/check_turf_air(var/turf/model, var/atmos_adjacent_turfs = 4)
 
 	var/datum/gas_mixture/sharer = model.return_air()
+	if(isnull(sharer))
+		return
+	var/delta_temperature = get_temperature_delta(sharer)
+	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+		return 0
+	for(var/gas_id in current_deltas)
+		var/cdelta = abs(current_deltas[gas_id])
+		if(cdelta > MINIMUM_AIR_TO_SUSPEND)
+			var/compare_val = archived_gas[gas_id] ? (archived_gas[gas_id]*MINIMUM_AIR_RATIO_TO_SUSPEND) : 0
+			if(cdelta > compare_val)
+				return 0
+	return 1
+
+/datum/gas_mixture/proc/check_turf_fluid(var/turf/model, var/atmos_adjacent_turfs = 4)
+	var/datum/gas_mixture/sharer = model.return_fluids()
 	if(isnull(sharer))
 		return
 	var/delta_temperature = get_temperature_delta(sharer)

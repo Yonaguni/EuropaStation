@@ -95,11 +95,11 @@
 
 /obj/structure/stairs/initialize()
 	for(var/turf/turf in locs)
-		var/turf/simulated/open/above = GetAbove(turf)
+		var/turf/above = GetAbove(turf)
 		if(!above)
 			warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 			return qdel(src)
-		if(!istype(above))
+		if(!istype(above) || !above.open_space)
 			above.ChangeTurf(/turf/simulated/open)
 
 /obj/structure/stairs/Uncross(atom/movable/A)

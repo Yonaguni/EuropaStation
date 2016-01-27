@@ -1,4 +1,5 @@
 /turf/var/drop_state = "metalwall"
+/turf/var/open_space
 
 /turf/simulated/open
 	name = "open space"
@@ -9,10 +10,10 @@
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	accept_lattice = 1
 	drop_state = null
+	open_space = 1
 
 	var/turf/below
 	var/need_appearance_update
-	var/flooded = 0
 
 /turf/simulated/open/ex_act()
 	return
@@ -74,15 +75,15 @@
 	if(!soft)
 		//todo - loop over below.contents, call handle_falling_collision() on objects
 		if(!istype(mover, /mob/living))
-			if(istype(below, /turf/simulated/open))
+			if(below.open_space)
 				mover.visible_message("<span class='warning'>\The [mover] falls into view from above!</span>", "<span class='warning'>You hear a whoosh of displaced air.</span>")
 			else
 				mover.visible_message("<span class='warning'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='warning'>You hear something slam into the ground.</span>")
 		else
 			var/mob/living/M = mover
-			if(istype(below, /turf/simulated/open))
+			M.fall_counter += (layer_is_shallow(z) ? 1 : 10)
+			if(below.open_space)
 				below.visible_message("<span class='warning'>\The [mover] falls from above and plummets through \the [below]!</span>", "<span class='warning'>You hear a soft whoosh[M.stat ? "" : " and some screaming"].</span>")
-				M.fall_counter += (layer_is_shallow(z) ? 1 : 10)
 			else
 				M.visible_message("<span class='danger'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='danger'>You collide with \the [below]!</span>", "<span class='warning'>You hear a soft whoosh and a crunch.</span>")
 				// Handle people getting hurt, it's funny!

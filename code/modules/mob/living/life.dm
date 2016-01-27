@@ -71,7 +71,7 @@
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
 	if(environment)
-		var/depth = environment.get_fluid_depth()
+		var/depth = environment.total_moles
 		if(depth >= 30)
 			water_act(depth)
 			for(var/obj/item/I in contents)

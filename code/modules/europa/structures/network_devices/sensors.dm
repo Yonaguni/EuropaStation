@@ -45,14 +45,13 @@
 	if(istype(T) && T.air)
 		if(report_temp)
 			data["temperature"] = "[T.air.temperature]ºK"
-		if(report_fluid || report_gas)
+		if(report_gas)
 			for(var/gas_type in T.air.gas)
-				if(gas_data.flags[gas_type] & XGM_GAS_LIQUID)
-					if(!report_fluid)
-						continue
-				else if(!report_gas)
-					continue
 				data[gas_type] = "[T.air.gas[gas_type]]kPa"
+		if(report_fluid)
+			for(var/fluid_type in T.fluids.gas)
+				data[fluid_type] = "[T.fluids.gas[fluid_type]]L"
+
 	return data
 
 /obj/structure/europa/sensor/omni

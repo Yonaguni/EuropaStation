@@ -1,4 +1,4 @@
-"a" = (/turf/unsimulated/ocean,/area/ocean)
+"a" = (/turf/simulated/ocean,/area/ocean)
 "b" = (/turf/unsimulated/mineral,/area/ocean)
 "c" = (/turf/simulated/open,/area/ocean)
 "d" = (/turf/simulated/open,/area/shuttle/escape/transit)

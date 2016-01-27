@@ -29,27 +29,28 @@
 	update_connections(1)
 	update_icon()
 
-
 /turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial
 	update_material()
 
-/turf/simulated/wall/update_icon()
+/turf/simulated/wall/update_icon(var/update_neighbors)
+
+	overlays.Cut()
+
 	if(!material)
-		return
+		return ..(update_neighbors)
 
 	if(!damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
-	overlays.Cut()
 	var/image/I
 
 	if(!density)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base]fwall_open")
 		I.color = material.icon_colour
 		overlays += I
-		return
+		return .. (update_neighbors)
 
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
@@ -83,7 +84,8 @@
 			overlay = damage_overlays.len
 
 		overlays += damage_overlays[overlay]
-	return
+
+	..(update_neighbors)
 
 /turf/simulated/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len

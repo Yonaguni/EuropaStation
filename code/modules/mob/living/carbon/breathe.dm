@@ -46,11 +46,13 @@
 	return null
 
 /mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)
-	var/datum/gas_mixture/breath = null
 
-	var/datum/gas_mixture/environment
 	if(handle_drowning())
 		return null
+
+	var/datum/gas_mixture/breath = null
+	var/datum/gas_mixture/environment
+
 	if(loc)
 		environment = loc.return_air_for_internal_lifeform()
 

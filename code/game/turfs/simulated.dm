@@ -1,5 +1,6 @@
 /turf/simulated
 	name = "station"
+
 	var/wet = 0
 	var/image/wet_overlay = null
 
@@ -10,6 +11,7 @@
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
+	var/init_turf = 1
 
 /turf/simulated/clean_blood()
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
@@ -17,6 +19,14 @@
 		B.invisibility = 100
 
 /turf/simulated/New()
+	..()
+	if(init_turf)
+		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+			initialize()
+		else
+			init_turfs += src
+
+/turf/simulated/initialize()
 	..()
 	levelupdate()
 
