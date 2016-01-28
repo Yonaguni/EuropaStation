@@ -36,8 +36,12 @@
 	model_desc = "An energy rifle with a lightweight frame and compact barrel, stamped with a bird of prey on the stock."
 
 /decl/weapon_model/hcs/horus
-	model_name = "HCS HKW p-44/10-B Horus"
-	model_desc = "A compact submachine gun, stamped with a bird of prey on the stock."
+	model_name = "HCS HEW p-27/WB-A Horus"
+	model_desc = "A compact X-ray energy PDW, stamped with a bird of prey on the stock."
+	use_icon = 'icons/obj/gun_components/halicon/hcs_smg.dmi'
+	ammo_indicator_icon = 'icons/obj/gun_components/halicon/hcs_smg.dmi'
+	ammo_use_state = "chamber_loaded"
+	ammo_indicator_states = 5
 
 /decl/weapon_model/hcs/hera
 	model_name = "HCS HEW p-27/WB-A Hera"
