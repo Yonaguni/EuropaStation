@@ -94,6 +94,7 @@
 	w_class = 3.0
 	projectile_type = /obj/item/projectile/energy/phoron
 
+
 /obj/item/weapon/gun/energy/variable
 	name = "abstract weapon"
 	desc = "It seems to shift and flow as you watch."
