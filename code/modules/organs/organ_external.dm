@@ -942,11 +942,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 
-	brute_mod = 0.8                       // More resistant to brute.
-	burn_mod = 0.8                        // More resistant to burn.
-	max_damage = initial(max_damage)*0.65 // Significantly easier to remove with trauma.
-
-
 	if(company)
 		model = company
 		var/datum/robolimb/R = get_robolimb_by_name(company)
