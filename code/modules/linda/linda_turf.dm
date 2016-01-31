@@ -166,7 +166,9 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			if(air_current_cycle > enemy_simulated.air_current_cycle)
 				enemy_simulated.archive_air()
 
-			if(!air.compare(enemy_simulated.air)) //compare if
+			if(!air)
+				make_air()
+			if(air && !air.compare(enemy_simulated.air)) //compare if
 				air_master.add_to_active(enemy_simulated) //excite enemy
 				share_air(enemy_simulated) //share
 
@@ -209,7 +211,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			gas_overlay = PoolOrNew(/obj/effect/gas_overlay,src)
 		for(var/gas_icon in model.graphic)
 			gas_overlay.overlays |= gas_icon
-	if(gas_overlay && !isnull(model.graphic_alpha) && gas_overlay.alpha != model.graphic_alpha)
+	if(gas_overlay && !isnull(model.graphic_alpha) && model.graphic_alpha > gas_overlay.alpha)
 		gas_overlay.alpha = model.graphic_alpha
 	update_icon()
 	return 1
