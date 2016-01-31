@@ -10,7 +10,7 @@
 		slot_l_hand_str = 'icons/mob/europa/lefthand_helmet.dmi',
 		slot_r_hand_str = 'icons/mob/europa/righthand_helmet.dmi'
 		)
-		
+
 /obj/item/clothing/head/europa
 	name = "europan hat"
 	desc = "An undersea colonist hat. You shouldn't see this."
@@ -44,13 +44,12 @@
 	light_overlay = "helmet_light_dual"
 
 //Government
-
 /obj/item/clothing/head/europa/petty_officer/marshal
 	name = "marshal's cap"
 	desc = "A soft grey camo cap with a golden insignia for a government marshal."
 	icon_state = "marshal_cap"
 
-/obj/item/clothing/head/europa/petty_officer/
+/obj/item/clothing/head/europa/petty_officer
 	name = "petty officer's cap"
 	desc = "A soft grey camo cap for government petty pfficers."
 	icon_state = "petty_officer_cap"
@@ -64,3 +63,8 @@
 	name = "marshal's parade hat"
 	desc = "A decorated formal hat that announces your official presence."
 	icon_state = "marshal_parade_cap"
+
+/obj/item/clothing/head/europa/military
+	name = "armoured helmet"
+	desc = "An armoured helmet with a respirator."
+	icon_state = "military_helmet"
