@@ -21,6 +21,11 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/CanPass()
 	return 1
 
+/obj/machinery/portable_atmospherics/hydroponics/soil/farm
+	name = "furrowed earth"
+	desc = "Hopefully the dust crop will be good this year."
+	icon_state = "furrow"
+
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.
 // Hence using a blank icon.

@@ -14,7 +14,7 @@ proc/get_mining_overlay(var/overlay_key)
 	opacity = 1
 	blocks_air = 1
 	drop_state = "rockwall"
-	blend_with_neighbors = 10 // Blend over EVERYTHING.
+	blend_with_neighbors = 20 // Blend over EVERYTHING.
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -26,7 +26,7 @@ proc/get_mining_overlay(var/overlay_key)
 	temperature = T0C
 	has_resources = 1
 	drop_state = "rockwall"
-	blend_with_neighbors = 5
+	blend_with_neighbors = 15 // Blend over MOST THINGS.
 
 	var/ore/mineral
 	var/sand_dug
@@ -130,7 +130,7 @@ proc/get_mining_overlay(var/overlay_key)
 
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
-		blend_with_neighbors = 5
+		blend_with_neighbors = 15
 	else
 
 		name = "sand"

@@ -1,13 +1,15 @@
 /area/rimworld
 	name = "planetary surface"
+	icon = 'icons/areas/rimworld.dmi'
 	icon_state = "surface"
 	requires_power = 1
 	always_unpowered = 0
-	lighting_use_dynamic = 1
+	lighting_use_dynamic = 0
 	power_light = 1
 	power_equip = 1
 	power_environ = 1
-	flags = HIDE_DEATH_LOCATION | DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | RAD_SHIELDED | DENY_TELEPORT | IGNORE_BLACKOUTS | IS_OCEAN
+	flags = DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | DENY_TELEPORT | IGNORE_BLACKOUTS
+	outside = 1
 
 /area/rimworld/atmosalert()
 	return
@@ -23,3 +25,71 @@
 
 /area/rimworld/partyalert()
 	return
+
+// Buildings; use internal lighting.
+/area/rimworld/building
+	lighting_use_dynamic = 1
+	outside = null
+	icon_state = "house"
+
+/area/rimworld/building/farmhouse
+	name = "Farmhouse"
+	icon_state = "farmhouse"
+/area/rimworld/building/pub
+	name = "Pub"
+	icon_state = "pub"
+/area/rimworld/building/garage
+	name = "Garage"
+	icon_state = "garage"
+
+// Houses!
+/area/rimworld/building/mayor
+	name = "Mayor's Residence"
+/area/rimworld/building/homestead_ne
+	name = "Small Homestead - Northeast"
+/area/rimworld/building/homestead_se
+	name = "Small Homestead - Southeast"
+/area/rimworld/building/homestead_nw
+	name = "Small Homestead - Northwest"
+/area/rimworld/building/homestead_sw
+	name = "Small Homestead - Southwest"
+/area/rimworld/building/homestead_large_n
+	name = "Large Homestead - North"
+/area/rimworld/building/homestead_large_s
+	name = "Large Homestead - South"
+
+// Bank!
+/area/rimworld/building/bank
+	name = "Bank - Foyer"
+	icon_state = "bank"
+/area/rimworld/building/bank/vault
+	name = "Bank - Vaults"
+	icon_state = "bank_vault"
+/area/rimworld/building/bank/secure_vault
+	name = "Bank - Secure Vault"
+	icon_state = "bank_vault"
+
+// Other surface areas.
+/area/rimworld/forest
+	name = "Forest"
+	icon_state = "forest"
+/area/rimworld/settlement
+	name = "Settlement"
+	icon_state = "village"
+/area/rimworld/desert
+	name = "Desert"
+	icon_state = "desert"
+/area/rimworld/river
+	name = "River"
+	icon_state = "water"
+/area/rimworld/highway
+	name = "Highway"
+	icon_state = "highway"
+/area/rimworld/market
+	name = "Market Square"
+	icon_state = "market"
+/area/rimworld/farmland
+	name = "Farmland"
+	icon_state = "farms"
+
+

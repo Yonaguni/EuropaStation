@@ -41,46 +41,8 @@ datum/controller/game_controller/proc/setup_objects()
 
 	admin_notice("<span class='danger'>Initializing.</span>", R_DEBUG)
 	var/otod = world.timeofday
-	sleep(-1)
-	if(config.generate_asteroid)
-
-		/*
-		admin_notice("<span class='warning'>Generating shallow caverns...</span>", R_DEBUG)
-		sleep(-1)
-
-		// TODO: layer-specific caves
-		new /datum/random_map/large_cave(null,8,8,2,127,127)
-		new /datum/random_map/large_cave(null,120,8,2,127,127)
-		new /datum/random_map/large_cave(null,8,120,2,127,127)
-		new /datum/random_map/large_cave(null,120,120,2,127,127)
-		new /datum/random_map/large_cave(null,64,64,2,127,127)
-		*/
-		admin_notice("<span class='warning'>Generating deep caverns...</span>", R_DEBUG)
-		new /datum/random_map/large_cave(null,1,1,1,255,255)
-
-		/*
-		admin_notice("<span class='warning'>Generating deep tunnels...</span>", R_DEBUG)
-		sleep(-1)
-		for(var/datum/cave_digger/digger in origin_points)
-			origin_points -= digger
-			if(!origin_points.len)
-				break
-			var/datum/cave_digger/target_digger = pick(origin_points)
-			build_cave_tunnel(digger.x, digger.y, target_digger.x, target_digger.y, 1)
-		*/
-
-	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
-	sleep(-1)
-	new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
-
-	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
-	sleep(-1)
-	new /datum/random_map/noise/seafloor(null,1,1,2,255,255)
-
-	admin_notice("<span class='warning'>Generating tundra...</span>", R_DEBUG)
-	sleep(-1)
-	new /datum/random_map/noise/tundra(null,1,1,4,255,255)
-
+	world << "<span class='notice'>Generating map geometry...</span>"
+	do_roundstart_mapgen()
 	sleep(-1)
 	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
 

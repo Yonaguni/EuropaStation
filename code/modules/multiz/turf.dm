@@ -11,6 +11,7 @@
 	accept_lattice = 1
 	drop_state = null
 	open_space = 1
+	blend_with_neighbors = -10 // Will accept overlays but shouldn't generate its own.
 
 	var/turf/below
 	var/need_appearance_update

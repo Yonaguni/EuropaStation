@@ -48,6 +48,7 @@
 	for(var/x = 1 to harvest_amount)
 		results += new harvest_result(T)
 	user.visible_message("<span class='notice'>\The [user] [harvest_message] \the [src] with \the [thing].</span>")
+	qdel(src)
 	return results
 
 //trees
@@ -56,14 +57,23 @@
 	pixel_x = -16
 	density = 1
 	layer = 9
+	icon = 'icons/obj/flora/trees.dmi'
+	icon_state = "generic_tree"
+
 	harvest_fail_message = "hacks away at"
 	harvest_message = "chops down"
 	harvest_ticks = 3
 	harvest_amount = 3
+	harvest_tool = /obj/item/weapon/material/hatchet
+	harvest_result = /obj/item/log
+
+/obj/structure/flora/tree/New()
+	..()
+	if(prob(50))
+		icon_state = "generic_tree2"
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	harvest_ticks = 5
 	harvest_amount = 5
@@ -72,7 +82,7 @@
 	var/list/results = ..()
 	var/turf/T = get_turf(src)
 	if(results.len)
-		var/fall_dir = get_dir(user, src)
+		var/fall_dir = get_dir(get_turf(user), T)
 		for(var/obj/item/debris in results)
 			T = get_step(T, fall_dir)
 			debris.throw_at(T, 10, rand(5,15))
@@ -83,7 +93,6 @@
 
 /obj/structure/flora/tree/pine/xmas
 	name = "xmas tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_c"
 
 /obj/structure/flora/tree/pine/xmas/New()

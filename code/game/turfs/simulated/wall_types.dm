@@ -23,8 +23,15 @@
 	..(newloc,"gold")
 /turf/simulated/wall/silver/New(var/newloc)
 	..(newloc,"silver")
+
+/turf/simulated/wall/sandstone
+	icon = 'icons/turf/wall_masks.dmi'
+	icon_state = "stone_preview"
+	color = "#D9C179"
+
 /turf/simulated/wall/sandstone/New(var/newloc)
 	..(newloc,"sandstone")
+
 /turf/simulated/wall/golddiamond/New(var/newloc)
 	..(newloc,"gold","diamond")
 /turf/simulated/wall/silvergold/New(var/newloc)
@@ -37,6 +44,16 @@
 	..(newloc,"voxalloy")
 /turf/simulated/wall/voxshuttle/attackby()
 	return
+
+/turf/simulated/wall/wood
+	icon = 'icons/turf/wall_masks.dmi'
+	icon_state = "wood_preview"
+	color = "#824B28"
+
+/turf/simulated/wall/wood/New(var/newloc)
+	icon_state = null
+	color = null
+	..(newloc, "wood")
 
 /turf/simulated/wall/titanium
 	icon = 'icons/turf/wall_masks.dmi'

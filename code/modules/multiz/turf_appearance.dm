@@ -15,7 +15,7 @@ var/list/open_space_cache = list()
 	overlays.Cut()
 
 	// Shallow layers just show the layer below.
-	if(layer_is_shallow(z))
+	if(layer_is_shallow(z) && !below.flooded)
 		var/old_lum = luminosity
 		appearance = below.appearance
 		name = initial(name)
@@ -60,6 +60,14 @@ var/list/open_space_cache = list()
 			if(!turf_edge_cache["[tempdir]"])
 				turf_edge_cache["[tempdir]"] = image(icon= 'icons/turf/blending_overlays.dmi', icon_state = "openspace_edges", dir = tempdir)
 			overlays += turf_edge_cache["[tempdir]"]
+
+	if(below && below.flooded)
+		name = "deep water"
+		if(!turf_edge_cache["deepwater"])
+			var/image/I = image(icon = 'icons/misc/beach.dmi', icon_state = "seashallow")
+			I.alpha = 180
+			turf_edge_cache["deepwater"] = I
+		overlays += turf_edge_cache["deepwater"]
 
 	..(update_neighbors)
 

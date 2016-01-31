@@ -2,7 +2,7 @@
 	name = "fence"
 	icon = 'icons/obj/europa/structures/fence.dmi'
 	icon_state = "fence"
-	density = 0
+	density = 1
 	anchored = 1
 
 /obj/structure/grille/attackby(var/obj/item/thing, var/mob/user)
@@ -12,5 +12,5 @@
 
 /obj/structure/grille/fence/gate
 	name = "fence gate"
-	icon_state = "fence gate"
+	icon_state = "fence_gate"
 	density = 0
