@@ -392,3 +392,6 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
+
+/obj/effect/floor_decal/road_stripe
+	icon_state = "road_stripe"
