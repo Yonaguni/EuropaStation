@@ -27,7 +27,6 @@
 		var/mob/M = src.loc
 		M.update_inv_belt()
 
-
 /obj/item/weapon/storage/belt/utility
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."

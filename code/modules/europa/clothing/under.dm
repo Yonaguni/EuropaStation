@@ -99,6 +99,15 @@
 	desc = "A sleek, close-fitting suit that provides warmth when swimming. This one has blue stripes."
 	icon_state = "wetsuit"
 
+/obj/item/clothing/under/europa/hireling
+	name = "rough clothes"
+	desc = "A rather ominous set of hard-worn clothes."
+	icon_state = "hireling_uniform"
+
+/obj/item/clothing/under/europa/manager
+	name = "manager's uniform"
+	desc = "Smells faintly of existential despair."
+	icon_state = "middle_manager"
 
 /*
  * Government Uniforms
@@ -122,6 +131,21 @@
 	icon_state = "sailor"
 	worn_state = "sailor"
 
+/obj/item/clothing/under/europa/military
+	name = "naval uniform"
+	desc = "A set of hard-wearing fatigues for naval personnel."
+	icon_state = "military_uniform"
+	worn_state = "military_uniform"
+
+/obj/item/clothing/under/europa/military/formal
+	name = "formal naval uniform"
+	desc = "A particularly fancy military uniform."
+	icon_state = "military_fancy"
+	worn_state = "military_fancy"
+
+/obj/item/clothing/under/europa/military/formal/alt
+	icon_state = "military_fancy_alt"
+	worn_state = "military_fancy_alt"
 
 /*
  * Industrial Sector

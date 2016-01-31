@@ -84,7 +84,7 @@
 					user << "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>"
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
-			
+
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			flick("flash", M.flash)
 	else
@@ -126,8 +126,8 @@
 // green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
-	icon_state = "lampgreen"
-	item_state = "lampgreen"
+	icon_state = "lampred"
+	item_state = "lampred"
 	brightness_on = 5
 	light_color = "#FFC58F"
 
