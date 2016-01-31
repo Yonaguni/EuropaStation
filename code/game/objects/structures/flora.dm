@@ -1,15 +1,81 @@
+/obj/item/log
+	name = "wood log"
+	desc = "It's great for a snack, and fits on your back!"
+	slot_flats = SLOT_BACK
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "logs"
+	w_class = 5
+
+/obj/item/log/attackby(var/obj/item/thing, var/mob/user)
+	if(istype(W,/obj/item/weapon/material/hatchet))
+		user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
+		new /obj/item/stack/material/wood(get_turf(src), rand(2,5))
+		var/mob/M = loc
+		if(istype(M))
+			M.unEquip(src)
+		qdel(src)
+		return
+	return ..()
+
+/obj/structure/flora
+	name = "generic flora"
+	anchored = 1
+
+	var/harvest_ticks = 1
+	var/harvest_tool
+	var/harvest_result
+	var/harvest_amount = 1
+	var/harvest_message = "harvests from"
+	var/harvest_fail_message = "fails to harvest from"
+
+/obj/structure/flora/attackby(var/obj/item/thing, var/mob/user)
+	if(harvest_tool && harvest_result)
+		if(istype(thing, harvest_tool))
+			harvest_ticks--
+			if(harvest_ticks>0)
+				fail_harvest(user, thing)
+				return
+			do_harvest(user, thing)
+			return
+	return ..()
+
+/obj/structure/flora/proc/fail_harvest(var/mob/user, var/obj/item/thing)
+	user.visible_message("<span class='notice'>\The [user] [harvest_fail_message] \the [src] with \the [thing].</span>")
+
+/obj/structure/flora/proc/do_harvest(var/mob/user, var/obj/item/thing)
+	var/turf/T = get_turf(src)
+	var/list/results = list()
+	for(var/x = 1 to harvest_amount)
+		results += new harvest_result(T)
+	user.visible_message("<span class='notice'>\The [user] [harvest_message] \the [src] with \the [thing].</span>")
+	return results
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
-	anchored = 1
-	density = 1
 	pixel_x = -16
+	density = 1
 	layer = 9
+	harvest_fail_message = "hacks away at"
+	harvest_message = "chops down"
+	harvest_ticks = 3
+	harvest_amount = 3
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
+	harvest_ticks = 5
+	harvest_amount = 5
+
+/obj/structure/flora/tree/pine/do_harvest(var/mob/user, var/obj/item/thing)
+	var/list/results = ..()
+	var/turf/T = get_turf(src)
+	if(results.len)
+		var/fall_dir = get_dir(user, src)
+		for(var/obj/item/debris in results)
+			T = get_step(T, fall_dir)
+			debris.throw_at(T, 10, rand(5,15))
 
 /obj/structure/flora/tree/pine/New()
 	..()
@@ -27,17 +93,17 @@
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_1"
+	harvest_ticks = 4
+	harvest_amount = 4
 
 /obj/structure/flora/tree/dead/New()
 	..()
 	icon_state = "tree_[rand(1, 6)]"
 
-
 //grass
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -61,13 +127,11 @@
 	..()
 	icon_state = "snowgrassall[rand(1, 3)]"
 
-
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	anchored = 1
 
 /obj/structure/flora/bush/New()
 	..()
@@ -84,7 +148,6 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	anchored = 1
 
 /obj/structure/flora/ausbushes/New()
 	..()
