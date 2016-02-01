@@ -168,6 +168,6 @@ var/list/feed_cache = list()
 			icon_state = "[feed_icon]_manifold"
 			dir = (15 & (~connection_dir)) // Get the solitary unconnected dir.
 
-	layer = initial(layer) + (feed_layer/10)
+	layer = min(2.7,initial(layer) + (feed_layer/10))
 	pixel_x = (feed_layer * conduit_width) - conduit_offset
 	pixel_y = pixel_x
