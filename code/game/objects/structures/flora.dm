@@ -28,6 +28,20 @@
 	var/harvest_message = "harvests from"
 	var/harvest_fail_message = "fails to harvest from"
 
+	var/seed_prob = 0
+	var/seed_type
+
+// Weeding!
+/obj/structure/flora/attack_hand(var/mob/user)
+	if(seed_type)
+		if(seed_prob && prob(seed_prob))
+			var/obj/item/seeds/G = new(get_turf(src))
+			user.put_in_hands(G)
+		visible_message("<span class='notice'>\The [user] rips out \the [src].</span>")
+		qdel(src)
+		return
+	return ..()
+
 /obj/structure/flora/attackby(var/obj/item/thing, var/mob/user)
 	if(harvest_tool && harvest_result)
 		if(istype(thing, harvest_tool))
@@ -113,9 +127,12 @@
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
+	seed_prob = 20
+	seed_type = /obj/item/seeds/grassseed
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
+	seed_type = /obj/item/seeds/wheatseed
 
 /obj/structure/flora/grass/brown/New()
 	..()
@@ -157,6 +174,8 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
+	seed_prob = 15
+	seed_type = /obj/item/seeds/grassseed
 
 /obj/structure/flora/ausbushes/New()
 	..()
