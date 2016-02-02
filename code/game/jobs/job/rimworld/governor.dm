@@ -1,11 +1,14 @@
-/datum/job/civilian/governor
+/datum/job/borderworld/governor
 	title = "Governor"
+	flag = GOVERNMENT
 	job_category = IS_GOVERNMENT
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#ccccff"
+	department_flag = GOVERNMENT
 
-/datum/job/civilian/governor/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/borderworld/governor/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	return ..()
 
-/datum/job/civilian/governor/equip_survival(var/mob/living/carbon/human/H)
+/datum/job/borderworld/governor/equip_survival(var/mob/living/carbon/human/H)
 	return ..()

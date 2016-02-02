@@ -1,16 +1,16 @@
+var/const/MARSHAL		=(1<<0)
 var/const/CIVILIAN		=(1<<0)
 var/const/CITIZEN		=(1<<0)
-var/const/LIAISON		=(1<<1)
-var/const/ENGINEER		=(1<<2)
-var/const/AI			=(1<<3)
-var/const/CYBORG		=(1<<4)
-var/const/GOVERNMENT	=(1<<1)
-var/const/MARSHAL		=(1<<0)
-var/const/OFFICER		=(1<<1)
-var/const/INDUSTRY		=(1<<2)
 var/const/CCO			=(1<<0)
 var/const/WORKER		=(1<<1)
+var/const/LIAISON		=(1<<1)
+var/const/GOVERNMENT	=(1<<1)
+var/const/OFFICER		=(1<<1)
 var/const/SCIENTIST		=(1<<2)
+var/const/ENGINEER		=(1<<2)
+var/const/INDUSTRY		=(1<<2)
+var/const/AI			=(1<<3)
+var/const/CYBORG		=(1<<4)
 
 var/list/head_positions = list()
 var/list/civ_positions = list()
@@ -19,6 +19,7 @@ var/list/ind_positions = list()
 var/list/nonhuman_positions = list()
 
 var/list/all_used_jobs
+var/list/job_titles = list()
 var/list/all_excluded_jobs = list()
 
 /proc/guest_jobbans(var/job)
@@ -32,6 +33,9 @@ var/list/all_excluded_jobs = list()
 			// Should we keep track of this job for exclusionary purposes?
 			if(jobtype in world_map.exclude_jobs)
 				all_excluded_jobs += job
+			else
+				job_titles += job.title
+
 			// Update job categories while we're at it!
 			switch(job.job_category)
 				if(IS_HEAD)
@@ -45,7 +49,12 @@ var/list/all_excluded_jobs = list()
 				if(IS_NONHUMAN)
 					nonhuman_positions |= job.title
 			all_used_jobs += job
+
 	return (exclude ? (all_used_jobs - all_excluded_jobs) : all_used_jobs)
+
+/proc/get_job_titles()
+	get_job_datums()
+	return job_titles
 
 /proc/get_alternate_titles(var/job)
 	var/list/jobs = get_job_datums()

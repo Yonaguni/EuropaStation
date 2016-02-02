@@ -3,20 +3,19 @@
 	desc = "The planet surface and the mining level."
 	height = 2
 
-	default_title = "Vagrant"
-	default_job = /datum/job/civilian/vagrant
+	default_title = "Wanderer"
+	default_job = /datum/job/borderworld
 	use_jobs = list(
-		/datum/job/civilian,
-		/datum/job/civilian/vagrant,
-		/datum/job/civilian/farmer,
-		/datum/job/civilian/governor,
-		/datum/job/civilian/hunter,
-		/datum/job/civilian/lawman,
-		/datum/job/civilian/mechanic,
-		/datum/job/civilian/merchant,
-		/datum/job/civilian/miner,
-		/datum/job/civilian/sawbones,
-		/datum/job/civilian/scrapper
+		/datum/job/borderworld,
+		/datum/job/borderworld/farmer,
+		/datum/job/borderworld/governor,
+		/datum/job/borderworld/hunter,
+		/datum/job/borderworld/lawman,
+		/datum/job/borderworld/mechanic,
+		/datum/job/borderworld/merchant,
+		/datum/job/borderworld/miner,
+		/datum/job/borderworld/sawbones,
+		/datum/job/borderworld/scrapper
 		)
 
 /obj/effect/landmark/map_data/rimworld/do_roundstart_mapgen()
