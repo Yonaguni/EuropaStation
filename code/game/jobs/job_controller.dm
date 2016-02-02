@@ -5,35 +5,24 @@ var/global/datum/controller/occupations/job_master
 #define RETURN_TO_LOBBY 2
 
 /datum/controller/occupations
-		//List of all jobs
-	var/list/occupations = list()
-		//Players who need jobs
-	var/list/unassigned = list()
-		//Debug info
-	var/list/job_debug = list()
-
+	var/list/occupations = list() // List of all jobs
+	var/list/unassigned = list()  // Players who need jobs
+	var/list/job_debug = list()   // Debug info
 
 	proc/SetupOccupations(var/faction = "Station")
-		occupations = list()
-		var/list/all_jobs = typesof(/datum/job)
-		if(!all_jobs.len)
+		occupations = get_job_datums()
+		for(var/datum/job/job in occupations)
+			if(job.faction != faction)
+				occupations -= job
+		if(!occupations.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0
-		for(var/J in all_jobs)
-			var/datum/job/job = new J()
-			if(!job)	continue
-			if(job.faction != faction)	continue
-			occupations += job
-
-
 		return 1
-
 
 	proc/Debug(var/text)
 		if(!Debug2)	return 0
 		job_debug.Add(text)
 		return 1
-
 
 	proc/GetJob(var/rank)
 		if(!rank)	return null
@@ -111,7 +100,7 @@ var/global/datum/controller/occupations/job_master
 			if(istype(job, GetJob("[default_role]"))) // We don't want to give him assistant, that's boring!
 				continue
 
-			if(job in europa_head_positions) //If you want a command position, select it!
+			if(job in head_positions) //If you want a command position, select it!
 				continue
 
 			if(jobban_isbanned(player, job.title))
@@ -141,7 +130,7 @@ var/global/datum/controller/occupations/job_master
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
 		for(var/level = 1 to 3)
-			for(var/command_position in europa_head_positions)
+			for(var/command_position in head_positions)
 				var/datum/job/job = GetJob(command_position)
 				if(!job)	continue
 				var/list/candidates = FindOccupationCandidates(job, level)
@@ -181,7 +170,7 @@ var/global/datum/controller/occupations/job_master
 
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 	proc/CheckHeadPositions(var/level)
-		for(var/command_position in europa_head_positions)
+		for(var/command_position in head_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
@@ -222,7 +211,7 @@ var/global/datum/controller/occupations/job_master
 
 		//People who wants to be assistants, sure, go on.
 		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new DEFAULT_JOB_TYPE ()
+		var/datum/job/assist = new world_map.default_job ()
 		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
@@ -546,41 +535,6 @@ var/global/datum/controller/occupations/job_master
 				pda.ownjob = C.assignment
 				pda.ownrank = C.rank
 				pda.name = "PDA-[H.real_name] ([pda.ownjob])"
-
-		return 1
-
-
-	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-		if(!config.load_jobs_from_txt)
-			return 0
-
-		var/list/jobEntries = file2list(jobsfile)
-
-		for(var/job in jobEntries)
-			if(!job)
-				continue
-
-			job = trim(job)
-			if (!length(job))
-				continue
-
-			var/pos = findtext(job, "=")
-			var/name = null
-			var/value = null
-
-			if(pos)
-				name = copytext(job, 1, pos)
-				value = copytext(job, pos + 1)
-			else
-				continue
-
-			if(name && value)
-				var/datum/job/J = GetJob(name)
-				if(!J)	continue
-				J.total_positions = text2num(value)
-				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
-					J.total_positions = 0
 
 		return 1
 

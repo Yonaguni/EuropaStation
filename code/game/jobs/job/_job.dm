@@ -25,6 +25,7 @@
 	var/pdatype                           // If set, job will spawn with a PDA.
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
+	var/job_category = IS_CIVIL
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
 
@@ -103,7 +104,7 @@
 	var/species_modifier = (H.species ? economic_species_modifier[H.species.type] : 2)
 	if(!species_modifier)
 		species_modifier = economic_species_modifier[/datum/species/human]
-	
+
 	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * species_modifier
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)

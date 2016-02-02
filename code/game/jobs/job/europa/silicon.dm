@@ -1,5 +1,6 @@
 /datum/job/ai
 	title = "AI"
+	job_category = IS_NONHUMAN
 	flag = AI
 	department_flag = CIVILIAN
 	faction = "Station"

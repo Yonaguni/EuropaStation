@@ -25,6 +25,11 @@
 	ASSERT(HasBelow(z))
 	if(below) queue_open_turf_update(src)
 
+/turf/simulated/open/flooded
+	name = "abyss"
+	drop_state = "rockwall"
+	flooded = 1
+
 /mob/var/fall_counter = 0
 /turf/simulated/open/Entered(var/atom/movable/mover)
 

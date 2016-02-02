@@ -80,6 +80,15 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 //////////////////////////
 
 /proc/makeDatumRefLists()
+
+	// Make sure we have a world map data object to reference, one way or another.
+	if(!world_map)
+		world_map = locate(/obj/effect/landmark/map_data) in world
+	if(!world_map)
+		world.log << "Your map does not have a supplied map data object, using defaults."
+		var/turf/T = locate(1,1,1)
+		world_map = new /obj/effect/landmark/map_data(T)
+
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
@@ -114,8 +123,8 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 	sort_surgeries()
 
 	//List of job. I can't believe this was calculated multiple times per tick!
-	paths = typesof(/datum/job)-/datum/job
-	paths -= exclude_jobs
+	paths = world_map.use_jobs
+	paths -= world_map.exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J

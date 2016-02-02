@@ -168,12 +168,8 @@
 	return get_access_desc(A)
 
 /proc/get_all_jobs()
-	var/list/all_jobs = list()
-	var/list/all_datums = typesof(/datum/job)
-	all_datums -= exclude_jobs
-	var/datum/job/jobdatum
-	for(var/jobtype in all_datums)
-		jobdatum = new jobtype
+	var/list/all_jobs
+	for(var/datum/job/jobdatum in get_job_datums(exclude=1))
 		all_jobs.Add(jobdatum.title)
 	return all_jobs
 

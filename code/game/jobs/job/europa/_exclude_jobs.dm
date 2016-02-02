@@ -1,1 +1,0 @@
-var/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)

@@ -96,7 +96,7 @@
 		if((pref.job_civilian_low & ASSISTANT) && (rank != "[default_role]"))
 			. += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in europa_gov_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in gov_positions) || (rank == "AI"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
 			. += "[rank]"
@@ -125,7 +125,7 @@
 		if(GET_RANDOM_JOB)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
 		if(BE_ASSISTANT)
-			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be citizen if preference unavailable</font></a></u></center><br>"
+			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be [world_map.default_title] if preference unavailable</font></a></u></center><br>"
 		if(RETURN_TO_LOBBY)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 

@@ -44,13 +44,13 @@
 		data["id_owner"] = id_card && id_card.registered_name ? id_card.registered_name : "-----"
 		data["id_name"] = id_card ? id_card.name : "-----"
 
-	data["engineering_jobs"] = format_jobs(europa_civ_positions)
-	data["medical_jobs"] = format_jobs(europa_civ_positions)
-	data["science_jobs"] = format_jobs(europa_ind_positions)
-	data["security_jobs"] = format_jobs(europa_gov_positions)
-	data["cargo_jobs"] = format_jobs(europa_ind_positions)
-	data["civilian_jobs"] = format_jobs(europa_civ_positions)
-	data["centcom_jobs"] = format_jobs(europa_gov_positions)
+	data["engineering_jobs"] = format_jobs(civ_positions)
+	data["medical_jobs"] = format_jobs(civ_positions)
+	data["science_jobs"] = format_jobs(ind_positions)
+	data["security_jobs"] = format_jobs(gov_positions)
+	data["cargo_jobs"] = format_jobs(ind_positions)
+	data["civilian_jobs"] = format_jobs(civ_positions)
+	data["centcom_jobs"] = format_jobs(gov_positions)
 
 	data["all_centcom_access"] = is_centcom ? get_accesses(1) : null
 	data["regions"] = get_accesses()
@@ -192,7 +192,7 @@
 						access = get_centcom_access(t1)
 					else
 						var/datum/job/jobdatum
-						for(var/jobtype in typesof(/datum/job))
+						for(var/jobtype in world_map.use_jobs)
 							var/datum/job/J = new jobtype
 							if(ckey(J.title) == ckey(t1))
 								jobdatum = J

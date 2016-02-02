@@ -1,5 +1,6 @@
 /datum/job/civilian/vagrant
 	title = "Vagrant"
+	job_category = IS_CIVIL
 	total_positions = -1
 	spawn_positions = -1
 

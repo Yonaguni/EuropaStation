@@ -53,22 +53,22 @@
 			//world << "[name]: [rank]"
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in europa_head_positions)
+		if(real_rank in head_positions)
 			heads[name] = rank
 			department = 1
-		if(real_rank in europa_gov_positions)
+		if(real_rank in gov_positions)
 			sec[name] = rank
 			department = 1
-		if(real_rank in europa_ind_positions)
+		if(real_rank in ind_positions)
 			eng[name] = rank
 			department = 1
-		if(real_rank in europa_civ_positions)
+		if(real_rank in civ_positions)
 			med[name] = rank
 			department = 1
-		if(real_rank in europa_ind_positions)
+		if(real_rank in ind_positions)
 			sci[name] = rank
 			department = 1
-		if(real_rank in europa_civ_positions)
+		if(real_rank in civ_positions)
 
 			civ[name] = rank
 			department = 1

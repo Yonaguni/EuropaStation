@@ -1,5 +1,6 @@
 /datum/job/civilian/sawbones
 	title = "Sawbones"
+	job_category = IS_CIVIL
 	total_positions = 1
 	spawn_positions = 1
 	alt_titles = list("Doctor")

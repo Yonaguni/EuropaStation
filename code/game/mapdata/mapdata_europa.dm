@@ -1,4 +1,25 @@
-/proc/do_roundstart_mapgen()
+/obj/effect/landmark/map_data/europa
+	name = "Yonaguni Facility"
+	desc = "The main dome level, the mining abyss level, the transit level and the surface."
+	height = 4
+
+	default_job = /datum/job/civilian
+	use_jobs = list(
+		/datum/job/civilian,
+		/datum/job/civilian/engineering,
+		/datum/job/government,
+		/datum/job/head,
+		/datum/job/head/marshal,
+		/datum/job/head/coordinator,
+		/datum/job/industry,
+		/datum/job/industry/science,
+		/datum/job/ai,
+		/datum/job/cyborg
+		)
+
+	exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
+
+/obj/effect/landmark/map_data/europa/do_roundstart_mapgen()
 	if(config.generate_asteroid)
 		admin_notice("<span class='warning'>Generating deep caverns...</span>", R_DEBUG)
 		new /datum/random_map/large_cave(null,1,1,1,255,255)
