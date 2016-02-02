@@ -1,5 +1,6 @@
 /datum/job/head
 	title = "Colony Liaison"
+	job_category = IS_HEAD
 	flag = LIAISON
 	department_flag = CIVILIAN
 	total_positions = 1

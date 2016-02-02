@@ -2,11 +2,11 @@
 //m_type == 1 --> visual.
 //m_type == 2 --> audible
 /mob/proc/custom_emote(var/m_type=1,var/message = null)
-	if(stat || !use_me && usr == src)
+	if(usr && stat || !use_me && usr == src)
 		src << "You are unable to emote."
 		return
 
-	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
+	var/muzzled = is_muzzled()
 	if(m_type == 2 && muzzled) return
 
 	var/input

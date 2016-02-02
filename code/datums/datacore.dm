@@ -53,22 +53,22 @@
 			//world << "[name]: [rank]"
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in europa_head_positions)
+		if(real_rank in head_positions)
 			heads[name] = rank
 			department = 1
-		if(real_rank in europa_gov_positions)
+		if(real_rank in gov_positions)
 			sec[name] = rank
 			department = 1
-		if(real_rank in europa_ind_positions)
+		if(real_rank in ind_positions)
 			eng[name] = rank
 			department = 1
-		if(real_rank in europa_civ_positions)
+		if(real_rank in civ_positions)
 			med[name] = rank
 			department = 1
-		if(real_rank in europa_ind_positions)
+		if(real_rank in ind_positions)
 			sci[name] = rank
 			department = 1
-		if(real_rank in europa_civ_positions)
+		if(real_rank in civ_positions)
 
 			civ[name] = rank
 			department = 1
@@ -259,7 +259,10 @@
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
 			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
 
-	var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = H.species ? H.species.eyes : "eyes_s")
+	var/use_eye_icon = "eyes_s"
+	var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
+	if(temp_head) use_eye_icon = temp_head.eye_icon
+	var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
 
 	if (H.species.flags & HAS_EYE_COLOR)
 		eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)

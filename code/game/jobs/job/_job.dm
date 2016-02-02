@@ -18,11 +18,14 @@
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
+	var/minimum_character_age = 17
+	var/ideal_character_age = 30
 	var/idtype                            // The type of the ID the player will have
 	var/headsettype                       // Type of headset if any.
 	var/pdatype                           // If set, job will spawn with a PDA.
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
+	var/job_category = IS_CIVIL
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
 
@@ -98,7 +101,11 @@
 			if(COMPANY_OPPOSED)		loyalty = 0.70
 
 	//give them an account in the station database
-	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * (H.species ? economic_species_modifier[H.species.type] : 2)
+	var/species_modifier = (H.species ? economic_species_modifier[H.species.type] : 2)
+	if(!species_modifier)
+		species_modifier = economic_species_modifier[/datum/species/human]
+
+	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * species_modifier
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)
 		var/remembered_info = ""

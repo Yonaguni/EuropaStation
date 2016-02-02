@@ -24,6 +24,7 @@
 /obj/structure/Destroy()
 	..()
 	updateVisibility(src)
+	return ..()
 
 /obj/structure/New()
 	..()

@@ -19,7 +19,7 @@
 	if(istype(W, /obj/item/weapon/forensics/slide) || istype(W, /obj/item/weapon/sample/print))
 		user << "<span class='notice'>You insert \the [W] into the microscope.</span>"
 		user.unEquip(W)
-		W.loc = src
+		W.forceMove(src)
 		sample = W
 		update_icon()
 		return
@@ -89,18 +89,26 @@
 			user << report.info
 	return
 
-/obj/machinery/microscope/AltClick()
-	if(usr.lying || !Adjacent(usr) || !ishuman(usr))
+/obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
+	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return ..()
 	if(!sample)
-		usr << "<span class='warning'>\The [src] does not have a sample in it.</span>"
+		remover << "<span class='warning'>\The [src] does not have a sample in it.</span>"
 		return
-	usr << "<span class='notice'>You remove \the [sample] from \the [src].</span>"
-	sample.loc = get_turf(src)
-	usr.put_in_hands(sample)
+	remover << "<span class='notice'>You remove \the [sample] from \the [src].</span>"
+	sample.forceMove(get_turf(src))
+	remover.put_in_hands(sample)
 	sample = null
 	update_icon()
-	return
+
+/obj/machinery/microscope/AltClick()
+	remove_sample(usr)
+
+/obj/machinery/microscope/MouseDrop(var/atom/other)
+	if(usr == other)
+		remove_sample(usr)
+	else
+		return ..()
 
 /obj/machinery/microscope/update_icon()
 	icon_state = "microscope"

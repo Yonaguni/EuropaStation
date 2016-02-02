@@ -24,7 +24,6 @@ datum/controller/game_controller/New()
 	if(!job_master)
 		job_master = new /datum/controller/occupations()
 		job_master.SetupOccupations()
-		job_master.LoadJobs("config/jobs.txt")
 		admin_notice("<span class='danger'>Job setup complete</span>", R_DEBUG)
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
@@ -42,7 +41,7 @@ datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Initializing.</span>", R_DEBUG)
 	var/otod = world.timeofday
 	world << "<span class='notice'>Generating map geometry...</span>"
-	do_roundstart_mapgen()
+	world_map.do_roundstart_mapgen()
 	sleep(-1)
 	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
 
@@ -76,11 +75,16 @@ datum/controller/game_controller/proc/setup_objects()
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 
+	admin_notice("<span class='warning'>Setting up powernets...</span>", R_DEBUG)
+	sleep(-1)
+	makepowernets()
 	admin_notice("<span class='warning'>Setting up antagonists...</span>", R_DEBUG)
+	sleep(-1)
 	populate_antag_type_list()
 	admin_notice("<span class='warning'>Setting up spawn points...</span>", R_DEBUG)
+	sleep(-1)
 	populate_spawn_points()
 	sleep(-1)
 	admin_notice("<span class='danger'>Done.</span>", R_DEBUG)
-	world << "<span class='notice'>World created in [round((world.timeofday-otod)/10)] second(s).</span>"
+	world << "<span class='notice'>\The [world_map.name] was created in [round((world.timeofday-otod)/10)] second(s).</span>"
 	sleep(-1)

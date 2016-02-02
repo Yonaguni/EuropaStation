@@ -47,14 +47,9 @@ var/list/possible_cable_coil_colours = list(
 	var/obj/machinery/power/breakerbox/breaker_box
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
-
 	if(drain_check)
 		return 1
-
-	var/datum/powernet/PN = get_powernet()
-	if(!PN) return 0
-
-	return PN.draw_power(amount)
+	return powernet ? powernet.draw_power(amount) : 0
 
 /obj/structure/cable/yellow
 	color = COLOR_YELLOW
@@ -79,19 +74,14 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/structure/cable/New()
 	..()
-
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
-
 	var/dash = findtext(icon_state, "-")
-
 	d1 = text2num( copytext( icon_state, 1, dash ) )
-
 	d2 = text2num( copytext( icon_state, dash+1 ) )
-
 	var/turf/T = src.loc			// hide if turf is not intact
-	if(level==1) hide(!T.is_plating())
+	if(level==1)
+		hide(!T.is_plating())
 	cable_list += src //add it to the global cable list
-
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
@@ -116,10 +106,6 @@ var/list/possible_cable_coil_colours = list(
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
 
-// returns the powernet this cable belongs to
-/obj/structure/cable/proc/get_powernet()			//TODO: remove this as it is obsolete
-	return powernet
-
 //Telekinesis has no effect on a cable
 /obj/structure/cable/attack_tk(mob/user)
 	return
@@ -129,6 +115,7 @@ var/list/possible_cable_coil_colours = list(
 //   - Cable coil : merge cables
 //   - Multitool : get the power currently passing through the cable
 //
+
 /obj/structure/cable/attackby(obj/item/W, mob/user)
 
 	var/turf/T = src.loc
@@ -499,29 +486,27 @@ obj/structure/cable/proc/cableColor(var/colorC)
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/afterattack(var/mob/M, var/mob/user)
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+/obj/item/stack/cable_coil/attack(var/atom/A, var/mob/living/user, var/def_zone)
+	if(ishuman(A) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if (!S) return
-		if(!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if(!S || !(S.status & ORGAN_ROBOT))
 			return ..()
 
 		if(S.burn_dam)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(0,15,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("<span class='danger'>\The [user] patches some damaged wiring on \the [M]'s [S.name] with \the [src].</span>")
-			else if(S.open != 2)
+				user.visible_message("<span class='danger'>\The [user] repairs some burn damage on \the [H]'s [S.name] with \the [src].</span>")
+			else if(S.open < 3)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-			return 1
-		else if(S.open != 2)
+			else
+				return ..()
+		else
 			user << "<span class='notice'>Nothing to fix!</span>"
-
-	else
-		return ..()
+		return
+	return ..()
 
 
 /obj/item/stack/cable_coil/update_icon()

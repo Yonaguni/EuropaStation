@@ -1192,9 +1192,7 @@ proc/is_hot(obj/item/W as obj)
 	if(M.lying)
 		if(locate(/obj/structure/bed/roller, M.loc) && prob(75))
 			return 1
-		var/obj/structure/table/T = locate() in M.loc
-		if(T && prob(T.op_success_chance))
-			return 1
+		return (locate(/obj/structure/table) in M.loc)
 	return 0
 
 /proc/reverse_direction(var/dir)

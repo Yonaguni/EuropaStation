@@ -253,28 +253,13 @@ datum/hud/New(mob/owner)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
-	if(ishuman(mymob))
-		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
-	else if(isrobot(mymob))
-		robot_hud()
-	else if(issmall(mymob))
-		monkey_hud(ui_style, ui_color, ui_alpha)
-	else if(isbrain(mymob))
-		brain_hud(ui_style)
-	else if(isalien(mymob))
-		larva_hud()
-	else if(isAI(mymob))
-		ai_hud()
-	else if(isobserver(mymob))
-		ghost_hud()
-	else
-		mymob.instantiate_hud(src)
+	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
 
-	if(istype(mymob.loc, /mob/living/heavy_vehicle))
-		var/mob/living/heavy_vehicle/M = mymob.loc
+
+/mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+	if(istype(src.loc, /mob/living/heavy_vehicle))
+		var/mob/living/heavy_vehicle/M = src.loc
 		M.refresh_hud()
-
-/mob/proc/instantiate_hud(var/datum/hud/HUD)
 	return
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

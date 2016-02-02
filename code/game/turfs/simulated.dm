@@ -13,10 +13,42 @@
 	var/dirt = 0
 	var/init_turf = 1
 
+	var/datum/scheduled_task/unwet_task
+
+// This is not great.
+/turf/simulated/proc/wet_floor(var/wet_val = 1)
+	if(wet_val < wet)
+		return
+
+	if(!wet)
+		wet = wet_val
+		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+		overlays += wet_overlay
+
+	if(unwet_task)
+		unwet_task.trigger_task_in(8 SECONDS)
+	else
+		unwet_task = schedule_task_in(8 SECONDS)
+		task_triggered_event.register(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
+
+/turf/simulated/proc/task_unwet_floor(var/triggered_task)
+	if(triggered_task == unwet_task)
+		unwet_task = null
+		unwet_floor(TRUE)
+
+/turf/simulated/proc/unwet_floor(var/check_very_wet)
+	if(check_very_wet && wet >= 2)
+		return
+
+	wet = 0
+	if(wet_overlay)
+		overlays -= wet_overlay
+		wet_overlay = null
+
 /turf/simulated/clean_blood()
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		B.fluorescent = 0
-		B.invisibility = 100
+		B.clean_blood()
+	..()
 
 /turf/simulated/New()
 	..()
@@ -30,6 +62,11 @@
 	..()
 	levelupdate()
 
+/turf/simulated/Destroy()
+	qdel(unwet_task)
+	unwet_task = null
+	return ..()
+
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
@@ -37,7 +74,7 @@
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
 /turf/simulated/proc/update_dirt()
-	dirt = min(dirt++, 101)
+	dirt = min(dirt+1, 101)
 	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 	if (dirt > 50)
 		if (!dirtoverlay)
@@ -124,6 +161,8 @@
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
+			if(!B.blood_DNA)
+				B.blood_DNA = list()
 			if(!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)

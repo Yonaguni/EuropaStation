@@ -680,8 +680,9 @@
 	..()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
-	wearer.wearing_rig = null
-	wearer = null
+	if(wearer)
+		wearer.wearing_rig = null
+		wearer = null
 
 //Todo
 /obj/item/weapon/rig/proc/malfunction()
@@ -852,7 +853,6 @@
 		return 0
 
 	// AIs are a bit slower than regular and ignore move intent.
-	wearer.last_move_intent = world.time + ai_controlled_move_delay
 	wearer_move_delay = world.time + ai_controlled_move_delay
 
 	var/tickcomp = 0

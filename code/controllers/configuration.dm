@@ -72,7 +72,6 @@ var/list/gamemode_cache = list()
 	var/mods_can_job_tempban = 0
 	var/mod_tempban_max = 1440
 	var/mod_job_tempban_max = 1440
-	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
@@ -90,6 +89,7 @@ var/list/gamemode_cache = list()
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
 
 	var/usealienwhitelist = 0
+	var/usealienwhitelistSQL = 0;
 	var/limitalienplayers = 0
 	var/alien_to_human_ratio = 0.5
 	var/allow_extra_antags = 0
@@ -154,6 +154,7 @@ var/list/gamemode_cache = list()
 	var/slime_delay = 0
 	var/animal_delay = 0
 
+
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 	var/use_age_restriction_for_jobs = 0   //Do jobs use account age restrictions?   --requires database
@@ -216,7 +217,9 @@ var/list/gamemode_cache = list()
 
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
+	var/show_human_death_message = 1
 	var/ghosts_can_possess_animals = 0
+	var/delist_when_no_admins = FALSE
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -512,9 +515,6 @@ var/list/gamemode_cache = list()
 				if("mod_job_tempban_max")
 					config.mod_job_tempban_max = text2num(value)
 
-				if("load_jobs_from_txt")
-					load_jobs_from_txt = 1
-
 				if("alert_red_upto")
 					config.alert_desc_red_upto = value
 
@@ -573,7 +573,8 @@ var/list/gamemode_cache = list()
 
 				if("usealienwhitelist")
 					usealienwhitelist = 1
-
+				if("usealienwhitelist_sql") // above need to be enabled as well
+					usealienwhitelistSQL = 1;
 				if("alien_player_ratio")
 					limitalienplayers = 1
 					alien_to_human_ratio = text2num(value)
@@ -704,6 +705,9 @@ var/list/gamemode_cache = list()
 				if ("lobby_screens")
 					config.lobby_screens = text2list(value, ";")
 
+				if("delist_when_no_admins")
+					config.delist_when_no_admins = TRUE
+
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -719,6 +723,8 @@ var/list/gamemode_cache = list()
 					config.health_threshold_softcrit = value
 				if("health_threshold_dead")
 					config.health_threshold_dead = value
+				if("show_human_death_message")
+					config.show_human_death_message = 1
 				if("revival_pod_plants")
 					config.revival_pod_plants = value
 				if("revival_cloning")

@@ -70,20 +70,6 @@ default behaviour is:
 					now_pushing = 0
 					return
 
-			//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			var/dense = 0
-			if(loc.density)
-				dense = 1
-			for(var/atom/movable/A in loc)
-				if(A == src)
-					continue
-				if(A.density)
-					if(A.flags&ON_BORDER)
-						dense = !A.CanPass(src, src.loc)
-					else
-						dense = 1
-				if(dense) break
-
 			//Leaping mobs just land on the tile, no pushing, no anything.
 			if(status_flags & LEAPING)
 				loc = tmob.loc
@@ -91,7 +77,7 @@ default behaviour is:
 				now_pushing = 0
 				return
 
-			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
+			if(can_swap_with(tmob)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
@@ -99,6 +85,9 @@ default behaviour is:
 				return
 
 			if(!can_move_mob(tmob, 0, 0))
+				now_pushing = 0
+				return
+			if(a_intent == I_HELP || src.restrained())
 				now_pushing = 0
 				return
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
@@ -142,6 +131,33 @@ default behaviour is:
 				now_pushing = 0
 			return
 	return
+
+/proc/swap_density_check(var/mob/swapper, var/mob/swapee)
+	var/turf/T = get_turf(swapper)
+	if(T.density)
+		return 1
+	for(var/atom/movable/A in T)
+		if(A == swapper)
+			continue
+		if(!A.CanPass(swapee, T, 1))
+			return 1
+
+/mob/living/proc/can_swap_with(var/mob/living/tmob)
+	if(tmob.buckled || buckled)
+		return 0
+	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
+	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())))
+		return 0
+	if(!tmob.canmove || !canmove)
+		return 0
+
+	if(swap_density_check(src, tmob))
+		return 0
+
+	if(swap_density_check(tmob, src))
+		return 0
+
+	return can_move_mob(tmob, 1, 0)
 
 /mob/living/verb/succumb()
 	set hidden = 1
@@ -344,8 +360,8 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:zone_sel.selecting
-	if ((t in list( "eyes", "mouth" )))
-		t = "head"
+	if ((t in list( O_EYES, O_MOUTH )))
+		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
 
@@ -778,6 +794,53 @@ default behaviour is:
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
+
+/mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
+
+	if(isSynthetic())
+		src << "<span class='danger'>A sudden, dizzying wave of internal feedback rushes over you!</span>"
+		src.Weaken(5)
+		return
+
+	if(!check_has_mouth())
+		return
+
+	if(!lastpuke)
+
+		if (nutrition <= 100)
+			src << "<span class='danger'>You gag as you want to throw up, but there's nothing in your stomach!</span>"
+			src.Weaken(10)
+			src.adjustToxLoss(3)
+			return
+
+		lastpuke = 1
+		src << "<span class='warning'>You feel nauseous...</span>"
+
+		if(!skip_wait)
+			sleep(150)	//15 seconds until second warning
+			src << "<span class='warning'>You feel like you are about to throw up!</span>"
+			sleep(100)	//and you have 10 more for mad dash to the bucket
+
+		Stun(5)
+		src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
+		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+
+		var/turf/simulated/T = get_turf(src)
+		if(istype(T))
+			if(blood_vomit)
+				T.add_blood_floor(src)
+			else
+				T.add_vomit_floor(src, 1)
+
+		if(blood_vomit)
+			if(getBruteLoss() < 50)
+				adjustBruteLoss(3)
+		else
+			nutrition -= 40
+			adjustToxLoss(-3)
+
+		sleep(350)
+		lastpuke = 0
 
 /mob/living/proc/can_be_possessed_by(var/mob/dead/observer/possessor)
 	if(!istype(possessor))

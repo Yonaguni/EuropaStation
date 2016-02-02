@@ -84,7 +84,7 @@
 	src.density = 1
 	update_nearby_tiles()
 	src.update_icon()
-	src.set_opacity(initial(opacity))
+	src.set_opacity(1)
 	sleep(15)
 	src.operating = 0
 
@@ -173,6 +173,7 @@ obj/machinery/door/blast/regular
 	icon_state_closing = "pdoorc1"
 	icon_state = "pdoor1"
 	maxhealth = 600
+	block_air_zones = 1
 
 obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"

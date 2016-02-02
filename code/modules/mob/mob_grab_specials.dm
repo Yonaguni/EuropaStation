@@ -60,7 +60,7 @@
 	if(!istype(attacker))
 		return
 
-	var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(target, "eyes")
+	var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(target, O_EYES)
 
 	if(!attack)
 		return
@@ -93,13 +93,13 @@
 	if(istype(hat))
 		damage += hat.force * 3
 
-	var/armor = target.run_armor_check("head", "melee")
-	target.apply_damage(damage, BRUTE, "head", armor)
-	attacker.apply_damage(10, BRUTE, "head", attacker.run_armor_check("head", "melee"))
+	var/armor = target.run_armor_check(BP_HEAD, "melee")
+	target.apply_damage(damage, BRUTE, BP_HEAD, armor)
+	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD, "melee"))
 
-	if(!armor && target.headcheck("head") && prob(damage))
+	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
-		target.visible_message("<span class='danger'>[target] [target.species.knockout_message]</span>")
+		target.visible_message("<span class='danger'>[target] [target.species.get_knockout_message(target)]</span>")
 
 	playsound(attacker.loc, "swing_hit", 25, 1, -1)
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Headbutted [target.name] ([target.ckey])</font>")
@@ -146,20 +146,23 @@
 		can_eat = 1
 	else
 		var/mob/living/carbon/human/H = user
-		if(istype(H) && H.species.gluttonous)
-			if(H.species.gluttonous == 2)
-				can_eat = 2
-			else if((H.mob_size > target.mob_size) && !ishuman(target) && iscarbon(target))
+		if(istype(H) && H.species.gluttonous && (iscarbon(target) || isanimal(target)))
+			if(H.species.gluttonous == GLUT_TINY && (target.mob_size <= MOB_TINY) && !ishuman(target)) // Anything MOB_TINY or smaller
 				can_eat = 1
+			else if(H.species.gluttonous == GLUT_SMALLER && (H.mob_size > target.mob_size)) // Anything we're larger than
+				can_eat = 1
+			else if(H.species.gluttonous == GLUT_ANYTHING) // Eat anything ever
+				can_eat = 2
 
 	if(can_eat)
 		var/mob/living/carbon/attacker = user
 		user.visible_message("<span class='danger'>[user] is attempting to devour [target]!</span>")
 		if(can_eat == 2)
-			if(!do_mob(user, target)||!do_after(user, 30)) return
+			if(!do_mob(user, target, 30)) return
 		else
-			if(!do_mob(user, target)||!do_after(user, 100)) return
+			if(!do_mob(user, target, 100)) return
 		user.visible_message("<span class='danger'>[user] devours [target]!</span>")
+		admin_attack_log(attacker, target, "Devoured.", "Was devoured by.", "devoured")
 		target.loc = user
 		attacker.stomach_contents.Add(target)
 		qdel(src)

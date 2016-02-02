@@ -1,12 +1,10 @@
 // Species flags.
-#define NO_BLOOD          0x1    // Vessel var is not filled with blood, cannot bleed out.
-#define NO_BREATHE        0x2    // Cannot suffocate or take oxygen loss.
+#define NO_MINOR_CUT      0x1    // Can step on broken glass with no ill-effects. Either thick skin (diona/vox), cut resistant (slimes) or incorporeal (shadows)
+#define IS_PLANT          0x2    // Is a treeperson.
 #define NO_SCAN           0x4    // Cannot be scanned in a DNA machine/genome-stolen.
 #define NO_PAIN           0x8    // Cannot suffer halloss/recieves deceptive health indicator.
 #define NO_SLIP           0x10   // Cannot fall over.
 #define NO_POISON         0x20   // Cannot not suffer toxloss.
-#define IS_PLANT          0x40   // Is a treeperson.
-#define NO_MINOR_CUT      0x80   // Can step on broken glass with no ill-effects. Either thick skin (diona/vox), cut resistant (slimes) or incorporeal (shadows)
 // unused: 0x8000 - higher than this will overflow
 
 // Species spawn flags
@@ -23,11 +21,13 @@
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
 
 // Languages.
+#define LANGUAGE_EAL "Encoded Audio Language"
 #define LANGUAGE_SOL_COMMON "Sol Common"
 #define LANGUAGE_UNATHI "Sinta'unathi"
 #define LANGUAGE_SIIK_MAAS "Siik'maas"
 #define LANGUAGE_SIIK_TAJR "Siik'tajr"
 #define LANGUAGE_SKRELLIAN "Skrellian"
+#define LANGUAGE_RESOMI "Resomi"
 #define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"
 #define LANGUAGE_GUTTER "Gutter"

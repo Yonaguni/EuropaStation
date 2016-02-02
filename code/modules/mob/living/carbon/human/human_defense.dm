@@ -44,11 +44,11 @@ emp_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if("head")
+		if(BP_HEAD)
 			agony_amount *= 1.50
-		if("l_hand", "r_hand")
+		if(BP_L_HAND, BP_R_HAND)
 			var/c_hand
-			if (def_zone == "l_hand")
+			if (def_zone == BP_L_HAND)
 				c_hand = l_hand
 			else
 				c_hand = r_hand
@@ -61,7 +61,7 @@ emp_act
 					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("me", 1, "[affected.can_feel_pain() ? "" : emote_scream]drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -146,7 +146,8 @@ emp_act
 	for(var/obj/item/organ/external/O  in organs)
 		O.emp_act(severity)
 		for(var/obj/item/organ/I  in O.internal_organs)
-			if(I.robotic == 0)	continue
+			if(!(I.status & ORGAN_ROBOT))
+				continue
 			I.emp_act(severity)
 	..()
 
@@ -167,7 +168,7 @@ emp_act
 		return null
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
-	if (!affecting || (affecting.status & ORGAN_DESTROYED) || affecting.is_stump())
+	if (!affecting || affecting.is_stump())
 		user << "<span class='danger'>They are missing that limb!</span>"
 		return null
 
@@ -195,7 +196,7 @@ emp_act
 		effective_force /= 2 //half the effective force
 		if(!..(I, effective_force, blocked, hit_zone))
 			return 0
-		
+
 		attack_joint(affecting, I, blocked) //but can dislocate joints
 	else if(!..())
 		return 0
@@ -215,11 +216,11 @@ emp_act
 				if(prob(effective_force + 10))
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
-		
+
 		//Apply blood
 		if(!(I.flags & NOBLOODY))
 			I.add_blood(src)
-		
+
 		if(prob(33))
 			var/turf/location = loc
 			if(istype(location, /turf/simulated))
@@ -231,7 +232,8 @@ emp_act
 					H.bloody_hands(src)
 
 			switch(hit_zone)
-				if("head")
+
+				if(BP_HEAD)
 					if(wear_mask)
 						wear_mask.add_blood(src)
 						update_inv_wear_mask(0)
@@ -241,7 +243,7 @@ emp_act
 					if(glasses && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
-				if("chest")
+				if(BP_TORSO)
 					bloody_body(src)
 
 	return 1
@@ -288,7 +290,7 @@ emp_act
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_sel.selecting)
 		else
-			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
+			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15

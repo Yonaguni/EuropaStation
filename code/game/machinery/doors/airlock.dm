@@ -463,10 +463,12 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/update_icon()
+	set_light(0)
 	if(overlays) overlays.Cut()
 	if(density)
 		if(locked && lights && src.arePowerSystemsOn())
 			icon_state = "door_locked"
+			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
 			icon_state = "door_closed"
 		if(p_open || welded)
@@ -609,24 +611,6 @@ About the new airlock wires panel:
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
-
-	// No. -- cib
-	/**
-	if(ishuman(user) && prob(40) && src.density)
-		var/mob/living/carbon/human/H = user
-		if(H.getBrainLoss() >= 60)
-			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
-			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				visible_message("<span class='warning'>[user] headbutts the airlock.</span>")
-				var/obj/item/organ/external/affecting = H.get_organ("head")
-				H.Stun(8)
-				H.Weaken(5)
-				if(affecting.take_damage(10, 0))
-					H.UpdateDamageIcon()
-			else
-				visible_message("<span class='warning'>[user] headbutts the airlock. Good thing they're wearing a helmet.</span>")
-			return
-	**/
 
 	if(src.p_open)
 		user.set_machine(src)
@@ -869,6 +853,9 @@ About the new airlock wires panel:
 /obj/machinery/door/blocks_airlock()
 	return 0
 
+/obj/structure/window/blocks_airlock()
+	return 0
+
 /obj/machinery/mech_sensor/blocks_airlock()
 	return 0
 
@@ -877,6 +864,9 @@ About the new airlock wires panel:
 
 /atom/movable/proc/airlock_crush(var/crush_damage)
 	return 0
+
+/obj/structure/window/airlock_crush(var/crush_damage)
+	ex_act(2)//Smashin windows
 
 /obj/machinery/portable_atmospherics/canister/airlock_crush(var/crush_damage)
 	. = ..()
@@ -903,7 +893,7 @@ About the new airlock wires panel:
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
-	if (!(species && (species.flags & NO_PAIN)))
+	if(can_feel_pain())
 		emote("scream")
 
 /mob/living/silicon/robot/airlock_crush(var/crush_damage)
@@ -934,12 +924,8 @@ About the new airlock wires panel:
 		playsound(src.loc, open_sound_powered, 100, 1)
 	else
 		playsound(src.loc, open_sound_unpowered, 100, 1)
-	for(var/turf/turf in locs)
-		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
-		if(killthis)
-			killthis.ex_act(2)//Smashin windows
+
 	..()
-	return
 
 /obj/machinery/door/airlock/proc/lock(var/forced=0)
 	if(locked)
@@ -995,6 +981,9 @@ About the new airlock wires panel:
 			name = assembly.created_name
 		else
 			name = "[istext(assembly.glass) ? "[assembly.glass] airlock" : assembly.base_name]"
+
+		//get the dir from the assembly
+		set_dir(assembly.dir)
 
 	//wires
 	var/turf/T = get_turf(newloc)

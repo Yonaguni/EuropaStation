@@ -3,6 +3,8 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 	density = 1
+	w_class = 3
+
 	layer = 3.2//Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1.0
@@ -461,6 +463,10 @@
 	//player-constructed windows
 	if (constructed)
 		state = 0
+
+/obj/structure/window/reinforced/full
+    dir = 5
+    icon_state = "fwindow"
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"

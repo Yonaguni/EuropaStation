@@ -38,6 +38,8 @@
 /obj/machinery/power/proc/add_avail(var/amount)
 	if(powernet)
 		powernet.newavail += amount
+		return 1
+	return 0
 
 /obj/machinery/power/proc/draw_power(var/amount)
 	if(powernet)
@@ -232,7 +234,6 @@
 	for(var/datum/powernet/PN in powernets)
 		qdel(PN)
 	powernets.Cut()
-
 	for(var/obj/structure/cable/PC in cable_list)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()

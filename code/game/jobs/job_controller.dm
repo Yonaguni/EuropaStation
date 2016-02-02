@@ -5,35 +5,24 @@ var/global/datum/controller/occupations/job_master
 #define RETURN_TO_LOBBY 2
 
 /datum/controller/occupations
-		//List of all jobs
-	var/list/occupations = list()
-		//Players who need jobs
-	var/list/unassigned = list()
-		//Debug info
-	var/list/job_debug = list()
-
+	var/list/occupations = list() // List of all jobs
+	var/list/unassigned = list()  // Players who need jobs
+	var/list/job_debug = list()   // Debug info
 
 	proc/SetupOccupations(var/faction = "Station")
-		occupations = list()
-		var/list/all_jobs = typesof(/datum/job)
-		if(!all_jobs.len)
+		occupations = get_job_datums()
+		for(var/datum/job/job in occupations)
+			if(job.faction != faction)
+				occupations -= job
+		if(!occupations.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0
-		for(var/J in all_jobs)
-			var/datum/job/job = new J()
-			if(!job)	continue
-			if(job.faction != faction)	continue
-			occupations += job
-
-
 		return 1
-
 
 	proc/Debug(var/text)
 		if(!Debug2)	return 0
 		job_debug.Add(text)
 		return 1
-
 
 	proc/GetJob(var/rank)
 		if(!rank)	return null
@@ -49,9 +38,15 @@ var/global/datum/controller/occupations/job_master
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 		if(player && player.mind && rank)
 			var/datum/job/job = GetJob(rank)
-			if(!job)	return 0
-			if(jobban_isbanned(player, rank))	return 0
-			if(!job.player_old_enough(player.client)) return 0
+			if(!job)
+				return 0
+			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+				return 0
+			if(jobban_isbanned(player, rank))
+				return 0
+			if(!job.player_old_enough(player.client))
+				return 0
+
 			var/position_limit = job.total_positions
 			if(!latejoin)
 				position_limit = job.spawn_positions
@@ -82,6 +77,9 @@ var/global/datum/controller/occupations/job_master
 			if(!job.player_old_enough(player.client))
 				Debug("FOC player not old enough, Player: [player]")
 				continue
+			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+				Debug("FOC character not old enough, Player: [player]")
+				continue
 			if(flag && (!player.client.prefs.be_special & flag))
 				Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 				continue
@@ -96,10 +94,13 @@ var/global/datum/controller/occupations/job_master
 			if(!job)
 				continue
 
+			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+				continue
+
 			if(istype(job, GetJob("[default_role]"))) // We don't want to give him assistant, that's boring!
 				continue
 
-			if(job in europa_head_positions) //If you want a command position, select it!
+			if(job in head_positions) //If you want a command position, select it!
 				continue
 
 			if(jobban_isbanned(player, job.title))
@@ -129,7 +130,7 @@ var/global/datum/controller/occupations/job_master
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
 		for(var/level = 1 to 3)
-			for(var/command_position in europa_head_positions)
+			for(var/command_position in head_positions)
 				var/datum/job/job = GetJob(command_position)
 				if(!job)	continue
 				var/list/candidates = FindOccupationCandidates(job, level)
@@ -137,30 +138,24 @@ var/global/datum/controller/occupations/job_master
 
 				// Build a weighted list, weight by age.
 				var/list/weightedCandidates = list()
-
-				// Different head positions have different good ages.
-				var/good_age_minimal = 25
-				var/good_age_maximal = 60
-				if(command_position == "Captain")
-					good_age_minimal = 30
-					good_age_maximal = 70 // Old geezer captains ftw
-
 				for(var/mob/V in candidates)
 					// Log-out during round-start? What a bad boy, no head position for you!
 					if(!V.client) continue
 					var/age = V.client.prefs.age
+
+					if(age < job.minimum_character_age) // Nope.
+						continue
+
 					switch(age)
-						if(good_age_minimal - 10 to good_age_minimal)
+						if(job.minimum_character_age to (job.minimum_character_age+10))
 							weightedCandidates[V] = 3 // Still a bit young.
-						if(good_age_minimal to good_age_minimal + 10)
+						if((job.minimum_character_age+10) to (job.ideal_character_age-10))
 							weightedCandidates[V] = 6 // Better.
-						if(good_age_minimal + 10 to good_age_maximal - 10)
+						if((job.ideal_character_age-10) to (job.ideal_character_age+10))
 							weightedCandidates[V] = 10 // Great.
-						if(good_age_maximal - 10 to good_age_maximal)
+						if((job.ideal_character_age+10) to (job.ideal_character_age+20))
 							weightedCandidates[V] = 6 // Still good.
-						if(good_age_maximal to good_age_maximal + 10)
-							weightedCandidates[V] = 6 // Bit old, don't you think?
-						if(good_age_maximal to good_age_maximal + 50)
+						if((job.ideal_character_age+20) to INFINITY)
 							weightedCandidates[V] = 3 // Geezer.
 						else
 							// If there's ABSOLUTELY NOBODY ELSE
@@ -175,7 +170,7 @@ var/global/datum/controller/occupations/job_master
 
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 	proc/CheckHeadPositions(var/level)
-		for(var/command_position in europa_head_positions)
+		for(var/command_position in head_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
@@ -216,7 +211,7 @@ var/global/datum/controller/occupations/job_master
 
 		//People who wants to be assistants, sure, go on.
 		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new DEFAULT_JOB_TYPE ()
+		var/datum/job/assist = new world_map.default_job ()
 		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
@@ -540,41 +535,6 @@ var/global/datum/controller/occupations/job_master
 				pda.ownjob = C.assignment
 				pda.ownrank = C.rank
 				pda.name = "PDA-[H.real_name] ([pda.ownjob])"
-
-		return 1
-
-
-	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-		if(!config.load_jobs_from_txt)
-			return 0
-
-		var/list/jobEntries = file2list(jobsfile)
-
-		for(var/job in jobEntries)
-			if(!job)
-				continue
-
-			job = trim(job)
-			if (!length(job))
-				continue
-
-			var/pos = findtext(job, "=")
-			var/name = null
-			var/value = null
-
-			if(pos)
-				name = copytext(job, 1, pos)
-				value = copytext(job, pos + 1)
-			else
-				continue
-
-			if(name && value)
-				var/datum/job/J = GetJob(name)
-				if(!J)	continue
-				J.total_positions = text2num(value)
-				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
-					J.total_positions = 0
 
 		return 1
 

@@ -629,3 +629,6 @@ proc/dd_sortedTextList(list/incoming)
 		if(assoc[index] > max_val)
 			max_val = assoc[index]
 			. = index
+
+
+#define listequal(A, B) (A.len == B.len && !length(A^B))

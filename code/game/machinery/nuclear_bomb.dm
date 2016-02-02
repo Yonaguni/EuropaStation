@@ -296,7 +296,7 @@ var/bomb_set
 
 				if (!timing && !safety)
 					timing = 1
-					log_and_message_admins_with_location("engaged a nuclear bomb", x, y, ,z)
+					log_and_message_admins("engaged a nuclear bomb")
 					bomb_set++ //There can still be issues with this resetting when there are multiple bombs. Not a big deal though for Nuke/N
 					update_icon()
 				else

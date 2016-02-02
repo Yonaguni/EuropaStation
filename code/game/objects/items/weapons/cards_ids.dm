@@ -68,14 +68,16 @@
 	item_state = "card-id"
 	var/uses = 10
 
+var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
 	var/used_uses = A.emag_act(uses, user, src)
-	if(used_uses < 0)
+	if(used_uses == NO_EMAG_ACT)
 		return ..(A, user)
 
 	uses -= used_uses
 	A.add_fingerprint(user)
-	log_and_message_admins("emagged \an [A].")
+	if(used_uses)
+		log_and_message_admins("emagged \an [A].")
 
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
@@ -267,3 +269,15 @@
 /obj/item/weapon/card/id/centcom/ERT/New()
 	..()
 	access |= get_all_station_access()
+
+/obj/item/weapon/card/id/all_access
+	name = "\improper Administrator's spare ID"
+	desc = "The spare ID of the Lord of Lords himself."
+	icon_state = "data"
+	item_state = "tdgreen"
+	registered_name = "Administrator"
+	assignment = "Administrator"
+/obj/item/weapon/card/id/all_access/New()
+	access = get_access_ids()
+	..()
+    

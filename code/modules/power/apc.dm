@@ -43,6 +43,16 @@
 /obj/machinery/power/apc/high
 	cell_type = /obj/item/weapon/cell/high
 
+// Construction site APC, starts turned off
+/obj/machinery/power/apc/high/inactive
+	cell_type = /obj/item/weapon/cell/high
+	lighting = 0
+	equipment = 0
+	environ = 0
+	locked = 0
+	coverlocked = 0
+	start_charge = 100
+
 /obj/machinery/power/apc/super
 	cell_type = /obj/item/weapon/cell/super
 
@@ -847,13 +857,9 @@
 		if (!in_range(src, user) || !istype(src.loc, /turf))
 			return 0
 	var/mob/living/carbon/human/H = user
-	if (istype(H))
-		if(H.getBrainLoss() >= 60)
-			H.visible_message("<span class='danger'>[H] stares cluelessly at [src] and drools.</span>")
-			return 0
-		else if(prob(H.getBrainLoss()))
-			user << "<span class='danger'>You momentarily forget how to use [src].</span>"
-			return 0
+	if (istype(H) && prob(H.getBrainLoss()))
+		user << "<span class='danger'>You momentarily forget how to use [src].</span>"
+		return 0
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list)

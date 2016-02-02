@@ -1,5 +1,6 @@
 /datum/job/industry
 	title = "Employee"
+	job_category = IS_INDUSTRY
 	flag = WORKER
 	department_flag = INDUSTRY
 	department = "Industrial Sector"

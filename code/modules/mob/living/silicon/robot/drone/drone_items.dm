@@ -63,9 +63,9 @@
 		/obj/item/device/mmi,
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
-		/obj/item/device/flash, //to build borgs
-		/obj/item/organ/brain, //to insert into MMIs.
-		/obj/item/stack/cable_coil, //again, for borg building
+		/obj/item/device/flash,
+		/obj/item/organ/internal/brain,
+		/obj/item/stack/cable_coil,
 		/obj/item/weapon/circuitboard,
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube

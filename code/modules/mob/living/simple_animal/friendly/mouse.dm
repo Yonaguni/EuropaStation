@@ -3,6 +3,7 @@
 	real_name = "mouse"
 	desc = "It's a small rodent."
 	icon_state = "mouse_gray"
+	item_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
 	speak = list("Squeek!","SQUEEK!","Squeek?")
@@ -29,6 +30,9 @@
 	holder_type = /obj/item/weapon/holder/mouse
 	mob_size = MOB_MINISCULE
 	possession_candidate = 1
+
+	can_pull_size = 1
+	can_pull_mobs = MOB_PULL_NONE
 
 /mob/living/simple_animal/mouse/Life()
 	..()
@@ -63,6 +67,7 @@
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"
+	item_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 	desc = "It's a small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
@@ -83,15 +88,6 @@
 		return
 	else
 		return ..()
-
-/mob/living/simple_animal/mouse/get_scooped(var/mob/living/carbon/grabber)
-	if (stat >= DEAD)
-		return
-	..()
-
-/mob/living/simple_animal/mouse/start_pulling(var/atom/movable/AM)//Prevents mouse from pulling things
-	src << "<span class='warning'>You are too small to pull anything.</span>"
-	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
 	if( ishuman(AM) )

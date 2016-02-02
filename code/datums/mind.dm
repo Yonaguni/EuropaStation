@@ -49,7 +49,7 @@
 
 /datum/mind/New(var/key)
 	src.key = key
-
+	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
@@ -146,7 +146,7 @@
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in get_job_titles()
 		if (!new_role) return
 		assigned_role = new_role
 

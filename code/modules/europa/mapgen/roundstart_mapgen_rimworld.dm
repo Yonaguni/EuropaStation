@@ -1,7 +1,0 @@
-/proc/do_roundstart_mapgen()
-	if(config.generate_asteroid)
-		admin_notice("<span class='warning'>Generating caverns...</span>", R_DEBUG)
-		new /datum/random_map/large_cave(null,1,1,1,255,255)
-	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
-	sleep(-1)
-	new /datum/random_map/noise/ore(null, 1, 1, 1, 64, 64)

@@ -343,6 +343,10 @@ var/global/list/gear_datums = list()
 
 // Mask
 
+/datum/gear/bandanamask/ipc_monitor
+	display_name = "display monitor (prosthetic head only)"
+	path = /obj/item/clothing/mask/monitor
+
 /datum/gear/sterilemask
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
@@ -1113,6 +1117,18 @@ var/global/list/gear_datums = list()
 	sort_category = "utility"
 	cost = 2
 
+/datum/gear/cheaptablet
+	display_name = "cheap tablet computer"
+	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
+	sort_category = "utility"
+	cost = 3
+
+/datum/gear/normaltablet
+	display_name = "tablet computer"
+	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
+	sort_category = "utility"
+	cost = 4
+
 // The rest of the trash.
 
 /datum/gear/ashtray
@@ -1141,7 +1157,31 @@ var/global/list/gear_datums = list()
 
 /datum/gear/cards
 	display_name = "deck of cards"
-	path = /obj/item/weapon/deck
+	path = /obj/item/weapon/deck/cards
+	sort_category = "misc"
+	cost = 1
+
+/datum/gear/tarot
+	display_name = "deck of tarot cards"
+	path = /obj/item/weapon/deck/tarot
+	sort_category = "misc"
+	cost = 1
+
+/datum/gear/holder
+	display_name = "card holder"
+	path = /obj/item/weapon/deck/holder
+	sort_category = "misc"
+	cost = 1
+
+/datum/gear/cardemon_pack
+	display_name = "\improper Cardemon booster pack"
+	path = /obj/item/weapon/pack/cardemon
+	sort_category = "misc"
+	cost = 1
+
+/datum/gear/spaceball_pack
+	display_name = "\improper Spaceball booster pack"
+	path = /obj/item/weapon/pack/spaceball
 	sort_category = "misc"
 	cost = 1
 
@@ -1201,6 +1241,12 @@ var/global/list/gear_datums = list()
 /datum/gear/comb
 	display_name = "purple comb"
 	path = /obj/item/weapon/haircomb
+	sort_category = "misc"
+	cost = 1
+
+/datum/gear/mirror
+	display_name = "handheld mirror"
+	path = /obj/item/weapon/mirror
 	sort_category = "misc"
 	cost = 1
 

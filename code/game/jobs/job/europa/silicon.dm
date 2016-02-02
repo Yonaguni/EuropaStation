@@ -1,5 +1,6 @@
 /datum/job/ai
 	title = "AI"
+	job_category = IS_NONHUMAN
 	flag = AI
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -40,7 +41,7 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 	minimal_player_age = 1
-	alt_titles = list("Robot")
+	alt_titles = list("Robot", "Drone")
 	account_allowed = 0
 	economic_modifier = 0
 

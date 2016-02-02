@@ -161,7 +161,7 @@ var/syndicate_code_response//Code response for traitors.
 	Obviously, some people will be better at this than others but in theory, everyone should be able to do it and it only enhances roleplay.
 	Can probably be done through "{ }" but I don't really see the practical benefit.
 	One example of an earlier system is commented below.
-	/N
+	-N
 	*/
 
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
@@ -203,7 +203,7 @@ var/syndicate_code_response//Code response for traitors.
 							code_phrase += " "
 							code_phrase += pick(last_names)
 					if(2)
-						code_phrase += pick(joblist)//Returns a job.
+						code_phrase += pick(get_job_titles())//Returns a job.
 				safety -= 1
 			if(2)
 				switch(rand(1,2))//Places or things.

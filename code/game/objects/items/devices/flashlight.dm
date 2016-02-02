@@ -43,9 +43,9 @@
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
-	if(on && user.zone_sel.selecting == "eyes")
+	if(on && user.zone_sel.selecting == O_EYES)
 
-		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
+		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -69,7 +69,7 @@
 					return
 				if(XRAY in M.mutations)
 					user << "<span class='notice'>\The [M] pupils give an eerie glow!</span>"
-				if(vision.is_bruised())
+				if(vision.damage)
 					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
 				else if(M.eye_blurry)
 					user << "<span class='notice'>\The [M]'s pupils react slower than normally.</span>"

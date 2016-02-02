@@ -290,7 +290,7 @@
 	icon_state = "meson"
 	item_state = "glasses"
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
-	var/list/clothing_choices = list()
+	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()
 	..()

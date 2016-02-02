@@ -32,50 +32,49 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/has_organ(name)
 	var/obj/item/organ/external/O = organs_by_name[name]
-
 	return (O && !O.is_stump())
 
 /mob/living/carbon/human/proc/has_organ_for_slot(slot)
 	switch(slot)
 		if(slot_back)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_wear_mask)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_handcuffed)
-			return has_organ("l_hand") && has_organ("r_hand")
+			return has_organ(BP_L_HAND) && has_organ(BP_R_HAND)
 		if(slot_legcuffed)
-			return has_organ("l_leg") && has_organ("r_leg")
+			return has_organ(BP_L_FOOT) && has_organ(BP_R_FOOT)
 		if(slot_l_hand)
-			return has_organ("l_hand")
+			return has_organ(BP_L_HAND)
 		if(slot_r_hand)
-			return has_organ("r_hand")
+			return has_organ(BP_R_HAND)
 		if(slot_belt)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_wear_id)
 			// the only relevant check for this is the uniform check
 			return 1
 		if(slot_l_ear)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_r_ear)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_glasses)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_gloves)
-			return has_organ("l_hand") || has_organ("r_hand")
+			return has_organ(BP_L_HAND) || has_organ(BP_R_HAND)
 		if(slot_head)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_shoes)
-			return has_organ("r_foot") || has_organ("l_foot")
+			return has_organ(BP_L_FOOT) || has_organ(BP_R_FOOT)
 		if(slot_wear_suit)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_w_uniform)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_l_store)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_r_store)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_s_store)
-			return has_organ("chest")
+			return has_organ(BP_TORSO)
 		if(slot_in_backpack)
 			return 1
 		if(slot_tie)
@@ -164,9 +163,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_inv_legcuffed()
 	else if (W == r_hand)
 		r_hand = null
+		if(l_hand)
+			l_hand.update_held_icon()
+			update_inv_l_hand()
 		update_inv_r_hand()
 	else if (W == l_hand)
 		l_hand = null
+		if(r_hand)
+			r_hand.update_held_icon()
+			update_inv_l_hand()
 		update_inv_l_hand()
 	else
 		return 0
@@ -184,7 +189,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!istype(W)) return
 	if(!has_organ_for_slot(slot)) return
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
-	W.loc = src
+	W.forceMove(src)
 	switch(slot)
 		if(slot_back)
 			src.back = W
@@ -224,7 +229,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.r_ear = O
 				O.layer = 20
 			W.equipped(src, slot)
@@ -233,7 +238,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.l_ear = O
 				O.layer = 20
 			W.equipped(src, slot)
@@ -285,12 +290,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
-			W.loc = src.back
+			W.forceMove(src.back)
 		if(slot_tie)
 			var/obj/item/clothing/under/uniform = src.w_uniform
 			uniform.attackby(W,src)
 		else
-			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
+			src << "<span class='danger'>You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]</span>"
 			return
 
 	if((W == src.l_hand) && (slot != slot_l_hand))
@@ -349,3 +354,30 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_l_ear)      return l_ear
 		if(slot_r_ear)      return r_ear
 	return ..()
+
+/mob/living/carbon/human/get_equipped_items(var/include_carried = 0)
+	var/list/items = new/list()
+
+	if(back) items += back
+	if(belt) items += belt
+	if(l_ear) items += l_ear
+	if(r_ear) items += r_ear
+	if(glasses) items += glasses
+	if(gloves) items += gloves
+	if(head) items += head
+	if(shoes) items += shoes
+	if(wear_id) items += wear_id
+	if(wear_mask) items += wear_mask
+	if(wear_suit) items += wear_suit
+	if(w_uniform) items += w_uniform
+
+	if(include_carried)
+		if(slot_l_hand)     items += l_hand
+		if(slot_r_hand)     items += r_hand
+		if(slot_l_store)    items += l_store
+		if(slot_r_store)    items += r_store
+		if(slot_legcuffed)  items += legcuffed
+		if(slot_handcuffed) items += handcuffed
+		if(slot_s_store)    items += s_store
+
+	return items

@@ -4,6 +4,7 @@
 	icon_state = "door_as_0"
 	anchored = 0
 	density = 1
+	w_class = 5
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
@@ -275,8 +276,7 @@
 			else
 				path = text2path("/obj/machinery/door/airlock[airlock_type]")
 
-			var/obj/machinery/door/new_airlock = new path(src.loc, src)
-			new_airlock.dir = src.dir
+			new path(src.loc, src)
 			qdel(src)
 	else
 		..()

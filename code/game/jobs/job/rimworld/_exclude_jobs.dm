@@ -1,1 +1,0 @@
-var/list/exclude_jobs = list()

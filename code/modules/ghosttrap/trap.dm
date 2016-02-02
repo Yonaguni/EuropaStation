@@ -81,8 +81,6 @@ proc/populate_ghost_traps()
 	if(!istype(P)) return
 	target << "<b>You are a downloaded intelligence, loaded into a processing substrate on [station_name()].</b>"
 	P.visible_message("<span class='notice'>\The [P] chimes quietly.</span>")
-	P.searching = 0
-	P.set_occupied()
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)

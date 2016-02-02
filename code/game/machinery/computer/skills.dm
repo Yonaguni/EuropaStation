@@ -39,6 +39,9 @@
 /obj/machinery/computer/skills/attack_hand(mob/user as mob)
 	if(..())
 		return
+	ui_interact(user)
+
+/obj/machinery/computer/skills/ui_interact(mob/user as mob)
 	if (src.z > 6)
 		user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
@@ -348,7 +351,7 @@ What a mess.*/
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
-							for(var/rank in joblist)
+							for(var/rank in get_job_titles())
 								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
@@ -369,7 +372,7 @@ What a mess.*/
 							if(PDA_Manifest.len)
 								PDA_Manifest.Cut()
 							active1.fields["rank"] = href_list["rank"]
-							if(href_list["rank"] in joblist)
+							if(href_list["rank"] in get_job_titles())
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if ("Delete Record (ALL) Execute")

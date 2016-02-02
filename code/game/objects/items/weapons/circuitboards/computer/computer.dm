@@ -30,14 +30,6 @@
 	name = T_BOARD("command and communications console")
 	build_path = /obj/machinery/computer/communications
 
-/obj/item/weapon/circuitboard/card
-	name = T_BOARD("ID card modification console")
-	build_path = /obj/machinery/computer/card
-
-/obj/item/weapon/circuitboard/card/centcom
-	name = T_BOARD("CentCom ID card modification console")
-	build_path = /obj/machinery/computer/card/centcom
-
 /obj/item/weapon/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
 	build_path = /obj/machinery/computer/teleporter
@@ -50,17 +42,6 @@
 	name = T_BOARD("employment records console")
 	build_path = /obj/machinery/computer/skills
 
-/obj/item/weapon/circuitboard/stationalert_engineering
-	name = T_BOARD("station alert console (engineering)")
-	build_path = /obj/machinery/computer/station_alert
-
-/obj/item/weapon/circuitboard/stationalert_security
-	name = T_BOARD("station alert console (security)")
-	build_path = /obj/machinery/computer/station_alert
-
-/obj/item/weapon/circuitboard/stationalert_all
-	name = T_BOARD("station alert console (all)")
-	build_path = /obj/machinery/computer/station_alert/all
 
 /obj/item/weapon/circuitboard/atmos_alert
 	name = T_BOARD("atmospheric alert console")
@@ -82,9 +63,13 @@
 	name = T_BOARD("cloning control console")
 	build_path = /obj/machinery/computer/cloning
 
-/obj/item/weapon/circuitboard/arcade
-	name = T_BOARD("arcade machine")
-	build_path = /obj/machinery/computer/arcade
+/obj/item/weapon/circuitboard/arcade/battle
+	name = T_BOARD("battle arcade machine")
+	build_path = /obj/machinery/computer/arcade/battle
+
+/obj/item/weapon/circuitboard/arcade/orion_trail
+	name = T_BOARD("orion trail arcade machine")
+	build_path = /obj/machinery/computer/arcade/orion_trail
 
 /obj/item/weapon/circuitboard/turbine_control
 	name = T_BOARD("turbine control console")

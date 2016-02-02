@@ -9,11 +9,13 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = 3
+	show_messages = 1
+
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
-	var/max_w_class = null //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
+	var/max_w_class = 3 //Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = null //The number of storage slots in this container.
 	var/obj/screen/storage/boxes = null
 	var/obj/screen/storage/storage_start = null //storage UI
@@ -203,10 +205,10 @@
 
 /obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
 
-	var/baseline_max_storage_space = 28 //should be equal to backpack capacity
-	var/storage_cap_width = 2 //length of sprite for storage box start and end
-	var/stored_cap_width = 4
-	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284)
+	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
+	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
+	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
+	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
 
 	storage_start.overlays.Cut()
 
@@ -292,10 +294,7 @@
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(!usr)
-		return
-
-	if(!usr.canUnEquip(W))
+	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
 		return 0
 
 	if(src.loc == W)
@@ -304,6 +303,9 @@
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return 0 //Storage item is full
+
+	if(W.anchored)
+		return 0
 
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
@@ -543,7 +545,6 @@
 	src.closer.icon_state = "x"
 	src.closer.layer = 20
 	orient2hud()
-	return
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
