@@ -1,10 +1,9 @@
-#pretending we're C because otherwise ruby will initialize, even with "language: dm".
-language: c
+language: generic
 sudo: false
 
 env:
-  BYOND_MAJOR="508"
-  BYOND_MINOR="1293"
+  BYOND_MAJOR="509"
+  BYOND_MINOR="1318"
   MACRO_COUNT=1158
   
 cache:
@@ -17,8 +16,6 @@ addons:
       - libc6-i386
       - libgcc1:i386
       - libstdc++6:i386
-      - python
-      - python-pip
   
 install:
   - pip install --user PyYaml -q
@@ -37,7 +34,7 @@ script:
   - md5sum -c - <<< "3ef44160a5c9931f1b83db8a9b6c393c *yonaguni.int"
   - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
   - python tools/TagMatcher/tag-matcher.py ../..
-  - python tools/GenerateChangelog/ss13_genchangelog.py html/changelog.html html/changelogs
+  - python tools/GenerateChangelog/ss13_genchangelog.py html/changelog.html html/changelogs --dry-run
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
   - DreamMaker yonaguni.dme
 
