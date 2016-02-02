@@ -210,7 +210,7 @@ its easier to just keep the beam vertical.
 			f_name = "some "
 		else
 			f_name = "a "
-		if(blood_color != "#030303")
+		if(blood_color != SYNTH_BLOOD_COLOUR)
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
@@ -411,8 +411,7 @@ its easier to just keep the beam vertical.
 			M.dna = new /datum/dna(null)
 			M.dna.real_name = M.real_name
 		M.check_dna()
-		if (M.species)
-			blood_color = M.species.blood_color
+		blood_color = M.species.get_blood_colour(M)
 	. = 1
 	return 1
 
@@ -433,7 +432,6 @@ its easier to just keep the beam vertical.
 		blood_DNA = null
 		return 1
 
-
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return
 	var/cur_x = null
@@ -451,7 +449,7 @@ its easier to just keep the beam vertical.
 		return 0
 
 /atom/proc/checkpass(passflag)
-	return pass_flags&passflag
+	return (pass_flags&passflag)
 
 /atom/proc/isinspace()
 	if(istype(get_turf(src), /turf/space))
@@ -469,10 +467,10 @@ its easier to just keep the beam vertical.
 
 	for(var/I in see)
 		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 1, blind_message, 2)
+			//spawn(0)
+			//if(I) //It's possible that it could be deleted in the meantime.
+			var/obj/O = I
+			O.show_message( message, 1, blind_message, 2)
 		else if(ismob(I))
 			var/mob/M = I
 			if(M.see_invisible >= invisibility) // Cannot view the invisible

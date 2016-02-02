@@ -44,6 +44,7 @@ var/global/list/default_medbay_channels = list(
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
+	show_messages = 1
 
 	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
 	var/const/FREQ_LISTENING = 1
@@ -273,12 +274,12 @@ var/global/list/default_medbay_channels = list(
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
 
+	if(istype(M)) M.trigger_aiming(TARGET_CAN_RADIO)
+
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 		return 0
-
-	M.last_target_radio = world.time // For the projectile targeting system
 
 	if(!radio_connection)
 		set_frequency(frequency)

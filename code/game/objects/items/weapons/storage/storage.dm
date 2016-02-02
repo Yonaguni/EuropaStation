@@ -9,6 +9,8 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = 3
+	show_messages = 1
+
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
@@ -292,10 +294,8 @@
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(!usr)
-		return
+	if(usr.isEquipped(W) && !usr.canUnEquip(W))
 
-	if(!usr.canUnEquip(W))
 		return 0
 
 	if(src.loc == W)
@@ -305,16 +305,12 @@
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return 0 //Storage item is full
 
-	if(can_hold.len)
-		if(!is_type_in_list(W, can_hold))
-			if(!stop_messages && ! istype(W, /obj/item/weapon/hand_labeler))
-				usr << "<span class='notice'>[src] cannot hold \the [W].</span>"
-			return 0
-		var/max_instances = can_hold[W.type]
-		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
-			if(!stop_messages && !istype(W, /obj/item/weapon/hand_labeler))
-				usr << "<span class='notice'>[src] has no more space specifically for \the [W].</span>"
-			return 0
+	if(can_hold.len && !is_type_in_list(W, can_hold))
+		if(!stop_messages)
+			if (istype(W, /obj/item/weapon/hand_labeler))
+				return 0
+			usr << "<span class='notice'>[src] cannot hold [W].</span>"
+		return 0
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
@@ -557,17 +553,6 @@
 		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
 			src.quick_empty()
 			return 1
-
-/obj/item/weapon/storage/proc/make_exact_fit()
-	storage_slots = contents.len
-
-	can_hold.Cut()
-	max_w_class = 0
-	max_storage_space = 0
-	for(var/obj/item/I in src)
-		can_hold[I.type]++
-		max_w_class = max(I.w_class, max_w_class)
-		max_storage_space += I.get_storage_cost()
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.

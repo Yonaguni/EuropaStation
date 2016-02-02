@@ -8,6 +8,16 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
+/obj/item/weapon/material/knuckledusters
+	name = "knuckle dusters"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	icon_state = "knuckledusters"
+	gender = PLURAL
+	w_class = 2.0
+	force_divisor = 0.63
+	attack_verb = list("punched", "beaten", "struck")
+	applies_material_colour = 0
+
 /obj/item/weapon/material/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
@@ -37,12 +47,24 @@
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
+/obj/item/weapon/material/hatchet/tacknife/combatknife
+	name = "combat knife"
+	desc = "If only you had a boot to put it in."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	force_divisor = 0.34 // 20 with hardness 60 (steel)
+	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
+	attack_verb = list("sliced", "stabbed", "chopped", "cut")
+	applies_material_colour = 1
+
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
+	flags = CONDUCT | NOBLUDGEON
 	force_divisor = 0.25 // 5 with weight 20 (steel)
 	thrown_force_divisor = 0.25 // as above
 	w_class = 2

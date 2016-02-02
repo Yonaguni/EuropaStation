@@ -143,7 +143,7 @@
 	waterproof = -1
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 8	// luminosity when on, also used in power calculation
+	var/brightness_range = 10	// luminosity when on, also used in power calculation
 	var/brightness_power = 3
 	var/brightness_color = null
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -161,20 +161,15 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
+	brightness_range = 6
 	brightness_power = 2
-	brightness_color = "#a0a080"
+	brightness_color = "#FFF4E5"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
 /obj/machinery/light/small/emergency
 	brightness_range = 6
 	brightness_power = 2
-	brightness_color = "#da0205"
-
-/obj/machinery/light/small/red
-	brightness_range = 5
-	brightness_power = 1
 	brightness_color = "#da0205"
 
 /obj/machinery/light/spot
@@ -261,7 +256,7 @@
 		use_power = 1
 		set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	active_power_usage = light_range * light_power
 	if(on != on_gs)
 		on_gs = on
 

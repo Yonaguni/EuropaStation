@@ -103,19 +103,25 @@
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/airless
+	else if(!deconstruct && istype(T,/turf/simulated/mineral/floor))
+		build_cost =  1
+		build_type =  "floor"
+		build_turf =  /turf/simulated/floor/plating
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		build_delay = deconstruct ? 50 : 40
 		build_cost =  5
 		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
 		build_turf =  /turf/simulated/floor
-	else if(istype(T,/turf/simulated/floor))
+	else if(istype(T,/turf/simulated/floor) || (istype(T,/turf/simulated/mineral) && !T.density))
+		var/turf/simulated/F = T
 		build_delay = deconstruct ? 50 : 20
 		build_cost =  deconstruct ? 10 : 3
 		build_type =  deconstruct ? "floor" : "wall"
-		build_turf =  deconstruct ? get_base_turf_by_area(T) : /turf/simulated/wall
-	else
-		return 0
+		if(F.check_destroy_override(F))
+			build_turf =  deconstruct ? destroy_floor_override_path : /turf/simulated/wall
+		else
+			build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
 
 	if(!build_type)
 		working = 0

@@ -130,16 +130,18 @@
 			adjustEarDamage(-0.05,-1)
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
-/mob/living/proc/handle_regular_hud_updates()
-	if(!client)	return 0
+/mob/living/handle_regular_hud_updates()
+	if(!client)
+		return 0
+	..()
 
-	handle_hud_icons()
 	handle_vision()
+	handle_hud_icons()
 
 	return 1
 
 /mob/living/proc/handle_vision()
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
+	return
 	update_sight()
 
 	if(stat == DEAD)
@@ -185,7 +187,6 @@
 
 /mob/living/proc/handle_hud_icons()
 	handle_hud_icons_health()
-	handle_hud_glasses()
 	return
 
 /mob/living/proc/handle_hud_icons_health()

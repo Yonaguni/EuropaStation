@@ -1,7 +1,7 @@
 /obj
 	//Used to store information about the contents of the object.
 	var/list/matter
-
+	var/w_class // Size of the object.
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
@@ -9,10 +9,10 @@
 	var/sharp = 0		// whether this object cuts
 	var/edge = 0		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
-
 	var/damtype = "brute"
 	var/force = 0
 	var/armor_penetration = 0
+	var/show_messages
 
 /obj/Destroy()
 	processing_objects -= src
@@ -38,18 +38,15 @@
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
-	return O.allowed(src)
+	var/id = src.GetIdCard()
+	return O.check_access(id)
 
 /mob/proc/CanUseObjTopic()
 	return 1
 
 /obj/proc/CouldUseTopic(var/mob/user)
 	var/atom/host = nano_host()
-	if(!isAI(user) && host.Adjacent(user))
-		// We are -probably- in physical contact with the object, better than how Topics() previously did it and always applied fingerprints.
-		host.add_fingerprint(user)
-	else
-		host.add_hiddenprint(user)
+	host.add_hiddenprint(user)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
 	// Nada
@@ -118,6 +115,7 @@
 
 /obj/attack_ghost(mob/user)
 	ui_interact(user)
+	..()
 
 /obj/proc/interact(mob/user)
 	return

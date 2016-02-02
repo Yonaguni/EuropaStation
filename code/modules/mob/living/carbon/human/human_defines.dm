@@ -34,7 +34,9 @@
 
 	var/underwear = 1	//Which underwear the player wants
 	var/undershirt = 0	//Which undershirt the player wants.
+	var/socks = 0		//Which socks the player wants.
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
+	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, or Old.
 
 	// General information
 	var/home_system = ""
@@ -81,16 +83,10 @@
 
 	var/list/flavor_texts = list()
 	var/gunshot_residue
-	var/pulling_punches // Are you trying not to hurt your opponent?
+	var/pulling_punches    // Are you trying not to hurt your opponent?
+	var/full_prosthetic    // We are a robutt.
+	var/robolimb_count = 0 // Number of robot limbs.
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY
 	mob_swap_flags = ~HEAVY
-
-	var/flash_protection = 0				// Total level of flash protection
-	var/equipment_tint_total = 0			// Total level of visualy impairing items
-	var/equipment_darkness_modifier			// Darkvision modifier from equipped items
-	var/equipment_vision_flags				// Extra vision flags from equipped items
-	var/equipment_see_invis					// Max see invibility level granted by equipped items
-	var/equipment_prescription				// Eye prescription granted by equipped items
-	var/list/equipment_overlays = list()	// Extra overlays from equipped items

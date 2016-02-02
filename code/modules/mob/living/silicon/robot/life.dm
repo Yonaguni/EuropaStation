@@ -1,3 +1,6 @@
+/mob/proc/handle_regular_hud_updates()
+	return //todo
+
 /mob/living/silicon/robot/Life()
 	set invisibility = 0
 	set background = 1
@@ -114,9 +117,9 @@
 
 	src.density = !( src.lying )
 
-	if ((src.sdisabilities & BLIND))
+	if (src.sdisabilities & BLIND)
 		src.blinded = 1
-	if ((src.sdisabilities & DEAF))
+	if (src.sdisabilities & DEAF)
 		src.ear_deaf = 1
 
 	if (src.eye_blurry > 0)

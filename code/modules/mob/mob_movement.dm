@@ -255,7 +255,7 @@
 			return 0
 
 		move_delay = world.time//set move delay
-		mob.last_move_intent = world.time + 10
+
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
@@ -276,7 +276,7 @@
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
 			//drunk driving
-			if(mob.confused)
+			if(mob.confused && prob(75))
 				direct = pick(cardinal)
 			return mob.buckled.relaymove(mob,direct)
 
@@ -290,15 +290,19 @@
 			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 				return mob.pulledby.relaymove(mob, direct)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-				if(ishuman(mob.buckled))
-					var/mob/living/carbon/human/driver = mob.buckled
+				if(ishuman(mob))
+					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
-				if(mob.confused)
-					direct = pick(cardinal)
+				else if(mob.confused)
+					switch(mob.m_intent)
+						if("run")
+							if(prob(75))	direct = pick(cardinal)
+						if("walk")
+							if(prob(25))	direct = pick(cardinal)
 				move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
 
@@ -338,7 +342,11 @@
 							return
 
 		else if(mob.confused)
-			step(mob, pick(cardinal))
+			switch(mob.m_intent)
+				if("run")
+					if(prob(75))	step(mob, pick(cardinal))
+				if("walk")
+					if(prob(25))	step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
 

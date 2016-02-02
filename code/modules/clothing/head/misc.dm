@@ -18,6 +18,21 @@
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
 
+/obj/item/clothing/head/hairflower/blue
+	icon_state = "hairflower_blue"
+
+/obj/item/clothing/head/hairflower/pink
+	icon_state = "hairflower_pink"
+
+/obj/item/clothing/head/hairflower/yellow
+	icon_state = "hairflower_yellow"
+
+/obj/item/clothing/head/hairflower/violet
+	icon_state = "hairflower_violet"
+
+/obj/item/clothing/head/hairflower/orange
+	icon_state = "hairflower_orange"
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
@@ -194,6 +209,13 @@
 	desc = "You should wear a fez. Fezzes are cool."
 
 //end bs12 hats
+
+/obj/item/clothing/head/cowboy_hat
+	name = "cowboy hat"
+	desc = "For those that have spurs that go jingle jangle jingle."
+	icon_state = "cowboyhat"
+	item_state = "cowboy_hat"
+	body_parts_covered = 0
 
 /obj/item/clothing/head/witchwig
 	name = "witch costume wig"

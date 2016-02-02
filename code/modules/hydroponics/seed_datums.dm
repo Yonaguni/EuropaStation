@@ -375,21 +375,6 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#9E4F9D")
 	set_trait(TRAIT_PLANT_ICON,"mushroom2")
 
-/datum/seed/mushroom/plump/walking
-	name = "walkingmushroom"
-	seed_name = "walking mushroom"
-	display_name = "walking mushrooms"
-	mutants = null
-	can_self_harvest = 1
-	has_mob_product = /mob/living/simple_animal/mushroom
-
-/datum/seed/mushroom/plump/walking/New()
-	..()
-	set_trait(TRAIT_MATURATION,5)
-	set_trait(TRAIT_YIELD,1)
-	set_trait(TRAIT_PRODUCT_COLOUR,"#FAC0F2")
-	set_trait(TRAIT_PLANT_COLOUR,"#C4B1C2")
-
 /datum/seed/mushroom/hallucinogenic
 	name = "reishi"
 	seed_name = "reishi"

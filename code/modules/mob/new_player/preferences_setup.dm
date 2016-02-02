@@ -18,11 +18,22 @@ datum/preferences
 					underwear = underwear_m[pick(underwear_m)]
 				undershirt = undershirt_t[pick(undershirt_t)]
 
-		h_style = random_hair_style(gender, species)
-		f_style = random_facial_hair_style(gender, species)
+
+		var/use_head_species
+		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
+		if(temp_head)
+			use_head_species = temp_head.species.get_bodytype()
+		else
+			use_head_species = H.species.get_bodytype()
+
+		if(use_head_species)
+			h_style = random_hair_style(gender, species)
+			f_style = random_facial_hair_style(gender, species)
+
 		randomize_hair_color("hair")
 		randomize_hair_color("facial")
 
+		socks = rand(1,socks_t.len)
 		backbag = 2
 		age = rand(AGE_MIN,AGE_MAX)
 		if(H)
@@ -202,38 +213,59 @@ datum/preferences
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		preview_icon = new /icon(icobase, "torso_[g]")
-		preview_icon.Blend(new /icon(icobase, "groin_[g]"), ICON_OVERLAY)
-		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
-
-		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
-			if(organ_data[name] == "amputated") continue
+		preview_icon = new /icon(icobase, "")
+		for(var/name in BP_ALL)
+			if(organ_data[name] == "amputated")
+				continue
 			if(organ_data[name] == "cyborg")
 				var/datum/robolimb/R
 				if(rlimb_data[name])
 					R = get_robolimb_by_name(rlimb_data[name])
 				if(!R) R = get_robolimb_by_path(/datum/robolimb)
-				preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
+				if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+					preview_icon.Blend(icon(R.icon, "[name]_[g]"), ICON_OVERLAY)
+				else
+					preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY)
 				continue
-			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)
+			var/icon/limb_icon
+			if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+				limb_icon = new /icon(icobase, "[name]_[g]")
+			else
+				limb_icon = new /icon(icobase, "[name]")
+			// Skin color
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
+				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			// Skin tone
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
+				if (s_tone >= 0)
+					limb_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+				else
+					limb_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+			preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
 		//Tail
 		if(current_species && (current_species.tail))
 			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
+				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
+				if (s_tone >= 0)
+					temp.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+				else
+					temp.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 			preview_icon.Blend(temp, ICON_OVERLAY)
 
-		// Skin color
-		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+		// This is absolute garbage but whatever. It will do until this entire file can be rewritten without crashes.
+		var/use_eye_icon = "eyes_s"
+		var/list/use_eye_data = current_species.has_limbs[BP_HEAD]
+		if(islist(use_eye_data))
+			var/use_eye_path = use_eye_data["path"]
+			var/obj/item/organ/external/head/temp_head = new use_eye_path ()
+			if(istype(temp_head))
+				use_eye_icon = temp_head.eye_icon
+			qdel(temp_head)
 
-		// Skin tone
-		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-			if (s_tone >= 0)
-				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-			else
-				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-
-		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
+		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
@@ -257,9 +289,18 @@ datum/preferences
 		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
 			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
 
-		// HA HA NO PREVIEW ICONS FOR YOU UNTIL WE CAN BE FUCKED RECODING THIS
-		// (or chinsky fixes his rewrite to avoid crashing people)
-		//var/icon/clothes_s = null
+		var/icon/socks_s = null
+		if(socks && current_species.appearance_flags & HAS_UNDERWEAR)
+			socks_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = socks)
+
+		var/icon/clothes_s = null
+		if(job_civilian_low & ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
+			clothes_s = new /icon('icons/mob/uniform.dmi', "grey_s")
+			clothes_s.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
+			if(backbag == 2)
+				clothes_s.Blend(new /icon('icons/mob/back.dmi', "backpack"), ICON_OVERLAY)
+			else if(backbag == 3 || backbag == 4)
+				clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 		if(disabilities & NEARSIGHTED)
 			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
@@ -269,12 +310,15 @@ datum/preferences
 			preview_icon.Blend(underwear_s, ICON_OVERLAY)
 		if(undershirt_s)
 			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
-		//if(clothes_s)
-		//	preview_icon.Blend(clothes_s, ICON_OVERLAY)
+		if(socks_s)
+			preview_icon.Blend(socks_s, ICON_OVERLAY)
+		if(clothes_s)
+			preview_icon.Blend(clothes_s, ICON_OVERLAY)
 		preview_icon_front = new(preview_icon, dir = SOUTH)
 		preview_icon_side = new(preview_icon, dir = WEST)
 
 		qdel(eyes_s)
 		qdel(underwear_s)
 		qdel(undershirt_s)
-		//qdel(clothes_s)
+		qdel(socks_s)
+		qdel(clothes_s)

@@ -15,23 +15,28 @@
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		if (prob(70))
 			new /obj/item/clothing/accessory/storage/brown_vest(src)
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/clothing/under/rank/chief_engineer(src)
+		new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 		new /obj/item/clothing/head/hardhat/white(src)
 		new /obj/item/clothing/head/welding(src)
 		new /obj/item/clothing/gloves/yellow(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/weapon/cartridge/ce(src)
 		new /obj/item/device/radio/headset/heads/ce(src)
+		new /obj/item/device/radio/headset/heads/ce/alt(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/multitool(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/taperoll/engineering(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 		return
 
 
@@ -107,17 +112,21 @@
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		if (prob(70))
 			new /obj/item/clothing/accessory/storage/brown_vest(src)
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
 		new /obj/item/device/radio/headset/headset_eng(src)
+		new /obj/item/device/radio/headset/headset_eng/alt(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/glasses/meson(src)
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 		return
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"
@@ -136,6 +145,8 @@
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		if (prob(70))
 			new /obj/item/clothing/accessory/storage/brown_vest(src)
 		else
@@ -144,8 +155,10 @@
 		new /obj/item/device/flashlight(src)
 		new /obj/item/weapon/extinguisher(src)
 		new /obj/item/device/radio/headset/headset_eng(src)
+		new /obj/item/device/radio/headset/headset_eng/alt(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/weapon/cartridge/atmos(src)
 		new /obj/item/taperoll/atmos(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
 		return

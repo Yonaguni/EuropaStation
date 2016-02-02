@@ -163,14 +163,14 @@
 	name = "Body Scanner Console"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
-	density = 1
+	dir = 8
+	density = 0
 	anchored = 1
-
 
 /obj/machinery/body_scanconsole/New()
 	..()
 	spawn( 5 )
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
+		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST)) //We assume dir = 8 so scanner is WEST. Other sprites do exist.
 		return
 	return
 
@@ -399,9 +399,9 @@
 	for(var/obj/item/organ/i in occ["internal_organs"])
 
 		var/mech = ""
-		if(i.robotic == 1)
+		if(i.status & ORGAN_ASSISTED)
 			mech = "Assisted:"
-		if(i.robotic == 2)
+		if(i.status & ORGAN_ROBOT)
 			mech = "Mechanical:"
 
 		var/infection = "None"

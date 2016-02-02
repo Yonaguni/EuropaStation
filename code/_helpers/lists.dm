@@ -78,10 +78,18 @@ proc/isemptylist(list/list)
 			instances++
 	return instances
 
-//Empties the list by .Cut(). Setting lenght = 0 has been confirmed to leak references.
-proc/clearlist(var/list/L)
-	if(islist(L))
-		L.Cut()
+//Checks for specific paths in a list
+/proc/is_path_in_list(var/atom/A, var/list/L)
+	for(var/path in L)
+		if(ispath(A, path))
+			return 1
+	return 0
+
+//Empties the list by setting the length to 0. Hopefully the elements get garbage collected
+proc/clearlist(list/list)
+	if(istype(list))
+		list.len = 0
+	return
 
 //Removes any null entries from the list
 proc/listclearnulls(list/list)

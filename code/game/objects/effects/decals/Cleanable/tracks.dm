@@ -123,6 +123,12 @@ var/global/list/image/fluidtrack_cache=list()
 	if(updated)
 		update_icon()
 
+		dirs |= comingdir|realgoing
+		if(islist(blood_DNA))
+			blood_DNA |= DNA.Copy()
+		if(updated)
+			update_icon()
+
 /obj/effect/decal/cleanable/blood/tracks/update_icon()
 	overlays.Cut()
 	color = "#FFFFFF"

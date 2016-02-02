@@ -28,7 +28,7 @@
 #define AGE_MIN 17
 #define AGE_MAX 85
 
-#define MAX_GEAR_COST 5 // Used in chargen for accessory loadout limit.
+#define MAX_GEAR_COST 10 // Used in chargen for accessory loadout limit.
 
 // Preference toggles.
 #define SOUND_ADMINHELP 0x1
@@ -187,3 +187,8 @@
 #define CAPTURE_MODE_PARTIAL 3 //Simular to regular mode, but does not do dummy check
 
 #define TABLE_LAYER 2.8
+
+// Vending stuff
+#define CAT_NORMAL 1
+#define CAT_HIDDEN 2
+#define CAT_COIN   4

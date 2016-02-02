@@ -386,20 +386,6 @@ var/bomb_set
 		icon_state = "nuclearbomb0"
 		return
 
-	else if(timing == -1)
-		icon_state = "nuclearbomb3"
-	else if(timing)
-		icon_state = "nuclearbomb2"
-	else if(extended)
-		icon_state = "nuclearbomb1"
-	else
-		icon_state = "nuclearbomb0"
-/*
-if(!N.lighthack)
-	if (N.icon_state == "nuclearbomb2")
-		N.icon_state = "nuclearbomb1"
-		*/
-
 //====The nuclear authentication disc====
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"

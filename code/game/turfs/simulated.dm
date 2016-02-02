@@ -18,6 +18,30 @@
 		B.fluorescent = 0
 		B.invisibility = 100
 
+// This is not great.
+/turf/simulated/proc/wet_floor(var/wet_val = 1)
+	spawn(0)
+		if(wet_val <= wet)
+			return
+		wet = wet_val
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null
+		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+		overlays += wet_overlay
+		sleep(800)
+		if(wet >= 2)
+			return
+		wet = 0
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null
+
+/turf/simulated/clean_blood()
+	for(var/obj/effect/decal/cleanable/blood/B in contents)
+		B.clean_blood()
+	..()
+
 /turf/simulated/New()
 	..()
 	if(init_turf)
@@ -29,6 +53,16 @@
 /turf/simulated/initialize()
 	..()
 	levelupdate()
+
+/turf/simulated/proc/check_destroy_override()
+	if(destroy_floor_override) //Don't bother doing the additional checks if we don't have to.
+		var/area/my_area = get_area(src)
+//		my_area = my_area.master
+		if(is_type_in_list(my_area, destroy_floor_override_ignore_areas))
+			return 0
+		if(z in destroy_floor_override_z_levels)
+			return 1
+	return 0
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
@@ -124,6 +158,8 @@
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
+			if(!B.blood_DNA)
+				B.blood_DNA = list()
 			if(!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)

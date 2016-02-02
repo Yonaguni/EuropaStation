@@ -1,15 +1,17 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wiki()
+/client/verb/wiki(query as text)
 	set name = "wiki"
-	set desc = "Visit the wiki."
-	set hidden = 1
-	if( config.wikiurl )
-		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
-			return
-		src << link(config.wikiurl)
+	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
+	set category = "OOC"
+	if(config.wikiurl)
+		if(query)
+			var/output = config.wikiurl + "/doku.php?do=search&id=" + query
+			src << link(output)
+		else
+			src << link(config.wikiurl)
 	else
 		src << "<span class='warning'>The wiki URL is not set in the server configuration.</span>"
-	return
+		return
 
 /client/verb/forum()
 	set name = "forum"
@@ -21,15 +23,46 @@
 		src << link(config.forumurl)
 	else
 		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
-	return
+		return
 
-#define RULES_FILE "config/rules.html"
 /client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules."
 	set hidden = 1
-	src << browse(file(RULES_FILE), "window=rules;size=480x320")
-#undef RULES_FILE
+
+	if(config.rulesurl)
+		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.rulesurl)
+	else
+		src << "<span class='danger'>The rules URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/map()
+	set name = "Map"
+	set desc = "See the map."
+	set hidden = 1
+
+	if(config.mapurl)
+		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.mapurl)
+	else
+		src << "<span class='danger'>The map URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/github()
+	set name = "GitHub"
+	set desc = "Visit the GitHub"
+	set hidden = 1
+
+	if(config.githuburl)
+		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.githuburl)
+	else
+		src << "<span class='danger'>The GitHub URL is not set in the server configuration.</span>"
+	return
 
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"

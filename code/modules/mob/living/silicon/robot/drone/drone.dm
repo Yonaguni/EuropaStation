@@ -30,7 +30,7 @@ var/list/mob_hat_cache = list()
 	universal_understand = 1
 	gender = NEUTER
 	pass_flags = PASSTABLE
-	braintype = "Robot"
+	braintype = "Drone"
 	lawupdate = 0
 	density = 1
 	req_access = list(access_engine, access_robotics)
@@ -43,20 +43,21 @@ var/list/mob_hat_cache = list()
 	speak_exclamation = "buzzes"
 	speak_query = "chimes"
 
+
+	can_pull_size = 3
+	can_pull_mobs = MOB_PULL_SMALLER
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL
 	mob_push_flags = SIMPLE_ANIMAL
 	mob_always_swap = 1
 
-	mob_size = MOB_MEDIUM // Small mobs can't open doors, it's a huge pain for drones.
+	mob_size = MOB_LARGE // Small mobs can't open doors, it's a huge pain for drones.
 
 	//Used for self-mailing.
 	var/mail_destination = ""
 	var/obj/machinery/drone_fabricator/master_fabricator
 	var/law_type = /datum/ai_laws/drone
 	var/module_type = /obj/item/weapon/robot_module/drone
-	var/can_pull_size = 2
-	var/can_pull_mobs
 	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
@@ -93,6 +94,15 @@ var/list/mob_hat_cache = list()
 	if(hat)
 		hat.loc = get_turf(src)
 	..()
+
+/mob/living/silicon/robot/drone/construction
+	icon_state = "constructiondrone"
+	law_type = /datum/ai_laws/construction_drone
+	module_type = /obj/item/weapon/robot_module/drone/construction
+	hat_x_offset = 1
+	hat_y_offset = -12
+	can_pull_size = 5
+	can_pull_mobs = MOB_PULL_SAME
 
 /mob/living/silicon/robot/drone/New()
 

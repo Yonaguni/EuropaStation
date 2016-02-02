@@ -671,3 +671,14 @@ var/global/list/all_materials = list()
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+
+/material/toy_foam
+	name = "foam"
+	display_name = "foam"
+	use_name = "foam"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	icon_colour = "#ff9900"
+	hardness = 1
+	weight = 1

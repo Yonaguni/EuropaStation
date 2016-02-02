@@ -182,8 +182,10 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf_by_area(src))
-			return
+			if(check_destroy_override())
+				src.ChangeTurf(destroy_floor_override_path)
+			else
+				src.ChangeTurf(get_base_turf_by_area(src))
 		if(2.0)
 			if(prob(75))
 				take_damage(rand(150, 250))
@@ -192,7 +194,7 @@
 		if(3.0)
 			take_damage(rand(0, 250))
 		else
-	return
+			return
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/simulated/wall/proc/rot()

@@ -7,8 +7,15 @@
 		plant_controller = new()
 
 	spawn() //to stop the secrets panel hanging
-		var/turf/T = pick_area_turf(/area/hallway, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
-		if(T)
+		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
+		for(var/areapath in typesof(/area/hallway))
+			var/area/A = locate(areapath)
+			for(var/turf/simulated/floor/F in A.contents)
+				if(turf_clear(F))
+					turfs += F
+
+		if(turfs.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(turfs)
 			var/datum/seed/seed = plant_controller.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -20,9 +27,9 @@
 			vine.mature_time = 0
 			vine.process()
 
-			log_and_message_admins_with_location("Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])", T.x, T.y, T.z)
+			message_admins("<span class='notice'>Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])</span>")
 			return
-		log_and_message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
+		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
 /obj/effect/dead_plant
 	anchored = 1
@@ -124,7 +131,7 @@
 		update_icon()
 		plant_controller.add_plant(src)
 		// Some plants eat through plating.
-		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
+		if(!isnull(seed.chems["pacid"]))
 			var/turf/T = get_turf(src)
 			T.ex_act(prob(80) ? 3 : 2)
 
@@ -180,12 +187,12 @@
 		icon_state = "[seed.get_trait(TRAIT_PLANT_ICON)]-[growth]"
 
 	if(growth>2 && growth == max_growth)
-		layer = (seed && seed.force_layer) ? seed.force_layer : 5
+		layer = 5
 		opacity = 1
-		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
+		if(!isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
-		layer = (seed && seed.force_layer) ? seed.force_layer : 5
+		layer = 3
 		density = 0
 
 /obj/effect/plant/proc/calc_dir()

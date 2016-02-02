@@ -1,4 +1,4 @@
-var/global/list/syndicate_ids = list()
+var/list/syndicate_ids = list()
 
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
@@ -8,8 +8,8 @@ var/global/list/syndicate_ids = list()
 	var/registered_user = null
 
 /obj/item/weapon/card/id/syndicate/New(mob/user as mob)
-	syndicate_ids += src
 	..()
+	syndicate_ids += src
 	access = syndicate_access.Copy()
 
 /obj/item/weapon/card/id/syndicate/Destroy()
@@ -67,7 +67,7 @@ var/global/list/syndicate_ids = list()
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "agent_id_card.tmpl", "Agent id", 600, 400)
+		ui = new(user, src, ui_key, "agent_id_card.tmpl", "Fake ID", 600, 400)
 		ui.set_initial_data(data)
 		ui.open()
 

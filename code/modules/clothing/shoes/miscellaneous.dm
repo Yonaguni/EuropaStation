@@ -21,6 +21,75 @@
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
+	var/obj/item/weapon/material/hatchet/tacknife
+
+/obj/item/clothing/shoes/swat/attack_hand(var/mob/living/M)
+	if(tacknife)
+		tacknife.loc = get_turf(src)
+		if(M.put_in_active_hand(tacknife))
+			M << "<span class='notice'>You slide \the [tacknife] out of [src].</span>"
+			playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+			tacknife = null
+			update_icon()
+		return
+	..()
+
+/obj/item/clothing/shoes/swat/attackby(var/obj/item/I, var/mob/living/M)
+	if(istype(I, /obj/item/weapon/material/hatchet/tacknife))
+		if(tacknife)
+			return
+		M.drop_item()
+		tacknife = I
+		I.loc = src
+		M << "<span class='notice'>You slide the [I] into [src].</span>"
+		playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+		update_icon()
+	..()
+
+/obj/item/clothing/shoes/swat/update_icon()
+	if(tacknife)
+		icon_state = "swat_1"
+	else
+		icon_state = initial(icon_state)
+
+//Stolen from CM, refurbished to be less terrible.
+/obj/item/clothing/shoes/marine
+	name = "combat boots"
+	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time.  It can hold a Strategical knife."
+	icon_state = "jackboots"
+	item_state = "jackboots"
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	siemens_coefficient = 0.6
+	var/obj/item/weapon/material/hatchet/tacknife
+
+/obj/item/clothing/shoes/marine/attack_hand(var/mob/living/M)
+	if(tacknife)
+		tacknife.loc = get_turf(src)
+		if(M.put_in_active_hand(tacknife))
+			M << "<span class='notice'>You slide \the [tacknife] out of [src].</span>"
+			playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+			tacknife = null
+			update_icon()
+		return
+	..()
+
+/obj/item/clothing/shoes/marine/attackby(var/obj/item/I, var/mob/living/M)
+	if(istype(I, /obj/item/weapon/material/hatchet/tacknife))
+		if(tacknife)
+			return
+		M.drop_item()
+		tacknife = I
+		I.loc = src
+		M << "<span class='notice'>You slide the [I] into [src].</span>"
+		playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+		update_icon()
+	..()
+
+/obj/item/clothing/shoes/marine/update_icon()
+	if(tacknife)
+		icon_state = "jackboots_1"
+	else
+		icon_state = initial(icon_state)
 
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
@@ -120,3 +189,13 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
+
+/obj/item/clothing/shoes/winterboots
+	name = "winter boots"
+	desc = "Boots lined with 'synthetic' animal fur."
+	icon_state = "winterboots"
+	item_state = "winterboots"
+	cold_protection = FEET|LEGS
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET|LEGS
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE

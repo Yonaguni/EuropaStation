@@ -47,6 +47,7 @@
 	var/module_state_3 = null
 
 	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/device/communicator/integrated/communicator = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/weapon/cell/cell = null
 	var/obj/machinery/camera/camera = null
@@ -97,6 +98,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
+	add_language("Encoded Audio Language", 1)
 
 	wires = new(src)
 
@@ -110,6 +112,8 @@
 	update_icons()
 
 	radio = new /obj/item/device/radio/borg(src)
+//	communicator = new /obj/item/device/communicator/integrated(src)
+//	communicator.register_device(src)
 	common_radio = radio
 
 	if(!scrambledcodes && !camera)
@@ -155,7 +159,7 @@
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 	laws = new /datum/ai_laws/nanotrasen()
-	additional_law_channels["Binary"] = ":b"
+	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
 		lawupdate = 1
@@ -199,6 +203,11 @@
 		rbPDA = new/obj/item/device/pda/ai(src)
 	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
 
+/mob/living/silicon/robot/proc/setup_communicator()
+	if (!communicator)
+		communicator = new/obj/item/device/communicator/integrated(src)
+	communicator.register_device(src, "[modtype] [braintype]")
+
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
@@ -239,7 +248,7 @@
 	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
-	modtype = input("Please, select a module!", "Robot", null, null) as null|anything in modules
+	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
 	if(module)
 		return
@@ -259,7 +268,7 @@
 		modtype = prefix
 
 	if(istype(mmi, /obj/item/device/mmi/digital))
-		braintype = "Robot"
+		braintype = "Drone"
 	else
 		braintype = "Cyborg"
 
@@ -275,6 +284,9 @@
 
 	// if we've changed our name, we also need to update the display name for our PDA
 	setup_PDA()
+
+	// as well as our communicator registration
+	setup_communicator()
 
 	//We also need to update name of internal camera.
 	if (camera)
@@ -691,14 +703,6 @@
 			icon_state = module_sprites[icontype]
 		return
 
-//Call when target overlay should be added/removed
-/mob/living/silicon/robot/update_targeted()
-	if(!targeted_by && target_locked)
-		qdel(target_locked)
-	update_icons()
-	if (targeted_by && target_locked)
-		overlays += target_locked
-
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
 		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
@@ -907,7 +911,7 @@
 		if(!(icontype in module_sprites))
 			icontype = module_sprites[1]
 	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot", icontype, null) in module_sprites
+		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
 	icon_state = module_sprites[icontype]
 	update_icons()
 

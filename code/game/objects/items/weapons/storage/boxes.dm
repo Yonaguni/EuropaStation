@@ -288,7 +288,7 @@
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
-	icon_state = "flashbang"
+	icon_state = "emp"
 
 	New()
 		..()
@@ -298,10 +298,24 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
+/obj/item/weapon/storage/box/empslite
+	name = "box of low yield emp grenades"
+	desc = "A box containing 5 low yield EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
+	icon_state = "emp"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
 	desc = "A box containing 5 smoke bombs."
 	icon_state = "flashbang"
+
 
 /obj/item/weapon/storage/box/smokes/New()
 		..()
@@ -323,6 +337,20 @@
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
+
+/obj/item/weapon/storage/box/frags
+	name = "box of fragmentation grenades (WARNING)"
+	desc = "A box containing 5 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	icon_state = "frag"
+
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
 
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
@@ -596,37 +624,36 @@
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state = "syringe_kit"
+	storage_slots=21
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
+	max_storage_space = 42	//holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
-/obj/item/weapon/storage/box/lights/New()
-	..()
-	make_exact_fit()
 
 /obj/item/weapon/storage/box/lights/bulbs/New()
+	..()
 	for(var/i = 0; i < 21; i++)
 		new /obj/item/weapon/light/bulb(src)
-	..()
 
 /obj/item/weapon/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
 
 /obj/item/weapon/storage/box/lights/tubes/New()
+	..()
 	for(var/i = 0; i < 21; i++)
 		new /obj/item/weapon/light/tube(src)
-	..()
 
 /obj/item/weapon/storage/box/lights/mixed
 	name = "box of replacement lights"
 	icon_state = "lightmixed"
 
 /obj/item/weapon/storage/box/lights/mixed/New()
+	..()
 	for(var/i = 0; i < 14; i++)
 		new /obj/item/weapon/light/tube(src)
 	for(var/i = 0; i < 7; i++)
 		new /obj/item/weapon/light/bulb(src)
-	..()
 
 /obj/item/weapon/storage/box/freezer
 	name = "portable freezer"
@@ -638,3 +665,4 @@
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+

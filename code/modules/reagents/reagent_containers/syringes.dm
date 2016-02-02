@@ -96,7 +96,7 @@
 						var/datum/reagent/B
 						if(istype(T, /mob/living/carbon/human))
 							var/mob/living/carbon/human/H = T
-							if(H.species && H.species.flags & NO_BLOOD)
+							if(H.species && !H.should_have_organ(O_HEART))
 								H.reagents.trans_to_obj(src, amount)
 							else
 								B = T.take_blood(src, amount)
@@ -175,9 +175,6 @@
 						user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
 					else
 						user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
-
-					user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-					user.do_attack_animation(target)
 
 					if(!do_mob(user, target, injtime))
 						return

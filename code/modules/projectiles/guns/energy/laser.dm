@@ -1,3 +1,4 @@
+
 ////////Laser Tag////////////////////
 /obj/item/weapon/gun/energy/lasertag
 	name = "laser tag gun"

@@ -289,25 +289,25 @@
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		if(!O.force)
-			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
-		else
-			O.attack(src, user, user.zone_sel.selecting)
+		attacked_with_item(O, user)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+//TODO: refactor mob attackby(), attacked_by(), and friends.
+/mob/living/simple_animal/proc/attacked_with_item(var/obj/item/O, var/mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!O.force)
+		visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
+		return
+
+	if(O.force > resistance)
+		var/damage = O.force
+		if (O.damtype == HALLOSS)
+			damage = 0
+		adjustBruteLoss(damage)
+	else
+		usr << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
 
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
-
-	if(O.force <= resistance)
-		user << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
-		return 2
-
-	var/damage = O.force
-	if (O.damtype == HALLOSS)
-		damage = 0
-	adjustBruteLoss(damage)
-
-	return 0
+	user.do_attack_animation(src)
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
@@ -360,14 +360,6 @@
 		if(B.health > 0)
 			return (0)
 	return 1
-
-//Call when target overlay should be added/removed
-/mob/living/simple_animal/update_targeted()
-	if(!targeted_by && target_locked)
-		qdel(target_locked)
-	overlays = null
-	if (targeted_by && target_locked)
-		overlays += target_locked
 
 /mob/living/simple_animal/say(var/message)
 	var/verb = "says"

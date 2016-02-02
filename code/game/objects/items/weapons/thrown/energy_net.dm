@@ -1,3 +1,4 @@
+
 /obj/item/weapon/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."

@@ -12,6 +12,8 @@
 	var/slice_count
 	var/dried_type = null
 	var/dry = 0
+	center_of_mass = list("x"=16, "y"=16)
+	w_class = 2
 	var/trash
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/get_taste()
@@ -49,8 +51,6 @@
 		return 0
 
 	if(istype(M, /mob/living/carbon))
-		//TODO: replace with standard_feed_mob() call.
-
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
@@ -63,7 +63,6 @@
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return
 
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
 				M << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
 			if (fullness > 50 && fullness <= 150)
@@ -76,23 +75,35 @@
 				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
 				return 0
 		else
-			if(!M.can_force_feed(user, src))
-				return
+			if(istype(M,/mob/living/carbon/human))
+				var/mob/living/carbon/human/H = M
+				if(!H.check_has_mouth())
+					user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
+					return
+				var/obj/item/blocked = H.check_mouth_coverage()
+				if(blocked)
+					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					return
 
-			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
+
+				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
+					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+				else
+					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
+					return 0
+
+				if(!do_mob(user, M)) return
+
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
+				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
+				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+
+				user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+
 			else
-				user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-				return 0
-
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			if(!do_mob(user, M)) return
-
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
-
-			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+				user << "This creature does not seem to have a mouth!"
+				return
 
 		if(reagents)								//Handle ingestion of the reagent.
 			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -127,32 +138,21 @@
 	// Eating with forks
 	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
-
-		if(!U.reagents)
-			U.create_reagents(5)
-
-		if (U.reagents.total_volume > 0)
-			user << "<span class='warning'>You already have something on \the [U].</span>"
+		if(U.scoop_food)
+			if(!U.reagents)
+				U.create_reagents(5)
+			if (U.reagents.total_volume > 0)
+				user << "<span class='warning'>You already have something on \the [U].</span>"
+				return
+			user.visible_message( \
+				"<span class='notice'>\The [user] scoops up some of \the [src] with \the [U]!</span>", \
+				"<span class='notice'>You scoop up some of \the [src] with \the [U]!</span>" \
+				)
+			reagents.trans_to_obj(U, min(reagents.total_volume,5))
+			if (reagents.total_volume <= 0)
+				qdel(src)
 			return
-
-		user.visible_message( \
-			"<span class='notice'>\The [user] scoops up some of \the [src] with \the [U]!</span>", \
-			"<span class='notice'>You scoop up some of \the [src] with \the [U]!</span>" \
-		)
-
-		src.bitecount++
-		U.overlays.Cut()
-		U.loaded = "[src]"
-		var/image/I = new(U.icon, "loadedfood")
-		I.color = src.filling_color
-		U.overlays += I
-
-		reagents.trans_to_obj(U, min(reagents.total_volume,5))
-
-		if (reagents.total_volume <= 0)
-			qdel(src)
-		return
-
+	return ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
 	return (slice_count && slices_to)

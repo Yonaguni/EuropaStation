@@ -15,6 +15,7 @@
 				turfs += T
 	return turfs
 
+
 /proc/pick_area_turf(var/areatype, var/list/predicates)
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)

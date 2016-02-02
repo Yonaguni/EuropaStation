@@ -9,7 +9,7 @@
 	var/locked = 0
 	var/icon_occupied = "mmi_full"
 	var/mob/living/carbon/brain/brainmob = null //The current occupant.
-	var/obj/item/organ/brain/brainobj = null	//The current brain organ.
+	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 
 /obj/item/device/mmi/examine(mob/user)
 	if(!..(user))
@@ -34,9 +34,9 @@
 /obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	// Installing a new brain.
-	if(istype(O,/obj/item/organ/brain) && !brainmob) //Time to stick a brain in it --NEO
+	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 
-		var/obj/item/organ/brain/B = O
+		var/obj/item/organ/internal/brain/B = O
 		if(B.health <= 0)
 			user << "<span class='warning'>That brain is well and truly dead.</span>"
 			return
@@ -72,7 +72,7 @@
 		return
 	return ..()
 
-/obj/item/device/mmi/proc/move_inside(var/obj/item/organ/brain/person)
+/obj/item/device/mmi/proc/move_inside(var/obj/item/organ/internal/brain/person)
 
 	brainobj = person
 	brainobj.loc = src
@@ -99,7 +99,7 @@
 		return
 
 	user << "<span class='notice'>You remove the brain from \the [src].</span>"
-	var/obj/item/organ/brain/brain
+	var/obj/item/organ/internal/brain/brain
 	if (brainobj)	//Pull brain organ out of MMI.
 		brainobj.loc = user.loc
 		brain = brainobj

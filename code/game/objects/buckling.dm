@@ -60,6 +60,7 @@
 	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
 		return
 	if(M == buckled_mob)
+
 		return
 	if(!M.can_buckle)
 		if(M.buckle_fail_message)

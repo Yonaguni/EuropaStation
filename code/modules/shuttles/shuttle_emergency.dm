@@ -181,7 +181,7 @@
 			else if (!shuttle.location)
 				shuttle_status = "Standing-by at [station_name]."
 			else
-				shuttle_status = "Standing-by at [boss_name]."
+				shuttle_status = "Standing-by at [dock_name]."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
 			shuttle_status = "Shuttle has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)

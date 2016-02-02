@@ -94,6 +94,16 @@
 
 		if(I_HURT)
 
+			if(M.zone_sel.selecting == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
+				var/obj/item/weapon/grenade/G = wear_mask
+				if(!G.active)
+					visible_message("<span class='danger'>\The [M] pulls the pin from \the [src]'s [G.name]!</span>")
+					G.activate(M)
+					update_inv_wear_mask()
+				else
+					M << "<span class='warning'>\The [G] is already primed! Run!</span>"
+				return
+
 			if(!istype(H))
 				attack_generic(H,rand(1,3),"punched")
 				return
@@ -156,7 +166,7 @@
 				*/
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
-				if(prob(15) && hit_zone != "chest") // Missed!
+				if(prob(15) && hit_zone != BP_TORSO) // Missed!
 					if(!src.lying)
 						attack_message = "\The [H] attempted to strike [src], but missed!"
 					else
@@ -232,7 +242,7 @@
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				if(armor_check < 2)
+				if(armor_check < 60)
 					visible_message("<span class='danger'>[M] has pushed [src]!</span>")
 				else
 					visible_message("<span class='warning'>[M] attempted to push [src]!</span>")
@@ -275,6 +285,23 @@
 	apply_damage(damage, BRUTE, affecting, armor_block)
 	updatehealth()
 	return 1
+
+/mob/living/carbon/human/proc/attack_joint(var/obj/item/W, var/mob/living/user, var/def_zone)
+	if(!def_zone) def_zone = user.zone_sel.selecting
+	var/target_zone = get_zone_with_miss_chance(check_zone(def_zone), src)
+
+	if(user == src) // Attacking yourself can't miss
+		target_zone = user.zone_sel.selecting
+	if(!target_zone)
+		return null
+	var/obj/item/organ/external/organ = get_organ(check_zone(target_zone))
+	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1))
+		return null
+	var/dislocation_str
+	if(prob(W.force))
+		dislocation_str = "[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!"
+		organ.dislocate(1)
+	return dislocation_str
 
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)

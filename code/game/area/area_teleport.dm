@@ -1,4 +1,5 @@
 var/list/teleportlocs = list()
+var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area/AR in all_areas)
@@ -7,12 +8,8 @@ var/list/teleportlocs = list()
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			teleportlocs[AR.name] = AR
-
 	teleportlocs = sortAssoc(teleportlocs)
-
 	return 1
-
-var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in all_areas)
@@ -23,5 +20,4 @@ var/list/ghostteleportlocs = list()
 			ghostteleportlocs[AR.name] = AR
 
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
-
 	return 1

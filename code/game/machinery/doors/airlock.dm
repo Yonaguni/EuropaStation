@@ -10,7 +10,7 @@
 	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
 	var/main_power_lost_until = 0	 	//World time when main power is restored.
 	var/backup_power_lost_until = -1	//World time when backup power is restored.
-	var/next_beep_at = 0				//World time when we may next beep due to doors being blocked by mobs
+	var/has_beeped = 0					//If 1, will not beep on failed closing attempt. Resets when door closes.
 	var/spawnPowerRestoreRunning = 0
 	var/welded = null
 	var/locked = 0
@@ -72,6 +72,11 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/Dooreng.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+
+/obj/machinery/door/airlock/engineeringatmos
+	name = "Airlock"
+	icon = 'icons/obj/doors/Doorengatmos.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 
 /obj/machinery/door/airlock/medical
 	name = "Airlock"
@@ -153,6 +158,16 @@
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+	glass = 1
+
+/obj/machinery/door/airlock/glass_engineeringatmos
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doorengatmoglass.dmi'
+	hitsound = 'sound/effects/Glasshit.ogg'
+	maxhealth = 300
+	explosion_resistance = 5
+	opacity = 0
+	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 	glass = 1
 
 /obj/machinery/door/airlock/glass_security
@@ -610,24 +625,6 @@ About the new airlock wires panel:
 			if(src.shock(user, 100))
 				return
 
-	// No. -- cib
-	/**
-	if(ishuman(user) && prob(40) && src.density)
-		var/mob/living/carbon/human/H = user
-		if(H.getBrainLoss() >= 60)
-			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
-			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				visible_message("<span class='warning'>[user] headbutts the airlock.</span>")
-				var/obj/item/organ/external/affecting = H.get_organ("head")
-				H.Stun(8)
-				H.Weaken(5)
-				if(affecting.take_damage(10, 0))
-					H.UpdateDamageIcon()
-			else
-				visible_message("<span class='warning'>[user] headbutts the airlock. Good thing they're wearing a helmet.</span>")
-			return
-	**/
-
 	if(src.p_open)
 		user.set_machine(src)
 		wires.Interact(user)
@@ -903,7 +900,7 @@ About the new airlock wires panel:
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
-	if (!(species && (species.flags & NO_PAIN)))
+	if(can_feel_pain())
 		emote("scream")
 
 /mob/living/silicon/robot/airlock_crush(var/crush_damage)
@@ -918,9 +915,9 @@ About the new airlock wires panel:
 		for(var/turf/turf in locs)
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
-					if(world.time > next_beep_at)
+					if(!has_beeped)
 						playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
-						next_beep_at = world.time + SecondsToTicks(10)
+						has_beeped = 1
 					close_door_at = world.time + 6
 					return
 
@@ -930,6 +927,7 @@ About the new airlock wires panel:
 				take_damage(DOOR_CRUSH_DAMAGE)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	has_beeped = 0
 	if(arePowerSystemsOn())
 		playsound(src.loc, open_sound_powered, 100, 1)
 	else
@@ -1041,8 +1039,8 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/emp_act(var/severity)
 	if(prob(40/severity))
-		var/duration = SecondsToTicks(30 / severity)
-		if(electrified_until > -1 && (duration + world.time) > electrified_until)
+		var/duration = world.time + SecondsToTicks(30 / severity)
+		if(duration > electrified_until)
 			electrify(duration)
 	..()
 

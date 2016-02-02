@@ -47,11 +47,12 @@
 
 		if (!hasorgans(target))
 			return
+
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.robotic < 2)
+				if(!(I.status & ORGAN_ROBOT))
 					user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
 					"You start treating damage to [target]'s [I.name] with [tool_name]." )
 
@@ -69,12 +70,14 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for(var/obj/item/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.robotic < 2)
+				if(!(I.status & ORGAN_ROBOT))
 					user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
 					"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
 					I.damage = 0
+					if(I.organ_tag == O_EYES)
+						target.sdisabilities &= ~BLIND
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
@@ -178,8 +181,8 @@
 
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
-			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
+			var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
+			if(istype(I) && (I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in removable_organs
@@ -222,7 +225,7 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		var/obj/item/organ/O = tool
+		var/obj/item/organ/internal/O = tool
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!affected) return
 		var/organ_compatible
@@ -243,27 +246,21 @@
 		var/o_a =  (O.gender == PLURAL) ? "" : "a "
 		var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
 
-		if(O.organ_tag == "limb")
-			return 0
-		else if(target.species.has_organ[O.organ_tag])
+		if(O.damage > (O.max_damage * 0.75))
+			user << "<span class='warning'>\The [O.organ_tag] [o_is] in no state to be transplanted.</span>"
+			return SURGERY_FAILURE
 
-			if(O.damage > (O.max_damage * 0.75))
-				user << "<span class='warning'>\The [O.organ_tag] [o_is] in no state to be transplanted.</span>"
-				return SURGERY_FAILURE
-
-			if(!target.internal_organs_by_name[O.organ_tag])
-				organ_missing = 1
-			else
-				user << "<span class='warning'>\The [target] already has [o_a][O.organ_tag].</span>"
-				return SURGERY_FAILURE
-
-			if(O && affected.limb_name == O.parent_organ)
-				organ_compatible = 1
-			else
-				user << "<span class='warning'>\The [O.organ_tag] [o_do] normally go in \the [affected.name].</span>"
-				return SURGERY_FAILURE
+		if(!target.internal_organs_by_name[O.organ_tag])
+			organ_missing = 1
 		else
-			user << "<span class='warning'>You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag].</span>"
+			user << "<span class='warning'>\The [target] already has [o_a][O.organ_tag].</span>"
+			return SURGERY_FAILURE
+
+		if(O && affected.organ_tag == O.parent_organ)
+			organ_compatible = 1
+
+		else
+			user << "<span class='warning'>\The [O.organ_tag] [o_do] normally go in \the [affected.name].</span>"
 			return SURGERY_FAILURE
 
 		return ..() && organ_missing && organ_compatible
@@ -310,7 +307,7 @@
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
+			if(istype(I) && (I.status & ORGAN_CUT_AWAY) && !(I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs

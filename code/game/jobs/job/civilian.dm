@@ -1,6 +1,7 @@
 /obj/effect/landmark/start/citizen
 	name = "Citizen"
 
+
 /datum/job/civilian
 	title = "Colonist"
 	flag = CITIZEN
@@ -37,6 +38,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/botanic_leather(H), slot_gloves)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/device/analyzer/plant_analyzer(H), slot_s_store)
+
 		else
 			..(H, skip_suit, skip_hat, skip_shoes)
 	return 1

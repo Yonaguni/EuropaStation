@@ -33,6 +33,7 @@
 		available_turfs = start_turfs
 	return pick(available_turfs)
 
+
 /proc/turf_contains_dense_objects(var/turf/T)
 	return T.contains_dense_objects()
 

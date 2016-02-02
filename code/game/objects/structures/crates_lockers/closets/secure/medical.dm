@@ -7,7 +7,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_medical_equip)
+	req_access = list(access_medical)
 
 
 	New()
@@ -66,9 +66,11 @@
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_med(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/head/nursehat (src)
-		switch(pick("blue", "green", "purple"))
+		switch(pick("blue", "green", "purple", "black"))
 			if ("blue")
 				new /obj/item/clothing/under/rank/medical/blue(src)
 				new /obj/item/clothing/head/surgery/blue(src)
@@ -78,7 +80,10 @@
 			if ("purple")
 				new /obj/item/clothing/under/rank/medical/purple(src)
 				new /obj/item/clothing/head/surgery/purple(src)
-		switch(pick("blue", "green", "purple"))
+			if ("black")
+				new /obj/item/clothing/under/rank/medical/black(src)
+				new /obj/item/clothing/head/surgery/black(src)
+		switch(pick("blue", "green", "purple", "black"))
 			if ("blue")
 				new /obj/item/clothing/under/rank/medical/blue(src)
 				new /obj/item/clothing/head/surgery/blue(src)
@@ -88,17 +93,58 @@
 			if ("purple")
 				new /obj/item/clothing/under/rank/medical/purple(src)
 				new /obj/item/clothing/head/surgery/purple(src)
+			if ("black")
+				new /obj/item/clothing/under/rank/medical/black(src)
+				new /obj/item/clothing/head/surgery/black(src)
 		new /obj/item/clothing/under/rank/medical(src)
 		new /obj/item/clothing/under/rank/nurse(src)
 		new /obj/item/clothing/under/rank/orderly(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/clothing/suit/storage/toggle/fr_jacket(src)
 		new /obj/item/clothing/shoes/white(src)
-//		new /obj/item/weapon/cartridge/medical(src)
+		new /obj/item/weapon/cartridge/medical(src)
 		new /obj/item/device/radio/headset/headset_med(src)
+		new /obj/item/device/radio/headset/headset_med/alt(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/weapon/storage/box/freezer(src)
+		new /obj/item/weapon/storage/box/freezer(src)
+		new /obj/item/weapon/storage/box/freezer(src)
 		return
 
+/obj/structure/closet/secure_closet/paramedic
+	name = "paramedic locker"
+	desc = "Supplies for a first responder."
+	icon_state = "medical1"
+	icon_closed = "medical"
+	icon_locked = "medical1"
+	icon_opened = "medicalopen"
+	icon_broken = "medicalbroken"
+	icon_off = "medicaloff"
+	req_access = list(access_medical_equip)
 
+
+	New()
+		..()
+		new /obj/item/weapon/storage/box/autoinjectors(src)
+		new /obj/item/weapon/storage/box/syringes(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
+		new /obj/item/weapon/storage/belt/medical/emt(src)
+		new /obj/item/clothing/mask/gas(src)
+		new /obj/item/clothing/suit/storage/toggle/fr_jacket(src)
+		new /obj/item/clothing/suit/storage/toggle/labcoat/emt(src)
+		new /obj/item/device/radio/headset/headset_med/alt(src)
+		new /obj/item/weapon/cartridge/medical(src)
+		new /obj/item/device/flashlight(src)
+		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/clothing/glasses/hud/health(src)
+		new /obj/item/device/healthanalyzer(src)
+		new /obj/item/device/radio/off(src)
+		new /obj/random/medical(src)
+		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/extinguisher/mini(src)
+		new /obj/item/weapon/storage/box/freezer(src)
+		return
 
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
@@ -116,10 +162,12 @@
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_med(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
 		new /obj/item/clothing/suit/bio_suit/cmo(src)
 		new /obj/item/clothing/head/bio_hood/cmo(src)
 		new /obj/item/clothing/shoes/white(src)
-		switch(pick("blue", "green", "purple"))
+		switch(pick("blue", "green", "purple", "black"))
 			if ("blue")
 				new /obj/item/clothing/under/rank/medical/blue(src)
 				new /obj/item/clothing/head/surgery/blue(src)
@@ -129,15 +177,22 @@
 			if ("purple")
 				new /obj/item/clothing/under/rank/medical/purple(src)
 				new /obj/item/clothing/head/surgery/purple(src)
+			if ("black")
+				new /obj/item/clothing/under/rank/medical/black(src)
+				new /obj/item/clothing/head/surgery/black(src)
 		new /obj/item/clothing/under/rank/chief_medical_officer(src)
+		new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt(src)
 		new /obj/item/weapon/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
 		new /obj/item/device/radio/headset/heads/cmo(src)
+		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/weapon/storage/box/freezer(src)
 		return
 
 
