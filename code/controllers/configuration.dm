@@ -102,6 +102,8 @@ var/list/gamemode_cache = list()
 	var/wikiurl
 	var/forumurl
 	var/githuburl
+	var/rulesurl
+	var/mapurl
 
 	//Alert level description
 	var/alert_desc_green =       "All threats to the colony have passed. Thank you for your cooperation."
@@ -141,6 +143,8 @@ var/list/gamemode_cache = list()
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 
+	var/asteroid_z_levels = list()
+
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
 	var/run_speed = 0
@@ -172,6 +176,8 @@ var/list/gamemode_cache = list()
 	var/enter_allowed = 1
 
 	var/use_irc_bot = 0
+	var/use_node_bot = 0
+	var/irc_bot_port = 0
 	var/irc_bot_host = ""
 	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
 	var/main_irc = ""
@@ -217,7 +223,7 @@ var/list/gamemode_cache = list()
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
 	var/ghosts_can_possess_animals = 0
-
+	var/show_human_death_message = 1
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -340,6 +346,12 @@ var/list/gamemode_cache = list()
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
 
+				if ("asteroid_z_levels")
+					config.asteroid_z_levels = text2list(value, ";")
+					//Numbers get stored as strings, so we'll fix that right now.
+					for(var/z_level in config.asteroid_z_levels)
+						z_level = text2num(z_level)
+
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
 
@@ -421,9 +433,14 @@ var/list/gamemode_cache = list()
 				if ("forumurl")
 					config.forumurl = value
 
+				if ("rulesurl")
+					config.rulesurl = value
+
+				if ("mapurl")
+					config.mapurl = value
+
 				if ("githuburl")
 					config.githuburl = value
-
 				if ("ghosts_can_possess_animals")
 					config.ghosts_can_possess_animals = value
 
@@ -544,6 +561,12 @@ var/list/gamemode_cache = list()
 
 				if("use_irc_bot")
 					use_irc_bot = 1
+
+				if("use_node_bot")
+					use_node_bot = 1
+
+				if("irc_bot_port")
+					config.irc_bot_port = value
 
 				if("irc_bot_export")
 					irc_bot_export = 1
@@ -719,6 +742,8 @@ var/list/gamemode_cache = list()
 					config.health_threshold_softcrit = value
 				if("health_threshold_dead")
 					config.health_threshold_dead = value
+				if("show_human_death_message")
+					config.show_human_death_message = 1
 				if("revival_pod_plants")
 					config.revival_pod_plants = value
 				if("revival_cloning")

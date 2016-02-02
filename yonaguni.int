@@ -1,6 +1,11 @@
 // BEGIN_INTERNALS
 /*
-MAP_ICON_TYPE: 0
+LAST_COMPILE_TIME: 1454379194
+DIR: code code\game code\game\jobs code\game\jobs\job code\game\jobs\job\europa code\game\jobs\job\rimworld code\modules code\modules\europa code\modules\europa\mapgen code\modules\power maps 
 AUTO_FILE_DIR: OFF
+MAP_ICON_TYPE: 0
+LAST_COMPILE_VERSION: 509.1315
+WINDOW: code\modules\power\cable.dm
+FILE: code\modules\power\cable.dm
 */
 // END_INTERNALS

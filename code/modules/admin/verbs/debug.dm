@@ -16,7 +16,6 @@
 
 // callproc moved to code/modules/admin/callproc
 
-
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"

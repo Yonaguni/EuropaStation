@@ -11,9 +11,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/id.dmi')
+	sprite_sheets = list("Seromi" = 'icons/mob/species/seromi/id.dmi')
 
 	//Main variables
+	var/pdachoice = 1
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
@@ -150,7 +151,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	default_cartridge = /obj/item/weapon/cartridge/captain
 	icon_state = "pda-h"
 	detonate = 0
-	hidden = 1
+//	hidden = 1
 
 /obj/item/device/pda/cargo
 	default_cartridge = /obj/item/weapon/cartridge/quartermaster
@@ -310,13 +311,22 @@ var/global/list/obj/item/device/pda/PDAs = list()
  *	The Actual PDA
  */
 
-/obj/item/device/pda/New()
+/obj/item/device/pda/New(var/mob/living/carbon/human/H)
 	..()
 	PDAs += src
 	PDAs = sortAtom(PDAs)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
+	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
+	switch(pdachoice)
+		if(1) icon = 'icons/obj/pda.dmi'
+		if(2) icon = 'icons/obj/pda_slim.dmi'
+		if(3) icon = 'icons/obj/pda_old.dmi'
+		else
+			icon = 'icons/obj/pda_old.dmi'
+			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+
 
 /obj/item/device/pda/proc/can_use()
 
@@ -722,8 +732,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Message")
 
 			var/obj/item/device/pda/P = locate(href_list["target"])
-			var/tap = istype(U, /mob/living/carbon)
-			src.create_message(U, P, tap)
+			src.create_message(U, P, !href_list["notap"])
 			if(mode == 2)
 				if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
 					active_conversation = href_list["target"]
@@ -871,7 +880,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	overlays.Cut()
 	if(new_message || new_news)
-		overlays += image('icons/obj/pda.dmi', "pda-r")
+		overlays += image(icon, "pda-r")
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
 	//TODO: sometimes these attacks show up on the message server
@@ -950,7 +959,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P, var/tap = 1)
 	if(tap)
 		U.visible_message("<span class='notice'>\The [U] taps on \his PDA's screen.</span>")
-	U.last_target_click = world.time
 	var/t = input(U, "Please enter message", P.name, null) as text
 	t = sanitize(t)
 	//t = readd_quotes(t)
@@ -1042,7 +1050,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new_message(sending_device, sending_device.owner, sending_device.ownjob, message)
 
 /obj/item/device/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
-	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>)"
+	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=[istype(loc, /mob/living/silicon)];skiprefresh=1;target=\ref[sending_unit]'>Reply</a>)"
 	new_info(message_silent, ttone, reception_message)
 
 	log_pda("[usr] (PDA: [sending_unit]) sent \"[message]\" to [name]")
@@ -1054,7 +1062,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(ismob(sending_unit.loc) && isAI(loc))
 		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[html_encode(sender)]'>Follow</a>)"
 
-	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
+	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=1;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
 	new_info(message_silent, newstone, reception_message)
 
 	log_pda("[usr] (PDA: [sending_unit]) sent \"[message]\" to [name]")

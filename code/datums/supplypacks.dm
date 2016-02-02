@@ -51,6 +51,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/slides,
+					/obj/item/device/uv_light,
 					/obj/item/weapon/reagent_containers/spray/luminol)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -140,6 +141,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 					/obj/item/weapon/lipstick/random,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,
@@ -152,6 +154,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	containername = "Party equipment"
 	group = "Hospitality"
+
+/datum/supply_packs/lasertag
+	name = "Lasertag equipment"
+	contains = list(/obj/item/weapon/gun/energy/lasertag/red,
+					/obj/item/clothing/suit/redtag,
+					/obj/item/weapon/gun/energy/lasertag/blue,
+					/obj/item/clothing/suit/bluetag)
+	containertype = /obj/structure/closet
+	containername = "Lasertag Closet"
+	group = "Hospitality"
+	cost = 20
 
 /datum/supply_packs/internals
 	name = "Internals crate"
@@ -666,8 +679,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/melee/baton,
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/energy/taser,
-					/obj/item/weapon/gun/projectile/sec,
-					/obj/item/weapon/gun/projectile/sec,
+					/obj/item/weapon/gun/projectile/colt/detective,
+					/obj/item/weapon/gun/projectile/colt/detective,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/box/flashbangs)
 	cost = 40
@@ -955,7 +968,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Medical"
 
 /datum/supply_packs/randomised/costume
-	num_contained = 2
+	num_contained = 3
 	contains = list(/obj/item/clothing/suit/pirate,
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
@@ -1288,7 +1301,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Actor hats crate"
 	containertype = /obj/structure/closet
 	cost = 10
-	num_contained = 2
+	num_contained = 3
 	contains = list(/obj/item/clothing/head/redcoat,
 					/obj/item/clothing/head/mailman,
 					/obj/item/clothing/head/plaguedoctorhat,
@@ -1296,23 +1309,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/hasturhood,
 					/obj/item/clothing/head/powdered_wig,
 					/obj/item/clothing/head/hairflower,
+					/obj/item/clothing/head/hairflower/yellow,
+					/obj/item/clothing/head/hairflower/blue,
+					/obj/item/clothing/head/hairflower/pink,
 					/obj/item/clothing/mask/gas/owl_mask,
 					/obj/item/clothing/mask/gas/monkeymask,
 					/obj/item/clothing/head/helmet/gladiator,
 					/obj/item/clothing/head/ushanka)
 	group = "Miscellaneous"
-
-/datum/supply_packs/randomised/webbing
-	name = "Webbing crate"
-	num_contained = 1
-	contains = list(/obj/item/clothing/accessory/holster,
-					/obj/item/clothing/accessory/storage/brown_vest,
-					/obj/item/clothing/accessory/storage/webbing,
-					/obj/item/clothing/accessory/storage)
-	cost = 15
-	containertype = /obj/structure/closet/crate
-	containername = "Webbing crate"
-	group = "Operations"
 
 /datum/supply_packs/spare_pda
 	name = "Spare PDAs"
@@ -1329,7 +1333,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Pretty dress locker"
 	containertype = /obj/structure/closet
 	cost = 15
-	num_contained = 1
+	num_contained = 3
 	contains = list(/obj/item/clothing/under/wedding/bride_orange,
 					/obj/item/clothing/under/wedding/bride_purple,
 					/obj/item/clothing/under/wedding/bride_blue,

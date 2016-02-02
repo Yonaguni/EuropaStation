@@ -47,6 +47,11 @@
 	var/datum/money_account/initial_account         // put this here for easier tracking ingame
 	var/faction_conversion_cooldown = 0             // used by antagonist factions that convert minds to their cause.
 
+
+	//used for antag tcrystal trading, more info in code\game\objects\items\telecrystals.dm
+	var/accept_tcrystals = 0
+	var/tcrystals = 0
+
 /datum/mind/New(var/key)
 	src.key = key
 
@@ -321,14 +326,11 @@
 				memory = null//Remove any memory they may have had.
 			if("crystals")
 				if (usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 					var/crystals
-					if (suplink)
-						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = tcrystals
+					crystals = input("Amount of telecrystals for [key]", crystals) as null|num
 					if (!isnull(crystals))
-						if (suplink)
-							suplink.uses = crystals
+						tcrystals = crystals
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1

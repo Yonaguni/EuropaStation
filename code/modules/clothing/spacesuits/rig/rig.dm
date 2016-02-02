@@ -307,7 +307,7 @@
 		if(piece.loc != src && !(wearer && piece.loc == wearer))
 			if(istype(piece.loc, /mob/living))
 				M = piece.loc
-				M.drop_from_inventory(piece)
+				M.unEquip(piece)
 			piece.forceMove(src)
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
@@ -680,7 +680,8 @@
 	..()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
-	wearer.wearing_rig = null
+	if(wearer && wearer.wearing_rig == src)
+		wearer.wearing_rig = null
 	wearer = null
 
 //Todo
@@ -852,7 +853,6 @@
 		return 0
 
 	// AIs are a bit slower than regular and ignore move intent.
-	wearer.last_move_intent = world.time + ai_controlled_move_delay
 	wearer_move_delay = world.time + ai_controlled_move_delay
 
 	var/tickcomp = 0

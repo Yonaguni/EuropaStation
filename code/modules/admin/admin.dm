@@ -8,14 +8,14 @@ var/global/floorIsLava = 0
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if((R_ADMIN|R_MOD) & C.holder.rights)
 			C << msg
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
 				C << msg
@@ -720,6 +720,19 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/togglehubvisibility()
+	set category = "Server"
+	set desc="Globally Toggles Hub Visibility"
+	set name="Toggle Hub Visibility"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	world.visibility = !(world.visibility)
+	log_admin("[key_name(usr)] toggled hub visibility.")
+	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).", 1)
+	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
+
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
 	set desc="Toggle traitor scaling"
@@ -1288,7 +1301,7 @@ proc/admin_notice(var/message, var/rights)
 
 	var/datum/antagonist/antag = all_antag_types[antag_type]
 	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
-	antag.attempt_auto_spawn()
+	antag.attempt_late_spawn()
 
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
@@ -1307,7 +1320,8 @@ proc/admin_notice(var/message, var/rights)
 
 	message_admins("[key_name(usr)] attempting to force mode latespawn.")
 	ticker.mode.next_spawn = 0
-	ticker.mode.process_autoantag()
+	//ticker.mode.process_autoantag()
+	//TODO
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"

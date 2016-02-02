@@ -23,6 +23,24 @@
 	item_state = "lb_suit"
 	worn_state = "qm"
 
+/obj/item/clothing/under/rank/cargo/skirt
+	name = "quartermaster's jumpskirt"
+	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	icon_state = "qmf"
+	worn_state = "qmf"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/under/rank/cargo/jeans
+	name = "quartermaster's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "qmj"
+	worn_state = "qmj"
+
+/obj/item/clothing/under/rank/cargo/jeans/female
+	name = "quartermaster's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "qmjf"
+	worn_state = "qmjf"
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
@@ -31,6 +49,24 @@
 	item_state = "lb_suit"
 	worn_state = "cargo"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/under/rank/cargotech/skirt
+	name = "cargo technician's jumpskirt"
+	desc = "Skirrrrrts! They're comfy and easy to wear!"
+	icon_state = "cargof"
+	worn_state = "cargof"
+
+/obj/item/clothing/under/rank/cargotech/jeans
+	name = "cargo technician's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "cargoj"
+	worn_state = "cargoj"
+
+/obj/item/clothing/under/rank/cargotech/jeans/female
+	name = "cargo technician's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "cargojf"
+	worn_state = "cargojf"
 
 
 /obj/item/clothing/under/rank/chaplain

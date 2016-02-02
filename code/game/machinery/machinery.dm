@@ -96,6 +96,8 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
+	w_class = 10
+
 	var/stat = 0
 	var/emagged = 0
 	var/use_power = 1
@@ -198,10 +200,7 @@ Class Procs:
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/CanUseTopic(var/mob/user)
-	if(stat & BROKEN)
-		return STATUS_CLOSE
-
-	if(!interact_offline && (stat & NOPOWER))
+	if(!interact_offline && (stat & (NOPOWER|BROKEN)))
 		return STATUS_CLOSE
 
 	return ..()
@@ -240,8 +239,8 @@ Class Procs:
 */
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+		if(H.getBrainLoss() >= 55)
+			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
 			return 1
 		else if(prob(H.getBrainLoss()))
 			user << "<span class='warning'>You momentarily forget how to use [src].</span>"

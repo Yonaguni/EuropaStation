@@ -25,13 +25,12 @@ var/list/global_map = null
 
 // Noises made when hit while typing.
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
-
-
-var/diary               = null
+var/diary				= null
 var/href_logfile        = null
 var/default_role 		= "Citizen"
 var/station_name        = "Europa Station"
 var/station_short       = "Yonaguni Dome"
+var/const/dock_name     = "Interstellar Spaceport"
 var/const/boss_name     = "SolGov Colony Link"
 var/const/boss_short    = "SCL"
 var/const/company_name  = "P&B Mining and Fabrication"
@@ -39,8 +38,19 @@ var/const/company_short = "Company"
 var/game_version        = "Yonaguni"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
-
 var/round_progressing = 1
+
+	//On some maps, it does not make sense for space turf to appear when something blows up (e.g. on an asteroid colony, or planetside)
+	//The turf listed here is what is created after ex_act() and other tile-destroying procs are called on a turf that
+	//is not already in a blacklisted area.
+	//Set to 1 to enable it.
+var/destroy_floor_override = 1
+	//Below is the path of turf used in place of space tiles.
+var/destroy_floor_override_path = /turf/simulated/mineral/floor
+	//A list of z-levels to apply the override to.  This is so z-levels like tcomms work as they did before.
+var/list/destroy_floor_override_z_levels = list(1,4,5)
+	//Some areas you may want to not turn into the override path you made above, like space or the solars.
+var/list/destroy_floor_override_ignore_areas = list()
 var/master_mode       = "extended" // "extended"
 var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
@@ -58,10 +68,11 @@ var/list/wizardstart     = list()
 var/list/newplayer_start = list()
 
 //Spawnpoints.
-var/list/latejoin         = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo    = list()
-var/list/latejoin_cyborg  = list()
+var/list/latejoin          = list()
+var/list/latejoin_gateway  = list()
+var/list/latejoin_elevator = list()
+var/list/latejoin_cryo     = list()
+var/list/latejoin_cyborg   = list()
 
 var/list/prisonwarp         = list() // Prisoners go to these
 var/list/holdingfacility    = list() // Captured people go here
@@ -72,6 +83,7 @@ var/list/tdomeobserve       = list()
 var/list/tdomeadmin         = list()
 var/list/prisonsecuritywarp = list() // Prison security goes to these.
 var/list/prisonwarped       = list() // List of players already warped.
+var/list/blobstart          = list()
 var/list/ninjastart         = list()
 
 var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)

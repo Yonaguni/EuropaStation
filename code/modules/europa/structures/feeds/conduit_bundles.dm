@@ -6,7 +6,7 @@
 	max_amount = 30
 	amount = 30
 
-	var/build_type = "conduit"
+	var/con_build_type = "conduit" // This will need to be looked at.
 	var/build_path = /obj/structure/conduit
 	var/row_type = "feed conduits"
 	var/place_row = 0
@@ -36,25 +36,25 @@
 
 /obj/item/stack/conduit/data
 	name = "network cable bundle"
-	build_type = "data_cable"
+	con_build_type = "data_cable"
 	build_path = /obj/structure/conduit/data
 	icon_state = "network_cable"
 	color = "#000077"
 
 /obj/item/stack/conduit/matter
 	name = "matter feed bundle"
-	build_type = "matter_feed"
+	con_build_type = "matter_feed"
 	build_path = /obj/structure/conduit/matter
 	color = "#999999"
 
 /obj/item/stack/conduit/disposals
 	name = "disposals pipe bundle"
-	build_type = "disposals"
+	con_build_type = "disposals"
 	build_path = /obj/structure/conduit/disposals
 
 /obj/item/stack/conduit/power
 	name = "power cable"
 	icon_state = "power"
-	build_type = "power"
+	con_build_type = "power"
 	build_path = /obj/structure/conduit/power
 	color = "#FF0000"

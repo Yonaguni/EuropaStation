@@ -110,6 +110,7 @@
 			cell.use(7000/450*10)
 
 
+
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
 	user << "The charge meter reads: [round(chargepercentage())]%"
@@ -209,6 +210,7 @@
 	if(occupant)
 		return
 	if(!hascell(M))
+
 		return
 
 	add_fingerprint(M)

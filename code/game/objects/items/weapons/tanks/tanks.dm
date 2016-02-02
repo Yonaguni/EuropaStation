@@ -24,7 +24,7 @@ var/list/global/tank_gauge_cache = list()
 	throw_range = 4
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/back.dmi'
+		"Seromi" = 'icons/mob/species/seromi/back.dmi'
 		)
 
 	var/datum/gas_mixture/air_contents = null
@@ -282,7 +282,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
-		log_debug("<span class='warning'>[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]</span>")
+		log_debug("\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]")
 		#endif
 
 		if(integrity <= 0)
@@ -297,7 +297,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_LEAK_PRESSURE)
 		#ifdef FIREDBG
-		log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")
+		log_debug("\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]")
 		#endif
 
 		if(integrity <= 0)

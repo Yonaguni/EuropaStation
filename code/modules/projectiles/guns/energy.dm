@@ -19,7 +19,7 @@
 	var/recharge_time = 4
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/switch_firemodes()
+/obj/item/weapon/gun/energy/switch_firemodes(mob/user)
 	if(..())
 		update_icon()
 
@@ -90,7 +90,7 @@
 	user << "Has [shots_remaining] shot\s remaining."
 	return
 
-/obj/item/weapon/gun/energy/update_icon()
+/obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = power_supply.charge / power_supply.maxcharge
 
@@ -104,4 +104,4 @@
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
-	update_held_icon()
+	if(!ignore_inhands) update_held_icon()

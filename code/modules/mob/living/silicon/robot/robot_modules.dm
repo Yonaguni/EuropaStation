@@ -91,15 +91,6 @@ var/global/list/robot_modules = list(
 	return
 
 /obj/item/weapon/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
-	var/obj/item/device/flash/F = locate() in src.modules
-	if(F)
-		if(F.broken)
-			F.broken = 0
-			F.times_used = 0
-			F.icon_state = "flash"
-		else if(F.times_used)
-			F.times_used--
-
 	if(!synths || !synths.len)
 		return
 
@@ -268,6 +259,7 @@ var/global/list/robot_modules = list(
 	..()
 
 /obj/item/weapon/robot_module/medical/crisis/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+
 	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
@@ -307,6 +299,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
+	src.modules += new /obj/item/device/floor_painter(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal()
 	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel()
@@ -347,6 +340,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/analyzer(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/weapon/gripper(src)
+	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.emag = new /obj/item/borg/stun(src)
 
@@ -412,7 +406,13 @@ var/global/list/robot_modules = list(
 	..()
 
 /obj/item/weapon/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	..()
+	var/obj/item/device/flash/F = locate() in src.modules
+	if(F.broken)
+		F.broken = 0
+		F.times_used = 0
+		F.icon_state = "flash"
+	else if(F.times_used)
+		F.times_used--
 	var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
 	if(T.power_supply.charge < T.power_supply.maxcharge)
 		T.power_supply.give(T.charge_cost * amount)
@@ -442,7 +442,6 @@ var/global/list/robot_modules = list(
 	..()
 
 /obj/item/weapon/robot_module/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	..()
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	if(src.emag)
@@ -509,7 +508,6 @@ var/global/list/robot_modules = list(
 	..()
 
 /obj/item/weapon/robot_module/general/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	..()
 	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
 	if(src.emag)
@@ -620,3 +618,98 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	..()
 
+/obj/item/weapon/robot_module/drone
+	name = "drone module"
+	no_slip = 1
+	networks = list(NETWORK_ENGINEERING)
+
+/obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/robot)
+	src.modules += new /obj/item/weapon/weldingtool(src)
+	src.modules += new /obj/item/weapon/screwdriver(src)
+	src.modules += new /obj/item/weapon/wrench(src)
+	src.modules += new /obj/item/weapon/crowbar(src)
+	src.modules += new /obj/item/weapon/wirecutters(src)
+	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/weapon/gripper(src)
+	src.modules += new /obj/item/weapon/soap(src)
+	src.modules += new /obj/item/weapon/extinguisher(src)
+	src.modules += new /obj/item/device/pipe_painter(src)
+	src.modules += new /obj/item/device/floor_painter(src)
+
+	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
+	src.modules += robot.internals
+
+	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.emag.name = "Plasma Cutter"
+
+	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
+	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(2000)
+	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(1000)
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
+	synths += metal
+	synths += glass
+	synths += wood
+	synths += plastic
+	synths += wire
+
+	var/obj/item/weapon/matter_decompiler/MD = new /obj/item/weapon/matter_decompiler(src)
+	MD.metal = metal
+	MD.glass = glass
+	MD.wood = wood
+	MD.plastic = plastic
+	src.modules += MD
+
+	var/obj/item/stack/material/cyborg/steel/M = new (src)
+	M.synths = list(metal)
+	src.modules += M
+
+	var/obj/item/stack/material/cyborg/glass/G = new (src)
+	G.synths = list(glass)
+	src.modules += G
+
+	var/obj/item/stack/rods/cyborg/R = new /obj/item/stack/rods/cyborg(src)
+	R.synths = list(metal)
+	src.modules += R
+
+	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
+	C.synths = list(wire)
+	src.modules += C
+
+	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
+	S.synths = list(metal)
+	src.modules += S
+
+	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
+	RG.synths = list(metal, glass)
+	src.modules += RG
+
+	var/obj/item/stack/tile/wood/cyborg/WT = new /obj/item/stack/tile/wood/cyborg(src)
+	WT.synths = list(wood)
+	src.modules += WT
+
+	var/obj/item/stack/material/cyborg/wood/W = new (src)
+	W.synths = list(wood)
+	src.modules += W
+
+	var/obj/item/stack/material/cyborg/plastic/P = new (src)
+	P.synths = list(plastic)
+	src.modules += P
+
+	..()
+
+/obj/item/weapon/robot_module/drone/construction
+	name = "construction drone module"
+	channels = list("Engineering" = 1)
+	languages = list()
+
+/obj/item/weapon/robot_module/drone/construction/New()
+	src.modules += new /obj/item/weapon/rcd/borg(src)
+	..()
+
+/obj/item/weapon/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	var/obj/item/device/lightreplacer/LR = locate() in src.modules
+	LR.Charge(R, amount)
+	..()
+	return

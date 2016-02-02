@@ -199,7 +199,6 @@ FORUMURL http://wetskrell.org/water/index.php
 
 ## GitHub address
 GITHUBURL https://github.com/Yonaguni/EuropaStation
-
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 BANAPPEALS http://wetskrell.org/water/viewforum.php?f=14&sid=04186ae7bef140a997928f0b060e524b
 
@@ -360,6 +359,7 @@ ERT_SPECIES Human
 
 ## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
 GENERATE_ASTEROID
+
 
 ## Uncomment to enable organ decay outside of a body or storage item.
 #ORGANS_CAN_DECAY

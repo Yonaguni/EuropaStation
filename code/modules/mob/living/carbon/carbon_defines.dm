@@ -32,3 +32,6 @@
 	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
 	var/handling_hal = 0
 	var/hal_crit = 0
+
+	var/does_not_breathe = 0 //Used for specific mobs that can't take advantage of the species flags (changelings)
+

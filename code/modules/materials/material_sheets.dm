@@ -9,7 +9,7 @@
 
 	var/default_type = DEFAULT_WALL_MATERIAL
 	var/material/material
-	var/perunit
+	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
 
 /obj/item/stack/material/New()
@@ -26,7 +26,6 @@
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
-	perunit = SHEET_MATERIAL_AMOUNT
 
 	if(apply_colour)
 		color = material.icon_colour

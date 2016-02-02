@@ -1,6 +1,6 @@
-/obj/item/organ/gills
+/obj/item/organ/internal/gills
 	name = "gills"
 	icon_state = "lungs"
 	gender = PLURAL
-	organ_tag = "gills"
-	parent_organ = "head"
+	organ_tag = O_GILLS
+	parent_organ = BP_HEAD

@@ -10,17 +10,18 @@
 	sugar		spawn_reagent = "sugar"
 
 	// Chemistry
-	hydrazine	spawn_reagent = "hydrazine"
+	hydrogen	spawn_reagent = "hydrogen"
 	lithium		spawn_reagent = "lithium"
 	carbon		spawn_reagent = "carbon"
-	ammonia		spawn_reagent = "ammonia"
-	acetone		spawn_reagent = "acetone"
+	nitrogen	spawn_reagent = "nitrogen"
+	oxygen		spawn_reagent = "oxygen"
+	fluorine	spawn_reagent = "fluorine"
 	sodium		spawn_reagent = "sodium"
 	aluminum	spawn_reagent = "aluminum"
 	silicon		spawn_reagent = "silicon"
 	phosphorus	spawn_reagent = "phosphorus"
 	sulfur		spawn_reagent = "sulfur"
-	hclacid		spawn_reagent = "hclacid"
+	chlorine	spawn_reagent = "chlorine"
 	potassium	spawn_reagent = "potassium"
 	iron		spawn_reagent = "iron"
 	copper		spawn_reagent = "copper"
@@ -46,8 +47,6 @@
 
 	// Bar, soft
 	ice			spawn_reagent = "ice"
-	coffee		spawn_reagent = "coffee"
-	cream		spawn_reagent = "cream"
 	tea			spawn_reagent = "tea"
 	icetea		spawn_reagent = "icetea"
 	cola		spawn_reagent = "cola"
@@ -60,6 +59,14 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
+
+	// Bar, coffee
+	coffee		spawn_reagent = "coffee"
+	cafe_latte	spawn_reagent = "cafe_latte"
+	soy_latte	spawn_reagent = "soy_latte"
+	hot_coco	spawn_reagent = "hot_coco"
+	milk		spawn_reagent = "milk"
+	cream		spawn_reagent = "cream"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"

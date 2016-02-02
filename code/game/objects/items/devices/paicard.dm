@@ -5,6 +5,8 @@
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
+	show_messages = 1
+
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai

@@ -125,24 +125,7 @@
 	*/
 
 	if(volume >= 3)
-		if(T.wet >= 1)
-			return
-		T.wet = 1
-		if(T.wet_overlay)
-			T.overlays -= T.wet_overlay
-			T.wet_overlay = null
-		T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-		T.overlays += T.wet_overlay
-
-		spawn(800) // This is terrible and needs to be changed when possible.
-			if(!T || !istype(T))
-				return
-			if(T.wet >= 2)
-				return
-			T.wet = 0
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
+		T.wet_floor()
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
@@ -235,11 +218,11 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA || alien == IS_MACHINE)
+	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN)))
+		if(!H.can_feel_pain())
 			return
 	if(dose < 5 && (dose == metabolism || prob(5)))
 		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
@@ -270,7 +253,7 @@
 	var/obj/item/safe_thing = null
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & NO_PAIN))
+		if(!H.can_feel_pain())
 			return
 		if(H.head)
 			if(H.head.body_parts_covered & EYES)
@@ -316,7 +299,7 @@
 /datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN)))
+		if(!H.can_feel_pain())
 			return
 	if(dose == metabolism)
 		M << "<span class='danger'>You feel like your insides are burning!</span>"
@@ -504,6 +487,10 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
+
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
@@ -521,6 +508,10 @@
 	glass_name = "glass of cream"
 	glass_desc = "Ewwww..."
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of cream"
+	cup_desc = "Ewwww..."
+
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
@@ -530,6 +521,10 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -575,8 +570,12 @@
 	overdose = 45
 
 	glass_icon_state = "hot_coffee"
-	glass_name = "cup of coffee"
-	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
+	glass_name = "mug of coffee"
+	glass_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of coffee"
+	cup_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -610,8 +609,12 @@
 
 	glass_icon_state = "soy_latte"
 	glass_name = "glass of soy latte"
-	glass_desc = "A nice and refrshing beverage while you are reading."
+	glass_desc = "A nice and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
+
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of soy latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
 
 /datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -629,6 +632,10 @@
 	glass_desc = "A nice, strong and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of cafe latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
+
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
@@ -645,6 +652,10 @@
 	glass_icon_state = "chocolateglass"
 	glass_name = "glass of hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
+
+	cup_icon_state = "cup_coco"
+	cup_name = "cup of hot chocolate"
+	cup_desc = "Made with love! And cocoa beans."
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"
@@ -1730,7 +1741,7 @@
 		M.adjustToxLoss(2 * removed)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/heart/L = H.internal_organs_by_name["heart"]
+		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[O_HEART]
 		if (L && istype(L))
 			if(dose < 120)
 				L.take_damage(10 * removed, 0)
@@ -1937,11 +1948,11 @@
 /datum/reagent/ethanol/specialwhiskey // I have no idea what this is and where it comes from
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
-	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
-	color = "#664300"
-	strength = 25
+	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything. The smell of it singes your nostrils."
+	color = "#523600"
+	strength = 7
 
 	glass_icon_state = "whiskeyglass"
 	glass_name = "glass of special blend whiskey"
-	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything. The smell of it singes your nostrils."
 	glass_center_of_mass = list("x"=16, "y"=12)

@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude
+/obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude //Except burstfire isn't fit for an rp server --Mark
 	name = "prototype SMG"
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "saber"	//ugly
@@ -10,11 +10,10 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	multi_aim = 1
 	burst_delay = 2
-
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1,-2,-2), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+//		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1,-2,-2), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
@@ -65,13 +64,13 @@
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2),       dispersion=list(0.0, 0.6, 0.6)),
-		list(mode_name="short bursts", 	burst=5, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2,-2,-3), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+//		list(mode_name="short bursts", 	burst=5, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2,-2,-3), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
-/obj/item/weapon/gun/projectile/automatic/sts35/update_icon()
+/obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
 	icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
-	update_held_icon()
+	if(!ignore_inhands) update_held_icon()
 
 /obj/item/weapon/gun/projectile/automatic/wt550
 	name = "machine pistol"
@@ -113,7 +112,7 @@
 	burst_delay = 4
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1,    fire_delay=0,    move_delay=null, use_launcher=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3,    fire_delay=null, move_delay=6,    use_launcher=null, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 0.6)),
+		list(mode_name="2-round bursts", burst=2,    fire_delay=null, move_delay=6,    use_launcher=null, burst_accuracy=list(0,-1), dispersion=list(0.0, 0.6)),
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null, use_launcher=1,    burst_accuracy=null, dispersion=null)
 		)
 
@@ -140,7 +139,7 @@
 	if(use_launcher)
 		launcher.Fire(target, user, params, pointblank, reflex)
 		if(!launcher.chambered)
-			switch_firemodes() //switch back automatically
+			switch_firemodes(user) //switch back automatically
 	else
 		..()
 
@@ -176,8 +175,9 @@
 	magazine_type = /obj/item/ammo_magazine/a762
 
 	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		list(mode_name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2),          dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(mode_name="long bursts",	burst=8, move_delay=8, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 	var/cover_open = 0
@@ -219,3 +219,32 @@
 		user << "<span class='warning'>You need to open the cover to unload [src].</span>"
 		return
 	..()
+
+/obj/item/weapon/gun/projectile/automatic/as24
+	name = "\improper AS-24 automatic shotgun"
+	desc = "A durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
+	icon_state = "ashot"
+	item_state = null
+	w_class = 4
+	force = 10
+	caliber = "shotgun"
+	slot_flags = SLOT_BACK
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/g12
+
+	firemodes = list(
+		list(mode_name="semiauto", burst=1, fire_delay=0),
+		list(mode_name="3-round bursts", burst=3, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.0, 0.6, 0.6)),
+//		list(mode_name="6-round bursts", burst=6, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2, 1.2)),
+		)
+
+/obj/item/weapon/gun/projectile/automatic/as24/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "ashot-[round(ammo_magazine.stored_ammo.len,12)]"
+	else
+		icon_state = "ashot"
+	return
+
+
+

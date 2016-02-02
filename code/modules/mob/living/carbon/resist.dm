@@ -29,8 +29,8 @@
 /mob/living/carbon/proc/escape_handcuffs()
 	//if(!(last_special <= world.time)) return
 
-	//These two lines represent a significant buff to grabs...
-	if(!canClick()) return
+	//This line represent a significant buff to grabs...
+	// We don't have to check the click cooldown because /mob/living/verb/resist() has done it for us, we can simply set the delay
 	setClickCooldown(100)
 
 	if(can_break_cuffs()) //Don't want to do a lot of logic gating here.
@@ -53,15 +53,15 @@
 		displaytime /= 2
 
 	visible_message(
-		"<span class='danger'>[src] attempts to remove \the [HC]!</span>",
+		"<span class='danger'>\The [src] attempts to remove \the [HC]!</span>",
 		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
 		)
 
 	if(do_after(src, breakouttime))
-		if(!handcuffed || buckled)
+		if(!handcuffed)
 			return
 		visible_message(
-			"<span class='danger'>[src] manages to remove \the [handcuffed]!</span>",
+			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",
 			"<span class='notice'>You successfully remove \the [handcuffed].</span>"
 			)
 		drop_from_inventory(handcuffed)

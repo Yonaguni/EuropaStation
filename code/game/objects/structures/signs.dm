@@ -4,6 +4,7 @@
 	opacity = 0
 	density = 0
 	layer = 3.5
+	w_class = 3
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
@@ -143,7 +144,7 @@
 
 /obj/structure/sign/kiddieplaque
 	name = "\improper AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
+	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be developmentally disabled. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/atmosplaque
@@ -198,5 +199,22 @@
 
 /obj/structure/sign/directions/evac
 	name = "\improper Escape Arm"
-	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	desc = "A direction sign, pointing out which way the Escape Shuttle dock is."
 	icon_state = "direction_evac"
+
+/obj/structure/sign/directions/cargo
+	name = "\improper Cargo department"
+	desc = "A direction sign, pointing out which way the Cargo department is."
+	icon_state = "direction_crg"
+
+/obj/structure/sign/christmas/lights
+	name = "Christmas lights"
+	desc = "Flashy and pretty."
+	icon = 'icons/obj/christmas.dmi'
+	icon_state = "xmaslights"
+
+/obj/structure/sign/christmas/wreath
+	name = "wreath"
+	desc = "Prickly and festive."
+	icon = 'icons/obj/christmas.dmi'
+	icon_state = "doorwreath"

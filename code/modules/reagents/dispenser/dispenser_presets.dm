@@ -1,16 +1,17 @@
 /obj/machinery/chemical_dispenser/full
 	spawn_cartridges = list(
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrazine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrogen,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/carbon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ammonia,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/acetone,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/nitrogen,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/oxygen,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/fluorine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sodium,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/aluminum,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/silicon,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/phosphorus,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sulfur,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hclacid,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chlorine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/potassium,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/iron,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/copper,
@@ -110,4 +111,23 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
+		)
+
+/obj/machinery/chemical_dispenser/bar_coffee
+	name = "coffee dispenser"
+	desc = "Driving crack dealers out of employment since 2280."
+	icon_state = "coffee_dispenser"
+	ui_title = "Coffee Dispenser"
+	accept_drinking = 1
+
+/obj/machinery/chemical_dispenser/bar_coffee/full
+	spawn_cartridges = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice
 		)

@@ -15,7 +15,7 @@
 
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
-		
+
 		if(propname == "mode_name")
 			name = propvalue
 		if(isnull(propvalue))
@@ -64,6 +64,9 @@
 	var/scoped_accuracy = null
 	var/list/burst_accuracy = list(0) //allows for different accuracies for each shot in a burst. Applied on top of accuracy
 	var/list/dispersion = list(0)
+	var/mode_name = null
+	var/requires_two_hands
+	var/wielded_icon = "gun_wielded"
 
 	var/next_fire_time = 0
 
@@ -87,17 +90,30 @@
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
 
+/obj/item/weapon/gun/update_held_icon()
+	if(requires_two_hands)
+		var/mob/living/M = loc
+		if(istype(M))
+			if((M.l_hand == src && !M.r_hand) || (M.r_hand == src && !M.l_hand))
+				name = "[initial(name)] (wielded)"
+				item_state = wielded_icon
+			else
+				name = initial(name)
+				item_state = initial(item_state)
+				update_icon(ignore_inhands=1) // In case item_state is set somewhere else.
+	..()
+
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
 /obj/item/weapon/gun/proc/special_check(var/mob/user)
+
 	if(!istype(user, /mob/living))
 		return 0
 	if(!user.IsAdvancedToolUser())
 		return 0
 
 	var/mob/living/M = user
-
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
 		return 0
@@ -107,7 +123,7 @@
 			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
 				user.visible_message(
-					"<span class='danger'>[user] shoots \himself in the foot with \the [src]!</span>",
+					"<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>",
 					"<span class='danger'>You shoot yourself in the foot with \the [src]!</span>"
 					)
 				M.drop_item()
@@ -123,16 +139,16 @@
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
-	//decide whether to aim or shoot normally
-	var/aiming = 0
-	if(user && user.client && !(A in aim_targets))
-		if(user.client.gun_mode)
-			aiming = PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	if (!aiming)
-		if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-			user << "\red You refrain from firing your [src] as your intent is set to help."
-		else
-			Fire(A,user,params) //Otherwise, fire normally.
+	if(!user.aiming)
+		user.aiming = new(user)
+	if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A)
+		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
+		return
+
+	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
+		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
+	else
+		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && ishuman(user) && user.zone_sel.selecting == "mouth" && !mouthshoot)
@@ -161,6 +177,13 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
+	var/held_acc_mod = 0
+	var/held_disp_mod = 0
+	if(requires_two_hands)
+		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
+			held_acc_mod = -3
+			held_disp_mod = 3
+
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
@@ -169,8 +192,8 @@
 			handle_click_empty(user)
 			break
 
-		var/acc = burst_accuracy[min(i, burst_accuracy.len)]
-		var/disp = dispersion[min(i, dispersion.len)]
+		var/acc = burst_accuracy[min(i, burst_accuracy.len)] + held_acc_mod
+		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
 		process_accuracy(projectile, user, target, acc, disp)
 
 		if(pointblank)
@@ -187,10 +210,10 @@
 			target = targloc
 			pointblank = 0
 
-	update_held_icon()
+	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
 
 	//update timing
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+	user.setClickCooldown(4)
 	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
@@ -306,6 +329,14 @@
 
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
+//apart of reskins that have two sprites, touching may result in frustration and breaks
+/obj/item/weapon/gun/projectile/colt/detective/attack_hand(var/mob/living/user)
+	if(!unique_reskin && loc == user)
+		reskin_gun(user)
+		return
+	..()
+
+
 //Suicide handling.
 /obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
@@ -386,7 +417,4 @@
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	var/datum/firemode/new_mode = switch_firemodes(user)
-	if(new_mode)
-		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
-
+	switch_firemodes(user)

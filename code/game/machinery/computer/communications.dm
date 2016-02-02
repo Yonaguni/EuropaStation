@@ -49,7 +49,9 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	if(..())
 		return 1
-
+	if (src.z > 1)
+		usr << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+		return
 	usr.set_machine(src)
 
 	if(!href_list["operation"])
@@ -67,8 +69,8 @@
 			if (I && istype(I))
 				if(src.check_access(I))
 					authenticated = 1
-				//if(access_captain in I.access)
-					//authenticated = 2
+				if(access_captain in I.access)
+					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
@@ -81,7 +83,7 @@
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if (I && istype(I))
-				if(access_heads in I.access) //Let heads change the alert level.
+				if(access_captain in I.access || access_heads in I.access) //Let heads change the alert level.
 					var/old_level = security_level
 					if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 					if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN
@@ -105,7 +107,7 @@
 				usr << "You need to swipe your ID."
 
 		if("announce")
-			if(src.authenticated==1)
+			if(src.authenticated==2)
 				if(message_cooldown)
 					usr << "Please allow at least one minute to pass between announcements"
 					return
@@ -182,7 +184,7 @@
 
 		// OMG CENTCOMM LETTERHEAD
 		if("MessageCentcomm")
-			if(src.authenticated==1)
+			if(src.authenticated==2)
 				if(centcomm_message_cooldown)
 					usr << "<span class='warning'>Arrays cycling. Please stand by.</span>"
 					return
@@ -193,16 +195,16 @@
 				if(!input || !(usr in view(1,src)))
 					return
 				Centcomm_announce(input, usr)
-				usr << "<span class='notice'>Message transmitted.</span>"
+				usr << "\blue Message transmitted."
 				log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
-				spawn(300)//30 second cooldown
+				spawn(300)//10 minute cooldown
 					centcomm_message_cooldown = 0
 
 
 		// OMG SYNDICATE ...LETTERHEAD
 		if("MessageSyndicate")
-			if((src.authenticated==1) && (src.emagged))
+			if((src.authenticated==2) && (src.emagged))
 				if(centcomm_message_cooldown)
 					usr << "<span class='warning'>Arrays cycling. Please stand by.</span>"
 					return
@@ -210,7 +212,7 @@
 				if(!input || !(usr in view(1,src)))
 					return
 				Syndicate_announce(input, usr)
-				usr << "<span class='notice'>Message transmitted.</span>"
+				usr << "\blue Message transmitted."
 				log_say("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(300)//10 minute cooldown
@@ -281,6 +283,9 @@
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
 	if(..())
 		return
+	if (src.z > 6)
+		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+		return
 
 	user.set_machine(src)
 	var/dat = "<head><title>Communications Console</title></head><body>"
@@ -300,7 +305,7 @@
 		if(STATE_DEFAULT)
 			if (src.authenticated)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]"
-				if (src.authenticated==1)
+				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
 					if(src.emagged == 0)
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send an emergency message to [boss_short]</A> \]"
@@ -468,10 +473,7 @@
 
 
 /proc/is_relay_online()
-    for(var/obj/machinery/bluespacerelay/M in machines)
-        if(M.stat == 0)
-            return 1
-    return 0
+	return 1
 
 /obj/machinery/computer/communications/proc/post_status(var/command, var/data1, var/data2)
 

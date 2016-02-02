@@ -23,20 +23,6 @@
 	reagent_state = SOLID
 	color = "#A8A8A8"
 
-/datum/reagent/ammonia
-	name = "Ammonia"
-	id = "ammonia"
-	description = "A caustic substance commonly used in fertilizer or household cleaners."
-	reagent_state = LIQUID
-	color = "#404030"
-	metabolism = REM * 0.5
-
-/datum/reagent/ammonia/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustOxyLoss(-removed * 10)
-	else if(alien != IS_DIONA)
-		M.adjustToxLoss(removed * 1.5)
-
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
@@ -64,6 +50,19 @@
 		else
 			dirtoverlay.alpha = min(dirtoverlay.alpha + volume * 30, 255)
 
+/datum/reagent/chlorine
+	name = "Chlorine"
+	id = "chlorine"
+	description = "A chemical element with a characteristic odour."
+	reagent_state = GAS
+	color = "#808080"
+
+/datum/reagent/chlorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(1*REM, 0)
+
+/datum/reagent/chlorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(1*REM, 0)
+
 /datum/reagent/copper
 	name = "Copper"
 	id = "copper"
@@ -76,7 +75,6 @@
 	description = "A well-known alcohol with a variety of applications."
 	reagent_state = LIQUID
 	color = "#404030"
-	touch_met = 5
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/toxicity = 1
@@ -143,26 +141,25 @@
 		usr << "The solution dissolves the ink on the paper."
 	return
 
-/datum/reagent/hydrazine
-	name = "Hydrazine"
-	id = "hydrazine"
-	description = "A toxic, colorless, flammable liquid with a strong ammonia-like odor, in hydrate form."
-	reagent_state = LIQUID
+/datum/reagent/fluorine
+	name = "Fluorine"
+	id = "fluorine"
+	description = "A highly-reactive chemical element."
+	reagent_state = GAS
 	color = "#808080"
-	metabolism = REM * 0.2
-	touch_met = 5
 
-/datum/reagent/hydrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustToxLoss(4 * removed)
+/datum/reagent/fluorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustToxLoss(removed)
 
-/datum/reagent/hydrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // Hydrazine is both toxic and flammable.
-	M.adjust_fire_stacks(removed / 12)
-	M.adjustToxLoss(0.2 * removed)
+/datum/reagent/fluorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustToxLoss(removed)
 
-/datum/reagent/hydrazine/touch_turf(var/turf/T)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
-	return
+/datum/reagent/hydrogen
+	name = "Hydrogen"
+	id = "hydrogen"
+	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
+	reagent_state = GAS
+	color = "#808080"
 
 /datum/reagent/iron
 	name = "Iron"
@@ -202,7 +199,29 @@
 			step(M, pick(cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
-		M.adjustBrainLoss(2)
+		M.adjustBrainLoss(0.1)
+
+/datum/reagent/nitrogen
+	name = "Nitrogen"
+	id = "nitrogen"
+	description = "A colorless, odorless, tasteless gas."
+	reagent_state = GAS
+	color = "#808080"
+
+/datum/reagent/nitrogen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_VOX)
+		M.adjustOxyLoss(-removed * 3)
+
+/datum/reagent/oxygen
+	name = "Oxygen"
+	id = "oxygen"
+	description = "A colorless, odorless gas."
+	reagent_state = GAS
+	color = "#808080"
+
+/datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_VOX)
+		M.adjustToxLoss(removed * 3)
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
@@ -235,7 +254,7 @@
 				if(prob(50))
 					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
 					var/absorbed = 0
-					var/obj/item/organ/diona/nutrients/rad_organ = locate() in M.internal_organs
+					var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in M.internal_organs
 					if(rad_organ && !rad_organ.is_broken())
 						absorbed = 1
 					if(!absorbed)
@@ -312,12 +331,12 @@
 	if(!M.unacidable && removed > 0)
 		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
 			var/mob/living/carbon/human/H = M
-			var/obj/item/organ/external/affecting = H.get_organ("head")
+			var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 			if(affecting)
 				if(affecting.take_damage(0, removed * power * 0.1))
 					H.UpdateDamageIcon()
 				if(prob(100 * removed / meltdose)) // Applies disfigurement
-					if (!(H.species && (H.species.flags & NO_PAIN)))
+					if (affecting.can_feel_pain())
 						H.emote("scream")
 					H.status_flags |= DISFIGURED
 		else
@@ -333,15 +352,6 @@
 			M << "<span class='warning'>\The [O] melts.</span>"
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
-
-/datum/reagent/acid/hydrochloric //Like sulfuric, but less toxic and more acidic.
-	name = "Hydrochloric Acid"
-	id = "hclacid"
-	description = "A very corrosive mineral acid with the molecular formula HCl."
-	reagent_state = LIQUID
-	color = "#808080"
-	power = 3
-	meltdose = 8
 
 /datum/reagent/silicon
 	name = "Silicon"

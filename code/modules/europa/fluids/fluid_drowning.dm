@@ -11,7 +11,7 @@
 	return 0
 
 /mob/living/carbon/can_drown()
-	var/obj/item/organ/gills/G = locate() in internal_organs
+	var/obj/item/organ/internal/gills/G = locate() in internal_organs
 	if(!G || G.is_broken())
 		return 1
 	return 0

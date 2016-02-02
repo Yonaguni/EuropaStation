@@ -8,4 +8,4 @@
 	..()
 	if(turf_initializer)
 		for(var/turf/simulated/T in src)
-			turf_initializer.initialize(T)
+

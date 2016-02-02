@@ -813,10 +813,12 @@
 
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
+	if(!user.client)
+		return 0
+	if(isobserver(user) && is_admin(user) ) //This is to allow nanoUI interaction by ghost admins.
+		return 1
 	if (user.stat)
 		user << "<span class='warning'>You must be conscious to use [src]!</span>"
-		return 0
-	if(!user.client)
 		return 0
 	if(inoperable())
 		return 0
@@ -847,13 +849,9 @@
 		if (!in_range(src, user) || !istype(src.loc, /turf))
 			return 0
 	var/mob/living/carbon/human/H = user
-	if (istype(H))
-		if(H.getBrainLoss() >= 60)
-			H.visible_message("<span class='danger'>[H] stares cluelessly at [src] and drools.</span>")
-			return 0
-		else if(prob(H.getBrainLoss()))
-			user << "<span class='danger'>You momentarily forget how to use [src].</span>"
-			return 0
+	if (istype(H) && prob(H.getBrainLoss()))
+		user << "<span class='danger'>You momentarily forget how to use [src].</span>"
+		return 0
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list)

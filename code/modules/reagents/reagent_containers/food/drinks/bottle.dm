@@ -31,7 +31,7 @@
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
-				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
+				hit_atom.visible_message("<span class='notice'>The contents of the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)
 
@@ -74,6 +74,26 @@
 
 	qdel(src)
 	return B
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/verb/smash_bottle()
+	set name = "Smash Bottle"
+	set category = "Object"
+
+	var/list/things_to_smash_on = list()
+	for(var/atom/A in range (1, usr))
+		if(A.density && usr.Adjacent(A) && !istype(A, /mob))
+			things_to_smash_on += A
+
+	var/atom/choice = input("Select what you want to smash the bottle on.") as null|anything in things_to_smash_on
+	if(!choice)
+		return
+	if(!(choice.density && usr.Adjacent(choice)))
+		usr << "<span class='warning'>You must stay close to your target! You moved away from \the [choice]</span>"
+		return
+
+	usr.put_in_hands(src.smash(usr.loc, choice))
+	usr.visible_message("<span class='danger'>\The [usr] smashed \the [src] on \the [choice]!</span>")
+	usr << "<span class='danger'>You smash \the [src] on \the [choice]!</span>"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
@@ -119,39 +139,6 @@
 	else
 		set_light(0)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
-	var/blocked = ..()
-
-	if(user.a_intent != I_HURT)
-		return
-	if(!smash_check(1))
-		return //won't always break on the first hit
-
-
-	// You are going to knock someone out for longer if they are not wearing a helmet.
-	var/weaken_duration = 0
-	if(blocked < 2)
-		weaken_duration = duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
-
-	var/mob/living/carbon/human/H = target
-	if(istype(H) && H.headcheck(hit_zone))
-		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
-		user.visible_message("<span class='danger'>[user] smashes [src] into [H]'s [affecting.name]!</span>")
-		if(weaken_duration)
-			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
-
-	else
-		user.visible_message("<span class='danger'>\The [user] smashes [src] into [target]!</span>")
-
-	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
-	if(reagents)
-		user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
-		reagents.splash(target, reagents.total_volume)
-
-	//Finally, smash the bottle. This kills (qdel) the bottle.
-	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
-	user.put_in_active_hand(B)
-
 //Keeping this here for now, I'll ask if I should keep it here.
 /obj/item/weapon/broken_bottle
 
@@ -191,6 +178,15 @@
 	New()
 		..()
 		reagents.add_reagent("whiskey", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey
+	name = "Special Blend Whiskey"
+	desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+	icon_state = "whiskeybottle2"
+	center_of_mass = list("x"=16, "y"=3)
+	New()
+		..()
+		reagents.add_reagent("specialwhiskey", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"

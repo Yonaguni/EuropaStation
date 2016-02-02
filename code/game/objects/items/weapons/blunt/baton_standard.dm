@@ -1,4 +1,3 @@
-
 /obj/item/weapon/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
@@ -8,31 +7,17 @@
 	slot_flags = SLOT_BELT
 	force = 10
 
-/obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You club yourself over the head.</span>"
-		user.Weaken(3 * force)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, "head")
-		else
-			user.take_organ_damage(2*force)
-		return
-	return ..()
-
-
 //Telescopic baton
 /obj/item/weapon/melee/telebaton
 	name = "telescopic baton"
 	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "telebaton_0"
-	item_state = "telebaton_0"
+	icon_state = "telebaton0"
+	item_state = "telebaton0"
 	slot_flags = SLOT_BELT
 	w_class = 2
 	force = 3
 	var/on = 0
-
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
 	on = !on
@@ -40,8 +25,8 @@
 		user.visible_message("<span class='warning'>With a flick of their wrist, [user] extends their telescopic baton.</span>",\
 		"<span class='warning'>You extend the baton.</span>",\
 		"You hear an ominous click.")
-		icon_state = "telebaton_1"
-		item_state = "telebaton_1"
+		icon_state = "telebaton1"
+		item_state = "telebaton1"
 		w_class = 3
 		force = 15//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
@@ -49,8 +34,8 @@
 		user.visible_message("<span class='notice'>\The [user] collapses their telescopic baton.</span>",\
 		"<span class='notice'>You collapse the baton.</span>",\
 		"You hear a click.")
-		icon_state = "telebaton_0"
-		item_state = "telebaton_0"
+		icon_state = "telebaton0"
+		item_state = "telebaton0"
 		w_class = 2
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
@@ -82,7 +67,7 @@
 			user.Weaken(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.apply_damage(2*force, BRUTE, "head")
+				H.apply_damage(2*force, BRUTE, BP_HEAD)
 			else
 				user.take_organ_damage(2*force)
 			return

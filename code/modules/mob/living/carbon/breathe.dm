@@ -9,7 +9,7 @@
 
 /mob/living/carbon/proc/breathe()
 	//if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
-	if(species && (species.flags & NO_BREATHE)) return
+	if(!should_have_organ(O_LUNGS) || does_not_breathe) return
 
 	var/datum/gas_mixture/breath = null
 
@@ -60,7 +60,7 @@
 		breath = environment.remove_volume(volume_needed)
 		handle_chemical_smoke(environment) //handle chemical smoke while we're at it
 
-	if(breath && breath.total_moles)
+	if(breath)
 		//handle mask filtering
 		if(istype(wear_mask, /obj/item/clothing/mask) && breath)
 			var/obj/item/clothing/mask/M = wear_mask
@@ -71,15 +71,13 @@
 
 //Handle possble chem smoke effect
 /mob/living/carbon/proc/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(species && environment.return_pressure() < species.breath_pressure/5)
-		return //pressure is too low to even breathe in.
-	if(wear_mask && (wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT))
+	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
 		if(smoke.reagents.total_volume)
-			smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)
-			smoke.reagents.trans_to_mob(src, 5, CHEM_BLOOD, copy = 1)
+			smoke.reagents.trans_to_mob(src, 10, CHEM_INGEST, copy = 1)
+			//maybe check air pressure here or something to see if breathing in smoke is even possible.
 			// I dunno, maybe the reagents enter the blood stream through the lungs?
 			break // If they breathe in the nasty stuff once, no need to continue checking
 

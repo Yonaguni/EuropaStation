@@ -54,7 +54,7 @@ var/datum/uplink/uplink = new()
 		return
 
 	purchase_log(U)
-	U.uses -= cost
+	user.mind.tcrystals -= cost
 	U.used_TC += cost
 	return goods
 
@@ -374,6 +374,12 @@ datum/uplink_item/dd_SortValue()
 	name = "Hacked AI Upload Module"
 	item_cost = 14
 	path = /obj/item/weapon/aiModule/syndicate
+	
+/datum/uplink_item/item/tools/crystal
+	name = "Tradable Crystal"
+	item_cost = 1
+	path = /obj/item/device/telecrystal
+	desc = "A telecrystal that can be transferred from one user to another. Be sure not to give it to just anyone."
 
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"
@@ -402,7 +408,8 @@ datum/uplink_item/dd_SortValue()
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 
 /datum/uplink_item/item/implants/imp_uplink
-	name = "Uplink Implant"
+	name = "Uplink Implant" //Original name: "Uplink Implant (Contains 5 Telecrystals)"
+	item_cost = 5 //Original cost: 10
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 
 /datum/uplink_item/item/implants/imp_uplink/New()

@@ -67,6 +67,16 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/tiled/hydro
+	name = "hydro floor"
+	icon_state = "hydrofloor"
+	initial_flooring = /decl/flooring/tiling/hydro
+
+/turf/simulated/floor/tiled/neutral
+	name = "light floor"
+	icon_state = "neutral"
+	initial_flooring = /decl/flooring/tiling/neutral
+
 /turf/simulated/floor/tiled/red
 	name = "red floor"
 	color = COLOR_RED_GRAY
@@ -77,6 +87,17 @@
 	name = "steel floor"
 	icon_state = "steel_dirty"
 	initial_flooring = /decl/flooring/tiling/steel
+
+/turf/simulated/floor/tiled/steel/airless
+	initial_air = list()
+
+/turf/simulated/floor/tiled/asteroid_steel
+	icon_state = "asteroidfloor"
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+
+/turf/simulated/floor/tiled/asteroid_steel/airless
+	name = "airless plating"
+	initial_air = list()
 
 /turf/simulated/floor/tiled/white
 	name = "white floor"
@@ -189,11 +210,13 @@
 
 // Placeholders
 /turf/simulated/floor/light
+/*
 /turf/simulated/floor/beach
 /turf/simulated/floor/beach/sand
 /turf/simulated/floor/beach/sand/desert
 /turf/simulated/floor/beach/coastline
 /turf/simulated/floor/beach/water
 /turf/simulated/floor/beach/water/ocean
+*/
 /turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling

@@ -12,7 +12,6 @@
 	layer = 20.0
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/gun_click_time = -100 //I'm lazy.
 
 /obj/screen/Destroy()
 	master = null
@@ -93,43 +92,11 @@
 			usr.ClickOn(master)
 	return 1
 
-/obj/screen/gun
-	name = "gun"
-	icon = 'icons/mob/screen1.dmi'
-	master = null
-	dir = 2
-
-	move
-		name = "Allow Walking"
-		icon_state = "no_walk0"
-		screen_loc = ui_gun2
-
-	run
-		name = "Allow Running"
-		icon_state = "no_run0"
-		screen_loc = ui_gun3
-
-	item
-		name = "Allow Item Use"
-		icon_state = "no_item0"
-		screen_loc = ui_gun1
-
-	mode
-		name = "Toggle Gun Mode"
-		icon_state = "gun0"
-		screen_loc = ui_gun_select
-		//dir = 1
-
-	radio
-		name = "Allow Radio Use"
-		icon_state = "no_radio0"
-		screen_loc = ui_gun4
-
 /obj/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/selecting = "chest"
+	var/selecting = BP_TORSO
 
 /obj/screen/zone_sel/Click(location, control,params)
 	var/list/PL = params2list(params)
@@ -141,52 +108,52 @@
 		if(1 to 3) //Feet
 			switch(icon_x)
 				if(10 to 15)
-					selecting = "r_foot"
+					selecting = BP_R_FOOT
 				if(17 to 22)
-					selecting = "l_foot"
+					selecting = BP_L_FOOT
 				else
 					return 1
 		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
-					selecting = "r_leg"
+					selecting = BP_R_LEG
 				if(17 to 22)
-					selecting = "l_leg"
+					selecting = BP_L_LEG
 				else
 					return 1
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
-					selecting = "r_hand"
+					selecting = BP_R_HAND
 				if(12 to 20)
-					selecting = "groin"
+					selecting = BP_GROIN
 				if(21 to 24)
-					selecting = "l_hand"
+					selecting = BP_L_HAND
 				else
 					return 1
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
-					selecting = "r_arm"
+					selecting = BP_R_ARM
 				if(12 to 20)
-					selecting = "chest"
+					selecting = BP_TORSO
 				if(21 to 24)
-					selecting = "l_arm"
+					selecting = BP_L_ARM
 				else
 					return 1
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
-				selecting = "head"
+				selecting = BP_HEAD
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							selecting = "mouth"
+							selecting = O_MOUTH
 					if(26) //Eyeline, eyes are on 15 and 17
 						if(icon_x in 14 to 18)
-							selecting = "eyes"
+							selecting = O_EYES
 					if(25 to 27)
 						if(icon_x in 15 to 17)
-							selecting = "eyes"
+							selecting = O_EYES
 
 	if(old_selecting != selecting)
 		update_icon()
@@ -199,7 +166,6 @@
 
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
-
 	switch(name)
 		if("toggle")
 			if(usr.hud_used.inventory_shown)
@@ -427,46 +393,6 @@
 		if("module3")
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(3)
-
-		if("Allow Walking", "Disallow Walking")
-			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
-				return
-			if(!istype(usr.get_active_hand(),/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			usr.client.AllowTargetMove()
-			gun_click_time = world.time
-
-		if("Allow Running", "Disallow Running")
-			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
-				return
-			if(!istype(usr.get_active_hand(),/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			usr.client.AllowTargetRun()
-			gun_click_time = world.time
-
-		if("Allow Item Use", "Disallow Item Use")
-			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
-				return
-			if(!istype(usr.get_active_hand(),/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			usr.client.AllowTargetClick()
-			gun_click_time = world.time
-
-		if("Toggle Gun Mode")
-			usr.client.ToggleGunMode()
-
-		if("Allow Radio Use", "Disallow Radio Use")
-			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
-				return
-			if(!istype(usr.get_active_hand(),/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			usr.client.AllowTargetRadio()
-			gun_click_time = world.time
-
 		else
 			return 0
 	return 1

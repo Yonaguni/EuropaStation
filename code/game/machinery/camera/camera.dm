@@ -139,7 +139,7 @@
 				assembly.loc = src.loc
 				assembly.anchored = 1
 				assembly.camera_name = c_tag
-				assembly.camera_network = english_list(network, "Exodus", ",", ",")
+				assembly.camera_network = english_list(network, NETWORK_EXODUS, ",", ",")
 				assembly.update_icon()
 				assembly.dir = src.dir
 				if(stat & BROKEN)

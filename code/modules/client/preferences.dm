@@ -33,7 +33,9 @@ datum/preferences
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/underwear						//underwear type
 	var/undershirt						//undershirt type
+	var/socks							//socks type
 	var/backbag = 2						//backpack type
+	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
@@ -107,6 +109,9 @@ datum/preferences
 
 	// OOC Metadata:
 	var/metadata = ""
+
+	// Communicator identity data
+	var/communicator_visibility = 0
 
 	var/client/client = null
 
@@ -313,48 +318,43 @@ datum/preferences
 	character.skills = skills
 	character.used_skillpoints = used_skillpoints
 
-	// Destroy/cyborgize organs
-
-	for(var/name in organ_data)
-
+	// Destroy/cyborgize organs and limbs.
+	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(O)
-			O.status = 0
 			if(status == "amputated")
-				character.organs_by_name[O.limb_name] = null
-				character.organs -= O
-				if(O.children) // This might need to become recursive.
-					for(var/obj/item/organ/external/child in O.children)
-						character.organs_by_name[child.limb_name] = null
-						character.organs -= child
-
+				O.remove_rejuv()
 			else if(status == "cyborg")
 				if(rlimb_data[name])
 					O.robotize(rlimb_data[name])
 				else
 					O.robotize()
-		else
-			var/obj/item/organ/I = character.internal_organs_by_name[name]
-			if(I)
-				if(status == "assisted")
-					I.mechassist()
-				else if(status == "mechanical")
-					I.robotize()
+
+	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
+		var/status = organ_data[name]
+		if(!status)
+			continue
+		var/obj/item/organ/I = character.internal_organs_by_name[name]
+		if(I)
+			if(status == "assisted")
+				I.mechassist()
+			else if(status == "mechanical")
+				I.robotize()
 
 	character.underwear = underwear
-
 	character.undershirt = undershirt
+	character.socks = socks
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
 
-	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
-	if(character.gender in list(PLURAL, NEUTER))
-		if(isliving(src)) //Ghosts get neuter by default
-			message_admins("[character] ([character.ckey]) has spawned with their gender as plural or neuter. Please notify coders.")
-			character.gender = MALE
+	if(pdachoice > 3 || pdachoice < 1)
+		pdachoice = 1
+	character.pdachoice = pdachoice
+
+	character.update_body()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

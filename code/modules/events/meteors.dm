@@ -32,6 +32,7 @@
 /datum/event/meteor_wave/end()
 	command_announcement.Announce("The debris field has cleared the facility.", "Meteor Alert")
 
+
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)

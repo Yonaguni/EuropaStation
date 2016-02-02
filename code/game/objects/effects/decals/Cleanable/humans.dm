@@ -35,6 +35,7 @@ var/global/list/blood_decals = list()
 		invisibility = 100
 		amount = 0
 		processing_objects -= src
+	..(ignore=1)
 
 /obj/effect/decal/cleanable/blood/Destroy()
 	for(var/datum/disease/D in viruses)
@@ -69,6 +70,12 @@ var/global/list/blood_decals = list()
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
 	color = basecolor
+	if(basecolor == SYNTH_BLOOD_COLOUR)
+		name = "oil"
+		desc = "It's black and greasy."
+	else
+		name = initial(name)
+		desc = initial(desc)
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
 	if (!istype(perp))

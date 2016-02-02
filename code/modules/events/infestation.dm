@@ -63,7 +63,6 @@
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS
-#undef LOC_INCIN
 #undef LOC_CHAPEL
 #undef LOC_LIBRARY
 #undef LOC_HYDRO

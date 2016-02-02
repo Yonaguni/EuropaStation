@@ -36,6 +36,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 			emergency_shuttle_docked.Announce("The emergency evacuation system is now prepared to fire. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the evacuation pod.")
 
+
 //begins the launch countdown and sets the amount of time left until launch
 /datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
 	wait_for_launch = 1
@@ -61,6 +62,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		if(A.flags & SHOW_EVAC_ALERT)
 			A.readyalert()
 
+
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
 	if (!can_recall()) return
@@ -73,6 +75,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	for(var/area/A in all_areas)
 		if(A.flags & SHOW_EVAC_ALERT)
 			A.readyreset()
+
 
 /datum/emergency_shuttle_controller/proc/can_call()
 	if (!universe.OnShuttleCall(null))

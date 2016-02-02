@@ -27,7 +27,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	src.uplink_owner = owner
 	purchase_log = list()
 	world_uplinks += src
-	uses = telecrystals
+	uses = owner.tcrystals
 
 /obj/item/device/uplink/Destroy()
 	world_uplinks -= src
@@ -87,6 +87,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/title = "Remote Uplink"
 	var/data[0]
+	uses = user.mind.tcrystals
 
 	data["welcome"] = welcome
 	data["crystals"] = uses
@@ -97,6 +98,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		data["menu"] = 0
 		ui.set_initial_data(data)
 		ui.open()
 

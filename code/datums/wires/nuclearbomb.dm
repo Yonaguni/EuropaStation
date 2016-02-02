@@ -1,3 +1,6 @@
+/proc/log_and_message_admins_with_location()
+	return //todo
+
 /datum/wires/nuclearbomb
 	holder_type = /obj/machinery/nuclearbomb
 	random = 1

@@ -4,6 +4,7 @@
 	icon_state = "door_as_0"
 	anchored = 0
 	density = 1
+	w_class = 5
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
@@ -32,6 +33,12 @@
 	base_icon_state = "eng"
 	base_name = "Engineering Airlock"
 	glass_type = "/glass_engineering"
+	airlock_type = "/engineering"
+
+/obj/structure/door_assembly/door_assembly_eat
+	base_icon_state = "eat"
+	base_name = "Engineering Atmos Airlock"
+	glass_type = "/glass_engineeringatmos"
 	airlock_type = "/engineering"
 
 /obj/structure/door_assembly/door_assembly_min

@@ -331,18 +331,16 @@
 		sleep(50)
 		if(src.OCCUPANT)
 			OCCUPANT.apply_effect(50, IRRADIATE)
-			var/obj/item/organ/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
+			var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
 			if (!rad_organ)
+				if (OCCUPANT.can_feel_pain())
+					OCCUPANT.emote("scream")
 				if(src.issuperUV)
 					var/burndamage = rand(28,35)
 					OCCUPANT.take_organ_damage(0,burndamage)
-					if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
-						OCCUPANT.emote("scream")
 				else
 					var/burndamage = rand(6,10)
 					OCCUPANT.take_organ_damage(0,burndamage)
-					if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
-						OCCUPANT.emote("scream")
 		if(i==3) //End of the cycle
 			if(!src.issuperUV)
 				if(src.HELMET)
@@ -987,7 +985,7 @@
 			if(helmet)
 				helmet.name = "engineering voidsuit helmet"
 				helmet.icon_state = "rig0-engineering"
-				helmet.item_state = "eng_helm"
+				helmet.item_state = "rig0-engineering"
 			if(suit)
 				suit.name = "engineering voidsuit"
 				suit.icon_state = "rig-engineering"
@@ -996,7 +994,7 @@
 			if(helmet)
 				helmet.name = "mining voidsuit helmet"
 				helmet.icon_state = "rig0-mining"
-				helmet.item_state = "mining_helm"
+				helmet.item_state = "rig0-mining"
 			if(suit)
 				suit.name = "mining voidsuit"
 				suit.icon_state = "rig-mining"
@@ -1005,7 +1003,7 @@
 			if(helmet)
 				helmet.name = "medical voidsuit helmet"
 				helmet.icon_state = "rig0-medical"
-				helmet.item_state = "medical_helm"
+				helmet.item_state = "rig0-medical"
 			if(suit)
 				suit.name = "medical voidsuit"
 				suit.icon_state = "rig-medical"
@@ -1014,7 +1012,7 @@
 			if(helmet)
 				helmet.name = "security voidsuit helmet"
 				helmet.icon_state = "rig0-sec"
-				helmet.item_state = "sec_helm"
+				helmet.item_state = "rig0-sec"
 			if(suit)
 				suit.name = "security voidsuit"
 				suit.icon_state = "rig-sec"
@@ -1023,7 +1021,7 @@
 			if(helmet)
 				helmet.name = "atmospherics voidsuit helmet"
 				helmet.icon_state = "rig0-atmos"
-				helmet.item_state = "atmos_helm"
+				helmet.item_state = "rig0-atmos"
 			if(suit)
 				suit.name = "atmospherics voidsuit"
 				suit.icon_state = "rig-atmos"
@@ -1032,7 +1030,7 @@
 			if(helmet)
 				helmet.name = "blood-red voidsuit helmet"
 				helmet.icon_state = "rig0-syndie"
-				helmet.item_state = "syndie_helm"
+				helmet.item_state = "rig0-syndie"
 			if(suit)
 				suit.name = "blood-red voidsuit"
 				suit.item_state = "syndie_voidsuit"

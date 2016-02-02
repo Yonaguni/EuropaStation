@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/projectile/colt
+	var/unique_reskin
 	name = "vintage .45 pistol"
 	desc = "A cheap knock-off of a Colt M1911. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -8,16 +9,30 @@
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/colt/detective
+	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+
+/obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(ammo_magazine)
+		if(unique_reskin)
+			icon_state = unique_reskin
+		else
+			icon_state = initial(icon_state)
+	else
+		if(unique_reskin)
+			icon_state = "[unique_reskin]-e"
+		else
+			icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
-	set desc = "Rename your gun. If you're the detective."
+	set desc = "Rename your gun. If you're Security."
 
 	var/mob/M = usr
 	if(!M.mind)	return 0
-	if(!M.mind.assigned_role == "Detective")
+	var/job = M.mind.assigned_role
+	if(job != "Detective" && job != "Security Officer" && job != "Warden" && job != "Head of Security")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
 		return 0
 
@@ -26,6 +41,27 @@
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
+		return 1
+
+/obj/item/weapon/gun/projectile/colt/detective/verb/reskin_gun()
+	set name = "Resprite gun"
+	set category = "Object"
+	set desc = "Click to choose a sprite for your gun."
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["NT Mk. 58"] = "secguncomp"
+	options["NT Mk. 58 Custom"] = "secgundark"
+	options["Colt M1911"] = "colt"
+	options["USP"] = "usp"
+	options["H&K VP"] = "VP78"
+	options["P08 Luger"] = "p08"
+	options["P08 Luger, Brown"] = "p08b"
+	var/choice = input(M,"What do you want the gun's sprite to be?","Resprite Gun") in options
+	if(src && choice && !M.stat && in_range(M,src))
+		icon_state = options[choice]
+		unique_reskin = options[choice]
+		M << "Your gun is now sprited as [choice]. Say hello to your new friend."
 		return 1
 
 /obj/item/weapon/gun/projectile/sec
@@ -37,6 +73,13 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 
+/obj/item/weapon/gun/projectile/sec/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "secguncomp"
+	else
+		icon_state = "secguncomp-e"
+
 /obj/item/weapon/gun/projectile/sec/flash
 	name = ".45 signal pistol"
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
@@ -45,6 +88,13 @@
 	desc = "A cheap, ubiquitous sidearm. This one has a sweet wooden grip. Uses .45 rounds."
 	name = "custom .45 Pistol"
 	icon_state = "secgundark"
+
+/obj/item/weapon/gun/projectile/sec/wood/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "secgundark"
+	else
+		icon_state = "secgundark-e"
 
 /obj/item/weapon/gun/projectile/silenced
 	name = "silenced pistol"

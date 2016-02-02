@@ -166,9 +166,14 @@
 		affect_blood(M, alien, removed)
 
 /datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+
+	if(M.isSynthetic())
+		return
+
 	var/mob/living/carbon/human/H = M
 	if(istype(H) && (H.species.flags & NO_SCAN))
 		return
+
 	if(M.dna)
 		if(prob(removed * 0.1)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
 			randmuti(M)
@@ -321,7 +326,7 @@
 		return
 	M.jitteriness = max(M.jitteriness - 5, 0)
 	if(prob(80))
-		M.adjustBrainLoss(3 * removed)
+		M.adjustBrainLoss(0.1 * removed)
 	if(prob(50))
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))

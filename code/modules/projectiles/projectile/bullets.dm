@@ -133,7 +133,6 @@
 
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
-	check_armour = "melee"
 	damage = 10
 	agony = 25
 	embed = 0
@@ -148,7 +147,6 @@
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
-	check_armour = "melee"
 	damage = 40
 	agony = 60
 	embed = 0

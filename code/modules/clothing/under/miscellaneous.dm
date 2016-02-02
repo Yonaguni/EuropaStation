@@ -275,6 +275,55 @@
 /obj/item/clothing/under/dress
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
+/obj/item/clothing/under/dress/blacktango
+	name = "black tango dress"
+	desc = "Filled with Latin fire."
+	icon_state = "black_tango"
+	item_state = "black_tango"
+	worn_state = "black_tango"
+
+/obj/item/clothing/under/dress/blacktango/alt
+	name = "black tango dress"
+	desc = "Filled with Latin fire."
+	icon_state = "black_tango_alt"
+	item_state = "black_tango_alt"
+	worn_state = "black_tango_alt"
+
+/obj/item/clothing/under/dress/stripeddress
+	name = "striped dress"
+	desc = "Fashion in space."
+	icon_state = "striped_dress"
+	item_state = "striped_dress"
+	worn_state = "striped_dress"
+
+/obj/item/clothing/under/dress/sailordress
+	name = "sailor dress"
+	desc = "Formal wear for a leading lady."
+	icon_state = "sailor_dress"
+	item_state = "sailor_dress"
+	worn_state = "sailor_dress"
+
+/obj/item/clothing/under/dress/redeveninggown
+	name = "red evening gown"
+	desc = "Fancy dress for space bar singers."
+	icon_state = "red_evening_gown"
+	item_state = "red_evening_gown"
+	worn_state = "red_evening_gown"
+
+/obj/item/clothing/under/dress/maid
+	name = "maid costume"
+	desc = "Maid in China."
+	icon_state = "maid"
+	item_state = "maid"
+	worn_state = "maid"
+
+/obj/item/clothing/under/dress/janimaid
+	name = "maid uniform"
+	desc = "A simple maid uniform for housekeeping."
+	icon_state = "janimaid"
+	item_state = "janimaid"
+	worn_state = "janimaid"
+
 /obj/item/clothing/under/dress/dress_fire
 	name = "flame dress"
 	desc = "A small black dress with blue flames print on it."
@@ -514,3 +563,45 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 	worn_state = "blue_blazer"
+
+/obj/item/clothing/under/croptop
+	name = "crop top"
+	desc = "A shirt that has had the top cropped. This one is NT sponsored."
+	icon_state = "croptop"
+	item_state = "gy_suit"
+	worn_state = "croptop"
+
+/obj/item/clothing/under/croptop/red
+	name = "red crop top"
+	desc = "A red shirt that has had the top cropped."
+	icon_state = "croptop_red"
+	item_state = "r_suit"
+	worn_state = "croptop_red"
+
+/obj/item/clothing/under/croptop/grey
+	name = "grey crop top"
+	desc = "A grey shirt that has had the top cropped."
+	icon_state = "croptop_grey"
+	item_state = "gy_suit"
+	worn_state = "croptop_grey"
+
+/obj/item/clothing/under/cuttop
+	name = "grey cut top"
+	desc = "A grey shirt that has had the top cut low."
+	icon_state = "cuttop"
+	item_state = "gy_suit"
+	worn_state = "cuttop"
+
+/obj/item/clothing/under/cuttop/red
+	name = "red cut top"
+	desc = "A red shirt that has had the top cut low."
+	icon_state = "cuttop_red"
+	item_state = "r_suit"
+	worn_state = "cuttop_red"
+
+/obj/item/clothing/under/harness
+	name = "gear harness"
+	desc = "How... minimalist."
+	icon_state = "gear_harness"
+	worn_state = "gear_harness"
+	body_parts_covered = 0

@@ -8,7 +8,7 @@
 	max_w_class = 3
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/belt.dmi')
+	sprite_sheets = list("Seromi" = 'icons/mob/species/seromi/belt.dmi')
 
 	var/show_above_suit = 0
 
@@ -162,6 +162,38 @@
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
 		/obj/item/weapon/gun/projectile/sec,
+		/obj/item/taperoll/police,
+		/obj/item/weapon/gun/projectile/colt/detective
+		)
+
+/obj/item/weapon/storage/belt/detective
+	name = "forensic utility belt"
+	desc = "A belt for holding forensics equipment."
+	icon_state = "securitybelt"
+	item_state = "security"
+	storage_slots = 7
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/device/taperecorder,
+		/obj/item/clothing/glasses,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/reagent_containers/spray/luminol,
+		/obj/item/weapon/sample,
+		/obj/item/weapon/forensics/sample_kit/powder,
+		/obj/item/weapon/forensics/swab,
+		/obj/item/device/uv_light,
+		/obj/item/weapon/forensics/slide,
+		/obj/item/weapon/forensics/sample_kit,
+		/obj/item/weapon/photo,
+		/obj/item/device/camera_film,
+		/obj/item/device/camera,
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/device/mass_spectrometer,
+		/obj/item/device/reagent_scanner,
+		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
 		/obj/item/taperoll/police
 		)
 
@@ -183,3 +215,9 @@
 	storage_slots = 9
 	max_w_class = 3
 	max_storage_space = 28
+
+/obj/item/weapon/storage/belt/security/tactical/bandolier
+	name = "combat belt"
+	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
+	icon_state = "bandolier"
+	item_state = "bandolier"

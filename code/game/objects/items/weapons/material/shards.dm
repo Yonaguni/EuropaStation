@@ -84,7 +84,7 @@
 					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()
 					H.updatehealth()
-					if(!(H.species.flags & NO_PAIN))
+					if(affecting.can_feel_pain())
 						H.Weaken(3)
 					return
 				check -= picked

@@ -56,7 +56,7 @@
 				var/d = rand(round(I.force / 4), I.force)
 				if(istype(src, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = src
-					var/obj/item/organ/external/organ = H.get_organ("chest")
+					var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
 					if (istype(organ))
 						if(organ.take_damage(d, 0))
 							H.UpdateDamageIcon()
@@ -117,7 +117,7 @@
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
-			"\red [src] was shocked by the [source]!", \
+			"\red [src] was shocked by \the [source]!", \
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
@@ -125,7 +125,7 @@
 		Weaken(10)
 	else
 		src.visible_message(
-			"\red [src] was mildly shocked by the [source].", \
+			"\red [src] was mildly shocked by \the [source].", \
 			"\red You feel a mild shock course through your body.", \
 			"\red You hear a light zapping." \
 		)
@@ -140,12 +140,6 @@
 	return
 
 /mob/living/carbon/swap_hand()
-	var/obj/item/item_in_hand = src.get_active_hand()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		if(istype(item_in_hand,/obj/item/weapon/material/twohanded))
-			if(item_in_hand:wielded == 1)
-				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
-				return
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
@@ -154,10 +148,6 @@
 		else
 			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
-	/*if (!( src.hand ))
-		src.hands.set_dir(NORTH)
-	else
-		src.hands.set_dir(SOUTH)*/
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -235,8 +225,8 @@
 				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames!</span>",
 				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
 				if(do_mob(M, src, 15))
+					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
-						src.fire_stacks -= 0.5
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
@@ -472,3 +462,11 @@
 	if(!species)
 		return null
 	return species.default_language ? all_languages[species.default_language] : null
+
+/mob/living/carbon/proc/should_have_organ(var/organ_check)
+	return 0
+
+/mob/living/carbon/proc/can_feel_pain(var/check_organ)
+	if(isSynthetic())
+		return 0
+	return !(species.flags & NO_PAIN)

@@ -18,6 +18,9 @@
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
+	var/minimum_character_age = 17
+	var/ideal_character_age = 30
+
 	var/idtype                            // The type of the ID the player will have
 	var/headsettype                       // Type of headset if any.
 	var/pdatype                           // If set, job will spawn with a PDA.
