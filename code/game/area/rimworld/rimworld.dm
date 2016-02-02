@@ -66,6 +66,9 @@
 /area/rimworld/building/homestead_large_s
 	name = "Clinic"
 
+/area/rimworld/building/chapel
+	name = "Chapel"
+
 // Bank!
 /area/rimworld/building/bank
 	name = "Bank - Foyer"
