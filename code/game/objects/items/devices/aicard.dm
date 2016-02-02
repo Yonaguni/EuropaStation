@@ -58,7 +58,7 @@
 			admin_attack_log(user, carded_ai, "Wiped using \the [src.name]", "Was wiped with \the [src.name]", "used \the [src.name] to wipe")
 			flush = 1
 			carded_ai << "Your core files are being wiped!"
-			while (carded_ai && carded_ai.stat != 2)
+			while (carded_ai && carded_ai.stat != DEAD)
 				carded_ai.adjustOxyLoss(2)
 				carded_ai.updatehealth()
 				sleep(10)

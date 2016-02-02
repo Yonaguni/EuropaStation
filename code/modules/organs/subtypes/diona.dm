@@ -160,18 +160,23 @@
 /obj/item/organ/internal/diona/strata
 	name = "neural strata"
 	parent_organ = BP_TORSO
+	organ_tag = "neural strata"
+	
 
 /obj/item/organ/internal/diona/bladder
 	name = "gas bladder"
 	parent_organ = BP_HEAD
+	organ_tag = "gas bladder"
 
 /obj/item/organ/internal/diona/polyp
 	name = "polyp segment"
 	parent_organ = BP_GROIN
+	organ_tag = "polyp segment"
 
 /obj/item/organ/internal/diona/ligament
 	name = "anchoring ligament"
 	parent_organ = BP_GROIN
+	organ_tag = "anchoring ligament"
 
 /obj/item/organ/internal/diona/node
 	name = "receptor node"
@@ -194,7 +199,7 @@
 
 /obj/item/organ/internal/diona/node
 	name = "receptor node"
-	organ_tag = "receptor node"
+	organ_tag = "response node"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 

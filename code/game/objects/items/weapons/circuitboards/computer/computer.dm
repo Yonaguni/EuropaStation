@@ -30,14 +30,6 @@
 	name = T_BOARD("command and communications console")
 	build_path = /obj/machinery/computer/communications
 
-/obj/item/weapon/circuitboard/card
-	name = T_BOARD("ID card modification console")
-	build_path = /obj/machinery/computer/card
-
-/obj/item/weapon/circuitboard/card/centcom
-	name = T_BOARD("CentCom ID card modification console")
-	build_path = /obj/machinery/computer/card/centcom
-
 /obj/item/weapon/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
 	build_path = /obj/machinery/computer/teleporter

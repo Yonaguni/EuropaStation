@@ -56,3 +56,9 @@ obj/item/weapon/circuitboard/rdserver
 							"/obj/item/europa/component/manipulator" = 1,
 							"/obj/item/europa/component/micro_laser" = 1,
 							"/obj/item/europa/component/console_screen" = 1)
+obj/item/weapon/circuitboard/ntnet_relay
+	name = "Circuit board (NTNet Quantum Relay)"
+	build_path = "/obj/machinery/ntnet_relay"
+	board_type = "machine"
+	req_components = list(
+							"/obj/item/stack/cable_coil" = 15)

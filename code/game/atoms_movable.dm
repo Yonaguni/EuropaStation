@@ -13,6 +13,7 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
+	var/item_state = null // Used to specify the item state for the on-mob overlays.
 
 	var/auto_init = 1
 
@@ -47,7 +48,8 @@
 		pulledby = null
 
 /atom/movable/proc/initialize()
-	return
+	if(!isnull(gcDestroyed))
+		crash_with("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
@@ -212,7 +214,7 @@
 /atom/movable/overlay/New()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	return
+	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)

@@ -997,7 +997,13 @@ mob/proc/yank_out_object()
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
-
+			
+	else if(issilicon(src))
+		var/mob/living/silicon/robot/R = src
+		R.embedded -= selection
+		R.adjustBruteLoss(5)
+		R.adjustFireLoss(10)
+	
 	else if(issilicon(src))
 		var/mob/living/silicon/robot/R = src
 		R.embedded -= selection

@@ -69,7 +69,7 @@
 					return
 				if(XRAY in M.mutations)
 					user << "<span class='notice'>\The [M] pupils give an eerie glow!</span>"
-				if(vision.is_bruised())
+				if(vision.damage)
 					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
 				else if(M.eye_blurry)
 					user << "<span class='notice'>\The [M]'s pupils react slower than normally.</span>"

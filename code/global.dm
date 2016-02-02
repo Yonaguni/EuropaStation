@@ -36,6 +36,7 @@ var/const/boss_name     = "SolGov Colony Link"
 var/const/boss_short    = "SCL"
 var/const/company_name  = "P&B Mining and Fabrication"
 var/const/company_short = "Company"
+var/const/dock_name     = "Regional Spaceport"
 var/game_version        = "Yonaguni"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
@@ -149,7 +150,7 @@ var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J
 
 // Used by robots and robot preferences.
 var/list/robot_module_types = list(
-	"Standard", "Engineering", "Construction", "Surgeon",  "Crisis",
+	"Standard", "Engineering", "Surgeon",  "Crisis",
 	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
 	"Research"
 )

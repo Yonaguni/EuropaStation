@@ -55,11 +55,16 @@ var/list/holder_mob_icon_cache = list()
 	var/obj/item/I = GetID()
 	return I ? I.GetAccess() : ..()
 
+/obj/item/weapon/holder/attack_self()
+	for(var/mob/M in contents)
+		M.show_inv(usr)
+
 /obj/item/weapon/holder/proc/sync(var/mob/living/M)
 	dir = 2
 	overlays.Cut()
 	icon = M.icon
 	icon_state = M.icon_state
+	item_state = M.item_state
 	color = M.color
 	name = M.name
 	desc = M.desc

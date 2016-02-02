@@ -39,6 +39,7 @@ var/list/europa_ind_positions = list(
 )
 
 
+
 var/list/nonhuman_positions = list(
 	"AI",
 	"Cyborg",

@@ -68,6 +68,7 @@
 #define COLOR_GRAY             "#808080"
 #define COLOR_BLACK            "#000000"
 #define COLOR_RED              "#ff0000"
+#define COLOR_RED_LIGHT        "#ff3333"
 #define COLOR_MAROON           "#800000"
 #define COLOR_YELLOW           "#ffff00"
 #define COLOR_OLIVE            "#808000"
@@ -94,6 +95,7 @@
 #define COLOR_PALE_RED_GRAY    "#cc9090"
 #define COLOR_PALE_PURPLE_GRAY "#bda2ba"
 #define COLOR_PURPLE_GRAY      "#a2819e"
+#define COLOR_SUN              "#ec8b2f"
 
 //	Shuttles.
 
@@ -176,6 +178,27 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
+									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
+#define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
+#define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
+#define NTNET_COMMUNICATION 3		// Communication (messaging)
+#define NTNET_SYSTEMCONTROL 4		// Control of various systems, RCon, air alarm control, etc.
+
+// NTNet transfer speeds, used when downloading/uploading a file/program.
+#define NTNETSPEED_LOWSIGNAL 0.025	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
+#define NTNETSPEED_HIGHSIGNAL 0.1	// GQ/s transfer speed when the device is wirelessly connected and on High signal
+#define NTNETSPEED_ETHERNET 0.5		// GQ/s transfer speed when the device is using wired connection
+
+// Program bitflags
+#define PROGRAM_ALL 7
+#define PROGRAM_CONSOLE 1
+#define PROGRAM_LAPTOP 2
+#define PROGRAM_TABLET 4
+
+// Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
+#define MAX_NTNET_LOGS 500
+#define MIN_NTNET_LOGS 10
+
 
 // Special return values from bullet_act(). Positive return values are already used to indicate the blocked level of the projectile.
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()

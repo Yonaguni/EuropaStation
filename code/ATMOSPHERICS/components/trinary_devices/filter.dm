@@ -206,7 +206,6 @@
 		switch(filter_type)
 			if(0) //removing hydrocarbons
 				filtered_out += "fuel"
-				filtered_out += "oxygen_agent_b"
 			if(1) //removing O2
 				filtered_out += "oxygen"
 			if(2) //removing N2

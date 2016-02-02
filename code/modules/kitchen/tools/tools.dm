@@ -38,6 +38,7 @@
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	var/loaded      //Descriptive string for currently loaded food object.
+	var/scoop_food = 1
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
@@ -104,6 +105,7 @@
 	desc = "Can cut through any food."
 	icon_state = "knife"
 	force_divisor = 0.2 // 12 when wielded with hardness 60 (steel)
+	scoop_food = 0
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.

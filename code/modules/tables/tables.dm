@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	climbable = 1
-	layer = TABLE_LAYER
+	layer = 2.8
 	throwpass = 1
 	var/flipped = 0
 	var/maxhealth = 10
@@ -23,7 +23,7 @@
 	// Gambling tables. I'd prefer reinforced with carpet/felt/cloth/whatever, but AFAIK it's either harder or impossible to get /obj/item/stack/material of those.
 	// Convert if/when you can easily get stacks of these.
 	var/carpeted = 0
-	var/global/op_success_chance = 85
+
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
 /obj/structure/table/proc/update_material()
@@ -60,8 +60,11 @@
 	if(!istype(material))
 		qdel(src)
 		return
-	if(new_reinf_material) reinforced = get_material_by_name(new_reinf_material)
-	update_icon()
+	if(new_reinf_material)
+		reinforced = get_material_by_name(new_reinf_material)
+
+/obj/structure/table/initialize()
+	..()
 
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)
@@ -71,8 +74,6 @@
 			break_to_parts(full_return = 1)
 			return
 
-/obj/structure/table/initialize()
-	..()
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
@@ -295,7 +296,7 @@
 	if(full_return || prob(20))
 		new /obj/item/stack/material/steel(src.loc)
 	else
-		var/material/M = get_material_by_path(DEFAULT_WALL_MATERIAL_PATH)
+		var/material/M = get_material_by_name(DEFAULT_WALL_MATERIAL)
 		S = M.place_shard(loc)
 		if(S) shards += S
 	qdel(src)

@@ -463,10 +463,12 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/update_icon()
+	set_light(0)
 	if(overlays) overlays.Cut()
 	if(density)
 		if(locked && lights && src.arePowerSystemsOn())
 			icon_state = "door_locked"
+			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
 			icon_state = "door_closed"
 		if(p_open || welded)
@@ -979,6 +981,9 @@ About the new airlock wires panel:
 			name = assembly.created_name
 		else
 			name = "[istext(assembly.glass) ? "[assembly.glass] airlock" : assembly.base_name]"
+
+		//get the dir from the assembly
+		set_dir(assembly.dir)
 
 	//wires
 	var/turf/T = get_turf(newloc)

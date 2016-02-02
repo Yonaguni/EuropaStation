@@ -90,6 +90,7 @@ var/list/gamemode_cache = list()
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
 
 	var/usealienwhitelist = 0
+	var/usealienwhitelistSQL = 0;
 	var/limitalienplayers = 0
 	var/alien_to_human_ratio = 0.5
 	var/allow_extra_antags = 0
@@ -153,6 +154,7 @@ var/list/gamemode_cache = list()
 	var/alien_delay = 0
 	var/slime_delay = 0
 	var/animal_delay = 0
+
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
@@ -218,6 +220,8 @@ var/list/gamemode_cache = list()
 
 	var/show_human_death_message = 1
 	var/ghosts_can_possess_animals = 0
+	var/delist_when_no_admins = FALSE
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -573,7 +577,8 @@ var/list/gamemode_cache = list()
 
 				if("usealienwhitelist")
 					usealienwhitelist = 1
-
+				if("usealienwhitelist_sql") // above need to be enabled as well
+					usealienwhitelistSQL = 1;
 				if("alien_player_ratio")
 					limitalienplayers = 1
 					alien_to_human_ratio = text2num(value)
@@ -703,6 +708,9 @@ var/list/gamemode_cache = list()
 
 				if ("lobby_screens")
 					config.lobby_screens = text2list(value, ";")
+
+				if("delist_when_no_admins")
+					config.delist_when_no_admins = TRUE
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

@@ -31,8 +31,6 @@
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
 
-	handle_hud_list()
-
 	//Handle species-specific deaths.
 	species.handle_death(src)
 	animate_tail_stop()
@@ -69,6 +67,7 @@
 		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
 
 	return ..(gibbed,species.get_death_message(src))
+	handle_hud_list()
 
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return

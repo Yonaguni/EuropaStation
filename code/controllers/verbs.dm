@@ -72,5 +72,8 @@
 		if("Wireless")
 			debug_variables(wirelessProcess)
 			feedback_add_details("admin_verb", "DWifi")
+		if("Observation")
+			debug_variables(all_observable_events)
+			feedback_add_details("admin_verb", "DObservation")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

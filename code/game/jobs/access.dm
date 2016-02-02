@@ -193,17 +193,26 @@
 /mob/proc/GetIdCard()
 	return null
 
+var/obj/item/weapon/card/id/all_access/ghost_all_access
+/mob/dead/observer/GetIdCard()
+	if(!is_admin(src))
+		return
+
+	if(!ghost_all_access)
+		ghost_all_access = new()
+	return ghost_all_access
+
 /mob/living/bot/GetIdCard()
 	return botcard
 
 /mob/living/carbon/human/GetIdCard()
-	if(wear_id)
-		var/id = wear_id.GetID()
+	var/obj/item/I = get_active_hand()
+	if(I)
+		var/id = I.GetID()
 		if(id)
 			return id
-	if(get_active_hand())
-		var/obj/item/I = get_active_hand()
-		return I.GetID()
+	if(wear_id)
+		return wear_id.GetID()
 
 /mob/living/silicon/GetIdCard()
 	return idcard

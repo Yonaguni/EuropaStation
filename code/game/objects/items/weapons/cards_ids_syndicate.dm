@@ -10,7 +10,7 @@
 	access = syndicate_access.Copy()
 
 /obj/item/weapon/card/id/syndicate/Destroy()
-	registered_user = null
+	unset_registered_user(registered_user)
 	return ..()
 
 /obj/item/weapon/card/id/syndicate/prevent_tracking()
@@ -26,7 +26,7 @@
 
 /obj/item/weapon/card/id/syndicate/attack_self(mob/user as mob)
 	// We use the fact that registered_name is not unset should the owner be vaporized, to ensure the id doesn't magically become unlocked.
-	if(!registered_user && !registered_name && register_user(user))
+	if(!registered_user && register_user(user))
 		user << "<span class='notice'>The microscanner marks you as its owner, preventing others from accessing its internals.</span>"
 	if(registered_user == user)
 		switch(alert("Would you like edit the ID, or show it?","Show or Edit?", "Edit","Show"))
@@ -65,13 +65,13 @@
 	unset_registered_user()
 	registered_user = user
 	user.set_id_info(src)
-	user.register(OBSERVER_EVENT_DESTROY, src, /obj/item/weapon/card/id/syndicate/proc/unset_registered_user)
+	destroyed_event.register(user, src, /obj/item/weapon/card/id/syndicate/proc/unset_registered_user)
 	return TRUE
 
 /obj/item/weapon/card/id/syndicate/proc/unset_registered_user(var/mob/user)
 	if(!registered_user || (user && user != registered_user))
 		return
-	registered_user.unregister(OBSERVER_EVENT_DESTROY, src)
+	destroyed_event.unregister(registered_user, src)
 	registered_user = null
 
 /obj/item/weapon/card/id/syndicate/CanUseTopic(mob/user)

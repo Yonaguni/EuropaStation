@@ -264,7 +264,7 @@ var/global/list/singularities = list()
 			allowed_size = STAGE_SUPER
 
 	if (current_size != allowed_size && current_size != STAGE_SUPER)
-		expand(null, current_size > allowed_size)
+		expand(null, current_size < allowed_size)
 	return 1
 
 /obj/singularity/proc/eat()
