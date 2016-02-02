@@ -35,7 +35,7 @@
 /obj/structure/flora/attack_hand(var/mob/user)
 	if(seed_type)
 		if(seed_prob && prob(seed_prob))
-			var/obj/item/seeds/G = new(get_turf(src))
+			var/obj/item/seeds/G = new seed_type(get_turf(src))
 			user.put_in_hands(G)
 		visible_message("<span class='notice'>\The [user] rips out \the [src].</span>")
 		qdel(src)
