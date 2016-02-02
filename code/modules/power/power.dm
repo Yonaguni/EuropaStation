@@ -232,7 +232,6 @@
 	for(var/datum/powernet/PN in powernets)
 		qdel(PN)
 	powernets.Cut()
-
 	for(var/obj/structure/cable/PC in cable_list)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
