@@ -276,7 +276,8 @@
 	radiation = Clamp(radiation,0,100)
 
 	if (radiation)
-		var/obj/item/organ/diona/nutrients/rad_organ = locate() in internal_organs
+
+		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
 			radiation -= rads
@@ -296,34 +297,36 @@
 		if (radiation > 50)
 			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << "<span class='warning'>You feel weak.</span>"
-				Weaken(3)
-				if(!lying)
-					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
-				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << "<span class='warning'>Your hair falls out.</span>"
-					h_style = "Bald"
-					f_style = "Shaved"
-					update_hair()
+			if(!isSynthetic())
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					radiation -= 5 * RADIATION_SPEED_COEFFICIENT
+					src << "<span class='warning'>You feel weak.</span>"
+					Weaken(3)
+					if(!lying)
+						emote("collapse")
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
+					if((h_style != "Bald" || f_style != "Shaved" ))
+						src << "<span class='warning'>Your hair falls out.</span>"
+						h_style = "Bald"
+						f_style = "Shaved"
+						update_hair()
 
 		if (radiation > 75)
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			damage = 3
-			if(prob(5))
-				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
-			if(prob(1))
-				src << "<span class='warning'>You feel strange!</span>"
-				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
-				emote("gasp")
+			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
+			if(!isSynthetic())
+				if(prob(5))
+					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
+				if(prob(1))
+					src << "<span class='warning'>You feel strange!</span>"
+					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+					emote("gasp")
 
 		if(damage)
-			damage *= species.radiation_mod
+			damage *= isSynthetic() ? 0.5 : species.radiation_mod
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			updatehealth()
-			if(organs.len)
+			if(!isSynthetic() && organs.len)
 				var/obj/item/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
 
@@ -399,8 +402,8 @@
 	var/safe_pressure_min = species.breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
 	// Lung damage increases the minimum safe pressure.
-	if(species.has_organ["lungs"])
-		var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
+	if(should_have_organ(O_LUNGS))
+		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 		if(isnull(L))
 			safe_pressure_min = INFINITY //No lungs, how are you breathing?
 		else if(L.is_broken())
@@ -553,24 +556,24 @@
 
 		if(breath.temperature >= species.heat_level_1)
 			if(breath.temperature < species.heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 			else if(breath.temperature < species.heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 			else
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 
 		else if(breath.temperature <= species.cold_level_1)
 			if(breath.temperature > species.cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 			else if(breath.temperature > species.cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 			else
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 
 
@@ -722,15 +725,21 @@
 */
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if (species.passive_temp_gain) // We produce heat naturally.
+	// We produce heat naturally.
+	if (species.passive_temp_gain)
 		bodytemperature += species.passive_temp_gain
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
+
+	// Robolimbs cause overheating too.
+	if(robolimb_count)
+		bodytemperature += round(robolimb_count/2)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
+
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 
@@ -870,6 +879,7 @@
 	return min(1,thermal_protection)
 
 /mob/living/carbon/human/handle_chemicals_in_body()
+
 	if(in_stasis)
 		return
 
@@ -877,37 +887,43 @@
 		chem_effects.Cut()
 		analgesic = 0
 
-		if(touching) touching.metabolize()
-		if(ingested) ingested.metabolize()
-		if(bloodstr) bloodstr.metabolize()
+		if(!isSynthetic())
 
-		if(CE_PAINKILLER in chem_effects)
-			analgesic = chem_effects[CE_PAINKILLER]
+			if(touching) touching.metabolize()
+			if(ingested) ingested.metabolize()
+			if(bloodstr) bloodstr.metabolize()
+
+			if(CE_PAINKILLER in chem_effects)
+				analgesic = chem_effects[CE_PAINKILLER]
+
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	var/obj/item/organ/diona/node/light_organ = locate() in internal_organs
-	if(light_organ && !light_organ.is_broken())
-		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
-		if(isturf(loc)) //else, there's considered to be no light
-			var/turf/T = loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 5 //hardcapped so it's not abused by having a ton of flashlights
-			else
-				light_amount =  5
-		nutrition += light_amount
-		traumatic_shock -= light_amount
+	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
 
-		if(species.flags & IS_PLANT)
-			if(nutrition > 450)
-				nutrition = 450
-			if(light_amount >= 3) //if there's enough light, heal
-				adjustBruteLoss(-(round(light_amount/2)))
-				adjustFireLoss(-(round(light_amount/2)))
-				adjustToxLoss(-(light_amount))
-				adjustOxyLoss(-(light_amount))
-				//TODO: heal wounds, heal broken limbs.
+	if(!isSynthetic())
+		if(light_organ && !light_organ.is_broken())
+			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
+			if(isturf(loc)) //else, there's considered to be no light
+				var/turf/T = loc
+				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+				if(L)
+					light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 5 //hardcapped so it's not abused by having a ton of flashlights
+				else
+					light_amount =  5
+			nutrition += light_amount
+			traumatic_shock -= light_amount
+
+			if(species.flags & IS_PLANT)
+				if(nutrition > 450)
+					nutrition = 450
+
+				if(light_amount >= 3) //if there's enough light, heal
+					adjustBruteLoss(-(round(light_amount/2)))
+					adjustFireLoss(-(round(light_amount/2)))
+					adjustToxLoss(-(light_amount))
+					adjustOxyLoss(-(light_amount))
+					//TODO: heal wounds, heal broken limbs.
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -934,13 +950,14 @@
 		if(overeatduration > 1)
 			overeatduration -= 2 //doubled the unfat rate
 
-	if(species.flags & IS_PLANT && (!light_organ || light_organ.is_broken()))
+	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
 		if(nutrition < 200)
 			take_overall_damage(2,0)
 			traumatic_shock++
 
 	// TODO: stomach and bloodstream organ.
-	handle_trace_chems()
+	if(!isSynthetic())
+		handle_trace_chems()
 
 	updatehealth()
 
@@ -953,7 +970,7 @@
 	if(status_flags & GODMODE)	return 0
 
 	//SSD check, if a logged player is awake put them back to sleep!
-	if(species.show_ssd && !client && !teleop)
+	if(species.get_ssd(src) && !client && !teleop)
 		Sleeping(2)
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
@@ -961,7 +978,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= config.health_threshold_dead || (species.has_organ["brain"] && !has_brain()))
+		if(health <= config.health_threshold_dead || (should_have_organ("brain") && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
@@ -1015,13 +1032,6 @@
 		//CONSCIOUS
 		else
 			stat = CONSCIOUS
-
-		//Periodically double-check embedded_flag
-		if(embedded_flag && !(life_tick % 10))
-			var/list/E
-			E = get_visible_implants(0)
-			if(!E.len)
-				embedded_flag = 0
 
 		// Check everything else.
 
@@ -1189,7 +1199,7 @@
 					if(2)	healths.icon_state = "health7"
 					else
 						//switch(health - halloss)
-						switch(100 - ((species.flags & NO_PAIN) ? 0 : traumatic_shock))
+						switch(100 - (!can_feel_pain() ? 0 : traumatic_shock))
 							if(100 to INFINITY)		healths.icon_state = "health0"
 							if(80 to 100)			healths.icon_state = "health1"
 							if(60 to 80)			healths.icon_state = "health2"
@@ -1277,7 +1287,7 @@
 	// Puke if toxloss is too high
 	if(!stat)
 		if (getToxLoss() >= 45 && nutrition > 20)
-			vomit()
+			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
 	if(isturf(loc) && rand(1,1000) == 1)
@@ -1306,7 +1316,7 @@
 /mob/living/carbon/human/handle_shock()
 	..()
 	if(status_flags & GODMODE)	return 0	//godmode
-	if(species && species.flags & NO_PAIN) return
+	if(!can_feel_pain()) return
 
 	if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
@@ -1357,7 +1367,7 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(species && species.flags & NO_BLOOD)
+	if(!internal_organs_by_name[O_HEART])
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)
@@ -1382,12 +1392,12 @@
 	return temp
 
 /mob/living/carbon/human/proc/handle_heartbeat()
-	if(pulse == PULSE_NONE || !species.has_organ["heart"])
+	if(pulse == PULSE_NONE)
 		return
 
-	var/obj/item/organ/heart/H = internal_organs_by_name["heart"]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
 
-	if(!H || H.robotic >=2 )
+	if(!H || (H.status & ORGAN_ROBOT))
 		return
 
 	if(pulse >= PULSE_2FAST || shock_stage >= 10 || istype(get_turf(src), /turf/space))
@@ -1550,7 +1560,7 @@
 	return slurring
 
 /mob/living/carbon/human/handle_stunned()
-	if(species.flags & NO_PAIN)
+	if(!can_feel_pain())
 		stunned = 0
 		return 0
 	if(..())
@@ -1574,6 +1584,7 @@
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()
+	full_prosthetic = null
 	..()
 
 /mob/living/carbon/human/handle_vision()
@@ -1587,7 +1598,6 @@
 			sight |= viewflags
 	else if(eyeobj)
 		if(eyeobj.owner != src)
-
 			reset_view(null)
 	else
 		var/isRemoteObserve = 0
@@ -1598,6 +1608,8 @@
 			remoteview_target = null
 			reset_view(null, 0)
 
+	eye_blind =  0
+	blinded = 0
 	update_equipment_vision()
 	species.handle_vision(src)
 

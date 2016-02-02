@@ -372,9 +372,11 @@
 			if(emergency_shuttle.online())
 				dat += "<font color='red'>The colony is currently undergoing evacuation procedures.</font><br>"
 
-		dat += "Choose from the following open positions:<br>"
+		dat += "Choose from the following open/valid positions:<br>"
 		for(var/datum/job/job in job_master.occupations)
 			if(job && IsJobAvailable(job.title))
+				if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
+					continue
 				var/active = 0
 				// Only players with the job assigned and AFK for less than 10 minutes count as active
 				for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)

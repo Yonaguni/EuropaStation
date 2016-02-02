@@ -23,27 +23,26 @@ var/global/list/chargen_robolimbs
 	var/vip_only                                         // Must be admin or ckey in vips to use.
 
 /datum/robolimb/bishop
-	company = "Bishop Cybernetics"
+	company = "Bishop"
 	desc = "This limb has a white polymer casing with blue holo-displays."
 	icon = 'icons/mob/human_races/cyberlimbs/bishop.dmi'
 
 /datum/robolimb/hesphaistos
-	company = "Hesphiastos Industries"
+	company = "Hesphiastos"
 	desc = "This limb has a militaristic black and green casing with gold stripes."
 	icon = 'icons/mob/human_races/cyberlimbs/hesphaistos.dmi'
 
 /datum/robolimb/zenghu
-	company = "Zeng-Hu Pharmaceuticals"
+	company = "Zeng-Hu"
 	desc = "This limb has a rubbery fleshtone covering with visible seams."
 	icon = 'icons/mob/human_races/cyberlimbs/zenghu.dmi'
 
 /datum/robolimb/xion
-	company = "Xion Manufacturing Group"
+	company = "Xion"
 	desc = "This limb has a minimalist black and red casing."
 	icon = 'icons/mob/human_races/cyberlimbs/xion.dmi'
 
 /datum/robolimb/ipc
-	company = "Morpheus Cyberkinetics"
+	company = "Morpheus"
 	desc = "This limb is simple and functional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/ipc.dmi'
-	unavailable_at_chargen = 1

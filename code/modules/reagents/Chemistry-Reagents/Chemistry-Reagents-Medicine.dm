@@ -238,7 +238,7 @@
 	M.eye_blind = max(M.eye_blind - 5, 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(E && istype(E))
 			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, 0)
@@ -257,7 +257,7 @@
 		var/mob/living/carbon/human/H = M
 
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+			if((I.damage > 0) && !(I.status & ORGAN_ROBOT)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
 
 /datum/reagent/ryetalyn
@@ -327,7 +327,7 @@
 	scannable = 1
 
 /datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.apply_effect(max(M.radiation - 30 * removed, 0), IRRADIATE, check_protection = 0)
+	M.radiation = max(M.radiation - 30 * removed, 0)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -340,7 +340,7 @@
 	scannable = 1
 
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.apply_effect(max(M.radiation - 70 * removed, 0), IRRADIATE, check_protection = 0)
+	M.radiation = max(M.radiation - 70 * removed, 0)
 	M.adjustToxLoss(-10 * removed)
 	if(prob(60))
 		M.take_organ_damage(4 * removed, 0)

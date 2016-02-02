@@ -24,6 +24,7 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_acceleration,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
+	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement
 )
 
@@ -67,6 +68,8 @@ var/list/ai_verbs_default = list(
 	var/datum/ai_icon/selected_sprite			// The selected icon set
 	var/custom_sprite 	= 0 					// Whether the selected icon is custom
 	var/carded
+
+	var/multitool_mode = 0
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
@@ -113,7 +116,6 @@ var/list/ai_verbs_default = list(
 	aiRadio = new(src)
 	common_radio = aiRadio
 	aiRadio.myAi = src
-	additional_law_channels["Binary"] = ":b"
 	additional_law_channels["Holopad"] = ":h"
 
 	aiCamera = new/obj/item/device/camera/siliconcam/ai_camera(src)
@@ -125,12 +127,14 @@ var/list/ai_verbs_default = list(
 	add_language("Robot Talk", 1)
 	add_language("Drone Talk", 0)
 	add_language("Galactic Common", 1)
-	add_language("Sol Common", 0)
-	add_language("Sinta'unathi", 0)
-	add_language("Siik'tajr", 0)
-	add_language("Skrellian", 0)
-	add_language("Tradeband", 1)
-	add_language("Gutter", 0)
+	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_SOL_COMMON, 0)
+	add_language(LANGUAGE_UNATHI, 0)
+	add_language(LANGUAGE_SIIK_TAJR, 0)
+	add_language(LANGUAGE_SKRELLIAN, 0)
+	add_language(LANGUAGE_RESOMI, 0)
+	add_language(LANGUAGE_TRADEBAND, 1)
+	add_language(LANGUAGE_GUTTER, 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -158,14 +162,13 @@ var/list/ai_verbs_default = list(
 
 	ai_list += src
 	..()
-	return
 
 /mob/living/silicon/ai/proc/on_mob_init()
 	src << "<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>"
 	src << "<B>To look at other parts of the station, click on yourself to get a camera menu.</B>"
 	src << "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>"
 	src << "To use something, simply click on it."
-	src << "Use say :b to speak to your cyborgs through binary. Use say :h to speak from an active holopad."
+	src << "Use say [get_language_prefix()]b to speak to your cyborgs through binary. Use say :h to speak from an active holopad."
 	src << "For department channels, use the following say commands:"
 
 	var/radio_text = ""
@@ -184,6 +187,13 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
+	qdel(aiPDA)
+	qdel(aiMulti)
+	qdel(aiRadio)
+	aiPDA = null
+	aiMulti = null
+	aiRadio = null
+
 	ai_list -= src
 
 	qdel(eyeobj)
@@ -676,6 +686,13 @@ var/list/ai_verbs_default = list(
 		qdel(src)
 		return
 	..()
+
+/mob/living/silicon/ai/proc/multitool_mode()
+	set name = "Toggle Multitool Mode"
+	set category = "AI Commands"
+
+	multitool_mode = !multitool_mode
+	src << "<span class='notice'>Multitool mode: [multitool_mode ? "E" : "Dise"]ngaged</span>"
 
 /mob/living/silicon/ai/update_icons()
 	if(!selected_sprite) selected_sprite = default_ai_icon

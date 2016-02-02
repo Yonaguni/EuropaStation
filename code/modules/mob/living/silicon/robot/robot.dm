@@ -97,6 +97,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
 
@@ -155,7 +156,6 @@
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 	laws = new /datum/ai_laws/nanotrasen()
-	additional_law_channels["Binary"] = ":b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
 		lawupdate = 1
@@ -239,7 +239,7 @@
 	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
-	modtype = input("Please, select a module!", "Robot", null, null) as null|anything in modules
+	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
 	if(module)
 		return
@@ -259,7 +259,8 @@
 		modtype = prefix
 
 	if(istype(mmi, /obj/item/device/mmi/digital))
-		braintype = "Robot"
+
+		braintype = "Drone"
 	else
 		braintype = "Cyborg"
 
@@ -449,6 +450,7 @@
 			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustBruteLoss(-30)
 			updatehealth()
 			add_fingerprint(user)
@@ -464,6 +466,7 @@
 			return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
@@ -691,13 +694,6 @@
 			icon_state = module_sprites[icontype]
 		return
 
-//Call when target overlay should be added/removed
-/mob/living/silicon/robot/update_targeted()
-	if(!targeted_by && target_locked)
-		qdel(target_locked)
-	update_icons()
-	if (targeted_by && target_locked)
-		overlays += target_locked
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
@@ -907,7 +903,7 @@
 		if(!(icontype in module_sprites))
 			icontype = module_sprites[1]
 	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot", icontype, null) in module_sprites
+		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
 	icon_state = module_sprites[icontype]
 	update_icons()
 

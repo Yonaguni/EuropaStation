@@ -150,12 +150,12 @@
 	last_hit_zone = target_zone
 
 	switch(target_zone)
-		if("mouth")
+		if(O_MOUTH)
 			if(announce)
 				user.visible_message("<span class='warning'>\The [user] covers [target]'s mouth!</span>")
 			if(target.silent < 3)
 				target.silent = 3
-		if("eyes")
+		if(O_EYES)
 			if(announce)
 				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
 			if(affecting.eye_blind < 3)
@@ -305,9 +305,9 @@
 					jointlock(affecting, assailant, hit_zone)
 
 				if(I_HURT)
-					if(hit_zone == "eyes")
+					if(hit_zone == O_EYES)
 						attack_eye(affecting, assailant)
-					else if(hit_zone == "head")
+					else if(hit_zone == BP_HEAD)
 						headbutt(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)

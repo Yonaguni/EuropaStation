@@ -6,6 +6,7 @@
 	density = 0
 	anchored = 1
 	layer = 2.3
+	w_class = 3
 
 /obj/structure/lattice/New(var/newloc)
 	var/turf/T = newloc

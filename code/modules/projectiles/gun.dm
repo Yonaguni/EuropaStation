@@ -15,10 +15,10 @@
 
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
-		
+
 		if(propname == "mode_name")
 			name = propvalue
-		if(isnull(propvalue))
+		else if(isnull(propvalue))
 			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like burst_accuracy
 		else
 			settings[propname] = propvalue
@@ -107,7 +107,7 @@
 			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
 				user.visible_message(
-					"<span class='danger'>[user] shoots \himself in the foot with \the [src]!</span>",
+					"<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>",
 					"<span class='danger'>You shoot yourself in the foot with \the [src]!</span>"
 					)
 				M.drop_item()
@@ -123,19 +123,19 @@
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
-	//decide whether to aim or shoot normally
-	var/aiming = 0
-	if(user && user.client && !(A in aim_targets))
-		if(user.client.gun_mode)
-			aiming = PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	if (!aiming)
-		if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-			user << "\red You refrain from firing your [src] as your intent is set to help."
-		else
-			Fire(A,user,params) //Otherwise, fire normally.
+	if(!user.aiming)
+		user.aiming = new(user)
+	if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A)
+		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
+		return
+
+	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
+		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
+	else
+		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && ishuman(user) && user.zone_sel.selecting == "mouth" && !mouthshoot)
+	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)

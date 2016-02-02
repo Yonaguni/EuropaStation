@@ -7,16 +7,20 @@
 	slot_flags = SLOT_TIE
 	w_class = 2.0
 	var/slot = "decor"
-	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
+	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 	var/image/mob_overlay = null
 	var/overlay_state = null
+
+/obj/item/clothing/accessory/Destroy()
+	on_removed()
+	return ..()
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)
 		if(!mob_overlay)
 			get_mob_overlay()
-		
+
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
 			if("[tmp_icon_state]_tie" in icon_states(icon_override))
@@ -36,23 +40,26 @@
 	return mob_overlay
 
 //when user attached an accessory to S
-/obj/item/clothing/accessory/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
 	loc = has_suit
 	has_suit.overlays += get_inv_overlay()
 
-	user << "<span class='notice'>You attach [src] to [has_suit].</span>"
+	user << "<span class='notice'>You attach \the [src] to \the [has_suit].</span>"
 	src.add_fingerprint(user)
 
-/obj/item/clothing/accessory/proc/on_removed(mob/user as mob)
+/obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
 		return
 	has_suit.overlays -= get_inv_overlay()
 	has_suit = null
-	usr.put_in_hands(src)
-	src.add_fingerprint(user)
+	if(user)
+		usr.put_in_hands(src)
+		src.add_fingerprint(user)
+	else
+		src.forceMove(get_turf(src))
 
 //default attackby behaviour
 /obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
@@ -95,33 +102,31 @@
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
-				if(M.species && M.species.has_organ["heart"])
-					var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
-					if(heart && !heart.robotic)
-						heartbeat = 1
+				var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
+				if(heart && !(heart.status & ORGAN_ROBOT))
+					heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
 					switch(body_part)
-						if("chest")
+						if(BP_TORSO)
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
-								var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
 									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
 									sound = "healthy heartbeat"
 
-							var/obj/item/organ/heart/L = M.internal_organs_by_name["lungs"]
+							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
-						if("eyes","mouth")
+						if(O_EYES,O_MOUTH)
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else

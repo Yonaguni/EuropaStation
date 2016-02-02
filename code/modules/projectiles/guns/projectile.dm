@@ -175,7 +175,7 @@
 
 /obj/item/weapon/gun/projectile/attack_self(var/mob/user)
 	if(firemodes.len > 1)
-		switch_firemodes(user)
+		..()
 	else
 		unload_ammo(user)
 

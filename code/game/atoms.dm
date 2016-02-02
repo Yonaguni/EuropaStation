@@ -210,7 +210,7 @@ its easier to just keep the beam vertical.
 			f_name = "some "
 		else
 			f_name = "a "
-		if(blood_color != "#030303")
+		if(blood_color != SYNTH_BLOOD_COLOUR)
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
@@ -234,7 +234,7 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
-	return -1
+	return NO_EMAG_ACT
 
 /atom/proc/fire_act()
 	return
@@ -411,8 +411,7 @@ its easier to just keep the beam vertical.
 			M.dna = new /datum/dna(null)
 			M.dna.real_name = M.real_name
 		M.check_dna()
-		if (M.species)
-			blood_color = M.species.blood_color
+		blood_color = M.species.get_blood_colour(M)
 	. = 1
 	return 1
 
@@ -432,7 +431,6 @@ its easier to just keep the beam vertical.
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
 		return 1
-
 
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return

@@ -1,5 +1,6 @@
 /*
 
+
  * Welding Tool
  */
 /obj/item/weapon/weldingtool
@@ -204,7 +205,7 @@
 	var/safety = user:eyecheck()
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
 		switch(safety)
@@ -266,25 +267,24 @@
 	if(reagents > max_fuel)
 		reagents = max_fuel
 
-/obj/item/weapon/weldingtool/afterattack(var/mob/M, var/mob/user)
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+/obj/item/weapon/weldingtool/attack(var/atom/A, var/mob/living/user, var/def_zone)
+	if(ishuman(A) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if (!S) return
-		if(!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if(!S || !(S.status & ORGAN_ROBOT))
 			return ..()
 
 		if(S.brute_dam)
 			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(15,0,0,1)
-				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [M]'s [S.name] with \the [src].</span>")
-			else if(S.open != 2)
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [H]'s [S.name] with \the [src].</span>")
+			else if(S.open < 3)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-			return 1
-		else if(S.open != 2)
+			else
+				return ..()
+		else
 			user << "<span class='notice'>Nothing to fix!</span>"
-
-	else
-		return ..()
+		return
+	return ..()

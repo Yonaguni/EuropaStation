@@ -116,6 +116,7 @@
 	else if (istype(I, /obj/item/weapon/wrench))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
 				"<span class='notice'>\The [user] repairs \the [src]!</span>",
 				"<span class='notice'>You repair \the [src]!</span>"
@@ -128,6 +129,7 @@
 			user.visible_message("<span class='warning'>[user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'>You knock [load] off [src] with \the [I]!</span>")
 		else
 			user << "You hit [src] with \the [I] but to no effect."
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	else
 		..()
 	return
@@ -723,12 +725,12 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.apply_damage(2*damage, BRUTE, "head")
-	H.apply_damage(2*damage, BRUTE, "chest")
-	H.apply_damage(0.5*damage, BRUTE, "l_leg")
-	H.apply_damage(0.5*damage, BRUTE, "r_leg")
-	H.apply_damage(0.5*damage, BRUTE, "l_arm")
-	H.apply_damage(0.5*damage, BRUTE, "r_arm")
+	H.apply_damage(2*damage,   BRUTE, BP_HEAD)
+	H.apply_damage(2*damage,   BRUTE, BP_TORSO)
+	H.apply_damage(0.5*damage, BRUTE, BP_L_LEG)
+	H.apply_damage(0.5*damage, BRUTE, BP_R_LEG)
+	H.apply_damage(0.5*damage, BRUTE, BP_L_ARM)
+	H.apply_damage(0.5*damage, BRUTE, BP_R_ARM)
 
 	blood_splatter(src,H,1)
 	bloodiness += 4
