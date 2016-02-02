@@ -1,22 +1,21 @@
-var/global_light_brightness = 8
+var/global_light_brightness = 6
 var/global_light_colour = "#FFFFFF"
 
 /turf/var/outside
 
 /turf/initialize()
-	var/area/A = get_area(src)
-	if(outside || (!(blocks_air || density) && A.outside))
-		sleep(-1)
-		update_world_lights()
+	if(!blocks_air && !density)
+		var/area/A = get_area(src)
+		if(A.outside)
+			outside = 1
+			sleep(-1)
+			update_world_lights()
 	return ..()
 
 
 /turf/proc/update_world_lights()
 	for(var/turf/T in range(src, 1))
 		if(T.outside)
-			continue
-		var/area/A = get_area(T)
-		if(A && A.outside)
 			continue
 		set_light(global_light_brightness, l_color = global_light_colour)
 		return

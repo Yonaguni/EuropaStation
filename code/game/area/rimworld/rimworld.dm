@@ -35,12 +35,20 @@
 /area/rimworld/building/farmhouse
 	name = "Farmhouse"
 	icon_state = "farmhouse"
+
+/area/rimworld/building/farmhouse/hunter
+	name = "Hunter's Den"
+
 /area/rimworld/building/pub
 	name = "Pub"
 	icon_state = "pub"
 /area/rimworld/building/garage
 	name = "Garage"
 	icon_state = "garage"
+/area/rimworld/building/garage/power
+	name = "Supply Depot"
+/area/rimworld/building/garage/scrapper
+	name = "Scrapyard"
 
 // Houses!
 /area/rimworld/building/mayor
@@ -54,9 +62,9 @@
 /area/rimworld/building/homestead_sw
 	name = "Small Homestead - Southwest"
 /area/rimworld/building/homestead_large_n
-	name = "Large Homestead - North"
+	name = "Gaol"
 /area/rimworld/building/homestead_large_s
-	name = "Large Homestead - South"
+	name = "Clinic"
 
 // Bank!
 /area/rimworld/building/bank
