@@ -250,7 +250,6 @@ var/list/organ_cache = list()
 	status |= ORGAN_ASSISTED
 	status |= ORGAN_ROBOT
 
-
 /obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
 	status = 0
 	status |= ORGAN_ASSISTED

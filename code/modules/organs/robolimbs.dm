@@ -1,5 +1,9 @@
-var/global/list/all_robolimb_data = list()
-var/global/list/chargen_robolimbs
+var/list/all_robolimb_data = list()
+var/list/all_robolimb_datums = list()
+
+/proc/init_robolimbs()
+	for(var/mtype in typesof(/datum/robolimb))
+		get_robolimb_by_path(mtype)
 
 /proc/get_robolimb_by_name(var/model)
 	for(var/mtype in typesof(/datum/robolimb))
@@ -11,6 +15,7 @@ var/global/list/chargen_robolimbs
 /proc/get_robolimb_by_path(var/model_path)
 	if(!all_robolimb_data[model_path])
 		all_robolimb_data[model_path] = new model_path
+		all_robolimb_datums += all_robolimb_data[model_path]
 	return all_robolimb_data[model_path]
 
 /datum/robolimb

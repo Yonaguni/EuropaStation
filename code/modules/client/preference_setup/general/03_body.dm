@@ -405,7 +405,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				choice_options = list("Normal","Prothesis")
 
 		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in choice_options
-		if(!new_state && !CanUseTopic(user)) return TOPIC_NOACTION
+		if(!new_state || !CanUseTopic(user)) return TOPIC_NOACTION
 
 		switch(new_state)
 			if("Normal")
@@ -431,12 +431,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			if("Prothesis")
 				var/tmp_species = pref.species ? pref.species : "Human"
+				if(!all_robolimb_data.len)
+					init_robolimbs()
 				var/list/usable_manufacturers = list()
-				for(var/company in chargen_robolimbs)
-					var/datum/robolimb/M = chargen_robolimbs[company]
+				for(var/datum/robolimb/M in all_robolimb_datums)
+					if(M.unavailable_at_chargen)
+						continue
 					if(tmp_species in M.species_cannot_use)
 						continue
-					usable_manufacturers[company] = M
+					usable_manufacturers[M.company] = M
 				if(!usable_manufacturers.len)
 					return
 				var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in usable_manufacturers
