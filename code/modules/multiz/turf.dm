@@ -11,6 +11,7 @@
 	accept_lattice = 1
 	drop_state = null
 	open_space = 1
+	blend_with_neighbors = -10 // Will accept overlays but shouldn't generate its own.
 
 	var/turf/below
 	var/need_appearance_update
@@ -96,3 +97,40 @@
 /turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(0)
+
+/turf/simulated/open/attack_hand(var/mob/user)
+	if(below && below.flooded)
+		var/mob/living/carbon/human/H = user
+		if(!istype(H))
+			return ..()
+		H << "<span class='notice'>You start washing your hands.</span>"
+		if(!do_after(H, 40) || !Adjacent(H))
+			return
+		H.clean_blood()
+		H.update_inv_gloves()
+		H.visible_message("<span class='notice'>\The [user] washes their hands in \the [src].</span>")
+		return
+	return ..()
+
+/turf/simulated/open/attackby(var/obj/item/O, var/mob/user)
+	if(below && below.flooded)
+		var/obj/item/weapon/reagent_containers/RG = O
+		if(istype(RG) && RG.is_open_container())
+			RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+			user.visible_message("<span class='notice'>\The [user] fills \the [RG] from \the [src].</span>")
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+			return 1
+		if(istype(O, /obj/item/weapon/mop))
+			O.reagents.add_reagent("water", 5)
+			user << "<span class='notice'>You wet \the [O] in \the [src].</span>"
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+			return
+		user << "<span class='notice'>You start washing \the [O].</span>"
+		if(!do_after(user, 40) || !Adjacent(user))
+			return
+		if(user.get_active_hand() != O)
+			return
+		O.clean_blood()
+		user.visible_message("<span class='notice'>\The [user] washes \the [O] in \the [src].</span>")
+		return
+	return ..()

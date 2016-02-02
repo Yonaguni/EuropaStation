@@ -190,6 +190,10 @@
 /obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
 	..(newloc, "diamond")
 
+/obj/structure/simple_door/wood
+	icon_state = "wood"
+	color = "#824B28"
+
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
 	..(newloc, "wood")
 
