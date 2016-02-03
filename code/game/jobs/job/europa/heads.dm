@@ -4,7 +4,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Jovian authorities"
-	head_position = 1
 	req_admin_notify = 1
 	minimal_access = list()
 	selection_color = "#dddddd"
