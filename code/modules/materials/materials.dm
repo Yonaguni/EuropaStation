@@ -512,6 +512,18 @@ var/global/list/all_materials = list()
 	hardness = 500
 	weight = 500
 
+/material/concrete
+	name = "concrete"
+	icon_colour = "#CCCCCC"
+	icon_base = "solid"
+	integrity = 65
+	explosion_resistance = 5
+	shard_type = SHARD_SPLINTER
+	shard_can_repair = 0 //
+	hardness = 30
+	weight = 50
+	destruction_desc = "shatters"
+
 /material/wood
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
@@ -530,6 +542,9 @@ var/global/list/all_materials = list()
 	destruction_desc = "splinters"
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
+
+/material/wood/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+	new /obj/structure/barricade/wood(target)
 
 /material/wood/holographic
 	name = "holowood"

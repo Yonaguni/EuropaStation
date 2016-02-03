@@ -163,6 +163,19 @@
 	// Basic dismantling.
 	if(isnull(construction_stage) || !reinf_material)
 
+		// SNOWFLAKE ALERT.
+		if(!reinf_material && istype(W,/obj/item/weapon/crowbar) && material.name == "wood")
+			user << "<span class='notice'>You begin prying off the outer planks.</span>"
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+			if(!do_after(user,30))
+				return
+			user << "<span class='notice'>You remove the outer planks.</span>"
+			dismantle_wall(silent=1)
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+			user.visible_message("<span class='warning'>The wall was torn open by [user]!</span>")
+			return
+		// END SNOWFLAKE ALERT.
+
 		var/cut_delay = 60 - material.cut_delay
 		var/dismantle_verb
 		var/dismantle_sound
@@ -313,5 +326,19 @@
 		return
 
 	else if(!istype(W,/obj/item/weapon/rcd) && !istype(W, /obj/item/weapon/reagent_containers))
-		return attack_hand(user)
-
+		if(!W.force)
+			return attack_hand(user)
+		var/dam_threshhold = material.integrity
+		if(reinf_material)
+			dam_threshhold = ceil(max(dam_threshhold,reinf_material.integrity)/2)
+		var/dam_prob = min(100,material.hardness*1.5)
+		if(dam_prob < 100 && W.force > (dam_threshhold/10))
+			playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
+			if(!prob(dam_prob))
+				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W] and it [material.destruction_desc]!</span>")
+				dismantle_wall(1)
+			else
+				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W]!</span>")
+		else
+			visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W], but it bounces off!</span>")
+		return

@@ -154,9 +154,10 @@
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product, var/change_turf=1)
+/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product, var/change_turf=1, var/silent)
 
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	if(!silent)
+		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
