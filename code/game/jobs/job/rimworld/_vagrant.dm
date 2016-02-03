@@ -1,13 +1,10 @@
 /datum/job/borderworld
 	title = "Vagrant"
-	flag = CIVILIAN
 	job_category = IS_CIVIL
-	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "your conscience"
 	selection_color = "#dddddd"
-	department_flag = CIVILIAN
 	idtype = null
 	headsettype = null
 	pdatype = null

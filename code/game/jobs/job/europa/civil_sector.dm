@@ -1,6 +1,5 @@
 /datum/job/civilian/engineering
 	title = "Civil Engineer"
-	flag = ENGINEER
 	alt_titles = list("Emergency Services","Electrician")
 
 /datum/job/civilian/engineering/equip(var/mob/living/carbon/human/H)

@@ -3,7 +3,7 @@
 	desc = "The planet surface and the mining level."
 	height = 2
 
-	default_title = "Wanderer"
+	default_title = "Vagrant"
 	default_job = /datum/job/borderworld
 	use_jobs = list(
 		/datum/job/borderworld,

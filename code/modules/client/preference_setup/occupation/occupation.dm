@@ -9,46 +9,23 @@
 
 /datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
 	S["alternate_option"]	>> pref.alternate_option
-	S["job_civilian_high"]	>> pref.job_civilian_high
-	S["job_civilian_med"]	>> pref.job_civilian_med
-	S["job_civilian_low"]	>> pref.job_civilian_low
-	S["job_medsci_high"]	>> pref.job_medsci_high
-	S["job_medsci_med"]		>> pref.job_medsci_med
-	S["job_medsci_low"]		>> pref.job_medsci_low
-	S["job_engsec_high"]	>> pref.job_engsec_high
-	S["job_engsec_med"]		>> pref.job_engsec_med
-	S["job_engsec_low"]		>> pref.job_engsec_low
+	S["job_preferences"]    >> pref.job_preferences
 	S["player_alt_titles"]	>> pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
 	S["alternate_option"]	<< pref.alternate_option
-	S["job_civilian_high"]	<< pref.job_civilian_high
-	S["job_civilian_med"]	<< pref.job_civilian_med
-	S["job_civilian_low"]	<< pref.job_civilian_low
-	S["job_medsci_high"]	<< pref.job_medsci_high
-	S["job_medsci_med"]		<< pref.job_medsci_med
-	S["job_medsci_low"]		<< pref.job_medsci_low
-	S["job_engsec_high"]	<< pref.job_engsec_high
-	S["job_engsec_med"]		<< pref.job_engsec_med
-	S["job_engsec_low"]		<< pref.job_engsec_low
+	S["job_preferences"]    << pref.job_preferences
 	S["player_alt_titles"]	<< pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
-	pref.job_civilian_high	= sanitize_integer(pref.job_civilian_high, 0, 65535, initial(pref.job_civilian_high))
-	pref.job_civilian_med	= sanitize_integer(pref.job_civilian_med, 0, 65535, initial(pref.job_civilian_med))
-	pref.job_civilian_low	= sanitize_integer(pref.job_civilian_low, 0, 65535, initial(pref.job_civilian_low))
-	pref.job_medsci_high	= sanitize_integer(pref.job_medsci_high, 0, 65535, initial(pref.job_medsci_high))
-	pref.job_medsci_med		= sanitize_integer(pref.job_medsci_med, 0, 65535, initial(pref.job_medsci_med))
-	pref.job_medsci_low		= sanitize_integer(pref.job_medsci_low, 0, 65535, initial(pref.job_medsci_low))
-	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
-	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
-	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
-	if(!pref.player_alt_titles) pref.player_alt_titles = new()
+	for(var/title in pref.job_preferences) // Make sure job prefs are within bounds.
+		pref.job_preferences[title] = max(0,min(JOB_HIGH, pref.job_preferences[title]))
+	if(!pref.player_alt_titles)       pref.player_alt_titles = new()
+	if(!islist(pref.job_preferences)) pref.job_preferences = list()
 
 	if(!job_master)
 		return
-
 	for(var/datum/job/job in job_master.occupations)
 		var/alt_title = pref.player_alt_titles[job.title]
 		if(alt_title && !(alt_title in job.alt_titles))
@@ -93,7 +70,7 @@
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
-		if((pref.job_civilian_low & ASSISTANT) && (rank != "[default_role]"))
+		if((pref.job_preferences[world_map.default_title]) && (rank != "[world_map.default_title]"))
 			. += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in gov_positions) || (rank == "AI"))//Bold head jobs
@@ -105,16 +82,19 @@
 
 		. += "<a href='?src=\ref[src];set_job=[rank]'>"
 
-		if(pref.GetJobDepartment(job, 1) & job.flag)
-			. += " <font color=blue>\[High]</font>"
-		else if(pref.GetJobDepartment(job, 2) & job.flag)
-			. += " <font color=green>\[Medium]</font>"
-		else if(pref.GetJobDepartment(job, 3) & job.flag)
-			. += " <font color=orange>\[Low]</font>"
-		else
-			. += " <font color=red>\[NEVER]</font>"
+		var/jobval = pref.job_preferences[job.title]
+		switch(jobval)
+			if(JOB_LOW)
+				. += " <font color=orange>\[Low]</font>"
+			if(JOB_MED)
+				. += " <font color=green>\[Medium]</font>"
+			if(JOB_HIGH)
+				. += " <font color=blue>\[High]</font>"
+			else
+				. += " <font color=red>\[NEVER]</font>"
+
 		if(job.alt_titles)
-			. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
+			. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.get_player_alt_title(job)]\]</a></td></tr>"
 		. += "</a></td></tr>"
 
 	. += "</td'></tr></table>"
@@ -133,10 +113,25 @@
 	. += "</tt>"
 
 /datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)
+
+	// Null the job preference list.
 	if(href_list["reset_jobs"])
-		ResetJobs()
+		reset_jobs()
 		return TOPIC_REFRESH
 
+	// Increment the preference for this job by 1 place.
+	else if(href_list["set_job"])
+		var/jobtitle = href_list["set_job"]
+		var/jobval = pref.job_preferences[jobtitle]
+		if(!jobval) // Either totally unset or just 0.
+			pref.job_preferences[jobtitle] = JOB_LOW
+		else if(jobval == JOB_HIGH) // Wrap around to 0.
+			pref.job_preferences[jobtitle] = JOB_NEVER
+		else // Step up by one!
+			pref.job_preferences[jobtitle] += 1
+		return TOPIC_REFRESH
+
+	// Toggle the behavior desired when failing to get a job.
 	else if(href_list["job_alternative"])
 		if(pref.alternate_option == GET_RANDOM_JOB || pref.alternate_option == BE_ASSISTANT)
 			pref.alternate_option += 1
@@ -144,135 +139,30 @@
 			pref.alternate_option = 0
 		return TOPIC_REFRESH
 
+	// Select an alt title for a job.
 	else if(href_list["select_alt_title"])
 		var/datum/job/job = locate(href_list["select_alt_title"])
 		if (job)
 			var/choices = list(job.title) + job.alt_titles
-			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
+			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.get_player_alt_title(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
-				SetPlayerAltTitle(job, choice)
+				set_player_alt_title(job, choice)
 				return TOPIC_REFRESH
 
-	else if(href_list["set_job"])
-		if(SetJob(user, href_list["set_job"])) return TOPIC_REFRESH
 
 	return ..()
 
-/datum/category_item/player_setup_item/occupation/proc/SetPlayerAltTitle(datum/job/job, new_title)
+/datum/category_item/player_setup_item/occupation/proc/reset_jobs()
+	pref.job_preferences.Cut()
+	pref.player_alt_titles.Cut()
+
+/datum/category_item/player_setup_item/occupation/proc/set_player_alt_title(datum/job/job, new_title)
 	// remove existing entry
 	pref.player_alt_titles -= job.title
 	// add one if it's not default
 	if(job.title != new_title)
 		pref.player_alt_titles[job.title] = new_title
 
-/datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role)
-	var/datum/job/job = job_master.GetJob(role)
-	if(!job)
-		return 0
-
-	if(pref.GetJobDepartment(job, 1) & job.flag)
-		SetJobDepartment(job, 1)
-	else if(pref.GetJobDepartment(job, 2) & job.flag)
-		SetJobDepartment(job, 2)
-	else if(pref.GetJobDepartment(job, 3) & job.flag)
-		SetJobDepartment(job, 3)
-	else//job = Never
-		SetJobDepartment(job, 4)
-
-	return 1
-
-/datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
-	if(!job || !level)	return 0
-	switch(level)
-		if(1)//Only one of these should ever be active at once so clear them all here
-			pref.job_civilian_high = 0
-			pref.job_medsci_high = 0
-			pref.job_engsec_high = 0
-			return 1
-		if(2)//Set current highs to med, then reset them
-			pref.job_civilian_med |= pref.job_civilian_high
-			pref.job_medsci_med |= pref.job_medsci_high
-			pref.job_engsec_med |= pref.job_engsec_high
-			pref.job_civilian_high = 0
-			pref.job_medsci_high = 0
-			pref.job_engsec_high = 0
-
-	switch(job.department_flag)
-		if(CIVILIAN)
-			switch(level)
-				if(2)
-					pref.job_civilian_high = job.flag
-					pref.job_civilian_med &= ~job.flag
-				if(3)
-					pref.job_civilian_med |= job.flag
-					pref.job_civilian_low &= ~job.flag
-				else
-					pref.job_civilian_low |= job.flag
-		if(GOVERNMENT)
-			switch(level)
-				if(2)
-					pref.job_medsci_high = job.flag
-					pref.job_medsci_med &= ~job.flag
-				if(3)
-					pref.job_medsci_med |= job.flag
-					pref.job_medsci_low &= ~job.flag
-				else
-					pref.job_medsci_low |= job.flag
-		if(INDUSTRY)
-			switch(level)
-				if(2)
-					pref.job_engsec_high = job.flag
-					pref.job_engsec_med &= ~job.flag
-				if(3)
-					pref.job_engsec_med |= job.flag
-					pref.job_engsec_low &= ~job.flag
-				else
-					pref.job_engsec_low |= job.flag
-	return 1
-
-/datum/category_item/player_setup_item/occupation/proc/ResetJobs()
-	pref.job_civilian_high = 0
-	pref.job_civilian_med = 0
-	pref.job_civilian_low = 0
-
-	pref.job_medsci_high = 0
-	pref.job_medsci_med = 0
-	pref.job_medsci_low = 0
-
-	pref.job_engsec_high = 0
-	pref.job_engsec_med = 0
-	pref.job_engsec_low = 0
-
-	pref.player_alt_titles.Cut()
-
-/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+/datum/preferences/proc/get_player_alt_title(datum/job/job)
 	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title
 
-/datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
-	if(!job || !level)	return 0
-	switch(job.department_flag)
-		if(CIVILIAN)
-			switch(level)
-				if(1)
-					return job_civilian_high
-				if(2)
-					return job_civilian_med
-				if(3)
-					return job_civilian_low
-		if(GOVERNMENT)	//medsci
-			switch(level)
-				if(1)
-					return job_medsci_high
-				if(2)
-					return job_medsci_med
-				if(3)
-					return job_medsci_low
-		if(INDUSTRY)	//engsec
-			switch(level)
-				if(1)
-					return job_engsec_high
-				if(2)
-					return job_engsec_med
-				if(3)
-					return job_engsec_low
-	return 0

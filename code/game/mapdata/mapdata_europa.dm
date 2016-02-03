@@ -3,6 +3,7 @@
 	desc = "The main dome level, the mining abyss level, the transit level and the surface."
 	height = 4
 
+	default_title = "Civilian"
 	default_job = /datum/job/civilian
 	use_jobs = list(
 		/datum/job/civilian,

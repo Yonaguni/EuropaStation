@@ -1,6 +1,5 @@
 /datum/job/borderworld/sawbones
 	title = "Sawbones"
-	flag = WORKER
 	job_category = IS_CIVIL
 	total_positions = 1
 	spawn_positions = 1
