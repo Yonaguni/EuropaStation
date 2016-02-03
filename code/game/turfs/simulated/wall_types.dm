@@ -55,6 +55,17 @@
 	color = null
 	..(newloc, "wood")
 
+
+/turf/simulated/wall/concrete
+	icon = 'icons/turf/wall_masks.dmi'
+	icon_state = "solid_preview"
+	color = "#CCCCCC"
+
+/turf/simulated/wall/concrete/New(var/newloc)
+	icon_state = null
+	color = null
+	..(newloc, "concrete")
+
 /turf/simulated/wall/titanium
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "metal_preview"

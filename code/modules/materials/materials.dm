@@ -512,6 +512,18 @@ var/global/list/all_materials = list()
 	hardness = 500
 	weight = 500
 
+/material/concrete
+	name = "concrete"
+	icon_colour = "#CCCCCC"
+	icon_base = "solid"
+	integrity = 65
+	explosion_resistance = 5
+	shard_type = SHARD_SPLINTER
+	shard_can_repair = 0 //
+	hardness = 30
+	weight = 50
+	destruction_desc = "shatters"
+
 /material/wood
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
