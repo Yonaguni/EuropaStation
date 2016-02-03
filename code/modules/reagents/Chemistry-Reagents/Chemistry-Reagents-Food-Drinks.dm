@@ -109,6 +109,7 @@
 	reagent_state = LIQUID
 	nutriment_factor = 20
 	color = "#302000"
+	flammable = 1
 
 /datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
 	if(!istype(T))

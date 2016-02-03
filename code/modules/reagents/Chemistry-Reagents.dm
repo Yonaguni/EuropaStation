@@ -32,6 +32,7 @@
 	var/glass_center_of_mass = null
 	var/color = "#000000"
 	var/color_weight = 1
+	var/flammable = -1
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	holder.remove_reagent(id, amount)

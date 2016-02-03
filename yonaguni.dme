@@ -1093,6 +1093,7 @@
 #include "code\modules\europa\structures\feeds\conduit_map_stubs.dm"
 #include "code\modules\europa\structures\feeds\conduit_matter.dm"
 #include "code\modules\europa\structures\feeds\conduit_power.dm"
+#include "code\modules\europa\structures\fire\fire.dm"
 #include "code\modules\europa\structures\network_devices\buttons.dm"
 #include "code\modules\europa\structures\network_devices\sensors.dm"
 #include "code\modules\europa\structures\storage\conduit_storage.dm"
