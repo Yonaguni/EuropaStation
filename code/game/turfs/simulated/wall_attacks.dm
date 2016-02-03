@@ -163,6 +163,19 @@
 	// Basic dismantling.
 	if(isnull(construction_stage) || !reinf_material)
 
+		// SNOWFLAKE ALERT.
+		if(!reinf_material && istype(W,/obj/item/weapon/crowbar) && material.name == "wood")
+			user << "<span class='notice'>You begin prying off the outer planks.</span>"
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+			if(!do_after(user,30))
+				return
+			user << "<span class='notice'>You remove the outer planks.</span>"
+			dismantle_wall(silent=1)
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+			user.visible_message("<span class='warning'>The wall was torn open by [user]!</span>")
+			return
+		// END SNOWFLAKE ALERT.
+
 		var/cut_delay = 60 - material.cut_delay
 		var/dismantle_verb
 		var/dismantle_sound

@@ -543,6 +543,9 @@ var/global/list/all_materials = list()
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 
+/material/wood/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+	new /obj/structure/barricade/wood(target)
+
 /material/wood/holographic
 	name = "holowood"
 	display_name = "wood"

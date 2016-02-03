@@ -137,8 +137,11 @@
 	var/wall_fake
 	add_hiddenprint(usr)
 
-	if(M.integrity < 50)
-		user << "<span class='notice'>This material is too soft for use in wall construction.</span>"
+	if(M.integrity <= 50)
+		if(M.name == "wood")
+			user << "<span class='warning'>To make a wooden wall, you must use wood planks on a wooden barricade.</span>"
+		else
+			user << "<span class='warning'>This material is too soft for use in wall construction.</span>"
 		return 0
 
 	user << "<span class='notice'>You begin adding the plating...</span>"

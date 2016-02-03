@@ -65,6 +65,9 @@ for reference:
 	var/maxhealth = 100
 	var/material/material
 
+/obj/structure/barricade/wood/New(var/newloc)
+	..(newloc, "wood")
+
 /obj/structure/barricade/New(var/newloc, var/material_name)
 	..(newloc)
 	if(!material_name)
@@ -87,7 +90,19 @@ for reference:
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
-		if (health < maxhealth)
+		if(health >= maxhealth && D.get_material_name() == "wood")
+			if(D.get_amount() < 5)
+				user << "<span class='warning'>You need five sheets of [material.display_name] to finish the wall.</span>"
+				return
+			visible_message("<span class='notice'>[user] begins to finish the wall.</span>")
+			if(do_after(user,40) && health >= maxhealth)
+				if (D.use(5))
+					visible_message("<span class='notice'>[user] finishes the wall.</span>")
+					var/turf/T = get_turf(src)
+					T.ChangeTurf(/turf/simulated/wall/wood)
+					qdel(src)
+				return
+		else if (health < maxhealth)
 			if (D.get_amount() < 1)
 				user << "<span class='warning'>You need one sheet of [material.display_name] to repair \the [src].</span>"
 				return
@@ -249,7 +264,7 @@ for reference:
 		if(src)
 			qdel(src)
 
-		
+
 /obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
 	if (src.emagged == 0)
 		src.emagged = 1
