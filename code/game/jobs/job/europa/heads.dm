@@ -1,7 +1,6 @@
 /datum/job/head
 	title = "Colony Liaison"
 	job_category = IS_HEAD
-	department_flag = CIVILIAN
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Jovian authorities"
@@ -27,8 +26,6 @@
 
 /datum/job/head/marshal
 	title = "Marshal"
-	department_flag = GOVERNMENT
-	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/europa/dogtags
 	headsettype = /obj/item/device/radio/headset/headset_sec
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_forensics_lockers,
@@ -55,9 +52,7 @@
 	return 1
 
 /datum/job/head/coordinator
-	department_flag = INDUSTRY
 	title = "Corporate Contact Officer"
-	supervisors = "your corporate overseers"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/europa/lanyard
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,

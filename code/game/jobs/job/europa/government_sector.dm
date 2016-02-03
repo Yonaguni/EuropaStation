@@ -1,7 +1,6 @@
 /datum/job/government
 	title = "Petty Officer"
 	job_category = IS_GOVERNMENT
-	department_flag = GOVERNMENT
 	total_positions = 2
 	selection_color = "#ccccff"
 	spawn_positions = 4

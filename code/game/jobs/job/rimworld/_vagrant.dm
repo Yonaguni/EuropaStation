@@ -5,7 +5,6 @@
 	spawn_positions = -1
 	supervisors = "your conscience"
 	selection_color = "#dddddd"
-	department_flag = CIVILIAN
 	idtype = null
 	headsettype = null
 	pdatype = null

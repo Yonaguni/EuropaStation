@@ -3,7 +3,6 @@
 
 /datum/job/civilian
 	title = "Colonist"
-	department_flag = CIVILIAN
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "colonial authorities"
