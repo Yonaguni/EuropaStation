@@ -6,7 +6,6 @@
 	spawn_positions = 1
 	supervisors = "Jovian authorities"
 	department = "Civil Sector"
-	faction = "Station"
 	head_position = 1
 	req_admin_notify = 1
 	minimal_access = list()

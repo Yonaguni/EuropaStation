@@ -9,11 +9,8 @@ var/global/datum/controller/occupations/job_master
 	var/list/unassigned = list()  // Players who need jobs
 	var/list/job_debug = list()   // Debug info
 
-	proc/SetupOccupations(var/faction = "Station")
+	proc/SetupOccupations()
 		occupations = get_job_datums()
-		for(var/datum/job/job in occupations)
-			if(job.faction != faction)
-				occupations -= job
 		if(!occupations.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0

@@ -1,7 +1,6 @@
 /datum/job/borderworld
 	title = "Vagrant"
 	job_category = IS_CIVIL
-	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "your conscience"
