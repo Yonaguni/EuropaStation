@@ -1,34 +1,34 @@
 /datum/job
 
 	//The name of the job
-	var/title = "NOPE"
-	var/list/alt_titles                   // List of alternate titles, if any
+	var/title = "NOPE"               // Fluffy ingame name and general identifier.
+	var/list/alt_titles              // List of alternate titles, if any
 
-	var/supervisors = null                // Supervisors, who this person answers to directly
-	var/selection_color = "#ffffff"       // Selection screen color
-	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	var/supervisors = null           // Supervisors, who this person answers to directly
+	var/selection_color = "#ffffff"  // Selection screen color
+	var/req_admin_notify             // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 
-	var/account_allowed = 1				  // Does this job type come with a station account?
-	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
+	var/account_allowed = 1          // Does this job type come with a station account?
+	var/economic_modifier = 2        // With how much does this job modify the initial account amount?
 
 	// Spawn count bounds.
-	var/total_positions = 0               // How many players can be this job
-	var/spawn_positions = 0               // How many players can spawn in as this job
-	var/current_positions = 0             // How many players have this job
+	var/total_positions = 0          // How many players can be this job
+	var/spawn_positions = 0          // How many players can spawn in as this job
+	var/current_positions = 0        // How many players have this job
 
 	// Playtime and character age bounds.
-	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
-	var/minimum_character_age = 17        // If character age is below this, the job is unavailable.
-	var/ideal_character_age = 30          // Random job assignment will prefer ages closer to this bound when choosing from multiple candidates.
+	var/minimal_player_age = 0       // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
+	var/minimum_character_age = 17   // If character age is below this, the job is unavailable.
+	var/ideal_character_age = 30     // Random job assignment will prefer ages closer to this bound when choosing from multiple candidates.
 
 	// Access vars!
-	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/minimal_access = list() // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access = list()         // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 
 	// Various equipment paths.
-	var/idtype                            // The type of the ID the player will have
-	var/headsettype                       // Type of headset if any.
-	var/pdatype                           // If set, job will spawn with a PDA.
+	var/idtype                       // The type of the ID the player will have
+	var/headsettype                  // Type of headset if any.
+	var/pdatype                      // If set, job will spawn with a PDA.
 
 	var/job_category = IS_CIVIL
 
