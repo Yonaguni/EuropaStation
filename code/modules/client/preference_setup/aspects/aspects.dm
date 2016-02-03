@@ -13,7 +13,7 @@
 	if(!pref.aspects || pref.aspects.len > config.max_character_aspects)
 		pref.aspects = list()
 	for(var/aspect in pref.aspects)
-		if(!(aspect in aspects_by_name))
+		if(isnull(aspects_by_name[aspect]))
 			pref.aspects -= aspect
 
 /datum/category_item/player_setup_item/aspects/content()

@@ -27,8 +27,8 @@
 	worn_state = "scratch"
 
 /obj/item/clothing/under/sl_suit
-	desc = "It's a very amish looking suit."
-	name = "amish suit"
+	name = "simple clothes"
+	desc = "It's a set of very simple clothes."
 	icon_state = "sl_suit"
 	worn_state = "sl_suit"
 	item_state = "sl_suit"
@@ -521,3 +521,24 @@
 	icon_state = "gear_harness"
 	worn_state = "gear_harness"
 	body_parts_covered = 0
+
+/obj/item/clothing/under/mechanic
+	name = "mechanic's clothes"
+	desc = "They small like oil."
+	icon_state = "mechanic"
+	worn_state = "mechanic"
+	item_state = null
+
+/obj/item/clothing/under/merchant
+	name = "merchant's clothes"
+	desc = "Rich as butter."
+	icon_state = "callum_suit"
+	worn_state = "callum_suit"
+	item_state = null
+
+/obj/item/clothing/under/miner
+	name = "miner's overalls"
+	desc = "Dusty!"
+	icon_state = "overalls"
+	worn_state = "overalls"
+	item_state = null

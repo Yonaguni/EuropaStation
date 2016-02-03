@@ -37,6 +37,11 @@
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
+/obj/item/weapon/material/hatchet/tacknife/hunting
+	name = "hunting knife"
+	desc = "Not the sharpest tool in the world, but well-loved."
+	slot_flags = SLOT_BELT
+
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."

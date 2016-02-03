@@ -6,7 +6,11 @@
 	selection_color = "#ccccff"
 
 /datum/job/borderworld/governor/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
-	return ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H),slot_shoes)
+	var/uniform_type = pick(list(/obj/item/clothing/under/europa/pinstripe, /obj/item/clothing/under/europa/governor))
+	H.equip_to_slot_or_del(new uniform_type(H),slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/fez(H),slot_head)
+	return ..(H,1,1,1)
 
 /datum/job/borderworld/governor/equip_survival(var/mob/living/carbon/human/H)
 	return ..()
