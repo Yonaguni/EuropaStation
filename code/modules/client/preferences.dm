@@ -66,18 +66,8 @@ datum/preferences
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
-		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
+	//Jobs, uses bitflags
+	var/list/job_preferences = list()
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0

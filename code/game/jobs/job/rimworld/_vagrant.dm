@@ -1,6 +1,5 @@
 /datum/job/borderworld
 	title = "Vagrant"
-	flag = CIVILIAN
 	job_category = IS_CIVIL
 	faction = "Station"
 	total_positions = -1

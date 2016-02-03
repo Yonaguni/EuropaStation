@@ -1,6 +1,5 @@
 /datum/job/borderworld/governor
 	title = "Governor"
-	flag = GOVERNMENT
 	job_category = IS_GOVERNMENT
 	total_positions = 1
 	spawn_positions = 1

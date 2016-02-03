@@ -29,7 +29,6 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 var/diary               = null
 var/href_logfile        = null
-var/default_role 		= "Citizen"
 var/station_name        = "Europa Station"
 var/station_short       = "Yonaguni Dome"
 var/const/boss_name     = "SolGov Colony Link"

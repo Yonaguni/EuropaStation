@@ -3,7 +3,6 @@
 
 /datum/job/civilian
 	title = "Colonist"
-	flag = CITIZEN
 	department = "Civil Sector"
 	department_flag = CIVILIAN
 	faction = "Station"

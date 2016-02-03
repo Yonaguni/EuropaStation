@@ -1,7 +1,6 @@
 /datum/job/head
 	title = "Colony Liaison"
 	job_category = IS_HEAD
-	flag = LIAISON
 	department_flag = CIVILIAN
 	total_positions = 1
 	spawn_positions = 1
@@ -30,7 +29,6 @@
 
 /datum/job/head/marshal
 	title = "Marshal"
-	flag = MARSHAL
 	department_flag = GOVERNMENT
 	department = "Government Sector"
 	selection_color = "#ccccff"
@@ -60,7 +58,6 @@
 	return 1
 
 /datum/job/head/coordinator
-	flag = CCO
 	department_flag = INDUSTRY
 	title = "Corporate Contact Officer"
 	supervisors = "your corporate overseers"
