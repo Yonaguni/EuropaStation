@@ -5,7 +5,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Jovian authorities"
-	department = "Civil Sector"
 	head_position = 1
 	req_admin_notify = 1
 	minimal_access = list()
@@ -29,7 +28,6 @@
 /datum/job/head/marshal
 	title = "Marshal"
 	department_flag = GOVERNMENT
-	department = "Government Sector"
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/europa/dogtags
 	headsettype = /obj/item/device/radio/headset/headset_sec
@@ -61,7 +59,6 @@
 	title = "Corporate Contact Officer"
 	supervisors = "your corporate overseers"
 	selection_color = "#ffeeff"
-	department = "Industrial Sector"
 	idtype = /obj/item/weapon/card/id/europa/lanyard
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors, access_mining, access_mining_station,

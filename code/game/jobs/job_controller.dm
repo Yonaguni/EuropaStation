@@ -392,18 +392,6 @@ var/global/datum/controller/occupations/job_master
 				H.buckled.loc = H.loc
 				H.buckled.set_dir(H.dir)
 
-		// If they're head, give them the account info for their department
-		if(H.mind && job.head_position)
-			var/remembered_info = ""
-			var/datum/money_account/department_account = department_accounts[job.department]
-
-			if(department_account)
-				remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-				remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-				remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
-
-			H.mind.store_memory(remembered_info)
-
 		var/alt_title = null
 		if(H.mind)
 			H.mind.assigned_role = rank

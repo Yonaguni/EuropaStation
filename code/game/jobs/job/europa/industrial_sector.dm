@@ -2,7 +2,6 @@
 	title = "Employee"
 	job_category = IS_INDUSTRY
 	department_flag = INDUSTRY
-	department = "Industrial Sector"
 	total_positions = 6
 	spawn_positions = 4
 	supervisors = "the board of investors and colonial law"

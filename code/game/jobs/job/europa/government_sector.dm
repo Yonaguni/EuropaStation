@@ -2,7 +2,6 @@
 	title = "Petty Officer"
 	job_category = IS_GOVERNMENT
 	department_flag = GOVERNMENT
-	department = "Government Sector"
 	total_positions = 2
 	selection_color = "#ccccff"
 	spawn_positions = 4
