@@ -227,11 +227,11 @@ var/list/fire_cache = list()
 		accepted_fuel = 1
 	else if(istype(thing, /obj/item/stack/material))
 		var/obj/item/stack/material/wooden_thing = thing
-		if(wooden_thing.material.ignition_point <= output_temperature)
+		if(wooden_thing.material.ignition_point <= (T0C+288))
 			accepted_fuel = 1
 	else if(istype(thing, /obj/item/weapon/material))
 		var/obj/item/weapon/material/wooden_thing = thing
-		if(wooden_thing.material.ignition_point <= output_temperature)
+		if(wooden_thing.material.ignition_point <= (T0C+288))
 			accepted_fuel =1
 	if(accepted_fuel)
 		if(lit == FIRE_LIT)

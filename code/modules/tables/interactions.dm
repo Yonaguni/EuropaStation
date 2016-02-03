@@ -127,6 +127,9 @@
 		break_to_parts()
 		return
 
+	if(user.a_intent == I_HURT)
+		return attack_generic(user, W.force)
+
 	if(can_plate && !material)
 		user << "<span class='warning'>There's nothing to put \the [W] on! Try adding plating to \the [src] first.</span>"
 		return
@@ -135,4 +138,24 @@
 	return
 
 /obj/structure/table/attack_tk() // no telehulk sorry
+	return
+
+/obj/structure/table/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
+	if(wallbreaker)
+		break_to_parts()
+		return
+	var/dam_threshhold = material.integrity
+	if(reinforced)
+		dam_threshhold = ceil(max(dam_threshhold,reinforced.integrity)/2)
+	dam_threshhold *= 0.75
+	var/dam_prob = min(100,material.hardness*1.2)
+	if(dam_prob < 100 && damage > (dam_threshhold/10))
+		playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
+		if(!prob(dam_prob))
+			visible_message("<span class='danger'>\The [user] attacks \the [src] and it [material.destruction_desc]!</span>")
+			break_to_parts()
+		else
+			visible_message("<span class='danger'>\The [user] attacks \the [src]!</span>")
+	else
+		visible_message("<span class='danger'>\The [user] attacks \the [src], but it bounces off!</span>")
 	return
