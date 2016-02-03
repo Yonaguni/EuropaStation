@@ -221,6 +221,8 @@ var/list/gamemode_cache = list()
 	var/ghosts_can_possess_animals = 0
 	var/delist_when_no_admins = FALSE
 
+	var/max_character_aspects = 15
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -717,6 +719,8 @@ var/list/gamemode_cache = list()
 			value = text2num(value)
 
 			switch(name)
+				if("max_character_aspects")
+					config.max_character_aspects = value
 				if("health_threshold_crit")
 					config.health_threshold_crit = value
 				if("health_threshold_softcrit")

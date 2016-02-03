@@ -8,10 +8,10 @@
 	sort_order = 1
 	category_item_type = /datum/category_item/player_setup_item/general
 
-/datum/category_group/player_setup_category/skill_preferences
-	name = "Skills"
+/datum/category_group/player_setup_category/aspect_preferences
+	name = "Aspects"
 	sort_order = 2
-	category_item_type = /datum/category_item/player_setup_item/skills
+	category_item_type = /datum/category_item/player_setup_item/aspects
 
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
