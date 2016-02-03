@@ -53,6 +53,12 @@ var/list/tree_types = list(
 	blend_with_neighbors = 4
 	grass_prob = 5
 
+/turf/simulated/floor/natural/sand/caves
+	name = "sand"
+	icon_state = "sand"
+	blend_with_neighbors = 4
+	grass_prob = 0
+
 /turf/simulated/floor/natural/dirt
 	name = "dark dirt"
 	icon_state = "dirt-dark"
