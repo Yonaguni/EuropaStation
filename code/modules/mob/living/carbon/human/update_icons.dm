@@ -713,6 +713,8 @@ var/global/list/damage_icon_parts = list()
 			standing.icon = belt.icon_override
 		else if(belt.sprite_sheets && belt.sprite_sheets[species.get_bodytype()])
 			standing.icon = belt.sprite_sheets[species.get_bodytype()]
+		else if(belt.item_icons && belt.item_icons[slot_belt_str])
+			standing.icon = belt.item_icons[slot_belt_str]
 		else
 			standing.icon = 'icons/mob/belt.dmi'
 
