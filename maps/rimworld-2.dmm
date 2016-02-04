@@ -523,7 +523,7 @@
 "kc" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/mayor)
 "kd" = (/obj/effect/landmark/start/merchant,/turf/simulated/floor/carpet,/area/rimworld/building/bank)
 "ke" = (/turf/simulated/floor/tiled/white,/area/rimworld/building/mayor)
-"kf" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/item/weapon/gun/projectile/shotgun/doublebarrel,/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
+"kf" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "kg" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "kh" = (/obj/structure/table/small,/obj/item/weapon/cane,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "ki" = (/obj/effect/landmark/start/farmer,/turf/simulated/floor/natural/dark,/area/rimworld/farmland)

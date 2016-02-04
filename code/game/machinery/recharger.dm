@@ -9,7 +9,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/laptop, /obj/item/weapon/cell, /obj/item/modular_computer/)
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton, /obj/item/weapon/cell, /obj/item/modular_computer)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -31,7 +31,15 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		if(!powered())
 			user << "<span class='warning'>The [name] blinks red as you try to insert the item!</span>"
 			return
-		if(istype(G, /obj/item/weapon/gun/energy/crossbow))
+		if(istype(G, /obj/item/weapon/gun/composite))
+			var/obj/item/weapon/gun/composite/C = G
+			if(C.body.projectile_type != GUN_TYPE_LASER)
+				return
+			var/obj/item/gun_component/chamber/laser/L = C.chamber
+			if(istype(L) && L.self_recharge_time)
+				user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
+				return
+		if (istype(G, /obj/item/weapon/gun/energy/crossbow))
 			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
 			return
 		if(istype(G, /obj/item/laptop))
@@ -78,16 +86,6 @@ obj/machinery/recharger/process()
 		update_use_power(1)
 		icon_state = icon_state_idle
 	else
-		if(istype(charging, /obj/item/weapon/gun/energy))
-			var/obj/item/weapon/gun/energy/E = charging
-			if(!E.power_supply.fully_charged())
-				icon_state = icon_state_charging
-				E.power_supply.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
 
 		if(istype(charging, /obj/item/weapon/melee/baton))
 			var/obj/item/weapon/melee/baton/B = charging
@@ -137,17 +135,28 @@ obj/machinery/recharger/process()
 				update_use_power(1)
 			return
 
+		if(istype(charging, /obj/item/weapon/gun/composite))
+			var/obj/item/weapon/gun/composite/C = charging
+			if(istype(C.chamber, /obj/item/gun_component/chamber/laser))
+				var/obj/item/gun_component/chamber/laser/hcell = C.chamber
+				if(hcell.power_supply && !hcell.power_supply.fully_charged())
+					hcell.power_supply.give(active_power_usage*CELLRATE)
+					icon_state = icon_state_charging
+					update_use_power(2)
+					hcell.update_ammo_overlay()
+				else
+					icon_state = icon_state_charged
+					update_use_power(1)
+			else
+				icon_state = icon_state_charged
+				update_use_power(1)
+
 obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
 
-	if(istype(charging,  /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/E = charging
-		if(E.power_supply)
-			E.power_supply.emp_act(severity)
-
-	else if(istype(charging, /obj/item/weapon/melee/baton))
+	if(istype(charging, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0

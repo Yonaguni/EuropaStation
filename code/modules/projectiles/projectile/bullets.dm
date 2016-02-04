@@ -62,7 +62,7 @@
 
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
-	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
+	name = "pellet" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet' // It's also not very thematic or informative.
 	damage = 20
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
@@ -175,7 +175,7 @@
 /obj/item/projectile/bullet/rifle/a556
 	damage = 35
 
-/obj/item/projectile/bullet/rifle/a145
+/obj/item/projectile/bullet/rifle/a50bmg
 	damage = 60
 	stun = 3
 	weaken = 3

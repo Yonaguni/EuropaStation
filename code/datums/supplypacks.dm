@@ -153,17 +153,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Party equipment"
 	group = "Hospitality"
 
-/datum/supply_packs/lasertag
-	name = "Lasertag equipment"
-	contains = list(/obj/item/weapon/gun/energy/lasertag/red,
-					/obj/item/clothing/suit/redtag,
-					/obj/item/weapon/gun/energy/lasertag/blue,
-					/obj/item/clothing/suit/bluetag)
-	containertype = /obj/structure/closet
-	containername = "Lasertag Closet"
-	group = "Hospitality"
-	cost = 20
-
 /datum/supply_packs/internals
 	name = "Internals crate"
 	contains = list(/obj/item/clothing/mask/gas,
@@ -676,27 +665,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Weapons crate"
 	contains = list(/obj/item/weapon/melee/baton,
 					/obj/item/weapon/melee/baton,
-					/obj/item/weapon/gun/energy/taser,
-					/obj/item/weapon/gun/energy/taser,
-					/obj/item/weapon/gun/projectile/sec,
-					/obj/item/weapon/gun/projectile/sec,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/box/teargas)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
-	access = access_security
-	group = "Security"
-
-/datum/supply_packs/flareguns
-	name = "Flare guns crate"
-	contains = list(/obj/item/weapon/gun/projectile/sec/flash,
-					/obj/item/ammo_magazine/c45m/flash,
-					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
-					/obj/item/weapon/storage/box/flashshells)
-	cost = 25
-	containertype = /obj/structure/closet/crate/secure/weapon
-	containername = "Flare gun crate"
 	access = access_security
 	group = "Security"
 
@@ -751,9 +724,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunshells,
-					/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-					/obj/item/weapon/gun/projectile/shotgun/pump/combat)
+					/obj/item/weapon/storage/box/shotgunshells)
 	cost = 65
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Shotgun crate"
@@ -769,28 +740,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "ballistic ammunition crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/ionweapons
-	name = "Electromagnetic weapons crate"
-	contains = list(/obj/item/weapon/gun/energy/ionrifle,
-					/obj/item/weapon/gun/energy/ionrifle,
-					/obj/item/weapon/storage/box/emps)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "electromagnetic weapons crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/randomised/automatic
-	name = "Automatic weapon crate"
-	num_contained = 2
-	contains = list(/obj/item/weapon/gun/projectile/automatic/wt550,
-					/obj/item/weapon/gun/projectile/automatic/z8)
-	cost = 90
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Automatic weapon crate"
 	access = access_armory
 	group = "Security"
 

@@ -15,11 +15,6 @@
 	item_cost = 1
 	path = /obj/item/ammo_magazine/a10mm
 
-/datum/uplink_item/item/ammo/darts
-	name = "Darts"
-	item_cost = 1
-	path = /obj/item/ammo_magazine/chemdart
-
 /datum/uplink_item/item/ammo/a357
 	name = ".357"
 	item_cost = 2

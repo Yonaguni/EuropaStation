@@ -160,7 +160,6 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/sec,
 		/obj/item/taperoll/police
 		)
 

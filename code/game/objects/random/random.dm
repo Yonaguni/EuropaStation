@@ -11,7 +11,7 @@
 	..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-		
+
 /obj/random/initialize()
 	..()
 	qdel(src)
@@ -180,26 +180,6 @@
 	item_to_spawn()
 		return pick(prob(2);/obj/item/weapon/gun/energy/taser,\
 					prob(1);/obj/item/weapon/gun/energy/stunrevolver)
-
-/obj/random/projectile
-	name = "Random Projectile Weapon"
-	desc = "This is a random security weapon."
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "revolver"
-	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,\
-					prob(2);/obj/item/weapon/gun/projectile/automatic/wt550,\
-					prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
-
-/obj/random/handgun
-	name = "Random Handgun"
-	desc = "This is a random security sidearm."
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "secgundark"
-	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/gun/projectile/sec,\
-					prob(1);/obj/item/weapon/gun/projectile/sec/wood)
-
 
 /obj/random/ammo
 	name = "Random Ammunition"
