@@ -1,6 +1,6 @@
 /obj/vehicle/bike/
 	name = "motorbike"
-	desc = "Space wheelies! Woo! "
+	desc = "Wheelies! Head trauma! Woo! "
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
 	dir = SOUTH
@@ -14,8 +14,8 @@
 	brute_dam_coeff = 0.5
 	var/protection_percent = 60
 
-	var/land_speed = 10 //if 0 it can't go on turf
-	var/space_speed = 1
+	var/land_speed = 1 //if 0 it can't go on turf
+	var/space_speed = 0
 	var/bike_icon = "bike"
 
 	var/datum/effect/effect/system/ion_trail_follow/ion
@@ -39,6 +39,7 @@
 	if(!on)
 		turn_on()
 		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		playsound(src.loc, 'sound/misc/bike_start.ogg', 75, 1)
 	else
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
@@ -52,11 +53,13 @@
 
 	if(kickstand)
 		src.visible_message("You put up \the [src]'s kickstand.")
+		playsound(src.loc, 'sound/misc/bike_stand_up.ogg', 75, 1)
 	else
 		if(istype(src.loc,/turf/space))
 			usr << "<span class='warning'> You don't think kickstands work in space...</span>"
 			return
 		src.visible_message("You put down \the [src]'s kickstand.")
+		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75, 1)
 		if(pulledby)
 			pulledby.stop_pulling()
 
@@ -87,8 +90,6 @@
 
 /obj/vehicle/bike/Move(var/turf/destination)
 	if(kickstand) return
-
-
 	//these things like space, not turf. Dragging shouldn't weigh you down.
 	if(istype(destination,/turf/space) || pulledby)
 		if(!space_speed)
@@ -103,19 +104,21 @@
 /obj/vehicle/bike/turn_on()
 	ion.start()
 	anchored = 1
-
 	update_icon()
-
+	processing_objects |= src
 	if(pulledby)
 		pulledby.stop_pulling()
 	..()
+
 /obj/vehicle/bike/turn_off()
 	ion.stop()
 	anchored = kickstand
-
+	processing_objects -= src
 	update_icon()
-
 	..()
+
+/obj/vehicle/bike/process()
+	if(on) playsound(src.loc, 'sound/misc/bike_idle.ogg', 75, 1)
 
 /obj/vehicle/bike/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(protection_percent))
@@ -135,8 +138,7 @@
 
 	..()
 
-
 /obj/vehicle/bike/Destroy()
 	qdel(ion)
-
+	processing_objects -= src
 	..()
