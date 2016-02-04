@@ -37,12 +37,6 @@
 	w_class = 2
 	base_desc = "It's a small pistol."
 
-/obj/item/gun_component/body/pistol/large
-	name = "heavy body"
-	force = 8
-	w_class = 3
-	base_desc = "It's a heavy pistol."
-
 /obj/item/gun_component/body/smg
 	weapon_type = GUN_SMG
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -95,9 +89,6 @@
 	projectile_type = GUN_TYPE_LASER
 	item_state = "retro"
 	base_desc = "It's a laser pistol."
-
-/obj/item/gun_component/body/pistol/large/laser
-	projectile_type = GUN_TYPE_LASER
 
 /obj/item/gun_component/body/smg/laser
 	projectile_type = GUN_TYPE_LASER

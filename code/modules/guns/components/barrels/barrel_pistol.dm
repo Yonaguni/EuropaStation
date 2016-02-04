@@ -2,10 +2,6 @@
 	weapon_type = GUN_PISTOL
 	caliber = CALIBER_PISTOL_SMALL
 
-/obj/item/gun_component/barrel/pistol/stun
-	name = "projector"
-	caliber = CALIBER_LASER_STUNSHOT
-
 /obj/item/gun_component/barrel/pistol/a9
 	caliber = CALIBER_PISTOL_MEDIUM
 
@@ -23,9 +19,6 @@
 
 /obj/item/gun_component/barrel/pistol/a38
 	caliber = CALIBER_38
-
-/obj/item/gun_component/barrel/pistol/stun
-	caliber = CALIBER_LASER_STUNSHOT
 
 /obj/item/gun_component/barrel/pistol/toy
 	override_name = "toy"

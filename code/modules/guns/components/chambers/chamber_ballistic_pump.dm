@@ -6,10 +6,6 @@
 	handle_casings = HOLD_CASINGS
 	has_user_interaction = 1
 
-/obj/item/gun_component/chamber/ballistic/pump/large
-	name = "extended-capacity pump-action loader"
-	max_shots = 8
-
 /obj/item/gun_component/chamber/ballistic/pump/consume_next_projectile()
 	if(chambered)
 		return chambered.projectile

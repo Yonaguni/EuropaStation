@@ -22,11 +22,3 @@
 		list(mode_name="lethal",                caliber = CALIBER_LASER_WEAK),
 		list(mode_name="lethal 3-round bursts", caliber = CALIBER_LASER,       burst=3, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
 		)
-
-/obj/item/gun_component/barrel/laser/variable/pulse
-	weapon_type = GUN_SMG
-	firemodes = list(
-		list(mode_name="stun",    caliber = CALIBER_LASER_SHOCK, fire_delay = null),
-		list(mode_name="lethal",  caliber = CALIBER_LASER,       fire_delay = null),
-		list(mode_name="DESTROY", caliber = CALIBER_LASER_PULSE, fire_delay = 25),
-		)

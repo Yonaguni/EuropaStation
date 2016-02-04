@@ -47,7 +47,7 @@
 		bullets += 1
 	return bullets
 
-/obj/item/gun_component/chamber/ballistic/New()
+/obj/item/gun_component/chamber/ballistic/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
 	if(ammo_type)
 		switch(load_method)
 			// Assumes the supplied path is a single casing.
@@ -57,7 +57,7 @@
 			// Assumes the supplied path is a magazine.
 			if(MAGAZINE)
 				magazine = new ammo_type(src)
-	..()
+	..(newloc, weapontype, componenttype, use_model)
 
 /obj/item/gun_component/chamber/ballistic/handle_post_fire()
 
@@ -202,7 +202,7 @@
 	if(magazine)
 		magazine.forceMove(get_turf(src))
 		user.put_in_hands(magazine)
-		user.visible_message("</span class='notice'>\The [user] removes \the [magazine] from \the [holder].</span>")
+		user.visible_message("<span class='notice'>\The [user] removes \the [magazine] from \the [holder].</span>")
 		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		magazine.update_icon()
 		magazine = null
@@ -223,7 +223,3 @@
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
 	max_shots = 8
-
-/obj/item/gun_component/chamber/ballistic/shotgun
-	handle_casings = HOLD_CASINGS
-	max_shots = 4

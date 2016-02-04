@@ -19,48 +19,15 @@
 		var/obj/item/gun_component/chamber/laser/echamber = holder.chamber
 		echamber.charge_cost = get_laser_cost_from_caliber(caliber)
 
-/obj/item/gun_component/barrel/laser/pistol
-	weapon_type = GUN_PISTOL
-	caliber = CALIBER_LASER_MID
-
-/obj/item/gun_component/barrel/laser/pistol/taser
-	caliber = CALIBER_LASER_SHOCK
-
-/obj/item/gun_component/barrel/laser/smg
-	weapon_type = GUN_SMG
-	caliber = CALIBER_LASER_WEAK
-	accepts_accessories = 1
-
-/obj/item/gun_component/barrel/laser/smg/xray
-	caliber = CALIBER_LASER_XRAY
-
 /obj/item/gun_component/barrel/laser/rifle
 	weapon_type = GUN_RIFLE
 	caliber = CALIBER_LASER_PRECISION
 	accepts_accessories = 1
 
-/obj/item/gun_component/barrel/laser/rifle/ion
-	caliber = CALIBER_LASER_ION
-
 /obj/item/gun_component/barrel/laser/cannon
 	weapon_type = GUN_CANNON
 	caliber = CALIBER_LASER_HEAVY
 
-/obj/item/gun_component/barrel/laser/assault
+/obj/item/gun_component/barrel/laser/assault_practice
 	weapon_type = GUN_ASSAULT
-	caliber = CALIBER_LASER_MID
-	accepts_accessories = 1
-
-/obj/item/gun_component/barrel/laser/assault/practice
 	caliber = CALIBER_LASER_PRACTICE
-
-/obj/item/gun_component/barrel/laser/shotgun
-	weapon_type = GUN_SHOTGUN
-	caliber = CALIBER_LASER_WEAK
-	accepts_accessories = 1
-
-/obj/item/gun_component/barrel/laser/pistol/lasertag
-	caliber = CALIBER_LASER_LASERTAG
-
-/obj/item/gun_component/barrel/laser/assault/lasertag
-	caliber = CALIBER_LASER_LASERTAG

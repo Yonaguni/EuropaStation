@@ -129,21 +129,7 @@
 	charge_cost = 100
 	max_shots = 10
 	fire_delay = 5
-	ammo_indicator_state = "laser_pistol"
-
-/obj/item/gun_component/chamber/laser/pistol/taser
-	charge_cost = 200
-	max_shots = 5
-	fire_delay = 6
-	ammo_indicator_state = "taser_pistol"
-
-/obj/item/gun_component/chamber/laser/pistol/old
-	name = "cracked focusing lens"
-	fire_delay = 10
-
-/obj/item/gun_component/chamber/laser/pistol/reactor/antique
-	name = "antique reactor"
-	max_shots = 5
+	ammo_indicator_state = "laser_pistol_loaded"
 
 /obj/item/gun_component/chamber/laser/rifle
 	name = "precision lens"
@@ -151,18 +137,7 @@
 	charge_cost = 400
 	max_shots = 4
 	fire_delay = 35
-	ammo_indicator_state = "laser_rifle"
-
-/obj/item/gun_component/chamber/laser/rifle/pulse
-	max_shots = 10
-	fire_delay = 25
-
-/obj/item/gun_component/chamber/laser/rifle/ion
-	name = "particle agitator"
-	charge_cost = 300
-	max_shots = 10
-	fire_delay = 4
-	fire_delay = 25
+	ammo_indicator_state = "laser_rifle_loaded"
 
 /obj/item/gun_component/chamber/laser/cannon
 	name = "three-phase industrial lens"
@@ -170,7 +145,7 @@
 	charge_cost = 400
 	max_shots = 5
 	fire_delay = 20
-	ammo_indicator_state = "laser_cannon"
+	ammo_indicator_state = "laser_cannon_loaded"
 
 /obj/item/gun_component/chamber/laser/assault
 	name = "multiphase lens"
@@ -178,13 +153,5 @@
 	charge_cost = 200
 	max_shots = 30
 	fire_delay = 2
-	ammo_indicator_state = "laser_assault"
-
-/obj/item/gun_component/chamber/laser/assault/reactor
-	name = "miniaturized fusion reactor"
+	ammo_indicator_state = "laser_assault_loaded"
 	self_recharge_time = 4
-
-/obj/item/gun_component/chamber/laser/assault/carbine
-	name = "carbine lens"
-	max_shots = 10
-	fire_delay = 4

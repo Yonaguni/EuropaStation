@@ -30,7 +30,3 @@
 	if(rand(1,max_shots) > loaded.len)
 		chamber_offset = rand(0,max_shots-loaded.len)
 	return 1
-
-/obj/item/gun_component/chamber/ballistic/breech/revolver/stun
-	name = "rotating cartridge rack"
-	max_shots = 8
