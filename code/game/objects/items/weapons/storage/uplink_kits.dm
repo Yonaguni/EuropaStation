@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/box/syndicate/
 	New()
 		..()
-		switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "smoothoperator" = 1)))
+		switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "smoothoperator" = 1)))
 			if("bloodyspai")
 				new /obj/item/clothing/under/chameleon(src)
 				new /obj/item/clothing/mask/gas/voice(src)
@@ -23,14 +23,6 @@
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
 				new /obj/item/clothing/mask/gas/syndicate(src)
 				new /obj/item/weapon/tank/emergency_oxygen/double(src)
-				return
-
-			if("guns")
-				new /obj/item/weapon/gun/projectile/revolver(src)
-				new /obj/item/ammo_magazine/a357(src)
-				new /obj/item/weapon/card/emag(src)
-				new /obj/item/weapon/plastique(src)
-				new /obj/item/weapon/plastique(src)
 				return
 
 			if("murder")
@@ -55,7 +47,6 @@
 				return
 
 			if("smoothoperator")
-				new /obj/item/weapon/storage/box/syndie_kit/g9mm(src)
 				new /obj/item/weapon/storage/bag/trash(src)
 				new /obj/item/weapon/soap/syndie(src)
 				new /obj/item/bodybag(src)
@@ -129,7 +120,6 @@
 	new /obj/item/clothing/gloves/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)
-	new /obj/item/weapon/gun/energy/chameleon(src)
 
 /obj/item/weapon/storage/box/syndie_kit/clerical
 	name = "clerical kit"
@@ -156,15 +146,6 @@
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_bug(src)
 	new /obj/item/device/spy_monitor(src)
-
-/obj/item/weapon/storage/box/syndie_kit/g9mm
-	name = "\improper Smooth operator"
-	desc = "9mm with silencer kit."
-
-/obj/item/weapon/storage/box/syndie_kit/g9mm/New()
-	..()
-	new /obj/item/weapon/gun/projectile/pistol(src)
-	new /obj/item/weapon/silencer(src)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"

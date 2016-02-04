@@ -73,23 +73,6 @@
 		/obj/item/gun_component/accessory/chamber/scope
 		)
 
-// laser tag gun - Standard issue weapon of the Imperial Guard
-/obj/item/weapon/gun/composite/premade/laser_tag_gun
-	set_model = /decl/weapon_model/laser_tag
-	build_components = list(
-		/obj/item/gun_component/chamber/laser/tag,
-		/obj/item/gun_component/body/pistol/laser,
-		/obj/item/gun_component/barrel/laser/pistol/lasertag,
-		/obj/item/gun_component/grip/pistol/laser,
-		/obj/item/gun_component/stock/pistol/laser
-		)
-
-/obj/item/weapon/gun/composite/premade/laser_tag_gun/red/New()
-	..()
-	var/obj/item/gun_component/chamber/laser/tag/L = chamber
-	L.current_colour = "red"
-	L.set_holder_colour()
-
 // energy gun - A versatile energy based sidearm, capable of switching between low and high capacity projectile settings.
 /obj/item/weapon/gun/composite/premade/egun
 	set_model = /decl/weapon_model/la/perun

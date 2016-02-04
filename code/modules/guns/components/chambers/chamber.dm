@@ -36,7 +36,7 @@
 					use_state += "[n_ceil((shots_left/max_shots)*model.ammo_indicator_states)]"
 		else
 			if(ammo_indicator_states)
-				use_state += "[n_round((shots_left/max_shots)*ammo_indicator_states)]"
+				use_state += "[round((shots_left/max_shots)*ammo_indicator_states)]"
 
 		if(!ammo_overlay)
 			if(model && model.ammo_indicator_icon)
@@ -65,7 +65,7 @@
 	max_shots = initial(max_shots)
 
 /obj/item/gun_component/chamber/proc/apply_shot_mod(var/val)
-	max_shots = n_round(max_shots * val)
+	max_shots = round(max_shots * val)
 
 /obj/item/gun_component/chamber/proc/get_shots_remaining()
 	return 0

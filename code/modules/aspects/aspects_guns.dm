@@ -18,12 +18,7 @@
 		// Sherrif spawns with a revolver, he doesn't need a second holster.
 		for(holder.mind && holder.mind.assigned_role == "Lawman")
 			return
-		var/gun_type = pick(list(
-			/obj/item/weapon/gun/projectile/colt,
-			/obj/item/weapon/gun/projectile/sec,
-			/obj/item/weapon/gun/projectile/sec/wood,
-			/obj/item/weapon/gun/projectile/pistol
-			))
+		var/gun_type = pick(list())
 		var/obj/item/clothing/under/U = holder.w_uniform
 		if(istype(U))
 			var/obj/item/clothing/accessory/holster/waist/W = new (holder)

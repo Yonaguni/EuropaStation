@@ -103,7 +103,7 @@
 	selectable = 1
 	module_cooldown = 0
 	engage_string = "Configure"
-	var/gun_type = /obj/item/weapon/gun/energy/taser/mounted
+	var/gun_type = /obj/item/weapon/gun
 	var/obj/item/weapon/gun/gun
 
 /obj/item/rig_module/mounted/New()
@@ -141,8 +141,6 @@
 	use_power_cost = 50
 	active_power_cost = 10
 	passive_power_cost = 0
-
-	gun_type = /obj/item/weapon/gun/energy/crossbow/ninja
 
 /obj/item/rig_module/mounted/energy_blade/process()
 

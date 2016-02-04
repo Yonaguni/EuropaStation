@@ -368,7 +368,6 @@
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/cloaking_device(M), slot_r_store)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/revolver(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), slot_l_store)
 
 		if ("tournament chef") //Steven Seagal FTW
@@ -481,7 +480,6 @@
 			for(var/i=3, i>0, i--)
 				sec_briefcase.contents += new /obj/item/weapon/spacecash/c1000
 			sec_briefcase.contents += new /obj/item/weapon/gun/energy/crossbow
-			sec_briefcase.contents += new /obj/item/weapon/gun/projectile/revolver/mateba
 			sec_briefcase.contents += new /obj/item/ammo_magazine/a357
 			sec_briefcase.contents += new /obj/item/weapon/plastique
 			M.equip_to_slot_or_del(sec_briefcase, slot_l_hand)
@@ -614,7 +612,6 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/plain/eyepatch(M), slot_glasses)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/hgpirate(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/revolver/mateba(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), slot_w_uniform)
 			var/obj/item/weapon/card/id/W = new(M)
 			W.icon_state = "centcom"

@@ -52,7 +52,6 @@
 		new /obj/item/device/radio/headset/heads/hop(src)
 		new /obj/item/weapon/storage/box/ids(src)
 		new /obj/item/weapon/storage/box/ids( src )
-		new /obj/item/weapon/gun/projectile/sec/flash(src)
 		new /obj/item/device/flash(src)
 		return
 
@@ -261,7 +260,6 @@
 		new /obj/item/clothing/suit/armor/vest/detective(src)
 		new /obj/item/ammo_magazine/c45m/flash(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/gun/projectile/colt/detective(src)
 		new /obj/item/clothing/accessory/holster/armpit(src)
 		return
 

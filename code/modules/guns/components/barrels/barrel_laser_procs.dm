@@ -5,8 +5,6 @@
 			return /obj/item/projectile/forcebolt
 		if(CALIBER_STAFF_ANIMATE)
 			return /obj/item/projectile/animate
-		if(CALIBER_STAFF_CHANGE)
-			return /obj/item/projectile/change
 		if(CALIBER_LASER_SHOTGUN)
 			return /obj/item/projectile/bullet/pellet/laser
 		if(CALIBER_LASER_ION)
@@ -19,20 +17,14 @@
 			return /obj/item/projectile/beam/midlaser
 		if(CALIBER_LASER_HEAVY)
 			return /obj/item/projectile/beam/heavylaser
-		if(CALIBER_LASER_WEAK)
-			return /obj/item/projectile/beam/weaklaser
 		if(CALIBER_LASER_XRAY)
 			return /obj/item/projectile/beam/xray
 		if(CALIBER_LASER_INDUSTRIAL)
 			return /obj/item/projectile/beam/emitter
-		if(CALIBER_LASER_LASERTAG)
-			return /obj/item/projectile/beam/lastertag
 		if(CALIBER_LASER_PRECISION)
 			return /obj/item/projectile/beam/sniper
 		if(CALIBER_LASER_SHOCK)
 			return /obj/item/projectile/beam/stun
-		if(CALIBER_LASER_TASER)
-			return /obj/item/projectile/beam/stun/weak
 	return /obj/item/projectile/beam
 
 /proc/get_fire_sound_from_caliber(var/caliber)

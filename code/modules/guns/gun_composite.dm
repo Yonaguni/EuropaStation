@@ -112,16 +112,16 @@
 	// Update based on model modifiers.
 	if(model && model.produced_by)
 		if(!isnull(model.produced_by.accuracy))
-			accuracy = n_round(accuracy * model.produced_by.accuracy)
+			accuracy = round(accuracy * model.produced_by.accuracy)
 		if(!isnull(model.produced_by.capacity))
 			chamber.apply_shot_mod(model.produced_by.capacity)
 			max_shots = chamber.max_shots
 		if(!isnull(model.produced_by.recoil))
-			recoil = n_round(recoil * model.produced_by.recoil)
+			recoil = round(recoil * model.produced_by.recoil)
 		if(!isnull(model.produced_by.fire_rate))
-			fire_delay = n_round(fire_delay * model.produced_by.fire_rate)
+			fire_delay = round(fire_delay * model.produced_by.fire_rate)
 		if(!isnull(model.produced_by.weight))
-			w_class = n_round(w_class * model.produced_by.weight)
+			w_class = round(w_class * model.produced_by.weight)
 
 	w_class = min(max(w_class, 1),5)
 

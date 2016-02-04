@@ -147,10 +147,6 @@
 	Topic(src, list("breaker"="1"))
 	return 1
 
-/obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
-	Topic(src, list("command"="enable", "value"="[!enabled]"))
-	return 1
-
 /atom/proc/AIAltClick(var/atom/A)
 	return AltClick(A)
 
@@ -161,10 +157,6 @@
 	else
 		// disable/6 is not in Topic; disable/5 disables both temporary and permanent shock
 		Topic(src, list("command"="electrify_permanently", "activate" = "0"))
-	return 1
-
-/obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
-	Topic(src, list("command"="lethal", "value"="[!lethal]"))
 	return 1
 
 /atom/proc/AIMiddleClick(var/mob/living/silicon/user)
