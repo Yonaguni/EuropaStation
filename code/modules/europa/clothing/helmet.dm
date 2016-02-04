@@ -73,5 +73,5 @@
 obj/item/clothing/head/europa/cowboy_hat
 	name = "cowboy hat"
 	desc = "For those that have spurs that go jingle jangle jingle."
-	icon_state = "cowboyhat"
+	icon_state = "cowboy"
 	body_parts_covered = 0

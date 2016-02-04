@@ -13,8 +13,7 @@
 	var/obj/item/clothing/accessory/holster/waist/W = new(H)
 	H.w_uniform.attackby(W, H)
 	W.holster(new /obj/item/weapon/gun/projectile/revolver(H), H)
-	//H.wear_suit.attackby(new /obj/item/clothing/accessory/europa/sherrif(H), H) // Accessory icons are bugged. Yay.
-	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/europa/sherrif(H), slot_belt) // Remove when accessory icons are fixed.
+	H.wear_suit.attackby(new /obj/item/clothing/accessory/europa/sherrif(H), H)
 	return ..(H,1,1,1)
 
 /datum/job/borderworld/lawman/equip_survival(var/mob/living/carbon/human/H)

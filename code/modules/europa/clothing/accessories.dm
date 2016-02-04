@@ -1,5 +1,6 @@
 /obj/item/clothing/accessory/europa
 	icon = 'icons/obj/europa/clothing/accessories.dmi'
+	icon_override = 'icons/mob/europa/accessories.dmi'
 
 /* Rimworld */
 
@@ -8,10 +9,6 @@
 	desc = "Around here, law and order's a bit hard to come by."
 	icon_state = "sherrif"
 	slot = "badge"
-	slot_flags = SLOT_BELT
-	item_icons = list(
-		slot_wear_belt_str = 'icons/mob/europa/worn_belt.dmi'
-		)
 
 /* SHIRTS */
 
