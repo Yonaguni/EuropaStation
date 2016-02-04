@@ -842,19 +842,6 @@ default behaviour is:
 		sleep(350)
 		lastpuke = 0
 
-/mob/living/proc/can_be_possessed_by(var/mob/dead/observer/possessor)
-	if(!istype(possessor))
-		return 0
-	if(!possession_candidate)
-		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
-		return 0
-	if(jobban_isbanned(possessor, "Animal"))
-		possessor << "<span class='warning'>You are banned from animal roles.</span>"
-		return 0
-	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
-		return 0
-	return 1
-
 /mob/living/proc/do_possession(var/mob/dead/observer/possessor)
 
 	if(!(istype(possessor) && possessor.ckey))
@@ -885,3 +872,18 @@ default behaviour is:
 /mob/living/proc/is_bleeding()
 	return (bruteloss > 0)
 
+/mob/proc/can_be_possessed_by(var/mob/dead/observer/possessor)
+	return istype(possessor) && possessor.client
+
+/mob/living/can_be_possessed_by(var/mob/dead/observer/possessor)
+	if(!..())
+		return
+	if(!possession_candidate)
+		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
+		return 0
+	if(jobban_isbanned(possessor, "Animal"))
+		possessor << "<span class='warning'>You are banned from animal roles.</span>"
+		return 0
+	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
+		return 0
+	return 1

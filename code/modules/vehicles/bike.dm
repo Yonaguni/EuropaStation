@@ -1,5 +1,5 @@
 /obj/vehicle/bike/
-	name = "space-bike"
+	name = "motorbike"
 	desc = "Space wheelies! Woo! "
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
