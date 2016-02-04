@@ -1,4 +1,4 @@
-/obj/item/clothing/accessory/europa/
+/obj/item/clothing/accessory/europa
 	icon = 'icons/obj/europa/clothing/accessories.dmi'
 
 /* Rimworld */
@@ -20,22 +20,29 @@
 	desc = "A plain grey t-shirt. A popular piece of human clothing."
 	icon_state = "t-shirt-grey"
 	slot = "shirt"
+	body_parts_covered = UPPER_TORSO
+	slot_flags = SLOT_ICLOTHING
 
 /obj/item/clothing/accessory/europa/shirt/longsleeve
 	name = "longsleeve shirt"
 	desc = "A white shirt with long sleeves. Great for any white collar worker."
 	icon_state = "longsleeve-white"
+	body_parts_covered = UPPER_TORSO|ARMS
+	slot_flags = SLOT_ICLOTHING
 
 /obj/item/clothing/accessory/europa/shirt/turtleneck
 	name = "turtleneck shirt"
 	desc = "A thick, black turtleneck shirt. For when the air gets a bit chilly."
 	icon_state = "turtleneck-black"
+	body_parts_covered = UPPER_TORSO|ARMS
+	slot_flags = SLOT_ICLOTHING
 
 /obj/item/clothing/accessory/europa/shirt/turtleneckwinterred
 	name = "winter turtleneck shirt"
 	desc = "A thick, red turtleneck shirt with a wintery design. For when the air gets a bit nippy."
 	icon_state = "turtleneck-winterred"
-
+	body_parts_covered = UPPER_TORSO|ARMS
+	slot_flags = SLOT_ICLOTHING
 
 /* OVERALLS */
 
@@ -44,6 +51,8 @@
 	desc = "A plain set of overalls. For the hard working individual."
 	icon_state = "overalls"
 	slot = "overalls"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	slot_flags = SLOT_ICLOTHING
 
 /obj/item/clothing/accessory/europa/overalls/emergency
 	name = "emergency overalls"
@@ -55,7 +64,6 @@
 	desc = "A pair of insulated leather overalls. Used for wiring and electronic maintenance."
 	icon_state = "electrician-overalls"
 
-
 /* VESTS and APRONS */
 
 /obj/item/clothing/accessory/storage/factoryvest
@@ -64,6 +72,8 @@
 	icon = 'icons/obj/europa/clothing/accessories.dmi'
 	icon_state = "factoryworker-vest"
 	slots = 2
+	body_parts_covered = UPPER_TORSO
+	slot_flags = SLOT_ICLOTHING
 
 /obj/item/clothing/accessory/storage/factoryvest/apron
 	name = "factory worker's apron"

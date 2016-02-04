@@ -11,6 +11,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/mechanic(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/workboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/device/europa/wrist_computer(H), slot_wear_id)
 	return ..(H,1,1,1)
 
 /datum/job/borderworld/mechanic/equip_survival(var/mob/living/carbon/human/H)

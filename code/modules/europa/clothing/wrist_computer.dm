@@ -5,7 +5,6 @@
 	slot_flags = SLOT_ID
 	w_class = 3
 	icon = 'icons/obj/europa/items/wrist_computer.dmi'
-	icon_override = 'icons/mob/europa/accessories.dmi'
 	icon_state = "wrist_computer"
 	item_state = null
 
