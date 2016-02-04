@@ -27,6 +27,11 @@
 	sleep(drone_min_activation_time)
 	try_deploy(user)
 
+/mob/living/silicon/robot/drone/proc/set_master(var/mob/living/new_master)
+	master = new_master
+	if(!laws) full_law_reset()
+	laws.set_zeroth_law("Your master is \the [new_master]. Obey their instructions and serve them well. This law overrides all other laws.")
+
 /obj/item/weapon/drone_capsule/proc/try_deploy(var/mob/user)
 
 	if(src.loc == user)
@@ -47,7 +52,8 @@
 
 	// Spawning these procs so new_drones can be cleared; qdel() needs it.
 	for(var/mob/living/silicon/robot/drone/M in new_drones)
-		if(istype(M)) M.set_master(user)
+		if(istype(M))
+			M.set_master(user)
 		new_drones -= M
 		spawn(drone_ai_delay)
 			if(!M.client && !M.ckey)

@@ -16,7 +16,6 @@
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	pass_flags = PASSTABLE
-	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 
