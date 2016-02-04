@@ -167,7 +167,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ert
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/pickaxe,/obj/item/device/healthanalyzer,/obj/item/device/radio/beacon)
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/pickaxe,/obj/item/device/healthanalyzer,/obj/item/device/telebeacon)
 
 	req_access = list()
 	req_one_access = list()

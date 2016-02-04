@@ -214,8 +214,6 @@
 		var/obj/item/existing_item
 		if(citem.item_path == /obj/item/weapon/card/id && istype(current_id)) //Set earlier.
 			existing_item = M.wear_id
-		else if(citem.item_path == /obj/item/device/pda)
-			existing_item = locate(/obj/item/device/pda) in M.contents
 
 		// Spawn and equip the item.
 		if(existing_item)

@@ -113,13 +113,6 @@
 				open()
 		return
 
-	if(istype(AM, /mob/living/bot))
-		var/mob/living/bot/bot = AM
-		if(src.check_access(bot.botcard))
-			if(density)
-				open()
-		return
-
 	if(istype(AM, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/wheel = AM
 		if(density)

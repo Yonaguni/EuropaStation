@@ -56,7 +56,6 @@
 
 		var/datum/signal/signal = new
 		signal.source = src
-		signal.transmission_method = 1
 		signal.data = list(
 			"tag" = id,
 			"device" = "AM",
@@ -67,13 +66,13 @@
 
 /obj/machinery/meter/examine(mob/user)
 	var/t = "A gas flow meter. "
-	
+
 	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/dead)))
 		t += "<span class='warning'>You are too far away to read it.</span>"
-	
+
 	else if(stat & (NOPOWER|BROKEN))
 		t += "<span class='warning'>The display is off.</span>"
-	
+
 	else if(src.target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
@@ -82,7 +81,7 @@
 			t += "The sensor error light is blinking."
 	else
 		t += "The connect error light is blinking."
-	
+
 	user << t
 
 /obj/machinery/meter/Click()
@@ -90,7 +89,7 @@
 	if(istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
 		usr.examinate(src)
 		return 1
-	
+
 	return ..()
 
 /obj/machinery/meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)

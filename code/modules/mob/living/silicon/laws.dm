@@ -66,7 +66,7 @@
 	else if((lawchannel in additional_law_channels))
 		prefix = additional_law_channels[lawchannel]
 	else
-		prefix = get_radio_key_from_channel(lawchannel)
+		prefix = radio_name_to_key[lawchannel]
 
 	dostatelaws(lawchannel, prefix, laws)
 

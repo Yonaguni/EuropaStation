@@ -97,11 +97,6 @@ On the map:
 1455 for AI access
 */
 
-var/const/RADIO_LOW_FREQ	= 1200
-var/const/PUBLIC_LOW_FREQ	= 1441
-var/const/PUBLIC_HIGH_FREQ	= 1489
-var/const/RADIO_HIGH_FREQ	= 1600
-
 var/const/BOT_FREQ	= 1447
 var/const/COMM_FREQ = 1353
 var/const/ERT_FREQ	= 1345
@@ -110,81 +105,8 @@ var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
 var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
 
-// department channels
-var/const/PUB_FREQ = 1459
-var/const/SEC_FREQ = 1359
-var/const/ENG_FREQ = 1357
-var/const/MED_FREQ = 1355
-var/const/SCI_FREQ = 1351
-var/const/SRV_FREQ = 1349
-var/const/SUP_FREQ = 1347
-
-// internal department channels
-var/const/MED_I_FREQ = 1485
-var/const/SEC_I_FREQ = 1475
-
-var/list/radiochannels = list(
-	"Common"		= PUB_FREQ,
-	"Science"		= SCI_FREQ,
-	"Command"		= COMM_FREQ,
-	"Medical"		= MED_FREQ,
-	"Engineering"	= ENG_FREQ,
-	"Security" 		= SEC_FREQ,
-	"Response Team" = ERT_FREQ,
-	"Special Ops" 	= DTH_FREQ,
-	"Mercenary" 	= SYND_FREQ,
-	"Supply" 		= SUP_FREQ,
-	"Service" 		= SRV_FREQ,
-	"AI Private"	= AI_FREQ,
-	"Entertainment" = ENT_FREQ,
-	"Medical(I)"	= MED_I_FREQ,
-	"Security(I)"	= SEC_I_FREQ
-)
-
-// central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
-
-// Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ)
-
-//Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ, ENT_FREQ)
-
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
-
-/proc/frequency_span_class(var/frequency)
-	// Antags!
-	if (frequency in ANTAG_FREQS)
-		return "syndradio"
-	// centcomm channels (deathsquid and ert)
-	if(frequency in CENT_FREQS)
-		return "centradio"
-	// command channel
-	if(frequency == COMM_FREQ)
-		return "comradio"
-	// AI private channel
-	if(frequency == AI_FREQ)
-		return "airadio"
-	// department radio formatting (poorly optimized, ugh)
-	if(frequency == SEC_FREQ)
-		return "secradio"
-	if (frequency == ENG_FREQ)
-		return "engradio"
-	if(frequency == SCI_FREQ)
-		return "sciradio"
-	if(frequency == MED_FREQ)
-		return "medradio"
-	if(frequency == SUP_FREQ) // cargo
-		return "supradio"
-	if(frequency == SRV_FREQ) // service
-		return "srvradio"
-	if(frequency == ENT_FREQ) //entertainment
-		return "entradio"
-	if(frequency in DEPT_FREQS)
-		return "deptradio"
-
-	return "radio"
 
 /* filters */
 //When devices register with the radio controller, they might register under a certain filter.
@@ -192,6 +114,11 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 //This is done for performance, so we don't send signals to lots of machines unnecessarily.
 
 //This filter is special because devices belonging to default also recieve signals sent to any other filter.
+var/const/PUBLIC_LOW_FREQ	= 1441
+var/const/PUBLIC_HIGH_FREQ	= 1489
+
+var/const/RADIO_LOW_FREQ	= 1200
+var/const/RADIO_HIGH_FREQ	= 1600
 var/const/RADIO_DEFAULT = "radio_default"
 
 var/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms
@@ -299,10 +226,12 @@ var/global/datum/controller/radio/radio_controller
 		devices_line = new
 		devices[filter] = devices_line
 	devices_line+=device
-//			var/list/obj/devices_line___ = devices[filter_str]
-//			var/l = devices_line___.len
-	//log_admin("DEBUG: devices_line.len=[devices_line.len]")
-	//log_admin("DEBUG: devices(filter_str).len=[l]")
+
+
+
+
+
+
 
 /datum/radio_frequency/proc/remove_listener(obj/device)
 	for (var/devices_filter in devices)
@@ -316,32 +245,12 @@ var/global/datum/controller/radio/radio_controller
 
 /datum/signal
 	var/obj/source
-
-	var/transmission_method = 0 //unused at the moment
-	//0 = wire
-	//1 = radio transmission
-	//2 = subspace transmission
-
 	var/list/data = list()
 	var/encryption
-
 	var/frequency = 0
 
 /datum/signal/proc/copy_from(datum/signal/model)
 	source = model.source
-	transmission_method = model.transmission_method
 	data = model.data
 	encryption = model.encryption
 	frequency = model.frequency
-
-/datum/signal/proc/debug_print()
-	if (source)
-		. = "signal = {source = '[source]' ([source:x],[source:y],[source:z])\n"
-	else
-		. = "signal = {source = '[source]' ()\n"
-	for (var/i in data)
-		. += "data\[\"[i]\"\] = \"[data[i]]\"\n"
-		if(islist(data[i]))
-			var/list/L = data[i]
-			for(var/t in L)
-				. += "data\[\"[i]\"\] list has: [t]"

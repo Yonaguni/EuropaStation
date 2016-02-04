@@ -53,6 +53,7 @@ datum/preferences
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
+	var/radio_voice
 	var/list/gear						//Custom/fluff item loadout.
 
 		//Some faction information.
@@ -275,7 +276,7 @@ datum/preferences
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
-
+	character.radio_voice = radio_voice
 	character.update_body()
 
 /datum/preferences/proc/open_load_dialog(mob/user)

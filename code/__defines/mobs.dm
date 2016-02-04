@@ -117,7 +117,7 @@
 #define MOB_TINY 		5
 #define MOB_MINISCULE	1
 
-// Gluttony levels. 
+// Gluttony levels.
 #define GLUT_TINY 1       // Eat anything tiny and smaller
 #define GLUT_SMALLER 2    // Eat anything smaller than we are
 #define GLUT_ANYTHING 3   // Eat anything, ever
@@ -188,3 +188,5 @@
 #define MOB_PULL_SMALLER 1
 #define MOB_PULL_SAME 2
 #define MOB_PULL_LARGER 3
+
+#define DEFAULT_SAY_CLASS "body"

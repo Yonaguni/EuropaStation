@@ -130,27 +130,11 @@
 					prob(1);/obj/item/stack/medical/splint,\
 					prob(2);/obj/item/bodybag,\
 					prob(1);/obj/item/bodybag/cryobag,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/kelotane,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/antitox,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/tramadol,\
+					prob(2);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,\
-					prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
+					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline,\
 					prob(1);/obj/item/stack/nanopaste)
-
-
-/obj/random/firstaid
-	name = "Random First Aid Kit"
-	desc = "This is a random first aid kit."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "firstaid"
-	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/storage/firstaid/regular,\
-					prob(2);/obj/item/weapon/storage/firstaid/toxin,\
-					prob(2);/obj/item/weapon/storage/firstaid/o2,\
-					prob(1);/obj/item/weapon/storage/firstaid/adv,\
-					prob(2);/obj/item/weapon/storage/firstaid/fire)
-
 
 /obj/random/contraband
 	name = "Random Illegal Item"
@@ -159,10 +143,8 @@
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/tramadol,\
+		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(4);/obj/item/weapon/haircomb,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/happy,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/zoom,\
 					prob(5);/obj/item/weapon/contraband/poster,\
 					prob(2);/obj/item/weapon/material/butterfly,\
 					prob(3);/obj/item/weapon/material/butterflyblade,\
@@ -170,7 +152,6 @@
 					prob(3);/obj/item/weapon/material/wirerod,\
 					prob(1);/obj/item/weapon/material/butterfly/switchblade,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/drugs)
-
 
 /obj/random/energy
 	name = "Random Energy Weapon"
@@ -288,7 +269,7 @@
 					/obj/effect/decal/cleanable/blood/splatter,\
 					/obj/effect/decal/remains/robot)
 
-obj/random/closet //A couple of random closets to spice up main
+obj/random/closet //A couple of random closets to spice up maint
 	name = "random closet"
 	desc = "This is a random closet."
 	icon = 'icons/obj/closet.dmi'
@@ -298,8 +279,7 @@ obj/random/closet //A couple of random closets to spice up main
 					/obj/structure/closet/firecloset,\
 					/obj/structure/closet/firecloset/full,\
 					/obj/structure/closet/emcloset,\
-					/obj/structure/closet/wardrobe/black,\
-					/obj/structure/closet/gmcloset)
+					/obj/structure/closet/wardrobe/black)
 
 
 obj/random/material //Random materials for building stuff

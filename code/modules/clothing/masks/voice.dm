@@ -1,7 +1,7 @@
 /obj/item/voice_changer
 	name = "voice changer"
 	desc = "A voice scrambling module. If you can see this, report it as a bug on the tracker."
-	var/voice //If set and item is present in mask/suit, this name will be used for the wearer's speech.
+	var/voice = "a garbled voice" //If set and item is present in mask/suit, this name will be used for the wearer's speech.
 	var/active
 
 /obj/item/clothing/mask/gas/voice

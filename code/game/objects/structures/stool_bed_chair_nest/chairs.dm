@@ -8,22 +8,6 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
-		var/obj/item/assembly/shock_kit/SK = W
-		if(!SK.status)
-			user << "<span class='notice'>\The [SK] is not ready to be attached!</span>"
-			return
-		user.drop_item()
-		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		E.set_dir(dir)
-		E.part = SK
-		SK.loc = E
-		SK.master = E
-		qdel(src)
-
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
 		..()

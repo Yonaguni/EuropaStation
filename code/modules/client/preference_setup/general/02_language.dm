@@ -4,14 +4,26 @@
 
 /datum/category_item/player_setup_item/general/language/load_character(var/savefile/S)
 	S["language"]			>> pref.alternate_languages
+	S["radio_voice"]        >> pref.radio_voice
 
 /datum/category_item/player_setup_item/general/language/save_character(var/savefile/S)
 	S["language"]			<< pref.alternate_languages
+	S["radio_voice"]        << pref.radio_voice
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
-	if(!islist(pref.alternate_languages))	pref.alternate_languages = list()
+	if(!islist(pref.alternate_languages))
+		pref.alternate_languages = list()
+	if(!pref.radio_voice || pref.radio_voice == "")
+		if(pref.gender == MALE)
+			pref.radio_voice = "a male [pref.species] voice"
+		else if(pref.gender == FEMALE)
+			pref.radio_voice = "a female [pref.species] voice"
+		else
+			pref.radio_voice = "a [pref.species] voice"
 
 /datum/category_item/player_setup_item/general/language/content()
+	. += "<b>Speech</b><br>"
+	. += "<b>Radio voice:</b> [pref.radio_voice] <a href='?src=\ref[src];set_radio_voice=1'>\[change\]</a><br>"
 	. += "<b>Languages</b><br>"
 	var/datum/species/S = all_species[pref.species]
 	if(S.language)
@@ -30,7 +42,12 @@
 		. += "- [pref.species] cannot choose secondary languages.<br>"
 
 /datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(href_list["remove_language"])
+	if(href_list["set_radio_voice"])
+		var/raw_choice = sanitize(input(user, "Please enter a radio voice (such as 'a rough baritone' or 'a hissing, rasping voice').", "Character Preference")  as text|null, MAX_NAME_LEN)
+		if(raw_choice && CanUseTopic(user))
+			pref.radio_voice = raw_choice
+		return TOPIC_REFRESH
+	else if(href_list["remove_language"])
 		var/index = text2num(href_list["remove_language"])
 		pref.alternate_languages.Cut(index, index+1)
 		return TOPIC_REFRESH

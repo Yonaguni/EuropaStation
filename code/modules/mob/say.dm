@@ -140,7 +140,7 @@
 
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1 ,3)
-		return department_radio_keys[channel_prefix]
+		return key_to_name[channel_prefix]
 
 	return null
 

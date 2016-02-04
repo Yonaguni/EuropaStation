@@ -29,15 +29,11 @@
 		/obj/machinery/atmospherics/unary/cryo_cell,
 		/obj/machinery/dna_scannernew,
 		/obj/item/weapon/grenade/chem_grenade,
-		/mob/living/bot/medbot,
-		/obj/machinery/computer/pandemic,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
-		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
-		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
@@ -222,14 +218,7 @@
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
 
-	if(isprox(D))
-		user << "You add [D] to [src]."
-		qdel(D)
-		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
-		user.drop_from_inventory(src)
-		qdel(src)
-		return
-	else if(istype(D, /obj/item/weapon/mop))
+	if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
 			user << "<span class='warning'>\The [src] is empty!</span>"
 		else

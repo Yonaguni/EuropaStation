@@ -186,12 +186,6 @@
 
 //List of active diseases
 
-	var/list/viruses = list() // replaces var/datum/disease/virus
-
-//Monkey/infected mode
-	var/list/resistances = list()
-	var/datum/disease/virus = null
-
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call

@@ -1,6 +1,5 @@
 /obj/machinery/chemical_dispenser/full
 	spawn_cartridges = list(
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrazine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/carbon,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ammonia,
@@ -10,7 +9,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/silicon,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/phosphorus,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sulfur,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hclacid,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/potassium,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/iron,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/copper,
@@ -26,33 +24,16 @@
 /obj/machinery/chemical_dispenser/ert
 	name = "medicine dispenser"
 	spawn_cartridges = list(
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/inaprov,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ryetalyn,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/adrenaline,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/paracetamol,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tramadol,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/morphine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sterilizine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/leporazine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/kelotane,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dermaline,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tricord,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dylovene,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/synaptizine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyronalin,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/arithrazine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/alkysine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/imidazoline,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/peridaxon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/bicaridine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyperzine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/rezadone,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/spaceacillin,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethylredox,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/morphine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/antiseptic,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/antitoxin,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/antirad,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/jumpstart,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/antibiotic,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sleeptox,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chloral,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cryoxadone,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/clonexadone
 		)
 
 /obj/machinery/chemical_dispenser/bar_soft

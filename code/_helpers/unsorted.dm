@@ -269,20 +269,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 0
 	return 1
 
-//Ensure the frequency is within bounds of what it should be sending/recieving at
-/proc/sanitize_frequency(var/f, var/low = PUBLIC_LOW_FREQ, var/high = PUBLIC_HIGH_FREQ)
-	f = round(f)
-	f = max(low, f)
-	f = min(high, f)
-	if ((f % 2) == 0) //Ensure the last digit is an odd number
-		f += 1
-	return f
-
-//Turns 1479 into 147.9
-/proc/format_frequency(var/f)
-	return "[round(f / 10)].[f % 10]"
-
-
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
@@ -306,23 +292,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		//update our pda and id if we have them on our person
 		var/list/searching = GetAllContents(searchDepth = 3)
 		var/search_id = 1
-		var/search_pda = 1
 
 		for(var/A in searching)
 			if( search_id && istype(A,/obj/item/weapon/card/id) )
 				var/obj/item/weapon/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.set_name(newname)
-					if(!search_pda)	break
-					search_id = 0
-
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
+					break
 	return 1
 
 

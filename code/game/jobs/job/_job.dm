@@ -28,7 +28,6 @@
 	// Various equipment paths.
 	var/idtype                       // The type of the ID the player will have
 	var/headsettype                  // Type of headset if any.
-	var/pdatype                      // If set, job will spawn with a PDA.
 
 	var/job_category = IS_CIVIL
 

@@ -105,7 +105,6 @@ var/list/admin_verbs_sounds = list(
 	)
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
-	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/everyone_random,
@@ -113,7 +112,6 @@ var/list/admin_verbs_fun = list(
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
@@ -129,7 +127,6 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,
 	/client/proc/respawn_character,
-	/client/proc/virus2_editor,
 	/client/proc/spawn_chemdisp_cartridge
 	)
 var/list/admin_verbs_server = list(
@@ -228,18 +225,15 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/object_talk,
-	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
-	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
@@ -262,7 +256,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
-	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
@@ -582,53 +575,6 @@ var/list/admin_verbs_mentor = list(
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/give_disease(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease (old)"
-	set desc = "Gives a (tg-style) Disease to a mob."
-	var/list/disease_names = list()
-	for(var/v in diseases)
-	//	"/datum/disease/" 15 symbols ~Intercross
-		disease_names.Add(copytext("[v]", 16, 0))
-	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in disease_names
-	if(!D) return
-	var/path = text2path("/datum/disease/[D]")
-	T.contract_disease(new path, 1)
-	feedback_add_details("admin_verb","GD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the disease [D].", 1)
-
-/client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = 1
-	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
-	switch(greater)
-		if ("Lesser") severity = 1
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
-
-	if(istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype())
-			if(H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if(H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-	feedback_add_details("admin_verb","GD2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", 1)
 
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special Verbs"

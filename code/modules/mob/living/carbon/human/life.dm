@@ -82,8 +82,6 @@
 
 		handle_pain()
 
-		handle_medical_side_effects()
-
 		handle_heartbeat()
 
 		if(!client)
@@ -330,14 +328,6 @@
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
-
-/mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
-	..()
-	//spread some viruses while we are at it
-	if(breath && virus2.len > 0 && prob(10))
-		for(var/mob/living/carbon/M in view(1,src))
-			src.spread_disease_to(M)
-
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
@@ -1428,22 +1418,11 @@
 		hud_list[LIFE_HUD] = holder
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/foundVirus = 0
-		for(var/datum/disease/D in viruses)
-			if(!D.hidden[SCANNER])
-				foundVirus++
-		for (var/ID in virus2)
-			if (ID in virusDB)
-				foundVirus = 1
-				break
-
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else if(status_flags & XENO_HOST)
 			holder.icon_state = "hudxeno"
-		else if(foundVirus)
-			holder.icon_state = "hudill"
 		else if(has_brain_worms())
 			var/mob/living/simple_animal/borer/B = has_brain_worms()
 			if(B.controlling)
@@ -1460,8 +1439,6 @@
 			holder2.icon_state = "hudxeno"
 		else if(has_brain_worms())
 			holder2.icon_state = "hudbrainworm"
-		else if(virus2.len)
-			holder2.icon_state = "hudill"
 		else
 			holder2.icon_state = "hudhealthy"
 

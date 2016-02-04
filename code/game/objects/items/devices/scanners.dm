@@ -115,19 +115,8 @@ REAGENT SCANNER
 					++unknown
 			if(unknown)
 				user << "<span class='warning'>Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.</span>"
-		if(C.virus2.len)
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					user.show_message("<span class='warning'>Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]</span>")
-//			user.show_message(text("<span class='warning'>Warning: Unknown pathogen detected in subject's blood.</span>"))
 	if (M.getCloneLoss())
 		user.show_message("<span class='warning'>Subject appears to have been imperfectly cloned.</span>")
-	for(var/datum/disease/D in M.viruses)
-		if(!D.hidden[SCANNER])
-			user.show_message(text("<span class='danger'>Warning: [D.form] Detected</span><span class='warning'>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>"))
-//	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
-//		user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.</span>")
 	if (M.has_brain_worms())
 		user.show_message("<span class='warning'>Subject suffering from aberrant brain activity. Recommend further scanning.</span>")
 	else if (M.getBrainLoss() >= 60 || !M.has_brain())

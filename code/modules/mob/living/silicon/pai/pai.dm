@@ -48,8 +48,6 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
-
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
 
@@ -65,8 +63,6 @@
 	var/hackprogress = 0				// Possible values: 0 - 1000, >= 1000 means the hack is complete and will be reset upon next check
 	var/hack_aborted = 0
 
-	var/obj/item/radio/integrated/signal/sradio // AI's signaller
-
 	var/translator_on = 0 // keeps track of the translator module
 
 	var/current_pda_messaging = null
@@ -74,7 +70,6 @@
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
 	src.loc = paicard
 	card = paicard
-	sradio = new(src)
 	if(card)
 		if(!card.radio)
 			card.radio = new /obj/item/device/radio(src.card)
@@ -88,13 +83,6 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
-	//PDA
-	pda = new(src)
-	spawn(5)
-		pda.ownjob = "Personal Assistant"
-		pda.owner = text("[]", src)
-		pda.name = pda.owner + " (" + pda.ownjob + ")"
-		pda.toff = 1
 	..()
 
 /mob/living/silicon/pai/Login()
@@ -263,9 +251,6 @@
 					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
 					break
 		holder.drop_from_inventory(card)
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
-		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
 	src.client.eye = src

@@ -121,34 +121,8 @@ var/obj/machinery/blackbox_recorder/blackbox
 /obj/machinery/blackbox_recorder/proc/get_round_feedback()
 	return feedback
 
+// I have absolutely no idea if this is actually used at all. Science!
 /obj/machinery/blackbox_recorder/proc/round_end_data_gathering()
-
-	var/pda_msg_amt = 0
-	var/rc_msg_amt = 0
-
-	for(var/obj/machinery/message_server/MS in machines)
-		if(MS.pda_msgs.len > pda_msg_amt)
-			pda_msg_amt = MS.pda_msgs.len
-		if(MS.rc_msgs.len > rc_msg_amt)
-			rc_msg_amt = MS.rc_msgs.len
-
-	feedback_set_details("radio_usage","")
-
-	feedback_add_details("radio_usage","COM-[msg_common.len]")
-	feedback_add_details("radio_usage","SCI-[msg_science.len]")
-	feedback_add_details("radio_usage","HEA-[msg_command.len]")
-	feedback_add_details("radio_usage","MED-[msg_medical.len]")
-	feedback_add_details("radio_usage","ENG-[msg_engineering.len]")
-	feedback_add_details("radio_usage","SEC-[msg_security.len]")
-	feedback_add_details("radio_usage","DTH-[msg_deathsquad.len]")
-	feedback_add_details("radio_usage","SYN-[msg_syndicate.len]")
-	feedback_add_details("radio_usage","CAR-[msg_cargo.len]")
-	feedback_add_details("radio_usage","SRV-[msg_service.len]")
-	feedback_add_details("radio_usage","OTH-[messages.len]")
-	feedback_add_details("radio_usage","PDA-[pda_msg_amt]")
-	feedback_add_details("radio_usage","RC-[rc_msg_amt]")
-
-
 	feedback_set_details("round_end","[time2text(world.realtime)]") //This one MUST be the last one that gets set.
 
 

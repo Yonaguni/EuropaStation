@@ -333,7 +333,7 @@ var/list/global/slot_flags_enumeration = list(
 				if(!disable_warning)
 					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
 				return 0
-			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
 		if(slot_handcuffed)
 			if(!istype(src, /obj/item/weapon/handcuffs))

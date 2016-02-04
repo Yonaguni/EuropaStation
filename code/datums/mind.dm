@@ -316,20 +316,6 @@
 			if("undress")
 				for(var/obj/item/W in current)
 					current.drop_from_inventory(W)
-			if("takeuplink")
-				take_uplink()
-				memory = null//Remove any memory they may have had.
-			if("crystals")
-				if (usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
-					var/crystals
-					if (suplink)
-						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
-					if (!isnull(crystals))
-						if (suplink)
-							suplink.uses = crystals
-
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
 		current << "\blue Your current objectives:"
@@ -337,18 +323,6 @@
 			current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
 	edit_memory()
-
-/datum/mind/proc/find_syndicate_uplink()
-	var/list/L = current.get_contents()
-	for (var/obj/item/I in L)
-		if (I.hidden_uplink)
-			return I.hidden_uplink
-	return null
-
-/datum/mind/proc/take_uplink()
-	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
-	if(H)
-		qdel(H)
 
 
 // check whether this mind's mob has been brigged for the given duration
@@ -365,10 +339,6 @@
 		for(var/obj/item/weapon/card/id/card in current)
 			is_currently_brigged = 0
 			break // if they still have ID they're not brigged
-		for(var/obj/item/device/pda/P in current)
-			if(P.id)
-				is_currently_brigged = 0
-				break // if they still have ID they're not brigged
 
 	if(!is_currently_brigged)
 		brigged_since = -1

@@ -146,14 +146,11 @@
 	else
 		alert_msg = null
 	if(alert_msg)
-		radio.autosay(alert_msg, "Supermatter Monitor", "Engineering")
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			radio.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
-			public_alert = 1
-		else if(safe_warned && public_alert)
+		else if(safe_warned)
 			radio.autosay(alert_msg, "Supermatter Monitor")
-			public_alert = 0
 
 
 /obj/machinery/power/supermatter/get_transit_zlevel()

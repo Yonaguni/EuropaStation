@@ -66,7 +66,7 @@
 
 			return
 
-		if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
+		if(istype(O,/obj/item/weapon/card/id) && brainmob)
 			if(allowed(user))
 				locked = !locked
 				user << "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>"
@@ -140,7 +140,7 @@
 	New()
 		..()
 		radio = new(src)//Spawns a radio inside the MMI.
-		radio.broadcasting = 1//So it's broadcasting from the start.
+		radio.microphone = 1 //So it's broadcasting from the start.
 
 	verb//Allows the brain to toggle the radio functions.
 		Toggle_Broadcasting()
@@ -153,8 +153,8 @@
 			if(brainmob.stat)//Only the brainmob will trigger these so no further check is necessary.
 				brainmob << "Can't do that while incapacitated or dead."
 
-			radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.</span>"
+			radio.microphone = radio.microphone ==1 ? 0 : 1
+			brainmob << "<span class='notice'>Radio is [radio.microphone == 1 ? "now" : "no longer"] broadcasting.</span>"
 
 		Toggle_Listening()
 			set name = "Toggle Listening"
@@ -166,8 +166,8 @@
 			if(brainmob.stat)
 				brainmob << "Can't do that while incapacitated or dead."
 
-			radio.listening = radio.listening==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.</span>"
+			radio.loudspeaker = radio.loudspeaker ==1 ? 0 : 1
+			brainmob << "<span class='notice'>Radio is [radio.loudspeaker == 1 ? "now" : "no longer"] receiving broadcast.</span>"
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)

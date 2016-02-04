@@ -302,12 +302,12 @@
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/syringe/inaprovaline
-	name = "Syringe (inaprovaline)"
-	desc = "Contains inaprovaline - used to stabilize patients."
+/obj/item/weapon/reagent_containers/syringe/adrenaline
+	name = "Syringe (adrenaline)"
+	desc = "Contains adrenaline - used to stabilize patients."
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 15)
+		reagents.add_reagent("adrenaline", 15)
 		mode = SYRINGE_INJECT
 		update_icon()
 
@@ -321,11 +321,11 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
-	name = "Syringe (spaceacillin)"
+	name = "Syringe (antibiotic)"
 	desc = "Contains antiviral agents."
 	New()
 		..()
-		reagents.add_reagent("spaceacillin", 15)
+		reagents.add_reagent("antibiotic", 15)
 		mode = SYRINGE_INJECT
 		update_icon()
 

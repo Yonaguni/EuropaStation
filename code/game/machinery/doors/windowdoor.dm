@@ -64,12 +64,6 @@
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
-		var/mob/living/bot/bot = AM
-		if(istype(bot))
-			if(density && src.check_access(bot.botcard))
-				open()
-				sleep(50)
-				close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
 	if (!( ticker ))
