@@ -86,6 +86,18 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
+/datum/gear/cowboywide
+	display_name = "cowboy hat, wide brim"
+	path = /obj/item/clothing/head/europa/cowboy_hat/wide
+	cost = 1
+	slot = slot_head
+
+/datum/gear/cowboyblack
+	display_name = "cowboy hat, black"
+	path = /obj/item/clothing/head/europa/cowboy_hat/black
+	cost = 1
+	slot = slot_head
+
 /datum/gear/obandana
 	display_name = "bandana, orange"
 	path = /obj/item/clothing/head/orangebandana
