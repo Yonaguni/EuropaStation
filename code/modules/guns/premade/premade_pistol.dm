@@ -43,14 +43,26 @@
 	name = "9mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a9
 
+/obj/item/weapon/gun/composite/premade/pistol/a9/preloaded
+	ammo_type = /obj/item/ammo_magazine/mc9mm
+
 /obj/item/weapon/gun/composite/premade/pistol/a10
 	name = "10mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a10
+
+/obj/item/weapon/gun/composite/premade/pistol/a10/preloaded
+	ammo_type = /obj/item/ammo_magazine/a10mm
 
 /obj/item/weapon/gun/composite/premade/pistol/a45
 	name = "a45 pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a45
 
+/obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
+	ammo_type = /obj/item/ammo_magazine/c45m
+
 /obj/item/weapon/gun/composite/premade/pistol/a38
 	name = "a38 pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a38
+
+/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded
+	ammo_type = /obj/item/ammo_magazine/c38

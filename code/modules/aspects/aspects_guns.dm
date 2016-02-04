@@ -9,22 +9,24 @@
 	desc = "You know how to fire a gun without spraining your wrist."
 	use_icon_state = "guns_2"
 
-/decl/aspect/kitchen/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(name != "Gunslinger") return // I did not consider the problems with inheritance...
-	spawn(10) // Quickfix to see if the problem with spawning is due to timing.
-		// If they happen to spawn with a gun for some other reason they don't need a second one.
-		if(locate(/obj/item/weapon/gun/projectile) in holder.contents)
+/decl/aspect/ranged/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(name == "Gunslinger")
+		// Already have a gun.
+		if(locate(/obj/item/weapon/gun) in holder.contents)
 			return
-		// Sherrif spawns with a revolver, he doesn't need a second holster.
-		for(holder.mind && holder.mind.assigned_role == "Lawman")
+		// Already have a holster
+		if(locate(/obj/item/clothing/accessory/holster) in holder.w_uniform)
 			return
-		var/gun_type = pick(list())
-		var/obj/item/clothing/under/U = holder.w_uniform
-		if(istype(U))
-			var/obj/item/clothing/accessory/holster/waist/W = new (holder)
-			U.attackby(W, holder)
-			W.holster(new gun_type(holder), holder)
-		return ..()
+		var/gun_type = pick(list(
+			/obj/item/weapon/gun/composite/premade/pistol/a9/preloaded,
+			/obj/item/weapon/gun/composite/premade/pistol/a10/preloaded,
+			/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
+			/obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
+			))
+		var/obj/item/clothing/accessory/holster/waist/W = new (holder)
+		holder.w_uniform.attackby(W, holder)
+		W.holster(new gun_type(holder), holder)
+	..()
 
 /decl/aspect/ranged/ballistics/maintenance
 	name = "Ballistic Maintenance"

@@ -9,6 +9,7 @@
 	S["aspects"] << pref.aspects
 
 /datum/category_item/player_setup_item/aspects/sanitize_character()
+	populate_aspects() // Seeing if this will prevent some weird sanitize issues.
 	// Either they have never had aspects before, or they have too many.
 	if(!pref.aspects || pref.aspects.len > config.max_character_aspects)
 		pref.aspects = list()
