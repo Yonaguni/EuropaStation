@@ -85,7 +85,7 @@
 	fire_delay = chamber.fire_delay
 	silenced = 0
 	verbs -= /obj/item/weapon/gun/composite/proc/scope
-	requires_two_hands = body.two_handed
+	//requires_two_hands = body.two_handed // Uncomment when we have actual sprites for this.
 
 	attack_verb = initial(attack_verb)
 	force = body.force

@@ -8,9 +8,22 @@
 	variant_stock =   /obj/item/gun_component/stock/pistol
 	variant_grip =    /obj/item/gun_component/grip/pistol
 
+/obj/item/weapon/gun/composite/premade/revolver/preloaded
+	ammo_type = /obj/item/ammo_casing/a357
+
 /obj/item/weapon/gun/composite/premade/revolver/magnum
 	name = "magnum revolver"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/magnum
+
+/obj/item/weapon/gun/composite/premade/revolver/magnum/preloaded
+	ammo_type = /obj/item/ammo_casing/a50
+
+/obj/item/weapon/gun/composite/premade/revolver/a45
+	name = ".45 revolver"
+	variant_barrel = /obj/item/gun_component/barrel/pistol/a45
+
+/obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
+	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/composite/premade/revolver/toy
 	name = "toy revolver"

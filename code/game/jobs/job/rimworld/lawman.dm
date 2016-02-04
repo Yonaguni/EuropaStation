@@ -10,9 +10,12 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/det(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/europa/lawman(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/europa/cowboy_hat/wide(H), slot_head )
+
+	// You are the law.
 	var/obj/item/clothing/accessory/holster/waist/W = new(H)
 	H.w_uniform.attackby(W, H)
-	W.holster(new /obj/item/weapon/gun/composite/premade/revolver(H), H)
+	W.holster(new /obj/item/weapon/gun/composite/premade/revolver/a45/preloaded(H), H)
 	H.wear_suit.attackby(new /obj/item/clothing/accessory/europa/sherrif(H), H)
 	return ..(H,1,1,1)
 

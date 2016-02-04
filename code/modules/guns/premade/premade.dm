@@ -6,6 +6,7 @@
 	var/variant_barrel =  /obj/item/gun_component/barrel
 	var/variant_stock =   /obj/item/gun_component/stock
 	var/variant_grip =    /obj/item/gun_component/grip
+	var/ammo_type // Set to autoload the gun at spawn.
 
 /obj/item/weapon/gun/composite/premade/New()
 	icon_state = ""
@@ -20,3 +21,12 @@
 	update_from_components()
 
 	..()
+
+	if(ammo_type) // Assumes that it's a ballistic weapon. Don't specify ammo_type for lasers.
+		var/obj/item/gun_component/chamber/ballistic/B = chamber
+		new ammo_type (B)
+		if(B.load_method != MAGAZINE)
+			for(var/i in 1 to (max_shots-1))
+				new ammo_type (B)
+		spawn(0)
+			B.update_ammo_from_contents()

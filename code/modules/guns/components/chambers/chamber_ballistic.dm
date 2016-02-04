@@ -7,7 +7,7 @@
 	var/obj/item/ammo_casing/chambered
 	var/obj/item/ammo_magazine/magazine
 	var/auto_eject_sound // If null, will not autoeject.
-	var/ammo_type // Either a casing or magazine type; used to pre-load the component in New().
+	var/preloading
 
 /obj/item/gun_component/chamber/ballistic/update_ammo_overlay()
 	if(ammo_indicator_state)
@@ -46,18 +46,6 @@
 	if(chambered)
 		bullets += 1
 	return bullets
-
-/obj/item/gun_component/chamber/ballistic/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
-	if(ammo_type)
-		switch(load_method)
-			// Assumes the supplied path is a single casing.
-			if(SINGLE_CASING, SPEEDLOADER)
-				for(var/i in 1 to max_shots)
-					loaded += new ammo_type(src)
-			// Assumes the supplied path is a magazine.
-			if(MAGAZINE)
-				magazine = new ammo_type(src)
-	..(newloc, weapontype, componenttype, use_model)
 
 /obj/item/gun_component/chamber/ballistic/handle_post_fire()
 
@@ -125,38 +113,48 @@
 /obj/item/gun_component/chamber/ballistic/proc/can_load(var/mob/user)
 	return 1
 
+/obj/item/gun_component/chamber/ballistic/proc/update_ammo_from_contents()
+	sleep(-1)
+	loaded.Cut()
+	for(var/obj/item/ammo_casing/AC in contents)
+		loaded += AC
+	magazine = locate(/obj/item/ammo_magazine) in contents
+	update_ammo_overlay()
+
 /obj/item/gun_component/chamber/ballistic/load_ammo(var/obj/item/A, var/mob/user)
 
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
-		if(!(load_method & AM.mag_type) || holder.caliber != AM.caliber)
+		if(!preloading && (!(load_method & AM.mag_type) || holder.caliber != AM.caliber))
 			return //incompatible
 
 		switch(AM.mag_type)
 
 			if(MAGAZINE)
 
-				if(magazine)
-					user << "<span class='warning'>\The [holder] already has a magazine loaded.</span>" //already a magazine here
-					return
+				if(!preloading)
+					if(magazine)
+						if(user) user << "<span class='warning'>\The [holder] already has a magazine loaded.</span>" //already a magazine here
+						return
+					if(!can_load(user))
+						return
 
-				if(!can_load(user))
-					return
+				if(user)
+					user.unEquip(AM)
+					user.visible_message("<span class='danger'>\The [user] inserts \the [AM] into \the [holder].</span>")
 
-				user.unEquip(AM)
 				AM.forceMove(src)
 				magazine = AM
-				user.visible_message("<span class='danger'>\The [user] inserts \the [AM] into \the [holder].</span>")
 				playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 
 			if(SPEEDLOADER)
 
-				if(!can_load(user))
-					return
-
-				if(loaded.len >= max_shots)
-					user << "<span class='warning'>\The [holder] is full!</span>"
-					return
+				if(!preloading)
+					if(!can_load(user))
+						return
+					if(loaded.len >= max_shots)
+						if(user) user << "<span class='warning'>\The [holder] is full!</span>"
+						return
 
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
@@ -169,30 +167,33 @@
 						count++
 
 				if(count)
-					user << "<span class='notice'>You load [count] round\s into \the [holder].</span>"
-					user.visible_message("<span class='danger'>\The [user] reloads \the [holder].</span>")
-					playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+					if(user)
+						user << "<span class='notice'>You load [count] round\s into \the [holder].</span>"
+						user.visible_message("<span class='danger'>\The [user] reloads \the [holder].</span>")
+						playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 				else
-					user << "<span class='warning'>\The [holder] is full!</span>"
+					if(user) user << "<span class='warning'>\The [holder] is full!</span>"
 					return
 
 	else if(istype(A, /obj/item/ammo_casing))
 
 		var/obj/item/ammo_casing/C = A
-		if(!(load_method & SINGLE_CASING) || holder.caliber != C.caliber)
-			return //incompatible
-		if(loaded.len >= max_shots)
-			user << "<span class='warning'>\The [holder] is full.</span>"
-			return
 
-		if(!can_load(user))
-			return
+		if(!preloading)
+			if(!(load_method & SINGLE_CASING) || holder.caliber != C.caliber)
+				return //incompatible
+			if(loaded.len >= max_shots)
+				if(user) user << "<span class='warning'>\The [holder] is full.</span>"
+				return
+			if(!can_load(user))
+				return
 
-		user.unEquip(C)
+		if(user)
+			user.unEquip(C)
+			user.visible_message("<span class='danger'>\The [user] inserts \a [C] into \the [holder].</span>")
+			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		C.forceMove(src)
 		loaded.Insert(1, C) //add to the head of the list
-		user.visible_message("<span class='danger'>\The [user] inserts \a [C] into \the [holder].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 
 	holder.update_icon()
 	update_ammo_overlay()
