@@ -10,7 +10,21 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/europa/hunter(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/hatchet/tacknife/hunting(H), slot_belt)
-	// Needs to spawn with a rifle.
+
+	// Give them their rifle!
+	if(!H.l_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/composite/premade/rifle/preloaded(H), slot_l_hand)
+	else if(!H.r_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/composite/premade/rifle/preloaded(H), slot_r_hand)
+	else if(!H.back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/composite/premade/rifle/preloaded(H), slot_back)
+	else
+		new /obj/item/weapon/gun/composite/premade/rifle(get_turf(H))
+
+	// Give them a couple of spare rounds.
+	if(!H.l_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/a556(H), slot_l_store)
+	if(!H.r_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/a556(H), slot_r_store)
+
 	return ..(H, 1,1,1)
 
 /datum/job/borderworld/hunter/equip_survival(var/mob/living/carbon/human/H)

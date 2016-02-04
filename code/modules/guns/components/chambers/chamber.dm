@@ -14,8 +14,8 @@
 	var/automatic
 	var/revolver
 
-/obj/item/gun_component/chamber/New()
-	..()
+/obj/item/gun_component/chamber/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
+	..(newloc, weapontype, componenttype, use_model)
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/proc/modify_shot(var/obj/item/projectile/proj)

@@ -1204,6 +1204,7 @@
 #include "code\modules\guns\components\chambers\chamber_energy_burst.dm"
 #include "code\modules\guns\manufacturers\manufacturer.dm"
 #include "code\modules\guns\manufacturers\models\model.dm"
+#include "code\modules\guns\manufacturers\models\model_anti_materiel.dm"
 #include "code\modules\guns\manufacturers\models\model_revolver.dm"
 #include "code\modules\guns\manufacturers\models\model_sawnoff.dm"
 #include "code\modules\guns\premade\premade.dm"

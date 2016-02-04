@@ -25,7 +25,7 @@
 
 /obj/item/gun_component/body/pistol
 	weapon_type = GUN_PISTOL
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = 3
 	force = 5
 	item_state = "gun"
@@ -39,7 +39,7 @@
 
 /obj/item/gun_component/body/smg
 	weapon_type = GUN_SMG
-	slot_flags = SLOT_BELT|SLOT_BACK
+	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_HOLSTER
 	w_class = 3
 	force = 7
 	item_state = "c20r"
@@ -51,9 +51,13 @@
 	w_class = 4
 	force = 10
 	accepts_accessories = 1
-	item_state = "l6closednomag"
+	item_state = "huntingrifle"
 	base_desc = "It's a rifle."
 	two_handed = 1
+
+/obj/item/gun_component/body/rifle/black
+	base_desc = "It's a heavy rifle."
+	item_state = "l6closednomag"
 
 /obj/item/gun_component/body/cannon
 	weapon_type = GUN_CANNON

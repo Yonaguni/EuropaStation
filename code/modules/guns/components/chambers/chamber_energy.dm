@@ -66,8 +66,8 @@
 	update_ammo_overlay()
 	return 1
 
-/obj/item/gun_component/chamber/laser/New()
-	..()
+/obj/item/gun_component/chamber/laser/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
+	..(newloc, weapontype, componenttype, use_model)
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
