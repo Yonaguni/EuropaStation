@@ -68,6 +68,24 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
+/datum/gear/marshalcap
+	display_name = "marchal's cap"
+	path = /obj/item/clothing/head/europa/petty_officer/marshal
+	cost = 1
+	slot = slot_head
+
+/datum/gear/officercap
+	display_name = "officer's cap"
+	path = /obj/item/clothing/head/europa/petty_officer
+	cost = 1
+	slot = slot_head
+
+/datum/gear/cowboy
+	display_name = "cowboy hat"
+	path = /obj/item/clothing/head/europa/cowboy_hat
+	cost = 1
+	slot = slot_head
+
 /datum/gear/obandana
 	display_name = "bandana, orange"
 	path = /obj/item/clothing/head/orangebandana
@@ -79,53 +97,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/bandana
 	cost = 1
 	slot = slot_head
-
-/datum/gear/bsec_beret
-	display_name = "beret, navy (officer)"
-	path = /obj/item/clothing/head/beret/sec/navy/officer
-	cost = 1
-	slot = slot_head
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/bsec_beret_warden
-	display_name = "beret, navy (warden)"
-	path = /obj/item/clothing/head/beret/sec/navy/warden
-	cost = 1
-	slot = slot_head
-	allowed_roles = list("Head of Security","Warden")
-
-/datum/gear/bsec_beret_hos
-	display_name = "beret, navy (hos)"
-	path = /obj/item/clothing/head/beret/sec/navy/hos
-	cost = 1
-	slot = slot_head
-	allowed_roles = list("Head of Security")
-
-/datum/gear/eng_beret
-	display_name = "beret, engie-orange"
-	path = /obj/item/clothing/head/beret/engineering
-	cost = 1
-	slot = slot_head
-//	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer")
-
-/datum/gear/purp_beret
-	display_name = "beret, purple"
-	path = /obj/item/clothing/head/beret/purple
-	cost = 1
-	slot = slot_head
-
-/datum/gear/red_beret
-	display_name = "beret, red"
-	path = /obj/item/clothing/head/beret
-	cost = 1
-	slot = slot_head
-
-/datum/gear/sec_beret
-	display_name = "beret, red (security)"
-	path = /obj/item/clothing/head/beret/sec
-	cost = 1
-	slot = slot_head
-	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/bcap
 	display_name = "cap, blue"
@@ -146,11 +117,10 @@ var/global/list/gear_datums = list()
 	slot = slot_head
 
 /datum/gear/corpcap
-	display_name = "cap, corporate (Security)"
+	display_name = "cap, corporate"
 	path = /obj/item/clothing/head/soft/sec/corp
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/gcap
 	display_name = "cap, green"
@@ -267,17 +237,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
-// This was sprited and coded specifically for Zhan-Khazan characters. Before you
-// decide that it's 'not even Taj themed' maybe you should read the wiki, gamer. ~ Z
-/datum/gear/zhan_scarf
-	display_name = "Zhan headscarf"
-	path = /obj/item/clothing/head/tajaran/scarf
-	cost = 1
-	slot = slot_head
-	whitelisted = "Tajara"
-
 // Eyes
-
 /datum/gear/eyepatch
 	display_name = "eyepatch"
 	path = /obj/item/clothing/glasses/eyepatch
@@ -320,29 +280,19 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_glasses
 
-/datum/gear/security
-	display_name = "Security HUD"
-	path = /obj/item/clothing/glasses/hud/security
-	cost = 1
-	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
 /datum/gear/thugshades
 	display_name = "Sunglasses, Fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Detective","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Detective","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
 
 // Mask
-
 /datum/gear/ipc_monitor
 	display_name = "display monitor (prosthetic head only)"
 	path = /obj/item/clothing/mask/monitor
@@ -355,6 +305,372 @@ var/global/list/gear_datums = list()
 	cost = 2
 
 // Uniform slot
+
+/datum/gear/pants
+	display_name = "pants"
+	path = /obj/item/clothing/under/europa/pants
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/dresspants
+	display_name = "dress pants"
+	path = /obj/item/clothing/under/europa/pants/dresspants
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/leatherpants
+	display_name = "leather pants"
+	path = /obj/item/clothing/under/europa/pants/leatherpants
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/camo
+	display_name = "camo pants"
+	path = /obj/item/clothing/under/europa/pants/camo
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/jeans
+	display_name = "jeans"
+	path = /obj/item/clothing/under/europa/pants/jeans
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/jeansslim
+	display_name = "slim jeans"
+	path = /obj/item/clothing/under/europa/pants/jeans/slim
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/khakis
+	display_name = "khakis"
+	path = /obj/item/clothing/under/europa/pants/khakis
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts
+	display_name = "shorts"
+	path = /obj/item/clothing/under/europa/pants/shorts
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirt
+	display_name = "skirt"
+	path = /obj/item/clothing/under/europa/skirts
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirtblue
+	display_name = "skirt, blue"
+	path = /obj/item/clothing/under/europa/skirts/blue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirtblack
+	display_name = "skirt, black"
+	path = /obj/item/clothing/under/europa/skirts/black
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skater
+	display_name = "skater skirt"
+	path = /obj/item/clothing/under/europa/skirts/skater
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skaterpink
+	display_name = "skater skirt, pink"
+	path = /obj/item/clothing/under/europa/skirts/skater/pink
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skaterblue
+	display_name = "skater skirt, blue"
+	path = /obj/item/clothing/under/europa/skirts/skater/blue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/hireling
+	display_name = "hireling's uniform"
+	path = /obj/item/clothing/under/europa/hireling
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/manager
+	display_name = "manager's uniform"
+	path = /obj/item/clothing/under/europa/manager
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/europamilitary
+	display_name = "military uniform"
+	path = /obj/item/clothing/under/europa/military
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/farmer
+	display_name = "farmer's clothes"
+	path = /obj/item/clothing/under/europa/farmer
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/relaxedwear
+	display_name = "relaxed wear"
+	path = /obj/item/clothing/under/europa/relaxedwear
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/pinstripe
+	display_name = "pinstripe suit"
+	path = /obj/item/clothing/under/europa/pinstripe
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/springwearfemale
+	display_name = "springwear (female)"
+	path = /obj/item/clothing/under/europa/spring
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/springwearmale
+	display_name = "springwear (male)"
+	path = /obj/item/clothing/under/europa/spring/male
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/doctor
+	display_name = "doctor's fatigues"
+	path = /obj/item/clothing/under/europa/fatigues
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/redpjs
+	display_name = "pajamas, red"
+	path = /obj/item/clothing/under/pj/red
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/bluepjs
+	display_name = "pajamas, blue"
+	path = /obj/item/clothing/under/pj/blue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/mal
+	display_name = "rogue's uniform"
+	path = /obj/item/clothing/under/captain_fly
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/waiter
+	display_name = "waiter's uniform"
+	path = /obj/item/clothing/under/waiter
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/mailman
+	display_name = "mailman jumpsuit"
+	path = /obj/item/clothing/under/rank/mailman
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/vice
+	display_name = "vice jumpsuit"
+	path = /obj/item/clothing/under/rank/vice
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/nasa
+	display_name = "NASA jumpsuit"
+	path = /obj/item/clothing/under/space
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/overalls
+	display_name = "overalls (full)"
+	path = /obj/item/clothing/under/overalls
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/pirate
+	display_name = "pirate outfit"
+	path = /obj/item/clothing/under/pirate
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/sovietuniform
+	display_name = "Soviet uniform"
+	path = /obj/item/clothing/under/soviet
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/redcoat
+	display_name = "Redcoat uniform"
+	path = /obj/item/clothing/under/redcoat
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/firedress
+	display_name = "dress, fire"
+	path = /obj/item/clothing/under/dress/dress_fire
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/greendress
+	display_name = "dress, green"
+	path = /obj/item/clothing/under/dress/dress_green
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/orangedress
+	display_name = "dress, orange"
+	path = /obj/item/clothing/under/dress/dress_orange
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/pinkdress
+	display_name = "dress, pink"
+	path = /obj/item/clothing/under/dress/dress_pink
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/yellowdress
+	display_name = "dress, yellow"
+	path = /obj/item/clothing/under/dress/dress_yellow
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/saloondress
+	display_name = "dress, saloon"
+	path = /obj/item/clothing/under/dress/dress_saloon
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirtplaidblue
+	display_name = "skirt, plaid blue"
+	path = /obj/item/clothing/under/dress/plaid_blue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirtplaidred
+	display_name = "skirt, plaid red"
+	path = /obj/item/clothing/under/dress/plaid_red
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/skirtplaidpurple
+	display_name = "skirt, plaid purple"
+	path = /obj/item/clothing/under/dress/plaid_purple
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/blackskirt
+	display_name = "skirt, black"
+	path = /obj/item/clothing/under/blackskirt
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/sundress
+	display_name = "sundress"
+	path = /obj/item/clothing/under/sundress
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/sundresswhite
+	display_name = "sundress, white"
+	path = /obj/item/clothing/under/sundress_white
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/blackjacket
+	display_name = "jacket, black"
+	path = /obj/item/clothing/under/suit_jacket
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/blackjacketplus
+	display_name = "jacket, really black"
+	path = /obj/item/clothing/under/suit_jacket/really_black
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/blackjacketfemale
+	display_name = "jacket, female black"
+	path = /obj/item/clothing/under/suit_jacket/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/jacketred
+	display_name = "jacket, red"
+	path = /obj/item/clothing/under/suit_jacket/red
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/charcoaljacket
+	display_name = "jacket, charcoal"
+	path = /obj/item/clothing/under/suit_jacket/charcoal
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/navyjacket
+	display_name = "jacket, navy"
+	path = /obj/item/clothing/under/suit_jacket/navy
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/burgundyjacket
+	display_name = "jacket, burgundy"
+	path = /obj/item/clothing/under/suit_jacket/burgundy
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/checkeredjacket
+	display_name = "jacket, checkered"
+	path = /obj/item/clothing/under/suit_jacket/checkered
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/tanjacket
+	display_name = "jacket, tan"
+	path = /obj/item/clothing/under/suit_jacket/tan
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/serviceoveralls
+	display_name = "service overalls"
+	path = /obj/item/clothing/under/serviceoveralls
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/cheongsam
+	display_name = "cheongsam, white"
+	path = /obj/item/clothing/under/cheongsam
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/blueblazer
+	display_name = "blazer, blue"
+	path = /obj/item/clothing/under/blazer
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/mechanicclothes
+	display_name = "mechanic's clothes"
+	path = /obj/item/clothing/under/mechanic
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/merchantclothes
+	display_name = "merchant's clothes"
+	path = /obj/item/clothing/under/merchant
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/minerclothes
+	display_name = "miner's clothes"
+	path = /obj/item/clothing/under/miner
+	slot = slot_w_uniform
+	cost = 1
 
 /datum/gear/blazer_blue
 	display_name = "blazer, blue"
@@ -371,23 +687,6 @@ var/global/list/gear_datums = list()
 /datum/gear/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/blackjumpskirt
-	display_name = "jumpskirt, black"
-	path = /obj/item/clothing/under/blackjumpskirt
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/blackfjumpsuit
-	display_name = "jumpsuit, female-black"
-	path = /obj/item/clothing/under/color/blackf
-	slot = slot_w_uniform
-	cost = 1
-/datum/gear/blackfjumpsuit
-	display_name = "jumpsuit, rainbow"
-	path = /obj/item/clothing/under/rainbow
 	slot = slot_w_uniform
 	cost = 1
 
@@ -415,15 +714,8 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/roboticist_skirt
-	display_name = "skirt, roboticist"
-	path = /obj/item/clothing/under/rank/roboticist/skirt
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("Roboticist")
-
 /datum/gear/amishsuit
-	display_name = "suit, amish"
+	display_name = "suit, simple"
 	path = /obj/item/clothing/under/sl_suit
 	slot = slot_w_uniform
 	cost = 1
@@ -477,7 +769,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 
 /datum/gear/gentlesuit
-	display_name = "suit, gentlemen"
+	display_name = "suit, gentleman"
 	path = /obj/item/clothing/under/gentlesuit
 	slot = slot_w_uniform
 	cost = 1
@@ -542,86 +834,7 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/uniform_captain
-	display_name = "uniform, captain's dress"
-	path = /obj/item/clothing/under/dress/dress_cap
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("Captain")
-
-/datum/gear/corpsecsuit
-	display_name = "uniform, corporate (Security)"
-	path = /obj/item/clothing/under/rank/security/corp
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/uniform_hop
-	display_name = "uniform, HoP's dress"
-	path = /obj/item/clothing/under/dress/dress_hop
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("Head of Personnel")
-
-/datum/gear/uniform_hr
-	display_name = "uniform, HR director (HoP)"
-	path = /obj/item/clothing/under/dress/dress_hr
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("Head of Personnel")
-
-/datum/gear/navysecsuit
-	display_name = "uniform, navyblue (Security)"
-	path = /obj/item/clothing/under/rank/security/navyblue
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/resomi_grey
-	display_name = "Resomi uniform, grey"
-	path = /obj/item/clothing/under/resomi
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_rainbow
-	display_name = "Resomi uniform, rainbow"
-	path = /obj/item/clothing/under/resomi/rainbow
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_white
-	display_name = "Resomi uniform, white"
-	path = /obj/item/clothing/under/resomi/white
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_eng
-	display_name = "Resomi uniform, Engineering"
-	path = /obj/item/clothing/under/resomi/yellow
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospherics Technician")
-
-/datum/gear/resomi_sec
-	display_name = "Resomi uniform, Security"
-	path = /obj/item/clothing/under/resomi/red
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/resomi_med
-	display_name = "Resomi uniform, Medical"
-	path = /obj/item/clothing/under/resomi/medical
-	cost = 1
-	slot = slot_w_uniform
-
 // Attachments
-/datum/gear/armband_cargo
-	display_name = "armband, cargo"
-	path = /obj/item/clothing/accessory/armband/cargo
-	slot = slot_tie
-	cost = 1
-
 /datum/gear/armband_emt
 	display_name = "armband, EMT"
 	path = /obj/item/clothing/accessory/armband/medgreen
@@ -652,32 +865,23 @@ var/global/list/gear_datums = list()
 	slot = slot_tie
 	cost = 1
 
-/datum/gear/armband_science
-	display_name = "armband, science"
-	path = /obj/item/clothing/accessory/armband/science
-	slot = slot_tie
-	cost = 1
-
 /datum/gear/armpit
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/hip
 	display_name = "holster, hip"
 	path = /obj/item/clothing/accessory/holster/hip
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Security Officer", "Warden", "Head of Security", "Detective")
 
 /datum/gear/waist
 	display_name = "holster, waist"
 	path = /obj/item/clothing/accessory/holster/waist
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Security Officer", "Warden", "Head of Security", "Detective")
 
 /datum/gear/tie_blue
 	display_name = "tie, blue"
@@ -698,18 +902,16 @@ var/global/list/gear_datums = list()
 	cost = 1
 
 /datum/gear/brown_vest
-	display_name = "webbing, engineering"
+	display_name = "webbing, brown"
 	path = /obj/item/clothing/accessory/storage/brown_vest
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer")
 
 /datum/gear/black_vest
-	display_name = "webbing, security"
+	display_name = "webbing, black"
 	path = /obj/item/clothing/accessory/storage/black_vest
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/webbing
 	display_name = "webbing, simple"
@@ -725,6 +927,12 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_wear_suit
 
+/datum/gear/hunter_suit
+	display_name = "hunter's jacket"
+	cost = 3
+	slot = slot_wear_suit
+	path = /obj/item/clothing/suit/europa/hunter
+
 /datum/gear/bomber
 	display_name = "bomber jacket"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
@@ -737,21 +945,9 @@ var/global/list/gear_datums = list()
 	cost = 2
 	slot = slot_wear_suit
 
-/datum/gear/leather_jacket_nt
-	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
-	cost = 2
-	slot = slot_wear_suit
-
 /datum/gear/brown_jacket
 	display_name = "leather jacket, brown"
 	path = /obj/item/clothing/suit/storage/toggle/brown_jacket
-	cost = 2
-	slot = slot_wear_suit
-
-/datum/gear/brown_jacket_nt
-	display_name = "leather jacket, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
 	cost = 2
 	slot = slot_wear_suit
 
@@ -771,13 +967,6 @@ var/global/list/gear_datums = list()
 	display_name = "hoodie, black"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/black
 	cost = 2
-
-/datum/gear/unathi_mantle
-	display_name = "hide mantle (Unathi)"
-	path = /obj/item/clothing/suit/unathi/mantle
-	cost = 1
-	slot = slot_wear_suit
-	whitelisted = "Unathi"
 
 /datum/gear/labcoat
 	display_name = "labcoat"
@@ -816,7 +1005,7 @@ var/global/list/gear_datums = list()
 	slot = slot_wear_suit
 
 /datum/gear/overalls
-	display_name = "overalls"
+	display_name = "overalls (apron)"
 	path = /obj/item/clothing/suit/apron/overalls
 	cost = 1
 	slot = slot_wear_suit
@@ -852,11 +1041,10 @@ var/global/list/gear_datums = list()
 	slot = slot_wear_suit
 
 /datum/gear/unathi_robe
-	display_name = "roughspun robe (Unathi)"
+	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe
 	cost = 1
 	slot = slot_wear_suit
-//	whitelisted = "Unathi" // You don't have a monopoly on a robe!
 
 /datum/gear/blue_lawyer_jacket
 	display_name = "suit jacket, blue"
@@ -881,13 +1069,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/suit/wcoat
 	cost = 1
 	slot = slot_wear_suit
-
-/datum/gear/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajaran)"
-	path = /obj/item/clothing/suit/tajaran/furs
-	cost = 1
-	slot = slot_wear_suit
-	whitelisted = "Tajara" // You do have a monopoly on a fur suit tho
 
 // Gloves
 
@@ -1112,26 +1293,7 @@ var/global/list/gear_datums = list()
 	sort_category = "utility"
 	cost = 1
 
-/datum/gear/paicard
-	display_name = "personal AI device"
-	path = /obj/item/device/paicard
-	sort_category = "utility"
-	cost = 2
-
-/datum/gear/cheaptablet
-	display_name = "cheap tablet computer"
-	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
-	sort_category = "utility"
-	cost = 3
-
-/datum/gear/normaltablet
-	display_name = "tablet computer"
-	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
-	sort_category = "utility"
-	cost = 4
-
 // The rest of the trash.
-
 /datum/gear/ashtray
 	display_name = "ashtray, plastic"
 	path = /obj/item/weapon/material/ashtray/plastic
@@ -1151,7 +1313,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 
 /datum/gear/dice
-	display_name = "d20"
+	display_name = "20-sided dice"
 	path = /obj/item/weapon/dice/d20
 	sort_category = "misc"
 	cost = 1
@@ -1171,18 +1333,6 @@ var/global/list/gear_datums = list()
 /datum/gear/holder
 	display_name = "card holder"
 	path = /obj/item/weapon/deck/holder
-	sort_category = "misc"
-	cost = 1
-
-/datum/gear/cardemon_pack
-	display_name = "\improper Cardemon booster pack"
-	path = /obj/item/weapon/pack/cardemon
-	sort_category = "misc"
-	cost = 1
-
-/datum/gear/spaceball_pack
-	display_name = "\improper Spaceball booster pack"
-	path = /obj/item/weapon/pack/spaceball
 	sort_category = "misc"
 	cost = 1
 
@@ -1257,10 +1407,11 @@ var/global/list/gear_datums = list()
 	sort_category = "misc"
 	cost = 1
 
-/*/datum/gear/combitool
-	display_name = "combi-tool"
-	path = /obj/item/weapon/combitool
-	cost = 3*/
+/datum/gear/wristcomp
+	display_name = "wrist computer"
+	path = /obj/item/device/europa/wrist_computer
+	sort_category = "misc"
+	cost = 5
 
 // Stuff worn on the ears. Items here go in the "ears" sort_category but they must not use
 // the slot_r_ear or slot_l_ear as the slot, or else players will spawn with no headset.

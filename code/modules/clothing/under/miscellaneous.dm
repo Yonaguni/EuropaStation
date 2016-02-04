@@ -183,7 +183,7 @@
 
 /obj/item/clothing/under/suit_jacket/really_black
 	name = "executive suit"
-	desc = "A formal black suit and red tie, intended for the station's finest."
+	desc = "A formal black suit and red tie."
 	icon_state = "really_black_suit"
 	item_state = "jensensuit"
 	worn_state = "black_suit"

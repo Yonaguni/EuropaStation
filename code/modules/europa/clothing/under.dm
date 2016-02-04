@@ -195,7 +195,7 @@
 	worn_state = "springm"
 
 /obj/item/clothing/under/europa/fatigues
-	name = "doctor fatigues"
+	name = "doctor's fatigues"
 	desc = "They look almost as tired-out as their wearer."
 	icon_state = "wastedoctor"
 	worn_state = "wastedoctor"
