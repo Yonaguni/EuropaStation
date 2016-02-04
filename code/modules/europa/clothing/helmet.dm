@@ -68,3 +68,10 @@
 	name = "armoured helmet"
 	desc = "An armoured helmet with a respirator."
 	icon_state = "military_helmet"
+
+// Ported from Polaris.
+obj/item/clothing/head/europa/cowboy_hat
+	name = "cowboy hat"
+	desc = "For those that have spurs that go jingle jangle jingle."
+	icon_state = "cowboyhat"
+	body_parts_covered = 0
