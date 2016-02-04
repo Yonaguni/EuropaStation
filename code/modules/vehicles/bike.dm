@@ -1,4 +1,6 @@
-/obj/vehicle/bike/
+var/list/bike_cache = list()
+
+/obj/vehicle/bike
 	name = "motorbike"
 	desc = "Wheelies! Head trauma! Woo! "
 	icon = 'icons/obj/bike.dmi'
@@ -9,25 +11,43 @@
 	mob_offset_y = 5
 	health = 100
 	maxhealth = 100
-
+	pixel_x = -16
+	pixel_y = -16
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
+
+	var/max_move_speed = 3
+	var/cur_move_speed = 0
+	var/moved
+
 	var/protection_percent = 60
 
 	var/land_speed = 1 //if 0 it can't go on turf
 	var/space_speed = 0
 	var/bike_icon = "bike"
 
+	var/idle_sound = 'sound/misc/bike_idle.ogg'
+	var/start_sound = 'sound/misc/bike_start.ogg'
+
+	// These are terrible but unless someone wants to find me
+	// better sounds or a better system for giving movement
+	// feedback to the player, they will have to do. ~Z
+	var/global/list/move_sounds = list(
+		'sound/misc/bike_idle.ogg',
+		'sound/misc/bike_idle_2.ogg',
+		'sound/misc/bike_idle_2.ogg',
+		'sound/misc/bike_idle_3.ogg',
+		'sound/misc/bike_idle_3.ogg'
+		)
+
 	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
 
-/obj/vehicle/bike/New()
+/obj/vehicle/bike/initialize()
 	..()
 	ion = new /datum/effect/effect/system/ion_trail_follow()
 	ion.set_up(src)
-	turn_off()
-	overlays += image('icons/obj/bike.dmi', "[icon_state]_off_overlay", MOB_LAYER + 1)
-	icon_state = "[bike_icon]_off"
+	turn_off() // Disables ion, updates icon.
 
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
@@ -39,7 +59,7 @@
 	if(!on)
 		turn_on()
 		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
-		playsound(src.loc, 'sound/misc/bike_start.ogg', 75, 1)
+		playsound(src.loc, start_sound, 75)
 	else
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
@@ -53,13 +73,13 @@
 
 	if(kickstand)
 		src.visible_message("You put up \the [src]'s kickstand.")
-		playsound(src.loc, 'sound/misc/bike_stand_up.ogg', 75, 1)
+		playsound(src.loc, 'sound/misc/bike_stand_up.ogg', 75,1)
 	else
 		if(istype(src.loc,/turf/space))
 			usr << "<span class='warning'> You don't think kickstands work in space...</span>"
 			return
 		src.visible_message("You put down \the [src]'s kickstand.")
-		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75, 1)
+		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75,1)
 		if(pulledby)
 			pulledby.stop_pulling()
 
@@ -99,7 +119,8 @@
 		if(!land_speed)
 			return 0
 		move_delay = land_speed
-	return ..()
+	moved = ..()
+	return moved
 
 /obj/vehicle/bike/turn_on()
 	ion.start()
@@ -118,7 +139,19 @@
 	..()
 
 /obj/vehicle/bike/process()
-	if(on) playsound(src.loc, 'sound/misc/bike_idle.ogg', 75, 1)
+	if(on)
+		if(moved && cur_move_speed < max_move_speed)
+			cur_move_speed++
+		else if(cur_move_speed > 0)
+			cur_move_speed--
+		if(cur_move_speed)
+			playsound(src.loc, move_sounds[cur_move_speed], 75)
+		else
+			playsound(src.loc, idle_sound, 75)
+
+	else
+		cur_move_speed = 0
+	moved = 0
 
 /obj/vehicle/bike/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(protection_percent))
@@ -129,16 +162,22 @@
 /obj/vehicle/bike/update_icon()
 	overlays.Cut()
 
-	if(on)
-		overlays += image('icons/obj/bike.dmi', "[bike_icon]_on_overlay", MOB_LAYER + 1)
-		icon_state = "[bike_icon]_on"
-	else
-		overlays += image('icons/obj/bike.dmi', "[bike_icon]_off_overlay", MOB_LAYER + 1)
-		icon_state = "[bike_icon]_off"
+	// Update base.
+	icon_state = "[bike_icon]_[on ? "on" : "off"]"
 
+	// Update over-driver image.
+	if(!bike_cache[icon_state])
+		bike_cache[icon_state] = image(icon, "[icon_state]_overlay", MOB_LAYER+0.5)
+	overlays += bike_cache[icon_state]
+
+	// Update wheel image.
+	var/cache_key = "[bike_icon]_wheels"
+	if(!bike_cache[cache_key])
+		bike_cache[cache_key] = image(icon, cache_key)
+	underlays += bike_cache[cache_key]
 	..()
 
 /obj/vehicle/bike/Destroy()
 	qdel(ion)
 	processing_objects -= src
-	..()
+	return ..()
