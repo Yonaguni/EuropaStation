@@ -4,7 +4,7 @@
 	desc = "A reliable old Jonson N.D.I.U microcomputer. All the rage with <i>huge nerds</i> back home."
 	slot_flags = SLOT_ID
 	w_class = 3
-	icon = 'icons/obj/europa/items/wrist_computer.dmi'
+	icon = 'icons/obj/europa/clothing/accessories.dmi'
 	icon_override = 'icons/mob/europa/accessories.dmi'
 	icon_state = "wrist_computer"
 	item_state = null

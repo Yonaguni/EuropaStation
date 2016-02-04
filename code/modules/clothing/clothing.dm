@@ -486,6 +486,8 @@ BLIND     // can't see anything
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
 		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
+	valid_accessory_slots = list("armband","badge")
+	restricted_accessory_slots = list("armband","badge")
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
@@ -524,8 +526,8 @@ BLIND     // can't see anything
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 	//Also used by rolling/unrolling.
 	var/worn_state = null
-	valid_accessory_slots = list("utility","armband","decor")
-	restricted_accessory_slots = list("utility", "armband")
+	valid_accessory_slots = list("utility","armband","decor","badge")
+	restricted_accessory_slots = list("utility", "armband", "badge")
 
 
 /obj/item/clothing/under/attack_hand(var/mob/user)

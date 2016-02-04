@@ -6,6 +6,12 @@
 #define FIRE_OUT   0
 
 var/list/fire_cache = list()
+var/list/fire_sounds = list(
+	'sound/ambience/comfyfire.ogg',
+	'sound/ambience/comfyfire1.ogg',
+	'sound/ambience/comfyfire2.ogg',
+	'sound/ambience/comfyfire3.ogg'
+	)
 
 /obj/structure/fire_source
 	name = "campfire"
@@ -93,6 +99,7 @@ var/list/fire_cache = list()
 	if(lit != FIRE_LIT)
 		return
 	lit = FIRE_DEAD
+	playsound(get_turf(src), 'sound/misc/firehiss.ogg', 75, 1)
 	visible_message("<span class='danger'>\The [src] goes out!</span>")
 	processing_objects -= src
 	update_icon()
@@ -109,7 +116,7 @@ var/list/fire_cache = list()
 	lit = FIRE_LIT
 	visible_message("<span class='danger'>\The [src] catches alight!</span>")
 	processing_objects |= src
-	update_icon()
+	process()
 	return
 
 /obj/structure/fire_source/attack_hand(var/mob/user)
@@ -249,6 +256,8 @@ var/list/fire_cache = list()
 	return ..()
 
 /obj/structure/fire_source/process()
+	if(lit == FIRE_LIT)
+		playsound(src.loc, pick(fire_sounds), 75, 1)
 	if(world.time > (last_burn_tick + burn_time))
 		last_burn_tick = world.time
 	else
@@ -257,27 +266,24 @@ var/list/fire_cache = list()
 	if(fuel <= 0 && !process_fuel())
 		die()
 		return
-
 	// Burn anyone sitting in the fire.
-	var/turf/T = get_turf(src)
-	if(istype(T))
-
-		var/datum/gas_mixture/GM = T.return_air()
-		if(!istype(GM) || !GM.gas["oxygen"])
-			die()
-			return
-
-		for(var/mob/living/M in T.contents)
-			burn(M)
-
-		// Copied from space heaters. Heat up the air on our tile, heat will percolate out.
-		if(GM && abs(GM.temperature - output_temperature) > 0.1)
-			var/transfer_moles = 0.25 * GM.total_moles
-			var/datum/gas_mixture/removed = GM.remove(transfer_moles)
-			if(removed)
-				var/heat_transfer = removed.get_thermal_energy_change(output_temperature)
-				if(heat_transfer > 0) removed.add_thermal_energy(heat_transfer)
-			GM.merge(removed)
+	if(lit == FIRE_LIT)
+		var/turf/T = get_turf(src)
+		if(istype(T))
+			var/datum/gas_mixture/GM = T.return_air()
+			if(!istype(GM) || !GM.gas["oxygen"])
+				die()
+				return
+			for(var/mob/living/M in T.contents)
+				burn(M)
+			// Copied from space heaters. Heat up the air on our tile, heat will percolate out.
+			if(GM && abs(GM.temperature - output_temperature) > 0.1)
+				var/transfer_moles = 0.25 * GM.total_moles
+				var/datum/gas_mixture/removed = GM.remove(transfer_moles)
+				if(removed)
+					var/heat_transfer = removed.get_thermal_energy_change(output_temperature)
+					if(heat_transfer > 0) removed.add_thermal_energy(heat_transfer)
+				GM.merge(removed)
 
 	update_icon()
 

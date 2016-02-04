@@ -1805,6 +1805,7 @@
 #include "code\modules\tram\tram_floor.dm"
 #include "code\modules\tram\tram_rail.dm"
 #include "code\modules\tram\tram_wall.dm"
+#include "code\modules\vehicles\bike.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\train.dm"
 #include "code\modules\vehicles\vehicle.dm"

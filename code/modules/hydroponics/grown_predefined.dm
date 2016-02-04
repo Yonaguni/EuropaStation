@@ -3,3 +3,6 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
 	plantname = "ambrosiadeus"
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/wheat
+	plantname = "wheat"

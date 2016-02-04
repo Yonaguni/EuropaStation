@@ -7,7 +7,13 @@
 	selection_color = "#ffeeff"
 
 /datum/job/borderworld/scrapper/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
-	return ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_trench(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/workboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/pickaxe/plasmacutter(H), slot_s_store)
+	H.equip_to_slot_or_del(new /obj/item/device/europa/wrist_computer(H), slot_wear_id)
+	return ..(H,1,1,1)
 
 /datum/job/borderworld/scrapper/equip_survival(var/mob/living/carbon/human/H)
 	return ..()

@@ -59,10 +59,11 @@
 			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
 			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
 
-	if(!skip_hat && prob(40))
+	if(!skip_hat && prob(60))
 		var/list/hats = list(
 			/obj/item/clothing/head/ushanka,
-			/obj/item/clothing/head/bandana
+			/obj/item/clothing/head/bandana,
+			/obj/item/clothing/head/europa/cowboy_hat
 			)
 		var/new_hat = pick(hats)
 		H.equip_to_slot_or_del(new new_hat(H),slot_head)

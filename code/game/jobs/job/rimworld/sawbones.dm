@@ -8,7 +8,11 @@
 	selection_color = "#ffeeff"
 
 /datum/job/borderworld/sawbones/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
-	return ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/europa/fatigues(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/cigarettes(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(H), slot_r_store)
+	return ..(H, 1, 1)
 
 /datum/job/borderworld/sawbones/equip_survival(var/mob/living/carbon/human/H)
 	return ..()
