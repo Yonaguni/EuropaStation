@@ -286,7 +286,7 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/ite
 	/obj/item/toy/syndicateballoon,
 	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
 	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/weapon/disk/nuclear,\
+	/obj/item/clothing/shoes/magboots, \
 	/obj/item/clothing/suit/space/void, /obj/item/weapon/tank)
 
 /proc/fake_attack(var/mob/living/target)
