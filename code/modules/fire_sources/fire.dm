@@ -19,7 +19,7 @@ var/list/fire_sounds = list(
 	icon = 'icons/obj/europa/structures/fire.dmi'
 	icon_state = "campfire"
 	anchored = 1
-	density = 1
+	density = 0
 
 	var/open_flame = 1
 	var/datum/effect/effect/system/steam_spread/steam // Used when being quenched.
@@ -63,6 +63,7 @@ var/list/fire_sounds = list(
 	..()
 	if(lit == FIRE_LIT)
 		opacity = 1
+		density = 1
 
 /obj/structure/fire_source/stove
 	name = "stove"
@@ -78,6 +79,7 @@ var/list/fire_sounds = list(
 	light_colour_mid =  "#FF6600"
 	light_colour_low =  "#FF0000"
 	open_flame = 0
+	density = 1
 
 /obj/structure/fire_source/fireplace
 	name = "fireplace"
@@ -88,6 +90,7 @@ var/list/fire_sounds = list(
 	light_range_mid = 2
 	light_range_low = 1
 	open_flame = 0
+	density = 1
 
 /obj/structure/fire_source/water_act()
 	die()
