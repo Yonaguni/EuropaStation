@@ -22,7 +22,7 @@
 			D.disabled = rand(15, 60)
 
 /datum/event/rogue_drone/announce()
-	command_announcement.Announce("An automated drone fleet last logged as operating out of Dome [pick("One","Three","Five","Six","Nine")] \
+	command_announcement.Announce("An automated drone fleet last logged as operating out of [world_map.drone_source] \
 	has unexpectedly returned to operation. If any are sighted approach with caution.", "Rogue drone alert")
 
 /datum/event/rogue_drone/end()
@@ -33,4 +33,4 @@
 		D.z = config.admin_levels[1]
 		D.has_loot = 0
 		qdel(D)
-	command_announcement.Announce("Orbital control reports the malfunctioning drones have returned to inactivity.", "Rogue drone alert")
+	command_announcement.Announce("Satellite surveilance reports the malfunctioning drones have returned to inactivity.", "Rogue drone alert")

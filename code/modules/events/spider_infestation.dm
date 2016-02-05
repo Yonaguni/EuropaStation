@@ -10,7 +10,7 @@
 	sent_spiders_to_station = 0
 
 /datum/event/spider_infestation/announce()
-	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All hands must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+	command_announcement.Announce("Confirmed outbreak of level 7 biohazard on [station_name()]. Heightened alert recommended while containing outbreak.", "Biohazard Alert")
 
 /datum/event/spider_infestation/start()
 	var/list/vents = list()

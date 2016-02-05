@@ -17,6 +17,8 @@ var/list/bike_cache = list()
 	brute_dam_coeff = 0.5
 	var/max_move_speed = 3
 	var/cur_move_speed = 0
+	var/cur_move_dir = 0
+
 	var/moved
 
 	var/protection_percent = 60
