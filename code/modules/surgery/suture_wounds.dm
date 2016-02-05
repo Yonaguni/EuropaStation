@@ -9,16 +9,13 @@
 
 /datum/surgery_step/suture_wounds/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
-		world << "fail 1"
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(!affected || affected.is_stump())
-		world << "fail 2"
+	if(!affected || affected.is_stump() || (affected.status & ORGAN_ROBOT))
 		return 0
 	for(var/datum/wound/W in affected.wounds)
 		if(!W.internal && W.damage_type == CUT && W.damage >= 10)
 			return 1
-	world << "fail 3"
 	return 0
 
 /datum/surgery_step/suture_wounds/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

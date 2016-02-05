@@ -3,42 +3,6 @@
 //						BONE SURGERY							//
 //////////////////////////////////////////////////////////////////
 
-/datum/surgery_step/glue_bone
-	allowed_tools = list(
-	/obj/item/weapon/bonegel = 100,	\
-	/obj/item/weapon/screwdriver = 75
-	)
-	can_infect = 1
-	blood_level = 1
-
-	min_duration = 50
-	max_duration = 60
-
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
-			return 0
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 0
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if (affected.stage == 0)
-			user.visible_message("[user] starts applying medication to the damaged bones in [target]'s [affected.name] with \the [tool]." , \
-			"You start applying medication to the damaged bones in [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("Something in your [affected.name] is causing you a lot of pain!",1)
-		..()
-
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] applies some [tool] to [target]'s bone in [affected.name]", \
-			"\blue You apply some [tool] to [target]'s bone in [affected.name] with \the [tool].")
-		affected.stage = 1
-
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!" , \
-		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!")
-
 /datum/surgery_step/set_bone
 	allowed_tools = list(
 	/obj/item/weapon/bonesetter = 100,	\
@@ -52,7 +16,7 @@
 		if (!hasorgans(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.organ_tag != BP_HEAD && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 1
+		return affected && affected.organ_tag != BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage < 2
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -63,14 +27,10 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if (affected.status & ORGAN_BROKEN)
+		if(affected.status & ORGAN_BROKEN)
 			user.visible_message("\blue [user] sets the bone in [target]'s [affected.name] in place with \the [tool].", \
 				"\blue You set the bone in [target]'s [affected.name] in place with \the [tool].")
 			affected.stage = 2
-		else
-			user.visible_message("\blue [user] sets the bone in [target]'s [affected.name]\red in the WRONG place with \the [tool].", \
-				"\blue You set the bone in [target]'s [affected.name]\red in the WRONG place with \the [tool].")
-			affected.fracture()
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -91,7 +51,7 @@
 		if (!hasorgans(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.organ_tag == BP_HEAD && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 1
+		return affected && affected.organ_tag == BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] is beginning to piece together [target]'s skull with \the [tool]."  , \

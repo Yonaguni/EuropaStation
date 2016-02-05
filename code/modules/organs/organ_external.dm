@@ -90,6 +90,8 @@
 	return ..()
 
 /obj/item/organ/external/proc/is_open()
+	if(status & ORGAN_ROBOT)
+		return open
 	if(!wounds.len)
 		return 0
 	var/result
@@ -99,6 +101,9 @@
 			if(!open)
 				open = 1
 			break
+	if(result && (status & ORGAN_BROKEN))
+		if(open < 2)
+			open = 2
 	return (result ? open : 0)
 
 /obj/item/organ/external/attack_self(var/mob/user)
