@@ -12,8 +12,8 @@
 	var/is_data_console = 0
 	var/datum/conduit_network/data_cable/data_network
 	var/datum/conduit_network/matter_feed/feed_network
-	var/global/build_components = list()
-	var/global/dismantle_sound = 'sound/items/Crowbar.ogg'
+	var/list/build_components = list()
+	var/dismantle_sound = 'sound/items/Crowbar.ogg'
 
 /obj/machinery/europa/New(var/newloc, var/skip_components)
 	..(newloc)
