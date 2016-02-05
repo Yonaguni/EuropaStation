@@ -296,6 +296,9 @@
 	if(digitalcamo)
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
+	if(!(skipjumpsuit && skipface))
+		msg += "\n<span class='notice'>When speaking, [T.he] sounds like [radio_voice].</span>\n"
+
 	if(hasHUD(usr,"security"))
 		var/perpname = "wot"
 		var/criminal = "None"
@@ -326,9 +329,6 @@
 		if(wear_id)
 			if(istype(wear_id,/obj/item/weapon/card/id))
 				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/pda))
-				var/obj/item/device/pda/tempPda = wear_id
-				perpname = tempPda.owner
 		else
 			perpname = src.name
 

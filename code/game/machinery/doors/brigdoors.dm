@@ -43,10 +43,6 @@
 			if(F.id == src.id)
 				targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in all_structures)
-			if(C.id == src.id)
-				targets += C
-
 		if(targets.len==0)
 			stat |= BROKEN
 		update_icon()
@@ -103,12 +99,6 @@
 		if(door.density)	continue
 		spawn(0)
 			door.close()
-
-	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened && !C.close())	continue
-		C.locked = 1
-		C.icon_state = C.icon_locked
 	return 1
 
 
@@ -123,12 +113,6 @@
 		if(!door.density)	continue
 		spawn(0)
 			door.open()
-
-	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened)	continue
-		C.locked = 0
-		C.icon_state = C.icon_closed
 
 	return 1
 

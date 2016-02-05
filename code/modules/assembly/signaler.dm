@@ -51,7 +51,7 @@
 	Frequency:
 	<A href='byond://?src=\ref[src];freq=-10'>-</A>
 	<A href='byond://?src=\ref[src];freq=-2'>-</A>
-	[format_frequency(src.frequency)]
+	[round(frequency / 10)].[frequency % 10]
 	<A href='byond://?src=\ref[src];freq=2'>+</A>
 	<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 

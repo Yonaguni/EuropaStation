@@ -27,7 +27,7 @@
 
 /decl/fabricator_design/electronics/radio_bounced
 	name = "station bounced radio"
-	path = /obj/item/device/radio/off
+	path = /obj/item/device/radio
 
 /decl/fabricator_design/electronics/taperecorder
 	name = "tape recorder"
@@ -38,11 +38,6 @@
 	name = "camera assembly"
 	path = /obj/item/weapon/camera_assembly
 	category = "Engineering"
-
-/decl/fabricator_design/electronics/engineering/binaryencrypt
-	name = "binary encryption key"
-	path = /obj/item/device/encryptionkey/binary
-	hidden = 1
 
 // MEDICAL.
 /decl/fabricator_design/electronics/medical
@@ -92,11 +87,6 @@
 /decl/fabricator_design/electronics/device/sensor_prox
 	name = "proximity sensor"
 	path = /obj/item/device/assembly/prox_sensor
-
-/decl/fabricator_design/electronics/device/electropack
-	name = "electropack"
-	path = /obj/item/device/radio/electropack
-	hidden = 1
 
 // TOOLS
 /decl/fabricator_design/electronics/tool

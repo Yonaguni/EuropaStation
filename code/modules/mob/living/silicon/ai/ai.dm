@@ -56,7 +56,7 @@ var/list/ai_verbs_default = list(
 	var/icon/holo_icon//Default is assigned when AI is created.
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
-	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
+	var/obj/item/device/radio/headset/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
@@ -95,7 +95,6 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
@@ -174,7 +173,7 @@ var/list/ai_verbs_default = list(
 	var/radio_text = ""
 	for(var/i = 1 to common_radio.channels.len)
 		var/channel = common_radio.channels[i]
-		var/key = get_radio_key_from_channel(channel)
+		var/key = radio_name_to_key[channel]
 		radio_text += "[key] - [channel]"
 		if(i != common_radio.channels.len)
 			radio_text += ", "
@@ -187,10 +186,8 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	qdel(aiPDA)
 	qdel(aiMulti)
 	qdel(aiRadio)
-	aiPDA = null
 	aiMulti = null
 	aiRadio = null
 
@@ -245,12 +242,6 @@ var/list/ai_verbs_default = list(
 	announcement.announcer = pickedName
 	if(eyeobj)
 		eyeobj.name = "[pickedName] (AI Eye)"
-
-	// Set ai pda name
-	if(aiPDA)
-		aiPDA.ownjob = "AI"
-		aiPDA.owner = pickedName
-		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.

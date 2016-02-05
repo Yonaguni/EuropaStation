@@ -218,8 +218,6 @@
 		a_left.hear_talk(M,msg,verb,speaking)
 
 
-
-
 /obj/item/device/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"
 

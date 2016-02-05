@@ -2,10 +2,6 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/weapon/circuitboard/message_monitor
-	name = T_BOARD("message monitor console")
-	build_path = /obj/machinery/computer/message_monitor
-
 /obj/item/weapon/circuitboard/aiupload
 	name = T_BOARD("AI upload console")
 	build_path = /obj/machinery/computer/aiupload
@@ -17,10 +13,6 @@
 /obj/item/weapon/circuitboard/med_data
 	name = T_BOARD("medical records console")
 	build_path = /obj/machinery/computer/med_data
-
-/obj/item/weapon/circuitboard/pandemic
-	name = T_BOARD("PanD.E.M.I.C. 2200")
-	build_path = /obj/machinery/computer/pandemic
 
 /obj/item/weapon/circuitboard/scan_consolenew
 	name = T_BOARD("DNA machine")
@@ -41,7 +33,6 @@
 /obj/item/weapon/circuitboard/skills
 	name = T_BOARD("employment records console")
 	build_path = /obj/machinery/computer/skills
-
 
 /obj/item/weapon/circuitboard/atmos_alert
 	name = T_BOARD("atmospheric alert console")
@@ -102,14 +93,6 @@
 /obj/item/weapon/circuitboard/crew
 	name = T_BOARD("crew monitoring console")
 	build_path = /obj/machinery/computer/crew
-
-/obj/item/weapon/circuitboard/curefab
-	name = T_BOARD("cure fabricator")
-	build_path = /obj/machinery/computer/curer
-
-/obj/item/weapon/circuitboard/splicer
-	name = T_BOARD("disease splicer")
-	build_path = /obj/machinery/computer/diseasesplicer
 
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = T_BOARD("mining elevator console")

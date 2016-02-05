@@ -100,7 +100,6 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 		var/datum/signal/signal = new()
 		signal.source = src
-		signal.transmission_method = 1
 		signal.data["beacon"] = location
 
 		for(var/key in codes)
@@ -121,7 +120,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 			updateicon()
 
-		else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+		else if (istype(I, /obj/item/weapon/card/id))
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked
@@ -158,7 +157,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		if(locked && !ai)
 			t = {"<TT><B>Navigation Beacon</B><HR><BR>
 <i>(swipe card to unlock controls)</i><BR>
-Frequency: [format_frequency(freq)]<BR><HR>
+Frequency: "[round(freq / 10)].[freq % 10]"<BR><HR>
 Location: [location ? location : "(none)"]</A><BR>
 Transponder Codes:<UL>"}
 
@@ -173,7 +172,7 @@ Transponder Codes:<UL>"}
 Frequency:
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
 <A href='byond://?src=\ref[src];freq=-2'>-</A>
-[format_frequency(freq)]
+"[round(freq / 10)].[freq % 10]"
 <A href='byond://?src=\ref[src];freq=2'>+</A>
 <A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 <HR>

@@ -15,43 +15,34 @@
 	throw_range = 8
 	var/empty = 0
 
-
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first-aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 
-	New()
-		..()
-		if (empty) return
-
-		icon_state = pick("ointment","firefirstaid")
-
-		new /obj/item/device/healthanalyzer( src )
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
-		new /obj/item/stack/medical/ointment( src )
-		new /obj/item/stack/medical/ointment( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src ) //Replaced ointment with these since they actually work --Errorage
-		return
-
+/obj/item/weapon/storage/firstaid/fire/New()
+	..()
+	if (empty) return
+	icon_state = pick("ointment","firefirstaid")
+	new /obj/item/device/healthanalyzer( src )
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
+	new /obj/item/stack/medical/ointment( src )
+	new /obj/item/stack/medical/ointment( src )
 
 /obj/item/weapon/storage/firstaid/regular
 	icon_state = "firstaid"
 
-	New()
-		..()
-		if (empty) return
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/device/healthanalyzer(src)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
-		return
+/obj/item/weapon/storage/firstaid/regular/New()
+	..()
+	if (empty) return
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 
 /obj/item/weapon/storage/firstaid/toxin
 	name = "toxin first aid"
@@ -59,20 +50,17 @@
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
 
-	New()
-		..()
-		if (empty) return
-
-		icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
-
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/device/healthanalyzer( src )
-		return
+/obj/item/weapon/storage/firstaid/toxin/New()
+	..()
+	if (empty) return
+	icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
+	new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
+	new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
+	new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
+	new /obj/item/weapon/reagent_containers/pill/antitox( src )
+	new /obj/item/weapon/reagent_containers/pill/antitox( src )
+	new /obj/item/weapon/reagent_containers/pill/antitox( src )
+	new /obj/item/device/healthanalyzer( src )
 
 /obj/item/weapon/storage/firstaid/o2
 	name = "oxygen deprivation first aid"
@@ -80,17 +68,12 @@
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
-	New()
-		..()
-		if (empty) return
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
-		new /obj/item/weapon/reagent_containers/syringe/inaprovaline( src )
-		new /obj/item/device/healthanalyzer( src )
-		return
+/obj/item/weapon/storage/firstaid/o2/New()
+	..()
+	if (empty) return
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
+	new /obj/item/weapon/reagent_containers/syringe/adrenaline( src )
+	new /obj/item/device/healthanalyzer( src )
 
 /obj/item/weapon/storage/firstaid/adv
 	name = "advanced first-aid kit"
@@ -119,11 +102,11 @@
 /obj/item/weapon/storage/firstaid/combat/New()
 	..()
 	if (empty) return
-	new /obj/item/weapon/storage/pill_bottle/bicaridine(src)
-	new /obj/item/weapon/storage/pill_bottle/dermaline(src)
-	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
-	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
-	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/weapon/storage/pill_bottle/antitox(src)
+	new /obj/item/weapon/storage/pill_bottle/morphine(src)
+	new /obj/item/weapon/storage/pill_bottle/antibiotic(src)
+	new /obj/item/weapon/storage/pill_bottle/adrenaline(src)
+	new /obj/item/weapon/storage/pill_bottle/jumpstart(src)
 	new /obj/item/stack/medical/splint(src)
 	return
 
@@ -163,127 +146,55 @@
 	use_sound = null
 
 /obj/item/weapon/storage/pill_bottle/antitox
-	name = "bottle of Dylovene pills"
+	name = "bottle of anti-toxin pills"
 	desc = "Contains pills used to counter toxins."
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
+/obj/item/weapon/storage/pill_bottle/antitox/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/antitox(src)
 
-/obj/item/weapon/storage/pill_bottle/bicaridine
-	name = "bottle of Bicaridine pills"
-	desc = "Contains pills used to stabilize the severely injured."
-
-/obj/item/weapon/storage/pill_bottle/bicaridine/New()
-    ..()
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-
-/obj/item/weapon/storage/pill_bottle/dermaline
-	name = "bottle of Dermaline pills"
-	desc = "Contains pills used to treat burn wounds."
-
-/obj/item/weapon/storage/pill_bottle/dermaline/New()
-    ..()
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-
-/obj/item/weapon/storage/pill_bottle/dylovene
-	name = "bottle of Dylovene pills"
-	desc = "Contains pills used to treat toxic substances in the blood."
-
-/obj/item/weapon/storage/pill_bottle/dylovene/New()
-    ..()
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-
-/obj/item/weapon/storage/pill_bottle/inaprovaline
-	name = "bottle of Inaprovaline pills"
+/obj/item/weapon/storage/pill_bottle/adrenaline
+	name = "bottle of adrenaline pills"
 	desc = "Contains pills used to stabilize patients."
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
-		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
+/obj/item/weapon/storage/pill_bottle/adrenaline/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/adrenaline(src)
 
-/obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
-	desc = "Contains pills used to treat burns."
+/obj/item/weapon/storage/pill_bottle/antibiotic
+	name = "bottle of antibiotic pills"
+	desc = "A theta-lactam antibiotic. Effective against many diseases."
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
+/obj/item/weapon/storage/pill_bottle/antibiotic/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/antibiotic(src)
 
-/obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "bottle of Spaceacillin pills"
-	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
-
-/obj/item/weapon/storage/pill_bottle/spaceacillin/New()
-    ..()
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-
-/obj/item/weapon/storage/pill_bottle/tramadol
-	name = "bottle of Tramadol pills"
+/obj/item/weapon/storage/pill_bottle/morphine
+	name = "bottle of morphine pills"
 	desc = "Contains pills used to relieve pain."
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
-		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+/obj/item/weapon/storage/pill_bottle/morphine/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/morphine(src)
 
-/obj/item/weapon/storage/pill_bottle/citalopram
-	name = "bottle of Citalopram pills"
+/obj/item/weapon/storage/pill_bottle/antidepressant
+	name = "bottle of antidepressant pills"
 	desc = "Contains pills used to stabilize a patient's mood."
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
-		new /obj/item/weapon/reagent_containers/pill/citalopram( src )
+/obj/item/weapon/storage/pill_bottle/antidepressant/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/antidepressant(src)
+
+/obj/item/weapon/storage/pill_bottle/jumpstart
+	name = "unlabelled pill bottle"
+	desc = "It just has a crude '+1' drawn on the label in black marker."
+
+/obj/item/weapon/storage/pill_bottle/jumpstart/New()
+	..()
+	for(var/x = 1 to 7)
+		new /obj/item/weapon/reagent_containers/pill/jumpstart(src)

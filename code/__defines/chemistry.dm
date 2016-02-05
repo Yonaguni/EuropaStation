@@ -24,14 +24,14 @@
 #define IS_TAJARA  5
 #define IS_XENOS   6
 
-#define CE_STABLE "stable" // Inaprovaline
+#define CE_STABLE "stable" // Adrenaline
 #define CE_ANTIBIOTIC "antibiotic" // Spaceacilin
 #define CE_BLOODRESTORE "bloodrestore" // Iron/nutriment
 #define CE_PAINKILLER "painkiller"
 #define CE_ALCOHOL "alcohol" // Liver filtering
 #define CE_ALCOHOL_TOXIC "alcotoxic" // Liver damage
-#define CE_SPEEDBOOST "gofast" // Hyperzine
+#define CE_SPEEDBOOST "gofast" // jumpstart
 
 // Chemistry lists.
-var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
+var/list/tachycardics  = list("coffee", "adrenaline", "jumpstart", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
 var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")                 // Decrease heart rate.

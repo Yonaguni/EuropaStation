@@ -146,11 +146,4 @@ var/global/Holiday = null
 
 //Nested in the random events loop. Will be triggered every 2 minutes
 /proc/Holiday_Random_Event()
-	switch(Holiday)			//special holidays
-
-		if("",null)			//no Holiday today! Back to work!
-			return
-
-		if("End of the World")
-			if(prob(eventchance))
-				GameOver()
+	return

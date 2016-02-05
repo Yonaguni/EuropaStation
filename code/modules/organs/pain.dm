@@ -55,7 +55,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		return
 	if(!can_feel_pain())
 		return
-	if(reagents.has_reagent("tramadol"))
+	if(reagents.has_reagent("morphine"))
 		return
 	if(reagents.has_reagent("morphine"))
 		return

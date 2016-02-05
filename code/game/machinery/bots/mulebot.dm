@@ -832,7 +832,6 @@
 
 	var/datum/signal/signal = new()
 	signal.source = src
-	signal.transmission_method = 1
 	//for(var/key in keyval)
 	//	signal.data[key] = keyval[key]
 	signal.data = keyval

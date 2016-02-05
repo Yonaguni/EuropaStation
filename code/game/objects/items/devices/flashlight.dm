@@ -76,7 +76,7 @@
 				if(M.getBrainLoss() > 15)
 					user << "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>"
 
-				var/list/pinpoint = list("morphine"=1,"tramadol"=5)
+				var/list/pinpoint = list("morphine"=1)
 				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
 					user << "<span class='notice'>\The [M]'s pupils are already pinpoint and cannot narrow any more.</span>"

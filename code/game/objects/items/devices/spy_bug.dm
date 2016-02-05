@@ -144,9 +144,9 @@
 	return 0
 
 /obj/item/device/radio/spy
-	listening = 0
+	microphone = 1
+	loudspeaker = 0
 	frequency = 1473
-	broadcasting = 0
 	canhear_range = 1
 	name = "spy device"
 	icon_state = "syn_cypherkey"

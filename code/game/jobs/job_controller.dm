@@ -512,15 +512,6 @@ var/global/datum/controller/occupations/job_master
 			else
 				H.equip_to_slot_or_del(C, slot_wear_id)
 
-		if(job.pdatype)
-			H.equip_to_slot_or_del(new job.pdatype(H), slot_belt)
-			if(locate(/obj/item/device/pda,H))
-				var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
-				pda.owner = H.real_name
-				pda.ownjob = C.assignment
-				pda.ownrank = C.rank
-				pda.name = "PDA-[H.real_name] ([pda.ownjob])"
-
 		return 1
 
 

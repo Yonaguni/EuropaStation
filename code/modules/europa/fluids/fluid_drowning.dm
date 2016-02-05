@@ -1,9 +1,6 @@
 /mob/living/proc/can_drown()
 	return 1
 
-/mob/living/bot/can_drown()
-	return 0
-
 /mob/living/simple_animal/construct/can_drown()
 	return 0
 
