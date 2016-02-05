@@ -178,6 +178,21 @@
 				pocell.charge = pocell.maxcharge
 				qdel(src)
 				return
+
+		else if(istype(W, /obj/item/weapon/scalpel))
+
+			var/mob/M = loc
+			if(istype(M))
+				M.unEquip(src)
+			user << "<span class='notice'>You extract some seeds from [src].</span>"
+			var/produce = rand(1,4)
+			for(var/i = 0;i<=produce;i++)
+				var/obj/item/seeds/seeds = new(get_turf(src))
+				seeds.seed_type = seed.name
+				seeds.update_seed()
+			qdel(src)
+			return
+
 		else if(W.sharp)
 			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
 				user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
