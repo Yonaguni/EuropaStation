@@ -14,7 +14,7 @@ var/list/weapon_models = list()
 
 	var/use_icon = 'icons/obj/gun_components/generic_model.dmi'        // Icon used for components of this model.
 	var/accessory_icon = 'icons/obj/gun_components/accessories.dmi'    // Icon used for accessories on a gun of this model.
-	var/ammo_indicator_icon = 'icons/obj/gun_components/unbranded.dmi' // Icon used for ammo indicator.
+	var/ammo_indicator_icon                                            // Icon used for ammo indicator.
 	var/ammo_use_state                                                 // Ammo state override.
 	var/ammo_indicator_states                                          // Number of intermediary states.
 	var/force_item_state                                               // State used for inhands.

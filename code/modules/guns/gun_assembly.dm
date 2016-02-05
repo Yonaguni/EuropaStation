@@ -1,7 +1,6 @@
 /obj/item/weapon/gun_assembly //temp for testing.
 	name = "gun assembly"
 	desc = "It's a firearm in progress. When finished, it will make small pieces of stuff go very fast."
-	icon = 'icons/obj/gun_components/unbranded.dmi'
 	icon_state = "blank"
 	item_state = "gun"
 
@@ -176,7 +175,6 @@
 
 /obj/item/weapon/gun_assembly/update_icon()
 
-	icon = 'icons/obj/gun_components/unbranded.dmi'
 	icon_state = "blank"
 
 	if(body)

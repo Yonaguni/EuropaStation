@@ -3,7 +3,6 @@ var/list/gun_component_icon_cache = list()
 /obj/item/gun_component
 	name = "gun component"
 	desc = "A mysterious gun component."
-	icon = 'icons/obj/gun_components/unbranded.dmi'
 
 	var/weapon_type = GUN_PISTOL             // What kind of weapon does this fit into?
 	var/component_type = COMPONENT_BARREL    // What part of the gun is this?
