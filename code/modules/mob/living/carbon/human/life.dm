@@ -723,6 +723,8 @@
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 
+	//TODO thirst to reduce overheating.
+
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 			nutrition -= 2
@@ -922,6 +924,10 @@
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - HUNGER_FACTOR)
+
+	// Hydration decrease.
+	if (hydration > 0 && stat != 2)
+		hydration = max (0, hydration - THIRST_FACTOR)
 
 	if (nutrition > 450)
 		if(overeatduration < 600) //capped so people don't take forever to unfat
@@ -1188,6 +1194,7 @@
 							if(0 to 20)				healths.icon_state = "health5"
 							else					healths.icon_state = "health6"
 
+		//TODO THIRST.
 		if(nutrition_icon)
 			switch(nutrition)
 				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"

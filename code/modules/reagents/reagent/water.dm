@@ -37,6 +37,10 @@
 	else if(volume >= 10)
 		T.wet_floor(1)
 
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	M.hydration += 4 * removed
+	M.add_chemical_effect(CE_BLOODRESTORE, 1 * removed)
+
 /datum/reagent/water/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O

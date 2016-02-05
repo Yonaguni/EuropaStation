@@ -300,6 +300,11 @@
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
+
+	//Bone fractures.
+	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
+		src.fracture()
+
 	owner.updatehealth() //droplimb will call updatehealth() again if it does end up being called
 
 	//If limb took enough damage, try to cut or tear it off
@@ -681,10 +686,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//things tend to bleed if they are CUT OPEN
 	if (is_open() && !clamped && (H && H.should_have_organ(O_HEART)))
 		status |= ORGAN_BLEEDING
-
-	//Bone fractures
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
-		src.fracture()
 
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)

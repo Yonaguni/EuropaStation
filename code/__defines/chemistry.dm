@@ -1,4 +1,5 @@
 #define HUNGER_FACTOR              0.05 // Factor of how fast mob nutrition decreases
+#define THIRST_FACTOR              0.05
 
 #define REM 0.2 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
 

@@ -7,6 +7,7 @@
 	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per unit
+	var/hydration = 2
 	var/adj_dizzy = 0 // Per tick
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
@@ -18,6 +19,7 @@
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	M.nutrition += nutrition * removed
+	M.hydration += hydration * removed
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)

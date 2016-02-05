@@ -394,7 +394,7 @@
 "hD" = (/obj/effect/landmark/start/citizen,/turf/simulated/floor/tiled/yellow,/area/rimworld/market)
 "hE" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "hF" = (/obj/structure/cable{icon_state = "2-4"},/turf/simulated/floor/road/asphalt,/area/rimworld/farmland)
-"hG" = (/obj/structure/cable{icon_state = "0-2"},/obj/machinery/power/smes/batteryrack/makeshift,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
+"hG" = (/obj/structure/cable{icon_state = "0-2"},/obj/machinery/power/smes/buildable,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "hH" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "hI" = (/obj/item/weapon/broken_bottle,/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "hJ" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)

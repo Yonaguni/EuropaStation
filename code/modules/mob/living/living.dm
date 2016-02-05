@@ -807,6 +807,7 @@ default behaviour is:
 
 	if(!lastpuke)
 
+		// TODO: Throw up reagents that you have instead of nutrition.
 		if (nutrition <= 100)
 			src << "<span class='danger'>You gag as you want to throw up, but there's nothing in your stomach!</span>"
 			src.Weaken(10)
@@ -836,7 +837,8 @@ default behaviour is:
 			if(getBruteLoss() < 50)
 				adjustBruteLoss(3)
 		else
-			nutrition -= 40
+			nutrition -= 20
+			hydration -= 20
 			adjustToxLoss(-3)
 
 		sleep(350)

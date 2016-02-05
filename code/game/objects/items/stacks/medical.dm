@@ -84,10 +84,13 @@
 			break
 		if (W.current_stage <= W.max_bleeding_stage)
 			user.visible_message("<span class='notice'>\The [user] bandages \a [W.desc] on [M]'s [affecting.name].</span>")
-		W.bandage()
-		affecting.update_damages()
-		use(1)
+			W.bandage()
+			affecting.update_damages()
+			use(1)
 		return 1
+	if(!warn_too_big)
+		user << "<span class='notice'>You couldn't find any wounds to bandage.</span>"
+	return 1
 
 /obj/item/stack/medical/ointment
 	name = "ointment"

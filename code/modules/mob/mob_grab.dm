@@ -227,21 +227,17 @@
 	if(state < GRAB_AGGRESSIVE)
 		if(!allow_upgrade)
 			return
-		if(!affecting.lying)
-			assailant.visible_message("<span class='warning'>[assailant] has grabbed [affecting] aggressively (now hands)!</span>")
-		else
-			assailant.visible_message("<span class='warning'>[assailant] pins [affecting] down to the ground (now hands)!</span>")
-			apply_pinning(affecting, assailant)
+			assailant.visible_message("<span class='warning'>\The [assailant] has grabbed \the [affecting] aggressively!</span>")
 
 		state = GRAB_AGGRESSIVE
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce1"
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
-			assailant << "<span class='notice'>You squeeze [affecting], but nothing interesting happens.</span>"
+			assailant << "<span class='notice'>You squeeze \the [affecting], but nothing interesting happens.</span>"
 			return
 
-		assailant.visible_message("<span class='warning'>[assailant] has reinforced \his grip on [affecting] (now neck)!</span>")
+		assailant.visible_message("<span class='warning'>\The [assailant] has shifted \his grip to \the [affecting]'s neck!</span>")
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		assailant.set_dir(get_dir(assailant, affecting))
@@ -252,11 +248,11 @@
 		hud.name = "kill"
 		affecting.Stun(10) //10 ticks of ensured grab
 	else if(state < GRAB_UPGRADING)
-		assailant.visible_message("<span class='danger'>[assailant] starts to tighten \his grip on [affecting]'s neck!</span>")
+		assailant.visible_message("<span class='danger'>[assailant] starts to tighten \his grip on \the [affecting]'s neck!</span>")
 		hud.icon_state = "kill1"
 
 		state = GRAB_KILL
-		assailant.visible_message("<span class='danger'>[assailant] has tightened \his grip on [affecting]'s neck!</span>")
+		assailant.visible_message("<span class='danger'>[assailant] is strangling \the [affecting]'s neck!</span>")
 		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been strangled (kill intent) by [assailant.name] ([assailant.ckey])</font>"
 		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
 		msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")

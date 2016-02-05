@@ -82,6 +82,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return 0
+	if (istype(tool, /obj/item/weapon/grab))
+		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
@@ -109,7 +111,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				return	1	  												//don't want to do weapony things after surgery
 
 	if (user.a_intent == I_HELP)
-		user << "<span class='warning'>You can't see any useful way to use [tool] on [M].</span>"
+		user << "<span class='warning'>You can't see any useful way to use \the [tool] on \the [M].</span>"
+		return 1
+
 	return 0
 
 proc/sort_surgeries()
