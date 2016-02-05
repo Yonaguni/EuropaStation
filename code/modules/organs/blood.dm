@@ -84,10 +84,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				if(!pale)
 					pale = 1
 					update_body()
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(prob(1))
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(oxyloss < 20)
 					oxyloss += 3
@@ -122,6 +122,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				nutrition -= 10
 			else if(nutrition >= 200)
 				nutrition -= 3
+			if(hydration >= 300)
+				hydration -= 10
+			else if(hydration >= 200)
+				hydration -= 3
 
 		//Bleeding out
 		var/blood_max = 0
@@ -130,7 +134,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				continue
 			for(var/datum/wound/W in temp.wounds) if(W.bleeding())
 				blood_max += W.damage / 40
-			if (temp.open)
+			if (temp.is_open())
 				blood_max += 2  //Yer stomach is cut open
 		drip(blood_max)
 

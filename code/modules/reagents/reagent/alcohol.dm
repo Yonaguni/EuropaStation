@@ -6,8 +6,11 @@
 	color = "#404030"
 	touch_met = 5
 	flammable = 1
+	disinfectant = 1
 
 	var/nutriment_factor = 0
+	var/hydration_factor = 1
+
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/toxicity = 1
 
@@ -30,6 +33,7 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	M.nutrition += nutriment_factor * removed
+	M.hydration += hydration_factor * removed
 
 	var/strength_mod = 1
 	if(alien == IS_SKRELL)

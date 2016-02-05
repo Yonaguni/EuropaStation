@@ -7,7 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/suture = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -27,7 +27,7 @@
 			internal_bleeding = 1
 			break
 
-		return affected.open >= 2 && internal_bleeding
+		return affected.is_open() >= 2 && internal_bleeding
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -75,7 +75,7 @@
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		return affected && affected.open >= 2 && (affected.status & ORGAN_DEAD)
+		return affected && affected.is_open() >= 2 && (affected.status & ORGAN_DEAD)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -117,7 +117,7 @@
 			return 0
 
 		var/obj/item/weapon/reagent_containers/container = tool
-		if(!container.reagents.has_reagent("peridaxon"))
+		if(!container.reagents.has_reagent("antiseptic")) // Kinda odd but eh
 			return 0
 
 		if(!hasorgans(target))
@@ -127,7 +127,7 @@
 			return 0
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 3 && (affected.status & ORGAN_DEAD)
+		return affected && affected.is_open() == 3 && (affected.status & ORGAN_DEAD)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -147,7 +147,7 @@
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 		if (trans > 0)
 
-			if(container.reagents.has_reagent("peridaxon"))
+			if(container.reagents.has_reagent("antiseptic"))
 				affected.status &= ~ORGAN_DEAD
 
 			user.visible_message("\blue [user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name]", \

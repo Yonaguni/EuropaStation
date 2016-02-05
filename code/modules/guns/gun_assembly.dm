@@ -1,7 +1,6 @@
 /obj/item/weapon/gun_assembly //temp for testing.
 	name = "gun assembly"
 	desc = "It's a firearm in progress. When finished, it will make small pieces of stuff go very fast."
-	icon = 'icons/obj/gun_components/unbranded.dmi'
 	icon_state = "blank"
 	item_state = "gun"
 
@@ -97,7 +96,7 @@
 
 	if(istype(thing, /obj/item/gun_component))
 		var/obj/item/gun_component/GC = thing
-
+/*
 		for(var/obj/item/gun_component/temp_comp in list(body, barrel, stock, grip, chamber))
 			if(istype(temp_comp))
 				if(!isnull(GC.weapon_type) && temp_comp.weapon_type != GC.weapon_type)
@@ -106,7 +105,7 @@
 				if(!isnull(GC.projectile_type) && temp_comp.projectile_type != GC.projectile_type)
 					user << "<span class='warning'>\The [GC] is designed for a different type of weapon.</span>"
 					return
-
+*/
 		var/installed
 		if(GC.component_type == COMPONENT_BARREL && !barrel)
 			barrel = GC
@@ -159,7 +158,7 @@
 			thing.forceMove(src)
 			update_icon()
 
-		if(barrel && body && grip && stock && chamber)
+		if(barrel && body && grip && chamber)
 			var/mob/M = src.loc
 			user.unEquip(src)
 			var/obj/item/weapon/gun/composite/new_gun = new(get_turf(src), src)
@@ -176,7 +175,6 @@
 
 /obj/item/weapon/gun_assembly/update_icon()
 
-	icon = 'icons/obj/gun_components/unbranded.dmi'
 	icon_state = "blank"
 
 	if(body)
@@ -187,16 +185,23 @@
 	var/dam_type
 
 	var/decl/weapon_model/model // If all the parts are from the same producer, we get a bonus.
+	var/image/part
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber))
-
+		if (!GC) continue
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
-
+/*
 		var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
 		if(!gun_component_icon_cache[cache_key])
 			gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
 		overlays |= gun_component_icon_cache[cache_key]
-
+*/
+		part = image(GC.icon, GC.icon_state)
+		part.pixel_y = GC.pixel_y
+		part.pixel_x = GC.pixel_x
+		part.color = GC.color
+		part.appearance_flags = RESET_COLOR
+		overlays |= part
 		if(GC.model)
 			if(isnull(model))
 				model = GC.model

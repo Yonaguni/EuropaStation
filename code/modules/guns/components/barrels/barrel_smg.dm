@@ -1,4 +1,5 @@
 /obj/item/gun_component/barrel/smg
+	icon_state="smg"
 	weapon_type = GUN_SMG
 	caliber = CALIBER_PISTOL_SMALL
 	accepts_accessories = 1

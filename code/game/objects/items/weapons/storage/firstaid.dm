@@ -75,24 +75,6 @@
 	new /obj/item/weapon/reagent_containers/syringe/adrenaline( src )
 	new /obj/item/device/healthanalyzer( src )
 
-/obj/item/weapon/storage/firstaid/adv
-	name = "advanced first-aid kit"
-	desc = "Contains advanced medical treatments."
-	icon_state = "advfirstaid"
-	item_state = "firstaid-advanced"
-
-/obj/item/weapon/storage/firstaid/adv/New()
-	..()
-	if (empty) return
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	return
-
 /obj/item/weapon/storage/firstaid/combat
 	name = "combat medical kit"
 	desc = "Contains advanced medical treatments."
@@ -125,8 +107,7 @@
 	new /obj/item/weapon/scalpel(src)
 	new /obj/item/weapon/surgicaldrill(src)
 	new /obj/item/weapon/bonegel(src)
-	new /obj/item/weapon/FixOVein(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/weapon/suture(src)
 
 	make_exact_fit()
 

@@ -55,7 +55,7 @@ var/list/can_dismantle_guns = list(
 
 		// Success!
 		user.unEquip(installing)
-		installing.applied_to(src, user, dam_type, gun_type)
+		installing.installed(src, user)
 		accessories |= installing
 		update_from_components()
 		return

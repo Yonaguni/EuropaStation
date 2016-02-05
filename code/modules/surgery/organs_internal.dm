@@ -10,15 +10,15 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.open == (affected.encased ? 3 : 2)
+	return affected && affected.is_open() == (affected.encased ? 3 : 2)
 
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
-	/obj/item/stack/medical/advanced/bruise_pack= 100,		\
-	/obj/item/stack/medical/bruise_pack = 20
+	/obj/item/weapon/suture = 100,		\
+	/obj/item/stack/cable_coil = 20
 	)
 
 	min_duration = 70
@@ -40,10 +40,6 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
-		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
-			tool_name = "regenerative membrane"
-		else if (istype(tool, /obj/item/stack/medical/bruise_pack))
-			tool_name = "the bandaid"
 
 		if (!hasorgans(target))
 			return
@@ -53,19 +49,14 @@
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
 				if(!(I.status & ORGAN_ROBOT))
-					user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
-					"You start treating damage to [target]'s [I.name] with [tool_name]." )
+					user.visible_message("[user] starts mending damage to [target]'s [I.name] with [tool_name].", \
+					"You start mending damage to [target]'s [I.name] with [tool_name]." )
 
 		target.custom_pain("The pain in your [affected.name] is living hell!",1)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/tool_name = "\the [tool]"
-		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
-			tool_name = "regenerative membrane"
-		if (istype(tool, /obj/item/stack/medical/bruise_pack))
-			tool_name = "the bandaid"
-
 		if (!hasorgans(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -73,8 +64,8 @@
 		for(var/obj/item/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
 				if(!(I.status & ORGAN_ROBOT))
-					user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
-					"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
+					user.visible_message("<span class='notice'>[user] mends damage to [target]'s [I.name] with [tool_name].</span>", \
+					"<span class='notice'>You mend damage to [target]'s [I.name] with [tool_name].</span>" )
 					I.damage = 0
 					if(I.organ_tag == O_EYES)
 						target.sdisabilities &= ~BLIND
@@ -85,17 +76,11 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		user.visible_message("<span class='warning'>[user]'s hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!</span>", \
-		"<span class='warning'>Your hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!</span>")
-		var/dam_amt = 2
+		user.visible_message("<span class='warning'>[user]'s hand slips, tearing the inside of [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class='warning'>Your hand slips, tearing the inside of [target]'s [affected.name] with \the [tool]!</span>")
 
-		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
-			target.adjustToxLoss(5)
-
-		else if (istype(tool, /obj/item/stack/medical/bruise_pack))
-			dam_amt = 5
-			target.adjustToxLoss(10)
-			affected.createwound(CUT, 5)
+		var/dam_amt = 5
+		affected.createwound(CUT, 5)
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
@@ -285,7 +270,7 @@
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/suture = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 

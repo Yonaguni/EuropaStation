@@ -73,7 +73,7 @@
 					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
 				else if(M.eye_blurry)
 					user << "<span class='notice'>\The [M]'s pupils react slower than normally.</span>"
-				if(M.getBrainLoss() > 15)
+				if(M.getBrainLoss() > 15 || M.has_brain_worms())
 					user << "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>"
 
 				var/list/pinpoint = list("morphine"=1)

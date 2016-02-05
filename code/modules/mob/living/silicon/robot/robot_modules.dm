@@ -198,7 +198,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/retractor(src)
 	src.modules += new /obj/item/weapon/cautery(src)
 	src.modules += new /obj/item/weapon/bonegel(src)
-	src.modules += new /obj/item/weapon/FixOVein(src)
+	src.modules += new /obj/item/weapon/suture(src)
 	src.modules += new /obj/item/weapon/bonesetter(src)
 	src.modules += new /obj/item/weapon/circular_saw(src)
 	src.modules += new /obj/item/weapon/surgicaldrill(src)
@@ -211,15 +211,10 @@ var/global/list/robot_modules = list(
 	synths += medicine
 
 	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
-	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
 	N.uses_charge = 1
 	N.charge_costs = list(1000)
 	N.synths = list(medicine)
-	B.uses_charge = 1
-	B.charge_costs = list(1000)
-	B.synths = list(medicine)
 	src.modules += N
-	src.modules += B
 
 	..()
 

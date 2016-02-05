@@ -1,7 +1,9 @@
-/obj/item/weapon/FixOVein
-	name = "FixOVein"
+/obj/item/weapon/suture
+	name = "needle and sutures"
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "fixovein"
+	icon_state = "suture"
+	gender = PLURAL
+	slot_flags = SLOT_EARS
 	force = 0
 	throwforce = 1.0
 	w_class = 2.0
