@@ -44,14 +44,7 @@
 					T = L
 					break
 
-		if(istype(A, /obj/machinery/bot))
-			var/obj/machinery/bot/B = A
-			if (B.health > 0)
-				stance = HOSTILE_STANCE_ATTACK
-				T = B
-				break
 	return T
-
 
 /mob/living/simple_animal/hostile/proc/Found(var/atom/A)
 	return
@@ -90,9 +83,6 @@
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
-	if(istype(target_mob,/obj/machinery/bot))
-		var/obj/machinery/bot/B = target_mob
-		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE

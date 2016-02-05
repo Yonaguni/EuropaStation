@@ -318,9 +318,6 @@
 			return
 
 	else
-		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
-			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
-			return
 
 		for (var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>You hear a roar as the crematorium activates.</span>", 1)

@@ -35,7 +35,6 @@
 	w_class = 4
 	max_w_class = 2
 	can_hold = list() // any
-	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -61,7 +60,6 @@
 	w_class = 4
 	max_w_class = 2
 	can_hold = list() // any
-	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
 // -----------------------------
 //        Mining Satchel

@@ -87,7 +87,7 @@
 	var/turf/T = get_turf(new_feed)
 	if(!T || !T.contents.len)
 		return
-	for(var/obj/machinery/europa/M in T.contents)
+	for(var/obj/machinery/datanet/M in T.contents)
 		if(M.feed_network)
 			continue
 		if(M.connect_to_feednet)

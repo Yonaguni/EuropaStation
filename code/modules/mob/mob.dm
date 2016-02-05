@@ -473,15 +473,6 @@
 		var/atom/movable/O = tatom
 		if(!O.loc)
 			continue
-		if(istype(O, /obj/item/weapon/disk/nuclear))
-			var/name = "Nuclear Disk"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
 
 		if(istype(O, /obj/singularity))
 			var/name = "Singularity"
@@ -492,17 +483,6 @@
 				names.Add(name)
 				namecounts[name] = 1
 			creatures[name] = O
-
-		if(istype(O, /obj/machinery/bot))
-			var/name = "BOT: [O.name]"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
 
 	for(var/mob/M in sortAtom(mob_list))
 		var/name = M.name

@@ -25,7 +25,7 @@
 	var/turf/T = get_turf(new_feed)
 	if(!T || !T.contents.len)
 		return
-	for(var/obj/machinery/europa/M in T.contents)
+	for(var/obj/machinery/datanet/M in T.contents)
 		if(M.data_network)
 			continue
 		if(M.connect_to_datanet)
@@ -37,5 +37,5 @@
 		connected_sensors |= S
 
 /datum/conduit_network/data_cable/proc/pulse()
-	for(var/obj/machinery/europa/M in connected_machines)
+	for(var/obj/machinery/datanet/M in connected_machines)
 		M.pulsed()
