@@ -3,9 +3,8 @@
 	component_type = COMPONENT_BARREL
 	projectile_type = GUN_TYPE_BALLISTIC
 	weapon_type = null
-	pixel_y = 6
+	icon = 'icons/obj/gun_components/barrel.dmi'
 
-	var/recoil_mod = 0
 	var/caliber
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/variable_projectile = 1

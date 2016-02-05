@@ -1,4 +1,5 @@
 /obj/item/gun_component/chamber/ballistic/breech/revolver
+	icon_state="revolver"
 	name = "revolver cylinder"
 	weapon_type = GUN_PISTOL
 	handle_casings = CYCLE_CASINGS

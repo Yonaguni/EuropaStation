@@ -221,6 +221,7 @@
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/pistol
+	icon_state="pistol"
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
 	max_shots = 8

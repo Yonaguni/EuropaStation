@@ -1,4 +1,5 @@
 /obj/item/gun_component/barrel/assault
+	icon_state="assault"
 	weapon_type = GUN_ASSAULT
 	caliber = CALIBER_RIFLE_SMALL
 	accepts_accessories = 1

@@ -2,8 +2,8 @@
 	name = "body"
 	component_type = COMPONENT_BODY
 	projectile_type = GUN_TYPE_BALLISTIC
+	icon = 'icons/obj/gun_components/body.dmi'
 	var/base_desc = "It is an ambiguous firearm of some sort."
-	var/two_handed
 
 /obj/item/gun_component/body/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/gun_component))
@@ -24,12 +24,18 @@
 	..()
 
 /obj/item/gun_component/body/pistol
+	icon_state = "pistol"
 	weapon_type = GUN_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = 3
 	force = 5
 	item_state = "gun"
 	base_desc = "It's a pistol."
+
+/obj/item/gun_component/body/pistol/revolver
+	icon_state = "revolver"
+	item_state = "revolver"
+	base_desc = "It's a revolver."
 
 /obj/item/gun_component/body/pistol/small
 	name = "light body"
@@ -38,6 +44,7 @@
 	base_desc = "It's a small pistol."
 
 /obj/item/gun_component/body/smg
+	icon_state = "smg"
 	weapon_type = GUN_SMG
 	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_HOLSTER
 	w_class = 3
@@ -46,6 +53,7 @@
 	base_desc = "It's a submachine gun."
 
 /obj/item/gun_component/body/rifle
+	icon_state = "rifle"
 	weapon_type = GUN_RIFLE
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -56,10 +64,12 @@
 	two_handed = 1
 
 /obj/item/gun_component/body/rifle/black
+	icon_state = "sniper"
 	base_desc = "It's a heavy rifle."
 	item_state = "l6closednomag"
 
 /obj/item/gun_component/body/cannon
+	icon_state = "cannon"
 	weapon_type = GUN_CANNON
 	w_class = 5
 	force = 8
@@ -70,6 +80,7 @@
 	two_handed = 1
 
 /obj/item/gun_component/body/assault
+	icon_state = "assault"
 	weapon_type = GUN_ASSAULT
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -80,6 +91,7 @@
 	two_handed = 1
 
 /obj/item/gun_component/body/shotgun
+	icon_state = "shotgun"
 	weapon_type = GUN_SHOTGUN
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -90,32 +102,38 @@
 	two_handed = 1
 
 /obj/item/gun_component/body/pistol/laser
+	icon_state = "las_pistol"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "retro"
 	base_desc = "It's a laser pistol."
 
 /obj/item/gun_component/body/smg/laser
+	icon_state = "las_smg"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "xray"
 	base_desc = "It's a heavy laser pistol."
 
 /obj/item/gun_component/body/rifle/laser
+	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "laser"
 	base_desc = "It's a laser rifle."
 
 /obj/item/gun_component/body/cannon/laser
+	icon_state = "las_cannon"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "lasercannon"
 	base_desc = "It's a laser cannon."
 
 /obj/item/gun_component/body/assault/laser
+	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "laser"
 	w_class = 3
 	base_desc = "It's a laser assault rifle."
 
 /obj/item/gun_component/body/shotgun/laser
+	icon_state = "las_shotgun"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "pulse"
 	base_desc = "It's a laser shotgun."

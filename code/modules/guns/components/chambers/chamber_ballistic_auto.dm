@@ -1,4 +1,5 @@
 /obj/item/gun_component/chamber/ballistic/smg
+	icon_state="smg"
 	name = "autoloader"
 	automatic = 1
 	weapon_type = GUN_SMG
@@ -11,6 +12,7 @@
 		)
 
 /obj/item/gun_component/chamber/ballistic/assault
+	icon_state="assault"
 	name = "autoloader"
 	automatic = 1
 	weapon_type = GUN_ASSAULT
@@ -24,6 +26,7 @@
 		)
 
 /obj/item/gun_component/chamber/ballistic/autocannon
+	icon_state="cannon"
 	weapon_type = GUN_CANNON
 	automatic = 1
 	max_shots = 20

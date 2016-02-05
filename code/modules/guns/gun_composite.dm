@@ -50,7 +50,7 @@
 /obj/item/weapon/gun/composite/proc/update_from_components()
 
 	// Should we actually exist?
-	if(!barrel || !body || !grip || !stock || !chamber)
+	if(!barrel || !body || !grip || !chamber)
 		var/mob/M = loc
 		if(istype(M))
 			M.unEquip(src)
@@ -73,15 +73,11 @@
 	// Update physical variables.
 	slot_flags = body.slot_flags
 	w_class = 1
-	for(var/weight in list(body.w_class,stock.w_class,grip.w_class))
-		if(weight > w_class)
-			w_class = weight
+	for(var/obj/item/gun_component/GC in list(body, chamber, barrel, grip, stock))
+		if(GC && GC.w_class > w_class)
+			w_class = GC.w_class
 
 	fire_sound = barrel.fire_sound
-
-	// Reset/reinit various values.
-	accuracy = initial(accuracy) + (stock.accuracy_mod + grip.accuracy_mod)
-	recoil =   initial(recoil)   + (stock.recoil_mod + grip.recoil_mod)
 	fire_delay = chamber.fire_delay
 	silenced = 0
 	verbs -= /obj/item/weapon/gun/composite/proc/scope
@@ -90,9 +86,11 @@
 	attack_verb = initial(attack_verb)
 	force = body.force
 
-	for(var/obj/item/gun_component/GC in list(body, chamber, barrel, grip, stock))
+	for(var/obj/item/gun_component/GC in list(body, chamber, barrel, grip, stock) + accessories)
+		if (!GC) continue
 		GC.holder = src
 		GC.installed()
+		GC.apply_mod(src)
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
 		if(GC.model)
@@ -104,10 +102,6 @@
 			model = 0
 	if(!gun_type)
 		gun_type = "gun"
-
-	for(var/obj/item/gun_component/accessory/acc in accessories)
-		acc.applied_to(src, null, dam_type, gun_type)
-		acc.apply_mod(src)
 
 	// Update based on model modifiers.
 	if(model && model.produced_by)
@@ -123,7 +117,7 @@
 		if(!isnull(model.produced_by.weight))
 			w_class = round(w_class * model.produced_by.weight)
 
-	w_class = min(max(w_class, 1),5)
+	w_class = Clamp(w_class,1,5)
 
 	if(dam_type == GUN_TYPE_LASER)
 		recoil = 0
@@ -164,18 +158,27 @@
 		else
 			item_state = body.item_state
 
-		icon = 'icons/obj/gun_components/unbranded.dmi'
-		icon_state = "blank"
-
+		var/image/part
 		for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
+			if (!GC) continue
 			GC.update_icon()
+			/*
 			var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
 			if(!gun_component_icon_cache[cache_key])
 				gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
 			overlays |= gun_component_icon_cache[cache_key]
+			*/
+			part = image(GC.icon, GC.icon_state)
+			part.pixel_y = GC.pixel_y
+			part.pixel_x = GC.pixel_x
+			part.color = GC.color
+			part.appearance_flags = RESET_COLOR
+			overlays |= part
 
 	chamber.update_ammo_overlay()
 	if(chamber.ammo_overlay)
+		chamber.ammo_overlay.pixel_y = chamber.pixel_y
+		chamber.ammo_overlay.pixel_x = chamber.pixel_x
 		overlays |= chamber.ammo_overlay
 
 /obj/item/weapon/gun/composite/AltClick()
