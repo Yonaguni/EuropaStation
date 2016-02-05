@@ -19,6 +19,9 @@
 	name = "anti-materiel rifle"
 	variant_barrel = /obj/item/gun_component/barrel/rifle/am
 	variant_body =   /obj/item/gun_component/body/rifle/black
+	variant_chamber = /obj/item/gun_component/chamber/ballistic/breech/am
+	variant_stock =   /obj/item/gun_component/stock/rifle/am
+	variant_grip =    /obj/item/gun_component/grip/rifle/am
 
 /obj/item/weapon/gun/composite/premade/rifle/antimaterial/New()
 	new /obj/item/gun_component/accessory/chamber/scope(src)

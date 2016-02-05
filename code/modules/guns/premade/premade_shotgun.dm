@@ -10,4 +10,5 @@
 /obj/item/weapon/gun/composite/premade/shotgun/sawnoff
 	name = "sawn-off shotgun"
 	icon_state = "sawnoff"
+	variant_barrel =  /obj/item/gun_component/barrel/shotgun/short
 	set_model = /decl/weapon_model/sawnoff_shotgun

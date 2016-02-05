@@ -125,6 +125,7 @@
 
 // Predefined firing mechanisms.
 /obj/item/gun_component/chamber/laser/pistol
+	icon_state="las_pistol"
 	weapon_type = GUN_PISTOL
 	charge_cost = 100
 	max_shots = 10
@@ -132,6 +133,7 @@
 	ammo_indicator_state = "laser_pistol_loaded"
 
 /obj/item/gun_component/chamber/laser/rifle
+	icon_state="las_rifle"
 	name = "precision lens"
 	weapon_type = GUN_RIFLE
 	charge_cost = 400
@@ -140,6 +142,7 @@
 	ammo_indicator_state = "laser_rifle_loaded"
 
 /obj/item/gun_component/chamber/laser/cannon
+	icon_state="las_cannon"
 	name = "three-phase industrial lens"
 	weapon_type = GUN_CANNON
 	charge_cost = 400
@@ -148,6 +151,7 @@
 	ammo_indicator_state = "laser_cannon_loaded"
 
 /obj/item/gun_component/chamber/laser/assault
+	icon_state="las_assault"
 	name = "multiphase lens"
 	weapon_type = GUN_ASSAULT
 	charge_cost = 200

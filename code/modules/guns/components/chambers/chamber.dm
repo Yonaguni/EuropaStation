@@ -1,9 +1,9 @@
 /obj/item/gun_component/chamber
 	name = "firing mechanism"
+	icon = 'icons/obj/gun_components/chamber.dmi'
 	component_type = COMPONENT_MECHANISM
 	projectile_type = GUN_TYPE_BALLISTIC
 	weapon_type = GUN_PISTOL
-	pixel_y = -3
 
 	var/list/firemodes = list()
 	var/max_shots = 0

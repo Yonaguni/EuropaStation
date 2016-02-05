@@ -20,14 +20,17 @@
 		echamber.charge_cost = get_laser_cost_from_caliber(caliber)
 
 /obj/item/gun_component/barrel/laser/rifle
+	icon_state="las_rifle"
 	weapon_type = GUN_RIFLE
 	caliber = CALIBER_LASER_PRECISION
 	accepts_accessories = 1
 
 /obj/item/gun_component/barrel/laser/cannon
+	icon_state="las_cannon"
 	weapon_type = GUN_CANNON
 	caliber = CALIBER_LASER_HEAVY
 
 /obj/item/gun_component/barrel/laser/assault_practice
+	icon_state="las_assault"
 	weapon_type = GUN_ASSAULT
 	caliber = CALIBER_LASER_PRACTICE

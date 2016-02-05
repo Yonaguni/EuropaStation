@@ -1,4 +1,5 @@
 /obj/item/gun_component/chamber/ballistic/pump
+	icon_state="shotgun"
 	name = "pump-action loader"
 	weapon_type = GUN_SHOTGUN
 	max_shots = 4

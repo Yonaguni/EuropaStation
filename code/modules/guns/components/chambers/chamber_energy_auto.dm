@@ -1,4 +1,5 @@
 /obj/item/gun_component/chamber/laser/smg
+	icon_state="las_smg"
 	name = "multiphase lens"
 	weapon_type = GUN_SMG
 	charge_cost = 100
