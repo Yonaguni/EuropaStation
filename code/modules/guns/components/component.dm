@@ -15,6 +15,18 @@ var/list/gun_component_icon_cache = list()
 	var/has_user_interaction                 // Can this component be interacted with via gun attack_self()?
 	var/has_alt_interaction                  // Can this component be interacted with via gun AltClick()?
 
+	var/two_handed = 0
+	var/fire_rate_mod = 0
+	var/accuracy_mod = 0
+	var/recoil_mod = 0
+
+/obj/item/gun_component/proc/apply_mod(var/obj/item/weapon/gun/composite/gun)
+	// Apply misc mods.
+	if(fire_rate_mod) gun.fire_delay += fire_rate_mod
+	if(accuracy_mod)  gun.accuracy   += accuracy_mod
+	if(recoil_mod)    gun.recoil     += recoil_mod
+	if(two_handed)    gun.requires_two_hands = 1
+
 /obj/item/gun_component/Destroy()
 	holder = null
 	return ..()
@@ -27,24 +39,6 @@ var/list/gun_component_icon_cache = list()
 		model = get_gun_model_by_path(use_model)
 	update_icon()
 	update_strings()
-
-/obj/item/gun_component/update_icon()
-	..()
-	if(model)
-		icon = model.use_icon
-		icon_state = component_type
-	else
-		icon = initial(icon)
-		if(weapon_type)
-			if(projectile_type)
-				icon_state = "[projectile_type]_[weapon_type]_[component_type]"
-			else
-				icon_state = "[weapon_type]_[component_type]"
-		else
-			if(projectile_type)
-				icon_state = "[projectile_type]_[component_type]"
-			else
-				icon_state = "[component_type]"
 
 /obj/item/gun_component/proc/empty()
 	for(var/obj/item/I in contents)
@@ -77,8 +71,18 @@ var/list/gun_component_icon_cache = list()
 /obj/item/gun_component/proc/installed()
 	return
 
+/obj/item/gun_component/proc/uninstalled()
+	return
+
 /obj/item/gun_component/proc/do_user_interaction(var/mob/user)
 	return
 
 /obj/item/gun_component/proc/do_user_alt_interaction(var/mob/user)
 	return
+
+/obj/item/gun_component/attackby(var/obj/item/thing, var/mob/user)
+	if(istype(thing,/obj/item/weapon/screwdriver))
+		var/offset = input(user,"New vertical offset:","Part offset",pixel_y)
+		pixel_y = offset
+		offset = input(user,"New horizontal offset:","Part offset",pixel_x)
+		pixel_x = offset

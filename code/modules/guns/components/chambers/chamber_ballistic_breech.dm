@@ -1,4 +1,5 @@
 /obj/item/gun_component/chamber/ballistic/breech
+	icon_state="rifle"
 	name = "breech loader"
 	weapon_type = GUN_RIFLE
 	max_shots = 1
@@ -6,6 +7,9 @@
 	handle_casings = EJECT_CASINGS
 	has_user_interaction = 1
 	var/breech_open
+
+/obj/item/gun_component/chamber/ballistic/breech/am
+	icon_state="sniper"
 
 /obj/item/gun_component/chamber/ballistic/breech/consume_next_projectile()
 	return breech_open ? null : ..()

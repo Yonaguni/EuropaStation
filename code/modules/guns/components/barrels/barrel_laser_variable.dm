@@ -1,4 +1,5 @@
 /obj/item/gun_component/barrel/laser/variable
+	icon_state="las_pistol"
 	caliber = "variable"
 	weapon_type = GUN_PISTOL
 	firemodes = list(
@@ -12,9 +13,11 @@
 	caliber = (fmode["caliber"] ? fmode["caliber"] : CALIBER_LASER)
 
 /obj/item/gun_component/barrel/laser/variable/assault
+	icon_state="las_assault"
 	weapon_type = GUN_ASSAULT
 
 /obj/item/gun_component/barrel/laser/variable/smg
+	icon_state="las_smg"
 	weapon_type = GUN_SMG
 	firemodes = list(
 		list(mode_name="stun",                  caliber = CALIBER_LASER_TASER),
