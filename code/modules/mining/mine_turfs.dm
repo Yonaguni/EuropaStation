@@ -35,6 +35,12 @@ proc/get_mining_overlay(var/overlay_key)
 	var/overlay_detail
 	var/ignore_mapgen
 
+/turf/simulated/mineral/can_build_cable()
+	return !density
+
+/turf/simulated/mineral/is_plating()
+	return 1
+
 /turf/simulated/mineral/floor
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
@@ -43,6 +49,7 @@ proc/get_mining_overlay(var/overlay_key)
 	opacity = 0
 	blocks_air = 0
 	blend_with_neighbors = 4
+	accept_lattice = 1
 
 /turf/simulated/mineral/flooded
 	flooded = 1
@@ -51,6 +58,7 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/floor/flooded
 	flooded = 1
 	color = "#0000FF"
+	accept_lattice = 1
 
 /turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
@@ -59,6 +67,7 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
 	color = "#00FF00"
+	accept_lattice = 1
 
 /turf/simulated/mineral/ignore_mapgen/flooded
 	ignore_mapgen = 1
@@ -69,6 +78,7 @@ proc/get_mining_overlay(var/overlay_key)
 	ignore_mapgen = 1
 	flooded = 1
 	color = "#00FFFF"
+	accept_lattice = 1
 
 /turf/simulated/mineral/New()
 	..()
@@ -81,6 +91,7 @@ proc/get_mining_overlay(var/overlay_key)
 	opacity = 0
 	blocks_air = 0
 	update_general()
+	accept_lattice = 1
 
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
@@ -88,6 +99,7 @@ proc/get_mining_overlay(var/overlay_key)
 	density = 1
 	opacity = 1
 	blocks_air = 1
+	accept_lattice = null
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()
@@ -252,7 +264,8 @@ proc/get_mining_overlay(var/overlay_key)
 			GetDrilled()
 			return
 
-	return attack_hand(user)
+	return ..()
+
 
 /turf/simulated/mineral/proc/clear_ore_effects()
 	for(var/obj/effect/mineral/M in contents)

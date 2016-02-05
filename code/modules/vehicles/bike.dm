@@ -15,7 +15,6 @@ var/list/bike_cache = list()
 	pixel_y = -16
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
-
 	var/max_move_speed = 3
 	var/cur_move_speed = 0
 	var/moved
@@ -29,19 +28,10 @@ var/list/bike_cache = list()
 	var/idle_sound = 'sound/misc/bike_idle.ogg'
 	var/start_sound = 'sound/misc/bike_start.ogg'
 
-	// These are terrible but unless someone wants to find me
-	// better sounds or a better system for giving movement
-	// feedback to the player, they will have to do. ~Z
-	var/global/list/move_sounds = list(
-		'sound/misc/bike_idle.ogg',
-		'sound/misc/bike_idle_2.ogg',
-		'sound/misc/bike_idle_2.ogg',
-		'sound/misc/bike_idle_3.ogg',
-		'sound/misc/bike_idle_3.ogg'
-		)
-
 	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
+
+	var/collision_cooldown
 
 /obj/vehicle/bike/initialize()
 	..()
@@ -59,7 +49,7 @@ var/list/bike_cache = list()
 	if(!on)
 		turn_on()
 		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
-		playsound(src.loc, start_sound, 75)
+		playsound(src.loc, start_sound, 100)
 	else
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
@@ -138,20 +128,69 @@ var/list/bike_cache = list()
 	update_icon()
 	..()
 
+/obj/vehicle/bike/Bump(var/atom/thing)
+
+	if(!istype(thing, /atom/movable))
+		return
+
+	var/atom/movable/A = thing
+
+	// Bump things away!
+	if(!A.anchored)
+		var/turf/T = get_step(A, dir)
+		if(isturf(T))
+			A.Move(T)
+	else
+		if(collision_cooldown)
+			return
+		if(cur_move_speed > 1)
+			A.attack_generic(src, rand(30,50), "slams into")
+			if(prob(50))
+				var/mob/living/M = load
+				unload(load, dir)
+				if(istype(M))
+					M << "<span class='danger'>You are hurled off \the [src]!</span>"
+					M.Weaken(rand(5,10))
+					M.throw_at(get_edge_target_turf(src,src.dir),rand(1,2), move_delay)
+			spawn(1)
+				collision_cooldown = 1
+				src.ex_act(2)
+
+	if(cur_move_speed > 1 && istype(A, /mob/living))
+		var/mob/living/M = A
+		if(!M.lying)
+			if(istype(load, /mob/living))
+				var/mob/living/driver = load
+				driver << "<span class='danger'>You collide with \the [M]!</span>"
+				msg_admin_attack("[driver.name] ([driver.ckey]) hit [M.name] ([M.ckey]) with [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+			visible_message("<span class='danger'>\The [src] knocks \the [M] down!</span>")
+			RunOver(M)
+			M.Weaken(rand(5,10))
+			M.throw_at(get_edge_target_turf(src,get_dir(src,M)),rand(1,2), move_delay)
+
+/obj/vehicle/bike/RunOver(var/mob/living/carbon/human/H)
+	if(istype(load, /mob/living))
+		load << "<span class='danger'>You run \the [H] down!</span>"
+		H << "<span class='danger'>\The [load] runs you down!</span>"
+	else
+		H << "<span class='danger'>\The [src] runs you down!</span>"
+	if(istype(H))
+		var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
+		for(var/i = 0, i < rand(1,3), i++)
+			H.apply_damage((rand(1,5)), BRUTE, pick(parts))
+
+
 /obj/vehicle/bike/process()
 	if(on)
 		if(moved && cur_move_speed < max_move_speed)
 			cur_move_speed++
 		else if(cur_move_speed > 0)
 			cur_move_speed--
-		if(cur_move_speed)
-			playsound(src.loc, move_sounds[cur_move_speed], 75)
-		else
-			playsound(src.loc, idle_sound, 75)
-
+		playsound(src.loc, idle_sound, 100)
 	else
 		cur_move_speed = 0
 	moved = 0
+	collision_cooldown = 0
 
 /obj/vehicle/bike/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(protection_percent))

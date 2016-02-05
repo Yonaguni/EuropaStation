@@ -40,7 +40,6 @@
 			else
 				freq = radio_name_to_freq[channel]
 
-	world << "Freq is [freq] isnum - [isnum(freq)]!"
 	// Finally, try and broadcast to the target channel.
 	if(freq) do_broadcast(speaker, message, speaking, speech_verb, freq)
 
