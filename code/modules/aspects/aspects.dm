@@ -4,16 +4,18 @@
 	var/name = "Filler Aspect"                        // Name/unique index.
 	var/desc = "An aspect is a kind of skill."        // Flavour text.
 	var/use_icon_state = ""                           // State to use for the above.
-	var/icon/use_icon                                // I REALLY HATE \icon A LOT.
+	//var/icon/use_icon                                 // I REALLY HATE \icon A LOT.
 	var/category                                      // Header for root aspects in char prefs.
 
 	var/parent_name
 	var/decl/aspect/parent
 	var/list/children = list()
 
+/*
 /decl/aspect/New()
 	..()
 	use_icon = icon(icon = 'icons/obj/aspects.dmi', icon_state = use_icon_state)
+*/
 
 /decl/aspect/Destroy()
 	children.Cut()
@@ -35,10 +37,17 @@
 		for(var/x = 1 to recurse_level)
 			result += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" // Padding.
 
+	/*
 	if(caller)
 		result += "<img src='[name]_small.png'>&nbsp&nbsp<a href='?src=\ref[caller];toggle_aspect=[name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font></a>"
 	else
 		result += "<img src='[name]_small.png'>&nbsp&nbsp<font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font>"
+	*/
+
+	if(caller)
+		result += "<a href='?src=\ref[caller];toggle_aspect=[name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font></a>"
+	else
+		result += "<font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font>"
 
 	result += "</td><td>"
 	if(ticked)

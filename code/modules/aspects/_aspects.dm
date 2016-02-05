@@ -39,7 +39,7 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 			AC = new(A.category)
 			aspect_categories[A.category] = AC
 		AC.aspects += A
-		aspect_icons += A.use_icon
+		//aspect_icons += A.use_icon
 
 	// Update their parent/children variables.
 	for(var/decl/aspect/A in aspect_datums)
