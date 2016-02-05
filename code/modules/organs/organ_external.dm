@@ -157,24 +157,24 @@
 			dislocated = 2
 		else
 			dislocated = 1
-	owner.verbs |= /mob/living/carbon/human/proc/undislocate
+	owner.verbs |= /mob/living/carbon/human/proc/relocate
 	if(children && children.len)
 		for(var/obj/item/organ/external/child in children)
 			child.dislocate()
 
-/obj/item/organ/external/proc/undislocate()
+/obj/item/organ/external/proc/relocate()
 	if(dislocated != -1)
 		dislocated = 0
 	if(children && children.len)
 		for(var/obj/item/organ/external/child in children)
 			if(child.dislocated == 1)
-				child.undislocate()
+				child.relocate()
 	if(owner)
 		owner.shock_stage += 20
 		for(var/obj/item/organ/external/limb in owner.organs)
 			if(limb.dislocated == 2)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/undislocate
+		owner.verbs -= /mob/living/carbon/human/proc/relocate
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))

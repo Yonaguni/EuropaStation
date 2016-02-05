@@ -30,6 +30,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	touch_met = 5
+	disinfectant = 1
 
 /datum/reagent/antiseptic/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.germ_level -= min(removed*20, M.germ_level)

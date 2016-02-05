@@ -6,6 +6,7 @@
 	color = "#404030"
 	touch_met = 5
 	flammable = 1
+	disinfectant = 1
 
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.

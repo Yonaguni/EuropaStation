@@ -21,16 +21,11 @@
 					break
 	return (disinfect_amt <= 0)
 
-/datum/surgery_step/disinfect/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
-			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != O_MOUTH
-
 /datum/surgery_step/disinfect/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("\The [user] begins disinfecting \the [target]'s [affected.name] with \the [tool].")
 
-	affacted.germ_level = 0
+	affected.germ_level = 0
 	if(affected.open)
 		tool.reagents.trans_to(target, rand(3,5), CHEM_BLOOD)
 		target.custom_pain("You feel a searing pain in your [affected.name]!",1)
@@ -41,7 +36,7 @@
 /datum/surgery_step/disinfect/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>\The [user] has disinfected \the [target]'s [affected.name] with \the [tool].</span>")
-	affacted.germ_level = 0
+	affected.germ_level = 0
 
 
 /datum/surgery_step/disinfect/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

@@ -4,42 +4,66 @@
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
 	if(!E || E.is_stump())
-		user << "<span class='notice'>[H] is missing that bodypart.</span>"
+		user << "<span class='warning'>\The [H] is missing that bodypart.</span>"
 		return
 
-	user.visible_message("<span class='notice'>[user] starts inspecting [affecting]'s [E.name] carefully.</span>")
+	user.visible_message("<span class='notice'>\The [user] starts inspecting [affecting]'s [E.name] carefully.</span>")
+
+	// Prosthetics and robolimbs.
+	if(E.status & ORGAN_ROBOT)
+		if(!do_mob(user,H, 10))
+			user << "<span class='notice'>You must stand still to inspect \the [E] for damage.</span>"
+			return
+		else if(E.wounds.len)
+			user << "<span class='warning'>You find [E.get_wounds_desc()]</span>"
+		else
+			user << "<span class='notice'>You find no apparent damage.</span>"
+		return
+
+	// General trauma.
 	if(!do_mob(user,H, 10))
-		user << "<span class='notice'>You must stand still to inspect [E] for wounds.</span>"
+		user << "<span class='notice'>You must stand still to inspect \the [E] for wounds.</span>"
+		return
 	else if(E.wounds.len)
 		user << "<span class='warning'>You find [E.get_wounds_desc()]</span>"
+		if(locate(/datum/wound/internal_bleeding) in E.wounds)
+			user << "<span class='warning'>\The [E] is unusually swollen and discoloured.</span>"
+		if(E.cavity)
+			user << "<span class='warning'>\The [E]'s surface dips unnaturally inwards.</span>"
+		if(E.implants.len)
+			user << "<span class='warning'>\The [E] bulges strangely in a few places.</span>"
 	else
-		user << "<span class='notice'>You find no visible wounds.</span>"
+		user << "<span class='notice'>You find no apparent wounds.</span>"
 
-	user << "<span class='notice'>Checking bones now...</span>"
+	// Fractures.
+	user << "<span class='notice'>You begin checking for broken bones or fractures.</span>"
 	if(!do_mob(user, H, 20))
-		user << "<span class='notice'>You must stand still to feel [E] for fractures.</span>"
+		user << "<span class='notice'>You must stand still to inspect \the [E] for fractures.</span>"
+		return
 	else if(E.status & ORGAN_BROKEN)
 		user << "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>"
 		H.custom_pain("Your [E.name] hurts where it's poked.")
 	else
-		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>"
+		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seems to be fine.</span>"
 
-	user << "<span class='notice'>Checking skin now...</span>"
+	// Toxins.
+	user << "<span class='notice'>You begin checking \the [H]'s skin.</span>"
 	if(!do_mob(user, H, 10))
-		user << "<span class='notice'>You must stand still to check [H]'s skin for abnormalities.</span>"
+		user << "<span class='notice'>You must stand still to check \the [H]'s skin for abnormalities.</span>"
+		return
 	else
 		var/bad = 0
 		if(H.getToxLoss() >= 40)
-			user << "<span class='warning'>[H] has an unhealthy skin discoloration.</span>"
+			user << "<span class='warning'>\The [H] has an unhealthy skin discoloration.</span>"
 			bad = 1
-		if(H.getOxyLoss() >= 20)
-			user << "<span class='warning'>[H]'s skin is unusaly pale.</span>"
+		if(H.getOxyLoss() >= 20 || H.vessel.total_volume < 400)
+			user << "<span class='warning'>\The [H]'s skin is unusually pale.</span>"
 			bad = 1
 		if(E.status & ORGAN_DEAD)
-			user << "<span class='warning'>[E] is decaying!</span>"
+			user << "<span class='warning'>\The [E] is decaying!</span>"
 			bad = 1
 		if(!bad)
-			user << "<span class='notice'>[H]'s skin is normal.</span>"
+			user << "<span class='notice'>\The [H]'s skin appears to be normal.</span>"
 
 /obj/item/weapon/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)

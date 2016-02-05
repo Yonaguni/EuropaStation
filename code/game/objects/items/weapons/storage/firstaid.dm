@@ -125,7 +125,7 @@
 	new /obj/item/weapon/scalpel(src)
 	new /obj/item/weapon/surgicaldrill(src)
 	new /obj/item/weapon/bonegel(src)
-	new /obj/item/weapon/FixOVein(src)
+	new /obj/item/weapon/suture(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 	make_exact_fit()

@@ -84,10 +84,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				if(!pale)
 					pale = 1
 					update_body()
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(prob(1))
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(oxyloss < 20)
 					oxyloss += 3

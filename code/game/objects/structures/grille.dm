@@ -11,6 +11,10 @@
 	var/health = 10
 	var/destroyed = 0
 
+/obj/structure/grille/initialize()
+	if(destroyed)
+		health = rand(-5, -1) //In the destroyed but not utterly threshold.
+		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
@@ -64,7 +68,7 @@
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
 	var/passthrough = 0
-	
+
 	if(!damage) return
 
 	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
@@ -218,15 +222,10 @@
 	spawn(1) healthcheck()
 	return 1
 
-// Used in mapping to avoid
 /obj/structure/grille/broken
 	destroyed = 1
 	icon_state = "grille-b"
 	density = 0
-	New()
-		..()
-		health = rand(-5, -1) //In the destroyed but not utterly threshold.
-		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 
 /obj/structure/grille/cult
 	name = "cult grille"
@@ -238,3 +237,20 @@
 	if(air_group)
 		return 0 //Make sure air doesn't drain
 	..()
+
+/obj/structure/grille/fence
+	name = "fence"
+	icon = 'icons/obj/europa/structures/fence.dmi'
+	icon_state = "fence"
+	density = 1
+	anchored = 1
+
+/obj/structure/grille/attackby(var/obj/item/thing, var/mob/user)
+	if(istype(thing, /obj/item/weapon/screwdriver))
+		return
+	return ..()
+
+/obj/structure/grille/fence/gate
+	name = "fence gate"
+	icon_state = "fence_gate"
+	density = 0
