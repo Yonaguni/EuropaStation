@@ -34,7 +34,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != O_MOUTH
+			return affected && affected.is_open() == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -51,14 +51,14 @@
 
 		if(istype(target) && target.should_have_organ(O_HEART))
 			affected.status |= ORGAN_BLEEDING
-
-		affected.createwound(CUT, 1)
+		affected.createwound(CUT, 15)
+		affected.update_damages()
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\red [user]'s hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!", \
 		"\red Your hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!")
-		affected.createwound(CUT, 10)
+		target.apply_damage(rand(5,10), BRUTE< affected)
 
 /datum/surgery_step/generic/cauterize_bleeders
 	allowed_tools = list(
@@ -74,7 +74,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && (affected.status & ORGAN_BLEEDING)
+			return affected && affected.is_open() && (affected.status & ORGAN_BLEEDING)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -109,7 +109,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 1 //&& !(affected.status & ORGAN_BLEEDING)
+			return affected && affected.is_open() == 1 //&& !(affected.status & ORGAN_BLEEDING)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -150,40 +150,6 @@
 			self_msg = "\red Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!"
 		user.visible_message(msg, self_msg)
 		target.apply_damage(12, BRUTE, affected, sharp=1)
-
-/datum/surgery_step/generic/close
-	allowed_tools = list(
-	/obj/item/weapon/suture = 100,
-	/obj/item/stack/cable_coil = 60
-	)
-
-	min_duration = 70
-	max_duration = 100
-
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
-			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != O_MOUTH
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("[user] is beginning to close the wound on [target]'s [affected.name] with \the [tool]." , \
-		"You are beginning to close the incision on [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("Your [affected.name] is being stabbed!",1)
-		..()
-
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] closes the incision on [target]'s [affected.name] with \the [tool].", \
-		"\blue You close the incision on [target]'s [affected.name] with \the [tool].")
-		affected.open = 0
-		affected.status &= ~ORGAN_BLEEDING
-
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, tearing [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, tearing [target]'s [affected.name] with \the [tool]!")
-		target.apply_damage(3, BRUTE, affected)
 
 /datum/surgery_step/generic/amputate
 	allowed_tools = list(

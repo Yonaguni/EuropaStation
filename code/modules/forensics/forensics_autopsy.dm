@@ -194,7 +194,7 @@
 	if(!S)
 		usr << "<span class='warning'>You can't scan this body part.</span>"
 		return
-	if(!S.open)
+	if(!S.is_open())
 		usr << "<span class='warning'>You have to cut the limb open first!</span>"
 		return
 	for(var/mob/O in viewers(M))

@@ -396,3 +396,6 @@ This function restores all organs.
 	updatehealth()
 	BITSET(hud_updateflag, HEALTH_HUD)
 	return 1
+
+/mob/living/carbon/human/proc/can_heal()
+	return (resting && nutrition > 150 && hydration > 150)

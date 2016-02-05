@@ -34,7 +34,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != O_MOUTH
+			return affected && affected.is_open() == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -66,7 +66,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 1
+			return affected && affected.is_open() == 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -98,7 +98,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != O_MOUTH
+			return affected && affected.is_open() && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -134,7 +134,7 @@
 				var/obj/item/weapon/weldingtool/welder = tool
 				if(!welder.isOn() || !welder.remove_fuel(1,user))
 					return 0
-			return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
+			return affected && affected.is_open() == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -166,7 +166,7 @@
 		if(..())
 			var/obj/item/stack/cable_coil/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			var/limb_can_operate = ((affected && affected.open >= 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH)
+			var/limb_can_operate = ((affected && affected.is_open() >= 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH)
 			if(limb_can_operate)
 				if(istype(C))
 					if(!C.get_amount() >= 3)
@@ -216,7 +216,7 @@
 			if(I.damage > 0 && (I.status & ORGAN_ROBOT))
 				is_organ_damaged = 1
 				break
-		return affected.open == 3 && is_organ_damaged
+		return affected.is_open() == 3 && is_organ_damaged
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
@@ -279,7 +279,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!(affected && (affected.status & ORGAN_ROBOT)))
 			return 0
-		if(affected.open < 3)
+		if(affected.is_open() < 3)
 			return 0
 
 		target.op_stage.current_organ = null
@@ -328,7 +328,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!(affected && (affected.status & ORGAN_ROBOT)))
 			return 0
-		if(affected.open < 3)
+		if(affected.is_open() < 3)
 			return 0
 
 		target.op_stage.current_organ = null
@@ -378,7 +378,7 @@
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && affected.open == 3))
+		if(!(affected && affected.is_open() == 3))
 			return 0
 
 		if(!istype(M))

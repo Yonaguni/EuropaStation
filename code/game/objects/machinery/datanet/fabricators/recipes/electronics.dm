@@ -58,10 +58,6 @@
 	name = "reagent scanner"
 	path = /obj/item/device/reagent_scanner
 
-/decl/fabricator_design/electronics/medical/laser_scalpel
-	name = "laser scalpel"
-	path = /obj/item/weapon/scalpel/laser1
-
 /decl/fabricator_design/electronics/medical/surgicaldrill
 	name = "surgical drill"
 	path = /obj/item/weapon/surgicaldrill

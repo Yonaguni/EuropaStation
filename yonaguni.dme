@@ -1712,6 +1712,7 @@
 #include "code\modules\surgery\other.dm"
 #include "code\modules\surgery\robotics.dm"
 #include "code\modules\surgery\surgery.dm"
+#include "code\modules\surgery\suture_wounds.dm"
 #include "code\modules\surgery\~defines.dm"
 #include "code\modules\tables\flipping.dm"
 #include "code\modules\tables\interactions.dm"

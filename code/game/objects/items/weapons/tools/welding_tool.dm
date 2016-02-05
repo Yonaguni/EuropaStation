@@ -277,7 +277,7 @@
 				S.heal_damage(15,0,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [H]'s [S.name] with \the [src].</span>")
-			else if(S.open < 3)
+			else if(S.is_open() < 3)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 			else
 				return ..()

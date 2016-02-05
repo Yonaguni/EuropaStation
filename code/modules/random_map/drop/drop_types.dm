@@ -113,7 +113,6 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/firstaid/fire,
 		/obj/item/weapon/storage/firstaid/toxin,
 		/obj/item/weapon/storage/firstaid/o2,
-		/obj/item/weapon/storage/firstaid/adv,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
 		/obj/item/weapon/reagent_containers/glass/bottle/adrenaline,
 		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,

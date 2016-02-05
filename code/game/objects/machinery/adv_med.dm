@@ -344,7 +344,7 @@
 			AN = "[e.broken_description]:"
 		if(e.status & ORGAN_ROBOT)
 			robot = "Prosthetic:"
-		if(e.open)
+		if(e.is_open())
 			open = "Open:"
 
 		switch (e.germ_level)

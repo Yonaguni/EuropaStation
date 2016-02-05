@@ -443,7 +443,7 @@
 "iA" = (/obj/structure/cable{icon_state = "2-4"},/obj/structure/conduit/data{tag = "icon-data_cable (NORTHEAST)"; icon_state = "data_cable"; dir = 5},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "iB" = (/obj/structure/table/standard,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/o2,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "iC" = (/obj/structure/table/standard,/obj/item/weapon/bonegel,/obj/item/weapon/circular_saw,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
-"iD" = (/obj/structure/table/standard,/obj/item/weapon/suture,/obj/item/weapon/hemostat,/obj/item/weapon/retractor,/obj/item/stack/medical/advanced/bruise_pack,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
+"iD" = (/obj/structure/table/standard,/obj/item/weapon/suture,/obj/item/weapon/hemostat,/obj/item/weapon/retractor,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "iE" = (/obj/structure/table/standard,/obj/item/weapon/cautery,/obj/item/weapon/bonesetter,/obj/item/weapon/scalpel,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "iF" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/material/hatchet,/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "iG" = (/obj/machinery/kitchen/oven,/obj/item/weapon/reagent_containers/kitchen/bakingtray,/obj/item/weapon/reagent_containers/kitchen/caketin,/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)

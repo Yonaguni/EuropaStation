@@ -125,8 +125,6 @@
 	item_to_spawn()
 		return pick(prob(4);/obj/item/stack/medical/bruise_pack,\
 					prob(4);/obj/item/stack/medical/ointment,\
-					prob(2);/obj/item/stack/medical/advanced/bruise_pack,\
-					prob(2);/obj/item/stack/medical/advanced/ointment,\
 					prob(1);/obj/item/stack/medical/splint,\
 					prob(2);/obj/item/bodybag,\
 					prob(1);/obj/item/bodybag/cryobag,\

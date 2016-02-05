@@ -89,6 +89,18 @@
 
 	return ..()
 
+/obj/item/organ/external/proc/is_open()
+	if(!wounds.len)
+		return 0
+	var/result
+	for(var/datum/wound/W in wounds)
+		if(W.damage_type == CUT && !W.internal && !W.bandaged)
+			result = 1
+			if(!open)
+				open = 1
+			break
+	return (result ? open : 0)
+
 /obj/item/organ/external/attack_self(var/mob/user)
 	if(!contents.len)
 		return ..()
@@ -592,7 +604,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	for(var/datum/wound/W in wounds)
 		// wounds can disappear after 10 minutes at the earliest
-		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
+		if(owner.can_heal() && W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound
@@ -607,22 +619,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(prob(1 * wound_update_accuracy))
 				owner.custom_pain("You feel a stabbing pain in your [name]!",1)
 
-		// slow healing
-		var/heal_amt = 0
-
-		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.can_autoheal() && W.wound_damage() < 50)
-			heal_amt += 0.5
-
-		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
-		heal_amt = heal_amt * wound_update_accuracy
-		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
-		// amount of healing is spread over all the wounds
-		heal_amt = heal_amt / (wounds.len + 1)
-		// making it look prettier on scanners
-		heal_amt = round(heal_amt,0.1)
-		W.heal_damage(heal_amt)
+		if(owner.can_heal())
+			// slow healing
+			var/heal_amt = 0
+			// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
+			if (W.can_autoheal() && W.wound_damage() < 50)
+				heal_amt += 0.5
+			//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
+			heal_amt = heal_amt * wound_update_accuracy
+			//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
+			heal_amt = heal_amt * config.organ_regeneration_multiplier
+			// amount of healing is spread over all the wounds
+			heal_amt = heal_amt / (wounds.len + 1)
+			// making it look prettier on scanners
+			heal_amt = round(heal_amt,0.1)
+			W.heal_damage(heal_amt)
 
 		// Salving also helps against infection
 		if(W.germ_level > 0 && W.salved && prob(2))
@@ -663,7 +674,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		number_wounds += W.amount
 
 	//things tend to bleed if they are CUT OPEN
-	if (open && !clamped && (H && H.should_have_organ(O_HEART)))
+	if (is_open() && !clamped && (H && H.should_have_organ(O_HEART)))
 		status |= ORGAN_BLEEDING
 
 	//Bone fractures
@@ -1122,12 +1133,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	var/list/wound_descriptors = list()
-	if(open > 1)
-		wound_descriptors["an open incision"] = 1
-	else if (open)
-		wound_descriptors["an incision"] = 1
+
 	for(var/datum/wound/W in wounds)
-		if(W.internal && !open) continue // can't see internal wounds
+		if(W.internal && !is_open())
+			continue // can't see internal wounds
 		var/this_wound_desc = W.desc
 		if(W.damage_type == BURN && W.salved) this_wound_desc = "salved [this_wound_desc]"
 		if(W.bleeding()) this_wound_desc = "bleeding [this_wound_desc]"
