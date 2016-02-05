@@ -10,11 +10,17 @@
 
 /obj/item/weapon/gun/composite/premade/New()
 	icon_state = ""
+
+	// Mandatory parts.
 	barrel =  new variant_barrel  (src, use_model = set_model)
 	body =    new variant_body    (src, use_model = set_model)
-	stock =   new variant_stock   (src, use_model = set_model)
 	chamber = new variant_chamber (src, use_model = set_model)
 	grip =    new variant_grip    (src, use_model = set_model)
+
+	// Optional parts.
+	if(variant_stock) stock = new variant_stock (src, use_model = set_model)
+
+	// Accessories.
 	accessories.Cut()
 	for(var/obj/item/gun_component/accessory/acc in contents)
 		accessories += acc
