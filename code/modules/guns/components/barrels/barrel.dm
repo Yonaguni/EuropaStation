@@ -28,15 +28,15 @@
 /obj/item/gun_component/barrel/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/circular_saw) || istype(thing, /obj/item/weapon/melee/energy) || istype(thing, /obj/item/weapon/wirecutters))
 		if(shortened_icon && icon_state != shortened_icon)
-				user << "<span class='notice'>You begin to shorten \the [src].</span>"
-				if(do_after(user, 30))
-					user << "<span class='warning'>You shorten \the [src]!</span>"
-					icon_state = shortened_icon
-					w_class = max(1,w_class-1)
-					accepts_accessories = 0
-					recoil_mod++
-					accuracy_mod--
-					return
+			user << "<span class='notice'>You begin to shorten \the [src].</span>"
+			if(do_after(user, 30))
+				user << "<span class='warning'>You shorten \the [src]!</span>"
+				icon_state = shortened_icon
+				w_class = max(1,w_class-1)
+				accepts_accessories = 0
+				recoil_mod++
+				accuracy_mod--
+				return
 		else
 			user << "<span class='warning'>You cannot shorten \the [src] any further!</span>"
 	..()

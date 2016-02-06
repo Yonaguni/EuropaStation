@@ -15,7 +15,7 @@
 	set_model = /decl/weapon_model/sawnoff_shotgun
 
 /obj/item/weapon/gun/composite/premade/shotgun/hunting
-	variant_chamber = /obj/item/gun_component/chamber/ballistic/breech/hunting
+	variant_chamber = /obj/item/gun_component/chamber/ballistic/breech/shotgun
 	variant_body =    /obj/item/gun_component/body/shotgun/hunting
 
 /obj/item/weapon/gun/composite/premade/shotgun/double/sawnoff
