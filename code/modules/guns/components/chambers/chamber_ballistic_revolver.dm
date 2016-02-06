@@ -16,11 +16,11 @@
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/load_ammo(var/obj/item/A, var/mob/user)
 	chamber_offset = 0
-	return ..()
+	return ..(A, user)
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/unload_ammo(var/mob/user)
 	chamber_offset = 0
-	return ..()
+	return ..(user)
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/do_user_alt_interaction(var/mob/user)
 	chamber_offset = 0

@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/composite/premade/smg
 	name = "submachine gun"
 	icon_state = "ballistic_smg"
-	variant_chamber = /obj/item/gun_component/chamber/ballistic/smg
+	variant_chamber = /obj/item/gun_component/chamber/ballistic/auto
 	variant_stock =   /obj/item/gun_component/stock/smg
 	variant_grip =    /obj/item/gun_component/grip/smg
 	variant_body =    /obj/item/gun_component/body/smg

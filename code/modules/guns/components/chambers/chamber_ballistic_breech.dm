@@ -15,10 +15,25 @@
 	icon_state="sniper"
 
 /obj/item/gun_component/chamber/ballistic/breech/consume_next_projectile()
-	return breech_open ? null : ..()
+	if(breech_open)
+		if(holder)
+			var/mob/M = holder.loc
+			if(istype(M))
+				M << "<span class='warning'>The breech is open.</span>"
+		return 0
+	return ..()
 
 /obj/item/gun_component/chamber/ballistic/breech/can_load(var/mob/user)
-	return breech_open
+	if(!breech_open)
+		user << "<span class='warning'>The breech is closed.</span>"
+		return 0
+	return 1
+
+/obj/item/gun_component/chamber/ballistic/breech/can_unload(var/mob/user)
+	if(!breech_open)
+		user << "<span class='warning'>The breech is closed.</span>"
+		return 0
+	return 1
 
 /obj/item/gun_component/chamber/ballistic/breech/do_user_interaction(var/mob/user)
 	playsound(user, 'sound/weapons/empty.ogg', 50, 1)

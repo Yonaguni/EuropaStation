@@ -113,6 +113,9 @@
 /obj/item/gun_component/chamber/ballistic/proc/can_load(var/mob/user)
 	return 1
 
+/obj/item/gun_component/chamber/ballistic/proc/can_unload(var/mob/user)
+	return 1
+
 /obj/item/gun_component/chamber/ballistic/proc/update_ammo_from_contents()
 	sleep(-1)
 	loaded.Cut()
@@ -199,6 +202,9 @@
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/unload_ammo(var/mob/user)
+
+	if(!can_unload(user))
+		return
 
 	if(magazine)
 		magazine.forceMove(get_turf(src))

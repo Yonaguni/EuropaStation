@@ -32,6 +32,10 @@
 		qdel(assembly)
 	..(newloc)
 
+/obj/item/weapon/gun/composite/dropped()
+	..()
+	update_strings()
+
 /obj/item/weapon/gun/composite/reset_name()
 	update_strings()
 	return name
