@@ -1,4 +1,11 @@
 /obj/item/weapon/gun/composite/consume_next_projectile()
+
+	if(jammed)
+		var/mob/M = loc
+		if(istype(M))
+			M << "<span class='warning'>\The [src] has jammed!</span>"
+		return
+
 	var/obj/item/projectile/proj = chamber.consume_next_projectile()
 	if(proj)
 		if(model && !isnull(model.produced_by.damage_mod))

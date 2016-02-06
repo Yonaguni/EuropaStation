@@ -19,6 +19,9 @@ var/list/gun_component_icon_cache = list()
 	var/accuracy_mod = 0
 	var/recoil_mod = 0
 
+/obj/item/gun_component/proc/get_extra_examine_info()
+	return
+
 /obj/item/gun_component/proc/apply_mod(var/obj/item/weapon/gun/composite/gun)
 	// Apply misc mods.
 	if(fire_rate_mod) gun.fire_delay += fire_rate_mod
@@ -82,6 +85,8 @@ var/list/gun_component_icon_cache = list()
 /obj/item/gun_component/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing,/obj/item/weapon/screwdriver))
 		var/offset = input(user,"New vertical offset:","Part offset",pixel_y)
-		pixel_y = offset
+		pixel_y = Clamp(offset,-world.icon_size,world.icon_size)
 		offset = input(user,"New horizontal offset:","Part offset",pixel_x)
-		pixel_x = offset
+		pixel_x = Clamp(offset,-world.icon_size,world.icon_size)
+	else
+		..()

@@ -23,7 +23,7 @@
 			return /obj/item/projectile/beam/emitter
 		if(CALIBER_LASER_PRECISION)
 			return /obj/item/projectile/beam/sniper
-		if(CALIBER_LASER_SHOCK)
+		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
 			return /obj/item/projectile/beam/stun
 	return /obj/item/projectile/beam
 

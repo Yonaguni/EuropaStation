@@ -19,8 +19,8 @@
 /obj/effect/landmark/start/miner
 	name = "Miner"
 
-/obj/effect/landmark/start/sawbones
-	name = "Sawbones"
+/obj/effect/landmark/start/doctor
+	name = "Doctor"
 
 /obj/effect/landmark/start/scrapper
 	name = "Scrapper"

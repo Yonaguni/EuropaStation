@@ -22,8 +22,8 @@
 		new /obj/item/weapon/gun/composite/premade/rifle(get_turf(H))
 
 	// Give them a couple of spare rounds.
-	if(!H.l_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/a556(H), slot_l_store)
-	if(!H.r_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/a556(H), slot_r_store)
+	if(!H.l_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/rifle_small(H), slot_l_store)
+	if(!H.r_store) H.equip_to_slot_or_del(new /obj/item/ammo_casing/rifle_small(H), slot_r_store)
 
 	return ..(H, 1,1,1)
 

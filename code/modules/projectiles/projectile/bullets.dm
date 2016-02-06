@@ -126,10 +126,10 @@
 	damage = 10
 
 /obj/item/projectile/bullet/pistol/medium
-	damage = 12
+	damage = 14
 
 /obj/item/projectile/bullet/pistol/strong //revolvers and matebas
-	damage = 30
+	damage = 18
 
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
@@ -157,7 +157,7 @@
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
-	name = "shrapnel"
+	name = "pellet"
 	damage = 13
 	pellets = 6
 	range_step = 1
@@ -201,7 +201,7 @@
 	embed = 0
 	edge = 1
 
-/obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/burstbullet/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target))
 		explosion(target, -1, 0, 2)
 	..()

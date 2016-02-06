@@ -3,6 +3,7 @@
 	name = "revolver cylinder"
 	weapon_type = GUN_PISTOL
 	handle_casings = CYCLE_CASINGS
+	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shots = 6
 	has_alt_interaction = 1
 	revolver = 1
@@ -16,11 +17,11 @@
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/load_ammo(var/obj/item/A, var/mob/user)
 	chamber_offset = 0
-	return ..()
+	return ..(A, user)
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/unload_ammo(var/mob/user)
 	chamber_offset = 0
-	return ..()
+	return ..(user)
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/do_user_alt_interaction(var/mob/user)
 	chamber_offset = 0

@@ -12,6 +12,11 @@
 			usr << "This one fires [caliber] rounds."
 		usr << "It has [chamber.get_shots_remaining()] shots remaining."
 
+		for(var/obj/item/gun_component/GC in src)
+			var/extra = GC.get_extra_examine_info()
+			if(extra)
+				usr << "<span class='notice'>[extra]</span>"
+
 		if(accessories.len)
 			var/accessory_list = list()
 			for(var/obj/item/acc in accessories)

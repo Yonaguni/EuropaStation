@@ -72,17 +72,6 @@
 	selectable = 0
 	device_type = /obj/item/weapon/mining_scanner
 
-/obj/item/rig_module/device/rcd
-	name = "RCD mount"
-	desc = "A cell-powered rapid construction device for a hardsuit."
-	icon_state = "rcd"
-	interface_name = "mounted RCD"
-	interface_desc = "A device for building or removing walls. Cell-powered."
-	usable = 1
-	engage_string = "Configure RCD"
-
-	device_type = /obj/item/weapon/rcd/mounted
-
 /obj/item/rig_module/device/New()
 	..()
 	if(device_type) device = new device_type(src)

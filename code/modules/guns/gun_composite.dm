@@ -10,6 +10,7 @@
 	var/force_icon_state                       // State to use with the above.
 	var/gun_type                               // General class of gun.
 	var/dam_type                               // General class of projectile.
+	var/jammed                                 // Are we jammed?
 
 	// Component helpers.
 	var/obj/item/gun_component/barrel/barrel   // Caliber, projectile type.
@@ -17,6 +18,8 @@
 	var/obj/item/gun_component/grip/grip       // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/chamber/chamber // Loading type, firing modes, special behavior.
+
+	var/list/part_overlays					   // Stored parts images for update_icon
 
 /obj/item/weapon/gun/composite/New(var/newloc, var/obj/item/weapon/gun_assembly/assembly)
 	if(istype(assembly))
@@ -31,6 +34,10 @@
 		update_from_components()
 		qdel(assembly)
 	..(newloc)
+
+/obj/item/weapon/gun/composite/dropped()
+	..()
+	update_strings()
 
 /obj/item/weapon/gun/composite/reset_name()
 	update_strings()
@@ -89,7 +96,7 @@
 	for(var/obj/item/gun_component/GC in list(body, chamber, barrel, grip, stock) + accessories)
 		if (!GC) continue
 		GC.holder = src
-		GC.installed()
+		GC.installed(src)
 		GC.apply_mod(src)
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
@@ -122,7 +129,7 @@
 	if(dam_type == GUN_TYPE_LASER)
 		recoil = 0
 
-	update_icon()
+	update_icon(regenerate=1)
 	update_strings()
 
 /obj/item/weapon/gun/composite/proc/update_strings()
@@ -142,8 +149,7 @@
 		name = "[get_gun_name(src, dam_type, gun_type)]"
 		desc = "[body.base_desc] You can't work out who manufactured this one; it might be an aftermarket job."
 
-/obj/item/weapon/gun/composite/update_icon(var/ignore_inhands)
-
+/obj/item/weapon/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
 	overlays.Cut()
 
 	if(force_icon && force_icon_state)
@@ -152,28 +158,32 @@
 		icon_state = force_icon_state
 
 	else
+		if (regenerate)
+			part_overlays = list()
 
-		if(model && model.force_item_state)
-			item_state = model.force_item_state
-		else
-			item_state = body.item_state
+			if(model && model.force_item_state)
+				item_state = model.force_item_state
+			else
+				item_state = body.item_state
 
-		var/image/part
-		for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
-			if (!GC) continue
-			GC.update_icon()
-			/*
-			var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
-			if(!gun_component_icon_cache[cache_key])
-				gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
-			overlays |= gun_component_icon_cache[cache_key]
-			*/
-			part = image(GC.icon, GC.icon_state)
-			part.pixel_y = GC.pixel_y
-			part.pixel_x = GC.pixel_x
-			part.color = GC.color
-			part.appearance_flags = RESET_COLOR
-			overlays |= part
+			var/image/part
+			for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
+				if (!GC) continue
+				GC.update_icon()
+				/*
+				var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
+				if(!gun_component_icon_cache[cache_key])
+					gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
+				overlays |= gun_component_icon_cache[cache_key]
+				*/
+				part = image(GC.icon, GC.icon_state)
+				part.pixel_y = GC.pixel_y
+				part.pixel_x = GC.pixel_x
+				part.color = GC.color
+				part.appearance_flags = RESET_COLOR
+				part_overlays |= part
+
+	overlays |= part_overlays
 
 	chamber.update_ammo_overlay()
 	if(chamber.ammo_overlay)
@@ -197,9 +207,54 @@
 		return
 	return ..()
 
+/obj/item/weapon/gun/composite/proc/explode()
+
+	// Grab refs.
+	var/mob/M = loc
+	var/turf/T = get_turf(src)
+	if(istype(M))
+		M.unEquip(src)
+
+	// EXPLODE.
+	visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	for(var/obj/item/gun_component/I in src)
+		I.forceMove(T)
+		if(istype(I)) I.empty()
+		if(prob(25))
+			qdel(src)
+			continue
+		spawn(1)
+			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),rand(10,20))
+
+	// Destroy self.
+	accessories.Cut()
+	barrel = null
+	body = null
+	grip = null
+	stock = null
+	chamber = null
+	qdel(src)
+
+/obj/item/weapon/gun/composite/proc/jam()
+	if(jammed) return
+	var/mob/M = loc
+	if(istype(M))
+		M << "<span class='danger'>\The [src] jams!</span>"
+	jammed = 1
+
 /obj/item/weapon/gun/composite/attack_self(var/mob/user)
 	if(!(src in usr))
 		return ..()
+
+	if(jammed)
+		user.setClickCooldown(rand(5,10))
+		if(prob(30))
+			user.visible_message("<span class='notice'>\The [user] unjams \the [src]!</span>")
+			jammed = 0
+		else
+			user.visible_message("<span class='notice'>\The [user] attempts to unjam \the [src]!</span>")
+		return
+
 	var/list/possible_interactions = list()
 	if(firemodes.len)
 		possible_interactions += "change fire mode"

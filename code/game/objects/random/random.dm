@@ -160,23 +160,6 @@
 		return pick(prob(2);/obj/item/weapon/gun/energy/taser,\
 					prob(1);/obj/item/weapon/gun/energy/stunrevolver)
 
-/obj/random/ammo
-	name = "Random Ammunition"
-	desc = "This is random ammunition."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "45-10"
-	item_to_spawn()
-		return pick(prob(6);/obj/item/weapon/storage/box/beanbags,\
-					prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(4);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(1);/obj/item/weapon/storage/box/stunshells,\
-					prob(2);/obj/item/ammo_magazine/c45m,\
-					prob(4);/obj/item/ammo_magazine/c45m/rubber,\
-					prob(4);/obj/item/ammo_magazine/c45m/flash,\
-					prob(2);/obj/item/ammo_magazine/mc9mmt,\
-					prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
-
-
 /obj/random/action_figure
 	name = "random action figure"
 	desc = "This is a random action figure."

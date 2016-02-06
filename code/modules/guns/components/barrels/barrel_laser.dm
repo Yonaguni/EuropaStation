@@ -7,8 +7,8 @@
 /obj/item/gun_component/barrel/laser/get_projectile_type()
 	return assume_projectile
 
-/obj/item/gun_component/barrel/laser/New()
-	..()
+/obj/item/gun_component/barrel/laser/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
+	..(newloc, weapontype, componenttype, use_model)
 	update_from_caliber()
 
 /obj/item/gun_component/barrel/laser/update_from_caliber()

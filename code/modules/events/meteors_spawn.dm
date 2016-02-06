@@ -39,46 +39,61 @@
 	var/obj/effect/meteor/M = new Me(pickedstart)
 	M.dest = pickedgoal
 	M.z_original = startLevel
+
 	spawn(0)
-		walk_towards(M, M.dest, 1)
+		if(M.z in world_map.space_levels)
+			walk_towards(M, M.dest, 1)
+		else
+			M.ram_turf(get_turf(M))
+			M.get_hit()
 	return
 
 /proc/spaceDebrisStartLoc(startSide, Z)
-	var/starty
-	var/startx
-	switch(startSide)
-		if(NORTH)
-			starty = world.maxy-(TRANSITIONEDGE+1)
-			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
-		if(EAST)
-			starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
-			startx = world.maxx-(TRANSITIONEDGE+1)
-		if(SOUTH)
-			starty = (TRANSITIONEDGE+1)
-			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
-		if(WEST)
-			starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
-			startx = (TRANSITIONEDGE+1)
-	var/turf/T = locate(startx, starty, Z)
+
+	if(Z in world_map.space_levels)
+		var/starty
+		var/startx
+		switch(startSide)
+			if(NORTH)
+				starty = world.maxy-(TRANSITIONEDGE+1)
+				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+			if(EAST)
+				starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
+				startx = world.maxx-(TRANSITIONEDGE+1)
+			if(SOUTH)
+				starty = (TRANSITIONEDGE+1)
+				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+			if(WEST)
+				starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
+				startx = (TRANSITIONEDGE+1)
+		var/turf/T = locate(startx, starty, Z)
+		return T
+
+	var/turf/T = locate(rand(30, 220), rand(30, 220), Z)
 	return T
 
 /proc/spaceDebrisFinishLoc(startSide, Z)
-	var/endy
-	var/endx
-	switch(startSide)
-		if(NORTH)
-			endy = TRANSITIONEDGE
-			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
-		if(EAST)
-			endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
-			endx = TRANSITIONEDGE
-		if(SOUTH)
-			endy = world.maxy-TRANSITIONEDGE
-			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
-		if(WEST)
-			endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
-			endx = world.maxx-TRANSITIONEDGE
-	var/turf/T = locate(endx, endy, Z)
+
+	if(Z in world_map.space_levels)
+		var/endy
+		var/endx
+		switch(startSide)
+			if(NORTH)
+				endy = TRANSITIONEDGE
+				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+			if(EAST)
+				endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
+				endx = TRANSITIONEDGE
+			if(SOUTH)
+				endy = world.maxy-TRANSITIONEDGE
+				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+			if(WEST)
+				endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
+				endx = world.maxx-TRANSITIONEDGE
+		var/turf/T = locate(endx, endy, Z)
+		return T
+
+	var/turf/T = locate(rand(30, 220), rand(30, 220), Z)
 	return T
 
 ///////////////////////
@@ -113,7 +128,7 @@
 		var/turf/T = get_turf(loc)
 		ram_turf(T)
 
-		if(prob(10) && !istype(T, /turf/space))//randomly takes a 'hit' from ramming
+		if(prob(10) && !istype(T, /turf/space)) //randomly takes a 'hit' from ramming
 			get_hit()
 
 	return .

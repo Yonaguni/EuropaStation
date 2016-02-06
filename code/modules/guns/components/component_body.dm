@@ -101,6 +101,9 @@
 	base_desc = "It's a shotgun."
 	two_handed = 1
 
+/obj/item/gun_component/body/shotgun/hunting
+	icon_state = "shotgun_hunting"
+
 /obj/item/gun_component/body/pistol/laser
 	icon_state = "las_pistol"
 	projectile_type = GUN_TYPE_LASER

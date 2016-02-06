@@ -94,23 +94,33 @@
 			qdel(chambered)
 			chambered = null
 	// If this is a gun that doesn't need unloading, clear the casing slot.
+	// If it's mag-fed, pre-load the next casing.
 	if(handle_casings != HOLD_CASINGS)
 		chambered = null
+		if(magazine && magazine.stored_ammo.len)
+			chambered = magazine.stored_ammo[1]
+			if(handle_casings != HOLD_CASINGS)
+				magazine.stored_ammo -= chambered
+
 
 /obj/item/gun_component/chamber/ballistic/consume_next_projectile()
-	if(loaded.len)
-		chambered = loaded[1] //load next casing.
-		if(handle_casings != HOLD_CASINGS)
-			loaded -= chambered
-	else if(magazine && magazine.stored_ammo.len)
-		chambered = magazine.stored_ammo[1]
-		if(handle_casings != HOLD_CASINGS)
-			magazine.stored_ammo -= chambered
+	if(!chambered)
+		if(loaded.len)
+			chambered = loaded[1] //load next casing.
+			if(handle_casings != HOLD_CASINGS)
+				loaded -= chambered
+		else if(magazine && magazine.stored_ammo.len)
+			chambered = magazine.stored_ammo[1]
+			if(handle_casings != HOLD_CASINGS)
+				magazine.stored_ammo -= chambered
 	if(chambered)
 		return chambered.projectile
 	return null
 
 /obj/item/gun_component/chamber/ballistic/proc/can_load(var/mob/user)
+	return 1
+
+/obj/item/gun_component/chamber/ballistic/proc/can_unload(var/mob/user)
 	return 1
 
 /obj/item/gun_component/chamber/ballistic/proc/update_ammo_from_contents()
@@ -146,6 +156,12 @@
 				AM.forceMove(src)
 				magazine = AM
 				playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+
+				// Load a round!
+				if(!chambered && magazine && magazine.stored_ammo.len)
+					chambered = magazine.stored_ammo[1]
+					if(handle_casings != HOLD_CASINGS)
+						magazine.stored_ammo -= chambered
 
 			if(SPEEDLOADER)
 
@@ -199,6 +215,9 @@
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/unload_ammo(var/mob/user)
+
+	if(!can_unload(user))
+		return
 
 	if(magazine)
 		magazine.forceMove(get_turf(src))

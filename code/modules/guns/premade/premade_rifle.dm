@@ -8,11 +8,19 @@
 	variant_barrel =  /obj/item/gun_component/barrel/rifle
 
 /obj/item/weapon/gun/composite/premade/rifle/preloaded
-	ammo_type = /obj/item/ammo_casing/a556
+	ammo_type = /obj/item/ammo_casing/rifle_small
 
 /obj/item/weapon/gun/composite/premade/rifle/large
 	name = "7.62 rifle"
 	variant_barrel = /obj/item/gun_component/barrel/rifle/large
+
+/obj/item/weapon/gun/composite/premade/rifle/sawnoff
+	name = "rifle sawn-off"
+	variant_barrel = /obj/item/gun_component/barrel/rifle/short
+	variant_stock =  null
+
+/obj/item/weapon/gun/composite/premade/rifle/sawnoff/large
+	variant_barrel = /obj/item/gun_component/barrel/rifle/short/large
 
 /obj/item/weapon/gun/composite/premade/rifle/antimaterial
 	set_model = /decl/weapon_model/anti_materiel_rifle

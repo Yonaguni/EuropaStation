@@ -435,11 +435,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
-
-	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
-	M.stored_matter = 30
-	src.modules += M
-
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 
 	var/obj/item/weapon/flame/lighter/zippo/L = new /obj/item/weapon/flame/lighter/zippo(src)
