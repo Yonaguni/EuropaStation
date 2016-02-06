@@ -8,9 +8,9 @@
 		)
 
 /obj/item/gun_component/barrel/laser/variable/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
-	..(newloc, weapontype, componenttype, use_model)
 	var/list/fmode = firemodes[1]
 	caliber = (fmode["caliber"] ? fmode["caliber"] : CALIBER_LASER)
+	..(newloc, weapontype, componenttype, use_model)
 
 /obj/item/gun_component/barrel/laser/variable/assault
 	icon_state="las_assault"
