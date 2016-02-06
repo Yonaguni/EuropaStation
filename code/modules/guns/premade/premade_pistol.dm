@@ -17,7 +17,7 @@
 	variant_grip =    /obj/item/gun_component/grip/pistol/revolver/large
 
 /obj/item/weapon/gun/composite/premade/revolver/magnum/preloaded
-	ammo_type = /obj/item/ammo_casing/a50
+	ammo_type = /obj/item/ammo_casing/magnum
 
 /obj/item/weapon/gun/composite/premade/revolver/a45
 	name = ".45 revolver"
@@ -25,12 +25,13 @@
 	variant_grip =    /obj/item/gun_component/grip/pistol/revolver/small
 
 /obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
-	ammo_type = /obj/item/ammo_casing/c45
+	ammo_type = /obj/item/ammo_casing/a45
 
 /obj/item/weapon/gun/composite/premade/revolver/toy
 	name = "toy revolver"
 	set_model = /decl/weapon_model/revolver/toy
 	variant_barrel = /obj/item/gun_component/barrel/pistol/toy
+	ammo_type = /obj/item/ammo_casing/capgun
 
 /obj/item/weapon/gun/composite/premade/pistol
 	name = "pistol"
@@ -41,20 +42,23 @@
 	variant_barrel =  /obj/item/gun_component/barrel/pistol
 	variant_stock = 	null
 
+/obj/item/weapon/gun/composite/premade/pistol/preloaded
+	ammo_type = /obj/item/ammo_magazine/pistol
+
 /obj/item/weapon/gun/composite/premade/pistol/a9
 	name = "9mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a9
 	variant_grip =    /obj/item/gun_component/grip/pistol/small
 
 /obj/item/weapon/gun/composite/premade/pistol/a9/preloaded
-	ammo_type = /obj/item/ammo_magazine/mc9mm
+	ammo_type = /obj/item/ammo_magazine/pistol/medium
 
 /obj/item/weapon/gun/composite/premade/pistol/a10
 	name = "10mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a10
 
 /obj/item/weapon/gun/composite/premade/pistol/a10/preloaded
-	ammo_type = /obj/item/ammo_magazine/a10mm
+	ammo_type = /obj/item/ammo_magazine/pistol/large
 
 /obj/item/weapon/gun/composite/premade/pistol/a45
 	name = "a45 pistol"
@@ -62,11 +66,11 @@
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a45
 
 /obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
-	ammo_type = /obj/item/ammo_magazine/c45m
+	ammo_type = /obj/item/ammo_magazine/pistol/a45
 
 /obj/item/weapon/gun/composite/premade/pistol/a38
 	name = "a38 pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a38
 
 /obj/item/weapon/gun/composite/premade/pistol/a38/preloaded
-	ammo_type = /obj/item/ammo_magazine/c38
+	ammo_type = /obj/item/ammo_magazine/pistol/a38

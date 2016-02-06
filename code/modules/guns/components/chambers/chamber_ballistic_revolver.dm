@@ -3,6 +3,7 @@
 	name = "revolver cylinder"
 	weapon_type = GUN_PISTOL
 	handle_casings = CYCLE_CASINGS
+	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shots = 6
 	has_alt_interaction = 1
 	revolver = 1

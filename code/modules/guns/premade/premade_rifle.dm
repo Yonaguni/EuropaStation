@@ -8,7 +8,7 @@
 	variant_barrel =  /obj/item/gun_component/barrel/rifle
 
 /obj/item/weapon/gun/composite/premade/rifle/preloaded
-	ammo_type = /obj/item/ammo_casing/a556
+	ammo_type = /obj/item/ammo_casing/rifle_small
 
 /obj/item/weapon/gun/composite/premade/rifle/large
 	name = "7.62 rifle"

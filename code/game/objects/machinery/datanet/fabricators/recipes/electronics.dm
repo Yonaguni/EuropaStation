@@ -49,11 +49,6 @@
 	name = "man-machine interface"
 	path = /obj/item/device/mmi
 
-/decl/fabricator_design/electronics/medical/rapidsyringegun
-	name = "rapid syringe gun"
-	path = /obj/item/weapon/gun/launcher/syringe/rapid
-	hidden = 1
-
 /decl/fabricator_design/electronics/medical/reagent_scanner
 	name = "reagent scanner"
 	path = /obj/item/device/reagent_scanner

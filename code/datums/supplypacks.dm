@@ -110,16 +110,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Stok crate"
 	group = "Hydroponics"
 
-/datum/supply_packs/beanbagammo
-	name = "Beanbag shells"
-	contains = list(/obj/item/weapon/storage/box/beanbags,
-					/obj/item/weapon/storage/box/beanbags,
-					/obj/item/weapon/storage/box/beanbags)
-	cost = 30
-	containertype = /obj/structure/closet/crate
-	containername = "Beanbag shells"
-	group = "Security"
-
 /datum/supply_packs/toner
 	name = "Toner cartridges"
 	contains = list(/obj/item/device/toner,
@@ -678,47 +668,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/armor/riot,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/box/teargas,
-					/obj/item/weapon/storage/box/beanbags,
 					/obj/item/weapon/storage/box/handcuffs)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Riot gear crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/shotgun
-	name = "Shotgun crate"
-	contains = list(/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunshells)
-	cost = 65
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Shotgun crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/shotgunammo
-	name = "Ballistic ammunition crate"
-	contains = list(/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunshells,
-					/obj/item/weapon/storage/box/shotgunshells)
-	cost = 60
-	containertype = /obj/structure/closet/crate/secure
-	containername = "ballistic ammunition crate"
-	access = access_armory
-	group = "Security"
-
-/datum/supply_packs/randomised/autoammo
-	name = "Automatic weapon ammunition crate"
-	num_contained = 6
-	contains = list(/obj/item/ammo_magazine/mc9mmt,
-					/obj/item/ammo_magazine/mc9mmt/rubber,
-					/obj/item/ammo_magazine/a556)
-	cost = 20
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Automatic weapon ammunition crate"
 	access = access_armory
 	group = "Security"
 

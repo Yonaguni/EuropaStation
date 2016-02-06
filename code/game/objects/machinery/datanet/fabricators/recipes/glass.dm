@@ -16,11 +16,6 @@
 	name = "syringe"
 	path = /obj/item/weapon/reagent_containers/syringe
 
-/decl/fabricator_design/glass/syringegun_ammo
-	name = "syringe gun cartridge"
-	path = /obj/item/weapon/syringe_cartridge
-	category = "Arms and Ammunition"
-
 /decl/fabricator_design/glass/consolescreen
 	name = "console screen"
 	path = /obj/item/europa/component/console_screen
