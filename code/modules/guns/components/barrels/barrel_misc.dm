@@ -3,8 +3,16 @@
 	weapon_type = GUN_RIFLE
 	caliber = CALIBER_RIFLE_SMALL
 	accepts_accessories = 1
+	shortened_icon="rifle_short"
 
 /obj/item/gun_component/barrel/rifle/large
+	caliber = CALIBER_RIFLE_LARGE
+
+/obj/item/gun_component/barrel/rifle/short
+	icon_state="rifle_short"
+	accepts_accessories = 0
+
+/obj/item/gun_component/barrel/rifle/short/large
 	caliber = CALIBER_RIFLE_LARGE
 
 /obj/item/gun_component/barrel/rifle/am
@@ -22,6 +30,7 @@
 	weapon_type = GUN_SHOTGUN
 	caliber = CALIBER_SHOTGUN
 	accepts_accessories = 1
+	shortened_icon = "shotgun_short"
 
 /obj/item/gun_component/barrel/shotgun/short
 	icon_state="shotgun_short"
