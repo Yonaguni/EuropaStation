@@ -10,6 +10,7 @@
 	var/force_icon_state                       // State to use with the above.
 	var/gun_type                               // General class of gun.
 	var/dam_type                               // General class of projectile.
+	var/jammed                                 // Are we jammed?
 
 	// Component helpers.
 	var/obj/item/gun_component/barrel/barrel   // Caliber, projectile type.
@@ -201,9 +202,54 @@
 		return
 	return ..()
 
+/obj/item/weapon/gun/composite/proc/explode()
+
+	// Grab refs.
+	var/mob/M = loc
+	var/turf/T = get_turf(src)
+	if(istype(M))
+		M.unEquip(src)
+
+	// EXPLODE.
+	visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	for(var/obj/item/gun_component/I in src)
+		I.forceMove(T)
+		if(istype(I)) I.empty()
+		if(prob(25))
+			qdel(src)
+			continue
+		spawn(1)
+			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),rand(10,20))
+
+	// Destroy self.
+	accessories.Cut()
+	barrel = null
+	body = null
+	grip = null
+	stock = null
+	chamber = null
+	qdel(src)
+
+/obj/item/weapon/gun/composite/proc/jam()
+	if(jammed) return
+	var/mob/M = loc
+	if(istype(M))
+		M << "<span class='danger'>\The [src] jams!</span>"
+	jammed = 1
+
 /obj/item/weapon/gun/composite/attack_self(var/mob/user)
 	if(!(src in usr))
 		return ..()
+
+	if(jammed)
+		user.setClickCooldown(rand(5,10))
+		if(prob(30))
+			user.visible_message("<span class='notice'>\The [user] unjams \the [src]!</span>")
+			jammed = 0
+		else
+			user.visible_message("<span class='notice'>\The [user] attempts to unjam \the [src]!</span>")
+		return
+
 	var/list/possible_interactions = list()
 	if(firemodes.len)
 		possible_interactions += "change fire mode"
