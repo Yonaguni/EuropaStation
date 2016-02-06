@@ -6,7 +6,7 @@
 	variant_body =    /obj/item/gun_component/body/pistol/revolver
 	variant_barrel =  /obj/item/gun_component/barrel/pistol/revolver
 	variant_grip =    /obj/item/gun_component/grip/pistol/revolver
-	variant_stock = 	null
+	variant_stock =   null
 
 /obj/item/weapon/gun/composite/premade/revolver/preloaded
 	ammo_type = /obj/item/ammo_casing/a357
