@@ -22,10 +22,12 @@
 /obj/item/gun_component/barrel/pistol/revolver
 	icon_state="revolver"
 	caliber = CALIBER_357
+	shortened_icon="revolver_small"
 
 /obj/item/gun_component/barrel/pistol/revolver/a45
 	icon_state = "revolver_small"
 	caliber = CALIBER_45
+	shortened_icon = null
 
 /obj/item/gun_component/barrel/pistol/revolver/magnum
 	icon_state = "revolver_big"

@@ -88,3 +88,5 @@ var/list/gun_component_icon_cache = list()
 		pixel_y = Clamp(offset,-world.icon_size,world.icon_size)
 		offset = input(user,"New horizontal offset:","Part offset",pixel_x)
 		pixel_x = Clamp(offset,-world.icon_size,world.icon_size)
+	else
+		..()
