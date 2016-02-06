@@ -19,6 +19,8 @@
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/chamber/chamber // Loading type, firing modes, special behavior.
 
+	var/list/part_overlays					   // Stored parts images for update_icon
+
 /obj/item/weapon/gun/composite/New(var/newloc, var/obj/item/weapon/gun_assembly/assembly)
 	if(istype(assembly))
 		for(var/obj/item/I in assembly.contents)
@@ -127,7 +129,7 @@
 	if(dam_type == GUN_TYPE_LASER)
 		recoil = 0
 
-	update_icon()
+	update_icon(regenerate=1)
 	update_strings()
 
 /obj/item/weapon/gun/composite/proc/update_strings()
@@ -147,8 +149,7 @@
 		name = "[get_gun_name(src, dam_type, gun_type)]"
 		desc = "[body.base_desc] You can't work out who manufactured this one; it might be an aftermarket job."
 
-/obj/item/weapon/gun/composite/update_icon(var/ignore_inhands)
-
+/obj/item/weapon/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
 	overlays.Cut()
 
 	if(force_icon && force_icon_state)
@@ -157,28 +158,32 @@
 		icon_state = force_icon_state
 
 	else
+		if (regenerate)
+			part_overlays = list()
 
-		if(model && model.force_item_state)
-			item_state = model.force_item_state
-		else
-			item_state = body.item_state
+			if(model && model.force_item_state)
+				item_state = model.force_item_state
+			else
+				item_state = body.item_state
 
-		var/image/part
-		for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
-			if (!GC) continue
-			GC.update_icon()
-			/*
-			var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
-			if(!gun_component_icon_cache[cache_key])
-				gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
-			overlays |= gun_component_icon_cache[cache_key]
-			*/
-			part = image(GC.icon, GC.icon_state)
-			part.pixel_y = GC.pixel_y
-			part.pixel_x = GC.pixel_x
-			part.color = GC.color
-			part.appearance_flags = RESET_COLOR
-			overlays |= part
+			var/image/part
+			for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
+				if (!GC) continue
+				GC.update_icon()
+				/*
+				var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
+				if(!gun_component_icon_cache[cache_key])
+					gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
+				overlays |= gun_component_icon_cache[cache_key]
+				*/
+				part = image(GC.icon, GC.icon_state)
+				part.pixel_y = GC.pixel_y
+				part.pixel_x = GC.pixel_x
+				part.color = GC.color
+				part.appearance_flags = RESET_COLOR
+				part_overlays |= part
+
+	overlays |= part_overlays
 
 	chamber.update_ammo_overlay()
 	if(chamber.ammo_overlay)

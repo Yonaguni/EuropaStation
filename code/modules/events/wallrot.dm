@@ -2,9 +2,6 @@ datum/event/wallrot/setup()
 	announceWhen = rand(0, 300)
 	endWhen = announceWhen + 1
 
-datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected within facility bounds. Dome structures may be contaminated.", "Biohazard Alert")
-
 datum/event/wallrot/start()
 	spawn()
 		var/turf/simulated/wall/center = null

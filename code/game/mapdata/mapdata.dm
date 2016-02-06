@@ -19,6 +19,11 @@ var/obj/effect/landmark/map_data/world_map
 	var/list/use_jobs = list(/datum/job/civilian) // A list of all types of jobs available on this map.
 	var/list/exclude_jobs = list()                // Jobs to remove from the above list in various places.
 
+	// Event reference data.
+	var/drone_source = "Yonaguni Dome Nine"
+	var/list/inhabited_levels = list(2)
+	var/list/space_levels = list()
+
 /obj/effect/landmark/map_data/New()
 	..()
 	if(world_map)

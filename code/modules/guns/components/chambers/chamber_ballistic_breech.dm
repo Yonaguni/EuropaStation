@@ -40,3 +40,9 @@
 	breech_open = !breech_open
 	user << "<span class='notice'>You [breech_open ? "work open" : "snap shut"] \the [holder].</span>"
 
+/obj/item/gun_component/chamber/ballistic/breech/hunting
+	icon_state="shotgun_hunting"
+	weapon_type = GUN_SHOTGUN
+	max_shots = 1
+	handle_casings = HOLD_CASINGS
+	load_method = SINGLE_CASING

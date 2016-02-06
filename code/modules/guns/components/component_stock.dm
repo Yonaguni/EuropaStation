@@ -7,18 +7,6 @@
 	accuracy_mod = 1
 	recoil_mod = 1
 
-/obj/item/gun_component/stock/pistol
-	icon_state = "pistol"
-	weapon_type = GUN_PISTOL
-	w_class = 3
-
-/obj/item/gun_component/stock/pistol/revolver
-	icon_state = "revolver"
-
-/obj/item/gun_component/stock/pistol/small
-	name = "small stock"
-	w_class = 2
-
 /obj/item/gun_component/stock/smg
 	icon_state = "smg"
 	weapon_type = GUN_SMG
