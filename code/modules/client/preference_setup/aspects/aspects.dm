@@ -21,8 +21,10 @@
 
 	// Make sure we have an aspect list and forward the icons to the client.
 	populate_aspects()
+	/*
 	for(var/decl/aspect/A in aspect_datums)
 		usr << browse_rsc(A.use_icon, "[A.name]_small.png")
+	*/
 
 	// Change our formatting data if needed.
 	var/fcolor =  "#3366CC"
