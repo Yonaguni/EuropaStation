@@ -8,6 +8,9 @@
 	has_user_interaction = 1
 	var/breech_open
 
+/obj/item/gun_component/chamber/ballistic/breech/get_extra_examine_info()
+	return "The breech is [breech_open ? "open" : "closed"]."
+
 /obj/item/gun_component/chamber/ballistic/breech/am
 	icon_state="sniper"
 

@@ -19,6 +19,9 @@ var/list/gun_component_icon_cache = list()
 	var/accuracy_mod = 0
 	var/recoil_mod = 0
 
+/obj/item/gun_component/proc/get_extra_examine_info()
+	return
+
 /obj/item/gun_component/proc/apply_mod(var/obj/item/weapon/gun/composite/gun)
 	// Apply misc mods.
 	if(fire_rate_mod) gun.fire_delay += fire_rate_mod
