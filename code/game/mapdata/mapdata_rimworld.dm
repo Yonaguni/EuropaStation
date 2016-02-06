@@ -14,7 +14,7 @@
 		/datum/job/borderworld/mechanic,
 		/datum/job/borderworld/merchant,
 		/datum/job/borderworld/miner,
-		/datum/job/borderworld/sawbones,
+		/datum/job/borderworld/doctor,
 		/datum/job/borderworld/scrapper
 		)
 
