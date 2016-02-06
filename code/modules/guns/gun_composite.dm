@@ -93,7 +93,7 @@
 	for(var/obj/item/gun_component/GC in list(body, chamber, barrel, grip, stock) + accessories)
 		if (!GC) continue
 		GC.holder = src
-		GC.installed()
+		GC.installed(src)
 		GC.apply_mod(src)
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
