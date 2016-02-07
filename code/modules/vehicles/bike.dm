@@ -135,28 +135,37 @@ var/list/bike_cache = list()
 	if(!istype(thing, /atom/movable))
 		return
 
+	var/crashed
 	var/atom/movable/A = thing
 
 	// Bump things away!
-	if(!A.anchored)
+	if(istype(A, /turf))
+		var/turf/T = A
+		if(T.density)
+			if(collision_cooldown)
+				return
+			crashed = 1
+	else if(!A.anchored)
 		var/turf/T = get_step(A, dir)
 		if(isturf(T))
 			A.Move(T)
 	else
-		if(collision_cooldown)
-			return
 		if(cur_move_speed > 1)
+			if(collision_cooldown)
+				return
 			A.attack_generic(src, rand(30,50), "slams into")
-			if(prob(50))
-				var/mob/living/M = load
-				unload(load, dir)
-				if(istype(M))
-					M << "<span class='danger'>You are hurled off \the [src]!</span>"
-					M.Weaken(rand(5,10))
-					M.throw_at(get_edge_target_turf(src,src.dir),rand(1,2), move_delay)
-			spawn(1)
-				collision_cooldown = 1
-				src.ex_act(2)
+			crashed = 1
+
+	if(crashed)
+		collision_cooldown = 1
+		if(prob(50))
+			var/mob/living/M = load
+			unload(load, dir)
+			if(istype(M))
+				M << "<span class='danger'>You are hurled off \the [src]!</span>"
+				M.Weaken(rand(5,10))
+				M.throw_at(get_edge_target_turf(src,src.dir),rand(1,2), move_delay)
+			src.ex_act(2)
 
 	if(cur_move_speed > 1 && istype(A, /mob/living))
 		var/mob/living/M = A

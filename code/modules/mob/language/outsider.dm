@@ -1,4 +1,3 @@
-
 /datum/language/corticalborer
 	name = "Cortical Link"
 	desc = "Cortical borers possess a strange link between their tiny minds."
@@ -22,21 +21,6 @@
 	if(B)
 		speaker_mask = B.truename
 	..(speaker,message,speaker_mask)
-
-/datum/language/vox
-	name = "Vox-pidgin"
-	desc = "The common tongue of the various Vox ships making up the Shoal. It sounds like chaotic shrieking to everyone else."
-	speech_verb = "shrieks"
-	ask_verb = "creels"
-	exclaim_verb = "SHRIEKS"
-	colour = "vox"
-	key = "5"
-	flags = WHITELISTED
-	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya","chi","cha","kah", \
-	"SKRE","AHK","EHK","RAWK","KRA","AAA","EEE","KI","II","KRI","KA")
-
-/datum/language/vox/get_random_name()
-	return ..(FEMALE,1,6)
 
 /datum/language/cultcommon
 	name = "Cult"

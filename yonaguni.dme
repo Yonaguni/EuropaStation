@@ -377,7 +377,6 @@
 #include "code\game\objects\items\weapons\teleportation.dm"
 #include "code\game\objects\items\weapons\traps.dm"
 #include "code\game\objects\items\weapons\ai_modules\ai_modules.dm"
-#include "code\game\objects\items\weapons\blades\swords.dm"
 #include "code\game\objects\items\weapons\blunt\baton_standard.dm"
 #include "code\game\objects\items\weapons\blunt\baton_stun.dm"
 #include "code\game\objects\items\weapons\blunt\cane.dm"
@@ -1761,6 +1760,8 @@
 #include "code\unit_tests\unit_test.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\rimworld-1.dmm"
-#include "maps\rimworld-2.dmm"
+#include "maps\europa-1.dmm"
+#include "maps\europa-2.dmm"
+#include "maps\europa-3.dmm"
+#include "maps\europa-4.dmm"
 // END_INCLUDE

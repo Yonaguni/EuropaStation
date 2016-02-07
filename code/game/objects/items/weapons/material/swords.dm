@@ -25,3 +25,38 @@
 	icon_state = "katana"
 	item_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
+
+/obj/item/weapon/material/sword/basic
+	name = "sword"
+	icon_state = "longsword"
+
+/obj/item/weapon/material/sword/gladius
+	name = "gladius"
+	desc = "Are you not entertained!?"
+	icon_state = "gladius"
+
+/obj/item/weapon/material/sword/khopesh
+	name = "khopesh"
+	icon_state = "khopesh"
+	item_state = "katana"
+
+/obj/item/weapon/material/sword/sabre
+	name = "sabre"
+	icon_state = "sabre"
+	item_state = "katana"
+
+/obj/item/weapon/material/sword/dao
+	name = "dao"
+	icon_state = "dao"
+	item_state = "katana"
+
+/obj/item/weapon/material/sword/rapier
+	name = "rapier"
+	desc = "En guarde!"
+	icon_state = "rapier"
+	item_state = "katana"
+
+/obj/item/weapon/material/sword/trench
+	name = "trench knife"
+	icon_state = "trench"
+	item_state = "katana"
