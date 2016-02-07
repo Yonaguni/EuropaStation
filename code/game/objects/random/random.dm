@@ -148,8 +148,7 @@
 					prob(3);/obj/item/weapon/material/butterflyblade,\
 					prob(3);/obj/item/weapon/material/butterflyhandle,\
 					prob(3);/obj/item/weapon/material/wirerod,\
-					prob(1);/obj/item/weapon/material/butterfly/switchblade,\
-					prob(1);/obj/item/weapon/reagent_containers/syringe/drugs)
+					prob(1);/obj/item/weapon/material/butterfly/switchblade)
 
 /obj/random/energy
 	name = "Random Energy Weapon"

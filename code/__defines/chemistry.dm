@@ -35,4 +35,4 @@
 
 // Chemistry lists.
 var/list/tachycardics  = list("coffee", "adrenaline", "jumpstart", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
-var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")                 // Decrease heart rate.
+var/list/bradycardics  = list("neurotoxin", "stoxin")                 // Decrease heart rate.
