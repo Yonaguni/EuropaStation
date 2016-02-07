@@ -23,7 +23,7 @@
 /obj/item/weapon/reagent_containers/borghypo/crisis
 	reagent_ids = list("antibiotic", "adrenaline", "morphine")
 
-/obj/item/weapon/reagent_containers/borghypo/New()
+/obj/item/weapon/reagent_containers/borghypo/initialize()
 	..()
 
 	for(var/T in reagent_ids)

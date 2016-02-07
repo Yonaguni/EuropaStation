@@ -10,7 +10,7 @@
 			radio_voice += " female"
 		radio_voice += " voice"
 
-/mob/living/carbon/human/New()
+/mob/living/carbon/human/initialize()
 	..()
 	radio_voice = species.get_radio_voice(src)
 

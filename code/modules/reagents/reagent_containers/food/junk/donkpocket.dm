@@ -7,7 +7,7 @@
 	var/warm = 0
 	var/list/heated_reagents = list("morphine" = 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/initialize()
 	..()
 	reagents.add_reagent("protein", 2)
 

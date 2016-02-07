@@ -1,8 +1,7 @@
 /*
-
-
  * Welding Tool
  */
+
 /obj/item/weapon/weldingtool
 	name = "welding tool"
 	icon = 'icons/obj/items.dmi'

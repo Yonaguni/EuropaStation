@@ -1,7 +1,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/junk
 	icon = 'icons/obj/kitchen/junkfood/vendor.dmi'
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/initialize()
 	..()
 	reagents.add_reagent("nutriment", 4)
 
@@ -12,7 +12,7 @@
 	trash = /obj/item/trash/candy
 	filling_color = "#7D5F46"
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/candy/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/candy/initialize()
 	..()
 	reagents.add_reagent("sugar", 2)
 
@@ -35,7 +35,7 @@
 	filling_color = "#E8C31E"
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/chips/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/chips/initialize()
 	..()
 	reagents.add_reagent("nutriment", 3)
 
@@ -48,7 +48,7 @@
 	bitesize = 0.2 //Not very filling, takes forever to eat.
 	var/unpopped = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/popcorn/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/popcorn/initialize()
 	..()
 	unpopped = rand(1,10)
 
@@ -65,7 +65,7 @@
 	trash = /obj/item/trash/sosjerky
 	filling_color = "#631212"
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/sosjerky/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/sosjerky/initialize()
 	..()
 	reagents.add_reagent("protein", 4)
 
@@ -76,7 +76,7 @@
 	trash = /obj/item/trash/raisins
 	filling_color = "#343834"
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/no_raisin/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/no_raisin/initialize()
 	..()
 	reagents.add_reagent("nutriment", 2)
 
@@ -86,7 +86,7 @@
 	desc = "Guaranteed to survive longer then you will."
 	filling_color = "#FFE591"
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/spacetwinkie/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/spacetwinkie/initialize()
 	..()
 	reagents.add_reagent("sugar", 4)
 
@@ -105,7 +105,7 @@
 	trash = /obj/item/trash/syndi_cakes
 	bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/syndicake/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/syndicake/initialize()
 	..()
 	reagents.add_reagent("doctorsdelight", 5)
 
@@ -117,7 +117,7 @@
 	filling_color = "#A8A8A8"
 	bitesize = 4
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood/initialize()
 	..()
 	reagents.add_reagent("nutriment", 16)
 	reagents.add_reagent("iron", 3)
@@ -129,7 +129,7 @@
 	trash = /obj/item/trash/tastybread
 	filling_color = "#A66829"
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/tastybread/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/tastybread/initialize()
 	..()
 	reagents.add_reagent("nutriment", 2)
 
@@ -140,7 +140,7 @@
 	filling_color = "#A66829"
 	bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/junk/skrellsnacks/New()
+/obj/item/weapon/reagent_containers/food/snacks/junk/skrellsnacks/initialize()
 	..()
 	reagents.add_reagent("nutriment", 6)
 

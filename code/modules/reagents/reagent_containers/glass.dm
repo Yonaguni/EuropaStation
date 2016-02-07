@@ -40,7 +40,7 @@
 		/obj/machinery/constructable_frame
 		)
 
-	New()
+	initialize()
 		..()
 		base_name = name
 
@@ -109,7 +109,7 @@
 	item_state = "beaker"
 	matter = list("glass" = 500)
 
-	New()
+	initialize()
 		..()
 		desc += " Can hold up to [volume] units."
 
@@ -191,13 +191,13 @@
 	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("cryoxadone", 30)
 		update_icon()
 
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sacid", 60)
 		update_icon()

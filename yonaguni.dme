@@ -1660,7 +1660,6 @@
 #include "code\modules\reagents\reagent_containers\food\drinks\bottle.dm"
 #include "code\modules\reagents\reagent_containers\food\drinks\drinkingglass.dm"
 #include "code\modules\reagents\reagent_containers\food\drinks\jar.dm"
-#include "code\modules\reagents\reagent_containers\food\drinks\bottle\robot.dm"
 #include "code\modules\reagents\reagent_containers\food\junk\donkpocket.dm"
 #include "code\modules\reagents\reagent_containers\food\junk\junk.dm"
 #include "code\modules\reagents\reagent_containers\glass\bottle.dm"
@@ -1760,6 +1759,8 @@
 #include "code\unit_tests\unit_test.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\rimworld-1.dmm"
-#include "maps\rimworld-2.dmm"
+#include "maps\europa-1.dmm"
+#include "maps\europa-2.dmm"
+#include "maps\europa-3.dmm"
+#include "maps\europa-4.dmm"
 // END_INCLUDE

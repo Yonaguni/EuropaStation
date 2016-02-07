@@ -2,7 +2,7 @@
 	name = "blood packs bags"
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
-	New()
+	initialize()
 		..()
 		new /obj/item/weapon/reagent_containers/blood/empty(src)
 		new /obj/item/weapon/reagent_containers/blood/empty(src)
@@ -21,7 +21,7 @@
 
 	var/blood_type = null
 
-	New()
+	initialize()
 		..()
 		if(blood_type != null)
 			name = "BloodPack [blood_type]"

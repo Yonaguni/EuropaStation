@@ -28,7 +28,7 @@
 	afterattack(var/obj/target, var/mob/user, var/proximity)
 		if(!proximity)
 			return
-	
+
 		if(standard_dispenser_refill(user, target))
 			return
 		if(standard_pour_into(user, target))
@@ -120,12 +120,12 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("enzyme", 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/sugar
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sugar", 50)
 
@@ -136,7 +136,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sodiumchloride", 20)
 
@@ -147,7 +147,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("blackpepper", 20)
 
@@ -156,7 +156,7 @@
 	desc = "A big bag of flour. Good for baking!"
 	icon_state = "flour"
 	item_state = "flour"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("flour", 30)
 		src.pixel_x = rand(-10.0, 10)
@@ -167,7 +167,7 @@
 	desc = "A box of Orwell-brand space gelatine. Don't ask where it comes from."
 	icon_state = "gelatine"
 
-/obj/item/weapon/reagent_containers/food/condiment/gelatine/New()
+/obj/item/weapon/reagent_containers/food/condiment/gelatine/initialize()
 	..()
 	reagents.add_reagent("gelatine", 50)
 	src.pixel_x = rand(-10.0, 10)
