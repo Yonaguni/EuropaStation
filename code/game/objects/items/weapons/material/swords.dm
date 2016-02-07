@@ -50,18 +50,13 @@
 	icon_state = "dao"
 	item_state = "katana"
 
-/obj/item/weapon/material/sword/epee
-	name = "epee"
-	icon_state = "epee"
-	item_state = "quarrel"
-
 /obj/item/weapon/material/sword/rapier
 	name = "rapier"
 	desc = "En guarde!"
 	icon_state = "rapier"
-	item_state = "quarrel"
+	item_state = "katana"
 
 /obj/item/weapon/material/sword/trench
 	name = "trench knife"
 	icon_state = "trench"
-	item_state = "quarrel"
+	item_state = "katana"
