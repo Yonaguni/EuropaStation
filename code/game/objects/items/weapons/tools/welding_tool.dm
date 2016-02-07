@@ -28,12 +28,12 @@
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 
 /obj/item/weapon/weldingtool/New()
-//	var/random_fuel = min(rand(10,20),max_fuel)
-	var/datum/reagents/R = new/datum/reagents(max_fuel)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
 	..()
+	create_reagents(max_fuel)
+
+/obj/item/weapon/weldingtool/initialize()
+	..()
+	reagents.add_reagent("fuel", max_fuel)
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding)
