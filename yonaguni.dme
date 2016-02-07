@@ -377,7 +377,6 @@
 #include "code\game\objects\items\weapons\teleportation.dm"
 #include "code\game\objects\items\weapons\traps.dm"
 #include "code\game\objects\items\weapons\ai_modules\ai_modules.dm"
-#include "code\game\objects\items\weapons\blades\swords.dm"
 #include "code\game\objects\items\weapons\blunt\baton_standard.dm"
 #include "code\game\objects\items\weapons\blunt\baton_stun.dm"
 #include "code\game\objects\items\weapons\blunt\cane.dm"
