@@ -34,28 +34,28 @@
 	var/short_sighted
 
 	// Language/culture vars.
-	var/default_language = "Galactic Common" // Default language is used when 'say' is used without modifiers.
-	var/language = "Galactic Common"         // Default racial language, if any.
-	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
-	var/list/speech_sounds                   // A list of sounds to potentially play when speaking.
-	var/list/speech_chance                   // The likelihood of a speech sound playing.
-	var/num_alternate_languages = 0          // How many secondary languages are available to select at character creation
-	var/name_language = "Galactic Common"    // The language to use when determining names for this species, or null to use the first name/last name generator
+	var/default_language = LANGUAGE_SOL_COMMON // Default language is used when 'say' is used without modifiers.
+	var/language = LANGUAGE_SOL_COMMON         // Default racial language, if any.
+	var/list/secondary_langs = list()          // The names of secondary languages that are available to this species.
+	var/list/speech_sounds                     // A list of sounds to potentially play when speaking.
+	var/list/speech_chance                     // The likelihood of a speech sound playing.
+	var/num_alternate_languages = 0            // How many secondary languages are available to select at character creation
+	var/name_language                          // The language to use when determining names for this species, or null to use the first name/last name generator
 
 	// Combat vars.
-	var/total_health = 100                   // Point at which the mob will enter crit.
-	var/list/unarmed_types = list(           // Possible unarmed attacks that the mob will use in combat,
+	var/total_health = 100                     // Point at which the mob will enter crit.
+	var/list/unarmed_types = list(             // Possible unarmed attacks that the mob will use in combat,
 		/datum/unarmed_attack,
 		/datum/unarmed_attack/bite
 		)
-	var/list/unarmed_attacks = null          // For empty hand harm-intent attack
-	var/brute_mod =     1                    // Physical damage multiplier.
-	var/burn_mod =      1                    // Burn damage multiplier.
-	var/oxy_mod =       1                    // Oxyloss modifier
-	var/toxins_mod =    1                    // Toxloss modifier
-	var/radiation_mod = 1                    // Radiation modifier
-	var/flash_mod =     1                    // Stun from blindness modifier.
-	var/vision_flags = SEE_SELF              // Same flags as glasses.
+	var/list/unarmed_attacks = null            // For empty hand harm-intent attack
+	var/brute_mod =     1                      // Physical damage multiplier.
+	var/burn_mod =      1                      // Burn damage multiplier.
+	var/oxy_mod =       1                      // Oxyloss modifier
+	var/toxins_mod =    1                      // Toxloss modifier
+	var/radiation_mod = 1                      // Radiation modifier
+	var/flash_mod =     1                      // Stun from blindness modifier.
+	var/vision_flags = SEE_SELF                // Same flags as glasses.
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human
