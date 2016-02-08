@@ -34,10 +34,10 @@
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != 2)
-			src.nutrition -= HUNGER_FACTOR/10
+			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 			src.hydration -= HUNGER_FACTOR/10
 			if(src.m_intent == "run")
-				src.nutrition -= HUNGER_FACTOR/10
+				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 				src.hydration -= HUNGER_FACTOR/10
 
 		// Moving around increases germ_level faster

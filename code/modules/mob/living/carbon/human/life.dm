@@ -923,7 +923,7 @@
 
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - HUNGER_FACTOR)
+		nutrition = max (0, nutrition - species.hunger_factor)
 
 	// Hydration decrease.
 	if (hydration > 0 && stat != 2)

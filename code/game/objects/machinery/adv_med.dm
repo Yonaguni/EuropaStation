@@ -256,7 +256,7 @@
 	var/list/occupant_data = list(
 		"stationtime" = worldtime2text(),
 		"stat" = H.stat,
-		"health" = H.health,
+		"health" = round(H.health/H.maxHealth)*100,
 		"bruteloss" = H.getBruteLoss(),
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),
@@ -305,7 +305,7 @@
 	if(occ["borer_present"])
 		dat += "Large growth detected in frontal lobe, possibly cancerous. Surgical removal is recommended.<br>"
 
-	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", ("<font color='[occ["blood_amount"] > 448  ? "blue" : "red"]'>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
+	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", ("<font color='[occ["blood_amount"] > 80  ? "blue" : "red"]'>"), occ["blood_amount"], occ["blood_amount"])
 
 	dat += text("Adrenaline: [] units<BR>", occ["adrenaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["stoxin_amount"])
