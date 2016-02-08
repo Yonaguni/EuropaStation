@@ -305,33 +305,35 @@
 /obj/item/weapon/reagent_containers/syringe/adrenaline
 	name = "Syringe (adrenaline)"
 	desc = "Contains adrenaline - used to stabilize patients."
-	New()
-		..()
-		reagents.add_reagent("adrenaline", 15)
-		mode = SYRINGE_INJECT
-		update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/adrenaline/initialize()
+	..()
+	reagents.add_reagent("adrenaline", 15)
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 15)
-		mode = SYRINGE_INJECT
-		update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/antitoxin/initialize()
+	..()
+	reagents.add_reagent("anti_toxin", 15)
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "Syringe (antibiotic)"
 	desc = "Contains antiviral agents."
-	New()
-		..()
-		reagents.add_reagent("antibiotic", 15)
-		mode = SYRINGE_INJECT
-		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
-	New()
-		..()
-		reagents.add_reagent("chloralhydrate", 50)
-		mode = SYRINGE_INJECT
-		update_icon()
+/obj/item/weapon/reagent_containers/syringe/antiviral/initialize()
+	..()
+	reagents.add_reagent("antibiotic", 15)
+	mode = SYRINGE_INJECT
+	update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/initialize()
+	..()
+	reagents.add_reagent("chloralhydrate", 50)
+	mode = SYRINGE_INJECT
+	update_icon()

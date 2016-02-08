@@ -11,7 +11,7 @@
 	var/filling_color = "#FFFFFF" //Used by sandwiches and cooking.
 	var/list/center_of_mass = list() // Used for table placement
 
-/obj/item/weapon/reagent_containers/food/New()
+/obj/item/weapon/reagent_containers/food/initialize()
 	..()
 	if (isnull(center_of_mass) && !pixel_x && !pixel_y)
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion

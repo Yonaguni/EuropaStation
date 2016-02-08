@@ -86,7 +86,7 @@
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
 
-/obj/item/weapon/reagent_containers/pill/antitox/New()
+/obj/item/weapon/reagent_containers/pill/antitox/initialize()
 	..()
 	reagents.add_reagent("anti_toxin", 25)
 
@@ -95,7 +95,7 @@
 	desc = "Don't swallow this."
 	icon_state = "pill5"
 
-/obj/item/weapon/reagent_containers/pill/cyanide/New()
+/obj/item/weapon/reagent_containers/pill/cyanide/initialize()
 	..()
 	reagents.add_reagent("cyanide", 50)
 
@@ -104,7 +104,7 @@
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/stox/New()
+/obj/item/weapon/reagent_containers/pill/stox/initialize()
 	..()
 	reagents.add_reagent("stoxin", 15)
 
@@ -113,7 +113,7 @@
 	desc = "Tylenol! A painkiller for the ages. Chewables!"
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/paracetamol/New()
+/obj/item/weapon/reagent_containers/pill/paracetamol/initialize()
 	..()
 	reagents.add_reagent("paracetamol", 15)
 
@@ -122,7 +122,7 @@
 	desc = "A powerful and addictive painkiller."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/morphine/New()
+/obj/item/weapon/reagent_containers/pill/morphine/initialize()
 	..()
 	reagents.add_reagent("morphine", 15)
 
@@ -131,7 +131,7 @@
 	desc = "Mild anti-depressant."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/antidepressant/New()
+/obj/item/weapon/reagent_containers/pill/antidepressant/initialize()
 	..()
 	reagents.add_reagent("antidepressant", 15)
 
@@ -140,7 +140,7 @@
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 
-/obj/item/weapon/reagent_containers/pill/adrenaline/New()
+/obj/item/weapon/reagent_containers/pill/adrenaline/initialize()
 	..()
 	reagents.add_reagent("adrenaline", 30)
 
@@ -149,7 +149,7 @@
 	desc = "A broad-spectrum anti-toxin."
 	icon_state = "pill13"
 
-/obj/item/weapon/reagent_containers/pill/antitoxin/New()
+/obj/item/weapon/reagent_containers/pill/antitoxin/initialize()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
 
@@ -158,7 +158,7 @@
 	desc = "Contains antibiotic and antiviral agents."
 	icon_state = "pill19"
 
-/obj/item/weapon/reagent_containers/pill/antibiotic/New()
+/obj/item/weapon/reagent_containers/pill/antibiotic/initialize()
 	..()
 	reagents.add_reagent("antibiotic", 15)
 
@@ -167,6 +167,6 @@
 	desc = "A Hell of a kick-start, in convenient pill form."
 	icon_state = "pill19"
 
-/obj/item/weapon/reagent_containers/pill/jumpstart/New()
+/obj/item/weapon/reagent_containers/pill/jumpstart/initialize()
 	..()
 	reagents.add_reagent("jumpstart", 15)

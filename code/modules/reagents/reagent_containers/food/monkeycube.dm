@@ -8,7 +8,7 @@
 	var/wrapped = 0
 	var/monkey_type = "Monkey"
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("protein", 10)
 

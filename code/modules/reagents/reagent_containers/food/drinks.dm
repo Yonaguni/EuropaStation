@@ -107,7 +107,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("milk", 50)
 
@@ -117,7 +117,7 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("soymilk", 50)
 
@@ -126,7 +126,7 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("coffee", 30)
 
@@ -136,7 +136,7 @@
 	icon_state = "teacup"
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("tea", 30)
 
@@ -145,7 +145,7 @@
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("ice", 30)
 
@@ -155,7 +155,7 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("hot_coco", 30)
 
@@ -164,7 +164,7 @@
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("dry_ramen", 30)
 
@@ -176,7 +176,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
-	New()
+	initialize()
 		..()
 	on_reagent_change()
 		if(reagents.total_volume)

@@ -1,22 +1,3 @@
-
-//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-// It is filtered into multiple lists within a list.
-// For example:
-// chemical_reaction_list["phoron"] is a list of all reactions relating to phoron
-// Note that entries in the list are NOT duplicated. So if a reaction pertains to
-// more than one chemical it will still only appear in only one of the sublists.
-/proc/initialize_chemical_reactions()
-	var/paths = typesof(/datum/chemical_reaction) - /datum/chemical_reaction
-	chemical_reactions_list = list()
-
-	for(var/path in paths)
-		var/datum/chemical_reaction/D = new path()
-		if(D.required_reagents && D.required_reagents.len)
-			var/reagent_id = D.required_reagents[1]
-			if(!chemical_reactions_list[reagent_id])
-				chemical_reactions_list[reagent_id] = list()
-			chemical_reactions_list[reagent_id] += D
-
 //helper that ensures the reaction rate holds after iterating
 //Ex. REACTION_RATE(0.3) means that 30% of the reagents will react each chemistry tick (~2 seconds by default).
 #define REACTION_RATE(rate) (1.0 - (1.0-rate)**(1.0/PROCESS_REACTION_ITER))
@@ -48,11 +29,10 @@
 	//If limits on reaction rate would leave less than this amount of any reagent (adjusted by the reaction ratios),
 	//the reaction goes to completion. This is to prevent reactions from going on forever with tiny reagent amounts.
 	var/min_reaction = 2
-
 	var/mix_message = "The solution begins to bubble."
 	var/reaction_sound = 'sound/effects/bubbles.ogg'
-
 	var/log_is_important = 0 // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
+
 /datum/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
 	if(!holder.has_all_reagents(required_reagents))
