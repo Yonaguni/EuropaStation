@@ -823,7 +823,7 @@
 /mob/living/carbon/human/revive()
 
 	if(should_have_organ(O_HEART))
-		vessel.add_reagent(REAGENT_ID_BLOOD,560-vessel.total_volume)
+		vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume-vessel.total_volume)
 		fixblood()
 
 	species.create_organs(src) // Reset our organs/limbs.
@@ -1037,7 +1037,10 @@
 
 	spawn(0)
 		regenerate_icons()
-		vessel.add_reagent(REAGENT_ID_BLOOD,560-vessel.total_volume)
+		if(vessel.total_volume < species.blood_volume)
+			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+		else if(vessel.total_volume > species.blood_volume)
+			vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
 		fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.

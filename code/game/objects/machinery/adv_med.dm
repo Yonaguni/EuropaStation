@@ -269,7 +269,7 @@
 		"borer_present" = H.has_brain_worms(),
 		"adrenaline_amount" = H.reagents.get_reagent_amount(REAGENT_ID_ADRENALINE),
 		"stoxin_amount" = H.reagents.get_reagent_amount(REAGENT_ID_SLEEPTOX),
-		"blood_amount" = H.vessel.get_reagent_amount(REAGENT_ID_BLOOD),
+		"blood_amount" = round((H.vessel.get_reagent_amount(REAGENT_ID_BLOOD) / H.species.blood_volume)*100),
 		"disabilities" = H.sdisabilities,
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
