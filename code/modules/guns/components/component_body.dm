@@ -27,7 +27,7 @@
 	icon_state = "pistol"
 	weapon_type = GUN_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	w_class = 3
+	w_class = 2
 	force = 5
 	item_state = "gun"
 	base_desc = "It's a pistol."
@@ -40,14 +40,14 @@
 /obj/item/gun_component/body/pistol/small
 	name = "light body"
 	force = 2
-	w_class = 2
+	w_class = 1
 	base_desc = "It's a small pistol."
 
 /obj/item/gun_component/body/smg
 	icon_state = "smg"
 	weapon_type = GUN_SMG
 	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_HOLSTER
-	w_class = 3
+	w_class = 2
 	force = 7
 	item_state = "c20r"
 	base_desc = "It's a submachine gun."
@@ -56,7 +56,7 @@
 	icon_state = "rifle"
 	weapon_type = GUN_RIFLE
 	slot_flags = SLOT_BACK
-	w_class = 4
+	w_class = 2
 	force = 10
 	accepts_accessories = 1
 	item_state = "huntingrifle"
@@ -67,11 +67,12 @@
 	icon_state = "sniper"
 	base_desc = "It's a heavy rifle."
 	item_state = "l6closednomag"
+	w_class = 3
 
 /obj/item/gun_component/body/cannon
 	icon_state = "cannon"
 	weapon_type = GUN_CANNON
-	w_class = 5
+	w_class = 3
 	force = 8
 	slot_flags = 0
 	accepts_accessories = 1
@@ -83,7 +84,7 @@
 	icon_state = "assault"
 	weapon_type = GUN_ASSAULT
 	slot_flags = SLOT_BACK
-	w_class = 4
+	w_class = 3
 	force = 10
 	accepts_accessories = 1
 	item_state = "z8carbine"
@@ -94,7 +95,7 @@
 	icon_state = "shotgun"
 	weapon_type = GUN_SHOTGUN
 	slot_flags = SLOT_BACK
-	w_class = 4
+	w_class = 2
 	force = 10
 	accepts_accessories = 1
 	item_state = "shotgun"

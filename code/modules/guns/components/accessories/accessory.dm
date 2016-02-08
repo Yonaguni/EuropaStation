@@ -8,7 +8,6 @@
 	var/installs_into
 	var/installed_dam_type = GUN_TYPE_BALLISTIC
 	var/installed_gun_type = GUN_PISTOL
-	var/weight_mod =    0
 	var/melee_max
 
 /obj/item/gun_component/accessory/update_icon()
@@ -20,9 +19,6 @@
 
 /obj/item/gun_component/accessory/apply_mod(var/obj/item/weapon/gun/composite/gun)
 	..()
-	// Apply misc mods.
-	if(weight_mod)    gun.w_class    += weight_mod
-
 	// Apply sharpness.
 	if(melee_max)
 		gun.force = min(gun.force, melee_max)

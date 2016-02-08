@@ -3,6 +3,7 @@
 	name = "projector"
 	caliber = CALIBER_LASER
 	var/assume_projectile
+	weight_mod = 1
 
 /obj/item/gun_component/barrel/laser/get_projectile_type()
 	return assume_projectile

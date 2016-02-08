@@ -2,7 +2,7 @@
 	name = "grip"
 	component_type = COMPONENT_GRIP
 	projectile_type = GUN_TYPE_BALLISTIC
-	w_class = 3
+	w_class = 2
 	icon = 'icons/obj/gun_components/grip.dmi'
 
 	accuracy_mod = 1
@@ -12,17 +12,20 @@
 	icon_state = "pistol"
 	weapon_type = GUN_PISTOL
 
+/obj/item/gun_component/grip/pistol/plated
+	icon_state = "pistol_plated"
+
 /obj/item/gun_component/grip/pistol/small
 	name = "small grip"
 	icon_state = "pistol_small"
-	w_class = 2
+	w_class = 1
 
 /obj/item/gun_component/grip/pistol/revolver
 	icon_state = "revolver"
 
 /obj/item/gun_component/grip/pistol/revolver/small
 	icon_state = "revolver_small"
-	w_class = 2
+	w_class = 1
 
 /obj/item/gun_component/grip/pistol/revolver/large
 	icon_state = "revolver_large"

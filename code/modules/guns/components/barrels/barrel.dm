@@ -36,6 +36,7 @@
 				accepts_accessories = 0
 				recoil_mod++
 				accuracy_mod--
+				weight_mod--
 				return
 		else
 			user << "<span class='warning'>You cannot shorten \the [src] any further!</span>"
