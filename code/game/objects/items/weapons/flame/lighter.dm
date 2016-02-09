@@ -28,6 +28,7 @@
 
 
 /obj/item/weapon/flame/lighter/proc/do_lit_message(var/mob/living/user)
+	playsound(src.loc, 'sound/items/lighter_on.ogg', 25, 1)
 	if(prob(95))
 		user.visible_message("<span class='notice'>After a few attempts, \the [user] manages to light \the [src].</span>")
 		return
@@ -38,8 +39,10 @@
 		user.apply_damage(2,BURN,"r_hand")
 	user.visible_message("<span class='danger'>\The [user] manages to light \the [src], burning their finger in the process.</span>")
 
+
 /obj/item/weapon/flame/lighter/proc/do_snuff_message(var/mob/user)
 	user.visible_message("<span class='notice'>\The [user] shuts off \the [src].</span>")
+	playsound(src.loc, 'sound/items/lighter_off.ogg', 25, 1)
 
 /obj/item/weapon/flame/lighter/update_icon()
 	if(!base_state)
@@ -59,9 +62,11 @@
 
 /obj/item/weapon/flame/lighter/zippo/do_lit_message(var/mob/user)
 	user.visible_message("<span class='notice'>\The [user] flips open and lights \the [src] in one smooth movement.</span>")
+	playsound(src.loc, 'sound/items/ZippoLight.ogg', 25, 1)
 
 /obj/item/weapon/flame/lighter/zippo/do_snuff_message(var/mob/user)
 	user.visible_message("<span class='notice'>You hear a quiet click as \the [user] shuts off \the [src].</span>")
+	playsound(src.loc, 'sound/items/ZippoClose.ogg', 25, 1)
 
 /obj/item/weapon/flame/lighter/random/New()
 	..()
