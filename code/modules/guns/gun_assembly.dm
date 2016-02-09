@@ -70,6 +70,7 @@
 	var/list/all_removed = list()
 	if(removed)
 		all_removed += removed
+		w_class = min(1,w_class - removed.weight_mod)
 		removed.forceMove(get_turf(src))
 		user.put_in_hands(removed)
 		for(var/obj/item/gun_component/accessory/acc in accessories)
@@ -154,6 +155,7 @@
 
 		if(installed)
 			user << "<span class='notice'>You install \the [thing] into \the [src].</span>"
+			w_class = w_class + GC.weight_mod
 			user.unEquip(thing)
 			thing.forceMove(src)
 			update_icon()

@@ -4,6 +4,9 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	mag_type = SPEEDLOADER
 
+/obj/item/ammo_magazine/speedloader/a38
+	ammo_type = /obj/item/ammo_casing/a38
+
 /obj/item/ammo_magazine/speedloader/a45
 	ammo_type = /obj/item/ammo_casing/a45
 

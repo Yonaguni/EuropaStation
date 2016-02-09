@@ -6,6 +6,7 @@
 		list(mode_name="stun",   caliber = CALIBER_LASER_TASER),
 		list(mode_name="lethal", caliber = CALIBER_LASER),
 		)
+	weight_mod = 0
 
 /obj/item/gun_component/barrel/laser/variable/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
 	var/list/fmode = firemodes[1]
@@ -15,10 +16,12 @@
 /obj/item/gun_component/barrel/laser/variable/assault
 	icon_state="las_assault"
 	weapon_type = GUN_ASSAULT
+	weight_mod = 1
 
 /obj/item/gun_component/barrel/laser/variable/smg
 	icon_state="las_smg"
 	weapon_type = GUN_SMG
+	weight_mod = 1
 	firemodes = list(
 		list(mode_name="stun",                  caliber = CALIBER_LASER_TASER),
 		list(mode_name="stun 3-round bursts",   caliber = CALIBER_LASER_SHOCK, burst=3, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),

@@ -1,8 +1,10 @@
 /obj/item/gun_component/barrel/smg
 	icon_state="smg"
+	w_class = 2
 	weapon_type = GUN_SMG
 	caliber = CALIBER_PISTOL_SMALL
 	accepts_accessories = 1
+	weight_mod = 1
 
 /obj/item/gun_component/barrel/smg/a9
 	caliber = CALIBER_PISTOL_MEDIUM

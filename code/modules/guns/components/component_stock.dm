@@ -1,11 +1,12 @@
 /obj/item/gun_component/stock
 	name = "stock"
 	component_type = COMPONENT_STOCK
-	w_class = 1
+	w_class = 2
 	icon = 'icons/obj/gun_components/stock.dmi'
 
-	accuracy_mod = 1
+	accuracy_mod = -1
 	recoil_mod = 1
+	weight_mod = 1
 
 /obj/item/gun_component/stock/smg
 	icon_state = "smg"
@@ -21,6 +22,7 @@
 /obj/item/gun_component/stock/cannon
 	icon_state = "cannon"
 	weapon_type = GUN_CANNON
+	weight_mod = 2
 
 /obj/item/gun_component/stock/assault
 	icon_state = "assault"
@@ -33,10 +35,12 @@
 /obj/item/gun_component/stock/pistol/laser
 	icon_state = "las_pistol"
 	projectile_type = GUN_TYPE_LASER
+	weight_mod = 0
 
 /obj/item/gun_component/stock/smg/laser
 	icon_state = "las_smg"
 	projectile_type = GUN_TYPE_LASER
+	weight_mod = 0
 
 /obj/item/gun_component/stock/rifle/laser
 	icon_state = "las_assault"

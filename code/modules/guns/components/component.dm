@@ -3,7 +3,7 @@ var/list/gun_component_icon_cache = list()
 /obj/item/gun_component
 	name = "gun component"
 	desc = "A mysterious gun component."
-
+	w_class = 2
 	var/weapon_type = GUN_PISTOL             // What kind of weapon does this fit into?
 	var/component_type = COMPONENT_BARREL    // What part of the gun is this?
 	var/projectile_type = GUN_TYPE_BALLISTIC // What is this component designed to help fire?
@@ -18,6 +18,7 @@ var/list/gun_component_icon_cache = list()
 	var/fire_rate_mod = 0
 	var/accuracy_mod = 0
 	var/recoil_mod = 0
+	var/weight_mod =    0
 
 /obj/item/gun_component/proc/get_extra_examine_info()
 	return
@@ -28,6 +29,7 @@ var/list/gun_component_icon_cache = list()
 	if(accuracy_mod)  gun.accuracy   += accuracy_mod
 	if(recoil_mod)    gun.recoil     += recoil_mod
 	if(two_handed)    gun.requires_two_hands = 1
+	if(weight_mod)    gun.w_class    += weight_mod
 
 /obj/item/gun_component/Destroy()
 	holder = null
