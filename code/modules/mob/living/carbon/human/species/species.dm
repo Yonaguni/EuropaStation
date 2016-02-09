@@ -36,6 +36,9 @@
 	var/virus_immune
 	var/short_sighted
 
+	var/min_age = 17
+	var/max_age = 70
+
 	// Language/culture vars.
 	var/default_language = LANGUAGE_SOL_COMMON // Default language is used when 'say' is used without modifiers.
 	var/language = LANGUAGE_SOL_COMMON         // Default racial language, if any.
