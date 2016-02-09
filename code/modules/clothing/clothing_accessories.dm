@@ -44,6 +44,13 @@
 		return
 	return ..()
 
+/obj/item/clothing/AltClick(var/mob/user)
+	if(accessories.len && src.loc == user)
+		for(var/obj/item/clothing/accessory/A in accessories)
+			A.AltClick(user)
+		return
+	return ..()
+
 /obj/item/clothing/MouseDrop(var/obj/over_object)
 	if (ishuman(usr) || issmall(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
