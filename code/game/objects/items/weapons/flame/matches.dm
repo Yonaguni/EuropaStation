@@ -46,6 +46,7 @@
 	waterproof = 1
 
 /obj/item/weapon/flame/match/light()
+	playsound(src.loc, 'sound/items/match_light.ogg', 25, 1)
 	if(burnt || !..())
 		return
 	lit = 1
