@@ -22,6 +22,7 @@ var/list/tree_types = list(
 
 	var/grass_prob = 0
 	var/tree_prob = 0
+	var/diggable = 1
 
 /turf/simulated/floor/natural/is_plating()
 	return 1
@@ -34,6 +35,18 @@ var/list/tree_types = list(
 		var/tree_type = pick(tree_types)
 		new tree_type(src)
 	return ..()
+
+/turf/simulated/floor/natural/attackby(obj/item/C, mob/user)
+	if(diggable && istype(C,/obj/item/weapon/shovel))
+		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+		if(do_after(user, 50))
+			user << "<span class='notice'>You dig a deep pit.</span>"
+			new /obj/structure/pit(src)
+			diggable = 0
+		else
+			user << "<span class='notice'>You stop shoveling.</span>"
+	else
+		..()
 
 /turf/simulated/floor/natural/light
 	name = "light mud"
@@ -58,6 +71,7 @@ var/list/tree_types = list(
 	icon_state = "sand"
 	blend_with_neighbors = 4
 	grass_prob = 0
+	diggable = 0
 
 /turf/simulated/floor/natural/dirt
 	name = "dark dirt"

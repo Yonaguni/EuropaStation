@@ -609,6 +609,11 @@ default behaviour is:
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
 
+	//Digging yourself out of a grave
+	if(istype(src.loc, /obj/structure/pit))
+		var/obj/structure/pit/P = loc
+		spawn() P.digout(src)
+
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
 	if(H != src.loc) return
 
@@ -826,12 +831,13 @@ default behaviour is:
 		src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
-		var/turf/simulated/T = get_turf(src)
-		if(istype(T))
-			if(blood_vomit)
-				T.add_blood_floor(src)
-			else
-				T.add_vomit_floor(src, 1)
+		if(loc.return_air())	//do not vomit out of airtight things
+			var/turf/simulated/T = get_turf(src)
+			if(istype(T))
+				if(blood_vomit)
+					T.add_blood_floor(src)
+				else
+					T.add_vomit_floor(src, 1)
 
 		if(blood_vomit)
 			if(getBruteLoss() < 50)
