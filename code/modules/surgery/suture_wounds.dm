@@ -14,7 +14,7 @@
 	if(!affected || affected.is_stump() || (affected.status & ORGAN_ROBOT))
 		return 0
 	for(var/datum/wound/W in affected.wounds)
-		if(!W.internal && W.damage_type == CUT && W.damage >= 10)
+		if(!W.internal && W.open && W.damage >= W.autoheal_cutoff)
 			return 1
 	return 0
 
@@ -29,7 +29,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/found_wound
 	for(var/datum/wound/W in affected.wounds)
-		if(!W.internal && W.damage_type == CUT && W.damage >= 10)
+		if(!W.internal && W.open && W.damage >= W.autoheal_cutoff)
 			// Close it up to a point that it can be bandaged and heal naturally!
 			W.heal_damage(rand(10,20)+10)
 			if(W.damage <= 10)
