@@ -255,11 +255,14 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 		//AB is a universal receiver.
 	return 0
 
-proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
+proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 
 	var/obj/effect/decal/cleanable/blood/B
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter
 	var/turf/T = get_turf(target)
+
+	if(!target.loc.return_air())	//do not bleed out of airtight things
+		return
 
 	if(istype(source,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = source
