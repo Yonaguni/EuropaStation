@@ -96,7 +96,7 @@
 		return 0
 	var/result
 	for(var/datum/wound/W in wounds)
-		if(W.damage_type == CUT && !W.internal && !W.bandaged)
+		if(W.open && !W.internal && !W.bandaged)
 			result = 1
 			if(!open)
 				open = 1
@@ -265,7 +265,10 @@
 	if(is_damageable(brute + burn) || !config.limbs_can_break)
 		if(brute)
 			if(can_cut)
-				createwound( CUT, brute )
+				if(sharp && !edge)
+					createwound( PIERCE, brute )
+				else
+					createwound( CUT, brute )
 			else
 				createwound( BRUISE, brute )
 		if(burn)
@@ -279,7 +282,10 @@
 			if (brute > 0)
 				//Inflict all burte damage we can
 				if(can_cut)
-					createwound( CUT, min(brute,can_inflict) )
+					if(sharp && !edge)
+						createwound( PIERCE, min(brute,can_inflict) )
+					else
+						createwound( CUT, min(brute,can_inflict) )
 				else
 					createwound( BRUISE, min(brute,can_inflict) )
 				var/temp = can_inflict
@@ -347,10 +353,10 @@
 			break
 
 		// heal brute damage
-		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_damage(brute)
-		else if(W.damage_type == BURN)
+		if(W.damage_type == BURN)
 			burn = W.heal_damage(burn)
+		else
+			brute = W.heal_damage(brute)
 
 	if(internal)
 		status &= ~ORGAN_BROKEN
@@ -670,10 +676,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//update damage counts
 	for(var/datum/wound/W in wounds)
 		if(!W.internal) //so IB doesn't count towards crit/paincrit
-			if(W.damage_type == CUT || W.damage_type == BRUISE)
-				brute_dam += W.damage
-			else if(W.damage_type == BURN)
+			if(W.damage_type == BURN)
 				burn_dam += W.damage
+			else
+				brute_dam += W.damage
 
 		if(!(status & ORGAN_ROBOT) && W.bleeding() && (H && H.should_have_organ(O_HEART)))
 			W.bleed_timer--

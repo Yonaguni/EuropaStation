@@ -72,7 +72,7 @@
 	user.visible_message("<span class='notice'>\The [user] starts examining [M]'s [affecting.name].</span>")
 	var/warn_too_big
 	for(var/datum/wound/W in affecting.wounds)
-		if(W.internal || W.bandaged || W.damage_type != CUT)
+		if(W.internal || W.bandaged || !W.open)
 			continue
 		if(W.damage >= W.autoheal_cutoff)
 			if(!warn_too_big)
