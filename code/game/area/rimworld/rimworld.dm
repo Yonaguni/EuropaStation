@@ -10,7 +10,7 @@
 	power_environ = 1
 	flags = DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | DENY_TELEPORT | IGNORE_BLACKOUTS
 	outside = 1
-
+	ambience = list()
 /area/rimworld/atmosalert()
 	return
 
@@ -87,9 +87,13 @@
 /area/rimworld/settlement
 	name = "Settlement"
 	icon_state = "village"
+	ambience = list('sound/ambience/wind_fence.ogg')
+
 /area/rimworld/desert
 	name = "Desert"
 	icon_state = "desert"
+	ambience = list('sound/ambience/desert.ogg','sound/ambience/cicada.ogg','sound/ambience/buzzard.ogg')
+
 /area/rimworld/river
 	name = "River"
 	icon_state = "water"

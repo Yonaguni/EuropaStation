@@ -30,7 +30,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 	if(!L.client.ambience_playing)
 		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = 2)
+		L << sound('sound/ambience/desert_wind_short.ogg', repeat = 1, wait = 0, volume = 25, channel = 2)
 
 	if(forced_ambience)
 		if(forced_ambience.len)
