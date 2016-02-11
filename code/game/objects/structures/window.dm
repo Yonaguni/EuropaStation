@@ -424,6 +424,10 @@
 	damage_per_fire_tick = 2.0
 	maxhealth = 12.0
 
+/obj/structure/window/basic/full
+    dir = 5
+    flags = 0
+
 /obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."

@@ -38,13 +38,17 @@ var/list/tree_types = list(
 
 /turf/simulated/floor/natural/attackby(obj/item/C, mob/user)
 	if(diggable && istype(C,/obj/item/weapon/shovel))
-		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
-		if(do_after(user, 50))
-			user << "<span class='notice'>You dig a deep pit.</span>"
-			new /obj/structure/pit(src)
-			diggable = 0
+		var/obj/structure/pit/P = locate(/obj/structure/pit) in src
+		if(P)
+			P.attackby(C, user)
 		else
-			user << "<span class='notice'>You stop shoveling.</span>"
+			visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+			if(do_after(user, 50))
+				user << "<span class='notice'>You dig a deep pit.</span>"
+				if(!(locate(/obj/structure/pit) in src))
+					new /obj/structure/pit(src)
+			else
+				user << "<span class='notice'>You stop shoveling.</span>"
 	else
 		..()
 
