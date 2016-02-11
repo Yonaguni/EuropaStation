@@ -101,6 +101,13 @@
 			if(0.5 to 1.0)
 				user << "<span class='notice'>It has a few scrapes and dents.</span>"
 
+/obj/structure/table/hitby(atom/movable/AM)
+	if(ismob(AM))
+		var/mob/living/M = AM
+		if(flip(AM.last_move))
+			visible_message("<span class='danger'>[M] slams into \the [src], flipping it over!</span>")
+	..()
+
 /obj/structure/table/attackby(obj/item/weapon/W, mob/user)
 
 	if(reinforced && istype(W, /obj/item/weapon/screwdriver))

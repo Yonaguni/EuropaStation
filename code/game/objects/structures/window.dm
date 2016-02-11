@@ -155,7 +155,7 @@
 	return 1
 
 
-/obj/structure/window/hitby(AM as mob|obj)
+/obj/structure/window/hitby(atom/movable/AM)
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
 	var/tforce = 0
@@ -170,6 +170,9 @@
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
+	if(health <= 0)
+		AM.throwing = 1
+		visible_message("<span class='danger'>[AM] flies through \the [src]!</span>")
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
