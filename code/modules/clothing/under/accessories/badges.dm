@@ -116,3 +116,9 @@
 	icon_state = "marshalbadge"
 	badge_string = "Colonial Marshal Bureau"
 
+
+/obj/item/clothing/accessory/badge/marshal/old
+	desc = "A leather-backed gold badge displaying the crest of the Colonial Marshals. It's so worn out that the name is pretty much unreadable."
+
+/obj/item/clothing/accessory/badge/marshal/old/attack_self(mob/user)
+	user.visible_message("<span class='notice'>[user] displays their [src].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src]. It reads: [badge_string].</span>")

@@ -139,7 +139,7 @@
 	if(prob(30))
 		var/list/misc = list(
 			/obj/item/clothing/accessory/locket,
-			/obj/item/clothing/accessory/badge/marshal,
+			/obj/item/clothing/accessory/badge/marshal/old,
 			/obj/item/clothing/accessory/horrible,
 			/obj/item/clothing/accessory/medal,
 			/obj/item/clothing/accessory/medal/silver,
