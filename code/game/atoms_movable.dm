@@ -54,7 +54,6 @@
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
-		src.throwing = 0
 
 	spawn(0)
 		if ((A && yes))
