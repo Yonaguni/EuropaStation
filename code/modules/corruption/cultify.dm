@@ -55,7 +55,7 @@
 /obj/effect/decal/cleanable/blood/cultify()
 	return
 
-/obj/effect/decal/remains/cultify()
+/obj/item/remains/cultify()
 	return
 
 /obj/effect/overlay/cultify()

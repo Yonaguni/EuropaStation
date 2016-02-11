@@ -10,3 +10,8 @@
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = 16
+
+/obj/item/weapon/storage/briefcase/doctor
+	name = "doctor's bag"
+	desc = "Now with additional pockets for whiskey bottles and duct tape."
+	icon_state = "docbag"
