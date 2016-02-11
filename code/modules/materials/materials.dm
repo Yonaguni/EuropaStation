@@ -595,7 +595,7 @@ var/global/list/all_materials = list()
 	display_name = "human remains"
 
 /material/cult/reinf/place_dismantled_product(var/turf/target)
-	new /obj/effect/decal/remains/human(target)
+	new /obj/item/remains/human(target)
 
 
 //TODO PLACEHOLDERS:

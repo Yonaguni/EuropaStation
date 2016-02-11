@@ -1,6 +1,11 @@
 // BEGIN_INTERNALS
 /*
-MAP_ICON_TYPE: 0
+LAST_COMPILE_TIME: 1455175340
+DIR: code code\game code\game\area code\game\area\rimworld code\game\gamemodes\events code\game\gamemodes\events\holidays code\game\jobs\job\rimworld code\game\objects code\game\objects\effects code\game\objects\effects\decals code\game\objects\items code\game\objects\items\stacks code\game\objects\structures code\game\objects\structures\chairs code\game\objects\structures\crates_lockers code\game\turfs code\game\turfs\natural code\modules code\modules\clothing code\modules\clothing\under code\modules\clothing\under\accessories icons icons\obj maps 
 AUTO_FILE_DIR: OFF
+MAP_ICON_TYPE: 0
+LAST_COMPILE_VERSION: 509.1300
+WINDOW: code\game\turfs\natural\natural.dm;code\game\area\area_ambience.dm;code\game\area\rimworld\rimworld.dm;code\game\area\area_power.dm;code\game\objects\structures\curtains.dm;code\modules\clothing\under\accessories\badges.dm;code\hub.dm;code\game\objects\structures\pit.dm
+FILE: code\game\area\area_ambience.dm
 */
 // END_INTERNALS
