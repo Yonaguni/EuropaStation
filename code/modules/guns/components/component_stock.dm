@@ -11,6 +11,24 @@
 /obj/item/gun_component/stock/smg
 	icon_state = "smg"
 	weapon_type = GUN_SMG
+	has_alt_interaction = 1
+	var/folded = 0
+
+/obj/item/gun_component/stock/smg/do_user_alt_interaction(var/mob/user)
+	if(!holder)
+		return
+	if(!(src in list(user.l_hand,user.r_hand)))
+		user << "<span class='warning'>You need to hold \the [holder] in your hands to do this.</span>"
+		return
+	user << "<span class='notice'>You [folded ? "un" : "" ]fold \the [holder]'s stock.</span>"
+	folded = !folded
+	if(folded)
+		icon_state = "[icon_state]_folded"
+		remove_mod(holder)
+	else
+		icon_state = initial(icon_state)
+		apply_mod(holder)
+	holder.update_icon(regenerate=1)
 
 /obj/item/gun_component/stock/rifle
 	icon_state = "rifle"

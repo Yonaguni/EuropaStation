@@ -31,6 +31,14 @@ var/list/gun_component_icon_cache = list()
 	if(two_handed)    gun.requires_two_hands = 1
 	if(weight_mod)    gun.w_class    += weight_mod
 
+/obj/item/gun_component/proc/remove_mod(var/obj/item/weapon/gun/composite/gun)
+	// Apply misc mods.
+	if(fire_rate_mod) gun.fire_delay -= fire_rate_mod
+	if(accuracy_mod)  gun.accuracy   -= accuracy_mod
+	if(recoil_mod)    gun.recoil     -= recoil_mod
+	if(two_handed)    gun.requires_two_hands = 0
+	if(weight_mod)    gun.w_class    -= weight_mod
+
 /obj/item/gun_component/Destroy()
 	holder = null
 	return ..()

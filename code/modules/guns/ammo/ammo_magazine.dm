@@ -69,6 +69,7 @@
 	name = "assault rifle magazine"
 	icon_state = "assault_mag"
 	ammo_type = /obj/item/ammo_casing/rifle_small
+	max_ammo = 30
 /obj/item/ammo_magazine/assault/large
 	ammo_type = /obj/item/ammo_casing/rifle_large
 
@@ -88,6 +89,7 @@
 	name = "submachine gun magazine"
 	icon_state = "submachine_mag"
 	ammo_type = /obj/item/ammo_casing/pistol_small
+	max_ammo = 30
 /obj/item/ammo_magazine/submachine/medium
 	ammo_type = /obj/item/ammo_casing/pistol_medium
 /obj/item/ammo_magazine/submachine/large
