@@ -110,10 +110,10 @@
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream."
 
 	charges = list(
-		list("morphine",      "morphine",      0, 80),
+		list("morphine",      REAGENT_ID_MORPHINE,      0, 80),
 		list("antibiotics",   "antibiotic",  0, 80),
-		list("antitoxins",    "anti_toxin",    0, 80),
-		list("nutrients",     "nutriment",     0, 80),
+		list("antitoxins",    REAGENT_ID_ANTITOX,    0, 80),
+		list("nutrients",     REAGENT_ID_NUTRIMENT,     0, 80),
 		list("antirad",     "antirad",     0, 80),
 		list("radium",        "radium",        0, 80)
 		)
@@ -125,10 +125,10 @@
 
 	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
-		list("morphine", "morphine", 0, 20),
+		list("morphine", REAGENT_ID_MORPHINE, 0, 20),
 		list("antibiotics",   "antibiotic",  0, 20),
-		list("antitoxins",    "anti_toxin",    0, 20),
-		list("nutrients",     "nutriment",     0, 80),
+		list("antitoxins",    REAGENT_ID_ANTITOX,    0, 20),
+		list("nutrients",     REAGENT_ID_NUTRIMENT,     0, 80),
 		list("antirad",     "antirad",     0, 20),
 		list("radium",        "radium",        0, 20)
 		)
@@ -214,10 +214,9 @@
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
 
 	charges = list(
-		list("synaptizine",   "synaptizine",   0, 30),
-		list("jumpstart",     "jumpstart",     0, 30),
-		list("morphine",      "morphine",      0, 30),
-		list("nutrients",     "nutriment",     0, 80),
+		list(REAGENT_ID_JUMPSTART,     REAGENT_ID_JUMPSTART,     0, 30),
+		list("morphine",      REAGENT_ID_MORPHINE,      0, 30),
+		list("nutrients",     REAGENT_ID_NUTRIMENT,     0, 80),
 		)
 
 	interface_name = "combat chem dispenser"

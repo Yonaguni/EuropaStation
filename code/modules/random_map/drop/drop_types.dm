@@ -60,8 +60,6 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/reagent_containers/food/condiment/flour,
 		/obj/item/weapon/reagent_containers/food/condiment/flour,
 		/obj/item/weapon/reagent_containers/food/condiment/flour,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
 		/obj/item/weapon/storage/fancy/egg_box,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,

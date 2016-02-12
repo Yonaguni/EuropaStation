@@ -11,7 +11,7 @@
 
 	// Chemistry
 	lithium		spawn_reagent = "lithium"
-	carbon		spawn_reagent = "carbon"
+	carbon		spawn_reagent = REAGENT_ID_CARBON
 	ammonia		spawn_reagent = "ammonia"
 	acetone		spawn_reagent = "acetone"
 	sodium		spawn_reagent = "sodium"
@@ -60,13 +60,13 @@
 	watermelon	spawn_reagent = "watermelonjuice"
 
 	// ERT
-	adrenaline  spawn_reagent = "adrenaline"
+	adrenaline  spawn_reagent = REAGENT_ID_ADRENALINE
 	paracetamol	spawn_reagent = "paracetamol"
-	morphine	spawn_reagent = "morphine"
+	morphine	spawn_reagent = REAGENT_ID_MORPHINE
 	antiseptic	spawn_reagent = "antiseptic"
-	antitoxin	spawn_reagent = "anti_toxin"
+	antitoxin	spawn_reagent = REAGENT_ID_ANTITOX
 	antirad	    spawn_reagent = "antirad"
-	jumpstart	spawn_reagent = "jumpstart"
+	jumpstart	spawn_reagent = REAGENT_ID_JUMPSTART
 	antibiotic	spawn_reagent = "antibiotic"
-	sleeptox	spawn_reagent = "stoxin"
+	sleeptox	spawn_reagent = REAGENT_ID_SLEEPTOX
 

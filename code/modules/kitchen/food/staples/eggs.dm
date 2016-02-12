@@ -2,9 +2,9 @@
 	icon = 'icons/obj/kitchen/staples/eggs.dmi'
 	filling_color = "#FFFFFF"
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/New()
+/obj/item/weapon/reagent_containers/food/snacks/egg/initialize()
 	..()
-	reagents.add_reagent("egg", 3)
+	reagents.add_reagent(REAGENT_ID_EGG, 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/rawegg
 	name = "egg"

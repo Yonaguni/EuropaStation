@@ -84,11 +84,11 @@
 	name = "Blood paint"
 	id = "blood_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "blood" = 2)
+	required_reagents = list("plasticide" = 1, "water" = 3, REAGENT_ID_BLOOD = 2)
 	result_amount = 5
 
 /datum/chemical_reaction/blood_paint/send_data(var/datum/reagents/T)
-	var/t = T.get_data("blood")
+	var/t = T.get_data(REAGENT_ID_BLOOD)
 	if(t && t["blood_colour"])
 		return t["blood_colour"]
 	return "#FE191A" // Probably red
@@ -217,7 +217,7 @@
 	name = "Carbon paint"
 	id = "carbon_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "carbon" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, REAGENT_ID_CARBON = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/carbon_paint/send_data()

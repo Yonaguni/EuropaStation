@@ -39,15 +39,9 @@
 
 	user.setClickCooldown(4)
 
-	if(reagents.has_reagent("sacid"))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
-		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
-		log_game("[key_name(user)] fired Space lube from \a [src].")
+	if(reagents.has_reagent(REAGENT_ID_ACID))
+		message_admins("[key_name_admin(user)] fired acid from \a [src].")
+		log_game("[key_name(user)] fired acid from \a [src].")
 	return
 
 /obj/item/weapon/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user as mob, proximity)
@@ -102,7 +96,7 @@
 
 /obj/item/weapon/reagent_containers/spray/cleaner/initialize()
 	..()
-	reagents.add_reagent("cleaner", volume)
+	reagents.add_reagent(REAGENT_ID_CLEANER, volume)
 
 /obj/item/weapon/reagent_containers/spray/antiseptic
 	name = "antiseptic"
@@ -110,35 +104,7 @@
 
 /obj/item/weapon/reagent_containers/spray/antiseptic/initialize()
 	..()
-	reagents.add_reagent("antiseptic", volume)
-
-/obj/item/weapon/reagent_containers/spray/pepper
-	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "pepperspray"
-	item_state = "pepperspray"
-	possible_transfer_amounts = null
-	volume = 40
-	var/safety = 1
-
-/obj/item/weapon/reagent_containers/spray/pepper/initialize()
-	..()
-	reagents.add_reagent("condensedcapsaicin", 40)
-
-/obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
-	if(..(user, 1))
-		user << "The safety is [safety ? "on" : "off"]."
-
-/obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
-	safety = !safety
-	usr << "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>"
-
-/obj/item/weapon/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
-	if(safety)
-		usr << "<span class = 'warning'>The safety is on!</span>"
-		return
-	..()
+	reagents.add_reagent(REAGENT_ID_ANTISEPTIC, volume)
 
 /obj/item/weapon/reagent_containers/spray/waterflower
 	name = "water flower"
@@ -152,7 +118,7 @@
 
 /obj/item/weapon/reagent_containers/spray/waterflower/initialize()
 	..()
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
@@ -184,15 +150,3 @@
 			D.set_color()
 			D.set_up(my_target, rand(6, 8), 2)
 	return
-
-/obj/item/weapon/reagent_containers/spray/plantbgone
-	name = "Plant-B-Gone"
-	desc = "Kills those pesky weeds!"
-	icon = 'icons/obj/hydroponics_machines.dmi'
-	icon_state = "plantbgone"
-	item_state = "plantbgone"
-	volume = 100
-
-/obj/item/weapon/reagent_containers/spray/plantbgone/initialize()
-	..()
-	reagents.add_reagent("plantbgone", 100)

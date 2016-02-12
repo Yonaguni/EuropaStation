@@ -16,7 +16,10 @@
 	var/datum/scheduled_task/unwet_task
 
 // This is not great.
-/turf/simulated/proc/wet_floor(var/wet_val = 1)
+/turf/proc/wet_floor()
+	return
+
+/turf/simulated/wet_floor(var/wet_val = 1)
 	if(wet_val < wet)
 		return
 

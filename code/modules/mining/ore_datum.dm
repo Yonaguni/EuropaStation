@@ -95,7 +95,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/diamond
 	scan_icon = "mineral_rare"
-	xarch_source_mineral = "nitrogen"
+	xarch_source_mineral = REAGENT_ID_NITROGEN
 
 /ore/platinum
 	name = "platinum"

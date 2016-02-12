@@ -6,7 +6,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 4)
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/chawanmushi
 	name = "chawanmushi"
@@ -16,7 +16,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("protein", 5)
+		reagents.add_reagent(REAGENT_ID_PROTEIN, 5)
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/waffles
@@ -28,7 +28,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/waffles/New()
 	..()
-	reagents.add_reagent("nutriment", 8)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 8)
 
 /obj/item/weapon/reagent_containers/food/snacks/pancakes
 	name = "pancakes"
@@ -39,4 +39,4 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/pancakes/New()
 	..()
-	reagents.add_reagent("nutriment", 8)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 8)

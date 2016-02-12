@@ -88,7 +88,7 @@
 		return
 	if(Adjacent(usr))
 		usr.set_machine(src)
-		if(href_list["oxygen"])
+		if(href_list[REAGENT_ID_OXYGEN])
 			if(oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O
 				if(oxytanks.len == oxygentanks)

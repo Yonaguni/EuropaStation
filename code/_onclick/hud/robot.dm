@@ -119,7 +119,7 @@ var/obj/screen/robot_inventory
 	mymob.oxygen = new /obj/screen()
 	mymob.oxygen.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.oxygen.icon_state = "oxy0"
-	mymob.oxygen.name = "oxygen"
+	mymob.oxygen.name = REAGENT_ID_OXYGEN
 	mymob.oxygen.screen_loc = ui_oxygen
 
 	mymob.fire = new /obj/screen()

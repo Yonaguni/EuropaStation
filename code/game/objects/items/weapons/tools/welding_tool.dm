@@ -32,7 +32,9 @@
 
 /obj/item/weapon/weldingtool/initialize()
 	..()
-	reagents.add_reagent("fuel", max_fuel)
+	if(!reagents)
+		create_reagents(max_fuel)
+	reagents.add_reagent(REAGENT_ID_FUEL, max_fuel)
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding)
@@ -132,7 +134,7 @@
 
 //Returns the amount of fuel in the welder
 /obj/item/weapon/weldingtool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(REAGENT_ID_FUEL)
 
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
@@ -140,7 +142,7 @@
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
-		reagents.remove_reagent("fuel", amount)
+		reagents.remove_reagent(REAGENT_ID_FUEL, amount)
 		if(M)
 			eyecheck(M)
 		return 1

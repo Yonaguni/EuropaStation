@@ -85,7 +85,7 @@
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
 		user << "You inject the solution into the power cell."
-		if(S.reagents.has_reagent("fuel", 5))
+		if(S.reagents.has_reagent(REAGENT_ID_FUEL, 5))
 			rigged = 1
 			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with fuel, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with fuel, rigging it to explode.")

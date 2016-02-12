@@ -16,7 +16,7 @@
 		M.slip("the [src.name]",3)
 
 /obj/item/weapon/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	reagents.add_reagent(REAGENT_ID_CLEANER, 5)
 
 /obj/item/weapon/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return

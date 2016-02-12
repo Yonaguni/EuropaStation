@@ -7,4 +7,4 @@
 
 /obj/structure/reagent_dispensers/watertank/initialize()
 	..()
-	reagents.add_reagent("water",1000)
+	reagents.add_reagent(REAGENT_ID_WATER,1000)

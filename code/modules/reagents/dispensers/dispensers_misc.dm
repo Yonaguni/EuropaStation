@@ -1,16 +1,3 @@
-/obj/structure/reagent_dispensers/peppertank
-	name = "Pepper Spray Refiller"
-	desc = "Refill pepper spray canisters."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "peppertank"
-	anchored = 1
-	density = 0
-	amount_per_transfer_from_this = 45
-
-/obj/structure/reagent_dispensers/peppertank/initialize()
-	..()
-	reagents.add_reagent("condensedcapsaicin",1000)
-
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
 	desc = "A machine that dispenses water to drink."
@@ -22,21 +9,10 @@
 
 /obj/structure/reagent_dispensers/water_cooler/initialize()
 	..()
-	reagents.add_reagent("water",500)
-
-/obj/structure/reagent_dispensers/beerkeg
-	name = "beer keg"
-	desc = "A beer keg"
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "beertankTEMP"
-	amount_per_transfer_from_this = 10
-
-/obj/structure/reagent_dispensers/beerkeg/initialize()
-	..()
-	reagents.add_reagent("beer",1000)
+	reagents.add_reagent(REAGENT_ID_WATER,500)
 
 /obj/structure/reagent_dispensers/acid
-	name = "Sulphuric Acid Dispenser"
+	name = "Acid Dispenser"
 	desc = "A dispenser of acid for industrial processes."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "acidtank"
@@ -45,4 +21,4 @@
 
 /obj/structure/reagent_dispensers/acid/initialize()
 	..()
-	reagents.add_reagent("sacid", 1000)
+	reagents.add_reagent(REAGENT_ID_ACID, 1000)

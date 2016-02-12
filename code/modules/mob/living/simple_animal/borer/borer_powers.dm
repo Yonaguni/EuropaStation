@@ -214,7 +214,7 @@
 	if(chemicals < 50)
 		src << "You don't have enough chemicals!"
 
-	var/chem = input("Select a chemical to secrete.", "Chemicals") as null|anything in list("jumpstart","morphine")
+	var/chem = input("Select a chemical to secrete.", "Chemicals") as null|anything in list(REAGENT_ID_JUMPSTART,REAGENT_ID_MORPHINE)
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
@@ -346,6 +346,6 @@
 	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
 
 	rejuvenate()
-	vessel.add_reagent("blood",560-vessel.total_volume)
+	vessel.add_reagent(REAGENT_ID_BLOOD,560-vessel.total_volume)
 	fixblood()
 	update_canmove()

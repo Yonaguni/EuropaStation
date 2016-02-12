@@ -147,7 +147,7 @@
 		if(lit)
 			if(!ptank)
 				return
-			if(ptank.air_contents.gas["fuel"] < 1)
+			if(ptank.air_contents.gas[REAGENT_ID_FUEL] < 1)
 				return
 			if(!status)
 				return
@@ -208,8 +208,8 @@
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
 	//air_transfer.toxins = air_transfer.toxins * 5 // This is me not comprehending the air system. I realize this is retarded and I could probably make it work without fucking it up like this, but there you have it. -- TLE
-	new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["fuel"],get_dir(loc,target))
-	air_transfer.gas["fuel"] = 0
+	new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas[REAGENT_ID_FUEL],get_dir(loc,target))
+	air_transfer.gas[REAGENT_ID_FUEL] = 0
 	target.assume_air(air_transfer)
 	//Burn it based on transfered gas
 	//target.hotspot_expose(part4.air_contents.temperature*2,300)

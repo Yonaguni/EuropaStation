@@ -258,7 +258,7 @@
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", 10)
+	R.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return

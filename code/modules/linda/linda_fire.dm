@@ -15,7 +15,7 @@
 		return 0
 	if(active_hotspot)
 		if(soh)
-			if(air_contents.gas["fuel"] > 0.5 && air_contents.gas["oxygen"] > 0.5)
+			if(air_contents.gas[REAGENT_ID_FUEL] > 0.5 && air_contents.gas[REAGENT_ID_OXYGEN] > 0.5)
 				if(active_hotspot.temperature < exposed_temperature)
 					active_hotspot.temperature = exposed_temperature
 				if(active_hotspot.volume < exposed_volume)
@@ -24,11 +24,11 @@
 
 	var/igniting = 0
 
-	if((exposed_temperature > PHORON_MINIMUM_BURN_TEMPERATURE) && air_contents.gas["fuel"] > 0.5)
+	if((exposed_temperature > PHORON_MINIMUM_BURN_TEMPERATURE) && air_contents.gas[REAGENT_ID_FUEL] > 0.5)
 		igniting = 1
 
 	if(igniting)
-		if(air_contents.gas["oxygen"] < 0.5 || air_contents.gas["fuel"] < 0.5)
+		if(air_contents.gas[REAGENT_ID_OXYGEN] < 0.5 || air_contents.gas[REAGENT_ID_FUEL] < 0.5)
 			return 0
 
 		active_hotspot = new(src)
@@ -106,7 +106,7 @@
 		return
 
 	var/datum/gas_mixture/turf_air = loc.return_air()
-	if(!(turf_air) || turf_air.gas["fuel"] < 0.5 || turf_air.gas["oxygen"] < 0.5)
+	if(!(turf_air) || turf_air.gas[REAGENT_ID_FUEL] < 0.5 || turf_air.gas[REAGENT_ID_OXYGEN] < 0.5)
 		Kill()
 		return
 

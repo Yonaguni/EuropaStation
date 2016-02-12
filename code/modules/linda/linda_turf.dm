@@ -26,7 +26,7 @@
 	if(flooded)
 		return
 	var/datum/gas_mixture/GM = new
-	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
+	GM.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
 	GM.temperature = T20C
 	GM.volume = CELL_VOLUME
 	return GM
@@ -86,7 +86,7 @@
 			for(var/gastype in initial_air)
 				air.adjust_gas(gastype, initial_air[gastype])
 		else
-			air.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
+			air.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
 	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
 	update_visuals(air)
