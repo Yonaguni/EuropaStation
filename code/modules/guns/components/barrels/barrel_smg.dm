@@ -10,6 +10,7 @@
 	caliber = CALIBER_PISTOL_MEDIUM
 
 /obj/item/gun_component/barrel/smg/a10
+	icon_state="smg_long"
 	caliber = CALIBER_PISTOL_LARGE
 
 /obj/item/gun_component/barrel/smg/a45

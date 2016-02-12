@@ -32,3 +32,7 @@
 
 	update_ammo_overlay()
 	return 1
+
+/obj/item/gun_component/chamber/ballistic/pump/combat
+	icon_state = "shotgun_combat"
+	max_shots = 6
