@@ -1622,6 +1622,7 @@
 #include "code\modules\reagents\reagent\_reagent_blood.dm"
 #include "code\modules\reagents\reagent\_reagent_ingest.dm"
 #include "code\modules\reagents\reagent\_reagent_touch.dm"
+#include "code\modules\reagents\reagent\reagent_alcohol.dm"
 #include "code\modules\reagents\reagent\reagents.dm"
 #include "code\modules\reagents\reagent\reagents_blood.dm"
 #include "code\modules\reagents\reagent\reagents_colour.dm"

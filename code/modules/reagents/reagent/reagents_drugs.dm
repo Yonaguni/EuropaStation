@@ -20,19 +20,6 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	..()
 
-/datum/reagent/ethanol
-	name = "Ethanol" //Parent class for all alcoholic reagents.
-	id = REAGENT_ID_ETHANOL
-	color = "#404030"
-	touch_met = 5
-	flammable = 1
-	disinfectant = 1
-	nutriment_factor = 0
-	hydration_factor = 1
-	toxic_blood = 2
-	flammable = 1
-	alcoholic = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
-
 /datum/reagent/adrenaline
 	name = REAGENT_ID_ADRENALINE
 	id = REAGENT_ID_ADRENALINE
