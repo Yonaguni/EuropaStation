@@ -177,8 +177,8 @@
 			occupant.adjustBrainLoss(-(ceil(0.5*heal_rate)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(occupant.reagents.get_reagent_amount("adrenaline") < 30)
-				occupant.reagents.add_reagent("adrenaline", 60)
+			if(occupant.reagents.get_reagent_amount(REAGENT_ID_ADRENALINE) < 30)
+				occupant.reagents.add_reagent(REAGENT_ID_ADRENALINE, 60)
 			occupant.Sleeping(30)
 			//Also heal some oxyloss ourselves because adrenaline is so bad at preventing it!!
 			occupant.adjustOxyLoss(-4)

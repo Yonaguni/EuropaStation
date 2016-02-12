@@ -67,9 +67,7 @@
 		/obj/item/organ/internal/brain,
 		/obj/item/stack/cable_coil,
 		/obj/item/weapon/circuitboard,
-		/obj/item/weapon/reagent_containers/glass,
-		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
-
+		/obj/item/weapon/reagent_containers/glass
 		)
 
 /obj/item/weapon/gripper/service //Used to handle food, drinks, and seeds.

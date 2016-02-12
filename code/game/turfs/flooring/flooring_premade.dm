@@ -127,7 +127,7 @@
 	temperature = TCMB
 
 /turf/simulated/floor/greengrid/nitrogen
-	initial_air = list("nitrogen" = MOLES_N2STANDARD)
+	initial_air = list(REAGENT_ID_NITROGEN = MOLES_N2STANDARD)
 
 /turf/simulated/floor/tiled/white/airless
 	name = "airless floor"
@@ -146,22 +146,22 @@
 	initial_air = list()
 
 /turf/simulated/floor/reinforced/airmix
-	initial_air = list("oxygen" = MOLES_O2ATMOS, "nitrogen" = MOLES_N2ATMOS)
+	initial_air = list(REAGENT_ID_OXYGEN = MOLES_O2ATMOS, REAGENT_ID_NITROGEN = MOLES_N2ATMOS)
 
 /turf/simulated/floor/reinforced/nitrogen
-	initial_air = list("nitrogen" = 5000)
+	initial_air = list(REAGENT_ID_NITROGEN = 5000)
 
 /turf/simulated/floor/reinforced/oxygen
-	initial_air = list("oxygen" = 5000)
+	initial_air = list(REAGENT_ID_OXYGEN = 5000)
 
 /turf/simulated/floor/reinforced/phoron
-	initial_air = list("fuel" = 5000)
+	initial_air = list(REAGENT_ID_FUEL = 5000)
 
 /turf/simulated/floor/reinforced/carbon_dioxide
-	initial_air = list("carbon_dioxide" = 5000)
+	initial_air = list(REAGENT_ID_CARBONDIOXIDE = 5000)
 
 /turf/simulated/floor/reinforced/n20
-	initial_air = list("sleeping_agent" = 5000)
+	initial_air = list(REAGENT_ID_N2O = 5000)
 
 /turf/simulated/floor/snow
 	name = "snow"

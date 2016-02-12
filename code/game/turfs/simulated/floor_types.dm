@@ -29,12 +29,12 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	level = 1
-    
+
 /turf/simulated/shuttle/plating/is_plating()
 	return 1
 
 /turf/simulated/shuttle/plating/vox //Skipjack plating
-	initial_air = list("nitrogen" = MOLES_N2STANDARD + MOLES_O2STANDARD)
+	initial_air = list(REAGENT_ID_NITROGEN = MOLES_N2STANDARD + MOLES_O2STANDARD)
 
 /turf/simulated/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
@@ -42,4 +42,4 @@
 
 /turf/simulated/shuttle/floor4/vox //skipjack floors
 	name = "skipjack floor"
-	initial_air = list("nitrogen" = MOLES_N2STANDARD + MOLES_O2STANDARD)
+	initial_air = list(REAGENT_ID_NITROGEN = MOLES_N2STANDARD + MOLES_O2STANDARD)

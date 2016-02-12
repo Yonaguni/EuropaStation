@@ -1,8 +1,33 @@
+//TODO
+/datum/reagent/luminol
+	name = "Luminol"
+	id = REAGENT_ID_LUMINOL
+
+/datum/reagent/thermite
+	name = "Thermite"
+	id = REAGENT_ID_THERMITE
+	color = "#673910"
+	touch_met = 50
+
+/datum/reagent/thermite/touch_turf(var/turf/T)
+	if(volume >= 5)
+		if(istype(T, /turf/simulated/wall))
+			var/turf/simulated/wall/W = T
+			W.thermite = 1
+			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
+			remove_self(5)
+	return
+
+/datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L))
+		L.adjust_fire_stacks(amount / 5)
+
+/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustFireLoss(3 * removed)
+
 /datum/reagent/cleaner
 	name = "Cleaner"
-	id = "cleaner"
-	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
-	reagent_state = LIQUID
+	id = REAGENT_ID_CLEANER
 	color = "#A5F0EE"
 	touch_met = 50
 

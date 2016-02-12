@@ -23,7 +23,7 @@ var/list/fishtank_cache = list()
 	density = 1
 	var/health = 50
 	var/deleting
-	var/fill_type = "water"
+	var/fill_type = REAGENT_ID_WATER
 	var/fill_amt = 300
 	climbable = 1
 	flags = ON_BORDER

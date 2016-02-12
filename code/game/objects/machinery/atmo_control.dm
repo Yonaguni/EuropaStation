@@ -42,13 +42,13 @@
 			var/total_moles = air_sample.total_moles
 			if(total_moles > 0)
 				if(output&4)
-					signal.data["oxygen"] = round(100*air_sample.gas["oxygen"]/total_moles,0.1)
+					signal.data["oxygen"] = round(100*air_sample.gas[REAGENT_ID_OXYGEN]/total_moles,0.1)
 				if(output&8)
-					signal.data["fuel"] = round(100*air_sample.gas["fuel"]/total_moles,0.1)
+					signal.data["fuel"] = round(100*air_sample.gas[REAGENT_ID_FUEL]/total_moles,0.1)
 				if(output&16)
-					signal.data["nitrogen"] = round(100*air_sample.gas["nitrogen"]/total_moles,0.1)
+					signal.data["nitrogen"] = round(100*air_sample.gas[REAGENT_ID_NITROGEN]/total_moles,0.1)
 				if(output&32)
-					signal.data["carbon_dioxide"] = round(100*air_sample.gas["carbon_dioxide"]/total_moles,0.1)
+					signal.data["carbon_dioxide"] = round(100*air_sample.gas[REAGENT_ID_CARBONDIOXIDE]/total_moles,0.1)
 			else
 				signal.data["oxygen"] = 0
 				signal.data["fuel"] = 0
@@ -121,16 +121,16 @@ obj/machinery/computer/general_air_control/Destroy()
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data["oxygen"]||data["fuel"]||data["nitrogen"]||data["carbon_dioxide"])
+				if(data[REAGENT_ID_OXYGEN]||data[REAGENT_ID_FUEL]||data[REAGENT_ID_NITROGEN]||data[REAGENT_ID_CARBONDIOXIDE])
 					sensor_part += "   <B>Gas Composition :</B>"
-					if(data["oxygen"])
-						sensor_part += "[data["oxygen"]]% O2; "
-					if(data["nitrogen"])
-						sensor_part += "[data["nitrogen"]]% N; "
-					if(data["carbon_dioxide"])
-						sensor_part += "[data["carbon_dioxide"]]% CO2; "
-					if(data["fuel"])
-						sensor_part += "[data["fuel"]]% TX; "
+					if(data[REAGENT_ID_OXYGEN])
+						sensor_part += "[data[REAGENT_ID_OXYGEN]]% O2; "
+					if(data[REAGENT_ID_NITROGEN])
+						sensor_part += "[data[REAGENT_ID_NITROGEN]]% N; "
+					if(data[REAGENT_ID_CARBONDIOXIDE])
+						sensor_part += "[data[REAGENT_ID_CARBONDIOXIDE]]% CO2; "
+					if(data[REAGENT_ID_FUEL])
+						sensor_part += "[data[REAGENT_ID_FUEL]]% TX; "
 				sensor_part += "<HR>"
 
 			else

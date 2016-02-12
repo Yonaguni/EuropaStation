@@ -51,7 +51,7 @@
 
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("sleeping_agent", 30)
+			target.assume_gas(REAGENT_ID_N2O, 30)
 
 	spawn(0)
 		qdel(src)
@@ -59,7 +59,7 @@
 /obj/effect/mine/proc/triggerphoron(obj)
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("fuel", 30)
+			target.assume_gas(REAGENT_ID_FUEL, 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
 

@@ -40,15 +40,15 @@
 	..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons
-			filtered_out = list("fuel")
+			filtered_out = list(REAGENT_ID_FUEL)
 		if(1) //removing O2
-			filtered_out = list("oxygen")
+			filtered_out = list(REAGENT_ID_OXYGEN)
 		if(2) //removing N2
-			filtered_out = list("nitrogen")
+			filtered_out = list(REAGENT_ID_NITROGEN)
 		if(3) //removing CO2
-			filtered_out = list("carbon_dioxide")
+			filtered_out = list(REAGENT_ID_CARBONDIOXIDE)
 		if(4)//removing N2O
-			filtered_out = list("sleeping_agent")
+			filtered_out = list(REAGENT_ID_N2O)
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -162,9 +162,9 @@
 		if(0)
 			current_filter_type = "Fuel"
 		if(1)
-			current_filter_type = "Oxygen"
+			current_filter_type = REAGENT_ID_OXYGEN
 		if(2)
-			current_filter_type = "Nitrogen"
+			current_filter_type = REAGENT_ID_NITROGEN
 		if(3)
 			current_filter_type = "Carbon Dioxide"
 		if(4)
@@ -205,15 +205,15 @@
 		filtered_out.Cut()	//no need to create new lists unnecessarily
 		switch(filter_type)
 			if(0) //removing hydrocarbons
-				filtered_out += "fuel"
+				filtered_out += REAGENT_ID_FUEL
 			if(1) //removing O2
-				filtered_out += "oxygen"
+				filtered_out += REAGENT_ID_OXYGEN
 			if(2) //removing N2
-				filtered_out += "nitrogen"
+				filtered_out += REAGENT_ID_NITROGEN
 			if(3) //removing CO2
-				filtered_out += "carbon_dioxide"
+				filtered_out += REAGENT_ID_CARBONDIOXIDE
 			if(4)//removing N2O
-				filtered_out += "sleeping_agent"
+				filtered_out += REAGENT_ID_N2O
 
 	if (href_list["temp"])
 		src.temp = null

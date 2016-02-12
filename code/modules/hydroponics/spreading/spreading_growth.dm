@@ -17,7 +17,7 @@
 		if((locate(/obj/effect/plant) in floor.contents) || (locate(/obj/effect/dead_plant) in floor.contents) )
 			continue
 		if(floor.density)
-			if(!isnull(seed.chems["pacid"]))
+			if(!isnull(seed.chems[REAGENT_ID_ACID]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
 		if(!Adjacent(floor) || !floor.Enter(src))
@@ -37,11 +37,6 @@
 	if(!seed)
 		die_off()
 		return 0
-
-	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
-		if(smoke.reagents.has_reagent("plantbgone"))
-			die_off()
-			return
 
 	// Handle life.
 	var/turf/simulated/T = get_turf(src)

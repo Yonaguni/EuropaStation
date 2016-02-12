@@ -11,7 +11,7 @@
 /obj/item/organ/internal/borer/process()
 
 	// Borer husks regenerate health, feel no pain, and are resistant to stuns and brainloss.
-	for(var/chem in list("morphine","jumpstart"))
+	for(var/chem in list(REAGENT_ID_MORPHINE,REAGENT_ID_JUMPSTART))
 		if(owner.reagents.get_reagent_amount(chem) < 3)
 			owner.reagents.add_reagent(chem, 5)
 

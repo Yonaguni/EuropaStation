@@ -6,9 +6,9 @@
 	filling_color = "#EDDD00"
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/spagetti/New()
+/obj/item/weapon/reagent_containers/food/snacks/spagetti/initialize()
 	..()
-	reagents.add_reagent("nutriment", 1)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledspagetti
 	name = "spaghetti"
@@ -17,6 +17,6 @@
 	icon_state = "spagettiboiled"
 	filling_color = "#FCEE81"
 
-/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/New()
+/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/initialize()
 	..()
-	reagents.add_reagent("nutriment", 2)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 2)

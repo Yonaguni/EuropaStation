@@ -7,9 +7,9 @@
 	slice_count = 5
 	filling_color = "#FFF700"
 
-/obj/item/weapon/reagent_containers/food/snacks/cheesewheel/New()
+/obj/item/weapon/reagent_containers/food/snacks/cheesewheel/initialize()
 	..()
-	reagents.add_reagent("protein", 20)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 20)
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	name = "cheese"
@@ -25,11 +25,11 @@
 	icon_state = "chocolatebar"
 	filling_color = "#7D5F46"
 
-/obj/item/weapon/reagent_containers/food/snacks/chocolatebar/New()
+/obj/item/weapon/reagent_containers/food/snacks/chocolatebar/initialize()
 	..()
-	reagents.add_reagent("nutriment", 2)
-	reagents.add_reagent("sugar", 2)
-	reagents.add_reagent("coco", 2)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
+	reagents.add_reagent(REAGENT_ID_COCOA, 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatechips
 	name = "chocolate chip"
@@ -38,8 +38,8 @@
 	icon_state = "chocolatebar"
 	filling_color = "#7D5F46"
 
-/obj/item/weapon/reagent_containers/food/snacks/chocolatechips/New()
+/obj/item/weapon/reagent_containers/food/snacks/chocolatechips/initialize()
 	..()
-	reagents.add_reagent("nutriment", 2)
-	reagents.add_reagent("sugar", 2)
-	reagents.add_reagent("coco", 2)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
+	reagents.add_reagent(REAGENT_ID_COCOA, 2)

@@ -71,7 +71,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	var/list/blood = other.fields["blood"]
 	var/list/o_blood = other.fields["blood"]
 	blood |= o_blood
-	fields["blood"] = blood
+	fields[REAGENT_ID_BLOOD] = blood
 
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]

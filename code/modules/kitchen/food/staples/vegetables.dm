@@ -2,9 +2,9 @@
 	icon = 'icons/obj/kitchen/staples/grown.dmi'
 	var/base_grown = "potato"
 
-/obj/item/weapon/reagent_containers/food/snacks/vegetable/New()
+/obj/item/weapon/reagent_containers/food/snacks/vegetable/initialize()
 	..()
-	reagents.add_reagent("nutriment", 4)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetable/rawsticks
 	name = "sticks"

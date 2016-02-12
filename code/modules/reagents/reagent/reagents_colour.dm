@@ -2,57 +2,53 @@
 
 /datum/reagent/crayon_dust
 	name = "Crayon dust"
-	id = "crayon_dust"
-	description = "Intensely coloured powder obtained by grinding crayons."
-	reagent_state = LIQUID
+	id = REAGENT_ID_CRAYON
 	color = "#888888"
 	overdose = 5
 
 /datum/reagent/crayon_dust/red
 	name = "Red crayon dust"
-	id = "crayon_dust_red"
+	id = REAGENT_ID_CRAYON_RED
 	color = "#FE191A"
 
 /datum/reagent/crayon_dust/orange
 	name = "Orange crayon dust"
-	id = "crayon_dust_orange"
+	id = REAGENT_ID_CRAYON_ORANGE
 	color = "#FFBE4F"
 
 /datum/reagent/crayon_dust/yellow
 	name = "Yellow crayon dust"
-	id = "crayon_dust_yellow"
+	id = REAGENT_ID_CRAYON_YELLOW
 	color = "#FDFE7D"
 
 /datum/reagent/crayon_dust/green
 	name = "Green crayon dust"
-	id = "crayon_dust_green"
+	id = REAGENT_ID_CRAYON_GREEN
 	color = "#18A31A"
 
 /datum/reagent/crayon_dust/blue
 	name = "Blue crayon dust"
-	id = "crayon_dust_blue"
+	id = REAGENT_ID_CRAYON_BLUE
 	color = "#247CFF"
 
 /datum/reagent/crayon_dust/purple
 	name = "Purple crayon dust"
-	id = "crayon_dust_purple"
+	id = REAGENT_ID_CRAYON_PURPLE
 	color = "#CC0099"
 
 /datum/reagent/crayon_dust/grey //Mime
 	name = "Grey crayon dust"
-	id = "crayon_dust_grey"
+	id = REAGENT_ID_CRAYON_GREY
 	color = "#808080"
 
 /datum/reagent/crayon_dust/brown //Rainbow
 	name = "Brown crayon dust"
-	id = "crayon_dust_brown"
+	id = REAGENT_ID_CRAYON_BROWN
 	color = "#846F35"
 
 /datum/reagent/paint
 	name = "Paint"
-	id = "paint"
-	description = "This paint will stick to almost any object."
-	reagent_state = LIQUID
+	id = REAGENT_ID_PAINT
 	color = "#808080"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20

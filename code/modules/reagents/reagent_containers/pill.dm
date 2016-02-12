@@ -88,7 +88,7 @@
 
 /obj/item/weapon/reagent_containers/pill/antitox/initialize()
 	..()
-	reagents.add_reagent("anti_toxin", 25)
+	reagents.add_reagent(REAGENT_ID_ANTITOX, 25)
 
 /obj/item/weapon/reagent_containers/pill/cyanide
 	name = "cyanide pill"
@@ -97,7 +97,7 @@
 
 /obj/item/weapon/reagent_containers/pill/cyanide/initialize()
 	..()
-	reagents.add_reagent("cyanide", 50)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 50)
 
 /obj/item/weapon/reagent_containers/pill/stox
 	name = "sleeping pill"
@@ -106,16 +106,7 @@
 
 /obj/item/weapon/reagent_containers/pill/stox/initialize()
 	..()
-	reagents.add_reagent("stoxin", 15)
-
-/obj/item/weapon/reagent_containers/pill/paracetamol
-	name = "paracetamol pill"
-	desc = "Tylenol! A painkiller for the ages. Chewables!"
-	icon_state = "pill8"
-
-/obj/item/weapon/reagent_containers/pill/paracetamol/initialize()
-	..()
-	reagents.add_reagent("paracetamol", 15)
+	reagents.add_reagent(REAGENT_ID_SLEEPTOX, 15)
 
 /obj/item/weapon/reagent_containers/pill/morphine
 	name = "morphine pill"
@@ -124,16 +115,7 @@
 
 /obj/item/weapon/reagent_containers/pill/morphine/initialize()
 	..()
-	reagents.add_reagent("morphine", 15)
-
-/obj/item/weapon/reagent_containers/pill/antidepressant
-	name = "antidepressant pill"
-	desc = "Mild anti-depressant."
-	icon_state = "pill8"
-
-/obj/item/weapon/reagent_containers/pill/antidepressant/initialize()
-	..()
-	reagents.add_reagent("antidepressant", 15)
+	reagents.add_reagent(REAGENT_ID_MORPHINE, 15)
 
 /obj/item/weapon/reagent_containers/pill/adrenaline
 	name = "adrenaline pill"
@@ -142,7 +124,7 @@
 
 /obj/item/weapon/reagent_containers/pill/adrenaline/initialize()
 	..()
-	reagents.add_reagent("adrenaline", 30)
+	reagents.add_reagent(REAGENT_ID_ADRENALINE, 30)
 
 /obj/item/weapon/reagent_containers/pill/antitoxin
 	name = "Dylovene pill"
@@ -151,7 +133,7 @@
 
 /obj/item/weapon/reagent_containers/pill/antitoxin/initialize()
 	..()
-	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent(REAGENT_ID_ANTITOX, 15)
 
 /obj/item/weapon/reagent_containers/pill/antibiotic
 	name = "antibiotic pill"
@@ -160,7 +142,7 @@
 
 /obj/item/weapon/reagent_containers/pill/antibiotic/initialize()
 	..()
-	reagents.add_reagent("antibiotic", 15)
+	reagents.add_reagent(REAGENT_ID_ANTIBIOTIC, 15)
 
 /obj/item/weapon/reagent_containers/pill/jumpstart
 	name = "jumpstart pill"
@@ -169,4 +151,4 @@
 
 /obj/item/weapon/reagent_containers/pill/jumpstart/initialize()
 	..()
-	reagents.add_reagent("jumpstart", 15)
+	reagents.add_reagent(REAGENT_ID_JUMPSTART, 15)

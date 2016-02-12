@@ -67,27 +67,17 @@
 		desc = plant_controller.product_descs["[seed.uid]"]
 	else
 		var/list/descriptors = list()
-		if(reagents.has_reagent("sugar") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
+		if(reagents.has_reagent(REAGENT_ID_SUGAR) || reagents.has_reagent(REAGENT_ID_HONEY))
 			descriptors |= "sweet"
-		if(reagents.has_reagent("anti_toxin"))
+		if(reagents.has_reagent(REAGENT_ID_ANTITOX))
 			descriptors |= "astringent"
-		if(reagents.has_reagent("nutriment"))
+		if(reagents.has_reagent(REAGENT_ID_NUTRIMENT))
 			descriptors |= "nutritious"
-		if(reagents.has_reagent("condensedcapsaicin") || reagents.has_reagent("capsaicin"))
-			descriptors |= "spicy"
-		if(reagents.has_reagent("coco"))
+		if(reagents.has_reagent(REAGENT_ID_COCOA))
 			descriptors |= "bitter"
-		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
-			descriptors |= "sweet-sour"
-		if(reagents.has_reagent("radium") || reagents.has_reagent("uranium"))
-			descriptors |= "radioactive"
-		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
+		if(reagents.has_reagent(REAGENT_ID_TOXIN))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin"))
-			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("gold"))
-			descriptors |= "shiny"
-		if(reagents.has_reagent("pacid") || reagents.has_reagent("sacid"))
+		if(reagents.has_reagent(REAGENT_ID_ACID))
 			descriptors |= "acidic"
 		if(seed.get_trait(TRAIT_JUICY))
 			descriptors |= "juicy"
@@ -200,7 +190,7 @@
 				qdel(src)
 				return
 			else if(seed.chems)
-				if(istype(W,/obj/item/weapon/material/hatchet) && !isnull(seed.chems["woodpulp"]))
+				if(istype(W,/obj/item/weapon/material/hatchet) && !isnull(seed.chems[REAGENT_ID_WOOD]))
 					user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 					if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)

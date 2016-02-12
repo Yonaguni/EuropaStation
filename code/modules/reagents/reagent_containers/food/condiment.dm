@@ -117,20 +117,20 @@
 			return
 
 /obj/item/weapon/reagent_containers/food/condiment/enzyme
-	name = "Universal Enzyme"
+	name = "universal enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
 	initialize()
 		..()
-		reagents.add_reagent("enzyme", 50)
+		reagents.add_reagent(REAGENT_ID_ENZYME, 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/sugar
 	initialize()
 		..()
-		reagents.add_reagent("sugar", 50)
+		reagents.add_reagent(REAGENT_ID_SUGAR, 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
-	name = "Salt Shaker"											//	a large one.
+	name = "salt shaker"											//	a large one.
 	desc = "Salt. From the ocean, presumably."
 	icon_state = "saltshakersmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
@@ -138,10 +138,10 @@
 	volume = 20
 	initialize()
 		..()
-		reagents.add_reagent("sodiumchloride", 20)
+		reagents.add_reagent(REAGENT_ID_SALT, 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/peppermill
-	name = "Pepper Mill"
+	name = "pepper mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
@@ -149,7 +149,7 @@
 	volume = 20
 	initialize()
 		..()
-		reagents.add_reagent("blackpepper", 20)
+		reagents.add_reagent(REAGENT_ID_PEPPER, 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/flour
 	name = "flour sack"
@@ -158,18 +158,18 @@
 	item_state = "flour"
 	initialize()
 		..()
-		reagents.add_reagent("flour", 30)
+		reagents.add_reagent(REAGENT_ID_FLOUR, 30)
 		src.pixel_x = rand(-10.0, 10)
 		src.pixel_y = rand(-10.0, 10)
 
 /obj/item/weapon/reagent_containers/food/condiment/gelatine
 	name = "gelatine"
-	desc = "A box of Orwell-brand space gelatine. Don't ask where it comes from."
+	desc = "A box of Orwell-brand gelatine. Don't ask where it comes from."
 	icon_state = "gelatine"
 
 /obj/item/weapon/reagent_containers/food/condiment/gelatine/initialize()
 	..()
-	reagents.add_reagent("gelatine", 50)
+	reagents.add_reagent(REAGENT_ID_GELATINE, 50)
 	src.pixel_x = rand(-10.0, 10)
 	src.pixel_y = rand(-10.0, 10)
 

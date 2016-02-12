@@ -307,18 +307,6 @@
 			newgas.temperature = target_temp
 		return newgas
 
-/obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
-	name = "emergency rations"
-	desc = "A crate of emergency rations."
-
-
-/obj/structure/closet/crate/freezer/rations/New()
-	..()
-	new /obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/junk/liquidfood(src)
-
 /obj/structure/closet/crate/bin
 	name = "large bin"
 	desc = "A large bin."
@@ -443,24 +431,3 @@
 	icon_state = "largermetal"
 	icon_opened = "largermetalopen"
 	icon_closed = "largermetal"
-
-/obj/structure/closet/crate/hydroponics
-	name = "hydroponics crate"
-	desc = "All you need to destroy those pesky weeds and pests."
-	icon_state = "hydrocrate"
-	icon_opened = "hydrocrateopen"
-	icon_closed = "hydrocrate"
-
-/obj/structure/closet/crate/hydroponics/prespawned
-	//This exists so the prespawned hydro crates spawn with their contents.
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/material/minihoe(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)

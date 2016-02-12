@@ -2,9 +2,9 @@
 	filling_color = "#E0CF9B"
 	icon = 'icons/obj/kitchen/staples/baked.dmi'
 
-/obj/item/weapon/reagent_containers/food/snacks/baked/New()
+/obj/item/weapon/reagent_containers/food/snacks/baked/initialize()
 	..()
-	reagents.add_reagent("nutriment", 6)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/baked/muffin
 	name = "muffin"

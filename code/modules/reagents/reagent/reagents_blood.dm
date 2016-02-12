@@ -1,14 +1,9 @@
 /datum/reagent/blood
 	data = new/list("donor" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "trace_chem" = null)
-	name = "Blood"
-	id = "blood"
-	reagent_state = LIQUID
+	name = REAGENT_ID_BLOOD
+	id = REAGENT_ID_BLOOD
 	metabolism = REM * 5
 	color = "#C80000"
-
-	glass_icon_state = "glass_red"
-	glass_name = "glass of tomato juice"
-	glass_desc = "Are you sure this is tomato juice?"
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
