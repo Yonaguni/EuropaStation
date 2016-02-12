@@ -77,7 +77,7 @@
 					return
 
 				if(ismob(target))//Blood!
-					if(reagents.has_reagent("blood"))
+					if(reagents.has_reagent(REAGENT_ID_BLOOD))
 						user << "<span class='notice'>There is already a blood sample in this syringe.</span>"
 						return
 					if(istype(target, /mob/living/carbon))
@@ -308,7 +308,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/adrenaline/initialize()
 	..()
-	reagents.add_reagent("adrenaline", 15)
+	reagents.add_reagent(REAGENT_ID_ADRENALINE, 15)
 	mode = SYRINGE_INJECT
 	update_icon()
 
@@ -318,7 +318,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin/initialize()
 	..()
-	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent(REAGENT_ID_ANTITOX, 15)
 	mode = SYRINGE_INJECT
 	update_icon()
 
@@ -328,12 +328,6 @@
 
 /obj/item/weapon/reagent_containers/syringe/antiviral/initialize()
 	..()
-	reagents.add_reagent("antibiotic", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/initialize()
-	..()
-	reagents.add_reagent("chloralhydrate", 50)
+	reagents.add_reagent(REAGENT_ID_ANTIBIOTIC, 15)
 	mode = SYRINGE_INJECT
 	update_icon()

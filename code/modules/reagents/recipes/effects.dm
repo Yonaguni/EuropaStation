@@ -83,3 +83,23 @@
 	empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 	holder.clear_reagents()
 	return
+
+/datum/chemical_reaction/foam
+	name = "Foam"
+	id = "foam"
+	result = null
+	required_reagents = list("surfactant" = 1, "water" = 1)
+	result_amount = 2
+	mix_message = "The solution violently bubbles!"
+
+/datum/chemical_reaction/foam/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+
+	for(var/mob/M in viewers(5, location))
+		M << "<span class='warning'>The solution spews out foam!</span>"
+
+	var/datum/effect/effect/system/foam_spread/s = new()
+	s.set_up(created_volume, location, holder, 0)
+	s.start()
+	holder.clear_reagents()
+	return

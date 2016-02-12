@@ -95,25 +95,6 @@
 				admin_inject_log(user, M, src, contained_reagents, trans)
 
 /*
- * Sleepy Pens
- */
-/obj/item/weapon/pen/reagent/sleepy
-	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-
-/obj/item/weapon/pen/reagent/sleepy/New()
-	..()
-	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-
-
-/*
- * Parapens
- */
-/obj/item/weapon/pen/reagent/paralysis/New()
-	..()
-	reagents.add_reagent("zombiepowder", 10)
-	reagents.add_reagent("cryptobiolin", 15)
-
-/*
  * Chameleon pen
  */
 /obj/item/weapon/pen/chameleon

@@ -162,15 +162,6 @@
 	for(var/x = 1 to 7)
 		new /obj/item/weapon/reagent_containers/pill/morphine(src)
 
-/obj/item/weapon/storage/pill_bottle/antidepressant
-	name = "bottle of antidepressant pills"
-	desc = "Contains pills used to stabilize a patient's mood."
-
-/obj/item/weapon/storage/pill_bottle/antidepressant/New()
-	..()
-	for(var/x = 1 to 7)
-		new /obj/item/weapon/reagent_containers/pill/antidepressant(src)
-
 /obj/item/weapon/storage/pill_bottle/jumpstart
 	name = "unlabelled pill bottle"
 	desc = "It just has a crude '+1' drawn on the label in black marker."

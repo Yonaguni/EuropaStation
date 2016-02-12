@@ -9,7 +9,7 @@
 	var/list/reagent_ingredients = list()
 	var/content_descriptor
 	var/examined_descriptor
-	var/list/global/appearance_ignores_reagents = list("sugar","nutriment","egg","milk","protein","water")
+	var/list/global/appearance_ignores_reagents = list("sugar",REAGENT_ID_NUTRIMENT,"egg","milk",REAGENT_ID_PROTEIN,"water")
 
 /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/update_icon()
 	return

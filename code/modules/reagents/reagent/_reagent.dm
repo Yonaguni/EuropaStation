@@ -1,40 +1,36 @@
 /datum/reagent
+
 	var/name = "Reagent"
 	var/id = "reagent"
-	var/description = "A non-descript chemical."
 	var/datum/reagents/holder = null
-	var/reagent_state = SOLID
 	var/list/data = null
 	var/volume = 0
+	var/scannable = 0 // Shows up on health analyzers.
+	var/affects_dead = 0
+	var/color = "#000000"
+	var/color_weight = 1
+	var/flammable = -1
+
+	// Metabolism variables.
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0
 	var/touch_met = 0
 	var/dose = 0
 	var/max_dose = 0
 	var/overdose = 0
-	var/scannable = 0 // Shows up on health analyzers.
-	var/affects_dead = 0
-	var/glass_icon_state = null
-	var/glass_name = null
-	var/glass_desc = null
-	var/glass_center_of_mass = null
-	var/color = "#000000"
-	var/color_weight = 1
-	var/flammable = -1
-	var/disinfectant
+	var/nutriment_factor = 0
+	var/nutriment_injectable = 0
+	var/hydration_factor = 0
+	var/acid = 0
+	var/acid_melt_threshold = 0
+	var/toxic_blood = 0
+	var/disinfectant = 0
+	var/alcoholic
+	var/hallucinogen
+	var/neurotoxin
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	holder.remove_reagent(id, amount)
-
-// This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
-/datum/reagent/proc/touch_mob(var/mob/M, var/amount)
-	return
-
-/datum/reagent/proc/touch_obj(var/obj/O, var/amount) // Acid melting, cleaner cleaning, etc
-	return
-
-/datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
-	return
 
 /datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
@@ -60,16 +56,6 @@
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
 	remove_self(removed)
-	return
-
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	return
-
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed * 0.5)
-	return
-
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.

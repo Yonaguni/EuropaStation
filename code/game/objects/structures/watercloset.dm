@@ -309,7 +309,7 @@
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-	reagents.add_reagent("water", 2)
+	reagents.add_reagent(REAGENT_ID_WATER, 2)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
@@ -402,7 +402,7 @@
 
 	var/obj/item/weapon/reagent_containers/RG = O
 	if (istype(RG) && RG.is_open_container())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
 		return 1
 
@@ -423,11 +423,8 @@
 					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
 					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
 				return 1
-	// Short of a rewrite, this is necessary to stop monkeycubes being washed.
-	else if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-		return
 	else if(istype(O, /obj/item/weapon/mop))
-		O.reagents.add_reagent("water", 5)
+		O.reagents.add_reagent(REAGENT_ID_WATER, 5)
 		user << "<span class='notice'>You wet \the [O] in \the [src].</span>"
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return

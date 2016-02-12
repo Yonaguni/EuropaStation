@@ -34,9 +34,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/weapon/storage/box/emps,
 					/obj/item/weapon/grenade/smokebomb,
 					/obj/item/weapon/grenade/smokebomb,
-					/obj/item/weapon/grenade/smokebomb,
-					/obj/item/weapon/pen/reagent/paralysis,
-					/obj/item/weapon/grenade/chem_grenade/incendiary)
+					/obj/item/weapon/grenade/smokebomb)
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
@@ -65,8 +63,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/condiment/flour,
 					/obj/item/weapon/reagent_containers/food/condiment/gelatine,
 					/obj/item/weapon/reagent_containers/food/condiment/gelatine,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
 					/obj/item/weapon/storage/fancy/egg_box,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
@@ -77,38 +73,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Food crate"
 	group = "Supply"
-
-/datum/supply_packs/monkey
-	name = "Monkey crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes)
-	cost = 20
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "Monkey crate"
-	group = "Hydroponics"
-
-/datum/supply_packs/farwa
-	name = "Farwa crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "Farwa crate"
-	group = "Hydroponics"
-
-/datum/supply_packs/skrell
-	name = "Neaera crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "Neaera crate"
-	group = "Hydroponics"
-
-/datum/supply_packs/stok
-	name = "Stok crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "Stok crate"
-	group = "Hydroponics"
 
 /datum/supply_packs/toner
 	name = "Toner cartridges"
@@ -122,26 +86,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	containername = "Toner cartridges"
 	group = "Supply"
-
-/datum/supply_packs/party
-	name = "Party equipment"
-	contains = list(/obj/item/weapon/storage/box/drinkingglasses,
-					/obj/item/weapon/reagent_containers/food/drinks/shaker,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-					/obj/item/weapon/lipstick/random,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer)
-	cost = 20
-	containertype = /obj/structure/closet/crate
-	containername = "Party equipment"
-	group = "Hospitality"
 
 /datum/supply_packs/internals
 	name = "Internals crate"
@@ -209,9 +153,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/lightreplacer,
 					/obj/item/weapon/reagent_containers/spray/cleaner,
 					/obj/item/weapon/reagent_containers/glass/rag,
-					/obj/item/weapon/grenade/chem_grenade/cleaner,
-					/obj/item/weapon/grenade/chem_grenade/cleaner,
-					/obj/item/weapon/grenade/chem_grenade/cleaner,
 					/obj/structure/mopbucket)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -252,28 +193,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Corgi Crate"
 	group = "Hydroponics"
 
-/datum/supply_packs/hydroponics // -- Skie
-	name = "Hydroponics Supply Crate"
-	contains = list(/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-					/obj/item/weapon/material/hatchet,
-					/obj/item/weapon/material/minihoe,
-					/obj/item/device/analyzer/plant_analyzer,
-					/obj/item/clothing/gloves/botanic_leather,
-					/obj/item/clothing/suit/apron,
-					/obj/item/weapon/material/minihoe,
-					/obj/item/weapon/storage/box/botanydisk
-					) // Updated with new things
-	cost = 15
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Hydroponics crate"
-	access = access_hydroponics
-	group = "Hydroponics"
-
 //farm animals - useless and annoying, but potentially a good source of food
 /datum/supply_packs/cow
 	name = "Cow crate"
@@ -296,68 +215,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 20
 	containertype = /obj/structure/largecrate/animal/chick
 	containername = "Chicken crate"
-	access = access_hydroponics
-	group = "Hydroponics"
-
-/datum/supply_packs/seeds
-	name = "Seeds crate"
-	contains = list(/obj/item/seeds/chiliseed,
-					/obj/item/seeds/berryseed,
-					/obj/item/seeds/cornseed,
-					/obj/item/seeds/eggplantseed,
-					/obj/item/seeds/tomatoseed,
-					/obj/item/seeds/appleseed,
-					/obj/item/seeds/soyaseed,
-					/obj/item/seeds/wheatseed,
-					/obj/item/seeds/carrotseed,
-					/obj/item/seeds/harebell,
-					/obj/item/seeds/lemonseed,
-					/obj/item/seeds/orangeseed,
-					/obj/item/seeds/grassseed,
-					/obj/item/seeds/sunflowerseed,
-					/obj/item/seeds/chantermycelium,
-					/obj/item/seeds/potatoseed,
-					/obj/item/seeds/sugarcaneseed)
-	cost = 10
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Seeds crate"
-	access = access_hydroponics
-	group = "Hydroponics"
-
-/datum/supply_packs/weedcontrol
-	name = "Weed control crate"
-	contains = list(/obj/item/weapon/material/hatchet,
-					/obj/item/weapon/material/hatchet,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/clothing/mask/gas,
-					/obj/item/clothing/mask/gas,
-					/obj/item/weapon/grenade/chem_grenade/antiweed,
-					/obj/item/weapon/grenade/chem_grenade/antiweed)
-	cost = 25
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Weed control crate"
-	access = access_hydroponics
-	group = "Hydroponics"
-
-/datum/supply_packs/exoticseeds
-	name = "Exotic seeds crate"
-	contains = list(/obj/item/seeds/replicapod,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/libertymycelium,
-					/obj/item/seeds/reishimycelium,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random,
-					/obj/item/seeds/kudzuseed)
-	cost = 15
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Exotic Seeds crate"
 	access = access_hydroponics
 	group = "Hydroponics"
 
@@ -622,8 +479,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Weapons crate"
 	contains = list(/obj/item/weapon/melee/baton,
 					/obj/item/weapon/melee/baton,
-					/obj/item/weapon/storage/box/flashbangs,
-					/obj/item/weapon/storage/box/teargas)
+					/obj/item/weapon/storage/box/flashbangs)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
@@ -667,7 +523,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/suit/armor/riot,
 					/obj/item/weapon/storage/box/flashbangs,
-					/obj/item/weapon/storage/box/teargas,
 					/obj/item/weapon/storage/box/handcuffs)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
@@ -989,22 +844,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	access = access_atmospherics
 
-/datum/supply_packs/bee_keeper
-	name = "Beekeeping crate"
-	contains = list(/obj/item/beehive_assembly,
-					/obj/item/bee_smoker,
-					/obj/item/honey_frame,
-					/obj/item/honey_frame,
-					/obj/item/honey_frame,
-					/obj/item/honey_frame,
-					/obj/item/honey_frame,
-					/obj/item/bee_pack)
-	cost = 40
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Beekeeping crate"
-	access = access_hydroponics
-	group = "Hydroponics"
-
 /datum/supply_packs/cardboard_sheets
 	contains = list(/obj/item/stack/material/cardboard)
 	name = "50 cardboard sheets"
@@ -1071,15 +910,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 	contains = list(/obj/item/stack/tile/carpet)
 	amount = 50
-
-/datum/supply_packs/hydrotray
-	name = "Empty hydroponics tray"
-	cost = 30
-	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Hydroponics tray crate"
-	group = "Hydroponics"
-	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0})
-	access = access_hydroponics
 
 /datum/supply_packs/canister_empty
 	name = "Empty gas canister"

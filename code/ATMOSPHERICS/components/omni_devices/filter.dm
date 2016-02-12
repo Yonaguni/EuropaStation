@@ -142,9 +142,9 @@
 /obj/machinery/atmospherics/omni/filter/proc/mode_send_switch(var/mode = ATM_NONE)
 	switch(mode)
 		if(ATM_O2)
-			return "Oxygen"
+			return REAGENT_ID_OXYGEN
 		if(ATM_N2)
-			return "Nitrogen"
+			return REAGENT_ID_NITROGEN
 		if(ATM_CO2)
 			return "Carbon Dioxide"
 		if(ATM_P)
@@ -190,9 +190,9 @@
 
 /obj/machinery/atmospherics/omni/filter/proc/mode_return_switch(var/mode)
 	switch(mode)
-		if("Oxygen")
+		if(REAGENT_ID_OXYGEN)
 			return ATM_O2
-		if("Nitrogen")
+		if(REAGENT_ID_NITROGEN)
 			return ATM_N2
 		if("Carbon Dioxide")
 			return ATM_CO2

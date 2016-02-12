@@ -249,14 +249,14 @@
 		mymob.oxygen = new /obj/screen()
 		mymob.oxygen.icon = ui_style
 		mymob.oxygen.icon_state = "oxy0"
-		mymob.oxygen.name = "oxygen"
+		mymob.oxygen.name = REAGENT_ID_OXYGEN
 		mymob.oxygen.screen_loc = ui_oxygen
 		hud_elements |= mymob.oxygen
 
 		mymob.toxin = new /obj/screen()
 		mymob.toxin.icon = ui_style
 		mymob.toxin.icon_state = "tox0"
-		mymob.toxin.name = "toxin"
+		mymob.toxin.name = REAGENT_ID_TOXIN
 		mymob.toxin.screen_loc = ui_toxin
 		hud_elements |= mymob.toxin
 

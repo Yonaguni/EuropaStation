@@ -6,9 +6,9 @@
 	filling_color = "#FFFEE0"
 	bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/tofu/New()
+/obj/item/weapon/reagent_containers/food/snacks/tofu/initialize()
 	..()
-	reagents.add_reagent("nutriment", 3)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/reagent_containers/food/snacks/vegetable/hash))

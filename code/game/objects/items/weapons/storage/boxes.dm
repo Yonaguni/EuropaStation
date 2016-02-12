@@ -54,7 +54,6 @@
 	New()
 		..()
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/water(src)
 
 /obj/item/weapon/storage/box/vox/
 	New()
@@ -155,22 +154,6 @@
 		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/grenade/flashbang(src)
-
-/obj/item/weapon/storage/box/teargas
-	name = "box of pepperspray grenades"
-	desc = "A box containing 7 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
-	icon_state = "flashbang"
-
-	New()
-		..()
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-
-
 
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
@@ -299,71 +282,6 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-
-
-/obj/item/weapon/storage/box/donkpockets
-	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket(src)
-
-/obj/item/weapon/storage/box/sinpockets
-	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/junk/donkpocket/sinpocket(src)
-
-/obj/item/weapon/storage/box/monkeycubes
-	name = "monkey cube box"
-	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/kitchen/packaging/monkeycube.dmi'
-	icon_state = "monkeycubebox"
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
-	New()
-		..()
-		if(src.type == /obj/item/weapon/storage/box/monkeycubes)
-			for(var/i = 1; i <= 5; i++)
-				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
-
-/obj/item/weapon/storage/box/monkeycubes/farwacubes
-	name = "farwa cube box"
-	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
-	New()
-		..()
-		for(var/i = 1; i <= 5; i++)
-			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube(src)
-
-/obj/item/weapon/storage/box/monkeycubes/stokcubes
-	name = "stok cube box"
-	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-	New()
-		..()
-		for(var/i = 1; i <= 5; i++)
-			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube(src)
-
-/obj/item/weapon/storage/box/monkeycubes/neaeracubes
-	name = "neaera cube box"
-	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
-	New()
-		..()
-		for(var/i = 1; i <= 5; i++)
-			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube(src)
 
 /obj/item/weapon/storage/box/ids
 	name = "box of spare IDs"

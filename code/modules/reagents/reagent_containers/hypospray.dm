@@ -55,7 +55,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/initialize()
 	..()
-	reagents.add_reagent("adrenaline", 5)
+	reagents.add_reagent(REAGENT_ID_ADRENALINE, 5)
 	update_icon()
 	return
 

@@ -36,7 +36,6 @@
 		/mob/living/simple_animal/hostile/retaliate/goat,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
-		/obj/machinery/biogenerator,
 		/obj/machinery/constructable_frame
 		)
 
@@ -190,16 +189,10 @@
 	possible_transfer_amounts = list(5,10,15,25)
 	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
-	initialize()
-		..()
-		reagents.add_reagent("cryoxadone", 30)
-		update_icon()
-
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	initialize()
 		..()
-		reagents.add_reagent("sacid", 60)
+		reagents.add_reagent(REAGENT_ID_ACID, 60)
 		update_icon()
 
 /obj/item/weapon/reagent_containers/glass/bucket

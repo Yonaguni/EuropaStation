@@ -378,39 +378,34 @@
 
 	if(prob(5))
 		consume_gasses = list()
-		var/gas = pick("oxygen","nitrogen","fuel","carbon_dioxide")
+		var/gas = pick(REAGENT_ID_OXYGEN,REAGENT_ID_NITROGEN,REAGENT_ID_FUEL,REAGENT_ID_CARBONDIOXIDE)
 		consume_gasses[gas] = rand(3,9)
 
 	if(prob(5))
 		exude_gasses = list()
-		var/gas = pick("oxygen","nitrogen","fuel","carbon_dioxide")
+		var/gas = pick(REAGENT_ID_OXYGEN,REAGENT_ID_NITROGEN,REAGENT_ID_FUEL,REAGENT_ID_CARBONDIOXIDE)
 		exude_gasses[gas] = rand(3,9)
 
 	chems = list()
 	if(prob(80))
-		chems["nutriment"] = list(rand(1,10),rand(10,20))
+		chems[REAGENT_ID_NUTRIMENT] = list(rand(1,10),rand(10,20))
 
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
 		var/list/possible_chems = list(
-			"woodpulp",
-			"jumpstart",
-			"blood",
-			"water",
-			"potassium",
-			"plasticide",
-			"adrenaline",
-			"mercury",
-			"sugar",
-			"radium",
-			"thermite",
-			"morphine",
-			"fuel",
-			"antirad",
-			"toxin",
-			"cyanide",
-			"stoxin",
+			REAGENT_ID_WOOD,
+			REAGENT_ID_JUMPSTART,
+			REAGENT_ID_BLOOD,
+			REAGENT_ID_WATER,
+			REAGENT_ID_ADRENALINE,
+			REAGENT_ID_SUGAR,
+			REAGENT_ID_THERMITE,
+			REAGENT_ID_MORPHINE,
+			REAGENT_ID_FUEL,
+			REAGENT_ID_ANTIRAD,
+			REAGENT_ID_TOXIN,
+			REAGENT_ID_SLEEPTOX
 			)
 
 		for(var/x=1;x<=additional_chems;x++)

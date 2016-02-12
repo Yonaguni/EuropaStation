@@ -237,7 +237,7 @@
 	var/result = (sheets+sheet_left)*20
 	var/datum/gas_mixture/environment = loc.return_air()
 	if (environment)
-		environment.adjust_gas_temp("fuel", result/10, temperature + T0C)
+		environment.adjust_gas_temp(REAGENT_ID_FUEL, result/10, temperature + T0C)
 
 	sheets = 0
 	sheet_left = 0

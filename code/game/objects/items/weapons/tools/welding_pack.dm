@@ -11,7 +11,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(REAGENT_ID_FUEL, max_fuel)
 
 /obj/item/weapon/weldpack/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/weldingtool))

@@ -150,7 +150,7 @@ REAGENT SCANNER
 				user.show_message(text("<span class='warning'>Internal bleeding detected. Advanced scanner required for location.</span>"), 1)
 				break
 		if(M:vessel)
-			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
+			var/blood_volume = round(M:vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			var/blood_percent =  blood_volume / 560
 			var/blood_type = M.dna.b_type
 			blood_percent *= 100
@@ -245,7 +245,7 @@ REAGENT SCANNER
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id != "blood")
+			if(R.id != REAGENT_ID_BLOOD)
 				reagents.clear_reagents()
 				user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
 				return

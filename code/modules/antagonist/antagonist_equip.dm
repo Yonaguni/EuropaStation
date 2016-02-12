@@ -6,7 +6,7 @@
 
 /obj/machinery/atmospherics/pipe/vent/is_valid_dead_drop()
 	var/turf/simulated/T = get_turf(src)
-	return (istype(T) && T.air && T.air.gas["oxygen"] > 50)
+	return (istype(T) && T.air && T.air.gas[REAGENT_ID_OXYGEN] > 50)
 
 /datum/antagonist/proc/equip(var/mob/living/carbon/human/player)
 

@@ -5,8 +5,8 @@
 	icon_state = "badrecipe"
 	filling_color = "#211F02"
 
-/obj/item/weapon/reagent_containers/food/snacks/badrecipe/New()
+/obj/item/weapon/reagent_containers/food/snacks/badrecipe/initialize()
 	..()
-	reagents.add_reagent("toxin", 1)
-	reagents.add_reagent("carbon", 3)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 1)
+	reagents.add_reagent(REAGENT_ID_CARBON, 3)
 

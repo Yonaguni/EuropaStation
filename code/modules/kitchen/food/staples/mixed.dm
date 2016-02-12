@@ -4,7 +4,7 @@
 	icon_state = "stuffing"
 	filling_color = "#C9AC83"
 
-/obj/item/weapon/reagent_containers/food/snacks/stuffing/New()
+/obj/item/weapon/reagent_containers/food/snacks/stuffing/initialize()
 	..()
-	reagents.add_reagent("nutriment", 3)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3)
 	bitesize = 1
