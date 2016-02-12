@@ -18,3 +18,4 @@
 /obj/item/weapon/gun/composite/premade/smg/a45
 	name = "a45 submachine gun"
 	variant_barrel = /obj/item/gun_component/barrel/smg/a45
+	variant_stock =  null

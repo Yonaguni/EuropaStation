@@ -54,6 +54,9 @@
 	icon_state = "shotgun"
 	weapon_type = GUN_SHOTGUN
 
+/obj/item/gun_component/grip/shotgun/combat
+	icon_state = "shotgun_combat"
+
 /obj/item/gun_component/grip/pistol/laser
 	icon_state = "las_pistol"
 	projectile_type = GUN_TYPE_LASER
