@@ -277,6 +277,8 @@
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
 	var/next_alpha = 0
+	graphic_alpha = 0
+
 	if(!gas_data)
 		return // ??? Runtiming for some reason.
 

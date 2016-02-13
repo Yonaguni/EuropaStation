@@ -89,7 +89,7 @@
 
 /turf/proc/fluid_update_turf(var/command = 0)
 	if(command)
-		CalculateAdjacentTurfs()
+		calculate_flow_dirs()
 	if(fluid_master)
 		fluid_master.add_to_active(src,command)
 

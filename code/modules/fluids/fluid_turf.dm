@@ -97,18 +97,20 @@
 	fluids.share(T.fluids, fluids_adjacent_turfs_amount)
 
 /turf/simulated/proc/process_fluids()
-	if(!fluid_master || flooded)
+	if(!fluid_master)
 		return
-	if(!fluids)
-		make_fluids()
+	if(flooded)
+		fluid_master.active_turfs -= src
+		return
 	if(fluid_archived_cycle < fluid_master.current_cycle) //archive self if not already done
 		archive_fluids()
-	fluid_current_cycle = fluid_master.current_cycle
-	var/remove = 1
+	fluid_archived_cycle = fluid_master.current_cycle
 	for(var/direction in fluid_dirs)
-		if(!(atmos_adjacent_turfs & direction))
+		if(!(fluids_adjacent_turfs & direction))
 			continue
 		var/turf/enemy_tile = get_step(src, direction)
+		if(!istype(enemy_tile) || enemy_tile.flooded)
+			continue
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
 			if(!enemy_simulated.fluids)
@@ -117,12 +119,30 @@
 				continue
 			if(fluid_current_cycle > enemy_simulated.fluid_current_cycle)
 				enemy_simulated.archive_fluids()
-			if(!fluids.compare(enemy_simulated.return_fluids()))
-				fluid_master.add_to_active(enemy_simulated)
-				share_fluids(enemy_simulated)
-			if(remove && !fluids.check_turf_fluid(enemy_tile, atmos_adjacent_turfs_amount))
-				remove = 0
+			if(!fluids)
+				make_fluids()
+			if(fluids && !fluids.compare(enemy_simulated.fluids)) //compare if
+				fluid_master.add_to_active(enemy_simulated) //excite enemy
+				share_fluids(enemy_simulated) //share
 	if(fluids && fluids.check_tile_graphic())
-		update_visuals_fluids(fluids)
-	if(remove == 1)
-		fluid_master.active_turfs -= src
+		update_visuals_fluids(air)
+	fluid_master.active_turfs -= src
+
+/turf/proc/calculate_flow_dirs()
+	fluids_adjacent_turfs_amount = 0
+	for(var/direction in fluid_dirs)
+		var/turf/T = get_step(src, direction)
+		if(!istype(T))
+			continue
+		var/counterdir = get_dir(T, src)
+		if(CanFluidPass(T))
+			fluids_adjacent_turfs_amount += 1
+			fluids_adjacent_turfs |= direction
+			if(!(T.fluids_adjacent_turfs & counterdir))
+				T.fluids_adjacent_turfs_amount += 1
+			T.fluids_adjacent_turfs |= counterdir
+		else
+			fluids_adjacent_turfs &= ~direction
+			if(T.fluids_adjacent_turfs & counterdir)
+				T.fluids_adjacent_turfs_amount -= 1
+			T.fluids_adjacent_turfs &= ~counterdir
