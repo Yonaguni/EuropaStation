@@ -5,7 +5,7 @@
 
 	if(!check_rights(R_SPAWN))	return
 	var/turf/T = get_turf(usr)
-	if(!thingtype || !gas_data.gases[thingtype] || !istype(T))
+	if(!thingtype || !(thingtype in gas_data.gases) || !istype(T))
 		return
 	var/tvol = input(usr, "How many moles?", "Spawn Substance", 0) as num|null
 	if(!tvol || tvol < 0 || tvol > 10000)
