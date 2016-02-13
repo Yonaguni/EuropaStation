@@ -18,7 +18,6 @@ var/list/turf_edge_cache = list()
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
 	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
-	var/obj/effect/gas_overlay/gas_overlay
 	var/list/decals
 	var/liquid = -1
 	var/accept_lattice

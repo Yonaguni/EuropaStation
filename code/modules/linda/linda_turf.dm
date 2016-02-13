@@ -4,6 +4,7 @@
 	var/atmos_adjacent_turfs = 0
 	var/atmos_adjacent_turfs_amount = 0
 	var/needs_air_update
+	var/obj/effect/gas_overlay/gas_overlay
 
 /turf/simulated
 	var/air_recently_active = 0
@@ -41,7 +42,7 @@
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
 	if(my_air.check_tile_graphic())
-		update_visuals(my_air)
+		update_visuals_air(my_air)
 
 /turf/simulated/assume_gas(gasid, moles, temp = null)
 	if(flooded)
@@ -54,7 +55,7 @@
 	else
 		my_air.adjust_gas_temp(gasid, moles, temp)
 	if(my_air.check_tile_graphic())
-		update_visuals(my_air)
+		update_visuals_air(my_air)
 	return 1
 
 /turf/simulated/remove_air(amount as num)
@@ -64,7 +65,7 @@
 	var/datum/gas_mixture/my_air = return_air()
 	var/returnval = my_air.remove(amount)
 	if(my_air.check_tile_graphic())
-		update_visuals(my_air)
+		update_visuals_air(my_air)
 	return returnval
 
 /turf/simulated/return_air()
@@ -89,7 +90,7 @@
 			air.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
 	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
-	update_visuals(air)
+	update_visuals_air(air)
 	if(air_master)
 		air_master.add_to_active(src)
 
@@ -112,7 +113,7 @@
 	if(istype(receiver))
 		air.merge(giver)
 		if(air.check_tile_graphic())
-			update_visuals(air)
+			update_visuals_air(air)
 		return 1
 	else return ..()
 
@@ -188,7 +189,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 				item.temperature_expose(air, air.temperature, CELL_VOLUME)
 			temperature_expose(air, air.temperature, CELL_VOLUME)
 		if(air.check_tile_graphic())
-			update_visuals(air)
+			update_visuals_air(air)
 
 	if(remove == 1)
 		air_master.active_turfs -= src
@@ -201,17 +202,17 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	temperature_archived = temperature
 	air_archived_cycle = air_master.current_cycle
 
-/turf/simulated/proc/update_visuals(var/datum/gas_mixture/model)
+/turf/simulated/proc/update_visuals_air(var/datum/gas_mixture/model)
 	if(!air_master)
 		return 0
 	if(gas_overlay)
 		gas_overlay.overlays.Cut()
 	if(model.graphic.len)
 		if(!gas_overlay)
-			gas_overlay = PoolOrNew(/obj/effect/gas_overlay,src)
+			gas_overlay = new /obj/effect/gas_overlay(src)
 		for(var/gas_icon in model.graphic)
 			gas_overlay.overlays |= gas_icon
-	if(gas_overlay && !isnull(model.graphic_alpha) && model.graphic_alpha > gas_overlay.alpha)
+	if(gas_overlay)
 		gas_overlay.alpha = model.graphic_alpha
 	update_icon()
 	return 1
