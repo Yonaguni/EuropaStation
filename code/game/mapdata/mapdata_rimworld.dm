@@ -2,6 +2,7 @@
 	name = "borderworld"
 	desc = "The planet surface and the mining level."
 	height = 2
+	use_title_state = "borderworld"
 
 	default_title = "Vagrant"
 	default_job = /datum/job/borderworld

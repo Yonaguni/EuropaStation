@@ -61,7 +61,8 @@ var/list/open_space_cache = list()
 				turf_edge_cache["[tempdir]"] = image(icon= 'icons/turf/blending_overlays.dmi', icon_state = "openspace_edges", dir = tempdir)
 			overlays += turf_edge_cache["[tempdir]"]
 
-	if(below && below.flooded)
+	// Surface holes will show water under them.
+	if(!flooded && below && below.flooded)
 		name = "deep water"
 		if(!turf_edge_cache["deepwater"])
 			var/image/I = image(icon = 'icons/misc/beach.dmi', icon_state = "seashallow")

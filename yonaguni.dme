@@ -991,6 +991,7 @@
 #include "code\modules\fluids\fluid_drowning.dm"
 #include "code\modules\fluids\fluid_flooding.dm"
 #include "code\modules\fluids\fluid_turf.dm"
+#include "code\modules\fluids\fluid_verbs.dm"
 #include "code\modules\fluids\fluid_water_act.dm"
 #include "code\modules\forensics\footprints.dm"
 #include "code\modules\forensics\forensics.dm"
@@ -1741,6 +1742,8 @@
 #include "code\unit_tests\unit_test.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\rimworld-1.dmm"
-#include "maps\rimworld-2.dmm"
+#include "maps\europa-1.dmm"
+#include "maps\europa-2.dmm"
+#include "maps\europa-3.dmm"
+#include "maps\europa-4.dmm"
 // END_INCLUDE

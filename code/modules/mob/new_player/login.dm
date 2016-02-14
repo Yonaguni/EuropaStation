@@ -13,7 +13,9 @@
 			error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
 			config.lobby_screens -= lobby_screen
 
-	if(config.lobby_screens.len)
+	if(world_map && world_map.use_title_state && (world_map.use_title_state in known_icon_states))
+		icon_state = world_map.use_title_state
+	else if(config.lobby_screens.len)
 		icon_state = pick(config.lobby_screens)
 	else
 		icon_state = known_icon_states[1]

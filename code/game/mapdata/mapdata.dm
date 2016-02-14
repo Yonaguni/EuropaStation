@@ -8,6 +8,7 @@ var/obj/effect/landmark/map_data/world_map
 	desc = "An unknown location."
 	invisibility = 101
 
+	var/use_title_state = "yonaguni"
 	var/height = 1                                // The number of Z-Levels in the map.
 	var/turf/edge_type                            // What the map edge should be formed with. (null = world.turf)
 	var/list/shallow_layers = list()              // A list of numerical indexes that are considered 'shallow'.

@@ -6,7 +6,7 @@
 		update_icon()
 
 /turf/proc/flood_neighbors()
-	if(need_fluid_recalc)
+	if(need_fluid_update)
 		update_fluid_neighbors()
 
 	if(!atmos_adjacent_turfs_amount)
@@ -44,4 +44,4 @@
 		atmos_adjacent_turfs_amount++
 		atmos_adjacent_turfs |= step_dir
 
-	need_fluid_recalc = 0
+	need_fluid_update = 0
