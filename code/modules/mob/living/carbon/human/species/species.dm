@@ -377,19 +377,39 @@
 	if(H.equipment_tint_total >= TINT_BLIND)
 		H.eye_blind = max(H.eye_blind, 1)
 
-	if(H.blind)
-		H.blind.layer = (H.eye_blind && !H.equipment_prescription ? 18 : 0)
-
 	if(!H.client)//no client, no screen to update
 		return 1
 
+	if(H.eye_blind && !H.equipment_prescription)
+		H.overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+	else
+		H.clear_fullscreen("blind")
+
 	if(config.welder_vision)
 		if(short_sighted || (H.equipment_tint_total >= TINT_HEAVY))
-			H.client.screen += global_hud.darkMask
+			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 2)
 		else if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
-			H.client.screen += global_hud.vimpaired
-	if(H.eye_blurry)	H.client.screen += global_hud.blurry
-	if(H.druggy)		H.client.screen += global_hud.druggy
+			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 1)
+		else
+			H.clear_fullscreen("impaired")
+	else
+		if(short_sighted)
+			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 2)
+		else if(!H.equipment_prescription && (H.disabilities & NEARSIGHTED))
+			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 1)
+		else
+			H.clear_fullscreen("impaired")
+
+	if(H.eye_blurry)
+		H.overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
+	else
+		H.clear_fullscreen("blurry")
+
+	if(H.druggy)
+		H.overlay_fullscreen("high", /obj/screen/fullscreen/high)
+	else
+		H.clear_fullscreen("high")
+
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay
