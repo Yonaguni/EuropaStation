@@ -48,9 +48,15 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
+	qdel(tail_trail)
+	tail_trail = null
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+	internal_organs.Cut()
+	organs.Cut()
+	internal_organs_by_name.Cut()
+	organs_by_name.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1042,6 +1048,10 @@
 		hud_used = new /datum/hud(src)
 
 	full_prosthetic = null
+
+	if(species.tail_stance)
+		if(!tail_trail) tail_trail = new(src)
+		tail_trail.sync_to_owner()
 
 	if(species)
 		return 1

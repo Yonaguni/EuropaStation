@@ -26,9 +26,12 @@
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
 	var/tail_hair
-	var/race_key = 0       	                             // Used for mob icon cache string.
+	var/tail_stance                                      // If set, the groin (tail) is checked for standing status.
+	var/tail_length                                      // If above is set, how many segments will be created for their tail.
+
+	var/race_key = 0                                     // Used for mob icon cache string.
 	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
-	var/mob_size	= MOB_MEDIUM
+	var/mob_size = MOB_MEDIUM
 	var/show_ssd = "fast asleep"
 	var/virus_immune
 	var/short_sighted

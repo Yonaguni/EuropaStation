@@ -166,7 +166,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += "<br><br>"
 
-	. += "</td><td><b>Preview</b><br><img src=preview_icon.png height=64 width=64><img src=preview_icon2.png height=64 width=64>"
+	. += "</td><td><b>Preview</b><br><span style = 'image-rendering: pixelated;'><img src=preview_icon.png height=64 width=64><img src=preview_icon2.png height=64 width=64></span>"
 	. += "</td></tr></table>"
 
 	. += "<b>Hair</b><br>"
@@ -534,7 +534,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<td width = 200 align='center'>"
 	if("preview" in icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
-		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
+		dat += "<span style = 'image-rendering: pixelated;'><img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/></span>"
 	dat += "<b>Language:</b> [current_species.language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & CAN_JOIN)

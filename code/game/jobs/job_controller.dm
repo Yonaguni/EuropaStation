@@ -421,7 +421,7 @@ var/global/datum/controller/occupations/job_master
 				else
 					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
 
-		if(istype(H)) //give humans wheelchairs, if they need them.
+		if(istype(H) && !H.species.tail_stance) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
 			if(!l_foot || !r_foot)
