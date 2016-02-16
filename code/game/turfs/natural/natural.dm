@@ -24,6 +24,15 @@ var/list/tree_types = list(
 	var/tree_prob = 0
 	var/diggable = 1
 
+/turf/simulated/floor/natural/ex_act(severity)
+	if(1)
+		src.ChangeTurf(get_base_turf_by_area(src))
+	if(2)
+		src.ChangeTurf(get_base_turf_by_area(src))
+	if(3)
+		if (prob(50))
+			src.hotspot_expose(1000,CELL_VOLUME)
+
 /turf/simulated/floor/natural/is_plating()
 	return 1
 
@@ -88,6 +97,25 @@ var/list/tree_types = list(
 	blend_with_neighbors = 6
 	grass_prob = 40
 	tree_prob = 3
+
+/turf/simulated/floor/natural/grass/ex_act(severity)
+	switch(severity)
+		if(1)
+			uproot()
+		if(2)
+			uproot()
+		if(3)
+			if(prob(40))
+				uproot()
+	src.hotspot_expose(1000,CELL_VOLUME)
+
+/turf/simulated/floor/natural/grass/proc/uproot()
+	name = "uprooted grass"
+	icon_state = "mud_dark"
+	grass_prob= 0
+	tree_prob = 0
+	blend_with_neighbors = 5
+	update_icon(1)
 
 /turf/simulated/floor/natural/grass/forest
 	name = "thick grass"

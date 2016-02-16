@@ -280,6 +280,7 @@ var/global/list/all_materials = list()
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
+	explosion_resistance = 10
 
 /material/diona
 	name = "biomass"
@@ -537,7 +538,7 @@ var/global/list/all_materials = list()
 	icon_colour = "#824B28"
 	icon_base = "wood" //"solid"
 	integrity = 50
-	explosion_resistance = 2
+	explosion_resistance = 3
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = 15
