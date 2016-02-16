@@ -2,8 +2,8 @@ language: generic
 sudo: false
 
 env:
-  BYOND_MAJOR="509"
-  BYOND_MINOR="1319"
+  BYOND_MAJOR="510"
+  BYOND_MINOR="1324"
   MACRO_COUNT=1020
   
 cache:

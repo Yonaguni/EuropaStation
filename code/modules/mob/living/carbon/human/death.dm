@@ -66,6 +66,8 @@
 	if(wearing_rig)
 		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
 
+	clear_fullscreens()
+
 	return ..(gibbed,species.get_death_message(src))
 	handle_hud_list()
 

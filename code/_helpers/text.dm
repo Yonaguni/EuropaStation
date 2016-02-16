@@ -176,12 +176,6 @@
  * Text modification
  */
 
-/proc/replacetext(text, find, replacement)
-	return list2text(text2list(text, find), replacement)
-
-/proc/replacetextEx(text, find, replacement)
-	return list2text(text2listEx(text, find), replacement)
-
 /proc/replace_characters(var/t,var/list/repl_chars)
 	for(var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
@@ -360,7 +354,7 @@ proc/TextPreview(var/string,var/len=40)
 /proc/NewStutter(phrase,stunned)
 	phrase = html_decode(phrase)
 
-	var/list/split_phrase = text2list(phrase," ") //Split it up into words.
+	var/list/split_phrase = splittext(phrase," ") //Split it up into words.
 
 	var/list/unstuttered_words = split_phrase.Copy()
 	var/i = rand(1,3)
@@ -391,7 +385,7 @@ proc/TextPreview(var/string,var/len=40)
 
 		split_phrase[index] = word
 
-	return sanitize(list2text(split_phrase," "))
+	return sanitize(jointext(split_phrase," "))
 
 /proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
 	step(M, pick(d,turn(d,90),turn(d,-90)))
@@ -401,7 +395,7 @@ proc/TextPreview(var/string,var/len=40)
 	if(chance >= 100) return original_msg
 
 	var/list
-		words = text2list(original_msg," ")
+		words = splittext(original_msg," ")
 		new_words = list()
 
 	var/new_msg = ""
@@ -412,6 +406,6 @@ proc/TextPreview(var/string,var/len=40)
 		else
 			new_words += w
 
-	new_msg = list2text(new_words," ")
+	new_msg = jointext(new_words," ")
 
 	return new_msg

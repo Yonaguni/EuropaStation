@@ -488,6 +488,6 @@
 
 
     if(returntext)
-        return list2text(status, " ")
+        return splittext(status, " ")
     else
         return status.len

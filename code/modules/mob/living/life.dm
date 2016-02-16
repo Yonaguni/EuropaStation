@@ -140,23 +140,28 @@
 	return 1
 
 /mob/living/proc/handle_vision()
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	update_sight()
 
 	if(stat == DEAD)
 		return
 
-	if(blind)
-		if(eye_blind)
-			blind.layer = 18
+	if(eye_blind)
+		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)		
+	else
+		clear_fullscreen("blind")
+		if (disabilities & NEARSIGHTED)
+			overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
 		else
-			blind.layer = 0
-			if (disabilities & NEARSIGHTED)
-				client.screen += global_hud.vimpaired
-			if (eye_blurry)
-				client.screen += global_hud.blurry
-			if (druggy)
-				client.screen += global_hud.druggy
+			clear_fullscreen("nearsighted")
+		if (eye_blurry)
+			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
+		else
+			clear_fullscreen("blurry")
+		if (druggy)
+			overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		else
+			clear_fullscreen("high")
+
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)
