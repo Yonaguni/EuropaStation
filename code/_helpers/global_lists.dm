@@ -60,7 +60,8 @@ var/global/list/ambient_tracks = list(
 	'sound/music/europa/Macamoto_-_05_-_Torn.ogg',
 	'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg',
 	'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg',
-	'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg'
+	'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg',
+	'sound/music/europa/Martian Cowboy.ogg',
 	)
 
 // Runes

@@ -28,6 +28,7 @@ datum/track/New(var/title_name, var/audio)
 		new/datum/track("Juno", 'sound/music/europa/Chronox_-_04_-_Juno.ogg'),
 		new/datum/track("Torn", 'sound/music/europa/Macamoto_-_05_-_Torn.ogg'),
 		new/datum/track("Nebula", 'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg'),
+		new/datum/track("Martian Cowboy", 'sound/music/europa/Martian Cowboy.ogg'),
 		new/datum/track("Monument", 'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg'),
 		new/datum/track("The And of the World", 'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg'),
 		new/datum/track("Moonlight Sonata", 'sound/music/europa/Moonlight.ogg'),
