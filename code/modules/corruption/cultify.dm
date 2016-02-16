@@ -9,7 +9,7 @@
 
 /mob/dead/cultify()
 	if(icon_state != "ghost-narsie")
-		icon = 'icons/mob/mob.dmi'
+		icon = 'icons/mob/creatures/mob.dmi'
 		icon_state = "ghost-narsie"
 		overlays = 0
 		invisibility = 0

@@ -98,7 +98,7 @@
 	health = INFINITY  //Make the net invincible so that an explosion/something else won't kill it during anims.
 
 	playsound(affecting.loc, 'sound/effects/sparks4.ogg', 50, 1)
-	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phaseout",,affecting.dir)
+	anim(affecting.loc,affecting,'icons/mob/creatures/mob.dmi',,"phaseout",,affecting.dir)
 
 	affecting.visible_message("[affecting] vanishes in a flare of light!")
 
@@ -109,7 +109,7 @@
 
 	playsound(affecting.loc, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(affecting.loc, 'sound/effects/sparks2.ogg', 50, 1)
-	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phasein",,affecting.dir)
+	anim(affecting.loc,affecting,'icons/mob/creatures/mob.dmi',,"phasein",,affecting.dir)
 
 	qdel(src)
 

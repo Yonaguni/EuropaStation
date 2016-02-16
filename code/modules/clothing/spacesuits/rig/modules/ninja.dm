@@ -54,7 +54,7 @@
 	H << "<span class='danger'>You are now visible.</span>"
 	H.invisibility = 0
 
-	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
+	anim(get_turf(H), H,'icons/mob/creatures/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
 
 	for(var/mob/O in oviewers(H))
@@ -85,7 +85,7 @@
 	holder.spark_system.start()
 	playsound(T, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
-	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
+	anim(T,M,'icons/mob/creatures/mob.dmi',,"phasein",,M.dir)
 
 /obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)
 
@@ -93,7 +93,7 @@
 		return
 
 	playsound(T, "sparks", 50, 1)
-	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
+	anim(T,M,'icons/mob/creatures/mob.dmi',,"phaseout",,M.dir)
 
 /obj/item/rig_module/teleporter/engage(var/atom/target, var/notify_ai)
 

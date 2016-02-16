@@ -90,7 +90,7 @@
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
 			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
+			animation.icon = 'icons/mob/creatures/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)
@@ -115,9 +115,9 @@
 
 /obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
-	
+
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	
+
 	if(broken)
 		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)
 		return
@@ -144,7 +144,7 @@
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
 			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
+			animation.icon = 'icons/mob/creatures/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)

@@ -10,7 +10,7 @@
 /datum/gear/suit/hunter_suit
 	display_name = "hunter's jacket"
 	cost = 3
-	path = /obj/item/clothing/suit/europa/hunter
+	path = /obj/item/clothing/suit/hunter
 
 /datum/gear/suit/bomber
 	display_name = "bomber jacket"

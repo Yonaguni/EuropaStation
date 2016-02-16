@@ -406,12 +406,12 @@
 					var/limit = 2//For only two trailing shadows.
 					for(var/turf/T in getline(mobloc, mob.loc))
 						spawn(0)
-							anim(T,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
+							anim(T,mob,'icons/mob/creatures/mob.dmi',,"shadow",,mob.dir)
 						limit--
 						if(limit<=0)	break
 			else
 				spawn(0)
-					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
+					anim(mobloc,mob,'icons/mob/creatures/mob.dmi',,"shadow",,mob.dir)
 				mob.forceMove(get_step(mob, direct))
 			mob.dir = direct
 	// Crossed is always a bit iffy

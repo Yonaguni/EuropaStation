@@ -8,7 +8,7 @@
 /datum/job/borderworld/hunter/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sl_suit(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/europa/hunter(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/hunter(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/hatchet/tacknife/hunting(H), slot_belt)
 
 	// Give them their rifle!

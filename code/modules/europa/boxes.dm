@@ -4,6 +4,6 @@
 
 /obj/item/weapon/storage/box/divingsuit/New()
 	..()
-	new /obj/item/clothing/suit/space/europa/diving/medium(src)
-	new /obj/item/clothing/head/helmet/space/europa/diving/medium(src)
+	new /obj/item/clothing/suit/space/diving/medium(src)
+	new /obj/item/clothing/head/helmet/space/diving/medium(src)
 	new /obj/item/weapon/tank/emergency_oxygen/engi(src)

@@ -105,12 +105,3 @@
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1
-
-
-/obj/item/weapon/cell/slime
-	name = "charged slime core"
-	desc = "A yellow slime core infused with phoron, it crackles with power."
-	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
-	icon_state = "yellow slime extract" //"potato_battery"
-	maxcharge = 10000
-	matter = null

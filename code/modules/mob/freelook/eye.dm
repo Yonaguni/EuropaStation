@@ -5,7 +5,7 @@
 
 /mob/eye
 	name = "Eye"
-	icon = 'icons/mob/eye.dmi'
+	icon = 'icons/mob/creatures/eye.dmi'
 	icon_state = "default-eye"
 	alpha = 127
 	density = 0

@@ -32,7 +32,7 @@
 	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
 	organ_tag = "brain"
 	parent_organ = BP_HEAD
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/creatures/alien.dmi'
 	icon_state = "chitin"
 	vital = 1
 
@@ -98,9 +98,3 @@
 		else
 			target.key = brainmob.key
 	..()
-
-/obj/item/organ/internal/brain/slime
-	name = "slime core"
-	desc = "A complex, organic knot of jelly and crystalline particles."
-	icon = 'icons/mob/slimes.dmi'
-	icon_state = "green slime extract"

@@ -1,6 +1,6 @@
 /datum/gear/utility
 	display_name = "wrist computer"
-	path = /obj/item/device/europa/wrist_computer
+	path = /obj/item/device/wrist_computer
 	sort_category = "Utility"
 	cost = 5
 

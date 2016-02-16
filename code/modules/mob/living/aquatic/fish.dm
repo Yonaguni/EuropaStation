@@ -1,7 +1,7 @@
 /mob/living/simple_animal/europa_fish
 	name = "fish"
 	desc = "Here, fishy fishy."
-	icon = 'icons/mob/europa/aquatic.dmi'
+	icon = 'icons/mob/creatures/aquatic.dmi'
 	icon_state = "fish"
 
 	speak_chance = 0
@@ -32,7 +32,7 @@
 /mob/living/simple_animal/hostile/retaliate/europa_shark
 	name = "shark"
 	desc = "We're going to need a bigger submarine."
-	icon = 'icons/mob/europa/aquatic.dmi'
+	icon = 'icons/mob/creatures/aquatic.dmi'
 	icon_state = "shark"
 	icon_dead = "shark_dead"
 

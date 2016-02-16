@@ -7,7 +7,7 @@
 
 /datum/job/borderworld/governor/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H),slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/europa/governor(H),slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/partial/governor(H),slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/fez(H),slot_head)
 	return ..(H,1,1,1)
 

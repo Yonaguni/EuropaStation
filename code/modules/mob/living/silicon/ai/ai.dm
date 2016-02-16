@@ -42,7 +42,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai
 	name = "AI"
-	icon = 'icons/mob/AI.dmi'//
+	icon = 'icons/mob/creatures/AI.dmi'
 	icon_state = "ai"
 	anchored = 1 // -- TLE
 	density = 1
@@ -101,7 +101,7 @@ var/list/ai_verbs_default = list(
 	density = 1
 	loc = loc
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo1"))
 
 	proc_holder_list = new()
 
@@ -546,11 +546,11 @@ var/list/ai_verbs_default = list(
 			qdel(holo_icon)
 			switch(input)
 				if("default")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo1"))
 				if("floating face")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo2"))
 				if("carp")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo4"))
 	return
 
 //Toggles the luminosity and applies it by re-entereing the camera.

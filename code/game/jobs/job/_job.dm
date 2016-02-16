@@ -62,9 +62,9 @@
 		var/list/hats = list(
 			/obj/item/clothing/head/ushanka,
 			/obj/item/clothing/head/bandana,
-			/obj/item/clothing/head/europa/cowboy_hat,
-			/obj/item/clothing/head/europa/cowboy_hat/wide,
-			/obj/item/clothing/head/europa/cowboy_hat/black
+			/obj/item/clothing/head/cowboy_hat,
+			/obj/item/clothing/head/cowboy_hat/wide,
+			/obj/item/clothing/head/cowboy_hat/black
 			)
 		var/new_hat = pick(hats)
 		H.equip_to_slot_or_del(new new_hat(H),slot_head)

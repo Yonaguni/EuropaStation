@@ -4,7 +4,7 @@ var/list/slug_cache = list()
 	name = "sea slug"
 	desc = "A colourful slimy friend! Probably poisonous."
 	icon_state = "slug"
-	icon = 'icons/mob/europa/slugs.dmi'
+	icon = 'icons/mob/creatures/slugs.dmi'
 	wander = 1
 	holder_type = /obj/item/weapon/holder
 
