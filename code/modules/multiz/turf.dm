@@ -42,7 +42,7 @@
 			return
 
 	if(flooded) // Swimmers can just go right across flooded turfs.
-		return
+		return // TODO: swimming.
 
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
@@ -60,7 +60,9 @@
 		return
 
 	var/soft = 0
-	if(layer_is_shallow(z))
+	if(flooded || below.flooded)
+		soft = 1
+	else if(layer_is_shallow(z))
 		if(below.density)
 			return
 		for(var/atom/A in below)

@@ -19,6 +19,8 @@
 		/datum/job/borderworld/scrapper
 		)
 
+	shallow_layers = list(1,2)
+
 /obj/effect/landmark/map_data/rimworld/do_roundstart_mapgen()
 	if(config.generate_asteroid)
 		admin_notice("<span class='warning'>Generating caverns...</span>", R_DEBUG)
