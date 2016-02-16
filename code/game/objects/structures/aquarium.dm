@@ -18,7 +18,7 @@ var/list/fishtank_cache = list()
 /obj/structure/aquarium
 	name = "fishtank"
 	icon_state = "preview"
-	icon = 'icons/obj/europa/structures/fishtanks.dmi'
+	icon = 'icons/obj/structures/fishtanks.dmi'
 	anchored = 1
 	density = 1
 	var/health = 50

@@ -65,7 +65,7 @@
 	var/dat = ..()
 	if(owner.data_network)
 		if(owner.data_network.connected_sensors.len)
-			for(var/obj/structure/europa/sensor/sensor in owner.data_network.connected_sensors)
+			for(var/obj/structure/sensor/sensor in owner.data_network.connected_sensors)
 				dat += "<b>- [sensor.report_name]:</b><br>"
 				var/list/sensor_data = sensor.get_sensor_data()
 				for(var/sdata in sensor_data)

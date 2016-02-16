@@ -1,6 +1,6 @@
 /obj/structure/conduit/disposals
 	name = "disposals pipeline"
-	icon = 'icons/obj/europa/structures/conduits/disposals_pipe.dmi'
+	icon = 'icons/obj/structures/conduits/disposals_pipe.dmi'
 	icon_state = "disposals"
 	icon_state = "disposals_single"
 	feed_type = "disposals"

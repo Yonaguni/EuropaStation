@@ -2,7 +2,7 @@
 	name = "power cable"
 	desc = "A length of heavy-duty power cabling."
 	icon_state = "power_single"
-	icon = 'icons/obj/europa/structures/conduits/power.dmi'
+	icon = 'icons/obj/structures/conduits/power.dmi'
 	feed_type = "power"
 	feed_icon = "power"
 	feed_layer = 1

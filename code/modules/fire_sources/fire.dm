@@ -16,7 +16,7 @@ var/list/fire_sounds = list(
 /obj/structure/fire_source
 	name = "campfire"
 	desc = "Did anyone bring any marshmallows?"
-	icon = 'icons/obj/europa/structures/fire.dmi'
+	icon = 'icons/obj/structures/fire.dmi'
 	icon_state = "campfire"
 	anchored = 1
 	density = 0

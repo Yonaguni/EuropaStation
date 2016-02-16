@@ -1,7 +1,7 @@
 /obj/machinery/datanet/fabricator
 	name = "tool fabricator"
 	desc = "It produces simple tools."
-	icon = 'icons/obj/europa/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	dir = SOUTH
 	anchored = 1

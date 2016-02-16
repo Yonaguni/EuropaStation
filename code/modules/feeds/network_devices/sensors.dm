@@ -1,6 +1,6 @@
-/obj/structure/europa/sensor
+/obj/structure/sensor
 	name = "sensor"
-	icon = 'icons/obj/europa/structures/sensors.dmi'
+	icon = 'icons/obj/structures/sensors.dmi'
 	icon_state = "sensor"
 
 	var/report_name
@@ -10,7 +10,7 @@
 
 // Sensors are accessible by any number of connections.
 // This is totally not because I'm lazy.
-/obj/structure/europa/sensor/initialize()
+/obj/structure/sensor/initialize()
 	..()
 	if(!report_name)
 		report_name = name
@@ -24,7 +24,7 @@
 		pixel_x = D.pixel_x
 		pixel_y = D.pixel_y
 
-/obj/structure/europa/sensor/attackby(var/obj/item/thing, var/mob/user)
+/obj/structure/sensor/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/device/multitool))
 		var/new_name = sanitize(input("Please specify a new name or leave blank to clear.") as text|null, MAX_MESSAGE_LEN)
 
@@ -39,7 +39,7 @@
 		return
 	return ..()
 
-/obj/structure/europa/sensor/proc/get_sensor_data()
+/obj/structure/sensor/proc/get_sensor_data()
 	var/list/data = list()
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T) && T.air)
@@ -54,28 +54,28 @@
 
 	return data
 
-/obj/structure/europa/sensor/omni
+/obj/structure/sensor/omni
 	name = "advanced atmosphere sensor"
 	report_gas = 1
 	report_fluid = 1
 	report_temp = 1
 
-/obj/structure/europa/sensor/gas
+/obj/structure/sensor/gas
 	name = "atmosphere sensor"
 	report_gas = 1
 
-/obj/structure/europa/sensor/fluid
+/obj/structure/sensor/fluid
 	name = "fluid level sensor"
 	report_fluid = 1
 
-/obj/structure/europa/sensor/temperature
+/obj/structure/sensor/temperature
 	name = "temperature sensor"
 	report_temp = 1
 
-/obj/structure/europa/sensor/power
+/obj/structure/sensor/power
 	name = "power sensor"
 
-/obj/structure/europa/sensor/power/get_sensor_data()
+/obj/structure/sensor/power/get_sensor_data()
 	var/list/data = ..()
 	var/obj/structure/cable/N = locate() in get_turf(src)
 	if(N && N.powernet)

@@ -3,7 +3,7 @@ var/console_count = 0
 /obj/machinery/datanet/console
 	name = "terminal"
 	desc = "A computer terminal. Very 2100-chic."
-	icon = 'icons/obj/europa/machines/consoles.dmi'
+	icon = 'icons/obj/machines/consoles.dmi'
 	icon_state = "console"
 	is_data_console = 1
 

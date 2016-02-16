@@ -18,7 +18,7 @@
 
 /datum/conduit_network/matter_feed/proc/compile_resources()
 	compiled_resources = list()
-	for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
+	for(var/obj/structure/conduit_storage/CS in connected_storage)
 		for(var/material in CS.stored_material)
 			if(CS.stored_material[material])
 				if(compiled_resources[material])
@@ -29,7 +29,7 @@
 
 /datum/conduit_network/matter_feed/proc/compile_reagents()
 	compiled_reagents = list()
-	for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
+	for(var/obj/structure/conduit_storage/CS in connected_storage)
 		if(CS.reagents)
 			for(var/datum/reagent/R in CS.reagents.reagent_list)
 				if(compiled_reagents[R.id])
@@ -41,7 +41,7 @@
 /datum/conduit_network/matter_feed/proc/remove_resources(var/list/resources)
 	resources = resources.Copy() // Make sure we aren't killing the resource list of a recipe.
 	for(var/material in resources)
-		for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
+		for(var/obj/structure/conduit_storage/CS in connected_storage)
 			var/cs_amt = CS.stored_material[material]
 			if(cs_amt)
 				if(cs_amt >= resources[material])
@@ -57,7 +57,7 @@
 /datum/conduit_network/matter_feed/proc/remove_reagents(var/list/rem_reagents)
 	rem_reagents = rem_reagents.Copy()
 	for(var/reagent_id in rem_reagents)
-		for(var/obj/structure/europa/conduit_storage/CS in connected_storage)
+		for(var/obj/structure/conduit_storage/CS in connected_storage)
 			if(!CS.reagents || !CS.reagents.total_volume)
 				continue
 			var/r_amt = CS.reagents.get_reagent_amount(reagent_id)
@@ -92,7 +92,7 @@
 			continue
 		if(M.connect_to_feednet)
 			M.feed_network = src
-	for(var/obj/structure/europa/conduit_storage/CS in T.contents)
+	for(var/obj/structure/conduit_storage/CS in T.contents)
 		connected_storage |= CS
 		need_material_update = 1
 		need_reagent_update = 1

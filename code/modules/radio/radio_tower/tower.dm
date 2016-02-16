@@ -1,7 +1,7 @@
 /obj/machinery/radio_receiver
 	name = "radio reciever"
 	desc = "It's a placeholder!"
-	icon = 'icons/obj/europa/structures/radio_tower.dmi'
+	icon = 'icons/obj/structures/radio_tower.dmi'
 	icon_state = "tower_on"
 	layer = 9.1 // Render over most things.
 
