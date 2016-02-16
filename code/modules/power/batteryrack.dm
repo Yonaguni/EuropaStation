@@ -33,7 +33,7 @@
 	capacitors_amount = 0
 	cells_amount = 0
 	var/max_level = 0 //for both input and output
-	for(var/obj/item/europa/component/capacitor/CP in component_parts)
+	for(var/obj/item/component/capacitor/CP in component_parts)
 		max_level += CP.rating
 		capacitors_amount++
 	input_level_max = 50000 + max_level * 20000
@@ -94,7 +94,7 @@
 					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
 			else
 				user << "<span class='warning'>Better let [src] discharge before dismantling it.</span>"
-		else if ((istype(W, /obj/item/europa/component/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell) && (cells_amount < 5)))
+		else if ((istype(W, /obj/item/component/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
 					user.drop_item()

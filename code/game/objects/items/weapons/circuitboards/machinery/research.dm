@@ -8,33 +8,33 @@ obj/item/weapon/circuitboard/rdserver
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/europa/component/scanning_module" = 1)
+							"/obj/item/component/scanning_module" = 1)
 
 /obj/item/weapon/circuitboard/destructive_analyzer
 	name = T_BOARD("destructive analyzer")
 	build_path = "/obj/machinery/r_n_d/destructive_analyzer"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/scanning_module" = 1,
-							"/obj/item/europa/component/manipulator" = 1,
-							"/obj/item/europa/component/micro_laser" = 1)
+							"/obj/item/component/scanning_module" = 1,
+							"/obj/item/component/manipulator" = 1,
+							"/obj/item/component/micro_laser" = 1)
 
 /obj/item/weapon/circuitboard/autolathe
 	name = T_BOARD("autolathe")
 	build_path = "/obj/machinery/datanet/fabricator"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 3,
-							"/obj/item/europa/component/manipulator" = 1,
-							"/obj/item/europa/component/console_screen" = 1)
+							"/obj/item/component/matter_bin" = 3,
+							"/obj/item/component/manipulator" = 1,
+							"/obj/item/component/console_screen" = 1)
 
 /obj/item/weapon/circuitboard/protolathe
 	name = T_BOARD("protolathe")
 	build_path = "/obj/machinery/r_n_d/protolathe"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 2,
-							"/obj/item/europa/component/manipulator" = 2,
+							"/obj/item/component/matter_bin" = 2,
+							"/obj/item/component/manipulator" = 2,
 							"/obj/item/weapon/reagent_containers/glass/beaker" = 2)
 
 
@@ -43,8 +43,8 @@ obj/item/weapon/circuitboard/rdserver
 	build_path = "/obj/machinery/r_n_d/circuit_imprinter"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/manipulator" = 1,
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/manipulator" = 1,
 							"/obj/item/weapon/reagent_containers/glass/beaker" = 2)
 
 /obj/item/weapon/circuitboard/mechfab
@@ -52,10 +52,10 @@ obj/item/weapon/circuitboard/rdserver
 	build_path = "/obj/machinery/mecha_part_fabricator"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 2,
-							"/obj/item/europa/component/manipulator" = 1,
-							"/obj/item/europa/component/micro_laser" = 1,
-							"/obj/item/europa/component/console_screen" = 1)
+							"/obj/item/component/matter_bin" = 2,
+							"/obj/item/component/manipulator" = 1,
+							"/obj/item/component/micro_laser" = 1,
+							"/obj/item/component/console_screen" = 1)
 obj/item/weapon/circuitboard/ntnet_relay
 	name = "Circuit board (NTNet Quantum Relay)"
 	build_path = "/obj/machinery/ntnet_relay"

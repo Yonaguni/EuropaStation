@@ -42,11 +42,11 @@
 	//Create parts for lathe.
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/europa/component/matter_bin(src)
-	component_parts += new /obj/item/europa/component/matter_bin(src)
-	component_parts += new /obj/item/europa/component/matter_bin(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
-	component_parts += new /obj/item/europa/component/console_screen(src)
+	component_parts += new /obj/item/component/matter_bin(src)
+	component_parts += new /obj/item/component/matter_bin(src)
+	component_parts += new /obj/item/component/matter_bin(src)
+	component_parts += new /obj/item/component/manipulator(src)
+	component_parts += new /obj/item/component/console_screen(src)
 	RefreshParts()
 	output_dir = dir
 
@@ -349,9 +349,9 @@
 	..()
 	var/mb_rating = 0
 	var/man_rating = 0
-	for(var/obj/item/europa/component/matter_bin/MB in component_parts)
+	for(var/obj/item/component/matter_bin/MB in component_parts)
 		mb_rating += MB.rating
-	for(var/obj/item/europa/component/manipulator/M in component_parts)
+	for(var/obj/item/component/manipulator/M in component_parts)
 		man_rating += M.rating
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3

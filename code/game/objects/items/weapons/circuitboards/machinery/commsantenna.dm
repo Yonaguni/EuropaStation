@@ -8,7 +8,7 @@
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 30,
-							"/obj/item/europa/component/manipulator" = 2,
-							"/obj/item/europa/component/subspace/filter" = 1,
-							"/obj/item/europa/component/subspace/crystal" = 1,
+							"/obj/item/component/manipulator" = 2,
+							"/obj/item/component/subspace/filter" = 1,
+							"/obj/item/component/subspace/crystal" = 1,
 						  )

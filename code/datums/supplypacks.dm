@@ -977,9 +977,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/secure
 	group = "Engineering"
 	access = access_tech_storage
-	contains = list(/obj/item/europa/component/micro_laser,
-					/obj/item/europa/component/capacitor,
-					/obj/item/europa/component/matter_bin,
+	contains = list(/obj/item/component/micro_laser,
+					/obj/item/component/capacitor,
+					/obj/item/component/matter_bin,
 					/obj/item/weapon/circuitboard/pacman)
 
 /datum/supply_packs/super_pacman_parts
@@ -989,9 +989,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/secure
 	group = "Engineering"
 	access = access_tech_storage
-	contains = list(/obj/item/europa/component/micro_laser,
-					/obj/item/europa/component/capacitor,
-					/obj/item/europa/component/matter_bin,
+	contains = list(/obj/item/component/micro_laser,
+					/obj/item/component/capacitor,
+					/obj/item/component/matter_bin,
 					/obj/item/weapon/circuitboard/pacman/super)
 
 /datum/supply_packs/randomised/costume_hats

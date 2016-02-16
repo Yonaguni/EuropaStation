@@ -117,11 +117,11 @@
 /obj/machinery/power/port_gen/pacman/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/europa/component/matter_bin(src)
-	component_parts += new /obj/item/europa/component/micro_laser(src)
+	component_parts += new /obj/item/component/matter_bin(src)
+	component_parts += new /obj/item/component/micro_laser(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/europa/component/capacitor(src)
+	component_parts += new /obj/item/component/capacitor(src)
 	component_parts += new board_path(src)
 	RefreshParts()
 
@@ -131,10 +131,10 @@
 
 /obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
-	for(var/obj/item/europa/component/SP in component_parts)
-		if(istype(SP, /obj/item/europa/component/matter_bin))
+	for(var/obj/item/component/SP in component_parts)
+		if(istype(SP, /obj/item/component/matter_bin))
 			max_sheets = SP.rating * SP.rating * 50
-		else if(istype(SP, /obj/item/europa/component/micro_laser) || istype(SP, /obj/item/europa/component/capacitor))
+		else if(istype(SP, /obj/item/component/micro_laser) || istype(SP, /obj/item/component/capacitor))
 			temp_rating += SP.rating
 
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))

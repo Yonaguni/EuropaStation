@@ -8,6 +8,6 @@
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 5,
-							"/obj/item/europa/component/capacitor" = 2,
-							"/obj/item/europa/component/manipulator" = 2,
+							"/obj/item/component/capacitor" = 2,
+							"/obj/item/component/manipulator" = 2,
 							"/obj/item/weapon/cell" = 1)

@@ -26,10 +26,10 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/recharge_station(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
-	component_parts += new /obj/item/europa/component/capacitor(src)
-	component_parts += new /obj/item/europa/component/capacitor(src)
+	component_parts += new /obj/item/component/manipulator(src)
+	component_parts += new /obj/item/component/manipulator(src)
+	component_parts += new /obj/item/component/capacitor(src)
+	component_parts += new /obj/item/component/capacitor(src)
 	component_parts += new /obj/item/weapon/cell/high(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 
@@ -160,10 +160,10 @@
 	var/man_rating = 0
 	var/cap_rating = 0
 
-	for(var/obj/item/europa/component/P in component_parts)
-		if(istype(P, /obj/item/europa/component/capacitor))
+	for(var/obj/item/component/P in component_parts)
+		if(istype(P, /obj/item/component/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/europa/component/manipulator))
+		if(istype(P, /obj/item/component/manipulator))
 			man_rating += P.rating
 	cell = locate(/obj/item/weapon/cell) in component_parts
 

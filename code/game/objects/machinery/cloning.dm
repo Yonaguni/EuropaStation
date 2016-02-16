@@ -48,11 +48,11 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/clonepod(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
-	component_parts += new /obj/item/europa/component/scanning_module(src)
-	component_parts += new /obj/item/europa/component/scanning_module(src)
-	component_parts += new /obj/item/europa/component/console_screen(src)
+	component_parts += new /obj/item/component/manipulator(src)
+	component_parts += new /obj/item/component/manipulator(src)
+	component_parts += new /obj/item/component/scanning_module(src)
+	component_parts += new /obj/item/component/scanning_module(src)
+	component_parts += new /obj/item/component/console_screen(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 
 	RefreshParts()
@@ -269,8 +269,8 @@
 /obj/machinery/clonepod/RefreshParts()
 	..()
 	var/rating = 0
-	for(var/obj/item/europa/component/P in component_parts)
-		if(istype(P, /obj/item/europa/component/scanning_module) || istype(P, /obj/item/europa/component/manipulator))
+	for(var/obj/item/component/P in component_parts)
+		if(istype(P, /obj/item/component/scanning_module) || istype(P, /obj/item/component/manipulator))
 			rating += P.rating
 
 	heal_level = rating * 10 - 20

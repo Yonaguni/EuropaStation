@@ -1,16 +1,3 @@
-/obj/item/weapon/rig/industrial/deepsea
-	name = "deepsea suit control module"
-	suit_type = "deepsea hardsuit"
-	desc = "A huge, bulky deepsea rig used for mining operations at extreme sea depths."
-	icon_state = "deepsea_rig"
-	offline_vision_restriction = 0
-
-	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
-
-/*
- * Rimworld.
- */
-
 /obj/item/clothing/suit/hunter
 	name = "hunter's coat"
 	desc = "Rugged and hard-wearing."

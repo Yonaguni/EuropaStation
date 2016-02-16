@@ -60,7 +60,7 @@
 
 	var/obj/item/device/pda/ai/rbPDA = null
 
-	var/obj/item/europa/component/matter_bin/storage = null
+	var/obj/item/component/matter_bin/storage = null
 
 	var/opened = 0
 	var/emagged = 0
@@ -537,7 +537,7 @@
 				user << "You open the cover."
 				opened = 1
 				update_icons()
-	else if (istype(W, /obj/item/europa/component/matter_bin) && opened) // Installing/swapping a matter bin
+	else if (istype(W, /obj/item/component/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)
 			user << "You replace \the [storage] with \the [W]"
 			storage.forceMove(get_turf(src))

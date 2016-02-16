@@ -1,97 +1,41 @@
 // Uniform slot
 /datum/gear/clothing
-	display_name = "pants"
-	path = /obj/item/clothing/under/partial/pants
-	slot = slot_w_uniform
-	sort_category = "Clothing"
-
-/datum/gear/clothing/clothing/dresspants
-	display_name = "dress pants"
-	path = /obj/item/clothing/under/partial/pants/dresspants
-
-/datum/gear/clothing/leatherpants
-	display_name = "leather pants"
-	path = /obj/item/clothing/under/partial/pants/leatherpants
-
-/datum/gear/clothing/camo
-	display_name = "camo pants"
-	path = /obj/item/clothing/under/partial/pants/camo
-
-/datum/gear/clothing/jeans
-	display_name = "jeans"
-	path = /obj/item/clothing/under/partial/pants/jeans
-
-/datum/gear/clothing/jeansslim
-	display_name = "slim jeans"
-	path = /obj/item/clothing/under/partial/pants/jeans/slim
-
-/datum/gear/clothing/khakis
-	display_name = "khakis"
-	path = /obj/item/clothing/under/partial/pants/khakis
-
-/datum/gear/clothing/shorts
-	display_name = "shorts"
-	path = /obj/item/clothing/under/partial/pants/shorts
-
-/datum/gear/clothing/skirt
-	display_name = "skirt"
-	path = /obj/item/clothing/under/partial/skirts
-
-/datum/gear/clothing/skirtblue
-	display_name = "skirt, blue"
-	path = /obj/item/clothing/under/partial/skirts/blue
-
-/datum/gear/clothing/skirtblack
-	display_name = "skirt, black"
-	path = /obj/item/clothing/under/partial/skirts/black
-
-/datum/gear/clothing/skater
-	display_name = "skater skirt"
-	path = /obj/item/clothing/under/partial/skirts/skater
-
-/datum/gear/clothing/skaterpink
-	display_name = "skater skirt, pink"
-	path = /obj/item/clothing/under/partial/skirts/skater/pink
-
-/datum/gear/clothing/skaterblue
-	display_name = "skater skirt, blue"
-	path = /obj/item/clothing/under/partial/skirts/skater/blue
-
-/datum/gear/clothing/hireling
 	display_name = "hireling's uniform"
-	path = /obj/item/clothing/under/partial/hireling
+	path = /obj/item/clothing/under/hireling
+	slot = slot_w_uniform
+	sort_category = "Full Uniforms"
 
 /datum/gear/clothing/manager
 	display_name = "manager's uniform"
-	path = /obj/item/clothing/under/partial/manager
+	path = /obj/item/clothing/under/manager
 
 /datum/gear/clothing/europamilitary
 	display_name = "military uniform"
-	path = /obj/item/clothing/under/partial/military
+	path = /obj/item/clothing/under/military
 
 /datum/gear/clothing/farmer
 	display_name = "farmer's clothes"
-	path = /obj/item/clothing/under/partial/farmer
+	path = /obj/item/clothing/under/farmer
 
 /datum/gear/clothing/relaxedwear
 	display_name = "relaxed wear"
-	path = /obj/item/clothing/under/partial/relaxedwear
+	path = /obj/item/clothing/under/relaxedwear
 
 /datum/gear/clothing/pinstripe
 	display_name = "pinstripe suit"
-	path = /obj/item/clothing/under/partial/pinstripe
+	path = /obj/item/clothing/under/pinstripe
 
 /datum/gear/clothing/springwearfemale
 	display_name = "springwear (female)"
-	path = /obj/item/clothing/under/partial/spring
+	path = /obj/item/clothing/under/spring
 
 /datum/gear/clothing/springwearmale
 	display_name = "springwear (male)"
-	path = /obj/item/clothing/under/partial/spring/male
+	path = /obj/item/clothing/under/spring/male
 
 /datum/gear/clothing/doctor
 	display_name = "doctor's fatigues"
-	path = /obj/item/clothing/under/partial/fatigues
+	path = /obj/item/clothing/under/fatigues
 
 /datum/gear/clothing/redpjs
 	display_name = "pajamas, red"

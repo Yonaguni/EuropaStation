@@ -8,17 +8,17 @@
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/europa/component/scanning_module" = 2,
-							"/obj/item/europa/component/manipulator" = 2,
-							"/obj/item/europa/component/console_screen" = 1)
+							"/obj/item/component/scanning_module" = 2,
+							"/obj/item/component/manipulator" = 2,
+							"/obj/item/component/console_screen" = 1)
 
 /obj/item/weapon/circuitboard/clonescanner
 	name = T_BOARD("cloning scanner")
 	build_path = "/obj/machinery/dna_scannernew"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/scanning_module" = 1,
-							"/obj/item/europa/component/manipulator" = 1,
-							"/obj/item/europa/component/micro_laser" = 1,
-							"/obj/item/europa/component/console_screen" = 1,
+							"/obj/item/component/scanning_module" = 1,
+							"/obj/item/component/manipulator" = 1,
+							"/obj/item/component/micro_laser" = 1,
+							"/obj/item/component/console_screen" = 1,
 							"/obj/item/stack/cable_coil" = 2)

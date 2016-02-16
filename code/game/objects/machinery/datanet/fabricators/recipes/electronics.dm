@@ -128,23 +128,23 @@
 
 /decl/fabricator_design/electronics/device/capacitor
 	name = "capacitor"
-	path = /obj/item/europa/component/capacitor
+	path = /obj/item/component/capacitor
 
 /decl/fabricator_design/electronics/device/micro_mani
 	name = "micro manipulator"
-	path = /obj/item/europa/component/manipulator
+	path = /obj/item/component/manipulator
 
 /decl/fabricator_design/electronics/device/matter_compressor
 	name = "matter compressor"
-	path = /obj/item/europa/component/matter_bin
+	path = /obj/item/component/matter_bin
 
 /decl/fabricator_design/electronics/device/micro_laser
 	name = "micro laser"
-	path = /obj/item/europa/component/micro_laser
+	path = /obj/item/component/micro_laser
 
 /decl/fabricator_design/electronics/device/basic_sensor
 	name = "sensor module"
-	path = /obj/item/europa/component/scanning_module
+	path = /obj/item/component/scanning_module
 
 /decl/fabricator_design/electronics/device/powercell
 	name = "basic powercell"

@@ -19,7 +19,7 @@
 
 /datum/job/government/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/partial/petty_officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/petty_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)

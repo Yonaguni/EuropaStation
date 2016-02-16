@@ -1,48 +1,45 @@
-/obj/item/clothing/accessory/partial/shirt
+/* SHIRTS */
+/obj/item/clothing/accessory/shirt
 	name = "t-shirt"
 	desc = "A plain grey t-shirt. A popular piece of human clothing."
-	icon_state = "t-shirt-grey"
+	icon_state = "tshirt-grey"
 	slot = "shirt"
 	body_parts_covered = UPPER_TORSO
 	slot_flags = SLOT_ICLOTHING
 
-/obj/item/clothing/accessory/partial/shirt/longsleeve
+/obj/item/clothing/accessory/shirt/longsleeve
 	name = "longsleeve shirt"
 	desc = "A white shirt with long sleeves. Great for any white collar worker."
 	icon_state = "longsleeve-white"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/accessory/partial/shirt/turtleneck
+/obj/item/clothing/accessory/shirt/turtleneck
 	name = "turtleneck shirt"
 	desc = "A thick, black turtleneck shirt. For when the air gets a bit chilly."
 	icon_state = "turtleneck-black"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/accessory/partial/shirt/turtleneckwinterred
+/obj/item/clothing/accessory/shirt/turtleneckwinterred
 	name = "winter turtleneck shirt"
 	desc = "A thick, red turtleneck shirt with a wintery design. For when the air gets a bit nippy."
 	icon_state = "turtleneck-winterred"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/* SHIRTS */
-
-
 /* OVERALLS */
-
-/obj/item/clothing/accessory/partial/overalls
+/obj/item/clothing/accessory/overalls
 	name = "overalls"
 	desc = "A plain set of overalls. For the hard working individual."
-	icon_state = "overalls"
+	icon_state = "overalls_acc"
 	slot = "overalls"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	slot_flags = SLOT_OCLOTHING
 
-/obj/item/clothing/accessory/partial/overalls/emergency
+/obj/item/clothing/accessory/overalls/emergency
 	name = "emergency overalls"
 	desc = "A pair of blue overalls with visible reflectors. Standard wear for emergency responders."
 	icon_state = "emergency-overalls"
 
-/obj/item/clothing/accessory/partial/overalls/electrician
+/obj/item/clothing/accessory/overalls/electrician
 	name = "electrician overalls"
 	desc = "A pair of insulated leather overalls. Used for wiring and electronic maintenance."
 	icon_state = "electrician-overalls"

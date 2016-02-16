@@ -317,13 +317,13 @@ Class Procs:
 	if(panel_open)
 		var/obj/item/weapon/circuitboard/CB = locate(/obj/item/weapon/circuitboard) in component_parts
 		var/P
-		for(var/obj/item/europa/component/A in component_parts)
+		for(var/obj/item/component/A in component_parts)
 			for(var/D in CB.req_components)
 				var/T = text2path(D)
 				if(ispath(A.type, T))
 					P = T
 					break
-			for(var/obj/item/europa/component/B in R.contents)
+			for(var/obj/item/component/B in R.contents)
 				if(istype(B, P) && istype(A, P))
 					if(B.rating > A.rating)
 						R.remove_from_storage(B, src)
