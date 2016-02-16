@@ -110,3 +110,16 @@
 	name = "emergency response team medical helmet"
 	desc = "A set of armor worn by medical members of the Emergency Response Team. Has red and white highlights."
 	icon_state = "erthelmet_med"
+
+/obj/item/clothing/head/helmet/kevlar
+	name = "kevlar helmet"
+	desc = "A kevlar helmet. This one is green."
+	icon_state = "kevlar_green"
+
+/obj/item/clothing/head/helmet/kevlar/yellow
+	desc = "A kevlar helmet. This one is yellow."
+	icon_state = "kevlar_yellow"
+
+/obj/item/clothing/head/helmet/kevlar/blue
+	desc = "A kevlar helmet. This one is blue."
+	icon_state = "kevlar_blue"
