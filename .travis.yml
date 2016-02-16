@@ -4,7 +4,7 @@ sudo: false
 env:
   BYOND_MAJOR="509"
   BYOND_MINOR="1319"
-  MACRO_COUNT=1021
+  MACRO_COUNT=1020
   
 cache:
   directories:
@@ -31,6 +31,8 @@ script:
   - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
   - (! grep -E "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
   - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
+  - (num=`grep -E '\WDel\(' **/*.dm | wc -l`; echo "$num Del()s (expecting 4 or less)"; [ $num -le 4 ])
+  - awk -f tools/indentation.awk **/*.dm
   - md5sum -c - <<< "3ef44160a5c9931f1b83db8a9b6c393c *yonaguni.int"
   - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
   - python tools/TagMatcher/tag-matcher.py ../..

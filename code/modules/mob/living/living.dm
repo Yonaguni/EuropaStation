@@ -588,7 +588,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!(stat || next_move > world.time))
+	if(!stat && canClick())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)

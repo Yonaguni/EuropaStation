@@ -221,7 +221,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)
 			mob_species = all_species[pref.species]
-			
+
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = list()
 			for(var/hairstyle in hair_styles_list)
@@ -264,6 +264,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 			pref.s_tone = 0
+			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 

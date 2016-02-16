@@ -52,19 +52,6 @@
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
 
-	// Prevent the person from losing health if in an appropriate container.
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag))
-		var/obj/structure/closet/body_bag/cryobag/C = loc
-		if(!C.opened)
-			in_stasis = 1
-			C.used++
-		else
-			in_stasis = 0
-	else if(istype(loc, /obj/item/weapon/mecha_equipment/sleeper))
-		in_stasis = 1
-	else
-		in_stasis = 0
-
 	..()
 
 	if(life_tick%30==15)
@@ -1171,12 +1158,7 @@
 					I = overlays_cache[23]
 			damageoverlay.overlays += I
 
-		// Todo find a better place/way to do this.
-		if(istype(loc, /mob/living/heavy_vehicle))
-			var/mob/living/heavy_vehicle/M = loc
-			sight |= M.sight
-
-		if(healths)
+		if(healths  && stat != DEAD) // They are dead, let death() handle their hud update on this.
 			if (analgesic > 100)
 				healths.icon_state = "health_numb"
 			else

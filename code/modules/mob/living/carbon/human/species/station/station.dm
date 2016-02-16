@@ -9,7 +9,7 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 	num_alternate_languages = 2
-	secondary_langs = list("Sol Common")
+	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
 	max_age = 110
@@ -33,7 +33,7 @@
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
 	num_alternate_languages = 2
-	secondary_langs = list("Skrellian")
+	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = null
 
 	min_age = 19

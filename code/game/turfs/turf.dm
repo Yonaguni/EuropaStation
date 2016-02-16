@@ -193,7 +193,7 @@ var/const/enterloopsanity = 100
 		if(!M.lastarea.has_gravity)
 			inertial_drift(M)
 			M.make_floating(0)
-	..()
+
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))

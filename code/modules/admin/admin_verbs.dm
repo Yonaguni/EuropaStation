@@ -47,14 +47,13 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
-	/client/proc/rename_silicon,		/*properly renames silicons*/
-	/client/proc/manage_silicon_laws,	/* Allows viewing and editing silicon laws. */
+	/client/proc/check_ai_laws,			//shows AI and borg laws
+	/client/proc/rename_silicon,		//properly renames silicons
+	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws.
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
 	/client/proc/toggleprayers,			//toggles prayers on/off,
-//	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/toggle_hear_radio,		//toggles whether we hear the radio,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
 	/client/proc/secrets,
