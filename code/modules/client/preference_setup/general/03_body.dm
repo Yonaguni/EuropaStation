@@ -166,7 +166,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += "<br><br>"
 
-	. += "</td><td><b>Preview</b><br><img src=preview_icon.png height=64 width=64><img src=preview_icon2.png height=64 width=64>"
+	. += "</td><td><b>Preview</b><br><span style = 'image-rendering: pixelated;'><img src=preview_icon.png height=64 width=64><img src=preview_icon2.png height=64 width=64></span>"
 	. += "</td></tr></table>"
 
 	. += "<b>Hair</b><br>"
@@ -221,7 +221,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)
 			mob_species = all_species[pref.species]
-			
+
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = list()
 			for(var/hairstyle in hair_styles_list)
@@ -264,8 +264,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 			pref.s_tone = 0
+			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
+
+			var/datum/species/S = all_species[pref.species]
+			pref.age = max(min(pref.age, S.max_age), S.min_age)
+
 			return TOPIC_REFRESH
 
 	else if(href_list["hair_color"])
@@ -534,7 +539,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<td width = 200 align='center'>"
 	if("preview" in icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
-		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
+		dat += "<span style = 'image-rendering: pixelated;'><img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/></span>"
 	dat += "<b>Language:</b> [current_species.language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & CAN_JOIN)

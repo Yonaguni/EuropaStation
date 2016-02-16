@@ -321,10 +321,11 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 This function restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
-	if(should_have_organ(O_HEART))
-		var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
-		vessel.add_reagent(REAGENT_ID_BLOOD,560.0-blood_volume)
-
+	if(!should_have_organ(O_HEART))
+		return
+	vessel.maximum_volume = species.blood_volume
+	if(vessel.total_volume < species.blood_volume)
+		vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
 
 /*
 This function restores all organs.

@@ -1391,3 +1391,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 		H.death()
 	if(prob(50) && spawn_diona_nymph(get_turf(src)))
 		qdel(src)
+
+/obj/item/organ/external/emp_act(severity)
+	if(!(status & ORGAN_ROBOT))
+		return
+	switch (severity)
+		if (1)
+			take_damage(10)
+		if (2)
+			take_damage(5)
+		if (3)
+			take_damage(1)

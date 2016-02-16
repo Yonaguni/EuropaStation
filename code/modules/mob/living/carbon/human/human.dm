@@ -48,9 +48,15 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
+	qdel(tail_trail)
+	tail_trail = null
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+	internal_organs.Cut()
+	organs.Cut()
+	internal_organs_by_name.Cut()
+	organs_by_name.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -817,7 +823,7 @@
 /mob/living/carbon/human/revive()
 
 	if(should_have_organ(O_HEART))
-		vessel.add_reagent(REAGENT_ID_BLOOD,560-vessel.total_volume)
+		vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume-vessel.total_volume)
 		fixblood()
 
 	species.create_organs(src) // Reset our organs/limbs.
@@ -1031,7 +1037,10 @@
 
 	spawn(0)
 		regenerate_icons()
-		vessel.add_reagent(REAGENT_ID_BLOOD,560-vessel.total_volume)
+		if(vessel.total_volume < species.blood_volume)
+			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+		else if(vessel.total_volume > species.blood_volume)
+			vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
 		fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
@@ -1042,6 +1051,10 @@
 		hud_used = new /datum/hud(src)
 
 	full_prosthetic = null
+
+	if(species.tail_stance)
+		if(!tail_trail) tail_trail = new(src)
+		tail_trail.sync_to_owner()
 
 	if(species)
 		return 1

@@ -83,6 +83,12 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/New()
 	..()
 	color = null
+		
+/turf/simulated/mineral/can_build_cable()
+	return !density
+	
+/turf/simulated/mineral/is_plating()
+	return 1
 
 /turf/simulated/mineral/proc/make_floor()
 	if(!density && !opacity)

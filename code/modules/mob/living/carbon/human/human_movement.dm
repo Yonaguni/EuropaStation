@@ -13,7 +13,7 @@
 	if(CE_SPEEDBOOST in chem_effects)
 		return -1
 
-	var/health_deficiency = (100 - health)
+	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if(can_feel_pain())
@@ -39,15 +39,20 @@
 	else
 		if(shoes)
 			tally += shoes.slowdown
-
-		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
-			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || E.is_stump())
-				tally += 4
-			else if(E.status & ORGAN_SPLINTED)
-				tally += 0.5
-			else if(E.status & ORGAN_BROKEN)
+		if(species.tail_stance)
+			// If your groin is missing outright, you are dead, so, whatever. No point tallying stump etc. for it.
+			var/obj/item/organ/external/E = get_organ(BP_GROIN)
+			if(E.status & ORGAN_BROKEN)
 				tally += 1.5
+		else
+			for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
+				var/obj/item/organ/external/E = get_organ(organ_name)
+				if(!E || E.is_stump())
+					tally += 4
+				else if(E.status & ORGAN_SPLINTED)
+					tally += 0.5
+				else if(E.status & ORGAN_BROKEN)
+					tally += 1.5
 
 	if(shock_stage >= 10) tally += 3
 

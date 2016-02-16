@@ -4,7 +4,6 @@
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
-
 	..()
 
 /mob/living/carbon/Life()
@@ -34,11 +33,11 @@
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != 2)
-			src.nutrition -= HUNGER_FACTOR/10
-			src.hydration -= HUNGER_FACTOR/10
+			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+			src.hydration -= DEFAULT_HUNGER_FACTOR/10
 			if(src.m_intent == "run")
-				src.nutrition -= HUNGER_FACTOR/10
-				src.hydration -= HUNGER_FACTOR/10
+				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+				src.hydration -= DEFAULT_HUNGER_FACTOR/10
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))

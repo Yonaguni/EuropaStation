@@ -190,3 +190,4 @@
 #define MOB_PULL_LARGER 3
 
 #define DEFAULT_SAY_CLASS "body"
+#define MOVED_DROP 1

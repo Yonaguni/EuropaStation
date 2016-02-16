@@ -1,4 +1,4 @@
-#define HUNGER_FACTOR              0.05 // Factor of how fast mob nutrition decreases
+#define DEFAULT_HUNGER_FACTOR 0.05 // Factor of how fast mob nutrition decreases
 #define THIRST_FACTOR              0.05
 
 #define REM 0.2 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
@@ -19,6 +19,7 @@
 // Some on_mob_life() procs check for alien races.
 #define IS_SKRELL  1
 #define IS_XENOS   2
+#define IS_RESOMI 8
 
 #define CE_STABLE                "stable" // Adrenaline
 #define CE_ANTIBIOTIC            "antibiotic" // Spaceacilin

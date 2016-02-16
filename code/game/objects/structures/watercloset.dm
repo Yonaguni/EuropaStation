@@ -127,13 +127,12 @@
 	var/obj/effect/mist/mymist = null
 	var/ismist = 0				//needs a var so we can make it linger~
 	var/watertemp = "normal"	//freezing, normal, or boiling
-	var/mobpresent = 0		//true if there is a mob on the shower's loc, this is to ease process()
 	var/is_washing = 0
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 
 /obj/machinery/shower/New()
 	..()
-	create_reagents(2)
+	create_reagents(50)
 
 //add heat controls? when emagged, you can freeze to death in it?
 
@@ -171,6 +170,7 @@
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		qdel(mymist)
+		mymist = null
 
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
@@ -190,19 +190,8 @@
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
+				mymist = null
 				ismist = 0
-
-/obj/machinery/shower/Crossed(atom/movable/O)
-	..()
-	wash(O)
-	if(ismob(O))
-		mobpresent += 1
-		process_heat(O)
-
-/obj/machinery/shower/Uncrossed(atom/movable/O)
-	if(ismob(O))
-		mobpresent -= 1
-	..()
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
@@ -292,24 +281,31 @@
 
 	if(isturf(loc))
 		var/turf/tile = loc
-		loc.clean_blood()
 		for(var/obj/effect/E in tile)
 			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				qdel(E)
 
+	reagents.splash(O, 10)
+
 /obj/machinery/shower/process()
 	if(!on) return
+
+	for(var/thing in loc)
+		var/atom/movable/AM = thing
+		var/mob/living/L = thing
+		if(istype(AM) && AM.simulated)
+			wash(AM)
+			if(istype(L))
+				process_heat(L)
 	wash_floor()
-	if(!mobpresent)	return
-	for(var/mob/living/L in loc)
-		process_heat(L)
+	reagents.add_reagent(REAGENT_ID_WATER, reagents.get_free_space())
 
 /obj/machinery/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-	reagents.add_reagent(REAGENT_ID_WATER, 2)
+	reagents.splash(T, reagents.total_volume)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
@@ -345,20 +341,19 @@
 	anchored = 1
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/MouseDrop(var/over_object, var/src_location, var/over_location)
+/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()
-	var/obj/item/I = over_object
-	if(!istype(I) || !I.is_open_container())
+	if(!istype(thing) || !thing.is_open_container())
 		return ..()
 	if(!usr.Adjacent(src))
 		return ..()
-	if(!I.reagents || I.reagents.total_volume == 0)
-		usr << "<span class='warning'>\The [I] is empty.</span>"
+	if(!thing.reagents || thing.reagents.total_volume == 0)
+		usr << "<span class='warning'>\The [thing] is empty.</span>"
 		return
 	// Clear the vessel.
-	visible_message("<span class='notice'>\The [usr] tips the contents of \the [I] into \the [src].</span>")
-	I.reagents.clear_reagents()
-	I.update_icon()
+	visible_message("<span class='notice'>\The [usr] tips the contents of \the [thing] into \the [src].</span>")
+	thing.reagents.clear_reagents()
+	thing.update_icon()
 
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
