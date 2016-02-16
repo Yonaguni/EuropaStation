@@ -163,8 +163,13 @@ var/list/bike_cache = list()
 			unload(load, dir)
 			if(istype(M))
 				M << "<span class='danger'>You are hurled off \the [src]!</span>"
-				M.Weaken(rand(5,10))
+				if(!M.has_aspect(ASPECT_DAREDEVIL))
+					M.Weaken(rand(6,10))
 				M.throw_at(get_edge_target_turf(src,src.dir),rand(1,2), move_delay)
+				spawn(3)
+					if(!M.lying)
+						M << "<span class='notice'>You land on your feet!</span>"
+
 			src.ex_act(2)
 
 	if(cur_move_speed > 1 && istype(A, /mob/living))

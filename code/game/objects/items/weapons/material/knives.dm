@@ -45,20 +45,6 @@
 	update_force()
 	add_fingerprint(user)
 
-/obj/item/weapon/material/hook
-	name = "meat hook"
-	desc = "A sharp, metal hook what sticks into things."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "hook_knife"
-	item_state = "hook_knife"
-	flags = CONDUCT
-	sharp = 1
-	edge = 1
-	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(DEFAULT_WALL_MATERIAL = 12000)
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	unbreakable = 1
-
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
 	desc = "A sharp, metal hook what sticks into things."
