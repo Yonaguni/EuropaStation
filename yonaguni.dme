@@ -1231,7 +1231,6 @@
 #include "code\modules\mob\freelook\ai\update_triggers.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"
-#include "code\modules\mob\language\monkey.dm"
 #include "code\modules\mob\language\outsider.dm"
 #include "code\modules\mob\language\station.dm"
 #include "code\modules\mob\language\synthetic.dm"

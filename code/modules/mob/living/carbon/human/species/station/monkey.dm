@@ -9,7 +9,6 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_monkey.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
 	language = null
-	default_language = "Chimpanzee"
 	greater_form = "Human"
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
@@ -71,7 +70,7 @@
 	deform = 'icons/mob/human_races/monkeys/r_neaera.dmi'
 
 	greater_form = "Skrell"
-	default_language = "Neaera"
+	default_language = "Skrellian"
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	reagent_tag = IS_SKRELL
