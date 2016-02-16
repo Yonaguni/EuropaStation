@@ -34,6 +34,5 @@ var/obj/effect/landmark/map_data/world_map
 /proc/layer_is_shallow(var/layer)
 	return world_map && (layer in world_map.shallow_layers)
 
-
 /obj/effect/landmark/proc/do_roundstart_mapgen()
 	return

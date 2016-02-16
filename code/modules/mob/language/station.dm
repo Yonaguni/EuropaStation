@@ -1,19 +1,3 @@
-/datum/language/diona
-	name = LANGUAGE_ROOTSPEAK
-	desc = "A creaking, subvocal language spoken instinctively by the Dionaea. Due to the unique makeup of the average Diona, a phrase of Rootspeak can be a combination of anywhere from one to twelve individual voices and notes."
-	speech_verb = "creaks and rustles"
-	ask_verb = "creaks"
-	exclaim_verb = "rustles"
-	colour = "soghun"
-	key = "q"
-	flags = RESTRICTED
-	syllables = list("hs","zt","kr","st","sh")
-
-/datum/language/diona/get_random_name()
-	var/new_name = "[pick(list("To Sleep Beneath","Wind Over","Embrace of","Dreams of","Witnessing","To Walk Beneath","Approaching the"))]"
-	new_name += " [pick(list("the Void","the Sky","Encroaching Night","Planetsong","Starsong","the Wandering Star","the Empty Day","Daybreak","Nightfall","the Rain"))]"
-	return new_name
-
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN
 	desc = "A melodic and complex language spoken by the Skrell of Qerrbalak. Some of the notes are inaudible to humans."
