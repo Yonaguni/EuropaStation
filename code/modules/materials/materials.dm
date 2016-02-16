@@ -64,7 +64,7 @@ var/global/list/all_materials = list()
 	var/shard_can_repair = 1              // Can shards be turned into sheets with a welder?
 	var/list/recipes                      // Holder for all recipes usable with a sheet of this material.
 	var/destruction_desc = "breaks apart" // Fancy string for barricades/tables/objects exploding.
-	var/cargo_sell_amt
+	var/sell_amt = 1
 
 	// Icons
 	var/icon_colour                                      // Colour applied to products of this material.
@@ -237,10 +237,12 @@ var/global/list/all_materials = list()
 	hardness = 40
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	sell_amt = 4
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
 	icon_colour = "#EDD12F"
+	sell_amt = 3
 
 /material/silver
 	name = "silver"
@@ -250,6 +252,7 @@ var/global/list/all_materials = list()
 	hardness = 50
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	sell_amt = 3
 
 /material/stone
 	name = "sandstone"
@@ -263,6 +266,7 @@ var/global/list/all_materials = list()
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
+	sell_amt = 2
 
 /material/stone/marble
 	name = "marble"
@@ -271,6 +275,7 @@ var/global/list/all_materials = list()
 	hardness = 100
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
+	sell_amt = 3
 
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
@@ -280,6 +285,7 @@ var/global/list/all_materials = list()
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
+	sell_amt = 2
 
 /material/diona
 	name = "biomass"
@@ -315,6 +321,7 @@ var/global/list/all_materials = list()
 	weight = 23
 	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
 	hitsound = 'sound/effects/blobattack.ogg'
+	sell_amt = 3
 
 /material/plasteel/titanium
 	name = "titanium"
@@ -323,6 +330,7 @@ var/global/list/all_materials = list()
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+	sell_amt = 4
 
 /material/glass
 	name = "glass"
@@ -341,6 +349,7 @@ var/global/list/all_materials = list()
 	created_window = /obj/structure/window/basic
 	rod_product = /obj/item/stack/material/glass/reinforced
 	hitsound = 'sound/effects/Glasshit.ogg'
+	sell_amt = 2
 
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
@@ -476,6 +485,7 @@ var/global/list/all_materials = list()
 	icon_colour = "#9999FF"
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	sell_amt = 2
 
 /material/tritium
 	name = "tritium"
@@ -496,7 +506,7 @@ var/global/list/all_materials = list()
 	weight = 27
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	cargo_sell_amt = 1
+	sell_amt = 6
 
 /material/iron
 	name = "iron"
@@ -550,6 +560,7 @@ var/global/list/all_materials = list()
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 	hitsound = 'sound/effects/woodhit.ogg'
+	sell_amt = 2
 
 /material/wood/place_dismantled_girder(var/turf/target, var/material/reinf_material)
 	new /obj/structure/barricade/wood(target)
