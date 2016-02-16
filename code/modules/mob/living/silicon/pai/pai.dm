@@ -1,6 +1,6 @@
 /mob/living/silicon/pai
 	name = "pAI"
-	icon = 'icons/mob/pai.dmi'
+	icon = 'icons/mob/creatures/pai.dmi'
 	icon_state = "repairbot"
 
 	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)

@@ -7,8 +7,8 @@
 	body_parts_covered = FACE
 	dir = SOUTH
 
-	icon = 'icons/mob/monitor_icons.dmi'
-	icon_override = 'icons/mob/monitor_icons.dmi'
+	icon = 'icons/mob/clothing/monitor_icons.dmi'
+	icon_override = 'icons/mob/clothing/monitor_icons.dmi'
 	icon_state = "ipc_blank"
 	item_state = null
 

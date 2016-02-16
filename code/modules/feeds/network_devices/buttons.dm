@@ -1,21 +1,21 @@
-/obj/structure/europa/button
+/obj/structure/button
 	name = "button"
-	icon = 'icons/obj/europa/structures/buttons.dmi'
+	icon = 'icons/obj/structures/buttons.dmi'
 	icon_state = "button_on"
 	var/state_on = "button_on"
 	var/state_off = "button_off"
 	var/global/button_delay = 15
 
-/obj/structure/europa/button/attack_hand()
+/obj/structure/button/attack_hand()
 	interact()
 
-/obj/structure/europa/button/attack_ai()
+/obj/structure/button/attack_ai()
 	interact()
 
-/obj/structure/europa/button/attack_generic()
+/obj/structure/button/attack_generic()
 	interact()
 
-/obj/structure/europa/button/interact()
+/obj/structure/button/interact()
 	if(icon_state == state_off)
 		return
 	icon_state = state_off

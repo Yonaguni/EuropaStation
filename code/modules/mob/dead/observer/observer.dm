@@ -4,7 +4,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/creatures/mob.dmi'
 	icon_state = "ghost"
 	layer = FLY_LAYER+0.1
 	stat = DEAD
@@ -578,7 +578,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			qdel(I)
 
 	if(!iconRemoved)
-		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
+		var/image/J = image('icons/mob/creatures/mob.dmi', loc = src, icon_state = icon)
 		client.images += J
 
 /mob/dead/proc/toggle_visibility(var/forced = 0)

@@ -3,7 +3,7 @@ var/list/global/geothermal_cache = list()
 /obj/structure/underwater_vent
 	name = "vent"
 	desc = "A geothermal vent."
-	icon = 'icons/obj/europa/machines/geothermal.dmi'
+	icon = 'icons/obj/machines/geothermal.dmi'
 	icon_state = "vent_segment"
 	density = 0
 	opacity = 0
@@ -93,7 +93,7 @@ var/list/global/geothermal_cache = list()
 /obj/machinery/power/geothermal
 	name = "geothermal turbine"
 	desc = "A hulking mass of pipes and metal used to produce power from underwater vents."
-	icon = 'icons/obj/europa/machines/geothermal.dmi'
+	icon = 'icons/obj/machines/geothermal.dmi'
 	icon_state = "geothermal-base"
 	density = 1
 	opacity = 1

@@ -161,7 +161,7 @@
 	name = "neural strata"
 	parent_organ = BP_TORSO
 	organ_tag = "neural strata"
-	
+
 
 /obj/item/organ/internal/diona/bladder
 	name = "gas bladder"
@@ -191,7 +191,7 @@
 /obj/item/organ/internal/diona/nutrients
 	name = O_NUTRIENT
 	organ_tag = O_NUTRIENT
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/creatures/alien.dmi'
 	icon_state = "claw"
 
 /obj/item/organ/internal/diona/nutrients/removed(var/mob/user)
@@ -200,7 +200,7 @@
 /obj/item/organ/internal/diona/node
 	name = "receptor node"
 	organ_tag = "response node"
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/creatures/alien.dmi'
 	icon_state = "claw"
 
 /obj/item/organ/internal/diona/node/removed()

@@ -7,7 +7,7 @@
 	spawn_positions = -1
 	supervisors = "colonial authorities"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/europa
+	idtype = /obj/item/weapon/card/id
 	alt_titles = list("Citizen", "Visitor", "Doctor", "Janitor", "Gardener")
 	access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
             access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,

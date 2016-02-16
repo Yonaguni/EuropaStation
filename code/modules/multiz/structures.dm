@@ -5,7 +5,7 @@
 /obj/structure/ladder
 	name = "ladder"
 	desc = "A ladder.  You can climb it up (and down)."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "ladderdown"
 	density = 0
 	opacity = 0

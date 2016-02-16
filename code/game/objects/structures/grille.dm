@@ -1,7 +1,7 @@
 /obj/structure/grille
 	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
@@ -240,7 +240,7 @@
 
 /obj/structure/grille/fence
 	name = "fence"
-	icon = 'icons/obj/europa/structures/fence.dmi'
+	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence"
 	density = 1
 	anchored = 1

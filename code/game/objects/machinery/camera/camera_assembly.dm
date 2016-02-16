@@ -9,7 +9,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 700,"glass" = 300)
 
 	//	Motion, EMP-Proof, X-Ray
-	var/list/obj/item/possible_upgrades = list(/obj/item/device/assembly/prox_sensor, /obj/item/stack/material/osmium, /obj/item/europa/component/scanning_module)
+	var/list/obj/item/possible_upgrades = list(/obj/item/device/assembly/prox_sensor, /obj/item/stack/material/osmium, /obj/item/component/scanning_module)
 	var/list/upgrades = list()
 	var/camera_name
 	var/camera_network

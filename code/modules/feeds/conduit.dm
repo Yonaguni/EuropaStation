@@ -5,7 +5,7 @@ var/list/feed_cache = list()
 
 	name = "feed conduit"
 	icon_state = "matter_feed"
-	icon = 'icons/obj/europa/structures/conduits/matter_feed.dmi'
+	icon = 'icons/obj/structures/conduits/matter_feed.dmi'
 	anchored = 1
 	density = 0
 	layer = 2.5

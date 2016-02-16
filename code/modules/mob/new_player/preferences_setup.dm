@@ -16,8 +16,6 @@ datum/preferences
 					underwear = underwear_f[pick(underwear_f)]
 				else
 					underwear = underwear_m[pick(underwear_m)]
-				undershirt = undershirt_t[pick(undershirt_t)]
-
 
 		var/use_head_species
 		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
@@ -264,7 +262,7 @@ datum/preferences
 				use_eye_icon = temp_head.eye_icon
 			qdel(temp_head)
 
-		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
+		var/icon/eyes_s = new/icon("icon" = 'icons/mob/creatures/human_face.dmi', "icon_state" = use_eye_icon)
 
 
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
@@ -284,24 +282,18 @@ datum/preferences
 
 		var/icon/underwear_s = null
 		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
-			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
-
-		var/icon/undershirt_s = null
-		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
-			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
+			underwear_s = new/icon("icon" = 'icons/mob/creatures/human.dmi', "icon_state" = underwear)
 
 		// HA HA NO PREVIEW ICONS FOR YOU UNTIL WE CAN BE FUCKED RECODING THIS
 		// (or chinsky fixes his rewrite to avoid crashing people)
 		//var/icon/clothes_s = null
 
 		if(disabilities & NEARSIGHTED)
-			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
+			preview_icon.Blend(new /icon('icons/mob/clothing/eyes.dmi', "glasses"), ICON_OVERLAY)
 
 		preview_icon.Blend(eyes_s, ICON_OVERLAY)
 		if(underwear_s)
 			preview_icon.Blend(underwear_s, ICON_OVERLAY)
-		if(undershirt_s)
-			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
 		//if(clothes_s)
 		//	preview_icon.Blend(clothes_s, ICON_OVERLAY)
 		preview_icon_front = new(preview_icon, dir = SOUTH)
@@ -309,5 +301,4 @@ datum/preferences
 
 		qdel(eyes_s)
 		qdel(underwear_s)
-		qdel(undershirt_s)
 		//qdel(clothes_s)

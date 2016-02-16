@@ -15,7 +15,7 @@
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
 	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
+	animation.icon = 'icons/mob/creatures/mob.dmi'
 	animation.master = src
 	flick("h2monkey", animation)
 	sleep(48)

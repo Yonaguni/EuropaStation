@@ -6,7 +6,7 @@
 	supervisors = "the board of investors and colonial law"
 	selection_color = "#ffeeff"
 	alt_titles = list("Factory Worker", "Miner", "Shipping Clerk", "Fabrication Technician")
-	idtype = /obj/item/weapon/card/id/europa/corpcard
+	idtype = /obj/item/weapon/card/id/corpcard
 	access = list(access_tox, access_genetics, access_morgue,
 			      access_tox_storage, access_teleporter, access_sec_doors,
 			      access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
@@ -35,7 +35,7 @@
 	spawn_positions = 3
 	supervisors = "the funding committee and colonial law"
 	alt_titles = list("Xenobiologist","Field Technician")
-	idtype = /obj/item/weapon/card/id/europa/lanyard
+	idtype = /obj/item/weapon/card/id/lanyard
 
 /datum/job/industry/science/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

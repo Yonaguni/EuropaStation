@@ -7,5 +7,5 @@
 	build_path = "/obj/machinery/biogenerator"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/manipulator" = 1)
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/manipulator" = 1)

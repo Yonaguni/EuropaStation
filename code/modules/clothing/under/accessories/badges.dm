@@ -14,6 +14,12 @@
 	var/stored_name
 	var/badge_string = "Corporate Security"
 
+/obj/item/clothing/accessory/badge/sherrif
+	name = "sherrif's badge"
+	desc = "Around here, law and order's a bit hard to come by."
+	icon_state = "sherrif"
+	slot = "badge"
+
 /obj/item/clothing/accessory/badge/old
 	name = "faded badge"
 	desc = "A faded badge, backed with leather. It bears the emblem of the Forensic division."

@@ -1,7 +1,7 @@
 /obj/structure/conduit/matter
 	name = "matter feed"
 	desc = "A reinforced pipeline for transporting materials."
-	icon = 'icons/obj/europa/structures/conduits/matter_feed.dmi'
+	icon = 'icons/obj/structures/conduits/matter_feed.dmi'
 	icon_state = "matter_feed_single"
 	color = "#999999"
 
@@ -16,5 +16,5 @@
 		return
 	var/datum/conduit_network/matter_feed/feed_network = network
 	var/turf/T = get_turf(src)
-	for(var/obj/structure/europa/conduit_storage/S in T.contents)
+	for(var/obj/structure/conduit_storage/S in T.contents)
 		feed_network.connected_storage |= S

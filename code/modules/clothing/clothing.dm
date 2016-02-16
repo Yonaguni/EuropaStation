@@ -350,7 +350,7 @@ BLIND     // can't see anything
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
 		if(!light_overlay_cache[cache_key])
-			var/use_icon = 'icons/mob/light_overlays.dmi'
+			var/use_icon = 'icons/mob/clothing/light_overlays.dmi'
 			if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
 				use_icon = sprite_sheets[H.species.get_bodytype()]
 			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
@@ -548,7 +548,7 @@ BLIND     // can't see anything
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if((worn_state + "_d_s") in icon_states('icons/mob/uniform.dmi'))
+		if((worn_state + "_d_s") in icon_states('icons/mob/clothing/uniform.dmi'))
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()

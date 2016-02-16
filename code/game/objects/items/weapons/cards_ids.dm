@@ -149,9 +149,9 @@ var/const/NO_EMAG_ACT = -50
 	id_card.sex 				= capitalize(gender)
 	id_card.set_id_photo(src)
 
-	if(istype(id_card, /obj/item/weapon/card/id/europa/passport) && \
+	if(istype(id_card, /obj/item/weapon/card/id/passport) && \
 	 client && client.prefs && !isnull(client.prefs.citizenship) && client.prefs.citizenship != "None")
-		var/obj/item/weapon/card/id/europa/passport/P = id_card
+		var/obj/item/weapon/card/id/passport/P = id_card
 		P.citizenship = client.prefs.citizenship
 
 	if(dna)
@@ -280,4 +280,40 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()
-    
+
+/obj/item/weapon/card/id/citizen
+	name = "citizenship card"
+	icon_state = "card"
+	assignment = "Citizen"
+
+/obj/item/weapon/card/id/corpcard
+	name = "corporate ID"
+	desc = "A slender identification card issued to low-level corporate workers."
+	icon_state = "corpcard"
+	assignment = "Employee"
+
+/obj/item/weapon/card/id/lanyard
+	name = "secure access card"
+	desc = "A lanyard holding a laminated Science access card. It's emblazoned with the usual CLASSIFIED ACCESS warning labels."
+	icon_state = "lanyard"
+	assignment = "Specialist"
+
+/obj/item/weapon/card/id/passport
+	name = "passport"
+	desc = "A rather worn passport."
+	icon_state = "passport"
+	var/citizenship = "Europan"
+
+/obj/item/weapon/card/id/passport/update_name()
+	name = "[registered_name]'s [citizenship] [initial(name)]"
+
+/obj/item/weapon/card/id/dogtags
+	name = "RFID dogtags"
+	desc = "A set of Sol-issued naval dog tags with integrated identification chips."
+	icon_state = "dogtags"
+	assignment = "Officer"
+
+/obj/item/weapon/card/id/keycard
+	name = "access keycard"
+	desc = "You need the blue key."
+	icon_state = "keycard"

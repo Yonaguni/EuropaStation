@@ -7,7 +7,7 @@
 	build_path = "/obj/machinery/mining/drill"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/capacitor" = 1,
+							"/obj/item/component/capacitor" = 1,
 							"/obj/item/weapon/cell" = 1,
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/micro_laser" = 1)
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/micro_laser" = 1)

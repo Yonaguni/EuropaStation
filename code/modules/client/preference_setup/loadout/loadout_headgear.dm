@@ -7,23 +7,23 @@
 
 /datum/gear/head/marshalcap
 	display_name = "marchal's cap"
-	path = /obj/item/clothing/head/europa/petty_officer/marshal
+	path = /obj/item/clothing/head/petty_officer/marshal
 
 /datum/gear/head/officercap
 	display_name = "officer's cap"
-	path = /obj/item/clothing/head/europa/petty_officer
+	path = /obj/item/clothing/head/petty_officer
 
 /datum/gear/head/cowboy
 	display_name = "cowboy hat"
-	path = /obj/item/clothing/head/europa/cowboy_hat
+	path = /obj/item/clothing/head/cowboy_hat
 
 /datum/gear/head/cowboywide
 	display_name = "cowboy hat, wide brim"
-	path = /obj/item/clothing/head/europa/cowboy_hat/wide
+	path = /obj/item/clothing/head/cowboy_hat/wide
 
 /datum/gear/head/cowboyblack
 	display_name = "cowboy hat, black"
-	path = /obj/item/clothing/head/europa/cowboy_hat/black
+	path = /obj/item/clothing/head/cowboy_hat/black
 
 /datum/gear/head/obandana
 	display_name = "bandana, orange"

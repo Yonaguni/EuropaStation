@@ -1,11 +1,15 @@
+/proc/is_relay_online()
+	for(var/obj/machinery/radio_receiver/R in machines)
+		if(R.use_power)
+			return 1
+	return 0
+
 #define AI_CHECK_WIRELESS 1
 #define AI_CHECK_RADIO 2
 
 var/list/ai_list = list()
 var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
-	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
@@ -42,7 +46,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai
 	name = "AI"
-	icon = 'icons/mob/AI.dmi'//
+	icon = 'icons/mob/creatures/AI.dmi'
 	icon_state = "ai"
 	anchored = 1 // -- TLE
 	density = 1
@@ -101,7 +105,7 @@ var/list/ai_verbs_default = list(
 	density = 1
 	loc = loc
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo1"))
 
 	proc_holder_list = new()
 
@@ -320,41 +324,6 @@ var/list/ai_verbs_default = list(
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
 
-/mob/living/silicon/ai/proc/ai_call_shuttle()
-	set category = "AI Commands"
-	set name = "Call Evacuation"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to call the evacuation submarine?", "Confirm Evac Call", "Yes", "No")
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		call_shuttle_proc(src)
-
-	// hack to display shuttle timer
-	if(emergency_shuttle.online())
-		var/obj/machinery/computer/communications/C = locate() in machines
-		if(C)
-			C.post_status("shuttle")
-
-/mob/living/silicon/ai/proc/ai_recall_shuttle()
-	set category = "AI Commands"
-	set name = "Recall Evac"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	var/confirm = alert("Are you sure you want to recall the evacuation submarine?", "Confirm Evac Recall", "Yes", "No")
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-
-	if(confirm == "Yes")
-		cancel_call_proc(src)
-
 /mob/living/silicon/ai/var/emergency_message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_emergency_message()
 	set category = "AI Commands"
@@ -546,11 +515,11 @@ var/list/ai_verbs_default = list(
 			qdel(holo_icon)
 			switch(input)
 				if("default")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo1"))
 				if("floating face")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo2"))
 				if("carp")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+					holo_icon = getHologramIcon(icon('icons/mob/creatures/AI.dmi',"holo4"))
 	return
 
 //Toggles the luminosity and applies it by re-entereing the camera.

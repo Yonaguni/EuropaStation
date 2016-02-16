@@ -18,14 +18,14 @@
 	build_path = "/obj/machinery/atmospherics/unary/heater"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 5,
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/capacitor" = 2)
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/capacitor" = 2)
 
 /obj/item/weapon/circuitboard/unary_atmos/cooler
 	name = T_BOARD("gas cooling system")
 	build_path = "/obj/machinery/atmospherics/unary/freezer"
 	req_components = list(
 							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/capacitor" = 2,
-							"/obj/item/europa/component/manipulator" = 1)
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/capacitor" = 2,
+							"/obj/item/component/manipulator" = 1)

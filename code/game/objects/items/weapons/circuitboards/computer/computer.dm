@@ -18,10 +18,6 @@
 	name = T_BOARD("DNA machine")
 	build_path = /obj/machinery/computer/scan_consolenew
 
-/obj/item/weapon/circuitboard/communications
-	name = T_BOARD("command and communications console")
-	build_path = /obj/machinery/computer/communications
-
 /obj/item/weapon/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
 	build_path = /obj/machinery/computer/teleporter

@@ -12,7 +12,7 @@
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
 	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
+	animation.icon = 'icons/mob/creatures/mob.dmi'
 	animation.master = src
 
 	flick(anim, animation)
@@ -35,7 +35,7 @@
 
 	animation = new(loc)
 	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
+	animation.icon = 'icons/mob/creatures/mob.dmi'
 	animation.master = src
 
 	flick(anim, animation)
@@ -74,7 +74,7 @@
 	drop_l_hand()
 
 	//TODO:  Change death state to health_dead for all these icon files.  This is a stop gap.
-	 
+
 	if(healths)
 		if("health7" in icon_states(healths.icon))
 			healths.icon_state = "health7"

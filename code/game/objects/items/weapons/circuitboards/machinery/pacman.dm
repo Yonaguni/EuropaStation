@@ -7,10 +7,10 @@
 	build_path = "/obj/machinery/power/port_gen/pacman"
 	board_type = "machine"
 	req_components = list(
-							"/obj/item/europa/component/matter_bin" = 1,
-							"/obj/item/europa/component/micro_laser" = 1,
+							"/obj/item/component/matter_bin" = 1,
+							"/obj/item/component/micro_laser" = 1,
 							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/europa/component/capacitor" = 1)
+							"/obj/item/component/capacitor" = 1)
 
 /obj/item/weapon/circuitboard/pacman/super
 	name = T_BOARD("SUPERPACMAN-type generator")

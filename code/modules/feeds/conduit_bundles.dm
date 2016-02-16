@@ -1,7 +1,7 @@
 /obj/item/stack/conduit
 	name = "feed conduit bundle"
 	desc = "A bundle of heavy pipes."
-	icon = 'icons/obj/europa/items/conduits.dmi'
+	icon = 'icons/obj/conduits.dmi'
 	icon_state = "conduits"
 	max_amount = 30
 	amount = 30

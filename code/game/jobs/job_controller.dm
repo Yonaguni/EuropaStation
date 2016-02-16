@@ -446,7 +446,7 @@ var/global/datum/controller/occupations/job_master
 
 		// Create passport.
 		if(H.client && H.client.prefs && !isnull(H.client.prefs.citizenship) && H.client.prefs.citizenship != "None")
-			var/obj/item/weapon/card/id/europa/passport/P = new(H)
+			var/obj/item/weapon/card/id/passport/P = new(H)
 			H.set_id_info(P)
 			// If they have a wallet, great. If not, try to put it in the ID slot,
 			// then pockets. If that fails, put it on the ground.

@@ -7,11 +7,11 @@
 	board_type = "machine"
 	build_path = "/obj/machinery/shield_gen/external"
 	req_components = list(
-							"/obj/item/europa/component/manipulator/pico" = 2,
-							"/obj/item/europa/component/subspace/transmitter" = 1,
-							"/obj/item/europa/component/subspace/crystal" = 1,
-							"/obj/item/europa/component/subspace/amplifier" = 1,
-							"/obj/item/europa/component/console_screen" = 1,
+							"/obj/item/component/manipulator/pico" = 2,
+							"/obj/item/component/subspace/transmitter" = 1,
+							"/obj/item/component/subspace/crystal" = 1,
+							"/obj/item/component/subspace/amplifier" = 1,
+							"/obj/item/component/console_screen" = 1,
 							"/obj/item/stack/cable_coil" = 5)
 
 /obj/item/weapon/circuitboard/shield_gen
@@ -19,11 +19,11 @@
 	board_type = "machine"
 	build_path = "/obj/machinery/shield_gen"
 	req_components = list(
-							"/obj/item/europa/component/manipulator/pico" = 2,
-							"/obj/item/europa/component/subspace/transmitter" = 1,
-							"/obj/item/europa/component/subspace/crystal" = 1,
-							"/obj/item/europa/component/subspace/amplifier" = 1,
-							"/obj/item/europa/component/console_screen" = 1,
+							"/obj/item/component/manipulator/pico" = 2,
+							"/obj/item/component/subspace/transmitter" = 1,
+							"/obj/item/component/subspace/crystal" = 1,
+							"/obj/item/component/subspace/amplifier" = 1,
+							"/obj/item/component/console_screen" = 1,
 							"/obj/item/stack/cable_coil" = 5)
 
 /obj/item/weapon/circuitboard/shield_cap
@@ -31,9 +31,9 @@
 	board_type = "machine"
 	build_path = "/obj/machinery/shield_capacitor"
 	req_components = list(
-							"/obj/item/europa/component/manipulator/pico" = 2,
-							"/obj/item/europa/component/subspace/filter" = 1,
-							"/obj/item/europa/component/subspace/treatment" = 1,
-							"/obj/item/europa/component/subspace/analyzer" = 1,
-							"/obj/item/europa/component/console_screen" = 1,
+							"/obj/item/component/manipulator/pico" = 2,
+							"/obj/item/component/subspace/filter" = 1,
+							"/obj/item/component/subspace/treatment" = 1,
+							"/obj/item/component/subspace/analyzer" = 1,
+							"/obj/item/component/console_screen" = 1,
 							"/obj/item/stack/cable_coil" = 5)

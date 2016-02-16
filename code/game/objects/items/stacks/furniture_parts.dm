@@ -2,7 +2,7 @@
 	name = "bed parts"
 	desc = "All the parts needed to make a bed."
 	max_amount = 5
-	icon = 'icons/obj/europa/items/parts.dmi'
+	icon = 'icons/obj/parts.dmi'
 	icon_state = "tableparts"
 
 	var/build_time = 30

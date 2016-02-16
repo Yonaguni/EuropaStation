@@ -190,9 +190,9 @@
 	update_icon(1)
 
 /obj/item/weapon/rig/proc/toggle_seals(var/mob/initiator,var/instant)
-		
+
 	if(sealing) return
-	
+
 	// Seal toggling can be initiated by the suit AI, too
 	if(!wearer)
 		initiator << "<span class='danger'>Cannot toggle suit: The suit is currently not being worn by anyone.</span>"
@@ -288,7 +288,7 @@
 	// Success!
 	canremove = seal_target
 	wearer << "<font color='blue'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></font>"
-	
+
 	if(wearer != initiator)
 		initiator << "<font color='blue'>Suit adjustment complete. Suit is now [canremove ? "unsealed" : "sealed"].</font>"
 
@@ -477,7 +477,7 @@
 	//TODO: Maybe consider a cache for this (use mob_icon as blank canvas, use suit icon overlay).
 	overlays.Cut()
 	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
+		var/species_icon = 'icons/mob/rigs/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
 		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype()])
@@ -487,7 +487,7 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = "[module.suit_overlay]", "dir" = SOUTH)
+				chest.overlays += image("icon" = 'icons/mob/rigs/rig_modules.dmi', "icon_state" = "[module.suit_overlay]", "dir" = SOUTH)
 
 	if(wearer)
 		wearer.update_inv_shoes()

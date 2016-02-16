@@ -25,10 +25,10 @@
 	initialize_directions = dir
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/unary_atmos/cooler(src)
-	component_parts += new /obj/item/europa/component/matter_bin(src)
-	component_parts += new /obj/item/europa/component/capacitor(src)
-	component_parts += new /obj/item/europa/component/capacitor(src)
-	component_parts += new /obj/item/europa/component/manipulator(src)
+	component_parts += new /obj/item/component/matter_bin(src)
+	component_parts += new /obj/item/component/capacitor(src)
+	component_parts += new /obj/item/component/capacitor(src)
+	component_parts += new /obj/item/component/manipulator(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
 
@@ -154,12 +154,12 @@
 	var/manip_rating = 0
 	var/bin_rating = 0
 
-	for(var/obj/item/europa/component/P in component_parts)
-		if(istype(P, /obj/item/europa/component/capacitor))
+	for(var/obj/item/component/P in component_parts)
+		if(istype(P, /obj/item/component/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/europa/component/manipulator))
+		if(istype(P, /obj/item/component/manipulator))
 			manip_rating += P.rating
-		if(istype(P, /obj/item/europa/component/matter_bin))
+		if(istype(P, /obj/item/component/matter_bin))
 			bin_rating += P.rating
 
 	power_rating = initial(power_rating) * cap_rating / 2			//more powerful
