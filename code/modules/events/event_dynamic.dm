@@ -40,9 +40,6 @@ var/list/event_last_fired = list()
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events.dm
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events_Mundane.dm
 
-	possibleEvents[/datum/event/economic_event] = 300
-	possibleEvents[/datum/event/trivial_news] = 400
-	possibleEvents[/datum/event/mundane_news] = 300
 	possibleEvents[/datum/event/critter_migration] = 20 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]

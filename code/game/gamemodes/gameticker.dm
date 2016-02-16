@@ -108,7 +108,6 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode.announce()
 
-	setup_economy()
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
 	collect_minds()

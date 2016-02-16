@@ -61,8 +61,6 @@
 
 /obj/machinery/modular_computer/console/preset/command/install_programs()
 	cpu.hard_drive.store_file(new/datum/computer_file/program/chatclient())
-	cpu.hard_drive.store_file(new/datum/computer_file/program/card_mod())
-
 
 // ===== SECURITY CONSOLE =====
 /obj/machinery/modular_computer/console/preset/security

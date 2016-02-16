@@ -354,7 +354,6 @@
 	special_role =    null
 	role_alt_title =  null
 	assigned_job =    null
-	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
 	brigged_since =   -1
