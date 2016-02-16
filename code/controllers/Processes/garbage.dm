@@ -181,7 +181,7 @@ world/loop_checks = 0
 // This should be overridden to remove all references pointing to the object being destroyed.
 // Return true if the the GC controller should allow the object to continue existing. (Useful if pooling objects.)
 /datum/proc/Destroy()
-	nanomanager.close_uis(src)
+	tguiProcess.close_uis(src)
 	tag = null
 	return
 
