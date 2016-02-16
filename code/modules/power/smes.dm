@@ -310,7 +310,34 @@
 		return 0
 	return 1
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+										datum/tgui/master_ui = null, datum/ui_state/state = default_state)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "smes", name, 340, 440, master_ui, state)
+		ui.open()
+
+/obj/machinery/power/smes/ui_data()
+	var/list/data = list(
+		"capacityPercent" = round(100*charge/capacity, 0.1),
+		"capacity" = capacity,
+		"charge" = charge,
+
+		"inputAttempt" = input_attempt,
+		"inputting" = inputting,
+		"inputLevel" = input_level,
+		"inputLevelMax" = input_level_max,
+		"inputAvailable" = input_available,
+
+		"outputAttempt" = output_attempt,
+		"outputting" = outputting,
+		"outputLevel" = output_level,
+		"outputLevelMax" = output_level_max,
+		"outputUsed" = output_used
+	)
+	return data
+
+/*/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	if(stat & BROKEN)
 		return
@@ -343,9 +370,69 @@
 		ui.open()
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
-
+*/
 /obj/machinery/power/smes/proc/Percentage()
 	return round(100.0*charge/capacity, 0.1)
+
+/obj/machinery/power/smes/ui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("tryinput")
+			input_attempt = !input_attempt
+			//log_smes(usr.ckey)
+			update_icon()
+			. = TRUE
+		if("tryoutput")
+			output_attempt = !output_attempt
+			//log_smes(usr.ckey)
+			update_icon()
+			. = TRUE
+		if("input")
+			var/target = params["target"]
+			var/adjust = text2num(params["adjust"])
+			if(target == "input")
+				target = input("New input target (0-[input_level_max]):", name, input_level) as num|null
+				if(!isnull(target) && !..())
+					. = TRUE
+			else if(target == "min")
+				target = 0
+				. = TRUE
+			else if(target == "max")
+				target = input_level_max
+				. = TRUE
+			else if(adjust)
+				target = input_level + adjust
+				. = TRUE
+			else if(text2num(target) != null)
+				target = text2num(target)
+				. = TRUE
+			if(.)
+				input_level = Clamp(target, 0, input_level_max)
+				//log_smes(usr.ckey)
+		if("output")
+			var/target = params["target"]
+			var/adjust = text2num(params["adjust"])
+			if(target == "input")
+				target = input("New output target (0-[output_level_max]):", name, output_level) as num|null
+				if(!isnull(target) && !..())
+					. = TRUE
+			else if(target == "min")
+				target = 0
+				. = TRUE
+			else if(target == "max")
+				target = output_level_max
+				. = TRUE
+			else if(adjust)
+				target = output_level + adjust
+				. = TRUE
+			else if(text2num(target) != null)
+				target = text2num(target)
+				. = TRUE
+			if(.)
+				output_level = Clamp(target, 0, output_level_max)
+				//log_smes(usr.ckey)
+/*
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	if(..())
@@ -384,7 +471,7 @@
 	investigate_log("input/output; <font color='[input_level>output_level?"green":"red"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
 
 	return 1
-
+*/
 /obj/machinery/power/smes/proc/energy_fail(var/duration)
 	failure_timer = max(failure_timer, duration)
 

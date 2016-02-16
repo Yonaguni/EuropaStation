@@ -513,3 +513,11 @@ its easier to just keep the beam vertical.
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
 	return ..(AM, old_loc, 0)
+
+// Recursively check if an object is inside another object
+/atom/proc/contains(var/atom/A)
+	if(!A)
+		return 0
+	for(var/atom/location = A.loc, location, location = location.loc)
+		if(location == src)
+			return 1
