@@ -1056,7 +1056,12 @@
 		if(!tail_trail) tail_trail = new(src)
 		tail_trail.sync_to_owner()
 
-	if(species)
+	if(species)  // Reapply aspect mods as appropriate.
+		if(mind) // If they have no mind, they are a. playerless b. waiting on latejoin to apply aspects.
+			for(var/aspect in mind.aspects)
+				var/decl/aspect/A = aspects_by_name[aspect]
+				if(A.apply_post_species_change)
+					A.do_post_spawn(src)
 		return 1
 	else
 		return 0

@@ -1,46 +1,32 @@
 /decl/aspect/melee
-	name = "Brawler"
+	name = ASPECT_BRAWLER
 	desc = "You are an expert at hitting them where it hurts with fists and boots."
 	use_icon_state = "melee_2"
 	category = "Close Combat"
 
-/decl/aspect/melee/brawler
-	name = "Wrestler"
-	desc = "You know exactly how to grab, pin or throw another person like a sack of potatoes."
-	parent_name = "Brawler"
-	use_icon_state = "melee_3"
-
-/decl/aspect/melee/brawler/adaptable
-	name = "Adaptable"
-	desc = "Seize the day! Smash their head into a convenient window! Maybe slam them into a table. You're good at on-the-fly combat."
-	parent_name = "Brawler"
-	use_icon_state = "melee_3"
-
-/decl/aspect/melee/weapon
-	name = "Armed"
-	desc = "You are right at home with the use of weapons. Calm down, Zakalwe."
+/decl/aspect/melee/edged
+	name = ASPECT_KNIVES
+	desc = "You are right at home with knives. Calm down, Zakalwe."
 	use_icon_state = "melee_4"
+	var/list/spawn_weapon_types = list(
+		/obj/item/weapon/material/butterfly,
+		/obj/item/weapon/material/hatchet/tacknife,
+		/obj/item/weapon/material/hatchet/tacknife/hunting,
+		/obj/item/weapon/material/sword/trench
+		)
 
-/decl/aspect/melee/weapon/edged
-	name = "Duelist"
-	desc = "You are skilled with a sword, and very good at sticking them with the pointy end."
-	parent_name = "Armed"
+/decl/aspect/melee/edged/sword
+	name = ASPECT_SWORDS
+	desc = "You are skilled with a sword. How anachronistic."
+	parent_name = ASPECT_KNIVES
 	use_icon_state = "melee_5"
+	spawn_weapon_types = list(
+		/obj/item/weapon/material/sword/sabre,
+		/obj/item/weapon/material/sword/basic,
+		/obj/item/weapon/material/sword/rapier
+		)
 
-/decl/aspect/melee/weapon/blunt
-	name = "Bludgeoner"
-	desc = "If it's heavy enough to crack a skull and narrow enough to hold, you're at home using it to beat someone."
-	parent_name = "Armed"
-	use_icon_state = "melee_6"
-
-/decl/aspect/melee/weapon/improvised
-	name = "Improvised"
-	desc = "Anything can be a weapon if you use enough duct tape."
-	parent_name = "Armed"
-	use_icon_state = "melee_7"
-
-/decl/aspect/melee/weapon/exotic
-	name = "Exotic"
-	desc = "Energy blades and other, stranger, weapons are your forte."
-	parent_name = "Armed"
-	use_icon_state = "melee_8"
+/decl/aspect/melee/edged/do_post_spawn(var/mob/living/carbon/human/holder)
+	var/spawning = pick(spawn_weapon_types)
+	var/obj/item/thing = new spawning(get_turf(holder))
+	holder.put_in_hands(thing)

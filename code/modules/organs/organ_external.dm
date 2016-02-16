@@ -197,7 +197,6 @@
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
 
-
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
 	if(owner)

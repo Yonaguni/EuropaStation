@@ -4,12 +4,13 @@
 	var/name = "Filler Aspect"                        // Name/unique index.
 	var/desc = "An aspect is a kind of skill."        // Flavour text.
 	var/use_icon_state = ""                           // State to use for the above.
-	//var/icon/use_icon                                 // I REALLY HATE \icon A LOT.
-	var/category                                      // Header for root aspects in char prefs.
+	//var/icon/use_icon                               // I REALLY HATE \icon A LOT. Causes a lot of lag.
+	var/category = "Traits"                           // Header for root aspects in char prefs.
 
 	var/parent_name
 	var/decl/aspect/parent
 	var/list/children = list()
+	var/apply_post_species_change
 
 /*
 /decl/aspect/New()
