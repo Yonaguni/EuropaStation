@@ -13,21 +13,20 @@
  */
 /obj/item/weapon/card
 	name = "card"
-	desc = "Does card things."
+	desc = "It probably does card things."
 	icon = 'icons/obj/card.dmi'
-	w_class = 1.0
-	var/associated_account_number = 0
-
-	var/list/files = list(  )
+	w_class = 1
 
 /obj/item/weapon/card/data
 	name = "data disk"
 	desc = "A disk of data."
 	icon_state = "data"
+	item_state = "card-id"
+
 	var/function = "storage"
 	var/data = "null"
 	var/special = null
-	item_state = "card-id"
+	var/list/files = list()
 
 /obj/item/weapon/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -41,20 +40,9 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/item/weapon/card/data/clown
-	name = "\proper the coordinates to clown planet"
-	icon_state = "data"
-	item_state = "card-id"
-	layer = 3
-	level = 2
-	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
-	function = "teleporter"
-	data = "Clown Land"
-
 /*
  * ID CARDS
  */
-
 /obj/item/weapon/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"

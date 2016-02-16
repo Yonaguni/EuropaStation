@@ -790,24 +790,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	access = access_ce
 
-
-/* /datum/supply_packs/smsmall // Currently nonfunctional, waiting on virgil
-	name = "Supermatter Shard"
-	contains = list(/obj/machinery/power/supermatter/shard)
-	cost = 25
-	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "Supermatter shard crate (CAUTION)"
-	access = access_ce
-	group = "Engineering" */
-
-/datum/supply_packs/eftpos
-	contains = list(/obj/item/device/eftpos)
-	name = "EFTPOS scanner"
-	cost = 10
-	containertype = /obj/structure/closet/crate
-	containername = "EFTPOS crate"
-	group = "Miscellaneous"
-
 /datum/supply_packs/teg
 	contains = list(/obj/machinery/power/generator)
 	name = "Mark I Thermoelectric Generator"

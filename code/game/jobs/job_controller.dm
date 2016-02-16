@@ -351,7 +351,6 @@ var/global/datum/controller/occupations/job_master
 			//Equip job items.
 			job.equip_backpack(H)	//backpack first so equip() can put things in it
 			job.equip(H)
-			job.setup_account(H)
 			job.equip_survival(H)
 			job.apply_fingerprints(H)
 
@@ -500,10 +499,6 @@ var/global/datum/controller/occupations/job_master
 			C.set_name(H.real_name)
 			C.assignment = title ? title : rank
 			H.set_id_info(C)
-
-			//put the player's account number onto the ID
-			if(H.mind && H.mind.initial_account)
-				C.associated_account_number = H.mind.initial_account.account_number
 
 			// If they have a wallet, jam their ID in there.
 			var/obj/item/weapon/storage/wallet/W = locate() in H
