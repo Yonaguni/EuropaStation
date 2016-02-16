@@ -53,7 +53,7 @@ var/list/human_tail_cache = list()
 			M.visible_message("<span class='danger'>\The [M] treads on \the [owner]'s tail!</span>")
 		owner << "<span class='danger'>Your tail is being brutalized!</span>"
 		owner.apply_damage(damage_taken, BRUTE, BP_GROIN)
-	else if(istype(crossing, /obj/vehicle) || istype(crossing, /obj/mecha))
+	else if(istype(crossing, /obj/vehicle))
 		crossing.visible_message("<span class='danger'>\The [crossing] runs over \the [owner]'s tail!</span>")
 		owner << "<span class='danger'>Your tail is being brutalized!</span>"
 		owner.apply_damage(rand(5,8), BRUTE, BP_GROIN)

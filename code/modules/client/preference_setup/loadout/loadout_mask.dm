@@ -1,23 +1,14 @@
 // Mask
-/datum/gear/mask
-	display_name = "bandana, blue"
-	path = /obj/item/clothing/mask/bandana/blue
+/datum/gear/ipc_monitor
+	display_name = "display monitor (prosthetic head only)"
+	path = /obj/item/clothing/mask/monitor
 	slot = slot_wear_mask
-	sort_category = "Masks and Facewear"
+	cost = 3
+	sort_category = "Masks"
 
-/datum/gear/mask/gold
-	display_name = "bandana, gold"
-	path = /obj/item/clothing/mask/bandana/gold
-
-/datum/gear/mask/green
-	display_name = "bandana, green 2"
-	path = /obj/item/clothing/mask/bandana/green
-
-/datum/gear/mask/red
-	display_name = "bandana, red"
-	path = /obj/item/clothing/mask/bandana/red
-
-/datum/gear/mask/sterile
+/datum/gear/sterilemask
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
+	slot = slot_wear_mask
 	cost = 2
+	sort_category = "Masks"

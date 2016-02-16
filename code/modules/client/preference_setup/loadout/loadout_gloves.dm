@@ -4,48 +4,48 @@
 	path = /obj/item/clothing/gloves/black
 	cost = 2
 	slot = slot_gloves
-	sort_category = "Gloves and Handwear"
+	sort_category = "Gloves"
 
-/datum/gear/gloves/blue
+/datum/gear/gloves/blue_gloves
 	display_name = "gloves, blue"
 	path = /obj/item/clothing/gloves/blue
 
-/datum/gear/gloves/brown
+/datum/gear/gloves/brown_gloves
 	display_name = "gloves, brown"
 	path = /obj/item/clothing/gloves/brown
 
-/datum/gear/gloves/light_brown
+/datum/gear/gloves/light_brown_gloves
 	display_name = "gloves, light-brown"
 	path = /obj/item/clothing/gloves/light_brown
 
-/datum/gear/gloves/green
+/datum/gear/gloves/green_gloves
 	display_name = "gloves, green"
 	path = /obj/item/clothing/gloves/green
 
-/datum/gear/gloves/grey
+/datum/gear/gloves/grey_gloves
 	display_name = "gloves, grey"
 	path = /obj/item/clothing/gloves/grey
 
-/datum/gear/gloves/latex
+/datum/gear/gloves/latex_gloves
 	display_name = "gloves, latex"
 	path = /obj/item/clothing/gloves/latex
 
-/datum/gear/gloves/orange
+/datum/gear/gloves/orange_gloves
 	display_name = "gloves, orange"
 	path = /obj/item/clothing/gloves/orange
 
-/datum/gear/gloves/purple
+/datum/gear/gloves/purple_gloves
 	display_name = "gloves, purple"
 	path = /obj/item/clothing/gloves/purple
 
-/datum/gear/gloves/rainbow
+/datum/gear/gloves/rainbow_gloves
 	display_name = "gloves, rainbow"
 	path = /obj/item/clothing/gloves/rainbow
 
-/datum/gear/gloves/red
+/datum/gear/gloves/red_gloves
 	display_name = "gloves, red"
 	path = /obj/item/clothing/gloves/red
 
-/datum/gear/gloves/white
+/datum/gear/gloves/white_gloves
 	display_name = "gloves, white"
 	path = /obj/item/clothing/gloves/white

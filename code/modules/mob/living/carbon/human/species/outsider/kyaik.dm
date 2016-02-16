@@ -6,7 +6,7 @@
 	blurb = "A race of snakelike sapients from somewhere beyond Sol. Not particularly friendly, but often willing to trade goods and services with colonists on the rim."
 
 	tail_stance = 1
-	tail_length = 30
+	tail_length = 2
 
 	total_health = 200
 	blood_volume = 700
