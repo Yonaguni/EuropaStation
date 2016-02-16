@@ -1,8 +1,28 @@
 /datum/gear/shirt
-	display_name = "shirt, tee"
+	display_name = "shirt, grey tee"
 	path = /obj/item/clothing/accessory/shirt
 	slot = slot_tie
 	sort_category = "Shirts"
+
+/datum/gear/shirt/chemise
+	display_name = "chemise"
+	path = /obj/item/clothing/accessory/shirt/chemise
+
+/datum/gear/shirt/black
+	display_name = "shirt, black tee"
+	path = /obj/item/clothing/accessory/shirt/black
+
+/datum/gear/shirt/white
+	display_name = "shirt, white tee"
+	path = /obj/item/clothing/accessory/shirt/white
+
+/datum/gear/shirt/singlet
+	display_name = "singlet, white"
+	path = /obj/item/clothing/accessory/shirt/singlet
+
+/datum/gear/shirt/singletblack
+	display_name = "singlet, black"
+	path = /obj/item/clothing/accessory/shirt/singletblack
 
 /datum/gear/shirt/long
 	display_name = "shirt, long-sleeved"

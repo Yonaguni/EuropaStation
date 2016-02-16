@@ -16,8 +16,6 @@ datum/preferences
 					underwear = underwear_f[pick(underwear_f)]
 				else
 					underwear = underwear_m[pick(underwear_m)]
-				undershirt = undershirt_t[pick(undershirt_t)]
-
 
 		var/use_head_species
 		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
@@ -286,10 +284,6 @@ datum/preferences
 		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
 			underwear_s = new/icon("icon" = 'icons/mob/creatures/human.dmi', "icon_state" = underwear)
 
-		var/icon/undershirt_s = null
-		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
-			undershirt_s = new/icon("icon" = 'icons/mob/creatures/human.dmi', "icon_state" = undershirt)
-
 		// HA HA NO PREVIEW ICONS FOR YOU UNTIL WE CAN BE FUCKED RECODING THIS
 		// (or chinsky fixes his rewrite to avoid crashing people)
 		//var/icon/clothes_s = null
@@ -300,8 +294,6 @@ datum/preferences
 		preview_icon.Blend(eyes_s, ICON_OVERLAY)
 		if(underwear_s)
 			preview_icon.Blend(underwear_s, ICON_OVERLAY)
-		if(undershirt_s)
-			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
 		//if(clothes_s)
 		//	preview_icon.Blend(clothes_s, ICON_OVERLAY)
 		preview_icon_front = new(preview_icon, dir = SOUTH)
@@ -309,5 +301,4 @@ datum/preferences
 
 		qdel(eyes_s)
 		qdel(underwear_s)
-		qdel(undershirt_s)
 		//qdel(clothes_s)

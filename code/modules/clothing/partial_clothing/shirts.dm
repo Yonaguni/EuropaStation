@@ -25,11 +25,36 @@
 	icon_state = "turtleneck-winterred"
 	body_parts_covered = UPPER_TORSO|ARMS
 
+/obj/item/clothing/accessory/shirt/chemise
+	name = "chemise"
+	desc = "A plain grey chemise."
+	icon_state = "chemise"
+
+/obj/item/clothing/accessory/shirt/black
+	name = "black shirt"
+	desc = "A plain black t-shirt."
+	icon_state = "shirt"
+
+/obj/item/clothing/accessory/shirt/white
+	name = "white shirt"
+	desc = "A white shirt."
+	icon_state = "shirt_white"
+
+/obj/item/clothing/accessory/shirt/singlet
+	name = "white singlet"
+	desc = "A white singlet."
+	icon_state = "singlet"
+
+/obj/item/clothing/accessory/shirt/singletblack
+	name = "black singlet"
+	desc = "A black singlet."
+	icon_state = "singlet_black"
+
 /* OVERALLS */
 /obj/item/clothing/accessory/overalls
 	name = "overalls"
 	desc = "A plain set of overalls. For the hard working individual."
-	icon_state = "overalls_acc"
+	icon_state = "overalls"
 	slot = "overalls"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	slot_flags = SLOT_OCLOTHING
