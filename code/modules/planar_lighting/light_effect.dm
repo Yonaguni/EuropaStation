@@ -9,7 +9,6 @@
 	alpha = 150
 	pixel_x = -32
 	pixel_y = -32
-
 	var/current_power = 1
 	var/atom/movable/holder
 

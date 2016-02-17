@@ -3,6 +3,8 @@
 	var/light_power
 	var/light_range
 	var/light_color
+	var/light_hard
+	var/light_flicker
 
 /atom/Destroy()
 	qdel(light_obj)
@@ -51,6 +53,13 @@
 	// Colour = src.color.
 	if(!isnull(l_color) && l_color != light_obj.color)
 		light_obj.color = l_color
+
+	// Update icon.
+	if(light_hard)
+		light_obj.icon_state = "hard"
+	if(light_flicker)
+		light_obj.icon_state = "[light_obj.icon_state]-flicker"
+
 	// Update position of overlay etc.
 	light_obj.loc = get_turf(src)
 	light_obj.set_dir(light_obj.holder.dir)

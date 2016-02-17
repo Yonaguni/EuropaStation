@@ -26,18 +26,13 @@
 /area/rimworld/partyalert()
 	return
 
-// Buildings; use internal lighting.
 /area/rimworld/building
-	outside = null
 	icon_state = "house"
-
 /area/rimworld/building/farmhouse
 	name = "Farmhouse"
 	icon_state = "farmhouse"
-
 /area/rimworld/building/farmhouse/hunter
 	name = "Hunter's Den"
-
 /area/rimworld/building/pub
 	name = "Pub"
 	icon_state = "pub"
@@ -48,7 +43,6 @@
 	name = "Supply Depot"
 /area/rimworld/building/garage/scrapper
 	name = "Scrapyard"
-
 // Houses!
 /area/rimworld/building/mayor
 	name = "Mayor's Residence"
@@ -64,10 +58,8 @@
 	name = "Gaol"
 /area/rimworld/building/homestead_large_s
 	name = "Clinic"
-
 /area/rimworld/building/chapel
 	name = "Chapel"
-
 // Bank!
 /area/rimworld/building/bank
 	name = "Bank - Foyer"
