@@ -1,4 +1,4 @@
-/atom
+/atom/movable
 	var/obj/light/light_obj
 	var/light_power
 	var/light_range
@@ -7,7 +7,7 @@
 	var/light_flicker
 	var/light_directional
 
-/atom/Destroy()
+/atom/movable/Destroy()
 	qdel(light_obj)
 	light_obj = null
 	return ..()
@@ -20,12 +20,7 @@
 	if(light_power || light_range || light_color)
 		set_light(light_power, light_range, light_color)
 
-/turf/initialize()
-	..()
-	if(light_power || light_range || light_color)
-		set_light(light_power, light_range, light_color)
-
-/atom/proc/set_light(var/l_range, var/l_power, var/l_color)
+/atom/movable/proc/set_light(var/l_range, var/l_power, var/l_color)
 	// No range of power, shut it off.
 	if(l_power == 0 || l_range == 0)
 		if(light_obj)

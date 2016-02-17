@@ -396,7 +396,7 @@ var/list/ai_verbs_default = list(
 
 	return
 
-/mob/living/silicon/ai/reset_view(atom/A)
+/mob/living/silicon/ai/reset_view(var/atom/movable/A)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))

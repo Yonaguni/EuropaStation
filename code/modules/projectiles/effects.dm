@@ -2,16 +2,17 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	layer = 20
-	var/zap_colour = "#FF0000"
+	var/zap_colour
 
 /obj/effect/projectile/New(var/turf/location)
 	if(istype(location))
 		loc = location
-	set_light(5,10,zap_colour)
-	if(light_obj)
-		animate(light_obj, time=3, alpha=0)
-		spawn(3)
-			set_light(0)
+	if(zap_colour)
+		set_light(5,10,zap_colour)
+		if(light_obj)
+			animate(light_obj, time=3, alpha=0)
+			spawn(3)
+				set_light(0)
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
@@ -28,6 +29,9 @@
 //----------------------------
 // Laser beam
 //----------------------------
+/obj/effect/projectile/laser
+	zap_colour = "#FF0000"
+
 /obj/effect/projectile/laser/tracer
 	icon_state = "beam"
 
@@ -86,6 +90,9 @@
 //----------------------------
 // Heavy laser beam
 //----------------------------
+/obj/effect/projectile/laser_heavy
+	zap_colour = "#FF0000"
+
 /obj/effect/projectile/laser_heavy/tracer
 	icon_state = "beam_heavy"
 
@@ -119,7 +126,7 @@
 //----------------------------
 // Emitter beam
 //----------------------------
-/obj/effect/projectile/laser_pulse
+/obj/effect/projectile/emitter
 	zap_colour = "#AADDFF"
 
 /obj/effect/projectile/emitter/tracer
@@ -134,7 +141,7 @@
 //----------------------------
 // Stun beam
 //----------------------------
-/obj/effect/projectile/laser_pulse
+/obj/effect/projectile/stun
 	zap_colour = "#FFFF00"
 
 /obj/effect/projectile/stun/tracer

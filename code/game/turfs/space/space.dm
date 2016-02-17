@@ -25,12 +25,16 @@
 		O.hide(0)
 
 /turf/space/proc/update_starlight()
+	return
+
+/* TODO PLANAR LIGHTING
 	if(!config.starlight)
 		return
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
 		set_light(0)
+*/
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)
