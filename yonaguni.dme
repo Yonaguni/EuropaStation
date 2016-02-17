@@ -1096,6 +1096,7 @@
 #include "code\modules\jewelry\jewelry.dm"
 #include "code\modules\jewelry\jewelry_necklace.dm"
 #include "code\modules\jewelry\jewelry_pendants.dm"
+#include "code\modules\jewelry\jewelry_ring.dm"
 #include "code\modules\kitchen\_kitchen_setup.dm"
 #include "code\modules\kitchen\containers\_containers.dm"
 #include "code\modules\kitchen\containers\bakingtray.dm"

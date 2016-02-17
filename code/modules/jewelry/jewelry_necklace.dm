@@ -7,7 +7,7 @@ var/list/necklace_icon_cache = list()
 	icon_state = "base"
 	icon = 'icons/obj/clothing/necklace_parts.dmi'
 	slot_flags = SLOT_MASK | SLOT_POCKET
-	value_mod = 5
+	value_mod = 100
 	var/max_pendants = 1
 
 /obj/item/jewelry/necklace/platinum/New(var/newloc)
@@ -49,7 +49,7 @@ var/list/necklace_icon_cache = list()
 	overlays.Cut()
 
 	// Build inventory icon.
-	var/cache_key = "[initial(name)]-[material.icon_colour]"
+	var/cache_key = "necklace-[material.icon_colour]"
 	var/image/I = image('icons/obj/clothing/necklace_parts.dmi', "base")
 	I.color = material.icon_colour
 	overlays += I
@@ -74,7 +74,8 @@ var/list/necklace_icon_cache = list()
 
 		necklace_icon_cache[cache_key] = tmp_icon
 
-	icon_override = necklace_icon_cache[cache_key]
+	item_icons[slot_wear_mask_str] = necklace_icon_cache[cache_key]
+
 	var/mob/M = loc
 	if(istype(M))
 		M.update_inv_wear_mask()

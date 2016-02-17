@@ -2,7 +2,7 @@
 	name = "pendant"
 	icon = 'icons/obj/clothing/necklace_parts.dmi'
 	icon_state = "pendant"
-	value_mod = 3
+	value_mod = 20
 
 /obj/item/jewelry/pendant/update_icon()
 	color = material.icon_colour
