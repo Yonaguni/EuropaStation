@@ -8,3 +8,4 @@
 #define ASPECT_HARDY      "Hardy"
 #define ASPECT_THICKBONES "Thick Bones"
 #define ASPECT_SCARRED    "Scarred"
+#define ASPECT_APPRAISER  "Appraiser"

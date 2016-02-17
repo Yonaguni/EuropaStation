@@ -537,6 +537,8 @@ var/global/list/damage_icon_parts = list()
 			standing = image("icon" = gloves.icon_override, "icon_state" = "[t_state]")
 		else if(gloves.sprite_sheets && gloves.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = gloves.sprite_sheets[species.get_bodytype()], "icon_state" = "[t_state]")
+		else if(gloves.item_icons && gloves.item_icons[slot_gloves_str])
+			standing = image("icon" = gloves.item_icons[slot_gloves_str], "icon_state" = "[t_state]")
 		else
 			standing = image("icon" = 'icons/mob/clothing/hands.dmi', "icon_state" = "[t_state]")
 
@@ -786,9 +788,8 @@ var/global/list/damage_icon_parts = list()
 	if(r_store)			r_store.screen_loc = ui_storage2	//TODO
 	if(update_icons)	update_icons()
 
-
 /mob/living/carbon/human/update_inv_wear_mask(var/update_icons=1)
-	if( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/accessory) || istype(wear_mask, /obj/item/weapon/grenade) ) && !(head && head.flags_inv & HIDEMASK))
+	if( wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/jewelry) || istype(wear_mask, /obj/item/clothing/accessory) || istype(wear_mask, /obj/item/weapon/grenade) ) && !(head && head.flags_inv & HIDEMASK))
 		wear_mask.screen_loc = ui_mask	//TODO
 
 		var/image/standing
@@ -796,6 +797,8 @@ var/global/list/damage_icon_parts = list()
 			standing = image("icon" = wear_mask.icon_override, "icon_state" = "[wear_mask.icon_state]")
 		else if(wear_mask.sprite_sheets && wear_mask.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = wear_mask.sprite_sheets[species.get_bodytype()], "icon_state" = "[wear_mask.icon_state]")
+		else if(wear_mask.item_icons && wear_mask.item_icons[slot_wear_mask_str])
+			standing = image("icon" = wear_mask.item_icons[slot_wear_mask_str], "icon_state" = "[wear_mask.icon_state]")
 		else
 			standing = image("icon" = 'icons/mob/clothing/mask.dmi', "icon_state" = "[wear_mask.icon_state]")
 		standing.color = wear_mask.color
