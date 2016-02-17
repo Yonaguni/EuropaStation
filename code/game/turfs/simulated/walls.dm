@@ -187,11 +187,11 @@
 			return
 		if(2.0)
 			if(prob(75))
-				take_damage(rand(150, 250))
+				take_damage(rand(100, 250))
 			else
 				dismantle_wall(1,1)
 		if(3.0)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 75))
 		else
 	return
 

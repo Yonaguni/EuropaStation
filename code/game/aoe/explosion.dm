@@ -3,11 +3,6 @@
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN)
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
-		if(config.use_recursive_explosions)
-			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-			explosion_rec(epicenter, power)
-			return
-
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
 		if(!epicenter) return
@@ -17,7 +12,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(HasAbove(epicenter.z) && z_transfer & UP)
 				explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, UP)
 			if(HasBelow(epicenter.z) && z_transfer & DOWN)
-				explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, DOWN)
+				explosion(GetBelow(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, DOWN)
 
 		var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
@@ -71,19 +66,24 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
 
-		for(var/turf/T in trange(max_range, epicenter))
-			var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
+		if(config.use_recursive_explosions)
+			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
+			explosion_rec(epicenter, power)
+			return
+		else
+			for(var/turf/T in trange(max_range, epicenter))
+				var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
-			if(dist < devastation_range)		dist = 1
-			else if(dist < heavy_impact_range)	dist = 2
-			else if(dist < light_impact_range)	dist = 3
-			else								continue
+				if(dist < devastation_range)		dist = 1
+				else if(dist < heavy_impact_range)	dist = 2
+				else if(dist < light_impact_range)	dist = 3
+				else								continue
 
-			T.ex_act(dist)
-			if(T)
-				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-					var/atom/movable/AM = atom_movable
-					if(AM && AM.simulated)	AM.ex_act(dist)
+				T.ex_act(dist)
+				if(T)
+					for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
+						var/atom/movable/AM = atom_movable
+						if(AM && AM.simulated)	AM.ex_act(dist)
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare

@@ -25,12 +25,6 @@ proc/explosion_rec(turf/epicenter, power)
 	epicenter = get_turf(epicenter)
 	if(!epicenter) return
 
-	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
-	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
-
-	playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(power*2,1) )
-	playsound(epicenter, "explosion", 100, 1, round(power,1) )
-
 	explosion_in_progress = 1
 	explosion_turfs = list()
 
@@ -59,6 +53,7 @@ proc/explosion_rec(turf/epicenter, power)
 		for(var/atom/A in T)
 			A.ex_act(severity)
 
+	explosion_turfs.Cut()
 	explosion_in_progress = 0
 
 /turf
@@ -71,7 +66,7 @@ proc/explosion_rec(turf/epicenter, power)
 	explosion_resistance = 1
 
 /turf/simulated/mineral
-	explosion_resistance = 2
+	explosion_resistance = 5
 
 /turf/simulated/shuttle/floor
 	explosion_resistance = 1
@@ -94,14 +89,12 @@ proc/explosion_rec(turf/epicenter, power)
 	if(power <= 0)
 		return
 
-	/*
-	sleep(2)
-	new/obj/effect/debugging/marker(src)
-	*/
-
 	if(explosion_turfs[src] >= power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
 	explosion_turfs[src] = power
+
+//	var/severity = 4 - round(max(min( 3, ((explosion_turfs[src] - explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)
+//	new/obj/effect/debug(src,direction,severity)
 
 	var/spread_power = power - src.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
 	for(var/obj/O in src)
@@ -109,11 +102,26 @@ proc/explosion_rec(turf/epicenter, power)
 			spread_power -= O.explosion_resistance
 
 	var/turf/T = get_step(src, direction)
-	T.explosion_spread(spread_power, direction)
+	if(T)
+		T.explosion_spread(spread_power, direction)
 	T = get_step(src, turn(direction,90))
-	T.explosion_spread(spread_power, turn(direction,90))
+	if(T)
+		T.explosion_spread(spread_power, turn(direction,90))
 	T = get_step(src, turn(direction,-90))
-	T.explosion_spread(spread_power, turn(direction,90))
+	if(T)
+		T.explosion_spread(spread_power, turn(direction,90))
 
 /turf/unsimulated/explosion_spread(power)
 	return //So it doesn't get to the parent proc, which simulates explosions
+
+/obj/effect/debug
+	name = "debug"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "e1"
+	alpha=180
+
+/obj/effect/debug/New(loc,ndir,severity)
+	dir = ndir
+	if(severity)
+		icon_state="e[severity]"
+	..()

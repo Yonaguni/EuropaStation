@@ -19,6 +19,20 @@
 	if(prob(50))
 		icon_state = "generic_tree2"
 
+/obj/structure/flora/tree/ex_act(severity)
+	switch(severity)
+		if(1)
+			visible_message("<span class='warning'>\The [src] is broken by the blastwave!</span>")
+			qdel(src)
+		if(2)
+			if(prob(70))
+				visible_message("<span class='warning'>\The [src] is knocked over by the blastwave!</span>")
+				harvest_amount = rand(1,harvest_amount)
+				var/turf/T = get_turf(src)
+				for(var/x = 1 to harvest_amount)
+					new harvest_result(T)
+				qdel(src)
+
 /obj/structure/flora/tree/pine
 	name = "pine tree"
 	icon_state = "pine_1"
