@@ -4,13 +4,13 @@
 	icon_state = "surface"
 	requires_power = 1
 	always_unpowered = 0
-	lighting_use_dynamic = 0
 	power_light = 1
 	power_equip = 1
 	power_environ = 1
 	flags = DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | DENY_TELEPORT | IGNORE_BLACKOUTS
 	outside = 1
 	ambience = list()
+
 /area/rimworld/atmosalert()
 	return
 
@@ -28,7 +28,6 @@
 
 // Buildings; use internal lighting.
 /area/rimworld/building
-	lighting_use_dynamic = 1
 	outside = null
 	icon_state = "house"
 

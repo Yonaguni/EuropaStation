@@ -84,10 +84,10 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/New()
 	..()
 	color = null
-		
+
 /turf/simulated/mineral/can_build_cable()
 	return !density
-	
+
 /turf/simulated/mineral/is_plating()
 	return 1
 
@@ -113,7 +113,6 @@ proc/get_mining_overlay(var/overlay_key)
 /turf/simulated/mineral/proc/update_general()
 	update_icon(1)
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		reconsider_lights()
 		air_update_turf()
 
 /turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
