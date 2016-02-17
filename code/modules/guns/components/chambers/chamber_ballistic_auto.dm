@@ -10,6 +10,8 @@
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=5,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0))
 		)
+	recoil_mod = 1
+	accuracy_mod = -2
 
 /obj/item/gun_component/chamber/ballistic/auto/assault
 	icon_state="assault"

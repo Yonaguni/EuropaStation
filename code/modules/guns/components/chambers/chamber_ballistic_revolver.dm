@@ -7,6 +7,7 @@
 	max_shots = 6
 	has_alt_interaction = 1
 	revolver = 1
+	accuracy_mod = 0
 	var/chamber_offset = 0
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/consume_next_projectile()
