@@ -344,7 +344,7 @@
 					color = "#82FF4C"
 			set_light(l_range = 2, l_power = 0.5, l_color = color)
 		else
-			set_light(0)
+			kill_light()
 
 /obj/machinery/power/apc/proc/check_updates()
 

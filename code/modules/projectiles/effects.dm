@@ -2,17 +2,13 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	layer = 20
-	var/zap_colour
+	var/flash_colour
 
 /obj/effect/projectile/New(var/turf/location)
 	if(istype(location))
 		loc = location
-	if(zap_colour)
-		set_light(5,10,zap_colour)
-		if(light_obj)
-			animate(light_obj, time=3, alpha=0)
-			spawn(3)
-				set_light(0)
+	if(flash_colour)
+		set_light(5, 10, flash_colour, 3)
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
@@ -30,7 +26,7 @@
 // Laser beam
 //----------------------------
 /obj/effect/projectile/laser
-	zap_colour = "#FF0000"
+	flash_colour = "#FF0000"
 
 /obj/effect/projectile/laser/tracer
 	icon_state = "beam"
@@ -45,7 +41,7 @@
 // Blue laser beam
 //----------------------------
 /obj/effect/projectile/laser_blue
-	zap_colour = "#0000FF"
+	flash_colour = "#0000FF"
 
 /obj/effect/projectile/laser_blue/tracer
 	icon_state = "beam_blue"
@@ -61,7 +57,7 @@
 // Omni laser beam
 //----------------------------
 /obj/effect/projectile/laser_omni
-	zap_colour = "#00FF00"
+	flash_colour = "#00FF00"
 
 /obj/effect/projectile/laser_omni/tracer
 	icon_state = "beam_omni"
@@ -76,7 +72,7 @@
 // Xray laser beam
 //----------------------------
 /obj/effect/projectile/xray
-	zap_colour = "#00FF00"
+	flash_colour = "#00FF00"
 
 /obj/effect/projectile/xray/tracer
 	icon_state = "xray"
@@ -91,7 +87,7 @@
 // Heavy laser beam
 //----------------------------
 /obj/effect/projectile/laser_heavy
-	zap_colour = "#FF0000"
+	flash_colour = "#FF0000"
 
 /obj/effect/projectile/laser_heavy/tracer
 	icon_state = "beam_heavy"
@@ -106,7 +102,7 @@
 // Pulse laser beam
 //----------------------------
 /obj/effect/projectile/laser_pulse
-	zap_colour = "#CC00FF"
+	flash_colour = "#CC00FF"
 
 /obj/effect/projectile/laser_pulse/tracer
 	icon_state = "u_laser"
@@ -127,7 +123,7 @@
 // Emitter beam
 //----------------------------
 /obj/effect/projectile/emitter
-	zap_colour = "#AADDFF"
+	flash_colour = "#AADDFF"
 
 /obj/effect/projectile/emitter/tracer
 	icon_state = "emitter"
@@ -142,7 +138,7 @@
 // Stun beam
 //----------------------------
 /obj/effect/projectile/stun
-	zap_colour = "#FFFF00"
+	flash_colour = "#FFFF00"
 
 /obj/effect/projectile/stun/tracer
 	icon_state = "stun"
@@ -158,3 +154,4 @@
 //----------------------------
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
+	flash_colour = "#FFFF88"

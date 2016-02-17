@@ -157,7 +157,7 @@
 	qdel(src)
 
 /obj/effect/hotspot/Destroy()
-	set_light(0)
+	kill_light()
 	if(istype(loc, /turf/simulated))
 		var/turf/simulated/T = loc
 		if(T.active_hotspot == src)

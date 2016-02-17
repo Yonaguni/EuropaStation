@@ -9,7 +9,7 @@
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
 
-/obj/machinery/computer/aifixer/New()
+/obj/machinery/computer/aifixer/initialize()
 	update_icon()
 
 /obj/machinery/computer/aifixer/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)

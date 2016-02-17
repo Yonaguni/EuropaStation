@@ -49,11 +49,6 @@
 
 /obj/item/gun_component/chamber/ballistic/handle_post_fire()
 
-	holder.set_light(3,10,"#FFFF88")
-	animate(holder.light_obj, time = 1, alpha=0)
-	spawn(5)
-		holder.set_light(0)
-
 	if(chambered)
 		chambered.expend()
 		process_chambered_round()

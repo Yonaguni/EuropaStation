@@ -122,6 +122,8 @@
 	temp_chem_holder.create_reagents(10)
 	temp_chem_holder.flags |= OPENCONTAINER
 	create_reagents(200)
+
+/obj/machinery/portable_atmospherics/hydroponics/initialize()
 	if(mechanical)
 		connect()
 	update_icon()

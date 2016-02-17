@@ -293,7 +293,7 @@ BLIND     // can't see anything
 		set_light(brightness_on)
 		light_applied = 1
 	else if(!on && light_applied)
-		set_light(0)
+		kill_light()
 		light_applied = 0
 	update_icon(user)
 	user.update_action_buttons()

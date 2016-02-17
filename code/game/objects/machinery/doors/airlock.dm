@@ -463,7 +463,7 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/update_icon()
-	set_light(0)
+	kill_light()
 	if(overlays) overlays.Cut()
 	if(density)
 		if(locked && lights && src.arePowerSystemsOn())

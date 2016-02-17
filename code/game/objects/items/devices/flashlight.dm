@@ -7,8 +7,7 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	light_hard = 1
-	light_directional = 1
+	light_type = LIGHT_HARD_DIRECTIONAL
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
@@ -29,7 +28,7 @@
 		set_light(brightness_on)
 	else
 		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		kill_light()
 
 /obj/item/device/flashlight/attack_self(mob/user)
 
@@ -121,10 +120,8 @@
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
-	light_directional = 0
-
+	light_type = LIGHT_HARD
 	on = 1
-
 
 // green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
@@ -151,9 +148,8 @@
 	brightness_on = 8 // Pretty bright.
 	light_power = 3
 	light_color = "#e58775"
-	light_flicker = 1
-	light_hard = 0
-	light_directional = 0
+	light_type = LIGHT_SOFT_FLICKER
+
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
@@ -207,9 +203,7 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
-	light_directional = 0
-	light_flicker = 1
-	light_hard = 0
+	light_type = LIGHT_SOFT
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 

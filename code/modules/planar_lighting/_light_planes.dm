@@ -18,7 +18,7 @@
 	mouse_opacity = 0
 	plane = LIGHT_PLANE // Just below the master plane.
 	icon = 'icons/planar_lighting/over_dark.dmi'
-	alpha = 20
+	alpha = 30
 
 /image/light_plane/New()
 	..()

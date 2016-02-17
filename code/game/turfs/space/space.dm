@@ -33,7 +33,7 @@
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
-		set_light(0)
+		kill_light()
 */
 
 /turf/space/Entered(atom/movable/A as mob|obj)

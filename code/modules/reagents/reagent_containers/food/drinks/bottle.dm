@@ -6,7 +6,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 120
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	light_flicker = 1
+	light_type = LIGHT_SOFT_FLICKER
 
 	var/const/duration = 13 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
@@ -122,7 +122,7 @@
 		if(rag.on_fire)
 			set_light(2,4,"#CC7700")
 			return
-	set_light(0)
+	kill_light()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()

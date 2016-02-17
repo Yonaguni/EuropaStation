@@ -6,8 +6,7 @@ var/console_count = 0
 	icon = 'icons/obj/machines/consoles.dmi'
 	icon_state = "console"
 	is_data_console = 1
-	light_flicker = 1
-	light_hard = 0
+	light_type = LIGHT_SOFT_FLICKER
 
 	var/list/installed_software = list()
 	var/global/list/default_software = list(
