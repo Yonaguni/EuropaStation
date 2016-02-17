@@ -195,28 +195,24 @@
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
+/obj/machinery/light/initialize()
 	..()
-
-	spawn(2)
-		on = has_power()
-
-		switch(fitting)
-			if("tube")
-				if(prob(2))
-					broken(1)
-			if("bulb")
-				if(prob(5))
-					broken(1)
-		spawn(1)
-			update(0)
+	on = has_power()
+	switch(fitting)
+		if("tube")
+			brightness_range = rand(6,9)
+			if(prob(2))
+				broken(1)
+		if("bulb")
+			brightness_range = rand(4,6)
+			if(prob(5))
+				broken(1)
+	update()
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
-	if(A)
-		on = 0
-//		A.update_lights()
-	..()
+	if(A) on = 0
+	return ..()
 
 /obj/machinery/light/update_icon()
 
@@ -553,8 +549,6 @@
 	return
 
 //blob effect
-
-
 // timed process
 // use power
 
@@ -660,17 +654,6 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
-
-
-/obj/item/weapon/light/New()
-	..()
-	switch(name)
-		if("light tube")
-			brightness_range = rand(6,9)
-		if("light bulb")
-			brightness_range = rand(4,6)
-	update()
-
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode

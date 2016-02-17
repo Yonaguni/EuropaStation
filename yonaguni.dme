@@ -1517,6 +1517,7 @@
 #include "code\modules\planar_lighting\light_atom.dm"
 #include "code\modules\planar_lighting\light_effect.dm"
 #include "code\modules\planar_lighting\light_hud.dm"
+#include "code\modules\planar_lighting\light_item.dm"
 #include "code\modules\planar_lighting\light_mob.dm"
 #include "code\modules\power\apc.dm"
 #include "code\modules\power\batteryrack.dm"

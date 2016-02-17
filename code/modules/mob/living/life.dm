@@ -146,7 +146,7 @@
 		return
 
 	if(eye_blind)
-		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)		
+		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 	else
 		clear_fullscreen("blind")
 		if (disabilities & NEARSIGHTED)
@@ -179,6 +179,7 @@
 		update_dead_sight()
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		sight |= SEE_PIXELS
 		see_in_dark = initial(see_in_dark)
 		see_invisible = initial(see_invisible)
 
