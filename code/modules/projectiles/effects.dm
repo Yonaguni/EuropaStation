@@ -2,10 +2,16 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	layer = 20
+	var/zap_colour = "#FF0000"
 
 /obj/effect/projectile/New(var/turf/location)
 	if(istype(location))
 		loc = location
+	set_light(5,10,zap_colour)
+	if(light_obj)
+		animate(light_obj, time=3, alpha=0)
+		spawn(3)
+			set_light(0)
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
@@ -13,8 +19,10 @@
 
 /obj/effect/projectile/proc/activate(var/kill_delay = 3)
 	spawn(kill_delay)
+		if(light_obj)
+			qdel(light_obj)
+			light_obj = null
 		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
-
 	return
 
 //----------------------------
@@ -32,8 +40,12 @@
 //----------------------------
 // Blue laser beam
 //----------------------------
+/obj/effect/projectile/laser_blue
+	zap_colour = "#0000FF"
+
 /obj/effect/projectile/laser_blue/tracer
 	icon_state = "beam_blue"
+
 
 /obj/effect/projectile/laser_blue/muzzle
 	icon_state = "muzzle_blue"
@@ -44,6 +56,9 @@
 //----------------------------
 // Omni laser beam
 //----------------------------
+/obj/effect/projectile/laser_omni
+	zap_colour = "#00FF00"
+
 /obj/effect/projectile/laser_omni/tracer
 	icon_state = "beam_omni"
 
@@ -56,6 +71,9 @@
 //----------------------------
 // Xray laser beam
 //----------------------------
+/obj/effect/projectile/xray
+	zap_colour = "#00FF00"
+
 /obj/effect/projectile/xray/tracer
 	icon_state = "xray"
 
@@ -80,6 +98,9 @@
 //----------------------------
 // Pulse laser beam
 //----------------------------
+/obj/effect/projectile/laser_pulse
+	zap_colour = "#CC00FF"
+
 /obj/effect/projectile/laser_pulse/tracer
 	icon_state = "u_laser"
 
@@ -98,6 +119,9 @@
 //----------------------------
 // Emitter beam
 //----------------------------
+/obj/effect/projectile/laser_pulse
+	zap_colour = "#AADDFF"
+
 /obj/effect/projectile/emitter/tracer
 	icon_state = "emitter"
 
@@ -110,6 +134,9 @@
 //----------------------------
 // Stun beam
 //----------------------------
+/obj/effect/projectile/laser_pulse
+	zap_colour = "#FFFF00"
+
 /obj/effect/projectile/stun/tracer
 	icon_state = "stun"
 

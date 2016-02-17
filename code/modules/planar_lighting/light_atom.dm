@@ -5,11 +5,15 @@
 	var/light_color
 	var/light_hard
 	var/light_flicker
+	var/light_directional
 
 /atom/Destroy()
 	qdel(light_obj)
 	light_obj = null
 	return ..()
+
+/atom/proc/set_opacity(var/newopacity)
+	opacity = newopacity ? 1 : 0
 
 /obj/initialize()
 	..()
@@ -22,9 +26,6 @@
 		set_light(light_power, light_range, light_color)
 
 /atom/proc/set_light(var/l_range, var/l_power, var/l_color)
-	//world << "DEBUG: \The [src] called set_light with [l_range], [l_power], [l_color]."
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		return // No idea what the heck is calling set_light(0) at world.New().
 	// No range of power, shut it off.
 	if(l_power == 0 || l_range == 0)
 		if(light_obj)
@@ -57,7 +58,9 @@
 	// Update icon.
 	if(light_hard)
 		light_obj.icon_state = "hard"
-	if(light_flicker)
+	if(light_directional)
+		light_obj.icon_state = "[light_obj.icon_state]-directional"
+	else if(light_flicker)
 		light_obj.icon_state = "[light_obj.icon_state]-flicker"
 
 	// Update position of overlay etc.
@@ -67,11 +70,3 @@
 /atom/movable/set_dir()
 	. = ..()
 	if(light_obj) light_obj.set_dir(light_obj.holder.dir)
-
-/atom/movable/Move()
-	. = ..()
-	if(light_obj) light_obj.loc = get_turf(src)
-
-/atom/movable/forceMove()
-	. = ..()
-	if(light_obj) light_obj.loc = get_turf(src)

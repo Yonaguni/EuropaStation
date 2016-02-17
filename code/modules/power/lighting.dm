@@ -17,6 +17,7 @@
 	icon_state = "tube-construct-stage1"
 	anchored = 1
 	layer = 5
+
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -141,6 +142,8 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	waterproof = -1
+	light_hard = 1
+
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness_range = 8	// luminosity when on, also used in power calculation
@@ -158,6 +161,7 @@
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
+	light_hard = 0
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"

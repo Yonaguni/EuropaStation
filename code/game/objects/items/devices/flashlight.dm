@@ -7,6 +7,8 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	light_hard = 1
+	light_directional = 1
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
@@ -106,7 +108,7 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags = CONDUCT
-	brightness_on = 2
+	brightness_on = 5
 	w_class = 1
 
 
@@ -119,6 +121,7 @@
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
+	light_directional = 0
 
 	on = 1
 
@@ -148,6 +151,9 @@
 	brightness_on = 8 // Pretty bright.
 	light_power = 3
 	light_color = "#e58775"
+	light_flicker = 1
+	light_hard = 0
+	light_directional = 0
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
@@ -201,6 +207,9 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
+	light_directional = 0
+	light_flicker = 1
+	light_hard = 0
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 

@@ -1,13 +1,26 @@
-/obj/item/equipped(var/mob/user, var/slot)
-	. = ..(user, slot)
-	if(istype(loc, /turf))
-		plane = initial(plane)
-	else
-		plane = GUI_PLANE
+/obj/screen
+	plane = GUI_PLANE // Needs to render over the top of darkness.
 
-/obj/item/dropped(var/mob/user)
-	. = ..(user)
-	if(istype(loc, /turf))
-		plane = initial(plane)
-	else
-		plane = GUI_PLANE
+/obj/item/initialize()
+	. = ..()
+	spawn(1)
+		if(istype(loc, /turf))
+			plane = 0
+		else
+			plane = GUI_PLANE
+
+/obj/item/equipped()
+	. = ..()
+	spawn(1)
+		if(istype(loc, /turf))
+			plane = 0
+		else
+			plane = GUI_PLANE
+
+/obj/item/dropped()
+	. = ..()
+	spawn(1)
+		if(istype(loc, /turf))
+			plane = 0
+		else
+			plane = GUI_PLANE
