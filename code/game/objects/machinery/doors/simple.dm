@@ -2,7 +2,6 @@
 	name = "door"
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
-
 	var/material/material
 	var/icon_base
 	hitsound = 'sound/weapons/genhit.ogg'
@@ -28,11 +27,11 @@
 	hitsound = material.hitsound
 	name = "[material.display_name] door"
 	color = material.icon_colour
-	if(material.opacity < 0.5)
-		set_opacity(0)
+	if(material.opacity > 0.5)
+		set_opacity(1)
 	else
 		glass = 1
-		set_opacity(1)
+		set_opacity(0)
 	update_icon()
 
 /obj/machinery/door/unpowered/simple/requiresID()
