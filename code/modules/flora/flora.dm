@@ -14,6 +14,11 @@
 	var/seed_prob = 0
 	var/seed_type
 
+/obj/structure/flora/ex_act(severity)
+	..()
+	if(severity < 3 || prob(60))
+		qdel(src)
+
 // Weeding!
 /obj/structure/flora/attack_hand(var/mob/user)
 	if(seed_type)

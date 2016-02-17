@@ -21,7 +21,7 @@
 	if(!material)
 		qdel(src)
 		return
-	maxhealth = max(100, material.integrity*10)
+	maxhealth = material.integrity*2
 	health = maxhealth
 	if(!icon_base)
 		icon_base = material.door_icon_base

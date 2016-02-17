@@ -50,6 +50,7 @@ proc/get_mining_overlay(var/overlay_key)
 	blocks_air = 0
 	blend_with_neighbors = 4
 	accept_lattice = 1
+	explosion_resistance = 2
 
 /turf/simulated/mineral/flooded
 	flooded = 1
@@ -98,6 +99,7 @@ proc/get_mining_overlay(var/overlay_key)
 	blocks_air = 0
 	update_general()
 	accept_lattice = 1
+	explosion_resistance = 2
 
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)

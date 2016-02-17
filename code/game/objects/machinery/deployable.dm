@@ -140,8 +140,7 @@ for reference:
 			qdel(src)
 			return
 		if(2.0)
-			src.health -= 25
-			if (src.health <= 0)
+			if (prob(100-material.hardness))
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return
