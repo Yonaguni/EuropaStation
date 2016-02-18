@@ -190,7 +190,7 @@
 		held_disp_mod += 3
 	//actually attempt to shoot
 	var/static_recoil = recoil
-	if(issmall(user)	//it sucks to be short
+	if(issmall(user))	//it sucks to be short
 		recoil = 2*recoil
 	var/gunner = loc
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
