@@ -165,31 +165,33 @@
 				item_state = model.force_item_state
 			else
 				item_state = body.item_state
+			if(body.slot_flags & SLOT_BACK)
+				item_state_slots[slot_back_str] = body.item_state
 
 			var/image/part
 			for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
 				if (!GC) continue
 				GC.update_icon()
-				/*
-				var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
-				if(!gun_component_icon_cache[cache_key])
-					gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
-				overlays |= gun_component_icon_cache[cache_key]
-				*/
 				part = image(GC.icon, GC.icon_state)
 				part.pixel_y = GC.pixel_y
 				part.pixel_x = GC.pixel_x
 				part.color = GC.color
 				part.appearance_flags = RESET_COLOR
 				part_overlays |= part
-
-	overlays |= part_overlays
+		overlays |= part_overlays
 
 	chamber.update_ammo_overlay()
 	if(chamber.ammo_overlay)
 		chamber.ammo_overlay.pixel_y = chamber.pixel_y
 		chamber.ammo_overlay.pixel_x = chamber.pixel_x
 		overlays |= chamber.ammo_overlay
+
+	if(requires_two_hands)
+		if(wielded())
+			if(body.wielded_state)
+				item_state = body.wielded_state
+		else
+			item_state = body.item_state
 
 /obj/item/weapon/gun/composite/AltClick()
 	if(!(src in usr))

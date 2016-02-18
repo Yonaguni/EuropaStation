@@ -66,7 +66,6 @@
 	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
-
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -94,15 +93,19 @@
 
 /obj/item/weapon/gun/update_held_icon()
 	if(requires_two_hands)
-		var/mob/living/M = loc
-		if(istype(M))
-			if(wielded())
-				name = "[reset_name()] (wielded)"
-				item_state = wielded_icon
-			else
-				name = reset_name()
-				item_state = initial(item_state)
-				update_icon(ignore_inhands=1) // In case item_state is set somewhere else.
+		if(wielded())
+			name = "[reset_name()] (wielded)"
+		else
+			name = reset_name()
+		update_icon()
+	..()
+
+/obj/item/weapon/gun/update_icon()
+	if(requires_two_hands)
+		if(wielded())
+			item_state = wielded_icon
+		else
+			item_state = initial(item_state)
 	..()
 
 //Checks whether a given mob can use the gun
@@ -450,6 +453,13 @@
 	var/mob/user = loc
 	if(!istype(user))
 		return 0
-	if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-		return 0
-	return 1
+	if(user.l_hand == src)
+		if(user.r_hand)
+			return 0
+		else
+			return 1
+	if(user.r_hand == src)
+		if(user.l_hand)
+			return 0
+		else
+			return 1

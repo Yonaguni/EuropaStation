@@ -4,6 +4,7 @@
 	projectile_type = GUN_TYPE_BALLISTIC
 	icon = 'icons/obj/gun_components/body.dmi'
 	var/base_desc = "It is an ambiguous firearm of some sort."
+	var/wielded_state = "gun_wielded"
 
 /obj/item/gun_component/body/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/gun_component))
