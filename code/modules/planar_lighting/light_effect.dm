@@ -1,7 +1,7 @@
 /obj/light
 	simulated = 0
 	mouse_opacity = 0
-	plane = LIGHT_PLANE
+	plane = DARK_PLANE
 	blend_mode = BLEND_ADD
 	icon = 'icons/planar_lighting/lighting_overlays.dmi'
 	icon_state = "soft"

@@ -5,7 +5,7 @@
 	. = ..()
 	sleep(-1)
 	if(istype(loc, /turf))
-		plane = 0
+		plane = MASTER_PLANE
 	else
 		plane = GUI_PLANE
 
@@ -13,6 +13,6 @@
 	. = ..()
 	sleep(-1)
 	if(istype(loc, /turf))
-		plane = 0
+		plane = MASTER_PLANE
 	else
 		plane = GUI_PLANE

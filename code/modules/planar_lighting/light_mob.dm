@@ -1,17 +1,17 @@
 /mob
 	var/image/master_plane/master_plane
-	var/image/light_plane/light_plane
+	var/image/dark_plane/dark_plane
 
 /mob/Login()
 	..()
 	master_plane = new(loc=src)
-	light_plane =  new(loc=src)
+	dark_plane =  new(loc=src)
 	if(client)
 		client.images += master_plane
-		client.images += light_plane
+		client.images += dark_plane
 
-/* TODO PLANAR LIGHTING
-/mob/living/carbon/human/Login()
+/mob/dead/observer/Login()
 	..()
-	light_plane.alpha = species.darksight_alpha
-*/
+	if (!seedarkness)
+		client.images -= master_plane
+		client.images -= dark_plane
