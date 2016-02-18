@@ -1229,7 +1229,6 @@
 	set name = "Relocate Joint"
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
-
 	if(!isliving(usr) || !usr.canClick())
 		return
 
@@ -1252,14 +1251,14 @@
 	var/list/limbs = list()
 	for(var/limb in organs_by_name)
 		var/obj/item/organ/external/current_limb = organs_by_name[limb]
-		if(current_limb && current_limb.dislocated == 2)
-			limbs |= limb
+		if(current_limb && current_limb.is_dislocated())
+			limbs[current_limb.joint] = limb
 	var/choice = input(usr,"Which joint do you wish to relocate?") as null|anything in limbs
 
 	if(!choice)
 		return
 
-	var/obj/item/organ/external/current_limb = organs_by_name[choice]
+	var/obj/item/organ/external/current_limb = organs_by_name[limbs[choice]]
 
 	if(self)
 		src << "<span class='warning'>You brace yourself to relocate your [current_limb.joint]...</span>"
