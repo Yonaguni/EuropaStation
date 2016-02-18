@@ -107,6 +107,9 @@
 	two_handed = 1
 	recoil_mod = -1
 
+/obj/item/gun_component/body/shotgun/combat
+	item_state = "cshotgun"
+
 /obj/item/gun_component/body/shotgun/hunting
 	icon_state = "shotgun_hunting"
 
