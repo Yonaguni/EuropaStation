@@ -101,5 +101,5 @@
 
 /obj/item/ammo_magazine/autocannon
 	name = "ammunition belt"
-	icon_state = "cannon_mag"
+	icon_state = "cannon_belt"
 	ammo_type = /obj/item/ammo_casing/gyrojet

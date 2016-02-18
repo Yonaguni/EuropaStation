@@ -4,6 +4,8 @@
 	caliber = CALIBER_LASER
 	var/assume_projectile
 	weight_mod = 1
+	recoil_mod = 0
+	accuracy_mod = 1
 
 /obj/item/gun_component/barrel/laser/get_projectile_type()
 	return assume_projectile
@@ -25,6 +27,7 @@
 	weapon_type = GUN_RIFLE
 	caliber = CALIBER_LASER_PRECISION
 	accepts_accessories = 1
+	accuracy_mod = 4
 
 /obj/item/gun_component/barrel/laser/cannon
 	icon_state="las_cannon"

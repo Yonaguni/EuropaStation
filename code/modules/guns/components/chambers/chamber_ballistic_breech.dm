@@ -6,6 +6,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = EJECT_CASINGS
 	has_user_interaction = 1
+	accuracy_mod = 1
 	var/breech_open
 
 /obj/item/gun_component/chamber/ballistic/breech/get_extra_examine_info()
@@ -13,6 +14,7 @@
 
 /obj/item/gun_component/chamber/ballistic/breech/am
 	icon_state="sniper"
+	accuracy_mod = 2
 
 /obj/item/gun_component/chamber/ballistic/breech/consume_next_projectile()
 	if(breech_open)

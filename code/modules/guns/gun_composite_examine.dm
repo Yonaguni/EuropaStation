@@ -45,6 +45,42 @@
 	result += "It can hold a maximum of [max_shots] shot[max_shots==1 ? "" : "s"].<br>"
 	result += "<br>"
 
+	var/rec
+	switch(recoil)
+		if(1)
+			rec = "noticeable"
+		if(2)
+			rec = "strong"
+		if(3)
+			rec = "very strong"
+		if(4 to INFINITY)
+			rec = "insane"
+		else
+			rec = "negligible"
+	result += "It has [rec] recoil.<br>"
+
+	switch(accuracy)
+		if(7 to INFINITY)
+			result += "This weapon is exceptionaly accurate.<br>"
+		if(3 to 7)
+			result += "This weapon is very accurate.<br>"
+		if(1 to 3)
+			result += "This weapon is fairly accurate.<br>"
+		if(0 to 1)
+			result += "This weapon is of average accuracy.<br>"
+		if(-1 to 0)
+			result += "This weapon is inaccurate.<br>"
+		if(-3 to -1)
+			result += "This weapon is more of a spray and pray.<br>"
+		if(-INFINITY to -3)
+			result += "This weapon is wildly inaccurate.<br>"
+
+	result += "<br>"
+
+	for (var/obj/item/gun_component/GC in src)
+		result += GC.get_examine_text()
+	//	result += "[GC] ACC:[GC.accuracy_mod] RC:[GC.recoil_mod] FR:[GC.fire_rate_mod] WT:[GC.weight_mod]<br>"
+
 	if(dam_type == GUN_TYPE_LASER)
 		result += "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
 			an energy weapon by placing it in a wall-mounted or table-mounted charger, such as those found in Security or around the \

@@ -5,9 +5,6 @@
 	w_class = 2
 	icon = 'icons/obj/gun_components/grip.dmi'
 
-	accuracy_mod = 1
-	recoil_mod = 1
-
 /obj/item/gun_component/grip/pistol
 	icon_state = "pistol"
 	weapon_type = GUN_PISTOL
@@ -37,7 +34,6 @@
 /obj/item/gun_component/grip/rifle
 	icon_state = "rifle"
 	weapon_type = GUN_RIFLE
-	accuracy_mod = -1
 
 /obj/item/gun_component/grip/rifle/am
 	icon_state="sniper"

@@ -37,6 +37,7 @@
 /obj/item/ammo_casing/gyrojet
 	caliber = CALIBER_CANNON
 	icon_state = "rocket"
+	spent_icon = "rocket-spent"
 	projectile_type = /obj/item/projectile/bullet/gyro
 
 /obj/item/ammo_casing/grenade

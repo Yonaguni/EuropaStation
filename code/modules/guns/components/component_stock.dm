@@ -4,8 +4,8 @@
 	w_class = 2
 	icon = 'icons/obj/gun_components/stock.dmi'
 
-	accuracy_mod = -1
-	recoil_mod = 1
+	accuracy_mod = 1
+	recoil_mod = -1
 	weight_mod = 1
 
 /obj/item/gun_component/stock/smg
@@ -17,7 +17,7 @@
 /obj/item/gun_component/stock/smg/do_user_alt_interaction(var/mob/user)
 	if(!holder)
 		return
-	if(!(src in list(user.l_hand,user.r_hand)))
+	if(!(holder in user))
 		user << "<span class='warning'>You need to hold \the [holder] in your hands to do this.</span>"
 		return
 	user << "<span class='notice'>You [folded ? "un" : "" ]fold \the [holder]'s stock.</span>"
@@ -29,6 +29,9 @@
 		icon_state = initial(icon_state)
 		apply_mod(holder)
 	holder.update_icon(regenerate=1)
+
+/obj/item/gun_component/smg/get_examine_text()
+	return "Its stock can be folded by alt-clicking gun in hand to lower the bulk.<br>"
 
 /obj/item/gun_component/stock/rifle
 	icon_state = "rifle"
@@ -66,7 +69,7 @@
 /obj/item/gun_component/stock/rifle/laser
 	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
-	accuracy_mod = -2
+	accuracy_mod = 2
 
 /obj/item/gun_component/stock/cannon/laser
 	icon_state = "las_cannon"

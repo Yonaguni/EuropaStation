@@ -62,6 +62,7 @@
 	item_state = "huntingrifle"
 	base_desc = "It's a rifle."
 	two_handed = 1
+	recoil_mod = -1
 
 /obj/item/gun_component/body/rifle/black
 	icon_state = "sniper"
@@ -79,6 +80,7 @@
 	item_state = "riotgun"
 	base_desc = "It's a cannon."
 	two_handed = 1
+	recoil_mod = -2
 
 /obj/item/gun_component/body/assault
 	icon_state = "assault"
@@ -90,6 +92,7 @@
 	item_state = "z8carbine"
 	base_desc = "It's an assault rifle."
 	two_handed = 1
+	recoil_mod = -1
 
 /obj/item/gun_component/body/shotgun
 	icon_state = "shotgun"
@@ -101,6 +104,7 @@
 	item_state = "shotgun"
 	base_desc = "It's a shotgun."
 	two_handed = 1
+	recoil_mod = -1
 
 /obj/item/gun_component/body/shotgun/hunting
 	icon_state = "shotgun_hunting"

@@ -140,6 +140,7 @@
 	max_shots = 4
 	fire_delay = 35
 	ammo_indicator_state = "laser_rifle_loaded"
+	accuracy_mod = 1
 
 /obj/item/gun_component/chamber/laser/cannon
 	icon_state="las_cannon"

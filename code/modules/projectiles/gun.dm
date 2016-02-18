@@ -96,7 +96,7 @@
 	if(requires_two_hands)
 		var/mob/living/M = loc
 		if(istype(M))
-			if((M.l_hand == src && !M.r_hand) || (M.r_hand == src && !M.l_hand))
+			if(wielded())
 				name = "[reset_name()] (wielded)"
 				item_state = wielded_icon
 			else
@@ -181,19 +181,26 @@
 
 	var/held_acc_mod = 0
 	var/held_disp_mod = 0
-	if(requires_two_hands)
-		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_acc_mod = -3
-			held_disp_mod = 3
-
+	if(requires_two_hands && !wielded())
+		held_acc_mod = -3
+		held_disp_mod = 3
+	if(recoil > 1 )
+		held_disp_mod++
+	if(recoil > 5)
+		held_disp_mod += 3
 	//actually attempt to shoot
+	var/static_recoil = recoil
+	if(issmall(user))	//it sucks to be short
+		recoil = 2*recoil
+	var/gunner = loc
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
+		if(loc != gunner)	//gun flew away or somemthing, stop firing
+			break
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
 			break
-
 		var/acc = burst_accuracy[min(i, burst_accuracy.len)] + held_acc_mod
 		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
 		process_accuracy(projectile, user, target, acc, disp)
@@ -205,13 +212,15 @@
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
 
+		recoil++
+
 		if(i < burst)
 			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
 			pointblank = 0
-
+	recoil = static_recoil
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.setMoveCooldown(move_delay)
@@ -266,6 +275,35 @@
 	if(recoil)
 		spawn()
 			shake_camera(user, recoil+1, recoil)
+		if(wielded())
+			if(recoil > 5 && prob(recoil*10))
+				if(!(user.Check_Dense_Object() && user.Check_Shoegrip()))
+					var/turf/T = get_step(get_turf(src),reverse_direction(user.dir))
+					user << "<span class='warning'>The immense recoil of \the [src] makes you stumble backwards!</span>"
+					user.Move(T)
+		else
+			var/obj/item/organ/external/limb
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(src == H.l_hand)
+					limb = H.get_organ(BP_L_HAND)
+				else
+					limb = H.get_organ(BP_R_HAND)
+			if(limb)
+				if(recoil > 1)
+					if(prob(recoil*5))
+						user << "<span class='warning'>The recoil of \the [src] hurts your [limb.joint].</span>"
+				if(recoil > 2)
+					if(prob(recoil*10))
+						user << "<span class='warning'>You sprain your [limb.joint] with the recoil!</span>"
+						limb.dislocate()
+				if(recoil > 5)
+					if(prob(recoil*5))
+						user << "<span class='warning'>\The [src] propels itself out of your grasp, dislocating your [limb.parent.joint] in process!</span>"
+						limb.parent.dislocate()
+						user.unEquip(src)
+						src.throw_at( get_edge_target_turf(src,pick(cardinal)), recoil, 3)
+
 	update_icon()
 
 
@@ -376,8 +414,6 @@
 	zoom(zoom_offset, view_size)
 	if(zoom)
 		accuracy = scoped_accuracy + scoped_accuracy_mod
-		if(recoil)
-			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
 /obj/item/weapon/gun/zoom()
@@ -409,3 +445,11 @@
 	if(new_mode)
 		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
 
+
+/obj/item/weapon/gun/proc/wielded()
+	var/mob/user = loc
+	if(!istype(user))
+		return 0
+	if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
+		return 0
+	return 1

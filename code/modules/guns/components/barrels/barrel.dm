@@ -11,6 +11,7 @@
 	var/override_name
 	var/list/firemodes
 	var/shortened_icon = null
+	recoil_mod = 1
 
 /obj/item/gun_component/barrel/update_strings()
 	..()
@@ -37,6 +38,11 @@
 				recoil_mod++
 				accuracy_mod--
 				weight_mod--
+				if(initial(override_name))
+					override_name = "shortened [initial(override_name)]"
+				else
+					override_name = "shortened [caliber]"
+				update_strings()
 				return
 		else
 			user << "<span class='warning'>You cannot shorten \the [src] any further!</span>"
