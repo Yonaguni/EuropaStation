@@ -10,14 +10,6 @@
 	icon_off = "miningsecoff"
 	req_access = list(access_mining)
 
-/******************************Lantern*******************************/
-
-/obj/item/device/flashlight/lantern
-	name = "lantern"
-	icon_state = "lantern"
-	desc = "A mining lantern."
-	brightness_on = 6			// luminosity when on
-
 /*****************************Pickaxe********************************/
 
 /obj/item/weapon/pickaxe

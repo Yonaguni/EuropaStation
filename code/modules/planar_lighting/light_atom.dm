@@ -43,7 +43,7 @@
 	// Power == alpha.
 	var/use_alpha
 	if(!isnull(l_power) && light_obj.alpha != use_alpha)
-		use_alpha = min(255,(l_power * 80))
+		use_alpha = min(255,(l_power * 35))
 	// Range == size of the overlay.
 
 	var/matrix/use_transform

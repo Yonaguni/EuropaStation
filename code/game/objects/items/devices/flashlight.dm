@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	light_type = LIGHT_HARD_DIRECTIONAL
-
+	light_power = 2
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	action_button_name = "Toggle Flashlight"
@@ -146,7 +146,6 @@
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 8 // Pretty bright.
-	light_power = 3
 	light_color = "#e58775"
 	light_type = LIGHT_SOFT_FLICKER
 
@@ -207,7 +206,7 @@
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 
-/obj/item/device/flashlight/slime/New()
+/obj/item/device/flashlight/slime/initialize()
 	..()
 	set_light(brightness_on)
 
