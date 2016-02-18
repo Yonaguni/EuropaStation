@@ -363,5 +363,6 @@
 		cameraFollow = null
 
 /mob/living/silicon/flash_eyes(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash/noise)
+	set waitfor=0
 	if(affect_silicon)
-		return ..()
+		. = ..()

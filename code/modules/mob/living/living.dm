@@ -773,13 +773,13 @@ default behaviour is:
 
 //called when the mob receives a bright flash
 /mob/living/proc/flash_eyes(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
-	if(override_blindness_check || !(disabilities & BLIND))
+	set waitfor=0
+	. = (override_blindness_check || !(disabilities & BLIND))
+	if(.)
 		overlay_fullscreen("flash", type)
-		spawn(0)
-			sleep(25)
-			if(src)
-				clear_fullscreen("flash", 25)
-		return 1
+		sleep(25)
+		if(src)
+			clear_fullscreen("flash", 25)
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."
