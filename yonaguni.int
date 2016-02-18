@@ -1,11 +1,6 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1455760895
-DIR: code code\__defines code\_helpers code\_onclick code\game code\game\area code\game\mapdata code\game\objects code\game\objects\machinery code\game\objects\machinery\atmoalter code\game\objects\machinery\doors code\game\objects\structures code\game\turfs code\modules code\modules\forensics\tools code\modules\guns code\modules\guns\ammo code\modules\guns\components code\modules\guns\components\barrels code\modules\guns\components\chambers code\modules\guns\manufacturers\models code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\human code\modules\mob\living\simple_animal\friendly code\modules\organs code\modules\projectiles code\modules\projectiles\guns code\modules\projectiles\guns\projectile code\modules\projectiles\guns\projectile\railgun code\modules\recycling icons icons\obj icons\obj\gun_components maps 
-AUTO_FILE_DIR: OFF
 MAP_ICON_TYPE: 0
-LAST_COMPILE_VERSION: 510.1325
-WINDOW: code\modules\projectiles\gun.dm;code\modules\guns\gun_composite.dm;code\modules\organs\organ_external.dm;code\modules\mob\living\carbon\human\human_organs.dm;code\modules\mob\living\carbon\human\human.dm
-FILE: code\modules\mob\living\carbon\human\human.dm
+AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
