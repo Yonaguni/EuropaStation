@@ -30,7 +30,6 @@
 	icon_state="pistol_large"
 	weight_mod = 2
 	recoil_mod = 3
-	two_handed = 1
 
 /obj/item/gun_component/barrel/pistol/revolver
 	icon_state="revolver"
@@ -57,7 +56,6 @@
 	w_class = 3
 	recoil_mod = 3
 	shortened_icon = null
-	two_handed = 1
 
 /obj/item/gun_component/barrel/pistol/revolver/a38
 	icon_state="revolver_small"
