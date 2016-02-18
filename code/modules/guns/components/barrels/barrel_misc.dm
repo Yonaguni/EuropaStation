@@ -33,6 +33,7 @@
 	weight_mod = 2
 	accuracy_mod = 3
 	recoil_mod = 5
+	two_handed = 1
 
 /obj/item/gun_component/barrel/cannon
 	icon_state="cannon"
@@ -41,6 +42,7 @@
 	fire_sound = 'sound/effects/bang.ogg'
 	weight_mod = 2
 	recoil_mod = 6
+	two_handed = 1
 
 /obj/item/gun_component/barrel/shotgun
 	icon_state="shotgun"
