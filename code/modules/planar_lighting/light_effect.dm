@@ -8,7 +8,7 @@
 	pixel_x = -32
 	pixel_y = -32
 	alpha = 0
-	invisibility = (SEE_INVISIBLE_NOLIGHTING-1)
+	invisibility = SEE_INVISIBLE_NOLIGHTING
 	var/current_power = 1
 	var/atom/movable/holder
 
@@ -19,6 +19,7 @@
 /obj/light/Destroy()
 	if(holder)
 		moved_event.unregister(holder, src)
+		dir_set_event.unregister(holder, src)
 		destroyed_event.unregister(holder, src)
 		if(holder.light_obj == src)
 			holder.light_obj = null
@@ -33,15 +34,21 @@
 	follow_holder()
 	set_dir(holder.dir)
 	moved_event.register(holder, src, /obj/light/proc/follow_holder)
+	dir_set_event.register(holder, src, /obj/light/proc/follow_holder_dir)
 	destroyed_event.register(holder, src, /obj/light/proc/destroy_self)
 
 /obj/light/proc/destroy_self()
 	qdel(src)
 
+/obj/light/proc/follow_holder_dir()
+	if(istype(holder.loc, /mob))
+		if(dir != holder.loc.dir) set_dir(holder.loc.dir)
+	else
+		if(dir != holder.dir) set_dir(holder.dir)
+
 /obj/light/proc/follow_holder()
 	if(istype(holder.loc, /mob))
 		loc = get_turf(holder)
-		set_dir(holder.loc)
 	else
 		loc = holder.loc
-		set_dir(holder.dir)
+	follow_holder_dir()

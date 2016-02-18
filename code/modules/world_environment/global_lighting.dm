@@ -33,8 +33,10 @@ var/datum/world_light/exterior_lighting = new()
 			var/area/A = get_area(T)
 			if(!A.outside)
 				continue
-		M << "<span class='notice'><b>It is now [edata["name"]].</b></span>"
-		M.update_env_light()
+		var/fadetime = M.update_env_light()
+		if(fadetime)
+			sleep(fadetime)
+			M << "<span class='notice'><b>It is now [edata["name"]].</b></span>"
 
 /mob/verb/force_world_time_advance()
 	exterior_lighting.update_tod()

@@ -84,7 +84,3 @@
 	// Is this just a flash?
 	if(fadeout)
 		animate(light_obj, time=fadeout, alpha=0)
-
-/atom/movable/set_dir()
-	. = ..()
-	if(light_obj) light_obj.set_dir(light_obj.holder.dir)
