@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/composite
 	name = "composite weapon"
 	desc = "This really shouldn't exist yet."
+	appearance_flags = KEEP_TOGETHER
 
 	var/max_shots = 0                          // Weapon capacity.
 	var/caliber = ""                           // Barrel size/type of projectile.

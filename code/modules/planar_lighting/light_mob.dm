@@ -5,10 +5,11 @@
 /mob/Login()
 	..()
 	master_plane = new(loc=src)
-	dark_plane =  new(loc=src)
+	dark_plane =   new(loc=src)
 	if(client)
 		client.images += master_plane
 		client.images += dark_plane
+	update_env_light()
 
 /mob/dead/observer/Login()
 	..()

@@ -215,3 +215,10 @@
 
 /obj/item/device/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.
+
+/obj/item/device/flashlight/lantern
+	name = "lantern"
+	icon_state = "lantern"
+	desc = "A mining lantern."
+	light_type = "soft-flicker"
+	brightness_on = 6

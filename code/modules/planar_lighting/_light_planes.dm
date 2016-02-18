@@ -8,13 +8,14 @@
 
 /image/master_plane
 	blend_mode = BLEND_MULTIPLY
-	appearance_flags = NO_CLIENT_COLOR | PLANE_MASTER
+	appearance_flags = NO_CLIENT_COLOR | PLANE_MASTER //| KEEP_APART // PLANE_MASTER causes rotation bugs, this is annoying.
 	color = list(null,null,null,"#0000","#000f")  // Completely black.
 	mouse_opacity = 0
 	plane = MASTER_PLANE
 
 /image/dark_plane
 	blend_mode = BLEND_ADD
+	//appearance_flags = KEEP_APART
 	mouse_opacity = 0
 	plane = DARK_PLANE // Just below the master plane.
 	icon = 'icons/planar_lighting/over_dark.dmi'

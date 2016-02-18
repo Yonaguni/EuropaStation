@@ -43,16 +43,16 @@
 	// Power == alpha.
 	var/use_alpha
 	if(!isnull(l_power) && light_obj.alpha != use_alpha)
-		use_alpha = min(255,(l_power * 35))
+		use_alpha = min(255,(l_power * 50))
 	// Range == size of the overlay.
 
 	var/matrix/use_transform
+	var/scale_val
 	if(!isnull(l_range) && l_range != light_obj.current_power)
-		if(l_range == light_obj.current_power)
-			return
 		light_obj.current_power = l_range
+		scale_val = max(1,min(8,light_obj.current_power*0.75))
 		use_transform = matrix()
-		use_transform.Scale(max(1,min(8,light_obj.current_power/2)))
+		use_transform.Scale(scale_val)
 
 	// Colour = src.color.
 	var/use_colour
@@ -66,6 +66,14 @@
 	// Update icon.
 	light_obj.icon_state = light_type
 	light_obj.follow_holder()
+
+	// Update bounds.
+	// Chess mode please go.
+	/*
+	if(scale_val > 0)
+		bound_width = 96 * scale_val
+		bound_height = 96 * scale_val
+	*/
 
 	// Apply effects.
 	var/anim_time = 3 - fadeout
