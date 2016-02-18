@@ -23,3 +23,4 @@
 /obj/item/gun_component/chamber/ballistic/auto/cannon
 	icon_state="cannon"
 	weapon_type = GUN_CANNON
+	ammo_indicator_state = "ballistic_cannon_loaded"
