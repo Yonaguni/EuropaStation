@@ -4,6 +4,7 @@
 	projectile_type = GUN_TYPE_BALLISTIC
 	icon = 'icons/obj/gun_components/body.dmi'
 	var/base_desc = "It is an ambiguous firearm of some sort."
+	var/wielded_state = "gun_wielded"
 
 /obj/item/gun_component/body/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/gun_component))
@@ -105,6 +106,9 @@
 	base_desc = "It's a shotgun."
 	two_handed = 1
 	recoil_mod = -1
+
+/obj/item/gun_component/body/shotgun/combat
+	item_state = "cshotgun"
 
 /obj/item/gun_component/body/shotgun/hunting
 	icon_state = "shotgun_hunting"
