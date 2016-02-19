@@ -22,9 +22,9 @@
 		desc = "It seems to be a wall made of [material.display_name]."
 
 	if(material.opacity > 0.5 && !opacity)
-		set_light(1)
+		set_opacity(1)
 	else if(material.opacity < 0.5 && opacity)
-		set_light(0)
+		set_opacity(0)
 
 	update_connections(1)
 	update_icon()

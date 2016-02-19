@@ -96,8 +96,3 @@ var/list/open_space_cache = list()
 /turf/Exited(atom/movable/obj)
 	. = ..()
 	refresh_above()
-
-/atom/movable/lighting_overlay/update_overlay()
-	if(..())
-		var/turf/T = loc // Checked in ..()
-		T.refresh_above()

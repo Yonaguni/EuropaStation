@@ -7,7 +7,8 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-
+	light_type = LIGHT_HARD_DIRECTIONAL
+	light_power = 2
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	action_button_name = "Toggle Flashlight"
@@ -27,7 +28,7 @@
 		set_light(brightness_on)
 	else
 		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		kill_light()
 
 /obj/item/device/flashlight/attack_self(mob/user)
 
@@ -106,7 +107,7 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags = CONDUCT
-	brightness_on = 2
+	brightness_on = 5
 	w_class = 1
 
 
@@ -119,9 +120,8 @@
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
-
+	light_type = LIGHT_HARD
 	on = 1
-
 
 // green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
@@ -146,8 +146,9 @@
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 8 // Pretty bright.
-	light_power = 3
 	light_color = "#e58775"
+	light_type = LIGHT_SOFT_FLICKER
+
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
@@ -201,10 +202,11 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
+	light_type = LIGHT_SOFT
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 
-/obj/item/device/flashlight/slime/New()
+/obj/item/device/flashlight/slime/initialize()
 	..()
 	set_light(brightness_on)
 
@@ -213,3 +215,10 @@
 
 /obj/item/device/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.
+
+/obj/item/device/flashlight/lantern
+	name = "lantern"
+	icon_state = "lantern"
+	desc = "A mining lantern."
+	light_type = "soft-flicker"
+	brightness_on = 6

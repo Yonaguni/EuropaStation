@@ -17,20 +17,11 @@
 	icon_state = ""
 	layer = 10
 	uid = ++global_uid
-
 	all_areas += src
-
 	if(!requires_power)
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
-
-	if(lighting_use_dynamic)
-		luminosity = 0
-	else
-		luminosity = 1
-
-
 	..()
 
 /area/proc/initialize()

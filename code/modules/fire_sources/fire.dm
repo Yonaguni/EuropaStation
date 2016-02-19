@@ -18,19 +18,20 @@ var/list/fire_sounds = list(
 	desc = "Did anyone bring any marshmallows?"
 	icon = 'icons/obj/structures/fire.dmi'
 	icon_state = "campfire"
+	light_type = LIGHT_SOFT_FLICKER
 	anchored = 1
 	density = 0
 
 	var/open_flame = 1
 	var/datum/effect/effect/system/steam_spread/steam // Used when being quenched.
 
-	var/light_range_high = 5
-	var/light_range_mid = 4
-	var/light_range_low = 3
+	var/light_range_high = 8
+	var/light_range_mid = 6
+	var/light_range_low = 4
 
-	var/light_power_high = 3
-	var/light_power_mid = 2
-	var/light_power_low = 1
+	var/light_power_high = 8
+	var/light_power_mid = 5
+	var/light_power_low = 3
 
 	var/light_colour_high = "#FFDD55"
 	var/light_colour_mid =  "#FF9900"
@@ -70,11 +71,12 @@ var/list/fire_sounds = list(
 	desc = "Just the thing to warm your hands by."
 	icon_state = "stove"
 	burn_time = 80
-	light_range_high = 3
-	light_range_mid = 2
-	light_range_low = 1
-	light_power_high = 2
-	light_power_mid = 1
+	light_range_high = 6
+	light_range_mid = 4
+	light_range_low = 2
+	light_power_high = 5
+	light_power_mid = 4
+	light_power_low = 3
 	light_colour_high = "#FFDD55"
 	light_colour_mid =  "#FF6600"
 	light_colour_low =  "#FF0000"
@@ -86,9 +88,9 @@ var/list/fire_sounds = list(
 	desc = "So cheery!"
 	icon_state = "fireplace"
 	burn_time = 60
-	light_range_high = 3
-	light_range_mid = 2
-	light_range_low = 1
+	light_range_high = 8
+	light_range_mid = 6
+	light_range_low = 4
 	open_flame = 0
 	density = 1
 
@@ -314,9 +316,9 @@ var/list/fire_sounds = list(
 			if(!fire_cache[cache_key])
 				fire_cache[cache_key] = image(icon, "[icon_state]_burnt")
 			overlays += fire_cache[cache_key]
-			set_light(0)
+			kill_light()
 		else
-			set_light(0)
+			kill_light()
 
 	if(need_overlay)
 		var/cache_key = "[name]-[need_overlay]"

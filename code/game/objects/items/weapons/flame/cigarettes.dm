@@ -73,7 +73,7 @@
 	if(!lit)
 		return 0
 
-	set_light(0)
+	kill_light()
 	lit = 0
 
 	var/turf/T = get_turf(src)

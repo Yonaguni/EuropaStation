@@ -35,8 +35,8 @@
 	sprite_name = "miniFE"
 
 /obj/item/weapon/extinguisher/New()
-	..()
 	create_reagents(max_water)
+	..()
 
 /obj/item/weapon/extinguisher/initialize()
 	..()

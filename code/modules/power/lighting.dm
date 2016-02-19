@@ -17,6 +17,7 @@
 	icon_state = "tube-construct-stage1"
 	anchored = 1
 	layer = 5
+
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -141,14 +142,16 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	waterproof = -1
+	light_type = LIGHT_SOFT
+
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 8	// luminosity when on, also used in power calculation
-	var/brightness_power = 3
+	var/brightness_range = 14 // luminosity when on, also used in power calculation
+	var/brightness_power = 10
 	var/brightness_color = null
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
-	var/light_type = /obj/item/weapon/light/tube		// the type of light item
+	var/bulb_type = /obj/item/weapon/light/tube		// the type of light item
 	var/fitting = "tube"
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
@@ -161,15 +164,15 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
-	brightness_power = 2
+	brightness_range = 8
+	brightness_power = 6
 	brightness_color = "#a0a080"
 	desc = "A small lighting fixture."
-	light_type = /obj/item/weapon/light/bulb
+	bulb_type = /obj/item/weapon/light/bulb
 
 /obj/machinery/light/small/emergency
 	brightness_range = 6
-	brightness_power = 2
+	brightness_power = 3
 	brightness_color = "#da0205"
 
 /obj/machinery/light/small/red
@@ -180,7 +183,7 @@
 /obj/machinery/light/spot
 	name = "spotlight"
 	fitting = "large tube"
-	light_type = /obj/item/weapon/light/tube/large
+	bulb_type = /obj/item/weapon/light/tube/large
 	brightness_range = 12
 	brightness_power = 4
 
@@ -195,28 +198,24 @@
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
+/obj/machinery/light/initialize()
 	..()
-
-	spawn(2)
-		on = has_power()
-
-		switch(fitting)
-			if("tube")
-				if(prob(2))
-					broken(1)
-			if("bulb")
-				if(prob(5))
-					broken(1)
-		spawn(1)
-			update(0)
+	on = has_power()
+	switch(fitting)
+		if("tube")
+			brightness_range = rand(6,9)
+			if(prob(2))
+				broken(1)
+		if("bulb")
+			brightness_range = rand(4,6)
+			if(prob(5))
+				broken(1)
+	update()
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
-	if(A)
-		on = 0
-//		A.update_lights()
-	..()
+	if(A) on = 0
+	return ..()
 
 /obj/machinery/light/update_icon()
 
@@ -253,13 +252,13 @@
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					on = 0
-					set_light(0)
+					kill_light()
 			else
 				use_power = 2
 				set_light(brightness_range, brightness_power, brightness_color)
 	else
 		use_power = 1
-		set_light(0)
+		kill_light()
 
 	active_power_usage = ((light_range + light_power) * 10)
 	if(on != on_gs)
@@ -318,7 +317,7 @@
 		else
 			src.add_fingerprint(user)
 			var/obj/item/weapon/light/L = W
-			if(istype(L, light_type))
+			if(istype(L, bulb_type))
 				status = L.status
 				user << "You insert the [L.name]."
 				switchcount = L.switchcount
@@ -468,7 +467,7 @@
 		user << "You remove the light [fitting]."
 
 	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
+	var/obj/item/weapon/light/L = new bulb_type()
 	L.status = status
 	L.rigged = rigged
 	L.brightness_range = brightness_range
@@ -495,7 +494,7 @@
 
 	user << "You telekinetically remove the light [fitting]."
 	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
+	var/obj/item/weapon/light/L = new bulb_type()
 	L.status = status
 	L.rigged = rigged
 	L.brightness_range = brightness_range
@@ -553,8 +552,6 @@
 	return
 
 //blob effect
-
-
 // timed process
 // use power
 
@@ -660,17 +657,6 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
-
-
-/obj/item/weapon/light/New()
-	..()
-	switch(name)
-		if("light tube")
-			brightness_range = rand(6,9)
-		if("light bulb")
-			brightness_range = rand(4,6)
-	update()
-
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode

@@ -4,13 +4,13 @@
 	icon_state = "surface"
 	requires_power = 1
 	always_unpowered = 0
-	lighting_use_dynamic = 0
 	power_light = 1
 	power_equip = 1
 	power_environ = 1
 	flags = DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | DENY_TELEPORT | IGNORE_BLACKOUTS
 	outside = 1
 	ambience = list()
+
 /area/rimworld/atmosalert()
 	return
 
@@ -26,19 +26,13 @@
 /area/rimworld/partyalert()
 	return
 
-// Buildings; use internal lighting.
 /area/rimworld/building
-	lighting_use_dynamic = 1
-	outside = null
 	icon_state = "house"
-
 /area/rimworld/building/farmhouse
 	name = "Farmhouse"
 	icon_state = "farmhouse"
-
 /area/rimworld/building/farmhouse/hunter
 	name = "Hunter's Den"
-
 /area/rimworld/building/pub
 	name = "Pub"
 	icon_state = "pub"
@@ -49,7 +43,6 @@
 	name = "Supply Depot"
 /area/rimworld/building/garage/scrapper
 	name = "Scrapyard"
-
 // Houses!
 /area/rimworld/building/mayor
 	name = "Mayor's Residence"
@@ -65,10 +58,8 @@
 	name = "Gaol"
 /area/rimworld/building/homestead_large_s
 	name = "Clinic"
-
 /area/rimworld/building/chapel
 	name = "Chapel"
-
 // Bank!
 /area/rimworld/building/bank
 	name = "Bank - Foyer"

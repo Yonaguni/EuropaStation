@@ -302,6 +302,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	stop_following()
 	following = target
 	moved_event.register(following, src, /atom/movable/proc/move_to_destination)
+	dir_set_event.register(following, src, /atom/proc/recursive_dir_set)
 	destroyed_event.register(following, src, /mob/dead/observer/proc/stop_following)
 
 	src << "<span class='notice'>Now following \the [following]</span>"
@@ -311,6 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(following)
 		src << "<span class='notice'>No longer following \the [following]</span>"
 		moved_event.unregister(following, src)
+		dir_set_event.unregister(following, src)
 		destroyed_event.unregister(following, src)
 		following = null
 
@@ -638,11 +640,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/proc/updateghostsight()
 	if (!seedarkness)
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
+		if(client)
+			client.images -= master_plane
+			client.images -= dark_plane
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER
+		if(client)
+			client.images += master_plane
+			client.images += dark_plane
 		if (!ghostvision)
 			see_invisible = SEE_INVISIBLE_LIVING;
-	updateghostimages()
+		updateghostimages()
 
 /proc/updateallghostimages()
 	for (var/mob/dead/observer/O in player_list)

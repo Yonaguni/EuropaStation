@@ -122,6 +122,8 @@
 	temp_chem_holder.create_reagents(10)
 	temp_chem_holder.flags |= OPENCONTAINER
 	create_reagents(200)
+
+/obj/machinery/portable_atmospherics/hydroponics/initialize()
 	if(mechanical)
 		connect()
 	update_icon()
@@ -560,6 +562,7 @@
 		var/light_string
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
+		/* TODO PLANAR LIGHTING
 		else
 			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 			var/light_available
@@ -568,6 +571,7 @@
 			else
 				light_available =  5
 			light_string = "a light level of [light_available] lumens"
+		*/
 
 		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
 

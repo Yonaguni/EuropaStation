@@ -599,23 +599,22 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/artscrafts
 	name = "Arts and Crafts supplies"
-	contains = list(/obj/item/weapon/storage/fancy/crayons,
-	/obj/item/device/camera,
-	/obj/item/device/camera_film,
-	/obj/item/device/camera_film,
-	/obj/item/weapon/storage/photo_album,
-	/obj/item/weapon/packageWrap,
-	/obj/item/weapon/reagent_containers/glass/paint/red,
-	/obj/item/weapon/reagent_containers/glass/paint/green,
-	/obj/item/weapon/reagent_containers/glass/paint/blue,
-	/obj/item/weapon/reagent_containers/glass/paint/yellow,
-	/obj/item/weapon/reagent_containers/glass/paint/purple,
-	/obj/item/weapon/reagent_containers/glass/paint/black,
-	/obj/item/weapon/reagent_containers/glass/paint/white,
-	/obj/item/weapon/contraband/poster,
-	/obj/item/weapon/wrapping_paper,
-	/obj/item/weapon/wrapping_paper,
-	/obj/item/weapon/wrapping_paper)
+	contains = list(
+		/obj/item/weapon/storage/fancy/crayons,
+		/obj/item/device/camera,
+		/obj/item/device/camera_film,
+		/obj/item/device/camera_film,
+		/obj/item/weapon/storage/photo_album,
+		/obj/item/weapon/packageWrap,
+		/obj/item/weapon/reagent_containers/glass/paint/red,
+		/obj/item/weapon/reagent_containers/glass/paint/green,
+		/obj/item/weapon/reagent_containers/glass/paint/blue,
+		/obj/item/weapon/reagent_containers/glass/paint/yellow,
+		/obj/item/weapon/reagent_containers/glass/paint/purple,
+		/obj/item/weapon/reagent_containers/glass/paint/black,
+		/obj/item/weapon/reagent_containers/glass/paint/white,
+		/obj/item/weapon/contraband/poster
+	)
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Arts and Crafts crate"

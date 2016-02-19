@@ -16,7 +16,7 @@
 	desc = "It shines with an eerie bioluminescent light."
 	icon_state = "glowweed1"
 
-/obj/structure/flora/seaweed/glow/New()
+/obj/structure/flora/seaweed/glow/initialize()
 	..()
-	set_light(3, l_color = "#00FFF4")
+	set_light(3, 2, "#00FFF4")
 	icon_state = "glowweed[rand(1,3)]"

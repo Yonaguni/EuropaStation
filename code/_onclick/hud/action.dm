@@ -139,6 +139,7 @@
 		img = image(I.icon, src , I.icon_state)
 	else if(owner.button_icon && owner.button_icon_state)
 		img = image(owner.button_icon,src,owner.button_icon_state)
+	img.plane = plane
 	img.pixel_x = 0
 	img.pixel_y = 0
 	overlays += img
@@ -178,6 +179,7 @@
 /obj/screen/movable/action_button/hide_toggle/UpdateIcon()
 	overlays.Cut()
 	var/image/img = image(icon,src,hidden?"show":"hide")
+	img.plane = plane
 	overlays += img
 	return
 

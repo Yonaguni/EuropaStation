@@ -28,10 +28,12 @@
 			N = /turf/simulated/open
 
 	//var/obj/fire/old_fire = fire
+	/* TODO PLANAR LIGHTING
 	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
+	*/
 	var/old_flooded = flooded
 
 	Destroy()
@@ -72,6 +74,7 @@
 		flooded = 1
 		update_icon()
 
+	/* TODO PLANAR LIGHTING
 	lighting_overlay = old_lighting_overlay
 	affecting_lights = old_affecting_lights
 	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
@@ -81,3 +84,4 @@
 			lighting_build_overlays()
 		else
 			lighting_clear_overlays()
+	*/

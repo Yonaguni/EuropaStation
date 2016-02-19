@@ -209,7 +209,9 @@
 			if(new_value == null) return
 
 			if(variable=="light_range")
-				O.set_light(new_value)
+				var/atom/movable/AM = O
+				if(istype(AM))
+					AM.set_light(new_value)
 			else
 				O.vars[variable] = new_value
 
@@ -233,10 +235,7 @@
 				else if(istype(O, /turf))
 					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
-							if(variable=="light_range")
-								A.set_light(new_value)
-							else
-								A.vars[variable] = O.vars[variable]
+							A.vars[variable] = O.vars[variable]
 
 			else
 				if(istype(O, /mob))
@@ -258,10 +257,7 @@
 				else if(istype(O, /turf))
 					for(var/turf/A in turfs)
 						if (A.type == O.type)
-							if(variable=="light_range")
-								A.set_light(new_value)
-							else
-								A.vars[variable] = O.vars[variable]
+							A.vars[variable] = O.vars[variable]
 
 		if("type")
 			var/new_value

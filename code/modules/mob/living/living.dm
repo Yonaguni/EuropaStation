@@ -312,33 +312,15 @@ default behaviour is:
 
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
-
-		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/weapon/storage/S in Storage.return_inv()) //Check for storage items
-		//	L += get_contents(S)
-
-		for(var/obj/item/weapon/gift/G in Storage.return_inv()) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
-				L += get_contents(G.gift)
-
 		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
-
 	else
-
 		L += src.contents
 		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
 			L += get_contents(S)
-
-		for(var/obj/item/weapon/gift/G in src.contents) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
-				L += get_contents(G.gift)
-
 		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
@@ -347,12 +329,10 @@ default behaviour is:
 
 /mob/living/proc/check_contents_for(A)
 	var/list/L = src.get_contents()
-
 	for(var/obj/B in L)
 		if(B.type == A)
 			return 1
 	return 0
-
 
 /mob/living/proc/can_inject()
 	return 1
@@ -773,13 +753,13 @@ default behaviour is:
 
 //called when the mob receives a bright flash
 /mob/living/proc/flash_eyes(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
-	if(override_blindness_check || !(disabilities & BLIND))
+	set waitfor=0
+	. = (override_blindness_check || !(disabilities & BLIND))
+	if(.)
 		overlay_fullscreen("flash", type)
-		spawn(0)
-			sleep(25)
-			if(src)
-				clear_fullscreen("flash", 25)
-		return 1
+		sleep(25)
+		if(src)
+			clear_fullscreen("flash", 25)
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."

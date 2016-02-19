@@ -64,7 +64,7 @@
 /obj/machinery/computer/update_icon()
 	overlays.Cut()
 	if(stat & NOPOWER)
-		set_light(0)
+		kill_light()
 		if(icon_keyboard)
 			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
 		return
@@ -83,7 +83,7 @@
 	..()
 	update_icon()
 	if(stat & NOPOWER)
-		set_light(0)
+		kill_light()
 	else
 		set_light(light_range_on, light_power_on)
 

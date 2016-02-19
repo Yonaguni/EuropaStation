@@ -157,7 +157,6 @@
 			helmet.pickup(H)
 			helmet.canremove = 0
 			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
-	helmet.update_light(H)
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 

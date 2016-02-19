@@ -23,7 +23,7 @@
 /obj/item/weapon/flame/lighter/die()
 	if(!..())
 		return 0
-	set_light(0)
+	kill_light()
 	return 1
 
 

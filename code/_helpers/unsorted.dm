@@ -1277,8 +1277,8 @@ var/mob/dview/dview_mob = new
 
 	see_in_dark = 1e6
 
-/atom/proc/get_light_and_color(var/atom/origin)
-	if(origin)
+/atom/movable/proc/get_light_and_color(var/atom/movable/origin)
+	if(istype(origin))
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 

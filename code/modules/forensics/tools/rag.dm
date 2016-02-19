@@ -185,7 +185,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/extinguish()
 	processing_objects -= src
-	set_light(0)
+	kill_light()
 	on_fire = 0
 
 	//rags sitting around with 1 second of burn time left is dumb.

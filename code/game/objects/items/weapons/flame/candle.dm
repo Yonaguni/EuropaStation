@@ -53,7 +53,7 @@
 			die()
 
 /obj/item/weapon/flame/candle/die()
-	set_light(0)
+	kill_light()
 	if(!..())
 		return
 	var/obj/item/trash/candle/C = new (get_turf(src))
@@ -67,4 +67,4 @@
 	if(lit)
 		lit = 0
 		update_icon()
-		set_light(0)
+		kill_light()

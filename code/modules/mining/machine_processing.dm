@@ -11,14 +11,13 @@
 	var/machinedir = EAST
 	var/show_all_ores = 0
 
-/obj/machinery/mineral/processing_unit_console/New()
+/obj/machinery/mineral/processing_unit_console/initialize()
 	..()
-	spawn(7)
-		src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
-		if (machine)
-			machine.console = src
-		else
-			qdel(src)
+	src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+	if (machine)
+		machine.console = src
+	else
+		qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
@@ -115,9 +114,8 @@
 	var/static/list/alloy_data
 	var/active = 0
 
-/obj/machinery/mineral/processing_unit/New()
+/obj/machinery/mineral/processing_unit/initialize()
 	..()
-
 	// initialize static alloy_data list
 	if(!alloy_data)
 		alloy_data = list()
@@ -131,15 +129,12 @@
 			ores_processing[OD.name] = 0
 			ores_stored[OD.name] = 0
 
-	//Locate our output and input machinery.
-	spawn(5)
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		return
+	for (var/dir in cardinal)
+		src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+		if(src.input) break
+	for (var/dir in cardinal)
+		src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+		if(src.output) break
 	return
 
 /obj/machinery/mineral/processing_unit/process()

@@ -97,7 +97,7 @@ var/list/floor_light_cache = list()
 	else
 		use_power = 0
 		if(light_range || light_power)
-			set_light(0)
+			kill_light()
 
 	active_power_usage = ((light_range + light_power) * 10)
 	update_icon()
