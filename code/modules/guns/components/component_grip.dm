@@ -7,6 +7,7 @@
 
 /obj/item/gun_component/grip/pistol
 	icon_state = "pistol"
+	color = COLOR_GUNMETAL
 	weapon_type = GUN_PISTOL
 
 /obj/item/gun_component/grip/pistol/plated
@@ -19,10 +20,12 @@
 
 /obj/item/gun_component/grip/pistol/revolver
 	icon_state = "revolver"
+	color = COLOR_BROWN
 
 /obj/item/gun_component/grip/pistol/revolver/small
 	icon_state = "revolver_small"
 	w_class = 1
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/grip/pistol/revolver/large
 	icon_state = "revolver_large"
@@ -55,6 +58,7 @@
 
 /obj/item/gun_component/grip/pistol/laser
 	icon_state = "las_pistol"
+	color = null
 	projectile_type = GUN_TYPE_LASER
 
 /obj/item/gun_component/grip/smg/laser

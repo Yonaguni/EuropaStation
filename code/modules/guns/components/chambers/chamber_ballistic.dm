@@ -244,3 +244,4 @@
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
 	max_shots = 8
+	color = COLOR_GUNMETAL
