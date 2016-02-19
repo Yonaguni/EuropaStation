@@ -20,7 +20,7 @@
 
 /obj/item/gun_component/grip/pistol/revolver
 	icon_state = "revolver"
-	color = COLOR_BROWN
+	color = COLOR_WOODFINISH
 
 /obj/item/gun_component/grip/pistol/revolver/small
 	icon_state = "revolver_small"
@@ -33,6 +33,7 @@
 /obj/item/gun_component/grip/smg
 	icon_state = "smg"
 	weapon_type = GUN_SMG
+	color = COLOR_WOODFINISH
 
 /obj/item/gun_component/grip/rifle
 	icon_state = "rifle"
