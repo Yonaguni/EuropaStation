@@ -3,6 +3,11 @@
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
 
+	// ADDING THIS HERE UNTIL GUN ICONS ARE FIXED.
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+	// REMOVE AFTER FIXING GUN ICONS IN 510.
+
 	var/max_shots = 0                          // Weapon capacity.
 	var/caliber = ""                           // Barrel size/type of projectile.
 	var/decl/weapon_model/model                // Model and manufacturer info, if any.

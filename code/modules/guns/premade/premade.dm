@@ -9,7 +9,7 @@
 	var/ammo_type // Set to autoload the gun at spawn.
 
 /obj/item/weapon/gun/composite/premade/New()
-	icon_state = ""
+	//icon_state = "" // READD AFTER FIXING GUN ICONS IN 510.
 
 	// Mandatory parts.
 	barrel =  new variant_barrel  (src, use_model = set_model)
