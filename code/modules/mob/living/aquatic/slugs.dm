@@ -19,9 +19,9 @@ var/list/slug_cache = list()
 
 	var/list/components = list("base","eyes","fronds","stripe")
 	if(!base_colour["eyes"])   base_colour["eyes"]   = "[pick(list(COLOR_RED, COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_BLUE, COLOR_PINK, COLOR_ORANGE, COLOR_LUMINOL))]"
-	if(!base_colour["base"])   base_colour["base"]   = "#[get_random_colour(0,40,70)]"
-	if(!base_colour["fronds"]) base_colour["fronds"] = "#[get_random_colour(0,50,90)]"
-	if(!base_colour["stripe"]) base_colour["stripe"] = "#[get_random_colour(0,50,90)]"
+	if(!base_colour["base"])   base_colour["base"]   = get_random_colour(0,40,70)
+	if(!base_colour["fronds"]) base_colour["fronds"] = get_random_colour(0,50,90)
+	if(!base_colour["stripe"]) base_colour["stripe"] = get_random_colour(0,50,90)
 	if(!rider)
 		rider = list()
 		rider["base"] = 0
