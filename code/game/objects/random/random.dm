@@ -220,17 +220,24 @@
 					/obj/item/toy/plushie/kitten,\
 					/obj/item/toy/plushie/lizard)
 
-/obj/random/junk //Broken items, or stuff that could be picked up
+/obj/random/junk //Broken items, or trash that could be picked up
 	name = "random junk"
 	desc = "This is some random junk."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "nymphplushie"
+	icon = 'icons/obj/trash.dmi'
+	icon_state = "chips"
 	item_to_spawn()
 		return pick(/obj/item/weapon/material/shard,\
 					/obj/item/weapon/material/shard/shrapnel,\
 					/obj/item/stack/material/cardboard,\
 					/obj/item/weapon/storage/box/lights/mixed,\
-					/obj/item/weapon/storage/box/matches)
+					/obj/item/weapon/storage/box/matches,\
+					/obj/item/trash/candle,\
+					/obj/item/trash/semki,\
+					/obj/item/trash/sosjerky,\
+					/obj/item/trash/popcorn,\
+					/obj/item/trash/chips,\
+					/obj/item/trash/cheesie,\
+					/obj/item/trash/raisins)
 
 
 /obj/random/trash //Mostly remains and cleanable decals. Stuff a janitor could clean up
@@ -247,7 +254,7 @@
 					/obj/effect/decal/cleanable/spiderling_remains,\
 					/obj/effect/decal/cleanable/vomit,\
 					/obj/effect/decal/cleanable/blood/splatter,\
-					/obj/item/remains/robot)
+					/obj/effect/decal/remains/robot)
 
 obj/random/closet //A couple of random closets to spice up maint
 	name = "random closet"
