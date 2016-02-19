@@ -161,8 +161,9 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
-
+	var/image/I = image('icons/mob/zone_sel.dmi', "[selecting]")
+	I.plane = plane
+	overlays += I
 
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
