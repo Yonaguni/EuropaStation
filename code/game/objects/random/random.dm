@@ -254,7 +254,7 @@
 					/obj/effect/decal/cleanable/spiderling_remains,\
 					/obj/effect/decal/cleanable/vomit,\
 					/obj/effect/decal/cleanable/blood/splatter,\
-					/obj/effect/decal/remains/robot)
+					/obj/item/remains/robot)
 
 obj/random/closet //A couple of random closets to spice up maint
 	name = "random closet"
