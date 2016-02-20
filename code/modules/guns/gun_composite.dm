@@ -3,11 +3,6 @@
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
 
-	// ADDING THIS HERE UNTIL GUN ICONS ARE FIXED.
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "revolver"
-	// REMOVE AFTER FIXING GUN ICONS IN 510.
-
 	var/max_shots = 0                          // Weapon capacity.
 	var/caliber = ""                           // Barrel size/type of projectile.
 	var/decl/weapon_model/model                // Model and manufacturer info, if any.
@@ -24,8 +19,6 @@
 	var/obj/item/gun_component/grip/grip       // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/chamber/chamber // Loading type, firing modes, special behavior.
-
-	var/list/part_overlays					   // Stored parts images for update_icon
 
 /obj/item/weapon/gun/composite/New(var/newloc, var/obj/item/weapon/gun_assembly/assembly)
 	if(istype(assembly))
@@ -157,15 +150,13 @@
 
 /obj/item/weapon/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
 	overlays.Cut()
-
 	if(force_icon && force_icon_state)
 
 		icon = force_icon
 		icon_state = force_icon_state
-
 	else
 		if (regenerate)
-			part_overlays = list()
+			icon_state = ""
 
 			if(model && model.force_item_state)
 				item_state = model.force_item_state
@@ -174,23 +165,10 @@
 			if(body.slot_flags & SLOT_BACK)
 				item_state_slots[slot_back_str] = body.item_state
 
-			var/image/part
-			for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
-				if (!GC) continue
-				GC.update_icon()
-				part = image(GC.icon, GC.icon_state)
-				part.pixel_y = GC.pixel_y
-				part.pixel_x = GC.pixel_x
-				part.color = GC.color
-				part.appearance_flags = RESET_COLOR
-				part_overlays |= part
-		overlays |= part_overlays
-
 	chamber.update_ammo_overlay()
-	if(chamber.ammo_overlay)
-		chamber.ammo_overlay.pixel_y = chamber.pixel_y
-		chamber.ammo_overlay.pixel_x = chamber.pixel_x
-		overlays |= chamber.ammo_overlay
+
+	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
+		overlays |= GC
 
 	if(requires_two_hands)
 		if(wielded())
