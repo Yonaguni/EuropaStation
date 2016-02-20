@@ -100,6 +100,8 @@
 
 /obj/structure/scrap/vehicle
 	name = "debris pile"
+	base_icon = "car"
+	maxvars = 7
 	loot_list = list(
 		/obj/item/vehicle_part,
 		/obj/item/vehicle_part,
