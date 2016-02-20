@@ -79,6 +79,7 @@
 	underlays.Cut()
 	for(var/obj/O in loot.contents)
 		var/image/I = image(O.icon,O.icon_state)
+		I.color = O.color
 		underlays |= randomize_image(I)
 
 /obj/structure/scrap/attack_hand(mob/user)
