@@ -28,4 +28,5 @@
 
 /obj/item/ammo_casing/capgun
 	caliber = CALIBER_TOY
+	color = "#cc3333"
 	projectile_type = /obj/item/projectile/bullet/pistol/cap

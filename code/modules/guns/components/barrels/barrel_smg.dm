@@ -6,6 +6,7 @@
 	accepts_accessories = 1
 	weight_mod = 1
 	accuracy_mod = -1
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/barrel/smg/a9
 	caliber = CALIBER_PISTOL_MEDIUM

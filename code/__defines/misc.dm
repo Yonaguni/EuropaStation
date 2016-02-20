@@ -91,6 +91,8 @@
 #define COLOR_PALE_PURPLE_GRAY "#bda2ba"
 #define COLOR_PURPLE_GRAY      "#a2819e"
 #define COLOR_SUN              "#ec8b2f"
+#define COLOR_GUNMETAL         "#6b6569"
+#define COLOR_WOODFINISH	   "#8c6424"
 
 //	Shuttles.
 
