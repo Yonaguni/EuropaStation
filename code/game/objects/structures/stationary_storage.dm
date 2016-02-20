@@ -8,6 +8,7 @@
 	max_w_class = 5
 	max_storage_space = 20
 
+	var/list/initial_contents = list()
 	var/icon_closed = "cabinet_closed"
 	var/icon_open = "cabinet_open"
 	var/open
@@ -23,6 +24,10 @@
 		for(var/obj/item/I in get_turf(src))
 			if(I.simulated && !I.anchored)
 				I.forceMove(src)
+	// Pre-stock it if needed.
+	for(var/stockpath in initial_contents)
+		for(var/x = 1 to initial_contents[stockpath])
+			new stockpath(src)
 
 /obj/item/weapon/storage/stationary/update_icon()
 	..()
@@ -55,14 +60,6 @@
 	icon_state = "generic"
 	icon_closed = null
 	icon_open = null
-
-	var/list/initial_contents = list()
-
-/obj/item/weapon/storage/stationary/vendor/New()
-	..()
-	for(var/stockpath in initial_contents)
-		for(var/x = 1 to initial_contents[stockpath])
-			new stockpath(src)
 
 /obj/item/weapon/storage/stationary/vendor/snack
 	name = "snack machine"

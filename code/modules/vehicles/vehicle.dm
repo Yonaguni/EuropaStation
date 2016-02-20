@@ -38,6 +38,7 @@
 	var/load_offset_x = 0		//pixel_x offset for item overlay
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
+	var/debris_path
 
 //-------------------------------------------
 // Standard procs
@@ -192,10 +193,6 @@
 	src.visible_message("<span class='danger'>\The [src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
-
 	if(cell)
 		cell.forceMove(Tsec)
 		cell.update_icon()
@@ -205,11 +202,11 @@
 	if(istype(load, /mob/living))
 		var/mob/living/M = load
 		M.apply_effects(5, 5)
-
 	unload()
 
+	if(debris_path) new debris_path(Tsec)
 	new /obj/effect/gibspawner/robot(Tsec)
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 
 	qdel(src)
 
