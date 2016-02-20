@@ -5,7 +5,7 @@
 	opacity = 0
 	density = 0
 	icon_state = "small"
-	icon = 'icons/obj/structures/scrap.dmi'
+	icon = 'icons/obj/structures/scrap/base.dmi'
 	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
 	var/loot_min = 3
 	var/loot_max = 5
@@ -18,8 +18,7 @@
 		/obj/item/weapon/material/shard,
 		/obj/item/weapon/material/shard/shrapnel
 		)
-	var/base_icon = "base"
-	var/maxvars = 18 //number of random icons to use for base generation
+	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
 	var/base_min = 3	//min and max number of random pieces of base icon
 	var/base_max = 5
 	var/base_spread = 8	//limits on pixel offsets of base pieces
@@ -74,7 +73,7 @@
 		overlays.Cut()
 		var/num = rand(base_min,base_max)
 		for(var/i=1 to num)
-			var/image/I = image(icon,"[base_icon][rand(1,maxvars)]")
+			var/image/I = image(parts_icon,pick(icon_states(parts_icon)))
 			overlays |= randomize_image(I)
 
 	underlays.Cut()
@@ -90,18 +89,17 @@
 	..(over_object)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
-	..()
 	if(istype(W,/obj/item/weapon/shovel))
 		var/list/ways = list("pokes around", "digs through", "rummages through", "goes through","picks through")
 		visible_message("<span class='notice'>\The [user] [pick(ways)] \the [src].</span>")
 		shuffle_loot()
 		if(!(loot.contents.len || contents.len > 1))
 			user << "<span class='notice'>There doesn't seem to be anything of interest left in \the [src]...</span>"
+	..()
 
 /obj/structure/scrap/vehicle
 	name = "debris pile"
-	base_icon = "car"
-	maxvars = 7
+	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	loot_list = list(
 		/obj/item/vehicle_part,
 		/obj/item/vehicle_part,
@@ -118,7 +116,6 @@
 	opacity = 1
 	density = 1
 	icon_state = "big"
-	base_icon = "base"
 	loot_min = 10
 	loot_max = 20
 
