@@ -6,4 +6,5 @@
 	icon = 'icons/obj/vehicle_parts.dmi'
 
 /obj/item/vehicle_part/New()
+	..()
 	icon_state = pick(icon_states(icon))
