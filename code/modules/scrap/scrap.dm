@@ -1,14 +1,12 @@
-/obj/item/weapon/storage/stationary/scrap
+/obj/structure/scrap
 	name = "scrap pile"
 	desc = "Someone met an unfortunate fate. Better see what's left."
+	anchored = 1
 	opacity = 0
 	density = 0
-	icon_state = "small1"
+	icon_state = "small"
 	icon = 'icons/obj/structures/scrap.dmi'
-	icon_closed = null
-	icon_open = null
-
-	var/base_icon = "small"
+	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
 	var/loot_min = 3
 	var/loot_max = 5
 	var/list/loot_list = list(
@@ -20,8 +18,87 @@
 		/obj/item/weapon/material/shard,
 		/obj/item/weapon/material/shard/shrapnel
 		)
+	var/base_icon = "base"
+	var/maxvars = 18 //number of random icons to use for base generation
+	var/base_min = 3	//min and max number of random pieces of base icon
+	var/base_max = 5
+	var/base_spread = 8	//limits on pixel offsets of base pieces
 
-/obj/item/weapon/storage/stationary/scrap/vehicle
+/obj/structure/scrap/New()
+	var/amt = rand(loot_min, loot_max)
+	for(var/x = 1 to amt)
+		var/loot_path = pick(loot_list)
+		new loot_path(src)
+	loot = new(src)
+	loot.max_w_class = 5
+	loot.max_storage_space = loot_min*4
+	shuffle_loot()
+	update_icon(1)
+	..()
+
+/obj/structure/scrap/Destroy()
+	qdel(loot)
+	loot = null
+	..()
+
+/obj/structure/scrap/proc/shuffle_loot()
+	loot.close_all()
+	for(var/A in loot)
+		loot.remove_from_storage(A,src)
+	if(contents.len)
+		contents = shuffle(contents)
+		var/num = rand(1,loot_min)
+		var/size = 0
+		for(var/obj/item/O in contents)
+			if(O == loot)
+				continue
+			if(num == 0)
+				break
+			if(O.get_storage_cost() > loot.max_storage_space)
+				break
+			size += O.get_storage_cost()
+			O.forceMove(loot)
+			num--
+	update_icon()
+
+/obj/structure/scrap/proc/randomize_image(var/image/I)
+	I.pixel_x = rand(-base_spread,base_spread)
+	I.pixel_y = rand(-base_spread,base_spread)
+	var/matrix/M = matrix()
+	M.Turn(pick(0,90.180,270))
+	I.transform = M
+	return I
+
+/obj/structure/scrap/update_icon(var/rebuild_base=0)
+	if(rebuild_base)
+		overlays.Cut()
+		var/num = rand(base_min,base_max)
+		for(var/i=1 to num)
+			var/image/I = image(icon,"[base_icon][rand(1,maxvars)]")
+			overlays |= randomize_image(I)
+
+	underlays.Cut()
+	for(var/obj/O in loot.contents)
+		var/image/I = image(O.icon,O.icon_state)
+		underlays |= randomize_image(I)
+
+/obj/structure/scrap/attack_hand(mob/user)
+	loot.open(user)
+	..(user)
+
+/obj/structure/scrap/MouseDrop(obj/over_object)
+	..(over_object)
+
+/obj/structure/scrap/attackby(obj/item/W, mob/user)
+	..()
+	if(istype(W,/obj/item/weapon/shovel))
+		var/list/ways = list("pokes around", "digs through", "rummages through", "goes through","picks through")
+		visible_message("<span class='notice'>\The [user] [pick(ways)] \the [src].</span>")
+		shuffle_loot()
+		if(!(loot.contents.len || contents.len > 1))
+			user << "<span class='notice'>There doesn't seem to be anything of interest left in \the [src]...</span>"
+
+/obj/structure/scrap/vehicle
 	name = "debris pile"
 	loot_list = list(
 		/obj/item/vehicle_part,
@@ -34,31 +111,19 @@
 		/obj/item/weapon/material/shard
 		)
 
-/obj/item/weapon/storage/stationary/scrap/New()
-	icon_state = "[base_icon][rand(1,2)]"
-	var/amt = rand(loot_min, loot_max)
-	for(var/x = 1 to amt)
-		var/loot_path = pick(loot_list)
-		if(initial_contents[loot_path])
-			initial_contents[loot_path]++
-		else
-			initial_contents[loot_path] = 1
-	..()
-
-// Random order!
-/obj/item/weapon/storage/stationary/open(var/mob/user)
-	if(contents.len) contents = shuffle(contents)
-	..(user)
-
-/obj/item/weapon/storage/stationary/scrap/large
+/obj/structure/scrap/large
 	name = "large scrap pile"
 	opacity = 1
 	density = 1
-	icon_state = "large1"
-	base_icon = "large"
+	icon_state = "big"
+	base_icon = "base"
 	loot_min = 10
 	loot_max = 20
 
-	// They are bigger!
-	pixel_x = -16
-	pixel_y = -16
+	base_min = 9
+	base_max = 14
+	base_spread = 16
+
+
+/obj/item/weapon/storage/internal/updating/update_icon()
+	master_item.update_icon()
