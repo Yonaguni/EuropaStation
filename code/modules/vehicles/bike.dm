@@ -15,24 +15,20 @@ var/list/bike_cache = list()
 	pixel_y = -16
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
+	debris_path = /obj/item/weapon/storage/stationary/scrap/vehicle
+
 	var/max_move_speed = 3
 	var/cur_move_speed = 0
 	var/cur_move_dir = 0
-
 	var/moved
-
 	var/protection_percent = 60
-
 	var/land_speed = 1 //if 0 it can't go on turf
 	var/space_speed = 0
 	var/bike_icon = "bike"
-
 	var/idle_sound = 'sound/misc/bike_idle.ogg'
 	var/start_sound = 'sound/misc/bike_start.ogg'
-
 	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
-
 	var/collision_cooldown
 
 /obj/vehicle/bike/initialize()
