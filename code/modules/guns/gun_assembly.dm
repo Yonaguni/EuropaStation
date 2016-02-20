@@ -97,16 +97,6 @@
 
 	if(istype(thing, /obj/item/gun_component))
 		var/obj/item/gun_component/GC = thing
-/*
-		for(var/obj/item/gun_component/temp_comp in list(body, barrel, stock, grip, chamber))
-			if(istype(temp_comp))
-				if(!isnull(GC.weapon_type) && temp_comp.weapon_type != GC.weapon_type)
-					user << "<span class='warning'>\The [GC] is designed for a different model of weapon.</span>"
-					return
-				if(!isnull(GC.projectile_type) && temp_comp.projectile_type != GC.projectile_type)
-					user << "<span class='warning'>\The [GC] is designed for a different type of weapon.</span>"
-					return
-*/
 		var/installed
 		if(GC.component_type == COMPONENT_BARREL && !barrel)
 			barrel = GC
@@ -187,23 +177,11 @@
 	var/dam_type
 
 	var/decl/weapon_model/model // If all the parts are from the same producer, we get a bonus.
-	var/image/part
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber))
 		if (!GC) continue
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
-/*
-		var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
-		if(!gun_component_icon_cache[cache_key])
-			gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
-		overlays |= gun_component_icon_cache[cache_key]
-*/
-		part = image(GC.icon, GC.icon_state)
-		part.pixel_y = GC.pixel_y
-		part.pixel_x = GC.pixel_x
-		part.color = GC.color
-		part.appearance_flags = RESET_COLOR
-		overlays |= part
+		overlays |= GC
 		if(GC.model)
 			if(isnull(model))
 				model = GC.model
@@ -220,11 +198,7 @@
 		GC.installed_dam_type = dam_type
 		GC.installed_gun_type = gun_type
 		GC.update_icon()
-
-		var/cache_key = "[GC.model ? GC.model.model_name : "no model"]-[GC.icon_state]"
-		if(!gun_component_icon_cache[cache_key])
-			gun_component_icon_cache[cache_key] = image(icon = GC.icon, icon_state = GC.icon_state)
-		overlays |= gun_component_icon_cache[cache_key]
+		overlays |= GC
 
 	if(model)
 		if(model.force_gun_name)

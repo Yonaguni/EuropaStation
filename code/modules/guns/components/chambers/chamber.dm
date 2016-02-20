@@ -23,6 +23,7 @@
 
 /obj/item/gun_component/chamber/proc/update_ammo_overlay()
 	if(ammo_indicator_state)
+		overlays.Cut()
 		var/shots_left = get_shots_remaining()
 		var/use_state = ammo_indicator_state
 		if(model && model.ammo_use_state)
@@ -44,7 +45,7 @@
 			else
 				ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
 		ammo_overlay.icon_state = use_state
-
+		overlays |= ammo_overlay
 /obj/item/gun_component/chamber/proc/recieve_charge(var/amt)
 	return
 
