@@ -15,7 +15,7 @@ var/list/bike_cache = list()
 	pixel_y = -16
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
-	debris_path = /obj/item/weapon/storage/stationary/scrap/vehicle
+	debris_path = /obj/structure/scrap/vehicle
 
 	var/max_move_speed = 3
 	var/cur_move_speed = 0
