@@ -28,6 +28,7 @@
 #define CE_ALCOHOL               "alcohol" // Liver filtering
 #define CE_ALCOHOL_TOXIC         "alcotoxic" // Liver damage
 #define CE_SPEEDBOOST            "gofast" // jumpstart
+#define CE_PULSE              	 "xcardic" // increases or decreases heart rate
 
 // Food
 #define REAGENT_ID_NUTRIMENT     "nutriment"
@@ -95,6 +96,3 @@
 #define REAGENT_ID_NITROGEN       "nitrogen"
 #define REAGENT_ID_N2O            "sleeping_agent"
 
-// Chemistry lists.
-var/list/tachycardics  = list(REAGENT_ID_ADRENALINE, REAGENT_ID_JUMPSTART, REAGENT_ID_NICOTINE) // Increase heart rate.
-var/list/bradycardics  = list(REAGENT_ID_SLEEPTOX, REAGENT_ID_MORPHINE)                 // Decrease heart rate.

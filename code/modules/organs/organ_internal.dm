@@ -40,36 +40,39 @@
 	organ_tag = O_HEART
 	parent_organ = BP_TORSO
 	dead_icon = "heart-off"
+	var/pulse = PULSE_NORM
+	var/heartbeat = 0
 
-/obj/item/organ/internal/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = O_LUNGS
-	parent_organ = BP_TORSO
+/obj/item/organ/internal/heart/process()
+	if(owner)
+		if(owner.stat == DEAD || status & ORGAN_ROBOT)
+			pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
+		else
+			if(!(owner.life_tick % 5))//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
+				pulse = PULSE_NORM
 
+				if(round(owner.vessel.get_reagent_amount(REAGENT_ID_BLOOD)) <= BLOOD_VOLUME_BAD)	//how much blood do we have
+					pulse  = PULSE_THREADY	//not enough :(
 
-/obj/item/organ/lungs/proc/breathes_water()
-	return 0
+				if(owner.status_flags & FAKEDEATH)
+					pulse = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
-/obj/item/organ/internal/lungs/process()
+				pulse = Clamp(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
 
+		if(pulse)
+			if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || istype(get_turf(owner), /turf/space))
+				//PULSE_THREADY - maximum value for pulse, currently it 5.
+				//High pulse value corresponds to a fast rate of heartbeat.
+				//Divided by 2, otherwise it is too slow.
+				var/rate = (PULSE_THREADY - pulse)/2
+
+				if(heartbeat >= rate)
+					heartbeat = 0
+					owner << sound('sound/effects/singlebeat.ogg',0,0,0,50)
+				else
+					heartbeat++
 	..()
 
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15
 
 /obj/item/organ/internal/kidneys
 	name = "kidneys"
