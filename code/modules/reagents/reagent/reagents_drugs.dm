@@ -18,6 +18,7 @@
 	else
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -2)
 	..()
 
 /datum/reagent/adrenaline
@@ -29,6 +30,8 @@
 	// TODO check how hurt you are, apply effects dependant on that.
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25)
+	M.add_chemical_effect(CE_PAINKILLER, 25)
+	M.add_chemical_effect(CE_PULSE,2)
 	// TODO stresses the heart.
 
 /datum/reagent/antitoxin
@@ -103,6 +106,7 @@
 
 /datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.add_chemical_effect(CE_PULSE, -2)
 
 /datum/reagent/morphine/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -113,6 +117,9 @@
 	name = "Nicotine"
 	id = REAGENT_ID_NICOTINE
 	color = "#181818"
+
+/datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/jumpstart
 	name = "Jumpstart"
@@ -125,3 +132,4 @@
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_PULSE, -1)

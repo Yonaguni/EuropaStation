@@ -51,8 +51,7 @@ var/list/organ_cache = list()
 		src.owner = holder
 		species = all_species["Human"]
 		if(holder.dna)
-			dna = holder.dna.Clone()
-			species = all_species[dna.species]
+			set_dna(holder.dna.Clone())
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = holder
@@ -73,8 +72,11 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
 		dna = new_dna.Clone()
+		if(!blood_DNA)
+			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[dna.unique_enzymes] = dna.b_type
+		species = all_species[new_dna.species]
 
 /obj/item/organ/proc/die()
 	if(status & ORGAN_ROBOT)
