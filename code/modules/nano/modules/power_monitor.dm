@@ -16,7 +16,7 @@
 
 // If PC is not null header template is loaded. Use PC.get_header_data() to get relevant nanoui data from it. All data entries begin with "PC_...."
 // In future it may be expanded to other modular computer devices.
-/datum/nano_module/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/power_monitor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = list()
 	if(program)
 		data = program.get_header_data()
@@ -38,14 +38,14 @@
 	if(focus)
 		data["focus"] = focus.return_reading_data()
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
 		if(program) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 // Refreshes list of active sensors kept on this computer.
 /datum/nano_module/power_monitor/proc/refresh_sensors()

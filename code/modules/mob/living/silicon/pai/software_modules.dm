@@ -12,7 +12,7 @@
 	// Whether pAIs should automatically receive this module at no cost
 	var/default = 0
 
-	proc/on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	proc/on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		return
 
 	proc/toggle(mob/living/silicon/pai/user)
@@ -28,7 +28,7 @@
 	toggle = 0
 	default = 1
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		var/data[0]
 
 		data["master"] = user.master
@@ -36,13 +36,13 @@
 		data["prime"] = user.pai_law0
 		data["supplemental"] = user.pai_laws
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_directives.tmpl", "pAI Directives", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
-			ui.set_auto_update(1)
+			ui.set_autoupdate(1)
 
 	Topic(href, href_list)
 		var/mob/living/silicon/pai/P = usr
@@ -83,20 +83,20 @@
 	id = "manifest"
 	toggle = 0
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		data_core.get_manifest_json()
 
 		var/data[0]
 		// This is dumb, but NanoUI breaks if it has no data to send
 		data["manifest"] = list("__json_cache" = ManifestJSON)
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_manifest.tmpl", "Crew Manifest", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
-			ui.set_auto_update(1)
+			ui.set_autoupdate(1)
 
 /datum/pai_software/med_records
 	name = "Medical Records"
@@ -104,7 +104,7 @@
 	id = "med_records"
 	toggle = 0
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		var/data[0]
 
 		var/records[0]
@@ -122,13 +122,13 @@
 		data["medical"] = M ? M.fields : null
 		data["could_not_find"] = user.medical_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_medrecords.tmpl", "Medical Records", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
-			ui.set_auto_update(1)
+			ui.set_autoupdate(1)
 
 	Topic(href, href_list)
 		var/mob/living/silicon/pai/P = usr
@@ -158,7 +158,7 @@
 	id = "sec_records"
 	toggle = 0
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		var/data[0]
 
 		var/records[0]
@@ -176,13 +176,13 @@
 		data["security"] = S ? S.fields : null
 		data["could_not_find"] = user.security_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_secrecords.tmpl", "Security Records", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
-			ui.set_auto_update(1)
+			ui.set_autoupdate(1)
 
 	Topic(href, href_list)
 		var/mob/living/silicon/pai/P = usr
@@ -216,7 +216,7 @@
 	id = "door_jack"
 	toggle = 0
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		var/data[0]
 
 		data["cable"] = user.cable != null
@@ -226,13 +226,13 @@
 		data["progress_b"] = user.hackprogress % 10
 		data["aborted"] = user.hack_aborted
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_doorjack.tmpl", "Door Jack", 300, 150)
 			ui.set_initial_data(data)
 			ui.open()
-			ui.set_auto_update(1)
+			ui.set_autoupdate(1)
 
 	Topic(href, href_list)
 		var/mob/living/silicon/pai/P = usr
@@ -290,7 +290,7 @@
 	id = "atmos_sense"
 	toggle = 0
 
-	on_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+	on_ui_interact(mob/living/silicon/pai/user, datum/tgui/ui=null, force_open=1)
 		var/data[0]
 
 		var/turf/T = get_turf_or_move(user.loc)
@@ -317,7 +317,7 @@
 				gases[++gases.len] = gas
 			data["gas"] = gases
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_atmosphere.tmpl", "Atmosphere Sensor", 350, 300)

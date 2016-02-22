@@ -159,7 +159,7 @@
 		reconnect()
 	ui_interact(user)
 
-/obj/machinery/power/generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/generator/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
 	if (dir == NORTH || dir == SOUTH)
@@ -198,7 +198,7 @@
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -208,7 +208,7 @@
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /obj/machinery/power/generator/power_change()
 	..()

@@ -6,7 +6,7 @@
 	icon_screen = "alert:0"
 	light_color = "#e6ffff"
 	circuit = /obj/item/weapon/circuitboard/stationalert
-	var/datum/nano_module/alarm_monitor/alarm_monitor
+/*	var/datum/nano_module/alarm_monitor/alarm_monitor
 	var/monitor_type = /datum/nano_module/alarm_monitor
 
 /obj/machinery/computer/station_alert/engineering
@@ -41,26 +41,26 @@
 		alarm_monitor.unregister_alarm(src)
 		qdel(alarm_monitor)
 		alarm_monitor = null
-
+*/
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	ui_interact(user)
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
 	ui_interact(user)
-
+/*
 /obj/machinery/computer/station_alert/ui_interact(mob/user)
 	if(alarm_monitor)
 		alarm_monitor.ui_interact(user)
 
 /obj/machinery/computer/station_alert/nano_container()
 	return alarm_monitor
-
+*/
 /obj/machinery/computer/station_alert/update_icon()
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))
-		var/list/alarms = alarm_monitor ? alarm_monitor.major_alarms() : list()
-		if(alarms.len)
-			icon_screen = "alert:2"
-		else
-			icon_screen = initial(icon_screen)
+//		var/list/alarms = alarm_monitor ? alarm_monitor.major_alarms() : list()
+//		if(alarms.len)
+//			icon_screen = "alert:2"
+//		else
+		icon_screen = initial(icon_screen)
 	..()

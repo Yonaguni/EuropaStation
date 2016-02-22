@@ -8,7 +8,7 @@
 	idle_power_usage = 250
 	active_power_usage = 500
 	circuit = /obj/item/weapon/circuitboard/crew
-	var/datum/nano_module/crew_monitor/crew_monitor
+/*	var/datum/nano_module/crew_monitor/crew_monitor
 
 /obj/machinery/computer/crew/New()
 	crew_monitor = new(src)
@@ -18,7 +18,7 @@
 	qdel(crew_monitor)
 	crew_monitor = null
 	..()
-
+*/
 /obj/machinery/computer/crew/attack_ai(mob/user)
 	ui_interact(user)
 
@@ -27,8 +27,8 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
-
-/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/*
+/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	crew_monitor.ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/computer/crew/nano_container()
@@ -36,3 +36,4 @@
 
 /obj/machinery/computer/crew/interact(mob/user)
 	crew_monitor.ui_interact(user)
+*/

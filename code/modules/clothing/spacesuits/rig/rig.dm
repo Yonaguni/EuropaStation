@@ -395,7 +395,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/weapon/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/nano_state = inventory_state)
+/obj/item/weapon/rig/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1, var/nano_state = inventory_state)
 	if(!user)
 		return
 
@@ -463,12 +463,12 @@
 	if(module_list.len)
 		data["modules"] = module_list
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, ((src.loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
 

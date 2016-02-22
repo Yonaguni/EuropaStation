@@ -22,7 +22,7 @@
 			child_names[tags[i]] = names[i]
 
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	var/list/airlocks[child_names.len]
@@ -35,13 +35,13 @@
 		"airlocks" = airlocks,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "multi_docking_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/Topic(href, href_list)
 	return
@@ -60,7 +60,7 @@
 	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	data = list(
@@ -73,13 +73,13 @@
 		"override_enabled" = airlock_program.override_enabled,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/Topic(href, href_list)
 	if(..())

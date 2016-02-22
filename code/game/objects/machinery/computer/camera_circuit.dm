@@ -29,16 +29,16 @@
 					build_path = /obj/machinery/computer/security/engineering
 				if("Mining")
 					build_path = /obj/machinery/computer/security/mining
-				if("Research")
+/*				if("Research")
 					build_path = /obj/machinery/computer/security/research
 				if("Medbay")
 					build_path = /obj/machinery/computer/security/medbay
 				if("Cargo")
 					build_path = /obj/machinery/computer/security/cargo
-
+*/
 	attackby(var/obj/item/I, var/mob/user)//if(health > 50)
 		..()
-		else if(istype(I,/obj/item/weapon/screwdriver))
+		if(istype(I,/obj/item/weapon/screwdriver))
 			secured = !secured
 			user.visible_message("<span class='notice'>The [src] can [secured ? "no longer" : "now"] be modified.</span>")
 			updateBuildPath()
@@ -49,7 +49,7 @@
 			user.machine = src
 			interact(user, 0)
 
-	proc/interact(var/mob/user, var/ai=0)
+	interact(var/mob/user, var/ai=0)
 		if(secured)
 			return
 		if (!ishuman(user))
@@ -84,19 +84,19 @@
 		else if(href_list["net"])
 			network = href_list["net"]
 			authorised = 0
-		else if( href_list["auth"] )
+/*		else if( href_list["auth"] )
 			var/mob/M = usr
 			var/obj/item/weapon/card/id/I = M.equipped()
 			if (istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
-			if (I && istype(I))
+			if (istype(I))
 				if(access_captain in I.access)
 					authorised = 1
 				else if (possibleNets[network] in I.access)
 					authorised = 1
 			if(istype(I,/obj/item/weapon/card/emag))
-				I.resolve_attackby(src, usr)
+				I.resolve_attackby(src, usr)*/
 		else if( href_list["removeauth"] )
 			authorised = 0
 		updateDialog()

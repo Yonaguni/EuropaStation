@@ -93,7 +93,7 @@ var/global/nttransfer_uid = 0
 /datum/nano_module/computer_nttransfer
 	name = "NTNet P2P Transfer Client"
 
-/datum/nano_module/computer_nttransfer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/computer_nttransfer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!program)
 		return
 	var/datum/computer_file/program/nttransfer/PRG = program
@@ -136,13 +136,13 @@ var/global/nttransfer_uid = 0
 			)))
 		data["servers"] = all_servers
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "ntnet_transfer.tmpl", "NTNet P2P Transfer Client", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /datum/computer_file/program/nttransfer/Topic(href, href_list)
 	if(..())

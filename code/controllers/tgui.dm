@@ -1,6 +1,4 @@
-//var/global/datum/controller/process/SStgui
 var/global/datum/controller/process/tgui/tguiProcess
-
 
 /datum/controller/process/tgui
 	var/list/open_uis = list() // A list of open UIs, grouped by src_object and ui_key.
@@ -13,7 +11,6 @@ var/global/datum/controller/process/tgui/tguiProcess
 	start_delay = 20
 
 	basehtml = file2text('tgui/tgui.html') // Read the HTML from disk.
-//	SStgui = src
 	tguiProcess = src
 
 /datum/controller/process/tgui/doWork()
@@ -25,5 +22,3 @@ var/global/datum/controller/process/tgui/tguiProcess
 			continue
 		processing_uis.Remove(ui)
 		SCHECK
-
-//datum/var/global/datum/controller/process/SStgui

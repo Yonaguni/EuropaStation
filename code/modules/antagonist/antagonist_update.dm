@@ -11,10 +11,10 @@
 		player.transfer_to(player.current)
 		if(holder) qdel(holder)
 	player.original = player.current
-	if(!preserve_appearance && (flags & ANTAG_SET_APPEARANCE))
+/*	if(!preserve_appearance && (flags & ANTAG_SET_APPEARANCE))
 		spawn(3)
 			var/mob/living/carbon/human/H = player.current
-			if(istype(H)) H.change_appearance(APPEARANCE_ALL, H.loc, H, valid_species, state = z_state)
+			if(istype(H)) H.change_appearance(APPEARANCE_ALL, H.loc, H, valid_species, state = z_state)*/
 	return player.current
 
 /datum/antagonist/proc/update_access(var/mob/living/player)

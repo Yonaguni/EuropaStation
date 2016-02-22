@@ -58,12 +58,12 @@
 	C.loc = src
 	cartridges[C.label] = C
 	cartridges = sortAssoc(cartridges)
-	nanomanager.update_uis(src)
+	tguiProcess.update_uis(src)
 
 /obj/machinery/chemical_dispenser/proc/remove_cartridge(label)
 	. = cartridges[label]
 	cartridges -= label
-	nanomanager.update_uis(src)
+	tguiProcess.update_uis(src)
 
 /obj/machinery/chemical_dispenser/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
@@ -108,12 +108,12 @@
 		user.drop_from_inventory(RC)
 		RC.loc = src
 		user << "<span class='notice'>You set \the [RC] on \the [src].</span>"
-		nanomanager.update_uis(src) // update all UIs attached to src
+		tguiProcess.update_uis(src) // update all UIs attached to src
 
 	else
 		return ..()
 
-/obj/machinery/chemical_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/chemical_dispenser/ui_interact(mob/user, ui_key = "main",datum/tgui/ui = null, var/force_open = 1)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["amount"] = amount
@@ -139,7 +139,7 @@
 	data["chemicals"] = chemicals
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "chem_disp.tmpl", ui_title, 390, 680)
 		ui.set_initial_data(data)

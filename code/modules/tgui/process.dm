@@ -1,7 +1,7 @@
  /**
-  * tgui subsystem
+  * tgui process
   *
-  * Contains all tgui state and subsystem code.
+  * Contains all tgui state and process code.
  **/
 
  /**
