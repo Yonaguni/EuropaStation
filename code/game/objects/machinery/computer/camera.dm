@@ -34,7 +34,7 @@
 			reset_current()
 		return viewflag
 
-	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+	ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 1)
 		if(src.z > 6) return
 		if(stat & (NOPOWER|BROKEN)) return
 		if(user.stat) return
@@ -47,15 +47,15 @@
 		if(current_network)
 			data["cameras"] = camera_repository.cameras_in_network(current_network)
 
-		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+		ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 		if (!ui)
 			ui = new(user, src, ui_key, "sec_camera.tmpl", "Camera Console", 900, 800)
-
+/*
 			// adding a template with the key "mapContent" enables the map ui functionality
 			ui.add_template("mapContent", "sec_camera_map_content.tmpl")
 			// adding a template with the key "mapHeader" replaces the map header content
 			ui.add_template("mapHeader", "sec_camera_map_header.tmpl")
-
+*/
 			ui.set_initial_data(data)
 			ui.open()
 
@@ -150,7 +150,7 @@
 /obj/machinery/computer/security/process()
 	if(cache_id != camera_repository.camera_cache_id)
 		cache_id = camera_repository.camera_cache_id
-		nanomanager.update_uis(src)
+		tguiProcess.update_uis(src)
 
 /obj/machinery/computer/security/proc/can_access_camera(var/obj/machinery/camera/C)
 	var/list/shared_networks = src.network & C.network

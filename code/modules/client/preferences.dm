@@ -23,6 +23,8 @@ datum/preferences
 	var/toggles = TOGGLES_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
+	var/tgui_fancy = 1
+	var/tgui_lock = 1
 
 	//character preferences
 	var/real_name						//our character's name

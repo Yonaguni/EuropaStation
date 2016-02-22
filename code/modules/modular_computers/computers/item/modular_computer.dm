@@ -127,7 +127,7 @@
 	return 0
 
 // Operates NanoUI
-/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	if(!screen_on || !enabled)
 		if(ui)
 			ui.close()
@@ -160,13 +160,13 @@
 		programs.Add(list(program))
 
 	data["programs"] = programs
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "laptop_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/attack_self(mob/user)
@@ -338,7 +338,7 @@
 
 		idle_threads.Add(active_program)
 		active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
-		nanomanager.close_uis(active_program.NM ? active_program.NM : active_program)
+		tguiProcess.close_uis(active_program.NM ? active_program.NM : active_program)
 		active_program = null
 		update_icon()
 		if(user && istype(user))
@@ -600,11 +600,11 @@
 
 /obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?
-		nanomanager.update_uis(active_program)
+		tguiProcess.update_uis(active_program)
 		if(active_program.NM)
-			nanomanager.update_uis(active_program.NM)
+			tguiProcess.update_uis(active_program.NM)
 	else
-		nanomanager.update_uis(src)
+		tguiProcess.update_uis(src)
 
 /obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_updated_needed = 0

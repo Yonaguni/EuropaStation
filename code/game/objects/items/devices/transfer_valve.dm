@@ -37,7 +37,7 @@
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
-		nanomanager.update_uis(src) // update all UIs attached to src
+		tguiProcess.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
@@ -58,7 +58,7 @@
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
-		nanomanager.update_uis(src) // update all UIs attached to src
+		tguiProcess.update_uis(src) // update all UIs attached to src
 	return
 
 
@@ -71,7 +71,7 @@
 /obj/item/device/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
-/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -81,7 +81,7 @@
 	data["valveOpen"] = valve_open ? 1 : 0
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -91,7 +91,7 @@
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		//ui.set_auto_update(1)
+		//ui.set_autoupdate(1)
 
 /obj/item/device/transfer_valve/Topic(href, href_list)
 	..()

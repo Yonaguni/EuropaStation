@@ -100,13 +100,13 @@ var/list/stove_overlay_cache = list()
 		. = 1
 	src.add_fingerprint(usr)
 
-/obj/machinery/kitchen/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/kitchen/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	var/list/data = get_data()
 	if(!data)
 		return
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, nano_template, "[capitalize(src.name)]", 440, 300)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)

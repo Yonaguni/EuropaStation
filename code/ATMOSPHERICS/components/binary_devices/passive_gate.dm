@@ -171,7 +171,7 @@
 	ui_interact(user)
 	return
 
-/obj/machinery/atmospherics/binary/passive_gate/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/binary/passive_gate/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -190,14 +190,14 @@
 	)
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "pressure_regulator.tmpl", name, 470, 370)
 		ui.set_initial_data(data)	// when the ui is first opened this is the data it will use
 		ui.open()					// open the new ui window
-		ui.set_auto_update(1)		// auto update every Master Controller tick
+		ui.set_autoupdate(1)		// auto update every Master Controller tick
 
 
 /obj/machinery/atmospherics/binary/passive_gate/Topic(href,href_list)
