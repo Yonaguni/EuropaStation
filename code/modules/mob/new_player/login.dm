@@ -45,5 +45,4 @@
 		client.check_server_info()
 	spawn(40)
 		if(client)
-			handle_privacy_poll()
 			client.playtitlemusic()

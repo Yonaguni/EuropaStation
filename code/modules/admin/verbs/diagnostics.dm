@@ -98,16 +98,6 @@
 	usr << browse(output,"window=radioreport")
 	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/reload_admins()
-	set name = "Reload Admins"
-	set category = "Debug"
-
-	if(!check_rights(R_SERVER))	return
-
-	message_admins("[usr] manually reloaded admins")
-	load_admins()
-	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/reload_mentors()
 	set name = "Reload Mentors"
 	set category = "Debug"
@@ -163,25 +153,3 @@
 	feedback_add_details("admin_verb","KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	*/
 
-/client/proc/print_jobban_old()
-	set name = "Print Jobban Log"
-	set desc = "This spams all the active jobban entries for the current round to standard output."
-	set category = "Debug"
-
-	usr << "<b>Jobbans active in this round.</b>"
-	for(var/t in jobban_keylist)
-		usr << "[t]"
-
-/client/proc/print_jobban_old_filter()
-	set name = "Search Jobban Log"
-	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
-	set category = "Debug"
-
-	var/filter = input("Contains what?","Filter") as text|null
-	if(!filter)
-		return
-
-	usr << "<b>Jobbans active in this round.</b>"
-	for(var/t in jobban_keylist)
-		if(findtext(t, filter))
-			usr << "[t]"

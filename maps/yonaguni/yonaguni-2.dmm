@@ -3850,7 +3850,7 @@
 "bwb" = (/obj/machinery/photocopier/faxmachine{department = "Head of Personnel's Office"},/obj/structure/table/glass,/turf/simulated/floor/tiled,/area/europa/admin/office)
 "bwc" = (/obj/machinery/light_switch{pixel_x = 27},/obj/machinery/light{dir = 4; icon_state = "tube1"},/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/tiled,/area/europa/admin/office)
 "bwd" = (/obj/machinery/message_server,/turf/simulated/floor/bluegrid,/area/turret_protected/ai_server_room)
-"bwe" = (/obj/machinery/camera/network/command{c_tag = "AI - Messaging Server"; dir = 1},/obj/machinery/blackbox_recorder,/turf/simulated/floor/bluegrid,/area/turret_protected/ai_server_room)
+"bwe" = (/obj/machinery/camera/network/command{c_tag = "AI - Messaging Server"; dir = 1},/turf/simulated/floor/bluegrid,/area/turret_protected/ai_server_room)
 "bwf" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/light_switch{pixel_x = 24; pixel_y = -8},/turf/simulated/floor/tiled/dark,/area/turret_protected/ai_server_room)
 "bwg" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/light_switch{pixel_x = -24; pixel_y = -8},/turf/simulated/floor/tiled/dark,/area/turret_protected/ai_cyborg_station)
 "bwh" = (/obj/machinery/recharge_station,/obj/machinery/camera/network/command{c_tag = "AI - Cyborg Station"; dir = 1},/turf/simulated/floor/bluegrid,/area/turret_protected/ai_cyborg_station)

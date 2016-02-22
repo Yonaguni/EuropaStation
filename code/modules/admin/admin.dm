@@ -62,9 +62,6 @@ proc/admin_notice(var/message, var/rights)
 		<b>Mob type:</b> [M.type]<br>
 		<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
-		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
-		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
@@ -395,21 +392,21 @@ proc/admin_notice(var/message, var/rights)
 		if(6)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_channel.channel_name=="")
-				dat+="<FONT COLOR='maroon'>Invalid receiving channel name.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Invalid receiving channel name.</FONT><BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid message body.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Invalid message body.</FONT><BR>"
 			dat+="<BR><A href='?src=\ref[src];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed Channel to Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid channel name.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Invalid channel name.</FONT><BR>"
 			var/check = 0
 			for(var/datum/feed_channel/FC in news_network.network_channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 					check = 1
 					break
 			if(check)
-				dat+="<FONT COLOR='maroon'>Channel name already in use.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Channel name already in use.</FONT><BR>"
 			dat+="<BR><A href='?src=\ref[src];ac_setScreen=[2]'>Return</A><BR>"
 		if(9)
 			dat+="<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT>\]</FONT><HR>"
@@ -523,9 +520,9 @@ proc/admin_notice(var/message, var/rights)
 		if(16)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Wanted Issue rejected by Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_message.author =="" || src.admincaster_feed_message.author == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid name for person wanted.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Invalid name for person wanted.</FONT><BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid description.</FONT><BR>"
+				dat+="<FONT COLOR='maroon'>?Invalid description.</FONT><BR>"
 			dat+="<BR><A href='?src=\ref[src];ac_setScreen=[0]'>Return</A><BR>"
 		if(17)
 			dat+={"
@@ -557,20 +554,6 @@ proc/admin_notice(var/message, var/rights)
 	//world << "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]"
 	usr << browse(dat, "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
-
-
-
-/datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
-
-	var/dat = "<B>Job Bans!</B><HR><table>"
-	for(var/t in jobban_keylist)
-		var/r = t
-		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
-	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
@@ -642,9 +625,6 @@ proc/admin_notice(var/message, var/rights)
 
 		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
 
 		sleep(50)
 		world.Reboot()
@@ -903,10 +883,6 @@ proc/admin_notice(var/message, var/rights)
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 	feedback_add_details("admin_verb","IR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
-
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in mob_list)
