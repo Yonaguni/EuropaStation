@@ -11,5 +11,7 @@
 		var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
 		if(G) G.drop_item()
 	remove_robot_verbs()
-	sql_report_cyborg_death(src)
+	if(ticker && ticker.mode)
+		sql_report_death(src)
+		ticker.mode.check_win()
 	..(gibbed,"shudders violently for a moment, then becomes motionless, its eyes slowly darkening.")

@@ -9,12 +9,6 @@ ALERT_RED_UPTO There is an immediate serious threat to the station. Security may
 ALERT_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
 ALERT_DELTA The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
 
-## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
-ADMIN_LEGACY_SYSTEM
-
-## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
-BAN_LEGACY_SYSTEM
-
 ## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
 # JOBS_HAVE_MINIMAL_ACCESS
 
@@ -69,6 +63,9 @@ LOG_PDA
 
 ## sql switching
 # SQL_ENABLED
+
+## sql db path
+# SQL_PATH data/station.db
 
 ## disconnect players who did nothing during the set amount of minutes
 # KICK_INACTIVE 10

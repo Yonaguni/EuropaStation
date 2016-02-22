@@ -1,27 +1,6 @@
 /*
- * Holds procs designed to help with filtering text
- * Contains groups:
- *			SQL sanitization
- *			Text sanitization
- *			Text searches
- *			Text modification
- *			Misc
- */
-
-
-/*
- * SQL sanitization
- */
-
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, lentext(sqltext));//Quote() adds quotes around input, we already do that
-
-/*
  * Text sanitization
  */
-
 //Used for preprocessing entered text
 /proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
 	if(!input)

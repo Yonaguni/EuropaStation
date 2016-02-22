@@ -61,9 +61,6 @@ proc/admin_notice(var/message, var/rights)
 		[admin_jump_link(M, src)]\] <br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
-		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
-		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
@@ -635,9 +632,6 @@ proc/admin_notice(var/message, var/rights)
 		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
-
 		sleep(50)
 		world.Reboot()
 
@@ -877,10 +871,6 @@ proc/admin_notice(var/message, var/rights)
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 	feedback_add_details("admin_verb","IR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
-
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in mob_list)

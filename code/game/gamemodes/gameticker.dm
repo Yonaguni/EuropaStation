@@ -129,26 +129,13 @@ var/global/datum/controller/gameticker/ticker
 		world << sound('sound/misc/welcome.ogg')
 		Holiday_Game_Start()
 
-	//start_events() //handles random events and space dust.
-	//new random event system is handled from the MC.
-
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
 			admins_number++
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
-
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
-	*/
-
 	processScheduler.start()
-
-	if(config.sql_enabled)
-		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-
 	return 1
 
 /datum/controller/gameticker
@@ -329,10 +316,6 @@ var/global/datum/controller/gameticker/ticker
 					feedback_set_details("end_proper","proper completion")
 					if(!delay_end)
 						world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
-
-
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
 
 				if(!delay_end)
 					sleep(restart_timeout)
