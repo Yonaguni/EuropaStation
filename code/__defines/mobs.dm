@@ -190,3 +190,8 @@
 
 #define DEFAULT_SAY_CLASS "body"
 #define MOVED_DROP 1
+
+#define BLOOD_VOLUME_SAFE    85	// % of species normal blood volume
+#define BLOOD_VOLUME_OKAY    75
+#define BLOOD_VOLUME_BAD   	 60
+#define BLOOD_VOLUME_SURVIVE 40

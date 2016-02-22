@@ -34,44 +34,6 @@
 	..()
 
 // Brain is defined in brain_item.dm.
-/obj/item/organ/internal/heart
-	name = "heart"
-	icon_state = "heart-on"
-	organ_tag = O_HEART
-	parent_organ = BP_TORSO
-	dead_icon = "heart-off"
-	var/pulse = PULSE_NORM
-	var/heartbeat = 0
-
-/obj/item/organ/internal/heart/process()
-	if(owner)
-		if(owner.stat == DEAD || status & ORGAN_ROBOT)
-			pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
-		else
-			if(!(owner.life_tick % 5))//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
-				pulse = PULSE_NORM
-
-				if(round(owner.vessel.get_reagent_amount(REAGENT_ID_BLOOD)) <= BLOOD_VOLUME_BAD)	//how much blood do we have
-					pulse  = PULSE_THREADY	//not enough :(
-
-				if(owner.status_flags & FAKEDEATH)
-					pulse = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
-
-				pulse = Clamp(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
-
-		if(pulse)
-			if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || istype(get_turf(owner), /turf/space))
-				//PULSE_THREADY - maximum value for pulse, currently it 5.
-				//High pulse value corresponds to a fast rate of heartbeat.
-				//Divided by 2, otherwise it is too slow.
-				var/rate = (PULSE_THREADY - pulse)/2
-
-				if(heartbeat >= rate)
-					heartbeat = 0
-					owner << sound('sound/effects/singlebeat.ogg',0,0,0,50)
-				else
-					heartbeat++
-	..()
 
 
 /obj/item/organ/internal/kidneys
@@ -207,6 +169,7 @@
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY)
 			else
 				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
+
 
 /obj/item/organ/internal/appendix
 	name = "appendix"
