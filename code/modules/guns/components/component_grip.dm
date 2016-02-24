@@ -11,6 +11,10 @@
 	weapon_type = GUN_PISTOL
 
 /obj/item/gun_component/grip/pistol/plated
+	icon_state = "plated_straight"
+	color = COLOR_WOODFINISH
+
+/obj/item/gun_component/grip/pistol/plated/drop
 	icon_state = "pistol_plated"
 
 /obj/item/gun_component/grip/pistol/small

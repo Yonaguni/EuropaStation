@@ -248,3 +248,6 @@
 	load_method = MAGAZINE
 	max_shots = 8
 	color = COLOR_GUNMETAL
+
+/obj/item/gun_component/chamber/ballistic/pistol/alt
+	icon_state="pistol2"

@@ -18,7 +18,7 @@
 
 /obj/item/gun_component/barrel/pistol/a45
 	caliber = CALIBER_45
-	icon_state="pistol"
+	icon_state="pistol2"
 	weight_mod = 1
 	recoil_mod = 1
 
