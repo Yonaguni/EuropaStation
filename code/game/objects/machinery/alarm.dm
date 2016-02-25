@@ -476,15 +476,15 @@
 	ui_interact(user)
 	wires.Interact(user)
 
-/obj/machinery/alarm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 1, var/master_ui = null)//, var/datum/topic_state/state = default_state)
+/obj/machinery/alarm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 1, var/master_ui = null, var/datum/ui_state/state = default_state)
 	var/data[0]
 	var/remote_connection = 0
 	var/remote_access = 0
-/*	if(state)
+	if(state)
 		var/list/href = state.href_list(user)
 		remote_connection = href["remote_connection"]	// Remote connection means we're non-adjacent/connecting from another computer
 		remote_access = href["remote_access"]			// Remote access means we also have the privilege to alter the air alarm.
-*/
+
 	data["locked"] = locked && !issilicon(user)
 	data["remote_connection"] = remote_connection
 	data["remote_access"] = remote_access
@@ -498,7 +498,7 @@
 
 	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "air_alarm.tmpl", src.name, 325, 625, master_ui = master_ui)
+		ui = new(user, src, ui_key, "air_alarm.tmpl", src.name, 325, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_autoupdate(1)
@@ -603,7 +603,7 @@
 
 			data["thresholds"] = thresholds
 
-/obj/machinery/alarm/CanUseTopic(var/mob/user, var/href_list = list())
+/obj/machinery/alarm/CanUseTopic(var/mob/user, var/datum/ui_state/state, var/href_list = list())
 	if(buildstage != 2)
 		return STATUS_CLOSE
 
@@ -614,14 +614,14 @@
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
 
 	if(. == STATUS_INTERACTIVE)
-//		var/extra_href = state.href_list(usr)
+		var/extra_href = state.href_list(usr)
 		// Prevent remote users from altering RCON settings unless they already have access
-		if(href_list["rcon"])// && extra_href["remote_connection"] && !extra_href["remote_access"])
+		if(href_list["rcon"] && extra_href["remote_connection"] && !extra_href["remote_access"])
 			. = STATUS_UPDATE
 
 	return min(..(), .)
 
-/obj/machinery/alarm/Topic(href, href_list, var/datum/topic_state/state)
+/obj/machinery/alarm/Topic(href, href_list, var/datum/ui_state/state)
 	if(..(href, href_list, state))
 		return 1
 
@@ -651,8 +651,8 @@
 		return 1
 
 	// hrefs that need the AA unlocked -walter0o
-//	var/extra_href = state.href_list(usr)
-	if(!locked /*&& !extra_href["remote_connection"]) || extra_href["remote_access"] */|| issilicon(usr))
+	var/extra_href = state.href_list(usr)
+	if(!(locked && !extra_href["remote_connection"]) || extra_href["remote_access"] || issilicon(usr))
 		if(href_list["command"])
 			var/device_id = href_list["id_tag"]
 			switch(href_list["command"])

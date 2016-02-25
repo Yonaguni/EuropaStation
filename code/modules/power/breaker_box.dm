@@ -18,12 +18,7 @@
 	var/directions = list(1,2,4,8,5,6,9,10)
 	var/RCon_tag = "NO_TAG"
 	var/update_locked = 0
-/*
-/obj/machinery/power/breakerbox/Destroy()
-	..()
-	for(var/datum/nano_module/rcon/R in world)
-		R.FindDevices()
-*/
+
 /obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
