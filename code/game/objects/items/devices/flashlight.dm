@@ -146,7 +146,7 @@
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 8 // Pretty bright.
-	light_color = "#e58775"
+	light_color = "#DD000"
 	light_type = LIGHT_SOFT_FLICKER
 
 	icon_state = "flare"
