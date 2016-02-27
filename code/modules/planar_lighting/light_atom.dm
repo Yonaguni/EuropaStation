@@ -66,7 +66,7 @@
 
 	// Update icon.
 	light_obj.light_overlay.icon_state = light_type
-	light_obj.follow_holder(force_update_bleed = 1)
+	light_obj.follow_holder()
 
 	// Should we bother with anything else?
 	if(!use_transform && isnull(use_alpha) && !use_colour)
