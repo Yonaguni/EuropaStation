@@ -94,7 +94,7 @@
 	if(width && height) // If we have a width and height, use them.
 		window_size = "size=[width]x[height];"
 
-	var/debugable = check_rights(R_DEBUG, user = user.client)
+	var/debugable = check_rights(R_DEBUG, user = user)
 	user << browse(get_html(debugable), "window=[window_id];[window_size][list2params(window_options)]") // Open the window.
 	winset(user, window_id, "on-close=\"uiclose \ref[src]\"") // Instruct the client to signal UI when the window is closed.
 	tguiProcess.on_open(src)

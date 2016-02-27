@@ -79,7 +79,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/item/weapon/card/id/syndicate/Topic(href, href_list, var/datum/topic_state/state)
+/obj/item/weapon/card/id/syndicate/Topic(href, href_list, var/datum/ui_state/state)
 	if(..())
 		return 1
 

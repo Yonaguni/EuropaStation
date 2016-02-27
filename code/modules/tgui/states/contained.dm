@@ -10,3 +10,11 @@
 	if(!src_object.contains(user))
 		return UI_CLOSE
 	return user.shared_ui_interaction(src_object)
+
+// Recursively check if an object is inside another object
+/atom/proc/contains(var/atom/A)
+	if(!A)
+		return 0
+	for(var/atom/location = A.loc, location, location = location.loc)
+		if(location == src)
+			return 1

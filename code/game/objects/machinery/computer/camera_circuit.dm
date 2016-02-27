@@ -36,6 +36,7 @@
 				if("Cargo")
 					build_path = /obj/machinery/computer/security/cargo
 */
+
 	attackby(var/obj/item/I, var/mob/user)//if(health > 50)
 		..()
 		if(istype(I,/obj/item/weapon/screwdriver))

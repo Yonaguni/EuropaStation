@@ -25,6 +25,3 @@
 
 /datum/debug
 	var/list/debuglist
-
-/datum/proc/CanUseTopic(var/mob/user)
-	return 1

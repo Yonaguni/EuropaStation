@@ -32,7 +32,7 @@
 
 /obj/item/weapon/circuitboard/atmos_alert
 	name = T_BOARD("atmospheric alert console")
-//	build_path = /obj/machinery/computer/atmos_alert
+	build_path = /obj/machinery/computer/atmos_alert
 
 /obj/item/weapon/circuitboard/pod
 	name = T_BOARD("massdriver control")
@@ -68,7 +68,7 @@
 
 /obj/item/weapon/circuitboard/powermonitor
 	name = T_BOARD("power monitoring console")
-//	build_path = /obj/machinery/computer/power_monitor
+	build_path = /obj/machinery/computer/power_monitor
 
 /obj/item/weapon/circuitboard/olddoor
 	name = T_BOARD("DoorMex")
@@ -88,7 +88,7 @@
 
 /obj/item/weapon/circuitboard/crew
 	name = T_BOARD("crew monitoring console")
-//	build_path = /obj/machinery/computer/crew
+	build_path = /obj/machinery/computer/crew
 
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = T_BOARD("mining elevator console")
@@ -101,7 +101,3 @@
 /obj/item/weapon/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos
-
-/obj/item/weapon/circuitboard/rcon_console
-	name = T_BOARD("RCON remote control console")
-//	build_path = /obj/machinery/computer/rcon
