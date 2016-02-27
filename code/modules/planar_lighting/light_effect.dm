@@ -62,6 +62,7 @@
 		update_bleed_masking()
 
 /obj/light/proc/update_bleed_masking()
+
 	overlays.Cut()
 	overlays += light_overlay
 	var/effective_range = ceil(current_power*0.75) // Value that the overlay is scaled by.
@@ -71,12 +72,17 @@
 	if(!istype(origin))
 		return
 
+	// We're using dview in a context it wasn't written for so gotta hardcode this.
 	dview_mob.loc = origin
 	dview_mob.see_invisible = 0
-	var/list/dview_turfs = view(effective_range, dview_mob)
+	var/list/visible_turfs = view(effective_range, dview_mob)
 	dview_mob.loc = null
 
-	for(var/turf/check in (range(effective_range, origin) - dview_turfs))
+	// Get our general operating ranges.
+	var/list/concealed_turfs = (range(effective_range, origin) - visible_turfs)
+
+	// Mask off stuff that we 100% cannot see.
+	for(var/turf/check in concealed_turfs)
 		var/image/I = image(icon = 'icons/planar_lighting/over_dark.dmi')
 		I.blend_mode = BLEND_SUBTRACT
 		I.mouse_opacity = 0
@@ -84,3 +90,35 @@
 		I.pixel_x = ((check.x-origin.x)+1) * 32
 		I.pixel_y = ((check.y-origin.y)+1) * 32
 		overlays += I
+
+	/* Working but unfinished.
+	// Work out our ranges for corner/angled masking.
+	var/list/corner_turfs = list()
+	for(var/turf/check in visible_turfs)
+
+		// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
+		if(!check.blocks_light())
+			continue
+
+		for(var/checkdir in alldirs)
+			var/turf/neighbor = get_step(check, checkdir)
+			if(istype(neighbor) && (neighbor in concealed_turfs))
+				var/edgecount = 0
+				var/edgedirs = 0
+				for(var/secondcheckdir in cardinal)
+					var/turf/cardinal_neighbor = get_step(check, secondcheckdir)
+					if(istype(cardinal_neighbor) && (cardinal_neighbor in visible_turfs) && !cardinal_neighbor.blocks_light())
+						edgedirs |= secondcheckdir
+						edgecount++
+				if(edgecount >= 2) // Corner, apply mask.
+					if(check.x == x)
+						edgedirs &= ~(NORTH|SOUTH)
+					if(check.y == y)
+						edgedirs &= ~(EAST|WEST)
+					if(edgedirs)
+						// Calculate the needed angle for the mask.
+						;
+						// Determine which side it should be on.
+						;
+				break
+	*/
