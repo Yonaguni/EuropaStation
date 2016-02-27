@@ -19,7 +19,10 @@
 					ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
 			ammo_overlay.icon_state = ""
 			return
+		if(magazine)
+			ammo_overlay.color = magazine.color
 		..()
+
 
 /obj/item/gun_component/chamber/ballistic/empty()
 	loaded.Cut()
@@ -244,3 +247,7 @@
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
 	max_shots = 8
+	color = COLOR_GUNMETAL
+
+/obj/item/gun_component/chamber/ballistic/pistol/alt
+	icon_state="pistol2"

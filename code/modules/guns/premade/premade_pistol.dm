@@ -52,7 +52,7 @@
 	name = "pistol"
 	icon_state = "ballistic_pistol"
 	variant_chamber = /obj/item/gun_component/chamber/ballistic/pistol
-	variant_grip =    /obj/item/gun_component/grip/pistol
+	variant_grip =    /obj/item/gun_component/grip/pistol/small
 	variant_body =     /obj/item/gun_component/body/pistol/small
 	variant_barrel =  /obj/item/gun_component/barrel/pistol
 	variant_stock = 	null
@@ -63,7 +63,6 @@
 /obj/item/weapon/gun/composite/premade/pistol/a9
 	name = "9mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a9
-	variant_grip =    /obj/item/gun_component/grip/pistol/small
 
 /obj/item/weapon/gun/composite/premade/pistol/a9/preloaded
 	ammo_type = /obj/item/ammo_magazine/pistol/medium
@@ -71,6 +70,7 @@
 /obj/item/weapon/gun/composite/premade/pistol/a10
 	name = "10mm pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a10
+	variant_grip =    /obj/item/gun_component/grip/pistol
 
 /obj/item/weapon/gun/composite/premade/pistol/a10/preloaded
 	ammo_type = /obj/item/ammo_magazine/pistol/large
@@ -79,6 +79,7 @@
 	name = "a45 pistol"
 	variant_grip =    /obj/item/gun_component/grip/pistol/plated
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a45
+	variant_chamber = /obj/item/gun_component/chamber/ballistic/pistol/alt
 
 /obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
 	ammo_type = /obj/item/ammo_magazine/pistol/a45
@@ -86,7 +87,7 @@
 /obj/item/weapon/gun/composite/premade/pistol/a38
 	name = "a38 pistol"
 	variant_barrel = /obj/item/gun_component/barrel/pistol/a38
-	variant_grip =    /obj/item/gun_component/grip/pistol/plated
+	variant_grip =    /obj/item/gun_component/grip/pistol/plated/drop
 
 /obj/item/weapon/gun/composite/premade/pistol/a38/preloaded
 	ammo_type = /obj/item/ammo_magazine/pistol/a38

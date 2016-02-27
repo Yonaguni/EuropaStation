@@ -22,8 +22,6 @@
 	var/datum/reagents/metabolism/ingested = null
 	var/datum/reagents/metabolism/touching = null
 
-	var/pulse = PULSE_NORM	//current pulse level
-
 	// Hallucinations
 	var/dreaming = 0
 	var/image/halimage

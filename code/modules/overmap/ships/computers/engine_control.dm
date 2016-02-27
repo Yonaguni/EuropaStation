@@ -31,7 +31,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/engines/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/engines/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1)
 	if(!linked)
 		return
 
@@ -51,12 +51,12 @@
 
 	data["engines_info"] = enginfo
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "engines_control.tmpl", "[linked.name] Engines Control", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_autoupdate(1)
 
 /obj/machinery/computer/engines/Topic(href, href_list)
 	if(..())

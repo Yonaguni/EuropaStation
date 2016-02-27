@@ -12,6 +12,7 @@
 		)
 	recoil_mod = 1
 	accuracy_mod = -2
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/chamber/ballistic/auto/assault
 	icon_state="assault"
@@ -19,8 +20,10 @@
 	weapon_type = GUN_ASSAULT
 	ammo_indicator_state = "ballistic_assault_loaded"
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	color = null
 
 /obj/item/gun_component/chamber/ballistic/auto/cannon
 	icon_state="cannon"
 	weapon_type = GUN_CANNON
 	ammo_indicator_state = "ballistic_cannon_loaded"
+	color = null

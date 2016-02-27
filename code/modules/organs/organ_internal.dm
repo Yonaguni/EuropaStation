@@ -34,42 +34,7 @@
 	..()
 
 // Brain is defined in brain_item.dm.
-/obj/item/organ/internal/heart
-	name = "heart"
-	icon_state = "heart-on"
-	organ_tag = O_HEART
-	parent_organ = BP_TORSO
-	dead_icon = "heart-off"
 
-/obj/item/organ/internal/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = O_LUNGS
-	parent_organ = BP_TORSO
-
-
-/obj/item/organ/lungs/proc/breathes_water()
-	return 0
-
-/obj/item/organ/internal/lungs/process()
-
-	..()
-
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15
 
 /obj/item/organ/internal/kidneys
 	name = "kidneys"
@@ -204,6 +169,7 @@
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY)
 			else
 				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
+
 
 /obj/item/organ/internal/appendix
 	name = "appendix"

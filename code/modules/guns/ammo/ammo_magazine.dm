@@ -90,6 +90,8 @@
 	icon_state = "submachine_mag"
 	ammo_type = /obj/item/ammo_casing/pistol_small
 	max_ammo = 30
+	color = COLOR_GUNMETAL
+
 /obj/item/ammo_magazine/submachine/medium
 	ammo_type = /obj/item/ammo_casing/pistol_medium
 /obj/item/ammo_magazine/submachine/large

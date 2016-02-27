@@ -5,6 +5,7 @@
 	caliber = CALIBER_PISTOL_SMALL
 	icon_state="pistol_small"
 	recoil_mod = 0
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/barrel/pistol/a9
 	caliber = CALIBER_PISTOL_MEDIUM
@@ -17,7 +18,7 @@
 
 /obj/item/gun_component/barrel/pistol/a45
 	caliber = CALIBER_45
-	icon_state="pistol"
+	icon_state="pistol2"
 	weight_mod = 1
 	recoil_mod = 1
 

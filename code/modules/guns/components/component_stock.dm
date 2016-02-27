@@ -12,6 +12,7 @@
 	icon_state = "smg"
 	weapon_type = GUN_SMG
 	has_alt_interaction = 1
+	color = COLOR_GUNMETAL
 	var/folded = 0
 
 /obj/item/gun_component/stock/smg/do_user_alt_interaction(var/mob/user)

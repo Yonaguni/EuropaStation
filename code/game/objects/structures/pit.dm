@@ -3,6 +3,7 @@
 	desc = "Watch your step, partner."
 	icon = 'icons/obj/pit.dmi'
 	icon_state = "pit1"
+	blend_mode = BLEND_MULTIPLY
 	density = 0
 	anchored = 1
 	var/open = 1
@@ -18,6 +19,7 @@
 				open()
 		else
 			user << "<span class='notice'>You stop shoveling.</span>"
+		return
 	if (!open && istype(W,/obj/item/stack/material/wood))
 		if(locate(/obj/structure/gravemarker) in src.loc)
 			user << "<span class='notice'>There's already a grave marker here.</span>"
@@ -30,10 +32,14 @@
 				new/obj/structure/gravemarker(src.loc)
 			else
 				user << "<span class='notice'>You stop making a grave marker.</span>"
+		return
 	..()
 
 /obj/structure/pit/update_icon()
 	icon_state = "pit[open]"
+	if(istype(loc,/turf/simulated/floor/water) || istype(loc,/turf/simulated/floor/grass))
+		icon_state="pit[open]mud"
+		blend_mode = BLEND_OVERLAY
 
 /obj/structure/pit/proc/open()
 	name = "pit"
@@ -48,7 +54,7 @@
 	desc = "Some things are better left buried."
 	open = 0
 	for(var/atom/movable/A in src.loc)
-		if(!A.anchored) //&& A != user)
+		if(!A.anchored && A != user)
 			A.forceMove(src)
 	update_icon()
 

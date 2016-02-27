@@ -368,37 +368,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
 	if(!..())
-		interact(user)
-
-/obj/machinery/power/solar_control/interact(mob/user)
-
-	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [sun.angle]&deg ([angle2text(sun.angle)])<BR>"
-	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
-	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
-	switch(track)
-		if(0)
-			t += "<span class='linkOn'>Off</span> <A href='?src=\ref[src];track=1'>Timed</A> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(1)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(2)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
-
-	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
-
-	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
-
-	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
-	t += "Solar panels : [connected_panels.len] connected<BR>"
-	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
-
-	t += "<A href='?src=\ref[src];close=1'>Close</A>"
-
-	var/datum/browser/popup = new(user, "solar", name)
-	popup.set_content(t)
-	popup.open()
-
-	return
+		ui_interact(user)
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
@@ -449,47 +419,65 @@ var/list/solars_list = list()
 
 	updateDialog()
 
-/obj/machinery/power/solar_control/Topic(href, href_list)
+/obj/machinery/power/solar_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+												datum/tgui/master_ui = null, datum/ui_state/state = default_state)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "solar_control", name, 500, 400, master_ui, state)
+		ui.open()
+
+/obj/machinery/power/solar_control/ui_data()
+	var/data = list()
+
+	data["generated"] = round(lastgen)
+	data["angle"] = cdir
+	data["direction"] = angle2text(cdir)
+
+	data["tracking_state"] = track
+	data["tracking_rate"] = trackrate
+	data["rotating_way"] = (trackrate<0 ? "CCW" : "CW")
+
+	data["connected_panels"] = connected_panels.len
+	data["connected_tracker"] = (connected_tracker ? 1 : 0)
+	return data
+
+/obj/machinery/power/solar_control/ui_act(action, params)
 	if(..())
-		usr << browse(null, "window=solcon")
-		usr.unset_machine()
-		return 0
-	if(href_list["close"] )
-		usr << browse(null, "window=solcon")
-		usr.unset_machine()
-		return 0
-
-	if(href_list["rate control"])
-		if(href_list["cdir"])
-			src.cdir = dd_range(0,359,(360+src.cdir+text2num(href_list["cdir"]))%360)
-			src.targetdir = src.cdir
-			if(track == 2) //manual update, so losing auto-tracking
-				track = 0
-			spawn(1)
+		return
+	switch(action)
+		if("direction")
+			var/adjust = text2num(params["adjust"])
+			if(adjust)
+				cdir = Clamp((360 + adjust + cdir) % 360, 0, 359)
+				targetdir = cdir
 				set_panels(cdir)
-		if(href_list["tdir"])
-			src.trackrate = dd_range(-7200,7200,src.trackrate+text2num(href_list["tdir"]))
-			if(src.trackrate) nexttime = world.time + 36000/abs(trackrate)
-
-	if(href_list["track"])
-		track = text2num(href_list["track"])
-		if(track == 2)
-			if(connected_tracker)
+				. = TRUE
+		if("rate")
+			var/adjust = text2num(params["adjust"])
+			if(adjust)
+				trackrate = Clamp(trackrate + adjust, -7200, 7200)
+				if(trackrate)
+					nexttime = world.time + 36000 / abs(trackrate)
+				. = TRUE
+		if("tracking")
+			var/mode = text2num(params["mode"])
+			if(mode)
+				track = mode
+				. = TRUE
+			if(mode == 2 && connected_tracker)
 				connected_tracker.set_angle(sun.angle)
 				set_panels(cdir)
-		else if (track == 1) //begin manual tracking
-			src.targetdir = src.cdir
-			if(src.trackrate) nexttime = world.time + 36000/abs(trackrate)
-			set_panels(targetdir)
-
-	if(href_list["search_connected"])
-		src.search_for_connected()
-		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
-		src.set_panels(cdir)
-
-	interact(usr)
-	return 1
+			else if(mode == 1)
+				targetdir = cdir
+				if(trackrate)
+					nexttime = world.time + 36000 / abs(trackrate)
+				set_panels(targetdir)
+		if("refresh")
+			search_for_connected()
+			if(connected_tracker && track == 2)
+				connected_tracker.set_angle(sun.angle)
+			set_panels(cdir)
+			. = TRUE
 
 //rotates the panel to the passed angle
 /obj/machinery/power/solar_control/proc/set_panels(var/cdir)

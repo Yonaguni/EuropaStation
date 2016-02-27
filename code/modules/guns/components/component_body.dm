@@ -32,6 +32,7 @@
 	force = 5
 	item_state = "gun"
 	base_desc = "It's a pistol."
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/body/pistol/revolver
 	icon_state = "revolver"
@@ -52,6 +53,7 @@
 	force = 7
 	item_state = "c20r"
 	base_desc = "It's a submachine gun."
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/body/rifle
 	icon_state = "rifle"

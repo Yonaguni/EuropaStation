@@ -145,8 +145,7 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/toggle_random_events,
-	/client/proc/check_customitem_activity,
-	/client/proc/nanomapgen_DumpImage
+	/client/proc/check_customitem_activity
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,
@@ -680,9 +679,8 @@ var/list/admin_verbs_mentor = list(
 	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
 	if(!S) return
 
-	var/datum/nano_module/law_manager/L = new(S)
-	L.ui_interact(usr, state = admin_state)
-	log_and_message_admins("has opened [S]'s law manager.")
+	usr << "Manage Silicon Laws currently disabled pending ui rewrite."
+//	log_and_message_admins("has opened [S]'s law manager.")
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_admin()
@@ -695,8 +693,8 @@ var/list/admin_verbs_mentor = list(
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
 	if(!H) return
 
-	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = admin_state)
+	usr << "Change Mob Appearance currently disabled pending ui rewrite."
+//	log_and_message_admins("is altering the appearance of [H].")
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self()
@@ -706,6 +704,8 @@ var/list/admin_verbs_mentor = list(
 
 	if(!check_rights(R_FUN)) return
 
+	usr << "Change Mob Appearance currently disabled pending ui rewrite."
+/*
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
 	if(!H) return
 
@@ -720,6 +720,7 @@ var/list/admin_verbs_mentor = list(
 		if("No")
 			log_and_message_admins("has allowed [H] to change \his appearance, with whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+*/
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_security_level()

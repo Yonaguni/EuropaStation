@@ -1,5 +1,3 @@
-var/list/gun_component_icon_cache = list()
-
 /obj/item/gun_component
 	name = "gun component"
 	desc = "A mysterious gun component."

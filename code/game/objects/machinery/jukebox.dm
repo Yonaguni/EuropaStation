@@ -118,7 +118,7 @@ datum/track/New(var/title_name, var/audio)
 
 	ui_interact(user)
 
-/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", datum/tgui/ui = null, var/force_open = 1)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 
@@ -133,7 +133,7 @@ datum/track/New(var/title_name, var/audio)
 		data["tracks"] = nano_tracks
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = tguiProcess.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

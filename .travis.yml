@@ -3,7 +3,7 @@ sudo: false
 
 env:
   BYOND_MAJOR="510"
-  BYOND_MINOR="1324"
+  BYOND_MINOR="1327"
   MACRO_COUNT=1020
   
 cache:
