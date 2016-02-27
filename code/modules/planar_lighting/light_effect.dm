@@ -1,3 +1,5 @@
+var/list/light_over_cache = list()
+
 /obj/light
 	simulated = 0
 	mouse_opacity = 0
@@ -82,24 +84,38 @@
 	// We're using dview in a context it wasn't written for so gotta hardcode this.
 	dview_mob.loc = origin
 	dview_mob.see_invisible = 0
-	var/list/visible_turfs = view(effective_range, dview_mob)
+	var/list/visible_turfs = list()
+	for(var/turf/T in view(effective_range, dview_mob))
+		visible_turfs += T
 	dview_mob.loc = null
 	// Get our general operating ranges.
-	var/list/concealed_turfs = (range(effective_range, origin) - visible_turfs)
+
+	var/list/concealed_turfs = list()
+	for(var/turf/T in (range(effective_range, origin) - visible_turfs))
+		concealed_turfs += T
+
 	// Mask off stuff that we 100% cannot see.
-	for(var/turf/check in concealed_turfs)
-		var/image/darkmask/I = new
-		I.pixel_x = ((check.x-origin.x)+1) * 32
-		I.pixel_y = ((check.y-origin.y)+1) * 32
-		overlays += I
+	for(var/thing in concealed_turfs)
+		var/turf/check = thing
+		var/use_x = ((check.x-origin.x)+1) * 32
+		var/use_y = ((check.y-origin.y)+1) * 32
+		var/cache_key = "conceal-[use_x]-[use_y]"
+		if(!light_over_cache[cache_key])
+			var/image/darkmask/I = new
+			I.pixel_x = use_x
+			I.pixel_y = use_y
+			light_over_cache[cache_key] = I
+		overlays += light_over_cache[cache_key]
 
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
 	var/n_x = 2*origin.x
 	var/n_y = 2*origin.y
 
 	var/list/walls = list()
+	var/list/edge_wall = list()
 
-	for(var/turf/check in visible_turfs)
+	for(var/thing in visible_turfs)
+		var/turf/check = thing
 
 		if(!check.check_blocks_light())
 			continue
@@ -115,6 +131,8 @@
 
 		if(!has_dark_neighbor)
 			continue
+
+		edge_wall += check
 
 		var/edgecount = 0
 		var/edgedirs = 0
@@ -195,7 +213,7 @@
 						angle_two_x_offset =   1
 						angle_two_y_offset =  -1
 
-		var/image/darkmask/I
+
 		var/matrix/M
 		var/base_x = ((((check.x-origin.x)+1)*32)-224)
 		var/base_y = ((((check.y-origin.y)+1)*32)-224)
@@ -208,31 +226,79 @@
 			overlay_width = 1
 
 		if(angle_one)
-			I = new
-			I.icon = 'icons/planar_lighting/masking_overlays.dmi'
-			I.icon_state = (overlay_width ? "upwide" : "up")
-			I.pixel_x = base_x+(angle_one_x_offset*16)
-			I.pixel_y = base_y+(angle_one_y_offset*16)
-			M = matrix()
-			M.Turn(angle_one)
-			I.transform = M
-			overlays |= I
+			var/use_x = base_x+(angle_one_x_offset*16)
+			var/use_y = base_y+(angle_one_y_offset*16)
+			var/cache_key = "firstover-[use_x]-[use_y]-[overlay_width]-[angle_one]"
+			if(!light_over_cache[cache_key])
+				var/image/darkmask/I = new
+				I.icon = 'icons/planar_lighting/masking_overlays.dmi'
+				I.icon_state = (overlay_width ? "upwide" : "up")
+				I.pixel_x = use_x
+				I.pixel_y = use_y
+				M = matrix()
+				M.Turn(angle_one)
+				I.transform = M
+				light_over_cache[cache_key] = I
+			overlays += light_over_cache[cache_key]
 
 		if(angle_two)
-			I = new
-			I.icon = 'icons/planar_lighting/masking_overlays.dmi'
-			I.icon_state = (overlay_width ? "downwide" : "down")
-			I.pixel_x = base_x+(angle_two_x_offset*16)
-			I.pixel_y = base_y+(angle_two_y_offset*16)
-			M = matrix()
-			M.Turn(angle_two)
-			I.transform = M
-			overlays |= I
+			var/use_x = base_x+(angle_two_x_offset*16)
+			var/use_y = base_y+(angle_two_y_offset*16)
+			var/cache_key = "secondover-[use_x]-[use_y]-[overlay_width]-[angle_two]"
+			if(!light_over_cache[cache_key])
+				var/image/darkmask/I = new
+				I.icon = 'icons/planar_lighting/masking_overlays.dmi'
+				I.icon_state = (overlay_width ? "downwide" : "down")
+				I.pixel_x = use_x
+				I.pixel_y = use_y
+				M = matrix()
+				M.Turn(angle_two)
+				I.transform = M
+				light_over_cache[cache_key] = I
+			overlays += light_over_cache[cache_key]
 
 	// Mask out the walls/opaque turfs so general light doesn't show up for people on the other side.
-	for(var/turf/check in walls)
-		var/image/darkmask/I = new
-		I.pixel_x = ((check.x-origin.x)+1) * 32
-		I.pixel_y = ((check.y-origin.y)+1) * 32
-		overlays += I
+	var/use_alpha = max(10,min(255,round(light_overlay.alpha/3)))
+	for(var/thing in walls)
+		var/turf/check = thing
+		var/use_x = ((check.x-origin.x)+1) * 32
+		var/use_y = ((check.y-origin.y)+1) * 32
+		var/cache_key = "wallmask-[use_x]-[use_y]"
+		if(!light_over_cache[cache_key])
+			var/image/darkmask/I = new
+			I.pixel_x = use_x
+			I.pixel_y = use_y
+			light_over_cache[cache_key] = I
+		overlays += light_over_cache[cache_key]
+
+	for(var/thing in edge_wall)
+		var/turf/check = thing
+		var/use_dir
+		switch(-(round(Atan2(origin.x-check.x,origin.y-check.y))))
+			if(-136 to -45)
+				use_dir = NORTH
+			if(-46 to 45)
+				use_dir = EAST
+			if(46 to 135)
+				use_dir = SOUTH
+			else
+				use_dir = WEST
+
+		if(use_dir)
+			var/turf/T = get_step(check, use_dir)
+			if(istype(T) && T.check_blocks_light())
+				continue
+			var/use_x = ((check.x-origin.x)+1) * 32
+			var/use_y = ((check.y-origin.y)+1) * 32
+			var/cache_key = "wallgradient-[use_x]-[use_y]-[use_dir]-[use_alpha]-[light_overlay.color]"
+			if(!light_over_cache[cache_key])
+				var/image/darkmask/I = new
+				I.pixel_x = use_x
+				I.pixel_y = use_y
+				I.icon_state = "gradient[use_dir]"
+				I.blend_mode = BLEND_ADD
+				I.alpha = use_alpha
+				I.color = light_overlay.color
+				light_over_cache[cache_key] = I
+			overlays += light_over_cache[cache_key]
 	return
