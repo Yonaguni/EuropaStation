@@ -20,13 +20,9 @@
 			END_FOR_DVIEW
 
 /atom/movable/proc/kill_light()
-
 	set waitfor=0
 	. = 1
-
 	if(light_obj)
-		animate(light_obj, alpha=0, time=3)
-		sleep(3)
 		qdel(light_obj)
 		light_obj = null
 	return
@@ -73,19 +69,10 @@
 		return
 
 	// Apply effects.
-	var/anim_time = 3 - fadeout
-	if(anim_time > 0)
-		if(!use_transform)    use_transform = light_obj.light_overlay.transform
-		if(isnull(use_alpha)) use_alpha =     light_obj.light_overlay.alpha
-		if(!use_colour)       use_colour =    light_obj.light_overlay.color
-		animate(light_obj.light_overlay, color = use_colour, alpha = use_alpha, transform = use_transform, time = anim_time)
-		if(fadeout)
-			sleep(anim_time)
-	else
-		if(use_transform)      light_obj.light_overlay.transform = use_transform
-		if(!isnull(use_alpha)) light_obj.light_overlay.alpha = use_alpha
-		if(use_colour)         light_obj.light_overlay.color = use_colour
+	if(use_transform)      light_obj.light_overlay.transform = use_transform
+	if(!isnull(use_alpha)) light_obj.light_overlay.alpha = use_alpha
+	if(use_colour)         light_obj.light_overlay.color = use_colour
 
 	// Is this just a flash?
-	if(fadeout)
+	if(fadeout) // Rare enough that we can probably get away with calling animate().
 		animate(light_obj.light_overlay, time=fadeout, alpha=0)

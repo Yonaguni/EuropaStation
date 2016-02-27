@@ -36,7 +36,7 @@
 	// No point updating if none of the values are different.
 	if((dark_plane.alpha == use_alpha) && (dark_plane.color == use_color))
 		return
-	// Yaaaay animate, you piece of crap.
+	// Yaaaay animate, you piece of crap. Called infrequently enough that it should be fine.
 	if((dark_plane.alpha != use_alpha) && (dark_plane.color != use_color))
 		animate(dark_plane, time = fade_time, alpha = use_alpha, color = use_color)
 	else if(dark_plane.alpha != use_alpha)
