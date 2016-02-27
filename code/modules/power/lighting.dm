@@ -146,8 +146,8 @@
 
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 14 // luminosity when on, also used in power calculation
-	var/brightness_power = 10
+	var/brightness_range = 12 // luminosity when on, also used in power calculation
+	var/brightness_power = 8
 	var/brightness_color = null
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0

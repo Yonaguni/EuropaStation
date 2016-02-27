@@ -1,7 +1,7 @@
 var/list/times_of_day = list(
 	list("name" = "day",     "alpha" = 255, "color" = "#FFFFFF"),
 	list("name" = "sunset",  "alpha" = 135, "color" = "#FF9900"),
-	list("name" = "night",   "alpha" = 20,  "color" = "#FFFFFF"),
+	list("name" = "night",   "alpha" = 85,  "color" = "#FFFFFF"),
 	list("name" = "sunrise", "alpha" = 135,  "color" = "#9999FF"),
 	)
 

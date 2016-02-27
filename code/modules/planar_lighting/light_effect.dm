@@ -60,6 +60,13 @@
 	follow_holder_dir()
 	update_bleed_masking()
 
+/image/darkmask
+	blend_mode = BLEND_SUBTRACT
+	mouse_opacity = 0
+	plane = DARK_PLANE
+	icon = 'icons/planar_lighting/over_dark.dmi'
+	appearance_flags = KEEP_TOGETHER
+
 /obj/light/proc/update_bleed_masking()
 	// Clear overlays, blank slate.
 	overlays.Cut()
@@ -81,10 +88,7 @@
 	var/list/concealed_turfs = (range(effective_range, origin) - visible_turfs)
 	// Mask off stuff that we 100% cannot see.
 	for(var/turf/check in concealed_turfs)
-		var/image/I = image(icon = 'icons/planar_lighting/over_dark.dmi')
-		I.blend_mode = BLEND_SUBTRACT
-		I.mouse_opacity = 0
-		I.plane = DARK_PLANE
+		var/image/darkmask/I = new
 		I.pixel_x = ((check.x-origin.x)+1) * 32
 		I.pixel_y = ((check.y-origin.y)+1) * 32
 		overlays += I
@@ -92,10 +96,15 @@
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
 	var/n_x = 2*origin.x
 	var/n_y = 2*origin.y
+
+	var/list/walls = list()
+
 	for(var/turf/check in visible_turfs)
 
-		if(!check.blocks_light())
+		if(!check.check_blocks_light())
 			continue
+
+		walls += check
 
 		var/has_dark_neighbor
 		for(var/checkdir in alldirs)
@@ -111,123 +120,119 @@
 		var/edgedirs = 0
 		for(var/secondcheckdir in cardinal)
 			var/turf/cardinal_neighbour = get_step(check, secondcheckdir)
-			if(istype(cardinal_neighbour) && (cardinal_neighbour in visible_turfs) && !cardinal_neighbour.blocks_light())
+			if(istype(cardinal_neighbour) && !cardinal_neighbour.check_blocks_light() && (cardinal_neighbour in visible_turfs))
 				edgecount++
 				edgedirs |= secondcheckdir
+
 		if(edgecount < 2 || !edgedirs)
 			continue
 
 		var/c_x = 2*check.x
 		var/c_y = 2*check.y
 
-		var/angle_one_x_offset
-		var/angle_one_y_offset
-		var/angle_two_x_offset
-		var/angle_two_y_offset
+		var/angle_one_x_offset = 0
+		var/angle_one_y_offset = 0
+		var/angle_two_x_offset = 0
+		var/angle_two_y_offset = 0
 
 		var/simple_angle = -(round(Atan2(n_x - c_x, n_y - c_y)))
-		switch(simple_angle)
-			if(180, -180)   // Source is west.
-				if(edgedirs & NORTH)
-					angle_one_x_offset =  -1
-					angle_one_y_offset =   1
-				if(edgedirs & SOUTH)
-					angle_two_x_offset =  -1
-					angle_two_y_offset =  -1
-			if(90)          // Source is south.
-				if(edgedirs & EAST)
-					angle_one_x_offset =   1
-					angle_one_y_offset =  -1
-				if(edgedirs & WEST)
-					angle_two_x_offset =  -1
-					angle_two_y_offset =  -1
-			if(0)           // Source is east.
-				if(edgedirs & SOUTH)
-					angle_one_x_offset =   1
-					angle_one_y_offset =  -1
-				if(edgedirs & NORTH)
-					angle_two_x_offset =   1
-					angle_two_y_offset =   1
-			if(-90)         // Source is north.
-				if(edgedirs & EAST)
-					angle_one_x_offset =   1
-					angle_one_y_offset =   1
-				if(edgedirs & WEST)
-					angle_two_x_offset =  -1
-					angle_two_y_offset =   1
-			if(-180 to -90) // Source is northwest.
-				if(edgedirs & EAST)
-					angle_one_x_offset =   1
-					angle_one_y_offset =   1
-				if(edgedirs & SOUTH)
-					angle_two_x_offset =  -1
-					angle_two_y_offset =  -1
-			if(-90 to 0)    // Source is northeast.
-				if(edgedirs & SOUTH)
-					angle_one_x_offset =   1
-					angle_one_y_offset =  -1
-				if(edgedirs & WEST)
-					angle_two_x_offset =  -1
-					angle_two_y_offset =   1
-			if(0 to 90)     // Source is southeast.
-				if(edgedirs & NORTH)
-					angle_one_x_offset =   1
-					angle_one_y_offset =   1
-				if(edgedirs & WEST)
-					angle_one_x_offset =  -1
-					angle_one_y_offset =  -1
-			if(90 to 180)   // Source is southwest.
-				if(edgedirs & NORTH)
-					angle_one_x_offset =  -1
-					angle_one_y_offset =   1
-				if(edgedirs & EAST)
-					angle_two_x_offset =   1
-					angle_two_y_offset =  -1
+		if(abs(simple_angle) == 180) // Source is west.
+			if(edgedirs & NORTH)
+				angle_one_x_offset = -1
+				angle_one_y_offset =  1
+			if(edgedirs & SOUTH)
+				angle_two_x_offset = -1
+				angle_two_y_offset = -1
+		else if(simple_angle == 90)  // Source is south.
+			if(edgedirs & WEST)
+				angle_one_x_offset = -1
+				angle_one_y_offset = -1
+			if(edgedirs & EAST)
+				angle_two_x_offset =  1
+				angle_two_y_offset = -1
+		else if(simple_angle == 0)   // Source is east.
+			if(edgedirs & SOUTH)
+				angle_one_x_offset =  1
+				angle_one_y_offset = -1
+			if(edgedirs & NORTH)
+				angle_two_x_offset =  1
+				angle_two_y_offset =  1
+		else if(simple_angle == -90) // Source is north.
+			if(edgedirs & EAST)
+				angle_one_x_offset =  1
+				angle_one_y_offset =  1
+			if(edgedirs & WEST)
+				angle_two_x_offset = -1
+				angle_two_y_offset =  1
+		else
+			switch(simple_angle)
+				if(-179 to -89)      // Source is northwest.
+					if(edgedirs & EAST)
+						angle_one_x_offset =   1
+						angle_one_y_offset =   1
+					if(edgedirs & SOUTH)
+						angle_two_x_offset =  -1
+						angle_two_y_offset =  -1
+				if(-90 to -1)         // Source is northeast.
+					if(edgedirs & SOUTH)
+						angle_one_x_offset =   1
+						angle_one_y_offset =  -1
+					if(edgedirs & WEST)
+						angle_two_x_offset =  -1
+						angle_two_y_offset =   1
+				if(0 to 89)          // Source is southeast.
+					if(edgedirs & WEST)
+						angle_one_x_offset =  -1
+						angle_one_y_offset =  -1
+					if(edgedirs & NORTH)
+						angle_two_x_offset =   1
+						angle_two_y_offset =   1
+				if(90 to 179)        // Source is southwest.
+					if(edgedirs & NORTH)
+						angle_one_x_offset =  -1
+						angle_one_y_offset =   1
+					if(edgedirs & EAST)
+						angle_two_x_offset =   1
+						angle_two_y_offset =  -1
 
-		/*
-			bugs/todo:
-				west -      no red northwest line
-				south -     no blue southeast line
-				southeast - no blue northeast line
-				east -      no blue northeast line
-				north -     no blue northwest line
-		*/
-
-		// DEBUG: SHOW MASKING OUTLINES.
-		var/image/I
+		var/image/darkmask/I
 		var/matrix/M
 		var/base_x = ((((check.x-origin.x)+1)*32)-224)
 		var/base_y = ((((check.y-origin.y)+1)*32)-224)
 
-		if(!isnull(angle_one_x_offset))
-			var/use_angle = -(round(Atan2(n_x-(c_x+angle_one_x_offset),n_y-(c_y+angle_one_y_offset))))
-			I = image(icon = 'icons/planar_lighting/masking_overlays.dmi', icon_state = "straight")
+		var/angle_one = (angle_one_x_offset ? -(round(Atan2(n_x-(c_x+angle_one_x_offset),n_y-(c_y+angle_one_y_offset)))) : 0)
+		var/angle_two = (angle_two_x_offset ? -(round(Atan2(n_x-(c_x+angle_two_x_offset),n_y-(c_y+angle_two_y_offset)))) : 0)
+
+		var/overlay_width
+		if(!angle_one_x_offset || !angle_two_x_offset || (abs(angle_one - angle_two) >= 85))
+			overlay_width = 1
+
+		if(angle_one)
+			I = new
+			I.icon = 'icons/planar_lighting/masking_overlays.dmi'
+			I.icon_state = (overlay_width ? "upwide" : "up")
 			I.pixel_x = base_x+(angle_one_x_offset*16)
 			I.pixel_y = base_y+(angle_one_y_offset*16)
-			I.color = "#FF0000"
 			M = matrix()
-			M.Turn(use_angle)
+			M.Turn(angle_one)
 			I.transform = M
 			overlays |= I
 
-		if(!isnull(angle_two_x_offset))
-			var/use_angle = -(round(Atan2(n_x-(c_x+angle_two_x_offset),n_y-(c_y+angle_two_y_offset))))
-			I = image(icon = 'icons/planar_lighting/masking_overlays.dmi', icon_state = "straight")
+		if(angle_two)
+			I = new
+			I.icon = 'icons/planar_lighting/masking_overlays.dmi'
+			I.icon_state = (overlay_width ? "downwide" : "down")
 			I.pixel_x = base_x+(angle_two_x_offset*16)
 			I.pixel_y = base_y+(angle_two_y_offset*16)
-			I.color = "#0000FF"
 			M = matrix()
-			M.Turn(use_angle)
+			M.Turn(angle_two)
 			I.transform = M
 			overlays |= I
 
-		I = image(icon = 'icons/planar_lighting/masking_overlays.dmi', icon_state = "straight")
-		I.pixel_x = base_x
-		I.pixel_y = base_y
-		I.color = "#00FF00"
-		M = matrix()
-		M.Turn(simple_angle)
-		I.transform = M
-		overlays |= I
-
+	// Mask out the walls/opaque turfs so general light doesn't show up for people on the other side.
+	for(var/turf/check in walls)
+		var/image/darkmask/I = new
+		I.pixel_x = ((check.x-origin.x)+1) * 32
+		I.pixel_y = ((check.y-origin.y)+1) * 32
+		overlays += I
 	return
