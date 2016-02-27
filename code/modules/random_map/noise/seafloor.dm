@@ -14,9 +14,9 @@
 			if(prob(60))
 				new /obj/structure/flora/seaweed(T)
 		if(5)
-			if(prob(60))
+			if(prob(70))
 				new /obj/structure/flora/seaweed(T)
-			else if(prob(30))
+			else if(prob(60))
 				new /obj/structure/flora/seaweed/large(T)
 			else
 				new /obj/structure/flora/seaweed/glow(T)
@@ -28,7 +28,7 @@
 			else
 				new /obj/structure/flora/seaweed/large(T)
 		if(7,9)
-			if(prob(70))
+			if(prob(85))
 				new /obj/structure/flora/seaweed/large(T)
 			else
 				new /obj/structure/flora/seaweed/glow(T)
