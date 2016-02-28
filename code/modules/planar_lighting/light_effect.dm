@@ -36,6 +36,7 @@ var/list/light_over_cache = list()
 	return .. ()
 
 /obj/light/initialize()
+	..()
 	follow_holder()
 	moved_event.register(holder, src, /obj/light/proc/follow_holder)
 	dir_set_event.register(holder, src, /obj/light/proc/follow_holder_dir)
