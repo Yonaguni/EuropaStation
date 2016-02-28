@@ -5,7 +5,7 @@
 /mob/Login()
 	..()
 	master_plane = new(loc=src)
-	dark_plane =   new(loc=src)
+	dark_plane = new(loc=src)
 	if(client)
 		client.images += master_plane
 		client.images += dark_plane
@@ -16,3 +16,13 @@
 	if (!seedarkness)
 		client.images -= master_plane
 		client.images -= dark_plane
+
+/mob/dead/observer/updateghostsight()
+	..()
+	if(client)
+		if(!seedarkness)
+			client.images -= master_plane
+			client.images -= dark_plane
+		else
+			client.images += master_plane
+			client.images += dark_plane

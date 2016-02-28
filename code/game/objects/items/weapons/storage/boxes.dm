@@ -181,19 +181,6 @@
 		new /obj/item/weapon/grenade/smokebomb(src)
 		new /obj/item/weapon/grenade/smokebomb(src)
 
-/obj/item/weapon/storage/box/anti_photons
-	name = "box of anti-photon grenades"
-	desc = "A box containing 5 experimental photon disruption grenades."
-	icon_state = "flashbang"
-
-/obj/item/weapon/storage/box/anti_photons/New()
-		..()
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-
 /obj/item/weapon/storage/box/chemimp
 	name = "boxed chemical implant kit"
 	desc = "Box of stuff used to implant chemicals."

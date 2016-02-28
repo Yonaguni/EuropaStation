@@ -8,4 +8,4 @@
 #define LIGHT_SOFT             "soft"
 #define LIGHT_HARD             "hard"
 #define LIGHT_SOFT_FLICKER     "soft-flicker"
-#define LIGHT_HARD_DIRECTIONAL "hard-directional"
+#define LIGHT_DIRECTIONAL      "directional"

@@ -7,16 +7,17 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	light_type = LIGHT_HARD_DIRECTIONAL
+	light_type = LIGHT_DIRECTIONAL
 	light_power = 2
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
-
+	light_power = 5
+	light_range = 6
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
 
 /obj/item/device/flashlight/mech
-	brightness_on = 8
+	light_power = 6
+	light_range = 8
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -25,7 +26,7 @@
 /obj/item/device/flashlight/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
+		set_light()
 	else
 		icon_state = "[initial(icon_state)]"
 		kill_light()
@@ -41,6 +42,18 @@
 	user.update_action_buttons()
 	return 1
 
+/obj/item/device/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
+	if(light_type == LIGHT_DIRECTIONAL && light_obj)
+		var/turf/origin = get_turf(light_obj)
+		var/turf/target = get_turf(A)
+		if(istype(origin) && istype(target))
+			spawn(1)
+				light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
+				light_obj.update_transform()
+				light_obj.update_bleed_masking()
+			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
+			return
+	return ..()
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -98,7 +111,8 @@
 	item_state = ""
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
-	brightness_on = 2
+	light_power = 2
+	light_range = 2
 	w_class = 1
 
 /obj/item/device/flashlight/drone
@@ -107,7 +121,8 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags = CONDUCT
-	brightness_on = 5
+	light_power = 5
+	light_range = 3
 	w_class = 1
 
 
@@ -117,7 +132,8 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	brightness_on = 5
+	light_power = 6
+	light_range = 5
 	w_class = 4
 	flags = CONDUCT
 	light_type = LIGHT_HARD
@@ -128,7 +144,6 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampred"
 	item_state = "lampred"
-	brightness_on = 5
 	light_color = "#FFC58F"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
@@ -145,8 +160,9 @@
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
-	brightness_on = 8 // Pretty bright.
-	light_color = "#e58775"
+	light_range = 8 // Pretty bright.
+	light_power = 5
+	light_color = "#DD0000"
 	light_type = LIGHT_SOFT_FLICKER
 
 	icon_state = "flare"
@@ -203,12 +219,13 @@
 	item_state = "slime"
 	w_class = 1
 	light_type = LIGHT_SOFT
-	brightness_on = 6
+	light_range = 4
+	light_power = 6
 	on = 1 //Bio-luminesence has one setting, on.
 
 /obj/item/device/flashlight/slime/initialize()
 	..()
-	set_light(brightness_on)
+	set_light()
 
 /obj/item/device/flashlight/slime/update_icon()
 	return
@@ -221,4 +238,5 @@
 	icon_state = "lantern"
 	desc = "A mining lantern."
 	light_type = "soft-flicker"
-	brightness_on = 6
+	light_range = 4
+	light_power = 6

@@ -17,6 +17,10 @@
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
 
+	light_range = 1
+	light_power = 2
+	light_color = "#E38F46"
+
 /obj/item/clothing/mask/smokable/New()
 	..()
 	flags |= NOREACT // so it doesn't react until you light it
@@ -63,7 +67,7 @@
 			M.update_inv_l_hand(0)
 			M.update_inv_r_hand(1)
 		T.visible_message(flavor_text)
-		set_light(2, 0.25, "#E38F46")
+		set_light()
 		processing_objects.Add(src)
 		return 1
 	return 0

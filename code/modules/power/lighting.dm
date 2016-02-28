@@ -146,9 +146,11 @@
 
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 14 // luminosity when on, also used in power calculation
-	var/brightness_power = 10
-	var/brightness_color = null
+
+	light_range = 12
+	light_power = 8
+	light_color = null
+
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/bulb_type = /obj/item/weapon/light/tube		// the type of light item
@@ -164,28 +166,28 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 8
-	brightness_power = 6
-	brightness_color = "#a0a080"
+	light_range = 8
+	light_power = 6
+	light_color = "#a0a080"
 	desc = "A small lighting fixture."
 	bulb_type = /obj/item/weapon/light/bulb
 
 /obj/machinery/light/small/emergency
-	brightness_range = 6
-	brightness_power = 3
-	brightness_color = "#da0205"
+	light_range = 6
+	light_power = 3
+	light_color = "#da0205"
 
 /obj/machinery/light/small/red
-	brightness_range = 5
-	brightness_power = 1
-	brightness_color = "#da0205"
+	light_range = 5
+	light_power = 1
+	light_color = "#da0205"
 
 /obj/machinery/light/spot
 	name = "spotlight"
 	fitting = "large tube"
 	bulb_type = /obj/item/weapon/light/tube/large
-	brightness_range = 12
-	brightness_power = 4
+	light_range = 12
+	light_power = 4
 
 /obj/machinery/light/built/New()
 	status = LIGHT_EMPTY
@@ -203,11 +205,11 @@
 	on = has_power()
 	switch(fitting)
 		if("tube")
-			brightness_range = rand(6,9)
+			light_range = rand(6,9)
 			if(prob(2))
 				broken(1)
 		if("bulb")
-			brightness_range = rand(4,6)
+			light_range = rand(4,6)
 			if(prob(5))
 				broken(1)
 	update()
@@ -238,24 +240,23 @@
 
 	update_icon()
 	if(on)
-		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
-			switchcount++
-			if(rigged)
-				if(status == LIGHT_OK && trigger)
+		switchcount++
+		if(rigged)
+			if(status == LIGHT_OK && trigger)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+				log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+				message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
-					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
-				if(status == LIGHT_OK && trigger)
-					status = LIGHT_BURNED
-					icon_state = "[base_state]-burned"
-					on = 0
-					kill_light()
-			else
-				use_power = 2
-				set_light(brightness_range, brightness_power, brightness_color)
+				explode()
+		else if( prob( min(60, switchcount*switchcount*0.01) ) )
+			if(status == LIGHT_OK && trigger)
+				status = LIGHT_BURNED
+				icon_state = "[base_state]-burned"
+				on = 0
+				kill_light()
+		else
+			use_power = 2
+			set_light()
 	else
 		use_power = 1
 		kill_light()
@@ -322,9 +323,9 @@
 				user << "You insert the [L.name]."
 				switchcount = L.switchcount
 				rigged = L.rigged
-				brightness_range = L.brightness_range
-				brightness_power = L.brightness_power
-				brightness_color = L.brightness_color
+				light_range = L.light_range
+				light_power = L.light_power
+				light_color = L.light_color
 				on = has_power()
 				update()
 
@@ -470,9 +471,9 @@
 	var/obj/item/weapon/light/L = new bulb_type()
 	L.status = status
 	L.rigged = rigged
-	L.brightness_range = brightness_range
-	L.brightness_power = brightness_power
-	L.brightness_color = brightness_color
+	L.light_range = light_range
+	L.light_power = light_power
+	L.light_color = light_color
 
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
@@ -497,9 +498,9 @@
 	var/obj/item/weapon/light/L = new bulb_type()
 	L.status = status
 	L.rigged = rigged
-	L.brightness_range = brightness_range
-	L.brightness_power = brightness_power
-	L.brightness_color = brightness_color
+	L.light_range = light_range
+	L.light_power = light_power
+	L.light_color = light_color
 
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
@@ -599,9 +600,10 @@
 	var/switchcount = 0	// number of times switched
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	var/rigged = 0		// true if rigged to explode
-	var/brightness_range = 2 //how much light it gives off
-	var/brightness_power = 1
-	var/brightness_color = null
+
+	light_range = 2 //how much light it gives off
+	light_power = 1
+	light_color = null
 
 /obj/item/weapon/light/tube
 	name = "light tube"
@@ -610,14 +612,14 @@
 	base_state = "ltube"
 	item_state = "c_tube"
 	matter = list("glass" = 100)
-	brightness_range = 8
-	brightness_power = 3
+	light_range = 8
+	light_power = 3
 
 /obj/item/weapon/light/tube/large
 	w_class = 2
 	name = "large light tube"
-	brightness_range = 15
-	brightness_power = 4
+	light_range = 15
+	light_power = 4
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -626,9 +628,9 @@
 	base_state = "lbulb"
 	item_state = "contvapour"
 	matter = list("glass" = 100)
-	brightness_range = 5
-	brightness_power = 2
-	brightness_color = "#a0a080"
+	light_range = 5
+	light_power = 2
+	light_color = "#a0a080"
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
@@ -641,8 +643,8 @@
 	base_state = "fbulb"
 	item_state = "egg4"
 	matter = list("glass" = 100)
-	brightness_range = 5
-	brightness_power = 2
+	light_range = 5
+	light_power = 2
 
 // update the icon state and description of the light
 

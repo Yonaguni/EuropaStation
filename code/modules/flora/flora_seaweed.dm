@@ -9,14 +9,14 @@
 
 /obj/structure/flora/seaweed/large
 	icon_state = "seaweed2"
-	opacity = 1
 
 /obj/structure/flora/seaweed/glow
 	name = "glowing seaweed"
 	desc = "It shines with an eerie bioluminescent light."
 	icon_state = "glowweed1"
+	light_color = "#00FFF4"
 
 /obj/structure/flora/seaweed/glow/initialize()
 	..()
-	set_light(3, 2, "#00FFF4")
+	set_light(3, 2)
 	icon_state = "glowweed[rand(1,3)]"
