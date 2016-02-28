@@ -4,6 +4,7 @@ var/list/light_over_cache = list()
 	simulated = 0
 	mouse_opacity = 0
 	plane = DARK_PLANE
+	layer = 20 // Over EVERYTHING.
 	appearance_flags = KEEP_TOGETHER
 	icon = null
 	invisibility = SEE_INVISIBLE_NOLIGHTING
@@ -37,12 +38,12 @@ var/list/light_over_cache = list()
 	for(var/thing in affecting_turfs)
 		var/turf/T = thing
 		T.affecting_lights -= src
-		T.update_light_overlays()
 	affecting_turfs.Cut()
 	return .. ()
 
 /obj/light/initialize()
 	..()
+	follow_holder_dir()
 	follow_holder()
 	moved_event.register(holder, src, /obj/light/proc/follow_holder)
 	dir_set_event.register(holder, src, /obj/light/proc/follow_holder_dir)
@@ -53,15 +54,11 @@ var/list/light_over_cache = list()
 	qdel(src)
 
 // Applies power value to size (via Scale()) and updates the current rotation (via Turn())
-// angle for directional lights.
+// angle for directional lights. This is only ever called before cast_light() so affected turfs
+// are updated elsewhere.
 /obj/light/proc/update_transform(var/newrange)
 	if(!isnull(newrange) && current_power != newrange)
-		for(var/thing in affecting_turfs)
-			var/turf/T = thing
-			T.lum_count -= current_power
-			T.lum_count += newrange
-			if(lighting_controller)
-				lighting_controller.mark_for_update(T)
+		// Update affected turfs based on new size.
 		current_power = newrange
 
 	var/matrix/M = matrix()
@@ -73,10 +70,11 @@ var/list/light_over_cache = list()
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
 /obj/light/proc/follow_holder_dir()
-	if(istype(holder.loc, /mob))
-		if(dir != holder.loc.dir) set_dir(holder.loc.dir)
-	else
-		if(dir != holder.dir) set_dir(holder.dir)
+	if(istype(holder.loc, /mob) && holder.dir != holder.loc.dir)
+		holder.set_dir(holder.loc.dir)
+	if(dir != holder.dir)
+		set_dir(holder.dir)
+
 	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
 		var/last_angle = point_angle
 		switch(dir)

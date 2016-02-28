@@ -1,85 +1,26 @@
-/turf/var/blocks_light = -1              // Whether or not this turf occludes light based on turf opacity and contents. See check_blocks_lights().
+/turf/var/blocks_light = -1              // Whether or not this turf occludes light based on turf opacity and contents. See check_blocks_light().
+/turf/var/has_corners = -1               // Whether or not we need to give a shit about this turf as an occluding corner object.
 /turf/var/list/affecting_lights = list() // Non-assoc list of all lighting overlays applied to this turf.
-/turf/var/lum_edges = 0                  // Bitfield, number of edges exposed to light, set in light_effect_cast.dm.
-/turf/var/lum_count = 0                  // Value, cumulative power of lights effecting turf, set in light_effect_cast.dm.
-/turf/var/lum_color = "#FFFFFF"
 
-/turf/initialize()
-	..()
-	if(lighting_controller)
-		lighting_controller.mark_for_update(src)
-
-// Forces a rebuild of all affecting lights. Very costly. I don't see much of
-// a use for this yet but it'd be nice to have for admin proc calling at runtime.
-/turf/proc/update_affecting_lights()
-	affecting_lights.Cut()
-	dview_mob.loc = src
-	dview_mob.see_invisible = 0
-	for(var/obj/light/L in view(world.view, dview_mob))
-		var/light_dist = get_dist(src, get_turf(L))
-		if(L.current_power >= light_dist)
-			affecting_lights += L
-	dview_mob.loc = null
-
-/turf/proc/update_light_edges()
-	lum_edges = 0
-	for(var/thing in affecting_lights)
-		var/obj/light/L = thing
-		lum_edges |= get_dir(get_turf(L), src)
-
-// Redraws the edge lighting overlays for this turf and offsets them appropriately.
-// TODO: a method other than update_icon() for clearing lighting overlays from turf overlay lists.
-/turf/proc/update_light_overlays()
-
-	// Floor don't have lit edges!
-	if(!check_blocks_light())
-		return
-
-	for(var/checkdir in cardinal)
-
-		// We don't have light from this dir. Go home.
-		if(!(lum_edges & checkdir))
-			continue
-
-		// Make sure this is a turf edge we should be lighting up.
-		var/turf/T = get_step(src, checkdir)
-		if(!istype(T) || T.check_blocks_light())
-			continue
-
-		// Cache/apply edge lighting.
-		var/cache_key = "gradient-[lum_color]-[lum_count]-[checkdir]"
-		if(!light_over_cache[cache_key])
-			var/image/darkmask/I = new
-			I.icon_state = "gradient[checkdir]"
-			I.blend_mode = BLEND_ADD
-			I.color = lum_color
-			I.alpha = min(200,max(5,lum_count * 5))
-
-			// We're actually overlaying this edge onto the neighboring turf so that people
-			// on the opposite side won't see the lighting; pixel offset accordingly.
-			switch(checkdir)
-				if(NORTH)
-					I.pixel_y = -32
-				if(SOUTH)
-					I.pixel_y = 32
-				if(EAST)
-					I.pixel_x = -32
-				if(WEST)
-					I.pixel_x = 32
-
-			// Cache it!
-			light_over_cache[cache_key] = I
-
-		// This will call overlays.Cut() safely.
-		// May be worth doing a less brute-force approach.
-		T.update_icon()
-		T.overlays += light_over_cache[cache_key]
-
-// Flags the turf to recalc blocks_light next clal since opacity has changed.
+// Flags the turf to recalc blocks_light next call since opacity has changed.
 /turf/set_opacity()
 	var/old_opacity = opacity
 	. = ..()
 	if(opacity != old_opacity) blocks_light = -1
+
+// Checks if the turf has corners (ie. a vacant turf immediately beside it).
+/turf/proc/check_has_corners()
+	if(blocks_light == -1)
+		var/edgecount = 0
+		for(var/edgedir in cardinal)
+			var/turf/cardinal_neighbour = get_step(src, edgedir)
+			if(!cardinal_neighbour.check_blocks_light())
+				edgecount++
+				if(edgecount >= 2)
+					has_corners = 1
+					return 1
+		has_corners = 0
+	return has_corners
 
 // Checks if the turf contains an occluding object or is itself an occluding object.
 /turf/proc/check_blocks_light()

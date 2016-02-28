@@ -17,8 +17,10 @@
 	var/turf/T = get_turf(src)
 	if(istype(T))
 		T.blocks_light = -1
+		for(var/turf/neighbor in range(1, T))
+			neighbor.has_corners = -1
 		dview_mob.loc = T
 		dview_mob.see_invisible = 0
-		for(var/obj/light/L in range(world.view, T))
+		for(var/obj/light/L in view(world.view, dview_mob))
 			L.cast_light()
 		dview_mob.loc = null

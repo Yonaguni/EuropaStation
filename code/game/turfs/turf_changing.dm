@@ -27,10 +27,7 @@
 		if(istype(below))
 			N = /turf/simulated/open
 
-	//var/obj/fire/old_fire = fire
 	var/list/old_affecting_lights = affecting_lights
-	var/old_lumcount = lum_count
-	var/old_lumcol = lum_color
 	var/old_flooded = flooded
 
 	Destroy()
@@ -72,7 +69,3 @@
 		update_icon()
 
 	affecting_lights = old_affecting_lights
-	lum_count = old_lumcount
-	lum_color = old_lumcol
-	if(lighting_controller)
-		lighting_controller.mark_for_update(src)

@@ -144,7 +144,6 @@
 #include "code\controllers\Processes\event.dm"
 #include "code\controllers\Processes\garbage.dm"
 #include "code\controllers\Processes\inactivity.dm"
-#include "code\controllers\Processes\lighting.dm"
 #include "code\controllers\Processes\machinery.dm"
 #include "code\controllers\Processes\mob.dm"
 #include "code\controllers\Processes\obj.dm"

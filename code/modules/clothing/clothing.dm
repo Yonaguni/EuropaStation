@@ -171,15 +171,6 @@
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
-/*
-SEE_SELF  // can see self, no matter what
-SEE_MOBS  // can see all mobs, no matter what
-SEE_OBJS  // can see all objs, no matter what
-SEE_TURFS // can see all turfs (and areas), no matter what
-SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
-          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
-BLIND     // can't see anything
-*/
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -267,9 +258,9 @@ BLIND     // can't see anything
 	slot_flags = SLOT_HEAD
 	w_class = 2.0
 
+	light_range = 3
 	var/light_overlay = "helmet_light"
 	var/light_applied
-	var/brightness_on
 	var/on = 0
 
 	sprite_sheets = list(
@@ -278,7 +269,7 @@ BLIND     // can't see anything
 		)
 
 /obj/item/clothing/head/attack_self(mob/user)
-	if(brightness_on)
+	if(light_power)
 		if(!isturf(user.loc))
 			user << "You cannot turn the light on while in this [user.loc]"
 			return
@@ -290,7 +281,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
-		set_light(brightness_on)
+		set_light()
 		light_applied = 1
 	else if(!on && light_applied)
 		kill_light()

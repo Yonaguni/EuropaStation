@@ -1,6 +1,6 @@
 #define BASE_PIXEL_OFFSET 224
 #define BASE_TURF_OFFSET 2
-#define WIDE_SHADOW_THRESHOLD 500
+#define WIDE_SHADOW_THRESHOLD 80
 #define OFFSET_MULTIPLIER_SIZE 32
 #define CORNER_OFFSET_MULTIPLIER_SIZE 16
 
@@ -29,8 +29,9 @@
 	// Get a list of turfs that are visible according to BYOND. It will be worth rewriting this
 	// somewhere down the track so that angles other than multiples of 45 degrees will occlude
 	// properly, at the moment if you move 2 up 1 across from a wall, it won't block light at all.
+	var/effective_power = current_power+1 // This seems to be needed for good shadow casting effects at low power.
 	var/list/visible_turfs = list()
-	for(var/turf/T in view(current_power, dview_mob))
+	for(var/turf/T in view(effective_power, dview_mob))
 		visible_turfs += T
 
 	// As above, hardcode.
@@ -38,7 +39,7 @@
 
 	// Work out which turfs we cannot see from this point.
 	var/list/concealed_turfs = list()
-	for(var/turf/T in (range(current_power, origin) - visible_turfs))
+	for(var/turf/T in (range(effective_power, origin) - visible_turfs))
 		concealed_turfs += T
 
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
@@ -50,29 +51,23 @@
 	for(var/thing in visible_turfs)
 		var/turf/check = thing
 
+		if(!(check in affecting_turfs))
+			affecting_turfs += check
+			check.affecting_lights += src
+
 		if(!check.check_blocks_light())
 			continue
 
 		walls += check // Used later for bleed masking.
-		check.affecting_lights |= src // This turf should be aware we're lighting it up.
-		affecting_turfs += check // We should keep track of the turfs we're lighting up.
 
-		var/edgecount = 0
 		var/edgedirs = 0
-		for(var/edgedir in cardinal)
-			var/turf/cardinal_neighbour = get_step(check, edgedir)
-			if(istype(cardinal_neighbour) && !cardinal_neighbour.check_blocks_light() && (cardinal_neighbour in visible_turfs))
-				edgecount++
-				edgedirs |= edgedir
-
-		if(edgecount < 2 || !edgedirs)
+		if(check.check_has_corners())
+			for(var/edgedir in cardinal)
+				var/turf/cardinal_neighbour = get_step(check, edgedir)
+				if(istype(cardinal_neighbour) && !cardinal_neighbour.check_blocks_light() && (cardinal_neighbour in visible_turfs))
+					edgedirs |= edgedir
+		if(!edgedirs)
 			continue
-
-		if(!(check in affecting_turfs))
-			affecting_turfs += check
-			check.lum_count += current_power
-			check.lum_color = light_overlay.color //todo, proper blending
-			check.update_light_edges()
 
 		var/c_x = 2*check.x
 		var/c_y = 2*check.y
@@ -128,11 +123,7 @@
 		if(!(thing in visible_turfs))
 			affecting_turfs -= thing
 			var/turf/T = thing
-			T.lum_count -= current_power
 			T.affecting_lights -= src
-			T.update_light_edges()
-			if(lighting_controller)
-				lighting_controller.mark_for_update(T)
 
 	// Mask off stuff that we 100% cannot see, plus walls to prevent light bleed.
 	// Walls handle their own edge lighting seperately, see light_turf.dm.

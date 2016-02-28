@@ -6,6 +6,5 @@
 #define END_FOR_DVIEW dview_mob.loc = null
 
 #define LIGHT_SOFT             "soft"
-#define LIGHT_HARD             "hard"
 #define LIGHT_SOFT_FLICKER     "soft-flicker"
 #define LIGHT_DIRECTIONAL      "directional"

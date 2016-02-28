@@ -7,9 +7,8 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	light_type = LIGHT_DIRECTIONAL
-	light_power = 2
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	light_type = LIGHT_DIRECTIONAL
 	light_power = 5
 	light_range = 6
 	action_button_name = "Toggle Flashlight"
@@ -136,7 +135,6 @@
 	light_range = 5
 	w_class = 4
 	flags = CONDUCT
-	light_type = LIGHT_HARD
 	on = 1
 
 // green-shaded desk lamp
