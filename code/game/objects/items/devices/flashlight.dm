@@ -50,7 +50,7 @@
 			spawn(1)
 				light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
 				light_obj.update_transform()
-				light_obj.update_bleed_masking()
+				light_obj.cast_light()
 			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
 			return
 	return ..()
@@ -240,3 +240,22 @@
 	light_type = "soft-flicker"
 	light_range = 4
 	light_power = 6
+
+/obj/item/device/flashlight/lantern/red
+	light_color = "#FF0000"
+
+/obj/item/device/flashlight/lantern/green
+	light_color = "#00FF00"
+
+/obj/item/device/flashlight/lantern/blue
+	light_color = "#0000FF"
+
+/obj/item/device/flashlight/lantern/yellow
+	light_color = "#FFFF00"
+
+/obj/item/device/flashlight/lantern/cyan
+	light_color = "#00FFFF"
+
+/obj/item/device/flashlight/lantern/purple
+	light_color = "#FF00FF"
+
