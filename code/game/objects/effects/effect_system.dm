@@ -103,6 +103,9 @@ steam.start() -- spawns the effect
 	var/amount = 6.0
 	anchored = 1.0
 	mouse_opacity = 0
+	light_range = 3
+	light_power = 10
+	light_color = "#FFFF88"
 
 /obj/effect/sparks/New()
 	..()
@@ -114,7 +117,7 @@ steam.start() -- spawns the effect
 /obj/effect/sparks/initialize()
 	..()
 	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
-	set_light(2,10,"#FFFF88",10)
+	set_light(fadeout=10)
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -223,7 +226,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10)
 	time_to_live=lifetime
 	..()
-	set_light(brightness)
+	set_light(round(brightness/3), round(brightness/2))
 
 /////////////////////////////////////////////
 // Bad smoke

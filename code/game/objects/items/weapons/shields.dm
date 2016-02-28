@@ -103,6 +103,10 @@
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
 
+	light_range = 2
+	light_power = 2
+	light_color = "#006AFF"
+
 /obj/item/weapon/shield/energy/handle_shield(mob/user)
 	if(!active)
 		return 0 //turn it on first!
@@ -151,7 +155,7 @@
 /obj/item/weapon/shield/energy/update_icon()
 	icon_state = "eshield[active]"
 	if(active)
-		set_light(1.5, 1.5, "#006AFF")
+		set_light()
 	else
 		kill_light()
 

@@ -11,6 +11,11 @@
 	throwforce = 7
 	w_class = 3
 	attack_verb = list("beaten")
+
+	light_range = 2
+	light_power = 1
+	light_color = "#FF6A00"
+
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
@@ -47,7 +52,7 @@
 		icon_state = "[initial(name)]"
 
 	if(icon_state == "[initial(name)]_active")
-		set_light(1.5, 1, "#FF6A00")
+		set_light()
 	else
 		kill_light()
 

@@ -12,12 +12,15 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
+	light_range = 1
+	light_power = 2
+	light_color = "#FF6600"
 	var/base_state
 
 /obj/item/weapon/flame/lighter/light()
 	if(!..())
 		return 0
-	set_light(2)
+	set_light()
 	return 1
 
 /obj/item/weapon/flame/lighter/die()

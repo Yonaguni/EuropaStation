@@ -28,15 +28,15 @@
 
 // Alert lights for shuttles, leaving them here for now.
 /obj/machinery/light/small/readylight
-	brightness_range = 5
-	brightness_power = 1
-	brightness_color = "#DA0205"
+	light_range = 5
+	light_power = 1
+	light_color = "#DA0205"
 	var/state = 0
 
 /obj/machinery/light/small/readylight/proc/set_state(var/new_state)
 	state = new_state
 	if(state)
-		brightness_color = "00FF00"
+		light_color = "00FF00"
 	else
-		brightness_color = initial(brightness_color)
+		light_color = initial(light_color)
 	update()

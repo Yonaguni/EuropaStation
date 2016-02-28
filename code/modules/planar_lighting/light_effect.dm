@@ -6,20 +6,20 @@ var/list/light_over_cache = list()
 	plane = DARK_PLANE
 	appearance_flags = KEEP_TOGETHER
 	icon = null
-	icon_state = ""
 	invisibility = SEE_INVISIBLE_NOLIGHTING
-	pixel_x = -32
-	pixel_y = -32
-	glide_size = 32
+	pixel_x = -64
+	pixel_y = -64
+	//glide_size = 32
 	blend_mode = BLEND_ADD
 
 	var/image/light_overlay
 	var/current_power = 1
 	var/atom/movable/holder
+	var/point_angle
 
 /obj/light/New(var/newholder)
 	holder = newholder
-	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = "soft")
+	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = "hard")
 	light_overlay.blend_mode = BLEND_ADD
 	light_overlay.mouse_opacity = 0
 	light_overlay.plane = DARK_PLANE
@@ -36,10 +36,6 @@ var/list/light_over_cache = list()
 	return .. ()
 
 /obj/light/initialize()
-	if(!istype(holder, /atom/movable))
-		world << "DEBUG: [src] has holder [holder], is [holder.type]."
-		qdel(src)
-		return
 	follow_holder()
 	moved_event.register(holder, src, /obj/light/proc/follow_holder)
 	dir_set_event.register(holder, src, /obj/light/proc/follow_holder_dir)
@@ -48,18 +44,43 @@ var/list/light_over_cache = list()
 /obj/light/proc/destroy_self()
 	qdel(src)
 
+/obj/light/proc/update_transform(var/newrange)
+	if(!isnull(newrange))
+		current_power = newrange
+	var/matrix/M = matrix()
+	if(!isnull(point_angle))
+		M.Turn(point_angle)
+	M.Scale(max(1,min(8,current_power*0.75)))
+	light_overlay.transform = M
+
 /obj/light/proc/follow_holder_dir()
 	if(istype(holder.loc, /mob))
 		if(dir != holder.loc.dir) set_dir(holder.loc.dir)
 	else
 		if(dir != holder.dir) set_dir(holder.dir)
+	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
+		switch(dir)
+			if(NORTH)
+				point_angle = 90
+			if(SOUTH)
+				point_angle = -90
+			if(EAST)
+				point_angle = 180
+			if(WEST)
+				point_angle = -180
+			if(NORTHEAST)
+				point_angle = 135
+			if(NORTHWEST)
+				point_angle = -45
+			if(SOUTHEAST)
+				point_angle = -135
+			if(SOUTHEAST)
+				point_angle = 45
+			else
+				point_angle = null
 
 /obj/light/proc/follow_holder()
-	if(istype(holder.loc, /mob))
-		loc = get_turf(holder)
-	else
-		loc = holder.loc
-	follow_holder_dir()
+	loc = get_turf(holder)
 	update_bleed_masking()
 
 /image/darkmask
@@ -97,8 +118,8 @@ var/list/light_over_cache = list()
 	// Mask off stuff that we 100% cannot see.
 	for(var/thing in concealed_turfs)
 		var/turf/check = thing
-		var/use_x = ((check.x-origin.x)+1) * 32
-		var/use_y = ((check.y-origin.y)+1) * 32
+		var/use_x = ((check.x-origin.x)+2) * 32
+		var/use_y = ((check.y-origin.y)+2) * 32
 		var/cache_key = "conceal-[use_x]-[use_y]"
 		if(!light_over_cache[cache_key])
 			var/image/darkmask/I = new
@@ -215,8 +236,8 @@ var/list/light_over_cache = list()
 
 
 		var/matrix/M
-		var/base_x = ((((check.x-origin.x)+1)*32)-224)
-		var/base_y = ((((check.y-origin.y)+1)*32)-224)
+		var/base_x = ((((check.x-origin.x)+2)*32)-224)
+		var/base_y = ((((check.y-origin.y)+2)*32)-224)
 
 		var/angle_one = (angle_one_x_offset ? -(round(Atan2(n_x-(c_x+angle_one_x_offset),n_y-(c_y+angle_one_y_offset)))) : 0)
 		var/angle_two = (angle_two_x_offset ? -(round(Atan2(n_x-(c_x+angle_two_x_offset),n_y-(c_y+angle_two_y_offset)))) : 0)
@@ -261,8 +282,8 @@ var/list/light_over_cache = list()
 	var/use_alpha = max(10,min(255,round(light_overlay.alpha/3)))
 	for(var/thing in walls)
 		var/turf/check = thing
-		var/use_x = ((check.x-origin.x)+1) * 32
-		var/use_y = ((check.y-origin.y)+1) * 32
+		var/use_x = ((check.x-origin.x)+2) * 32
+		var/use_y = ((check.y-origin.y)+2) * 32
 		var/cache_key = "wallmask-[use_x]-[use_y]"
 		if(!light_over_cache[cache_key])
 			var/image/darkmask/I = new
@@ -288,8 +309,8 @@ var/list/light_over_cache = list()
 			var/turf/T = get_step(check, use_dir)
 			if(istype(T) && T.check_blocks_light())
 				continue
-			var/use_x = ((check.x-origin.x)+1) * 32
-			var/use_y = ((check.y-origin.y)+1) * 32
+			var/use_x = ((check.x-origin.x)+2) * 32
+			var/use_y = ((check.y-origin.y)+2) * 32
 			var/cache_key = "wallgradient-[use_x]-[use_y]-[use_dir]-[use_alpha]-[light_overlay.color]"
 			if(!light_over_cache[cache_key])
 				var/image/darkmask/I = new

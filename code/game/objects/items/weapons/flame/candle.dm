@@ -5,6 +5,8 @@
 	icon_state = "candle1"
 	item_state = "candle1"
 	w_class = 1
+	light_range = 3
+	light_power = CANDLE_LUM
 	light_color = "#E09D37"
 	var/wax = 2000
 
@@ -44,7 +46,7 @@
 	if(!..())
 		return
 	visible_message(flavor_text, 1)
-	set_light(CANDLE_LUM)
+	set_light()
 
 /obj/item/weapon/flame/candle/process()
 	if(..())

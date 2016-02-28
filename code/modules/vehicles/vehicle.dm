@@ -172,7 +172,7 @@
 	if(powered && cell.charge < charge_use)
 		return 0
 	on = 1
-	set_light(initial(light_range))
+	set_light()
 	update_icon()
 	return 1
 

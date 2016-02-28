@@ -11,6 +11,9 @@
 	throw_speed = 1
 	throw_range = 2
 
+	light_power = 8
+	light_range = 6
+
 	matter = list(DEFAULT_WALL_MATERIAL = 750,"waste" = 750)
 
 	var/drain_rate = 1500000		// amount of power to drain per tick
@@ -94,7 +97,7 @@
 	if(!PN)
 		return 1
 
-	set_light(12)
+	set_light()
 	PN.trigger_warning()
 	// found a powernet, so drain up to max power from it
 	drained = PN.draw_power(drain_rate)

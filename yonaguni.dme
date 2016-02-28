@@ -410,7 +410,6 @@
 #include "code\game\objects\items\weapons\flame\matches.dm"
 #include "code\game\objects\items\weapons\games\dice.dm"
 #include "code\game\objects\items\weapons\games\playing_cards.dm"
-#include "code\game\objects\items\weapons\grenades\anti_photon_grenade.dm"
 #include "code\game\objects\items\weapons\grenades\chem_grenade.dm"
 #include "code\game\objects\items\weapons\grenades\emgrenade.dm"
 #include "code\game\objects\items\weapons\grenades\flashbang.dm"

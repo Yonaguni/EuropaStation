@@ -35,7 +35,8 @@
 	restricted_hardpoints = list(HARDPOINT_HEAD)
 
 	var/on = 0
-	var/brightness_on = 8
+	light_range = 8
+	light_power = 8
 
 /obj/item/weapon/mecha_equipment/light/attack_self(mob/user)
 	on = !on
@@ -46,7 +47,7 @@
 /obj/item/weapon/mecha_equipment/light/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
+		set_light()
 	else
 		icon_state = "[initial(icon_state)]"
 		kill_light()

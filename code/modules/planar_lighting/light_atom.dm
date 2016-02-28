@@ -1,9 +1,9 @@
 /atom/movable
 	var/obj/light/light_obj
 	var/light_type = LIGHT_SOFT
-	var/light_power
-	var/light_range
-	var/light_color
+	var/light_power = 1
+	var/light_range = 1
+	var/light_color = "#FFFFFF"
 
 /atom/movable/Destroy()
 	qdel(light_obj)
@@ -15,9 +15,13 @@
 	if(opacity)
 		var/turf/T = get_turf(src)
 		if(istype(T))
-			FOR_DVIEW(var/obj/light/L, (world.view*2.2), T, 0)
+			for(var/obj/light/L in range(world.view*2.2, T)) // todo
 				L.update_bleed_masking()
-			END_FOR_DVIEW
+
+/atom/movable/set_opacity(var/newopacity)
+	var/turf/T = get_turf(src)
+	T.blocks_light = -1 // Needs an update.
+	..()
 
 /atom/movable/proc/kill_light()
 	set waitfor=0
@@ -29,50 +33,40 @@
 
 /atom/movable/proc/set_light(var/l_range, var/l_power, var/l_color, var/fadeout)
 
-	set waitfor=0
-	. = 1
+	// Update or retrieve our variable data.
+	if(isnull(l_range))
+		l_range = light_range
+	else
+		light_range = l_range
+	if(isnull(l_power))
+		l_power = light_power
+	else
+		light_power = l_power
+	if(isnull(l_color))
+		l_color = light_color
+	else
+		light_color = l_color
 
-	if(isnull(l_range)) l_range = light_range
-	if(isnull(l_power)) l_power = light_power
-	if(isnull(l_color)) l_color = light_color
-
-	// Doing all this here because fuck proc calls.
-	// Make sure we have a light overlay.
+	var/need_bleed_update
 	if(!light_obj)
+		need_bleed_update = 1
 		light_obj = new(src)
+	var/use_alpha = min(255,(l_power * 50))
+	if(light_obj.light_overlay.alpha != use_alpha)
+		need_bleed_update = 1
+		light_obj.light_overlay.alpha = use_alpha
+	if(light_obj.light_overlay.color != l_color)
+		need_bleed_update = 1
+		light_obj.light_overlay.color = l_color
+	if(light_obj.light_overlay.icon_state != light_type)
+		need_bleed_update = 1
+		light_obj.light_overlay.icon_state = light_type
+	if(light_obj.current_power != l_range)
+		need_bleed_update = 1
+		light_obj.update_transform(l_range)
 
-	// Power == alpha.
-	var/use_alpha
-	if(!isnull(l_power) && light_obj.light_overlay.alpha != use_alpha)
-		use_alpha = min(255,(l_power * 50))
-	// Range == size of the overlay.
+	if(need_bleed_update)
+		light_obj.update_bleed_masking()
 
-	var/matrix/use_transform
-	var/scale_val
-	if(!isnull(l_range) && l_range != light_obj.current_power)
-		light_obj.current_power = l_range
-		scale_val = max(1,min(8,light_obj.current_power*0.75))
-		use_transform = matrix()
-		use_transform.Scale(scale_val)
-
-	// Colour = src.color.
-	var/use_colour
-	if(!isnull(l_color) && l_color != light_obj.light_overlay.color)
-		use_colour = l_color
-
-	// Update icon.
-	light_obj.light_overlay.icon_state = light_type
-	light_obj.follow_holder()
-
-	// Should we bother with anything else?
-	if(!use_transform && isnull(use_alpha) && !use_colour)
-		return
-
-	// Apply effects.
-	if(use_transform)      light_obj.light_overlay.transform = use_transform
-	if(!isnull(use_alpha)) light_obj.light_overlay.alpha = use_alpha
-	if(use_colour)         light_obj.light_overlay.color = use_colour
-
-	// Is this just a flash?
-	if(fadeout) // Rare enough that we can probably get away with calling animate().
-		animate(light_obj.light_overlay, time=fadeout, alpha=0)
+	// Rare enough that we can probably get away with calling animate(). Currently used by muzzle flashes and sparks.
+	if(fadeout) animate(light_obj.light_overlay, time=fadeout, alpha=0)
