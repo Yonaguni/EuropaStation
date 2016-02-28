@@ -12,11 +12,10 @@
 
 /atom/proc/set_opacity(var/newopacity)
 	opacity = newopacity ? 1 : 0
-	if(opacity)
-		var/turf/T = get_turf(src)
-		if(istype(T))
-			for(var/obj/light/L in range(world.view*2.2, T)) // todo
-				L.update_bleed_masking()
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		for(var/obj/light/L in range(world.view, T)) // todo
+			L.update_bleed_masking()
 
 /atom/movable/set_opacity(var/newopacity)
 	var/turf/T = get_turf(src)
@@ -66,7 +65,7 @@
 		light_obj.update_transform(l_range)
 
 	if(need_bleed_update)
-		light_obj.update_bleed_masking()
+		light_obj.follow_holder()
 
 	// Rare enough that we can probably get away with calling animate(). Currently used by muzzle flashes and sparks.
 	if(fadeout) animate(light_obj.light_overlay, time=fadeout, alpha=0)

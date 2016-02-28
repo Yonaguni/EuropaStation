@@ -9,7 +9,7 @@ var/list/light_over_cache = list()
 	invisibility = SEE_INVISIBLE_NOLIGHTING
 	pixel_x = -64
 	pixel_y = -64
-	//glide_size = 32
+	glide_size = 32
 	blend_mode = BLEND_ADD
 
 	var/image/light_overlay
@@ -19,11 +19,11 @@ var/list/light_over_cache = list()
 
 /obj/light/New(var/newholder)
 	holder = newholder
-	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = "hard")
+	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = holder.light_type)
 	light_overlay.blend_mode = BLEND_ADD
 	light_overlay.mouse_opacity = 0
 	light_overlay.plane = DARK_PLANE
-	..()
+	..(get_turf(holder))
 
 /obj/light/Destroy()
 	if(holder)
@@ -60,25 +60,29 @@ var/list/light_over_cache = list()
 	else
 		if(dir != holder.dir) set_dir(holder.dir)
 	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
+		var/last_angle = point_angle
 		switch(dir)
 			if(NORTH)
 				point_angle = 90
 			if(SOUTH)
 				point_angle = -90
 			if(EAST)
-				point_angle = 180
-			if(WEST)
 				point_angle = -180
+			if(WEST)
+				point_angle = 0
 			if(NORTHEAST)
 				point_angle = 135
 			if(NORTHWEST)
-				point_angle = -45
+				point_angle = 45
 			if(SOUTHEAST)
 				point_angle = -135
-			if(SOUTHEAST)
-				point_angle = 45
+			if(SOUTHWEST)
+				point_angle = -45
 			else
 				point_angle = null
+		if(last_angle != point_angle)
+			update_transform()
+			update_bleed_masking()
 
 /obj/light/proc/follow_holder()
 	loc = get_turf(holder)

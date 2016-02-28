@@ -47,10 +47,11 @@
 		var/turf/origin = get_turf(light_obj)
 		var/turf/target = get_turf(A)
 		if(istype(origin) && istype(target))
-			light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
-			light_obj.update_transform()
-			light_obj.update_bleed_masking()
-			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A] ([light_obj.point_angle]).</span>")
+			spawn(1)
+				light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
+				light_obj.update_transform()
+				light_obj.update_bleed_masking()
+			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
 			return
 	return ..()
 
