@@ -1,0 +1,80 @@
+"a" = (/turf/simulated/wall/iron,/area/construction)
+"b" = (/turf/simulated/floor/tiled,/area/construction)
+"c" = (/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled,/area/construction)
+"d" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled,/area/construction)
+"e" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/construction)
+"f" = (/obj/machinery/light{tag = "icon-tube1 (EAST)"; icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"g" = (/turf/simulated/wall,/area/construction)
+"h" = (/turf/unsimulated/ocean,/area/construction)
+"i" = (/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{dir = 2; external_pressure_bound = 3000; external_pressure_bound_default = 3000; hibernate = 0; icon_state = "map_vent_in"; internal_pressure_bound = 5000; internal_pressure_bound_default = 5000; pressure_checks = 2; pressure_checks_default = 2; pump_direction = 0; use_power = 1},/turf/unsimulated/ocean,/area/construction)
+"j" = (/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{dir = 2; external_pressure_bound = 3000; external_pressure_bound_default = 3000; icon_state = "map_vent_out"; pressure_checks = 2; pressure_checks_default = 2; use_power = 1},/turf/unsimulated/ocean,/area/construction)
+"k" = (/obj/machinery/atmospherics/unary/vent_pump/on{external_pressure_bound = 3000; external_pressure_bound_default = 3000; pressure_checks = 2; pressure_checks_default = 2},/turf/unsimulated/ocean,/area/construction)
+"l" = (/obj/machinery/button/alternate/airlock/exterior{_wifi_id = "airlock1"; pixel_y = -24},/obj/machinery/atmospherics/unary/vent_pump/siphon/on,/turf/unsimulated/ocean,/area/construction)
+"m" = (/obj/machinery/button/alternate/airlock{_airlock_function = 2; _wifi_id = "al_east"; name = "cycle exterior"; pixel_x = 0; pixel_y = -28},/turf/unsimulated/ocean,/area/construction)
+"n" = (/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/wall,/area/construction)
+"o" = (/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/wall/iron,/area/construction)
+"p" = (/obj/machinery/door/airlock{_airlock_function = 2; _wifi_id = "airlock1"},/turf/simulated/floor/tiled,/area/construction)
+"q" = (/obj/machinery/door/airlock/external{_airlock_function = 2; _wifi_id = "al_east"},/turf/simulated/floor/tiled,/area/construction)
+"r" = (/obj/machinery/atmospherics/pipe/manifold/visible{tag = "icon-map (WEST)"; icon_state = "map"; dir = 8},/turf/simulated/floor/tiled,/area/construction)
+"s" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"t" = (/obj/machinery/atmospherics/pipe/tank{dir = 8},/turf/simulated/floor/tiled,/area/construction)
+"u" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{_airlock_function = 8; _wifi_id = "airlock1"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"v" = (/obj/machinery/atmospherics/pipe/simple/hidden{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/turf/simulated/wall/iron,/area/construction)
+"w" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"x" = (/obj/machinery/atmospherics/pipe/manifold/visible{tag = "icon-map (NORTH)"; icon_state = "map"; dir = 1},/turf/simulated/floor/tiled,/area/construction)
+"y" = (/obj/machinery/atmospherics/pipe/simple/hidden{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/turf/simulated/wall,/area/construction)
+"z" = (/obj/machinery/atmospherics/unary/vent_pump/airlock{_airlock_function = 4; _wifi_id = "al_east"; dir = 8},/obj/machinery/light/small{dir = 8; icon_state = "bulb1"; pixel_y = -12; tag = "icon-bulb1 (WEST)"},/turf/simulated/floor/tiled,/area/construction)
+"A" = (/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{_airlock_function = 8; _wifi_id = "al_east"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"B" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/turf/simulated/floor/tiled,/area/construction)
+"C" = (/obj/machinery/atmospherics/pipe/simple/hidden{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/turf/simulated/wall/iron,/area/construction)
+"D" = (/obj/machinery/airlock{_wifi_id = "airlock1"; pixel_x = 24},/obj/machinery/airlock_sensor{_wifi_id = "airlock1"; pixel_x = -24},/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{_airlock_function = 3; _wifi_id = "airlock1"; dir = 8},/turf/simulated/floor/tiled,/area/construction)
+"E" = (/obj/machinery/airlock{_wifi_id = "al_east"; pixel_x = -26; pixel_y = 10; tag = ""},/obj/machinery/airlock_sensor{_wifi_id = "al_east"; pixel_x = -24; pixel_y = -10},/turf/simulated/floor/tiled,/area/construction)
+"F" = (/obj/machinery/atmospherics/unary/vent_pump/airlock/water_pump{_airlock_function = 3; _wifi_id = "al_east"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"G" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"H" = (/obj/machinery/atmospherics/unary/vent_pump/airlock{_airlock_function = 4; _wifi_id = "airlock1"; dir = 4},/turf/simulated/floor/tiled,/area/construction)
+"I" = (/obj/machinery/atmospherics/pipe/simple/hidden{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/turf/simulated/wall/iron,/area/construction)
+"J" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 8},/turf/simulated/floor/tiled,/area/construction)
+"K" = (/obj/machinery/door/airlock/external{_airlock_function = 1; _wifi_id = "al_east"},/turf/simulated/floor/tiled,/area/construction)
+"L" = (/obj/machinery/door/airlock{_airlock_function = 1; _wifi_id = "airlock1"},/turf/simulated/floor/tiled,/area/construction)
+"M" = (/obj/machinery/button/alternate/airlock{_wifi_id = "al_east"; name = "cycle interior"; pixel_x = 0; pixel_y = 28},/turf/simulated/floor/tiled,/area/construction)
+"N" = (/obj/machinery/button/alternate/airlock{_wifi_id = "airlock1"; pixel_y = 24},/turf/simulated/floor/tiled,/area/construction)
+"O" = (/obj/effect/landmark/start{name = "AI"},/turf/simulated/floor/tiled,/area/construction)
+"P" = (/obj/effect/landmark{name = "JoinLate"},/obj/effect/landmark{name = "Observer-Start"},/obj/effect/landmark/start{name = "Citizen"},/obj/effect/landmark/start{name = "Civil Engineer"},/obj/effect/landmark/start{name = "Colony Liaison"},/obj/effect/landmark/start{name = "Corporate Contact Officer"},/obj/effect/landmark/start{name = "Cyborg"},/obj/effect/landmark/start{name = "Factory Worker"},/obj/effect/landmark/start{name = "Marshal"},/obj/effect/landmark/start{name = "Petty Officer"},/obj/effect/landmark/start{name = "Scientist"},/turf/simulated/floor/tiled,/area/construction)
+"Q" = (/obj/structure/cable{tag = "icon-0-1 (WEST)"; icon_state = "0-1"; dir = 8},/obj/machinery/power/smes/magical,/turf/simulated/floor/tiled,/area/construction)
+"R" = (/obj/structure/cable{tag = "icon-0-1 (EAST)"; icon_state = "0-1"; dir = 4},/obj/machinery/power/apc/hyper,/turf/simulated/floor/tiled,/area/construction)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbcbbbbbcbbbbbbcbbbbbcbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+adbbbbebbbbbebbbbbbebbbbbebbbbfa
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+adbbbbebbbbbebbbbbbebbbbbebbbbfa
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbaaaaabbbggggggggbbbbbbbba
+abbbbbbahhhabbbghhhhhhgbbbbbbbba
+adbbbbeahhhaebbghhhhijgbbebbbbfa
+abbbbbbakhlabbbgmhhgnngbbbbbbbba
+abbbbbbaopoabbbggqqgrstbbbbbbbba
+abbbbbbbouvbbbwxyzAyBrtbbbbbbbba
+abbbbbbbCDabbbwBgEFyGBbbbbbbbbba
+abbbbbbbaHIJbbbbgKKgbbbbbbbbbbba
+adbbbbebaLabebbbMbbcbbbbbebbbbfa
+abbbbbbbbbNbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+aObPbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+aQRbbbebbbbbebbbbbbebbbbbebbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
+
