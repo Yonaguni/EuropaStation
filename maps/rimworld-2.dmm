@@ -422,7 +422,7 @@
 "if" = (/obj/structure/sign/redcross{pixel_x = 32},/turf/simulated/floor/natural/light,/area/rimworld/settlement)
 "ig" = (/obj/structure/table/woodentable,/obj/item/clothing/accessory/stethoscope,/obj/item/device/flashlight/pen,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "ih" = (/obj/item/weapon/storage/stationary/vendor/snack,/turf/simulated/floor,/area/rimworld/building/garage)
-"ii" = (/obj/machinery/chemical_dispenser/bar_alc,/obj/structure/table/marble,/turf/simulated/floor/lino,/area/rimworld/building/pub)
+"ii" = (/obj/structure/table/marble,/obj/machinery/chemical_dispenser/bar_alc/full,/turf/simulated/floor/lino,/area/rimworld/building/pub)
 "ij" = (/obj/structure/table/woodentable,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/ointment,/obj/item/stack/medical/ointment,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/splint{pixel_x = 4},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "ik" = (/obj/item/weapon/stool/padded,/obj/machinery/light/small,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "il" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_s)

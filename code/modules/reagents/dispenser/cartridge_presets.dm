@@ -41,6 +41,7 @@
 	cognac		spawn_reagent = "cognac"
 	ale			spawn_reagent = "ale"
 	mead		spawn_reagent = "mead"
+	absinthe	spawn_reagent = "absinthe"
 
 	// Bar, soft
 	ice			spawn_reagent = "ice"
@@ -58,6 +59,8 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
+	lemonade	spawn_reagent = "lemonade"
+	coco		spawn_reagent = "coco"
 
 	// ERT
 	adrenaline  spawn_reagent = REAGENT_ID_ADRENALINE
@@ -69,4 +72,3 @@
 	jumpstart	spawn_reagent = REAGENT_ID_JUMPSTART
 	antibiotic	spawn_reagent = "antibiotic"
 	sleeptox	spawn_reagent = REAGENT_ID_SLEEPTOX
-
