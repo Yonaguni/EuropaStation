@@ -14,6 +14,10 @@
 	var/spawn_reagent = null
 	var/label = ""
 
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/New()
+	..()
+	setLabel(spawn_reagent)
+
 /obj/item/weapon/reagent_containers/chem_disp_cartridge/initialize()
 	..()
 	if(spawn_reagent)

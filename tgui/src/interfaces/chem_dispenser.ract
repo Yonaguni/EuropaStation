@@ -1,8 +1,3 @@
-<ui-display title='Status'>
-  <ui-section label='Energy'>
-    <ui-bar min='0' max='{{data.maxEnergy}}' value='{{data.energy}}'>{{Math.fixed(adata.energy)}} Units</ui-bar>
-  </ui-section>
-</ui-display>
 <ui-display title='Dispense' button>
   {{#partial button}}
     {{#each data.beakerTransferAmounts}}
@@ -11,11 +6,13 @@
   {{/partial}}
   <ui-section>
     {{#each data.chemicals}}
-      <ui-button grid icon='tint' action='dispense' params='{"reagent": "{{id}}"}'>{{title}}</ui-button>
+      <ui-button grid icon='tint' action='dispense' params='{"reagent": "{{label}}"}'>{{label}} ({{amount}})</ui-button>
+    {{else}}
+      <span class='bad'>No cartridges installed</span>
     {{/each}}
   </ui-section>
 </ui-display>
-<ui-display title='Beaker' button>
+<ui-display title='{{data.containerType}}' button>
   {{#partial button}}
     {{#each data.beakerTransferAmounts}}
       <ui-button icon='minus' action='remove' params='{"amount": {{.}}}'>{{.}}</ui-button>
@@ -29,10 +26,10 @@
       {{#each adata.beakerContents}}
         <span class='highlight' intro-outro='fade'>{{Math.fixed(volume, 2)}} units of {{name}}</span><br/>
       {{else}}
-        <span class='bad'>Beaker Empty</span>
+        <span class='bad'>{{data.containerType}} Empty</span>
       {{/each}}
     {{else}}
-      <span class='average'>No Beaker</span>
+      <span class='average'>No {{data.containerType}}</span>
     {{/if}}
   </ui-section>
 </ui-display>
