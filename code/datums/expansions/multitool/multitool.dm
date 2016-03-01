@@ -12,7 +12,7 @@
 	return ..()
 
 /datum/expansion/multitool/proc/interact(var/obj/item/device/multitool/M, var/mob/user)
-	if(CanUseTopic(user) != STATUS_INTERACTIVE)
+	if(CanUseTopic(user) != UI_INTERACTIVE)
 		return
 
 	var/html = get_interact_window(M, user)
@@ -40,14 +40,14 @@
 
 /datum/expansion/multitool/CanUseTopic(var/mob/user)
 	. = ..()
-	if(. == STATUS_CLOSE)
+	if(. == UI_CLOSE)
 		return
 
 	if(!user.get_multitool())
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(!all_predicates_true(list(holder, user), interact_predicates))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	var/datum/host = holder.tgui_host()
 	return user.default_can_use_topic(host)

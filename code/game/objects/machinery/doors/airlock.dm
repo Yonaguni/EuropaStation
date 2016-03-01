@@ -622,7 +622,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
 		user << "<span class='warning'>Unable to interface: Internal error.</span>"
-		return STATUS_CLOSE
+		return UI_CLOSE
 	if(issilicon(user) && !src.canAIControl())
 		if(src.canAIHack(user))
 			src.hack(user)
@@ -631,7 +631,7 @@ About the new airlock wires panel:
 				user << "<span class='warning'>Unable to interface: Connection timed out.</span>"
 			else
 				user << "<span class='warning'>Unable to interface: Connection refused.</span>"
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

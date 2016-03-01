@@ -204,10 +204,10 @@ Class Procs:
 
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(stat & BROKEN)
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(!interact_offline && (stat & NOPOWER))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

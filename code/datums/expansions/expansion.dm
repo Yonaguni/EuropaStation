@@ -12,12 +12,12 @@
 	return ..()
 
 /datum/expansion/CanUseTopic(var/mob/user)
-	return holder && user ? STATUS_INTERACTIVE : STATUS_CLOSE
+	return holder && user ? UI_INTERACTIVE : UI_CLOSE
 
 /datum/expansion/Topic()
 	if(..())
 		return 1
-	if(CanUseTopic(usr) != STATUS_INTERACTIVE)
+	if(CanUseTopic(usr) != UI_INTERACTIVE)
 		return 1
 	return 0
 

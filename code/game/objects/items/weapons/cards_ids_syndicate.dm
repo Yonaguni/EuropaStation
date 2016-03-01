@@ -76,7 +76,7 @@
 
 /obj/item/weapon/card/id/syndicate/CanUseTopic(mob/user)
 	if(user != registered_user)
-		return STATUS_CLOSE
+		return UI_CLOSE
 	return ..()
 
 /obj/item/weapon/card/id/syndicate/Topic(href, href_list, var/datum/ui_state/state)

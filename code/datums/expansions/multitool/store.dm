@@ -1,5 +1,5 @@
 /datum/expansion/multitool/store/interact(var/obj/item/device/multitool/M, var/mob/user)
-	if(CanUseTopic(user) != STATUS_INTERACTIVE)
+	if(CanUseTopic(user) != UI_INTERACTIVE)
 		return
 
 	if(M.get_buffer() == holder)
