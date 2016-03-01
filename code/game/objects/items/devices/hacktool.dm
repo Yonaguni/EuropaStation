@@ -96,5 +96,5 @@
 
 /datum/ui_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
-		return STATUS_CLOSE
+		return UI_CLOSE
 	return ..()
