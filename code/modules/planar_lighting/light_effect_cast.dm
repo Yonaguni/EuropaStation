@@ -53,6 +53,7 @@
 
 		if(!(check in affecting_turfs))
 			affecting_turfs += check
+			check.lumcount = -1
 			check.affecting_lights += src
 
 		if(!check.check_blocks_light())
@@ -123,6 +124,7 @@
 		if(!(thing in visible_turfs))
 			affecting_turfs -= thing
 			var/turf/T = thing
+			T.lumcount = -1
 			T.affecting_lights -= src
 
 	// Mask off stuff that we 100% cannot see, plus walls to prevent light bleed.

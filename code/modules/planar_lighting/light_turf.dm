@@ -1,5 +1,6 @@
 /turf/var/blocks_light = -1              // Whether or not this turf occludes light based on turf opacity and contents. See check_blocks_light().
 /turf/var/has_corners = -1               // Whether or not we need to give a shit about this turf as an occluding corner object.
+/turf/var/lumcount = -1
 /turf/var/list/affecting_lights = list() // Non-assoc list of all lighting overlays applied to this turf.
 
 // Flags the turf to recalc blocks_light next call since opacity has changed.
@@ -7,6 +8,15 @@
 	var/old_opacity = opacity
 	. = ..()
 	if(opacity != old_opacity) blocks_light = -1
+
+/turf/proc/check_lumcount()
+	if(lumcount == -1)
+		lumcount = 0
+		for(var/thing in affecting_lights)
+			var/obj/light/L = thing
+			lumcount += max(1,L.current_power - max(0,(get_dist(get_turf(L), src)-2)))
+		lumcount = Clamp(lumcount,0,10)
+	return lumcount
 
 // Checks if the turf has corners (ie. a vacant turf immediately beside it).
 /turf/proc/check_has_corners()
