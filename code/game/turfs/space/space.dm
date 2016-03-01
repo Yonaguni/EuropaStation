@@ -5,6 +5,8 @@
 	dynamic_lighting = 0
 	accept_lattice = 1
 	open_space = 1
+	light_power = 1
+	light_range = 2
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -27,14 +29,13 @@
 /turf/space/proc/update_starlight()
 	return
 
-/* TODO PLANAR LIGHTING
 	if(!config.starlight)
 		return
 	if(locate(/turf/simulated) in orange(src,1))
-		set_light(config.starlight)
+		set_light()
 	else
 		kill_light()
-*/
+
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)

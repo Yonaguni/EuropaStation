@@ -147,8 +147,8 @@
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 
-	light_range = 12
-	light_power = 8
+	light_range = 5
+	light_power = 4
 	light_color = null
 
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -166,8 +166,8 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	light_range = 8
-	light_power = 6
+	light_range = 4
+	light_power = 3
 	light_color = "#a0a080"
 	desc = "A small lighting fixture."
 	bulb_type = /obj/item/weapon/light/bulb

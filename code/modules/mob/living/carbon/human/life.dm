@@ -589,17 +589,10 @@
 
 	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
 
-	/* TODO PLANAR LIGHTING
 	if(!isSynthetic())
 		if(light_organ && !light_organ.is_broken())
-			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
-			if(isturf(loc)) //else, there's considered to be no light
-				var/turf/T = loc
-				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-				if(L)
-					light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 5 //hardcapped so it's not abused by having a ton of flashlights
-				else
-					light_amount =  5
+			var/turf/T = loc
+			var/light_amount = istype(T) ? T.check_lumcount() : 5
 			nutrition += light_amount
 			traumatic_shock -= light_amount
 
@@ -617,16 +610,11 @@
 		var/light_amount = 0
 		if(isturf(loc))
 			var/turf/T = loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
-			else
-				light_amount =  10
+			light_amount = istype(T) ? T.check_lumcount() : 10
 		if(light_amount > species.light_dam) //if there's enough light, start dying
 			take_overall_damage(1,1)
 		else //heal in the dark
 			heal_overall_damage(1,1)
-	*/
 
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
@@ -927,13 +915,10 @@
 			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	/* TODO PLANAR LIGHTING
 	if(isturf(loc) && rand(1,1000) == 1)
-		var/turf/T = loc
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-		if(L && L.lum_r + L.lum_g + L.lum_b == 0)
+		var/turf/T = get_turf(src)
+		if(istype(T) && T.check_lumcount() == 0)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-	*/
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)

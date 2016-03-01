@@ -292,18 +292,12 @@
 		for(var/gas in exude_gasses)
 			environment.adjust_gas(gas, max(1,round((exude_gasses[gas]*(get_trait(TRAIT_POTENCY)/5))/exude_gasses.len)))
 
-	// Handle light requirements. TODO PLANAR LIGHTING
-	/*
 	if(!light_supplied)
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in current_turf
-		if(L)
-			light_supplied = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-		else
-			light_supplied =  5
+		light_supplied = current_turf.check_lumcount()
+
 	if(light_supplied)
 		if(abs(light_supplied - get_trait(TRAIT_IDEAL_LIGHT)) > get_trait(TRAIT_LIGHT_TOLERANCE))
 			health_change += rand(1,3) * HYDRO_SPEED_MULTIPLIER
-	*/
 
 	return health_change
 

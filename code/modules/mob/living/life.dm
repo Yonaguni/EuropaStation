@@ -179,14 +179,12 @@
 		update_dead_sight()
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		sight |= SEE_PIXELS
 		see_in_dark = initial(see_in_dark)
 		see_invisible = initial(see_invisible)
+		sight |= SEE_PIXELS
 
 /mob/living/proc/update_dead_sight()
-	sight |= SEE_TURFS
-	sight |= SEE_MOBS
-	sight |= SEE_OBJS
+	sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_PIXELS)
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
