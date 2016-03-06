@@ -22,3 +22,7 @@ var/global/datum/controller/process/tgui/tguiProcess
 			continue
 		processing_uis.Remove(ui)
 		SCHECK
+
+/datum/controller/process/tgui/statProcess()
+	..()
+	stat(null, "[tguiProcess.processing_uis.len] UI\s")
