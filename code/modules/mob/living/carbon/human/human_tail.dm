@@ -151,7 +151,7 @@ var/list/human_tail_cache = list()
 /obj/effect/tail/trailing
 	name = "tail"
 	var/terminating
-	animate_movement = SLIDE_STEPS
+	animate_movement = SYNC_STEPS
 
 /obj/effect/tail/trailing/New(var/newloc, var/term)
 	terminating = term
