@@ -31,7 +31,7 @@
 
 	var/job_category = IS_CIVIL
 
-/datum/job/proc/equip(var/mob/living/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
+/datum/job/proc/equip(var/mob/living/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0, var/alt_rank)
 
 	var/list/uniforms = list(
 		/obj/item/clothing/under/soviet,

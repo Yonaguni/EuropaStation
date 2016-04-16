@@ -2,9 +2,9 @@
 	title = "Civil Engineer"
 	alt_titles = list("Emergency Services","Electrician")
 
-/datum/job/civilian/engineering/equip(var/mob/living/human/H)
+/datum/job/civilian/engineering/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
 	if(!H) return
-	switch(H.mind.role_alt_title)
+	switch(alt_rank)
 		if("Civil Engineer")
 			..(H, skip_hat = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), slot_head)

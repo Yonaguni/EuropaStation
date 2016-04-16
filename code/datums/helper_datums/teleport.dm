@@ -163,7 +163,7 @@
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
-	if(destination.z in config.admin_levels) //centcomm z-level
+	if(destination.z in using_map.admin_levels) //centcomm z-level
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 			return 0

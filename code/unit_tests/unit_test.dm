@@ -27,6 +27,7 @@
 
 var/all_unit_tests_passed = 1
 var/failed_unit_tests = 0
+var/skipped_unit_tests = 0
 var/total_unit_tests = 0
 
 // For console out put in Linux/Bash makes the output green or red.
@@ -34,6 +35,7 @@ var/total_unit_tests = 0
 var/ascii_esc = ascii2text(27)
 var/ascii_red = "[ascii_esc]\[31m"
 var/ascii_green = "[ascii_esc]\[32m"
+var/ascii_yellow = "[ascii_esc]\[33m"
 var/ascii_reset = "[ascii_esc]\[0m"
 
 
@@ -57,6 +59,11 @@ datum/unit_test/proc/fail(var/message)
 datum/unit_test/proc/pass(var/message)
 	reported = 1
 	log_unit_test("[ascii_green]*** SUCCESS *** \[[name]\]: [message][ascii_reset]")
+
+datum/unit_test/proc/skip(var/message)
+	skipped_unit_tests++
+	reported = 1
+	log_unit_test("[ascii_yellow]--- SKIPPED --- \[[name]\]: [message][ascii_reset]")
 
 datum/unit_test/proc/start_test()
 	fail("No test proc.")
@@ -151,9 +158,13 @@ proc/initialize_unit_tests()
 		if(!test.reported)
 			test.fail("Test failed to report a result.")
 
+	var/skipped_message = ""
+	if(skipped_unit_tests)
+		skipped_message = "| \[[skipped_unit_tests]\\[total_unit_tests]\] Unit Tests Skipped "
+
 	if(all_unit_tests_passed)
-		log_unit_test("[ascii_green]**** All Unit Tests Passed \[[total_unit_tests]\] ****[ascii_reset]")
+		log_unit_test("[ascii_green]**** All Unit Tests Passed \[[total_unit_tests]\] [skipped_message]****[ascii_reset]")
 		del(world)
 	else
-		log_unit_test("[ascii_red]**** \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed ****[ascii_reset]")
+		log_unit_test("[ascii_red]**** \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed [skipped_message]****[ascii_reset]")
 		del(world)

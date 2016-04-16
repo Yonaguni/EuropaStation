@@ -94,7 +94,7 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				continue
 
-			if(istype(job, world_map.default_job)) // We don't want to give him assistant, that's boring!
+			if(istype(job, using_map.default_job)) // We don't want to give him assistant, that's boring!
 				continue
 
 			if(job in head_positions) //If you want a command position, select it!
@@ -208,12 +208,12 @@ var/global/datum/controller/occupations/job_master
 
 		//People who wants to be assistants, sure, go on.
 		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new world_map.default_job ()
+		var/datum/job/assist = new using_map.default_job ()
 		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
 			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "[world_map.default_title]")
+			AssignRole(player, "[using_map.default_title]")
 			assistant_candidates -= player
 		Debug("DO, AC1 end")
 
@@ -294,7 +294,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == BE_ASSISTANT)
 				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "[world_map.default_title]")
+				AssignRole(player, "[using_map.default_title]")
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
@@ -305,16 +305,19 @@ var/global/datum/controller/occupations/job_master
 		return 1
 
 
-	proc/EquipRank(var/mob/living/human/H, var/rank, var/joined_late = 0, var/preview_only = FALSE, var/list/use_gear)
+	proc/EquipRank(var/mob/living/human/H, var/rank, var/joined_late = 0, var/preview_only = FALSE, var/client/use_client)
 
 		if(!H)
 			return
 
-		if(!use_gear)
-			if(H.client && H.client.prefs)
-				use_gear = H.client.prefs.gear
-			else
-				use_gear = list()
+		if(!use_client)
+			if(!H.client)
+				return
+			use_client = H.client
+
+		var/list/use_gear = list()
+		if(use_client.prefs)
+			use_gear = use_client.prefs.gear
 
 		var/datum/job/job = GetJob(rank)
 		var/list/spawn_in_storage = list()
@@ -358,8 +361,9 @@ var/global/datum/controller/occupations/job_master
 							spawn_in_storage += thing
 			//Equip job items.
 			job.equip_backpack(H)	//backpack first so equip() can put things in it
-			job.equip(H)
-			job.equip_survival(H)
+			job.equip(H, alt_rank = use_client.prefs.get_player_alt_title(job))
+			if(!preview_only)
+				job.equip_survival(H)
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)

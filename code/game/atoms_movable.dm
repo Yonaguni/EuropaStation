@@ -227,7 +227,7 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
-	if(z in config.sealed_levels)
+	if(z in using_map.sealed_levels)
 		return
 
 	/*

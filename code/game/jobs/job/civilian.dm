@@ -18,9 +18,9 @@
             access_construction, access_sec_doors, access_medical, access_medical_equip, access_morgue,
 			access_genetics, access_chemistry, access_virology, access_surgery, access_RC_announce,access_psychiatrist)
 
-/datum/job/civilian/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/civilian/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
 	if(!H) return
-	switch(H.mind.role_alt_title)
+	switch(alt_rank)
 		if("Doctor")
 			..(H, skip_suit = 1)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)

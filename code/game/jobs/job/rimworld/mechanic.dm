@@ -6,7 +6,7 @@
 	alt_titles = list("Engineer", "Builder")
 	selection_color = "#ffeeff"
 
-/datum/job/borderworld/mechanic/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/borderworld/mechanic/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/mechanic(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/workboots(H), slot_shoes)

@@ -14,10 +14,10 @@ var/list/all_excluded_jobs = list()
 /proc/get_job_datums(var/exclude)
 	if(!all_used_jobs)
 		all_used_jobs = list()
-		for(var/jobtype in world_map.use_jobs)
+		for(var/jobtype in using_map.use_jobs)
 			var/datum/job/job = new jobtype()
 			// Should we keep track of this job for exclusionary purposes?
-			if(jobtype in world_map.exclude_jobs)
+			if(jobtype in using_map.exclude_jobs)
 				all_excluded_jobs += job
 			else
 				job_titles += job.title
