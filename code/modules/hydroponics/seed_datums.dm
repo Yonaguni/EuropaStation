@@ -161,7 +161,7 @@
 	name = "bloodtomato"
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
-	mutants = list("killer")
+	mutants = null
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_BLOOD = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 
@@ -169,19 +169,6 @@
 	..()
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FF0000")
-
-/datum/seed/tomato/killer
-	name = "killertomato"
-	seed_name = "killer tomato"
-	display_name = "killer tomato plant"
-	mutants = null
-	can_self_harvest = 1
-	has_mob_product = /mob/living/simple_animal/tomato
-
-/datum/seed/tomato/killer/New()
-	..()
-	set_trait(TRAIT_YIELD,2)
-	set_trait(TRAIT_PRODUCT_COLOUR,"#A86747")
 
 /datum/seed/tomato/blue
 	name = "bluetomato"
@@ -353,7 +340,7 @@
 	name = "plumphelmet"
 	seed_name = "plump helmet"
 	display_name = "plump helmet mushrooms"
-	mutants = list("walkingmushroom","towercap")
+	mutants = list("towercap")
 	chems = list(REAGENT_ID_NUTRIMENT = list(2,10))
 	kitchen_tag = "plumphelmet"
 
@@ -366,14 +353,6 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#B57BB0")
 	set_trait(TRAIT_PLANT_COLOUR,"#9E4F9D")
 	set_trait(TRAIT_PLANT_ICON,"mushroom2")
-
-/datum/seed/mushroom/plump/walking
-	name = "walkingmushroom"
-	seed_name = "walking mushroom"
-	display_name = "walking mushrooms"
-	mutants = null
-	can_self_harvest = 1
-	has_mob_product = /mob/living/simple_animal/mushroom
 
 /datum/seed/mushroom/plump/walking/New()
 	..()
