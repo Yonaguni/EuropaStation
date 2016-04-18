@@ -131,9 +131,6 @@ var/global/list/plant_seed_sprites = list()
 /obj/item/seeds/tomatoseed
 	seed_type = "tomato"
 
-/obj/item/seeds/killertomatoseed
-	seed_type = "killertomato"
-
 /obj/item/seeds/bluetomatoseed
 	seed_type = "bluetomato"
 
@@ -187,9 +184,6 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/plumpmycelium
 	seed_type = "plumphelmet"
-
-/obj/item/seeds/walkingmushroommycelium
-	seed_type = "walkingmushroom"
 
 /obj/item/seeds/nettleseed
 	seed_type = "nettle"

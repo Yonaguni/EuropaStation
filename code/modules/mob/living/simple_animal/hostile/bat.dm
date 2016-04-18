@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/scarybat
-	name = "space bats"
-	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
+	name = "bats"
+	desc = "A swarm of bats. They look pretty upset."
 	icon = 'icons/mob/creatures/bats.dmi'
 	icon_state = "bat"
 	icon_living = "bat"
