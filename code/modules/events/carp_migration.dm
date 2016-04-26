@@ -2,7 +2,7 @@
 	announceWhen	= 50
 	endWhen 		= 900
 
-	var/list/pick_critters = list(/mob/living/simple_animal/hostile/carp)
+	var/list/pick_critters = list(/mob/living)
 	var/list/spawned_critters = list()
 
 /datum/event/critter_migration/setup()

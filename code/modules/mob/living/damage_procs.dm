@@ -77,3 +77,6 @@
 	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	return 1
+
+/mob/living/proc/update_icon()
+	return

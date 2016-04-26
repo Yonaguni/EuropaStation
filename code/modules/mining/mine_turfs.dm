@@ -81,6 +81,18 @@ proc/get_mining_overlay(var/overlay_key)
 	color = "#00FFFF"
 	accept_lattice = 1
 
+
+/turf/simulated/mineral/floor/ignore_mapgen/flooded/initialize()
+	if(prob(1) && !(locate(/obj/landmark/animal_spawn) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
+		switch(rand(1,3))
+			if(1)
+				new /obj/landmark/animal_spawn/carp(src)
+			if(2)
+				new /obj/landmark/animal_spawn/shark(src)
+			if(3)
+				new /obj/landmark/animal_spawn/fish(src)
+	return ..()
+
 /turf/simulated/mineral/New()
 	..()
 	color = null

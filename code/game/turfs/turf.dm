@@ -168,7 +168,7 @@ var/list/turf_edge_cache = list()
 				return 0
 	return 1 //Nothing found to block so return success!
 
-var/const/enterloopsanity = 100
+var/const/proxloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(!istype(atom, /atom/movable))
@@ -187,14 +187,34 @@ var/const/enterloopsanity = 100
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))
-			if(objects > enterloopsanity) break
+			if(objects > proxloopsanity) break
 			objects++
+			if(A == thing)
+				continue
 			spawn(0)
-				if(A)
+				if(A && thing)
 					A.HasProximity(thing, 1)
-					if ((thing && A) && (thing.flags & PROXMOVE))
+					if(thing.flags & PROXMOVE)
 						thing.HasProximity(A, 1)
 	return
+
+/*
+/turf/Exited(var/atom/movable/obj)
+	. = ..()
+	if(obj && (obj.flags & PROXMOVE))
+		var/objs = 0
+		for(var/atom/movable/thing in range(1))
+			if(objs > proxloopsanity)
+				break
+			objs++
+			if(obj == thing)
+				continue
+			spawn(0)
+				if(obj && thing)
+					obj.HasProximity(thing, 1)
+					if(thing.flags & PROXMOVE)
+						thing.HasProximity(obj, 1)
+*/
 
 /turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
 	return

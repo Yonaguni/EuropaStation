@@ -279,7 +279,7 @@ obj/tram/tram_controller/proc/can_crash(var/atom/movable/A)
 				qdel(src)
 			return
 
-/obj/tram/attack_generic(var/mob/living/simple_animal/M)
+/obj/tram/attack_generic(var/mob/living/animal/M)
 	if(!istype(M))	return
 	if(M.melee_damage_upper == 0)	return
 	if(prob(M.melee_damage_upper))

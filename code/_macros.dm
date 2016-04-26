@@ -3,13 +3,11 @@
 
 #define isalien(A) istype(A, /mob/living/human/alien)
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isanimal(A) istype(A, /mob/living/animal)
 
 #define isairlock(A) istype(A, /obj/machinery/door/airlock)
 
 #define isbrain(A) istype(A, /mob/living/brain)
-
-#define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
 
 #define isEye(A) istype(A, /mob/eye)
 
@@ -17,7 +15,10 @@
 
 #define isliving(A) istype(A, /mob/living)
 
-#define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
+#define ismouse(A) 0
+//istype(A, /mob/living/animal/mouse)
+
+#define isborer(A) 0
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 

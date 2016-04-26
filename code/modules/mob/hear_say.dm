@@ -1,4 +1,6 @@
 // At minimum every mob has a hear_say proc.
+/mob/proc/garble_message(var/message)
+	return stars(message)
 
 /mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
@@ -32,14 +34,12 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
-				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+			if(language)
+				message = language.scramble(message)
+			else if(speaker)
+				message = speaker.garble_message(message)
 			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+				message = stars(message)
 
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/human))
@@ -95,17 +95,12 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
-				var/mob/living/simple_animal/S = speaker
-				if(S.speak && S.speak.len)
-					message = pick(S.speak)
-				else
-					return
+			if(language)
+				message = language.scramble(message)
+			else if(speaker)
+				message = speaker.garble_message(message)
 			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+				message = stars(message)
 
 		if(hard_to_hear)
 			message = stars(message)

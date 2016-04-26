@@ -33,7 +33,7 @@
 			else if(prob(1))
 				new /obj/structure/flora/seaweed/glow(T)
 			if(prob(1))
-				new /mob/living/simple_animal/hostile/retaliate/europa_shark(T)
+				new /mob/living/animal/aquatic/shark(T)
 
 	var/turf/simulated/ocean/O = T
 	if(istype(O))

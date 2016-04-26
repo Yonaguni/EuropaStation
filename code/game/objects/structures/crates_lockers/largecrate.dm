@@ -34,27 +34,3 @@
 	..()
 	for(var/i = 1;i<=held_count;i++)
 		new held_type(src)
-
-/obj/structure/largecrate/animal/corgi
-	name = "corgi carrier"
-	held_type = /mob/living/simple_animal/corgi
-
-/obj/structure/largecrate/animal/cow
-	name = "cow crate"
-	held_type = /mob/living/simple_animal/cow
-
-/obj/structure/largecrate/animal/goat
-	name = "goat crate"
-	held_type = /mob/living/simple_animal/hostile/retaliate/goat
-
-/obj/structure/largecrate/animal/cat
-	name = "cat carrier"
-	held_type = /mob/living/simple_animal/cat
-
-/obj/structure/largecrate/animal/cat/bones
-	held_type = /mob/living/simple_animal/cat/fluff/bones
-
-/obj/structure/largecrate/animal/chick
-	name = "chicken crate"
-	held_count = 5
-	held_type = /mob/living/simple_animal/chick

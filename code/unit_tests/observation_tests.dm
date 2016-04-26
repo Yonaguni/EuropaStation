@@ -26,7 +26,7 @@ datum/unit_test/observation/global_listeners_shall_receive_events/start_test()
 	..()
 	var/turf/start = locate(20,20,1)
 	var/turf/target = locate(20,21,1)
-	var/mob/living/carbon/human/H = new(start)
+	var/mob/living/human/H = new(start)
 
 	moved_event.register_global(src, /datum/unit_test/observation/proc/receive_move)
 	H.forceMove(target)
@@ -52,7 +52,7 @@ datum/unit_test/observation/moved_observer_shall_register_on_follow
 datum/unit_test/observation/moved_observer_shall_register_on_follow/start_test()
 	..()
 	var/turf/T = locate(20,20,1)
-	var/mob/living/carbon/human/H = new(T)
+	var/mob/living/human/H = new(T)
 	var/mob/dead/observer/O = new(T)
 
 	O.ManualFollow(H)
@@ -71,7 +71,7 @@ datum/unit_test/observation/moved_observer_shall_unregister_on_nofollow
 datum/unit_test/observation/moved_observer_shall_unregister_on_nofollow/start_test()
 	..()
 	var/turf/T = locate(20,20,1)
-	var/mob/living/carbon/human/H = new(T)
+	var/mob/living/human/H = new(T)
 	var/mob/dead/observer/O = new(T)
 
 	O.ManualFollow(H)
@@ -91,7 +91,7 @@ datum/unit_test/observation/moved_shall_not_register_on_enter_without_listeners
 datum/unit_test/observation/moved_shall_not_register_on_enter_without_listeners/start_test()
 	..()
 	var/turf/T = locate(20,20,1)
-	var/mob/living/carbon/human/H = new(T)
+	var/mob/living/human/H = new(T)
 	var/obj/structure/closet/C = new(T)
 
 	H.forceMove(C)
@@ -110,7 +110,7 @@ datum/unit_test/observation/moved_shall_register_recursively_on_new_listener
 datum/unit_test/observation/moved_shall_register_recursively_on_new_listener/start_test()
 	..()
 	var/turf/T = locate(20,20,1)
-	var/mob/living/carbon/human/H = new(T)
+	var/mob/living/human/H = new(T)
 	var/obj/structure/closet/C = new(T)
 	var/mob/dead/observer/O = new(T)
 
@@ -134,7 +134,7 @@ datum/unit_test/observation/moved_shall_register_recursively_with_existing_liste
 datum/unit_test/observation/moved_shall_register_recursively_with_existing_listener/start_test()
 	..()
 	var/turf/T = locate(20,20,1)
-	var/mob/living/carbon/human/H = new(T)
+	var/mob/living/human/H = new(T)
 	var/obj/structure/closet/C = new(T)
 	var/mob/dead/observer/O = new(T)
 
@@ -161,8 +161,8 @@ datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop/start_te
 	var/turf/T = locate(20,20,1)
 	var/obj/mecha/mech = new(T)
 	var/obj/item/weapon/wrench/held_item = new(T)
-	var/mob/living/carbon/human/dummy/held_mob = new(T)
-	var/mob/living/carbon/human/dummy/holding_mob = new(T)
+	var/mob/living/human/dummy/held_mob = new(T)
+	var/mob/living/human/dummy/holding_mob = new(T)
 
 	held_mob.real_name = "Held Mob"
 	held_mob.name = "Held Mob"

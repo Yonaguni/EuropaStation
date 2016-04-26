@@ -110,7 +110,7 @@
 	for(var/mob/living/human/bug in destination)
 		bug.gib()
 
-	for(var/mob/living/simple_animal/pest in destination)
+	for(var/mob/living/animal/pest in destination)
 		pest.gib()
 
 	origin.move_contents_to(destination, direction=direction)

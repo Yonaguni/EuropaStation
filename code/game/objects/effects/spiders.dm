@@ -60,9 +60,10 @@
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
-		return 1
-	else if(istype(mover, /mob/living))
+	//if(istype(mover, /mob/living/animal/hostile/giant_spider))
+	//	return 1
+	//else
+	if(istype(mover, /mob/living))
 		if(prob(50))
 			mover << "<span class='warning'>You get stuck in \the [src] for a moment.</span>"
 			return 0
@@ -213,7 +214,7 @@
 		*/
 
 		if(amount_grown >= 100)
-			var/spawn_type = pick(typesof(/mob/living/simple_animal/hostile/giant_spider))
+			var/spawn_type = /mob/living //pick(typesof(/mob/living/animal/hostile/giant_spider))
 			new spawn_type(src.loc, src)
 			qdel(src)
 	else if(isorgan(loc))

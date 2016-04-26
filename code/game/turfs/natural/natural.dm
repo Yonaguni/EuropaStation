@@ -126,8 +126,8 @@ var/list/tree_types = list(
 
 /turf/simulated/floor/natural/grass/forest/New()
 	..()
-	if(prob(3) && !(locate(/obj/landmark/livestock) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
-		new /obj/landmark/livestock/deer(src)                // Accordingly, it will probably be here in ten years.
+	if(prob(3) && !(locate(/obj/landmark/animal_spawn) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
+		new /obj/landmark/animal_spawn/deer(src)                // Accordingly, it will probably be here in ten years.
 
 /turf/simulated/floor/natural/grass/New()
 	if(prob(50))

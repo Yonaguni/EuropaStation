@@ -195,3 +195,9 @@
 #define BLOOD_VOLUME_OKAY    75
 #define BLOOD_VOLUME_BAD   	 60
 #define BLOOD_VOLUME_SURVIVE 40
+
+// Mob AI behavior flags.
+#define SWIMMER     0x1  // Can swim through flooded turfs.
+#define FLIER       0x2  // Can fly over open spaces.
+#define TERRAN      0x4  // Can walk on dry land.
+#define ETHEREAL    0x8  // Moves through dense turfs (unimplemented).

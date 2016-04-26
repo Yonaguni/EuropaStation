@@ -36,13 +36,9 @@ var/list/event_last_fired = list()
 	// Events have to be manually added to this proc to happen
 	var/list/possibleEvents = list()
 
-	//see:
-	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events.dm
-	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events_Mundane.dm
-
-	possibleEvents[/datum/event/critter_migration] = 20 + 10 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
-	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
+	//possibleEvents[/datum/event/critter_migration] = 20 + 10 * active_with_role["Engineer"]
+	//possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
+	//possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
 	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Gardener"]
 
 	if(!spacevines_spawned)

@@ -52,9 +52,8 @@
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/carp
-	source_mob = "carp"
+/obj/item/weapon/reagent_containers/food/snacks/meat/slab/fillet
 	name = "fillet"
-	desc = "A fillet of carp meat."
+	desc = "A fillet of meat."
 	icon_state = "fishfillet"
 	filling_color = "#FFDEFE"
