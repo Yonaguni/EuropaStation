@@ -124,6 +124,11 @@ var/list/tree_types = list(
 	tree_prob = 20
 	blend_with_neighbors = 8
 
+/turf/simulated/floor/natural/grass/forest/New()
+	..()
+	if(prob(3) && !(locate(/obj/landmark/livestock) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
+		new /obj/landmark/livestock/deer(src)                // Accordingly, it will probably be here in ten years.
+
 /turf/simulated/floor/natural/grass/New()
 	if(prob(50))
 		icon_state += "2"

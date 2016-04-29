@@ -47,7 +47,7 @@
 		I.decontaminate()
 
 	//Tanning!
-	for(var/obj/item/stack/material/hairlesshide/HH in contents)
+	for(var/obj/item/stack/material/skin/HH in contents)
 		var/obj/item/stack/material/wetleather/WL = new(src)
 		WL.amount = HH.amount
 		qdel(HH)
@@ -95,7 +95,7 @@
 				state = 3
 		else
 			..()
-	else if(istype(W,/obj/item/stack/material/hairlesshide) || \
+	else if(istype(W,/obj/item/stack/material/skin) || \
 		istype(W,/obj/item/clothing/under) || \
 		istype(W,/obj/item/clothing/mask) || \
 		istype(W,/obj/item/clothing/head) || \
