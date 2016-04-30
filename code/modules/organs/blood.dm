@@ -176,12 +176,11 @@ proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter
 	var/turf/T = get_turf(target)
 
-	if(!target.loc.return_air())	//do not bleed out of airtight things
-		return
-
 	if(istype(source,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = source
 		source = M.get_blood(M.vessel)
+	else if(!istype(source))
+		source = null
 
 	// Are we dripping or splattering?
 	var/list/drips = list()
@@ -202,6 +201,13 @@ proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 		drop.overlays |= drips
 		drop.drips |= drips
 
+	// If it's a big splat, make it audible.
+	if(decal_type == /obj/effect/decal/cleanable/blood/splatter)
+		playsound(B.loc, 'sound/effects/splat.ogg', 50, 1)
+
+	B.fluorescent  = 0
+	B.invisibility = 0
+
 	// If there's no data to copy, call it quits here.
 	if(!source || !istype(source))
 		return B
@@ -218,7 +224,4 @@ proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
 		else
 			B.blood_DNA[source.data["blood_DNA"]] = "O+"
-
-	B.fluorescent  = 0
-	B.invisibility = 0
 	return B
