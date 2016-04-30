@@ -5,9 +5,9 @@
 	icon_dead = "doe_dead"
 	gender = FEMALE
 	desc = "It's open season."
-	health = 120
-	maxHealth = 120
-	meat_amount = 5
+	health = 25
+	maxHealth = 25
+	meat_amount = 4
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/venison
 	skull_type = /obj/item/bone/skull/deer
 
@@ -15,7 +15,7 @@
 	..()
 	if(prob(30))
 		gender = MALE
-		meat_amount = 7
+		meat_amount = 6
 		icon_state = "buck"
 		icon_living = "buck"
 		icon_dead = "buck_dead"

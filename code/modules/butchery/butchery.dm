@@ -15,6 +15,7 @@ var/list/butchery_icons = list() // Icon cache.
 
 // Harvest an animal's delicious byproducts
 /mob/living/proc/harvest_meat()
+	blood_splatter(get_turf(src), src, large=1)
 	if(!meat_type || !meat_amount)
 		return
 	for(var/i=0;i<meat_amount;i++)
@@ -24,7 +25,6 @@ var/list/butchery_icons = list() // Icon cache.
 			slab.set_source_mob(src.name)
 		else
 			meat.name = "[src.name] [meat.name]"
-	blood_splatter(get_turf(src), src, large=1)
 
 /mob/living/carbon/human/harvest_meat()
 	..()
@@ -32,16 +32,18 @@ var/list/butchery_icons = list() // Icon cache.
 		I.removed()
 
 /mob/living/proc/harvest_skin()
+	blood_splatter(get_turf(src), src, large=1)
 	if(!skin_type || !skin_amount)
 		return
 	var/obj/item/stack/material/skin/S = new skin_type(get_turf(src), skin_amount)
-	blood_splatter(get_turf(src), src, large=1)
+	blood_splatter(get_turf(src), src, large = 1)
 	S.set_source_mob(src.name)
 
 /mob/living/proc/harvest_bones()
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
+	blood_splatter(T, src, large=1)
 	if(bone_type && bone_amount)
 		for(var/i=1;i<=bone_amount;i++)
 			new bone_type(T)
@@ -62,6 +64,11 @@ var/list/butchery_icons = list() // Icon cache.
 	var/occupant_state = CARCASS_EMPTY
 	var/kills_occupant = 1
 	var/busy
+
+/obj/structure/butchery_hook/return_air()
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		return T.return_air()
 
 /obj/structure/butchery_hook/improvised
 	name = "truss"
@@ -102,9 +109,10 @@ var/list/butchery_icons = list() // Icon cache.
 
 	if(suitable_for_butchery(target))
 
-		user.visible_message("<span class='danger'>\The [user] [kills_occupant ? "impales" : "hangs"] \the [target] on \the [src]!</span>")
+		user.visible_message("<span class='danger'>\The [user] [kills_occupant ? "impales" : "hangs"] \the [target] on \the [src][(kills_occupant && target.stat != DEAD) ? ", killing them instantly!" : "."]</span>")
 
 		if(target.stat != DEAD && kills_occupant)
+			blood_splatter(get_turf(src), target, large=1)
 			target.death()
 			sleep(-1)
 			if(!target)
@@ -183,12 +191,12 @@ var/list/butchery_icons = list() // Icon cache.
 			occupant.adjustBruteLoss(rand(50,60))
 			sleep(-1)
 			update_icon()
-			user.visible_message("<span class='notice'>\The [user] begins jointing \the [occupant].</span>")
+			user.visible_message("<span class='notice'>\The [user] begins deboning \the [occupant].</span>")
 			if(!do_after(user, 30) || !user || !occupant)
 				busy = 0
 				return
 			occupant.adjustBruteLoss(rand(50,60))
-			user.visible_message("<span class='notice'>\The [user] finishes jointing \the [occupant].</span>")
+			user.visible_message("<span class='notice'>\The [user] finishes deboning \the [occupant].</span>")
 			if(occupant)
 				occupant.harvest_bones()
 				occupant_state = CARCASS_JOINTED
