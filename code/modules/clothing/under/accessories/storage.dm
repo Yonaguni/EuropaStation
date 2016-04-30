@@ -70,16 +70,18 @@
 /obj/item/clothing/accessory/storage/knifeharness/New()
 	..()
 	hold.max_storage_space = 4
-	hold.can_hold = list(/obj/item/weapon/material/hatchet/unathiknife,\
-	/obj/item/weapon/material/kitchen/utensil/knife,\
-	/obj/item/weapon/material/kitchen/utensil/knife/plastic,\
-	/obj/item/weapon/material/knife)
+	hold.can_hold = list(
+		/obj/item/weapon/material/hatchet/duel_knife,\
+		/obj/item/weapon/material/kitchen/utensil/knife,\
+		/obj/item/weapon/material/kitchen/utensil/knife/plastic,\
+		/obj/item/weapon/material/knife
+		)
 
-	new /obj/item/weapon/material/hatchet/unathiknife(hold)
-	new /obj/item/weapon/material/hatchet/unathiknife(hold)
+	new /obj/item/weapon/material/hatchet/duel_knife(hold)
+	new /obj/item/weapon/material/hatchet/duel_knife(hold)
 
 /obj/item/clothing/accessory/storage/bandolier
-	name = "bandollier"
+	name = "bandolier"
 	desc = "Magazines are for pansies. Sling it over the shoulder or wear like a belt."
 	icon_state = "bandolier"
 	item_state = "bandolier"

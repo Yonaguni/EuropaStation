@@ -55,7 +55,7 @@
 		var/new_shoes = pick(shoes)
 		H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
 		if(!H.shoes)
-			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
+			var/fallback_type = pick(/obj/item/clothing/shoes/sandal)
 			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
 
 	if(!skip_hat && prob(60))

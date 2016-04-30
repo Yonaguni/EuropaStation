@@ -85,9 +85,9 @@
 	display_name = "poncho, tan"
 	path = /obj/item/clothing/suit/poncho
 
-/datum/gear/suit/cheap/unathi_robe
+/datum/gear/suit/cheap/rough_robe
 	display_name = "roughspun robe"
-	path = /obj/item/clothing/suit/unathi/robe
+	path = /obj/item/clothing/suit/rough_robe
 
 /datum/gear/suit/cheap/blue_lawyer_jacket
 	display_name = "suit jacket, blue"

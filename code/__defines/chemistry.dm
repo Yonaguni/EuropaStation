@@ -18,8 +18,6 @@
 
 // Some on_mob_life() procs check for alien races.
 #define IS_SKRELL  1
-#define IS_XENOS   2
-#define IS_RESOMI 8
 
 #define CE_STABLE                "stable" // Adrenaline
 #define CE_ANTIBIOTIC            "antibiotic" // Spaceacilin

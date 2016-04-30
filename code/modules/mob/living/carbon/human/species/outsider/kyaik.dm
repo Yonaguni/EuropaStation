@@ -16,7 +16,6 @@
 	rarity_value = 8
 	slowdown = -1 // Compensating for a total inability to wear shoes.
 
-	// Temperature values copied from Unathi.
 	cold_level_1 = 280
 	cold_level_2 = 220
 	cold_level_3 = 130

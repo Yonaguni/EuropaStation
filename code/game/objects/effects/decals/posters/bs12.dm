@@ -89,11 +89,6 @@
 	name = "Derpman, Enforcer of the State"
 	desc = "Here to protect and serve... your donuts! A generously proportioned man, he teaches you the value of hiding your snacks."
 
-/datum/poster/bay_19
-	icon_state="bsposter19"
-	name = "Respect a Unathi"
-	desc = "This poster depicts a well dressed looking Unathi receiving a prestigious award. It appears to espouse greater co-operation and harmony between the two races."
-
 /datum/poster/bay_20
 	icon_state="bsposter20"
 	name = "Skrell Twilight"
@@ -213,11 +208,6 @@
 	icon_state="bsposter43"
 	name = "Responsible medbay habits, No #3"
 	desc = "A safety poster with a purple-haired surgeon. She looks a bit cross. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it.\""
-
-/datum/poster/bay_44
-	icon_state="bsposter44"
-	name = "Time for a drink?"
-	desc = "This poster depicts a friendly-looking Tajara holding a tray of drinks."
 
 /datum/poster/bay_45
 	icon_state="bsposter45"
