@@ -9,12 +9,19 @@
 	slice_count = 3
 	var/source_mob
 
+/obj/item/weapon/reagent_containers/food/snacks/meat/venison
+	name = "venison"
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/venison/set_source_mob(var/new_source_mob)
+	..()
+	name = "venison"
+
 /obj/item/weapon/reagent_containers/food/snacks/meat/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 9)
 	if(source_mob) set_source_mob(source_mob)
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/proc/set_source_mob(new_source_mob)
+/obj/item/weapon/reagent_containers/food/snacks/meat/proc/set_source_mob(var/new_source_mob)
 	source_mob = new_source_mob
 	if(source_mob)
 		name = "[source_mob] [initial(name)]"

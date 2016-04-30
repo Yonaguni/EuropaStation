@@ -54,11 +54,18 @@
 	icon = 'icons/mob/creatures/alien.dmi'
 	icon_state = "weed_extract"
 
-/obj/item/stack/material/hairlesshide
-	name = "hairless hide"
+/obj/item/stack/material/skin
+	name = "hide"
 	desc = "This hide was stripped of it's hair, but still needs tanning."
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
+	var/source_mob
+
+/obj/item/stack/material/skin/proc/set_source_mob(var/new_source)
+	if(new_source)
+		source_mob = new_source
+	if(source_mob)
+		name = "[source_mob] skin"
 
 /obj/item/stack/material/wetleather
 	name = "wet leather"
@@ -80,13 +87,13 @@
 		if(do_after(user,50))
 			usr << "<span class='notice'>You cut the hair from this [src.singular_name]</span>"
 			//Try locating an exisitng stack on the tile and add to there if possible
-			for(var/obj/item/stack/material/hairlesshide/HS in usr.loc)
+			for(var/obj/item/stack/material/skin/HS in usr.loc)
 				if(HS.amount < 50)
 					HS.amount++
 					src.use(1)
 					break
 			//If it gets to here it means it did not find a suitable stack on the tile.
-			var/obj/item/stack/material/hairlesshide/HS = new(usr.loc)
+			var/obj/item/stack/material/skin/HS = new(usr.loc)
 			HS.amount = 1
 			src.use(1)
 	else
