@@ -19,13 +19,13 @@ var/list/all_robolimb_datums = list()
 	return all_robolimb_data[model_path]
 
 /datum/robolimb
-	var/company = "Unbranded"                            // Shown when selecting the limb.
-	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
-	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
-	var/unavailable_at_chargen                           // If set, not available at chargen.
-	var/unbuildable                                      // Cannot be built in a fabricator.
-	var/list/species_cannot_use = list("Resomi")         // Cannot be used by this species.
-	var/vip_only                                         // Must be admin or ckey in vips to use.
+	var/company = "Unbranded"                               // Shown when selecting the limb.
+	var/desc = "A generic unbranded robotic prosthesis."    // Seen when examining a limb.
+	var/icon = 'icons/mob/human_races/cyberlimbs/basic.dmi' // Icon base to draw from.
+	var/unavailable_at_chargen                              // If set, not available at chargen.
+	var/unbuildable                                         // Cannot be built in a fabricator.
+	var/list/species_cannot_use = list()                    // Cannot be used by this species.
+	var/vip_only                                            // Must be admin or ckey in vips to use.
 
 /datum/robolimb/bishop
 	company = "Bishop"

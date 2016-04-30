@@ -23,12 +23,7 @@
 // Languages.
 #define LANGUAGE_EAL "Encoded Audio Language"
 #define LANGUAGE_SOL_COMMON "Sol Common"
-#define LANGUAGE_UNATHI "Sinta'unathi"
-#define LANGUAGE_SIIK_MAAS "Siik'maas"
-#define LANGUAGE_SIIK_TAJR "Siik'tajr"
 #define LANGUAGE_SKRELLIAN "Skrellian"
-#define LANGUAGE_RESOMI "Schechi"
-#define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"
 #define LANGUAGE_GUTTER "Gutter"
 

@@ -111,7 +111,7 @@ var/global/list/limb_icon_cache = list()
 			if(skeletal)
 				mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 			else if (status & ORGAN_ROBOT)
-				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+				mob_icon = new /icon('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 			else
 				if (status & ORGAN_MUTATED)
 					mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")

@@ -287,7 +287,7 @@
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
 	if(!(skipjumpsuit && skipface))
-		msg += "\n<span class='notice'>When speaking, [T.he] sounds like [radio_voice].</span>\n"
+		msg += "\n<span class='notice'>When speaking, [T.he] has [radio_voice].</span>\n"
 
 	if(hasHUD(usr,"security"))
 		var/perpname = "wot"
