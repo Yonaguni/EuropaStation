@@ -125,7 +125,7 @@ var/list/limb_icon_cache = list()
 
 		if(owner.f_style)
 			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
+			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 				var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 				if(facial_hair_style.do_colouration)
 					facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
@@ -133,7 +133,7 @@ var/list/limb_icon_cache = list()
 
 		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 			var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
-			if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
+			if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
 				var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 				if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 					hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
@@ -181,3 +181,29 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 	var/list/hud_colours = (robotic < ORGAN_ROBOT) ? flesh_hud_colours : robot_hud_colours
 	hud_damage_image.color = hud_colours[max(1,min(ceil(dam_state*hud_colours.len),hud_colours.len))]
 	return hud_damage_image
+/obj/item/organ/external/proc/apply_colouration(var/icon/applying)
+
+	if(nonsolid)
+		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
+		if(species && species.get_bodytype(owner) != "Human")
+			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
+		else
+			applying.SetIntensity(0.7)
+
+	else if(status & ORGAN_DEAD)
+		applying.ColorTone(rgb(10,50,0))
+		applying.SetIntensity(0.7)
+
+	if(!isnull(s_tone))
+		if(s_tone >= 0)
+			applying.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+		else
+			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+	else if(s_col && s_col.len >= 3)
+		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+
+	// Translucency.
+	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
+
+	return applying
+

@@ -38,7 +38,7 @@
 	blood_color = "#660066"
 	flesh_color = "#009999"
 
-	flags = IS_RESTRICTED | NO_SCAN | NO_SLIP
+	flags = SPECIES_IS_RESTRICTED | NO_SCAN | NO_SLIP
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/leap,
