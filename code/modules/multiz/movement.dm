@@ -7,63 +7,89 @@
 		src << "You cannot move in that direction from here."
 	return
 
+// TODO: edge checks for diagonal up-down movement.
+// TODO: offload these checks to the same place that Move() does it to cut down on boilerplate.
+
 /mob/living/do_maneuvering_check(var/dir)
 
-	var/failed
+	if(stat || restrained() || incapacitated())
+		return
+
 	var/turf/target = ..()
 	var/turf/origin = loc
 
 	// We're in a locker or something.
 	if(!istype(origin))
-		failed = 1
+		target = null
 	// Nothing to move to.
-	else if(!istype(target) || target.density)
-		failed = 1
+	else if(!istype(target))
+		target = null
 	else if(dir == DOWN)
 
-		// Can't move through the floor.
-		if(!origin.open_space)
-			failed = 1
-		else
-			// Can't move through obstacles.
+		// Can we move through the floor?
+		if(origin.open_space)
 			for(var/atom/movable/A in target)
 				if(A.density)
-					failed = 1
+					target = null
 					break
-	else if(dir == UP)
-		// Can't move through the roof.
-		if(!target.open_space || !layer_is_shallow(target.z)) // Can't climb up enormous cliffs.
-			failed = 1
 		else
-			var/turf/climbing_to
+			// Look for an adjacent turf to climb down through.
+			target = null
+			for(var/turf/T in orange(1,origin))
+
+				if(!T.open_space)
+					continue
+
+				var/blocked
+				for(var/atom/movable/A in T)
+					if(A.density)
+						blocked = 1
+						break
+
+				if(blocked)
+					continue
+
+				target = GetBelow(T)
+				if(target)
+					for(var/atom/movable/A in target)
+						if(A.density)
+							target = null
+							break
+					if(target)
+						break
+
+	else if(dir == UP)
+		// Can we move through the roof?
+		if(target.open_space && layer_is_shallow(target.z)) // Can't climb up enormous cliffs.
 			// If we're swimming, we can tread water.
 			if(origin.flooded)
-				for(var/atom/movable/A in climbing_to)
+				for(var/atom/movable/A in target)
 					if(A.density)
-						failed = 1
+						target = null
 						break
 			else
 				// If we're not swimming, we can't just hover in midair.
 				// Look for a ledge to climb onto. Check for obstacles.
-				for(var/turf/T in orange(1,target))
+				var/turf/temp = target
+				target = null
+				for(var/turf/T in orange(1,temp))
+					if(T.open_space && !T.flooded)
+						continue
 					var/cannot_move
 					for(var/atom/movable/A in T)
 						if(A.density)
 							cannot_move = 1
 							break
 					if(!cannot_move)
-						climbing_to = T
+						target = T
 						break
-				if(istype(climbing_to))
-					src << "You climb to \the [climbing_to]."
-					target = climbing_to
-				else
-					failed = 1
 
 	// Send the result back.
-	if(failed)
-		src << "You cannot move in that direction from here."
+	if(!target)
+		src << "You cannot [origin.flooded ? "swim" : "climb"] in that direction from here."
 		return
+
+	src << "You [(origin.flooded || target.flooded) ? "swim" : "climb"] to \the [target]."
 	return target
 
 /mob/verb/moveup()
