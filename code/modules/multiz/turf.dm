@@ -31,6 +31,13 @@
 	flooded = 1
 
 /mob/var/fall_counter = 0
+
+/atom/movable/proc/is_sinking()
+	return 1
+
+/mob/is_sinking()
+	return 0
+
 /turf/simulated/open/Entered(var/atom/movable/mover)
 
 	..()
@@ -41,7 +48,7 @@
 		if(!below)
 			return
 
-	if(flooded) // Swimmers can just go right across flooded turfs.
+	if(!mover.is_sinking() && (flooded || below.flooded)) // Swimmers can just go right across flooded turfs.
 		return // TODO: swimming.
 
 	// No gravity in space, apparently.
