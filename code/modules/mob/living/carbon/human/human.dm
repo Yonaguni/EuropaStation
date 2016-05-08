@@ -9,7 +9,7 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
-/mob/living/carbon/human/initialize(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
 	if(!dna)
 		dna = new /datum/dna(null)

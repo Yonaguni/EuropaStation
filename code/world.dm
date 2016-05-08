@@ -420,15 +420,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	F << the_mode
 
-
-/hook/startup/proc/loadMOTD()
-	world.load_motd()
-	return 1
-
-/world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-
-
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
