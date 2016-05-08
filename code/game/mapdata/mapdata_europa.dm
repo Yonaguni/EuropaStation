@@ -22,7 +22,7 @@
 	motd_override = {"<h1>Welcome to Europa, colonist.</h1>
 	<i>This server is running the Europa Station 13 modification of <a href="http://baystation12.net/">Baystation 12's</a> SS13 code.</i><br>
 	Please check over the rules and get familiar with our roleplaying expectations before you dive in.<br>
-	<b>Bugtracker:</strong> <a href="https://github.com/Yonaguni/EuropaStation/issues">for posting of bugs and issues.</a>"}
+	<b>Bugtracker:</b> <a href="https://github.com/Yonaguni/EuropaStation/issues">for posting of bugs and issues.</a>"}
 
 /obj/effect/landmark/map_data/europa/do_roundstart_mapgen()
 	if(config.generate_asteroid)
