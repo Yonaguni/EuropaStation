@@ -139,8 +139,6 @@
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
 
-
-
 		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
@@ -200,11 +198,13 @@
 			a = get_area(src.loc)
 
 	//done throwing, either because it hit something or it finished moving
-	if(isobj(src)) src.throw_impact(get_turf(src),speed)
+	if(isobj(src))
+		src.throw_impact(get_turf(src),speed)
+
 	src.throwing = 0
 	src.thrower = null
 	src.throw_source = null
-
+	src.forceMove(get_turf(src)) // Hackfix for open spaces.
 
 //Overlays
 /atom/movable/overlay

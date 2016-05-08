@@ -42,6 +42,9 @@
 
 	..()
 
+	if(mover.throwing)
+		return
+
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
@@ -86,6 +89,8 @@
 
 	// We've made sure we can move, now.
 	mover.forceMove(below)
+	if(below.flooded)
+		visible_message("<span class='notice'>\The [mover] vanishes with a splash!</span>")
 
 	if(!soft)
 		//todo - loop over below.contents, call handle_falling_collision() on objects
