@@ -63,11 +63,11 @@
 	else if(damage > 1)
 		blood_volume *= 0.8
 
+	var/alert
 	//Effects of bloodloss
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-			if(prob(1))
-				src << "<span class='warning'>You feel [pick("dizzy","woosey","faint")]</span>"
+			if(prob(1)) alert = 1
 			if(owner.getOxyLoss() < 20)
 				owner.adjustOxyLoss(3)
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -76,15 +76,17 @@
 				owner.adjustOxyLoss(10)
 			owner.adjustOxyLoss(1)
 			if(prob(15))
+				alert = 1
 				owner.Paralyse(rand(1,3))
-				src << "\<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			owner.adjustOxyLoss(5)
 			owner.adjustToxLoss(3)
-			if(prob(15))
-				src << "\<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
+			if(prob(15)) alert = 1
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
+
+	if(alert)
+		owner << "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")].</span>"
 
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
