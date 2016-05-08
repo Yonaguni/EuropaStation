@@ -158,7 +158,7 @@ var/list/human_tail_cache = list()
 	..(newloc)
 
 /obj/effect/tail/trailing/update_icon()
-	if(reverse_dir[moved_from] == dir)
+	if(moved_from && reverse_dir[moved_from] == dir)
 		tail_type = "tail_straight[terminating ? "_end" : ""]"
 	else
 		// Way, way too tired to work this shit out.
