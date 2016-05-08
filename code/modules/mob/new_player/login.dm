@@ -2,7 +2,7 @@
 
 /obj/effect/lobby_image
 	name = "ES13"
-	desc = "This shouldn't be read"
+	desc = "This shouldn't be readable."
 	icon = 'icons/misc/title.dmi'
 	screen_loc = "WEST,SOUTH"
 
@@ -27,12 +27,11 @@
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 
 	if(!join_motd)
-
+		join_motd = world_map.motd_override
 		if(!join_motd)
 			join_motd = file2text("config/motd.txt")
 
 	src << "<div class=\"motd\">[join_motd]</div>"
-
 	src << "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>"
 
 	if(!mind)

@@ -25,6 +25,8 @@ var/obj/effect/landmark/map_data/world_map
 	var/list/inhabited_levels = list(2)
 	var/list/space_levels = list()
 
+	var/motd_override
+
 /obj/effect/landmark/map_data/New()
 	..()
 	if(world_map)
