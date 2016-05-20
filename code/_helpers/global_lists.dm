@@ -27,6 +27,8 @@ var/global/list/language_keys[0]					// Table of say codes for all languages
 var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
 var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
+var/list/mannequins_
+
 // Posters
 var/global/list/poster_designs = list()
 
@@ -106,8 +108,18 @@ var/global/list/string_slot_flags = list(
 /////Initial Building/////
 //////////////////////////
 
-/proc/makeDatumRefLists()
 
+
+/proc/get_mannequin(var/ckey)
+	if(!mannequins_)
+		mannequins_ = new()
+
+	. = mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/carbon/human/dummy/mannequin()
+		mannequins_[ckey] = .
+
+/proc/makeDatumRefLists()
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name

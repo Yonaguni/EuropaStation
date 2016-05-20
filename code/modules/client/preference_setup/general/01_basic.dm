@@ -64,7 +64,7 @@
 
 	else if(href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["age"])
 		if(!pref.species) pref.species = "Human"

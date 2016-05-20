@@ -147,8 +147,10 @@
 			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.get_player_alt_title(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
 				set_player_alt_title(job, choice)
-				return TOPIC_REFRESH
+				return (pref.dress_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
+	else if(href_list["set_job"])
+		if(SetJob(user, href_list["set_job"])) return (pref.dress_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	return ..()
 
