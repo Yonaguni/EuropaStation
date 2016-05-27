@@ -40,3 +40,15 @@
 #define isslime(A) istype(A, /mob/living/carbon/slime)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
+
+#define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
+
+#define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
+
+#define to_chat(target, message) target << message
+
+#define MAP_IMAGE_PATH "nano/images/[using_map.path]/"
+
+#define map_image_file_name(z_level) "[using_map.path]-[z_level].png"
+
+#define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
