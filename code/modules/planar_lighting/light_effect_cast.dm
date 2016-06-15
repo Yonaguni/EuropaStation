@@ -12,11 +12,15 @@
 
 	// Clear overlays, blank slate.
 	overlays.Cut()
+
 	if(!isturf(loc))
 		return
 
+	//Prevent appearance churn by adding all overlays at onces
+	var/list/overlays_to_add = list()
+
 	// Readd core lighting overlay.
-	overlays += light_overlay
+	overlays_to_add += light_overlay
 
 	var/turf/origin = get_turf(src)
 	if(!istype(origin))
@@ -101,7 +105,7 @@
 				M.Turn(corner_one)
 				I.transform = M
 				light_over_cache[cache_key] = I
-			overlays += light_over_cache[cache_key]
+			overlays_to_add += light_over_cache[cache_key]
 
 		if(corner_two)
 			var/use_x = base_x+(offsets[3]*CORNER_OFFSET_MULTIPLIER_SIZE)
@@ -117,7 +121,7 @@
 				M.Turn(corner_two)
 				I.transform = M
 				light_over_cache[cache_key] = I
-			overlays += light_over_cache[cache_key]
+			overlays_to_add += light_over_cache[cache_key]
 
 	// Update turfs we are no longer lighting.
 	for(var/thing in affecting_turfs)
@@ -139,9 +143,9 @@
 			I.pixel_x = use_x
 			I.pixel_y = use_y
 			light_over_cache[cache_key] = I
-		overlays += light_over_cache[cache_key]
+		overlays_to_add += light_over_cache[cache_key]
 
-	return
+	overlays = overlays_to_add
 
 #undef BASE_PIXEL_OFFSET
 #undef BASE_TURF_OFFSET
