@@ -43,7 +43,7 @@
 
 	// Work out which turfs we cannot see from this point.
 	var/list/concealed_turfs = list()
-	for(var/turf/T in (range(effective_power, origin) - visible_turfs))
+	for(var/turf/T in (trange(effective_power, origin) - visible_turfs))
 		concealed_turfs += T
 
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
@@ -124,15 +124,14 @@
 			overlays_to_add += light_over_cache[cache_key]
 
 	// Update turfs we are no longer lighting.
-	for(var/thing in affecting_turfs)
-		if(!(thing in visible_turfs))
-			affecting_turfs -= thing
-			var/turf/T = thing
-			T.lumcount = -1
-			T.affecting_lights -= src
+	for(var/thing in (affecting_turfs-visible_turfs))
+		affecting_turfs -= thing
+		var/turf/T = thing
+		T.lumcount = -1
+		T.affecting_lights -= src
 
 	// Mask off stuff that we 100% cannot see, plus walls to prevent light bleed.
-	// Walls handle their own edge lighting seperately, see light_turf.dm.
+	// TODO: reimplement edge lighting.
 	for(var/thing in (concealed_turfs|walls))
 		var/turf/check = thing
 		var/use_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
