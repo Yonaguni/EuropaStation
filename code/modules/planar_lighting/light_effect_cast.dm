@@ -129,9 +129,11 @@
 		T.lumcount = -1
 		T.affecting_lights -= src
 
-	// Mask off stuff that we 100% cannot see, plus walls to prevent light bleed.
-	// TODO: reimplement edge lighting.
-	for(var/thing in (concealed_turfs|walls))
+	//TO(re)DO: iterate over 'walls' and apply an edge lighting overlay based on direction of source.
+	// The client lag seems to be coming from elsewhere than the number of blocking overlays (maybe).
+
+	// Mask off stuff that we 100% cannot see.
+	for(var/thing in concealed_turfs)
 		var/turf/check = thing
 		var/use_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
 		var/use_y = (check.y-origin.y+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
