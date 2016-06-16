@@ -10,10 +10,8 @@
 
 /obj/light/proc/cast_light()
 
-	// Clear overlays, blank slate.
-	overlays.Cut()
-
 	if(!isturf(loc))
+		overlays = null
 		return
 
 	//Prevent appearance churn by adding all overlays at onces
@@ -24,6 +22,7 @@
 
 	var/turf/origin = get_turf(src)
 	if(!istype(origin))
+		overlays = null
 		return
 
 	// We're using dview in a context it wasn't written for so gotta hardcode this.
