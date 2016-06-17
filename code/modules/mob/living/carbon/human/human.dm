@@ -5,19 +5,21 @@
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "body_m_s"
 
+	var/tmp/mapped_species
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+	if(new_species)
+		mapped_species = new_species
+	..()
 
-	if(!dna)
-		dna = new /datum/dna(null)
-		// Species name is handled by set_species()
+/mob/living/carbon/human/initialize()
 
 	if(!species)
-		if(new_species)
-			set_species(new_species,1)
+		if(mapped_species)
+			set_species(mapped_species,1)
 		else
 			set_species()
 
@@ -26,6 +28,9 @@
 		name = real_name
 		if(mind)
 			mind.name = real_name
+
+	if(!dna)
+		dna = new /datum/dna(null)
 
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
@@ -77,7 +82,6 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-
 
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back

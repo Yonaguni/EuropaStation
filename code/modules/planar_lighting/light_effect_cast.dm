@@ -10,10 +10,8 @@
 
 /obj/light/proc/cast_light()
 
-	// Clear overlays, blank slate.
-	overlays.Cut()
-
 	if(!isturf(loc))
+		overlays = null
 		return
 
 	//Prevent appearance churn by adding all overlays at onces
@@ -24,6 +22,7 @@
 
 	var/turf/origin = get_turf(src)
 	if(!istype(origin))
+		overlays = null
 		return
 
 	// We're using dview in a context it wasn't written for so gotta hardcode this.
@@ -43,7 +42,7 @@
 
 	// Work out which turfs we cannot see from this point.
 	var/list/concealed_turfs = list()
-	for(var/turf/T in (range(effective_power, origin) - visible_turfs))
+	for(var/turf/T in (trange(effective_power, origin) - visible_turfs))
 		concealed_turfs += T
 
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
@@ -124,16 +123,17 @@
 			overlays_to_add += light_over_cache[cache_key]
 
 	// Update turfs we are no longer lighting.
-	for(var/thing in affecting_turfs)
-		if(!(thing in visible_turfs))
-			affecting_turfs -= thing
-			var/turf/T = thing
-			T.lumcount = -1
-			T.affecting_lights -= src
+	for(var/thing in (affecting_turfs-visible_turfs))
+		affecting_turfs -= thing
+		var/turf/T = thing
+		T.lumcount = -1
+		T.affecting_lights -= src
 
-	// Mask off stuff that we 100% cannot see, plus walls to prevent light bleed.
-	// Walls handle their own edge lighting seperately, see light_turf.dm.
-	for(var/thing in (concealed_turfs|walls))
+	//TO(re)DO: iterate over 'walls' and apply an edge lighting overlay based on direction of source.
+	// The client lag seems to be coming from elsewhere than the number of blocking overlays (maybe).
+
+	// Mask off stuff that we 100% cannot see.
+	for(var/thing in concealed_turfs)
 		var/turf/check = thing
 		var/use_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
 		var/use_y = (check.y-origin.y+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
