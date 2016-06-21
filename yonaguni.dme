@@ -1073,7 +1073,6 @@
 #include "code\modules\mob\living\human\species\species.dm"
 #include "code\modules\mob\living\human\species\species_attack.dm"
 #include "code\modules\mob\living\human\species\species_hud.dm"
-#include "code\modules\mob\living\human\species\outsider\kyaik.dm"
 #include "code\modules\mob\living\human\species\station\human.dm"
 #include "code\modules\mob\living\human\species\station\human_subspecies.dm"
 #include "code\modules\mob\living\human\species\station\monkey.dm"

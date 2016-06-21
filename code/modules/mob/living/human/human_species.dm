@@ -6,10 +6,6 @@
 	h_style = "Skrell Male Tentacles"
 	..(new_loc, "Skrell")
 
-/mob/living/human/machine/New(var/new_loc)
-	h_style = "blue IPC screen"
-	..(new_loc, "Machine")
-
 /mob/living/human/monkey
 	icon_state = "monkey"
 
