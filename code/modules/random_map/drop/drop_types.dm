@@ -139,19 +139,6 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/hydroponics/New()
 	..()
 	contents = list(
-		/obj/machinery/portable_atmospherics/hydroponics,
-		/obj/machinery/portable_atmospherics/hydroponics,
-		/obj/machinery/portable_atmospherics/hydroponics)
-
-/datum/supply_drop_loot/power
-	name = "Power"
-	container = /obj/structure/largecrate
-/datum/supply_drop_loot/power/New()
-	..()
-	contents = list(
-		/obj/machinery/power/port_gen/pacman,
-		/obj/machinery/power/port_gen/pacman/super,
-		/obj/machinery/power/port_gen/pacman/mrs)
-
-/datum/supply_drop_loot/power/contents()
-	return list(pick(contents))
+		/obj/machinery/hydroponics,
+		/obj/machinery/hydroponics,
+		/obj/machinery/hydroponics)

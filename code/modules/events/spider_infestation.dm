@@ -13,6 +13,7 @@
 	command_announcement.Announce("Confirmed outbreak of level 7 biohazard on [station_name()]. Heightened alert recommended while containing outbreak.", "Biohazard Alert")
 
 /datum/event/spider_infestation/start()
+	/*
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
 		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in config.station_levels)
@@ -24,3 +25,4 @@
 		new /obj/effect/spider/spiderling(vent.loc)
 		vents -= vent
 		spawncount--
+	*/

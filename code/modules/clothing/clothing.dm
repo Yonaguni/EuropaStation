@@ -271,10 +271,6 @@
 	update_icon(user)
 	user.update_action_buttons()
 
-/obj/item/clothing/head/attack_ai(var/mob/user)
-	if(!mob_wear_hat(user))
-		return ..()
-
 /obj/item/clothing/head/attack_generic(var/mob/user)
 	if(!istype(user) || !mob_wear_hat(user))
 		return ..()
@@ -283,14 +279,7 @@
 	if(!Adjacent(user))
 		return 0
 	var/success
-	if(istype(user, /mob/living/silicon/robot/drone))
-		var/mob/living/silicon/robot/drone/D = user
-		if(D.hat)
-			success = 2
-		else
-			D.wear_hat(src)
-			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
+	if(istype(user, /mob/living/carbon/alien/diona))
 		var/mob/living/carbon/alien/diona/D = user
 		if(D.hat)
 			success = 2

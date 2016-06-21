@@ -271,45 +271,6 @@
 				H.implant_loyalty(H, override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
-	else if (href_list["silicon"])
-		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["silicon"])
-
-			if("unemag")
-				var/mob/living/silicon/robot/R = current
-				if (istype(R))
-					R.emagged = 0
-					if (R.activated(R.module.emag))
-						R.module_active = null
-					if(R.module_state_1 == R.module.emag)
-						R.module_state_1 = null
-						R.contents -= R.module.emag
-					else if(R.module_state_2 == R.module.emag)
-						R.module_state_2 = null
-						R.contents -= R.module.emag
-					else if(R.module_state_3 == R.module.emag)
-						R.module_state_3 = null
-						R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [R].")
-
-			if("unemagcyborgs")
-				if (istype(current, /mob/living/silicon/ai))
-					var/mob/living/silicon/ai/ai = current
-					for (var/mob/living/silicon/robot/R in ai.connected_robots)
-						R.emagged = 0
-						if (R.module)
-							if (R.activated(R.module.emag))
-								R.module_active = null
-							if(R.module_state_1 == R.module.emag)
-								R.module_state_1 = null
-								R.contents -= R.module.emag
-							else if(R.module_state_2 == R.module.emag)
-								R.module_state_2 = null
-								R.contents -= R.module.emag
-							else if(R.module_state_3 == R.module.emag)
-								R.module_state_3 = null
-								R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
 
 	else if (href_list["common"])
 		switch(href_list["common"])
@@ -389,29 +350,9 @@
 		mind.assigned_role = "[world_map.default_title]"
 
 //slime
-/mob/living/carbon/slime/mind_initialize()
-	..()
-	mind.assigned_role = "slime"
-
 /mob/living/carbon/alien/larva/mind_initialize()
 	..()
 	mind.special_role = "Larva"
-
-//AI
-/mob/living/silicon/ai/mind_initialize()
-	..()
-	mind.assigned_role = "AI"
-
-//BORG
-/mob/living/silicon/robot/mind_initialize()
-	..()
-	mind.assigned_role = "Cyborg"
-
-//PAI
-/mob/living/silicon/pai/mind_initialize()
-	..()
-	mind.assigned_role = "pAI"
-	mind.special_role = ""
 
 //Animals
 /mob/living/simple_animal/mind_initialize()

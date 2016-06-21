@@ -1,3 +1,5 @@
+/proc/is_integrated(var/obj/item/thing)
+	return 0
 
 //Called when the mob is hit with an item in combat.
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
@@ -6,7 +8,7 @@
 	..()
 
 /mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
-	if(!effective_force || blocked >= 2) 
+	if(!effective_force || blocked >= 2)
 		return 0
 
 	//Hulk modifier
@@ -23,7 +25,7 @@
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
 	//Melee weapon embedded object code.
-	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
+	if (I && I.damtype == BRUTE && !I.anchored && !is_integrated(I))
 		var/damage = effective_force
 		if (blocked)
 			damage /= blocked+1
@@ -50,7 +52,7 @@
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
 
-	if(!W.edge || !W.force || W.damtype != BRUTE) 
+	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
 	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")

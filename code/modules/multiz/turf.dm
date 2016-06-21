@@ -59,12 +59,6 @@
 	if(!area.has_gravity)
 		return
 
-	// Prevent pipes from falling into the void... if there is a pipe to support it.
-	if(mover.anchored || istype(mover, /obj/item/pipe) && \
-		(locate(/obj/structure/disposalpipe/up) in below) || \
-		 locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
-		return
-
 	// See if something prevents us from falling. Long drops don't care.
 	if(locate(/obj/structure/ladder) in src)
 		return

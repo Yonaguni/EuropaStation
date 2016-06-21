@@ -30,9 +30,6 @@ obj/machinery/embedded_controller/radio/Destroy()
 
 	update_icon()
 
-/obj/machinery/embedded_controller/attack_ai(mob/user as mob)
-	src.ui_interact(user)
-
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
 
 	if(!user.IsAdvancedToolUser())

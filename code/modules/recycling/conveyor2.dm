@@ -88,7 +88,6 @@
 		user << "<span class='notice'>You remove the conveyor belt.</span>"
 		qdel(src)
 		return
-	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.
 
 	user.drop_item(get_turf(src))

@@ -26,7 +26,7 @@
 
 /obj/machinery/door/window/proc/shatter(var/display_message = 1)
 	new /obj/item/weapon/material/shard(src.loc)
-	var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
+	var/obj/item/stack/conduit/power/CC = new /obj/item/stack/conduit/power(src.loc)
 	CC.amount = 2
 	var/obj/item/weapon/airlock_electronics/ae
 	if(!electronics)
@@ -141,9 +141,6 @@
 	if (src.health <= 0)
 		shatter()
 		return
-
-/obj/machinery/door/window/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
 
 /obj/machinery/door/window/attack_hand(mob/user as mob)
 

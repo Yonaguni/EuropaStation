@@ -62,8 +62,6 @@
 
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return ..()
-	if(isrobot(user))
-		return
 	user.drop_item()
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
@@ -109,10 +107,6 @@
 				visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
 			qdel(W)
 			return
-
-	// Handle dismantling or placing things on the table from here on.
-	if(isrobot(user))
-		return
 
 	if(W.loc != user) // This should stop mounted modules ending up outside the module.
 		return

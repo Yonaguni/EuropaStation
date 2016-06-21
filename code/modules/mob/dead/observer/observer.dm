@@ -147,8 +147,6 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-	for(var/mob/living/silicon/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
 	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
@@ -400,46 +398,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
 		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
 
-/mob/dead/observer/verb/become_mouse()
-	set name = "Become mouse"
-	set category = "Ghost"
-
-	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
-		return
-
-	if(!MayRespawn(1, ANIMAL_SPAWN_DELAY))
-		return
-
-	var/turf/T = get_turf(src)
-	if(!T || (T.z in config.admin_levels))
-		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
-		return
-
-	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
-	if(response != "Squeek!") return  //Hit the wrong key...again.
-
-
-	//find a viable mouse candidate
-	var/mob/living/simple_animal/mouse/host
-	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
-	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
-		if(!v.welded && v.z == T.z)
-			found_vents.Add(v)
-	if(found_vents.len)
-		vent_found = pick(found_vents)
-		host = new /mob/living/simple_animal/mouse(vent_found.loc)
-	else
-		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
-
-	if(host)
-		if(config.uneducated_mice)
-			host.universal_understand = 0
-		announce_ghost_joinleave(src, 0, "They are now a mouse.")
-		host.ckey = src.ckey
-		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
-
 /mob/dead/observer/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost"
@@ -461,10 +419,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		// Otherwise, see if we can possess the target.
 		if(usr == src && try_possession(M))
 			return
-	if(istype(over, /obj/machinery/drone_fabricator))
-		if(try_drone_spawn(src, over))
-			return
-
 	return ..()
 
 /mob/dead/observer/proc/try_possession(var/mob/living/M)
@@ -685,10 +639,6 @@ mob/dead/observer/MayRespawn(var/feedback = 0, var/respawn_time = 0)
 
 /atom/proc/extra_ghost_link()
 	return
-
-/mob/extra_ghost_link(var/atom/ghost)
-	if(client && eyeobj)
-		return "|<a href='byond://?src=\ref[ghost];track=\ref[eyeobj]'>eye</a>"
 
 /mob/dead/observer/extra_ghost_link(var/atom/ghost)
 	if(mind && mind.current)

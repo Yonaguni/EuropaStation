@@ -6,8 +6,6 @@
 /datum/surgery_step/robotics/
 	can_infect = 0
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (isslime(target))
-			return 0
 		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
@@ -155,16 +153,14 @@
 		target.apply_damage(rand(5,10), BURN, affected)
 
 /datum/surgery_step/robotics/repair_burn
-	allowed_tools = list(
-		/obj/item/stack/cable_coil = 100
-	)
+	allowed_tools = list(/obj/item/stack/conduit/power = 100)
 
 	min_duration = 50
 	max_duration = 60
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
-			var/obj/item/stack/cable_coil/C = tool
+			var/obj/item/stack/conduit/power/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			var/limb_can_operate = ((affected && affected.is_open() >= 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH)
 			if(limb_can_operate)

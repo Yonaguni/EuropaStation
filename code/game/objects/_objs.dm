@@ -37,10 +37,6 @@
 	user << "<span class='danger'>\icon[src]Access Denied!</span>"
 	return UI_CLOSE
 
-/mob/living/silicon/CanUseObjTopic(var/obj/O)
-	var/id = src.GetIdCard()
-	return O.check_access(id)
-
 /mob/proc/CanUseObjTopic()
 	return 1
 
@@ -55,9 +51,6 @@
 		target.add_fingerprint(src)
 	else
 		target.add_hiddenprint(src)
-
-/mob/living/silicon/ai/AddTopicPrint(var/obj/target)
-	target.add_hiddenprint(src)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
 	// Nada
@@ -94,14 +87,8 @@
 			if ((M.client && M.machine == src))
 				is_in_use = 1
 				src.attack_hand(M)
-		if (istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot))
-			if (!(usr in nearby))
-				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(usr)
 
 		// check for TK users
-
 		if (istype(usr, /mob/living/carbon/human))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
@@ -119,9 +106,7 @@
 			if ((M.client && M.machine == src))
 				is_in_use = 1
 				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
-
-		if(!ai_in_use && !is_in_use)
+		if(!is_in_use)
 			in_use = 0
 
 /obj/attack_ghost(mob/user)

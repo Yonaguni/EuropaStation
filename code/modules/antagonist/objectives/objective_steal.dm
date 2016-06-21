@@ -6,11 +6,9 @@
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
-		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
@@ -91,19 +89,6 @@
 					found_amount++
 				return found_amount>=target
 
-		if("a functional AI")
-
-			for(var/obj/item/device/aicard/C in all_items) //Check for ai card
-				for(var/mob/living/silicon/ai/M in C)
-					if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
-						return 1
-
-			for(var/mob/living/silicon/ai/ai in living_mob_list)
-				var/turf/T = get_turf(ai)
-				if(istype(T))
-					var/area/check_area = get_area(ai)
-					if(istype(check_area, /area/shuttle/escape/outpost))
-						return 1
 		else
 			for(var/obj/I in all_items) //Check for items
 				if(istype(I, steal_target))

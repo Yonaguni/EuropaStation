@@ -174,38 +174,6 @@ REAGENT SCANNER
 		if(0)
 			usr << "The scanner no longer shows limb damage."
 
-
-/obj/item/device/analyzer
-	name = "analyzer"
-	desc = "A hand-held environmental scanner which reports current gas levels."
-	icon_state = "atmos"
-	item_state = "analyzer"
-	w_class = 2.0
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
-
-/obj/item/device/analyzer/atmosanalyze(var/mob/user)
-	var/air = user.return_air()
-	if (!air)
-		return
-
-	return atmosanalyzer_scan(src, air, user)
-
-/obj/item/device/analyzer/attack_self(mob/user as mob)
-
-	if (user.stat)
-		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
-		return
-
-	analyze_gases(src, user)
-	return
-
 /obj/item/device/mass_spectrometer
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."

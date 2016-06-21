@@ -127,19 +127,6 @@
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 
-/obj/item/weapon/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-
-	New()
-		..()
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs"
 	desc = "A box containing 7 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."

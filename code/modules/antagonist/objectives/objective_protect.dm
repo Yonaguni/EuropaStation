@@ -21,7 +21,7 @@
 	if(!target)			//If it's a free objective.
 		return 1
 	if(target.current)
-		if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current))
+		if(target.current.stat == DEAD || isbrain(target.current))
 			return 0
 		return 1
 	return 0

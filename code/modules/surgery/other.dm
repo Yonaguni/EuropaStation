@@ -7,8 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/suture = 100, \
-	/obj/item/stack/cable_coil = 75
+	/obj/item/weapon/suture = 100
 	)
 	can_infect = 1
 	blood_level = 1

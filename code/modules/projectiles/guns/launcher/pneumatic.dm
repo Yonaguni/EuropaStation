@@ -159,6 +159,7 @@
 		if(5) user << "It has a transfer valve installed."
 
 /obj/item/weapon/cannonframe/attackby(obj/item/W as obj, mob/user as mob)
+	/*
 	if(istype(W,/obj/item/pipe))
 		if(buildstate == 0)
 			user.drop_from_inventory(W)
@@ -167,7 +168,9 @@
 			buildstate++
 			update_icon()
 			return
-	else if(istype(W,/obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
+	*/
+	//else
+	if(istype(W,/obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
 		if(buildstate == 2)
 			var/obj/item/stack/material/M = W
 			if(M.use(5))

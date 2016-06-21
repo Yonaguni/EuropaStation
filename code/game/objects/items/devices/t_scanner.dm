@@ -81,13 +81,6 @@
 		. = overlay_cache[scanned]
 	else
 		var/image/I = image(loc = scanned, icon = scanned.icon, icon_state = scanned.icon_state, layer = HUD_LAYER)
-
-		//Pipes are special
-		if(istype(scanned, /obj/machinery/atmospherics/pipe))
-			var/obj/machinery/atmospherics/pipe/P = scanned
-			I.color = P.pipe_color
-			I.overlays += P.overlays
-
 		I.alpha = 128
 		I.mouse_opacity = 0
 		. = I

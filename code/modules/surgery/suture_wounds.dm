@@ -1,7 +1,6 @@
 /datum/surgery_step/suture_wounds
 	allowed_tools = list(
-	/obj/item/weapon/suture = 100,
-	/obj/item/stack/cable_coil = 60
+	/obj/item/weapon/suture = 100
 	)
 
 	min_duration = 70

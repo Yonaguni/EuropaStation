@@ -184,8 +184,8 @@
 			user << "<span class='notice'>You [anchored? "un" : ""]secured the airlock assembly!</span>"
 			anchored = !anchored
 
-	else if(istype(W, /obj/item/stack/cable_coil) && state == 0 && anchored)
-		var/obj/item/stack/cable_coil/C = W
+	else if(istype(W, /obj/item/stack/conduit/power) && state == 0 && anchored)
+		var/obj/item/stack/conduit/power/C = W
 		if (C.get_amount() < 1)
 			user << "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>"
 			return
@@ -202,7 +202,7 @@
 		if(do_after(user, 40))
 			if(!src) return
 			user << "<span class='notice'>You cut the airlock wires.!</span>"
-			new/obj/item/stack/cable_coil(src.loc, 1)
+			new/obj/item/stack/conduit/power(src.loc, 1)
 			src.state = 0
 
 	else if(istype(W, /obj/item/weapon/airlock_electronics) && state == 1)

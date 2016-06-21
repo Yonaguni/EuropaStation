@@ -4,7 +4,6 @@
 	anchored = 0
 	density = 1
 
-
 /obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
 /obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
 /obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null

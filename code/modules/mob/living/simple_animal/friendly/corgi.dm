@@ -86,19 +86,6 @@
 					set_dir(i)
 					sleep(1)
 
-/mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	if(istype(O, /obj/item/weapon/newspaper))
-		if(!stat)
-			for(var/mob/M in viewers(user, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\blue [user] baps [name] on the nose with the rolled up [O]")
-			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2))
-					set_dir(i)
-					sleep(1)
-	else
-		..()
-
 /mob/living/simple_animal/corgi/regenerate_icons()
 	overlays = list()
 
@@ -180,8 +167,6 @@
 					alone = 0
 					break
 			if(alone && ian && puppies < 4)
-				if(near_camera(src) || near_camera(ian))
-					return
 				new /mob/living/simple_animal/corgi/puppy(loc)
 
 

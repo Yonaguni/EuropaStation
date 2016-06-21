@@ -65,7 +65,7 @@
 	var/evolve_chance = 2
 	var/mature_time		//minimum maturation time
 	var/last_tick = 0
-	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
+	var/obj/machinery/hydroponics/soil/invisible/plant
 
 /obj/effect/plant/Destroy()
 	plant_controller.remove_plant(src)

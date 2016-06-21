@@ -67,9 +67,7 @@
 
 // This is temporary, probably doesn't properly cover expoits, pls fix, future me.
 /obj/machinery/datanet/Topic(href, href_list)
-	if(istype(usr, /mob/living/silicon))
-		return 0
-	else if(usr.Adjacent(src))
+	if(usr.Adjacent(src))
 		return 0
 	else if(data_network)
 		for(var/obj/machinery/datanet/console/C in data_network.connected_consoles)

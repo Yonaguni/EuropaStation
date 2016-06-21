@@ -29,8 +29,8 @@
 	attackby(obj/item/P as obj, mob/user as mob)
 		switch(state)
 			if(1)
-				if(istype(P, /obj/item/stack/cable_coil))
-					var/obj/item/stack/cable_coil/C = P
+				if(istype(P, /obj/item/stack/conduit/power))
+					var/obj/item/stack/conduit/power/C = P
 					if (C.get_amount() < 5)
 						user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
 						return
@@ -77,7 +77,7 @@
 						user << "<span class='notice'>You remove the cables.</span>"
 						state = 1
 						icon_state = "box_0"
-						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
+						var/obj/item/stack/conduit/power/A = new /obj/item/stack/conduit/power( src.loc )
 						A.amount = 5
 
 			if(3)
@@ -106,26 +106,26 @@
 						if(component_check)
 							playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
-							
+
 							if(new_machine.component_parts)
 								new_machine.component_parts.Cut()
 							else
 								new_machine.component_parts = list()
-							
+
 							src.circuit.construct(new_machine)
-							
+
 							for(var/obj/O in src)
 								if(circuit.contain_parts) // things like disposal don't want their parts in them
 									O.loc = new_machine
 								else
 									O.loc = null
 								new_machine.component_parts += O
-							
+
 							if(circuit.contain_parts)
 								circuit.loc = new_machine
 							else
 								circuit.loc = null
-							
+
 							new_machine.RefreshParts()
 							qdel(src)
 					else
@@ -133,11 +133,11 @@
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
 									playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-									if(istype(P, /obj/item/stack/cable_coil))
-										var/obj/item/stack/cable_coil/CP = P
+									if(istype(P, /obj/item/stack/conduit/power))
+										var/obj/item/stack/conduit/power/CP = P
 										if(CP.get_amount() > 1)
 											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-											var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
+											var/obj/item/stack/conduit/power/CC = new /obj/item/stack/conduit/power(src)
 											CC.amount = camt
 											CC.update_icon()
 											CP.use(camt)
@@ -152,5 +152,5 @@
 									update_desc()
 									break
 							user << desc
-							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+							if(P && P.loc != src && !istype(P, /obj/item/stack/conduit/power))
 								user << "<span class='warning'>You cannot add that component to the machine!</span>"

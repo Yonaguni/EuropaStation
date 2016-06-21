@@ -61,23 +61,6 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/area in all_areas)
 		var/area/A = area
 		A.initialize()
-	admin_notice("<span class='warning'>Initializing pipe networks...</span>", R_DEBUG)
-	sleep(-1)
-	for(var/obj/machinery/atmospherics/machine in machines)
-		machine.build_network()
-	admin_notice("<span class='warning'>Initializing atmos machinery...</span>", R_DEBUG)
-	sleep(-1)
-	for(var/obj/machinery/atmospherics/unary/U in machines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status()
-
-	admin_notice("<span class='warning'>Setting up powernets...</span>", R_DEBUG)
-	sleep(-1)
-	makepowernets()
 	admin_notice("<span class='warning'>Setting up antagonists...</span>", R_DEBUG)
 	sleep(-1)
 	populate_antag_type_list()

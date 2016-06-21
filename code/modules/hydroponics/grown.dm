@@ -156,8 +156,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	if(seed)
-		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/cable_coil))
-			var/obj/item/stack/cable_coil/C = W
+		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/conduit/power))
+			var/obj/item/stack/conduit/power/C = W
 			if(C.use(5))
 				//TODO: generalize this.
 				user << "<span class='notice'>You add some cable to the [src.name] and slide it inside the battery casing.</span>"
@@ -268,7 +268,7 @@
 
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		user << "<span class='notice'>You plant the [src.name].</span>"
-		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
+		new /obj/machinery/hydroponics/soil/invisible(get_turf(user),src.seed)
 		qdel(src)
 		return
 

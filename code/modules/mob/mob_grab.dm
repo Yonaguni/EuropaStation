@@ -233,10 +233,6 @@
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce1"
 	else if(state < GRAB_NECK)
-		if(isslime(affecting))
-			assailant << "<span class='notice'>You squeeze \the [affecting], but nothing interesting happens.</span>"
-			return
-
 		assailant.visible_message("<span class='warning'>\The [assailant] has shifted \his grip to \the [affecting]'s neck!</span>")
 		state = GRAB_NECK
 		icon_state = "grabbed+1"

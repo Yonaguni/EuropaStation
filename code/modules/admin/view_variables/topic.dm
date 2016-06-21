@@ -42,6 +42,17 @@
 
 		modify_variables(D, href_list["varnamechange"], 0)
 
+	else if(href_list["direct_control"])
+		if(!check_rights(0))	return
+
+		var/mob/M = locate(href_list["direct_control"])
+		if(!istype(M))
+			usr << "This can only be used on instances of type /mob"
+			return
+
+		if(usr.client)
+			usr.client.cmd_assume_direct_control(M)
+
 	else if(href_list["varnamemass"] && href_list["datummass"])
 		if(!check_rights(R_VAREDIT))	return
 
@@ -106,71 +117,6 @@
 		if(usr.client)
 			usr.client.cmd_admin_drop_everything(M)
 
-	else if(href_list["direct_control"])
-		if(!check_rights(0))	return
-
-		var/mob/M = locate(href_list["direct_control"])
-		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-
-		if(usr.client)
-			usr.client.cmd_assume_direct_control(M)
-
-	else if(href_list["make_skeleton"])
-		if(!check_rights(R_FUN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		H.ChangeToSkeleton()
-		href_list["datumrefresh"] = href_list["make_skeleton"]
-
-	else if(href_list["delall"])
-		if(!check_rights(R_DEBUG|R_SERVER))	return
-
-		var/obj/O = locate(href_list["delall"])
-		if(!isobj(O))
-			usr << "This can only be used on instances of type /obj"
-			return
-
-		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
-		if(action_type == "Cancel" || !action_type)
-			return
-
-		if(alert("Are you really sure you want to delete all objects of type [O.type]?",,"Yes","No") != "Yes")
-			return
-
-		if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
-			return
-
-		var/O_type = O.type
-		switch(action_type)
-			if("Strict type")
-				var/i = 0
-				for(var/obj/Obj in world)
-					if(Obj.type == O_type)
-						i++
-						qdel(Obj)
-				if(!i)
-					usr << "No objects of this type exist"
-					return
-				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)</span>")
-			if("Type and subtypes")
-				var/i = 0
-				for(var/obj/Obj in world)
-					if(istype(Obj,O_type))
-						i++
-						qdel(Obj)
-				if(!i)
-					usr << "No objects of this type exist"
-					return
-				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)</span>")
-
 	else if(href_list["explode"])
 		if(!check_rights(R_DEBUG|R_FUN))	return
 
@@ -216,62 +162,6 @@
 			if("right")	A.set_dir(turn(A.dir, -45))
 			if("left")	A.set_dir(turn(A.dir, 45))
 		href_list["datumrefresh"] = href_list["rotatedatum"]
-
-	else if(href_list["makemonkey"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makemonkey"])
-		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
-			return
-
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
-		if(!H)
-			usr << "Mob doesn't exist anymore"
-			return
-		holder.Topic(href, list("monkeyone"=href_list["makemonkey"]))
-
-	else if(href_list["makerobot"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
-		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
-			return
-
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
-		if(!H)
-			usr << "Mob doesn't exist anymore"
-			return
-		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
-
-	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
-			return
-
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
-		if(!H)
-			usr << "Mob doesn't exist anymore"
-			return
-		holder.Topic(href, list("makeslime"=href_list["makeslime"]))
-
-	else if(href_list["makeai"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
-		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
-			return
-
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
-		if(!H)
-			usr << "Mob doesn't exist anymore"
-			return
-		holder.Topic(href, list("makeai"=href_list["makeai"]))
 
 	else if(href_list["setspecies"])
 		if(!check_rights(R_SPAWN))	return
@@ -351,13 +241,9 @@
 		var/list/possibleverbs = list()
 		possibleverbs += "Cancel" 								// One for the top...
 		possibleverbs += typesof(/mob/proc,/mob/verb,/mob/living/proc,/mob/living/verb)
-		switch(H.type)
-			if(/mob/living/carbon/human)
-				possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
-			if(/mob/living/silicon/robot)
-				possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
-			if(/mob/living/silicon/ai)
-				possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
+		if(ishuman(H))
+			possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
+
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" 								// ...And one for the bottom
 

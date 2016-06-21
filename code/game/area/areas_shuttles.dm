@@ -1,6 +1,5 @@
 // Shuttles!
 /area/shuttle
-	requires_power = 0
 	sound_env = SMALL_ENCLOSED
 	flags = DENY_APC | IGNORE_ALERTS | DENY_TELEPORT
 

@@ -115,20 +115,6 @@ proc/get_mining_overlay(var/overlay_key)
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		air_update_turf()
 
-/turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
-	. = ..()
-	if(istype(M,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = M
-		if(R.module)
-			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_3,R)
-			else
-				return
-
 /turf/simulated/mineral/initialize()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
@@ -195,11 +181,6 @@ proc/get_mining_overlay(var/overlay_key)
 		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
 			attackby(H.r_hand,H)
 
-	else if(istype(AM,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active,/obj/item/weapon/pickaxe))
-			attackby(R.module_active,R)
-
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)
 		for(var/trydir in cardinal)
@@ -219,7 +200,7 @@ proc/get_mining_overlay(var/overlay_key)
 
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (user.IsAdvancedToolUser(1))
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 

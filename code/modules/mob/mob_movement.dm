@@ -81,9 +81,6 @@
 	set hidden = 1
 	if(istype(mob, /mob/living/carbon))
 		mob:swap_hand()
-	if(istype(mob,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = mob
-		R.cycle_modules()
 	return
 
 
@@ -107,7 +104,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
+	if(mob.stat == CONSCIOUS && isturf(mob.loc))
 		return mob.drop_item()
 	return
 
@@ -202,10 +199,6 @@
 	if(mob.stat==DEAD && isliving(mob))
 		mob.ghostize()
 		return
-
-	// handle possible Eye movement
-	if(mob.eyeobj)
-		return mob.EyeMove(n,direct)
 
 	if(mob.transforming)	return//This is sota the goto stop mobs from moving var
 

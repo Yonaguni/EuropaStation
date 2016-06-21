@@ -13,12 +13,9 @@
 		/datum/job/head/marshal,
 		/datum/job/head/coordinator,
 		/datum/job/industry,
-		/datum/job/industry/science,
-		/datum/job/ai,
-		/datum/job/cyborg
+		/datum/job/industry/science
 		)
 
-	exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 	motd_override = {"<h1>Welcome to Europa, colonist.</h1>
 	<i>This server is running the Europa Station 13 modification of <a href="http://baystation12.net/">Baystation 12's</a> SS13 code.</i><br>
 	Please check over the rules and get familiar with our roleplaying expectations before you dive in.<br>

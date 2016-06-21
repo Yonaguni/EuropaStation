@@ -110,9 +110,6 @@
 	return null
 
 /obj/item/gun_component/chamber/laser/get_external_power_supply()
-	if(isrobot(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
-		return R.cell
 	if(istype(src.loc, /obj/item/rig_module))
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)

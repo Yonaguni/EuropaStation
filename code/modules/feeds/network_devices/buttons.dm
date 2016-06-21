@@ -9,9 +9,6 @@
 /obj/structure/button/attack_hand()
 	interact()
 
-/obj/structure/button/attack_ai()
-	interact()
-
 /obj/structure/button/attack_generic()
 	interact()
 

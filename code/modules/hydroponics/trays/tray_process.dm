@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics/hydroponics/process()
+/obj/machinery/hydroponics/process()
 
 	// Handle nearby smoke if any.
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
@@ -63,6 +63,7 @@
 	if(seed.get_trait(TRAIT_REQUIRES_WATER) && prob(35))
 		health += (waterlevel < 10 ? -healthmod : healthmod)
 
+	/*
 	// Check that pressure, heat and light are all within bounds.
 	// First, handle an open system or an unconnected closed system.
 	var/turf/T = loc
@@ -83,6 +84,7 @@
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 	if (closed_system && connected_port)
 		update_connected_network()
+	*/
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.

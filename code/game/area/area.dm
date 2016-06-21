@@ -10,7 +10,6 @@
 	var/uid                            // Unique identifier for this area instance.
 	var/global/global_uid = 0          // Global area UID reference.
 	var/turf/base_turf                 // Area base turf type, overrides the base z turf
-	var/lights_switched_on = 1         // Global state for light switches in this area instance.
 	var/outside
 
 /area/New()
@@ -18,44 +17,19 @@
 	layer = 10
 	uid = ++global_uid
 	all_areas += src
-	if(!requires_power)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
 	..()
 
 /area/proc/initialize()
-	if(!requires_power || !apc)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
-	power_change()		// all machines set to current power level, also updates lighting icon
+	..()
+	if(flags & IS_OCEAN)
+		color = "#66D1FF"
+		icon = 'icons/effects/xgm_overlays.dmi'
+		icon_state = "ocean"
+		layer = GAS_OVERLAY_LAYER+0.1
+		alpha = GAS_MAX_ALPHA
 
 /area/proc/get_contents()
 	return contents
-
-/area/proc/get_cameras()
-	var/list/cameras = list()
-	for (var/obj/machinery/camera/C in src)
-		cameras += C
-	return cameras
-
-/area/proc/updateicon()
-	//If it doesn't require power, can still activate this proc.
-	if ((fire || eject || party) && (!requires_power||power_environ) && !(flags & IGNORE_ALERTS))
-		if(fire && !eject && !party)
-			icon_state = "blue"
-		/*else if(atmosalm && !fire && !eject && !party)
-			icon_state = "bluenew"*/
-		else if(!fire && eject && !party)
-			icon_state = "red"
-		else if(party && !fire && !eject)
-			icon_state = "party"
-		else
-			icon_state = "blue-red"
-	else
-	//	new lighting behaviour with obj lights
-		icon_state = null
 
 /area/Entered(A)
 	if(!istype(A,/mob/living))	return

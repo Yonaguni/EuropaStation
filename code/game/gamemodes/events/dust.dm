@@ -97,15 +97,13 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		spawn(0)
 			if(prob(50))
 				for(var/mob/M in range(10, src))
-					if(!M.stat && !istype(M, /mob/living/silicon/ai))
+					if(!M.stat)
 						shake_camera(M, 3, 1)
 			if (A)
 				playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 				if(ismob(A))
 					A.ex_act(strength)//This should work for now I guess
-				else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator)) //Protect the singularity from getting released every round!
-					A.ex_act(strength) //Changing emitter/field gen ex_act would make it immune to bombs and C4
 
 				life--
 				if(life <= 0)

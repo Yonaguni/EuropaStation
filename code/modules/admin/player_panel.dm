@@ -229,24 +229,12 @@
 				if(iscarbon(M)) //Carbon stuff
 					if(ishuman(M))
 						M_job = M.job
-					else if(isslime(M))
-						M_job = "slime"
 					else if(issmall(M))
 						M_job = "Monkey"
 					else if(isalien(M))
 						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
-
-				else if(issilicon(M)) //silicon
-					if(isAI(M))
-						M_job = "AI"
-					else if(ispAI(M))
-						M_job = "pAI"
-					else if(isrobot(M))
-						M_job = "Cyborg"
-					else
-						M_job = "Silicon-based"
 
 				else if(isanimal(M)) //simple animals
 					if(iscorgi(M))
@@ -330,14 +318,8 @@
 		if(!M.ckey) continue
 
 		dat += "<tr><td>[M.name]</td>"
-		if(isAI(M))
-			dat += "<td>AI</td>"
-		else if(isrobot(M))
-			dat += "<td>Cyborg</td>"
-		else if(ishuman(M))
+		if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/living/silicon/pai))
-			dat += "<td>pAI</td>"
 		else if(istype(M, /mob/new_player))
 			dat += "<td>New Player</td>"
 		else if(isobserver(M))
@@ -348,7 +330,6 @@
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
-
 
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M

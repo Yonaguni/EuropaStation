@@ -58,7 +58,7 @@
 	// Are we placing or stripping?
 	var/stripping
 	var/obj/item/held = user.get_active_hand()
-	if(!istype(held) || is_robot_module(held))
+	if(!istype(held) || is_integrated(held))
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)

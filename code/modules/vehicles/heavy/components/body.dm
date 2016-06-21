@@ -35,6 +35,7 @@
 		cockpit.equalize(T.return_air())
 		T.air_update_turf(1)
 		changed = 1
+	/*
 	else if(air_supply)
 		var/env_pressure = cockpit.return_pressure()
 		var/pressure_delta = air_supply.release_pressure - env_pressure
@@ -43,6 +44,7 @@
 			transfer_moles = min(transfer_moles, (air_supply.release_flow_rate/air_supply.air_contents.volume)*air_supply.air_contents.total_moles)
 			pump_gas_passive(air_supply, air_supply.air_contents, cockpit, transfer_moles)
 			changed = 1
+	*/
 	if(changed) cockpit.react()
 
 /obj/item/mech_component/chassis/ready_to_install()
@@ -52,7 +54,7 @@
 	diagnostics = new(src)
 	cell = new /obj/item/weapon/cell/hyper(src)
 	cell.charge = cell.maxcharge
-	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
+	//air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 
 /obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing,/obj/item/robot_parts/robot_component/diagnosis_unit))

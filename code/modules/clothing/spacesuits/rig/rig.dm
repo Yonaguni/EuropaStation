@@ -554,10 +554,13 @@
 	return 0
 
 /obj/item/weapon/rig/proc/notify_ai(var/message)
+	return
+	/*
 	for(var/obj/item/rig_module/ai_container/module in installed_modules)
 		if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
 			module.integrated_ai << "[message]"
 			. = 1
+	*/
 
 /obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
 	..()
@@ -768,6 +771,7 @@
 
 /obj/item/weapon/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
 
+	/*
 	if(check_for_ai)
 		if(!(locate(/obj/item/rig_module/ai_container) in contents))
 			return 0
@@ -801,6 +805,8 @@
 		if(user) user << "<span class='warning'>You are locked out of the suit servo controller.</span>"
 		return 0
 	return 1
+	*/
+	return 0
 
 /obj/item/weapon/rig/proc/force_rest(var/mob/user)
 	if(!ai_can_move_suit(user, check_user_module = 1))

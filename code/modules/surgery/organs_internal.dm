@@ -17,8 +17,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
-	/obj/item/weapon/suture = 100,		\
-	/obj/item/stack/cable_coil = 20
+	/obj/item/weapon/suture = 100
 	)
 
 	min_duration = 70
@@ -272,8 +271,7 @@
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(
-	/obj/item/weapon/suture = 100, \
-	/obj/item/stack/cable_coil = 75
+	/obj/item/weapon/suture = 100
 	)
 
 	min_duration = 100

@@ -108,13 +108,13 @@
 		return
 
 	// Installing wiring.
-	else if(istype(thing,/obj/item/stack/cable_coil))
+	else if(istype(thing,/obj/item/stack/conduit/power))
 
 		if(is_wired)
 			user << "<span class='warning'>\The [src] has already been wired.</span>"
 			return
 
-		var/obj/item/stack/cable_coil/CC = thing
+		var/obj/item/stack/conduit/power/CC = thing
 		if(CC.amount < 10)
 			user << "<span class='warning'>You need at least ten units of cable to complete the exosuit.</span>"
 			return

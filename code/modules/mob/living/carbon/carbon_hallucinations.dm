@@ -280,12 +280,11 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/ite
 	/obj/item/clothing/shoes/syndigaloshes, /obj/item/weapon/card/id/syndicate,\
 	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,\
 	/obj/item/device/chameleon, /obj/item/weapon/card/emag,\
-	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,\
+	/obj/item/weapon/storage/toolbox/syndicate,\
 	/obj/item/weapon/plastique,\
-	/obj/item/device/powersink, \
 	/obj/item/toy/syndicateballoon,
-	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
-	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,\
+	/obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
+	/obj/item/clothing/under/rank/captain,\
 	/obj/item/clothing/shoes/magboots, \
 	/obj/item/clothing/suit/space/void, /obj/item/weapon/tank)
 

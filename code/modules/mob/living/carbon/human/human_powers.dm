@@ -15,7 +15,7 @@
 
 	var/list/choices = list()
 	for(var/mob/living/M in view(1,src))
-		if(!istype(M,/mob/living/silicon) && Adjacent(M))
+		if(Adjacent(M))
 			choices += M
 	choices -= src
 
@@ -44,10 +44,7 @@
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 	if(failed)
 		src.Weaken(rand(2,4))
-
-	for(var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+	src.visible_message("<span class='danger'>\The [src] [failed ? "tried to tackle" : "has tackled"] down \the [T]!</span>")
 
 /mob/living/carbon/human/proc/leap()
 	set category = "Abilities"
@@ -63,8 +60,7 @@
 
 	var/list/choices = list()
 	for(var/mob/living/M in view(6,src))
-		if(!istype(M,/mob/living/silicon))
-			choices += M
+		choices += M
 	choices -= src
 
 	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
