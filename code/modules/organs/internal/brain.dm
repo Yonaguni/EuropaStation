@@ -12,7 +12,7 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "slapped", "whacked")
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/brain/brainmob = null
 
 /obj/item/organ/internal/brain/robotize()
 	replace_self_with(/obj/item/organ/internal/mmi_holder/posibrain)
