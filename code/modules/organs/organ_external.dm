@@ -1368,23 +1368,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/head/no_eyes
 	eye_icon = "blank_eyes"
 
-/obj/item/organ/external/head/no_eyes/diona
-	max_damage = 50
-	min_broken_damage = 25
-	cannot_break = 1
-	amputation_point = "branch"
-	joint = "structural ligament"
-	dislocated = -1
-	vital = 0
-
-/obj/item/organ/external/head/no_eyes/diona/removed()
-	var/mob/living/carbon/human/H = owner
-	..()
-	if(!istype(H) || !H.organs || !H.organs.len)
-		H.death()
-	if(prob(50) && spawn_diona_nymph(get_turf(src)))
-		qdel(src)
-
 /obj/item/organ/external/emp_act(severity)
 	if(!(status & ORGAN_ROBOT))
 		return

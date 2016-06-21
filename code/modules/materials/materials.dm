@@ -288,21 +288,6 @@ var/global/list/all_materials = list()
 	explosion_resistance = 10
 	sell_amt = 2
 
-/material/diona
-	name = "biomass"
-	icon_colour = null
-	stack_type = null
-	integrity = 600
-	icon_base = "diona"
-	icon_reinf = "noreinf"
-	hitsound = 'sound/effects/attackblob.ogg'
-
-/material/diona/place_dismantled_product()
-	return
-
-/material/diona/place_dismantled_girder(var/turf/target)
-	spawn_diona_nymph(target)
-
 /material/steel/holographic
 	name = "holo" + DEFAULT_WALL_MATERIAL
 	display_name = DEFAULT_WALL_MATERIAL

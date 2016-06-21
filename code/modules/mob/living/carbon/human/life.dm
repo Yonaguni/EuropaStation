@@ -240,18 +240,6 @@
 
 	if (radiation)
 
-		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= rads
-			nutrition += rads
-			adjustBruteLoss(-(rads))
-			adjustFireLoss(-(rads))
-			adjustOxyLoss(-(rads))
-			adjustToxLoss(-(rads))
-			updatehealth()
-			return
-
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 		if(prob(25))
@@ -587,25 +575,6 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
-
-	if(!isSynthetic())
-		if(light_organ && !light_organ.is_broken())
-			var/turf/T = loc
-			var/light_amount = istype(T) ? T.check_lumcount() : 5
-			nutrition += light_amount
-			traumatic_shock -= light_amount
-
-			if(species.flags & IS_PLANT)
-				if(nutrition > 450)
-					nutrition = 450
-
-				if(light_amount >= 3) //if there's enough light, heal
-					adjustBruteLoss(-(round(light_amount/2)))
-					adjustFireLoss(-(round(light_amount/2)))
-					adjustToxLoss(-(light_amount))
-					adjustOxyLoss(-(light_amount))
-					//TODO: heal wounds, heal broken limbs.
 	if(species.light_dam)
 		var/light_amount = 0
 		if(isturf(loc))
@@ -630,11 +599,6 @@
 	else
 		if(overeatduration > 1)
 			overeatduration -= 2 //doubled the unfat rate
-
-	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
-		if(nutrition < 200)
-			take_overall_damage(2,0)
-			traumatic_shock++
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())

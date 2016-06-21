@@ -139,7 +139,7 @@
 "cI" = (/obj/machinery/door/airlock/security,/turf/simulated/floor/tiled,/area/docks_civil)
 "cJ" = (/obj/machinery/door/airlock/external,/turf/simulated/floor,/area/maintenance/civil_north)
 "cK" = (/obj/machinery/door/airlock/maintenance,/turf/simulated/floor,/area/docks_civil)
-"cL" = (/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/obj/machinery/seed_storage/xenobotany,/turf/simulated/floor/tiled,/area/dome_civ/garden)
+"cL" = (/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/tiled,/area/dome_civ/garden)
 "cM" = (/obj/structure/flora/pottedplant,/turf/simulated/floor/tiled,/area/dome_civ/garden)
 "cN" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/tiled/white,/area/dome_civ/medical)
 "cO" = (/obj/effect/floor_decal/corner/red{tag = "icon-corner_red (NORTHEAST)"; dir = 5},/obj/effect/floor_decal/corner/red,/turf/simulated/floor/tiled,/area/dome_civ/admin)

@@ -87,10 +87,6 @@ var/list/holder_mob_icon_cache = list()
 		else
 			H.regenerate_icons()
 
-//Mob specific holders.
-/obj/item/weapon/holder/diona
-	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
-
 /obj/item/weapon/holder/mouse
 	w_class = 1
 
