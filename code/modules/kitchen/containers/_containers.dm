@@ -31,7 +31,7 @@
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/weapon/reagent_containers/kitchen/proc/do_burn(var/mob/living/carbon/human/victim)
+/obj/item/weapon/reagent_containers/kitchen/proc/do_burn(var/mob/living/human/victim)
 	victim.adjustFireLoss(rand(2,8))
 	return
 
@@ -106,7 +106,7 @@
 
 /obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
 	if(current_heat > BURN_HEAT)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H) && !H.gloves)
 			H << "<span class='danger'>You burn your hand on \the [src]!</span>"
 			do_burn(H)
@@ -157,7 +157,7 @@
 		grabbed.forceMove(get_turf(src))
 		user.visible_message("<span class='notice'>\The [user] fishes \the [grabbed] out of \the [src] with their bare hands.</span>")
 		if(current_heat > BURN_HEAT).
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			if(istype(H) && !H.gloves)
 				H << "<span class='danger'>You burn your hand on \the [src]!</span>"
 				do_burn(H)
@@ -209,7 +209,7 @@
 /obj/item/weapon/reagent_containers/kitchen/attack_self(var/mob/user as mob) //Take things out
 
 	if(current_heat > BURN_HEAT).
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H) && !H.gloves)
 			H << "<span class='danger'>You burn your hand on \the [src]!</span>"
 			do_burn(H)

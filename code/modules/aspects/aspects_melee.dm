@@ -26,7 +26,7 @@
 		/obj/item/weapon/material/sword/rapier
 		)
 
-/decl/aspect/melee/edged/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/melee/edged/do_post_spawn(var/mob/living/human/holder)
 	var/spawning = pick(spawn_weapon_types)
 	var/obj/item/thing = new spawning(get_turf(holder))
 	holder.put_in_hands(thing)

@@ -1,4 +1,4 @@
-/atom/movable/proc/make_dead_drop(var/mob/living/carbon/human/player)
+/atom/movable/proc/make_dead_drop(var/mob/living/human/player)
 	return
 
 /atom/movable/proc/is_valid_dead_drop()
@@ -8,7 +8,7 @@
 	var/turf/simulated/T = get_turf(src)
 	return (istype(T) && T.air && T.air.gas[REAGENT_ID_OXYGEN] > 50)
 
-/datum/antagonist/proc/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/proc/equip(var/mob/living/human/player)
 
 	if(!istype(player))
 		return 0
@@ -60,7 +60,7 @@
 
 	return 1
 
-/datum/antagonist/proc/unequip(var/mob/living/carbon/human/player)
+/datum/antagonist/proc/unequip(var/mob/living/human/player)
 	if(!istype(player))
 		return 0
 	return 1

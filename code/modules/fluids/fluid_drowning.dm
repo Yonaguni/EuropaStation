@@ -7,7 +7,7 @@
 /mob/living/simple_animal/borer/can_drown()
 	return 0
 
-/mob/living/carbon/can_drown()
+/mob/living/human/can_drown()
 	var/obj/item/organ/internal/gills/G = locate() in internal_organs
 	if(!G || G.is_broken())
 		return 1

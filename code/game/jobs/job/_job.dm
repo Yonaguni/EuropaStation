@@ -31,7 +31,7 @@
 
 	var/job_category = IS_CIVIL
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
+/datum/job/proc/equip(var/mob/living/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0)
 
 	var/list/uniforms = list(
 		/obj/item/clothing/under/soviet,
@@ -83,19 +83,19 @@
 
 	return 1
 
-/datum/job/proc/equip_backpack(var/mob/living/carbon/human/H)
+/datum/job/proc/equip_backpack(var/mob/living/human/H)
 	switch(H.backbag)
 		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
 		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 
-/datum/job/proc/equip_survival(var/mob/living/carbon/human/H)
+/datum/job/proc/equip_survival(var/mob/living/human/H)
 	if(!H)	return 0
 	H.species.equip_survival_gear(H,0)
 	return 1
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/del()
-/datum/job/proc/equip_preview(mob/living/carbon/human/H)
+/datum/job/proc/equip_preview(mob/living/human/H)
 	return equip(H)
 
 /datum/job/proc/get_access()
@@ -113,14 +113,14 @@
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 
-/datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
+/datum/job/proc/apply_fingerprints(var/mob/living/human/target)
 	if(!istype(target))
 		return 0
 	for(var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
 	return 1
 
-/datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
+/datum/job/proc/apply_fingerprints_to_item(var/mob/living/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
 	if(item.contents.len)
 		for(var/obj/item/sub_item in item.contents)

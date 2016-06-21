@@ -8,7 +8,7 @@
 	src.brainmob.silent = 0
 	..()
 
-/obj/item/device/mmi/digital/transfer_identity(var/mob/living/carbon/H)
+/obj/item/device/mmi/digital/transfer_identity(var/mob/living/human/H)
 	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.stat = 0
@@ -103,7 +103,7 @@
 			name = "Man-Machine Interface"
 
 	proc
-		transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+		transfer_identity(var/mob/living/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 			brainmob = new(src)
 			brainmob.name = H.real_name
 			brainmob.real_name = H.real_name

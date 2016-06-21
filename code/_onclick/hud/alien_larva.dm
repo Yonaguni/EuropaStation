@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/instantiate_hud(var/datum/hud/HUD)
+/mob/living/human/alien/instantiate_hud(var/datum/hud/HUD)
 	HUD.larva_hud()
 
 /datum/hud/proc/larva_hud()

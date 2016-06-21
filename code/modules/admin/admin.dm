@@ -92,7 +92,7 @@ proc/admin_notice(var/message, var/rights)
 	if (M.client)
 		if(!istype(M, /mob/new_player))
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if(M.dna && ishuman(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
@@ -823,7 +823,7 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/client/proc/update_mob_sprite(mob/living/human/H as mob)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
@@ -929,7 +929,7 @@ proc/admin_notice(var/message, var/rights)
 	set name = "Del-All"
 
 	// to prevent REALLY stupid deletions
-	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/dead, /mob/dead/observer)
+	var/blocked = list(/obj, /mob, /mob/living, /mob/living/human, /mob/living/human, /mob/dead, /mob/dead/observer)
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
 	if(hsbitem)
 		for(var/atom/O in world)

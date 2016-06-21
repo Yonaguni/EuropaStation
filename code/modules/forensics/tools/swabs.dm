@@ -17,7 +17,7 @@
 	if(is_used())
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	var/sample_type
 
 	if(H.wear_mask)

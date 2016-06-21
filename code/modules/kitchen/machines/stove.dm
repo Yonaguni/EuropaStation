@@ -106,7 +106,7 @@
 	return 1
 
 
-/obj/machinery/kitchen/stove/try_remove_container(var/mob/living/carbon/human/user)
+/obj/machinery/kitchen/stove/try_remove_container(var/mob/living/human/user)
 	remove_burner(null, user)
 
 // Remove a random item from the stove. You're in a hurry!
@@ -129,7 +129,7 @@
 	var/obj/item/I = burner_contents[burner]
 	if(istype(I))
 		I.loc = get_turf(user)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H) && !(H.l_hand && H.r_hand))
 			H.put_in_hands(I)
 		visible_message("\The [user] takes \the [I] from \the [src]'s [burner] burner.")

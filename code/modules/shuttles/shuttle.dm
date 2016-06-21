@@ -107,7 +107,7 @@
 		if(istype(T, /turf/simulated))
 			qdel(T)
 
-	for(var/mob/living/carbon/bug in destination)
+	for(var/mob/living/human/bug in destination)
 		bug.gib()
 
 	for(var/mob/living/simple_animal/pest in destination)
@@ -124,7 +124,7 @@
 				else
 					M << "\red The floor lurches beneath you!"
 					shake_camera(M, 10, 1)
-		if(istype(M, /mob/living/carbon))
+		if(istype(M, /mob/living/human))
 			if(!M.buckled)
 				M.Weaken(3)
 

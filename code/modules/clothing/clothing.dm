@@ -34,10 +34,10 @@
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(species_restricted && istype(M,/mob/living/human))
 		var/exclusive = null
 		var/wearable = null
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 
 		if("exclude" in species_restricted)
 			exclusive = 1
@@ -111,11 +111,11 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (src.loc != user || !istype(user,/mob/living/human))
 		..()
 		return
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(H.l_ear != src && H.r_ear != src)
 		..()
 		return
@@ -274,8 +274,8 @@
 /obj/item/clothing/head/update_icon(var/mob/user)
 
 	overlays.Cut()
-	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(user,/mob/living/human))
 		H = user
 
 	if(on)
@@ -472,8 +472,8 @@
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
-	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(src.loc, /mob/living/human))
 		H = src.loc
 
 	var/icon/under_icon

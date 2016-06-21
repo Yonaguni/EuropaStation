@@ -42,8 +42,8 @@
 					message = stars(message)
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = speaker
+	if(istype(speaker, /mob/living/human))
+		var/mob/living/human/H = speaker
 		speaker_name = H.GetVoice()
 
 	if(italics)
@@ -115,8 +115,8 @@
 	if(vname)
 		speaker_name = vname
 
-	if(istype(speaker, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = speaker
+	if(istype(speaker, /mob/living/human))
+		var/mob/living/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
 

@@ -13,7 +13,7 @@
 	if (!ishuman(usr))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/human/user = usr
 
 	if (!(user.l_hand == src || user.r_hand == src))
 		return //bag must be in your hands to use

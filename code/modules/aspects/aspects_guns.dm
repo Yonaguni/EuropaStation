@@ -4,7 +4,7 @@
 	use_icon_state = "guns_2"
 	category = "Ranged Combat"
 
-/decl/aspect/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/ballistics/do_post_spawn(var/mob/living/human/holder)
 	// Already have a gun.
 	if(locate(/obj/item/weapon/gun) in holder.contents)
 		return

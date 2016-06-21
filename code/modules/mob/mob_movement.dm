@@ -51,15 +51,15 @@
 			attack_self()
 			return
 		if(SOUTHWEST)
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				C.toggle_throw_mode()
 			else
 				usr << "\red This mob type cannot throw items."
 			return
 		if(NORTHWEST)
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				if(!C.get_active_hand())
 					usr << "\red You have nothing to drop in your hand."
 					return
@@ -79,7 +79,7 @@
 
 /client/verb/swap_hand()
 	set hidden = 1
-	if(istype(mob, /mob/living/carbon))
+	if(istype(mob, /mob/living/human))
 		mob:swap_hand()
 	return
 
@@ -94,7 +94,7 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = 1
-	if(!istype(mob, /mob/living/carbon))
+	if(!istype(mob, /mob/living/human))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
@@ -284,7 +284,7 @@
 				return mob.pulledby.relaymove(mob, direct)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
 				if(ishuman(mob))
-					var/mob/living/carbon/human/driver = mob
+					var/mob/living/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))

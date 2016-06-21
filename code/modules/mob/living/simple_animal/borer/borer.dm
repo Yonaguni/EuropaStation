@@ -24,7 +24,7 @@
 
 	var/used_dominate
 	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.
-	var/mob/living/carbon/human/host        // Human host for the brain worm.
+	var/mob/living/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
 	var/controlling                         // Used in human death check.
@@ -99,17 +99,17 @@
 
 	if(!host || !controlling) return
 
-	if(istype(host,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = host
+	if(istype(host,/mob/living/human))
+		var/mob/living/human/H = host
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants -= src
 
 	controlling = 0
 
 	host.remove_language("Cortical Link")
-	host.verbs -= /mob/living/carbon/proc/release_control
-	host.verbs -= /mob/living/carbon/proc/punish_host
-	host.verbs -= /mob/living/carbon/proc/spawn_larvae
+	host.verbs -= /mob/living/proc/release_control
+	host.verbs -= /mob/living/proc/punish_host
+	host.verbs -= /mob/living/proc/spawn_larvae
 
 	if(host_brain)
 

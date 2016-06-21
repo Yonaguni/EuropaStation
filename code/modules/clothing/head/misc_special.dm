@@ -81,7 +81,7 @@
 
 	var/turf/location = src.loc
 	if(istype(location, /mob/))
-		var/mob/living/carbon/human/M = location
+		var/mob/living/human/M = location
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
 
@@ -144,7 +144,7 @@
 	siemens_coefficient = 1.5
 	item_icons = list()
 
-	update_icon(var/mob/living/carbon/human/user)
+	update_icon(var/mob/living/human/user)
 		if(!istype(user)) return
 		var/icon/ears = new/icon("icon" = 'icons/mob/clothing/head.dmi', "icon_state" = "kitty")
 		ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)

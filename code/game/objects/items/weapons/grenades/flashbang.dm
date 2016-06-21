@@ -7,11 +7,11 @@
 	prime()
 		..()
 		for(var/obj/structure/closet/L in hear(7, get_turf(src)))
-			if(locate(/mob/living/carbon/, L))
-				for(var/mob/living/carbon/M in L)
+			if(locate(/mob/living/human/, L))
+				for(var/mob/living/human/M in L)
 					bang(get_turf(src), M)
 
-		for(var/mob/living/carbon/M in hear(7, get_turf(src)))
+		for(var/mob/living/human/M in hear(7, get_turf(src)))
 			bang(get_turf(src), M)
 
 		new/obj/effect/sparks(src.loc)
@@ -19,7 +19,7 @@
 		qdel(src)
 		return
 
-	proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+	proc/bang(var/turf/T , var/mob/living/human/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
 		M << "<span class='danger'>BANG</span>"						// Called during the loop that bangs people in lockers/containers and when banging
 		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
@@ -27,7 +27,7 @@
 //Checking for protections
 		var/eye_safety = 0
 		var/ear_safety = 0
-		if(iscarbon(M))
+		if(ishuman(M))
 			eye_safety = M.eyecheck()
 			if(ishuman(M))
 				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
@@ -72,7 +72,7 @@
 
 //This really should be in mob not every check
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 			if (E && E.damage >= E.min_bruised_damage)
 				M << "<span class='danger'>Your eyes start to burn badly!</span>"

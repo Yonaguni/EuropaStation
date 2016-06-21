@@ -17,7 +17,7 @@
 				access_mining, access_medical, access_construction, access_mailsorting, access_RC_announce,
 				access_gateway, access_external_airlocks)
 
-/datum/job/government/equip(var/mob/living/carbon/human/H)
+/datum/job/government/equip(var/mob/living/human/H)
 	if(!H)	return 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/petty_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)

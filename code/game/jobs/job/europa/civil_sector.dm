@@ -2,7 +2,7 @@
 	title = "Civil Engineer"
 	alt_titles = list("Emergency Services","Electrician")
 
-/datum/job/civilian/engineering/equip(var/mob/living/carbon/human/H)
+/datum/job/civilian/engineering/equip(var/mob/living/human/H)
 	if(!H) return
 	switch(H.mind.role_alt_title)
 		if("Civil Engineer")

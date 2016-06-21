@@ -19,14 +19,14 @@
 /**
  * Death hook.
  * Called in death.dm when someone dies.
- * Parameters: var/mob/living/carbon/human, var/gibbed
+ * Parameters: var/mob/living/human, var/gibbed
  */
 /hook/death
 
 /**
  * Cloning hook.
  * Called in cloning.dm when someone is brought back by the wonders of modern science.
- * Parameters: var/mob/living/carbon/human
+ * Parameters: var/mob/living/human
  */
 /hook/clone
 
@@ -47,7 +47,7 @@
 /**
  * Podman hook.
  * Called in podmen.dm when someone is brought back as a Diona.
- * Parameters: var/mob/living/carbon/alien/diona
+ * Parameters: var/mob/living/human/alien/diona
  */
 /hook/harvest_podman
 

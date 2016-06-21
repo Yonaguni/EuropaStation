@@ -27,11 +27,11 @@
 	return
 
 /obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon))
+	if (!istype(M, /mob/living/human))
 		return
 	if (user && src.imp)
 		M.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>")
-		
+
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 		user.do_attack_animation(M)
 
@@ -47,7 +47,7 @@
 					src.imp.imp_in = M
 					src.imp.implanted = 1
 					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
+						var/mob/living/human/H = M
 						var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 						affected.implants += src.imp
 						imp.part = affected
@@ -124,8 +124,8 @@
 			user << "<span class='warning'>Something is already scanned inside the implant!</span>"
 			return
 		c.scanned = A
-		if(istype(A.loc,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = A.loc
+		if(istype(A.loc,/mob/living/human))
+			var/mob/living/human/H = A.loc
 			H.remove_from_mob(A)
 		else if(istype(A.loc,/obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = A.loc

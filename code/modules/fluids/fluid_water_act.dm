@@ -9,14 +9,14 @@
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-round(depth/2))
 
-/mob/living/carbon/human/water_act(var/depth)
+/mob/living/human/water_act(var/depth)
 	species.water_act(src, depth)
 	..(depth)
 
-/datum/species/proc/water_act(var/mob/living/carbon/human/H, var/depth)
+/datum/species/proc/water_act(var/mob/living/human/H, var/depth)
 	return
 
-/datum/species/skrell/water_act(var/mob/living/carbon/human/H, var/depth)
+/datum/species/skrell/water_act(var/mob/living/human/H, var/depth)
 	..()
 	if(depth >= 40)
 		if(H.traumatic_shock)

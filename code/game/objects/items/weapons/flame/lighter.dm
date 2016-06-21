@@ -88,7 +88,7 @@
 			return
 	return ..()
 
-/obj/item/weapon/flame/lighter/attack(var/mob/living/carbon/M, var/mob/living/carbon/user)
+/obj/item/weapon/flame/lighter/attack(var/mob/living/human/M, var/mob/living/human/user)
 	if(istype(M))
 		M.IgniteMob()
 		if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == "mouth" && lit)

@@ -24,7 +24,7 @@
 			return
 		var/obj/item/organ/external/affecting = null
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/human/H = target
 			switch(type)
 				if("feet")
 					if(!H.shoes)
@@ -83,7 +83,7 @@
 	Crossed(AM as mob|obj)
 		if(armed)
 			if(ishuman(AM))
-				var/mob/living/carbon/H = AM
+				var/mob/living/human/H = AM
 				if(H.m_intent == "run")
 					triggered(H)
 					H.visible_message("<span class='warning'>[H] accidentally steps on [src].</span>", \

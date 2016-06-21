@@ -395,7 +395,7 @@
 	spawning = 1
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/new_character
+	var/mob/living/human/new_character
 
 	var/use_species_name
 	var/datum/species/chosen_species

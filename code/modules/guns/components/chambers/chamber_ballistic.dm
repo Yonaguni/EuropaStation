@@ -76,7 +76,7 @@
 
 	// Aurora forensics port, gunpowder residue.
 	if(chambered.leaves_residue)
-		var/mob/living/carbon/human/H = holder.loc
+		var/mob/living/human/H = holder.loc
 		if(istype(H))
 			if(!H.gloves)
 				H.gunshot_residue = chambered.caliber

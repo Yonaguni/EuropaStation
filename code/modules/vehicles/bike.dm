@@ -183,7 +183,7 @@ var/list/bike_cache = list()
 			M.Weaken(rand(5,10))
 			M.throw_at(get_edge_target_turf(src,get_dir(src,M)),rand(1,2), move_delay)
 
-/obj/vehicle/bike/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/bike/RunOver(var/mob/living/human/H)
 	if(istype(load, /mob/living))
 		load << "<span class='danger'>You run \the [H] down!</span>"
 		H << "<span class='danger'>\The [load] runs you down!</span>"

@@ -16,12 +16,12 @@
 	var/injection_cooldown = 600
 	var/replenish_cooldown = 6000
 	var/replenishing = 0
-	var/mob/living/carbon/occupant = null
+	var/mob/living/human/occupant = null
 	var/injecting = 0
 
 	proc
 		go_out()
-		put_mob(mob/living/carbon/M as mob)
+		put_mob(mob/living/human/M as mob)
 		implant(var/mob/M)
 		add_implants()
 
@@ -102,8 +102,8 @@
 		return
 
 
-	put_mob(mob/living/carbon/M as mob)
-		if(!iscarbon(M))
+	put_mob(mob/living/human/M as mob)
+		if(!ishuman(M))
 			usr << "<span class='warning'>\The [src] cannot hold this!</span>"
 			return
 		if(src.occupant)
@@ -121,7 +121,7 @@
 
 
 	implant(var/mob/M)
-		if (!istype(M, /mob/living/carbon))
+		if (!istype(M, /mob/living/human))
 			return
 		if(!implant_list.len)	return
 		for(var/obj/item/weapon/implant/loyalty/imp in implant_list)

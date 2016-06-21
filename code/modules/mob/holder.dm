@@ -75,7 +75,7 @@ var/list/holder_mob_icon_cache = list()
 	name = M.name
 	desc = M.desc
 	overlays |= M.overlays
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 	last_holder = H
 	register_all_movement(H, M)
 
@@ -97,7 +97,7 @@ var/list/holder_mob_icon_cache = list()
 //Mob procs and vars for scooping up
 /mob/living/var/holder_type
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
+/mob/living/proc/get_scooped(var/mob/living/human/grabber, var/self_grab)
 
 	if(!holder_type || buckled || pinned.len)
 		return
@@ -125,7 +125,7 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/human/sync(var/mob/living/M)
 	// Generate appropriate on-mob icons.
-	var/mob/living/carbon/human/owner = M
+	var/mob/living/human/owner = M
 	if(istype(owner) && owner.species)
 
 		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)

@@ -23,7 +23,7 @@
 		..()
 
 	say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
-		if (istype(other, /mob/living/carbon/human))
+		if (istype(other, /mob/living/human))
 			return 1
 		return ..()
 

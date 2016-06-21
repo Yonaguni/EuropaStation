@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/human/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
 		return
@@ -25,10 +25,10 @@
 /atom/proc/attack_hand(mob/user as mob)
 	return
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+/mob/living/human/RangedAttack(var/atom/A)
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)
@@ -47,10 +47,10 @@
 	Aliens
 */
 
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
+/mob/living/human/alien/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/human/alien/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
 		return 0

@@ -8,7 +8,7 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 		return
 
 	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
-	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
+	for(var/mob/living/human/patient in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
 
@@ -27,7 +27,7 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 	if(!can_process_hud(M))
 		return
 	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
-	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
+	for(var/mob/living/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
 
@@ -74,7 +74,7 @@ mob/proc/in_view(var/turf/T)
 
 /mob/eye/in_view(var/turf/T)
 	var/list/viewed = new
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/human/H in mob_list)
 		if(get_dist(H, T) <= 7)
 			viewed += H
 	return viewed

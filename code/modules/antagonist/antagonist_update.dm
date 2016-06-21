@@ -13,7 +13,7 @@
 	player.original = player.current
 /*	if(!preserve_appearance && (flags & ANTAG_SET_APPEARANCE))
 		spawn(3)
-			var/mob/living/carbon/human/H = player.current
+			var/mob/living/human/H = player.current
 			if(istype(H)) H.change_appearance(APPEARANCE_ALL, H.loc, H, valid_species, state = z_state)*/
 	return player.current
 

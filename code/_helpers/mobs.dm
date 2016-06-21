@@ -163,3 +163,6 @@ Proc for attack log creation, because really why not
 		return pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
 	else
 		return pick("chest", "groin")
+
+/proc/is_integrated(var/obj/item/thing)
+	return 0

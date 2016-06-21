@@ -17,8 +17,8 @@
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			attack_generic(user,1,"smashes")
-		else if(istype(user,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
+		else if(istype(user,/mob/living/human))
+			var/mob/living/human/H = user
 			if(H.species.can_shred(user))
 				attack_generic(user,1,"slices")
 
@@ -133,7 +133,7 @@
 		if(prob(25))
 
 			var/damage = rand(15,30)
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			if(!istype(H))
 				H << "<span class='danger'>You land heavily!</span>"
 				M.adjustBruteLoss(damage)

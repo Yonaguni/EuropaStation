@@ -15,7 +15,7 @@ var/list/organ_cache = list()
 	var/damage = 0                    // Current damage to the organ
 
 	// Reference data.
-	var/mob/living/carbon/human/owner // Current mob owning the organ.
+	var/mob/living/human/owner // Current mob owning the organ.
 	var/list/transplant_data          // Transplant match data.
 	var/list/autopsy_data = list()    // Trauma data for forensics.
 	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
@@ -42,7 +42,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/carbon/holder, var/internal)
+/obj/item/organ/New(var/mob/living/human/holder, var/internal)
 	..(holder)
 	create_reagents(5)
 	if(!max_damage)
@@ -54,7 +54,7 @@ var/list/organ_cache = list()
 			set_dna(holder.dna.Clone())
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = holder
+		var/mob/living/human/H = holder
 		if(istype(H))
 			if(internal)
 				var/obj/item/organ/external/E = H.get_organ(parent_organ)
@@ -305,7 +305,7 @@ var/list/organ_cache = list()
 
 	owner = null
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(var/mob/living/human/target,var/obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 

@@ -3,7 +3,7 @@
 	if (!ishuman(src))
 		return
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/human/H = src
 	if (H.l_ear || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.l_ear,/obj/item/device/radio/headset))

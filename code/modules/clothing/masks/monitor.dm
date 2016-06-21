@@ -38,7 +38,7 @@
 
 /obj/item/clothing/mask/monitor/equipped()
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 	if(istype(H) && H.wear_mask == src)
 		canremove = 0
 		H << "<span class='notice'>\The [src] connects to your display output.</span>"
@@ -47,7 +47,7 @@
 	canremove = 1
 	return ..()
 
-/obj/item/clothing/mask/monitor/mob_can_equip(var/mob/living/carbon/human/user, var/slot)
+/obj/item/clothing/mask/monitor/mob_can_equip(var/mob/living/human/user, var/slot)
 	if (!..())
 		return 0
 	if(istype(user))
@@ -63,7 +63,7 @@
 	set category = "IC"
 
 	set src in usr
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 	if(!istype(H) || H != usr)
 		return
 	if(H.wear_mask != src)
@@ -78,5 +78,5 @@
 	if(!(monitor_state_index in monitor_states))
 		monitor_state_index = initial(monitor_state_index)
 	icon_state = monitor_states[monitor_state_index]
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 	if(istype(H)) H.update_inv_wear_mask()

@@ -50,7 +50,7 @@
 	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
-	var/mob/living/carbon/human/wearer                        // The person currently wearing the rig.
+	var/mob/living/human/wearer                        // The person currently wearing the rig.
 	var/image/mob_icon                                        // Holder for on-mob icon.
 	var/list/installed_modules = list()                       // Power consumption/use bookkeeping.
 
@@ -368,7 +368,7 @@
 	var/fail_msg
 
 	if(!user_is_ai)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H) && H.back != src)
 			fail_msg = "<span class='warning'>You must be wearing \the [src] to do this.</span>"
 		else if(user.incorporeal_move)
@@ -495,7 +495,7 @@
 		wearer.update_inv_back()
 	return
 
-/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
+/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/human/user)
 
 	if(!security_check_enabled)
 		return 1
@@ -562,7 +562,7 @@
 			. = 1
 	*/
 
-/obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
+/obj/item/weapon/rig/equipped(mob/living/human/M)
 	..()
 
 	if(seal_delay > 0 && istype(M) && M.back == src)
@@ -619,7 +619,7 @@
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 
-			var/mob/living/carbon/human/holder
+			var/mob/living/human/holder
 
 			if(use_obj)
 				holder = use_obj.loc
@@ -647,7 +647,7 @@
 
 /obj/item/weapon/rig/proc/deploy(mob/M,var/sealed)
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 
 	if(!H || !istype(H)) return
 
@@ -760,7 +760,7 @@
 			wearer << "<span class='warning'>The [source] has damaged your [dam_module.interface_name]!</span>"
 	dam_module.deactivate()
 
-/obj/item/weapon/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
+/obj/item/weapon/rig/proc/malfunction_check(var/mob/living/human/user)
 	if(malfunction_delay)
 		if(offline)
 			user << "<span class='danger'>The suit is completely unresponsive.</span>"
@@ -905,7 +905,7 @@
 /obj/item/weapon/rig/get_rig()
 	return src
 
-/mob/living/carbon/human/get_rig()
+/mob/living/human/get_rig()
 	return back
 
 #undef ONLY_DEPLOY

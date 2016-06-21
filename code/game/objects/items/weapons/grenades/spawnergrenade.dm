@@ -15,7 +15,7 @@
 		// Make a quick flash
 		var/turf/T = get_turf(src)
 		playsound(T, 'sound/effects/phasein.ogg', 100, 1)
-		for(var/mob/living/carbon/human/M in viewers(T, null))
+		for(var/mob/living/human/M in viewers(T, null))
 			M.flash_eyes()
 
 		// Spawn some hostile syndicate critters

@@ -17,7 +17,7 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 
-/obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/weapon/handcuffs/attack(var/mob/living/human/C, var/mob/living/user)
 
 	if(!user.IsAdvancedToolUser())
 		return
@@ -44,10 +44,10 @@
 		else
 			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
 
-/obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/human/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/human/H = target
 	if(!istype(H))
 		return 0
 
@@ -86,11 +86,11 @@
 	return 1
 
 var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
 
-	var/mob/living/carbon/human/H = A
+	var/mob/living/human/H = A
 	if (!H.handcuffed) return
 	if (H.a_intent != I_HURT) return
 	if (H.zone_sel.selecting != O_MOUTH) return

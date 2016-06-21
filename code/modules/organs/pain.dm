@@ -7,7 +7,7 @@ mob/var/next_pain_time = 0
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
+mob/living/human/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
 	if(stat >= 1)
 		return
 	if(!can_feel_pain())
@@ -16,7 +16,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		return
 	if(world.time < next_pain_time && !force)
 		return
-	if(amount > 10 && istype(src,/mob/living/carbon/human))
+	if(amount > 10 && istype(src,/mob/living/human))
 		if(src:paralysis)
 			src:paralysis = max(0, src:paralysis-round(amount/10))
 	if(amount > 50 && prob(amount / 5))
@@ -50,7 +50,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
+mob/living/human/proc/custom_pain(var/message, var/flash_strength)
 	if(stat >= 1)
 		return
 	if(!can_feel_pain())
@@ -69,7 +69,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		src << msg
 	next_pain_time = world.time + 100
 
-mob/living/carbon/human/proc/handle_pain()
+mob/living/human/proc/handle_pain()
 	// not when sleeping
 
 	if(!can_feel_pain()) return

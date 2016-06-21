@@ -1,7 +1,7 @@
 #define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
 #define CLAMP01(x) 		(Clamp(x, 0, 1))
 
-#define isalien(A) istype(A, /mob/living/carbon/alien)
+#define isalien(A) istype(A, /mob/living/human/alien)
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
@@ -9,13 +9,11 @@
 
 #define isbrain(A) istype(A, /mob/living/brain)
 
-#define iscarbon(A) istype(A, /mob/living/carbon)
-
 #define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
 
 #define isEye(A) istype(A, /mob/eye)
 
-#define ishuman(A) istype(A, /mob/living/carbon/human)
+#define ishuman(A) istype(A, /mob/living/human)
 
 #define isliving(A) istype(A, /mob/living)
 

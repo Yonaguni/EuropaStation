@@ -101,7 +101,7 @@
 
 /obj/machinery/datanet/attack_hand(var/mob/user)
 	if(console_interface_only)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(!istype(H) || !istype(H.wear_id, /obj/item/device/wrist_computer))
 			user << "<span class='warning'>\The [src] can only be activated via terminal.</span>"
 			return

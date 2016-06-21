@@ -3,10 +3,10 @@
 ****************************************************/
 //Blood levels. These are percentages based on the species blood_volume far.
 
-/mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+/mob/living/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 
 //Initializes blood vessels
-/mob/living/carbon/human/proc/make_blood()
+/mob/living/human/proc/make_blood()
 
 	if(vessel)
 		return
@@ -22,7 +22,7 @@
 		fixblood()
 
 //Resets blood data
-/mob/living/carbon/human/proc/fixblood()
+/mob/living/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == REAGENT_ID_BLOOD)
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
@@ -30,7 +30,7 @@
 			B.color = B.data["blood_colour"]
 
 // Takes care blood loss and regeneration
-/mob/living/carbon/human/handle_blood()
+/mob/living/human/handle_blood()
 	if(in_stasis)
 		return
 
@@ -54,7 +54,7 @@
 	drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt as num)
+/mob/living/human/proc/drip(var/amt as num)
 
 	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
 		return
@@ -70,7 +70,7 @@
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/human/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B) B = new /datum/reagent/blood
@@ -83,8 +83,8 @@
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src,/mob/living/human))
+		var/mob/living/human/H = src
 		B.data["blood_colour"] = H.species.get_blood_colour(H)
 		B.color = B.data["blood_colour"]
 
@@ -96,7 +96,7 @@
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
 	if(!should_have_organ(O_HEART))
 		return null
@@ -108,7 +108,7 @@
 	vessel.remove_reagent(REAGENT_ID_BLOOD,amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/human/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
 	var/list/chems = list()
@@ -118,7 +118,7 @@
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(should_have_organ(O_HEART))
 		reagents.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
@@ -138,7 +138,7 @@
 	..()
 
 //Gets human's own blood.
-/mob/living/carbon/proc/get_blood(datum/reagents/container)
+/mob/living/human/proc/get_blood(datum/reagents/container)
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
 	if(res) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
@@ -176,8 +176,8 @@ proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter
 	var/turf/T = get_turf(target)
 
-	if(istype(source,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = source
+	if(istype(source,/mob/living/human))
+		var/mob/living/human/M = source
 		source = M.get_blood(M.vessel)
 	else if(!istype(source))
 		source = null

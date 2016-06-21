@@ -5,7 +5,7 @@
 	icon_state = "taperoll"
 	w_class = 1
 
-/obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/weapon/tape_roll/attack(var/mob/living/human/H, var/mob/user)
 	if(istype(H))
 		if(user.zone_sel.selecting == O_EYES)
 

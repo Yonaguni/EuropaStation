@@ -115,7 +115,7 @@
 	var/stun = stunforce
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/human/H = target
 		affecting = H.get_organ(hit_zone)
 
 	if(user.a_intent == I_HURT)
@@ -144,7 +144,7 @@
 		deductcharge(hitcost)
 
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/human/H = target
 			H.forcesay(hit_appends)
 
 /obj/item/weapon/melee/baton/emp_act(severity)

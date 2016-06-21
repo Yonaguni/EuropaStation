@@ -327,10 +327,10 @@
 
 		for(var/mob/living/M in contents)
 			if (M.stat!=2)
-				if (!iscarbon(M))
+				if (!ishuman(M))
 					M.emote("scream")
 				else
-					var/mob/living/carbon/C = M
+					var/mob/living/human/C = M
 					if (C.can_feel_pain())
 						C.emote("scream")
 

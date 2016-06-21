@@ -5,7 +5,7 @@
 	min_duration = 80
 	max_duration = 120
 
-/datum/surgery_step/disinfect/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/disinfect/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected)
 		return 0
@@ -19,7 +19,7 @@
 					break
 	return (disinfect_amt <= 0)
 
-/datum/surgery_step/disinfect/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/disinfect/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("\The [user] begins disinfecting \the [target]'s [affected.name] with \the [tool].", \
 		"You begin disinfecting \the [target]'s [affected.name] with \the [tool].")
@@ -32,13 +32,13 @@
 		tool.reagents.splash(target, rand(3,5))
 	..()
 
-/datum/surgery_step/disinfect/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/disinfect/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>\The [user] has disinfected \the [target]'s [affected.name] with \the [tool].</span>", \
 		"<span class='notice'>You have disinfected \the [target]'s [affected.name] with \the [tool].</span>")
 	affected.disinfect()
 
-/datum/surgery_step/disinfect/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/disinfect/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>\The [user]'s hand slips, spilling \the [tool] over \the [target]'s [affected.name]!</span>", \
 		"<span class='danger'>Your hand slips, spilling \the [tool] over \the [target]'s [affected.name]!</span>")

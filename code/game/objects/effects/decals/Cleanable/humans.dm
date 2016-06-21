@@ -75,7 +75,7 @@ var/global/list/blood_decals = list()
 		name = initial(name)
 		desc = initial(desc)
 
-/obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+/obj/effect/decal/cleanable/blood/Crossed(mob/living/human/perp)
 	if (!istype(perp))
 		return
 	if(amount < 1)
@@ -123,7 +123,7 @@ var/global/list/blood_decals = list()
 	amount = 0
 	processing_objects -= src
 
-/obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
+/obj/effect/decal/cleanable/blood/attack_hand(mob/living/human/user)
 	..()
 	if (amount && istype(user))
 		add_fingerprint(user)
@@ -138,7 +138,7 @@ var/global/list/blood_decals = list()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		user.verbs += /mob/living/human/proc/bloody_doodle
 
 /obj/effect/decal/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")

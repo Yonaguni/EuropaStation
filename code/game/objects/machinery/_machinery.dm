@@ -227,7 +227,7 @@ Class Procs:
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message("<span class='warning'>[H] stares cluelessly at \the [src].</span>")
 			return 1

@@ -185,7 +185,7 @@
 
 				var/list/possible_targets = list("Free objective")
 				for(var/datum/mind/possible_target in ticker.minds)
-					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+					if ((possible_target != src) && istype(possible_target.current, /mob/living/human))
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null
@@ -253,7 +253,7 @@
 		objective.completed = !objective.completed
 
 	else if(href_list["implant"])
-		var/mob/living/carbon/human/H = current
+		var/mob/living/human/H = current
 
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
 
@@ -344,13 +344,13 @@
 	mind.current = src
 
 //HUMAN
-/mob/living/carbon/human/mind_initialize()
+/mob/living/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)
 		mind.assigned_role = "[world_map.default_title]"
 
 //slime
-/mob/living/carbon/alien/larva/mind_initialize()
+/mob/living/human/alien/larva/mind_initialize()
 	..()
 	mind.special_role = "Larva"
 

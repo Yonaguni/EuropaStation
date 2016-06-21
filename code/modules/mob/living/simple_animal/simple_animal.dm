@@ -231,7 +231,7 @@
 	adjustBruteLoss(Proj.damage)
 	return 0
 
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/attack_hand(mob/living/human/M as mob)
 	..()
 
 	switch(M.a_intent)

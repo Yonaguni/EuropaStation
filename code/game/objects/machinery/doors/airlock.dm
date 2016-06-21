@@ -815,7 +815,7 @@ About the new airlock wires panel:
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
 
-/mob/living/carbon/airlock_crush(var/crush_damage)
+/mob/living/human/airlock_crush(var/crush_damage)
 	. = ..()
 	if(can_feel_pain())
 		emote("scream")

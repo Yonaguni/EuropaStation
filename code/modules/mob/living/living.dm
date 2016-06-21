@@ -90,7 +90,7 @@ default behaviour is:
 			if(a_intent == I_HELP || src.restrained())
 				now_pushing = 0
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+			if(istype(tmob, /mob/living/human) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = 0
@@ -183,13 +183,13 @@ default behaviour is:
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/human))
 		//world << "DEBUG: burn_skin(), mutations=[mutations]"
 		if(mShock in src.mutations) //shockproof
 			return 0
 		if (COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
+		var/mob/living/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/obj/item/organ/external/affecting in H.organs)
@@ -215,7 +215,7 @@ default behaviour is:
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(istype(src, /mob/living/human))
 //		world << "[src] ~ [src.bodytemperature] ~ [temperature]"
 	return temperature
 
@@ -379,8 +379,8 @@ default behaviour is:
 	rejuvenate()
 	if(buckled)
 		buckled.unbuckle_mob()
-	if(iscarbon(src))
-		var/mob/living/carbon/C = src
+	if(ishuman(src))
+		var/mob/living/human/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
 			C.drop_from_inventory(C.handcuffed)
@@ -537,7 +537,7 @@ default behaviour is:
 										if (istype(location, /turf/simulated))
 											location.add_blood(M)
 											if(ishuman(M))
-												var/mob/living/carbon/human/H = M
+												var/mob/living/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 												if(blood_volume > 0)
 													H.vessel.remove_reagent(REAGENT_ID_BLOOD, 1)
@@ -680,7 +680,7 @@ default behaviour is:
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
+/mob/living/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)
 		return
 	..()
@@ -791,4 +791,17 @@ default behaviour is:
 		return 0
 	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
 		return 0
+	return 1
+
+/mob/living/verb/mob_sleep()
+	set name = "Sleep"
+	set category = "IC"
+
+	if(usr.sleeping)
+		usr << "\red You are already sleeping"
+		return
+	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+		usr.sleeping = 20 //Short nap
+
+/mob/living/proc/can_feel_pain(var/check_organ)
 	return 1

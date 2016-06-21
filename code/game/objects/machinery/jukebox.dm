@@ -118,9 +118,9 @@ datum/track/New(var/title_name, var/audio)
 
 /obj/machinery/media/jukebox/proc/emag_play()
 	playsound(loc, 'sound/items/AirHorn.ogg', 100, 1)
-	for(var/mob/living/carbon/M in ohearers(6, src))
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+	for(var/mob/living/human/M in ohearers(6, src))
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/H = M
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
 		M.sleeping = 0

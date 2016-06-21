@@ -198,7 +198,7 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 		ghost_all_access = new()
 	return ghost_all_access
 
-/mob/living/carbon/human/GetIdCard()
+/mob/living/human/GetIdCard()
 	var/obj/item/I = get_active_hand()
 	if(I)
 		var/id = I.GetID()

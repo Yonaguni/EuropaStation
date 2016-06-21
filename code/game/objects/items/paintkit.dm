@@ -41,7 +41,7 @@
 		if(kit.new_light_overlay)
 			light_overlay = kit.new_light_overlay
 		user << "You set about modifying the helmet into [src]."
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H))
 			species_restricted = list(H.species.get_bodytype())
 		kit.use(1,user)
@@ -60,7 +60,7 @@
 		if(kit.new_mob_icon_file)
 			icon_override = kit.new_mob_icon_file
 		user << "You set about modifying the suit into [src]."
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H))
 			species_restricted = list(H.species.get_bodytype())
 		kit.use(1,user)

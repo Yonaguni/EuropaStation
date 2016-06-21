@@ -26,7 +26,7 @@ var/list/butchery_icons = list() // Icon cache.
 		else
 			meat.name = "[src.name] [meat.name]"
 
-/mob/living/carbon/human/harvest_meat()
+/mob/living/human/harvest_meat()
 	..()
 	for(var/obj/item/organ/internal/I in internal_organs)
 		I.removed()
@@ -134,7 +134,7 @@ var/list/butchery_icons = list() // Icon cache.
 	if(occupant)
 		occupant.set_dir(EAST)
 
-		if(istype(occupant, /mob/living/carbon/human))
+		if(istype(occupant, /mob/living/human))
 			var/image/I = image(occupant.icon, occupant.icon_state)
 			I.overlays += occupant.overlays
 			var/matrix/M = matrix()

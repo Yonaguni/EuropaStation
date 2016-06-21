@@ -22,7 +22,7 @@
 	if(!istype(T)) return
 
 	//blind adjacent people
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	for (var/mob/living/human/M in viewers(T, flash_range))
 		M.flash_eyes()
 
 	//snap pop

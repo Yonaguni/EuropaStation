@@ -287,7 +287,7 @@
 		else
 			var/obj/item/organ/external/limb
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/human/H = user
 				if(src == H.l_hand)
 					limb = H.get_organ(BP_L_HAND)
 				else
@@ -359,8 +359,8 @@
 	//shooting while in shock
 	var/x_offset = 0
 	var/y_offset = 0
-	if(istype(user, /mob/living/carbon))
-		var/mob/living/carbon/mob = user
+	if(ishuman(user))
+		var/mob/living/human/mob = user
 		if(mob.shock_stage > 120)
 			y_offset = rand(-2,2)
 			x_offset = rand(-2,2)
@@ -375,7 +375,7 @@
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/carbon/human/M = user
+	var/mob/living/human/M = user
 
 	mouthshoot = 1
 	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")

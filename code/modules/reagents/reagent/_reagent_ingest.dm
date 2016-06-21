@@ -1,4 +1,4 @@
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(nutriment_factor)
 		M.nutrition += nutriment_factor * removed
 	if(hydration_factor)
