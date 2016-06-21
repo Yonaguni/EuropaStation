@@ -923,6 +923,22 @@ proc/admin_notice(var/message, var/rights)
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+//TODO: merge the vievars version into this or something maybe mayhaps
+/client/proc/cmd_debug_del_all()
+	set category = "Debug"
+	set name = "Del-All"
+
+	// to prevent REALLY stupid deletions
+	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/dead, /mob/dead/observer)
+	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
+	if(hsbitem)
+		for(var/atom/O in world)
+			if(istype(O, hsbitem))
+				qdel(O)
+		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
+		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 //Returns 1 to let the dragdrop code know we are trapping this event
 //Returns 0 if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(var/mob/dead/observer/frommob, var/mob/living/tomob)
