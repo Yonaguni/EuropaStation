@@ -472,16 +472,6 @@
 		if(!O.loc)
 			continue
 
-		if(istype(O, /obj/singularity))
-			var/name = "Singularity"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
 	for(var/mob/M in sortAtom(mob_list))
 		var/name = M.name
 		if (names.Find(name))
@@ -551,9 +541,7 @@
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
 	show_inv(usr)
-
 
 /mob/verb/stop_pulling()
 
@@ -640,7 +628,7 @@
 /mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
 		return 1
-	return istype(src, /mob/living/silicon) || get_species() == "Machine"
+	return 0
 
 /mob/proc/is_ready()
 	return client && !!mind
@@ -973,18 +961,6 @@ mob/proc/yank_out_object()
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
-
-	else if(issilicon(src))
-		var/mob/living/silicon/robot/R = src
-		R.embedded -= selection
-		R.adjustBruteLoss(5)
-		R.adjustFireLoss(10)
-
-	else if(issilicon(src))
-		var/mob/living/silicon/robot/R = src
-		R.embedded -= selection
-		R.adjustBruteLoss(5)
-		R.adjustFireLoss(10)
 
 	selection.forceMove(get_turf(src))
 	if(!(U.l_hand && U.r_hand))

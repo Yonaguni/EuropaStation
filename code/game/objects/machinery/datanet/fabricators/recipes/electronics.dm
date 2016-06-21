@@ -5,10 +5,6 @@
 	fabtype = FABRICATOR_ELECTRONICS
 	category = "General"
 
-/decl/fabricator_design/electronics/paicard
-	name = "personal artificial intelligence device"
-	path = /obj/item/device/paicard
-
 /decl/fabricator_design/electronics/floor_light
 	name = "floor light"
 	path = /obj/machinery/floor_light
@@ -32,12 +28,6 @@
 /decl/fabricator_design/electronics/taperecorder
 	name = "tape recorder"
 	path = /obj/item/device/taperecorder
-
-// ENGINEERING.
-/decl/fabricator_design/electronics/engineering
-	name = "camera assembly"
-	path = /obj/item/weapon/camera_assembly
-	category = "Engineering"
 
 // MEDICAL.
 /decl/fabricator_design/electronics/medical
@@ -104,10 +94,6 @@
 /decl/fabricator_design/electronics/tool/drill/diamond
 	name = "mining drill (diamond-tipped)"
 	path = /obj/item/weapon/pickaxe/diamonddrill
-
-/decl/fabricator_design/electronics/tool/robot_scanner
-	name = "hardware diagnostic scanner"
-	path = /obj/item/device/robotanalyzer
 
 /decl/fabricator_design/electronics/tool/mass_spectrometer
 	name = "mass spectrometer"

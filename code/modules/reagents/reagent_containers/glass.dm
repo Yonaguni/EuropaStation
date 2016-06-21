@@ -27,7 +27,6 @@
 		/obj/structure/sink,
 		/obj/item/weapon/storage,
 		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/machinery/dna_scannernew,
 		/obj/item/weapon/grenade/chem_grenade,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
@@ -35,7 +34,6 @@
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
 		/obj/machinery/sleeper,
-		/obj/machinery/smartfridge/,
 		/obj/machinery/constructable_frame
 		)
 

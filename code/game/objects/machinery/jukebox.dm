@@ -135,9 +135,6 @@ datum/track/New(var/title_name, var/audio)
 	spawn(15)
 		explode()
 
-/obj/machinery/media/jukebox/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
 	if(!anchored)
 		usr << "<span class='warning'>You must secure \the [src] first.</span>"

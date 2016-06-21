@@ -68,10 +68,6 @@
 		user << "<span class='warning'>You need to secure the beacon with a wrench first!</span>"
 		return
 
-/obj/machinery/power/supply_beacon/attack_ai(var/mob/user)
-	if(user.Adjacent(src))
-		attack_hand(user)
-
 /obj/machinery/power/supply_beacon/proc/activate(var/mob/user)
 	if(expended)
 		return

@@ -24,9 +24,6 @@
 	wifi_sender = null
 	return..()
 
-/obj/machinery/button/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
 /obj/machinery/button/attackby(obj/item/weapon/W, mob/user as mob)
 	return attack_hand(user)
 
@@ -106,30 +103,6 @@
 		icon_state = "doorctrl0"
 	else
 		icon_state = "doorctrl2"
-
-//-------------------------------
-// Mass Driver Button
-//  Passes the activate call to a mass driver wifi sender
-//-------------------------------
-/obj/machinery/button/mass_driver
-	name = "mass driver button"
-
-/obj/machinery/button/mass_driver/initialize()
-	if(_wifi_id)
-		wifi_sender = new/datum/wifi/sender/mass_driver(_wifi_id, src)
-	..()
-
-/obj/machinery/button/mass_driver/activate(mob/living/user)
-	if(active || !istype(wifi_sender))
-		return
-
-	active = 1
-	use_power(5)
-	update_icon()
-	wifi_sender.activate()
-	active = 0
-	update_icon()
-
 
 //-------------------------------
 // Door Button

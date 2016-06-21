@@ -9,10 +9,6 @@
 	if(!is_vip(src))
 		return
 
-	if(say_disabled)
-		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
-		return
-
 	msg = sanitize(msg)
 	if (!msg)
 		return

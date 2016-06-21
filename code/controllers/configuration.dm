@@ -769,8 +769,6 @@ var/list/gamemode_cache = list()
 					config.monkey_delay = value
 				if("alien_delay")
 					config.alien_delay = value
-				if("slime_delay")
-					config.slime_delay = value
 				if("animal_delay")
 					config.animal_delay = value
 

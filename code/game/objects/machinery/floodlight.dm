@@ -63,17 +63,6 @@
 	if(loud)
 		visible_message("\The [src] shuts down.")
 
-/obj/machinery/floodlight/attack_ai(mob/user as mob)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
-		return attack_hand(user)
-
-	if(on)
-		turn_off(1)
-	else
-		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
-
-
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
 		if(ishuman(user))

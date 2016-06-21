@@ -30,17 +30,14 @@
 	if(ishuman(A))
 		user << "<span class='notice'>The label refuses to stick to [A.name].</span>"
 		return
-	if(issilicon(A))
-		user << "<span class='notice'>The label refuses to stick to [A.name].</span>"
-		return
 	if(isobserver(A))
 		user << "<span class='notice'>[src] passes through [A.name].</span>"
 		return
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))
 		user << "<span class='notice'>The label can't stick to the [A.name].  (Try using a pen)</span>"
 		return
-	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
-		var/obj/machinery/portable_atmospherics/hydroponics/tray = A
+	if(istype(A, /obj/machinery/hydroponics))
+		var/obj/machinery/hydroponics/tray = A
 		if(!tray.mechanical)
 			user << "<span class='notice'>How are you going to label that?</span>"
 			return

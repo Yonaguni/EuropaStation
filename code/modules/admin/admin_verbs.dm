@@ -28,7 +28,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_admin_check_contents,
-	/datum/admins/proc/access_news_network,
 	/client/proc/giveruntimelog,
 	/client/proc/getserverlog,
 	/client/proc/jumptocoord,
@@ -43,9 +42,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/check_ai_laws,
-	/client/proc/rename_silicon,
-	/client/proc/manage_silicon_laws,
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,
 	/client/proc/dsay,
@@ -78,8 +74,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggle_antagHUD_restrictions,
 	/client/proc/allow_character_respawn,
 	/client/proc/event_manager_panel,
-	/client/proc/empty_ai_core_toggle_latejoin,
-	/client/proc/empty_ai_core_toggle_latejoin,
 	/client/proc/aooc,
 	/client/proc/change_human_appearance_admin,
 	/client/proc/change_human_appearance_self,
@@ -87,7 +81,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/reload_vips,
 	/datum/admins/proc/show_vips,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI,
 	/datum/admins/proc/paralyze_mob
 )
 var/list/admin_verbs_ban = list(
@@ -106,7 +99,6 @@ var/list/admin_verbs_fun = list(
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
-	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/roll_dices,
@@ -137,7 +129,6 @@ var/list/admin_verbs_server = list(
 	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,
-	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
@@ -149,14 +140,9 @@ var/list/admin_verbs_server = list(
 var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,
 	/client/proc/cmd_admin_list_open_jobs,
-	/client/proc/Debug2,
-	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
 	/client/proc/debug_antagonist_template,
-	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
-	/client/proc/cmd_debug_del_all,
-	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
 	/client/proc/print_random_map,
@@ -165,7 +151,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/overlay_random_map,
 	/client/proc/delete_random_map,
 	/client/proc/show_plant_genes,
-	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
 	/client/proc/toggledebuglogs,
@@ -210,7 +195,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
-	/datum/admins/proc/access_news_network,
 	/client/proc/admin_call_shuttle,
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
@@ -223,7 +207,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
-	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
@@ -243,16 +226,10 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
-	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
-	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
-	/client/proc/cmd_debug_mob_lists,
-	/client/proc/cmd_debug_del_all,
-	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/enable_debug_verbs,
 	/client/proc/roll_dices,
 	/proc/possess,
 	/proc/release
@@ -324,8 +301,7 @@ var/list/admin_verbs_mentor = list(
 		/client/proc/stealth,
 		admin_verbs_rejuv,
 		admin_verbs_sounds,
-		admin_verbs_spawn,
-		debug_verbs
+		admin_verbs_spawn
 		)
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
@@ -647,40 +623,6 @@ var/list/admin_verbs_mentor = list(
 		else
 			config.log_hrefs = 1
 			src << "<b>Started logging hrefs</b>"
-
-/client/proc/check_ai_laws()
-	set name = "Check AI Laws"
-	set category = "Admin"
-	if(holder)
-		src.holder.output_ai_laws()
-
-/client/proc/rename_silicon()
-	set name = "Rename Silicon"
-	set category = "Admin"
-
-	if(!check_rights(R_ADMIN)) return
-
-	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
-	if(!S) return
-
-	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
-	if(new_name && new_name != S.real_name)
-		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
-		S.SetName(new_name)
-	feedback_add_details("admin_verb","RAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/manage_silicon_laws()
-	set name = "Manage Silicon Laws"
-	set category = "Admin"
-
-	if(!check_rights(R_ADMIN)) return
-
-	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
-	if(!S) return
-
-	usr << "Manage Silicon Laws currently disabled pending ui rewrite."
-//	log_and_message_admins("has opened [S]'s law manager.")
-	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_admin()
 	set name = "Change Mob Appearance - Admin"

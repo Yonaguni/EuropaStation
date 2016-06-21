@@ -54,6 +54,7 @@
 		total_damage = max_damage
 
 /obj/item/mech_component/proc/take_component_damage(var/brute, var/burn)
+	/*
 	var/list/damageable_components = list()
 	for(var/obj/item/robot_parts/robot_component/RC in contents)
 		damageable_components += RC
@@ -61,6 +62,7 @@
 	var/obj/item/robot_parts/robot_component/RC = pick(damageable_components)
 	if(RC.take_damage(brute, burn))
 		qdel(RC)
+	*/
 
 /obj/item/mech_component/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/screwdriver))

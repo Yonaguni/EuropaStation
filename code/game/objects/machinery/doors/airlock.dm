@@ -309,21 +309,20 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!issilicon(usr))
-		if(src.isElectrified())
-			if(!src.justzap)
-				if(src.shock(user, 100))
-					src.justzap = 1
-					spawn (10)
-						src.justzap = 0
-					return
-			else /*if(src.justzap)*/
+	if(src.isElectrified())
+		if(!src.justzap)
+			if(src.shock(user, 100))
+				src.justzap = 1
+				spawn (10)
+					src.justzap = 0
 				return
-		else if(istype(user) && user.hallucination > 50 && prob(10) && src.operating == 0)
-			user << "<span class='danger'>You feel a powerful shock course through your body!</span>"
-			user.halloss += 10
-			user.stunned += 10
+		else /*if(src.justzap)*/
 			return
+	else if(istype(user) && user.hallucination > 50 && prob(10) && src.operating == 0)
+		user << "<span class='danger'>You feel a powerful shock course through your body!</span>"
+		user.halloss += 10
+		user.stunned += 10
+		return
 	..(user)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
@@ -520,9 +519,6 @@ About the new airlock wires panel:
 					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
 	return
 
-/obj/machinery/door/airlock/attack_ai(mob/user as mob)
-	ui_interact(user)
-
 /obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, var/force_open = 1, var/datum/ui_state/state = default_state)
 	var/data[0]
 
@@ -548,54 +544,6 @@ About the new airlock wires panel:
 		ui.open()
 		ui.set_autoupdate(1)
 
-/obj/machinery/door/airlock/proc/hack(mob/user as mob)
-	if(src.aiHacking==0)
-		src.aiHacking=1
-		spawn(20)
-			//TODO: Make this take a minute
-			user << "Airlock AI control has been blocked. Beginning fault-detection."
-			sleep(50)
-			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
-				return
-			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
-				return
-			user << "Fault confirmed: airlock control wire disabled or cut."
-			sleep(20)
-			user << "Attempting to hack into airlock. This may take some time."
-			sleep(200)
-			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
-				return
-			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
-				return
-			user << "Upload access confirmed. Loading control program into airlock software."
-			sleep(170)
-			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
-				return
-			else if(!src.canAIHack(user))
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
-				return
-			user << "Transfer complete. Forcing airlock to execute program."
-			sleep(50)
-			//disable blocked control
-			src.aiControlDisabled = 2
-			user << "Receiving control information from airlock."
-			sleep(10)
-			//bring up airlock dialog
-			src.aiHacking = 0
-			if (user)
-				src.attack_ai(user)
-
 /obj/machinery/door/airlock/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (src.isElectrified())
 		if (istype(mover, /obj/item))
@@ -607,10 +555,9 @@ About the new airlock wires panel:
 	return ..()
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!istype(usr, /mob/living/silicon))
-		if(src.isElectrified())
-			if(src.shock(user, 100))
-				return
+	if(src.isElectrified())
+		if(src.shock(user, 100))
+			return
 
 	if(src.p_open)
 		user.set_machine(src)
@@ -623,16 +570,6 @@ About the new airlock wires panel:
 	if(operating < 0) //emagged
 		user << "<span class='warning'>Unable to interface: Internal error.</span>"
 		return UI_CLOSE
-	if(issilicon(user) && !src.canAIControl())
-		if(src.canAIHack(user))
-			src.hack(user)
-		else
-			if (src.isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				user << "<span class='warning'>Unable to interface: Connection timed out.</span>"
-			else
-				user << "<span class='warning'>Unable to interface: Connection refused.</span>"
-		return UI_CLOSE
-
 	return ..()
 
 /obj/machinery/door/airlock/Topic(href, href_list)
@@ -694,11 +631,9 @@ About the new airlock wires panel:
 	return 1
 
 /obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
-	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
-	if(!istype(usr, /mob/living/silicon))
-		if(src.isElectrified())
-			if(src.shock(user, 75))
-				return
+	if(src.isElectrified())
+		if(src.shock(user, 75))
+			return
 	if(istype(C, /obj/item/taperoll))
 		return
 
@@ -730,9 +665,6 @@ About the new airlock wires panel:
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
-		var/obj/item/weapon/pai_cable/cable = C
-		cable.plugin(src, user)
 	else if(!repairing && istype(C, /obj/item/weapon/crowbar))
 		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
@@ -868,14 +800,6 @@ About the new airlock wires panel:
 /obj/structure/window/airlock_crush(var/crush_damage)
 	ex_act(2)//Smashin windows
 
-/obj/machinery/portable_atmospherics/canister/airlock_crush(var/crush_damage)
-	. = ..()
-	health -= crush_damage
-	healthcheck()
-
-/obj/effect/energy_field/airlock_crush(var/crush_damage)
-	Stress(crush_damage)
-
 /obj/structure/closet/airlock_crush(var/crush_damage)
 	..()
 	damage(crush_damage)
@@ -895,10 +819,6 @@ About the new airlock wires panel:
 	. = ..()
 	if(can_feel_pain())
 		emote("scream")
-
-/mob/living/silicon/robot/airlock_crush(var/crush_damage)
-	adjustBruteLoss(crush_damage)
-	return 0
 
 /obj/machinery/door/airlock/close(var/forced=0)
 	if(!can_close(forced))

@@ -331,61 +331,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(!newname)	//we'll stick with the oldname then
 			return
 
-		if(cmptext("ai",role))
-			if(isAI(src))
-				var/mob/living/silicon/ai/A = src
-				oldname = null//don't bother with the records update crap
-				A.SetName(newname)
-
 		fully_replace_character_name(oldname,newname)
-
-
 
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
 	return "[pick("1","2","3","4","5","6","7","8","9","0")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
-
-//When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.
-/proc/freeborg()
-	var/select = null
-	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
-		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
-			continue
-		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
-		borgs[name] = A
-
-	if (borgs.len)
-		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
-		return borgs[select]
-
-//When a borg is activated, it can choose which AI it wants to be slaved to
-/proc/active_ais()
-	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
-		if(A.stat == DEAD)
-			continue
-		if(A.control_disabled == 1)
-			continue
-		. += A
-	return .
-
-//Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
-/proc/select_active_ai_with_fewest_borgs()
-	var/mob/living/silicon/ai/selected
-	var/list/active = active_ais()
-	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots.len > A.connected_robots.len))
-			selected = A
-
-	return selected
-
-/proc/select_active_ai(var/mob/user)
-	var/list/ais = active_ais()
-	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		. = pick(ais)
-	return .
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
@@ -396,9 +346,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/logged_list = list()
 	for(var/named in old_list)
 		var/mob/M = old_list[named]
-		if(issilicon(M))
-			AI_list |= M
-		else if(isobserver(M) || M.stat == 2)
+		if(isobserver(M) || M.stat == 2)
 			Dead_list |= M
 		else if(M.key && M.client)
 			keyclient_list |= M
@@ -447,12 +395,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/sortmob = sortAtom(mob_list)
 	for(var/mob/eye/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/silicon/ai/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/silicon/robot/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/carbon/human/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/brain/M in sortmob)
@@ -462,8 +404,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/mob/dead/observer/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
@@ -1036,7 +976,6 @@ proc/get_mob_with_client_list()
 
 //Quick type checks for some tools
 var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
 /obj/item/weapon/wrench,
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/screwdriver,
@@ -1059,11 +998,6 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 /proc/iswirecutter(O)
 	if(istype(O, /obj/item/weapon/wirecutters))
 		return 1
@@ -1081,11 +1015,6 @@ var/global/list/common_tools = list(
 
 /proc/iscrowbar(O)
 	if(istype(O, /obj/item/weapon/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
 		return 1
 	return 0
 
@@ -1293,3 +1222,43 @@ var/mob/dview/dview_mob = new
 
 /proc/soft_assert(thing,fail)
 	if(!thing) message_admins(fail)
+
+//Determines how strong could be shock, deals damage to mob, uses power.
+//M is a mob who touched wire/whatever
+//power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
+//source is an object caused electrocuting (airlock, grille, etc)
+//No animations will be performed by this proc.
+/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+	var/obj/item/weapon/cell/cell
+	if(istype(power_source,/obj/item/weapon/cell))
+		cell = power_source
+	else if (!power_source)
+		return 0
+	else
+		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
+		return 0
+	//Triggers powernet warning, but only for 5 ticks (if applicable)
+	//If following checks determine user is protected we won't alarm for long.
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(H.species.siemens_coefficient == 0)
+			return
+		if(H.gloves)
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+
+	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
+	//Since this one is longer it will override the original one.
+	if (!cell)
+		return 0
+	var/cell_damage = 0
+	if (cell)
+		cell_damage = cell.get_electrocute_damage()
+	var/shock_damage = 0
+	power_source = cell
+	shock_damage = cell_damage
+	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
+	var/drained_energy = drained_hp*20
+	if (istype(power_source, /obj/item/weapon/cell))
+		cell.use(drained_energy)
+	return drained_energy

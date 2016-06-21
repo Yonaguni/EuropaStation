@@ -236,8 +236,8 @@
 			buildstate++
 			update_icon()
 		return
-	else if(istype(W,/obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = W
+	else if(istype(W,/obj/item/stack/conduit/power))
+		var/obj/item/stack/conduit/power/C = W
 		if(buildstate == 2)
 			if(C.use(5))
 				user << "<span class='notice'>You wire a crude cell mount into the top of the crossbow.</span>"

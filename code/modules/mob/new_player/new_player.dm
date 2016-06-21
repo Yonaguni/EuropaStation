@@ -333,24 +333,6 @@
 	equip_custom_items(character)
 	character.apply_aspects()
 
-	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
-
-		character = character.AIize(move=0) // AIize the character, but don't move them yet
-
-			// IsJobAvailable for AI checks that there is an empty core available in this list
-		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
-		empty_playable_ai_cores -= C
-
-		character.loc = C.loc
-
-		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
-		ticker.mode.handle_latejoin(character)
-
-		qdel(C)
-		qdel(src)
-		return
-
 	//Find our spawning point.
 	var/join_message = job_master.LateSpawn(character.client, rank)
 

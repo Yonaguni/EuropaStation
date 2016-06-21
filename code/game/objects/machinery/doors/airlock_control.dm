@@ -184,23 +184,7 @@ obj/machinery/airlock_sensor/attack_hand(mob/user)
 	flick("airlock_sensor_cycle", src)
 
 obj/machinery/airlock_sensor/process()
-	if(on)
-		var/datum/gas_mixture/air_sample = return_air()
-		var/pressure = round(air_sample.return_pressure(),0.1)
-
-		if(abs(pressure - previousPressure) > 0.001 || previousPressure == null)
-			var/datum/signal/signal = new
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-			signal.data["pressure"] = num2text(pressure)
-
-			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-
-			previousPressure = pressure
-
-			alert = (pressure < ONE_ATMOSPHERE*0.8)
-
-			update_icon()
+	return
 
 obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
@@ -208,22 +192,10 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
-obj/machinery/airlock_sensor/initialize()
-	set_frequency(frequency)
-	if(_wifi_id)
-		wifi_receiver = new(_wifi_id, src)
-
 obj/machinery/airlock_sensor/New()
 	..()
 	if(radio_controller)
 		set_frequency(frequency)
-
-obj/machinery/airlock_sensor/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
-	qdel(wifi_receiver)
-	wifi_receiver = null
-	..()
 
 obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"

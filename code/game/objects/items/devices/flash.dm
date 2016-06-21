@@ -79,35 +79,14 @@
 					M.flash_eyes()
 			else
 				flashfail = 1
-
-	else if(issilicon(M))
-		M.Weaken(rand(5,10))
 	else
 		flashfail = 1
 
-	if(isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/creatures/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
-
 	if(!flashfail)
 		flick("flash2", src)
-		if(!issilicon(M))
-
-			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
-		else
-
-			user.visible_message("<span class='notice'>[user] overloads [M]'s sensors with the flash!</span>")
+		user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
 	else
-
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
-
 	return
 
 
@@ -139,23 +118,12 @@
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
-	if(user && isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/creatures/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
 
 	for(var/mob/living/carbon/M in oviewers(3, null))
 		var/safety = M.eyecheck()
 		if(safety < FLASH_PROTECTION_MODERATE)
 			if(!M.blinded)
 				M.flash_eyes()
-
 	return
 
 /obj/item/device/flash/emp_act(severity)

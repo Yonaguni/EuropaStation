@@ -3,7 +3,7 @@
 	if(!C || !user)
 		return 0
 
-	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
+	if(flooring && istype(C, /obj/item/stack/rods))
 		return ..(C, user)
 
 	if(flooring)
@@ -37,9 +37,6 @@
 			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"
 			make_plating(1)
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-			return
-		else if(istype(C, /obj/item/stack/cable_coil))
-			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
 			return
 	else
 

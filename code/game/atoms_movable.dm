@@ -230,9 +230,11 @@
 	if(z in config.sealed_levels)
 		return
 
+	/*
 	if(config.use_overmap)
 		overmap_spacetravel(get_turf(src), src)
 		return
+	*/
 
 	var/move_to_z = src.get_transit_zlevel()
 	if(move_to_z)

@@ -57,16 +57,6 @@
 		return UI_UPDATE
 	return UI_INTERACTIVE
 
-/mob/living/silicon/ai/shared_ui_interaction(src_object)
-	if(check_unable()) // Disable UIs if the AI is unpowered.
-		return UI_DISABLED
-	return ..()
-
-/mob/living/silicon/robot/shared_ui_interaction(src_object)
-	if(cell.charge <= 0 || lockcharge) // Disable UIs if the Borg is unpowered or locked.
-		return UI_DISABLED
-	return ..()
-
 /**
   * public
   *

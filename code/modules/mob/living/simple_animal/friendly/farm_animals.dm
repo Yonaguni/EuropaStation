@@ -48,8 +48,8 @@
 			var/obj/effect/plant/SV = locate() in loc
 			SV.die_off(1)
 
-		if(locate(/obj/machinery/portable_atmospherics/hydroponics/soil/invisible) in loc)
-			var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/SP = locate() in loc
+		if(locate(/obj/machinery/hydroponics/soil/invisible) in loc)
+			var/obj/machinery/hydroponics/soil/invisible/SP = locate() in loc
 			qdel(SP)
 
 		if(!pulledby)

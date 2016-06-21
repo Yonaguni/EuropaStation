@@ -8,7 +8,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	item_state = "electronic"
-	board_type = "other"
 	var/list/contains_software = list()
 
 /obj/item/weapon/circuitboard/exosystem/engineering

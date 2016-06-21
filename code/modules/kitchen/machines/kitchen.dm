@@ -80,9 +80,6 @@ var/list/stove_overlay_cache = list()
 		else
 			return "bad"
 
-/obj/machinery/kitchen/attack_ai(mob/user as mob)
-	attack_hand(user)
-
 /obj/machinery/kitchen/attack_hand(mob/user as mob)
 	ui_interact(user)
 

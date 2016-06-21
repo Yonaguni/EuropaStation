@@ -64,19 +64,9 @@
 	if(istype(user))
 		return attack_hand(user)
 
-/turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
-	if(Adjacent(user))
-		return attack_hand(user)
-	else
-		user << "<span class = \"warning\">What the fuck are you doing?</span>"
-	return
-
 // /vg/: Don't let ghosts fuck with this.
 /turf/unsimulated/wall/supermatter/attack_ghost(mob/user as mob)
 	user.examinate(src)
-
-/turf/unsimulated/wall/supermatter/attack_ai(mob/user as mob)
-	return user.examinate(src)
 
 /turf/unsimulated/wall/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\

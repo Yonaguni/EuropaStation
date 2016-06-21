@@ -16,9 +16,6 @@
 			full_prosthetic = 1
 	return full_prosthetic
 
-/mob/living/silicon/isSynthetic()
-	return 1
-
 /mob/proc/isMonkey()
 	return 0
 
@@ -251,28 +248,19 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+	if(!M || !M.client || M.shakecamera || M.stat || isEye(M))
 		return
 	M.shakecamera = 1
 	spawn(1)
 		if(!M.client)
 			return
-
 		var/atom/oldeye=M.client.eye
-		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/eye/aiEye))
-			aiEyeFlag = 1
-
 		var/x
 		for(x=0; x<duration, x++)
-			if(aiEyeFlag)
-				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
-			else
-				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye
 		M.shakecamera = 0
-
 
 /proc/findname(msg)
 	for(var/mob/M in mob_list)
@@ -311,7 +299,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isslime(src))
+	if(ishuman(src) || isbrain(src))
 		switch(input)
 			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = input
@@ -321,20 +309,6 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 		if(hud_used && hud_used.action_intent)
 			hud_used.action_intent.icon_state = "intent_[a_intent]"
-
-	else if(isrobot(src))
-		switch(input)
-			if(I_HELP)
-				a_intent = I_HELP
-			if(I_HURT)
-				a_intent = I_HURT
-			if("right","left")
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-		if(hud_used && hud_used.action_intent)
-			if(a_intent == I_HURT)
-				hud_used.action_intent.icon_state = I_HURT
-			else
-				hud_used.action_intent.icon_state = I_HELP
 
 proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
@@ -450,16 +424,11 @@ proc/is_blind(A)
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
+	/*
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
 		return 0
 	check_eye(src)
-	return 1
-
-/mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
-	if(!C.can_use() || !is_in_chassis())
-		return 0
-
-	eyeobj.setLoc(C)
+	*/
 	return 1
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
@@ -549,13 +518,7 @@ mob/dead/observer/get_multitool()
 /mob/living/carbon/human/get_multitool()
 	return ..(get_active_hand())
 
-/mob/living/silicon/robot/get_multitool()
-	return ..(get_active_hand())
-
-/mob/living/silicon/ai/get_multitool()
-	return ..(aiMulti)
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
-
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
 	"head" = 40,

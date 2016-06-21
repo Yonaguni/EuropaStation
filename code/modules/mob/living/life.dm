@@ -168,9 +168,6 @@
 			reset_view(null, 0)
 		else if(viewflags)
 			sight |= viewflags
-	else if(eyeobj)
-		if(eyeobj.owner != src)
-			reset_view(null)
 	else if(!client.adminobs)
 		reset_view(null)
 

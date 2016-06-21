@@ -148,14 +148,3 @@
 	src.imp = new /obj/item/weapon/implant/dexplosive( src )
 	..()
 	return
-
-
-/obj/item/weapon/implantcase/health
-	name = "glass case - 'health'"
-	desc = "A case containing a health tracking implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/health/New()
-	src.imp = new /obj/item/weapon/implant/health( src )
-	..()
-	return

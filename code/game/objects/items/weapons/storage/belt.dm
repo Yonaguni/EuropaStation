@@ -41,11 +41,9 @@
 		/obj/item/weapon/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
-		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/analyzer,
 		/obj/item/taperoll/engineering,
-		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
@@ -60,7 +58,6 @@
 	new /obj/item/weapon/weldingtool(src)
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/stack/cable_coil/random(src)
 
 /obj/item/weapon/storage/belt/utility/engineer/New()
 	..()
@@ -87,8 +84,6 @@
 	new /obj/item/device/t_scanner(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/weapon/crowbar(src)
-	new /obj/item/stack/cable_coil/random(src)
-	new /obj/item/stack/cable_coil/random(src)
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
 	..()
@@ -108,7 +103,6 @@
 	item_state = "medical"
 	can_hold = list(
 		/obj/item/device/healthanalyzer,
-		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/glass/bottle,

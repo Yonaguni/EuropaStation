@@ -74,10 +74,6 @@
 	name = "atmospherics canister"
 	path = /obj/machinery/portable_atmospherics/canister
 
-/decl/fabricator_design/heavy/furniture/computer_frame
-	name = "steel computer frame"
-	path = /obj/structure/computerframe
-
 /decl/fabricator_design/heavy/furniture/airlock_assembly
 	name = "steel airlock assembly"
 	path = /obj/structure/door_assembly

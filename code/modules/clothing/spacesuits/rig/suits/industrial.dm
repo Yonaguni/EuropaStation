@@ -1,6 +1,3 @@
-/obj/item/clothing/head/helmet/space/rig/industrial
-	camera_networks = list(NETWORK_MINE)
-
 /obj/item/weapon/rig/industrial
 	name = "industrial suit control module"
 	suit_type = "industrial hardsuit"
@@ -11,8 +8,6 @@
 	offline_slowdown = 10
 	offline_vision_restriction = 2
 	emp_protection = -20
-
-	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
 

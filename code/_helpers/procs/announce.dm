@@ -6,14 +6,11 @@
 	var/announcer = ""
 	var/log = 0
 	var/sound
-	var/newscast = 0
-	var/channel_name = "Station Announcements"
 	var/announcement_type = "Announcement"
 
 /datum/announcement/New(var/do_log = 0, var/new_sound = null, var/do_newscast = 0)
 	sound = new_sound
 	log = do_log
-	newscast = do_newscast
 
 /datum/announcement/priority/New(var/do_log = 1, var/new_sound = 'sound/misc/notice2.ogg', var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
@@ -30,7 +27,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = 0, var/msg_sanitized = 0)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -41,8 +38,6 @@
 	message_title = sanitizeSafe(message_title)
 
 	Message(message, message_title)
-	if(do_newscast)
-		NewsCast(message, message_title)
 	Sound(message_sound)
 	Log(message, message_title)
 
@@ -79,18 +74,6 @@ datum/announcement/priority/command/Message(message as text, message_title as te
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	world << "<font size=4 color='red'>[message_title]</font>"
 	world << "<font color='red'>[message]</font>"
-
-datum/announcement/proc/NewsCast(message as text, message_title as text)
-	if(!newscast)
-		return
-
-	var/datum/news_announcement/news = new
-	news.channel_name = channel_name
-	news.author = announcer
-	news.message = message
-	news.message_type = announcement_type
-	news.can_be_redacted = 0
-	announce_newscaster_news(news)
 
 datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)

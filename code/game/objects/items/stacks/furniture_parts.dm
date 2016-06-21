@@ -59,4 +59,4 @@
 	name = "door parts"
 	desc = "All the parts needed to make a door."
 	icon_state = "chairparts"
-	build_path = /obj/structure/simple_door
+	build_path = /obj/machinery/door/unpowered/simple

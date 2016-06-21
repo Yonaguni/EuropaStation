@@ -7,8 +7,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 
 var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
 var/global/list/mob_list = list()					//List of all mobs, including clientless
-var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
+var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including c
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
 
@@ -48,10 +47,6 @@ var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3"
 //Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
 //var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg) // Defined in jobs for the sake of cross-map stuff.
-
-// Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
 
 // Music.
 var/global/list/ambient_tracks = list(

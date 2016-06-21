@@ -2,29 +2,9 @@
 	name = "planetary surface"
 	icon = 'icons/areas/rimworld.dmi'
 	icon_state = "surface"
-	requires_power = 1
-	always_unpowered = 0
-	power_light = 1
-	power_equip = 1
-	power_environ = 1
 	flags = DENY_APC | IGNORE_ENDGAME | IGNORE_ALERTS | DENY_TELEPORT | IGNORE_BLACKOUTS
 	outside = 1
 	ambience = list()
-
-/area/rimworld/atmosalert()
-	return
-
-/area/rimworld/fire_alert()
-	return
-
-/area/rimworld/fire_reset()
-	return
-
-/area/rimworld/readyalert()
-	return
-
-/area/rimworld/partyalert()
-	return
 
 /area/rimworld/building
 	icon_state = "house"

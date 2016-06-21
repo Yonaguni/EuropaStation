@@ -59,9 +59,6 @@
 	icon_state = "cult"
 	initial_flooring = /decl/flooring/reinforced/cult
 
-/turf/simulated/floor/cult/cultify()
-	return
-
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"
 	icon_state = "dark"

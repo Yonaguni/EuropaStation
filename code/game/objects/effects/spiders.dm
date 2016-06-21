@@ -152,6 +152,7 @@
 		if(istype(src.loc, /turf))
 			travelling_in_vent = 0
 			entry_vent = null
+	/*
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
 			if(entry_vent.network && entry_vent.network.normal_members.len)
@@ -191,6 +192,7 @@
 			else
 				entry_vent = null
 	//=================
+	*/
 
 	if(isturf(loc))
 		if(prob(25))
@@ -200,6 +202,7 @@
 				walk_to(src, target_atom, 5)
 				if(prob(25))
 					src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
+		/*
 		else if(prob(5))
 			//vent crawl!
 			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
@@ -207,6 +210,7 @@
 					entry_vent = v
 					walk_to(src, entry_vent, 5)
 					break
+		*/
 
 		if(amount_grown >= 100)
 			var/spawn_type = pick(typesof(/mob/living/simple_animal/hostile/giant_spider))

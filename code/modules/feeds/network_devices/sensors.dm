@@ -76,15 +76,4 @@
 	name = "power sensor"
 
 /obj/structure/sensor/power/get_sensor_data()
-	var/list/data = ..()
-	var/obj/structure/cable/N = locate() in get_turf(src)
-	if(N && N.powernet)
-		data["powernet"] = "connected"
-		data["supply"] = "[N.powernet.avail]W"
-		data["load"] = "[num2text(N.powernet.viewload,10)]W"
-		return data
-	else
-		data["powernet"] = "not connected"
-		data["supply"] = "0W"
-		data["load"] = "0W"
-	return data
+	return list() // todo

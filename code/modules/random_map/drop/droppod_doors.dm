@@ -16,11 +16,6 @@
 		spawn(100)
 			deploy()
 
-/obj/structure/droppod_door/attack_ai(var/mob/user)
-	if(!user.Adjacent(src))
-		return
-	attack_hand(user)
-
 /obj/structure/droppod_door/attack_generic(var/mob/user)
 	if(istype(user))
 		attack_hand(user)

@@ -52,7 +52,6 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
-		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
 		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
 		if(!defer_powernet_rebuild && (approximate_intensity > 25))
 			defer_powernet_rebuild = 1
@@ -89,17 +88,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
 		if(Debug2)	world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
 
-		//Machines which report explosions.
-		for(var/i,i<=doppler_arrays.len,i++)
-			var/obj/machinery/doppler_array/Array = doppler_arrays[i]
-			if(Array)
-				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
-
 		sleep(8)
-
-		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			makepowernets()
-			defer_powernet_rebuild = 0
 
 	return 1
 

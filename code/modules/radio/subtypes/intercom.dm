@@ -15,9 +15,6 @@
 	processing_objects -= src
 	return ..()
 
-/obj/item/device/radio/intercom/attack_ai(mob/user as mob)
-	attack_self(user)
-
 // This should just be onpowerchange.
 /obj/item/device/radio/intercom/process()
 	var/ticktime = (world.timeofday - last_tick)
@@ -27,11 +24,7 @@
 	if(!src.loc)
 		on = 0
 	else
-		var/area/A = get_area(src)
-		if(!A)
-			on = 0
-		else
-			on = A.powered(EQUIP) // set "on" to the power status
+		on = 1
 	update_icon()
 
 /obj/item/device/radio/intercom/update_icon()

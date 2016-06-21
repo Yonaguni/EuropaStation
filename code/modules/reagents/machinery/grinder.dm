@@ -92,9 +92,6 @@
 	src.updateUsrDialog()
 	return 0
 
-/obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
-	return 0
-
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
 	interact(user)
 

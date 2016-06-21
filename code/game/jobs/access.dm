@@ -207,9 +207,6 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 	if(wear_id)
 		return wear_id.GetID()
 
-/mob/living/silicon/GetIdCard()
-	return idcard
-
 proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
 	var/obj/item/weapon/card/id/C = M.GetIdCard()
 	if(C)

@@ -146,7 +146,7 @@ var/syndicate_name = null
 	return name
 
 
-//Traitors and traitor silicons will get these. Revs will not.
+//Traitors will get these. Revs will not.
 var/syndicate_code_phrase//Code phrase for traitors.
 var/syndicate_code_response//Code response for traitors.
 

@@ -148,7 +148,7 @@
 /obj/machinery/beehive/proc/pollinate_flowers()
 	var/coef = bee_count / 100
 	var/trays = 0
-	for(var/obj/machinery/portable_atmospherics/hydroponics/H in view(7, src))
+	for(var/obj/machinery/hydroponics/H in view(7, src))
 		if(H.seed && !H.dead)
 			H.health += 0.05 * coef
 			++trays

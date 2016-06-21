@@ -1158,9 +1158,6 @@
 			reset_view(null, 0)
 		else if(viewflags)
 			sight |= viewflags
-	else if(eyeobj)
-		if(eyeobj.owner != src)
-			reset_view(null)
 	else
 		var/isRemoteObserve = 0
 		if((mRemote in mutations) && remoteview_target)
