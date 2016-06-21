@@ -6,7 +6,8 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,
 	/client/proc/hide_most_verbs,
 	/client/proc/debug_variables,
-	/client/proc/cmd_mentor_check_new_players
+	/client/proc/cmd_mentor_check_new_players,
+	/client/proc/cmd_assume_direct_control
 	)
 
 var/list/admin_verbs_admin = list(

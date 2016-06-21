@@ -903,6 +903,26 @@ proc/admin_notice(var/message, var/rights)
 //*********************************************************************************************************
 //
 
+/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
+	set category = "Admin"
+	set name = "Assume direct control"
+	set desc = "Direct intervention"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))	return
+	if(M.ckey)
+		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+			return
+		else
+			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
+			ghost.ckey = M.ckey
+	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
+	log_admin("[key_name(usr)] assumed direct control of [M].")
+	var/mob/adminmob = src.mob
+	M.ckey = src.ckey
+	if( isobserver(adminmob) )
+		qdel(adminmob)
+	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 //Returns 1 to let the dragdrop code know we are trapping this event
 //Returns 0 if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(var/mob/dead/observer/frommob, var/mob/living/tomob)

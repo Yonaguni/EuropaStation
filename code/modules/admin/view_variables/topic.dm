@@ -42,6 +42,17 @@
 
 		modify_variables(D, href_list["varnamechange"], 0)
 
+	else if(href_list["direct_control"])
+		if(!check_rights(0))	return
+
+		var/mob/M = locate(href_list["direct_control"])
+		if(!istype(M))
+			usr << "This can only be used on instances of type /mob"
+			return
+
+		if(usr.client)
+			usr.client.cmd_assume_direct_control(M)
+
 	else if(href_list["varnamemass"] && href_list["datummass"])
 		if(!check_rights(R_VAREDIT))	return
 
