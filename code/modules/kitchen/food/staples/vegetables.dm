@@ -29,7 +29,7 @@
 			user.unEquip(src)
 
 		var/obj/item/weapon/reagent_containers/food/snacks/tofu/patty/patty = new(get_turf(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H))
 			H.put_in_hands(patty)
 		user.visible_message("<span class='notice'>\The [user] shapes \the [src] and \the [thing] into a patty.</span>")

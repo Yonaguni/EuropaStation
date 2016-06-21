@@ -22,7 +22,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/thermite/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.adjustFireLoss(3 * removed)
 
 /datum/reagent/cleaner
@@ -41,7 +41,7 @@
 			S.dirt = 0
 		T.clean_blood()
 
-/datum/reagent/cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/cleaner/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -50,7 +50,7 @@
 		if(M.wear_mask.clean_blood())
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)

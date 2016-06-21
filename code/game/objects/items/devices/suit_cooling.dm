@@ -43,7 +43,7 @@
 	if (!attached_to_suit(loc))		//make sure they have a suit and we are attached to it
 		return
 
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 
 	var/efficiency = 1 - H.get_pressure_weakness()		//you need to have a good seal for effective cooling
 	var/env_temp = get_environment_temperature()		//wont save you from a fire
@@ -63,7 +63,7 @@
 
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/human/H = loc
 		if(istype(H) && istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			return H.loc:air_contents.temperature
 
@@ -81,7 +81,7 @@
 	if (!ishuman(M))
 		return 0
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 
 	if (!H.wear_suit || H.s_store != src)
 		return 0

@@ -59,7 +59,7 @@
 	if(!..())
 		return
 	var/obj/item/trash/candle/C = new (get_turf(src))
-	var/mob/living/carbon/human/holder = loc
+	var/mob/living/human/holder = loc
 	if(istype(holder))
 		holder.unEquip(src)
 		holder.put_in_hands(C)

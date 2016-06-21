@@ -526,7 +526,7 @@
 
 /mob/proc/pull_damage()
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		if(H.health - H.halloss <= config.health_threshold_softcrit)
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
@@ -582,7 +582,7 @@
 		// kind of mob pull value AT ALL, you will be able to pull
 		// them, so don't bother checking that explicitly.
 
-		if(!iscarbon(src))
+		if(!ishuman(src))
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
@@ -607,7 +607,7 @@
 		pullin.icon_state = "pull1"
 
 	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
+		var/mob/living/human/H = AM
 		if(H.pull_damage())
 			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
 
@@ -941,7 +941,7 @@ mob/proc/yank_out_object()
 		src.verbs -= /mob/proc/yank_out_object
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		var/obj/item/organ/external/affected
 
 		for(var/obj/item/organ/external/organ in H.organs) //Grab the organ holding the implant.
@@ -959,7 +959,7 @@ mob/proc/yank_out_object()
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
 
 		if (ishuman(U))
-			var/mob/living/carbon/human/human_user = U
+			var/mob/living/human/human_user = U
 			human_user.bloody_hands(H)
 
 	selection.forceMove(get_turf(src))
@@ -1104,3 +1104,8 @@ mob/proc/yank_out_object()
 /mob/proc/is_muzzled()
 	return 0
 
+/mob/proc/swap_hand()
+	return
+
+/mob/proc/throw_item(atom/target)
+	return

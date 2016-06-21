@@ -1,6 +1,6 @@
 atom/proc/tram_act()
 
-mob/living/carbon/tram_act(var/obj/tram/tram_controller/tram,dir)
+mob/living/human/tram_act(var/obj/tram/tram_controller/tram,dir)
 	if(lying)
 		gib()
 		tram.gibbed += src

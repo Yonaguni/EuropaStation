@@ -45,7 +45,7 @@
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()
-			var/mob/living/carbon/C = loaded_dna["donor"]
+			var/mob/living/human/C = loaded_dna["donor"]
 			O.transplant_data["species"] =    C.species.name
 			O.transplant_data["blood_type"] = loaded_dna["blood_type"]
 			O.transplant_data["blood_DNA"] =  loaded_dna["blood_DNA"]

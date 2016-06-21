@@ -34,10 +34,10 @@
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(species_restricted && istype(M,/mob/living/human))
 		var/exclusive = null
 		var/wearable = null
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 
 		if("exclude" in species_restricted)
 			exclusive = 1
@@ -111,11 +111,11 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (src.loc != user || !istype(user,/mob/living/human))
 		..()
 		return
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(H.l_ear != src && H.r_ear != src)
 		..()
 		return
@@ -271,35 +271,11 @@
 	update_icon(user)
 	user.update_action_buttons()
 
-/obj/item/clothing/head/attack_generic(var/mob/user)
-	if(!istype(user) || !mob_wear_hat(user))
-		return ..()
-
-/obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
-	if(!Adjacent(user))
-		return 0
-	var/success
-	if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
-		if(D.hat)
-			success = 2
-		else
-			D.wear_hat(src)
-			success = 1
-
-	if(!success)
-		return 0
-	else if(success == 2)
-		user << "<span class='warning'>You are already wearing a hat.</span>"
-	else if(success == 1)
-		user << "<span class='notice'>You crawl under \the [src].</span>"
-	return 1
-
 /obj/item/clothing/head/update_icon(var/mob/user)
 
 	overlays.Cut()
-	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(user,/mob/living/human))
 		H = user
 
 	if(on)
@@ -496,8 +472,8 @@
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
-	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(src.loc, /mob/living/human))
 		H = src.loc
 
 	var/icon/under_icon

@@ -8,7 +8,7 @@
 /datum/hud/proc/ghost_hud()
 	return
 
-/mob/living/carbon/brain/instantiate_hud(var/datum/hud/HUD)
+/mob/living/brain/instantiate_hud(var/datum/hud/HUD)
 	return
 
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')

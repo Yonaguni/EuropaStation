@@ -42,7 +42,7 @@
 		else
 			user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
 
-/obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/badge/attack(mob/living/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 

@@ -187,8 +187,8 @@
 			src.item_state = "sword0"
 			src.w_class = 2
 
-		if(istype(user,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
+		if(istype(user,/mob/living/human))
+			var/mob/living/human/H = user
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()
 
@@ -230,7 +230,7 @@
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
+		var/mob/living/human/M = H
 		if(M.m_intent == "run")
 			M << "<span class='warning'>You step on the snap pop!</span>"
 
@@ -260,7 +260,7 @@
 	R.my_atom = src
 	R.add_reagent(REAGENT_ID_WATER, 10)
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(mob/living/human/M as mob, mob/user as mob)
 	return
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)

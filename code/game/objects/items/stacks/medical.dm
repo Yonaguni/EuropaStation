@@ -10,7 +10,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/attack(mob/living/human/M as mob, mob/user as mob)
 	if (!istype(M))
 		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
 		return 1
@@ -19,8 +19,8 @@
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.organ_tag == BP_HEAD)
@@ -54,14 +54,14 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/human))
 		return 1
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 	if(affecting.is_bandaged())
@@ -99,12 +99,12 @@
 	icon_state = "ointment"
 	heal_burn = 1
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.is_open() == 0)
@@ -130,12 +130,12 @@
 	amount = 5
 	max_amount = 5
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/splint/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)))

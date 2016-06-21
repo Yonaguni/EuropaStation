@@ -6,7 +6,7 @@
 	return 0
 
 // If they are 100% robotic, they count as synthetic.
-/mob/living/carbon/human/isSynthetic()
+/mob/living/human/isSynthetic()
 	if(isnull(full_prosthetic))
 		robolimb_count = 0
 		for(var/obj/item/organ/external/E in organs)
@@ -19,7 +19,7 @@
 /mob/proc/isMonkey()
 	return 0
 
-/mob/living/carbon/human/isMonkey()
+/mob/living/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
 proc/isdeaf(A)
@@ -32,21 +32,21 @@ proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
 proc/iscuffed(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/human))
+		var/mob/living/human/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
 proc/hassensorlevel(A, var/level)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
 proc/getsensorlevel(A)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode
@@ -311,13 +311,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 proc/is_blind(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/human))
+		var/mob/living/human/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
 			return 1
 	return 0
 
-/proc/get_both_hands(mob/living/carbon/M)
+/proc/get_both_hands(mob/living/human/M)
 	if(!istype(M))
 		return
 	var/list/hands = list(M.l_hand, M.r_hand)
@@ -448,13 +448,13 @@ proc/is_blind(A)
 
 	return 0
 
-/mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -515,7 +515,7 @@ proc/is_blind(A)
 mob/dead/observer/get_multitool()
 	return can_admin_interact() && ..(ghost_multitool)
 
-/mob/living/carbon/human/get_multitool()
+/mob/living/human/get_multitool()
 	return ..(get_active_hand())
 
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.

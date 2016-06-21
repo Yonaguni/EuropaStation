@@ -15,7 +15,7 @@
 	flags = 0
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
-	var/mob/living/carbon/human/assailant = null
+	var/mob/living/human/assailant = null
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = 1
@@ -122,7 +122,7 @@
 		affecting.drop_l_hand()
 		affecting.drop_r_hand()
 
-		if(iscarbon(affecting))
+		if(ishuman(affecting))
 			handle_eye_mouth_covering(affecting, assailant, assailant.zone_sel.selecting)
 
 		if(force_down)
@@ -145,7 +145,7 @@
 
 	adjust_position()
 
-/obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+/obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/human/target, mob/user, var/target_zone)
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
 

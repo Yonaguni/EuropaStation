@@ -4,6 +4,8 @@
 
 	..()
 
+	life_tick++
+
 	if (transforming)
 		return
 	if(!loc)
@@ -54,9 +56,6 @@
 	update_canmove()
 
 	handle_regular_hud_updates()
-
-/mob/living/proc/handle_breathing()
-	return
 
 /mob/living/proc/handle_mutations_and_radiation()
 	return

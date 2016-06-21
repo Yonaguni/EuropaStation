@@ -633,7 +633,7 @@ var/list/admin_verbs_mentor = list(
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
+	var/mob/living/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
 	if(!H) return
 
 	usr << "Change Mob Appearance currently disabled pending ui rewrite."
@@ -649,7 +649,7 @@ var/list/admin_verbs_mentor = list(
 
 	usr << "Change Mob Appearance currently disabled pending ui rewrite."
 /*
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
+	var/mob/living/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
 	if(!H) return
 
 	if(!H.client)

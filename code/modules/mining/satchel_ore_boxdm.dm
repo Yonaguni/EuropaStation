@@ -67,7 +67,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human)) //Only living, intelligent creatures with hands can empty ore boxes.
+	if(!istype(usr, /mob/living/human)) //Only living, intelligent creatures with hands can empty ore boxes.
 		usr << "\red You are physically incapable of emptying the ore box."
 		return
 

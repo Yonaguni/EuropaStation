@@ -292,7 +292,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	activate(var/cause)
 		if((!cause) || (!src.imp_in))	return 0
-		var/mob/living/carbon/R = src.imp_in
+		var/mob/living/human/R = src.imp_in
 		src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
 		R << "You hear a faint *beep*."
 		if(!src.reagents.total_volume)
@@ -336,8 +336,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 	implanted(mob/M)
-		if(!istype(M, /mob/living/carbon/human))	return 0
-		var/mob/living/carbon/human/H = M
+		if(!istype(M, /mob/living/human))	return 0
+		var/mob/living/human/H = M
 		var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 		if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
 			H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [company_name] try to invade your mind!")

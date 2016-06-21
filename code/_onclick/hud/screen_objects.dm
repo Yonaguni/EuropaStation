@@ -180,7 +180,7 @@
 
 		if("equip")
 			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+				var/mob/living/human/H = usr
 				H.quick_equip()
 
 		if("resist")
@@ -189,8 +189,8 @@
 				L.resist()
 
 		if("mov_intent")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				if(C.legcuffed)
 					C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 					C.m_intent = "walk"	//Just incase
@@ -226,8 +226,8 @@
 		if("Reset Machine")
 			usr.unset_machine()
 		if("internal")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 					if(C.internal)
 						C.internal = null
@@ -238,7 +238,7 @@
 
 						var/no_mask
 						if(!(C.wear_mask && C.wear_mask.item_flags & AIRTIGHT))
-							var/mob/living/carbon/human/H = C
+							var/mob/living/human/H = C
 							if(!(H.head && H.head.item_flags & AIRTIGHT))
 								no_mask = 1
 
@@ -253,7 +253,7 @@
 							var/from = "on"
 
 							if(ishuman(C))
-								var/mob/living/carbon/human/H = C
+								var/mob/living/human/H = C
 								breathes = H.species.breath_type
 								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
 								tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
@@ -362,12 +362,12 @@
 		return 1
 	switch(name)
 		if("r_hand")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				C.activate_hand("r")
 		if("l_hand")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(ishuman(usr))
+				var/mob/living/human/C = usr
 				C.activate_hand("l")
 		if("swap")
 			usr:swap_hand()

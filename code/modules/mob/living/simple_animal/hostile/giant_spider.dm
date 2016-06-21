@@ -80,7 +80,7 @@
 /mob/living/simple_animal/hostile/giant_spider/nurse/AttackingTarget()
 	var/target = ..()
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/human/H = target
 		if(prob(poison_per_bite))
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(!(O.status & ORGAN_ROBOT))

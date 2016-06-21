@@ -7,7 +7,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/bread/attack_self(var/mob/user)
 	user.unEquip(src)
 	var/obj/item/weapon/reagent_containers/food/snacks/raw_pretzel/pretzel = new(get_turf(user))
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(istype(H))
 		H.put_in_hands(pretzel)
 	user.visible_message("<span class='notice'>\The [user] rolls \the [src] out and weaves it into a pretzel.</span>")
@@ -18,7 +18,7 @@
 	if(istype(thing, /obj/item/weapon/material/kitchen/rollingpin))
 		user.unEquip(src)
 		var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/flat/flatbread = new(get_turf(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H))
 			H.put_in_hands(flatbread)
 		for(var/obj/item/other_thing in contents)

@@ -144,7 +144,7 @@ var/list/tree_types = list(
 
 /turf/simulated/floor/water/attack_hand(var/mob/user)
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(!istype(H))
 		return ..()
 	H << "<span class='notice'>You start washing your hands.</span>"

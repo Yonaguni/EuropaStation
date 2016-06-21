@@ -50,10 +50,10 @@
 /mob/living/proc/can_use_rig()
 	return 0
 
-/mob/living/carbon/human/can_use_rig()
+/mob/living/human/can_use_rig()
 	return 1
 
-/mob/living/carbon/brain/can_use_rig()
+/mob/living/brain/can_use_rig()
 	return istype(loc, /obj/item/device/mmi)
 
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)

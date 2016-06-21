@@ -348,7 +348,7 @@ var/global/list/additional_antag_types = list()
 			disregard_roles |= antag.role_text
 
 	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
+	for(var/mob/living/human/man in player_list) if(man.client && man.mind)
 
 		// NT relation option
 		var/special_role = man.mind.special_role
@@ -511,7 +511,7 @@ proc/display_roundstart_logout_report()
 
 proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/human/man in player_list)
 		if(man.client)
 			if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED)
 				dudes += man

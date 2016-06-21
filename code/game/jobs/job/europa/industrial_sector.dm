@@ -18,7 +18,7 @@
 			      access_RC_announce, access_tcomsat, access_gateway, access_xenoarch, access_maint_tunnels,
 			      access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
-/datum/job/industry/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/industry/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	if(!H)	return 0
 	switch(H.mind.role_alt_title)
 		if("Miner")
@@ -37,7 +37,7 @@
 	alt_titles = list("Xenobiologist","Field Technician")
 	idtype = /obj/item/weapon/card/id/lanyard
 
-/datum/job/industry/science/equip(var/mob/living/carbon/human/H)
+/datum/job/industry/science/equip(var/mob/living/human/H)
 	if(!H)	return 0
 	..(H, skip_suit = 1)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)

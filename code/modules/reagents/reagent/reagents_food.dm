@@ -12,7 +12,7 @@
 	id = REAGENT_ID_PROTEIN
 	color = "#440000"
 
-/datum/reagent/nutriment/protein/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nutriment/protein/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(alien && alien == IS_SKRELL)
 		M.adjustToxLoss(0.5 * removed)
 		return
@@ -100,7 +100,7 @@
 	id = REAGENT_ID_SUGAR
 	color = "#FFFFFF"
 
-/datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/sugar/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.nutrition += removed * 3
 
 /datum/reagent/drink/lemonade

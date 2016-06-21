@@ -144,7 +144,7 @@ var/const/NO_EMAG_ACT = -50
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
+/mob/living/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
 

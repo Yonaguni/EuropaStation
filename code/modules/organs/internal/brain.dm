@@ -12,7 +12,7 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "slapped", "whacked")
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/brain/brainmob = null
 
 /obj/item/organ/internal/brain/robotize()
 	replace_self_with(/obj/item/organ/internal/mmi_holder/posibrain)
@@ -21,7 +21,7 @@
 	replace_self_with(/obj/item/organ/internal/mmi_holder)
 
 /obj/item/organ/internal/brain/proc/replace_self_with(replace_path)
-	var/mob/living/carbon/human/tmp_owner = owner
+	var/mob/living/human/tmp_owner = owner
 	qdel(src)
 	if(tmp_owner)
 		tmp_owner.internal_organs_by_name[organ_tag] = new replace_path(tmp_owner, 1)
@@ -49,7 +49,7 @@
 		brainmob = null
 	..()
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/human/H)
 
 	if(!brainmob)
 		brainmob = new(src)

@@ -3,7 +3,7 @@
 	desc = "You know all about running games of chance."
 	use_icon_state = "kitchen_2"
 
-/decl/aspect/gambling/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/gambling/do_post_spawn(var/mob/living/human/holder)
 	if(locate(/obj/item/weapon/deck/cards) in holder.contents)
 		return
 	if(!holder.l_store)
@@ -23,7 +23,7 @@
 	use_icon_state = "kitchen_3"
 	apply_post_species_change = 1
 
-/decl/aspect/hardy/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/hardy/do_post_spawn(var/mob/living/human/holder)
 	holder.maxHealth = (holder.species.total_health * 1.15)
 
 /decl/aspect/thickbones
@@ -33,7 +33,7 @@
 	use_icon_state = "kitchen_3"
 	apply_post_species_change = 1
 
-/decl/aspect/thickbones/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/thickbones/do_post_spawn(var/mob/living/human/holder)
 	for(var/obj/item/organ/external/E in holder.organs) //15% limb damage cap increase.
 		E.min_bruised_damage = initial(E.min_bruised_damage)*1.15
 		E.min_broken_damage =  initial(E.min_broken_damage)*1.15
@@ -46,7 +46,7 @@
 	parent_name = ASPECT_HARDY
 	apply_post_species_change = 1
 
-/decl/aspect/scarred/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/scarred/do_post_spawn(var/mob/living/human/holder)
 	for(var/obj/item/organ/external/E in holder.organs) //15% burn resist.
 		E.brute_mod = initial(E.brute_mod)*0.85
 
@@ -57,7 +57,7 @@
 	parent_name = ASPECT_HARDY
 	apply_post_species_change = 1
 
-/decl/aspect/hotstuff/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/hotstuff/do_post_spawn(var/mob/living/human/holder)
 	for(var/obj/item/organ/external/E in holder.organs) //15% burn resist.
 		E.burn_mod = initial(E.burn_mod)*0.85
 

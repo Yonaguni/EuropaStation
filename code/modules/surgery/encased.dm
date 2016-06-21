@@ -15,7 +15,7 @@
 	min_duration = 50
 	max_duration = 70
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -26,14 +26,14 @@
 			return -1
 		return ..() && affected.is_open() == 1
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] begins to cut through [target]'s [affected.encased] with \the [tool].", \
 		"You begin to cut through [target]'s [affected.encased] with \the [tool].")
 		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -41,7 +41,7 @@
 		"\blue You have cut [target]'s [affected.encased] open with \the [tool].")
 		affected.fracture()
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

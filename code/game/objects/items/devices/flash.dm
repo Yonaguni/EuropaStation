@@ -65,14 +65,14 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
 
-	if(iscarbon(M))
+	if(ishuman(M))
 		if(M.stat!=DEAD)
-			var/mob/living/carbon/C = M
+			var/mob/living/human/C = M
 			var/safety = C.eyecheck()
 			if(safety < FLASH_PROTECTION_MODERATE)
 				var/flash_strength = 10
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/human/H = M
 					flash_strength *= H.species.flash_mod
 				if(flash_strength > 0)
 					M.Weaken(flash_strength)
@@ -92,7 +92,7 @@
 
 
 
-/obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/flash/attack_self(mob/living/human/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -119,7 +119,7 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
 
-	for(var/mob/living/carbon/M in oviewers(3, null))
+	for(var/mob/living/human/M in oviewers(3, null))
 		var/safety = M.eyecheck()
 		if(safety < FLASH_PROTECTION_MODERATE)
 			if(!M.blinded)
@@ -136,8 +136,8 @@
 				icon_state = "flashburnt"
 				return
 			times_used++
-			if(istype(loc, /mob/living/carbon))
-				var/mob/living/carbon/M = loc
+			if(istype(loc, /mob/living/human))
+				var/mob/living/human/M = loc
 				var/safety = M.eyecheck()
 				if(safety < FLASH_PROTECTION_MODERATE)
 					M.Weaken(10)
@@ -159,7 +159,7 @@
 		user << "<span class='warning'>The bulb has burnt out!</span>"
 		icon_state = "flashburnt"
 
-/obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/flash/synthetic/attack_self(mob/living/human/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1

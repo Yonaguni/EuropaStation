@@ -43,8 +43,8 @@
 
 			activate()
 			add_fingerprint(user)
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
+			if(ishuman(user))
+				var/mob/living/human/C = user
 				C.throw_mode_on()
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -175,8 +175,8 @@
 				if( A == src ) continue
 				src.reagents.touch(A)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
-			var/mob/living/carbon/C = loc
+		if(istype(loc, /mob/living/human))		//drop dat grenade if it goes off in your hand
+			var/mob/living/human/C = loc
 			C.drop_from_inventory(src)
 			C.throw_mode_off()
 

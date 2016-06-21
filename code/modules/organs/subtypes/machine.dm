@@ -32,7 +32,7 @@
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/New(var/mob/living/carbon/human/new_owner, var/internal)
+/obj/item/organ/internal/mmi_holder/New(var/mob/living/human/new_owner, var/internal)
 	..(new_owner, internal)
 	if(!stored_mmi)
 		stored_mmi = new(src)

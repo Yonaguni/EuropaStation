@@ -23,7 +23,7 @@
 		return
 	..()
 
-/obj/item/weapon/board/attack_hand(mob/living/carbon/human/M as mob)
+/obj/item/weapon/board/attack_hand(mob/living/human/M as mob)
 	if(M.machine == src)
 		..()
 	else
@@ -139,7 +139,7 @@ obj/item/weapon/board/attackby(obj/item/I as obj, mob/user as mob)
 				if(I)
 					selected = text2num(s)
 				else
-					var/mob/living/carbon/human/H = locate(href_list["person"])
+					var/mob/living/human/H = locate(href_list["person"])
 					if(!istype(H))
 						return
 					var/obj/item/O = H.get_active_hand()

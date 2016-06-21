@@ -89,7 +89,7 @@
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
 
-/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/attack(mob/living/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
 		if(user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)

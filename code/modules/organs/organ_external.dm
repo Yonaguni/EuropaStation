@@ -174,7 +174,7 @@
 			dislocated = 2
 		else
 			dislocated = 1
-	owner.verbs |= /mob/living/carbon/human/proc/relocate
+	owner.verbs |= /mob/living/human/proc/relocate
 	if(children && children.len)
 		for(var/obj/item/organ/external/child in children)
 			child.dislocate()
@@ -191,13 +191,13 @@
 		for(var/obj/item/organ/external/limb in owner.organs)
 			if(limb.dislocated == 2)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/relocate
+		owner.verbs -= /mob/living/human/proc/relocate
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
 
-/obj/item/organ/external/New(var/mob/living/carbon/holder)
+/obj/item/organ/external/New(var/mob/living/human/holder)
 	..(holder, 0)
 	if(owner)
 		replaced(owner)
@@ -205,7 +205,7 @@
 	spawn(1)
 		get_icon()
 
-/obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/external/replaced(var/mob/living/human/target)
 	owner = target
 	forceMove(owner)
 	if(istype(owner))
@@ -668,8 +668,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	status &= ~ORGAN_BLEEDING
 	var/clamped = 0
 
-	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(owner,/mob/living/human))
 		H = owner
 
 	//update damage counts
@@ -759,7 +759,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
 
-	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
+	var/mob/living/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 	removed(null, ignore_children)
 	victim.traumatic_shock += 60
@@ -837,7 +837,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_stump()
 	return 0
 
-/obj/item/organ/external/proc/release_restraints(var/mob/living/carbon/human/holder)
+/obj/item/organ/external/proc/release_restraints(var/mob/living/human/holder)
 	if(!holder)
 		holder = owner
 	if(!holder)
@@ -935,9 +935,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/carbon/human))
+	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/human))
 
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/human/H = owner
 
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 
@@ -1055,7 +1055,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!owner)
 		return
 	var/is_robotic = status & ORGAN_ROBOT
-	var/mob/living/carbon/human/victim = owner
+	var/mob/living/human/victim = owner
 
 	..()
 
@@ -1367,23 +1367,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/head/no_eyes
 	eye_icon = "blank_eyes"
-
-/obj/item/organ/external/head/no_eyes/diona
-	max_damage = 50
-	min_broken_damage = 25
-	cannot_break = 1
-	amputation_point = "branch"
-	joint = "structural ligament"
-	dislocated = -1
-	vital = 0
-
-/obj/item/organ/external/head/no_eyes/diona/removed()
-	var/mob/living/carbon/human/H = owner
-	..()
-	if(!istype(H) || !H.organs || !H.organs.len)
-		H.death()
-	if(prob(50) && spawn_diona_nymph(get_turf(src)))
-		qdel(src)
 
 /obj/item/organ/external/emp_act(severity)
 	if(!(status & ORGAN_ROBOT))

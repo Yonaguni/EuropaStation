@@ -152,7 +152,7 @@
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
 	if (hasorgans(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
@@ -275,7 +275,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!ishuman(M)) return 0
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	var/list/mob_equip = list()
 	if(H.species.hud && H.species.hud.equip_slots)
 		mob_equip = H.species.hud.equip_slots
@@ -371,7 +371,7 @@ var/list/global/slot_flags_enumeration = list(
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	if((!istype(usr, /mob/living/human)) || (istype(usr, /mob/living/brain)))//Is humanoid, and is not a brain
 		usr << "<span class='warning'>You can't pick things up!</span>"
 		return
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
@@ -414,9 +414,9 @@ var/list/global/slot_flags_enumeration = list(
 		L = L.loc
 	return loc
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/proc/eyestab(mob/living/human/M as mob, mob/living/human/user as mob)
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	if(istype(H))
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
@@ -498,7 +498,7 @@ var/list/global/slot_flags_enumeration = list(
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+/obj/item/add_blood(mob/living/human/M as mob)
 	if (!..())
 		return 0
 
@@ -538,7 +538,7 @@ var/list/global/slot_flags_enumeration = list(
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
-/mob/living/carbon/verb/showoff()
+/mob/living/human/verb/showoff()
 	set name = "Show Held Item"
 	set category = "Object"
 
@@ -549,7 +549,7 @@ var/list/global/slot_flags_enumeration = list(
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
-modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+modules/mob/living/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
 /obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
@@ -563,7 +563,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
+	if(usr.stat || !(istype(usr,/mob/living/human)))
 		usr << "You are unable to focus through the [devicename]"
 		cannotzoom = 1
 	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)

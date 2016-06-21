@@ -20,7 +20,7 @@
 
 	activate(var/mob/M, var/connected, var/flags)
 		..(M,connected,flags)
-		M.verbs += /mob/living/carbon/human/proc/remoteobserve
+		M.verbs += /mob/living/human/proc/remoteobserve
 
 /datum/dna/gene/basic/regenerate
 	name="Regenerate"
@@ -48,7 +48,7 @@
 
 	activate(var/mob/M, var/connected, var/flags)
 		..(M,connected,flags)
-		M.verbs += /mob/living/carbon/human/proc/remotesay
+		M.verbs += /mob/living/human/proc/remotesay
 
 /datum/dna/gene/basic/morph
 	name="Morph"
@@ -60,7 +60,7 @@
 
 	activate(var/mob/M)
 		..(M)
-		M.verbs += /mob/living/carbon/human/proc/morph
+		M.verbs += /mob/living/human/proc/morph
 
 /* Not used on bay
 /datum/dna/gene/basic/heat_resist
@@ -166,7 +166,7 @@
 			return "hulk_[g]_s"
 		return 0
 
-	OnMobLife(var/mob/living/carbon/human/M)
+	OnMobLife(var/mob/living/human/M)
 		if(!istype(M)) return
 		if(M.health <= 25)
 			M.mutations.Remove(HULK)

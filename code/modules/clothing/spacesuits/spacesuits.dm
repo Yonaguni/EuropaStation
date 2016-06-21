@@ -19,7 +19,6 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Diona")
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 	action_button_name = "Toggle Helmet Light"
@@ -44,7 +43,6 @@
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Diona")
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
@@ -60,7 +58,7 @@
 // broken limbs - at the time of writing, only the ninja suit, but
 // I can see it being useful for other suits as we expand them. ~ Z
 // The actual splinting occurs in /obj/item/organ/external/proc/fracture()
-/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/carbon/human/user)
+/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/human/user)
 
 	// If this isn't set, then we don't need to care.
 	if(!supporting_limbs || !supporting_limbs.len)

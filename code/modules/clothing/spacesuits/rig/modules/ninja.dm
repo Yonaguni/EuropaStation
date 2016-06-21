@@ -35,7 +35,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	H << "<font color='blue'><b>You are now invisible to normal detection.</b></font>"
 	H.invisibility = INVISIBILITY_LEVEL_TWO
@@ -49,7 +49,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	H << "<span class='danger'>You are now visible.</span>"
 	H.invisibility = 0
@@ -99,7 +99,7 @@
 
 	if(!..()) return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
 		H << "<span class='warning'>You cannot teleport out of your current location.</span>"

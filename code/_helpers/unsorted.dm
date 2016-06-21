@@ -395,11 +395,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/sortmob = sortAtom(mob_list)
 	for(var/mob/eye/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/human/M in sortmob)
+	for(var/mob/living/human/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/brain/M in sortmob)
+	for(var/mob/living/brain/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
+	for(var/mob/living/human/alien/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/dead/observer/M in sortmob)
 		moblist.Add(M)
@@ -1089,7 +1089,7 @@ proc/is_hot(obj/item/W as obj)
 	)
 
 //check if mob is lying down on something we can operate him on.
-/proc/can_operate(mob/living/carbon/M)
+/proc/can_operate(mob/living/human/M)
 	if(M.lying)
 		if(locate(/obj/structure/bed/roller, M.loc) && prob(75))
 			return 1
@@ -1228,7 +1228,7 @@ var/mob/dview/dview_mob = new
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+/proc/electrocute_mob(mob/living/human/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
 	var/obj/item/weapon/cell/cell
 	if(istype(power_source,/obj/item/weapon/cell))
 		cell = power_source
@@ -1239,8 +1239,8 @@ var/mob/dview/dview_mob = new
 		return 0
 	//Triggers powernet warning, but only for 5 ticks (if applicable)
 	//If following checks determine user is protected we won't alarm for long.
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/human))
+		var/mob/living/human/H = M
 		if(H.species.siemens_coefficient == 0)
 			return
 		if(H.gloves)

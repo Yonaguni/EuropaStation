@@ -141,7 +141,7 @@
 		//make sure these can only be used when equipped.
 		if(!ishuman(user))
 			return
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if (H.shoes != src)
 			user << "You will have to put on the [src] before you can do that."
 			return

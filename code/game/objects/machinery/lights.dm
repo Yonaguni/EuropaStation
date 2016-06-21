@@ -426,8 +426,8 @@
 		user << "There is no [fitting] in this light."
 		return
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human))
+		var/mob/living/human/H = user
 		if(H.species.can_shred(H))
 			for(var/mob/M in viewers(src))
 				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
@@ -437,7 +437,7 @@
 	// make it burn hands if not wearing fire-insulated gloves
 	if(on)
 		var/prot = 0
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 
 		if(istype(H))
 			if(H.species.heat_level_1 > LIGHT_BULB_TEMPERATURE)

@@ -113,7 +113,7 @@
 
 /turf/simulated/open/attack_hand(var/mob/user)
 	if(below && below.flooded)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(!istype(H))
 			return ..()
 		H << "<span class='notice'>You start washing your hands.</span>"

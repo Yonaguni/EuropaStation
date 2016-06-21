@@ -1,4 +1,4 @@
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 
 	if(!istype(M))
 		return
@@ -10,7 +10,7 @@
 		M.was_bloodied = null
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if(acid && acid_melt_threshold)
 			if(volume >= acid_melt_threshold)
 				var/update_mob

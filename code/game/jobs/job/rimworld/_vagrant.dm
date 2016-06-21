@@ -9,8 +9,8 @@
 	headsettype = null
 	alt_titles = list("Citizen", "Homesteader", "Wanderer", "Visitor")
 
-/datum/job/borderworld/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/borderworld/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	return ..()
 
-/datum/job/borderworld/equip_survival(var/mob/living/carbon/human/H)
+/datum/job/borderworld/equip_survival(var/mob/living/human/H)
 	return ..()

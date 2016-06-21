@@ -28,7 +28,7 @@ effective or pretty fucking useless.
 	var/times_used = 0 //Number of times it's been used.
 	var/max_uses = 2
 
-/obj/item/device/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/batterer/attack_self(mob/living/human/user as mob, flag = 0, emp = 0)
 	if(!user) 	return
 	if(times_used >= max_uses)
 		user << "<span class='warning'>The mind batterer has been burnt out!</span>"
@@ -36,7 +36,7 @@ effective or pretty fucking useless.
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [src] to knock down people in the area.</font>")
 
-	for(var/mob/living/carbon/human/M in orange(10, user))
+	for(var/mob/living/human/M in orange(10, user))
 		spawn()
 			if(prob(50))
 

@@ -79,7 +79,7 @@
 	return
 
 /obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/dead/observer)) && !forceshow)
+	if(!(istype(user, /mob/living/human) || istype(user, /mob/dead/observer)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -124,7 +124,7 @@
 				spam_flag = 0
 	return
 
-/obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/paper/attack(mob/living/human/M as mob, mob/living/human/user as mob)
 	if(user.zone_sel.selecting == O_EYES)
 		user.visible_message("<span class='notice'>You show the paper to [M]. </span>", \
 			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>")
@@ -132,7 +132,7 @@
 
 	else if(user.zone_sel.selecting == O_MOUTH) // lipstick wiping
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			if(H == user)
 				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"
 				H.lip_style = null
@@ -400,8 +400,8 @@
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
 		user.drop_from_inventory(P)
-		if (istype(user, /mob/living/carbon/human))
-			var/mob/living/carbon/human/h_user = user
+		if (istype(user, /mob/living/human))
+			var/mob/living/human/h_user = user
 			if (h_user.r_hand == src)
 				h_user.drop_from_inventory(src)
 				h_user.put_in_r_hand(B)

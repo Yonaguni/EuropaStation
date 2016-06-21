@@ -21,11 +21,11 @@
 	if(already_completed)
 		return 1
 
-	if(target && target.current && istype(target.current, /mob/living/carbon/human))
+	if(target && target.current && istype(target.current, /mob/living/human))
 		if(target.current.stat == DEAD)
 			return 0
 
-		var/mob/living/carbon/human/H = target.current
+		var/mob/living/human/H = target.current
 		for(var/obj/item/organ/external/E in H.organs)
 			if(E.status & ORGAN_BROKEN)
 				return 1

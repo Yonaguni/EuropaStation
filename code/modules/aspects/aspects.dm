@@ -23,7 +23,7 @@
 	parent = null
 	return ..()
 
-/decl/aspect/proc/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/proc/do_post_spawn(var/mob/living/human/holder)
 	return
 
 // Called by preferences selection for HTML display.
@@ -120,7 +120,7 @@
 /mob/living/proc/apply_aspects()
 	return
 
-/mob/living/carbon/human/apply_aspects()
+/mob/living/human/apply_aspects()
 	if(!mind || !mind.aspects || !mind.aspects.len)
 		return
 	for(var/aspect in mind.aspects)

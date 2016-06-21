@@ -18,7 +18,7 @@
             access_construction, access_sec_doors, access_medical, access_medical_equip, access_morgue,
 			access_genetics, access_chemistry, access_virology, access_surgery, access_RC_announce,access_psychiatrist)
 
-/datum/job/civilian/equip(var/mob/living/carbon/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
+/datum/job/civilian/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0)
 	if(!H) return
 	switch(H.mind.role_alt_title)
 		if("Doctor")
@@ -37,7 +37,7 @@
 			..(H, skip_suit, skip_hat, skip_shoes)
 	return 1
 
-/datum/job/civilian/equip_survival(var/mob/living/carbon/human/H)
+/datum/job/civilian/equip_survival(var/mob/living/human/H)
 	if(!H) return
 	if(H.mind.role_alt_title == "Visitor")
 		return

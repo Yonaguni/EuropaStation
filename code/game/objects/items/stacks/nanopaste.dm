@@ -11,8 +11,8 @@
 	if (!istype(M) || !istype(user))
 		return 0
 
-	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
-		var/mob/living/carbon/human/H = M
+	if (istype(M,/mob/living/human))		//Repairing robolimbs
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
 
 		if(S.is_open() == 1)

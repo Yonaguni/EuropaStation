@@ -174,8 +174,8 @@ proc/get_mining_overlay(var/overlay_key)
 	if(!density)
 		return .
 
-	if(istype(AM,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = AM
+	if(istype(AM,/mob/living/human))
+		var/mob/living/human/H = AM
 		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
 			attackby(H.l_hand,H)
 		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)

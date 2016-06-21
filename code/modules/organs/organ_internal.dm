@@ -82,7 +82,7 @@
 	..()
 	robotize()
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/internal/eyes/replaced(var/mob/living/human/target)
 
 	// Apply our eye colour to the target.
 	if(istype(target) && eye_colour)

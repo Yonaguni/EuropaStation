@@ -1,0 +1,1 @@
+/mob/living/var/traumatic_shock = 0

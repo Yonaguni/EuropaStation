@@ -16,7 +16,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/rawmeatball/attack_self(var/mob/user)
 	user.unEquip(src)
 	var/obj/item/weapon/reagent_containers/food/snacks/meat/rawpatty/patty = new(get_turf(user))
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(istype(H))
 		H.put_in_hands(patty)
 	user.visible_message("<span class='notice'>\The [user] flattens \the [src] into a patty.</span>")

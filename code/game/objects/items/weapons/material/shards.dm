@@ -66,7 +66,7 @@
 		M << "<span class='danger'>You step on \the [src]!</span>"
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 
 			if(H.species.siemens_coefficient<0.5) //Thick skin.
 				return

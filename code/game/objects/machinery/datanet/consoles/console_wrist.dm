@@ -17,14 +17,14 @@
 
 /obj/item/device/wrist_computer/attack_hand(var/mob/user)
 	if(embedded_terminal)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(istype(H) && H.wear_id == src)
 			return embedded_terminal.interact(user)
 	return ..()
 
 /obj/item/device/wrist_computer/MouseDrop(var/atom/over)
 	var/obj/machinery/datanet/E = over
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/human/H = usr
 	if(istype(H) && H.wear_id == src)
 		if(istype(E))
 			usr << "<span class='notice'>You connect \the [src] to \the [over].</span>"

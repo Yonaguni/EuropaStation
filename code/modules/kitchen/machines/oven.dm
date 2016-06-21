@@ -77,7 +77,7 @@
 	src.add_fingerprint(usr)
 	return 1
 
-/obj/machinery/kitchen/oven/try_remove_container(var/mob/living/carbon/human/user)
+/obj/machinery/kitchen/oven/try_remove_container(var/mob/living/human/user)
 	if(open && food_inside)
 		//TODO: burn your hands pulling out a hot tray.
 		food_inside.loc = get_turf(src)
@@ -89,6 +89,6 @@
 
 // Opens or closes the oven.
 /obj/machinery/kitchen/oven/AltClick()
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/human/H = usr
 	if(istype(H) && H.Adjacent(src) && !H.incapacitated())
 		toggle_open(usr)

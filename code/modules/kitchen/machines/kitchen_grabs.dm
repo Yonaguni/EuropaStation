@@ -9,8 +9,8 @@
 	if(!istype(victim))
 		return
 	playsound(src.loc, 'sound/items/trayhit1.ogg', 50, 1)
-	if(istype(victim, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = victim
+	if(istype(victim, /mob/living/human))
+		var/mob/living/human/H = victim
 		var/obj/item/organ/external/E = H.get_organ("head")
 		if(E)
 			visible_message("<span class='danger'>\The [user] slams \the [victim]'s head in \the [src]'s door!</span>")
@@ -29,8 +29,8 @@
 	if(hottest_burner < 60) //Cooking temp.
 		return ..(victim, user)
 	playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
-	if(istype(victim, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = victim
+	if(istype(victim, /mob/living/human))
+		var/mob/living/human/H = victim
 		var/obj/item/organ/external/E = H.get_organ("head")
 		if(E)
 			visible_message("<span class='danger'>\The [user] mashes \the [victim]'s face into \the [src]'s lit burners!</span>")

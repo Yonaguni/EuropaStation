@@ -126,7 +126,7 @@
 
 /datum/datacore/proc/manifest()
 	spawn()
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/human/H in player_list)
 			manifest_inject(H)
 		return
 
@@ -154,7 +154,7 @@
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/datum/datacore/proc/manifest_inject(var/mob/living/human/H)
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 
@@ -217,7 +217,7 @@
 /proc/generate_record_id()
 	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
 
-/proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
+/proc/get_id_photo(var/mob/living/human/H, var/assigned_role)
 	var/icon/preview_icon = null
 
 	var/g = "m"
@@ -380,7 +380,7 @@
 
 	return preview_icon
 
-/datum/datacore/proc/CreateGeneralRecord(var/mob/living/carbon/human/H, var/id)
+/datum/datacore/proc/CreateGeneralRecord(var/mob/living/human/H, var/id)
 	ResetPDAManifest()
 	var/icon/front
 	var/icon/side
@@ -388,7 +388,7 @@
 		front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		side = getFlatIcon(H, WEST, always_use_defdir = 1)
 	else
-		var/mob/living/carbon/human/dummy = new()
+		var/mob/living/human/dummy = new()
 		front = new(get_id_photo(dummy), dir = SOUTH)
 		side = new(get_id_photo(dummy), dir = WEST)
 		qdel(dummy)
@@ -473,7 +473,7 @@
 		if(R.fields[field] == value)
 			return R
 
-/proc/GetAssignment(var/mob/living/carbon/human/H)
+/proc/GetAssignment(var/mob/living/human/H)
 	if(H.mind.role_alt_title)
 		return H.mind.role_alt_title
 	else if(H.mind.assigned_role)
