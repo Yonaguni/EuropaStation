@@ -1094,6 +1094,7 @@
 #include "code\modules\mob\living\human\logout.dm"
 #include "code\modules\mob\living\human\npcs.dm"
 #include "code\modules\mob\living\human\resist.dm"
+#include "code\modules\mob\living\human\sanity.dm"
 #include "code\modules\mob\living\human\say.dm"
 #include "code\modules\mob\living\human\shock.dm"
 #include "code\modules\mob\living\human\stripping.dm"

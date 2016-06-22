@@ -62,7 +62,7 @@
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 		handle_shock()
-
+		handle_insanity()
 		handle_pain()
 
 		if(!client)

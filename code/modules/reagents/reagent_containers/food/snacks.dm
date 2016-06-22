@@ -13,12 +13,14 @@
 	var/dried_type = null
 	var/dry = 0
 	var/trash
+	var/san_recovery_amt = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/get_taste()
 	return
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
+
 	if(!usr)
 		return 0
 
@@ -27,12 +29,15 @@
 	if(taste)
 		M << "<span class='notice'>[taste]</span>"
 
+	var/mob/living/human/H = M
+	if(san_recovery_amt && istype(H))
+		H.recover_sanity(san_recovery_amt)
+
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>\The [M] finishes eating \the [src].</span>")
 		M.unEquip(src)
 		if(trash)
 			var/obj/item/I = new trash(get_turf(src))
-			var/mob/living/human/H = M
 			if(istype(H)) H.put_in_hands(I)
 		qdel(src)
 		return 1
