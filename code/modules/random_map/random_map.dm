@@ -188,7 +188,7 @@ var/global/list/map_count = list()
 	for(var/x = 1 to limit_x)
 		for(var/y = 1 to limit_y)
 			var/current_cell = GET_MAP_CELL(x,y)
-			if(!current_cell)
+			if(!current_cell || map[current_cell] == EMPTY_CHAR)
 				continue
 			if(tx+x > target_map.limit_x)
 				continue
@@ -202,7 +202,6 @@ var/global/list/map_count = list()
 			limit_x = olx
 
 	handle_post_overlay_on(target_map,tx,ty)
-
 
 /datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	return
