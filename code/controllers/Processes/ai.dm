@@ -2,12 +2,12 @@ var/list/datum/list_of_ais = list()
 
 /datum/controller/process/ai/setup()
 	name = "ai"
-	schedule_interval = 2 SECONDS
+	schedule_interval = 1 SECONDS
 	start_delay = 17
 
 /datum/controller/process/ai/doWork()
 	for(last_object in list_of_ais)
-		var/datum/ai/AI = last_object
+		var/datum/ai_mob/AI = last_object
 		if(isnull(AI.gcDestroyed) && istype(AI))
 			try
 				if(AI.process() == PROCESS_KILL)

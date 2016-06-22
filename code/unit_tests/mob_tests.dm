@@ -21,7 +21,7 @@ datum/unit_test/human_breath
 	name = "MOB: Human Suffocates in Space"
 	var/starting_oxyloss = null
 	var/ending_oxyloss = null
-	var/mob/living/carbon/human/H
+	var/mob/living/human/H
 	async = 1
 
 
@@ -61,7 +61,7 @@ datum/unit_test/human_breath/check_result()
 //#define HALLOSS   "halloss"
 
 
-proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human)
+proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living/human)
 	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
 
 	if(isnull(mobloc))
@@ -70,7 +70,7 @@ proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living
 		test_result["msg"] = "Unable to find a location to create test mob"
 		return test_result
 
-	var/mob/living/carbon/human/H = new mobtype(mobloc)
+	var/mob/living/human/H = new mobtype(mobloc)
 
 	H.mind_initialize("TestKey[rand(0,10000)]")
 
@@ -117,9 +117,9 @@ proc/damage_check(var/mob/living/M, var/damage_type)
 
 datum/unit_test/mob_damage
 	name = "MOB: Template for mob damage"
-	var/mob/living/carbon/human/testmob = null
+	var/mob/living/human/testmob = null
 	var/damagetype = BRUTE
-	var/mob_type = /mob/living/carbon/human
+	var/mob_type = /mob/living/human
 	var/expected_vulnerability = STANDARD
 	var/check_health = 0
 	var/damage_location = "chest"
@@ -136,7 +136,7 @@ datum/unit_test/mob_damage/start_test()
 		fail(test["msg"])
 		return 0
 
-	var/mob/living/carbon/human/H = locate(test["mobref"])
+	var/mob/living/human/H = locate(test["mobref"])
 
 	if(isnull(H))
 		fail("Test unable to set test mob from reference")
@@ -240,7 +240,7 @@ datum/unit_test/mob_damage/halloss
 
 datum/unit_test/mob_damage/skrell
 	name = "MOB: Skrell damage check template"
-	mob_type = /mob/living/carbon/human/skrell
+	mob_type = /mob/living/human/skrell
 
 datum/unit_test/mob_damage/skrell/brute
 	name = "MOB: Skrell Brute Damage Check"

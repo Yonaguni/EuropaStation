@@ -38,10 +38,6 @@
 				if(affecting.take_damage(1, 0))
 					H.UpdateDamageIcon()
 				H.updatehealth()
-		else if(ismouse(target))
-			var/mob/living/simple_animal/mouse/M = target
-			visible_message("\red <b>SPLAT!</b>")
-			M.splat()
 		playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
 		layer = MOB_LAYER - 0.2
 		armed = 0

@@ -396,7 +396,9 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-	reagents.clear_reagents()
+
+	if(reagents)
+		reagents.clear_reagents()
 
 	// shut down various types of badness
 	setToxLoss(0)
@@ -434,6 +436,7 @@ default behaviour is:
 
 	// restore us to conciousness
 	stat = CONSCIOUS
+	health = maxHealth
 
 	// make the icons look correct
 	regenerate_icons()
@@ -604,7 +607,7 @@ default behaviour is:
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/mob/living/animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
 

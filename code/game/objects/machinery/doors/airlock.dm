@@ -325,7 +325,7 @@ About the new airlock wires panel:
 		return
 	..(user)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
+/obj/machinery/door/airlock/bumpopen(mob/living/animal/user as mob)
 	..(user)
 
 /obj/machinery/door/airlock/proc/isElectrified()

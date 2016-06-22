@@ -8,7 +8,6 @@
 	layer = 4
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
-		/mob/living/simple_animal/mouse
 		)
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

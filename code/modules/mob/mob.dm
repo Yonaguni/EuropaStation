@@ -601,7 +601,7 @@
 			return
 
 	src.pulling = AM
-	AM.pulledby = src
+	AM.get_pulled(src)
 
 	if(pullin)
 		pullin.icon_state = "pull1"
@@ -1020,7 +1020,7 @@ mob/proc/yank_out_object()
 /mob/proc/has_brain_worms()
 
 	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
+		if(istype(I,/mob/living/animal/borer))
 			return I
 	return 0
 

@@ -31,8 +31,6 @@
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
 		/obj/machinery/disposal,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/hostile/retaliate/goat,
 		/obj/machinery/sleeper,
 		/obj/machinery/constructable_frame
 		)

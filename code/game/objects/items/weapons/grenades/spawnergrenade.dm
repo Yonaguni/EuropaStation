@@ -26,13 +26,3 @@
 					step(x, pick(NORTH,SOUTH,EAST,WEST))
 	qdel(src)
 	return
-
-/obj/item/weapon/grenade/spawnergrenade/manhacks
-	name = "manhack delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/viscerator
-	deliveryamt = 5
-
-/obj/item/weapon/grenade/spawnergrenade/spesscarp
-	name = "carp delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/carp
-	deliveryamt = 5

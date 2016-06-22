@@ -34,7 +34,7 @@
 
 	..()
 
-	var/mob/living/simple_animal/borer/B = owner.has_brain_worms()
+	var/mob/living/animal/borer/B = owner.has_brain_worms()
 	if(B)
 		B.leave_host()
 		B.ckey = owner.ckey
@@ -56,6 +56,3 @@
 	if(owner && owner.stat != DEAD && !is_broken())
 		backup_time = world.time
 		if(owner.mind) backup = owner.mind
-
-/obj/item/organ/internal/stack/vox/stack
-	name = "vox cortical stack"

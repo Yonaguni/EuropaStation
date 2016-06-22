@@ -67,13 +67,16 @@
 /*
 	Animals
 */
-/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/animal/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
 		return
 
 	if(melee_damage_upper == 0 && istype(A,/mob/living))
-		custom_emote(1,"[friendly] [A]!")
+		custom_emote(1,"[friendly_interaction] \the [A]!")
+		var/mob/living/animal/critter = A
+		if(istype(critter) && critter.mob_ai)
+			critter.mob_ai.receive_friendly_interaction(src)
 		return
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)

@@ -127,9 +127,9 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	available_events = list(
 		// Severity level, event name, even type, base weight, role weights, one shot, min weight, max weight. Last two only used if set and non-zero
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Nothing",			/datum/event/nothing,			100),
-		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Lost Critter",		/datum/event/critter_migration,	20, 	list(ASSIGNMENT_SECURITY = 10), 1),
+		//new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Lost Critter",		/datum/event/critter_migration,	20, 	list(ASSIGNMENT_SECURITY = 10), 1),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Debris",			/datum/event/dust	, 			30, 	list(ASSIGNMENT_ENGINEER = 5), 0, 0, 50),
-		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Vermin Infestation",/datum/event/infestation, 		100,	list(ASSIGNMENT_JANITOR = 100)),
+		//new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Vermin Infestation",/datum/event/infestation, 		100,	list(ASSIGNMENT_JANITOR = 100)),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Wallrot",			/datum/event/wallrot, 			0,		list(ASSIGNMENT_ENGINEER = 30, ASSIGNMENT_GARDENER = 50)),
 	)
 
@@ -137,18 +137,18 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	severity = EVENT_LEVEL_MODERATE
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Nothing",					/datum/event/nothing,					1230),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Critter Herd",				/datum/event/critter_migration,			100, 	list(ASSIGNMENT_ENGINEER = 10, ASSIGNMENT_SECURITY = 20), 1),
+		//new /datum/event_meta(EVENT_LEVEL_MODERATE, "Critter Herd",				/datum/event/critter_migration,			100, 	list(ASSIGNMENT_ENGINEER = 10, ASSIGNMENT_SECURITY = 20), 1),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Meteor Shower",			/datum/event/meteor_wave,				0,		list(ASSIGNMENT_ENGINEER = 20)),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Rogue Drones",				/datum/event/rogue_drone, 				20,		list(ASSIGNMENT_SECURITY = 20)),
+		//new /datum/event_meta(EVENT_LEVEL_MODERATE, "Rogue Drones",				/datum/event/rogue_drone, 				20,		list(ASSIGNMENT_SECURITY = 20)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Space Dust",				/datum/event/dust,	 					30, 	list(ASSIGNMENT_ENGINEER = 5)),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Spider Infestation",		/datum/event/spider_infestation, 		100,	list(ASSIGNMENT_SECURITY = 30), 1)
+		//new /datum/event_meta(EVENT_LEVEL_MODERATE, "Spider Infestation",		/datum/event/spider_infestation, 		100,	list(ASSIGNMENT_SECURITY = 30), 1)
 	)
 
 /datum/event_container/major
 	severity = EVENT_LEVEL_MAJOR
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Nothing",				/datum/event/nothing,			1320),
-		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Critter Migration",	/datum/event/critter_migration,	0,	list(ASSIGNMENT_SECURITY =  3), 1),
+		//new /datum/event_meta(EVENT_LEVEL_MAJOR, "Critter Migration",	/datum/event/critter_migration,	0,	list(ASSIGNMENT_SECURITY =  3), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Meteor Wave",			/datum/event/meteor_wave,		0,	list(ASSIGNMENT_ENGINEER =  3),	1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Space Vines",			/datum/event/spacevine, 		0,	list(ASSIGNMENT_ENGINEER = 15), 1),
 	)

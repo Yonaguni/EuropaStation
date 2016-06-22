@@ -47,3 +47,5 @@
 	var/possession_candidate // Can be possessed by ghosts if unplayed.
 	var/lastpuke = 0
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
+
+	var/mob_behavior_flags = TERRAN // Most mobs can walk.

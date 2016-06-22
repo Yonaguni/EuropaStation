@@ -13,7 +13,7 @@
 	var/timer = 240 //eventually the person will be freed
 
 /obj/structure/closet/statue/New(loc, var/mob/living/L)
-	if(L && (ishuman(L) || L.isMonkey() || iscorgi(L)))
+	if(L && (ishuman(L) || L.isMonkey()))
 		if(L.buckled)
 			L.buckled = 0
 			L.anchored = 0
@@ -34,10 +34,6 @@
 		else if(L.isMonkey())
 			name = "statue of a monkey"
 			icon_state = "monkey"
-		else if(iscorgi(L))
-			name = "statue of a corgi"
-			icon_state = "corgi"
-			desc = "If it takes forever, I will wait for you..."
 
 	if(health == 0) //meaning if the statue didn't find a valid target
 		qdel(src)

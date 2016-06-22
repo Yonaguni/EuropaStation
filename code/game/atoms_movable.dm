@@ -271,3 +271,6 @@ var/list/accessible_z_levels = list()
 		return null
 	return text2num(pickweight(candidates))
 
+/atom/movable/proc/get_pulled(var/mob/pulled_by)
+	pulledby = pulled_by
+	return
