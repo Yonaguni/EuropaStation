@@ -46,7 +46,7 @@
 	nodamage = 1
 	taser_effect = 1
 	agony = 40
-	damage_type = HALLOSS
+	damage_type = SUBDUAL
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/stunshot

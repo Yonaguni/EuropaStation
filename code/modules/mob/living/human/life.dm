@@ -65,6 +65,12 @@
 		handle_insanity()
 		handle_pain()
 
+		if(subdual > 100)
+			src << "<span class='warning'>[species.subdual_message_self]</span>"
+			src.visible_message("<B>[src]</B> [species.subdual_message].")
+			Paralyse(10)
+			setSubdual(99)
+
 		if(!client)
 			species.handle_npc(src)
 
@@ -640,7 +646,7 @@
 			blinded = 1
 			stat = UNCONSCIOUS
 			animate_tail_reset()
-			adjustsubdual(-3)
+			adjustSubdual(-3)
 
 		if(paralysis)
 			AdjustParalysis(-1)
@@ -652,6 +658,9 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
+			if(prob(2) && health)
+				custom_emote("snore")
+
 		//CONSCIOUS
 		else
 			stat = CONSCIOUS
@@ -678,11 +687,11 @@
 		if(resting)
 			dizziness = max(0, dizziness - 15)
 			jitteriness = max(0, jitteriness - 15)
-			adjustsubdual(-3)
+			adjustSubdual(-3)
 		else
 			dizziness = max(0, dizziness - 3)
 			jitteriness = max(0, jitteriness - 3)
-			adjustsubdual(-1)
+			adjustSubdual(-1)
 
 		//Other
 		handle_statuses()

@@ -22,8 +22,8 @@
 			adjustOxyLoss(damage/(blocked+1))
 		if(CLONE)
 			adjustCloneLoss(damage/(blocked+1))
-		if(HALLOSS)
-			adjustsubdual(damage/(blocked+1))
+		if(SUBDUAL)
+			adjustSubdual(damage/(blocked+1))
 	flash_weak_pain()
 	updatehealth()
 	return 1

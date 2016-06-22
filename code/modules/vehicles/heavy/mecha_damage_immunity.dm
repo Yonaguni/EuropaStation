@@ -43,11 +43,11 @@
 /mob/living/heavy_vehicle/adjustBrainLoss()
 	return 0
 
-/mob/living/heavy_vehicle/getsubdual()
+/mob/living/heavy_vehicle/getSubdual()
 	return 0
 
-/mob/living/heavy_vehicle/setsubdual()
+/mob/living/heavy_vehicle/setSubdual()
 	return 0
 
-/mob/living/heavy_vehicle/adjustsubdual()
+/mob/living/heavy_vehicle/adjustSubdual()
 	return 0

@@ -142,7 +142,7 @@
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
 	embed = 0 // nope
 	nodamage = 1
-	damage_type = HALLOSS
+	damage_type = SUBDUAL
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
 // Not strictly a bullet, not strictly a laser...

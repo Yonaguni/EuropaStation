@@ -5,7 +5,7 @@
 #define TOX       "tox"
 #define OXY       "oxy"
 #define CLONE     "clone"
-#define HALLOSS   "subdual"
+#define SUBDUAL   "subdual"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"

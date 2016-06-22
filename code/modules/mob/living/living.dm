@@ -282,14 +282,14 @@ default behaviour is:
 	if(status_flags & GODMODE)	return 0	//godmode
 	brainloss = amount
 
-/mob/living/proc/getsubdual()
+/mob/living/proc/getSubdual()
 	return subdual
 
-/mob/living/proc/adjustsubdual(var/amount)
+/mob/living/proc/adjustSubdual(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	subdual = min(max(subdual + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setsubdual(var/amount)
+/mob/living/proc/setSubdual(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	subdual = amount
 
