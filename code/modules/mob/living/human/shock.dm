@@ -12,7 +12,7 @@
 	1.5	* src.getFireLoss() + 		\
 	1.2	* src.getBruteLoss() + 		\
 	1.7	* src.getCloneLoss() + 		\
-	2	* src.halloss + 			\
+	2	* src.subdual + 			\
 	-1	* src.analgesic
 
 	if(src.slurring)

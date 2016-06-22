@@ -172,7 +172,7 @@ default behaviour is:
 		health = 100
 		stat = CONSCIOUS
 	else
-		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - subdual
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -282,16 +282,16 @@ default behaviour is:
 	if(status_flags & GODMODE)	return 0	//godmode
 	brainloss = amount
 
-/mob/living/proc/getHalLoss()
-	return halloss
+/mob/living/proc/getsubdual()
+	return subdual
 
-/mob/living/proc/adjustHalLoss(var/amount)
+/mob/living/proc/adjustsubdual(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = min(max(halloss + amount, 0),(maxHealth*2))
+	subdual = min(max(subdual + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setHalLoss(var/amount)
+/mob/living/proc/setsubdual(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = amount
+	subdual = amount
 
 /mob/living/proc/getMaxHealth()
 	return maxHealth

@@ -320,7 +320,7 @@ About the new airlock wires panel:
 			return
 	else if(istype(user) && user.hallucination > 50 && prob(10) && src.operating == 0)
 		user << "<span class='danger'>You feel a powerful shock course through your body!</span>"
-		user.halloss += 10
+		user.subdual += 10
 		user.stunned += 10
 		return
 	..(user)

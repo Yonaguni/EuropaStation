@@ -208,7 +208,7 @@
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, (attack.deal_subdual ? subdual : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")

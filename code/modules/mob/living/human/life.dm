@@ -652,17 +652,17 @@
 			for(var/atom/a in hallucinations)
 				qdel(a)
 
-			if(halloss > 100)
-				src << "<span class='warning'>[species.halloss_message_self]</span>"
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
+			if(subdual > 100)
+				src << "<span class='warning'>[species.subdual_message_self]</span>"
+				src.visible_message("<B>[src]</B> [species.subdual_message].")
 				Paralyse(10)
-				setHalLoss(99)
+				setsubdual(99)
 
 		if(paralysis || sleeping)
 			blinded = 1
 			stat = UNCONSCIOUS
 			animate_tail_reset()
-			adjustHalLoss(-3)
+			adjustsubdual(-3)
 
 		if(paralysis)
 			AdjustParalysis(-1)
@@ -703,11 +703,11 @@
 		if(resting)
 			dizziness = max(0, dizziness - 15)
 			jitteriness = max(0, jitteriness - 15)
-			adjustHalLoss(-3)
+			adjustsubdual(-3)
 		else
 			dizziness = max(0, dizziness - 3)
 			jitteriness = max(0, jitteriness - 3)
-			adjustHalLoss(-1)
+			adjustsubdual(-1)
 
 		//Other
 		handle_statuses()
@@ -792,7 +792,7 @@
 					if(1)	healths.icon_state = "health6"
 					if(2)	healths.icon_state = "health7"
 					else
-						//switch(health - halloss)
+						//switch(health - subdual)
 						switch(100 - (!can_feel_pain() ? 0 : traumatic_shock))
 							if(100 to INFINITY)		healths.icon_state = "health0"
 							if(80 to 100)			healths.icon_state = "health1"
