@@ -1217,6 +1217,7 @@
 #include "code\modules\random_map\noise\ore.dm"
 #include "code\modules\random_map\noise\seafloor.dm"
 #include "code\modules\random_map\noise\tundra.dm"
+#include "code\modules\random_map\structure\structure.dm"
 #include "code\modules\reagents\_reagents.dm"
 #include "code\modules\reagents\reagents.dm"
 #include "code\modules\reagents\reagents_metabolism.dm"
