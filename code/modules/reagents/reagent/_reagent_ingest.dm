@@ -27,8 +27,10 @@
 	if(neurotoxin != 0)
 		M.druggy = max(M.druggy, neurotoxin)
 
+	/*
 	if(hallucinogen)
 		M.hallucination = max(M.hallucination, hallucinogen)
+	*/
 
 	affect_blood(M, alien, removed * 0.5)
 	return

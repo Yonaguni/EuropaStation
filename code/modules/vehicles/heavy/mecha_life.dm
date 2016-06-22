@@ -105,10 +105,11 @@
 /mob/living/heavy_vehicle/handle_vision()
 	if(head && head.sight_flags)
 		sight = head.sight_flags
-
+/*
 /mob/living/heavy_vehicle/handle_status_effects()
 	..()
 	if(hallucination > 0)
 		hallucination--
 	else if(hallucination < 0)
 		hallucination = 0
+*/

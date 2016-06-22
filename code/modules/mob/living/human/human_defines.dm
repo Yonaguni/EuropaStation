@@ -113,9 +113,3 @@
 
 	// Hallucinations
 	var/dreaming = 0
-	var/image/halimage
-	var/image/halbody
-	var/obj/halitem
-	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
-	var/handling_hal = 0
-	var/hal_crit = 0

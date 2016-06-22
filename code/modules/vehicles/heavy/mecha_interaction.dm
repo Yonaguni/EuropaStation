@@ -44,6 +44,7 @@
 		return
 
 	// You may attack the target with your MECH FIST if you're malfunctioning.
+	/*
 	if(!((hallucination>EMP_ATTACK_DISRUPT) && prob(hallucination*2)))
 		if(selected_system)
 			if(selected_system == A)
@@ -77,6 +78,7 @@
 			if(system_moved)
 				temp_system.forceMove(selected_system)
 			return
+	*/
 
 	if(A == src)
 		setClickCooldown(5)
@@ -205,8 +207,8 @@
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
 		return
 
-	if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
-		direction = pick(cardinal)
+	//if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
+	//	direction = pick(cardinal)
 
 	if(dir == direction)
 		var/turf/target_loc = get_step(src, direction)
