@@ -225,7 +225,7 @@
 
 /obj/item/projectile/bullet/pistol/cap
 	name = "cap"
-	damage_type = HALLOSS
+	damage_type = SUBDUAL
 	damage = 0
 	nodamage = 1
 	embed = 0

@@ -51,7 +51,7 @@
 
 	value = round(value * BAR_CAP)
 
-	if((owner.hallucination>EMP_GUI_DISRUPT) && prob(owner.hallucination*2))
+	if((owner.emp_damage>EMP_GUI_DISRUPT) && prob(owner.emp_damage*2))
 		if(prob(10))
 			value = -1
 		else
@@ -63,7 +63,7 @@
 		default_hardpoint_background.pixel_x = 34
 	overlays |= default_hardpoint_background
 
-	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.hallucination>EMP_GUI_DISRUPT) && prob(owner.hallucination)))
+	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_GUI_DISRUPT) && prob(owner.emp_damage)))
 		value = -1
 		maptext = null
 	else

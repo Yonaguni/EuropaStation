@@ -62,8 +62,14 @@
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 		handle_shock()
-
+		handle_insanity()
 		handle_pain()
+
+		if(subdual > 100)
+			src << "<span class='warning'>[species.subdual_message_self]</span>"
+			src.visible_message("<B>[src]</B> [species.subdual_message].")
+			Paralyse(10)
+			setSubdual(99)
 
 		if(!client)
 			species.handle_npc(src)
@@ -636,33 +642,11 @@
 		if((getOxyLoss() > 50) || (health <= config.health_threshold_crit))
 			Paralyse(3)
 
-		if(hallucination)
-			if(hallucination >= 20)
-				if(prob(3))
-					fake_attack(src)
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
-				if(client && prob(5))
-					client.dir = pick(2,4,8)
-					spawn(rand(20,50))
-						client.dir = 1
-
-			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
-
-			if(halloss > 100)
-				src << "<span class='warning'>[species.halloss_message_self]</span>"
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
-				Paralyse(10)
-				setHalLoss(99)
-
 		if(paralysis || sleeping)
 			blinded = 1
 			stat = UNCONSCIOUS
 			animate_tail_reset()
-			adjustHalLoss(-3)
+			adjustSubdual(-3)
 
 		if(paralysis)
 			AdjustParalysis(-1)
@@ -674,9 +658,9 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
-			if( prob(2) && health && !hal_crit )
-				spawn(0)
-					emote("snore")
+			if(prob(2) && health)
+				custom_emote("snore")
+
 		//CONSCIOUS
 		else
 			stat = CONSCIOUS
@@ -703,11 +687,11 @@
 		if(resting)
 			dizziness = max(0, dizziness - 15)
 			jitteriness = max(0, jitteriness - 15)
-			adjustHalLoss(-3)
+			adjustSubdual(-3)
 		else
 			dizziness = max(0, dizziness - 3)
 			jitteriness = max(0, jitteriness - 3)
-			adjustHalLoss(-1)
+			adjustSubdual(-1)
 
 		//Other
 		handle_statuses()
@@ -788,37 +772,43 @@
 			if (analgesic > 100)
 				healths.icon_state = "health_numb"
 			else
-				switch(hal_screwyhud)
-					if(1)	healths.icon_state = "health6"
-					if(2)	healths.icon_state = "health7"
-					else
-						//switch(health - halloss)
-						switch(100 - (!can_feel_pain() ? 0 : traumatic_shock))
-							if(100 to INFINITY)		healths.icon_state = "health0"
-							if(80 to 100)			healths.icon_state = "health1"
-							if(60 to 80)			healths.icon_state = "health2"
-							if(40 to 60)			healths.icon_state = "health3"
-							if(20 to 40)			healths.icon_state = "health4"
-							if(0 to 20)				healths.icon_state = "health5"
-							else					healths.icon_state = "health6"
+				switch(100 - (!can_feel_pain() ? 0 : traumatic_shock))
+					if(100 to INFINITY)		healths.icon_state = "health0"
+					if(80 to 100)			healths.icon_state = "health1"
+					if(60 to 80)			healths.icon_state = "health2"
+					if(40 to 60)			healths.icon_state = "health3"
+					if(20 to 40)			healths.icon_state = "health4"
+					if(0 to 20)				healths.icon_state = "health5"
+					else					healths.icon_state = "health6"
 
-		//TODO THIRST.
 		if(nutrition_icon)
 			switch(nutrition)
-				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
-				if(350 to 450)					nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)					nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)					nutrition_icon.icon_state = "nutrition3"
-				else							nutrition_icon.icon_state = "nutrition4"
+				if(450 to INFINITY)				nutrition_icon.icon_state = "food0"
+				if(350 to 450)					nutrition_icon.icon_state = "blank"
+				if(250 to 350)					nutrition_icon.icon_state = "food1"
+				if(150 to 250)					nutrition_icon.icon_state = "food2"
+				if(50  to 150)					nutrition_icon.icon_state = "food3"
+				if(25   to  50)					nutrition_icon.icon_state = "food4"
+				else							nutrition_icon.icon_state = "food5"
+
+		if(hydration_icon)
+			switch(hydration)
+				if(450 to INFINITY)				nutrition_icon.icon_state = "thirst0"
+				if(350 to 450)					nutrition_icon.icon_state = "blank"
+				if(250 to 350)					nutrition_icon.icon_state = "thirst1"
+				if(150 to 250)					nutrition_icon.icon_state = "thirst2"
+				if(50  to 150)					nutrition_icon.icon_state = "thirst3"
+				if(25   to  50)					nutrition_icon.icon_state = "thirst4"
+				else							nutrition_icon.icon_state = "thirst5"
 
 		if(pressure)
 			pressure.icon_state = "pressure[pressure_alert]"
 
 		if(toxin)
-			if(hal_screwyhud == 4 || phoron_alert)	toxin.icon_state = "tox1"
+			if(phoron_alert)						toxin.icon_state = "tox1"
 			else									toxin.icon_state = "tox0"
 		if(oxygen)
-			if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"
+			if(oxygen_alert)						oxygen.icon_state = "oxy1"
 			else									oxygen.icon_state = "oxy0"
 		if(fire)
 			if(fire_alert)							fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.

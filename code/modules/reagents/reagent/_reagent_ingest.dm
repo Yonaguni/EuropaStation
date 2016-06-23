@@ -28,7 +28,9 @@
 		M.druggy = max(M.druggy, neurotoxin)
 
 	if(hallucinogen)
-		M.hallucination = max(M.hallucination, hallucinogen)
+		var/mob/living/human/H = M
+		if(istype(H))
+			H.lose_sanity(hallucinogen)
 
 	affect_blood(M, alien, removed * 0.5)
 	return

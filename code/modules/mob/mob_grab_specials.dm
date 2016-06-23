@@ -89,7 +89,7 @@
 	var/armor = target.run_armor_check(target, "melee")
 	if(armor < 2)
 		target << "<span class='danger'>You feel extreme pain!</span>"
-		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
+		affecting.adjustSubdual(Clamp(0, 60-affecting.subdual, 30)) //up to 60 subdual
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/human/target, mob/living/human/attacker)
 	if(!istype(attacker))

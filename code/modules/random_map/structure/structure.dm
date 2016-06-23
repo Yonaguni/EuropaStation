@@ -42,6 +42,7 @@
 
 /datum/random_map/structure
 	descriptor = "structure"
+	floor_type = /turf/simulated/floor/tiled
 
 	// Various behavioral stuff.
 	var/skip_room_prob = 35

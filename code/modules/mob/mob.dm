@@ -25,6 +25,7 @@
 	bodytemp = null
 	healths = null
 	throw_icon = null
+	hydration_icon = null
 	nutrition_icon = null
 	pressure = null
 	damageoverlay = null
@@ -527,7 +528,7 @@
 /mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
+		if(H.health - H.subdual <= config.health_threshold_softcrit)
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if(e && H.lying)

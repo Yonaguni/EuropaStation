@@ -22,21 +22,21 @@
 			adjustOxyLoss(damage/(blocked+1))
 		if(CLONE)
 			adjustCloneLoss(damage/(blocked+1))
-		if(HALLOSS)
-			adjustHalLoss(damage/(blocked+1))
+		if(SUBDUAL)
+			adjustSubdual(damage/(blocked+1))
 	flash_weak_pain()
 	updatehealth()
 	return 1
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
+/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/subdual = 0, var/def_zone = null, var/blocked = 0)
 	if(blocked >= 2)	return 0
 	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
 	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
 	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
 	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
 	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
-	if(halloss) apply_damage(halloss, HALLOSS, def_zone, blocked)
+	if(subdual) apply_damage(subdual, subdual, def_zone, blocked)
 	return 1
 
 
@@ -51,7 +51,7 @@
 		if(PARALYZE)
 			Paralyse(effect/(blocked+1))
 		if(AGONY)
-			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
+			subdual += effect // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
 			var/rad_protection = check_protection ? getarmor(null, "rad")/100 : 0
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor

@@ -74,7 +74,7 @@
 	if(!body.cell || (body.cell.charge <= 0))
 		return
 
-	if(!body.diagnostics || !body.diagnostics.is_functional() || ((hallucination>EMP_GUI_DISRUPT) && prob(hallucination*2)))
+	if(!body.diagnostics || !body.diagnostics.is_functional() || ((emp_damage>EMP_GUI_DISRUPT) && prob(emp_damage*2)))
 		if(!mecha_damage_overlay_cache["critfail"])
 			mecha_damage_overlay_cache["critfail"] = image(icon='icons/mecha/mecha_hud.dmi',icon_state="dam_error")
 		hud_health.overlays |= mecha_damage_overlay_cache["critfail"]
@@ -85,7 +85,7 @@
 		var/state = 0
 		var/obj/item/mech_component/MC = part_to_state[part]
 		if(MC)
-			if((hallucination>EMP_GUI_DISRUPT) && prob(hallucination*3))
+			if((emp_damage>EMP_GUI_DISRUPT) && prob(emp_damage*3))
 				state = rand(0,4)
 			else
 				state = MC.damage_state

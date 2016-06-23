@@ -133,7 +133,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 		if(istype(src,/mob/living/))
 			var/mob/living/M = src
-			if (M.hallucination)
+			var/mob/living/human/H = M
+			if (istype(H) && H.snapped)
 				S.environment = PSYCHOTIC
 			else if (M.druggy)
 				S.environment = DRUGGED

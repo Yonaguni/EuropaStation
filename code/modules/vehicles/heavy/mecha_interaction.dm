@@ -44,7 +44,7 @@
 		return
 
 	// You may attack the target with your MECH FIST if you're malfunctioning.
-	if(!((hallucination>EMP_ATTACK_DISRUPT) && prob(hallucination*2)))
+	if(!((emp_damage>EMP_ATTACK_DISRUPT) && prob(emp_damage*2)))
 		if(selected_system)
 			if(selected_system == A)
 				selected_system.attack_self(user)
@@ -65,7 +65,7 @@
 				temp_system = selected_system
 
 			// Slip up and attack yourself maybe.
-			if(hallucination>EMP_MOVE_DISRUPT && prob(10))
+			if(emp_damage>EMP_MOVE_DISRUPT && prob(10))
 				A = src
 				adj = 1
 
@@ -205,8 +205,8 @@
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
 		return
 
-	if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
-		direction = pick(cardinal)
+	//if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
+	//	direction = pick(cardinal)
 
 	if(dir == direction)
 		var/turf/target_loc = get_step(src, direction)
