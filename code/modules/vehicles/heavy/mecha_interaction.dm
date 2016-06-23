@@ -44,8 +44,7 @@
 		return
 
 	// You may attack the target with your MECH FIST if you're malfunctioning.
-	/*
-	if(!((hallucination>EMP_ATTACK_DISRUPT) && prob(hallucination*2)))
+	if(!((emp_damage>EMP_ATTACK_DISRUPT) && prob(emp_damage*2)))
 		if(selected_system)
 			if(selected_system == A)
 				selected_system.attack_self(user)
@@ -66,7 +65,7 @@
 				temp_system = selected_system
 
 			// Slip up and attack yourself maybe.
-			if(hallucination>EMP_MOVE_DISRUPT && prob(10))
+			if(emp_damage>EMP_MOVE_DISRUPT && prob(10))
 				A = src
 				adj = 1
 
@@ -78,7 +77,6 @@
 			if(system_moved)
 				temp_system.forceMove(selected_system)
 			return
-	*/
 
 	if(A == src)
 		setClickCooldown(5)

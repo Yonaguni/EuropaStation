@@ -35,6 +35,13 @@
 /mob/living/human/proc/handle_insanity()
 
 	if(snapped)
+
+		// Spin the view around a bit.
+		if(client && prob(5))
+			client.dir = pick(2,4,8)
+			spawn(rand(20,50))
+				client.dir = 1
+
 		insanity = 100
 		return
 

@@ -42,7 +42,6 @@
 
 /datum/reagent/antitoxin/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.drowsyness = max(0, M.drowsyness - 6 * removed)
-	//M.hallucination = max(0, M.hallucination - 9 * removed)
 	M.adjustToxLoss(-4 * removed)
 	..()
 
@@ -111,7 +110,6 @@
 /datum/reagent/morphine/overdose(var/mob/living/human/M, var/alien)
 	..()
 	M.druggy = max(M.druggy, 10)
-	//M.hallucination = max(M.hallucination, 3)
 
 /datum/reagent/nicotine
 	name = "Nicotine"

@@ -10,6 +10,8 @@
 	a_intent = I_HURT
 	mob_size = MOB_LARGE
 
+	var/emp_damage = 0
+
 	// Used to offset a non-32x32 icon appropriately.
 	var/offset_x = -8
 	var/offset_y = 0
