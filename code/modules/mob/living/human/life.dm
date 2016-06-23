@@ -781,14 +781,21 @@
 					if(0 to 20)				healths.icon_state = "health5"
 					else					healths.icon_state = "health6"
 
-		//TODO THIRST.
 		if(nutrition_icon)
 			switch(nutrition)
 				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
+				if(250 to 350)					nutrition_icon.icon_state = "blank"
 				if(350 to 450)					nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)					nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)					nutrition_icon.icon_state = "nutrition3"
-				else							nutrition_icon.icon_state = "nutrition4"
+				if(150 to 250)					nutrition_icon.icon_state = "nutrition2"
+				else							nutrition_icon.icon_state = "nutrition3"
+
+		if(hydration_icon)
+			switch(hydration)
+				if(450 to INFINITY)				hydration_icon.icon_state = "thirst0"
+				if(250 to 350)					hydration_icon.icon_state = "blank"
+				if(350 to 450)					hydration_icon.icon_state = "thirst1"
+				if(150 to 250)					hydration_icon.icon_state = "thirst2"
+				else							hydration_icon.icon_state = "thirst3"
 
 		if(pressure)
 			pressure.icon_state = "pressure[pressure_alert]"

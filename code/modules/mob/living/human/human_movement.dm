@@ -19,10 +19,10 @@
 	if(can_feel_pain())
 		if(subdual >= 10) tally += (subdual / 10) //subdual shouldn't slow you down if you can't even feel it
 
-	//TODO thirst.
-
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
-	if (hungry >= 70) tally += hungry/50
+	var/hungry = (500 - nutrition)/5
+	if (hungry >= 70) tally += hungry/100
+	var/thirsty = (500 - hydration)/5
+	if (thirsty >= 70) tally += thirsty/100
 
 	if(wear_suit)
 		tally += wear_suit.slowdown

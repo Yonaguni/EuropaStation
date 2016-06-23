@@ -25,6 +25,7 @@
 	bodytemp = null
 	healths = null
 	throw_icon = null
+	hydration_icon = null
 	nutrition_icon = null
 	pressure = null
 	damageoverlay = null
