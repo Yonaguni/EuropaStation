@@ -370,3 +370,25 @@
 	item_state = "black_hoodie"
 	icon_open = "black_hoodie_open"
 	icon_closed = "black_hoodie"
+
+/obj/item/clothing/suit/letter
+	name = "red letter jacket"
+	desc = "Sports!"
+	icon_state = "lettermen_red"
+	item_state = "lettermen_red"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/letter/blue
+	name = "blue letter jacket"
+	icon_state = "lettermen_blue"
+	item_state = "lettermen_blue"
+
+/obj/item/clothing/suit/letter/subversive
+	name = "subversive letter jacket"
+	icon_state = "lettermen_syndi"
+	item_state = "lettermen_syndi"
+
+/obj/item/clothing/suit/letter/brown
+	name = "brown letter jacket"
+	icon_state = "lettermen_brown"
+	item_state = "lettermen_brown"
