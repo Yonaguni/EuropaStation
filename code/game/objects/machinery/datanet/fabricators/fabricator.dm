@@ -1,4 +1,4 @@
-/obj/machinery/datanet/fabricator
+/obj/machinery/fabricator
 	name = "tool fabricator"
 	desc = "It produces simple tools."
 	icon = 'icons/obj/machines/fabricators.dmi'
@@ -35,7 +35,7 @@
 	var/list/display_materials = list("steel", "glass", "plastic")
 	var/list/display_reagents = list()
 
-/obj/machinery/datanet/fabricator/New()
+/obj/machinery/fabricator/New()
 
 	..()
 	wires = new(src)
@@ -50,12 +50,12 @@
 	RefreshParts()
 	output_dir = dir
 
-/obj/machinery/datanet/fabricator/Destroy()
+/obj/machinery/fabricator/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/datanet/fabricator/proc/update_recipe_list()
+/obj/machinery/fabricator/proc/update_recipe_list()
 	if(!fabricator_recipes)
 		populate_fabricator_recipes()
 	var/datum/fabricator_design_list/FDL = fabricator_recipes[fabricator_type]
@@ -65,7 +65,7 @@
 		machine_recipes = list()
 
 // TODO: BETTER DAMN INTERFACE
-/obj/machinery/datanet/fabricator/interact(mob/user as mob)
+/obj/machinery/fabricator/interact(mob/user as mob)
 
 	update_recipe_list()
 
@@ -196,7 +196,7 @@
 	user << browse(dat, "window=[fabricator_type]")
 	onclose(user, "autolathe")
 
-/obj/machinery/datanet/fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
 		user << "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>"
 		return
@@ -209,12 +209,12 @@
 		return
 	return
 
-/obj/machinery/datanet/fabricator/examine()
+/obj/machinery/fabricator/examine()
 	..()
 	if(Adjacent(usr) && feed_network)
 		usr << "It is connected to [feed_network.name]."
 
-/obj/machinery/datanet/fabricator/Topic(href, href_list)
+/obj/machinery/fabricator/Topic(href, href_list)
 
 	if(..())
 		return
@@ -269,7 +269,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/datanet/fabricator/proc/check_queue()
+/obj/machinery/fabricator/proc/check_queue()
 	if(busy || build_queue.len == 0)
 		return
 	var/datum/fabricator_queue_entry/build_item = build_queue[1]
@@ -277,7 +277,7 @@
 	build_item(build_item.design, build_item.multiplier)
 	del(build_item)
 
-/obj/machinery/datanet/fabricator/proc/build_item(var/decl/fabricator_design/making, var/multiplier = 1, var/mob/user)
+/obj/machinery/fabricator/proc/build_item(var/decl/fabricator_design/making, var/multiplier = 1, var/mob/user)
 
 	//Exploit detection, not sure if necessary after rewrite.
 	if(!making || multiplier < 0 || multiplier > 100)
@@ -335,7 +335,7 @@
 	check_queue()
 	updateUsrDialog()
 
-/obj/machinery/datanet/fabricator/update_icon()
+/obj/machinery/fabricator/update_icon()
 	if(!panel_image)
 		panel_image = image(icon, "[initial(icon_state)]_panel")
 		panel_image.layer = layer+0.1
@@ -345,7 +345,7 @@
 		overlays -= panel_image
 
 //Updates overall lathe storage size.
-/obj/machinery/datanet/fabricator/RefreshParts()
+/obj/machinery/fabricator/RefreshParts()
 	..()
 	var/mb_rating = 0
 	var/man_rating = 0

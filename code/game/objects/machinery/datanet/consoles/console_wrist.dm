@@ -7,7 +7,7 @@
 	icon_state = "wrist_computer"
 	item_state = null
 
-	var/obj/machinery/datanet/console/embedded_terminal
+	var/obj/machinery/console/embedded_terminal
 	var/loaded_id
 
 /obj/item/device/wrist_computer/New()
@@ -23,7 +23,7 @@
 	return ..()
 
 /obj/item/device/wrist_computer/MouseDrop(var/atom/over)
-	var/obj/machinery/datanet/E = over
+	var/obj/machinery/E = over
 	var/mob/living/human/H = usr
 	if(istype(H) && H.wear_id == src)
 		if(istype(E))

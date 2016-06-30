@@ -29,7 +29,7 @@
 		/obj/machinery/atmospherics/unary/cryo_cell,
 		/obj/item/weapon/grenade/chem_grenade,
 		/obj/item/weapon/storage/secure/safe,
-		/obj/machinery/iv_drip,
+		/obj/structure/iv_drip,
 		/obj/machinery/disposal,
 		/obj/machinery/sleeper,
 		/obj/machinery/constructable_frame

@@ -1,14 +1,23 @@
-/obj/machinery/iv_drip
+/obj/structure/iv_drip
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
 	anchored = 0
 	density = 1
 
-/obj/machinery/iv_drip/var/mob/living/human/attached = null
-/obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
-/obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
+/obj/structure/iv_drip/var/mob/living/human/attached = null
+/obj/structure/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
+/obj/structure/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
 
-/obj/machinery/iv_drip/update_icon()
+
+/obj/structure/iv_drip/New()
+	..()
+	processing_objects += src
+
+/obj/structure/iv_drip/Destroy()
+	processing_objects -= src
+	return ..()
+
+/obj/structure/iv_drip/update_icon()
 	if(src.attached)
 		icon_state = "hooked"
 	else
@@ -34,7 +43,7 @@
 			filling.icon += reagents.get_color()
 			overlays += filling
 
-/obj/machinery/iv_drip/MouseDrop(over_object, src_location, over_location)
+/obj/structure/iv_drip/MouseDrop(over_object, src_location, over_location)
 	..()
 
 	if(attached)
@@ -49,7 +58,7 @@
 		src.update_icon()
 
 
-/obj/machinery/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/reagent_containers))
 		if(!isnull(src.beaker))
 			user << "There is already a reagent container loaded!"
@@ -65,7 +74,7 @@
 		return ..()
 
 
-/obj/machinery/iv_drip/process()
+/obj/structure/iv_drip/process()
 	set background = 1
 
 	if(src.attached)
@@ -121,7 +130,7 @@
 				beaker.reagents.handle_reactions()
 				update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user as mob)
+/obj/structure/iv_drip/attack_hand(mob/user as mob)
 	if(src.beaker)
 		src.beaker.loc = get_turf(src)
 		src.beaker = null
@@ -130,7 +139,7 @@
 		return ..()
 
 
-/obj/machinery/iv_drip/verb/toggle_mode()
+/obj/structure/iv_drip/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Mode"
 	set src in view(1)
@@ -145,7 +154,7 @@
 	mode = !mode
 	usr << "The IV drip is now [mode ? "injecting" : "taking blood"]."
 
-/obj/machinery/iv_drip/examine(mob/user)
+/obj/structure/iv_drip/examine(mob/user)
 	..(user)
 	if (!(user in view(2)) && user!=src.loc) return
 
@@ -161,7 +170,7 @@
 
 	usr << "<span class='notice'>[attached ? attached : "No one"] is attached.</span>"
 
-/obj/machinery/iv_drip/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/iv_drip/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(height && istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.
 		return 1
 	return ..()

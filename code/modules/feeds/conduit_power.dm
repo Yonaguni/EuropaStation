@@ -6,7 +6,7 @@
 	feed_type = "power"
 	feed_icon = "power"
 	feed_layer = 1
-	network_type = /datum/conduit_network/power
+	network_type = /datum/conduit_network/power_net
 	color = "#FF0000"
 
 	deconstruct_tool = /obj/item/weapon/wirecutters

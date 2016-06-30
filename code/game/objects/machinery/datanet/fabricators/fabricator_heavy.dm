@@ -1,4 +1,4 @@
-/obj/machinery/datanet/fabricator/heavy
+/obj/machinery/fabricator/heavy
 	name = "industrial fabricator"
 	desc = "It produces furniture and large items."
 	icon_state = "h_lathe"

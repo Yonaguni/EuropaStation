@@ -1,4 +1,4 @@
-/obj/machinery/datanet/fabricator/electronics
+/obj/machinery/fabricator/electronics
 	name = "electronics fabricator"
 	desc = "It produces complex electronics using common materials. Efficient!"
 	icon_state = "electronics"

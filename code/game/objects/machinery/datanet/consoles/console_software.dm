@@ -1,9 +1,9 @@
 /datum/console_module
 	var/name = "console software module"
 	var/visible = 1
-	var/obj/machinery/datanet/console/owner
+	var/obj/machinery/console/owner
 
-/datum/console_module/New(var/obj/machinery/datanet/console/new_owner)
+/datum/console_module/New(var/obj/machinery/console/new_owner)
 	if(!istype(new_owner))
 		qdel(src)
 		return
@@ -42,7 +42,7 @@
 	var/dat = ..()
 	if(owner.data_network)
 		if(owner.data_network.connected_machines.len)
-			for(var/obj/machinery/datanet/thing in owner.data_network.connected_machines)
+			for(var/obj/machinery/thing in owner.data_network.connected_machines)
 				dat += "- "
 				if(thing.can_remote_connect)
 					dat += "<a href='?src=\ref[owner];remote_connection=\ref[thing];remote_connection_user=\ref[user]'>\the [thing]</a>"

@@ -1,4 +1,4 @@
-/obj/machinery/datanet/mass_driver
+/obj/machinery/mass_driver
 	name = "mass driver"
 	desc = "A powerful rail driver that fires things at great speed."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -11,13 +11,13 @@
 	console_interface_only = 1
 	var/firing = 0
 
-/obj/machinery/datanet/mass_driver/interact()
+/obj/machinery/mass_driver/interact()
 	drive()
 
-/obj/machinery/datanet/mass_driver/pulsed()
+/obj/machinery/mass_driver/pulsed()
 	drive()
 
-/obj/machinery/datanet/mass_driver/proc/drive(amount)
+/obj/machinery/mass_driver/proc/drive(amount)
 	if(firing)
 		return
 	firing = 1
