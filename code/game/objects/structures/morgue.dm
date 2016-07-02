@@ -401,25 +401,3 @@
 				B << text("<span class='warning'>[] stuffs [] into []!</span>", user, O, src)
 			//Foreach goto(99)
 	return
-
-/obj/machinery/button/crematorium
-	name = "crematorium igniter"
-	desc = "Burn baby burn!"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "crema_switch"
-	req_access = list(access_crematorium)
-	id = 1
-
-/obj/machinery/button/crematorium/update_icon()
-	return
-
-/obj/machinery/button/crematorium/attack_hand(mob/user as mob)
-	if(..())
-		return
-	if(src.allowed(user))
-		for (var/obj/structure/crematorium/C in all_structures)
-			if (C.id == id)
-				if (!C.cremating)
-					C.cremate(user)
-	else
-		usr << "<span class='warning'>Access denied.</span>"

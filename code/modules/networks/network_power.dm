@@ -1,2 +1,2 @@
-/datum/conduit_network/power
+/datum/conduit_network/power_net
 	name = "powernet"

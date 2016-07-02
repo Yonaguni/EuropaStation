@@ -49,7 +49,7 @@
 
 /obj/item/weapon/circuitboard/autolathe
 	name = T_BOARD("autolathe")
-	build_path = "/obj/machinery/datanet/fabricator"
+	build_path = "/obj/machinery/fabricator"
 	board_type = "machine"
 	req_components = list(
 							"/obj/item/component/matter_bin" = 3,

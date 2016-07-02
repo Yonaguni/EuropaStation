@@ -1,4 +1,4 @@
-/obj/machinery/datanet/fabricator/glass
+/obj/machinery/fabricator/glass
 	name = "glass extruder"
 	desc = "It produces simple glass items, using a matter feed."
 	icon_state = "protolathe"

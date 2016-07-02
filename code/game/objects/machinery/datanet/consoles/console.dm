@@ -1,6 +1,6 @@
 var/console_count = 0
 
-/obj/machinery/datanet/console
+/obj/machinery/console
 	name = "terminal"
 	desc = "A computer terminal. Very 2100-chic."
 	icon = 'icons/obj/machines/consoles.dmi'
@@ -16,7 +16,7 @@ var/console_count = 0
 		)
 	var/on = 1
 
-/obj/machinery/datanet/console/Destroy()
+/obj/machinery/console/Destroy()
 	for(var/module in installed_software)
 		qdel(installed_software[module])
 	installed_software.Cut()
@@ -24,7 +24,7 @@ var/console_count = 0
 		data_network.connected_consoles -= src
 	return ..()
 
-/obj/machinery/datanet/console/initialize()
+/obj/machinery/console/initialize()
 	..()
 	if(name == "terminal")
 		name = "terminal (#[++console_count])"
@@ -33,10 +33,10 @@ var/console_count = 0
 		installed_software[module.name] = module
 	set_light(2,5,"#006600")
 
-/obj/machinery/datanet/console/attack_hand(var/mob/user)
+/obj/machinery/console/attack_hand(var/mob/user)
 	interact(user)
 
-/obj/machinery/datanet/console/interact(var/mob/user)
+/obj/machinery/console/interact(var/mob/user)
 
 	if(!data_network)
 		find_data_network()
@@ -66,7 +66,7 @@ var/console_count = 0
 	user << browse(dat, "window=term_[name]")
 	onclose(user, "window=term_[name]")
 
-/obj/machinery/datanet/console/Topic(href, href_list)
+/obj/machinery/console/Topic(href, href_list)
 
 	if(..())
 		return
@@ -76,12 +76,12 @@ var/console_count = 0
 
 	var/mob/user = locate(href_list["remote_connection_user"])
 	if(href_list["remote_connection"])
-		var/obj/machinery/datanet/E = locate(href_list["remote_connection"])
+		var/obj/machinery/E = locate(href_list["remote_connection"])
 		if(istype(E) && istype(user))
 			E.interact(user)
 
 	if(href_list["remote_pulse"])
-		var/obj/machinery/datanet/E = locate(href_list["remote_pulse"])
+		var/obj/machinery/E = locate(href_list["remote_pulse"])
 		if(istype(E) && istype(user))
 			E.pulsed(user)
 

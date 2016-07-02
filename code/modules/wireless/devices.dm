@@ -97,18 +97,3 @@
 	var/obj/structure/crematorium/C = parent
 	if(istype(C))
 		C.cremate(user)
-
-//-------------------------------
-// Holosign
-// Turns the parent /holosign on/off.
-//-------------------------------
-/datum/wifi/receiver/button/holosign/activate(mob/living/user)
-	..()
-	var/obj/machinery/holosign/H = parent
-	if(istype(H) && !H.lit)
-		H.toggle()
-
-/datum/wifi/receiver/button/holosign/deactivate(mob/living/user)
-	var/obj/machinery/holosign/H = parent
-	if(istype(H) && H.lit)
-		H.toggle()
