@@ -22,18 +22,18 @@ var/global/datum/controller/process/air_system/air_master
 
 	for(var/turf/simulated/T in active_turfs)
 		T.process_cell()
-		SCHECK
+		scheck()
 
 	for(var/turf/T in high_pressure_delta)
 		T.high_pressure_movements()
 		T.air_pressure_difference = 0
 	high_pressure_delta.Cut()
 
-	SCHECK
+	scheck()
 
 	for(var/obj/effect/hotspot/H in hotspots)
 		H.process()
-		SCHECK
+		scheck()
 
 	return 1
 

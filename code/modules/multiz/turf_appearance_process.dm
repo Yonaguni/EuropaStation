@@ -12,7 +12,6 @@ var/list/open_turf_list = list()
 /datum/controller/process/open_space/setup()
 	name = "openspace"
 	schedule_interval = 5
-	start_delay = 10
 
 /datum/controller/process/open_space/started()
 	..()

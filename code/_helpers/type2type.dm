@@ -1,11 +1,5 @@
 /*
  * Holds procs designed to change one type of value, into another.
- * Contains:
- *			hex2num & num2hex
- *			file2list
- *			angle2dir
- *			angle2text
- *			worldtime2text
  */
 
 // Returns an integer given a hexadecimal number string as input.

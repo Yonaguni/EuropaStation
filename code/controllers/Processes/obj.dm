@@ -1,7 +1,6 @@
 /datum/controller/process/obj/setup()
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
-	start_delay = 8
 
 /datum/controller/process/obj/started()
 	..()
@@ -16,7 +15,7 @@
 				O:process()
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
+			scheck()
 		else
 			catchBadType(O)
 			processing_objects -= O
