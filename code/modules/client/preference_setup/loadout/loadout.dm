@@ -140,13 +140,13 @@ var/list/gear_datums = list()
 				if(istype(G)) total_cost += G.cost
 			if((total_cost+TG.cost) <= MAX_GEAR_COST)
 				pref.gear += TG.display_name
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 	else if(href_list["select_category"])
 		current_tab = href_list["select_category"]
 		return TOPIC_REFRESH
 	else if(href_list["clear_loadout"])
 		pref.gear.Cut()
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 
 /datum/gear

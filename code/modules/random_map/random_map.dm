@@ -2,7 +2,18 @@
 var/global/list/random_maps = list()
 var/global/list/map_count = list()
 
+// If we aren't doing a unit test, add some sleep checks so the lobby will function.
+#ifdef UNIT_TEST
+#define CHECK_SLEEP_MAP
+#else
+#define CHECK_SLEEP_MAP  if(++sleep_ticker>500) { sleep_ticker=0;sleep(world.tick_lag); }
+#endif
+
 /datum/random_map
+
+#ifndef UNIT_TEST
+	var/sleep_ticker = 0
+#endif
 
 	// Strings.
 	var/name                        // Set in New()
@@ -26,10 +37,6 @@ var/global/list/map_count = list()
 
 	// Storage for the final iteration of the map.
 	var/list/map = list()           // Actual map.
-
-	// If set, all sleep(-1) calls will be skipped.
-	// Test to see if rand_seed() can be used reliably.
-	var/priority_process
 
 /datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
 
@@ -59,7 +66,6 @@ var/global/list/map_count = list()
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
 	if(seed)
 		rand_seed(seed)
-		priority_process = 1
 
 	for(var/i = 0;i<max_attempts;i++)
 		if(generate())
@@ -112,6 +118,7 @@ var/global/list/map_count = list()
 				map[current_cell] = WALL_CHAR
 			else
 				map[current_cell] = FLOOR_CHAR
+			CHECK_SLEEP_MAP
 
 /datum/random_map/proc/clear_map()
 	for(var/x = 1 to limit_x)
@@ -147,7 +154,6 @@ var/global/list/map_count = list()
 
 	for(var/x = 1 to limit_x)
 		for(var/y = 1 to limit_y)
-			if(!priority_process) sleep(-1)
 			apply_to_turf(x,y)
 
 /datum/random_map/proc/apply_to_turf(var/x,var/y)
@@ -161,6 +167,7 @@ var/global/list/map_count = list()
 	if(newpath && !T.type == newpath)
 		T.ChangeTurf(newpath)
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+	CHECK_SLEEP_MAP
 	return T
 
 /datum/random_map/proc/get_spawn_dir()

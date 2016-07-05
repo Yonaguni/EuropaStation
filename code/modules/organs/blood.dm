@@ -6,21 +6,6 @@
 /mob/living/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 
 //Initializes blood vessels
-/mob/living/human/proc/make_blood()
-
-	if(vessel)
-		return
-
-	vessel = new/datum/reagents(species.blood_volume)
-	vessel.my_atom = src
-
-	if(!should_have_organ(O_HEART)) //We want the var for safety but we can do without the actual blood.
-		return
-
-	vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume)
-	spawn(1)
-		fixblood()
-
 //Resets blood data
 /mob/living/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)

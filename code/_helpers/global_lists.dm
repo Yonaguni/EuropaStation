@@ -26,6 +26,8 @@ var/global/list/language_keys[0]					// Table of say codes for all languages
 var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
 var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
+var/list/mannequins_
+
 // Posters
 var/global/list/poster_designs = list()
 
@@ -46,7 +48,6 @@ var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3"
 var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
 //Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
-//var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg) // Defined in jobs for the sake of cross-map stuff.
 
 // Music.
 var/global/list/ambient_tracks = list(
@@ -168,14 +169,11 @@ var/global/list/string_slot_flags = list(
 
 	return 1
 
-/* // Uncomment to debug chemical reaction list.
-/client/verb/debug_chemical_list()
+/proc/get_mannequin(var/ckey)
+	if(!mannequins_)
+		mannequins_ = new()
 
-	for (var/reaction in chemical_reactions_list)
-		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
-		if(islist(chemical_reactions_list[reaction]))
-			var/list/L = chemical_reactions_list[reaction]
-			for(var/t in L)
-				. += "    has: [t]\n"
-	world << .
-*/
+	. = mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/human/dummy/mannequin()
+		mannequins_[ckey] = .

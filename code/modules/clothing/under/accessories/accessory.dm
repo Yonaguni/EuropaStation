@@ -110,7 +110,7 @@
 					sound = "anything"
 				else
 					switch(body_part)
-						if(BP_TORSO)
+						if(BP_CHEST)
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
@@ -119,7 +119,7 @@
 								else
 									sound = "healthy heartbeat"
 
-							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
+							var/obj/item/organ/internal/lungs/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)

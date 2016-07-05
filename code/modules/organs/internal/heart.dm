@@ -2,7 +2,7 @@
 	name = "heart"
 	icon_state = "heart-on"
 	organ_tag = O_HEART
-	parent_organ = BP_TORSO
+	parent_organ = BP_CHEST
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
@@ -10,6 +10,7 @@
 	var/efficiency = 1
 
 /obj/item/organ/internal/heart/process()
+
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()

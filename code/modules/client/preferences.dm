@@ -65,8 +65,6 @@ datum/preferences
 
 		//Mob preview
 	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
 
 	//Jobs, uses bitflags
 	var/list/job_preferences = list()
@@ -99,21 +97,25 @@ datum/preferences
 	var/metadata = ""
 
 	var/client/client = null
+	var/client_ckey = null
 
 	var/savefile/loaded_preferences
 	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 
+	var/dress_mob = 1
+
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
-	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+	b_type = RANDOM_BLOOD_TYPE
 
 	gear = list()
 
 	if(istype(C))
 		client = C
+		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			load_preferences()
@@ -171,12 +173,14 @@ datum/preferences
 	else if(href_list["reload"])
 		load_preferences()
 		load_character()
+		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return 1
 	else if(href_list["changeslot"])
 		load_character(text2num(href_list["changeslot"]))
+		sanitize_preferences()
 		close_load_dialog(usr)
 	else
 		return 0
@@ -184,9 +188,11 @@ datum/preferences
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/human/character, safety = 0)
+/datum/preferences/proc/copy_to(var/mob/living/human/character, var/icon_updates = 1)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
+	character.set_species(species)
+
 	if(be_random_name)
 		real_name = random_name(gender,species)
 
@@ -226,10 +232,12 @@ datum/preferences
 	character.g_eyes = g_eyes
 	character.b_eyes = b_eyes
 
+	character.h_style = h_style
 	character.r_hair = r_hair
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
+	character.f_style = f_style
 	character.r_facial = r_facial
 	character.g_facial = g_facial
 	character.b_facial = b_facial
@@ -248,24 +256,40 @@ datum/preferences
 	character.personal_faction = faction
 	character.religion = religion
 
+	// Replace any missing limbs.
+	for(var/name in BP_ALL_LIMBS)
+		var/obj/item/organ/external/O = character.organs_by_name[name]
+		if(!O && organ_data[name] != "amputated")
+			var/list/organ_data = character.species.has_limbs[name]
+			if(!islist(organ_data)) continue
+			var/limb_path = organ_data["path"]
+			O = new limb_path(character)
+
 	// Destroy/cyborgize organs and limbs.
-	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
+	for(var/name in BP_BY_DEPTH)
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(O)
-			if(status == "amputated")
-				O.remove_rejuv()
-			else if(status == "cyborg")
-				if(rlimb_data[name])
-					O.robotize(rlimb_data[name])
-				else
-					O.robotize()
-
+		if(!O)
+			continue
+		O.status = 0
+		O.model = null
+		if(status == "amputated")
+			character.organs_by_name[O.organ_tag] = null
+			character.organs -= O
+			if(O.children) // This might need to become recursive.
+				for(var/obj/item/organ/external/child in O.children)
+					character.organs_by_name[child.organ_tag] = null
+					character.organs -= child
+		else if(status == "cyborg")
+			if(rlimb_data[name])
+				O.robotize(rlimb_data[name])
+			else
+				O.robotize()
 	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
 		var/status = organ_data[name]
 		if(!status)
 			continue
-		var/obj/item/organ/I = character.internal_organs_by_name[name]
+		var/obj/item/organ/internal/I = character.internal_organs_by_name[name]
 		if(I)
 			if(status == "assisted")
 				I.mechassist()
@@ -277,7 +301,14 @@ datum/preferences
 		backbag = 1 //Same as above
 	character.backbag = backbag
 	character.radio_voice = radio_voice
-	character.update_body()
+
+	if(icon_updates)
+		character.force_update_limbs()
+		character.update_mutations(0)
+		character.update_body(0)
+		character.update_hair(0)
+		character.update_icons()
+
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

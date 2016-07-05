@@ -129,7 +129,12 @@
 			pref.job_preferences[jobtitle] = JOB_NEVER
 		else // Step up by one!
 			pref.job_preferences[jobtitle] += 1
-		return TOPIC_REFRESH
+			// There can only be one.
+			if(pref.job_preferences[jobtitle] == JOB_HIGH)
+				for(var/otherjob in (pref.job_preferences - jobtitle))
+					if(pref.job_preferences[otherjob] == JOB_HIGH)
+						pref.job_preferences[otherjob] = JOB_MED
+		return (pref.dress_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	// Toggle the behavior desired when failing to get a job.
 	else if(href_list["job_alternative"])
@@ -147,8 +152,7 @@
 			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.get_player_alt_title(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
 				set_player_alt_title(job, choice)
-				return TOPIC_REFRESH
-
+				return (pref.dress_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	return ..()
 

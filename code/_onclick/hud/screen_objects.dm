@@ -96,7 +96,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/selecting = BP_TORSO
+	var/selecting = BP_CHEST
 
 /obj/screen/zone_sel/Click(location, control,params)
 	var/list/PL = params2list(params)
@@ -136,7 +136,7 @@
 				if(8 to 11)
 					selecting = BP_R_ARM
 				if(12 to 20)
-					selecting = BP_TORSO
+					selecting = BP_CHEST
 				if(21 to 24)
 					selecting = BP_L_ARM
 				else

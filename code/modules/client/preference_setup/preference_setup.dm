@@ -2,6 +2,8 @@
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
 #define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
 /datum/category_group/player_setup_category/general_preferences
 	name = "General"
@@ -124,8 +126,6 @@
 	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
 	// Sanitize all data, then save it
@@ -137,8 +137,6 @@
 /datum/category_group/player_setup_category/proc/load_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_preferences(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_preferences()
 
 /datum/category_group/player_setup_category/proc/save_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -226,13 +224,16 @@
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
 	if(..())
 		return 1
-	var/mob/user = usr
-	if(!user.client)
+
+	var/mob/pref_mob = preference_mob()
+	if(!pref_mob || !pref_mob.client)
 		return 1
 
-	. = OnTopic(href, href_list, user)
-	if(. == TOPIC_REFRESH)
-		user.client.prefs.ShowChoices(user)
+	. = OnTopic(href, href_list, pref_mob)
+	if(. & TOPIC_UPDATE_PREVIEW)
+		pref_mob.client.prefs.preview_icon = null
+	if(. & TOPIC_REFRESH)
+		pref_mob.client.prefs.ShowChoices(pref_mob)
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
 	return 1

@@ -104,7 +104,7 @@
 
  	// Recurse until size is too small to subdivide.
 	if(isize>3)
-		if(!priority_process) sleep(-1)
+		CHECK_SLEEP_MAP
 		iteration++
 		subdivide(iteration, x,       y,       hsize)
 		subdivide(iteration, x+hsize, y,       hsize)

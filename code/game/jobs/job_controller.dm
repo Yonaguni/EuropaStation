@@ -305,8 +305,16 @@ var/global/datum/controller/occupations/job_master
 		return 1
 
 
-	proc/EquipRank(var/mob/living/human/H, var/rank, var/joined_late = 0)
-		if(!H)	return null
+	proc/EquipRank(var/mob/living/human/H, var/rank, var/joined_late = 0, var/preview_only = FALSE, var/list/use_gear)
+
+		if(!H)
+			return
+
+		if(!use_gear)
+			if(H.client && H.client.prefs)
+				use_gear = H.client.prefs.gear
+			else
+				use_gear = list()
 
 		var/datum/job/job = GetJob(rank)
 		var/list/spawn_in_storage = list()
@@ -316,9 +324,9 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(use_gear && use_gear.len)
 
-				for(var/thing in H.client.prefs.gear)
+				for(var/thing in use_gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
 						var/permitted
@@ -333,7 +341,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
+							if(!preview_only) H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))
@@ -342,7 +350,7 @@ var/global/datum/controller/occupations/job_master
 							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
 							else if(H.equip_to_slot_or_del(new G.path(H), G.slot))
-								H << "<span class='notice'>Equipping you with [thing]!</span>"
+								if(!preview_only) H << "<span class='notice'>Equipping you with [thing]!</span>"
 								custom_equip_slots.Add(G.slot)
 							else
 								custom_equip_leftovers.Add(thing)
@@ -352,7 +360,6 @@ var/global/datum/controller/occupations/job_master
 			job.equip_backpack(H)	//backpack first so equip() can put things in it
 			job.equip(H)
 			job.equip_survival(H)
-			job.apply_fingerprints(H)
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
@@ -361,14 +368,19 @@ var/global/datum/controller/occupations/job_master
 					spawn_in_storage += thing
 				else
 					if(H.equip_to_slot_or_del(new G.path(H), G.slot))
-						H << "<span class='notice'>Equipping you with [thing]!</span>"
+						if(!preview_only) H << "<span class='notice'>Equipping you with [thing]!</span>"
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
 		else
-			H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+			if(!preview_only) H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 
 		H.job = rank
+
+		if(preview_only)
+			return
+
+		job.apply_fingerprints(H)
 
 		if(!joined_late)
 			var/obj/S = null

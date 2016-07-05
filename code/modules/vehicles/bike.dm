@@ -190,7 +190,7 @@ var/list/bike_cache = list()
 	else
 		H << "<span class='danger'>\The [src] runs you down!</span>"
 	if(istype(H))
-		var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
+		var/list/parts = list(BP_HEAD, BP_CHEST, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 		for(var/i = 0, i < rand(1,3), i++)
 			H.apply_damage((rand(1,5)), BRUTE, pick(parts))
 

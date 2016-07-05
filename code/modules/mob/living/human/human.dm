@@ -5,34 +5,20 @@
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "body_m_s"
 
-	var/tmp/mapped_species
+	var/mapped_species
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/human/New(var/new_loc, var/new_species = null)
-	if(new_species)
-		mapped_species = new_species
-	..()
-
-/mob/living/human/initialize()
 
 	bloodstr = new/datum/reagents/metabolism(1000, src, CHEM_BLOOD)
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
 
-	if(!species)
-		if(mapped_species)
-			set_species(mapped_species,1)
-		else
-			set_species()
-
-	if(species)
-		real_name = species.get_random_name(gender)
-		name = real_name
-		if(mind)
-			mind.name = real_name
+	if(new_species)
+		mapped_species = new_species
 
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -49,13 +35,34 @@
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
 
 	human_mob_list |= src
-	..()
 
 	if(dna)
 		dna.ready_dna(src)
 		dna.real_name = real_name
 		sync_organ_dna()
-	make_blood()
+
+	. = ..()
+
+/mob/living/human/initialize()
+
+	. = ..()
+
+	if(mapped_species)
+		set_species(mapped_species,1)
+	else
+		set_species()
+	if(species)
+		real_name = species.get_random_name(gender)
+		name = real_name
+		if(mind)
+			mind.name = real_name
+
+	vessel = new/datum/reagents(species.blood_volume)
+	vessel.my_atom = src
+	if(!should_have_organ(O_HEART))
+		return
+	vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume)
+	fixblood()
 
 /mob/living/human/Destroy()
 
@@ -168,7 +175,7 @@
 		switch(temp.organ_tag)
 			if(BP_HEAD)
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if(BP_TORSO)
+			if(BP_CHEST)
 				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
 			else
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
@@ -1070,11 +1077,12 @@
 
 	spawn(0)
 		regenerate_icons()
-		if(vessel.total_volume < species.blood_volume)
-			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
-		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
-		fixblood()
+		if(chemistryProcess && vessel) // If this is a mannequin then this is being called before blood is created.
+			if(vessel.total_volume < species.blood_volume)
+				vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+			else if(vessel.total_volume > species.blood_volume)
+				vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
+			fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
@@ -1159,7 +1167,7 @@
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+			target_zone = pick(BP_CHEST,BP_CHEST,BP_CHEST,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
 		else
 			target_zone = user.zone_sel.selecting
 
@@ -1401,7 +1409,7 @@
 
 	var/obj/item/organ/external/affecting
 	if(organ_check in list(O_HEART, O_LUNGS))
-		affecting = organs_by_name[BP_TORSO]
+		affecting = organs_by_name[BP_CHEST]
 	else if(organ_check in list(O_LIVER, O_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
@@ -1564,7 +1572,7 @@
 				var/d = rand(round(I.force / 4), I.force)
 				if(istype(src, /mob/living/human))
 					var/mob/living/human/H = src
-					var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
 					if (istype(organ))
 						if(organ.take_damage(d, 0))
 							H.UpdateDamageIcon()
