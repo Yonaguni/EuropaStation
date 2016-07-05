@@ -36,6 +36,9 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	if(status_flags & GODMODE)
+		return
+
 	if (transforming)
 		return
 

@@ -89,9 +89,9 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
-	var/gender = "f"
-	if(owner && owner.gender == MALE)
-		gender = "m"
+	var/gender = "m"
+	if(owner && owner.gender == FEMALE)
+		gender = "f"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")

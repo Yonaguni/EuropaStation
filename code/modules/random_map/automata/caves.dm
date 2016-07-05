@@ -25,7 +25,6 @@
 
 	var/ore_count = round(map.len/20)
 	while((ore_count>0) && (ore_turfs.len>0))
-		if(!priority_process) sleep(-1)
 		var/check_cell = pick(ore_turfs)
 		ore_turfs -= check_cell
 		if(prob(75))
@@ -50,4 +49,5 @@
 			else if(map[current_cell] == EMPTY_CHAR)
 				T.make_ore(1)
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+	CHECK_SLEEP_MAP
 	return T

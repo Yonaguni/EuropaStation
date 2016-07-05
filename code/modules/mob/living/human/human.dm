@@ -5,38 +5,23 @@
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "body_m_s"
 
-	var/tmp/mapped_species
+	var/mapped_species
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/human/New(var/new_loc, var/new_species = null)
-	if(new_species)
-		mapped_species = new_species
-	..()
-
-/mob/living/human/initialize()
 
 	bloodstr = new/datum/reagents/metabolism(1000, src, CHEM_BLOOD)
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
 
+	if(new_species)
+		mapped_species = new_species
+
 	if(!dna)
 		dna = new /datum/dna(null)
-
-	if(!species)
-		if(mapped_species)
-			set_species(mapped_species,1)
-		else
-			set_species()
-
-	if(species)
-		real_name = species.get_random_name(gender)
-		name = real_name
-		if(mind)
-			mind.name = real_name
-
 
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
@@ -50,13 +35,34 @@
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
 
 	human_mob_list |= src
-	..()
 
 	if(dna)
 		dna.ready_dna(src)
 		dna.real_name = real_name
 		sync_organ_dna()
-	make_blood()
+
+	. = ..()
+
+/mob/living/human/initialize()
+
+	. = ..()
+
+	if(mapped_species)
+		set_species(mapped_species,1)
+	else
+		set_species()
+	if(species)
+		real_name = species.get_random_name(gender)
+		name = real_name
+		if(mind)
+			mind.name = real_name
+
+	vessel = new/datum/reagents(species.blood_volume)
+	vessel.my_atom = src
+	if(!should_have_organ(O_HEART))
+		return
+	vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume)
+	fixblood()
 
 /mob/living/human/Destroy()
 
@@ -1071,11 +1077,12 @@
 
 	spawn(0)
 		regenerate_icons()
-		if(vessel.total_volume < species.blood_volume)
-			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
-		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
-		fixblood()
+		if(chemistryProcess && vessel) // If this is a mannequin then this is being called before blood is created.
+			if(vessel.total_volume < species.blood_volume)
+				vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+			else if(vessel.total_volume > species.blood_volume)
+				vessel.remove_reagent(REAGENT_ID_BLOOD, vessel.total_volume - species.blood_volume)
+			fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

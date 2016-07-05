@@ -46,7 +46,7 @@
 			var/turf/simulated/T = locate(tx+j, ty+i, origin_z)
 			if(!istype(T) || !T.has_resources)
 				continue
-			if(!priority_process) sleep(-1)
+			CHECK_SLEEP_MAP
 			T.resources = list()
 			T.resources["silicates"] = rand(3,5)
 			T.resources["carbonaceous rock"] = rand(3,5)

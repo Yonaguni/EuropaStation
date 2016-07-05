@@ -10,6 +10,7 @@
 	var/efficiency = 1
 
 /obj/item/organ/internal/heart/process()
+
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
