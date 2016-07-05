@@ -2,6 +2,8 @@
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
 #define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
 /datum/category_group/player_setup_category/general_preferences
 	name = "General"
@@ -226,13 +228,16 @@
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
 	if(..())
 		return 1
-	var/mob/user = usr
-	if(!user.client)
+
+	var/mob/pref_mob = preference_mob()
+	if(!pref_mob || !pref_mob.client)
 		return 1
 
-	. = OnTopic(href, href_list, user)
-	if(. == TOPIC_REFRESH)
-		user.client.prefs.ShowChoices(user)
+	. = OnTopic(href, href_list, pref_mob)
+	if(. & TOPIC_UPDATE_PREVIEW)
+		pref_mob.client.prefs.preview_icon = null
+	if(. & TOPIC_REFRESH)
+		pref_mob.client.prefs.ShowChoices(pref_mob)
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
 	return 1

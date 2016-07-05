@@ -1181,7 +1181,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/chest
 	name = "upper body"
-	organ_tag = BP_TORSO
+	organ_tag = BP_CHEST
 	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
@@ -1212,7 +1212,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	w_class = 5
 	body_part = LOWER_TORSO
 	vital = 1
-	parent_organ = BP_TORSO
+	parent_organ = BP_CHEST
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
@@ -1227,7 +1227,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	min_broken_damage = 30
 	w_class = 3
 	body_part = ARM_LEFT
-	parent_organ = BP_TORSO
+	parent_organ = BP_CHEST
 	joint = "left elbow"
 	amputation_point = "left shoulder"
 	can_grasp = 1
@@ -1328,7 +1328,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	w_class = 3
 	body_part = HEAD
 	vital = 1
-	parent_organ = BP_TORSO
+	parent_organ = BP_CHEST
 	joint = "jaw"
 	amputation_point = "neck"
 	gendered_icon = 1

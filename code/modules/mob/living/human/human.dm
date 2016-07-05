@@ -22,6 +22,9 @@
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
 
+	if(!dna)
+		dna = new /datum/dna(null)
+
 	if(!species)
 		if(mapped_species)
 			set_species(mapped_species,1)
@@ -34,8 +37,6 @@
 		if(mind)
 			mind.name = real_name
 
-	if(!dna)
-		dna = new /datum/dna(null)
 
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
@@ -168,7 +169,7 @@
 		switch(temp.organ_tag)
 			if(BP_HEAD)
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if(BP_TORSO)
+			if(BP_CHEST)
 				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
 			else
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
@@ -1159,7 +1160,7 @@
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+			target_zone = pick(BP_CHEST,BP_CHEST,BP_CHEST,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
 		else
 			target_zone = user.zone_sel.selecting
 
@@ -1401,7 +1402,7 @@
 
 	var/obj/item/organ/external/affecting
 	if(organ_check in list(O_HEART, O_LUNGS))
-		affecting = organs_by_name[BP_TORSO]
+		affecting = organs_by_name[BP_CHEST]
 	else if(organ_check in list(O_LIVER, O_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
@@ -1564,7 +1565,7 @@
 				var/d = rand(round(I.force / 4), I.force)
 				if(istype(src, /mob/living/human))
 					var/mob/living/human/H = src
-					var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
 					if (istype(organ))
 						if(organ.take_damage(d, 0))
 							H.UpdateDamageIcon()

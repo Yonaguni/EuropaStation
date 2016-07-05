@@ -65,7 +65,7 @@ proc/getsensorlevel(A)
 */
 
 /proc/check_zone(zone)
-	if(!zone)	return BP_TORSO
+	if(!zone)	return BP_CHEST
 	switch(zone)
 		if(O_EYES)
 			zone = BP_HEAD
@@ -86,7 +86,7 @@ proc/getsensorlevel(A)
 	while (ran_zone == zone)
 		ran_zone = pick (
 			organ_rel_size[BP_HEAD];   BP_HEAD,
-			organ_rel_size[BP_TORSO];  BP_TORSO,
+			organ_rel_size[BP_CHEST];  BP_CHEST,
 			organ_rel_size[BP_GROIN];  BP_GROIN,
 			organ_rel_size[BP_L_ARM];  BP_L_ARM,
 			organ_rel_size[BP_R_ARM];  BP_R_ARM,

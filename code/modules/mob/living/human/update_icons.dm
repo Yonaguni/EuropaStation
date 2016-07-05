@@ -284,7 +284,7 @@ var/global/list/damage_icon_parts = list()
 		base_icon = human_icon_cache[icon_key]
 	else
 		//BEGIN CACHED ICON GENERATION.
-		var/obj/item/organ/external/chest = get_organ(BP_TORSO)
+		var/obj/item/organ/external/chest = get_organ(BP_CHEST)
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)

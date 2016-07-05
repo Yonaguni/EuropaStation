@@ -260,7 +260,7 @@ meteor_act
 					if(glasses && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
-				if(BP_TORSO)
+				if(BP_CHEST)
 					bloody_body(src)
 
 	return 1
@@ -307,7 +307,7 @@ meteor_act
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_sel.selecting)
 		else
-			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest
+			zone = ran_zone(BP_CHEST,75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15

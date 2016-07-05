@@ -4,7 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "scell"
 	organ_tag = "cell"
-	parent_organ = BP_TORSO
+	parent_organ = BP_CHEST
 	vital = 1
 
 /obj/item/organ/internal/cell/New()

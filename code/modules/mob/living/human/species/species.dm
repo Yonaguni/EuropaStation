@@ -141,7 +141,7 @@
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
 	var/list/has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
 		BP_HEAD =   list("path" = /obj/item/organ/external/head),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),

@@ -33,13 +33,13 @@
 		var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", get_key_by_value(get_undies(),pref.underwear)) as null|anything in underwear_options
 		if(!isnull(new_underwear) && CanUseTopic(user))
 			pref.underwear = underwear_options[new_underwear]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_backpack"])
 		var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference", backbaglist[pref.backbag]) as null|anything in backbaglist
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = backbaglist.Find(new_backbag)
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 
 	return ..()

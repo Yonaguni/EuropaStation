@@ -15,8 +15,7 @@
 
 #define isliving(A) istype(A, /mob/living)
 
-#define ismouse(A) 0
-//istype(A, /mob/living/animal/mouse)
+#define ismouse(A) istype(A, /mob/living/animal/mouse)
 
 #define isborer(A) 0
 
@@ -29,3 +28,5 @@
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
+
+#define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")

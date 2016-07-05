@@ -7,7 +7,7 @@ var/list/organ_cache = list()
 
 	// Strings.
 	var/organ_tag = "organ"           // Unique identifier.
-	var/parent_organ = BP_TORSO       // Organ holding this object.
+	var/parent_organ = BP_CHEST       // Organ holding this object.
 
 	// Status tracking.
 	var/status = 0                    // Various status flags (such as robotic)

@@ -37,7 +37,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/human/proc/has_organ_for_slot(slot)
 	switch(slot)
 		if(slot_back)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_wear_mask)
 			return has_organ(BP_HEAD)
 		if(slot_handcuffed)
@@ -49,7 +49,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_hand)
 			return has_organ(BP_R_HAND)
 		if(slot_belt)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_wear_id)
 			// the only relevant check for this is the uniform check
 			return 1
@@ -66,15 +66,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_shoes)
 			return has_organ(BP_L_FOOT) || has_organ(BP_R_FOOT)
 		if(slot_wear_suit)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_w_uniform)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_l_store)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_r_store)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_s_store)
-			return has_organ(BP_TORSO)
+			return has_organ(BP_CHEST)
 		if(slot_in_backpack)
 			return 1
 		if(slot_tie)
@@ -355,29 +355,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_ear)      return r_ear
 	return ..()
 
-/mob/living/human/get_equipped_items(var/include_carried = 0)
-	var/list/items = new/list()
-
-	if(back) items += back
-	if(belt) items += belt
-	if(l_ear) items += l_ear
-	if(r_ear) items += r_ear
-	if(glasses) items += glasses
-	if(gloves) items += gloves
-	if(head) items += head
-	if(shoes) items += shoes
-	if(wear_id) items += wear_id
-	if(wear_mask) items += wear_mask
-	if(wear_suit) items += wear_suit
-	if(w_uniform) items += w_uniform
-
+/mob/living/human/get_equipped_items(var/include_carried = FALSE)
+	. = ..()
+	if(belt) . += belt
+	if(l_ear) . += l_ear
+	if(r_ear) . += r_ear
+	if(glasses) . += glasses
+	if(gloves) . += gloves
+	if(head) . += head
+	if(shoes) . += shoes
+	if(wear_id) . += wear_id
+	if(wear_suit) . += wear_suit
+	if(w_uniform) . += w_uniform
 	if(include_carried)
-		if(slot_l_hand)     items += l_hand
-		if(slot_r_hand)     items += r_hand
-		if(slot_l_store)    items += l_store
-		if(slot_r_store)    items += r_store
-		if(slot_legcuffed)  items += legcuffed
-		if(slot_handcuffed) items += handcuffed
-		if(slot_s_store)    items += s_store
-
-	return items
+		if(slot_l_store)    . += l_store
+		if(slot_r_store)    . += r_store
+		if(slot_legcuffed)  . += legcuffed
+		if(slot_handcuffed) . += handcuffed
+		if(slot_s_store)    . += s_store
