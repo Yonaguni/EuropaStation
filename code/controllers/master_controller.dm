@@ -12,6 +12,7 @@ var/global/pipe_processing_killed = 0
 
 datum/controller/game_controller
 	var/list/shuttle_list	                    // For debugging and VV
+	var/init_immediately = FALSE
 
 datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
@@ -34,7 +35,22 @@ datum/controller/game_controller/proc/setup()
 	setup_objects()
 	setup_genetics()
 
+	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
+	if(init_immediately && ticker && ticker.current_state == GAME_STATE_PREGAME)
+		ticker.current_state = GAME_STATE_SETTING_UP
+
+#ifdef UNIT_TEST
+#define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+#else
+#define CHECK_SLEEP_MASTER if(++initialized_objects > 500 && !init_immediately) { initialized_objects=0;sleep(world.tick_lag); }
+#endif
+
 datum/controller/game_controller/proc/setup_objects()
+
+#ifndef UNIT_TEST
+	var/initialized_objects = 0
+#endif
+
 
 	world << "<span class='notice'><b>Setting up the game world.</b></span>"
 
@@ -50,17 +66,20 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing
 		var/atom/movable/AM = object     // in world and var/atom/movable thing in all_movable_atoms.
 		AM.initialize()
+		CHECK_SLEEP_MASTER
 	admin_notice("<span class='warning'>Initializing turfs...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/turf in init_turfs)
 		var/turf/T = turf
 		T.initialize()
+		CHECK_SLEEP_MASTER
 	init_turfs.Cut()
 	admin_notice("<span class='warning'>Initializing areas...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/area in all_areas)
 		var/area/A = area
 		A.initialize()
+		CHECK_SLEEP_MASTER
 	admin_notice("<span class='warning'>Setting up antagonists...</span>", R_DEBUG)
 	sleep(-1)
 	populate_antag_type_list()
@@ -74,3 +93,5 @@ datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Done.</span>", R_DEBUG)
 	world << "<span class='notice'>\The [world_map.name] was created in [round((world.timeofday-otod)/10)] second(s).</span>"
 	sleep(-1)
+
+#undef CHECK_SLEEP_MASTER
