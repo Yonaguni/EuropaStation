@@ -30,9 +30,9 @@
 		diggers += D
 
 	while(current_floors < target_amount)
-		sleep(-1)
+		CHECK_SLEEP_MAP
 		for(var/datum/cave_digger/digger in diggers)
-			sleep(-1)
+			CHECK_SLEEP_MAP
 
 			// Get a list of valid (walled) directions.
 			var/list/can_move_dirs = list()

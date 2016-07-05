@@ -29,7 +29,7 @@ var/global/datum/controller/process/fluids/fluid_master
 	// Process general fluid spread/equalizing.
 	for(var/turf/simulated/T in active_turfs)
 		T.process_fluids()
-		SCHECK
+		scheck()
 	return 1
 
 /datum/controller/process/fluids/proc/add_to_active(var/turf/simulated/T)

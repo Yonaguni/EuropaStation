@@ -3,7 +3,6 @@
 /datum/controller/process/machinery/setup()
 	name = "machinery"
 	schedule_interval = 20 // every 2 seconds
-	start_delay = 12
 
 /datum/controller/process/machinery/doWork()
 	internal_sort()
@@ -26,7 +25,7 @@
 			if(M && M.use_power)
 				M.auto_use_power()
 
-		SCHECK
+		scheck()
 
 /datum/controller/process/machinery/statProcess()
 	..()

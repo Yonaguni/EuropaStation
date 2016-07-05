@@ -3,7 +3,6 @@ var/list/datum/list_of_ais = list()
 /datum/controller/process/ai/setup()
 	name = "ai"
 	schedule_interval = 1 SECONDS
-	start_delay = 17
 
 /datum/controller/process/ai/doWork()
 	for(last_object in list_of_ais)
@@ -14,7 +13,7 @@ var/list/datum/list_of_ais = list()
 					list_of_ais -= AI
 			catch(var/exception/e)
 				catchException(e, AI)
-			SCHECK
+			scheck()
 		else
 			catchBadType(AI)
 			list_of_ais -= AI

@@ -23,7 +23,7 @@
 				scheduled_task.post_process()
 		catch(var/exception/e)
 			catchException(e, last_object)
-		SCHECK
+		scheck()
 
 /datum/controller/process/scheduler/statProcess()
 	..()

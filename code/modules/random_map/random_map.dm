@@ -61,7 +61,7 @@ var/global/list/map_count = list()
 
 	var/start_time = world.timeofday
 	if(!do_not_announce) admin_notice("<span class='danger'>Generating [name].</span>", R_DEBUG)
-	sleep(-1)
+	CHECK_SLEEP_MAP
 
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
 	if(seed)
