@@ -347,7 +347,7 @@
 /mob/living/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)
-		mind.assigned_role = "[world_map.default_title]"
+		mind.assigned_role = "[using_map.default_title]"
 
 	mind.special_role = "Larva"
 

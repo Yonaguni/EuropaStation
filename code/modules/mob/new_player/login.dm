@@ -13,8 +13,8 @@
 			error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
 			config.lobby_screens -= lobby_screen
 
-	if(world_map && world_map.use_title_state && (world_map.use_title_state in known_icon_states))
-		icon_state = world_map.use_title_state
+	if(using_map && using_map.title_state && (using_map.title_state in known_icon_states))
+		icon_state = using_map.title_state
 	else if(config.lobby_screens.len)
 		icon_state = pick(config.lobby_screens)
 	else
@@ -27,7 +27,7 @@
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 
 	if(!join_motd)
-		join_motd = world_map.motd_override
+		join_motd = using_map.motd_override
 		if(!join_motd)
 			join_motd = file2text("config/motd.txt")
 

@@ -57,7 +57,7 @@ var/global/pipe_processing_killed = 0
 	admin_notice("<span class='danger'>Initializing.</span>", R_DEBUG)
 	var/otod = world.timeofday
 	world << "<span class='notice'>Generating map geometry...</span>"
-	world_map.do_roundstart_mapgen()
+	using_map.do_roundstart_mapgen()
 	sleep(-1)
 	world << "<span class='notice'>Map geometry generated in [round((world.timeofday-otod)/10)] second(s).</span>"
 
@@ -66,7 +66,7 @@ var/global/pipe_processing_killed = 0
 	for(var/object in all_movable_atoms) // Somehow this is faster than both var/thing
 		var/atom/movable/AM = object     // in world and var/atom/movable thing in all_movable_atoms.
 		AM.initialize()
-		CHECK_SLEEP_MASTER
+		//CHECK_SLEEP_MASTER // Commented out in case someone modifies their preview icon during init and messes up the list.
 	admin_notice("<span class='warning'>Initializing turfs...</span>", R_DEBUG)
 	sleep(-1)
 	for(var/turf in init_turfs)
@@ -91,7 +91,7 @@ var/global/pipe_processing_killed = 0
 	populate_aspects()
 	sleep(-1)
 	admin_notice("<span class='danger'>Done.</span>", R_DEBUG)
-	world << "<span class='notice'>\The [world_map.name] was created in [round((world.timeofday-otod)/10)] second(s).</span>"
+	world << "<span class='notice'>\The [using_map.name] was created in [round((world.timeofday-otod)/10)] second(s).</span>"
 	sleep(-1)
 
 #undef CHECK_SLEEP_MASTER

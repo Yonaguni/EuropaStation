@@ -19,7 +19,7 @@
 ///////////////////////////////
 
 /proc/pick_meteor_start(var/startSide = pick(cardinal))
-	var/startLevel = pick(config.station_levels)
+	var/startLevel = pick(using_map.station_levels)
 	var/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 
 	return list(startLevel, pickedstart)
@@ -41,7 +41,7 @@
 	M.z_original = startLevel
 
 	spawn(0)
-		if(M.z in world_map.space_levels)
+		if(M.z in using_map.space_levels)
 			walk_towards(M, M.dest, 1)
 		else
 			M.ram_turf(get_turf(M))
@@ -50,7 +50,7 @@
 
 /proc/spaceDebrisStartLoc(startSide, Z)
 
-	if(Z in world_map.space_levels)
+	if(Z in using_map.space_levels)
 		var/starty
 		var/startx
 		switch(startSide)
@@ -74,7 +74,7 @@
 
 /proc/spaceDebrisFinishLoc(startSide, Z)
 
-	if(Z in world_map.space_levels)
+	if(Z in using_map.space_levels)
 		var/endy
 		var/endx
 		switch(startSide)

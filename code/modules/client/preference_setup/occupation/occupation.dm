@@ -70,7 +70,7 @@
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
-		if((pref.job_preferences[world_map.default_title]) && (rank != "[world_map.default_title]"))
+		if((pref.job_preferences[using_map.default_title]) && (rank != "[using_map.default_title]"))
 			. += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in gov_positions) || (rank == "AI"))//Bold head jobs
@@ -105,7 +105,7 @@
 		if(GET_RANDOM_JOB)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
 		if(BE_ASSISTANT)
-			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be [world_map.default_title] if preference unavailable</font></a></u></center><br>"
+			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be [using_map.default_title] if preference unavailable</font></a></u></center><br>"
 		if(RETURN_TO_LOBBY)
 			. += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 

@@ -210,14 +210,18 @@
 			break
 
 	if(!previewJob)
-		previewJob = job_master.GetJob(world_map.default_title)
+		previewJob = job_master.GetJob(using_map.default_title)
 
 	if(previewJob)
-		job_master.EquipRank(mannequin, previewJob.title, FALSE, TRUE, client.prefs.gear)
+		job_master.EquipRank(mannequin, previewJob.title, FALSE, TRUE, use_client=client)
 		mannequin.update_icons()
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+
+	// So they don't initialize before roundstart.
+	for(var/atom/movable/AM in mannequin)
+		all_movable_atoms -= AM
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
 
