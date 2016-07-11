@@ -249,14 +249,11 @@ datum/hud/New(mob/owner)
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob)) return 0
 	if(!mymob.client) return 0
-	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
+	mymob.instantiate_hud(src, ui_color, ui_alpha)
 
-	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
-
-
-/mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+/mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_color, var/ui_alpha)
 	if(istype(src.loc, /mob/living/heavy_vehicle))
 		var/mob/living/heavy_vehicle/M = src.loc
 		M.refresh_hud()

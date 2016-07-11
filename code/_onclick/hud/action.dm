@@ -19,7 +19,7 @@
 	var/processing = 0
 	var/active = 0
 	var/obj/screen/movable/action_button/button = null
-	var/button_icon = 'icons/mob/actions.dmi'
+	var/button_icon = 'icons/screen/actions.dmi'
 	var/button_icon_state = "default"
 	var/background_icon_state = "bg_default"
 	var/mob/living/owner
@@ -152,7 +152,7 @@
 //Hide/Show Action Buttons ... Button
 /obj/screen/movable/action_button/hide_toggle
 	name = "Hide Buttons"
-	icon = 'icons/mob/actions.dmi'
+	icon = 'icons/screen/actions.dmi'
 	icon_state = "bg_default"
 	var/hidden = 0
 
