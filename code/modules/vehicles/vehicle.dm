@@ -202,7 +202,6 @@
 	unload()
 
 	if(debris_path) new debris_path(Tsec)
-	new /obj/effect/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 
 	qdel(src)

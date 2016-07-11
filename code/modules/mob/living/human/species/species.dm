@@ -62,7 +62,7 @@
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human
-	var/remains_type = /obj/item/remains/xeno
+	var/remains_type = /obj/item/remains/human
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
 	var/death_sound

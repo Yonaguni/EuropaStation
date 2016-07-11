@@ -23,6 +23,16 @@ var/global/list/blood_decals = list()
 	var/amount = 5
 	var/drytime
 
+/obj/effect/decal/cleanable/blood/oil
+	basecolor = SYNTH_BLOOD_COLOUR
+
+/obj/effect/decal/cleanable/blood/oil/dry()
+	return
+
+/obj/effect/decal/cleanable/blood/oil/streak
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
 		fluorescent = 1

@@ -585,7 +585,7 @@ var/global/list/damage_icon_parts = list()
 	if(s_store)
 		var/t_state = s_store.item_state
 		if(!t_state)	t_state = s_store.icon_state
-		overlays_standing[SUIT_STORE_LAYER]	= image("icon" = 'icons/mob/clothing/belt_mirror.dmi', "icon_state" = "[t_state]")
+		overlays_standing[SUIT_STORE_LAYER]	= image("icon" = 'icons/mob/clothing/belt.dmi', "icon_state" = "[t_state]")
 		s_store.screen_loc = ui_sstore1		//TODO
 	else
 		overlays_standing[SUIT_STORE_LAYER]	= null
@@ -723,7 +723,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[SUIT_LAYER]	= null
 		update_inv_shoes(0)
 
-	update_collar(0)
 	if(update_icons)   update_icons()
 
 /mob/living/human/update_inv_pockets(var/update_icons=1)
@@ -915,21 +914,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[L_HAND_LAYER] = null
 
 	if(update_icons) update_icons()
-
-//Adds a collar overlay above the helmet layer if the suit has one
-//	Suit needs an identically named sprite in icons/mob/collar.dmi
-/mob/living/human/proc/update_collar(var/update_icons=1)
-	var/icon/C = new('icons/mob/clothing/collar.dmi')
-	var/image/standing = null
-
-	if(wear_suit)
-		if(wear_suit.icon_state in C.IconStates())
-			standing = image("icon" = C, "icon_state" = "[wear_suit.icon_state]")
-
-	overlays_standing[COLLAR_LAYER]	= standing
-
-	if(update_icons)   update_icons()
-
 
 /mob/living/human/update_fire(var/update_icons=1)
 	overlays_standing[FIRE_LAYER] = null
