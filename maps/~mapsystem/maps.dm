@@ -19,7 +19,7 @@ var/list/all_maps = list()
 /datum/map
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
-	var/title_state = "yonaguni"
+	var/title_state = "title"
 
 	proc/setup_map()
 	var/path

@@ -138,7 +138,7 @@ var/list/tree_types = list(
 // It's kinda like a sink!
 /turf/simulated/floor/water
 	name = "shallow water"
-	icon = 'icons/misc/beach.dmi'
+	icon = 'icons/turf/water.dmi'
 	icon_state = "seashallow"
 	blend_with_neighbors = -1
 

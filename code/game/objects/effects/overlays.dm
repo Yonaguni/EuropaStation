@@ -12,33 +12,6 @@
 		..()
 		spawn(10) qdel(src)
 
-/obj/effect/overlay/palmtree_r
-	name = "Palm tree"
-	icon = 'icons/misc/beach2.dmi'
-	icon_state = "palm1"
-	density = 1
-	layer = 5
-	anchored = 1
-
-/obj/effect/overlay/palmtree_l
-	name = "Palm tree"
-	icon = 'icons/misc/beach2.dmi'
-	icon_state = "palm2"
-	density = 1
-	layer = 5
-	anchored = 1
-
-/obj/effect/overlay/coconut
-	name = "Coconuts"
-	icon = 'icons/misc/beach.dmi'
-	icon_state = "coconuts"
-
-/obj/effect/overlay/bluespacify
-	name = "Bluespace"
-	icon = 'icons/turf/space.dmi'
-	icon_state = "bluespacify"
-	layer = 10
-
 /obj/effect/overlay/wallrot
 	name = "wallrot"
 	desc = "Ick..."

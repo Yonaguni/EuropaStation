@@ -133,10 +133,9 @@
 	max_storage_space = 100
 
 /obj/item/weapon/beach_ball
-	icon = 'icons/misc/beach.dmi'
+	icon = 'icons/obj/beachball.dmi'
 	icon_state = "ball"
 	name = "beach ball"
-	item_state = "beachball"
 	density = 0
 	anchored = 0
 	w_class = 4

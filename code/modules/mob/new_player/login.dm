@@ -3,7 +3,7 @@
 /obj/effect/lobby_image
 	name = "ES13"
 	desc = "This shouldn't be readable."
-	icon = 'icons/misc/title.dmi'
+	icon = 'icons/screen/title.dmi'
 	screen_loc = "WEST,SOUTH"
 
 /obj/effect/lobby_image/initialize()
