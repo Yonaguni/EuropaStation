@@ -57,7 +57,6 @@
 var/obj/machinery/blackbox_recorder/blackbox
 
 /obj/machinery/blackbox_recorder
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	density = 1

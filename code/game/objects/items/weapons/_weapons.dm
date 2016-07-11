@@ -116,14 +116,6 @@
 	desc = "Heavy-duty switching circuits for power control."
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
-/obj/item/weapon/pai_cable
-	desc = "A flexible coated cable with a universal jack on one end."
-	name = "data cable"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "wire1"
-
-	var/obj/machinery/machine
-
 /obj/item/weapon/storage/part_replacer
 	name = "rapid part exchange device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."

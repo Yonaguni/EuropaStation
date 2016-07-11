@@ -1,7 +1,7 @@
 /obj/machinery/mass_driver
 	name = "mass driver"
 	desc = "A powerful rail driver that fires things at great speed."
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/mass_driver.dmi'
 	icon_state = "mass_driver"
 	use_power = 1
 	idle_power_usage = 2

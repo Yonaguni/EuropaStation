@@ -1,6 +1,6 @@
 /obj/machinery
 	name = "machinery"
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/machines.dmi'
 	w_class = 10
 
 	var/global/gl_uid = 1
