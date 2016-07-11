@@ -45,7 +45,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 /datum/controller/plants/proc/setup()
 
 	// Build the icon lists.
-	for(var/icostate in icon_states('icons/obj/hydroponics_growing.dmi'))
+	for(var/icostate in icon_states('icons/obj/hydroponics/hydroponics_growing.dmi'))
 		var/split = findtext(icostate,"-")
 		if(!split)
 			// invalid icon_state
@@ -61,7 +61,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 		if(!(plant_sprites[base]) || (plant_sprites[base]<ikey))
 			plant_sprites[base] = ikey
 
-	for(var/icostate in icon_states('icons/obj/hydroponics_products.dmi'))
+	for(var/icostate in icon_states('icons/obj/hydroponics/hydroponics_products.dmi'))
 		var/split = findtext(icostate,"-")
 		if(split)
 			plant_product_sprites |= copytext(icostate,1,split)

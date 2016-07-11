@@ -2,7 +2,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown
 
 	name = "fruit"
-	icon = 'icons/obj/hydroponics_products.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_products.dmi'
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
 	slot_flags = SLOT_HOLSTER | SLOT_MASK
@@ -116,12 +116,12 @@
 	if(plant_controller.plant_icon_cache[icon_key])
 		plant_icon = plant_controller.plant_icon_cache[icon_key]
 	else
-		plant_icon = image('icons/obj/hydroponics_products.dmi',"blank")
-		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
+		plant_icon = image('icons/obj/hydroponics/hydroponics_products.dmi',"blank")
+		var/image/fruit_base = image('icons/obj/hydroponics/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
 		plant_icon.overlays |= fruit_base
-		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in icon_states('icons/obj/hydroponics_products.dmi'))
-			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
+		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in icon_states('icons/obj/hydroponics/hydroponics_products.dmi'))
+			var/image/fruit_leaves = image('icons/obj/hydroponics/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
 			plant_icon.overlays |= fruit_leaves
 		plant_controller.plant_icon_cache[icon_key] = plant_icon
@@ -297,7 +297,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/fruit_slice
 	name = "fruit slice"
 	desc = "A slice of some tasty fruit."
-	icon = 'icons/obj/hydroponics_misc.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_misc.dmi'
 	icon_state = ""
 
 var/list/fruit_icon_cache = list()

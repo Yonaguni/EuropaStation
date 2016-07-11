@@ -1,6 +1,6 @@
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_machines.dmi'
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1

@@ -52,13 +52,6 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
-
-/turf/simulated/floor/cult
-	name = "engraved floor"
-	icon = 'icons/turf/flooring/cult.dmi'
-	icon_state = "cult"
-	initial_flooring = /decl/flooring/reinforced/cult
-
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"
 	icon_state = "dark"

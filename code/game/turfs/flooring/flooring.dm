@@ -169,13 +169,3 @@ var/list/flooring_types
 /decl/flooring/reinforced/circuit/green
 	name = "processing strata"
 	icon_base = "gcircuit"
-
-/decl/flooring/reinforced/cult
-	name = "engraved floor"
-	desc = "Unsettling whispers waver from the surface..."
-	icon = 'icons/turf/flooring/cult.dmi'
-	icon_base = "cult"
-	build_type = null
-	has_damage_range = 6
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
-	can_paint = null

@@ -63,7 +63,6 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab
 	name = "Telekinetic Grab"
 	desc = "Magic"
-	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
 	flags = NOBLUDGEON
 	//item_state = null
