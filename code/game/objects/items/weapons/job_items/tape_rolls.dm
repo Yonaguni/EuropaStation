@@ -1,7 +1,7 @@
 //Define all tape types in policetape.dm
 /obj/item/taperoll
 	name = "tape roll"
-	icon = 'icons/policetape.dmi'
+	icon = 'icons/effects/policetape.dmi'
 	icon_state = "tape"
 	w_class = 2.0
 	var/turf/start
@@ -14,7 +14,7 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape
 	name = "tape"
-	icon = 'icons/policetape.dmi'
+	icon = 'icons/effects/policetape.dmi'
 	icon_state = "tape"
 	anchored = 1
 	layer = 3.2

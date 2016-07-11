@@ -66,8 +66,6 @@
 
 /mob/living/human/Destroy()
 
-	qdel(tail_trail)
-	tail_trail = null
 	human_mob_list -= src
 
 	for(var/organ in organs)
@@ -1092,10 +1090,6 @@
 		hud_used = new /datum/hud(src)
 
 	full_prosthetic = null
-
-	if(species.tail_stance)
-		if(!tail_trail) tail_trail = new(src)
-		tail_trail.sync_to_owner()
 
 	if(species)  // Reapply aspect mods as appropriate.
 		if(mind) // If they have no mind, they are a. playerless b. waiting on latejoin to apply aspects.

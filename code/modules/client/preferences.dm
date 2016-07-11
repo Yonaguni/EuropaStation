@@ -303,7 +303,6 @@ datum/preferences
 
 	if(icon_updates)
 		character.force_update_limbs()
-		character.update_mutations(0)
 		character.update_body(0)
 		character.update_hair(0)
 		character.update_icons()

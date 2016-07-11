@@ -4,9 +4,8 @@
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
 */
-var/global/list/human_icon_cache = list()
-var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_skin][b_skin]
-var/global/list/light_overlay_cache = list()
+var/list/human_icon_cache = list()
+var/list/light_overlay_cache = list()
 
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
@@ -68,7 +67,6 @@ There are several things that need to be remembered:
 
 
 >	There are also these special cases:
-		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
@@ -142,10 +140,6 @@ Please contact me on #coderbus IRC. ~Carn x
 //this proc is messy as I was forced to include some old laggy cloaking code to it so that I don't break cloakers
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
 /mob/living/human/update_icons()
-
-	if(species.tail_stance)
-		if(!tail_trail) tail_trail = new(src)
-		tail_trail.sync_to_owner()
 
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this
@@ -335,9 +329,6 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)
 		update_icons()
 
-	//tail
-	update_tail_showing(0)
-
 //HAIR OVERLAY
 /mob/living/human/proc/update_hair(var/update_icons=1)
 	//Reset our hair
@@ -378,56 +369,12 @@ var/global/list/damage_icon_parts = list()
 
 	if(update_icons)   update_icons()
 
-/mob/living/human/update_mutations(var/update_icons=1)
-	var/fat
-	if(FAT in mutations)
-		fat = "fat"
-
-	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
-	var/add_image = 0
-	var/g = "m"
-	if(gender == FEMALE)	g = "f"
-	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			var/underlay=gene.OnDrawUnderlays(src,g,fat)
-			if(underlay)
-				standing.underlays += underlay
-				add_image = 1
-	for(var/mut in mutations)
-		switch(mut)
-			/*
-			if(HULK)
-				if(fat)
-					standing.underlays	+= "hulk_[fat]_s"
-				else
-					standing.underlays	+= "hulk_[g]_s"
-				add_image = 1
-			if(COLD_RESISTANCE)
-				standing.underlays	+= "fire[fat]_s"
-				add_image = 1
-			if(TK)
-				standing.underlays	+= "telekinesishead[fat]_s"
-				add_image = 1
-			*/
-			if(LASER)
-				standing.overlays	+= "lasereyes_s"
-				add_image = 1
-	if(add_image)
-		overlays_standing[MUTATIONS_LAYER]	= standing
-	else
-		overlays_standing[MUTATIONS_LAYER]	= null
-	if(update_icons)   update_icons()
-
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/human/regenerate_icons()
 	..()
 	if(transforming)		return
 
-	update_mutations(0)
 	update_body(0)
 	update_hair(0)
 	update_inv_w_uniform(0)
@@ -772,15 +719,11 @@ var/global/list/damage_icon_parts = list()
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
-		update_tail_showing(0)
-
 	else
 		overlays_standing[SUIT_LAYER]	= null
-		update_tail_showing(0)
 		update_inv_shoes(0)
 
 	update_collar(0)
-
 	if(update_icons)   update_icons()
 
 /mob/living/human/update_inv_pockets(var/update_icons=1)
@@ -972,90 +915,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[L_HAND_LAYER] = null
 
 	if(update_icons) update_icons()
-
-/mob/living/human/proc/update_tail_showing(var/update_icons=1)
-	overlays_standing[TAIL_LAYER] = null
-
-	if(species.tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
-		var/icon/tail_s = get_tail_icon()
-		overlays_standing[TAIL_LAYER] = image(tail_s, icon_state = "[species.tail]_s")
-		animate_tail_reset(0)
-
-	if(update_icons)
-		update_icons()
-
-/mob/living/human/proc/get_tail_icon()
-	var/icon_key = "[species.race_key][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
-	var/icon/tail_icon = tail_icon_cache[icon_key]
-	if(!tail_icon)
-		//generate a new one
-		tail_icon = new/icon(icon = (species.tail_animation? species.tail_animation : 'icons/effects/species.dmi'))
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		// The following will not work with animated tails.
-		if(species.tail_hair)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.tail]_[species.tail_hair]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			tail_icon.Blend(hair_icon, ICON_OVERLAY)
-		tail_icon_cache[icon_key] = tail_icon
-
-	return tail_icon
-
-
-/mob/living/human/proc/set_tail_state(var/t_state)
-	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
-
-	if(tail_overlay && species.tail_animation)
-		tail_overlay.icon_state = t_state
-		return tail_overlay
-	return null
-
-//Not really once, since BYOND can't do that.
-//Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
-/mob/living/human/proc/animate_tail_once(var/update_icons=1)
-	var/t_state = "[species.tail]_once"
-
-	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
-	if(tail_overlay && tail_overlay.icon_state == t_state)
-		return //let the existing animation finish
-
-	tail_overlay = set_tail_state(t_state)
-	if(tail_overlay)
-		spawn(20)
-			//check that the animation hasn't changed in the meantime
-			if(overlays_standing[TAIL_LAYER] == tail_overlay && tail_overlay.icon_state == t_state)
-				animate_tail_stop()
-
-	if(update_icons)
-		update_icons()
-
-/mob/living/human/proc/animate_tail_start(var/update_icons=1)
-	set_tail_state("[species.tail]_slow[rand(0,9)]")
-
-	if(update_icons)
-		update_icons()
-
-/mob/living/human/proc/animate_tail_fast(var/update_icons=1)
-	set_tail_state("[species.tail]_loop[rand(0,9)]")
-
-	if(update_icons)
-		update_icons()
-
-/mob/living/human/proc/animate_tail_reset(var/update_icons=1)
-	if(stat != DEAD)
-		set_tail_state("[species.tail]_idle[rand(0,9)]")
-	else
-		set_tail_state("[species.tail]_static")
-
-
-	if(update_icons)
-		update_icons()
-
-/mob/living/human/proc/animate_tail_stop(var/update_icons=1)
-	set_tail_state("[species.tail]_static")
-
-	if(update_icons)
-		update_icons()
-
 
 //Adds a collar overlay above the helmet layer if the suit has one
 //	Suit needs an identically named sprite in icons/mob/collar.dmi

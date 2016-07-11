@@ -1080,7 +1080,6 @@
 #include "code\modules\mob\living\human\human_organs.dm"
 #include "code\modules\mob\living\human\human_powers.dm"
 #include "code\modules\mob\living\human\human_species.dm"
-#include "code\modules\mob\living\human\human_tail.dm"
 #include "code\modules\mob\living\human\inventory.dm"
 #include "code\modules\mob\living\human\life.dm"
 #include "code\modules\mob\living\human\login.dm"
