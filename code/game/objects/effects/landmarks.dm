@@ -211,12 +211,6 @@
 	new /obj/item/clothing/suit/holidaypriest(src.loc)
 	delete_me = 1
 
-/obj/effect/landmark/costume/cutewitch/New()
-	new /obj/item/clothing/under/sundress(src.loc)
-	new /obj/item/clothing/head/witchwig(src.loc)
-	new /obj/item/weapon/staff/broom(src.loc)
-	delete_me = 1
-
 /obj/effect/landmark/costume/sexyclown/New()
 	new /obj/item/clothing/mask/gas/sexyclown(src.loc)
 	new /obj/item/clothing/under/sexyclown(src.loc)

@@ -50,17 +50,3 @@
 	desc = "A sharp, metal hook what sticks into things."
 	icon_state = "hook_knife"
 	item_state = "hook_knife"
-
-/obj/item/weapon/material/knife/ritual
-	name = "ritual knife"
-	desc = "The unearthly energies that once powered this blade are now dormant."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "render"
-	applies_material_colour = 0
-	flags = CONDUCT
-	sharp = 1
-	edge = 1
-	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(DEFAULT_WALL_MATERIAL = 12000)
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	unbreakable = 1
