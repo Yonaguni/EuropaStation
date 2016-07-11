@@ -42,7 +42,6 @@ var/global/datum/global_init/init = new ()
 		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 
-
 /world
 	mob = /mob/new_player
 	turf = /turf/simulated/ocean
@@ -50,8 +49,8 @@ var/global/datum/global_init/init = new ()
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 
+#define RECOMMENDED_VERSION 510
 
-#define RECOMMENDED_VERSION 509
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
@@ -61,7 +60,7 @@ var/global/datum/global_init/init = new ()
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
+		world.log << "Your server's BYOND version does not meet the recommended requirements for this codebase. Please update BYOND"
 
 	config.post_load()
 
