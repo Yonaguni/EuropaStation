@@ -103,16 +103,10 @@
 	if(!get_trait(TRAIT_CARNIVOROUS))
 		return
 
-	/*
 	if(!istype(target))
 		if(istype(target, /mob/living/animal/mouse))
 			new /obj/item/remains/mouse(get_turf(target))
 			qdel(target)
-		else if(istype(target, /mob/living/animal/lizard))
-			new /obj/item/remains/lizard(get_turf(target))
-			qdel(target)
-		return
-	*/
 
 	if(!target_limb) target_limb = pick(BP_ALL_LIMBS)
 	var/obj/item/organ/external/affecting = target.get_organ(target_limb)

@@ -1,8 +1,8 @@
 /mob/living/animal/bear
 	name = "bear"
-	icon_state = "bear"
-	icon_living = "bear"
-	icon_dead = "bear_dead"
+	icon_state = "brownbear"
+	icon_living = "brownbear"
+	icon_dead = "brownbear_dead"
 	desc = "Picnic basket not included."
 	maxHealth = 80
 	meat_amount = 6
