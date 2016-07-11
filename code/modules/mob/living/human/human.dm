@@ -3,7 +3,7 @@
 	real_name = "unknown"
 	voice_name = "unknown"
 	icon = 'icons/mob/creatures/human.dmi'
-	icon_state = "body_m_s"
+	icon_state = "generic"
 
 	var/mapped_species
 	var/list/hud_list[10]

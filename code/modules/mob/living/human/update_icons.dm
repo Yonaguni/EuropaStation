@@ -324,7 +324,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Underwear
 	if(underwear && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/creatures/human.dmi', underwear), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/clothing/underwear.dmi', underwear), ICON_OVERLAY)
 
 	if(update_icons)
 		update_icons()
@@ -816,7 +816,7 @@ var/global/list/damage_icon_parts = list()
 		else if(handcuffed.sprite_sheets && handcuffed.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = handcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "handcuff1")
 		else
-			standing = image("icon" = 'icons/mob/creatures/mob.dmi', "icon_state" = "handcuff1")
+			standing = image("icon" = 'icons/effects/cuffed.dmi', "icon_state" = "handcuff1")
 		overlays_standing[HANDCUFF_LAYER] = standing
 
 	else
@@ -832,7 +832,7 @@ var/global/list/damage_icon_parts = list()
 		else if(legcuffed.sprite_sheets && legcuffed.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = legcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "legcuff1")
 		else
-			standing = image("icon" = 'icons/mob/creatures/mob.dmi', "icon_state" = "legcuff1")
+			standing = image("icon" = 'icons/effects/cuffed.dmi', "icon_state" = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
 		if(src.m_intent != "walk")

@@ -4,7 +4,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
-	icon = 'icons/mob/creatures/mob.dmi'
+	icon = 'icons/mob/creatures/ghost.dmi'
 	icon_state = "ghost"
 	layer = FLY_LAYER+0.1
 	stat = DEAD
@@ -523,20 +523,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
 		)
 
-/mob/dead/proc/toggle_icon(var/icon)
-	if(!client)
-		return
-
-	var/iconRemoved = 0
-	for(var/image/I in client.images)
-		if(I.icon_state == icon)
-			iconRemoved = 1
-			qdel(I)
-
-	if(!iconRemoved)
-		var/image/J = image('icons/mob/creatures/mob.dmi', loc = src, icon_state = icon)
-		client.images += J
-
 /mob/dead/proc/toggle_visibility(var/forced = 0)
 	set category = "Ghost"
 	set name = "Toggle Visibility"
@@ -554,8 +540,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='info'>You are now visible!</span>"
 
 	invisibility = invisibility == INVISIBILITY_OBSERVER ? 0 : INVISIBILITY_OBSERVER
+
 	// Give the ghost a cult icon which should be visible only to itself
-	toggle_icon("cult")
+	var/iconRemoved = 0
+	for(var/image/I in client.images)
+		if(I.icon_state == icon)
+			iconRemoved = 1
+			qdel(I)
+	if(!iconRemoved)
+		var/image/J = image('icons/screen/antag_indicators.dmi', loc = src, icon_state = "cult")
+		client.images += J
+
 
 /mob/dead/observer/verb/toggle_anonsay()
 	set category = "Ghost"
