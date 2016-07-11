@@ -1,7 +1,7 @@
 /obj/item/remains
 	name = "remains"
 	gender = PLURAL
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/remains.dmi'
 	icon_state = "remains"
 	anchored = 0
 

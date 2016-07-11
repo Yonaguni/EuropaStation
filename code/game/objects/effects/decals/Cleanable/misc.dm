@@ -97,7 +97,7 @@
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/vomit.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/viruses = list()
@@ -108,7 +108,7 @@
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/tomatodecal.dmi'
+	icon = 'icons/effects/food.dmi'
 	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
 
 /obj/effect/decal/cleanable/egg_smudge
@@ -117,7 +117,7 @@
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/tomatodecal.dmi'
+	icon = 'icons/effects/food.dmi'
 	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
 
 /obj/effect/decal/cleanable/pie_smudge //honk
@@ -126,7 +126,7 @@
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/tomatodecal.dmi'
+	icon = 'icons/effects/food.dmi'
 	random_icon_states = list("smashed_pie")
 
 /obj/effect/decal/cleanable/fruit_smudge

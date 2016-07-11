@@ -4,6 +4,7 @@
 
 /obj/effect/effect/foam
 	name = "foam"
+	icon = 'icons/effects/foam.dmi'
 	icon_state = "foam"
 	opacity = 0
 	anchored = 1
@@ -123,7 +124,7 @@
 // wall formed by metal foams, dense and opaque, but easy to break
 
 /obj/structure/foamedmetal
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/effects/foam.dmi'
 	icon_state = "metalfoam"
 	density = 1
 	opacity = 1 // changed in New()

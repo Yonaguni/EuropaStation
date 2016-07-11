@@ -244,21 +244,13 @@ var/global/list/blood_decals = list()
                         if (step_to(src, get_step(src, direction), 0))
                                 break
 
-
 /obj/effect/decal/cleanable/mucus
 	name = "mucus"
+	icon = 'icons/effects/mucus.dmi'
+	icon_state = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
-	icon_state = "mucus"
 	random_icon_states = list("mucus")
-
-	var/list/datum/disease2/disease/virus2 = list()
-	var/dry=0 // Keeps the lag down
-
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1

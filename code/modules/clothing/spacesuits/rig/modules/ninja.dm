@@ -40,7 +40,7 @@
 	H << "<font color='blue'><b>You are now invisible to normal detection.</b></font>"
 	H.invisibility = INVISIBILITY_LEVEL_TWO
 
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	anim(get_turf(H), H, 'icons/effects/cloak.dmi', "electricity",null,20,null)
 
 	H.visible_message("[H.name] vanishes into thin air!",1)
 
@@ -55,7 +55,7 @@
 	H.invisibility = 0
 
 	anim(get_turf(H), H,'icons/effects/cloak.dmi',,"uncloak",,H.dir)
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	anim(get_turf(H), H, 'icons/effects/cloak.dmi', "electricity",null,20,null)
 
 	for(var/mob/O in oviewers(H))
 		O.show_message("[H.name] appears from thin air!",1)

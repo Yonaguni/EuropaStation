@@ -93,9 +93,6 @@ proc/explosion_rec(turf/epicenter, power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
 	explosion_turfs[src] = power
 
-//	var/severity = 4 - round(max(min( 3, ((explosion_turfs[src] - explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)
-//	new/obj/effect/debug(src,direction,severity,power)
-
 	var/spread_power = power - src.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
 	for(var/obj/O in src)
 		if(O.explosion_resistance)
@@ -113,20 +110,3 @@ proc/explosion_rec(turf/epicenter, power)
 
 /turf/unsimulated/explosion_spread(power)
 	return //So it doesn't get to the parent proc, which simulates explosions
-
-/obj/effect/debug
-	name = "debug"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "e1"
-	alpha=180
-	pixel_y=-12
-
-/obj/effect/debug/New(loc,ndir,severity,power)
-	dir = ndir
-	if(severity)
-		icon_state="e[severity]"
-	maptext = "[power]"
-	var/obj/effect/debug/D = locate() in loc
-	if(D)
-		pixel_y = D.pixel_y+12
-	..()
