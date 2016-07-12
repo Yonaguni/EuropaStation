@@ -1,0 +1,89 @@
+body {
+	font-family: 'Share Tech Mono', monospace;
+	font-size: 19px;
+	font-weight: bold;
+	color: #0F0;
+	overflow: hidden;
+	background-color: black;
+}
+
+pre {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font: inherit;
+	overflow: hidden;
+}
+
+input {
+	font: inherit;
+	color: inherit;
+	border: none;
+	background: transparent;
+	padding: 0;
+}
+
+.outerBorder {
+	background-image: url(terminal_bg.png);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 800px;
+	height: 600px;
+	margin: 0;
+}
+
+.innerBorder {
+	overflow: hidden;
+	position: absolute;
+	top: 58px;
+	left: 80px;
+	width: 640px;
+	height: 484px;
+	margin: 0;
+}
+
+.row {
+	width: 640px;
+	float: left;
+	height: 22px;
+	margin: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.alignCentre {
+	text-align: center;
+}
+
+.alignLeft {
+	text-align: left;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.floatLeft {
+	width: auto;
+	float: left;
+}
+
+.floatRight {
+	width: auto;
+	float: right;
+}
+
+.termInput {
+	background-color: transparent;
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	padding: 0;
+}
+
+.inputButton:hover {
+	color: #113218;
+	background-color: #0F0;
+}

@@ -932,6 +932,7 @@
 #include "code\modules\tables\table_small.dm"
 #include "code\modules\tables\tables.dm"
 #include "code\modules\tables\update_triggers.dm"
+#include "code\modules\terminals\terminal.dm"
 #include "code\modules\tgui\external.dm"
 #include "code\modules\tgui\process.dm"
 #include "code\modules\tgui\states.dm"
