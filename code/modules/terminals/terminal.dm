@@ -6,7 +6,7 @@
 /obj/machinery/terminal/attack_hand(mob/user as mob)
 	var/output[23]
 
-	//58 x 23 grid
+	//62 x 22 grid
 
 	output[1] =  "              === Yonaguni Primary Server ==="
 	output[2] =  "=========================================================="
@@ -16,59 +16,27 @@
 	output[6] =  "   | || |_| | |\\  |/ ___ \\ |_| | |_| | |\\  || | "
 	output[7] =  "   |_| \\___/|_| \\_/_/   \\_\\____|\\___/|_| \\_|___|"
 	output[8] =  " "
-	output[9] =  " Date: 04-Jun-2453"
-	output[10] = " "
-	output[11] = " Welcome to the Yonaguni Primary Server."
-	output[12] = " Please login below:"
-	output[13] = " "
-	output[14] = "----------------------------------------------------------"
-	output[15] = " "
-	output[16] = " Username: jdaniels"
-	output[17] = " "
-	output[18] = " Password: **************"
-	output[19] = " "
-	output[20] = " \[LOGIN\]"
-	output[21] = " "
-	output[22] = "=========================================================="
-	output[23] = " \[BACK\]                                        user: null"
+	output[9] = " "
+	output[10] = " Welcome to the Yonaguni Primary Server."
+	output[11] = " Please login below:"
+	output[12] = " "
+	output[13] = "----------------------------------------------------------"
+	output[14] = " "
+	output[15] = " Username: jdaniels"
+	output[16] = " "
+	output[17] = " Password: **************"
+	output[18] = " "
+	output[19] = " \[LOGIN\]"
+	output[20] = " "
+	output[21] = "=========================================================="
+	output[22] = " \[BACK\]                                        user: null"
 
-	var/html_output = {"<html>
-	<head>
-		<title>Terminal</title>
-		<script type="text/javascript">
-			document.body.innerHTML = 'butts'
-		</script>
-	</head>
-	<body style=\"background-image: url(terminal_bg.png); overflow: hidden\">"}
+	user << browse('html/browser/terminal.css', "display=0")
+	user << browse('html/terminalFunctions.js', "display=0")
+	user << browse('html/images/terminal_bg.png', "display=0")
 
-	html_output = html_output + {"
-		<div style=\"margin: 60px 0px 0px 70px; width: 640px; height: 480px; font: 900 18px monospace; color: #0F0\">
-			<pre>
-"}
+	user << browse('html/templates/terminal_template.html', "window=terminal;size=800x600;can_resize=0")
 
-	var/page_content = ""
+	sleep(100)
 
-	for(var/i = 1; i < 24; i++)
-		page_content = page_content + output[i] + {"
-"}
-
-	html_output = html_output + page_content + {"
-			</pre>
-		</div>
-	</body>
-</html>"}
-
-	user << browse(html_output, "window=terminal_[src];size=800x600;can_resize=0")
-
-/obj/machinery/terminal/AssembleHTML(var/list/content)
-	var/header ={"<html>
-	<head>
-		<title>[src]</title>
-	</head>
-	<body style=\"background-image: url(terminal_bg.png); overflow: hidden\">"}
-
-
-
-
-
-	}
+	user << output(list2params(list("10", "Test")), "terminal:replaceRow")
