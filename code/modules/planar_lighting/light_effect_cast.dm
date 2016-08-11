@@ -45,9 +45,11 @@
 	for(var/turf/T in (trange(effective_power, origin) - visible_turfs))
 		concealed_turfs += T
 
+	/*
 	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
 	var/n_x = 2*origin.x
 	var/n_y = 2*origin.y
+	*/
 
 	// Now the fun part. Check over visible turfs and apply lighting appropriately.
 	var/list/walls = list()
@@ -63,6 +65,10 @@
 			continue
 
 		walls += check // Used later for bleed masking.
+
+		/*
+		DISABLED DUE TO PERFORMANCE AND VISUAL
+		   PROBLEMS, UNCOMMENT WHEN FIXED.
 
 		var/edgedirs = 0
 		if(check.check_has_corners())
@@ -121,6 +127,7 @@
 				I.transform = M
 				light_over_cache[cache_key] = I
 			overlays_to_add += light_over_cache[cache_key]
+		*/
 
 	// Update turfs we are no longer lighting.
 	for(var/thing in (affecting_turfs-visible_turfs))
