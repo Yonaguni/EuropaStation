@@ -28,7 +28,7 @@ var/global/list/additional_antag_types = list()
 	var/antag_scaling_coeff = 5              // Coefficient for scaling max antagonists to player count.
 	var/require_all_templates = 0            // Will only start if all templates are checked and can spawn.
 
-	var/station_was_nuked = 0                // See nuclearbomb.dm and malfunction.dm.
+	var/station_was_nuked = 0                // See malfunction.dm.
 	var/explosion_in_progress = 0            // Sit back and relax
 	var/waittime_l = 600                     // Lower bound on time before intercept arrives (in tenths of seconds)
 	var/waittime_h = 1800                    // Upper bound on time before intercept arrives (in tenths of seconds)

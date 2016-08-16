@@ -10,9 +10,6 @@
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
 	light_power = 4
-	sprite_sheets = list(
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		)
 	species_restricted = null
 
 /obj/item/clothing/gloves/rig

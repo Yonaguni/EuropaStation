@@ -3,7 +3,7 @@
 
 /obj/structure/curtain
 	name = "curtain"
-	icon = 'icons/obj/curtain.dmi'
+	icon = 'icons/obj/structures/curtain.dmi'
 	icon_state = "closed"
 	layer = SHOWER_OPEN_LAYER
 	opacity = 1

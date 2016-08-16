@@ -246,7 +246,6 @@
 	heavy = 1
 	meteordrop = /obj/item/weapon/ore/uranium
 
-
 /obj/effect/meteor/irradiated/meteor_effect()
 	..(heavy)
 	explosion(src.loc, 0, 0, 4, 3, 0)

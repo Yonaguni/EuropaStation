@@ -63,7 +63,6 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab
 	name = "Telekinetic Grab"
 	desc = "Magic"
-	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
 	flags = NOBLUDGEON
 	//item_state = null
@@ -165,7 +164,7 @@ var/const/tk_maxrange = 15
 	O.layer = FLY_LAYER
 	O.set_dir(pick(cardinal))
 	O.icon = 'icons/effects/effects.dmi'
-	O.icon_state = "nothing"
+	O.icon_state = "blank"
 	flick("empdisable",O)
 	spawn(5)
 		qdel(O)

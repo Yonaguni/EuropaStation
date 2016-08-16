@@ -65,7 +65,7 @@ var/list/open_space_cache = list()
 	if(!flooded && below && below.flooded)
 		name = "deep water"
 		if(!turf_edge_cache["deepwater"])
-			var/image/I = image(icon = 'icons/misc/beach.dmi', icon_state = "seashallow")
+			var/image/I = image(icon = 'icons/turf/water.dmi', icon_state = "seashallow")
 			I.alpha = 180
 			turf_edge_cache["deepwater"] = I
 		overlays += turf_edge_cache["deepwater"]

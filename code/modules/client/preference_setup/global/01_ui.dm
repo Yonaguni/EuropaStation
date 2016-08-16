@@ -3,7 +3,6 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
-	S["UI_style"]		>> pref.UI_style
 	S["UI_style_color"]	>> pref.UI_style_color
 	S["UI_style_alpha"]	>> pref.UI_style_alpha
 	S["ooccolor"]		>> pref.ooccolor
@@ -11,7 +10,6 @@
 	S["tgui_lock"]		>> pref.tgui_lock
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
-	S["UI_style"]		<< pref.UI_style
 	S["UI_style_color"]	<< pref.UI_style_color
 	S["UI_style_alpha"]	<< pref.UI_style_alpha
 	S["ooccolor"]		<< pref.ooccolor
@@ -19,7 +17,6 @@
 	S["tgui_lock"]		<< pref.tgui_lock
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
-	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
 	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
 	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
 	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
@@ -28,8 +25,7 @@
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. += "<b>UI Settings</b><br>"
-	. += "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
-	. += "<b>Custom UI</b> (recommended for White UI):<br>"
+	. += "<b>Custom UI:</b><br>"
 	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> <table style='display:inline;' bgcolor='[pref.UI_style_color]'><tr><td>__</td></tr></table> <a href='?src=\ref[src];reset=ui'>reset</a><br>"
 	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
 	. += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(pref.tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
@@ -42,13 +38,8 @@
 			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> <table style='display:inline;' bgcolor='[pref.ooccolor]'><tr><td>__</td></tr></table> <a href='?src=\ref[src];reset=ooc'>reset</a><br>"
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(href_list["select_style"])
-		var/UI_style_new = input(user, "Choose UI style.", "Character Preference", pref.UI_style) as null|anything in all_ui_styles
-		if(!UI_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
-		pref.UI_style = UI_style_new
-		return TOPIC_REFRESH
 
-	else if(href_list["select_color"])
+	if(href_list["select_color"])
 		var/UI_style_color_new = input(user, "Choose UI color, dark colors are not recommended!", "Global Preference", pref.UI_style_color) as color|null
 		if(isnull(UI_style_color_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_color = UI_style_color_new

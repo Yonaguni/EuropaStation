@@ -7,16 +7,6 @@
 	heat_protection = HEAD
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	//Species-specific stuff.
-	species_restricted = list("Human")
-	sprite_sheets_refit = list(
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		)
-	sprite_sheets_obj = list(
-		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
-		)
-
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void
@@ -29,14 +19,7 @@
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
 	species_restricted = list("Human", "Skrell")
-	sprite_sheets_refit = list(
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
-		)
-	sprite_sheets_obj = list(
-		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',
-		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
 	//With 0.2 resiliance, will reach 10 breach damage after 3 laser carbine blasts or 8 smg hits.

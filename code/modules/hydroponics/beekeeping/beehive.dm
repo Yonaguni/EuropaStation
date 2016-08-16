@@ -157,7 +157,7 @@
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machines/centrifuge.dmi'
 	icon_state = "centrifuge"
 
 	var/processing = 0

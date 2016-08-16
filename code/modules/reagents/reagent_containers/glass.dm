@@ -223,35 +223,3 @@
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
-
-/*
-/obj/item/weapon/reagent_containers/glass/blender_jug
-	name = "Blender Jug"
-	desc = "A blender jug, part of a blender."
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "blender_jug_e"
-	volume = 100
-
-	on_reagent_change()
-		switch(src.reagents.total_volume)
-			if(0)
-				icon_state = "blender_jug_e"
-			if(1 to 75)
-				icon_state = "blender_jug_h"
-			if(76 to 100)
-				icon_state = "blender_jug_f"
-
-/obj/item/weapon/reagent_containers/glass/canister		//not used apparantly
-	desc = "It's a canister. Mainly used for transporting fuel."
-	name = "canister"
-	icon = 'icons/obj/tank.dmi'
-	icon_state = "canister"
-	item_state = "canister"
-	m_amt = 300
-	g_amt = 0
-	w_class = 4.0
-
-	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = list(10,20,30,60)
-	volume = 120
-*/

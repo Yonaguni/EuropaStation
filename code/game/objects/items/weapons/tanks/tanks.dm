@@ -7,6 +7,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
+	icon_state = "tank"
 
 	var/gauge_icon = "indicator_tank"
 	var/last_gauge_pressure
@@ -76,9 +77,6 @@ var/list/global/tank_gauge_cache = list()
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		src.add_fingerprint(user)
-
-	if(istype(W, /obj/item/device/assembly_holder))
-		bomb_assemble(W,user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
 	if (!(src.air_contents))

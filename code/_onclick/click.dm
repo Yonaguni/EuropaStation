@@ -190,9 +190,7 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == I_HURT)
-		LaserEyes(A) // moved into a proc below
-	else if(TK in mutations)
+	if(TK in mutations)
 		switch(get_dist(src,A))
 			if(1 to 5) // not adjacent may mean blocked by window
 				setMoveCooldown(2)
@@ -284,32 +282,6 @@
 
 /atom/proc/CtrlShiftClick(var/mob/user)
 	return
-
-/*
-	Misc helpers
-
-	Laser Eyes: as the name implies, handles this since nothing else does currently
-	face_atom: turns the mob towards what you clicked on
-*/
-/mob/proc/LaserEyes(atom/A)
-	return
-
-/mob/living/LaserEyes(atom/A)
-	setClickCooldown(4)
-	var/turf/T = get_turf(src)
-
-	var/obj/item/projectile/beam/LE = new (T)
-	LE.icon = 'icons/effects/genetics.dmi'
-	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
-	LE.launch(A)
-/mob/living/human/LaserEyes()
-	if(nutrition>0)
-		..()
-		nutrition = max(nutrition - rand(1,5),0)
-		handle_regular_hud_updates()
-	else
-		src << "<span class='warning'>You're out of energy!  You need food!</span>"
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)

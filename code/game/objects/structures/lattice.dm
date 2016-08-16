@@ -20,7 +20,7 @@
 		if(lattice == src) continue
 		qdel(lattice)
 
-	icon = 'icons/obj/smoothlattice.dmi'
+	icon = 'icons/obj/structures/lattice.dmi'
 	update_icon()
 	update_neighbors()
 

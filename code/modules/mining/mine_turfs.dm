@@ -300,7 +300,7 @@ proc/get_mining_overlay(var/overlay_key)
 			T.overlays.Cut()
 			for(var/next_direction in step_overlays)
 				if(istype(get_step(T, step_overlays[next_direction]),/turf/simulated/mineral))
-					T.overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[next_direction])
+					T.overlays += image('icons/turf/blending_overlays.dmi', "rock_side", dir = step_overlays[next_direction])
 
 	make_floor()
 

@@ -19,9 +19,8 @@ datum/preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
-	var/UI_style = "Midnight"
 	var/toggles = TOGGLES_DEFAULT
-	var/UI_style_color = "#ffffff"
+	var/UI_style_color = "#aaaaaa"
 	var/UI_style_alpha = 255
 	var/tgui_fancy = 1
 	var/tgui_lock = 1
@@ -304,7 +303,6 @@ datum/preferences
 
 	if(icon_updates)
 		character.force_update_limbs()
-		character.update_mutations(0)
 		character.update_body(0)
 		character.update_hair(0)
 		character.update_icons()

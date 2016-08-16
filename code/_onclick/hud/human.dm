@@ -1,13 +1,14 @@
-/mob/living/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
-	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
+/mob/living/human/instantiate_hud(var/datum/hud/HUD, var/ui_color, var/ui_alpha)
+	HUD.human_hud(ui_color, ui_alpha, src)
 
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/human/target)
+/datum/hud/proc/human_hud(var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
 	else
 		hud_data = target.species.hud
 
+	var/ui_style = 'icons/screen/ui_components.dmi'
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
@@ -60,7 +61,7 @@
 
 		using = new /obj/screen()
 		using.name = "act_intent"
-		using.icon = ui_style
+		using.icon = 'icons/screen/intent.dmi'
 		using.icon_state = "intent_"+mymob.a_intent
 		using.screen_loc = ui_acti
 		using.color = ui_color
@@ -126,7 +127,7 @@
 	if(hud_data.has_m_intent)
 		using = new /obj/screen()
 		using.name = "mov_intent"
-		using.icon = ui_style
+		using.icon = 'icons/screen/move_intent.dmi'
 		using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
 		using.screen_loc = ui_movi
 		using.layer = 20
@@ -239,7 +240,7 @@
 
 	if(hud_data.has_internals)
 		mymob.internals = new /obj/screen()
-		mymob.internals.icon = ui_style
+		mymob.internals.icon = 'icons/screen/indicators.dmi'
 		mymob.internals.icon_state = "internal0"
 		mymob.internals.name = "internal"
 		mymob.internals.screen_loc = ui_internal
@@ -247,28 +248,28 @@
 
 	if(hud_data.has_warnings)
 		mymob.oxygen = new /obj/screen()
-		mymob.oxygen.icon = ui_style
+		mymob.oxygen.icon = 'icons/screen/indicators.dmi'
 		mymob.oxygen.icon_state = "oxy0"
 		mymob.oxygen.name = REAGENT_ID_OXYGEN
 		mymob.oxygen.screen_loc = ui_oxygen
 		hud_elements |= mymob.oxygen
 
 		mymob.toxin = new /obj/screen()
-		mymob.toxin.icon = ui_style
+		mymob.toxin.icon = 'icons/screen/indicators.dmi'
 		mymob.toxin.icon_state = "tox0"
 		mymob.toxin.name = REAGENT_ID_TOXIN
 		mymob.toxin.screen_loc = ui_toxin
 		hud_elements |= mymob.toxin
 
 		mymob.fire = new /obj/screen()
-		mymob.fire.icon = ui_style
+		mymob.fire.icon = 'icons/screen/indicators.dmi'
 		mymob.fire.icon_state = "fire0"
 		mymob.fire.name = "fire"
 		mymob.fire.screen_loc = ui_fire
 		hud_elements |= mymob.fire
 
 		mymob.healths = new /obj/screen()
-		mymob.healths.icon = ui_style
+		mymob.healths.icon = 'icons/screen/health.dmi'
 		mymob.healths.icon_state = "health0"
 		mymob.healths.name = "health"
 		mymob.healths.screen_loc = ui_health
@@ -276,7 +277,7 @@
 
 	if(hud_data.has_pressure)
 		mymob.pressure = new /obj/screen()
-		mymob.pressure.icon = ui_style
+		mymob.pressure.icon = 'icons/screen/indicators.dmi'
 		mymob.pressure.icon_state = "pressure0"
 		mymob.pressure.name = "pressure"
 		mymob.pressure.screen_loc = ui_pressure
@@ -284,7 +285,7 @@
 
 	if(hud_data.has_bodytemp)
 		mymob.bodytemp = new /obj/screen()
-		mymob.bodytemp.icon = ui_style
+		mymob.bodytemp.icon = 'icons/screen/indicators.dmi'
 		mymob.bodytemp.icon_state = "temp1"
 		mymob.bodytemp.name = "body temperature"
 		mymob.bodytemp.screen_loc = ui_temp
@@ -292,14 +293,14 @@
 
 	if(hud_data.has_nutrition)
 		mymob.nutrition_icon = new /obj/screen()
-		mymob.nutrition_icon.icon = 'icons/mob/screen/hunger_hud.dmi'
+		mymob.nutrition_icon.icon = 'icons/screen/hunger_hud.dmi'
 		mymob.nutrition_icon.icon_state = "nutrition0"
 		mymob.nutrition_icon.name = "nutrition"
 		mymob.nutrition_icon.screen_loc = ui_nutrition
 		hud_elements |= mymob.nutrition_icon
 
 		mymob.hydration_icon = new /obj/screen()
-		mymob.hydration_icon.icon = 'icons/mob/screen/hunger_hud.dmi'
+		mymob.hydration_icon.icon = 'icons/screen/hunger_hud.dmi'
 		mymob.hydration_icon.icon_state = "thirst0"
 		mymob.hydration_icon.name = "thirst"
 		mymob.hydration_icon.screen_loc = ui_nutrition
@@ -308,32 +309,28 @@
 	mymob.pain = new /obj/screen( null )
 
 	mymob.zone_sel = new /obj/screen/zone_sel( null )
-	mymob.zone_sel.icon = ui_style
+	mymob.zone_sel.icon = 'icons/screen/zone_sel.dmi'
 	mymob.zone_sel.color = ui_color
 	mymob.zone_sel.alpha = ui_alpha
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.overlays += image('icons/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 	hud_elements |= mymob.zone_sel
 
 	//Handle the gun settings buttons
 	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
-	mymob.gun_setting_icon.icon = ui_style
 	mymob.gun_setting_icon.color = ui_color
 	mymob.gun_setting_icon.alpha = ui_alpha
 	hud_elements |= mymob.gun_setting_icon
 
 	mymob.item_use_icon = new /obj/screen/gun/item(null)
-	mymob.item_use_icon.icon = ui_style
 	mymob.item_use_icon.color = ui_color
 	mymob.item_use_icon.alpha = ui_alpha
 
 	mymob.gun_move_icon = new /obj/screen/gun/move(null)
-	mymob.gun_move_icon.icon = ui_style
 	mymob.gun_move_icon.color = ui_color
 	mymob.gun_move_icon.alpha = ui_alpha
 
 	mymob.radio_use_icon = new /obj/screen/gun/radio(null)
-	mymob.radio_use_icon.icon = ui_style
 	mymob.radio_use_icon.color = ui_color
 	mymob.radio_use_icon.alpha = ui_alpha
 

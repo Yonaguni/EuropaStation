@@ -39,18 +39,9 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/monkey
 	source_mob = "monkey"
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/corgi
-	source_mob = "corgi"
-
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/bear
 	source_mob = "bear"
 	icon_state = "bearmeat"
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/xeno
-	source_mob = "xeno"
-	desc = "A slab of green meat. Smells like acid."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/fillet
 	name = "fillet"

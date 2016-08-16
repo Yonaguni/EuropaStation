@@ -44,7 +44,7 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	icon = 'icons/obj/hydroponics_growing.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_growing.dmi'
 	icon_state = "bush4-1"
 	layer = 3
 	pass_flags = PASSTABLE
@@ -98,7 +98,7 @@
 	if(seed.get_trait(TRAIT_SPREAD)==2)
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
-		icon = 'icons/obj/hydroponics_vines.dmi'
+		icon = 'icons/obj/hydroponics/hydroponics_vines.dmi'
 		growth_type = 2 // Vines by default.
 		if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
 			growth_type = 1 // WOOOORMS.

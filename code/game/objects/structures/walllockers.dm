@@ -1,6 +1,6 @@
 /obj/structure/walllocker
-	name = "Wall Locker"
-	icon = 'icons/obj/lockwall.dmi'
+	name = "wall locker"
+	icon = 'icons/obj/structures/wall_locker.dmi'
 	icon_state = "emerg"
 	var/list/spawnitems = list()
 	anchored = 1
@@ -15,7 +15,7 @@
 		amount--
 	return
 /obj/structure/walllocker/emerglocker
-	name = "Emergency Locker"
+	name = "emergency locker"
 	spawnitems = list(/obj/item/weapon/tank/emergency_oxygen,/obj/item/clothing/mask/breath,/obj/item/weapon/crowbar)
 /obj/structure/walllocker/emerglocker/north
 	pixel_y = 32

@@ -23,6 +23,16 @@ var/global/list/blood_decals = list()
 	var/amount = 5
 	var/drytime
 
+/obj/effect/decal/cleanable/blood/oil
+	basecolor = SYNTH_BLOOD_COLOUR
+
+/obj/effect/decal/cleanable/blood/oil/dry()
+	return
+
+/obj/effect/decal/cleanable/blood/oil/streak
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
 		fluorescent = 1
@@ -234,21 +244,13 @@ var/global/list/blood_decals = list()
                         if (step_to(src, get_step(src, direction), 0))
                                 break
 
-
 /obj/effect/decal/cleanable/mucus
 	name = "mucus"
+	icon = 'icons/effects/mucus.dmi'
+	icon_state = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
 	density = 0
 	anchored = 1
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
-	icon_state = "mucus"
 	random_icon_states = list("mucus")
-
-	var/list/datum/disease2/disease/virus2 = list()
-	var/dry=0 // Keeps the lag down
-
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1

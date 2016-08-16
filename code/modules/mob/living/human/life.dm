@@ -648,7 +648,6 @@
 		if(paralysis || sleeping)
 			blinded = 1
 			stat = UNCONSCIOUS
-			animate_tail_reset()
 			adjustSubdual(-3)
 
 		if(paralysis)

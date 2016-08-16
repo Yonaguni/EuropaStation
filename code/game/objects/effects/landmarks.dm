@@ -1,6 +1,6 @@
 /obj/effect/landmark
 	name = "landmark"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/crosses.dmi'
 	icon_state = "x2"
 	anchored = 1.0
 	unacidable = 1
@@ -85,7 +85,7 @@
 
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/crosses.dmi'
 	icon_state = "x"
 	anchored = 1.0
 	invisibility = 101
@@ -209,12 +209,6 @@
 
 /obj/effect/landmark/costume/holiday_priest/New()
 	new /obj/item/clothing/suit/holidaypriest(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/cutewitch/New()
-	new /obj/item/clothing/under/sundress(src.loc)
-	new /obj/item/clothing/head/witchwig(src.loc)
-	new /obj/item/weapon/staff/broom(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/sexyclown/New()

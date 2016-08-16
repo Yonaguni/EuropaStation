@@ -8,7 +8,7 @@
 	layer = TURF_LAYER + 0.1
 
 /obj/effect/tramrail
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/crosses.dmi'
 	icon_state = "x2"
 
 	var/_godir

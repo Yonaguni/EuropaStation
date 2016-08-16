@@ -88,7 +88,7 @@
 /obj/structure/stairs
 	name = "stairs"
 	desc = "Stairs leading somewhere.  Not too useful if the gravity goes out."
-	icon = 'icons/obj/stairs.dmi'
+	icon = 'icons/obj/structures/stairs.dmi'
 	density = 0
 	opacity = 0
 	anchored = 1

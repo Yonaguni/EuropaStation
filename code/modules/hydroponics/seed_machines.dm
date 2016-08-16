@@ -1,7 +1,7 @@
 /obj/item/weapon/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_machines.dmi'
 	icon_state = "disk"
 	w_class = 1.0
 
@@ -33,7 +33,7 @@
 		new /obj/item/weapon/disk/botany(src)
 
 /obj/machinery/botany
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_machines.dmi'
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1

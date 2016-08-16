@@ -1,7 +1,7 @@
 /obj/item/frame
 	name = "frame"
 	desc = "Used for building machines."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/structures/instruments.dmi'
 	icon_state = "fire_bitem"
 	flags = CONDUCT
 	var/build_machine_type

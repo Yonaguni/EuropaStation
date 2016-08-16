@@ -17,7 +17,6 @@
 	gibbed_anim = "gibbed-m"
 	dusted_anim = "dust-m"
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
-	tail = "chimptail"
 
 	unarmed_types = list(/datum/unarmed_attack/bite, /datum/unarmed_attack/claws)
 	inherent_verbs = list(/mob/living/proc/ventcrawl)
@@ -74,7 +73,6 @@
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	reagent_tag = IS_SKRELL
-	tail = null
 
 	has_organ = list(
 		O_HEART =    /obj/item/organ/internal/heart,

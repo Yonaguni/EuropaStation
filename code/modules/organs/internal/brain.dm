@@ -27,15 +27,6 @@
 		tmp_owner.internal_organs_by_name[organ_tag] = new replace_path(tmp_owner, 1)
 		tmp_owner = null
 
-/obj/item/organ/internal/pariah_brain
-	name = "brain remnants"
-	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
-	organ_tag = "brain"
-	parent_organ = BP_HEAD
-	icon = 'icons/mob/creatures/alien.dmi'
-	icon_state = "chitin"
-	vital = 1
-
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health

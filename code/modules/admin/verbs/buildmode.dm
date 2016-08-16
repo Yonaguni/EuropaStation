@@ -39,7 +39,7 @@
 	anchored = 1
 	layer = 20
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/screen/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
 
 /obj/effect/bmode/Destroy()
@@ -66,7 +66,7 @@
 		return 1
 
 /obj/effect/bmode/buildhelp
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/screen/buildmode.dmi'
 	icon_state = "buildhelp"
 	screen_loc = "NORTH,WEST+1"
 	Click()

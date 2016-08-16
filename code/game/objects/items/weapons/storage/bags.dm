@@ -83,7 +83,7 @@
 
 /obj/item/weapon/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	max_storage_space = 100
 	max_w_class = 3

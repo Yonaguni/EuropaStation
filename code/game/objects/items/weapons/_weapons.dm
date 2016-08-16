@@ -83,24 +83,6 @@
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 100)
 
-/obj/item/weapon/staff
-	name = "wizards staff"
-	desc = "Apparently a staff used by the wizard."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "staff"
-	force = 3.0
-	throwforce = 5.0
-	throw_speed = 1
-	throw_range = 5
-	w_class = 2.0
-	attack_verb = list("bludgeoned", "whacked", "disciplined")
-
-/obj/item/weapon/staff/broom
-	name = "broom"
-	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "broom"
-
 /obj/item/weapon/staff/gentcane
 	name = "Gentlemans Cane"
 	desc = "An ebony can with an ivory tip."
@@ -134,14 +116,6 @@
 	desc = "Heavy-duty switching circuits for power control."
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
-/obj/item/weapon/pai_cable
-	desc = "A flexible coated cable with a universal jack on one end."
-	name = "data cable"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "wire1"
-
-	var/obj/machinery/machine
-
 /obj/item/weapon/storage/part_replacer
 	name = "rapid part exchange device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
@@ -158,18 +132,10 @@
 	max_w_class = 3
 	max_storage_space = 100
 
-/obj/item/weapon/ectoplasm
-	name = "ectoplasm"
-	desc = "Spooky."
-	gender = PLURAL
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "ectoplasm"
-
 /obj/item/weapon/beach_ball
-	icon = 'icons/misc/beach.dmi'
+	icon = 'icons/obj/beachball.dmi'
 	icon_state = "ball"
 	name = "beach ball"
-	item_state = "beachball"
 	density = 0
 	anchored = 0
 	w_class = 4

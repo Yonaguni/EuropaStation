@@ -8,7 +8,7 @@
 */
 /obj/screen
 	name = ""
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/ui_components.dmi'
 	layer = 20.0
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
@@ -161,7 +161,7 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	var/image/I = image('icons/mob/zone_sel.dmi', "[selecting]")
+	var/image/I = image('icons/screen/zone_sel.dmi', "[selecting]")
 	I.plane = plane
 	overlays += I
 
