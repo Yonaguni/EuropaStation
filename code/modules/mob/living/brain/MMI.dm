@@ -19,7 +19,7 @@
 /obj/item/device/mmi
 	name = "man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
-	icon = 'icons/obj/assemblies.dmi'
+	//icon = 'icons/obj/assemblies.dmi' //todo
 	icon_state = "mmi_empty"
 	w_class = 3
 

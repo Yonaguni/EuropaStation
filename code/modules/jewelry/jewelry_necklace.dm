@@ -5,7 +5,7 @@ var/list/necklace_icon_cache = list()
 	desc = "A necklace. Very pretty."
 	color = "#805500"
 	icon_state = "base"
-	icon = 'icons/obj/clothing/necklace_parts.dmi'
+	icon = 'icons/obj/jewelry/necklace_parts.dmi'
 	slot_flags = SLOT_MASK | SLOT_POCKET
 	value_mod = 100
 	var/max_pendants = 1
@@ -50,7 +50,7 @@ var/list/necklace_icon_cache = list()
 
 	// Build inventory icon.
 	var/cache_key = "necklace-[material.icon_colour]"
-	var/image/I = image('icons/obj/clothing/necklace_parts.dmi', "base")
+	var/image/I = image('icons/obj/jewelry/necklace_parts.dmi', "base")
 	I.color = material.icon_colour
 	overlays += I
 

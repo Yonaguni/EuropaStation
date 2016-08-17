@@ -3,7 +3,7 @@
 	desc = "A ring. How precious."
 	color = "#805500"
 	icon_state = "base"
-	icon = 'icons/obj/clothing/ring_parts.dmi'
+	icon = 'icons/obj/jewelry/ring_parts.dmi'
 	slot_flags = SLOT_GLOVES | SLOT_POCKET
 	value_mod = 30
 
@@ -61,25 +61,25 @@
 	icon_state = ""
 	color = null
 	overlays.Cut()
-	var/image/I = image('icons/obj/clothing/ring_parts.dmi', "base")
+	var/image/I = image('icons/obj/jewelry/ring_parts.dmi', "base")
 	I.color = material.icon_colour
 	overlays += I
 	if(had_setting)
-		I = image('icons/obj/clothing/ring_parts.dmi', "setting")
+		I = image('icons/obj/jewelry/ring_parts.dmi', "setting")
 		I.color = material.icon_colour
 		overlays += I
 	var/has_setting
 	if(setting_main)
 		if(!setting_colour)
 			setting_colour = get_random_colour(1)
-		I = image('icons/obj/clothing/ring_parts.dmi', setting_main)
+		I = image('icons/obj/jewelry/ring_parts.dmi', setting_main)
 		I.color = setting_colour
 		overlays += I
 		has_setting = 1
 	if(setting_side)
 		if(!setting_colour)
 			setting_colour = get_random_colour(1)
-		I = image('icons/obj/clothing/ring_parts.dmi', "sidestones")
+		I = image('icons/obj/jewelry/ring_parts.dmi', "sidestones")
 		I.color = setting_colour
 		overlays += I
 		has_setting = 1
