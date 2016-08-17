@@ -1,6 +1,5 @@
 /obj/machinery/door/unpowered/simple
 	name = "door"
-	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
 	var/material/material
 	var/icon_base

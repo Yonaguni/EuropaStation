@@ -82,13 +82,3 @@
 		new /obj/item/weapon/implantcase/loyalty(src)
 		new /obj/item/weapon/implantcase/loyalty(src)
 		new /obj/item/weapon/implanter/loyalty(src)
-
-
-/obj/item/weapon/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
-	req_access = list(access_security)
-
-	New()
-		..()
-		new /obj/item/weapon/grenade/flashbang/clusterbang(src)

@@ -29,7 +29,7 @@
 /obj/item/weapon/mecha_equipment/light
 	name = "floodlight"
 	desc = "An exosuit-mounted light."
-	icon = 'icons/obj/lighting.dmi'
+	icon = 'icons/obj/machines/lights.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	restricted_hardpoints = list(HARDPOINT_HEAD)

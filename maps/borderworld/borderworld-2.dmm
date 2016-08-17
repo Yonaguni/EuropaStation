@@ -36,7 +36,7 @@
 "aJ" = (/obj/machinery/radio_receiver,/turf/simulated/floor/road/asphalt,/area/rimworld)
 "aK" = (/obj/structure/table/steel,/obj/random/material,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "aL" = (/obj/structure/grille/fence/gate,/turf/simulated/floor/road/asphalt,/area/rimworld)
-"aM" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage)
+"aM" = (/obj/machinery/door/airlock,/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage)
 "aN" = (/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage)
 "aO" = (/turf/simulated/floor/natural/sand,/area/rimworld)
 "aP" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor/road,/area/rimworld/highway)
@@ -52,10 +52,10 @@
 "aZ" = (/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "ba" = (/obj/structure/table/small/cloth,/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
 "bb" = (/turf/simulated/wall/wood,/area/rimworld/building/mayor)
-"bc" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
+"bc" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "bd" = (/obj/structure/table/marble,/obj/machinery/kitchen/stove,/obj/item/weapon/reagent_containers/kitchen/pot{pixel_x = 6; pixel_y = 6},/obj/item/weapon/reagent_containers/kitchen/fryingpan{pixel_x = -7; pixel_y = -3},/turf/simulated/floor/tiled/white,/area/rimworld/building/mayor)
 "be" = (/obj/structure/flora/pottedplant,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
-"bf" = (/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
+"bf" = (/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
 "bg" = (/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "bh" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "bi" = (/turf/simulated/mineral/floor,/area/rimworld/underground)
@@ -76,13 +76,13 @@
 "bx" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
 "by" = (/turf/simulated/floor/tiled/yellow,/area/rimworld/settlement)
 "bz" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled/dark,/area/rimworld/building/mayor)
-"bA" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/garage)
+"bA" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/garage)
 "bB" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "bC" = (/obj/structure/table/steel,/obj/random/tool,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
-"bD" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
+"bD" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
 "bE" = (/obj/structure/table/steel,/obj/random/tech_supply,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "bF" = (/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
-"bG" = (/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
+"bG" = (/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window,/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage/power)
 "bH" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
 "bI" = (/mob/living/animal/cow,/turf/simulated/floor/natural/grass,/area/rimworld/settlement)
 "bJ" = (/obj/machinery/door/unpowered/simple/wood/saloon,/turf/simulated/floor/wood,/area/rimworld/building/pub)
@@ -90,24 +90,24 @@
 "bL" = (/obj/structure/fire_source,/turf/simulated/mineral/floor,/area/rimworld/underground)
 "bM" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
 "bN" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
-"bO" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/wall/wood,/area/rimworld/building/mayor)
-"bP" = (/obj/structure/window/basic{tag = "icon-window (SOUTHEAST)"; icon_state = "window"; dir = 6},/turf/simulated/floor/wood,/area/rimworld/market)
+"bO" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/wall/wood,/area/rimworld/building/mayor)
+"bP" = (/obj/structure/window{tag = "icon-window (SOUTHEAST)"; icon_state = "window"; dir = 6},/turf/simulated/floor/wood,/area/rimworld/market)
 "bQ" = (/turf/simulated/floor/natural/light,/area/rimworld/underground)
 "bR" = (/obj/structure/fire_source/stove,/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
-"bS" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
+"bS" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
 "bT" = (/obj/structure/table/steel,/obj/item/weapon/cell/high,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "bU" = (/turf/simulated/mineral,/area/rimworld/settlement)
 "bV" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
 "bW" = (/turf/simulated/floor/road,/area/rimworld/desert)
 "bX" = (/obj/effect/floor_decal/road_stripe,/turf/simulated/floor/road,/area/rimworld/desert)
 "bY" = (/obj/structure/table/marble,/obj/machinery/kitchen/microwave,/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
-"bZ" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
+"bZ" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
 "ca" = (/obj/structure/table/small,/obj/item/weapon/soap/deluxe,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "cb" = (/obj/structure/table/small,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/vault)
 "cc" = (/turf/simulated/floor/lino,/area/rimworld/building/bank)
 "cd" = (/obj/structure/table/woodentable,/turf/simulated/floor/lino,/area/rimworld/building/bank)
 "ce" = (/turf/simulated/floor,/area/rimworld/building/garage)
-"cf" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
+"cf" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/garage)
 "cg" = (/obj/machinery/light,/turf/simulated/floor/lino,/area/rimworld/building/bank)
 "ch" = (/obj/structure/table/woodentable,/obj/machinery/light,/turf/simulated/floor/lino,/area/rimworld/building/bank)
 "ci" = (/obj/effect/floor_decal/road_stripe{tag = "icon-road_stripe (EAST)"; icon_state = "road_stripe"; dir = 4},/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage)
@@ -120,7 +120,7 @@
 "cp" = (/obj/structure/conduit/data{tag = "icon-data_cable_straight (EAST)"; icon_state = "data_cable_straight"; dir = 4},/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (EAST)"; icon_state = "matter_feed_straight"; dir = 4},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "cq" = (/obj/structure/table/steel,/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (EAST)"; icon_state = "matter_feed_straight"; dir = 4},/obj/item/weapon/cell/high,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "cr" = (/turf/simulated/wall,/area/rimworld/desert)
-"cs" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
+"cs" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_n)
 "ct" = (/turf/simulated/floor,/area/rimworld/desert)
 "cu" = (/turf/simulated/wall/wood,/area/rimworld/market)
 "cv" = (/turf/simulated/floor/tiled/yellow,/area/rimworld/market)
@@ -128,7 +128,7 @@
 "cx" = (/obj/effect/floor_decal/road_stripe{tag = "icon-road_stripe (EAST)"; icon_state = "road_stripe"; dir = 4},/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage/power)
 "cy" = (/turf/simulated/floor/road/asphalt,/area/rimworld/farmland)
 "cz" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled/dark,/area/rimworld/building/garage/scrapper)
-"cA" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
+"cA" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
 "cB" = (/mob/living/animal/chicken,/turf/simulated/floor/natural/grass,/area/rimworld/farmland)
 "cC" = (/obj/structure/table/steel,/obj/random/material,/obj/random/material,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "cD" = (/obj/machinery/fabricator/heavy,/obj/structure/conduit/data{tag = "icon-data_cable (EAST)"; icon_state = "data_cable"; dir = 4},/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (EAST)"; icon_state = "matter_feed_straight"; dir = 4},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
@@ -141,14 +141,16 @@
 "cK" = (/turf/simulated/wall/wood,/area/rimworld/building/homestead_nw)
 "cL" = (/turf/simulated/wall/wood,/area/rimworld/building/homestead_ne)
 "cM" = (/turf/simulated/wall/wood,/area/rimworld/building/homestead_large_n)
-"cN" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
-"cO" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
-"cP" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
-"cQ" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
-"cR" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
+"cN" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
+"cO" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
+"cP" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
+"cQ" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
+"cR" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
 "cS" = (/obj/structure/table/steel,/obj/random/powercell,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "cT" = (/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
 "cU" = (/obj/machinery/fabricator,/obj/structure/conduit/data{tag = "icon-data_cable (NORTH)"; icon_state = "data_cable"; dir = 1},/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (NORTH)"; icon_state = "matter_feed_straight"; dir = 1},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
+"cV" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/vault)
+"cW" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/secure_vault)
 "cX" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
 "cY" = (/obj/effect/landmark/start/miner,/turf/simulated/floor/road/asphalt,/area/rimworld/building/garage/power)
 "cZ" = (/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
@@ -156,6 +158,8 @@
 "db" = (/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
 "dc" = (/obj/structure/conduit/data{tag = "icon-data_cable_straight"; icon_state = "data_cable_straight"},/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight"; icon_state = "matter_feed_straight"},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "dd" = (/obj/effect/landmark/start/scrapper,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
+"de" = (/obj/machinery/door/airlock,/turf/simulated/floor/road/asphalt,/area/rimworld/building/bank/secure_vault)
+"df" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
 "dg" = (/turf/simulated/floor/carpet,/area/rimworld/building/homestead_nw)
 "dj" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
 "dk" = (/turf/simulated/floor/carpet,/area/rimworld/building/homestead_ne)
@@ -170,10 +174,10 @@
 "dx" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/market)
 "dy" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/garage)
 "dz" = (/turf/simulated/floor/tiled,/area/rimworld/forest)
-"dA" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
-"dB" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
-"dC" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
-"dD" = (/obj/structure/window/basic/full,/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"dA" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
+"dB" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
+"dC" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
+"dD" = (/obj/structure/window,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "dJ" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_n)
 "dN" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
 "dQ" = (/turf/simulated/floor,/area/rimworld/forest)
@@ -184,13 +188,13 @@
 "dX" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_n)
 "dY" = (/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "dZ" = (/turf/simulated/wall/wood,/area/rimworld/building/pub)
-"ea" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
-"eb" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
-"ec" = (/obj/structure/window/basic/full,/obj/structure/curtain/open,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
+"ea" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
+"eb" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
+"ec" = (/obj/structure/window,/obj/structure/curtain/open,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "ee" = (/turf/simulated/wall/wood,/area/rimworld/building/homestead_sw)
 "ef" = (/obj/machinery/media/jukebox,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "eh" = (/turf/simulated/wall/wood,/area/rimworld/building/homestead_se)
-"ei" = (/obj/structure/bed/chair/wood/wings,/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"ei" = (/obj/structure/bed/chair,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "ej" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/material/ashtray/plastic,/obj/item/weapon/material/ashtray/plastic,/obj/item/weapon/material/ashtray/plastic,/turf/simulated/floor/tiled/dark,/area/rimworld/building/pub)
 "ek" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "el" = (/turf/simulated/floor/wood,/area/rimworld/building/pub)
@@ -204,16 +208,16 @@
 "ew" = (/obj/structure/sink/kitchen{pixel_y = 24},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/rimworld/building/pub)
 "ex" = (/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "ey" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
-"eC" = (/obj/structure/bed/chair/wood/wings,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
+"eC" = (/obj/structure/bed/chair,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
 "eD" = (/turf/simulated/floor/carpet,/area/rimworld/building/homestead_se)
 "eF" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray/glass,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "eI" = (/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (EAST)"; icon_state = "matter_feed_straight"; dir = 4},/obj/structure/conduit_storage/tank,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "eJ" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "eK" = (/turf/simulated/floor/road,/area/rimworld)
 "eL" = (/obj/structure/conduit/matter/row_six{tag = "icon-matter_feed_straight (EAST)"; icon_state = "matter_feed_straight"; dir = 4},/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
-"eO" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/carpet,/area/rimworld/building/pub)
+"eO" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "eP" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
-"eQ" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/carpet,/area/rimworld/building/pub)
+"eQ" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "eS" = (/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
 "eT" = (/obj/structure/fire_source/stove,/turf/simulated/floor/road/concrete,/area/rimworld/building/garage/power)
 "eX" = (/turf/simulated/wall/concrete,/area/rimworld/building/garage/power)
@@ -233,42 +237,41 @@
 "fv" = (/turf/simulated/floor/wood,/area/rimworld/desert)
 "fw" = (/obj/effect/floor_decal/road_stripe{tag = "icon-road_stripe (EAST)"; icon_state = "road_stripe"; dir = 4},/turf/simulated/floor/road,/area/rimworld)
 "fx" = (/obj/effect/floor_decal/road_stripe,/turf/simulated/floor/road,/area/rimworld)
-"fy" = (/obj/structure/bed/chair/wood/wings,/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"fy" = (/obj/structure/bed/chair,/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "fz" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "fA" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled/dark,/area/rimworld/building/pub)
-"fB" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"fB" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "fC" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "fD" = (/obj/effect/landmark/start/mechanic,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "fE" = (/turf/simulated/floor/natural/sand,/area/rimworld/forest)
 "fF" = (/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "fG" = (/obj/structure/sink/kitchen{pixel_y = 24},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
-"fH" = (/obj/structure/bed/chair/wood/wings,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
+"fH" = (/obj/structure/bed/chair,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "fI" = (/turf/simulated/floor/natural/light,/area/rimworld/settlement)
-"fJ" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/pub)
-"fL" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
+"fJ" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"fL" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
 "fM" = (/obj/structure/grille/fence/gate,/turf/simulated/floor/tiled/yellow,/area/rimworld)
 "fN" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
-"fO" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
+"fO" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
 "fP" = (/obj/structure/grille/fence,/turf/simulated/floor/road,/area/rimworld/highway)
 "fQ" = (/turf/simulated/wall,/area/rimworld/building/bank/vault)
 "fR" = (/obj/structure/fire_source,/turf/simulated/floor/natural/sand,/area/rimworld)
-"fS" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
+"fS" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "fT" = (/turf/simulated/floor/natural/dark,/area/rimworld/settlement)
 "fU" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/vault)
-"fV" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/bank)
-"fW" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/bank)
+"fV" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/bank)
+"fW" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "fX" = (/turf/simulated/wall/concrete,/area/rimworld/building/garage)
 "fY" = (/obj/structure/closet/cabinet,/obj/item/weapon/storage/pill_bottle/morphine{pixel_y = -6},/obj/item/weapon/tape_roll,/obj/item/weapon/cane,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "fZ" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/pub)
-"gb" = (/obj/machinery/door/airlock/vault,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/vault)
 "gc" = (/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gd" = (/turf/simulated/floor/carpet,/area/rimworld/building/bank)
 "gf" = (/obj/structure/filingcabinet,/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gh" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/pub)
-"gi" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/bank)
+"gi" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gj" = (/obj/structure/table/woodentable,/obj/item/weapon/pen,/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gk" = (/turf/simulated/floor/natural/grass,/area/rimworld/settlement)
-"gm" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/bank)
+"gm" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gn" = (/obj/structure/table/small,/turf/simulated/floor/carpet,/area/rimworld/building/bank)
 "go" = (/obj/structure/table/woodentable,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/obj/item/weapon/paper_bin,/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "gq" = (/obj/structure/table/marble,/obj/machinery/kitchen/stove,/obj/item/weapon/reagent_containers/kitchen/pot{pixel_x = 6; pixel_y = 6},/obj/item/weapon/reagent_containers/kitchen/fryingpan{pixel_x = -7; pixel_y = -3},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
@@ -284,7 +287,6 @@
 "gO" = (/turf/simulated/wall/r_wall,/area/rimworld/building/bank/secure_vault)
 "gP" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/secure_vault)
 "gR" = (/turf/simulated/mineral,/area/rimworld/forest)
-"gT" = (/obj/machinery/door/airlock/vault,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/secure_vault)
 "gU" = (/obj/random/tool,/obj/structure/table/rack,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
 "gY" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_s)
 "ha" = (/obj/random/tech_supply,/obj/random/tool,/obj/structure/table/rack,/turf/simulated/floor/tiled,/area/rimworld/building/garage)
@@ -310,7 +312,7 @@
 "hC" = (/obj/structure/table/woodentable,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "hD" = (/obj/effect/landmark/start/citizen,/turf/simulated/floor/tiled/yellow,/area/rimworld/market)
 "hE" = (/obj/structure/table/marble,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,/turf/simulated/floor/wood,/area/rimworld/building/pub)
-"hH" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/pub)
+"hH" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "hI" = (/obj/item/weapon/broken_bottle,/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "hJ" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin{pixel_x = 6},/obj/item/weapon/material/kitchen/whisk{pixel_x = -9},/obj/item/weapon/material/kitchen/spatula,/obj/item/weapon/reagent_containers/kitchen/mixingbowl{pixel_y = -3},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "hK" = (/obj/item/weapon/beartrap,/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
@@ -338,7 +340,7 @@
 "im" = (/obj/structure/grille/fence/gate,/turf/simulated/floor/natural/dark,/area/rimworld)
 "in" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray/plastic,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "io" = (/obj/structure/kitchenspike,/turf/simulated/floor/tiled/freezer,/area/rimworld/building/pub)
-"ip" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/doctor,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_s)
+"ip" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/doctor,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_s)
 "iq" = (/obj/structure/bed/padded,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "ir" = (/obj/item/weapon/stool/padded,/obj/effect/landmark/start/doctor,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
 "is" = (/turf/simulated/floor/tiled/freezer,/area/rimworld/building/pub)
@@ -356,7 +358,7 @@
 "iI" = (/obj/structure/urinal{pixel_y = 28},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "iJ" = (/turf/simulated/wall/wood,/area/rimworld/settlement)
 "iK" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
-"iL" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
+"iL" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
 "iN" = (/obj/structure/safe,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank/vault)
 "iO" = (/obj/item/weapon/stool,/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/natural/grass,/area/rimworld/settlement)
 "iP" = (/obj/structure/grille/fence,/turf/simulated/open,/area/rimworld/settlement)
@@ -387,39 +389,38 @@
 "js" = (/obj/structure/urinal{pixel_y = 28},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "jt" = (/obj/structure/kitchenspike,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
 "ju" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
-"jv" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
+"jv" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
 "jx" = (/obj/effect/landmark/start/lawman,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_n)
 "jy" = (/obj/machinery/door/unpowered/simple/wood{color = "#DDDDDD"},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "jA" = (/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
-"jB" = (/obj/structure/window/reinforced{tag = "icon-rwindow (SOUTHEAST)"; icon_state = "rwindow"; dir = 6},/turf/simulated/floor/wood,/area/rimworld/building/bank)
+"jB" = (/obj/structure/window{tag = "icon-rwindow (SOUTHEAST)"; icon_state = "rwindow"; dir = 6},/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "jC" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/bank)
 "jD" = (/obj/effect/landmark/start/hunter,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
 "jF" = (/obj/structure/mirror{pixel_x = -25},/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -12; tag = "icon-sink (WEST)"},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "jG" = (/obj/structure/bed/padded,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse/hunter)
 "jH" = (/obj/machinery/door/unpowered/simple/iron,/turf/simulated/floor/tiled/dark,/area/rimworld/building/bank)
-"jI" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_n)
 "jJ" = (/turf/simulated/mineral,/area/rimworld)
 "jM" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_n)
 "jN" = (/obj/structure/table/steel_reinforced,/obj/machinery/kitchen/microwave,/turf/simulated/floor/tiled/white,/area/rimworld/building/mayor)
 "jO" = (/turf/simulated/floor/road/concrete,/area/rimworld)
 "jP" = (/turf/simulated/floor/road/concrete,/area/rimworld/forest)
 "jQ" = (/turf/simulated/floor/road/concrete,/area/rimworld/river)
-"jR" = (/obj/structure/bed/chair/wood/wings,/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
+"jR" = (/obj/structure/bed/chair,/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/homestead_sw)
 "jS" = (/obj/item/weapon/stool/padded,/obj/effect/landmark/start/citizen,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "jT" = (/obj/item/weapon/stool/padded,/obj/effect/landmark/start/lawman,/turf/simulated/floor/wood,/area/rimworld/building/pub)
 "jU" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_s)
-"jV" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/citizen,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
+"jV" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/citizen,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "jW" = (/obj/structure/sink/kitchen{pixel_y = 24},/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "jX" = (/turf/simulated/floor/natural/dark,/area/rimworld/river)
-"jY" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/citizen,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
+"jY" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/citizen,/turf/simulated/floor/carpet,/area/rimworld/building/pub)
 "jZ" = (/obj/effect/landmark/start/citizen,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_se)
 "ka" = (/obj/structure/toilet{tag = "icon-toilet00 (NORTH)"; icon_state = "toilet00"; dir = 1},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
-"kb" = (/obj/structure/window/basic/full,/obj/structure/curtain/black,/turf/simulated/floor/wood,/area/rimworld/building/chapel)
+"kb" = (/obj/structure/window,/obj/structure/curtain/black,/turf/simulated/floor/wood,/area/rimworld/building/chapel)
 "kc" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/mayor)
 "kd" = (/obj/effect/landmark/start/merchant,/turf/simulated/floor/carpet,/area/rimworld/building/bank)
 "ke" = (/turf/simulated/floor/tiled/white,/area/rimworld/building/mayor)
-"kf" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
-"kg" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
+"kf" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
+"kg" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/obj/effect/landmark/start/farmer,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "kh" = (/obj/structure/table/small,/obj/item/weapon/cane,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "ki" = (/obj/effect/landmark/start/farmer,/turf/simulated/floor/natural/dark,/area/rimworld/farmland)
 "kj" = (/obj/structure/closet,/obj/item/weapon/shovel,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/material/hatchet,/obj/item/weapon/material/minihoe,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
@@ -430,12 +431,12 @@
 "ko" = (/obj/structure/grille/fence,/turf/simulated/floor/natural/sand,/area/rimworld/desert)
 "kp" = (/turf/simulated/floor/tiled,/area/rimworld/building/garage/scrapper)
 "kq" = (/obj/effect/landmark/start/scrapper,/turf/simulated/floor/tiled,/area/rimworld/building/garage/scrapper)
-"kr" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
-"ks" = (/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
+"kr" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
+"ks" = (/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
 "ku" = (/obj/structure/table/glass,/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
-"kv" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
-"kw" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
-"kx" = (/obj/structure/window/basic,/obj/structure/window/basic{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window/basic{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/obj/structure/window/basic{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
+"kv" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
+"kw" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
+"kx" = (/obj/structure/window,/obj/structure/window{tag = "icon-window (EAST)"; icon_state = "window"; dir = 4},/obj/structure/window{tag = "icon-window (NORTH)"; icon_state = "window"; dir = 1},/obj/structure/grille,/obj/structure/window{tag = "icon-window (WEST)"; icon_state = "window"; dir = 8},/turf/simulated/floor,/area/rimworld/building/garage/scrapper)
 "ky" = (/turf/simulated/floor/road/asphalt,/area/rimworld/desert)
 "kz" = (/obj/effect/floor_decal/road_stripe,/turf/simulated/floor/road/asphalt,/area/rimworld/desert)
 "kA" = (/obj/effect/floor_decal/road_stripe{tag = "icon-road_stripe (EAST)"; icon_state = "road_stripe"; dir = 4},/turf/simulated/floor/road/asphalt,/area/rimworld/desert)
@@ -443,22 +444,22 @@
 "kC" = (/obj/structure/bed/chair/comfy/black{tag = "icon-comfychair_preview (WEST)"; icon_state = "comfychair_preview"; dir = 8},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
 "kH" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
 "kI" = (/obj/structure/bed/chair/comfy/black{tag = "icon-comfychair_preview (NORTH)"; icon_state = "comfychair_preview"; dir = 1},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
-"kJ" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
-"kK" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
-"kN" = (/obj/structure/bed/chair/wood/wings,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
+"kJ" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
+"kK" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/carpet,/area/rimworld/building/mayor)
+"kN" = (/obj/structure/bed/chair,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "kO" = (/obj/machinery/light,/obj/structure/bookcase,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
-"kS" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
-"kT" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
+"kS" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
+"kT" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "kU" = (/obj/structure/table/small,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "kV" = (/obj/structure/coatrack,/turf/simulated/floor/wood,/area/rimworld/building/mayor)
 "kX" = (/obj/structure/table/woodentable,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
-"kY" = (/obj/structure/bed/chair/wood/wings,/obj/effect/landmark/start/citizen,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
+"kY" = (/obj/structure/bed/chair,/obj/effect/landmark/start/citizen,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
 "kZ" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
 "la" = (/obj/structure/bed/padded,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/wood,/area/rimworld/building/homestead_ne)
-"lb" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
+"lb" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
 "lc" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_nw)
 "ld" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_n)
-"le" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
+"le" = (/obj/structure/bed/chair{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
 "lf" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/wood,/area/rimworld/building/homestead_nw)
 "lg" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_s)
 "lj" = (/obj/structure/table/small,/turf/simulated/floor/wood,/area/rimworld/building/homestead_large_n)
@@ -470,15 +471,14 @@
 "lt" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/wood,/area/rimworld/building/chapel)
 "lu" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/tiled/white,/area/rimworld/building/pub)
 "lv" = (/turf/simulated/floor/carpet,/area/rimworld/building/homestead_large_s)
-"lw" = (/obj/structure/morgue{tag = "icon-morgue1 (WEST)"; icon_state = "morgue1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_s)
 "lx" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_s)
 "ly" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/chapel)
 "lz" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/wood,/area/rimworld/building/homestead_se)
-"lB" = (/obj/structure/window/basic/full,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
+"lB" = (/obj/structure/window,/obj/structure/curtain/open{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "lC" = (/turf/simulated/wall/concrete,/area/rimworld/building/bank)
 "lE" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/homestead_large_s)
 "lH" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/medical,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
-"lI" = (/obj/structure/window/basic/full,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
+"lI" = (/obj/structure/window,/obj/structure/curtain{color = "#854636"},/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "lJ" = (/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "lS" = (/turf/simulated/wall/wood,/area/rimworld/building/chapel)
 "lV" = (/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
@@ -486,7 +486,7 @@
 "lX" = (/turf/simulated/floor/carpet,/area/rimworld/building/chapel)
 "lZ" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/obj/item/weapon/storage/stationary,/turf/simulated/floor/wood,/area/rimworld/building/farmhouse)
 "ma" = (/obj/structure/table/woodentable,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/chapel)
-"mb" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (EAST)"; icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/chapel)
+"mb" = (/obj/structure/bed/chair{tag = "icon-wooden_chair (EAST)"; icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/wood,/area/rimworld/building/chapel)
 "md" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/spray/antiseptic,/obj/item/weapon/scalpel,/obj/item/weapon/cautery,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "me" = (/turf/simulated/floor/natural/grass/forest,/area/rimworld)
 "mf" = (/obj/structure/closet/wardrobe/chaplain_black,/turf/simulated/floor/wood,/area/rimworld/building/chapel)
@@ -500,11 +500,9 @@
 "mu" = (/obj/machinery/light,/turf/simulated/floor/carpet,/area/rimworld/building/chapel)
 "mv" = (/turf/simulated/floor/road/asphalt,/area/rimworld/underground)
 "mA" = (/turf/simulated/wall/concrete,/area/rimworld/building/bank/secure_vault)
-"mC" = (/obj/structure/crematorium,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
 "mD" = (/obj/structure/closet/coffin,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
 "mF" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
 "mG" = (/obj/machinery/light/small,/obj/structure/closet/coffin,/turf/simulated/floor/tiled/dark,/area/rimworld/building/chapel)
-"mM" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/road/asphalt,/area/rimworld/building/bank/secure_vault)
 "mO" = (/obj/machinery/door/unpowered/simple/wood,/turf/simulated/floor/tiled,/area/rimworld/building/garage/scrapper)
 "mQ" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/white,/area/rimworld/building/homestead_large_s)
 "mS" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/carpet,/area/rimworld/building/farmhouse)
@@ -713,7 +711,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiafaeaeaeafafafafagagamamhBjrjthBjvjucNajajaaaaaaaaaaaaaaaaaaaaaaaaaahffIhbhbhbhbcudxhXhYhYhTcvcvcvcvcvhkhPhPcicicinDcicidybpbpbpbpfDbEfXfIcKlcdgdgcTdtcTcTcKfTbyfIcLdjdkdkdkcZcLfIcMlbdljxlddbdJjljljljljljljljMjgfIfIfIaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacacaiaiah
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiafaeaeaeafafafagagamamcOjAjAdNjAjDcNajajaaaaaaaaaaaaaaaaaaaaaaaafIhfhbhbhbhbhbcuhZhnhWhYcvcvcvcvcvcvhkhkhkaNaNaNaNaNaNfXbpbpbpbpbpdwfXfIcKdpdgdgcTcKenlfcKfTbyfIcLeZdkdkdkcZcLfTcMdbdldllddbhyhyhyhyhyjljlhyhyhyhyhyfIaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaiaiai
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiafaeaeaeaeafafafagagamhBfNjAhBjAjGcNajajajaaaaaaaaaaaaaaaaaaaafIfIfIhbhbhbhbhbcuhVhXhWhYhTcvhDcvcvcvhkhkhkfXceceihiyfXfXfXfXbufXbAfXfXfIcKcKdtcKcPcKdAdAcKfTbyfTcLdBcLbxcLdCcLfTcMljdldllddbhylljllmhyjljlhylmjlllhyfIfIaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaiahai
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiafafaeaeaeafafafafagaghBhBdNhBhBhBhBajajajajajaaaaaaaaaaaaaaaafIfIhghbfIhbhbhbcucubPbPcuhTcvcvcvcvcvcvcvhbhbhbhbhbhbhbibhbhbbyhbhbhbhbhbfIfIbyfTfTfIfIfIfTfTbyfTfIfIfIbyfIfIfIfTcMcAcMbHcMcMhyjljljljIjljljIjljljlhyfIfIaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaiahai
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiafafaeaeaeafafafafagaghBhBdNhBhBhBhBajajajajajaaaaaaaaaaaaaaaafIfIhghbfIhbhbhbcucubPbPcuhTcvcvcvcvcvcvcvhbhbhbhbhbhbhbibhbhbbyhbhbhbhbhbfIfIbyfTfTfIfIfIfTfTbyfTfIfIfIbyfIfIfIfTcMcAcMbHcMcMhyjljljlcsjljlcsjljljlhyfIfIaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaiahai
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiafafaeaeaeafafafafagagagagamamagagagajajjJajajajajajajaHajajfIhbichbhbhbhbhbhbhbhbhThThThTcvhThThTcvcvbybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybyfIfIhylojMjlhyjljlhylojMjlhyfIfIaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaiai
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiafafafafaeafafafafafafagagagagamagagajajajajajajajajajaHajajhbhbfIhbhbhbfIfIfIfIhbhbhTcuhYhYhYcuhThTcvbybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybybyhbfThyhyhyhyhyjgjghyhyhyhyhyfIfIaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacacah
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiakaiaiafafafafafafafafafafafagamnGagagamjOagagjOagajajajajajajhbhbfIfIhbhbfIfIfIfIfIfIfIfIbPhWhWhYbPhThThbhbhbhbhbhbhbhbhbhbbyhbhbhbhbhbhbbybyfTfIfIfIbyfIfTfTfTfIfIfIfTfIfIfIbyfIfIhbhbhbfTfThbhbhbhbhbhbhbhbhbhbhbfIfIfIaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacai
@@ -722,18 +720,18 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaijPjPjPjPjPjPjPjQjQjQjQjQjQjQjQjOjOjOcNjvjuhBfNjAhBajajajimajajhbhbhffIaaaaaaaaaaaaaaaaaacucucucucuhbhbhbhbdZejewdZeleleleleljVePeQeleFdDbybyfIeeeyepepepeSeefIeheCesjZeDbNbybyifdTijigkkdTlvlvipilfShbhbhbhbhbhbhbfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakakakaijPjPjPjPjPjPjPjPjPjQjQjQjQjQjQjQjQagjOcNjDjAdNjAjAcOajajajaDajajajfIhfaaaaaaaaaaaaaaaaaaaaaaaafIgkfIfIhbhbhbfAghghfZeleleleleleOfajYeleidDbybyfIeeiueSeSeSbReefIehbVeseDeDehfTbyfTecivirdYgvlvlviBiwdThbhbhbhbhbhbhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakakakakaiaiakakaiaiaiaiaiaiaiaiaiafafafafafafafafjXagcNjAjGhBjtjrhBajajajaHajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfTgkfIhbhbdZfdfsdZfbftfteleleleleleleldDbybyfIeekleSeSlpffeefIehleeslzbVehfTbybygvdYdYdYdTdTgvdTdTdTdThbkmkmlgkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaiaiahahaiaijPaiaiakaiaiahaiaiaiafafafafafafafafjXhBhBhBhBhBhBhBajamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahfiaiahfdZdZdZdZdZdZfbfbftjSelfyfBfzfJfCdZbybyfIeeeefLfLfLeeeefIehehfOfOehehfTbyfIecjUiEjUgvixixixjWixgMbygYlxlwkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaiaiahahaiaijPaiaiakaiaiahaiaiaiafafafafafafafafjXhBhBhBhBhBhBhBajamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahfiaiahfdZdZdZdZdZdZfbfbftjSelfyfBfzfJfCdZbybyfIeeeefLfLfLeeeefIehehfOfOehehfTbyfIecjUiEjUgvixixixjWixgMbygYlxlEkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahahahahahahahaiaiaiahaiaiaiaiaiafafafafafafafjXjXagagagagagagamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIgkfTfIdZiGbYfGgqdZfbfbgtjTelhpexexexeldDbybybyfIfIfTfTfTfTfTfTfTfTfTfTfTfIfIbyfIdTixieixdTlHixixixmddThbkmlElEkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahahahahahahahahahaiaiahahakaiahaiaiafafafaeafafafjXjXagagagagamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabUgkbIgkfIhxfFfFfFfFhxfbhqhEjTelfHexeOfahHdDhbbybyfIfTfTgkgkgkgkgkgkgkgkgkfTfTfIbyfIdTdTdTdTdTmqiqmUmQnIdThbkmlElwkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahahahahahahahahahaiaiahahakaiahaiaiafafafaeafafafjXjXagagagagamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabUgkbIgkfIhxfFfFfFfFhxfbhqhEjTelfHexeOfahHdDhbbybyfIfTfTgkgkgkgkgkgkgkgkgkfTfTfIbyfIdTdTdTdTdTmqiqmUmQnIdThbkmlElEkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakakaiaiaiahahahalalalalahahahahahahaiaiahaiaiaiaiaiafafafaeaeafafafjXagagagagamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfTgkgkgkfTdZhJfFfFfFdZfbfbftjSelexexexexeidDhbbybyfIfTgkgkgkgkgkgkgkgkgkgkgkfTfIbyfIfTgkgkgkdTdTdTdTdTdTdTfTkmkmkmkmhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaiahahahahalalalalalahahahahahahahaiaiaiaiaiaiaiaiafafafaeaeafafafjXagagagagamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiJiJiJgkgkgkbIgkdZhSidfFludZiifbhEikelfBfzhHelindZhbbybyfIfTgkgkgkgkgkgkgkgkgkgkgkfTfIbyfIfTgkgkgknKnKnKnKnKnKnKgkfTfIfIfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaiahahahahalalalalalahahahahahahahaiaiaiaiaiaaaiaiaiafafafaeaeafafafafagagagagagamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiJfTfTgkbIgkgkgkdZdZdZhxdZdZdZdZdZdZfZdZdZdZdZdZdZhbbybybyfTgkgkfQfQfQfQfQgkgkgkgkfTfIbyfIfTgkgkgkgkfQfQfQfQfQgkgkfTfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahalalalalalalalahahahahahahahaiaiaiakakaiaaaiaiaiaiafafafaeaeafafafafagagagagamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaiJfTfTfTgkgkgkgkdZioitisiFdZaaaadZiHfFiIjsdZaaaaaahbhbbybyfTgkgkfQiNfUfUfQfVfWlCjBjBlCjClCjBjBlCfVfWfQfUfUiNfQgkfTfTfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahalalalalalalalahahahahahahahaiaiahaiaiakaiaaaaaaaiaiafafafaeaeaeaeafafafagagagagamamamaaaaaaaaaaaaaaaaaaaaaaaaaaiJfTfTfTfTgkgkiOdZioisisiFdZaaaadZjFfFfFfFdZaaaaaafIhbbybyfTfTgkfQcbfUfUgbgcgclCgcgdgdgdgdgdgflCgcgcgbfUfUcbfQfTfTfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahalalalalalalalahahahahahahahaiaiahaiaiakaiaaaaaaaiaiafafafaeaeaeaeafafafagagagagamamamaaaaaaaaaaaaaaaaaaaaaaaaaaiJfTfTfTfTgkgkiOdZioisisiFdZaaaadZjFfFfFfFdZaaaaaafIhbbybyfTfTgkfQcbfUfUcVgcgclCgcgdgdgdgdgdgflCgcgccVfUfUcbfQfTfTfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahahalalalalalalalahahahahahahahahahaiaiaiaiakaiakaaaaaaaiaiafafafaeaeaeafafafafagagagagamamamaaaaaaaaaaaaaaaaaaaaaaaaiJiJiJhehefTfTfTdZioisisiFdZaaaadZdZjydZjydZaaaaaahfhfhfbybyiaiafQiNfUfUfQgcgclCgigdkdgdkdgdgjlCgcgcfQfUfUiNfQfIfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaiaiahahahalalalalalalahahahahahahahahahahahaiakakakakakakaaaaaaaaaiafafafaeaeaeaeafafafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaiPiPhehehehedZdZdZdZdZdZaaaaaadZkadZkadZaaaaaaaaaafIbybyfIfTfQfQfQfQfQgcgclCgmgngdgdgdgdgolCgcgcfQfQfQfQfQfIfIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiahahalalalalalalalahahahahahahahahahalahahaiakaaakakakakaaaaaaaaaiaiafafafaeaeaeaeafafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaiPiPiPiPiPaaaaaaaaaaaaaaaaaadZdZdZdZdZaaaaaaaaaafIbybybyfIfQiNfUfUfQgcgclCgigcgcgcgcgcnMlCgcgcfQfUfUiNfQaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahalalalalalalalahahahahahahahahahahalahaiaiakaaaaaaakakakaaaaaaaaaiafafafaeaeaeaeaeafafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIbybybyfIfQcbfUfUgbgcgclCgcgcgcgcgcgcgclCgcgcgbfUfUcbfQaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahalalalalalalalahahahahahahahahahahalahaiaiakaaaaaaakakakaaaaaaaaaiafafafaeaeaeaeaeafafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIbybybyfIfQcbfUfUcVgcgclCgcgcgcgcgcgcgclCgcgccVfUfUcbfQaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaiaiahahalalalalalalalahahahahahahahahahalalahaiaiakakaaaaakaiakaaaaaaaaaiaiafafafaeaeaeaeaeafafafagagamamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfIbybyfIfQiNfUfUfQgcgclCccgzgAcdgCgcgclCgcgcfQfUfUiNfQaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiahahalalalalalalalalahahahahahahahahahalalahaiaiahakaaaaakaiakakaaaaaaaaaiafafafaeaeaeaeaeafafafagagagamamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIbybybyfQfQfQfQfQgcgclCcccccgccchgcgclCgcgcfQfQfQfQfQaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaiaiahahalalalalalalalahahahahahahahahahahalalahaiaiaiakaaakakaiakakaaaaaaaaaiafafafaeaeaeaeaeaeafafafagagamamamamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfIbybyaaaaaaaalCgcgclClCjClClClClCjClCgcgclCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaaaaaa
@@ -743,34 +741,34 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaiaiah
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiahahahahalalahahahahahahahahahahahalalalahaiaiakaaakakaiaiakakaaaaaaaaaiaiafafaeaeaeaeaeaeaeaeafafagagagamamamamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfIfIfTfTgkgkgkgkgkgkfIfTfTfTgkfIbybybybyfIfIaaaaaaaaaaaaaaaaaaaamAgPgPmAmAmAmAmAmAmAmAmAaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakakaaaaaaaaaaaaaaaaaaaaakakaiaiahahahalalahahahahahahahahahahahalalalahaiaiakakakaiaiaiakaaaaaaaaaaaaaiafaeaeaeaeaeaeaeafaeafafagagagamamamamamamamamaaaaaaaaaaaaaaaaaaaaaaaaaafTfTfTgkfTgkgkgkgkgkgkgkgkbybybybybybybybybybybyfIfIaaaaaaaaaaaaaaaaaamAgPgPgOgOgOgOgOgOgOgOmAaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiakakaaaaaaaaaaaaaaaaaaakakaiaiahahalalahahahahahahahahahahahahalalalahaiaiaiaiaiaiahaiakaaaaaaaaaaaagRafaeaeaeaeaeaeaeafaeafafafagagagamamamamamamamaaaaaaaaaaaaaaaaaaaaaafTfTfTfIfTgkfTgkgkgkgkgkgkgkgkbybybybybybybybyfTfTbybyfIfIfIaaaaaaaaaaaaaamAgPgPgOgPiRiSiRiTiRgOmAaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahaiakakaaaaaaaaaaaaaaaaakaiaiahahahalalahahahahahahahahahahahahalalalalahaiaiaiahaiaiaiakakaaaaaaaaaaaiafaeaeaeaeaeaeafafaeaeafafagagagamamamamamamamamaaaaaaaaaaaaaaaaaafTfTfIfIlSlSlSlSlSlSlSlSlSlSlSlSbybygkfIfIgkgkfTfTbyfIfTbyfTfTfIfIaaaaaaaaaamAgPgPgTgPgPgPgPgPclgOmAaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahaiakakaaaaaaaaaaaaaaaaakaiaiahahahalalahahahahahahahahahahahahalalalalahaiaiaiahaiaiaiakakaaaaaaaaaaaiafaeaeaeaeaeaeafafaeaeafafagagagamamamamamamamamaaaaaaaaaaaaaaaaaafTfTfIfIlSlSlSlSlSlSlSlSlSlSlSlSbybygkfIfIgkgkfTfTbyfIfTbyfTfTfIfIaaaaaaaaaamAgPgPcWgPgPgPgPgPclgOmAaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiahahaiaiakakaaaaaaaaaaaaakakaiahahahalalahahahahahahahahahahahahahalalalalahaiahahahaiaiaiaiakaaaaaaaaaaaiafaeaeaeaeaeaeafagaaaeaeafafagagagamamamamamamamamaaaaaaaaaaaaaafTfTlSlSlSlSlVlVlVlVlWlXlWlXlWlVkbbybygkgkgkgkfTfTfIfIaafIfTfTbyfIfIfTaaaaaaaamAgPgPgOgPiRiUiRiSiRgOmAaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakakaiaiaiaiaiaiaiaiakakaaaaaaaaakakaiaiahahalalahahahahahahalalahahahahahahalalalalahahahaiaiaiaiaiaiakakaiaaaaaiaiafaeaeaeaeaeafafagaaaeaeaeafafagagagamamamamamamamaaaaaaaaaagkfTfTlSlSmbmalSlVlXlXlVlWlXlWlXlWlVkbbybygkgkhehehefIfIaaaafIfIfIfTfIbyfTfIaaaaaamAgPgPgOgOgOgOgOgOgOgOmAaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaakakaaaaaaakakaiaiahahahahahaiaiakakaaaaaaakakaiaiahahahahahahahahahahahalahahahahahahalalalalalalahaiaiaiaiakakakakakaiaaaaaiafafaeaeaeaeafafagagaaaaaeaeafafafagagamamamamamamaaaaaamemeamgkfTfIlSmfmgmglSlVlXmhlVlWlXlWlXlWlVlSbybygkhehehehehefIaaaaaaaafIfIfTbybyfTaaaaaamAgPgPgOgOgOgOgOgOgOgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaakakakakaaakakaiaiahahahahahahahaiaiakaaaaaaakakaiahahahahahahahahahahalalalahahahahahalalalalalalalahahaiaiaiakaaakakaiaiaaaaaiafafaeaeaeaeafafagamaaaaaeaeaeafafagagagamamamamamaaaamememeamgkgkfTlSmgmgmgltlVlXmhlVlVlVlVlVlVlVltbybygkheheheheheaaaaaaaaaaaafIfTbybyfTfIaaaamAgPgPgOgPiRiViRiTiRgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaakaiaiaiaiakaiaiaiahahahahahahahahaiaiakaaaaakakaiaiahahahahahahahahalalalalalahahahahalalalalalalalalahahaiahaiakaaaaaaaiaiaiaiaiafafaeaeaeaeafafagamaaaaaeaeaeafafagagagagamamamammemememememegkgkfTlSlymgmglSlVlXmhlVlWlXlWlXlWlVlSbygkfTheheheheheaaaaaaaaaaaafIfTgkfTfTfIaaaamAgPgPgTgPgPgPgPgPclgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaakakaiaiahaiaiaiahahahahahalalahahahahaiakaaaaakaiaiahahahahalalalalalalalalalahahahahalalalalalalalalalahahaiahaiakakaaaaaiaiaiaiafafaeaeaeaeaeafagagaaaaaaaeaeaeaeafafagagagagamammememememeaaaaaafTfTlSlSmsmrlSlVlXlXlVlWlXlWlXlWlVkbbygkfTfIheheheaaaaaaaaaaaaaafTfTfTbyfTfTaaaamAmMmAgOgPiRiViRiSiRgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaakaiaiaiaiakaiaiaiahahahahahahahahaiaiakaaaaakakaiaiahahahahahahahahalalalalalahahahahalalalalalalalalahahaiahaiakaaaaaaaiaiaiaiaiafafaeaeaeaeafafagamaaaaaeaeaeafafagagagagamamamammemememememegkgkfTlSlymgmglSlVlXmhlVlWlXlWlXlWlVlSbygkfTheheheheheaaaaaaaaaaaafIfTgkfTfTfIaaaamAgPgPcWgPgPgPgPgPclgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaakakaiaiahaiaiaiahahahahahalalahahahahaiakaaaaakaiaiahahahahalalalalalalalalalahahahahalalalalalalalalalahahaiahaiakakaaaaaiaiaiaiafafaeaeaeaeaeafagagaaaaaaaeaeaeaeafafagagagagamammememememeaaaaaafTfTlSlSmsmrlSlVlXlXlVlWlXlWlXlWlVkbbygkfTfIheheheaaaaaaaaaaaaaafTfTfTbyfTfTaaaamAdemAgOgPiRiViRiSiRgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaakakakaiaiahahahahahahahahahalalahahahahahaiakaaaaakaiaiahahahalalalalalalalalalalahahahalalalalalalalalalalahahaiahaiaiakaaaaaiaiaiafafaeaeaeaeaeafagamamaaaaaaaeaeaeaeafafafagagagamamaamememeaaaaaaaaaagkfTlSlSlSlSlVlVmtlVlWlXlWmulWlVkbbygkfTfTfIfIaaaaaaaaaaaaaafTgkfIfTbyfIfTfIaaaacomAgOgOgOgOgOgOgOgOmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaakakakaiaiaiahahahahahahahahalalalalahahahahahahakaaaaakakaiahahahalalalalalalalalalahahahalalalalalalalalalalahahahaiaiahaiakaaaaaaaiaiafafaeaeaeaeaeafagamaaaaaaaaaaaeaeaeaeafafagagamamaaaaaaaaaaaaaaaaaaaafTfTfTgkgklSlSlSlSlSlSlSlSlSlSlSlSbygkgkfTfIaaaaaaaaaaaaaaaagkgkfTfTbyfTfTfIaaaacoaamAmAmAmAmAmAmAmAmAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaakakakaiaiahahahahahahahahahalalalalahahahahahahahakakaaaaakaiahahahahalalalalalalalahahahahalalalalalalalalalahahahahaiaiaiakakaaaaaaaiafafaeaeaeaeaeafafagamaaaaaaaaaaaeaeaeaeafafafagamaaaaaaaaaaaaaaaaaaaaaaaafTfTfTgkgkgkgkfIfIgkfIfIfIgkfIfIbygkfTfIfIaaaaaaaaaaaaaafTfTfTfTbyfTfTfIaaaaaacoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamvmvmvaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaa
-aaaaaaakakaiaiaiahahahahahalalalalalalalalahahahahahahahaiaiakakakakaiahahahahahahahahahahahahahahahalalalalalalalalalahahahaiaiaiaiakaaaaaaaiaiafafaeaeaeaeafafafagamaaaaaaaaaaaaaeaeaeaeafafagamaaaaaaaaaaaaaaaaaaaaaafTfTfTgkgkgkbybybybybybybybybybybybyfTfTfIaaaaaaaaaaaaaafIfTfTfIfIbyfIfTfTaaaaaacomMcococococococoaaaaaaaaaaaamvmvmvmvmvaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaaaaaaaaaaaaaaaaaaaa
-aaakakaiaiaiahahahahahalalalalalalalalahahahahahahahahahahaiaiaiaiaiaiahahahahaiaiaiaiaiahahahahahahalalalalalalalalahahahaiaiaiaiakakaaaaaaaiafafaeaeaeaeaeafafagagamaaaaaaaaaaaaaeaeaeaeafafagaaaaaaaaaaaaaaaaaaaaaaaafTfTfTnBnBnBcsnBnBnBgkgkgkgkgkgkfTfTfIfIfIaaaaaaaaaaaaaafIfIfTfIfTbyfIfIfIfTaaaacoaaaaaaaaaaaaaacoaaaaaaaamvmvmvmvmvmvmvmvaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaaaaaaaaaaaaaaaaaaaa
-akakaiaiahahahahahahalalalalalalalalahahahahahahahalahahahahahahahahahahahahaiaiakakakaiaiaiahahahahahalalalalalalahaiahaiaiaiaiakakaaaaaaaaafafaeaeaeaeaeafafagagamamaaaaaaaaaaaaaeaeaeaeaeafagaaaaaaaaaaaaaaaaaaaaaaaaaafTfTnBmClVlVmDmDnBgkgkgkgkgkfTfIfIfIaaaaaaaaaaaaaaaaiYiYiYiZiYiYiZjajbjbiYiYaamMaaaaaaaaaaaaaacoaaaaaamvmvmvmvmvmvmvmvmvaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaaaaaaaaaaaaaaa
+aaaaaaakakaiaiaiahahahahahalalalalalalalalahahahahahahahaiaiakakakakaiahahahahahahahahahahahahahahahalalalalalalalalalahahahaiaiaiaiakaaaaaaaiaiafafaeaeaeaeafafafagamaaaaaaaaaaaaaeaeaeaeafafagamaaaaaaaaaaaaaaaaaaaaaafTfTfTgkgkgkbybybybybybybybybybybybyfTfTfIaaaaaaaaaaaaaafIfTfTfIfIbyfIfTfTaaaaaacodecococococococoaaaaaaaaaaaamvmvmvmvmvaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaaaaaaaaaaaaaaaaaaaa
+aaakakaiaiaiahahahahahalalalalalalalalahahahahahahahahahahaiaiaiaiaiaiahahahahaiaiaiaiaiahahahahahahalalalalalalalalahahahaiaiaiaiakakaaaaaaaiafafaeaeaeaeaeafafagagamaaaaaaaaaaaaaeaeaeaeafafagaaaaaaaaaaaaaaaaaaaaaaaafTfTfTnBnBnBdfnBnBnBgkgkgkgkgkgkfTfTfIfIfIaaaaaaaaaaaaaafIfIfTfIfTbyfIfIfIfTaaaacoaaaaaaaaaaaaaacoaaaaaaaamvmvmvmvmvmvmvmvaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacaaaaaaaaaaaaaaaaaaaa
+akakaiaiahahahahahahalalalalalalalalahahahahahahahalahahahahahahahahahahahahaiaiakakakaiaiaiahahahahahalalalalalalahaiahaiaiaiaiakakaaaaaaaaafafaeaeaeaeaeafafagagamamaaaaaaaaaaaaaeaeaeaeaeafagaaaaaaaaaaaaaaaaaaaaaaaaaafTfTnBlVlVlVmDmDnBgkgkgkgkgkfTfIfIfIaaaaaaaaaaaaaaaaiYiYiYiZiYiYiZjajbjbiYiYaadeaaaaaaaaaaaaaacoaaaaaamvmvmvmvmvmvmvmvmvaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaaaaaaaaaaaaaaa
 aiaiaiahahahahahalalalalalalalalalahahahahahahahahalalalalalahahahahahahahaiaiakakaaakakakaiaiahahahahahahalalahahaiahahaiaiakakakaaaaaaaaaaafaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaeaeaeaeaeafafagaaaaaaaaaaaaaaaaaaaaaaaafTfTnBlVmFlVmGmDnBgkgkgkgkfIfIaaaaaaaaaaaaaaaaaaaaiZiZjcjciZiZiZjbjbjbjbjbiZiZcyaaaaaaaaaaaaaacoaaaamvmvmvmvmvmvmvmvmvmvaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaaaaaaaaaaaaaaaaa
 aiahahahahahalalalalalalalalalahahahahahahahahahahahalalalalalalalahahahahaiakakaaaaaaaaakaiaiahahahahahahahahahaiaiahaiaiakakaaaaaaaaaaaaaeaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaaaeaeaeaeaeafafafagaaaaaaaaaaaaaaaaaaaaaaaafTnBnBnBnBnBnBnBgkfIfTfTfTaaaaaaaaaaaaaaaaaaaaaaiZjcjcjejeiZiZiZjbjbiZjbjbjbcyiZaaaaaaaaaaaacoaaaamvmvmvmvmvmvmvmvmvmvaaaaaaaaaaaaaaacacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaaaaaaaaaaaaaaaaaaaaa
 ahahahahahalalalalalalalalalalahahahahahahahahahahahahalalalalalalalahahahaiakaaaaaaaaaaakakaiahahahahahaiaiaiaiaiahaiakaiakaaaaaaaaaaaaaeaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaaaeaeaeaeaeaeafafafafaaaaaaaaaaaaaaaaaaaaaaaafTfTfTfTfTfTfTfTfTfTfTaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjcjcjejciZiZhjcycycycycycyiZiZiZaamvmvaacoaaaamvmvmvmvmvmvmvmvmvaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ahahahahalalalalalalalalalalalahahahahahahahahahahahahalalalalalalalahahahaiakaaaaaaaaaaaaakaiahahahahaiaiaiahahaiakaiaiaaaaaaaaaaaaaaaeaeaeaeaeaeafafagagagaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeafafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjcjcjcjcjciZiZiZhwhohohoholBhohoiZaamvmvmMcoaaaamvmvmvmvmvmvmvmvmvaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ahahahahalalalalalalalalalalalahahahahahahahahahahahahalalalalalalalahahahaiakaaaaaaaaaaaaakaiahahahahaiaiaiahahaiakaiaiaaaaaaaaaaaaaaaeaeaeaeaeaeafafagagagaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeafafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjcjcjcjcjciZiZiZhwhohohoholBhohoiZaamvmvdecoaaaamvmvmvmvmvmvmvmvmvaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ahahahalalalalalalalalalalalalahahahahahahahahahahahahahalalalalalalahahahaiakaaaaaaaaaaakakaiahahahaiaiaiakaiahaiakahaiaaaaaaaaaaaaaeaeaeaeaeaeafafagagagamaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeafafafafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZjcjcjcjcjcjcjcjciZhshwmohwhwmohwlJhoiZaamvmvaacoaaaaaamvmvmvmvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-alalalalalalalalalalalalalalalahahahahahahahalahahahahahahahahahalahahahahaiakakaaaaaaakakaiaiahahaiaiakakakaiahaiaiahaiaaaaaaaaaaaeaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagagafafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZjejcjcjcjcjcjcjcjchjhskfhohwhwhokghChoiZaaaaaaaacocomMmvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+alalalalalalalalalalalalalalalahahahahahahahalahahahahahahahahahalahahahahaiakakaaaaaaakakaiaiahahaiaiakakakaiahaiaiahaiaaaaaaaaaaaeaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagagafafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZjejcjcjcjcjcjcjcjchjhskfhohwhwhokghChoiZaaaaaaaacocodemvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalahahahahalalalahahahahahahahahahahahahahahaiaiakakaaakakaiaiaiahahaiaiakaaaiahahahaiaiaaaaaaaaaaaeaeaeaeaeaeafafafagagamaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagagaaafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjejcjcjcjcjcjcjcjcjchjhskhlBjjmShohohohoiZaaaaaaaacoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalalahahalalalahahahahaiaiaiaiaiaiahahahahahahaiaiakakakaiaiaiahahahaiakakaaaiahahahahaiaaaaaaaaafaeaeaeaeaeaeafafagamamamaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagaaaaaaafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjejcjcjcjckijcjcjcjciZhskjlBhImTmohwlZhoiZaaaaaaaacoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalalalalalalahahahaiaiaiakakakakaiahahahahahahahaiaiaiaiaiaiahahahahaiakaaaaaiahahahahaiaaaaaaafafaeaeaeaeaeafafagagamamaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagaaaaaaaaafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjcjcjcjcjcjcjcjciZiZhshwlBhKmThonNhLhoiZaaaaaaaacoaaaaaaaaaaaaaaaamvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaaaacacaaaaaaaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalalalalalahahahaiaiakakakaaaaakaiahahahahahahahahahahahahahahahahahaiakaaaaaiahahahahaiaaaaafafaeaeaeaeafafafagagamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafagaaaaaaaaaaafafafaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjejcjcjcjcjcjciZiZhshwhohohoholIhohojcaaaaaaaacoaaaaaaaaaaaaaaaamvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaacacacacaaaaaaaaaaaaaaaa
-alalalalalalalalalalalalalalalalalalalahahahaiaiakakaaaaaaaaakaiahahahahahahahahahahahahahahahahaiaiakaaaaaaaiahahahaiaaafafaeaeaeaeafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafaaaaaaaaaaaaafafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjcjcjcjcjcjcjcjcjciZhshshshshshshsiZjcaaaaaaaacocococococococomMmvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaacadadacacaaaaaaaaaaaaaa
+alalalalalalalalalalalalalalalalalalalahahahaiaiakakaaaaaaaaakaiahahahahahahahahahahahahahahahahaiaiakaaaaaaaiahahahaiaaafafaeaeaeaeafafagagagamamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeafafaaaaaaaaaaaaafafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjcjcjcjcjcjcjcjcjciZhshshshshshshsiZjcaaaaaaaacocococococococodemvmvmvmvaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaacadadacacaaaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalalahahahahaiaiakakaaaaaaaaakakaiahahahahahahahahahahahahahahahahaiaiakaaaaaaaiahahaiaiafafafaeaeafafafafagagamamamamagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeafafaaaaaaaaaaaaafafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjejejcjcjcjejejciZiZiZiZjcjcjciZaaaaaaaaaaaaaaaacoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacaaaaaaaaaaaaaaaaacadadadacacaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalahahahaiaiaiakakaaaaaaaaakakaiaiahahahahahahahahahahahahahahahahaiaiakaaaaaaaiahaiamafafafaeaeafafafafagagamamamamamagagaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaafafaaaaaaaaaaafaaafafafaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZjcjejejcjcjejciZjcjcjcjcjcjejcjeaaaaaaaaaaaaaaaacoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaaaaacacadadadadacaaaaaaaaaaaa
 alalalalalalalalalalalalalalalalahahahaiakakakaaaaaaaaakakaiaiahahahahalahahahahahahahahahahahaiaiakakaaaaaaahahaiagafafafafafafafafafagamamamamamamagagaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaafafaaaaaaaaafaaaaaaafafafaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZiZjcjcjciZiZiZiZjcjejejciZjcaaaaaaaaaaaaaaaacoaaaaaaaaaaaaacacacacacacacaaaaaaaaaaaaaaaaacadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacaaaaaaacadadadadadacacaaaaaaaaaa
-alalalalalalalalalalalalalalalahahahaiaiakaaaaaaaaaaaaakaiaiahahahalalalalalahahahahahahahahahaiaiakakaaaaaaaiahaiafafafafafafafafafagagamamamamamagagajajaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaafafaaaaaaaaafaaaaaaaaaaafafaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZiZiZiZiZjbiZjccBjejojejciZiZaaaaaaaaaaaaaamMaaaaacacacacacnCnCnCnCnCacacacaaaaaaaaaaaaknkokoadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacacadadadadadacacaaaaaaaaaa
+alalalalalalalalalalalalalalalahahahaiaiakaaaaaaaaaaaaakaiaiahahahalalalalalahahahahahahahahahaiaiakakaaaaaaaiahaiafafafafafafafafafagagamamamamamagagajajaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaafafaaaaaaaaafaaaaaaaaaaafafaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZiZiZiZiZjbiZjccBjejojejciZiZaaaaaaaaaaaaaadeaaaaacacacacacnCnCnCnCnCacacacaaaaaaaaaaaaknkokoadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacacacacadadadadadacacaaaaaaaaaa
 alalalalalalalalalalalalalalalahahahaiakakaaaaaaaaaaakakaiahahahalalalalalalahahahahahahahahahaiaiakakaaaaaaaaaiaiafafafafafafafafafagagamamamamagagagagagaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaaaafaaaaaaaaafaaaaaaaaaaaaaaaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjciZiZjbiZiZjcjejojojejcjbiZiYaaaaaaaaaaaamvacacacacacacacnCmYmXmZnCacacacaaaaaaaaaaacacadkoadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaa
 alalalalalalalalalalalalalalalahahahaiakaaaaaaaaaaaaakaiaiahahahalalalalalalahahahahahahahahahaiaiakaaaaaaaaaaaiafafafaeaeaeafafafagagamamamamagagagagamagagaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaaaafafaaaaaaafaaaaaaaaaaaaaaaaaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZjcjcjbjbiZjcjejejejecBjciZjbiYacacacaaaaacacacnCnCnCnCnCnCnCkpkqmYnCacacacacacacacacacadadkoadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaa
 alalalalalalalalalalalalalalalahahahaiakakaaaaaaaaaaakakaiahahalalalalalalalahahahahahahahahahaiakakaaaaaaaaaaafafaeaeaeaeaeaeaeafagagamagagagagajagamajamagaaaaaaaaaaaaaaaaaaaaagafaeaeaeaeaaaaaaaaafafaaafafaaaaaaaaaaaaaaaaaaaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiZiZiZjciZjcjccBjejejejejciZjpacacacacacacnfackrmYkpkpndkpnCnekpmYnCacnCnCnCnCnCnCnCnCadadkoadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadacacaaaaaaaaaa

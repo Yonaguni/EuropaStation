@@ -88,13 +88,13 @@
 		cache_key = "[cache_key]-setting-[setting_colour]"
 	// Generate and cache mob icon.
 	if(!necklace_icon_cache[cache_key])
-		var/icon/tmp_icon = icon('icons/mob/clothing/necklace_parts.dmi', "blank")
-		var/icon/base_icon = icon('icons/mob/clothing/ring_parts.dmi', "base_[wear_side]")
+		var/icon/tmp_icon = icon('icons/mob/clothing/jewelry/necklace_parts.dmi', "blank")
+		var/icon/base_icon = icon('icons/mob/clothing/jewelry/ring_parts.dmi', "base_[wear_side]")
 		base_icon.Blend(material.icon_colour, ICON_MULTIPLY)
 		tmp_icon.Blend(base_icon, ICON_OVERLAY)
 		if(setting_main || setting_side)
 			cache_key = "[cache_key]-setting-[wear_side]-[setting_colour]"
-			base_icon = icon('icons/mob/clothing/ring_parts.dmi', "setting_[wear_side]")
+			base_icon = icon('icons/mob/clothing/jewelry/ring_parts.dmi', "setting_[wear_side]")
 			base_icon.Blend(setting_colour, ICON_MULTIPLY)
 			tmp_icon.Blend(base_icon, ICON_OVERLAY)
 		necklace_icon_cache[cache_key] = tmp_icon

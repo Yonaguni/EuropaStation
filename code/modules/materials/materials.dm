@@ -332,8 +332,7 @@ var/global/list/all_materials = list()
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
 	window_options = list("One Direction" = 1, "Full Window" = 4)
-	created_window = /obj/structure/window/basic
-	rod_product = /obj/item/stack/material/glass/reinforced
+	created_window = /obj/structure/window
 	hitsound = 'sound/effects/Glasshit.ogg'
 	sell_amt = 2
 
@@ -407,46 +406,6 @@ var/global/list/all_materials = list()
 
 /material/glass/proc/is_reinforced()
 	return (hardness > 35) //todo
-
-/material/glass/reinforced
-	name = "rglass"
-	display_name = "reinforced glass"
-	stack_type = /obj/item/stack/material/glass/reinforced
-	flags = MATERIAL_BRITTLE
-	icon_colour = "#00E1FF"
-	opacity = 0.3
-	integrity = 100
-	shard_type = SHARD_SHARD
-	tableslam_noise = 'sound/effects/Glasshit.ogg'
-	hardness = 40
-	weight = 30
-	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
-	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
-	created_window = /obj/structure/window/reinforced
-	wire_product = null
-	rod_product = null
-
-/material/glass/phoron
-	name = "borosilicate glass"
-	display_name = "borosilicate glass"
-	stack_type = /obj/item/stack/material/glass/phoronglass
-	flags = MATERIAL_BRITTLE
-	integrity = 100
-	icon_colour = "#FC2BC5"
-	created_window = /obj/structure/window/phoronbasic
-	wire_product = null
-	rod_product = /obj/item/stack/material/glass/phoronrglass
-
-/material/glass/phoron/reinforced
-	name = "reinforced borosilicate glass"
-	display_name = "reinforced borosilicate glass"
-	stack_type = /obj/item/stack/material/glass/phoronrglass
-	composite_material = list() //todo
-	created_window = /obj/structure/window/phoronreinforced
-	hardness = 40
-	weight = 30
-	composite_material = list() //todo
-	rod_product = null
 
 /material/plastic
 	name = "plastic"

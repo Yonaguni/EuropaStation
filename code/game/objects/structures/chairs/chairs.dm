@@ -1,4 +1,4 @@
-/obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
+/obj/structure/bed/chair
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "chair_preview"
@@ -23,7 +23,7 @@
 
 	var/cache_key = "[base_icon]-[material.name]-over"
 	if(isnull(stool_cache[cache_key]))
-		var/image/I = image('icons/obj/furniture.dmi', "[base_icon]_over")
+		var/image/I = image(icon, "[base_icon]_over")
 		I.color = material.icon_colour
 		I.layer = FLY_LAYER
 		stool_cache[cache_key] = I
@@ -100,90 +100,3 @@
 
 /obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","lime")
-
-/obj/structure/bed/chair/office
-	anchored = 0
-	buckle_movable = 1
-
-/obj/structure/bed/chair/office/update_icon()
-	return
-
-/obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
-		return
-	..()
-
-/obj/structure/bed/chair/office/Move()
-	..()
-	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		occupant.buckled = null
-		occupant.Move(src.loc)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
-			if (propelled)
-				for (var/mob/O in src.loc)
-					if (O != occupant)
-						Bump(O)
-			else
-				unbuckle_mob()
-
-/obj/structure/bed/chair/office/Bump(atom/A)
-	..()
-	if(!buckled_mob)	return
-
-	if(propelled)
-		var/mob/living/occupant = unbuckle_mob()
-
-		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
-		if(istype(A, /mob/living))
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
-		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
-
-/obj/structure/bed/chair/office/light
-	icon_state = "officechair_white"
-
-/obj/structure/bed/chair/office/dark
-	icon_state = "officechair_dark"
-
-/obj/structure/bed/chair/office/New()
-	..()
-	var/image/I = image(icon, "[icon_state]_over")
-	I.layer = FLY_LAYER
-	overlays += I
-
-// Chair types
-/obj/structure/bed/chair/wood
-	name = "wooden chair"
-	desc = "Old is never too old to not be in fashion."
-	icon_state = "wooden_chair"
-
-/obj/structure/bed/chair/wood/update_icon()
-	return
-
-/obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
-		return
-	..()
-
-/obj/structure/bed/chair/wood/New(var/newloc)
-	..(newloc, "wood")
-	var/image/I = image(icon, "[icon_state]_over")
-	I.layer = FLY_LAYER
-	overlays += I
-
-/obj/structure/bed/chair/wood/wings
-	icon_state = "wooden_chair_wings"

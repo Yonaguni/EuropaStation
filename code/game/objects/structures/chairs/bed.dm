@@ -1,16 +1,10 @@
-/* Beds... get your mind out of the gutter, they're for sleeping!
- * Contains:
- * 		Beds
- *		Roller beds
- */
-
 /*
  * Beds
  */
 /obj/structure/bed
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
-	icon = 'icons/obj/furniture.dmi'
+	icon = 'icons/obj/structures/furniture.dmi'
 	icon_state = "bed"
 	anchored = 1
 	can_buckle = 1
@@ -44,7 +38,7 @@
 	// Base icon.
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
-		var/image/I = image('icons/obj/furniture.dmi', base_icon)
+		var/image/I = image(icon, base_icon)
 		I.color = material.icon_colour
 		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
@@ -156,15 +150,6 @@
 	material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
-
-/obj/structure/bed/psych
-	name = "psychiatrist's couch"
-	desc = "For prime comfort during psychiatric evaluations."
-	icon_state = "psychbed"
-	base_icon = "psychbed"
-
-/obj/structure/bed/psych/New(var/newloc)
-	..(newloc,"wood","leather")
 
 /obj/structure/bed/padded/New(var/newloc)
 	..(newloc,"plastic","cotton")

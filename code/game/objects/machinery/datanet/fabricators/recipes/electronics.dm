@@ -5,10 +5,6 @@
 	fabtype = FABRICATOR_ELECTRONICS
 	category = "General"
 
-/decl/fabricator_design/electronics/floor_light
-	name = "floor light"
-	path = /obj/machinery/floor_light
-
 /decl/fabricator_design/electronics/tube_light
 	name = "light frame (tube)"
 	path = /obj/item/frame/light

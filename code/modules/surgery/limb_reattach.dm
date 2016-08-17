@@ -78,6 +78,7 @@
 		"<span class='warning'> Your hand slips, damaging [target]'s [E.amputation_point]!</span>")
 		target.apply_damage(10, BRUTE, null, sharp=1)
 
+/*
 /datum/surgery_step/limb/mechanize
 	allowed_tools = list(/obj/item/robot_parts = 100)
 
@@ -124,3 +125,4 @@
 		user.visible_message("<span class='warning'> [user]'s hand slips, damaging [target]'s flesh!</span>", \
 		"<span class='warning'> Your hand slips, damaging [target]'s flesh!</span>")
 		target.apply_damage(10, BRUTE, null, sharp=1)
+*/

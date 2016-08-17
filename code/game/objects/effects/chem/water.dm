@@ -52,5 +52,5 @@
 //Used by spraybottles.
 /obj/effect/effect/water/chempuff
 	name = "chemicals"
-	icon = 'icons/obj/chempuff.dmi'
+	icon = 'icons/effects/chempuff.dmi'
 	icon_state = ""

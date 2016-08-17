@@ -5,49 +5,49 @@ var/list/directory = list()							//list of all ckeys with associated client
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
-var/global/list/mob_list = list()					//List of all mobs, including clientless
-var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including c
-var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
-var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+var/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
+var/list/mob_list = list()					//List of all mobs, including clientless
+var/list/human_mob_list = list()				//List of all human mobs and sub-types, including c
+var/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
+var/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
 
-var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
-var/global/list/landmarks_list = list()				//list of all landmarks created
-var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
-var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+var/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
+var/list/landmarks_list = list()				//list of all landmarks created
+var/list/surgery_steps = list()				//list of all surgery steps  |BS12
+var/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
+var/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 
-var/global/list/turfs = list()						//list of all turfs
+var/list/turfs = list()						//list of all turfs
 
 //Languages/species/whitelist.
-var/global/list/all_species[0]
-var/global/list/all_languages[0]
-var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+var/list/all_species[0]
+var/list/all_languages[0]
+var/list/language_keys[0]					// Table of say codes for all languages
+var/list/whitelisted_species = list("Human") // Species that require a whitelist check.
+var/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 var/list/mannequins_
-
-// Posters
-var/global/list/poster_designs = list()
 
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
 
 //Preferences stuff
-	//Hairstyles
-var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
-var/global/list/hair_styles_male_list = list()
-var/global/list/hair_styles_female_list = list()
-var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
-var/global/list/facial_hair_styles_male_list = list()
-var/global/list/facial_hair_styles_female_list = list()
-var/global/list/skin_styles_female_list = list()		//unused
+
+//Hairstyles
+var/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
+var/list/hair_styles_male_list = list()
+var/list/hair_styles_female_list = list()
+var/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
+var/list/facial_hair_styles_male_list = list()
+var/list/facial_hair_styles_female_list = list()
+var/list/skin_styles_female_list = list()		//unused
+
 //Underwear
-var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
+var/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
+var/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
+
 //Backpacks
-var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
+var/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
 
 // Music.
 var/global/list/ambient_tracks = list(
@@ -160,12 +160,6 @@ var/global/list/string_slot_flags = list(
 			playable_species += S.name
 		if(S.spawn_flags & IS_WHITELISTED)
 			whitelisted_species += S.name
-
-	//Posters
-	paths = typesof(/datum/poster) - /datum/poster
-	for(var/T in paths)
-		var/datum/poster/P = new T
-		poster_designs += P
 
 	return 1
 

@@ -12,7 +12,6 @@
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,
-		/obj/item/weapon/dice,
 		/obj/item/weapon/disk,
 		/obj/item/weapon/implanter,
 		/obj/item/weapon/flame/lighter,

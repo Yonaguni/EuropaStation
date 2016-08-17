@@ -1,24 +1,31 @@
 /obj/structure/window
 	name = "window"
-	desc = "A window."
-	icon = 'icons/obj/structures/structures.dmi'
+	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
+	icon = 'icons/obj/structures/window.dmi'
+	icon_state = "window"
+	anchored = 1
+	flags = ON_BORDER
 	density = 1
 	w_class = 3
+	layer = 3.2
 
-	layer = 3.2//Just above doors
-	anchored = 1.0
-	flags = ON_BORDER
-	var/maxhealth = 14.0
+	var/maxhealth = 12
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
-	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
+	var/damage_per_fire_tick = 2
 	var/health
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
-	var/basestate
+	var/basestate = "window"
 	var/shardtype = /obj/item/weapon/material/shard
-	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
-	var/silicate = 0 // number of units of silicate
+	var/glasstype = /obj/item/stack/material/glass // Null is impossible to dismantle.
+
+/obj/structure/window/set_dir()
+	..()
+	if(dir == NORTH)
+		layer = 3
+	else
+		layer = 3.2
 
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
@@ -35,13 +42,6 @@
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
-	if(silicate)
-		if (silicate < 30)
-			user << "<span class='notice'>It has a thin layer of silicate.</span>"
-		else if (silicate < 70)
-			user << "<span class='notice'>It is covered in silicate.</span>"
-		else
-			user << "<span class='notice'>There is a thick layer of silicate covering it.</span>"
 
 /obj/structure/window/CanAtmosPass(turf/T)
 	if(get_dir(loc, T) == dir)
@@ -52,9 +52,6 @@
 
 /obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
-
-	if(silicate)
-		damage = damage * (1 - silicate / 200)
 
 	health = max(0, health - damage)
 
@@ -70,24 +67,6 @@
 		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
 	return
-
-/obj/structure/window/proc/apply_silicate(var/amount)
-	if(health < maxhealth) // Mend the damage
-		health = min(health + amount * 3, maxhealth)
-		if(health == maxhealth)
-			visible_message("[src] looks fully repaired." )
-	else // Reinforce
-		silicate = min(silicate + amount, 100)
-		updateSilicate()
-
-/obj/structure/window/proc/updateSilicate()
-	if (overlays)
-		overlays.Cut()
-
-	var/image/img = image(src.icon, src.icon_state)
-	img.color = "#ffffff"
-	img.alpha = silicate * 255 / 100
-	overlays += img
 
 /obj/structure/window/proc/shatter(var/display_message = 1)
 	playsound(src, "shatter", 70, 1)
@@ -314,7 +293,6 @@
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
 	set_dir(turn(dir, 90))
-	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
 	return
 
@@ -331,9 +309,8 @@
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
 
-	update_nearby_tiles(need_rebuild=1) //Compel updates before
+	update_nearby_tiles(need_rebuild=1)
 	set_dir(turn(dir, 270))
-	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
 	return
 
@@ -364,7 +341,6 @@
 		W.update_icon()
 	loc = location
 	..()
-
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
@@ -413,56 +389,9 @@
 		hit(damage_per_fire_tick, 0)
 	..()
 
-
-
-/obj/structure/window/basic
-	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
-	icon_state = "window"
-	basestate = "window"
-	glasstype = /obj/item/stack/material/glass
-	maximal_heat = T0C + 100
-	damage_per_fire_tick = 2.0
-	maxhealth = 12.0
-
-/obj/structure/window/basic/full
+/obj/structure/window/full
     dir = 5
     flags = 0
-
-/obj/structure/window/phoronbasic
-	name = "phoron window"
-	desc = "A borosilicate alloy window. It seems to be quite strong."
-	basestate = "phoronwindow"
-	icon_state = "phoronwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
-	glasstype = /obj/item/stack/material/glass/phoronglass
-	maximal_heat = T0C + 2000
-	damage_per_fire_tick = 1.0
-	maxhealth = 40.0
-
-/obj/structure/window/phoronreinforced
-	name = "reinforced borosilicate window"
-	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "phoronrwindow"
-	icon_state = "phoronrwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
-	glasstype = /obj/item/stack/material/glass/phoronrglass
-	reinf = 1
-	maximal_heat = T0C + 4000
-	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 80.0
-
-
-/obj/structure/window/reinforced
-	name = "reinforced window"
-	desc = "It looks rather strong. Might take a few good hits to shatter it."
-	icon_state = "rwindow"
-	basestate = "rwindow"
-	maxhealth = 40.0
-	reinf = 1
-	maximal_heat = T0C + 750
-	damage_per_fire_tick = 2.0
-	glasstype = /obj/item/stack/material/glass/reinforced
-
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
@@ -470,34 +399,3 @@
 	//player-constructed windows
 	if (constructed)
 		state = 0
-
-/obj/structure/window/reinforced/full
-    dir = 5
-    icon_state = "fwindow"
-
-/obj/structure/window/reinforced/tinted
-	name = "tinted window"
-	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
-	icon_state = "twindow"
-	basestate = "twindow"
-	opacity = 1
-
-/obj/structure/window/reinforced/tinted/frosted
-	name = "frosted window"
-	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
-	icon_state = "fwindow"
-	basestate = "fwindow"
-	maxhealth = 30
-
-/obj/structure/window/reinforced/polarized
-	name = "electrochromic window"
-	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
-	var/id
-
-/obj/structure/window/reinforced/polarized/proc/toggle()
-	if(opacity)
-		animate(src, color="#FFFFFF", time=5)
-		set_opacity(0)
-	else
-		animate(src, color="#222222", time=5)
-		set_opacity(1)

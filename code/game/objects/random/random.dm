@@ -116,8 +116,7 @@
 					prob(2);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,\
-					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline,\
-					prob(1);/obj/item/stack/nanopaste)
+					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline)
 
 /obj/random/contraband
 	name = "Random Illegal Item"
@@ -128,7 +127,6 @@
 	item_to_spawn()
 		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(4);/obj/item/weapon/haircomb,\
-					prob(5);/obj/item/weapon/contraband/poster,\
 					prob(2);/obj/item/weapon/material/butterfly,\
 					prob(3);/obj/item/weapon/material/butterflyblade,\
 					prob(3);/obj/item/weapon/material/butterflyhandle,\

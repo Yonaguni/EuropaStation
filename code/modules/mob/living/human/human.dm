@@ -5,6 +5,10 @@
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "generic"
 
+	// Centering the 64x64 icon on a single turf.
+	pixel_x = -16
+	pixel_y = 12
+
 	var/mapped_species
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -1421,7 +1425,7 @@
 	return !(species.flags & NO_PAIN)
 
 /mob/living/human/is_muzzled()
-	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))
+	return istype(wear_mask, /obj/item/clothing/mask/muzzle)
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/human/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate

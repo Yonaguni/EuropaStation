@@ -1,12 +1,12 @@
 /obj/structure/grille
 	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	icon = 'icons/obj/structures/structures.dmi'
+	icon = 'icons/obj/structures/grille.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
 	flags = CONDUCT
-	layer = 2.9
+	layer = 3.1
 	explosion_resistance = 1
 	var/health = 10
 	var/destroyed = 0
@@ -206,12 +206,6 @@
 	destroyed = 1
 	icon_state = "grille-b"
 	density = 0
-
-/obj/structure/grille/cult
-	name = "cult grille"
-	desc = "A matrice built out of an unknown material, with some sort of force field blocking air around it"
-	icon_state = "grillecult"
-	health = 40 //Make it strong enough to avoid people breaking in too easily
 
 /obj/structure/grille/cult/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 	if(air_group)

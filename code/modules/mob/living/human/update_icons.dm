@@ -329,6 +329,8 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)
 		update_icons()
 
+	color = "#f2ca7b"
+
 //HAIR OVERLAY
 /mob/living/human/proc/update_hair(var/update_icons=1)
 	//Reset our hair
@@ -731,7 +733,7 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)	update_icons()
 
 /mob/living/human/update_inv_wear_mask(var/update_icons=1)
-	if( wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/jewelry) || istype(wear_mask, /obj/item/clothing/accessory) || istype(wear_mask, /obj/item/weapon/grenade) ) && !(head && head.flags_inv & HIDEMASK))
+	if( wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/jewelry) || istype(wear_mask, /obj/item/clothing/accessory)) && !(head && head.flags_inv & HIDEMASK))
 		wear_mask.screen_loc = ui_mask	//TODO
 
 		var/image/standing
@@ -815,7 +817,7 @@ var/global/list/damage_icon_parts = list()
 		else if(handcuffed.sprite_sheets && handcuffed.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = handcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "handcuff1")
 		else
-			standing = image("icon" = 'icons/effects/cuffed.dmi', "icon_state" = "handcuff1")
+			standing = image("icon" = 'icons/mob/creatures/cuffed.dmi', "icon_state" = "handcuff1")
 		overlays_standing[HANDCUFF_LAYER] = standing
 
 	else
@@ -831,7 +833,7 @@ var/global/list/damage_icon_parts = list()
 		else if(legcuffed.sprite_sheets && legcuffed.sprite_sheets[species.get_bodytype()])
 			standing = image("icon" = legcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "legcuff1")
 		else
-			standing = image("icon" = 'icons/effects/cuffed.dmi', "icon_state" = "legcuff1")
+			standing = image("icon" = 'icons/mob/creatures/cuffed.dmi', "icon_state" = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
 		if(src.m_intent != "walk")

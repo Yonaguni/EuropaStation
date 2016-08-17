@@ -52,10 +52,6 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
-/datum/gear/utility/cheap/dice
-	display_name = "20-sided dice"
-	path = /obj/item/weapon/dice/d20
-
 /datum/gear/utility/cheap/cards
 	display_name = "deck of cards"
 	path = /obj/item/weapon/deck/cards

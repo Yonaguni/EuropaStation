@@ -3,7 +3,7 @@
 	pixel_y = 12
 	icon_state = "loader_legs"
 	var/move_delay = 5
-	var/obj/item/robot_parts/robot_component/actuator/motivator
+	var/obj/item/component/mech/actuator/motivator
 
 /obj/item/mech_component/propulsion/ready_to_install()
 	return motivator
@@ -12,7 +12,7 @@
 	motivator = locate() in src
 
 /obj/item/mech_component/propulsion/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/robot_parts/robot_component/actuator))
+	if(istype(thing,/obj/item/component/mech/actuator))
 		if(motivator)
 			user << "<span class='warning'>\The [src] already has an actuator installed.</span>"
 			return
