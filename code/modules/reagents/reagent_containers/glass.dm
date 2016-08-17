@@ -27,7 +27,6 @@
 		/obj/structure/sink,
 		/obj/item/weapon/storage,
 		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/item/weapon/grenade/chem_grenade,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/structure/iv_drip,
 		/obj/machinery/disposal,

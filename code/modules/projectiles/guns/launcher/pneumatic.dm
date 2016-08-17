@@ -180,14 +180,6 @@
 			else
 				user << "<span class='notice'>You need at least five metal sheets to complete this task.</span>"
 			return
-	else if(istype(W,/obj/item/device/transfer_valve))
-		if(buildstate == 4)
-			user.drop_from_inventory(W)
-			qdel(W)
-			user << "<span class='notice'>You install the transfer valve and connect it to the piping.</span>"
-			buildstate++
-			update_icon()
-			return
 	else if(istype(W,/obj/item/weapon/weldingtool))
 		if(buildstate == 1)
 			var/obj/item/weapon/weldingtool/T = W
@@ -203,7 +195,7 @@
 				if(!src || !T.isOn()) return
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				user << "<span class='notice'>You weld the metal chassis together.</span>"
-				buildstate++
+				buildstate+=2
 				update_icon()
 		if(buildstate == 5)
 			var/obj/item/weapon/weldingtool/T = W

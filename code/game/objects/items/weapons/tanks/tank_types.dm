@@ -96,18 +96,6 @@
 	src.air_contents.adjust_gas(REAGENT_ID_FUEL, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
-/obj/item/weapon/tank/phoron/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-
-	if (istype(W, /obj/item/weapon/flamethrower))
-		var/obj/item/weapon/flamethrower/F = W
-		if ((!F.status)||(F.ptank))	return
-		src.master = F
-		F.ptank = src
-		user.remove_from_mob(src)
-		src.loc = F
-	return
-
 /*
  * Emergency Oxygen
  */

@@ -5,8 +5,6 @@
 	else if(istype(A, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = A
 		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
-		return 1
 	return 0
 
 //For anything that can light stuff on fire

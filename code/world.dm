@@ -1,4 +1,3 @@
-
 /*
 	The initialization of the game happens roughly like this:
 

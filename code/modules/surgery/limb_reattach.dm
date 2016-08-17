@@ -44,8 +44,7 @@
 
 /datum/surgery_step/limb/connect
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
-	/obj/item/device/assembly/mousetrap = 20
+	/obj/item/weapon/hemostat = 100
 	)
 	can_infect = 1
 
