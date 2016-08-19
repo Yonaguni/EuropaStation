@@ -4,10 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "generic"
-
-	// Centering the 64x64 icon on a single turf.
 	pixel_x = -16
-	pixel_y = 12
 
 	var/mapped_species
 	var/list/hud_list[10]

@@ -4,11 +4,12 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/structures/furniture.dmi'
+	icon = 'icons/obj/structures/stools.dmi'
 	icon_state = "stool_preview" //set for the map
 	force = 10
 	throwforce = 10
 	w_class = 5
+
 	var/base_icon = "stool_base"
 	var/material/material
 	var/material/padding_material
