@@ -14,15 +14,6 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 		log_game("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 
-	if(heavy_range > 1)
-		var/obj/effect/overlay/pulse = PoolOrNew(/obj/effect/overlay, epicenter)
-		pulse.icon = 'icons/effects/effects.dmi'
-		pulse.icon_state = "emppulse"
-		pulse.name = "emp pulse"
-		pulse.anchored = 1
-		spawn(20)
-			qdel(pulse)
-
 	if(heavy_range > light_range)
 		light_range = heavy_range
 

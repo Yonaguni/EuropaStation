@@ -2,7 +2,6 @@
 // Chem smoke
 /////////////////////////////////////////////
 /obj/effect/effect/smoke/chem
-	icon = 'icons/effects/chemsmoke.dmi'
 	opacity = 0
 	layer = 6
 	time_to_live = 300
@@ -12,18 +11,18 @@
 
 /obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null)
 	time_to_live = smoke_duration
-	
+
 	..()
-	
+
 	create_reagents(500)
-	
+
 	if(cached_icon)
 		icon = cached_icon
-	
+
 	set_dir(pick(cardinal))
 	pixel_x = -32 + rand(-8, 8)
 	pixel_y = -32 + rand(-8, 8)
-	
+
 	//switching opacity on after the smoke has spawned, and then turning it off before it is deleted results in cleaner
 	//lighting and view range updates (Is this still true with the new lighting system?)
 	opacity = 1
@@ -64,7 +63,7 @@
 // Fades out the smoke smoothly using it's alpha variable.
 /obj/effect/effect/smoke/chem/proc/fadeOut(var/frames = 16)
 	if(!alpha) return //already transparent
-	
+
 	frames = max(frames, 1) //We will just assume that by 0 frames, the coder meant "during one frame".
 	var/alpha_step = round(alpha / frames)
 	while(alpha > 0)
@@ -174,7 +173,7 @@
 	var/color = chemholder.reagents.get_color() //build smoke icon
 	var/icon/I
 	if(color)
-		I = icon('icons/effects/chemsmoke.dmi')
+		I = icon('icons/effects/96x96.dmi', "smoke")
 		I += color
 	else
 		I = icon('icons/effects/96x96.dmi', "smoke")

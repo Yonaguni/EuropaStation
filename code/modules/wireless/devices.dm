@@ -87,13 +87,3 @@
 	var/obj/machinery/door/airlock/D = parent
 	if(istype(D))
 		D.electrify(0)
-
-//-------------------------------
-// Crematorium
-// Triggers cremate() on the parent /crematorium.
-//-------------------------------
-/datum/wifi/receiver/button/crematorium/activate(mob/living/user)
-	..()
-	var/obj/structure/crematorium/C = parent
-	if(istype(C))
-		C.cremate(user)

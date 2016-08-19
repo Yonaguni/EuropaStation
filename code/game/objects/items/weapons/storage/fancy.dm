@@ -79,48 +79,6 @@
 		new /obj/item/weapon/flame/candle(src)
 	return
 
-/*
- * Crayon Box
- */
-
-/obj/item/weapon/storage/fancy/crayons
-	name = "box of crayons"
-	desc = "A box of crayons for all your rune drawing needs."
-	icon = 'icons/obj/crayons.dmi'
-	icon_state = "crayonbox"
-	w_class = 2.0
-	icon_type = "crayon"
-	can_hold = list(
-		/obj/item/weapon/pen/crayon
-	)
-
-/obj/item/weapon/storage/fancy/crayons/New()
-	..()
-	new /obj/item/weapon/pen/crayon/red(src)
-	new /obj/item/weapon/pen/crayon/orange(src)
-	new /obj/item/weapon/pen/crayon/yellow(src)
-	new /obj/item/weapon/pen/crayon/green(src)
-	new /obj/item/weapon/pen/crayon/blue(src)
-	new /obj/item/weapon/pen/crayon/purple(src)
-	update_icon()
-
-/obj/item/weapon/storage/fancy/crayons/update_icon()
-	overlays = list() //resets list
-	overlays += image('icons/obj/crayons.dmi',"crayonbox")
-	for(var/obj/item/weapon/pen/crayon/crayon in contents)
-		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
-
-/obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/pen/crayon))
-		switch(W:colourName)
-			if("mime")
-				usr << "This crayon is too sad to be contained in this box."
-				return
-			if("rainbow")
-				usr << "This crayon is too powerful to be contained in this box."
-				return
-	..()
-
 ////////////
 //CIG PACK//
 ////////////
@@ -219,54 +177,3 @@
 		update_icon()
 	else
 		..()
-
-/*
- * Vial Box
- */
-
-/obj/item/weapon/storage/fancy/vials
-	icon = 'icons/obj/vialbox.dmi'
-	icon_state = "vialbox6"
-	icon_type = "vial"
-	name = "vial storage box"
-	storage_slots = 6
-	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
-
-
-/obj/item/weapon/storage/fancy/vials/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
-	return
-
-/obj/item/weapon/storage/lockbox/vials
-	name = "secure vial storage box"
-	desc = "A locked box for keeping things away from children."
-	icon = 'icons/obj/vialbox.dmi'
-	icon_state = "vialbox0"
-	item_state = "syringe_kit"
-	max_w_class = 2
-	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
-	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
-	storage_slots = 6
-	req_access = list(access_virology)
-
-/obj/item/weapon/storage/lockbox/vials/New()
-	..()
-	update_icon()
-
-/obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
-	if (!broken)
-		overlays += image(icon, src, "led[locked]")
-		if(locked)
-			overlays += image(icon, src, "cover")
-	else
-		overlays += image(icon, src, "ledb")
-	return
-
-/obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-	update_icon()

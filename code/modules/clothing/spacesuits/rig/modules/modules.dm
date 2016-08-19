@@ -66,24 +66,7 @@
 
 /obj/item/rig_module/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W,/obj/item/stack/nanopaste))
-
-		if(damage == 0)
-			user << "There is no damage to mend."
-			return
-
-		user << "You start mending the damaged portions of \the [src]..."
-
-		if(!do_after(user,30) || !W || !src)
-			return
-
-		var/obj/item/stack/nanopaste/paste = W
-		damage = 0
-		user << "You mend the damage to [src] with [W]."
-		paste.use(1)
-		return
-
-	else if(istype(W,/obj/item/stack/conduit/power))
+	if(istype(W,/obj/item/stack/conduit/power))
 
 		switch(damage)
 			if(0)

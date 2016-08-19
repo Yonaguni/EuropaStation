@@ -73,19 +73,6 @@
 					prob(9);/obj/item/weapon/cell/super,\
 					prob(1);/obj/item/weapon/cell/hyper)
 
-
-/obj/random/bomb_supply
-	name = "bomb supply"
-	desc = "This is a random bomb supply."
-	icon = 'icons/obj/assemblies/new_assemblies.dmi'
-	icon_state = "signaller"
-	item_to_spawn()
-		return pick(/obj/item/device/assembly/igniter,\
-					/obj/item/device/assembly/prox_sensor,\
-					/obj/item/device/assembly/signaler,\
-					/obj/item/device/multitool)
-
-
 /obj/random/toolbox
 	name = "random toolbox"
 	desc = "This is a random toolbox."
@@ -107,7 +94,6 @@
 		return pick(prob(3);/obj/random/powercell,\
 					prob(2);/obj/random/technology_scanner,\
 					prob(1);/obj/item/weapon/packageWrap,\
-					prob(2);/obj/random/bomb_supply,\
 					prob(1);/obj/item/weapon/extinguisher,\
 					prob(1);/obj/item/clothing/gloves/fyellow,\
 					prob(2);/obj/random/toolbox,\
@@ -130,8 +116,7 @@
 					prob(2);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,\
-					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline,\
-					prob(1);/obj/item/stack/nanopaste)
+					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline)
 
 /obj/random/contraband
 	name = "Random Illegal Item"
@@ -142,7 +127,6 @@
 	item_to_spawn()
 		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(4);/obj/item/weapon/haircomb,\
-					prob(5);/obj/item/weapon/contraband/poster,\
 					prob(2);/obj/item/weapon/material/butterfly,\
 					prob(3);/obj/item/weapon/material/butterflyblade,\
 					prob(3);/obj/item/weapon/material/butterflyhandle,\

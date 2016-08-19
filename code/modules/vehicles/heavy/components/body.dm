@@ -4,7 +4,7 @@
 	gender = NEUTER
 
 	var/mech_health = 300
-	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
+	var/obj/item/component/mech/diagnosis_unit/diagnostics
 	var/obj/item/weapon/cell/cell
 	var/obj/item/mech_component/plating/armour
 	var/obj/machinery/portable_atmospherics/canister/air_supply
@@ -57,7 +57,7 @@
 	//air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 
 /obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/robot_parts/robot_component/diagnosis_unit))
+	if(istype(thing,/obj/item/component/mech/diagnosis_unit))
 		if(diagnostics)
 			user << "<span class='warning'>\The [src] already has a diagnostic system installed.</span>"
 			return

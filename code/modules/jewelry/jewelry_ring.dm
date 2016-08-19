@@ -3,7 +3,7 @@
 	desc = "A ring. How precious."
 	color = "#805500"
 	icon_state = "base"
-	icon = 'icons/obj/clothing/ring_parts.dmi'
+	icon = 'icons/obj/jewelry/ring_parts.dmi'
 	slot_flags = SLOT_GLOVES | SLOT_POCKET
 	value_mod = 30
 
@@ -61,25 +61,25 @@
 	icon_state = ""
 	color = null
 	overlays.Cut()
-	var/image/I = image('icons/obj/clothing/ring_parts.dmi', "base")
+	var/image/I = image('icons/obj/jewelry/ring_parts.dmi', "base")
 	I.color = material.icon_colour
 	overlays += I
 	if(had_setting)
-		I = image('icons/obj/clothing/ring_parts.dmi', "setting")
+		I = image('icons/obj/jewelry/ring_parts.dmi', "setting")
 		I.color = material.icon_colour
 		overlays += I
 	var/has_setting
 	if(setting_main)
 		if(!setting_colour)
 			setting_colour = get_random_colour(1)
-		I = image('icons/obj/clothing/ring_parts.dmi', setting_main)
+		I = image('icons/obj/jewelry/ring_parts.dmi', setting_main)
 		I.color = setting_colour
 		overlays += I
 		has_setting = 1
 	if(setting_side)
 		if(!setting_colour)
 			setting_colour = get_random_colour(1)
-		I = image('icons/obj/clothing/ring_parts.dmi', "sidestones")
+		I = image('icons/obj/jewelry/ring_parts.dmi', "sidestones")
 		I.color = setting_colour
 		overlays += I
 		has_setting = 1
@@ -88,13 +88,13 @@
 		cache_key = "[cache_key]-setting-[setting_colour]"
 	// Generate and cache mob icon.
 	if(!necklace_icon_cache[cache_key])
-		var/icon/tmp_icon = icon('icons/mob/clothing/necklace_parts.dmi', "blank")
-		var/icon/base_icon = icon('icons/mob/clothing/ring_parts.dmi', "base_[wear_side]")
+		var/icon/tmp_icon = icon('icons/mob/clothing/jewelry/necklace_parts.dmi', "blank")
+		var/icon/base_icon = icon('icons/mob/clothing/jewelry/ring_parts.dmi', "base_[wear_side]")
 		base_icon.Blend(material.icon_colour, ICON_MULTIPLY)
 		tmp_icon.Blend(base_icon, ICON_OVERLAY)
 		if(setting_main || setting_side)
 			cache_key = "[cache_key]-setting-[wear_side]-[setting_colour]"
-			base_icon = icon('icons/mob/clothing/ring_parts.dmi', "setting_[wear_side]")
+			base_icon = icon('icons/mob/clothing/jewelry/ring_parts.dmi', "setting_[wear_side]")
 			base_icon.Blend(setting_colour, ICON_MULTIPLY)
 			tmp_icon.Blend(base_icon, ICON_OVERLAY)
 		necklace_icon_cache[cache_key] = tmp_icon

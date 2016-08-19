@@ -131,20 +131,3 @@
 	display_contents_with_number = 1
 	max_w_class = 3
 	max_storage_space = 100
-
-/obj/item/weapon/beach_ball
-	icon = 'icons/obj/beachball.dmi'
-	icon_state = "ball"
-	name = "beach ball"
-	density = 0
-	anchored = 0
-	w_class = 4
-	force = 0.0
-	throwforce = 0.0
-	throw_speed = 1
-	throw_range = 20
-	flags = CONDUCT
-
-/obj/item/weapon/beach_ball/afterattack(var/atom/target, var/mob/user)
-	user.drop_item()
-	src.throw_at(target, throw_range, throw_speed, user)

@@ -39,7 +39,6 @@ var/list/event_last_fired = list()
 	//possibleEvents[/datum/event/critter_migration] = 20 + 10 * active_with_role["Engineer"]
 	//possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
 	//possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Gardener"]
 
 	if(!spacevines_spawned)
 		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]

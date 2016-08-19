@@ -74,8 +74,6 @@
 	take_damage(tforce)
 
 /turf/simulated/wall/proc/clear_plants()
-	for(var/obj/effect/overlay/wallrot/WR in src)
-		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
 		if(!plant.floor) //shrooms drop to the floor
 			plant.floor = 1
@@ -102,9 +100,6 @@
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
-
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << "<span class='warning'>There is fungus growing on [src].</span>"
 
 //Damage
 
@@ -134,9 +129,6 @@
 	if(reinf_material)
 		cap += reinf_material.integrity
 
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		cap = cap / 10
-
 	if(damage >= cap)
 		dismantle_wall()
 	else
@@ -165,13 +157,6 @@
 			material.place_dismantled_girder(src)
 		material.place_dismantled_product(src,devastated)
 
-	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-		else
-			O.loc = src
-
 	clear_plants()
 	material = get_material_by_path(/material/placeholder)
 	reinf_material = null
@@ -195,14 +180,6 @@
 		else
 	return
 
-// Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return
-	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
-		new/obj/effect/overlay/wallrot(src)
-
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
 		return 0
@@ -211,26 +188,11 @@
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(!can_melt())
 		return
-	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
-	O.name = "Thermite"
-	O.desc = "Looks hot."
-	O.icon = 'icons/effects/fire.dmi'
-	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
-	O.layer = 5
-
 	src.ChangeTurf(/turf/simulated/floor/plating)
-
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
 	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
-
-	spawn(100)
-		if(O)
-			qdel(O)
-//	F.sd_LumReset()		//TODO: ~Carn
 	return
 
 /turf/simulated/wall/proc/radiate()

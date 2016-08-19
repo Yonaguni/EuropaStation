@@ -83,7 +83,7 @@
 					if(do_after(user, 40))
 						if(!src || !WT.isOn()) return
 						user << "<span class='notice'>You dissasembled the windoor assembly!</span>"
-						new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
+						new /obj/item/stack/material/glass(get_turf(src), 5)
 						if(secure)
 							PoolOrNew(/obj/item/stack/rods, list(get_turf(src), 4))
 						qdel(src)

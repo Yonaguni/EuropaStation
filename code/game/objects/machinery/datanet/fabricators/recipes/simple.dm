@@ -63,12 +63,6 @@
 	path = /obj/item/weapon/hemostat
 	category = "Medical"
 
-/decl/fabricator_design/flamethrower
-	name = "flamethrower"
-	path = /obj/item/weapon/flamethrower/full
-	hidden = 1
-	category = "Arms and Ammunition"
-
 /decl/fabricator_design/tacknife
 	name = "tactical knife"
 	path = /obj/item/weapon/material/hatchet/tacknife
@@ -102,17 +96,9 @@
 	name = "glass sheets"
 	path = /obj/item/stack/material/glass
 
-/decl/fabricator_design/matter/rglass
-	name = "reinforced glass sheets"
-	path = /obj/item/stack/material/glass/reinforced
-
 /decl/fabricator_design/matter/rods
 	name = "metal rods"
 	path = /obj/item/stack/rods
-
-/decl/fabricator_design/matter/large_grenade
-	name = "large grenade casing"
-	path = /obj/item/weapon/grenade/chem_grenade/large
 
 /decl/fabricator_design/matter/floor_tile
 	name = "steel floor tile"
@@ -129,10 +115,6 @@
 /decl/fabricator_design/matter/floor_tile_freezer
 	name = "ceramic floor tile"
 	path = /obj/item/stack/tile/floor_freezer
-
-/decl/fabricator_design/matter/small_grenade
-	name = "small grenade casing"
-	path = /obj/item/weapon/grenade/chem_grenade
 
 /decl/fabricator_design/matter/knife_handle
 	name = "knife handle"

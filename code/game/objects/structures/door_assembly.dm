@@ -1,6 +1,5 @@
 /obj/structure/door_assembly
 	name = "airlock assembly"
-	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_as_0"
 	anchored = 0
 	density = 1
@@ -102,7 +101,6 @@
 	glass = -1
 
 /obj/structure/door_assembly/multi_tile
-	icon = 'icons/obj/doors/door_assembly2x1.dmi'
 	dir = EAST
 	var/width = 1
 
@@ -159,7 +157,7 @@
 				if(do_after(user, 40))
 					if(!src || !WT.isOn()) return
 					user << "<span class='notice'>You welded the glass panel out!</span>"
-					new /obj/item/stack/material/glass/reinforced(src.loc)
+					new /obj/item/stack/material/glass(src.loc)
 					glass = 0
 			else if(!anchored)
 				user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")

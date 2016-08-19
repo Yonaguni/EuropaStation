@@ -19,9 +19,6 @@
 /mob/proc/isMonkey()
 	return 0
 
-/mob/living/human/isMonkey()
-	return istype(species, /datum/species/monkey)
-
 proc/isdeaf(A)
 	if(istype(A, /mob))
 		var/mob/M = A

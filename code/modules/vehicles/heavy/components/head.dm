@@ -5,8 +5,8 @@
 	gender = NEUTER
 
 	var/sight_flags = 0
-	var/obj/item/robot_parts/robot_component/radio/radio
-	var/obj/item/robot_parts/robot_component/camera/camera
+	var/obj/item/component/mech/radio/radio
+	var/obj/item/component/mech/camera/camera
 	var/obj/item/mech_component/control_module/software
 	has_hardpoints = list(HARDPOINT_HEAD)
 
@@ -29,13 +29,13 @@
 			return
 		software = thing
 		install_component(thing, user)
-	else if(istype(thing,/obj/item/robot_parts/robot_component/radio))
+	else if(istype(thing,/obj/item/component/mech/radio))
 		if(radio)
 			user << "<span class='warning'>\The [src] already has a radio installed.</span>"
 			return
 		radio = thing
 		install_component(thing, user)
-	else if(istype(thing,/obj/item/robot_parts/robot_component/camera))
+	else if(istype(thing,/obj/item/component/mech/camera))
 		if(camera)
 			user << "<span class='warning'>\The [src] already has a camera installed.</span>"
 			return

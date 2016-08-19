@@ -45,45 +45,6 @@
 	if(..(user, 0))
 		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
 
-
-/obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
-		if(welding)
-			user << "<span class='danger'>Stop welding first!</span>"
-			return
-		status = !status
-		if(status)
-			user << "<span class='notice'>You secure the welder.</span>"
-		else
-			user << "<span class='notice'>The welder can now be attached and modified.</span>"
-		src.add_fingerprint(user)
-		return
-
-	if((!status) && (istype(W,/obj/item/stack/rods)))
-		var/obj/item/stack/rods/R = W
-		R.use(1)
-		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
-		src.loc = F
-		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.remove_from_mob(src)
-		else
-			user.remove_from_mob(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.remove_from_mob(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
-		return
-
-	..()
-	return
-
-
 /obj/item/weapon/weldingtool/process()
 	if(welding)
 		if(prob(5))

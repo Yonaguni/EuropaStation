@@ -18,10 +18,3 @@
 	else
 		bound_width = world.icon_size
 		bound_height = width * world.icon_size
-
-/obj/machinery/door/airlock/multi_tile/glass
-	name = "Glass Airlock"
-	icon = 'icons/obj/doors/Door2x1glass.dmi'
-	opacity = 0
-	glass = 1
-	assembly_type = /obj/structure/door_assembly/multi_tile

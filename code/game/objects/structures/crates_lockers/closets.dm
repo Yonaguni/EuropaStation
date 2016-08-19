@@ -70,9 +70,6 @@
 
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
-	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.forceMove(src.loc)
-
 	for(var/obj/I in src)
 		I.forceMove(src.loc)
 
@@ -121,13 +118,7 @@
 
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
-	var/added_units = 0
-	for(var/obj/effect/dummy/chameleon/AD in src.loc)
-		if((stored_units + added_units) > storage_capacity)
-			break
-		AD.forceMove(src)
-		added_units++
-	return added_units
+	return 0
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0

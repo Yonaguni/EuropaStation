@@ -102,33 +102,6 @@
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/viruses = list()
 
-/obj/effect/decal/cleanable/tomato_smudge
-	name = "tomato smudge"
-	desc = "It's red."
-	density = 0
-	anchored = 1
-	layer = 2
-	icon = 'icons/effects/food.dmi'
-	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
-
-/obj/effect/decal/cleanable/egg_smudge
-	name = "smashed egg"
-	desc = "Seems like this one won't hatch."
-	density = 0
-	anchored = 1
-	layer = 2
-	icon = 'icons/effects/food.dmi'
-	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
-
-/obj/effect/decal/cleanable/pie_smudge //honk
-	name = "smashed pie"
-	desc = "It's pie cream from a cream pie."
-	density = 0
-	anchored = 1
-	layer = 2
-	icon = 'icons/effects/food.dmi'
-	random_icon_states = list("smashed_pie")
-
 /obj/effect/decal/cleanable/fruit_smudge
 	name = "smudge"
 	desc = "Some kind of fruit smear."

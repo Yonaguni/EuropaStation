@@ -182,22 +182,3 @@
 	name = "glass"
 	icon_state = "sheet-glass"
 	default_type = "glass"
-
-/obj/item/stack/material/glass/reinforced
-	name = "reinforced glass"
-	icon_state = "sheet-rglass"
-	default_type = "rglass"
-
-/obj/item/stack/material/glass/phoronglass
-	name = "borosilicate glass"
-	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures"
-	singular_name = "borosilicate glass sheet"
-	icon_state = "sheet-phoronglass"
-	default_type = "borosilicate glass"
-
-/obj/item/stack/material/glass/phoronrglass
-	name = "reinforced borosilicate glass"
-	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
-	singular_name = "reinforced borosilicate glass sheet"
-	icon_state = "sheet-phoronrglass"
-	default_type = "reinforced borosilicate glass"

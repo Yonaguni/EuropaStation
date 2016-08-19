@@ -5,11 +5,11 @@
 
 /obj/effect/wingrille_spawn
 	name = "window grille spawner"
-	icon = 'icons/obj/structures/structures.dmi'
+	icon = 'icons/obj/structures/window.dmi'
 	icon_state = "wingrille"
 	density = 1
 	anchored = 1.0
-	var/win_path = /obj/structure/window/basic
+	var/win_path = /obj/structure/window
 	var/activated
 
 // stops ZAS expanding zones past us, the windows will block the zone anyway
@@ -65,18 +65,3 @@
 // Currently unused, could be useful for pre-wired electrified windows.
 /obj/effect/wingrille_spawn/proc/handle_grille_spawn(var/obj/structure/grille/G)
 	return
-
-/obj/effect/wingrille_spawn/reinforced
-	name = "reinforced window grille spawner"
-	icon_state = "r-wingrille"
-	win_path = /obj/structure/window/reinforced
-
-/obj/effect/wingrille_spawn/reinforced/polarized
-	name = "polarized window grille spawner"
-	color = "#444444"
-	win_path = /obj/structure/window/reinforced/polarized
-	var/id
-
-/obj/effect/wingrille_spawn/reinforced/polarized/handle_window_spawn(var/obj/structure/window/reinforced/polarized/P)
-	if(id)
-		P.id = id

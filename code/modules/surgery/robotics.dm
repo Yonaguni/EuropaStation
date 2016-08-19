@@ -193,7 +193,6 @@
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
-	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/weapon/bonegel = 30, 		\
 	/obj/item/weapon/screwdriver = 70,	\
 	)

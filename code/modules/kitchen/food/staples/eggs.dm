@@ -14,7 +14,6 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/rawegg/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/egg_smudge(get_turf(src))
 	src.reagents.trans_to(hit_atom, reagents.total_volume)
 	visible_message("<span class='danger'>\The [src.name] splatters over \the [hit_atom]!</span>","<span class='danger'>You hear a smack.</span>")
 	qdel(src)

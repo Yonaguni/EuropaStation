@@ -1,6 +1,6 @@
 /obj/item/jewelry/pendant
 	name = "pendant"
-	icon = 'icons/obj/clothing/necklace_parts.dmi'
+	icon = 'icons/obj/jewelry/necklace_parts.dmi'
 	icon_state = "pendant"
 	value_mod = 20
 

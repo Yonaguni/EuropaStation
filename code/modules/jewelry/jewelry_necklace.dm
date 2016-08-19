@@ -5,7 +5,7 @@ var/list/necklace_icon_cache = list()
 	desc = "A necklace. Very pretty."
 	color = "#805500"
 	icon_state = "base"
-	icon = 'icons/obj/clothing/necklace_parts.dmi'
+	icon = 'icons/obj/jewelry/necklace_parts.dmi'
 	slot_flags = SLOT_MASK | SLOT_POCKET
 	value_mod = 100
 	var/max_pendants = 1
@@ -50,7 +50,7 @@ var/list/necklace_icon_cache = list()
 
 	// Build inventory icon.
 	var/cache_key = "necklace-[material.icon_colour]"
-	var/image/I = image('icons/obj/clothing/necklace_parts.dmi', "base")
+	var/image/I = image('icons/obj/jewelry/necklace_parts.dmi', "base")
 	I.color = material.icon_colour
 	overlays += I
 
@@ -62,13 +62,13 @@ var/list/necklace_icon_cache = list()
 
 	// Generate and cache mob icon.
 	if(!necklace_icon_cache[cache_key])
-		var/icon/tmp_icon = icon('icons/mob/clothing/necklace_parts.dmi', "blank")
-		var/icon/base_icon = icon('icons/mob/clothing/necklace_parts.dmi', "base")
+		var/icon/tmp_icon = icon('icons/mob/clothing/jewelry/necklace_parts.dmi', "blank")
+		var/icon/base_icon = icon('icons/mob/clothing/jewelry/necklace_parts.dmi', "base")
 		base_icon.Blend(material.icon_colour, ICON_MULTIPLY)
 		tmp_icon.Blend(base_icon, ICON_OVERLAY)
 
 		for(var/obj/item/jewelry/pendant/P in contents)
-			var/icon/pendant_icon = icon('icons/mob/clothing/necklace_parts.dmi', P.icon_state)
+			var/icon/pendant_icon = icon('icons/mob/clothing/jewelry/necklace_parts.dmi', P.icon_state)
 			pendant_icon.Blend(P.material.icon_colour, ICON_MULTIPLY)
 			tmp_icon.Blend(pendant_icon, ICON_OVERLAY)
 

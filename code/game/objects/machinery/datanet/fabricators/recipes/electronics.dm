@@ -5,10 +5,6 @@
 	fabtype = FABRICATOR_ELECTRONICS
 	category = "General"
 
-/decl/fabricator_design/electronics/floor_light
-	name = "floor light"
-	path = /obj/machinery/floor_light
-
 /decl/fabricator_design/electronics/tube_light
 	name = "light frame (tube)"
 	path = /obj/item/frame/light
@@ -46,28 +42,6 @@
 /decl/fabricator_design/electronics/medical/surgicaldrill
 	name = "surgical drill"
 	path = /obj/item/weapon/surgicaldrill
-
-// DEVICES AND COMPONENTS.
-/decl/fabricator_design/electronics/device
-	name = "igniter"
-	path = /obj/item/device/assembly/igniter
-	category = "Devices and Components"
-
-/decl/fabricator_design/electronics/device/signaler
-	name = "signaler"
-	path = /obj/item/device/assembly/signaler
-
-/decl/fabricator_design/electronics/device/sensor_infra
-	name = "infrared sensor"
-	path = /obj/item/device/assembly/infra
-
-/decl/fabricator_design/electronics/device/timer
-	name = "timer"
-	path = /obj/item/device/assembly/timer
-
-/decl/fabricator_design/electronics/device/sensor_prox
-	name = "proximity sensor"
-	path = /obj/item/device/assembly/prox_sensor
 
 // TOOLS
 /decl/fabricator_design/electronics/tool

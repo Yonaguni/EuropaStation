@@ -30,7 +30,6 @@ var/list/global/tank_gauge_cache = list()
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
 /obj/item/weapon/tank/New()
 	..()
-
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
@@ -41,12 +40,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/Destroy()
 	if(air_contents)
 		qdel(air_contents)
-
 	processing_objects.Remove(src)
-
-	if(istype(loc, /obj/item/device/transfer_valve))
-		var/obj/item/device/transfer_valve/TTV = loc
-		TTV.remove_tank(src)
 
 	..()
 
@@ -246,9 +240,8 @@ var/list/global/tank_gauge_cache = list()
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(src.loc,/obj/item/device/transfer_valve))
-			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+		message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+		log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
 
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react()
