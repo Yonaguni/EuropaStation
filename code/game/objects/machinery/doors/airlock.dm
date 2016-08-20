@@ -691,15 +691,6 @@ About the new airlock wires panel:
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
-	var/turf/first_check = get_step(src, NORTH)
-	var/turf/second_check = get_step(src, SOUTH)
-	if(istype(first_check) && istype(second_check) && first_check.density && second_check.density)
-		set_dir(EAST)
-	else
-		first_check = get_step(src, EAST)
-		second_check = get_step(src, WEST)
-		if(istype(first_check) && istype(second_check) && first_check.density && second_check.density)
-			set_dir(NORTH)
 	..()
 
 

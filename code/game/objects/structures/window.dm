@@ -20,8 +20,15 @@
 	var/shardtype = /obj/item/weapon/material/shard
 	var/glasstype = /obj/item/stack/material/glass // Null is impossible to dismantle.
 
-/obj/structure/window/set_dir()
+/obj/structure/window/initialize()
 	..()
+	update_layer()
+
+/obj/structure/window/set_dir()
+	. = ..()
+	update_layer()
+
+/obj/structure/window/proc/update_layer()
 	if(dir == NORTH)
 		layer = 3
 	else

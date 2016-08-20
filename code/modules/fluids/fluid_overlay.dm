@@ -45,18 +45,26 @@
 	return ..()
 
 /obj/effect/fluid/update_icon()
-	alpha = round(FLUID_MAX_ALPHA*(fluid_amount/FLUID_MAX_DEPTH))
+
 	var/list/overlays_to_add = list()
+
+	var/fill_amt = fluid_amount/FLUID_MAX_DEPTH
+	pixel_z = round(32*fill_amt)
+	/*if(pixel_z) // Looks like shit :(
+		var/image/I = image(icon = 'icons/effects/water_underlay.dmi', icon_state = "[min(32,max(1,pixel_z))]")
+		I.alpha = 180
+		overlays_to_add += I*/
+	alpha = min(FLUID_MAX_ALPHA,max(20,round(255*fill_amt)))
 	if(fluid_amount > FLUID_DELETING && fluid_amount <= FLUID_SHALLOW)
 		overlays_to_add += get_fluid_icon("shallow_still")
 		layer = TURF_LAYER+0.5
 	else if(fluid_amount >= FLUID_SHALLOW && fluid_amount <= FLUID_DEEP)
 		overlays_to_add += get_fluid_icon("mid_still")
 		layer = MOB_LAYER+0.5
-	else if(fluid_amount >= FLUID_DEEP && fluid_amount < FLUID_MAX_DEPTH)
+	else if(fluid_amount >= FLUID_DEEP && fluid_amount < FLUID_OCEAN_DEPTH)
 		overlays_to_add += get_fluid_icon("deep_still")
 		layer = FLY_LAYER
-	else if(fluid_amount >= FLUID_MAX_DEPTH)
+	else if(fluid_amount >= FLUID_OCEAN_DEPTH)
 		overlays_to_add += get_fluid_icon("ocean")
 		layer = FLY_LAYER
 	overlays = overlays_to_add

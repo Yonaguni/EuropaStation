@@ -609,6 +609,16 @@ proc/admin_notice(var/message, var/rights)
 			return 1
 	return 0
 
+/datum/admins/proc/spawn_fluid()
+	set name = "Spawn Water"
+	set desc = "Flood the turf you are standing on."
+	set category = "Debug"
+	if(!check_rights(R_SPAWN))	return
+	for(var/thing in trange(1, get_turf(usr)))
+		var/obj/effect/fluid/F = locate() in thing
+		if(!F) F = new(thing)
+		F.set_depth(2000)
+
 /datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."

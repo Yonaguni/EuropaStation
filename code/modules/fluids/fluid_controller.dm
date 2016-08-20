@@ -41,8 +41,8 @@ var/datum/controller/process/fluids/fluid_master
 		var/obj/effect/fluid/F = thing
 		if(!F.loc || F.loc != F.start_loc)
 			qdel(F)
-		if(F.fluid_amount <= FLUID_EVAPORATION_POINT)
-			F.lose_fluid(rand(1,5))
+		if(F.fluid_amount <= FLUID_EVAPORATION_POINT && prob(10))
+			F.lose_fluid(rand(1,3))
 		if(F.fluid_amount <= FLUID_DELETING)
 			qdel(F)
 		else
