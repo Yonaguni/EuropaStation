@@ -298,29 +298,3 @@ var/const/proxloopsanity = 100
 	else
 		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
-
-/atom/proc/is_flooded(var/lying_mob)
-	var/turf/T = get_turf(src)
-	return T.is_flooded(lying_mob)
-
-/turf/is_flooded(var/lying_mob)
-	if(flooded)
-		return 1
-	var/depth = get_fluid_depth()
-	if(depth && depth > (lying_mob ? 30 : 70))
-		return 1
-	return 0
-
-/turf/proc/get_fluid_depth()
-	return flooded ? 1200 : 0
-
-/turf/simulated/get_fluid_depth()
-	if(flooded)
-		return 1200
-	if(liquid == -1)
-		var/datum/gas_mixture/fluid/LM = return_fluids()
-		if(LM) liquid = LM.total_moles //todo
-	return liquid
-
-/turf/proc/update_blood_overlays()
-	return
