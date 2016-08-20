@@ -337,7 +337,7 @@
 		blood_DNA = list()
 
 	was_bloodied = 1
-	blood_color = "#A10808"
+	blood_color = DEFAULT_BLOOD_COLOUR
 	if(istype(M))
 		if (!istype(M.dna, /datum/dna))
 			M.dna = new /datum/dna(null)
