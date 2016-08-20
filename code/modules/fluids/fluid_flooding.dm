@@ -20,7 +20,7 @@
 			if(F.fluid_amount >= FLUID_MAX_DEPTH)
 				continue
 			if(!dry_run)
-				F.set_depth(FLUID_MAX_DEPTH, 1)
+				F.set_depth(FLUID_MAX_DEPTH)
 
 		flooded_a_neighbor = 1
 

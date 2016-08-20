@@ -40,6 +40,23 @@
 /obj/machinery/door/CanAtmosPass()
 	return !density
 
+/obj/machinery/door/CanFluidPass()
+	return !density
+
+/obj/machinery/door/initialize()
+	. = ..()
+	for(var/checkdir in cardinal)
+		var/turf/check = get_step(src, checkdir)
+		if(istype(check))
+			if(check.density)
+				set_dir(turn(checkdir, 90))
+				return
+			else
+				for(var/atom/movable/AM in check)
+					if(AM.density)
+						set_dir(turn(checkdir, 90))
+						return
+
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(damage >= 10)
 		visible_message("<span class='danger'>\The [user] smashes into \the [src]!</span>")
@@ -57,7 +74,6 @@
 	else
 		layer = open_layer
 		explosion_resistance = 0
-
 
 	if(width > 1)
 		if(dir in list(EAST, WEST))
