@@ -43,18 +43,6 @@
 /atom/proc/return_air_for_internal_lifeform()
 	return return_air()
 
-/atom/proc/return_fluid()
-	if(loc)
-		return loc.return_fluid()
-	else
-		return null
-
-/atom/proc/assume_fluid(datum/gas_mixture/giver)
-	return null
-
-/atom/proc/remove_fluid(amount)
-	return null
-
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
@@ -337,7 +325,7 @@
 		blood_DNA = list()
 
 	was_bloodied = 1
-	blood_color = "#A10808"
+	blood_color = DEFAULT_BLOOD_COLOUR
 	if(istype(M))
 		if (!istype(M.dna, /datum/dna))
 			M.dna = new /datum/dna(null)

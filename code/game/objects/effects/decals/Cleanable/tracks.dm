@@ -18,7 +18,7 @@ var/global/list/image/fluidtrack_cache=list()
 
 /datum/fluidtrack
 	var/direction=0
-	var/basecolor="#A10808"
+	var/basecolor=DEFAULT_BLOOD_COLOUR
 	var/wet=0
 	var/fresh=1
 	var/crusty=0
@@ -26,7 +26,7 @@ var/global/list/image/fluidtrack_cache=list()
 
 /datum/fluidtrack/New(_direction,_color,_wet)
 		src.direction= _direction ? _direction : 0
-		src.basecolor = _color ? _color : "#A10808"
+		src.basecolor = _color ? _color : DEFAULT_BLOOD_COLOUR
 		src.wet = _wet
 
 /obj/effect/decal/cleanable/blood/tracks/reveal_blood()
@@ -71,7 +71,7 @@ var/global/list/image/fluidtrack_cache=list()
 	* @param goingdir Direction tracks are going to (or 0).
 	* @param bloodcolor Color of the blood when wet.
 	*/
-/obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
+/obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor=DEFAULT_BLOOD_COLOUR)
 
 	var/updated=0
 	var/realgoing=(goingdir<<4) // Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
@@ -168,3 +168,13 @@ var/global/list/image/fluidtrack_cache=list()
 	gender = PLURAL
 	random_icon_states = null
 	amount = 0
+
+// Use this for mapped footprints that need to spawn their own track data.
+/obj/effect/decal/cleanable/blood/tracks/footprints/mapped
+	color = DEFAULT_BLOOD_COLOUR
+
+/obj/effect/decal/cleanable/blood/tracks/footprints/mapped/initialize()
+	..()
+	icon_state = null
+	color = "#FFFFFF"
+	AddTracks(list(), dir, reverse_dir[dir], initial(color))

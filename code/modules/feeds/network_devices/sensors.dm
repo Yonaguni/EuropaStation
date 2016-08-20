@@ -49,8 +49,8 @@
 			for(var/gas_type in T.air.gas)
 				data[gas_type] = "[T.air.gas[gas_type]]kPa"
 		if(report_fluid)
-			for(var/fluid_type in T.fluids.gas)
-				data[fluid_type] = "[T.fluids.gas[fluid_type]]L"
+			for(var/obj/effect/fluid/F in T)
+				data[F.fluid_type] = "[F.fluid_amount]L"
 
 	return data
 

@@ -11,9 +11,8 @@
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
-	var/init_turf = 1
-
 	var/datum/scheduled_task/unwet_task
+	var/need_init = 1
 
 // This is not great.
 /turf/proc/wet_floor()
@@ -25,7 +24,7 @@
 
 	if(!wet)
 		wet = wet_val
-		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+		wet_overlay = image('icons/effects/liquids.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
 	if(unwet_task)
@@ -55,7 +54,7 @@
 
 /turf/simulated/New()
 	..()
-	if(init_turf)
+	if(flooded || need_init)
 		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 			initialize()
 		else
@@ -70,7 +69,7 @@
 	unwet_task = null
 	return ..()
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor=DEFAULT_BLOOD_COLOUR)
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)

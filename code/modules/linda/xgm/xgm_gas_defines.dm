@@ -45,14 +45,3 @@
 
 	tile_overlay = "gas_sparse"
 	overlay_limit = 1
-
-/decl/xgm_gas/water
-	id = "water"
-	name = "Water"
-	specific_heat = 420	// J/(mol*K)
-	molar_mass = 0.018	// kg/mol
-
-	flags = XGM_GAS_LIQUID
-	tile_overlay = "water_mid"
-	tile_overlay_colour = "#66D1FF"
-	overlay_limit = 1

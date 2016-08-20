@@ -1,47 +1,30 @@
 /turf/proc/make_flooded()
-	if(!fluid_master)
-		return
 	if(!flooded)
 		flooded = 1
+		for(var/obj/effect/fluid/F in src)
+			qdel(F)
 		update_icon()
 
-/turf/proc/flood_neighbors()
-	if(need_fluid_update)
-		update_fluid_neighbors()
-
-	if(!atmos_adjacent_turfs_amount)
-		fluid_master.water_sources -= src
-		return
-
-	for(var/step_dir in fluid_dirs)
-		if(!(atmos_adjacent_turfs & step_dir))
+/turf/proc/flood_neighbors(var/dry_run)
+	var/flooded_a_neighbor
+	for(var/spread_dir in cardinal)
+		if(get_fluid_blocking_dirs() & spread_dir)
 			continue
-		var/turf/simulated/T = get_step(src, step_dir)
-		if(istype(T))
-			var/datum/gas_mixture/fluid/GM = T.return_fluids()
-			if(GM && GM.gas["water"] < 1500)
-				GM.adjust_gas("water", 1500, 1)
-				T.fluid_update_turf()
-
-/turf/proc/update_fluid_neighbors()
-
-	// Check for dirs that are blocked due to something in our turf.
-	var/blocked_dirs = 0
-	for(var/obj/structure/window/W in src)
-		blocked_dirs |= W.dir
-	for(var/obj/machinery/door/window/D in src)
-		blocked_dirs |= D.dir
-
-	atmos_adjacent_turfs_amount = 0
-	atmos_adjacent_turfs = 0
-
-	for(var/step_dir in fluid_dirs)
-		if(blocked_dirs & step_dir)
+		var/turf/T = get_step(src, spread_dir)
+		if(!istype(T) || T.flooded || (T.get_fluid_blocking_dirs() & reverse_dir[spread_dir]) || !T.CanFluidPass())
 			continue
-		var/turf/simulated/T = get_step(src, step_dir)
-		if(!istype(T) || !CanFluidPass(T))
-			continue
-		atmos_adjacent_turfs_amount++
-		atmos_adjacent_turfs |= step_dir
+		var/obj/effect/fluid/F = locate() in T
+		if(!F && !dry_run)
+			F = PoolOrNew(/obj/effect/fluid, T)
+		if(F)
+			if(F.fluid_amount >= FLUID_MAX_DEPTH)
+				continue
+			if(!dry_run)
+				F.set_depth(FLUID_MAX_DEPTH, 1)
 
-	need_fluid_update = 0
+		flooded_a_neighbor = 1
+
+	if(!flooded_a_neighbor)
+		fluid_master.remove_active_source(src)
+
+	return flooded_a_neighbor

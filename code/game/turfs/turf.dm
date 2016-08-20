@@ -66,14 +66,14 @@ var/list/turf_edge_cache = list()
 			return
 
 /turf/proc/initialize()
-	if(flooded && fluid_master)
-		fluid_master.water_sources += src
-	update_icon(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	var/game_started = (ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(game_started && fluid_master)
+		fluid_update()
+	update_icon(game_started)
 	return
 
-// overlays.Cut() should always be called before calling this, for the sake of safety.
-/turf/proc/update_icon(var/update_neighbors = 0)
-
+/turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
+	var/list/overlays_to_add = previously_added
 	if(blend_with_neighbors)
 		for(var/checkdir in cardinal)
 			var/turf/T = get_step(src, checkdir)
@@ -81,11 +81,12 @@ var/list/turf_edge_cache = list()
 				var/cache_key = "[T.icon_state]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
-				overlays |= turf_edge_cache[cache_key]
-
+				overlays_to_add += turf_edge_cache[cache_key]
 	var/area/A = get_area(src)
-	if(flooded && istype(A) && !(A.flags & IS_OCEAN))
-		overlays |= ocean_overlay_img //set in code/modules/europa/turfs/ocean.dm
+	if(flooded && (!istype(A) || !(A.flags & IS_OCEAN)))
+		overlays_to_add += ocean_overlay_img
+
+	overlays = overlays_to_add
 
 	if(update_neighbors)
 		for(var/check_dir in alldirs)

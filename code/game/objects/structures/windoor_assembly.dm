@@ -218,42 +218,23 @@
 					density = 1 //Shouldn't matter but just incase
 					user << "<span class='notice'>You finish the windoor!</span>"
 
-					if(secure)
-						var/obj/machinery/door/window/brigdoor/windoor = new /obj/machinery/door/window/brigdoor(src.loc)
-						if(src.facing == "l")
-							windoor.icon_state = "leftsecureopen"
-							windoor.base_state = "leftsecure"
-						else
-							windoor.icon_state = "rightsecureopen"
-							windoor.base_state = "rightsecure"
-						windoor.set_dir(src.dir)
-						windoor.density = 0
-
-						if(src.electronics.one_access)
-							windoor.req_access = null
-							windoor.req_one_access = src.electronics.conf_access
-						else
-							windoor.req_access = src.electronics.conf_access
-						windoor.electronics = src.electronics
-						src.electronics.loc = windoor
+					var/obj/machinery/door/window/windoor = new /obj/machinery/door/window(src.loc)
+					if(src.facing == "l")
+						windoor.icon_state = "leftopen"
+						windoor.base_state = "left"
 					else
-						var/obj/machinery/door/window/windoor = new /obj/machinery/door/window(src.loc)
-						if(src.facing == "l")
-							windoor.icon_state = "leftopen"
-							windoor.base_state = "left"
-						else
-							windoor.icon_state = "rightopen"
-							windoor.base_state = "right"
-						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.icon_state = "rightopen"
+						windoor.base_state = "right"
+					windoor.set_dir(src.dir)
+					windoor.density = 0
 
-						if(src.electronics.one_access)
-							windoor.req_access = null
-							windoor.req_one_access = src.electronics.conf_access
-						else
-							windoor.req_access = src.electronics.conf_access
-						windoor.electronics = src.electronics
-						src.electronics.loc = windoor
+					if(src.electronics.one_access)
+						windoor.req_access = null
+						windoor.req_one_access = src.electronics.conf_access
+					else
+						windoor.req_access = src.electronics.conf_access
+					windoor.electronics = src.electronics
+					src.electronics.loc = windoor
 
 
 					qdel(src)
@@ -276,7 +257,7 @@
 		usr << "It is fastened to the floor; therefore, you can't rotate it!"
 		return 0
 	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1) //Compel updates before
+		update_nearby_tiles(need_rebuild=1)
 
 	src.set_dir(turn(src.dir, 270))
 

@@ -1,12 +1,15 @@
-/turf/proc/CanFluidPass(var/turf/simulated/target)
-	if (!target || target.density || !Adjacent(target))
-		return 0
-	var/targetdir = get_dir(src, target)
-	if(targetdir == UP)
-		return
-	if(targetdir == DOWN && !src.open_space)
-		return 0
-	for(var/obj/O in target.contents)
-		if(!O.CanAtmosPass(src))
-			return 0
-	return 1
+/atom/var/fluid_can_pass
+/atom/proc/CanFluidPass()
+	if(isnull(fluid_can_pass))
+		if(density)
+			fluid_can_pass = 0
+			return fluid_can_pass
+		else
+			for(var/atom/movable/AM in src)
+				if(!AM.simulated)
+					continue
+				if(!AM.CanFluidPass())
+					fluid_can_pass = 0
+					return fluid_can_pass
+		fluid_can_pass = 1
+	return fluid_can_pass

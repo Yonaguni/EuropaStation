@@ -160,14 +160,14 @@
 	base_name = "snow"
 	base_icon = 'icons/turf/floors.dmi'
 	base_icon_state = "snow"
-	init_turf = 0
+	need_init = 0
 
 /turf/simulated/floor/snow/ice
 	name = "ice"
 	icon_state = "ice"
 	base_name = "ice"
 	base_icon_state = "ice"
-	init_turf = 0
+	need_init = 0
 
 /turf/simulated/floor/flooded
 	color = "#66D1FF"

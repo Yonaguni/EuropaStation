@@ -52,3 +52,10 @@
 	if(lit)
 		die(1)
 	return ..()
+
+#undef FLUID_EVAPORATION_POINT
+#undef FLUID_DELETING
+#undef FLUID_SHALLOW
+#undef FLUID_DEEP
+#undef FLUID_MAX_ALPHA
+#undef FLUID_MAX_DEPTH

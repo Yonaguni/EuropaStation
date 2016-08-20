@@ -202,3 +202,5 @@
 #define FLIER       0x2  // Can fly over open spaces.
 #define TERRAN      0x4  // Can walk on dry land.
 #define ETHEREAL    0x8  // Moves through dense turfs (unimplemented).
+
+#define DEFAULT_BLOOD_COLOUR "#A10808"

@@ -4,10 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/creatures/human.dmi'
 	icon_state = "generic"
-
-	// Centering the 64x64 icon on a single turf.
 	pixel_x = -16
-	pixel_y = 12
 
 	var/mapped_species
 	var/list/hud_list[10]
@@ -1155,7 +1152,7 @@
 			src << "<span class='warning'>You ran out of blood to write with!</span>"
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
-		W.basecolor = (hand_blood_color) ? hand_blood_color : "#A10808"
+		W.basecolor = (hand_blood_color) ? hand_blood_color : DEFAULT_BLOOD_COLOUR
 		W.update_icon()
 		W.message = message
 		W.add_fingerprint(src)

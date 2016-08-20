@@ -1,5 +1,5 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "trace_chem" = null)
+	data = new/list("donor" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = DEFAULT_BLOOD_COLOUR, "trace_chem" = null)
 	name = REAGENT_ID_BLOOD
 	id = REAGENT_ID_BLOOD
 	metabolism = REM * 5

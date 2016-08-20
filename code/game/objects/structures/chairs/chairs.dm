@@ -1,11 +1,14 @@
 /obj/structure/bed/chair
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
+	icon = 'icons/obj/structures/chairs.dmi'
 	icon_state = "chair_preview"
 	color = "#666666"
 	base_icon = "chair"
 	buckle_dir = 0
 	buckle_lying = 0 //force people to sit up in chairs when buckled
+	pixel_x = 0
+
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
