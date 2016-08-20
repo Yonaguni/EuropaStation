@@ -42,7 +42,7 @@
 
 	..()
 
-	if(mover.throwing)
+	if(mover.throwing || !mover.simulated)
 		return
 
 	// only fall down in defined areas (read: areas with artificial gravitiy)

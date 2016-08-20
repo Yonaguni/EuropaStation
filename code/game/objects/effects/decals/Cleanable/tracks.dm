@@ -175,4 +175,6 @@ var/global/list/image/fluidtrack_cache=list()
 
 /obj/effect/decal/cleanable/blood/tracks/footprints/mapped/initialize()
 	..()
+	icon_state = null
+	color = "#FFFFFF"
 	AddTracks(list(), dir, reverse_dir[dir], initial(color))

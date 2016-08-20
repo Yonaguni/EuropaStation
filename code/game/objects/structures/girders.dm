@@ -10,6 +10,9 @@
 	var/material/reinf_material
 	var/reinforcing = 0
 
+/obj/structure/girder/CanFluidPass()
+	return 1
+
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0

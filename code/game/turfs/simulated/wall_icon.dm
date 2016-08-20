@@ -52,27 +52,28 @@
 		overlays += I
 		return .. (update_neighbors)
 
+	var/list/overlays_to_add = list()
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
 		I.color = material.icon_colour
-		overlays += I
+		overlays_to_add += I
 
 	if(reinf_material)
 		if(construction_stage != null && construction_stage < 6)
 			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
 			I.color = reinf_material.icon_colour
-			overlays += I
+			overlays_to_add += I
 		else
 			if("[reinf_material.icon_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
 				// Directional icon
 				for(var/i = 1 to 4)
 					I = image('icons/turf/wall_masks.dmi', "[reinf_material.icon_reinf][wall_connections[i]]", dir = 1<<(i-1))
 					I.color = reinf_material.icon_colour
-					overlays += I
+					overlays_to_add += I
 			else
 				I = image('icons/turf/wall_masks.dmi', reinf_material.icon_reinf)
 				I.color = reinf_material.icon_colour
-				overlays += I
+				overlays_to_add += I
 
 	if(damage != 0)
 		var/integrity = material.integrity
@@ -83,9 +84,9 @@
 		if(overlay > damage_overlays.len)
 			overlay = damage_overlays.len
 
-		overlays += damage_overlays[overlay]
+		overlays_to_add += damage_overlays[overlay]
 
-	..(update_neighbors)
+	..(update_neighbors, previously_added = overlays_to_add)
 
 /turf/simulated/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len

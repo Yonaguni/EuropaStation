@@ -27,18 +27,24 @@
 	<b>Bugtracker:</b> <a href="https://github.com/Yonaguni/EuropaStation/issues">for posting of bugs and issues.</a>"}
 
 /datum/map/europa/do_roundstart_mapgen()
-	if(config.generate_asteroid)
+
+	/*if(config.generate_asteroid)
 		admin_notice("<span class='warning'>Generating deep caverns...</span>", R_DEBUG)
 		new /datum/random_map/large_cave(null,1,1,1,255,255)
 	admin_notice("<span class='warning'>Generating ore deposits...</span>", R_DEBUG)
 	sleep(-1)
 	new /datum/random_map/noise/ore(null, 1, 1, 3, 64, 64)
+	*/
+
 	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
 	sleep(-1)
 	new /datum/random_map/noise/seafloor(null,1,1,2,255,255)
+
+	/*
 	admin_notice("<span class='warning'>Generating tundra...</span>", R_DEBUG)
 	sleep(-1)
 	new /datum/random_map/noise/tundra(null,1,1,4,255,255)
+	*/
 
 /obj/effect/landmark/map_data/europa
 	name = "europa"

@@ -135,8 +135,8 @@ var/list/butchery_icons = list() // Icon cache.
 		occupant.set_dir(EAST)
 
 		if(istype(occupant, /mob/living/human))
-			var/image/I = image(occupant.icon, occupant.icon_state)
-			I.overlays += occupant.overlays
+			var/image/I = image(null)
+			I.appearance = occupant
 			var/matrix/M = matrix()
 			M.Turn(180)
 			I.transform = M
