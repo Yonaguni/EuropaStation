@@ -9,8 +9,8 @@ var/list/fluid_images = list()
 
 #define FLUID_EVAPORATION_POINT 3          // Depth a fluid begins self-deleting
 #define FLUID_DELETING -1                  // Depth a fluid counts as qdel'd
-#define FLUID_SHALLOW 15                   // Depth shallow icon is used
-#define FLUID_DEEP 80                      // Depth deep icon is used
+#define FLUID_SHALLOW 200                  // Depth shallow icon is used
+#define FLUID_DEEP 800                     // Depth deep icon is used
 #define FLUID_MAX_ALPHA 180
 #define FLUID_MAX_DEPTH 1000
 #define FLUID_OCEAN_DEPTH 600
