@@ -3,25 +3,6 @@
 	This data is used by various parts of the game for basic physical properties and behaviors
 	of the metals/materials used for constructing many objects. Each var is commented and should be pretty
 	self-explanatory but the various object types may have their own documentation. ~Z
-
-	PATHS THAT USE DATUMS
-		turf/simulated/wall
-		obj/item/weapon/material
-		obj/structure/barricade
-		obj/item/stack/material
-		obj/structure/table
-
-	VALID ICONS
-		WALLS
-			stone
-			metal
-			solid
-			cult
-		DOORS
-			stone
-			metal
-			resin
-			wood
 */
 
 // Assoc list containing all material datums indexed by name.
@@ -68,7 +49,7 @@ var/global/list/all_materials = list()
 
 	// Icons
 	var/icon_colour                                      // Colour applied to products of this material.
-	var/icon_base = "metal"                              // Wall and table base icon tag. See header.
+	var/icon_base = "solid"                              // Wall and table base icon tag. See header.
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 
@@ -212,7 +193,6 @@ var/global/list/all_materials = list()
 	name = "uranium"
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
-	icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	icon_colour = "#007A00"
 	weight = 22
@@ -257,7 +237,6 @@ var/global/list/all_materials = list()
 /material/stone
 	name = "sandstone"
 	stack_type = /obj/item/stack/material/sandstone
-	icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	icon_colour = "#D9C179"
 	shard_type = SHARD_STONE_PIECE
@@ -281,7 +260,6 @@ var/global/list/all_materials = list()
 	name = DEFAULT_WALL_MATERIAL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
-	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
@@ -299,7 +277,6 @@ var/global/list/all_materials = list()
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
 	melting_point = 6000
-	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#777777"
 	explosion_resistance = 25
@@ -312,7 +289,6 @@ var/global/list/all_materials = list()
 /material/plasteel/titanium
 	name = "titanium"
 	stack_type = null
-	icon_base = "metal"
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
@@ -411,7 +387,6 @@ var/global/list/all_materials = list()
 	name = "plastic"
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
-	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#CCCCCC"
 	hardness = 10
@@ -477,7 +452,6 @@ var/global/list/all_materials = list()
 /material/concrete
 	name = "concrete"
 	icon_colour = "#CCCCCC"
-	icon_base = "solid"
 	integrity = 65
 	explosion_resistance = 5
 	shard_type = SHARD_SPLINTER
@@ -490,7 +464,6 @@ var/global/list/all_materials = list()
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
-	icon_base = "wood" //"solid"
 	integrity = 50
 	explosion_resistance = 3
 	shard_type = SHARD_SPLINTER
@@ -521,7 +494,6 @@ var/global/list/all_materials = list()
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
 	integrity = 10
-	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#AAAAAA"
 	hardness = 1

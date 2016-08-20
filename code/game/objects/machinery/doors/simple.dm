@@ -1,8 +1,9 @@
 /obj/machinery/door/unpowered/simple
 	name = "door"
-	icon_state = "metal"
+	icon_state = "solid"
+	icon = 'icons/obj/doors/simple.dmi'
 	var/material/material
-	var/icon_base
+	var/icon_base = "solid"
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /obj/machinery/door/unpowered/simple/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -99,7 +100,6 @@
 
 /obj/machinery/door/unpowered/simple/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
-
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
 			user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
@@ -145,41 +145,3 @@
 		return
 
 	return
-
-/obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)
-	..(newloc, "iron")
-
-/obj/machinery/door/unpowered/simple/silver/New(var/newloc,var/material_name)
-	..(newloc, "silver")
-
-/obj/machinery/door/unpowered/simple/gold/New(var/newloc,var/material_name)
-	..(newloc, "gold")
-
-/obj/machinery/door/unpowered/simple/uranium/New(var/newloc,var/material_name)
-	..(newloc, "uranium")
-
-/obj/machinery/door/unpowered/simple/sandstone/New(var/newloc,var/material_name)
-	..(newloc, "sandstone")
-
-/obj/machinery/door/unpowered/simple/diamond/New(var/newloc,var/material_name)
-	..(newloc, "diamond")
-
-/obj/machinery/door/unpowered/simple/wood
-	icon_state = "wood"
-	color = "#824B28"
-
-/obj/machinery/door/unpowered/simple/wood/New(var/newloc,var/material_name)
-	..(newloc, "wood")
-
-/obj/machinery/door/unpowered/simple/wood/saloon
-	icon_base = "saloon"
-	autoclose = 1
-	normalspeed = 0
-
-/obj/machinery/door/unpowered/simple/wood/saloon/New(var/newloc,var/material_name)
-	..(newloc, "wood")
-	glass = 1
-	set_opacity(0)
-
-/obj/machinery/door/unpowered/simple/resin/New(var/newloc,var/material_name)
-	..(newloc, "resin")

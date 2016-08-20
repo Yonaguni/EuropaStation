@@ -1289,8 +1289,8 @@
 #include "code\unit_tests\unit_test.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\borderworld\borderworld.dm"
 #include "maps\borderworld\borderworld_define.dm"
-#include "maps\europa\europa.dm"
 #include "maps\europa\europa_define.dm"
 #include "maps\~mapsystem\maps.dm"
 // END_INCLUDE
