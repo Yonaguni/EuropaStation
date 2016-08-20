@@ -318,8 +318,8 @@ var/const/proxloopsanity = 100
 	if(flooded)
 		return 1200
 	if(liquid == -1)
-		var/datum/gas_mixture/fluid/LM = return_fluids()
-		if(LM) liquid = LM.total_moles //todo
+		var/obj/effect/fluid/F = return_fluid()
+		if(F) liquid = F.fluid_amount
 	return liquid
 
 /turf/proc/update_blood_overlays()

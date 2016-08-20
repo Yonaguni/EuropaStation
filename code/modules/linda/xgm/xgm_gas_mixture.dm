@@ -554,23 +554,6 @@
 				return 0
 	return 1
 
-/datum/gas_mixture/proc/check_turf_fluid(var/turf/model, var/atmos_adjacent_turfs = 4)
-	var/datum/gas_mixture/sharer = model.return_fluids()
-	if(isnull(sharer))
-		return
-	var/delta_temperature = get_temperature_delta(sharer)
-	var/list/current_deltas = get_gas_deltas(sharer, atmos_adjacent_turfs+1)
-
-	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
-		return 0
-	for(var/gas_id in current_deltas)
-		var/cdelta = abs(current_deltas[gas_id])
-		if(cdelta > MINIMUM_AIR_TO_SUSPEND)
-			var/compare_val = archived_gas[gas_id] ? (archived_gas[gas_id]*MINIMUM_AIR_RATIO_TO_SUSPEND) : 0
-			if(cdelta > compare_val)
-				return 0
-	return 1
-
 /datum/gas_mixture/proc/temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
 
 	var/delta_temperature = (temperature_archived - sharer.temperature_archived)

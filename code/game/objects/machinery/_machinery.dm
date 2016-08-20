@@ -43,9 +43,9 @@
 		return PROCESS_KILL
 	if(loc && istype(loc, /turf))
 		var/turf/T = loc
-		var/datum/gas_mixture/fluid/environment = T.return_fluids()
-		if(environment)
-			var/depth = environment.total_moles
+		var/obj/effect/fluid/F = T.return_fluid()
+		if(F)
+			var/depth = F.fluid_amount
 			if(depth)
 				water_act(depth)
 	return
