@@ -46,8 +46,13 @@ var/datum/controller/process/fluids/fluid_master
 		if(F.fluid_amount <= FLUID_DELETING)
 			qdel(F)
 		else
-			F.update_icon()
+			F.update_position_and_alpha()
 		scheck()
+	for(var/thing in active_fluids)
+		var/obj/effect/fluid/F = thing
+		F.update_overlays()
+		scheck()
+
 	return 1
 
 /datum/controller/process/fluids/proc/add_active_source(var/turf/T)
