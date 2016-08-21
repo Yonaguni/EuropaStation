@@ -281,15 +281,7 @@ var/list/fire_sounds = list(
 				return
 			for(var/mob/living/M in T.contents)
 				burn(M)
-			// Copied from space heaters. Heat up the air on our tile, heat will percolate out.
-			if(GM && abs(GM.temperature - output_temperature) > 0.1)
-				var/transfer_moles = 0.25 * GM.total_moles
-				var/datum/gas_mixture/removed = GM.remove(transfer_moles)
-				if(removed)
-					var/heat_transfer = removed.get_thermal_energy_change(output_temperature)
-					if(heat_transfer > 0) removed.add_thermal_energy(heat_transfer)
-				GM.merge(removed)
-
+			// TODO: Heat up the air.
 	update_icon()
 
 /obj/structure/fire_source/update_icon()

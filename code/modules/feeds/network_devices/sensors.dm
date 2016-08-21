@@ -44,7 +44,7 @@
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T))
 		if(report_temp)
-			data["temperature"] = "[T.air.temperature]ºK"
+			data["temperature"] = "[T.air.get_temperature()]ºK"
 		if(report_gas && T.air)
 			for(var/gas_type in T.air.gas)
 				data[gas_type] = "[T.air.gas[gas_type]]kPa"

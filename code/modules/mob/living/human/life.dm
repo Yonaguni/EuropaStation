@@ -368,11 +368,9 @@
 			var/temperature_loss = heat_loss/HUMAN_HEAT_CAPACITY
 			bodytemperature -= temperature_loss
 	else
-		var/loc_temp = T0C
+		var/loc_temp = environment.get_temperature()
 		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-		else
-			loc_temp = environment.temperature
+			loc_temp = loc:air_contents.get_temperature()
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0

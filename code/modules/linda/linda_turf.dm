@@ -10,17 +10,10 @@
 	var/air_recently_active = 0
 	var/air_archived_cycle = 0
 	var/air_current_cycle = 0
-
 	var/datum/gas_mixture/air
-	var/obj/effect/hotspot/active_hotspot
-	var/temperature_archived //USED ONLY FOR SOLIDS
 	var/list/initial_air
-	var/initial_temperature = T20C
 
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
-	return 0
-
-/turf/proc/assume_gas(gasid, moles, temp = 0)
 	return 0
 
 /turf/return_air()
@@ -28,7 +21,6 @@
 		return
 	var/datum/gas_mixture/GM = new
 	GM.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
-	GM.temperature = T20C
 	GM.volume = CELL_VOLUME
 	return GM
 
@@ -43,20 +35,6 @@
 	my_air.merge(giver)
 	if(my_air.check_tile_graphic())
 		update_visuals_air(my_air)
-
-/turf/simulated/assume_gas(gasid, moles, temp = null)
-	if(is_flooded(absolute=1))
-		return
-	air_update_turf(1)
-	var/datum/gas_mixture/my_air = return_air()
-
-	if(isnull(temp))
-		my_air.adjust_gas(gasid, moles)
-	else
-		my_air.adjust_gas_temp(gasid, moles, temp)
-	if(my_air.check_tile_graphic())
-		update_visuals_air(my_air)
-	return 1
 
 /turf/simulated/remove_air(amount as num)
 	if(is_flooded(absolute=1))
@@ -88,7 +66,6 @@
 				air.adjust_gas(gastype, initial_air[gastype])
 		else
 			air.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
-	air.temperature = (isnull(override_temp) ? initial_temperature : override_temp)
 	air.volume =      (isnull(override_volume) ? CELL_VOLUME : override_volume)
 	update_visuals_air(air)
 	if(air_master)
@@ -99,11 +76,6 @@
 	if(!is_flooded(absolute=1) && !blocks_air && initial_air && initial_air.len)
 		make_air()
 		air_update_turf(1)
-
-/turf/simulated/Destroy()
-	if(active_hotspot)
-		qdel(active_hotspot)
-	return ..()
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
 	if(is_flooded(absolute=1))
@@ -116,24 +88,6 @@
 			update_visuals_air(air)
 		return 1
 	else return ..()
-
-turf/simulated/proc/mimic_temperature_solid(turf/model, conduction_coefficient)
-	var/delta_temperature = (temperature_archived - model.temperature)
-	if((heat_capacity > 0) && (abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER))
-
-		var/heat = conduction_coefficient*delta_temperature* \
-			(heat_capacity*model.heat_capacity/(heat_capacity+model.heat_capacity))
-		temperature -= heat/heat_capacity
-
-turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduction_coefficient)
-	var/delta_temperature = (temperature_archived - sharer.temperature_archived)
-	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER && heat_capacity && sharer.heat_capacity)
-
-		var/heat = conduction_coefficient*delta_temperature* \
-			(heat_capacity*sharer.heat_capacity/(heat_capacity+sharer.heat_capacity))
-
-		temperature -= heat/heat_capacity
-		sharer.temperature += heat/sharer.heat_capacity
 
 /turf/simulated/proc/process_cell()
 	if(!air_master)
@@ -181,15 +135,9 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 					else
 						enemy_tile.consider_pressure_difference(src, difference)
 				remove = 0
-	if(air)
-		air.react()
-		if(air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-			hotspot_expose(air.temperature, CELL_VOLUME)
-			for(var/atom/movable/item in src)
-				item.temperature_expose(air, air.temperature, CELL_VOLUME)
-			temperature_expose(air, air.temperature, CELL_VOLUME)
-		if(air.check_tile_graphic())
-			update_visuals_air(air)
+
+	if(air && air.check_tile_graphic())
+		update_visuals_air(air)
 
 	if(remove == 1)
 		air_master.active_turfs -= src
@@ -197,9 +145,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 /turf/simulated/proc/archive_air()
 	if(!air_master)
 		return
-	if(air) //For open space like floors
-		air.archive()
-	temperature_archived = temperature
+	if(air) air.archive()
 	air_archived_cycle = air_master.current_cycle
 
 /turf/simulated/proc/update_visuals_air(var/datum/gas_mixture/model)

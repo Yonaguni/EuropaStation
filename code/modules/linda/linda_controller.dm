@@ -31,10 +31,6 @@ var/global/datum/controller/process/air_system/air_master
 
 	scheck()
 
-	for(var/obj/effect/hotspot/H in hotspots)
-		H.process()
-		scheck()
-
 	return 1
 
 /datum/controller/process/air_system/statProcess()

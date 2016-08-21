@@ -105,13 +105,7 @@
 	if(hydration_factor > 0)
 		var/datum/gas_mixture/environment = T.return_air()
 		if(environment)
-			var/min_temperature = T0C + 100 // 100C, the boiling point of water
-			// TODO: quench fires.
-			if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
-				var/removed_heat = between(0, volume * 1000, -environment.get_thermal_energy_change(min_temperature))
-				environment.add_thermal_energy(-removed_heat)
-				if (prob(5))
-					T.visible_message("<span class='warning'>The [name] sizzles as it lands on \the [T]!</span>")
-			else if(volume >= 10)
+			// TODO: quench fires. T.visible_message("<span class='warning'>The [name] sizzles as it lands on \the [T]!</span>")
+			if(volume >= 10)
 				T.wet_floor(1)
 	return

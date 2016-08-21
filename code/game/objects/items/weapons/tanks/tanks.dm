@@ -32,7 +32,6 @@ var/list/global/tank_gauge_cache = list()
 	..()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
-	src.air_contents.temperature = T20C
 	processing_objects.Add(src)
 	update_gauge()
 	return
@@ -47,7 +46,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/examine(mob/user)
 	. = ..(user, 0)
 	if(.)
-		var/celsius_temperature = air_contents.temperature - T0C
+		var/celsius_temperature = air_contents.get_temperature() - T0C
 		var/descriptive
 		switch(celsius_temperature)
 			if(300 to INFINITY)
@@ -202,7 +201,7 @@ var/list/global/tank_gauge_cache = list()
 	if(tank_pressure < distribute_pressure)
 		distribute_pressure = tank_pressure
 
-	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION)
 
 	return remove_air(moles_needed)
 

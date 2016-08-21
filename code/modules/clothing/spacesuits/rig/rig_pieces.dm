@@ -32,7 +32,7 @@
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -68,38 +68,3 @@
 				return 1
 
 	return 0
-
-//Rig pieces for non-spacesuit based rigs
-
-/obj/item/clothing/head/lightrig
-	name = "mask"
-	body_parts_covered = HEAD|FACE|EYES
-	heat_protection =    HEAD|FACE|EYES
-	cold_protection =    HEAD|FACE|EYES
-	flags =              THICKMATERIAL|AIRTIGHT
-
-/obj/item/clothing/suit/lightrig
-	name = "suit"
-	allowed = list(/obj/item/device/flashlight)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv =          HIDEJUMPSUIT
-	flags =              THICKMATERIAL
-
-/obj/item/clothing/shoes/lightrig
-	name = "boots"
-	body_parts_covered = FEET
-	cold_protection = FEET
-	heat_protection = FEET
-	species_restricted = null
-	gender = PLURAL
-
-/obj/item/clothing/gloves/lightrig
-	name = "gloves"
-	flags = THICKMATERIAL
-	body_parts_covered = HANDS
-	heat_protection =    HANDS
-	cold_protection =    HANDS
-	species_restricted = null
-	gender = PLURAL

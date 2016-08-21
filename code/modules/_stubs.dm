@@ -1,3 +1,4 @@
+// FLUIDS
 /atom/proc/is_flooded(var/lying_mob, var/absolute) // code/modules/fluid/fluid_flooding.dm
 	return
 
@@ -30,3 +31,4 @@
 
 /client/proc/spawn_fluid_proc()
 	return
+// END FLUIDS

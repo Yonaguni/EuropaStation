@@ -63,7 +63,7 @@
 	else if(is_bruised())
 		safe_pressure_min *= 1.25
 
-	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.get_temperature())/BREATH_VOLUME
 
 	var/failed_inhale = 0
 	var/failed_exhale = 0
@@ -90,7 +90,6 @@
 	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
 
 	if(exhale_type)
-		breath.adjust_gas_temp(exhale_type, inhaled_gas_used, owner.bodytemperature, update = 0) //update afterwards
 		// Too much exhaled gas in the air
 		var/word
 		var/warn_prob
@@ -156,13 +155,14 @@
 
 /obj/item/organ/internal/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	// Hot air hurts :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
+	var/breath_temp = breath.get_temperature()
+	if((breath_temp < species.cold_level_1 || breath_temp > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = 0
-		if(breath.temperature <= species.cold_level_1)
+		if(breath_temp <= species.cold_level_1)
 			if(prob(20))
 				owner << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
 
-			switch(breath.temperature)
+			switch(breath_temp)
 				if(species.cold_level_3 to species.cold_level_2)
 					damage = COLD_GAS_DAMAGE_LEVEL_3
 				if(species.cold_level_2 to species.cold_level_1)
@@ -172,11 +172,11 @@
 
 			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 			owner.fire_alert = 1
-		else if(breath.temperature >= species.heat_level_1)
+		else if(breath_temp >= species.heat_level_1)
 			if(prob(20))
 				owner << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
 
-			switch(breath.temperature)
+			switch(breath_temp)
 				if(species.heat_level_1 to species.heat_level_2)
 					damage = HEAT_GAS_DAMAGE_LEVEL_1
 				if(species.heat_level_2 to species.heat_level_3)
@@ -188,7 +188,7 @@
 			owner.fire_alert = 2
 
 		//breathing in hot/cold air also heats/cools you a bit
-		var/temp_adj = breath.temperature - owner.bodytemperature
+		var/temp_adj = breath_temp - owner.bodytemperature
 		if (temp_adj < 0)
 			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 		else
@@ -199,10 +199,9 @@
 
 		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
 		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
-		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
 		owner.bodytemperature += temp_adj
 
-	else if(breath.temperature >= species.heat_discomfort_level)
+	else if(breath_temp >= species.heat_discomfort_level)
 		species.get_environment_discomfort(owner,"heat")
-	else if(breath.temperature <= species.cold_discomfort_level)
+	else if(breath_temp <= species.cold_discomfort_level)
 		species.get_environment_discomfort(owner,"cold")

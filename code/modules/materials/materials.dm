@@ -185,7 +185,7 @@ var/global/list/all_materials = list()
 /material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/material/proc/combustion_effect(var/turf/T)
 	return
 
 // Datum definitions follow.

@@ -9,7 +9,8 @@
 
 	var/atmos_suitable = prev_atmos_suitable
 	if(atmos_suitable)
-		if(env.temperature > max_temp || env.temperature < min_temp)
+		var/env_temp = env.get_temperature()
+		if(env_temp > max_temp || env_temp < min_temp)
 			atmos_suitable = 0
 		else if(handle_drowning())
 			atmos_suitable = 0
