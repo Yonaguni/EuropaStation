@@ -582,15 +582,15 @@
 	force = 2
 	throwforce = 5
 	w_class = 1
-	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
-	var/base_state
-	var/switchcount = 0	// number of times switched
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
-	var/rigged = 0		// true if rigged to explode
-
 	light_range = 2 //how much light it gives off
 	light_power = 1
 	light_color = null
+
+	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	var/base_state
+	var/switchcount = 0	// number of times switched
+	var/rigged = 0		// true if rigged to explode
 
 /obj/item/weapon/light/tube
 	name = "light tube"
