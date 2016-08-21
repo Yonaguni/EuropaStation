@@ -1,3 +1,44 @@
+/*
+Checks if that loc and dir has a item on the wall
+*/
+
+var/list/wall_items = list(
+	/obj/item/device/radio/intercom,
+	/obj/structure/button/wall_switch,
+	)
+
+/proc/gotwallitem(loc, dir)
+	for(var/obj/O in loc)
+		for(var/item in wall_items)
+			if(istype(O, item))
+				//Direction works sometimes
+				if(O.dir == dir)
+					return 1
+
+				//Some stuff doesn't use dir properly, so we need to check pixel instead
+				switch(dir)
+					if(SOUTH)
+						if(O.pixel_y > 10)
+							return 1
+					if(NORTH)
+						if(O.pixel_y < -10)
+							return 1
+					if(WEST)
+						if(O.pixel_x > 10)
+							return 1
+					if(EAST)
+						if(O.pixel_x < -10)
+							return 1
+
+
+	//Some stuff is placed directly on the wallturf (signs)
+	for(var/obj/O in get_step(loc, dir))
+		for(var/item in wall_items)
+			if(istype(O, item))
+				if(O.pixel_x == 0 && O.pixel_y == 0)
+					return 1
+	return 0
+
 /obj/item/frame
 	name = "frame"
 	desc = "Used for building machines."
@@ -9,8 +50,8 @@
 	var/refund_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
 
-/obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+/obj/item/frame/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/wrench))
 		new refund_type( get_turf(src.loc), refund_amt)
 		qdel(src)
 		return

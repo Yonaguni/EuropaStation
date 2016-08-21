@@ -1,5 +1,5 @@
-/atom/movable/update_nearby_tiles(need_rebuild)
-	. = ..(need_rebuild)
+/atom/movable/update_nearby_tiles()
+	. = ..()
 	fluid_update()
 
 /obj/structure/Destroy()
@@ -26,10 +26,6 @@
 	. = ..()
 	fluid_update()
 
-/obj/update_nearby_tiles(need_rebuild)
-	. = ..(need_rebuild)
-	fluid_update()
-
 /atom/proc/fluid_update()
 	fluid_can_pass = null
 	var/turf/T = get_turf(src)
@@ -45,7 +41,7 @@
 
 	// Wake up our neighbors.
 	if(!ignore_neighbors)
-		for(var/checkdir in (cardinal+list(DOWN,UP)))
+		for(var/checkdir in cardinal)
 			var/turf/T = get_step(src, checkdir)
 			if(T) T.fluid_update(1)
 

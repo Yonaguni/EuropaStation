@@ -17,7 +17,7 @@
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
-	if(istype(G) && G.Touch(A,1))
+	if(istype(G) && G.do_touch(A,1))
 		return
 
 	A.attack_hand(src)
@@ -29,30 +29,11 @@
 	return
 
 /mob/living/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-	if(istype(G) && G.Touch(A,0)) // for magic gloves
-		return
-
-	else if(TK in mutations)
+	if(TK in mutations)
 		A.attack_tk(src)
 
 /mob/living/RestrainedClickOn(var/atom/A)
 	return
-
-/*
-	Aliens
-*/
-
-/mob/living/human/alien/RestrainedClickOn(var/atom/A)
-	return
-
-/mob/living/human/alien/UnarmedAttack(var/atom/A, var/proximity)
-
-	if(!..())
-		return 0
-
-	A.attack_generic(src,rand(5,6),"bitten")
 
 /*
 	New Players:

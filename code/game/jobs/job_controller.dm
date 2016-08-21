@@ -402,11 +402,6 @@ var/global/datum/controller/occupations/job_master
 			else
 				LateSpawn(H.client, rank)
 
-			// Moving wheelchair if they have one
-			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-				H.buckled.loc = H.loc
-				H.buckled.set_dir(H.dir)
-
 		var/alt_title = null
 		if(H.mind)
 			H.mind.assigned_role = rank
@@ -414,8 +409,8 @@ var/global/datum/controller/occupations/job_master
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
-				var/obj/item/weapon/storage/B
-				for(var/obj/item/weapon/storage/S in H.contents)
+				var/obj/item/storage/B
+				for(var/obj/item/storage/S in H.contents)
 					B = S
 					break
 
@@ -426,17 +421,6 @@ var/global/datum/controller/occupations/job_master
 						new G.path(B)
 				else
 					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
-
-		if(istype(H)) //give humans wheelchairs, if they need them.
-			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
-			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-			if(!l_foot || !r_foot)
-				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
-				H.buckled = W
-				H.update_canmove()
-				W.set_dir(H.dir)
-				W.buckled_mob = H
-				W.add_fingerprint(H)
 
 		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
 
@@ -452,39 +436,27 @@ var/global/datum/controller/occupations/job_master
 
 		// Create passport.
 		if(H.client && H.client.prefs && !isnull(H.client.prefs.citizenship) && H.client.prefs.citizenship != "None")
-			var/obj/item/weapon/card/id/passport/P = new(H)
+			var/obj/item/card/id/passport/P = new(H)
 			H.set_id_info(P)
 			// If they have a wallet, great. If not, try to put it in the ID slot,
 			// then pockets. If that fails, put it on the ground.
-			var/obj/item/weapon/storage/wallet/W = locate() in H.contents
-			if(istype(W))
-				W.handle_item_insertion(P)
-			else
-				if(!H.equip_to_slot_if_possible(P, slot_wear_id, disable_warning = 1))
-					if(!H.equip_to_slot_if_possible(P, slot_l_store, disable_warning = 1))
-						if(!H.equip_to_slot_if_possible(P, slot_r_store, disable_warning = 1))
-							P.loc = get_turf(H)
-							H << "<span class='danger'>Your pockets and ID slot were full, so it looks like you dropped your passport. Whoops.</span>"
+			if(!H.equip_to_slot_if_possible(P, slot_wear_id, disable_warning = 1))
+				if(!H.equip_to_slot_if_possible(P, slot_l_store, disable_warning = 1))
+					if(!H.equip_to_slot_if_possible(P, slot_r_store, disable_warning = 1))
+						P.loc = get_turf(H)
+						H << "<span class='danger'>Your pockets and ID slot were full, so it looks like you dropped your passport. Whoops.</span>"
 
 		if(job.req_admin_notify)
 			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
-
-		//Gives glasses to the vision impaired
-		if(H.disabilities & NEARSIGHTED)
-			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
-			if(equipped != 1)
-				var/obj/item/clothing/glasses/G = H.glasses
-				G.prescription = 1
 
 		BITSET(H.hud_updateflag, ID_HUD)
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 		return H
 
-
 	proc/spawnId(var/mob/living/human/H, rank, title)
 		if(!H)	return 0
-		var/obj/item/weapon/card/id/C = null
+		var/obj/item/card/id/C = null
 
 		var/datum/job/job = null
 		for(var/datum/job/J in occupations)
@@ -499,23 +471,15 @@ var/global/datum/controller/occupations/job_master
 				C = new job.idtype(H)
 				C.access = job.get_access()
 		else
-			C = new /obj/item/weapon/card/id(H)
+			C = new /obj/item/card/id(H)
 
 		if(C)
 			C.rank = rank
 			C.set_name(H.real_name)
 			C.assignment = title ? title : rank
 			H.set_id_info(C)
-
-			// If they have a wallet, jam their ID in there.
-			var/obj/item/weapon/storage/wallet/W = locate() in H
-			if(istype(W))
-				W.handle_item_insertion(C)
-			else
-				H.equip_to_slot_or_del(C, slot_wear_id)
-
+			H.equip_to_slot_or_del(C, slot_wear_id)
 		return 1
-
 
 	proc/HandleFeedbackGathering()
 		for(var/datum/job/job in occupations)

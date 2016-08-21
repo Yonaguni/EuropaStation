@@ -16,17 +16,11 @@
 			full_prosthetic = 1
 	return full_prosthetic
 
-/mob/proc/isMonkey()
-	return 0
-
 proc/isdeaf(A)
 	if(istype(A, /mob))
 		var/mob/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
-
-proc/hasorgans(A) // Fucking really??
-	return ishuman(A)
 
 proc/iscuffed(A)
 	if(istype(A, /mob/living/human))
@@ -35,24 +29,8 @@ proc/iscuffed(A)
 			return 1
 	return 0
 
-proc/hassensorlevel(A, var/level)
-	var/mob/living/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
-		return U.sensor_mode >= level
-	return 0
-
-proc/getsensorlevel(A)
-	var/mob/living/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
-		return U.sensor_mode
-	return SUIT_SENSOR_OFF
-
-
 /proc/is_admin(var/mob/user)
 	return check_rights(R_ADMIN, 0, user) != 0
-
 
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
@@ -108,7 +86,7 @@ proc/getsensorlevel(A)
 		if(target.buckled || target.lying)
 			return zone
 		// if your target is being grabbed aggressively by someone you cannot miss either
-		for(var/obj/item/weapon/grab/G in target.grabbed_by)
+		for(var/obj/item/grab/G in target.grabbed_by)
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
 
@@ -245,7 +223,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera || M.stat || isEye(M))
+	if(!M || !M.client || M.shakecamera || M.stat)
 		return
 	M.shakecamera = 1
 	spawn(1)
@@ -320,19 +298,6 @@ proc/is_blind(A)
 		return
 	var/list/hands = list(M.l_hand, M.r_hand)
 	return hands
-
-/proc/broadcast_security_hud_message(var/message, var/broadcast_source)
-	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
-
-/proc/broadcast_medical_hud_message(var/message, var/broadcast_source)
-	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
-
-/proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
-	var/turf/sourceturf = get_turf(broadcast_source)
-	for(var/mob/M in targets)
-		var/turf/targetturf = get_turf(M)
-		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
@@ -457,25 +422,14 @@ proc/is_blind(A)
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
-	//Agent cards lower threatlevel.
-	var/obj/item/weapon/card/id/id = GetIdCard()
-	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
-		threatcount -= 2
-	// A proper	CentCom id is hard currency.
-	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
-		return SAFE_PERP
-
-	if(check_access && !access_obj.allowed(src))
-		threatcount += 4
-
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
+		if(istype(l_hand, /obj/item/gun) || istype(l_hand, /obj/item/material))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
+		if(istype(r_hand, /obj/item/gun) || istype(r_hand, /obj/item/material))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
+		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/material))
 			threatcount += 2
 
 		if(species.name != "Human")
@@ -483,6 +437,7 @@ proc/is_blind(A)
 
 	if(check_records || check_arrest)
 		var/perpname = name
+		var/obj/item/card/id/id = GetIdCard()
 		if(id)
 			perpname = id.registered_name
 
@@ -503,7 +458,7 @@ proc/is_blind(A)
 
 #undef SAFE_PERP
 
-/mob/proc/get_multitool(var/obj/item/device/multitool/P)
+/mob/proc/get_multitool(var/obj/item/multitool/P)
 	if(istype(P))
 		return P
 

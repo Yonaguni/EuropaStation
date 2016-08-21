@@ -182,7 +182,7 @@
 	var/smoke_duration = 150
 
 	var/pressure = 0
-	var/datum/gas_mixture/environment = location.return_air()
+	var/atom/environment = location
 	if(environment) pressure = environment.return_pressure()
 	smoke_duration = between(5, smoke_duration*pressure/(ONE_ATMOSPHERE/3), smoke_duration)
 
@@ -240,12 +240,9 @@
 
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
-
 	var/list/pending = new()
 	var/list/complete = new()
-
 	pending += location
-
 	while(pending.len)
 		for(var/turf/current in pending)
 			for(var/D in cardinal)
@@ -255,22 +252,15 @@
 						if(!(target in wallList))
 							wallList += target
 						continue
-
 				if(target in pending)
 					continue
 				if(target in complete)
 					continue
 				if(!(target in targetTurfs))
 					continue
-				if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
-					continue
-				if(target.c_airblock(current))
-					continue
 				pending += target
-
 			pending -= current
 			complete += current
-
 	targetTurfs = complete
 
 	return

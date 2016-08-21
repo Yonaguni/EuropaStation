@@ -3,15 +3,6 @@
 	desc = "You know all about running games of chance."
 	use_icon_state = "kitchen_2"
 
-/decl/aspect/gambling/do_post_spawn(var/mob/living/human/holder)
-	if(locate(/obj/item/weapon/deck/cards) in holder.contents)
-		return
-	if(!holder.l_store)
-		holder.equip_to_slot_or_del(new /obj/item/weapon/deck/cards(holder), slot_l_store)
-	else if(!holder.r_store)
-		holder.equip_to_slot_or_del(new /obj/item/weapon/deck/cards(holder), slot_r_store)
-	..()
-
 /decl/aspect/daredevil
 	name = ASPECT_DAREDEVIL
 	desc = "You always land on your feet."

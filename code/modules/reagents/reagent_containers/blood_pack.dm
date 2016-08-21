@@ -1,18 +1,18 @@
-/obj/item/weapon/storage/box/bloodpacks
+/obj/item/storage/box/bloodpacks
 	name = "blood packs bags"
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
 	initialize()
 		..()
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
-		new /obj/item/weapon/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
+		new /obj/item/reagent_containers/blood/empty(src)
 
-/obj/item/weapon/reagent_containers/blood
+/obj/item/reagent_containers/blood
 	name = "BloodPack"
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/bloodpack.dmi'
@@ -38,25 +38,25 @@
 			if(10 to 50) 		icon_state = "half"
 			if(51 to INFINITY)	icon_state = "full"
 
-/obj/item/weapon/reagent_containers/blood/APlus
+/obj/item/reagent_containers/blood/APlus
 	blood_type = "A+"
 
-/obj/item/weapon/reagent_containers/blood/AMinus
+/obj/item/reagent_containers/blood/AMinus
 	blood_type = "A-"
 
-/obj/item/weapon/reagent_containers/blood/BPlus
+/obj/item/reagent_containers/blood/BPlus
 	blood_type = "B+"
 
-/obj/item/weapon/reagent_containers/blood/BMinus
+/obj/item/reagent_containers/blood/BMinus
 	blood_type = "B-"
 
-/obj/item/weapon/reagent_containers/blood/OPlus
+/obj/item/reagent_containers/blood/OPlus
 	blood_type = "O+"
 
-/obj/item/weapon/reagent_containers/blood/OMinus
+/obj/item/reagent_containers/blood/OMinus
 	blood_type = "O-"
 
-/obj/item/weapon/reagent_containers/blood/empty
+/obj/item/reagent_containers/blood/empty
 	name = "Empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"

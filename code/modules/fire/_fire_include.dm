@@ -1,0 +1,5 @@
+#include "fire_act.dm"
+#include "fire_extinguish.dm"
+#include "fire_ignition.dm"
+#include "fire_mob.dm"
+#include "fire_sources.dm"

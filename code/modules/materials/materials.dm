@@ -179,13 +179,13 @@ var/global/list/all_materials = list()
 // As above.
 /material/proc/place_shard(var/turf/target)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name)
+		return new /obj/item/material/shard(target, src.name)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/material/proc/combustion_effect(var/turf/T)
 	return
 
 // Datum definitions follow.
@@ -481,7 +481,7 @@ var/global/list/all_materials = list()
 	sell_amt = 2
 
 /material/wood/place_dismantled_girder(var/turf/target, var/material/reinf_material)
-	new /obj/structure/barricade/wood(target)
+	return
 
 /material/wood/holographic
 	name = "holowood"

@@ -44,35 +44,14 @@
 	name = "exosuit armour plating"
 	path = /obj/item/mech_component/plating
 
-/decl/fabricator_design/heavy/parts
-	name = "steel table parts"
-	path = /obj/item/stack/material/europa/structure_parts/table
-	category = "Structure Parts"
-
-/decl/fabricator_design/heavy/parts/rack
-	name = "steel rack parts"
-	path = /obj/item/stack/material/europa/structure_parts/rack
-
-/decl/fabricator_design/heavy/parts/chair
-	name = "steel chair parts"
-	path = /obj/item/stack/material/europa/structure_parts/chair
-
-/decl/fabricator_design/heavy/parts/door
-	name = "steel door parts"
-	path = /obj/item/stack/material/europa/structure_parts/door
-
 /decl/fabricator_design/heavy/furniture
 	name = "steel stool"
-	path = /obj/item/weapon/stool
+	path = /obj/item/stool
 	category = "Furniture"
 
 /decl/fabricator_design/heavy/furniture/closet
 	name = "steel closet"
 	path = /obj/structure/closet
-
-/decl/fabricator_design/heavy/furniture/canister
-	name = "atmospherics canister"
-	path = /obj/machinery/portable_atmospherics/canister
 
 /decl/fabricator_design/heavy/furniture/airlock_assembly
 	name = "steel airlock assembly"

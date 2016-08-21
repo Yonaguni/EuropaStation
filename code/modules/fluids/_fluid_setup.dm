@@ -1,5 +1,3 @@
-/turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
-
 // We share overlays for all fluid turfs to sync icon animation.
 var/list/fluid_images = list()
 /proc/get_fluid_icon(var/img_state)
@@ -12,5 +10,6 @@ var/list/fluid_images = list()
 #define FLUID_SHALLOW 200                  // Depth shallow icon is used
 #define FLUID_DEEP 800                     // Depth deep icon is used
 #define FLUID_MAX_ALPHA 180
+#define FLUID_MIN_ALPHA 120
 #define FLUID_MAX_DEPTH 1000
 #define FLUID_OCEAN_DEPTH 600

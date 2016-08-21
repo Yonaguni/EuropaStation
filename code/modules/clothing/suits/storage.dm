@@ -1,9 +1,9 @@
 /obj/item/clothing/suit/storage
-	var/obj/item/weapon/storage/internal/pockets
+	var/obj/item/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal(src)
+	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 2	//two slots
 	pockets.max_w_class = 2		//fit only pocket sized items
 	pockets.max_storage_space = 4
@@ -11,7 +11,7 @@
 /obj/item/clothing/suit/storage/Destroy()
 	qdel(pockets)
 	pockets = null
-	..()
+	return ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user as mob)
 	if (pockets.handle_attack_hand(user))
@@ -50,12 +50,3 @@
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 			return
 		update_clothing_icon()	//so our overlays update
-
-
-/obj/item/clothing/suit/storage/vest/merc/New()
-	..()
-	pockets = new/obj/item/weapon/storage/internal(src)
-	pockets.storage_slots = 4
-	pockets.max_w_class = 2
-	pockets.max_storage_space = 8
-

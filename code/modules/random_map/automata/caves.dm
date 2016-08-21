@@ -44,10 +44,10 @@
 			T.make_floor()
 		else
 			T.make_wall()
-			if(map[current_cell] == DOOR_CHAR)
+			/*if(map[current_cell] == DOOR_CHAR)
 				T.make_ore()
 			else if(map[current_cell] == EMPTY_CHAR)
-				T.make_ore(1)
+				T.make_ore(1)*/
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	CHECK_SLEEP_MAP
 	return T

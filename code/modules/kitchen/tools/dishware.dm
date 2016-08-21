@@ -1,15 +1,15 @@
-/obj/item/weapon/dish
+/obj/item/dish
 	name = "dish"
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
 	var/tip_word = "onto"
 
-/obj/item/weapon/dish/New()
+/obj/item/dish/New()
 	..()
 	create_reagents(30)
 
-/obj/item/weapon/dish/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O,/obj/item/weapon/reagent_containers/kitchen))
-		var/obj/item/weapon/reagent_containers/kitchen/K = O
+/obj/item/dish/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O,/obj/item/reagent_containers/kitchen))
+		var/obj/item/reagent_containers/kitchen/K = O
 		if(!K.contents.len && !K.reagents.total_volume)
 			return ..()
 		for(var/obj/item/I in K.contents)
@@ -19,18 +19,18 @@
 		return
 	return ..()
 
-/obj/item/weapon/dish/plate
+/obj/item/dish/plate
 	name = "plate"
 	desc = "A simple plate."
 	icon_state = "plate"
 
-/obj/item/weapon/dish/bowl
+/obj/item/dish/bowl
 	name = "bowl"
 	desc = "A simple bowl."
 	icon_state = "bowl"
 	tip_word = "into"
 
-/obj/item/weapon/dish/tray
+/obj/item/dish/tray
 	name = "tray"
 	desc = "A simple tray."
 	icon_state = "tray"

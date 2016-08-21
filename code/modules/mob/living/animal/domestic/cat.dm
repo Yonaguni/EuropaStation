@@ -13,7 +13,7 @@
 	mob_ai_type = /datum/ai_mob/animal/hostile/cat
 	alert_offset = 4
 	speech_verbs = list("meows","mews")
-	holder_type = /obj/item/weapon/holder
+	holder_type = /obj/item/holder
 	maxHealth = 15
 
 /mob/living/animal/cat/verb/friend()

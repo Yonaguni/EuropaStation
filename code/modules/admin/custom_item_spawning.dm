@@ -61,11 +61,6 @@
 			item.item_state = null
 			item.icon_override = CUSTOM_ITEM_MOB
 
-		var/obj/item/clothing/under/U = item
-		if(istype(U))
-			U.worn_state = U.icon_state
-			U.update_rolldown_status()
-
 	// Kits are dumb so this is going to have to be hardcoded/snowflake.
 	if(istype(item, /obj/item/device/kit))
 		var/obj/item/device/kit/K = item
@@ -194,7 +189,7 @@
 			continue
 
 		// Check for required access.
-		var/obj/item/weapon/card/id/current_id = M.wear_id
+		var/obj/item/card/id/current_id = M.wear_id
 		if(citem.req_access && citem.req_access > 0)
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
 				continue
@@ -212,7 +207,7 @@
 
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.
 		var/obj/item/existing_item
-		if(citem.item_path == /obj/item/weapon/card/id && istype(current_id)) //Set earlier.
+		if(citem.item_path == /obj/item/card/id && istype(current_id)) //Set earlier.
 			existing_item = M.wear_id
 
 		// Spawn and equip the item.

@@ -5,15 +5,15 @@
 
 /datum/surgery_step/set_bone
 	allowed_tools = list(
-	/obj/item/weapon/bonesetter = 100,	\
-	/obj/item/weapon/wrench = 75		\
+	/obj/item/bonesetter = 100,	\
+	/obj/item/wrench = 75		\
 	)
 
 	min_duration = 60
 	max_duration = 70
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.organ_tag != BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage < 2
@@ -40,15 +40,15 @@
 
 /datum/surgery_step/mend_skull
 	allowed_tools = list(
-	/obj/item/weapon/bonesetter = 100,	\
-	/obj/item/weapon/wrench = 75		\
+	/obj/item/bonesetter = 100,	\
+	/obj/item/wrench = 75		\
 	)
 
 	min_duration = 60
 	max_duration = 70
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.organ_tag == BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 1
@@ -74,8 +74,8 @@
 
 /datum/surgery_step/finish_bone
 	allowed_tools = list(
-	/obj/item/weapon/bonegel = 100,	\
-	/obj/item/weapon/screwdriver = 75
+	/obj/item/bonegel = 100,	\
+	/obj/item/screwdriver = 75
 	)
 	can_infect = 1
 	blood_level = 1
@@ -84,7 +84,7 @@
 	max_duration = 60
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.is_open() >= 2 && !(affected.status & ORGAN_ROBOT) && affected.stage == 2

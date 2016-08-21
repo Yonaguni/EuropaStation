@@ -198,7 +198,6 @@
 /obj/screen/movable/mecha/health/Click()
 	display_internals = !display_internals
 	usr << "<span class='notice'>[display_internals ? "Now" : "No longer"] displaying data on internal system status.</span>"
-	owner.handle_hud_icons_health()
 	owner.refresh_hud()
 
 /obj/screen/movable/mecha/health/MouseDrop()

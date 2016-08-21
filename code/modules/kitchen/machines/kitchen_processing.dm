@@ -7,7 +7,7 @@
 		return
 	handle_heat()
 
-/obj/machinery/kitchen/proc/apply_heat(var/obj/item/weapon/reagent_containers/kitchen/food, var/temperature)
+/obj/machinery/kitchen/proc/apply_heat(var/obj/item/reagent_containers/kitchen/food, var/temperature)
 	if(!istype(food))
 		return 0
 	if(temperature < 60)

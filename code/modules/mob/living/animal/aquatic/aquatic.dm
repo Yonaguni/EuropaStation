@@ -8,7 +8,7 @@
 	icon_asleep = "grump_dying"
 	min_oxygen = null
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/fillet
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/fillet
 	mob_ai_type = /datum/ai_mob/animal/herd/fish
 	faction = "small fish"
 	mob_behavior_flags = SWIMMER
@@ -29,8 +29,6 @@
 			mob_ai.stop_moving()
 		update_icon()
 
-/mob/living/animal/aquatic/can_drown()
-	return 0
 
 /mob/living/animal/aquatic/random
 	maxHealth = 5

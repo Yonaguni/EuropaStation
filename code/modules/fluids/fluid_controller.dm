@@ -8,6 +8,7 @@ var/datum/controller/process/fluids/fluid_master
 	name = "fluids"
 	schedule_interval = 5
 	fluid_master = src
+	module_controllers["Fluids"] = fluid_master
 
 /datum/controller/process/fluids/statProcess()
 	..()
@@ -46,8 +47,13 @@ var/datum/controller/process/fluids/fluid_master
 		if(F.fluid_amount <= FLUID_DELETING)
 			qdel(F)
 		else
-			F.update_icon()
+			F.update_position_and_alpha()
 		scheck()
+	for(var/thing in active_fluids)
+		var/obj/effect/fluid/F = thing
+		F.update_overlays()
+		scheck()
+
 	return 1
 
 /datum/controller/process/fluids/proc/add_active_source(var/turf/T)

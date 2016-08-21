@@ -54,7 +54,7 @@
 
 /turf/simulated/New()
 	..()
-	if(flooded || need_init)
+	if(is_flooded(absolute=1) || need_init)
 		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 			initialize()
 		else
@@ -168,12 +168,10 @@
 		return 1 //we bloodied the floor
 	return 0
 
-// Only adds blood on the floor -- Skie
 // TODO: proper blood checks.
 /turf/simulated/proc/add_blood_floor(mob/living/human/M as mob)
-	if( istype(M, /mob/living/human/alien ))
-		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
+	blood_splatter(src, null, 1)
+
 
 /turf/simulated/proc/can_build_cable(var/mob/user)
 	return 0

@@ -48,7 +48,7 @@
 	update_icon()
 
 /obj/item/jewelry/ring/attackby(var/obj/item/thing, var/mob/living/user)
-	if(!istype(thing, /obj/item/weapon/screwdriver) || (!setting_main && !setting_side))
+	if(!istype(thing, /obj/item/screwdriver) || (!setting_main && !setting_side))
 		return ..()
 	user << "<span class = 'notice'>You pry out the setting.</span>"
 	//TODO, spawn a gem.

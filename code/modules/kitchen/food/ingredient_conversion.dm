@@ -5,6 +5,6 @@
 	var/conversion_message = "puts the thing into the object. Bug a coder"
 
 /datum/ingredient_conversion/fryingpan_egg
-	input_type = /obj/item/weapon/reagent_containers/food/snacks/egg/rawegg
-	output_type = /obj/item/weapon/reagent_containers/food/snacks/egg/frying
+	input_type = /obj/item/reagent_containers/food/snacks/egg/rawegg
+	output_type = /obj/item/reagent_containers/food/snacks/egg/frying
 	conversion_message = "cracks the egg into the pan"

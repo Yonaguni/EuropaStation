@@ -5,7 +5,7 @@
 	var/self_recharge_time // Default is 4; null or 0 means the gun does not recharge itself without a charger.
 	var/self_recharge_tick = 0
 	var/cell_type
-	var/obj/item/weapon/cell/power_supply
+	var/obj/item/cell/power_supply
 
 /obj/item/gun_component/chamber/laser/update_ammo_overlay()
 	if(ammo_indicator_state)
@@ -54,7 +54,7 @@
 	return 1
 
 /obj/item/gun_component/chamber/laser/load_ammo(var/obj/item/thing, var/mob/user)
-	if(!istype(thing, /obj/item/weapon/cell))
+	if(!istype(thing, /obj/item/cell))
 		return
 	if(power_supply)
 		user << "<span class='warning'>\The [holder] already has a cell.</span>"
@@ -71,7 +71,7 @@
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
-		power_supply = new /obj/item/weapon/cell/device/variable(src, max_shots*charge_cost)
+		power_supply = new /obj/item/cell/device/variable(src, max_shots*charge_cost)
 	if(self_recharge_time)
 		processing_objects.Add(src)
 	update_icon()
@@ -115,7 +115,7 @@
 		if(module.holder && module.holder.wearer)
 			var/mob/living/human/H = module.holder.wearer
 			if(istype(H) && H.back)
-				var/obj/item/weapon/rig/suit = H.back
+				var/obj/item/rig/suit = H.back
 				if(istype(suit))
 					return suit.cell
 	return null

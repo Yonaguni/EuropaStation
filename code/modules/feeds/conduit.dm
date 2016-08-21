@@ -11,7 +11,7 @@ var/list/feed_cache = list()
 	layer = 2.5
 
 	// Track type and nature of connections.
-	var/deconstruct_tool = /obj/item/weapon/wrench
+	var/deconstruct_tool = /obj/item/wrench
 	var/deconstruct_path = /obj/item/stack/conduit
 	var/deconstruct_time = 20
 	var/deconstruct_verb = "removed"

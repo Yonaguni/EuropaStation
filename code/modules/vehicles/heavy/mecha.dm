@@ -23,7 +23,7 @@
 	var/mech_step_sound = 'sound/mecha/mechstep.ogg'
 
 	// Access updating/container.
-	var/obj/item/weapon/card/id/access_card
+	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
 	var/sync_access = 1
 
@@ -152,7 +152,7 @@
 	update_icon()
 
 /mob/living/heavy_vehicle/return_air()
-	return body.cockpit
+	return //body.cockpit
 
 /mob/living/heavy_vehicle/GetIdCard()
 	return access_card

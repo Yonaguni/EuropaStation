@@ -9,7 +9,7 @@
 	density = 1
 	anchored = 1
 	use_power = 0
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null
@@ -42,14 +42,14 @@
 							state = 2
 							icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/weapon/wrench))
+					if(istype(P, /obj/item/wrench))
 						playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 						user << "<span class='notice'>You dismantle the frame</span>"
 						new /obj/item/stack/material/steel(src.loc, 5)
 						qdel(src)
 			if(2)
-				if(istype(P, /obj/item/weapon/circuitboard))
-					var/obj/item/weapon/circuitboard/B = P
+				if(istype(P, /obj/item/circuitboard))
+					var/obj/item/circuitboard/B = P
 					if(B.board_type == "machine")
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 						user << "<span class='notice'>You add the circuit board to the frame.</span>"
@@ -72,7 +72,7 @@
 					else
 						user << "<span class='warning'>This frame does not accept circuit boards of this type!</span>"
 				else
-					if(istype(P, /obj/item/weapon/wirecutters))
+					if(istype(P, /obj/item/wirecutters))
 						playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 						user << "<span class='notice'>You remove the cables.</span>"
 						state = 1
@@ -81,7 +81,7 @@
 						A.amount = 5
 
 			if(3)
-				if(istype(P, /obj/item/weapon/crowbar))
+				if(istype(P, /obj/item/crowbar))
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 					state = 2
 					circuit.loc = src.loc
@@ -90,14 +90,14 @@
 						user << "<span class='notice'>You remove the circuit board.</span>"
 					else
 						user << "<span class='notice'>You remove the circuit board and other components.</span>"
-						for(var/obj/item/weapon/W in components)
+						for(var/obj/item/W in components)
 							W.loc = src.loc
 					desc = initial(desc)
 					req_components = null
 					components = null
 					icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/weapon/screwdriver))
+					if(istype(P, /obj/item/screwdriver))
 						var/component_check = 1
 						for(var/R in req_components)
 							if(req_components[R] > 0)

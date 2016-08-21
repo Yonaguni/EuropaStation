@@ -27,8 +27,6 @@ var/list/event_last_fired = list()
 	if(!config.allow_random_events)
 		return
 
-	var/minutes_passed = world.time/600
-
 	var/list/active_with_role = number_active_with_role()
 
 	// Maps event names to event chances
@@ -36,22 +34,10 @@ var/list/event_last_fired = list()
 	// Events have to be manually added to this proc to happen
 	var/list/possibleEvents = list()
 
-	//possibleEvents[/datum/event/critter_migration] = 20 + 10 * active_with_role["Engineer"]
-	//possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
-	//possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
-
-	if(!spacevines_spawned)
-		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]
-	if(minutes_passed >= 30) // Give engineers time to set up engine
-		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role["Engineer"]
-	if(active_with_role["Security"] > 0)
-		if(!sent_spiders_to_station)
-			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
 	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
 		var/time_passed = world.time - event_last_fired[event_type]
 		var/full_recharge_after = 60 * 60 * 10 * 3 // 3 hours
 		var/weight_modifier = max(0, (full_recharge_after - time_passed) / 300)
-
 		possibleEvents[event_type] = max(possibleEvents[event_type] - weight_modifier, 0)
 
 	var/picked_event = pickweight(possibleEvents)
@@ -79,44 +65,9 @@ var/list/event_last_fired = list()
 // with a specific role.
 // Note that this isn't sorted by department, because e.g. having a roboticist shouldn't make meteors spawn.
 /proc/number_active_with_role()
-	var/list/active_with_role = list()
-	active_with_role["Engineer"] = 0
-	active_with_role["Medical"] = 0
-	active_with_role["Security"] = 0
-	active_with_role["Scientist"] = 0
-	active_with_role["AI"] = 0
-	active_with_role["Cyborg"] = 0
-	active_with_role["Janitor"] = 0
-	active_with_role["Gardener"] = 0
-
+	var/list/active_with_role = list("Any" = 0)
 	for(var/mob/M in player_list)
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
 			continue
-
 		active_with_role["Any"]++
-
-		if(M.mind.assigned_role in civ_positions)
-			active_with_role["Engineer"]++
-
-		if(M.mind.assigned_role in civ_positions)
-			active_with_role["Medical"]++
-
-		if(M.mind.assigned_role in gov_positions)
-			active_with_role["Security"]++
-
-		if(M.mind.assigned_role in ind_positions)
-			active_with_role["Scientist"]++
-
-		if(M.mind.assigned_role == "AI")
-			active_with_role["AI"]++
-
-		if(M.mind.assigned_role == "Cyborg")
-			active_with_role["Cyborg"]++
-
-		if(M.mind.assigned_role == "Janitor")
-			active_with_role["Janitor"]++
-
-		if(M.mind.assigned_role == "Gardener")
-			active_with_role["Gardener"]++
-
 	return active_with_role

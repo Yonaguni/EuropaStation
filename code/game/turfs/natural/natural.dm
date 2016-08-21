@@ -12,7 +12,6 @@ var/list/tree_types = list(
 	desc = "Dirty."
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	accept_lattice = 1
@@ -25,13 +24,8 @@ var/list/tree_types = list(
 	var/diggable = 1
 
 /turf/simulated/floor/natural/ex_act(severity)
-	if(1)
-		src.ChangeTurf(get_base_turf_by_area(src))
-	if(2)
-		src.ChangeTurf(get_base_turf_by_area(src))
-	if(3)
-		if (prob(50))
-			src.hotspot_expose(1000,CELL_VOLUME)
+	src.ChangeTurf(get_base_turf_by_area(src))
+
 
 /turf/simulated/floor/natural/is_plating()
 	return 1
@@ -46,7 +40,7 @@ var/list/tree_types = list(
 	return ..()
 
 /turf/simulated/floor/natural/attackby(obj/item/C, mob/user)
-	if(diggable && istype(C,/obj/item/weapon/shovel))
+	if(diggable && istype(C,/obj/item/shovel))
 		var/obj/structure/pit/P = locate(/obj/structure/pit) in src
 		if(P)
 			P.attackby(C, user)
@@ -99,15 +93,7 @@ var/list/tree_types = list(
 	tree_prob = 3
 
 /turf/simulated/floor/natural/grass/ex_act(severity)
-	switch(severity)
-		if(1)
-			uproot()
-		if(2)
-			uproot()
-		if(3)
-			if(prob(40))
-				uproot()
-	src.hotspot_expose(1000,CELL_VOLUME)
+	uproot()
 
 /turf/simulated/floor/natural/grass/proc/uproot()
 	name = "uprooted grass"
@@ -155,18 +141,12 @@ var/list/tree_types = list(
 	H.visible_message("<span class='notice'>\The [user] washes their hands in \the [src].</span>")
 
 /turf/simulated/floor/water/attackby(var/obj/item/O, var/mob/user)
-	var/obj/item/weapon/reagent_containers/RG = O
+	var/obj/item/reagent_containers/RG = O
 	if(istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>\The [user] fills \the [RG] from \the [src].</span>")
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return 1
-
-	if(istype(O, /obj/item/weapon/mop))
-		O.reagents.add_reagent(REAGENT_ID_WATER, 5)
-		user << "<span class='notice'>You wet \the [O] in \the [src].</span>"
-		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-		return
 
 	user << "<span class='notice'>You start washing \the [O].</span>"
 	if(!do_after(user, 40) || !Adjacent(user))

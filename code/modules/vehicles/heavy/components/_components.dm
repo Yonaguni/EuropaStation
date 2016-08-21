@@ -65,7 +65,7 @@
 	*/
 
 /obj/item/mech_component/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/screwdriver))
+	if(istype(thing, /obj/item/screwdriver))
 		if(contents.len)
 			var/obj/item/removed = pick(contents)
 			user.visible_message("<span class='notice'>\The [user] removes \the [removed] from \the [src].</span>")

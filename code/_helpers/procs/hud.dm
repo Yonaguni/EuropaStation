@@ -1,44 +1,4 @@
-/* Using the HUD procs is simple. Call these procs in the life.dm of the intended mob.
-Use the regular_hud_updates() proc before process_med_hud(mob) or process_sec_hud(mob) so
-the HUD updates properly! */
-
-//Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
-proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
-	if(!can_process_hud(M))
-		return
-
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
-	for(var/mob/living/human/patient in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < patient.invisibility)
-			continue
-
-		if(local_scanner)
-			P.Client.images += patient.hud_list[HEALTH_HUD]
-			P.Client.images += patient.hud_list[STATUS_HUD]
-		else
-			var/sensor_level = getsensorlevel(patient)
-			if(sensor_level >= SUIT_SENSOR_VITAL)
-				P.Client.images += patient.hud_list[HEALTH_HUD]
-			if(sensor_level >= SUIT_SENSOR_BINARY)
-				P.Client.images += patient.hud_list[LIFE_HUD]
-
-//Security HUDs. Pass a value for the second argument to enable implant viewing or other special features.
-proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
-	if(!can_process_hud(M))
-		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
-	for(var/mob/living/human/perp in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < perp.invisibility)
-			continue
-
-		P.Client.images += perp.hud_list[ID_HUD]
-		if(advanced_mode)
-			P.Client.images += perp.hud_list[WANTED_HUD]
-			P.Client.images += perp.hud_list[IMPTRACK_HUD]
-			P.Client.images += perp.hud_list[IMPLOYAL_HUD]
-			P.Client.images += perp.hud_list[IMPCHEM_HUD]
-
-datum/arranged_hud_process
+/datum/arranged_hud_process
 	var/client/Client
 	var/mob/Mob
 	var/turf/Turf

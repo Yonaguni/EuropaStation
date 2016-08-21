@@ -15,7 +15,7 @@
 		if(GC.component_type == component_type)
 			user << "<span class='warning'>Why are you trying to install one [component_type] into another?</span>"
 			return
-		var/obj/item/weapon/gun_assembly/GA = new(get_turf(src))
+		var/obj/item/gun_assembly/GA = new(get_turf(src))
 		GA.attackby(src, user)
 		GA.attackby(GC, user)
 		GA.update_components()

@@ -21,15 +21,6 @@
 			if(do_after(user,HUMAN_STRIP_DELAY))
 				remove_splints(user)
 			return
-		if("sensors")
-			visible_message("<span class='danger'>\The [user] is trying to set \the [src]'s sensors!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
-				toggle_sensors(user)
-			return
-		if("internals")
-			visible_message("<span class='danger'>\The [usr] is trying to set \the [src]'s internals!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
-				toggle_internals(user)
 			return
 		if("tie")
 			var/obj/item/clothing/under/suit = w_uniform
@@ -46,8 +37,6 @@
 			if(!A || suit.loc != src || !(A in suit.accessories))
 				return
 
-			if(istype(A, /obj/item/clothing/accessory/badge) || istype(A, /obj/item/clothing/accessory/medal))
-				user.visible_message("<span class='danger'>\The [user] tears off \the [A] from [src]'s [suit.name]!</span>")
 			attack_log += "\[[time_stamp()]\] <font color='orange'>Has had \the [A] removed by [user.name] ([user.ckey])</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [name]'s ([ckey]) [A.name]</font>"
 			A.on_removed(user)
@@ -96,25 +85,12 @@
 		unEquip(l_store)
 	visible_message("<span class='danger'>\The [user] empties \the [src]'s pockets!</span>")
 
-// Modify the current target sensor level.
-/mob/living/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
-	if(!suit)
-		user << "<span class='warning'>\The [src] is not wearing a suit with sensors.</span>"
-		return
-	if (suit.has_sensor >= 2)
-		user << "<span class='warning'>\The [src]'s suit sensor controls are locked.</span>"
-		return
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
-	suit.set_sensors(user)
-
 // Remove all splints.
 /mob/living/human/proc/remove_splints(var/mob/living/user)
 
 	var/can_reach_splints = 1
-	if(istype(wear_suit,/obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = wear_suit
+	if(istype(wear_suit,/obj/item/clothing/suit))
+		var/obj/item/clothing/suit/suit = wear_suit
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
 			user << "<span class='warning'>You cannot remove the splints - [src]'s [suit] is supporting some of the breaks.</span>"
 			can_reach_splints = 0
@@ -124,38 +100,11 @@
 		for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
-				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
+				//var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
 				o.status &= ~ORGAN_SPLINTED
-				W.add_fingerprint(user)
+				//W.add_fingerprint(user)
 				removed_splint = 1
 		if(removed_splint)
 			visible_message("<span class='danger'>\The [user] removes \the [src]'s splints!</span>")
 		else
 			user << "<span class='warning'>\The [src] has no splints to remove.</span>"
-
-// Set internals on or off.
-/mob/living/human/proc/toggle_internals(var/mob/living/user)
-	if(internal)
-		internal.add_fingerprint(user)
-		internal = null
-		if(internals)
-			internals.icon_state = "internal0"
-	else
-		// Check for airtight mask/helmet.
-		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
-			return
-		// Find an internal source.
-		if(istype(back, /obj/item/weapon/tank))
-			internal = back
-		else if(istype(s_store, /obj/item/weapon/tank))
-			internal = s_store
-		else if(istype(belt, /obj/item/weapon/tank))
-			internal = belt
-
-	if(internal)
-		visible_message("<span class='warning'>\The [src] is now running on internals!</span>")
-		internal.add_fingerprint(user)
-		if (internals)
-			internals.icon_state = "internal1"
-	else
-		visible_message("<span class='danger'>\The [user] disables \the [src]'s internals!</span>")

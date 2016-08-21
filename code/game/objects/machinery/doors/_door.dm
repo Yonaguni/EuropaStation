@@ -37,12 +37,6 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
 
-/obj/machinery/door/CanAtmosPass()
-	return !density
-
-/obj/machinery/door/CanFluidPass()
-	return !density
-
 /obj/machinery/door/initialize()
 	. = ..()
 	for(var/checkdir in cardinal)
@@ -70,7 +64,6 @@
 	if(density)
 		layer = closed_layer
 		explosion_resistance = initial(explosion_resistance)
-		update_heat_protection(get_turf(src))
 	else
 		layer = open_layer
 		explosion_resistance = 0
@@ -82,10 +75,8 @@
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-
 	health = maxhealth
-
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 /obj/machinery/door/Destroy()
@@ -121,24 +112,7 @@
 		if(!M.restrained() && (!issmall(M) || ishuman(M)))
 			bumpopen(M)
 		return
-
-	if(istype(AM, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/wheel = AM
-		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
-				open()
-			else
-				do_animate("deny")
-		return
 	return
-
-
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return !block_air_zones
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return !opacity
-	return !density
-
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
@@ -228,12 +202,12 @@
 
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/weldingtool))
+	if(repairing && istype(I, /obj/item/weldingtool))
 		if(!density)
 			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
 			return
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -245,7 +219,7 @@
 				repairing = null
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/crowbar))
+	if(repairing && istype(I, /obj/item/crowbar))
 		user << "<span class='notice'>You remove \the [repairing].</span>"
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		repairing.loc = user.loc
@@ -253,8 +227,8 @@
 		return
 
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-		var/obj/item/weapon/W = I
+	if(src.density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
+		var/obj/item/W = I
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)
@@ -279,14 +253,6 @@
 	if(src.density)
 		do_animate("deny")
 	return
-
-/obj/machinery/door/emag_act(var/remaining_charges)
-	if(density && operable())
-		do_animate("spark")
-		sleep(6)
-		open()
-		operating = -1
-		return 1
 
 /obj/machinery/door/proc/take_damage(var/damage)
 	var/initialhealth = src.health
@@ -428,25 +394,7 @@
 		return ..(null) //don't care who they are or what they have, act as if they're NOTHING
 	return ..(M)
 
-/obj/machinery/door/update_nearby_tiles(need_rebuild)
-	. = ..(need_rebuild)
-	if(!.)
-		return 0
-
-	for(var/turf/simulated/turf in locs)
-		update_heat_protection(turf)
-
-	return 1
-
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
-	if(istype(source))
-		if(src.density && (src.opacity || src.heat_proof))
-			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
-		else
-			source.thermal_conductivity = initial(source.thermal_conductivity)
-
 /obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -455,5 +403,4 @@
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-
 	update_nearby_tiles()

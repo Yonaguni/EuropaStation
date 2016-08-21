@@ -1,4 +1,4 @@
-/obj/item/weapon/material/knife
+/obj/item/material/knife
 	name = "kitchen knife"
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
 	icon_state = "knife"
@@ -11,24 +11,24 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
 
-/obj/item/weapon/material/knife/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/knife/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(!proximity) return
 
 	// It slices!
-	if(istype(A, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/S = A
+	if(istype(A, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/S = A
 		if(S.is_sliceable())
 			var/trans_amt
 			if(S.reagents && S.reagents.total_volume)
 				trans_amt = round(S.reagents.total_volume/S.slice_count)
 
-			var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/D
-			if(istype(S, /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix))
+			var/obj/item/reagent_containers/food/snacks/ingredient_mix/D
+			if(istype(S, /obj/item/reagent_containers/food/snacks/ingredient_mix))
 				D = S
 
 			// Create one slice to check if we're moving reagents and stuff around.
 			var/is_mix
-			var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/slice = new S.slices_to(get_turf(S))
+			var/obj/item/reagent_containers/food/snacks/ingredient_mix/slice = new S.slices_to(get_turf(S))
 			if(istype(slice) && D)
 				is_mix = 1
 				slice.base_ingredients = D.base_ingredients.Copy()
@@ -39,8 +39,8 @@
 
 			// Snowflakey as fuck.
 			var/is_meat = 0
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = S
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/meatoutput = slice
+			var/obj/item/reagent_containers/food/snacks/meat/meatsource = S
+			var/obj/item/reagent_containers/food/snacks/meat/meatoutput = slice
 			if(istype(meatsource) && istype(meatoutput))
 				is_meat = 1
 				meatoutput.set_source_mob(meatsource.source_mob)
@@ -73,7 +73,7 @@
 
 	return ..()
 
-/obj/item/weapon/material/knife/butch
+/obj/item/material/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."

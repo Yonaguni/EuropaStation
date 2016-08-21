@@ -17,7 +17,7 @@
 	var/state = 2
 	var/reinf = 0
 	var/basestate = "window"
-	var/shardtype = /obj/item/weapon/material/shard
+	var/shardtype = /obj/item/material/shard
 	var/glasstype = /obj/item/stack/material/glass // Null is impossible to dismantle.
 
 /obj/structure/window/initialize()
@@ -49,13 +49,6 @@
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
-
-/obj/structure/window/CanAtmosPass(turf/T)
-	if(get_dir(loc, T) == dir)
-		return !density
-	if(dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-		return !density
-	return 1
 
 /obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
@@ -116,22 +109,8 @@
 				shatter(0)
 				return
 
-//TODO: Make full windows a separate type of window.
-//Once a full window, it will always be a full window, so there's no point
-//having the same type for both.
 /obj/structure/window/proc/is_full_window()
 	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(is_full_window())
-		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) & dir)
-		return !density
-	else
-		return 1
-
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -139,7 +118,6 @@
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
-
 
 /obj/structure/window/hitby(atom/movable/AM)
 	..()
@@ -209,8 +187,8 @@
 
 	if(!istype(W)) return//I really wish I did not need this
 
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
+	if (istype(W, /obj/item/grab) && get_dist(src,user)<2)
+		var/obj/item/grab/G = W
 		if(istype(G.affecting,/mob/living))
 			var/mob/living/M = G.affecting
 			var/state = G.state
@@ -235,7 +213,7 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
@@ -251,11 +229,11 @@
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if(istype(W, /obj/item/crowbar) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
+	else if(istype(W, /obj/item/wrench) && !anchored && (!state || !reinf))
 		if(!glasstype)
 			user << "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>"
 		else
@@ -298,9 +276,8 @@
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
 
-	update_nearby_tiles(need_rebuild=1) //Compel updates before
 	set_dir(turn(dir, 90))
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 
@@ -316,9 +293,8 @@
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
 
-	update_nearby_tiles(need_rebuild=1)
 	set_dir(turn(dir, 270))
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 /obj/structure/window/New(Loc, start_dir=null, constructed=0)
@@ -335,7 +311,7 @@
 
 	ini_dir = dir
 
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	update_nearby_icons()
 
 
@@ -347,14 +323,14 @@
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
 	loc = location
-	..()
+	return ..()
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	..()
 	set_dir(ini_dir)
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
@@ -390,11 +366,6 @@
 		overlays += I
 
 	return
-
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > maximal_heat)
-		hit(damage_per_fire_tick, 0)
-	..()
 
 /obj/structure/window/full
     dir = 5

@@ -52,16 +52,6 @@
 
 	attack_generic(user,damage_dealt,attack_message)
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
-		return 1
-	else
-		if(istype(mover, /obj/item/projectile))
-			return prob(30)
-		else
-			return !density
-
 /obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 
@@ -96,7 +86,7 @@
 	src.health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
-/obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -188,13 +178,6 @@
 /obj/structure/grille/proc/shock(mob/user as mob, prb)
 	return //todo
 
-/obj/structure/grille/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(!destroyed)
-		if(exposed_temperature > T0C + 1500)
-			health -= 1
-			healthcheck()
-	..()
-
 /obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	attack_animation(user)
@@ -207,11 +190,6 @@
 	icon_state = "grille-b"
 	density = 0
 
-/obj/structure/grille/cult/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-	if(air_group)
-		return 0 //Make sure air doesn't drain
-	..()
-
 /obj/structure/grille/fence
 	name = "fence"
 	icon = 'icons/obj/structures/fence.dmi'
@@ -220,7 +198,7 @@
 	anchored = 1
 
 /obj/structure/grille/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/screwdriver))
+	if(istype(thing, /obj/item/screwdriver))
 		return
 	return ..()
 

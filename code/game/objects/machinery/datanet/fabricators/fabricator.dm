@@ -41,7 +41,7 @@
 	wires = new(src)
 	//Create parts for lathe.
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
+	component_parts += new /obj/item/circuitboard/autolathe(src)
 	component_parts += new /obj/item/component/matter_bin(src)
 	component_parts += new /obj/item/component/matter_bin(src)
 	component_parts += new /obj/item/component/matter_bin(src)
@@ -204,7 +204,7 @@
 		return
 	if(stat)
 		return
-	if(panel_open && istype(O, /obj/item/weapon/wirecutters))
+	if(panel_open && istype(O, /obj/item/wirecutters))
 		attack_hand(user)
 		return
 	return

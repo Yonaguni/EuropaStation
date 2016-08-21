@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/kitchen/mixingbowl
+/obj/item/reagent_containers/kitchen/mixingbowl
 	name = "mixing bowl"
 	desc = "A valuable aid in mixing things."
 	icon_state = "mixingbowl"
@@ -6,23 +6,23 @@
 	processes = 0
 	cooking_method = METHOD_MIXING
 
-/obj/item/weapon/reagent_containers/kitchen/mixingbowl/recieve_heat()
+/obj/item/reagent_containers/kitchen/mixingbowl/recieve_heat()
 	return
 
 // Creates a 'mix' object that can be transferred to other containers.
-/obj/item/weapon/reagent_containers/kitchen/mixingbowl/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg) && is_open_container() && O.reagents)
+/obj/item/reagent_containers/kitchen/mixingbowl/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O,/obj/item/reagent_containers/food/snacks/egg) && is_open_container() && O.reagents)
 		user << "You crack \the [O] into \the [src]."
 		O.reagents.trans_to(src, O.reagents.total_volume)
 		user.drop_from_inventory(O)
 		qdel(O)
 		return
-	else if(istype(O,/obj/item/weapon/material/kitchen))
+	else if(istype(O,/obj/item/material/kitchen))
 		stirred(user,O)
 		return
 	return ..(O, user)
 
-/obj/item/weapon/reagent_containers/kitchen/mixingbowl/proc/stirred(var/mob/user, var/obj/item/weapon/O)
+/obj/item/reagent_containers/kitchen/mixingbowl/proc/stirred(var/mob/user, var/obj/item/O)
 	var/turf/T = get_turf(src)
 	if(!(contents || (reagents && reagents.total_volume)))
 		user << "<span class='notice'>There is nothing else to mix in \the [src].</span>"
@@ -39,7 +39,7 @@
 		food.forceMove(src)
 		T.visible_message("\The [food] in \the [src] [F.cooking_message ? F.cooking_message : "is ready"].")
 	else
-		var/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/D = locate() in src.contents
+		var/obj/item/reagent_containers/food/snacks/ingredient_mix/D = locate() in src.contents
 		if(!D)
 			user << "<span class='warning'>There's nothing in \the [src] that will mix together.</span>"
 			return
@@ -50,7 +50,7 @@
 		for(var/obj/item/I in src.contents)
 			if(I == D)
 				continue
-			if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/ingredient_mix))
+			if(istype(I, /obj/item/reagent_containers/food/snacks/ingredient_mix))
 				for(var/obj/item/subitem in I.contents)
 					subitem.loc = D
 					qdel(subitem)

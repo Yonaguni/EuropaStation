@@ -63,29 +63,6 @@
 	if(seed.get_trait(TRAIT_REQUIRES_WATER) && prob(35))
 		health += (waterlevel < 10 ? -healthmod : healthmod)
 
-	/*
-	// Check that pressure, heat and light are all within bounds.
-	// First, handle an open system or an unconnected closed system.
-	var/turf/T = loc
-	var/datum/gas_mixture/environment
-	// If we're closed, take from our internal sources.
-	if(closed_system && (connected_port || holding))
-		environment = air_contents
-	// If atmos input is not there, grab from turf.
-	if(!environment && istype(T)) environment = T.return_air()
-	if(!environment) return
-
-	// Seed datum handles gasses, light and pressure.
-	if(mechanical && closed_system)
-		health -= seed.handle_environment(T,environment,tray_light)
-	else
-		health -= seed.handle_environment(T,environment)
-
-	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
-	if (closed_system && connected_port)
-		update_connected_network()
-	*/
-
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.
 	if(toxins > 0)

@@ -292,10 +292,7 @@
 /mob/new_player/proc/IsSpawnSafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles
 		return "Spawn location is open to space."
-	var/datum/gas_mixture/air = T.return_air()
-	if(!air)
-		return "Spawn location lacks atmosphere."
-	return is_safe_atmosphere(air, 1)
+	return 1
 
 /mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
 	if(src != usr)
@@ -340,13 +337,7 @@
 
 	//Find our spawning point.
 	var/join_message = job_master.LateSpawn(character.client, rank)
-
 	character.lastarea = get_area(loc)
-	// Moving wheelchair if they have one
-	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
-		character.buckled.loc = character.loc
-		character.buckled.set_dir(character.dir)
-
 	ticker.mode.handle_latejoin(character)
 
 	if(character.mind.assigned_role != "Cyborg")

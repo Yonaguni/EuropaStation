@@ -8,8 +8,8 @@
 	anchored = 1
 	var/open = 1
 
-/obj/structure/pit/attackby(obj/item/weapon/W, mob/user)
-	if( istype(W,/obj/item/weapon/shovel) )
+/obj/structure/pit/attackby(obj/item/W, mob/user)
+	if( istype(W,/obj/item/shovel) )
 		visible_message("<span class='notice'>\The [user] starts [open ? "filling" : "digging open"] \the [src]</span>")
 		if( do_after(user, 50) )
 			visible_message("<span class='notice'>\The [user] [open ? "fills" : "digs open"] \the [src]!</span>")
@@ -37,7 +37,7 @@
 
 /obj/structure/pit/update_icon()
 	icon_state = "pit[open]"
-	if(istype(loc,/turf/simulated/floor/water) || istype(loc,/turf/simulated/floor/grass))
+	if(istype(loc,/turf/simulated/floor/water))
 		icon_state="pit[open]mud"
 		blend_mode = BLEND_OVERLAY
 
@@ -121,42 +121,21 @@
 	var/obj/item/remains/human/bones = new(C)
 	bones.layer = MOB_LAYER
 
+	/*
 	var/loot
-	var/list/suits = list(
-		/obj/item/clothing/suit/storage/toggle/bomber,
-		/obj/item/clothing/suit/storage/leather_jacket,
-		/obj/item/clothing/suit/storage/toggle/brown_jacket,
-		/obj/item/clothing/suit/storage/toggle/hoodie,
-		/obj/item/clothing/suit/storage/toggle/hoodie/black,
-		/obj/item/clothing/suit/poncho
-		)
+	var/list/suits = list()
 	loot = pick(suits)
 	new loot(C)
 
-	var/list/uniforms = list(
-		/obj/item/clothing/under/soviet,
-		/obj/item/clothing/under/redcoat,
-		/obj/item/clothing/under/serviceoveralls,
-		/obj/item/clothing/under/captain_fly,
-		/obj/item/clothing/under/det,
-		/obj/item/clothing/under/brown,
-		)
+	var/list/uniforms = list()
 	loot = pick(uniforms)
 	new loot(C)
 
 	if(prob(30))
-		var/list/misc = list(
-			/obj/item/clothing/accessory/locket,
-			/obj/item/clothing/accessory/badge/marshal/old,
-			/obj/item/clothing/accessory/horrible,
-			/obj/item/clothing/accessory/medal,
-			/obj/item/clothing/accessory/medal/silver,
-			/obj/item/clothing/accessory/medal/silver/valor,
-			/obj/item/clothing/accessory/medal/gold,
-			/obj/item/clothing/accessory/medal/gold/heroism
-			)
+		var/list/misc = list()
 		loot = pick(misc)
 		new loot(C)
+	*/
 
 	var/obj/structure/gravemarker/random/R = new(src.loc)
 	R.generate()
@@ -194,14 +173,14 @@
 
 	message = "Here lies [nam], [born] - [died]."
 
-/obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W,/obj/item/weapon/material/hatchet))
+/obj/structure/gravemarker/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/item/material/hatchet))
 		visible_message("<span class = 'warning'>\The [user] starts hacking away at \the [src] with \the [W].</span>")
 		if(!do_after(user, 30))
 			visible_message("<span class = 'warning'>\The [user] hacks \the [src] apart.</span>")
 			new /obj/item/stack/material/wood(src)
 			qdel(src)
-	if(istype(W,/obj/item/weapon/pen))
+	if(istype(W,/obj/item/pen))
 		var/msg = sanitize(input(user, "What should it say?", "Grave marker", message) as text|null)
 		if(msg)
 			message = msg

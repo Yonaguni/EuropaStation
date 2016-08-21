@@ -117,20 +117,10 @@ var/global/datum/controller/gameticker/ticker
 	callHook("roundstart")
 
 	shuttle_controller.setup_shuttle_docks()
+	mode.post_setup()
 
-	spawn(0)//Forking here so we dont have to wait for this to finish
-		mode.post_setup()
-		//Cleanup some stuff
-		for(var/obj/effect/landmark/start/S in landmarks_list)
-			//Deleting Startpoints but we need the ai point to AI-ize people later
-			if (S.name != "AI")
-				qdel(S)
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
-		world << sound('sound/misc/welcome.ogg')
-		Holiday_Game_Start()
-
-	//start_events() //handles random events and space dust.
-	//new random event system is handled from the MC.
+	world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+	world << sound('sound/misc/welcome.ogg')
 
 	var/admins_number = 0
 	for(var/client/C)

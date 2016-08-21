@@ -5,7 +5,7 @@
 #define SYRINGE_INJECT 1
 #define SYRINGE_BROKEN 2
 
-/obj/item/weapon/reagent_containers/syringe
+/obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/syringe.dmi'
@@ -131,10 +131,8 @@
 					user << "<span class='notice'>The syringe is empty.</span>"
 					mode = SYRINGE_DRAW
 					return
-				if(istype(target, /obj/item/weapon/implantcase/chem))
-					return
 
-				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
+				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_containers/food))
 					user << "<span class='notice'>You cannot directly fill this object.</span>"
 					return
 				if(!target.reagents.get_free_space())
@@ -157,7 +155,7 @@
 
 					if(istype(H))
 						if(H.wear_suit)
-							if(istype(H.wear_suit, /obj/item/clothing/suit/space))
+							if(istype(H.wear_suit, /obj/item/clothing/suit/voidsuit))
 								injtime = injtime * 2
 							else if(!H.can_inject(user, 1))
 								return
@@ -279,7 +277,7 @@
 			add_fingerprint(user)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe
+/obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
 	amount_per_transfer_from_this = 50
@@ -299,31 +297,31 @@
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/syringe/adrenaline
+/obj/item/reagent_containers/syringe/adrenaline
 	name = "Syringe (adrenaline)"
 	desc = "Contains adrenaline - used to stabilize patients."
 
-/obj/item/weapon/reagent_containers/syringe/adrenaline/initialize()
+/obj/item/reagent_containers/syringe/adrenaline/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ADRENALINE, 15)
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/antitoxin
+/obj/item/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 
-/obj/item/weapon/reagent_containers/syringe/antitoxin/initialize()
+/obj/item/reagent_containers/syringe/antitoxin/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ANTITOX, 15)
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/antiviral
+/obj/item/reagent_containers/syringe/antiviral
 	name = "Syringe (antibiotic)"
 	desc = "Contains antiviral agents."
 
-/obj/item/weapon/reagent_containers/syringe/antiviral/initialize()
+/obj/item/reagent_containers/syringe/antiviral/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ANTIBIOTIC, 15)
 	mode = SYRINGE_INJECT

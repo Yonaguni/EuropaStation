@@ -91,14 +91,6 @@
 		if(E)
 			limb_pain = E.can_feel_pain()
 
-	// Canes and crutches help you stand (if the latter is ever added)
-	// One cane mitigates a broken leg+foot, or a missing foot.
-	// Two canes are needed for a lost leg. If you are missing both legs, canes aren't gonna help you.
-	if (l_hand && istype(l_hand, /obj/item/weapon/cane))
-		stance_damage -= 2
-	if (r_hand && istype(r_hand, /obj/item/weapon/cane))
-		stance_damage -= 2
-
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
 		if(!(lying || resting))

@@ -13,10 +13,6 @@
 	if (!N)
 		return
 
-	if(gas_overlay)
-		qdel(gas_overlay)
-		gas_overlay = null
-
 	// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
@@ -24,7 +20,6 @@
 			N = /turf/simulated/open
 
 	var/list/old_affecting_lights = affecting_lights
-	var/old_flooded = flooded
 
 	Destroy()
 
@@ -44,7 +39,6 @@
 			S.update_starlight()
 
 		W.levelupdate()
-		W.air_update_turf()
 		. = W
 
 	else
@@ -59,9 +53,5 @@
 
 		W.levelupdate()
 		. =  W
-
-	if(old_flooded)
-		flooded = 1
-		update_icon()
 
 	affecting_lights = old_affecting_lights

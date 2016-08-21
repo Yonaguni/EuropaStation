@@ -1,4 +1,5 @@
 /turf/var/fluid_blocked_dirs = 0
+/turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
 
 /turf/proc/add_fluid(var/fluidtype = "water", var/amount)
 
@@ -13,7 +14,8 @@
 	F.lose_fluid(amount)
 	return
 
-/turf/proc/return_fluid()
+/turf/return_fluid()
+	..()
 	return (locate(/obj/effect/fluid) in src)
 
 /turf/Destroy()
@@ -22,26 +24,37 @@
 		fluid_master.remove_active_source(src)
 	return ..()
 
-/atom/proc/is_flooded(var/lying_mob)
-	var/turf/T = get_turf(src)
-	return T.is_flooded(lying_mob)
+/turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+	var/old_flooded = flooded
+	var/obj/effect/fluid/F = locate() in src
+	. = ..()
+	if(F)
+		F.forceMove(src)
+		F.start_loc = src
+		fluid_update()
+	if(old_flooded)
+		flooded = 1
+		update_icon()
 
-/turf/is_flooded(var/lying_mob)
-	if(flooded)
-		return 1
-	var/depth = get_fluid_depth()
-	if(depth && depth > (lying_mob ? FLUID_SHALLOW : FLUID_DEEP))
-		return 1
-	return 0
+/turf/initialize()
+	if((ticker && ticker.current_state == GAME_STATE_PLAYING) && fluid_master)
+		fluid_update()
+	. = ..()
 
-/turf/proc/get_fluid_depth()
-	if(flooded)
+/turf/New()
+	var/area/A = get_area(src)
+	if(istype(A) && (A.flags & IS_OCEAN))
+		flooded = 1
+	..()
+
+/turf/check_fluid_depth(var/min)
+	..()
+	return (get_fluid_depth() >= min)
+
+/turf/get_fluid_depth()
+	..()
+	if(is_flooded(absolute=1))
 		return FLUID_OCEAN_DEPTH
-	if(liquid == -1)
-		var/obj/effect/fluid/F = return_fluid()
-		if(F)
-			liquid = F.fluid_amount
-	return liquid
+	var/obj/effect/fluid/F = return_fluid()
+	return (istype(F) ? F.fluid_amount : 0 )
 
-/turf/proc/update_blood_overlays()
-	return

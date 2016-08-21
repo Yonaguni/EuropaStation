@@ -50,39 +50,14 @@ var/religion_name = null
 	if (station_name)
 		return station_name
 
-	var/random = rand(1,5)
-	var/name = ""
+	var/list/station_prefixes = list("Super", "Ultra", "Secret", "Top Secret", "Deep", "Central", "Main", "Government", "Experimental", "Augmented")
+	var/prefix = pick(station_prefixes)
+	if(prob(10)) prefix = "[prefix] [pick(station_prefixes-prefix)]"
+	var/midname = pick("Aegis", "Ishimura", "North", "West", "East", "South", "Widdershins", "Rimward", "Control", "Class", "Star", "Moon", "System", "Mining", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Extraplanetary", "Orbital")
+	var/suffix = pick("Station", "Fortress", "Frontier", "Laboratory", "No-Moon", "Trade Post", "Fortress", "Village", "Town", "City", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Hangar", "Center", "Port", "Waystation", "Factory", "Waypoint", "Hub", "HQ", "Fortification", "Colony", "Planet-Cracker")
+	var/stationnumber = 0
 
-	//Rare: Pre-Prefix
-	if (prob(10))
-		name = pick("Imperium", "Heretical", "Cuban", "Psychic", "Elegant", "Common", "Uncommon", "Rare", "Unique", "Houseruled", "Religious", "Atheist", "Traditional", "Houseruled", "Mad", "Super", "Ultra", "Secret", "Top Secret", "Deep", "Death", "Zybourne", "Central", "Main", "Government", "Uoi", "Fat", "Automated", "Experimental", "Augmented")
-		station_name = name + " "
-
-	// Prefix
-	switch(Holiday)
-		//get normal name
-		if(null,"",0)
-			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clowning", "Aegis", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Rogue", "MacRagge", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist","Corrogated","Skeleton","Race", "Fatguy", "Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Mining", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
-			if(name)
-				station_name += name + " "
-
-		//For special days like christmas, easter, new-years etc ~Carn
-		if("Friday the 13th")
-			name = pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
-			station_name += name + " "
-			random = 13
-		else
-			//get the first word of the Holiday and use that
-			var/i = findtext(Holiday," ",1,0)
-			name = copytext(Holiday,1,i)
-			station_name += name + " "
-
-	// Suffix
-	name = pick("Station", "Fortress", "Frontier", "Suffix", "Death-trap", "Space-hulk", "Lab", "Hazard","Spess Junk", "Fishery", "No-Moon", "Tomb", "Crypt", "Hut", "Monkey", "Bomb", "Trade Post", "Fortress", "Village", "Town", "City", "Edition", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Construct", "Hangar", "Prison", "Center", "Port", "Waystation", "Factory", "Waypoint", "Stopover", "Hub", "HQ", "Office", "Object", "Fortification", "Colony", "Planet-Cracker", "Roost", "Fat Camp")
-	station_name += name + " "
-
-	// ID Number
-	switch(random)
+	switch(rand(1,5))
 		if(1)
 			station_name += "[rand(1, 99)]"
 		if(2)
@@ -93,26 +68,20 @@ var/religion_name = null
 			station_name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
 		if(5)
 			station_name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen")
-		if(13)
-			station_name += pick("13","XIII","Thirteen")
 
-
+	station_name = "[prefix] [midname] [suffix] [stationnumber]"
 	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+		world.name = "[config.server_name]: [station_name]"
 	else
 		world.name = station_name
-
 	return station_name
 
 /proc/world_name(var/name)
-
 	station_name = name
-
 	if (config && config.server_name)
 		world.name = "[config.server_name]: [name]"
 	else
 		world.name = name
-
 	return name
 
 var/syndicate_name = null

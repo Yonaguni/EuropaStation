@@ -12,7 +12,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "rock-dark"
 	density = 1
 	opacity = 1
-	blocks_air = 1
 	drop_state = "rockwall"
 	blend_with_neighbors = 20 // Blend over EVERYTHING.
 
@@ -22,8 +21,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "rock"
 	opacity = 1
 	density = 1
-	blocks_air = 1
-	temperature = T0C
 	has_resources = 1
 	drop_state = "rockwall"
 	blend_with_neighbors = 15 // Blend over MOST THINGS.
@@ -47,17 +44,14 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	blend_with_neighbors = 4
 	accept_lattice = 1
 	explosion_resistance = 2
 
 /turf/simulated/mineral/flooded
-	flooded = 1
 	color = "#0000FF"
 
 /turf/simulated/mineral/floor/flooded
-	flooded = 1
 	color = "#0000FF"
 	accept_lattice = 1
 
@@ -72,15 +66,12 @@ proc/get_mining_overlay(var/overlay_key)
 
 /turf/simulated/mineral/ignore_mapgen/flooded
 	ignore_mapgen = 1
-	flooded = 1
 	color = "#00FFFF"
 
 /turf/simulated/mineral/floor/ignore_mapgen/flooded
 	ignore_mapgen = 1
-	flooded = 1
 	color = "#00FFFF"
 	accept_lattice = 1
-
 
 /turf/simulated/mineral/floor/ignore_mapgen/flooded/initialize()
 	if(prob(1) && !(locate(/obj/landmark/animal_spawn) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
@@ -108,213 +99,44 @@ proc/get_mining_overlay(var/overlay_key)
 		return
 	density = 0
 	opacity = 0
-	blocks_air = 0
-	update_general()
 	accept_lattice = 1
 	explosion_resistance = 2
+	update_icon(1)
 
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
 		return
 	density = 1
 	opacity = 1
-	blocks_air = 1
 	accept_lattice = null
-	update_general()
-
-/turf/simulated/mineral/proc/update_general()
 	update_icon(1)
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		air_update_turf()
 
 /turf/simulated/mineral/initialize()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
-	if(density)
-		spawn(0)
-			MineralSpread()
 	update_icon(1)
 
 /turf/simulated/mineral/update_icon(var/update_neighbors)
-
 	overlays.Cut()
-
 	if(density)
 		if(mineral)
 			name = "[mineral.display_name] deposit"
 		else
 			name = "rock"
-
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
 		blend_with_neighbors = 15
 	else
-
 		name = "sand"
 		icon = 'icons/turf/flooring/asteroid.dmi'
 		icon_state = "asteroid"
 		blend_with_neighbors = 4
-
 		if(sand_dug)
 			overlays += image('icons/turf/flooring/asteroid.dmi', "dug_overlay")
-
 		for(var/direction in cardinal)
 			var/turf/T = get_step(src, direction)
 			if(istype(T) && T.open_space)
 				overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = direction)
-
 		if(overlay_detail)
 			overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
-
 	..(update_neighbors)
-
-/turf/simulated/mineral/ex_act(severity)
-
-	switch(severity)
-		if(2.0)
-			if (prob(70))
-				mined_ore = 1 //some of the stuff gets blown up
-				GetDrilled()
-		if(1.0)
-			mined_ore = 2 //some of the stuff gets blown up
-			GetDrilled()
-
-/turf/simulated/mineral/Bumped(AM)
-
-	. = ..()
-
-	if(!density)
-		return .
-
-	if(istype(AM,/mob/living/human))
-		var/mob/living/human/H = AM
-		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
-			attackby(H.l_hand,H)
-		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
-			attackby(H.r_hand,H)
-
-/turf/simulated/mineral/proc/MineralSpread()
-	if(mineral && mineral.spread)
-		for(var/trydir in cardinal)
-			if(prob(mineral.spread_chance))
-				var/turf/simulated/mineral/target_turf = get_step(src, trydir)
-				if(istype(target_turf) && target_turf.density && !target_turf.mineral)
-					target_turf.mineral = mineral
-					target_turf.UpdateMineral()
-					target_turf.MineralSpread()
-
-
-/turf/simulated/mineral/proc/UpdateMineral()
-	clear_ore_effects()
-	if(mineral)
-		new /obj/effect/mineral(src, mineral)
-	update_icon()
-
-/turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
-	if (user.IsAdvancedToolUser(1))
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
-		return
-
-	if(!density)
-
-		var/list/usable_tools = list(
-			/obj/item/weapon/shovel,
-			/obj/item/weapon/pickaxe/diamonddrill,
-			/obj/item/weapon/pickaxe/drill,
-			/obj/item/weapon/pickaxe/borgdrill
-			)
-
-		var/valid_tool
-		for(var/valid_type in usable_tools)
-			if(istype(W,valid_type))
-				valid_tool = 1
-				break
-
-		if(valid_tool)
-			if (sand_dug)
-				user << "<span class='warning'>This area has already been dug.</span>"
-				return
-
-			var/turf/T = user.loc
-			if (!(istype(T)))
-				return
-
-			user << "<span class='notice'>You start digging.</span>"
-			playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
-
-			if(!do_after(user,40)) return
-
-			user << "<span class='notice'>You dug a hole.</span>"
-			GetDrilled()
-	else
-
-		if (istype(W, /obj/item/weapon/pickaxe))
-			var/turf/T = user.loc
-			if (!( istype(T, /turf) ))
-				return
-			var/obj/item/weapon/pickaxe/P = W
-			if(last_act + P.digspeed > world.time)//prevents message spam
-				return
-			last_act = world.time
-			playsound(user, P.drill_sound, 20, 1)
-			user << "<span class='notice'>You start [P.drill_verb].</span>"
-			if(do_after(user,P.digspeed))
-				user << "<span class='notice'>You finish [P.drill_verb] \the [src].</span>"
-			GetDrilled()
-			return
-
-	return ..()
-
-
-/turf/simulated/mineral/proc/clear_ore_effects()
-	for(var/obj/effect/mineral/M in contents)
-		qdel(M)
-
-/turf/simulated/mineral/proc/DropMineral()
-	if(!mineral)
-		return
-	clear_ore_effects()
-	var/obj/item/weapon/ore/O = new mineral.ore (src)
-	return O
-
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
-
-	if(!density)
-		if(!sand_dug)
-			sand_dug = 1
-			for(var/i=0;i<(rand(3)+2);i++)
-				new/obj/item/weapon/ore/glass(src)
-			update_icon()
-		return
-
-	if (mineral && mineral.result_amount)
-		for (var/i = 1 to mineral.result_amount - mined_ore)
-			DropMineral()
-
-	// Kill and update the space overlays around us.
-	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
-	for(var/direction in step_overlays)
-		var/turf/space/T = get_step(src, step_overlays[direction])
-		if(istype(T))
-			T.overlays.Cut()
-			for(var/next_direction in step_overlays)
-				if(istype(get_step(T, step_overlays[next_direction]),/turf/simulated/mineral))
-					T.overlays += image('icons/turf/blending_overlays.dmi', "rock_side", dir = step_overlays[next_direction])
-
-	make_floor()
-
-/turf/simulated/mineral/proc/make_ore(var/rare_ore)
-	if(mineral)
-		return
-
-	var/mineral_name
-	if(rare_ore)
-		mineral_name = pickweight(list("Uranium" = 10, "Platinum" = 10, "Iron" = 20, "Coal" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Phoron" = 20))
-	else
-		mineral_name = pickweight(list("Uranium" = 5, "Platinum" = 5, "Iron" = 35, "Coal" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Phoron" = 10))
-	mineral_name = lowertext(mineral_name)
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
-		UpdateMineral()
-	update_icon()

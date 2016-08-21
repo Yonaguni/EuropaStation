@@ -10,9 +10,6 @@
 	var/material/reinf_material
 	var/reinforcing = 0
 
-/obj/structure/girder/CanFluidPass()
-	return 1
-
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
@@ -57,7 +54,7 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
+	if(istype(W, /obj/item/wrench) && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "<span class='notice'>Now disassembling the girder...</span>"
@@ -71,19 +68,7 @@
 			if(get_turf(user, 40))
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
-
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-		user << "<span class='notice'>Now slicing apart the girder...</span>"
-		if(do_after(user,30))
-			if(!src) return
-			user << "<span class='notice'>You slice apart the girder!</span>"
-			dismantle()
-
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-		user << "<span class='notice'>You drill through the girder!</span>"
-		dismantle()
-
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/screwdriver))
 		if(state == 2)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			user << "<span class='notice'>Now unsecuring support struts...</span>"
@@ -96,7 +81,7 @@
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
+	else if(istype(W, /obj/item/wirecutters) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << "<span class='notice'>Now removing support struts...</span>"
 		if(do_after(user,40))
@@ -106,7 +91,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
+	else if(istype(W, /obj/item/crowbar) && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user << "<span class='notice'>Now dislodging the girder...</span>"
 		if(do_after(user, 40))

@@ -34,8 +34,3 @@
 	touch_met = 5
 	flammable = 1
 	toxic_blood = 1
-
-/datum/reagent/fuel/touch_turf(var/turf/T)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
-	return

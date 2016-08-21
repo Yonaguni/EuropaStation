@@ -7,6 +7,8 @@
 		client.screen |= hud_elements
 
 /mob/living/heavy_vehicle/instantiate_hud()
+	return
+/*
 	var/i = 1
 	for(var/hardpoint in hardpoints)
 		var/obj/screen/movable/mecha/hardpoint/H = new(src, hardpoint)
@@ -104,3 +106,4 @@
 					I.color = "#F5F5F0"
 			mecha_damage_overlay_cache["[part]-[state]"] = I
 		hud_health.overlays |= mecha_damage_overlay_cache["[part]-[state]"]
+*/

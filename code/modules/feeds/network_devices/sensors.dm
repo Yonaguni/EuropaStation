@@ -25,7 +25,7 @@
 		pixel_y = D.pixel_y
 
 /obj/structure/sensor/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/device/multitool))
+	if(istype(thing, /obj/item/multitool))
 		var/new_name = sanitize(input("Please specify a new name or leave blank to clear.") as text|null, MAX_MESSAGE_LEN)
 
 		if(src && thing && user && Adjacent(user))
@@ -42,15 +42,15 @@
 /obj/structure/sensor/proc/get_sensor_data()
 	var/list/data = list()
 	var/turf/simulated/T = get_turf(src)
-	if(istype(T) && T.air)
+	if(istype(T))
 		if(report_temp)
-			data["temperature"] = "[T.air.temperature]ºK"
+			data["temperature"] = "[T.get_temperature()]ºK"
 		if(report_gas)
-			for(var/gas_type in T.air.gas)
-				data[gas_type] = "[T.air.gas[gas_type]]kPa"
+			var/list/tgas = T.return_gas_list()
+			for(var/gas_type in tgas)
+				data[gas_type] = "[tgas[gas_type]]kPa"
 		if(report_fluid)
-			for(var/obj/effect/fluid/F in T)
-				data[F.fluid_type] = "[F.fluid_amount]L"
+			data["liquid"] = "[T.get_fluid_depth()]L"
 
 	return data
 

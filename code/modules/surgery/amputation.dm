@@ -1,7 +1,7 @@
 /datum/surgery_step/generic/amputate
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
-	/obj/item/weapon/material/hatchet = 75
+	/obj/item/circular_saw = 100, \
+	/obj/item/material/hatchet = 75
 	)
 
 	min_duration = 110
@@ -10,7 +10,7 @@
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)

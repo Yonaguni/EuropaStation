@@ -1,5 +1,5 @@
 
-/obj/item/weapon/grab/proc/inspect_organ(mob/living/human/H, mob/user, var/target_zone)
+/obj/item/grab/proc/inspect_organ(mob/living/human/H, mob/user, var/target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
@@ -76,7 +76,7 @@
 		if(!bad)
 			user << "<span class='notice'>\The [H]'s skin appears to be normal.</span>"
 
-/obj/item/weapon/grab/proc/jointlock(mob/living/human/target, mob/attacker, var/target_zone)
+/obj/item/grab/proc/jointlock(mob/living/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
 		attacker << "<span class='warning'>You require a better grip to do this.</span>"
 		return
@@ -91,7 +91,7 @@
 		target << "<span class='danger'>You feel extreme pain!</span>"
 		affecting.adjustSubdual(Clamp(0, 60-affecting.subdual, 30)) //up to 60 subdual
 
-/obj/item/weapon/grab/proc/attack_eye(mob/living/human/target, mob/living/human/attacker)
+/obj/item/grab/proc/attack_eye(mob/living/human/target, mob/living/human/attacker)
 	if(!istype(attacker))
 		return
 
@@ -116,7 +116,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/weapon/grab/proc/headbutt(mob/living/human/target, mob/living/human/attacker)
+/obj/item/grab/proc/headbutt(mob/living/human/target, mob/living/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -146,7 +146,7 @@
 	qdel(src)
 	return
 
-/obj/item/weapon/grab/proc/dislocate(mob/living/human/target, mob/living/attacker, var/target_zone)
+/obj/item/grab/proc/dislocate(mob/living/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
 		attacker << "<span class='warning'>You require a better grip to do this.</span>"
 		return
@@ -154,7 +154,7 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		return
 
-/obj/item/weapon/grab/proc/pin_down(mob/target, mob/attacker)
+/obj/item/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
 		attacker << "<span class='warning'>You require a better grip to do this.</span>"
 		return
@@ -167,7 +167,7 @@
 		attacker.visible_message("<span class='danger'>\The [attacker] forces \the [target] to the ground!</span>")
 		apply_pinning(target, attacker)
 
-/obj/item/weapon/grab/proc/apply_pinning(mob/target, mob/attacker)
+/obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
 	force_down = 1
 	target.Weaken(3)
 	target.lying = 1
@@ -175,7 +175,7 @@
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
 
-/obj/item/weapon/grab/proc/devour(mob/target, mob/user)
+/obj/item/grab/proc/devour(mob/target, mob/user)
 	var/can_eat
 	if((FAT in user.mutations) && issmall(target))
 		can_eat = 1

@@ -1,11 +1,8 @@
-/atom/proc/water_act(var/depth)
-	return
-
 /mob/living/water_act(var/depth)
 	..()
 	if(on_fire)
 		visible_message("<span class='danger'>A cloud of steam rises up as the water hits \the [src]!</span>")
-		ExtinguishMob()
+		extinguish()
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-round(depth/2))
 
@@ -43,20 +40,7 @@
 	else
 		return
 
-/obj/item/weapon/flame/water_act()
+/obj/item/flame/water_act()
 	if(!waterproof && lit)
 		die()
 	return ..()
-
-/obj/item/clothing/mask/smokable/water_act()
-	if(lit)
-		die(1)
-	return ..()
-
-#undef FLUID_EVAPORATION_POINT
-#undef FLUID_DELETING
-#undef FLUID_SHALLOW
-#undef FLUID_DEEP
-#undef FLUID_MAX_ALPHA
-#undef FLUID_MAX_DEPTH
-#undef FLUID_OCEAN_DEPTH

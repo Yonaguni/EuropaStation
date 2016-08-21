@@ -3,43 +3,21 @@ var/list/turf_edge_cache = list()
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
-	var/holy = 0
-
-	//Properties for airtight tiles (/wall)
-	var/thermal_conductivity = 0.05
-	var/heat_capacity = 1
-
-	//Properties for both
-	var/temperature = T20C      // Initial turf temperature.
-	var/blocks_air = 0          // Does this turf contain air/let air through?
+	luminosity = 0
 
 	// General properties.
-	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
-	var/blessed = 0             // Has the turf been blessed?
-	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 	var/list/decals
-	var/liquid = -1
 	var/accept_lattice
 	var/blend_with_neighbors = 0
 
 /turf/New()
-
 	..()
-
-	var/area/A = get_area(src)
-	if(istype(A) && (A.flags & IS_OCEAN))
-		flooded = 1
-
 	turfs |= src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			src.Entered(AM)
 			return
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
 
 /turf/attackby(var/obj/item/C as obj, var/mob/user)
 	if(accept_lattice)
@@ -66,11 +44,7 @@ var/list/turf_edge_cache = list()
 			return
 
 /turf/proc/initialize()
-	var/game_started = (ticker && ticker.current_state == GAME_STATE_PLAYING)
-	if(game_started && fluid_master)
-		fluid_update()
-	update_icon(game_started)
-	return
+	update_icon(ticker && ticker.current_state == GAME_STATE_PLAYING)
 
 /turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
 	var/list/overlays_to_add = previously_added
@@ -83,7 +57,7 @@ var/list/turf_edge_cache = list()
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
 				overlays_to_add += turf_edge_cache[cache_key]
 	var/area/A = get_area(src)
-	if(flooded && (!istype(A) || !(A.flags & IS_OCEAN)))
+	if(is_flooded(absolute=1) && (!istype(A) || !(A.flags & IS_OCEAN)))
 		overlays_to_add += ocean_overlay_img
 
 	overlays = overlays_to_add
@@ -157,14 +131,14 @@ var/list/turf_edge_cache = list()
 				return 0
 
 	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
+	if (!src.CanPass(mover))
 		mover.Bump(src, 1)
 		return 0
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
+			if(!obstacle.CanPass(mover) && (forget != obstacle))
 				mover.Bump(obstacle, 1)
 				return 0
 	return 1 //Nothing found to block so return success!
@@ -216,9 +190,6 @@ var/const/proxloopsanity = 100
 					if(thing.flags & PROXMOVE)
 						thing.HasProximity(obj, 1)
 */
-
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
-	return
 
 /turf/proc/is_plating()
 	return 0

@@ -1,7 +1,7 @@
 
-//Not to be confused with /obj/item/weapon/reagent_containers/food/drinks/bottle
+//Not to be confused with /obj/item/reagent_containers/food/drinks/bottle
 
-/obj/item/weapon/reagent_containers/glass/bottle
+/obj/item/reagent_containers/glass/bottle
 	name = "bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
@@ -55,68 +55,68 @@
 			var/image/lid = image(icon, src, "lid_bottle")
 			overlays += lid
 
-/obj/item/weapon/reagent_containers/glass/bottle/adrenaline
+/obj/item/reagent_containers/glass/bottle/adrenaline
 	name = "adrenaline bottle"
 	desc = "A small bottle. Contains adrenaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 
-/obj/item/weapon/reagent_containers/glass/bottle/adrenaline/initialize()
+/obj/item/reagent_containers/glass/bottle/adrenaline/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ADRENALINE, 60)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/toxin
+/obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 
-/obj/item/weapon/reagent_containers/glass/bottle/toxin/initialize()
+/obj/item/reagent_containers/glass/bottle/toxin/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_TOXIN, 60)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/cyanide
+/obj/item/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 
-/obj/item/weapon/reagent_containers/glass/bottle/cyanide/initialize()
+/obj/item/reagent_containers/glass/bottle/cyanide/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_TOXIN, 30) //volume changed to match chloral
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin
+/obj/item/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin/initialize()
+/obj/item/reagent_containers/glass/bottle/stoxin/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_SLEEPTOX, 60)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin
+/obj/item/reagent_containers/glass/bottle/antitoxin
 	name = "antitoxin bottle"
 	desc = "A small bottle of antitoxin. Counters poisons, and repairs damage. A wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin/initialize()
+/obj/item/reagent_containers/glass/bottle/antitoxin/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ANTITOX, 60)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/pacid
+/obj/item/reagent_containers/glass/bottle/pacid
 	name = "acid bottle"
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 
-/obj/item/weapon/reagent_containers/glass/bottle/pacid/initialize()
+/obj/item/reagent_containers/glass/bottle/pacid/initialize()
 	..()
 	reagents.add_reagent(REAGENT_ID_ACID, 60)
 	update_icon()

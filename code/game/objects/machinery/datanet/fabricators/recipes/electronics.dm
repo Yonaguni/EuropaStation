@@ -1,7 +1,7 @@
 // GENERAL.
 /decl/fabricator_design/electronics
 	name = "flashlight"
-	path = /obj/item/device/flashlight
+	path = /obj/item/flashlight
 	fabtype = FABRICATOR_ELECTRONICS
 	category = "General"
 
@@ -21,69 +21,33 @@
 	name = "station bounced radio"
 	path = /obj/item/device/radio
 
-/decl/fabricator_design/electronics/taperecorder
-	name = "tape recorder"
-	path = /obj/item/device/taperecorder
-
 // MEDICAL.
 /decl/fabricator_design/electronics/medical
 	name = "circular saw"
-	path = /obj/item/weapon/circular_saw
+	path = /obj/item/circular_saw
 	category = "Medical"
 
 /decl/fabricator_design/electronics/medical/mmi
 	name = "man-machine interface"
 	path = /obj/item/device/mmi
 
-/decl/fabricator_design/electronics/medical/reagent_scanner
-	name = "reagent scanner"
-	path = /obj/item/device/reagent_scanner
-
 /decl/fabricator_design/electronics/medical/surgicaldrill
 	name = "surgical drill"
-	path = /obj/item/weapon/surgicaldrill
+	path = /obj/item/surgicaldrill
 
 // TOOLS
 /decl/fabricator_design/electronics/tool
-	name = "T-ray scanner"
-	path = /obj/item/device/t_scanner
-	category = "Tools"
-
-/decl/fabricator_design/electronics/tool/welder
 	name = "welding tool"
-	path = /obj/item/weapon/weldingtool
-
-/decl/fabricator_design/electronics/tool/jackhammer
-	name = "jackhammer"
-	path = /obj/item/weapon/pickaxe/jackhammer
-
-/decl/fabricator_design/electronics/tool/plasmacutter
-	name = "plasma cutter"
-	path = /obj/item/weapon/pickaxe/plasmacutter
-
-/decl/fabricator_design/electronics/tool/drill
-	name = "mining drill"
-	path = /obj/item/weapon/pickaxe/drill
-
-/decl/fabricator_design/electronics/tool/drill/diamond
-	name = "mining drill (diamond-tipped)"
-	path = /obj/item/weapon/pickaxe/diamonddrill
-
-/decl/fabricator_design/electronics/tool/mass_spectrometer
-	name = "mass spectrometer"
-	path = /obj/item/device/mass_spectrometer
-
-/decl/fabricator_design/electronics/tool/light_replacer
-	name = "light replacer"
-	path = /obj/item/device/lightreplacer
+	path = /obj/item/weldingtool
+	category = "Tools"
 
 /decl/fabricator_design/electronics/tool/multi
 	name = "multitool"
-	path = /obj/item/device/multitool
+	path = /obj/item/multitool
 
 /decl/fabricator_design/electronics/tool/welder_industrial
 	name = "industrial welding tool"
-	path = /obj/item/weapon/weldingtool/largetank
+	path = /obj/item/weldingtool/largetank
 	hidden = 1
 
 /decl/fabricator_design/electronics/device/capacitor
@@ -108,10 +72,6 @@
 
 /decl/fabricator_design/electronics/device/powercell
 	name = "basic powercell"
-	path = /obj/item/weapon/cell
-	category = "Batteris"
-
-/decl/fabricator_design/electronics/device/powercell/high
-	name = "high-capacity powercell"
-	path = /obj/item/weapon/cell/high
+	path = /obj/item/cell
+	category = "Batteries"
 

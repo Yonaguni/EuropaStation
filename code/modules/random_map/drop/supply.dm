@@ -15,7 +15,7 @@
 
 	if(drop_type == "custom")
 		if(supplied_drop_types.len)
-			var/obj/structure/largecrate/C = locate() in T
+			var/obj/structure/closet/C = locate() in T
 			for(var/drop_type in supplied_drop_types)
 				var/atom/movable/A = new drop_type(T)
 				if(!istype(A, /mob))
@@ -62,7 +62,7 @@
 		choice = alert("Do you wish to add any non-weapon items?",,"No","Yes")
 		if(choice == "Yes")
 			while(1)
-				var/adding_loot_type = input("Select a new loot path. Cancel to finish.", "Loot Selection", null) as null|anything in typesof(/obj/item) - typesof(/obj/item/weapon)
+				var/adding_loot_type = input("Select a new loot path. Cancel to finish.", "Loot Selection", null) as null|anything in typesof(/obj/item) - typesof(/obj/item)
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type
@@ -70,7 +70,7 @@
 		choice = alert("Do you wish to add weapons?",,"No","Yes")
 		if(choice == "Yes")
 			while(1)
-				var/adding_loot_type = input("Select a new loot path. Cancel to finish.", "Loot Selection", null) as null|anything in typesof(/obj/item/weapon)
+				var/adding_loot_type = input("Select a new loot path. Cancel to finish.", "Loot Selection", null) as null|anything in typesof(/obj/item)
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type

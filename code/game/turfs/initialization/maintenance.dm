@@ -27,11 +27,8 @@ var/global/list/random_junk
 		return /obj/effect/decal/cleanable/generic
 	if(!random_junk)
 		random_junk = subtypesof(/obj/item/trash)
-		random_junk += typesof(/obj/item/weapon/cigbutt)
-		random_junk += /obj/effect/decal/cleanable/spiderling_remains
 		random_junk += /obj/item/remains/mouse
 		random_junk += /obj/item/remains/robot
-		random_junk -= /obj/item/trash/syndi_cakes
 	return pick(random_junk)
 
 /datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)

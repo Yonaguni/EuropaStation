@@ -4,7 +4,7 @@
 	desc = "A small, quivering sluglike creature."
 
 	universal_understand = 1
-	holder_type = /obj/item/weapon/holder
+	holder_type = /obj/item/holder
 	speech_verbs = list("chirrups")
 	help_interaction_text = "nudges"
 	harm_interaction_text = "stomps on"
@@ -30,9 +30,6 @@
 
 /mob/living/animal/borer/roundstart
 	roundstart = 1
-
-/mob/living/animal/borer/can_drown()
-	return 0
 
 /mob/living/animal/borer/New()
 	..()

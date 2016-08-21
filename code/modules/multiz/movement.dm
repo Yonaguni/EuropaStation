@@ -62,7 +62,7 @@
 		// Can we move through the roof?
 		if(target.open_space && layer_is_shallow(target.z)) // Can't climb up enormous cliffs.
 			// If we're swimming, we can tread water.
-			if(origin.flooded)
+			if(origin.is_flooded(absolute=1))
 				for(var/atom/movable/A in target)
 					if(A.density)
 						target = null
@@ -73,7 +73,7 @@
 				var/turf/temp = target
 				target = null
 				for(var/turf/T in orange(1,temp))
-					if(T.open_space && !T.flooded)
+					if(T.open_space && !T.is_flooded())
 						continue
 					var/cannot_move
 					for(var/atom/movable/A in T)
@@ -86,10 +86,10 @@
 
 	// Send the result back.
 	if(!target)
-		src << "You cannot [origin.flooded ? "swim" : "climb"] in that direction from here."
+		src << "You cannot [origin.is_flooded(absolute=1) ? "swim" : "climb"] in that direction from here."
 		return
 
-	src << "You [(origin.flooded || target.flooded) ? "swim" : "climb"] to \the [target]."
+	src << "You [(origin.is_flooded(absolute=1) || target.is_flooded(absolute=1)) ? "swim" : "climb"] to \the [target]."
 	return target
 
 /mob/verb/moveup()

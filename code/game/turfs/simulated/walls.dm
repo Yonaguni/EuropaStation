@@ -5,9 +5,6 @@
 	icon_state = "generic"
 	opacity = 1
 	density = 1
-	blocks_air = 1
-	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	var/damage = 0
 	var/damage_overlay = 0
@@ -41,7 +38,7 @@
 /turf/simulated/wall/Destroy()
 	processing_turfs -= src
 	dismantle_wall(null,null,1,0)
-	..()
+	return ..()
 
 /turf/simulated/wall/process()
 	// Calling parent will kill processing
@@ -50,9 +47,9 @@
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
-		burn(2500)
+		ignite()
 	else if(istype(Proj,/obj/item/projectile/ion))
-		burn(500)
+		ignite()
 
 	var/proj_damage = Proj.get_structure_damage()
 
@@ -136,16 +133,6 @@
 
 	return
 
-/turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
-	burn(exposed_temperature)
-
-/turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
-	burn(adj_temp)
-	if(adj_temp > material.melting_point)
-		take_damage(log(RAND_F(0.9, 1.1) * (adj_temp - material.melting_point)))
-
-	return ..()
-
 /turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product, var/change_turf=1, var/silent)
 
 	if(!silent)
@@ -203,11 +190,3 @@
 	for(var/mob/living/L in range(3,src))
 		L.apply_effect(total_radiation, IRRADIATE,0)
 	return total_radiation
-
-/turf/simulated/wall/proc/burn(temperature)
-	if(material.combustion_effect(src, temperature, 0.7))
-		spawn(2)
-			new /obj/structure/girder(src)
-			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in range(3,src))
-				W.burn((temperature/4))

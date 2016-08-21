@@ -10,7 +10,6 @@
 		return
 	if(!loc)
 		return
-	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(stat != DEAD)
 		//Breathing, if applicable
@@ -31,8 +30,8 @@
 		. = 1
 
 	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
+	if(loc)
+		handle_environment(loc)
 
 	//Check if we're on fire
 	handle_fire()
@@ -42,7 +41,7 @@
 
 	update_pulling()
 
-	for(var/obj/item/weapon/grab/G in src)
+	for(var/obj/item/grab/G in src)
 		G.process()
 
 	blinded = 0 // Placing this here just show how out of place it is.
@@ -69,13 +68,7 @@
 /mob/living/proc/handle_random_events()
 	return
 
-/mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	if(environment)
-		var/depth = environment.total_moles
-		if(depth >= 30)
-			water_act(depth)
-			for(var/obj/item/I in contents)
-				I.water_act(depth)
+/mob/living/proc/handle_environment(var/atom/environment)
 	return
 
 /mob/living/proc/handle_stomach()
@@ -132,8 +125,6 @@
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)	return 0
-
-	handle_hud_icons()
 	handle_vision()
 
 	return 1
@@ -183,10 +174,3 @@
 	sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_PIXELS)
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
-
-/mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
-	handle_hud_glasses()
-
-/mob/living/proc/handle_hud_icons_health()
-	return

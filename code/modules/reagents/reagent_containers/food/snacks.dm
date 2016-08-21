@@ -1,5 +1,5 @@
 //Food items that are eaten normally and don't leave anything behind.
-/obj/item/weapon/reagent_containers/food/snacks
+/obj/item/reagent_containers/food/snacks
 	name = "snack"
 	desc = "yummy"
 	icon_state = null
@@ -15,11 +15,11 @@
 	var/trash
 	var/san_recovery_amt = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/proc/get_taste()
+/obj/item/reagent_containers/food/snacks/proc/get_taste()
 	return
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 
 	if(!usr)
 		return 0
@@ -43,10 +43,10 @@
 		return 1
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(!reagents.total_volume)
 		user << "<span class='danger'>There's none of \the [src] left!</span>"
 		user.drop_from_inventory(src)
@@ -112,7 +112,7 @@
 
 	return 0
 
-/obj/item/weapon/reagent_containers/food/snacks/examine(mob/user)
+/obj/item/reagent_containers/food/snacks/examine(mob/user)
 	if(!..(user, 1))
 		return
 	if (bitecount==0)
@@ -124,14 +124,14 @@
 	else
 		user << "<span class='warning'>\The [src] was bitten multiple times!</span>"
 
-/obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage) || istype(W, /obj/item/weapon/material/kitchen/utensil/knife))
+/obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/storage) || istype(W, /obj/item/material/kitchen/utensil/knife))
 		..() // -> item/attackby()
 		return
 
 	// Eating with forks
-	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
-		var/obj/item/weapon/material/kitchen/utensil/U = W
+	if(istype(W,/obj/item/material/kitchen/utensil))
+		var/obj/item/material/kitchen/utensil/U = W
 
 		if(!U.reagents)
 			U.create_reagents(5)
@@ -159,17 +159,17 @@
 		return
 
 
-/obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
+/obj/item/reagent_containers/food/snacks/proc/is_sliceable()
 	return (slice_count && slices_to)
 
-/obj/item/weapon/reagent_containers/food/snacks/Destroy()
+/obj/item/reagent_containers/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.loc = get_turf(src)
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
-	if(!isanimal(user) && !isalien(user))
+/obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
+	if(!isanimal(user))
 		return
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
 	bitecount++

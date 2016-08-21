@@ -2,7 +2,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// (Mixing)Glass.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/reagent_containers/glass
+/obj/item/reagent_containers/glass
 	name = " "
 	var/base_name = " "
 	desc = " "
@@ -24,13 +24,7 @@
 		/obj/machinery/reagentgrinder,
 		/obj/structure/table,
 		/obj/structure/closet,
-		/obj/structure/sink,
-		/obj/item/weapon/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/item/weapon/storage/secure/safe,
-		/obj/structure/iv_drip,
-		/obj/machinery/disposal,
-		/obj/machinery/sleeper,
+		/obj/item/storage,
 		/obj/machinery/constructable_frame
 		)
 
@@ -79,8 +73,8 @@
 			reagents.splash(target, reagents.total_volume)
 			return
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(istype(W, /obj/item/pen))
 			var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 			if(length(tmp_label) > 10)
 				user << "<span class='notice'>The label can be at most 10 characters long.</span>"
@@ -95,7 +89,7 @@
 		else
 			name = "[base_name] ([label_text])"
 
-/obj/item/weapon/reagent_containers/glass/beaker
+/obj/item/reagent_containers/glass/beaker
 	name = "beaker"
 	desc = "A beaker."
 	icon = 'icons/obj/chemical.dmi'
@@ -145,36 +139,7 @@
 			var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 			overlays += lid
 
-/obj/item/weapon/reagent_containers/glass/beaker/large
-	name = "large beaker"
-	desc = "A large beaker."
-	icon_state = "beakerlarge"
-	matter = list("glass" = 5000)
-	volume = 120
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120)
-	flags = OPENCONTAINER
-
-/obj/item/weapon/reagent_containers/glass/beaker/noreact
-	name = "cryostasis beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without reactions."
-	icon_state = "beakernoreact"
-	matter = list("glass" = 500)
-	volume = 60
-	amount_per_transfer_from_this = 10
-	flags = OPENCONTAINER | NOREACT
-
-/obj/item/weapon/reagent_containers/glass/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology."
-	icon_state = "beakerbluespace"
-	matter = list("glass" = 5000)
-	volume = 300
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
-	flags = OPENCONTAINER
-
-/obj/item/weapon/reagent_containers/glass/beaker/vial
+/obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"
 	desc = "A small glass vial."
 	icon_state = "vial"
@@ -184,13 +149,7 @@
 	possible_transfer_amounts = list(5,10,15,25)
 	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_ID_ACID, 60)
-		update_icon()
-
-/obj/item/weapon/reagent_containers/glass/bucket
+/obj/item/reagent_containers/glass/bucket
 	desc = "It's a bucket."
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
@@ -204,20 +163,7 @@
 	flags = OPENCONTAINER
 	unacidable = 0
 
-/obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
-
-	if(istype(D, /obj/item/weapon/mop))
-		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is empty!</span>"
-		else
-			reagents.trans_to_obj(D, 5)
-			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
-	else
-		return ..()
-
-/obj/item/weapon/reagent_containers/glass/bucket/update_icon()
+/obj/item/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")

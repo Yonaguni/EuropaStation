@@ -5,7 +5,7 @@
 
 var/list/butchery_icons = list() // Icon cache.
 
-/mob/living/var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+/mob/living/var/meat_type = /obj/item/reagent_containers/food/snacks/meat
 /mob/living/var/meat_amount = 3
 /mob/living/var/skin_type = /obj/item/stack/material/skin
 /mob/living/var/skin_amount = 3
@@ -20,8 +20,8 @@ var/list/butchery_icons = list() // Icon cache.
 		return
 	for(var/i=0;i<meat_amount;i++)
 		var/obj/item/meat = new meat_type(get_turf(src))
-		if(istype(meat, /obj/item/weapon/reagent_containers/food/snacks/meat))
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/slab = meat
+		if(istype(meat, /obj/item/reagent_containers/food/snacks/meat))
+			var/obj/item/reagent_containers/food/snacks/meat/slab = meat
 			slab.set_source_mob(src.name)
 		else
 			meat.name = "[src.name] [meat.name]"
@@ -156,7 +156,7 @@ var/list/butchery_icons = list() // Icon cache.
 				butchery_icons[cache_key] = I
 			overlays += butchery_icons[cache_key]
 
-/obj/structure/butchery_hook/attackby(var/obj/item/weapon/thing, var/mob/user)
+/obj/structure/butchery_hook/attackby(var/obj/item/thing, var/mob/user)
 
 	if(!thing.sharp)
 		return ..()

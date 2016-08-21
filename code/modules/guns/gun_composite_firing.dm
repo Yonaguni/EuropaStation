@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/composite/consume_next_projectile()
+/obj/item/gun/composite/consume_next_projectile()
 
 	if(jammed)
 		var/mob/M = loc
@@ -13,10 +13,10 @@
 		chamber.modify_shot(proj)
 	return proj
 
-/obj/item/weapon/gun/composite/handle_post_fire()
+/obj/item/gun/composite/handle_post_fire()
 	..()
 	chamber.handle_post_fire()
 
-/obj/item/weapon/gun/composite/handle_click_empty()
+/obj/item/gun/composite/handle_click_empty()
 	..()
 	chamber.handle_click_empty()

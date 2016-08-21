@@ -24,7 +24,7 @@
 		if(I_GRAB)
 			if(M == src || !(status_flags & CANPUSH))
 				return
-			var/obj/item/weapon/grab/G = new(M, src)
+			var/obj/item/grab/G = new(M, src)
 			M.put_in_active_hand(G)
 			G.synch()
 			G.affecting = src

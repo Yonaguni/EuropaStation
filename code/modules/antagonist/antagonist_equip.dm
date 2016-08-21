@@ -4,10 +4,6 @@
 /atom/movable/proc/is_valid_dead_drop()
 	return 1
 
-/obj/machinery/atmospherics/pipe/vent/is_valid_dead_drop()
-	var/turf/simulated/T = get_turf(src)
-	return (istype(T) && T.air && T.air.gas[REAGENT_ID_OXYGEN] > 50)
-
 /datum/antagonist/proc/equip(var/mob/living/human/player)
 
 	if(!istype(player))
@@ -32,12 +28,6 @@
 			if("Locker")
 				for(var/obj/structure/closet/C in all_structures)
 					possible_targets |= C
-			if("Vent")
-				for(var/obj/machinery/atmospherics/unary/vent_pump/V in machines) // Almost certainly the wrong path.
-					possible_targets |= V
-			if("Disposals")
-				for(var/obj/machinery/disposal/D in machines)
-					possible_targets |= D
 			else
 				player << "<span class='warning'>A dead drop could not be supplied for this mission; good luck.</span>"
 				return 1

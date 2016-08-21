@@ -43,11 +43,8 @@
 		return PROCESS_KILL
 	if(loc && istype(loc, /turf))
 		var/turf/T = loc
-		var/obj/effect/fluid/F = T.return_fluid()
-		if(F)
-			var/depth = F.fluid_amount
-			if(depth)
-				water_act(depth)
+		if(T.check_fluid_depth())
+			water_act(T.get_fluid_depth())
 	return
 
 /obj/machinery/emp_act(severity)
@@ -116,15 +113,13 @@
 	return 0
 
 /obj/machinery/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/multitool))
 		select_data_network()
 		return 1
 	else if(default_deconstruction_screwdriver(user, O))
 		updateUsrDialog()
 		return 1
 	else if(default_deconstruction_crowbar(user, O))
-		return 1
-	else if(default_part_replacement(user, O))
 		return 1
 	else
 		return 0

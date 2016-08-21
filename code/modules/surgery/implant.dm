@@ -7,7 +7,7 @@
 /datum/surgery_step/cavity
 	priority = 1
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.is_open() == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
@@ -40,8 +40,8 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-	/obj/item/weapon/surgicaldrill = 100,	\
-	/obj/item/weapon/pen = 75,	\
+	/obj/item/surgicaldrill = 100,	\
+	/obj/item/pen = 75,	\
 	/obj/item/stack/rods = 50
 	)
 
@@ -69,10 +69,9 @@
 /datum/surgery_step/cavity/close_space
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/weldingtool = 25
+	/obj/item/cautery = 100,			\
+	/obj/item/flame/lighter = 50,			\
+	/obj/item/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -109,8 +108,6 @@
 			if(affected && affected.cavity)
 				var/total_volume = tool.w_class
 				for(var/obj/item/I in affected.implants)
-					if(istype(I,/obj/item/weapon/implant))
-						continue
 					total_volume += I.w_class
 				return total_volume <= get_max_wclass(affected)
 
@@ -143,9 +140,9 @@
 
 /datum/surgery_step/cavity/implant_removal
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
+	/obj/item/hemostat = 100,	\
+	/obj/item/wirecutters = 75,	\
+	/obj/item/material/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 80
@@ -170,15 +167,7 @@
 		if (affected.implants.len)
 
 			var/obj/item/obj = pick(affected.implants)
-
-			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
-				if (imp.islegal())
-					find_prob +=60
-				else
-					find_prob +=40
-			else
-				find_prob +=50
+			find_prob +=50
 
 			if (prob(find_prob))
 				user.visible_message("\blue [user] takes something out of incision on [target]'s [affected.name] with \the [tool].", \
@@ -201,10 +190,6 @@
 					obj.loc = get_turf(target)
 					obj.add_blood(target)
 					obj.update_icon()
-					if(istype(obj,/obj/item/weapon/implant))
-						var/obj/item/weapon/implant/imp = obj
-						imp.imp_in = null
-						imp.implanted = 0
 				playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 			else
 				user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \
@@ -212,17 +197,3 @@
 		else
 			user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
 			"\blue You could not find anything inside [target]'s [affected.name]." )
-
-	fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		..()
-		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-		if (affected.implants.len)
-			var/fail_prob = 10
-			fail_prob += 100 - tool_quality(tool)
-			if (prob(fail_prob))
-				var/obj/item/weapon/implant/imp = affected.implants[1]
-				user.visible_message("\red Something beeps inside [target]'s [affected.name]!")
-				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
-				spawn(25)
-					imp.activate()
-

@@ -33,7 +33,7 @@
 
 /datum/antagonist/proc/create_id(var/assignment, var/mob/living/human/player, var/equip = 1)
 
-	var/obj/item/weapon/card/id/W = new id_type(player)
+	var/obj/item/card/id/W = new id_type(player)
 	if(!W) return
 	W.access |= default_access
 	W.assignment = "[assignment]"

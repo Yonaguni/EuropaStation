@@ -1,35 +1,35 @@
-/obj/item/weapon/material/kitchen
+/obj/item/material/kitchen
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
 	matter = list(DEFAULT_WALL_MATERIAL = 8000)
 	unbreakable = 1
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	w_class = 2
 
-/obj/item/weapon/material/kitchen/New()
+/obj/item/material/kitchen/New()
 	..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/weapon/material/kitchen/whisk
+/obj/item/material/kitchen/whisk
 	name = "whisk"
 	icon_state = "whisk"
 	desc = "A general purpose mixing tool."
 	attack_verb = list("whisked")
 
-/obj/item/weapon/material/kitchen/whisk/spoon
+/obj/item/material/kitchen/whisk/spoon
 	name = "mixing spoon"
 	icon_state = ""
 
-/obj/item/weapon/material/kitchen/spatula
+/obj/item/material/kitchen/spatula
 	name = "spatula"
 	icon_state = "spatula"
 	desc = "A general purpose kitchen tool."
 
-/obj/item/weapon/material/kitchen/spatula/tongs
+/obj/item/material/kitchen/spatula/tongs
 	name = "tongs"
 	icon_state = "tongs"
 
-/obj/item/weapon/material/kitchen/utensil
+/obj/item/material/kitchen/utensil
 	w_class = 1
 	thrown_force_divisor = 1
 	attack_verb = list("attacked", "stabbed", "poked")
@@ -40,14 +40,14 @@
 	var/loaded      //Descriptive string for currently loaded food object.
 	var/scoop_food = 1
 
-/obj/item/weapon/material/kitchen/utensil/New()
+/obj/item/material/kitchen/utensil/New()
 	..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 	create_reagents(5)
 	return
 
-/obj/item/weapon/material/kitchen/utensil/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+/obj/item/material/kitchen/utensil/attack(mob/living/human/M as mob, mob/living/human/user as mob)
 	if(!istype(M))
 		return ..()
 
@@ -77,15 +77,15 @@
 		user << "<span class='warning'>You don't have anything on \the [src].</span>"	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
 		return
 
-/obj/item/weapon/material/kitchen/utensil/fork
+/obj/item/material/kitchen/utensil/fork
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	icon_state = "fork"
 
-/obj/item/weapon/material/kitchen/utensil/fork/plastic
+/obj/item/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
 
-/obj/item/weapon/material/kitchen/utensil/spoon
+/obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
@@ -94,13 +94,13 @@
 	sharp = 0
 	force_divisor = 0.25 //5 when wielded with weight 20 (steel)
 
-/obj/item/weapon/material/kitchen/utensil/spoon/plastic
+/obj/item/material/kitchen/utensil/spoon/plastic
 	default_material = "plastic"
 
 /*
  * Knives
  */
-/obj/item/weapon/material/kitchen/utensil/knife
+/obj/item/material/kitchen/utensil/knife
 	name = "knife"
 	desc = "Can cut through any food."
 	icon_state = "knife"
@@ -109,7 +109,7 @@
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
-/obj/item/weapon/material/kitchen/utensil/knife/boot
+/obj/item/material/kitchen/utensil/knife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
@@ -118,21 +118,21 @@
 	applies_material_colour = 0
 	unbreakable = 1
 
-/obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
+/obj/item/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You somehow managed to cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()
 
-/obj/item/weapon/material/kitchen/utensil/knife/plastic
+/obj/item/material/kitchen/utensil/knife/plastic
 	default_material = "plastic"
 
 /*
  * Rolling Pins
  */
 
-/obj/item/weapon/material/kitchen/rollingpin
+/obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
 	icon_state = "rolling_pin"

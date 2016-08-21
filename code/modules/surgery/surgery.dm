@@ -27,7 +27,7 @@
 
 	// Checks if this step applies to the user mob at all
 	proc/is_valid_target(mob/living/human/target)
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 
 		if(allowed_species)
@@ -82,7 +82,7 @@ proc/do_surgery(mob/living/human/M, mob/living/user, obj/item/tool)
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return 0
-	if (istype(tool, /obj/item/weapon/grab))
+	if (istype(tool, /obj/item/grab))
 		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.

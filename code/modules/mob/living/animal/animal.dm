@@ -131,11 +131,3 @@
 /mob/living/animal/update_fire()
 	. = ..()
 	return
-
-/mob/living/animal/IgniteMob()
-	. = ..()
-	return
-
-/mob/living/animal/ExtinguishMob()
-	. = ..()
-	return
