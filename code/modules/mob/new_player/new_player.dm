@@ -337,13 +337,7 @@
 
 	//Find our spawning point.
 	var/join_message = job_master.LateSpawn(character.client, rank)
-
 	character.lastarea = get_area(loc)
-	// Moving wheelchair if they have one
-	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
-		character.buckled.loc = character.loc
-		character.buckled.set_dir(character.dir)
-
 	ticker.mode.handle_latejoin(character)
 
 	if(character.mind.assigned_role != "Cyborg")

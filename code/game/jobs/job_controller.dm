@@ -402,11 +402,6 @@ var/global/datum/controller/occupations/job_master
 			else
 				LateSpawn(H.client, rank)
 
-			// Moving wheelchair if they have one
-			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-				H.buckled.loc = H.loc
-				H.buckled.set_dir(H.dir)
-
 		var/alt_title = null
 		if(H.mind)
 			H.mind.assigned_role = rank
@@ -426,17 +421,6 @@ var/global/datum/controller/occupations/job_master
 						new G.path(B)
 				else
 					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
-
-		if(istype(H)) //give humans wheelchairs, if they need them.
-			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
-			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-			if(!l_foot || !r_foot)
-				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
-				H.buckled = W
-				H.update_canmove()
-				W.set_dir(H.dir)
-				W.buckled_mob = H
-				W.add_fingerprint(H)
 
 		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
 

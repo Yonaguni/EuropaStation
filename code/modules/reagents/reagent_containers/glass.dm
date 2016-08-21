@@ -24,10 +24,8 @@
 		/obj/machinery/reagentgrinder,
 		/obj/structure/table,
 		/obj/structure/closet,
-		/obj/structure/sink,
 		/obj/item/weapon/storage,
 		/obj/item/weapon/storage/secure/safe,
-		/obj/structure/iv_drip,
 		/obj/machinery/constructable_frame
 		)
 

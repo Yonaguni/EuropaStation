@@ -112,15 +112,6 @@
 		if(!M.restrained() && (!issmall(M) || ishuman(M)))
 			bumpopen(M)
 		return
-
-	if(istype(AM, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/wheel = AM
-		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
-				open()
-			else
-				do_animate("deny")
-		return
 	return
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)

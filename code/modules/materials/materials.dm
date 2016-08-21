@@ -481,7 +481,7 @@ var/global/list/all_materials = list()
 	sell_amt = 2
 
 /material/wood/place_dismantled_girder(var/turf/target, var/material/reinf_material)
-	new /obj/structure/barricade/wood(target)
+	return
 
 /material/wood/holographic
 	name = "holowood"

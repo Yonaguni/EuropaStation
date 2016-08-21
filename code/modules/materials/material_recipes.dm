@@ -5,8 +5,6 @@
 
 /material/proc/generate_recipes()
 	recipes = list()
-	if(integrity>=50)
-		recipes += new/datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 
 /material/steel/generate_recipes()
 	..()

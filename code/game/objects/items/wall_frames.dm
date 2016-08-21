@@ -4,11 +4,8 @@ Checks if that loc and dir has a item on the wall
 
 var/list/wall_items = list(
 	/obj/item/device/radio/intercom,
-	/obj/structure/extinguisher_cabinet,
 	/obj/structure/button/wall_switch,
-	/obj/structure/noticeboard,
-	/obj/item/weapon/storage/secure/safe,
-	/obj/structure/mirror
+	/obj/item/weapon/storage/secure/safe
 	)
 
 /proc/gotwallitem(loc, dir)

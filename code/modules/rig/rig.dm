@@ -870,20 +870,6 @@
 		if(wearer.machine.relaymove(wearer, direction))
 			return
 
-	if(wearer.pulledby || wearer.buckled) // Wheelchair driving!
-		if(istype(wearer.loc, /turf/space))
-			return // No wheelchair driving in space
-		if(istype(wearer.pulledby, /obj/structure/bed/chair/wheelchair))
-			return wearer.pulledby.relaymove(wearer, direction)
-		else if(istype(wearer.buckled, /obj/structure/bed/chair/wheelchair))
-			if(ishuman(wearer.buckled))
-				var/obj/item/organ/external/l_hand = wearer.get_organ("l_hand")
-				var/obj/item/organ/external/r_hand = wearer.get_organ("r_hand")
-				if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
-					return // No hands to drive your chair? Tough luck!
-			wearer_move_delay += 2
-			return wearer.buckled.relaymove(wearer,direction)
-
 	cell.use(200) //Arbitrary, TODO
 	wearer.Move(get_step(get_turf(wearer),direction),direction)
 

@@ -45,49 +45,10 @@
 /obj/machinery/door/window/CanPass(var/atom/movable/mover, var/passflag)
 	return (density && get_dir(mover.loc, src) == dir) || ..(mover, PASSGLASS)
 
-/obj/structure/barricade/CanPass(var/atom/movable/mover, var/passflag)
-	return ..(mover, PASSTABLE)
-
-/obj/structure/aquarium/CanPass(var/atom/movable/mover, var/passflag)
-	var/obj/structure/aquarium/A = locate() in mover.loc
-	return (A || ..(mover, PASSGLASS))
-
-/obj/structure/coatrack/CanPass(var/atom/movable/mover, var/passflag)
-	var/can_hang = 0
-	for (var/T in allowed)
-		if(istype(mover,T))
-			can_hang = 1
-	if (can_hang && !coat)
-		src.visible_message("[mover] lands on \the [src].")
-		coat = mover
-		coat.loc = src
-		update_icon()
-		return 0
-	else
-		return 1
-
 /obj/structure/grille/CanPass(var/atom/movable/mover, var/passflag)
 	if(istype(mover, /obj/item/projectile))
 		return prob(30)
 	return ..(mover, PASSGRILLE)
-
-/obj/structure/iv_drip/CanPass(var/atom/movable/mover, var/passflag)
-	return ..(mover, PASSTABLE)
-
-/obj/structure/plasticflaps/CanPass(var/atom/movable/mover, var/passflag)
-	if(istype(mover, /obj))
-		var/obj/O = mover
-		if(!istype(O, /obj/vehicle) && !O.buckled_mob)
-			return 1
-	else if(istype(mover, /mob/living))
-		var/mob/living/M = mover
-		if(!M.lying || !issmall(M))
-			for(var/mob_type in mobs_can_pass)
-				if(istype(mover, mob_type))
-					return 1
-		else
-			return 1
-	return ..(mover, PASSGLASS)
 
 /obj/structure/windoor_assembly/CanPass(var/atom/movable/mover, var/passflag)
 	return (density && get_dir(mover.loc, src) == dir) || ..(mover, PASSGLASS)

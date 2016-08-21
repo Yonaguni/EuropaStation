@@ -50,29 +50,3 @@
 
 /obj/item/weapon/storage/stationary/attack_hand(var/mob/user)
 	return open(user)
-
-// These can just be containers for the moment.
-// No idea how money is going to work down the track.
-/obj/item/weapon/storage/stationary/vendor
-	name = "vending machine"
-	desc = "A generic vending machine."
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "generic"
-	icon_closed = null
-	icon_open = null
-
-/obj/item/weapon/storage/stationary/vendor/snack
-	name = "snack machine"
-	icon_state = "snack"
-	initial_contents = list(
-		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar = 10
-		)
-
-/obj/item/weapon/storage/stationary/vendor/cola
-	name = "drinks machine"
-	icon_state = "soda"
-	initial_contents = list(
-		/obj/item/weapon/reagent_containers/food/drinks/cans/lemonade = 5,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 5,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 5
-		)

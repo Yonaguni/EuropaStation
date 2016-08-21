@@ -27,12 +27,6 @@
 		use(1)
 		return
 
-/obj/item/stack/material/europa/structure_parts/bookshelf
-	name = "bookshelf parts"
-	desc = "All the parts needed to make a bookshelf."
-	build_path = /obj/structure/bookcase
-	default_type = "wood"
-
 /obj/item/stack/material/europa/structure_parts/table
 	name = "table parts"
 	desc = "All the parts needed to make a table."
