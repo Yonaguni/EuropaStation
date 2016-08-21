@@ -1,0 +1,6 @@
+#include "gas_canpass.dm"
+#include "gas_controller.dm"
+#include "gas_obj.dm"
+#include "gas_overlay.dm"
+#include "gas_turf.dm"
+#include "gas_update.dm"
