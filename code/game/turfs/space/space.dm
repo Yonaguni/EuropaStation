@@ -2,7 +2,7 @@
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
-	dynamic_lighting = 0
+	luminosity = 1
 	accept_lattice = 1
 	open_space = 1
 	light_power = 1

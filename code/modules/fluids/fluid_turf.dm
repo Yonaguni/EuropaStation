@@ -24,15 +24,6 @@
 		fluid_master.remove_active_source(src)
 	return ..()
 
-/turf/proc/get_fluid_depth()
-	if(flooded)
-		return FLUID_OCEAN_DEPTH
-	if(liquid == -1)
-		var/obj/effect/fluid/F = return_fluid()
-		if(F)
-			liquid = F.fluid_amount
-	return liquid
-
 /turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	var/old_flooded = flooded
 	. = ..()
@@ -57,6 +48,8 @@
 
 /turf/get_fluid_depth()
 	..()
+	if(is_flooded(absolute=1))
+		return FLUID_OCEAN_DEPTH
 	var/obj/effect/fluid/F = return_fluid()
 	return (istype(F) ? F.fluid_amount : 0 )
 

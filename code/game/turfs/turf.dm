@@ -3,7 +3,7 @@ var/list/turf_edge_cache = list()
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
-	var/holy = 0
+	luminosity = 0
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
@@ -14,12 +14,8 @@ var/list/turf_edge_cache = list()
 	var/blocks_air = 0          // Does this turf contain air/let air through?
 
 	// General properties.
-	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
-	var/blessed = 0             // Has the turf been blessed?
-	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 	var/list/decals
-	var/liquid = -1
 	var/accept_lattice
 	var/blend_with_neighbors = 0
 
@@ -30,10 +26,6 @@ var/list/turf_edge_cache = list()
 		spawn(0)
 			src.Entered(AM)
 			return
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
 
 /turf/attackby(var/obj/item/C as obj, var/mob/user)
 	if(accept_lattice)

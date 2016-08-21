@@ -49,7 +49,7 @@
 			for(var/gas_type in T.air.gas)
 				data[gas_type] = "[T.air.gas[gas_type]]kPa"
 		if(report_fluid)
-			data["liquid"] = "[T.get_depth()]L"
+			data["liquid"] = "[T.get_fluid_depth()]L"
 
 	return data
 
