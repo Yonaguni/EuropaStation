@@ -139,7 +139,7 @@ default behaviour is:
 	for(var/atom/movable/A in T)
 		if(A == swapper)
 			continue
-		if(!A.CanPass(swapee, T, 1))
+		if(!A.CanPass(swapee))
 			return 1
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
@@ -392,7 +392,7 @@ default behaviour is:
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	ExtinguishMob()
+	extinguish()
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()

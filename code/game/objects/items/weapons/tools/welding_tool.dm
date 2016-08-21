@@ -47,21 +47,11 @@
 
 /obj/item/weapon/weldingtool/process()
 	if(welding)
+		ignite_location()
 		if(prob(5))
 			remove_fuel(1)
-
 		if(get_fuel() == 0)
 			setWelding(0)
-
-	//I'm not sure what this does. I assume it has to do with starting fires...
-	//...but it doesnt check to see if the welder is on or not.
-	var/turf/location = src.loc
-	if(istype(location, /mob/))
-		var/mob/M = location
-		if(M.l_hand == src || M.r_hand == src)
-			location = get_turf(M)
-	if (istype(location, /turf))
-		location.hotspot_expose(700, 5)
 
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -80,12 +70,7 @@
 		return
 	if (src.welding)
 		remove_fuel(1)
-		var/turf/location = get_turf(user)
-		if(isliving(O))
-			var/mob/living/L = O
-			L.IgniteMob()
-		if (istype(location, /turf))
-			location.hotspot_expose(700, 50, 1)
+		ignite_location()
 	return
 
 
@@ -96,7 +81,6 @@
 //Returns the amount of fuel in the welder
 /obj/item/weapon/weldingtool/proc/get_fuel()
 	return reagents.get_reagent_amount(REAGENT_ID_FUEL)
-
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
 /obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)

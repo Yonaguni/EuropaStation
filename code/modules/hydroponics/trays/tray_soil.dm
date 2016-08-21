@@ -18,9 +18,6 @@
 	verbs -= /obj/machinery/hydroponics/verb/remove_label
 	verbs -= /obj/machinery/hydroponics/verb/setlight
 
-/obj/machinery/hydroponics/soil/CanPass()
-	return 1
-
 /obj/machinery/hydroponics/soil/farm
 	name = "furrowed earth"
 	desc = "Hopefully the dust crop will be good this year."

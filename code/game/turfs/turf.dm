@@ -139,14 +139,14 @@ var/list/turf_edge_cache = list()
 				return 0
 
 	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
+	if (!src.CanPass(mover))
 		mover.Bump(src, 1)
 		return 0
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
+			if(!obstacle.CanPass(mover) && (forget != obstacle))
 				mover.Bump(obstacle, 1)
 				return 0
 	return 1 //Nothing found to block so return success!
@@ -198,9 +198,6 @@ var/const/proxloopsanity = 100
 					if(thing.flags & PROXMOVE)
 						thing.HasProximity(obj, 1)
 */
-
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
-	return
 
 /turf/proc/is_plating()
 	return 0

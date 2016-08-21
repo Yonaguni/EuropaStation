@@ -74,7 +74,7 @@
 	if(rag && rag.on_fire && isliving(against))
 		rag.forceMove(loc)
 		var/mob/living/L = against
-		L.IgniteMob()
+		L.ignite()
 
 	playsound(src, "shatter", 70, 1)
 	if(user) user.put_in_active_hand(B)

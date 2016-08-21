@@ -110,14 +110,6 @@
 
 	..()
 
-/obj/machinery/hydroponics/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
-
 /obj/machinery/hydroponics/proc/check_health()
 	if(seed && !dead && health <= 0)
 		die()

@@ -80,13 +80,7 @@
 //If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
 /datum/shuttle/proc/move(var/area/origin, var/area/destination, var/direction=null)
 
-	//world << "move_shuttle() called for [shuttle_tag] leaving [origin] en route to [destination]."
-
-	//world << "area_coming_from: [origin]"
-	//world << "destination: [destination]"
-
 	if(origin == destination)
-		//world << "cancelling move, shuttle will overlap."
 		return
 
 	if (docking_controller && !docking_controller.undocked())

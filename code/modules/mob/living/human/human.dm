@@ -1510,11 +1510,6 @@
 	if(eyecheck() < intensity || override_blindness_check)
 		. = ..()
 
-/mob/living/human/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	..()
-	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), exposed_temperature - bodytemperature), 0)
-	bodytemperature += temp_inc
-
 /mob/living/human/can_use_hands()
 	if(handcuffed)
 		return 0
@@ -1646,7 +1641,7 @@
 					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
-					M.IgniteMob()
+					M.ignite()
 					if (M.on_fire)
 						M.visible_message("<span class='danger'>The fire spreads from [src] to [M]!</span>",
 						"<span class='danger'>The fire spreads to you as well!</span>")
@@ -1655,7 +1650,7 @@
 						if (src.fire_stacks <= 0)
 							M.visible_message("<span class='warning'>[M] successfully pats out [src]'s flames.</span>",
 							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
-							src.ExtinguishMob()
+							src.extinguish()
 							src.fire_stacks = 0
 		else
 			var/t_him = "it"
@@ -1690,7 +1685,7 @@
 					src.fire_stacks += 1
 					M.fire_stacks -= 1
 				if(M.on_fire)
-					src.IgniteMob()
+					src.ignite()
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)

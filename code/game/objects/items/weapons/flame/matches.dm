@@ -78,8 +78,6 @@
 /obj/item/weapon/flame/match/dropped(mob/user as mob)
 	if(lit)
 		spawn(0)
-			var/turf/location = src.loc
-			if(istype(location))
-				location.hotspot_expose(700, 5)
+			ignite_location()
 			die()
 	return ..()

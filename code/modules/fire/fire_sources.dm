@@ -320,5 +320,5 @@ var/list/fire_sounds = list(
 
 /obj/structure/fire_source/proc/burn(var/mob/living/victim)
 	victim << "<span class='danger'>You are burned by \the [src]!</span>"
-	victim.IgniteMob()
+	victim.ignite()
 	victim.apply_damage(rand(5,15), BURN)

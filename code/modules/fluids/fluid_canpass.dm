@@ -1,4 +1,5 @@
 /atom/var/fluid_can_pass
+
 /atom/proc/CanFluidPass(var/coming_from)
 	if(isnull(fluid_can_pass))
 		if(density)

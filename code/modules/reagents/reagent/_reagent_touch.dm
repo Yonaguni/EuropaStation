@@ -61,7 +61,7 @@
 		var/needed = M.fire_stacks * 10
 		if(amount > needed)
 			M.fire_stacks = 0
-			M.ExtinguishMob()
+			M.extinguish()
 			remove_self(needed)
 		else
 			M.adjust_fire_stacks(-(amount / 10))

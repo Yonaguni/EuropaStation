@@ -35,12 +35,9 @@
 
 /obj/item/weapon/flame/process()
 	if(lit)
-		if(isliving(loc))
-			var/mob/living/M = loc
-			M.IgniteMob()
+		ignite_location()
 		var/turf/location = get_turf(src)
 		if(istype(location))
-			location.hotspot_expose(700, 5)
 			if(location.check_fluid_depth(1))
 				water_act(location.get_fluid_depth())
 		update_icon()

@@ -60,25 +60,3 @@
 			src.use(1)
 	else
 		..()
-
-
-//Step two - washing..... it's actually in washing machine code.
-
-//Step three - drying
-/obj/item/stack/material/wetleather/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	..()
-	if(exposed_temperature >= drying_threshold_temperature)
-		wetness--
-		if(wetness == 0)
-			//Try locating an exisitng stack on the tile and add to there if possible
-			for(var/obj/item/stack/material/leather/HS in src.loc)
-				if(HS.amount < 50)
-					HS.amount++
-					src.use(1)
-					wetness = initial(wetness)
-					break
-			//If it gets to here it means it did not find a suitable stack on the tile.
-			var/obj/item/stack/material/leather/HS = new(src.loc)
-			HS.amount = 1
-			wetness = initial(wetness)
-			src.use(1)

@@ -240,16 +240,6 @@ var/list/fishtank_cache = list()
 	animate(usr, pixel_y = usr.pixel_y - AQUARIUM_MOB_SHIFT, time = 10)
 	usr.visible_message("<span class='warning'>\The [user] climbs out of \the [src]!</span>")
 
-/obj/structure/aquarium/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(target == loc)
-		var/obj/structure/aquarium/A = locate() in mover.loc
-		return !!A
-	else
-		var/obj/structure/aquarium/A = locate() in target
-		return !!A
-
 /obj/structure/aquarium/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1

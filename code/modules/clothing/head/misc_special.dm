@@ -78,15 +78,7 @@
 	if(!onfire)
 		processing_objects.Remove(src)
 		return
-
-	var/turf/location = src.loc
-	if(istype(location, /mob/))
-		var/mob/living/human/M = location
-		if(M.l_hand == src || M.r_hand == src || M.head == src)
-			location = M.loc
-
-	if (istype(location, /turf))
-		location.hotspot_expose(700, 1)
+	ignite_location()
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
 	src.onfire = !( src.onfire )

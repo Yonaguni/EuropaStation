@@ -146,9 +146,6 @@
 		ram_turf(get_turf(A))
 		get_hit()
 
-/obj/effect/meteor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	return istype(mover, /obj/effect/meteor) ? 1 : ..()
-
 /obj/effect/meteor/proc/ram_turf(var/turf/T)
 	//first bust whatever is in the turf
 	for(var/atom/A in T)

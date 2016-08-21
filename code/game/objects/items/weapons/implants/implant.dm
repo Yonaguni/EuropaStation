@@ -192,17 +192,10 @@ Implant Specifics:<BR>"}
 				if (elevel == "Full Explosion")
 					explosion(get_turf(T), 0, 1, 3, 6)
 					T.gib()
-
 			else
 				explosion(get_turf(imp_in), 0, 1, 3, 6)
-
 		if(need_gib)
 			imp_in.gib()
-
-		var/turf/t = get_turf(imp_in)
-
-		if(t)
-			t.hotspot_expose(3500,125)
 
 	implanted(mob/source as mob)
 		elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")

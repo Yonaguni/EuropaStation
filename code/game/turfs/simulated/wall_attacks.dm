@@ -1,3 +1,6 @@
+/atom/proc/melt()
+	return
+
 //Interactions
 /turf/simulated/wall/proc/toggle_open(var/mob/user)
 
@@ -102,7 +105,7 @@
 	if(W)
 		radiate()
 		if(is_hot(W))
-			burn(is_hot(W))
+			ignite()
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)

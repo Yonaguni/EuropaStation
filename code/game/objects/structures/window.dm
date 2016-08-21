@@ -116,22 +116,8 @@
 				shatter(0)
 				return
 
-//TODO: Make full windows a separate type of window.
-//Once a full window, it will always be a full window, so there's no point
-//having the same type for both.
 /obj/structure/window/proc/is_full_window()
 	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(is_full_window())
-		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) & dir)
-		return !density
-	else
-		return 1
-
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -139,7 +125,6 @@
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
-
 
 /obj/structure/window/hitby(atom/movable/AM)
 	..()
@@ -390,11 +375,6 @@
 		overlays += I
 
 	return
-
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > maximal_heat)
-		hit(damage_per_fire_tick, 0)
-	..()
 
 /obj/structure/window/full
     dir = 5

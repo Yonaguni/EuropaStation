@@ -49,7 +49,7 @@
 	if(!on_fire && istype(W, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = W
 		if(F.lit)
-			ignite()
+			do_ignite()
 			if(on_fire)
 				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 			else
@@ -109,7 +109,7 @@
 		if(on_fire)
 			user.visible_message("<span class='danger'>\The [user] hits [target] with [src]!</span>",)
 			user.do_attack_animation(src)
-			M.IgniteMob()
+			M.ignite()
 		else if(reagents.total_volume)
 			if(user.zone_sel.selecting == O_MOUTH)
 				user.do_attack_animation(src)
@@ -149,20 +149,13 @@
 			wipe_down(A, user)
 		return
 
-/obj/item/weapon/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature >= 50 + T0C)
-		ignite()
-	if(exposed_temperature >= 900 + T0C)
-		new /obj/effect/decal/cleanable/ash(get_turf(src))
-		qdel(src)
-
 //rag must have a minimum of 2 units welder fuel and at least 80% of the reagents must be welder fuel.
 //maybe generalize flammable reagents someday
 /obj/item/weapon/reagent_containers/glass/rag/proc/can_ignite()
 	var/fuel = reagents.get_reagent_amount(REAGENT_ID_FUEL)
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
-/obj/item/weapon/reagent_containers/glass/rag/proc/ignite()
+/obj/item/weapon/reagent_containers/glass/rag/proc/do_ignite()
 	if(on_fire)
 		return
 	if(!can_ignite())
@@ -183,7 +176,8 @@
 	update_name()
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/rag/proc/extinguish()
+/obj/item/weapon/reagent_containers/glass/rag/extinguish()
+	. = ..()
 	processing_objects -= src
 	kill_light()
 	on_fire = 0
@@ -202,17 +196,10 @@
 		visible_message("<span class='warning'>\The [src] burns out.</span>")
 		extinguish()
 
-	//copied from matches
-	if(isliving(loc))
-		var/mob/living/M = loc
-		M.IgniteMob()
-	var/turf/location = get_turf(src)
-	if(location)
-		location.hotspot_expose(700, 5)
-
+	ignite_location()
 	if(burn_time <= 0)
 		processing_objects -= src
-		new /obj/effect/decal/cleanable/ash(location)
+		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
 		return
 

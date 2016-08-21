@@ -90,7 +90,7 @@
 
 /obj/item/weapon/flame/lighter/attack(var/mob/living/human/M, var/mob/living/human/user)
 	if(istype(M))
-		M.IgniteMob()
+		M.ignite()
 		if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == "mouth" && lit)
 			var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
 			if(M == user)

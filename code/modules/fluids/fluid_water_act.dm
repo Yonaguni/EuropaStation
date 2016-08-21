@@ -2,7 +2,7 @@
 	..()
 	if(on_fire)
 		visible_message("<span class='danger'>A cloud of steam rises up as the water hits \the [src]!</span>")
-		ExtinguishMob()
+		extinguish()
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-round(depth/2))
 

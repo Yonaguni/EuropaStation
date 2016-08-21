@@ -127,14 +127,6 @@
 		return
 	return
 
-
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return !block_air_zones
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return !opacity
-	return !density
-
-
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
 	src.add_fingerprint(user)

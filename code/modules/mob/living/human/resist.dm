@@ -15,7 +15,7 @@
 				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
 				"<span class='notice'>You extinguish yourself.</span>"
 				)
-			ExtinguishMob()
+			extinguish()
 		return
 
 	..()

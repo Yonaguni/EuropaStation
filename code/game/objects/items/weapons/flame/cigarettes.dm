@@ -26,13 +26,11 @@
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 
 /obj/item/clothing/mask/smokable/process()
-	var/turf/location = get_turf(src)
+	ignite_location()
 	smoketime--
 	if(smoketime < 1)
 		die()
 		return
-	if(location)
-		location.hotspot_expose(700, 5)
 	if(reagents && reagents.total_volume) // check if it has any reagents at all
 		if(ishuman(loc))
 			var/mob/living/human/C = loc

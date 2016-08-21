@@ -26,21 +26,6 @@
 		user << "<span class='notice'>You cannot hang [W] on [src]</span>"
 		return ..()
 
-/obj/structure/coatrack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	var/can_hang = 0
-	for (var/T in allowed)
-		if(istype(mover,T))
-			can_hang = 1
-
-	if (can_hang && !coat)
-		src.visible_message("[mover] lands on \the [src].")
-		coat = mover
-		coat.loc = src
-		update_icon()
-		return 0
-	else
-		return 1
-
 /obj/structure/coatrack/update_icon()
 	overlays.Cut()
 	if (istype(coat, /obj/item/clothing/suit/storage/toggle/labcoat))

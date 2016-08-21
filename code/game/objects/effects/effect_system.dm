@@ -110,26 +110,16 @@ steam.start() -- spawns the effect
 /obj/effect/sparks/New()
 	..()
 	playsound(src.loc, "sparks", 100, 1)
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
+	ignite_location()
 
 /obj/effect/sparks/initialize()
 	..()
 	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
 	set_light(fadeout=10)
 
-/obj/effect/sparks/Destroy()
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
-	return ..()
-
 /obj/effect/sparks/Move()
 	..()
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
+	ignite_location()
 
 /datum/effect/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
@@ -251,12 +241,6 @@ steam.start() -- spawns the effect
 		spawn ( 20 )
 			M.coughedtime = 0
 
-/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
-	return 1
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
