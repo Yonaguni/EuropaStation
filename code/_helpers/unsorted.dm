@@ -1093,51 +1093,6 @@ proc/is_hot(obj/item/W as obj)
 		if(NORTHWEST)
 			return SOUTHEAST
 
-/*
-Checks if that loc and dir has a item on the wall
-*/
-
-var/list/wall_items = list(
-	/obj/item/device/radio/intercom,
-	/obj/structure/extinguisher_cabinet,
-	/obj/machinery/light_switch,
-	/obj/structure/noticeboard,
-	/obj/item/weapon/storage/secure/safe,
-	/obj/structure/mirror
-	)
-
-/proc/gotwallitem(loc, dir)
-	for(var/obj/O in loc)
-		for(var/item in wall_items)
-			if(istype(O, item))
-				//Direction works sometimes
-				if(O.dir == dir)
-					return 1
-
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
-				switch(dir)
-					if(SOUTH)
-						if(O.pixel_y > 10)
-							return 1
-					if(NORTH)
-						if(O.pixel_y < -10)
-							return 1
-					if(WEST)
-						if(O.pixel_x > 10)
-							return 1
-					if(EAST)
-						if(O.pixel_x < -10)
-							return 1
-
-
-	//Some stuff is placed directly on the wallturf (signs)
-	for(var/obj/O in get_step(loc, dir))
-		for(var/item in wall_items)
-			if(istype(O, item))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
-	return 0
-
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
