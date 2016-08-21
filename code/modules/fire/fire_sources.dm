@@ -111,8 +111,7 @@ var/list/fire_sounds = list(
 	return
 
 /obj/structure/fire_source/proc/light()
-	var/datum/gas_mixture/GM = loc.return_air()
-	if(!istype(GM) || !GM.gas[REAGENT_ID_OXYGEN])
+	if(!loc || !loc.has_gas(REAGENT_ID_OXYGEN))
 		return
 	if(lit == FIRE_LIT)
 		return
@@ -271,8 +270,7 @@ var/list/fire_sounds = list(
 	if(lit == FIRE_LIT)
 		var/turf/T = get_turf(src)
 		if(istype(T))
-			var/datum/gas_mixture/GM = T.return_air()
-			if(!istype(GM) || !GM.gas[REAGENT_ID_OXYGEN])
+			if(!T.has_gas(REAGENT_ID_OXYGEN))
 				die()
 				return
 			for(var/mob/living/M in T.contents)

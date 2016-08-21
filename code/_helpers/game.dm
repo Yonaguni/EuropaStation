@@ -468,7 +468,7 @@ datum/projectile_data
 		var/turf/simulated/T=get_turf(get_step(loc,dir))
 		var/cp=0
 		if(T && istype(T))
-			var/datum/gas_mixture/environment = T.return_air()
+			var/atom/environment = T
 			cp = environment.return_pressure()
 		if(cp<minp)minp=cp
 		if(cp>maxp)maxp=cp
@@ -479,40 +479,6 @@ datum/projectile_data
 
 /proc/convert_c2k(var/temp)
 	return ((temp + T0C))
-
-/proc/getCardinalAirInfo(var/turf/loc, var/list/stats=list("temperature"))
-	var/list/temps = new/list(4)
-	for(var/dir in cardinal)
-		var/direction
-		switch(dir)
-			if(NORTH)
-				direction = 1
-			if(SOUTH)
-				direction = 2
-			if(EAST)
-				direction = 3
-			if(WEST)
-				direction = 4
-		var/turf/simulated/T=get_turf(get_step(loc,dir))
-		var/list/rstats = new /list(stats.len)
-		if(T && istype(T))
-			var/datum/gas_mixture/environment = T.return_air()
-			for(var/i=1;i<=stats.len;i++)
-				if(stats[i] == "pressure")
-					rstats[i] = environment.return_pressure()
-				else
-					rstats[i] = environment.vars[stats[i]]
-		else if(istype(T, /turf/simulated))
-			rstats = null // Exclude zone (wall, door, etc).
-		else if(istype(T, /turf))
-			var/datum/gas_mixture/environment = T.return_air()
-			for(var/i=1;i<=stats.len;i++)
-				if(stats[i] == "pressure")
-					rstats[i] = environment.return_pressure()
-				else
-					rstats[i] = environment.vars[stats[i]]
-		temps[direction] = rstats
-	return temps
 
 /proc/MinutesToTicks(var/minutes)
 	return SecondsToTicks(60 * minutes)

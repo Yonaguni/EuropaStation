@@ -10,13 +10,13 @@
 /atom/proc/water_act(var/depth) // code/modules/fluid/fluid_water_act.dm
 	return
 
-/turf/proc/return_fluid()       // code/modules/fluid/fluid_turf.dm
+/atom/proc/return_fluid()       // code/modules/fluid/fluid_turf.dm
 	return null
 
-/turf/proc/check_fluid_depth(var/min)
+/atom/proc/check_fluid_depth(var/min)
 	return 0
 
-/turf/proc/get_fluid_depth()
+/atom/proc/get_fluid_depth()
 	return 0
 
 /datum/admins/proc/spawn_fluid_verb()

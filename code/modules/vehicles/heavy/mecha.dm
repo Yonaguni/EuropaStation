@@ -152,7 +152,7 @@
 	update_icon()
 
 /mob/living/heavy_vehicle/return_air()
-	return body.cockpit
+	return //body.cockpit
 
 /mob/living/heavy_vehicle/GetIdCard()
 	return access_card

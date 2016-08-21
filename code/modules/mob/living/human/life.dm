@@ -30,7 +30,6 @@
 	var/fire_alert = 0
 	var/pressure_alert = 0
 	var/temperature_alert = 0
-	var/in_stasis = 0
 
 /mob/living/human/Life()
 	set invisibility = 0
@@ -39,15 +38,12 @@
 	if(status_flags & GODMODE)
 		return
 
-	if (transforming)
+	if(transforming)
 		return
 
 	blinded = 0
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
-	//TODO: seperate this out
-	// update the current life tick, can be used to e.g. only do something every 4 ticks
-	// This is not an ideal place for this but it will do for now.
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
 
@@ -59,7 +55,7 @@
 	voice = GetVoice()
 
 	//No need to update all of these procs if the guy is dead.
-	if(stat != DEAD && !in_stasis)
+	if(stat != DEAD)
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
@@ -77,72 +73,11 @@
 		if(!client)
 			species.handle_npc(src)
 
-	handle_stasis_bag()
-
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
 
-	if(!handle_some_updates())
-		return											//We go ahead and process them 5 times for HUD images and other stuff though.
-
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
-
-/mob/living/human/proc/handle_some_updates()
-	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 0
-	return 1
-
-/mob/living/human/breathe()
-	if(!in_stasis)
-		..()
-
-// Calculate how vulnerable the human is to under- and overpressure.
-// Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
-// Suitdamage can modifiy this in 10% steps.
-/mob/living/human/proc/get_pressure_weakness()
-
-	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
-
-	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
-		pressure_adjustment_coefficient = 0
-
-		// Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
-		if(istype(wear_suit,/obj/item/clothing/suit/space))
-			var/obj/item/clothing/suit/space/S = wear_suit
-			if(S.can_breach && S.damage)
-				pressure_adjustment_coefficient += S.damage * 0.1
-
-	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
-
-	return pressure_adjustment_coefficient
-
-// Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/human/calculate_affecting_pressure(var/pressure)
-	var/pressure_difference
-
-	// First get the absolute pressure difference.
-	if(pressure < ONE_ATMOSPHERE) // We are in an underpressure.
-		pressure_difference = ONE_ATMOSPHERE - pressure
-
-	else //We are in an overpressure or standard atmosphere.
-		pressure_difference = pressure - ONE_ATMOSPHERE
-
-	if(pressure_difference < 5) // If the difference is small, don't bother calculating the fraction.
-		pressure_difference = 0
-
-	else
-		// Otherwise calculate how much of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
-		// This is our relative difference.
-		pressure_difference *= get_pressure_weakness()
-
-	// The difference is always positive to avoid extra calculations.
-	// Apply the relative difference on a standard atmosphere to get the final result.
-	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
-	if(pressure < ONE_ATMOSPHERE)
-		return ONE_ATMOSPHERE - pressure_difference
-	else
-		return ONE_ATMOSPHERE + pressure_difference
 
 /mob/living/human/handle_disabilities()
 	..()
@@ -219,20 +154,7 @@
 					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
 					Weaken(10)
 
-/mob/living/human/proc/handle_stasis_bag()
-	// Handle side effects from stasis bag
-	if(in_stasis)
-		// First off, there's no oxygen supply, so the mob will slowly take brain damage
-		adjustBrainLoss(0.1)
-
-		// Next, the method to induce stasis has some adverse side-effects, manifesting
-		// as cloneloss
-		adjustCloneLoss(0.1)
-
 /mob/living/human/handle_mutations_and_radiation()
-	if(in_stasis)
-		return
-
 	if(getFireLoss())
 		if((COLD_RESISTANCE in mutations) || (prob(1)))
 			heal_organ_damage(0,1)
@@ -291,256 +213,7 @@
 				var/obj/item/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
 
-	/** breathing **/
-
-/mob/living/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(species && environment.return_pressure() < species.breath_pressure/5)
-		return //pressure is too low to even breathe in.
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
-	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
-	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
-	..()
-
-/mob/living/human/handle_breath(datum/gas_mixture/breath)
-	if(status_flags & GODMODE)
-		return
-
-	//check if we actually need to process breath
-	if(!breath || (breath.total_moles == 0))
-		failed_last_breath = 1
-		if(prob(20))
-			emote("gasp")
-		if(health > config.health_threshold_crit)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-		else
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
-
-		oxygen_alert = max(oxygen_alert, 1)
-		return 0
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-	if(L && L.handle_breath(breath))
-		failed_last_breath = 0
-	else
-		failed_last_breath = 1
-	return 1
-
-/mob/living/human/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		return
-
-	species.handle_environment_special(src)
-
-	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = environment.return_pressure()
-	var/adjusted_pressure = calculate_affecting_pressure(pressure)
-
-	if(istype(get_turf(src), /turf/space))
-		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
-		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
-			//Thermal radiation into space
-			var/heat_loss = HUMAN_EXPOSED_SURFACE_AREA * STEFAN_BOLTZMANN_CONSTANT * ((bodytemperature - COSMIC_RADIATION_TEMPERATURE)**4)
-			var/temperature_loss = heat_loss/HUMAN_HEAT_CAPACITY
-			bodytemperature -= temperature_loss
-	else
-		var/loc_temp = environment.get_temperature()
-		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
-			pressure_alert = 0
-			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
-
-		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-		var/temp_adj = 0
-		if(loc_temp < bodytemperature)			//Place is colder than we are
-			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
-		else if (loc_temp > bodytemperature)			//Place is hotter than we are
-			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
-
-		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
-		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
-		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
-
-	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
-	if(bodytemperature >= species.heat_level_1)
-		//Body temperature is too hot.
-		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
-		var/burn_dam = 0
-		switch(bodytemperature)
-			if(species.heat_level_1 to species.heat_level_2)
-				burn_dam = HEAT_DAMAGE_LEVEL_1
-			if(species.heat_level_2 to species.heat_level_3)
-				burn_dam = HEAT_DAMAGE_LEVEL_2
-			if(species.heat_level_3 to INFINITY)
-				burn_dam = HEAT_DAMAGE_LEVEL_3
-		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
-		fire_alert = max(fire_alert, 2)
-
-	else if(bodytemperature <= species.cold_level_1)
-		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
-
-		var/burn_dam = 0
-		switch(bodytemperature)
-			if(-INFINITY to species.cold_level_3)
-				burn_dam = COLD_DAMAGE_LEVEL_1
-			if(species.cold_level_3 to species.cold_level_2)
-				burn_dam = COLD_DAMAGE_LEVEL_2
-			if(species.cold_level_2 to species.cold_level_1)
-				burn_dam = COLD_DAMAGE_LEVEL_3
-		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-		fire_alert = max(fire_alert, 1)
-
-	// Account for massive pressure differences.  Done by Polymorph
-	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)	return 1	//godmode
-
-	if(adjusted_pressure >= species.hazard_high_pressure)
-		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
-		pressure_alert = 2
-	else if(adjusted_pressure >= species.warning_high_pressure)
-		pressure_alert = 1
-	else if(adjusted_pressure >= species.warning_low_pressure)
-		pressure_alert = 0
-	else if(adjusted_pressure >= species.hazard_low_pressure)
-		pressure_alert = -1
-	else
-		if( !(COLD_RESISTANCE in mutations))
-			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
-			pressure_alert = -2
-		else
-			pressure_alert = -1
-
-	return
-
-/*
-/mob/living/human/proc/adjust_body_temperature(current, loc_temp, boost)
-	var/temperature = current
-	var/difference = abs(current-loc_temp)	//get difference
-	var/increments// = difference/10			//find how many increments apart they are
-	if(difference > 50)
-		increments = difference/5
-	else
-		increments = difference/10
-	var/change = increments*boost	// Get the amount to change by (x per increment)
-	var/temp_change
-	if(current < loc_temp)
-		temperature = min(loc_temp, temperature+change)
-	else if(current > loc_temp)
-		temperature = max(loc_temp, temperature-change)
-	temp_change = (temperature - current)
-	return temp_change
-*/
-
-/mob/living/human/proc/stabilize_body_temperature()
-	// We produce heat naturally.
-	if (species.passive_temp_gain)
-		bodytemperature += species.passive_temp_gain
-	if (species.body_temperature == null)
-		return //this species doesn't have metabolic thermoregulation
-
-	// Robolimbs cause overheating too.
-	if(robolimb_count)
-		bodytemperature += round(robolimb_count/2)
-
-	var/body_temperature_difference = species.body_temperature - bodytemperature
-
-	if (abs(body_temperature_difference) < 0.5)
-		return //fuck this precision
-
-	if (on_fire)
-		return //too busy for pesky metabolic regulation
-
-	//TODO thirst to reduce overheating.
-
-	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
-		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
-		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-		//world << "Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-		bodytemperature += recovery_amt
-	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
-		var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
-		//world << "Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-		bodytemperature += recovery_amt
-	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
-		//We totally need a sweat system cause it totally makes sense...~
-		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
-		//world << "Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-		bodytemperature += recovery_amt
-
-	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
-/mob/living/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
-	. = 0
-	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
-		if(C)
-			if(C.max_heat_protection_temperature && C.max_heat_protection_temperature >= temperature)
-				. |= C.heat_protection
-
-//See proc/get_heat_protection_flags(temperature) for the description of this proc.
-/mob/living/human/proc/get_cold_protection_flags(temperature)
-	. = 0
-	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
-		if(C)
-			if(C.min_cold_protection_temperature && C.min_cold_protection_temperature <= temperature)
-				. |= C.cold_protection
-
-/mob/living/human/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
-	var/thermal_protection_flags = get_heat_protection_flags(temperature)
-	return get_thermal_protection(thermal_protection_flags)
-
-/mob/living/human/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
-		return 1 //Fully protected from the cold.
-
-	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
-	var/thermal_protection_flags = get_cold_protection_flags(temperature)
-	return get_thermal_protection(thermal_protection_flags)
-
-/mob/living/human/proc/get_thermal_protection(var/flags)
-	.=0
-	if(flags)
-		if(flags & HEAD)
-			. += THERMAL_PROTECTION_HEAD
-		if(flags & UPPER_TORSO)
-			. += THERMAL_PROTECTION_UPPER_TORSO
-		if(flags & LOWER_TORSO)
-			. += THERMAL_PROTECTION_LOWER_TORSO
-		if(flags & LEG_LEFT)
-			. += THERMAL_PROTECTION_LEG_LEFT
-		if(flags & LEG_RIGHT)
-			. += THERMAL_PROTECTION_LEG_RIGHT
-		if(flags & FOOT_LEFT)
-			. += THERMAL_PROTECTION_FOOT_LEFT
-		if(flags & FOOT_RIGHT)
-			. += THERMAL_PROTECTION_FOOT_RIGHT
-		if(flags & ARM_LEFT)
-			. += THERMAL_PROTECTION_ARM_LEFT
-		if(flags & ARM_RIGHT)
-			. += THERMAL_PROTECTION_ARM_RIGHT
-		if(flags & HAND_LEFT)
-			. += THERMAL_PROTECTION_HAND_LEFT
-		if(flags & HAND_RIGHT)
-			. += THERMAL_PROTECTION_HAND_RIGHT
-	return min(1,.)
-
 /mob/living/human/handle_chemicals_in_body()
-
-	if(in_stasis)
-		return
 
 	if(reagents)
 		chem_effects.Cut()
@@ -554,7 +227,6 @@
 
 			if(CE_PAINKILLER in chem_effects)
 				analgesic = chem_effects[CE_PAINKILLER]
-
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
@@ -592,8 +264,6 @@
 	return //TODO: DEFERRED
 
 /mob/living/human/handle_regular_status_updates()
-	if(!handle_some_updates())
-		return 0
 
 	if(status_flags & GODMODE)	return 0
 
@@ -836,29 +506,28 @@
 	return 1
 
 /mob/living/human/handle_random_events()
-	if(in_stasis)
-		return
-
 	// Puke if toxloss is too high
 	if(!stat)
 		if (getToxLoss() >= 45 && nutrition > 20)
 			spawn vomit()
 
 /mob/living/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
+	set waitfor=0
+	set background = 1
+
+	for(var/mob/living/M in stomach_contents)
+		if(M.loc != src)
+			stomach_contents.Remove(M)
+			continue
+		if(ishuman(M)|| isanimal(M))
+			if(M.stat == 2)
+				M.death(1)
 				stomach_contents.Remove(M)
+				qdel(M)
 				continue
-			if(ishuman(M)|| isanimal(M))
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(!(M.status_flags & GODMODE))
-					M.adjustBruteLoss(5)
-				nutrition += 10
+			if(!(M.status_flags & GODMODE))
+				M.adjustBruteLoss(5)
+			nutrition += 10
 
 /mob/living/human/handle_shock()
 	..()

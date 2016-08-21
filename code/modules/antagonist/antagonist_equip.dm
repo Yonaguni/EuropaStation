@@ -28,9 +28,6 @@
 			if("Locker")
 				for(var/obj/structure/closet/C in all_structures)
 					possible_targets |= C
-			if("Disposals")
-				for(var/obj/machinery/disposal/D in machines)
-					possible_targets |= D
 			else
 				player << "<span class='warning'>A dead drop could not be supplied for this mission; good luck.</span>"
 				return 1

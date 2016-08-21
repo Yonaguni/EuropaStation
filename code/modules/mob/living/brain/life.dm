@@ -34,7 +34,7 @@
 				updatehealth()
 
 
-/mob/living/brain/handle_environment(datum/gas_mixture/environment)
+/mob/living/brain/handle_environment(var/atom/environment)
 	return
 
 /mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)

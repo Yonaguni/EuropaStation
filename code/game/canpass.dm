@@ -116,22 +116,6 @@
 			return 1
 	return (!mover.density || !density || lying)
 
-/obj/machinery/disposal/CanPass(var/atom/movable/mover, var/passflag)
-	if (istype(mover,/obj/item) && mover.throwing)
-		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
-			return
-		if(prob(75))
-			I.forceMove(src)
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] lands in \the [src].", 3)
-		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
-		return 0
-	else
-		return ..()
-
 /obj/structure/table/CanPass(var/atom/movable/mover, var/passflag)
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,loc))

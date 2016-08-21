@@ -93,7 +93,6 @@
 	item_to_spawn()
 		return pick(prob(3);/obj/random/powercell,\
 					prob(2);/obj/random/technology_scanner,\
-					prob(1);/obj/item/weapon/packageWrap,\
 					prob(1);/obj/item/weapon/extinguisher,\
 					prob(1);/obj/item/clothing/gloves/fyellow,\
 					prob(2);/obj/random/toolbox,\
@@ -174,7 +173,6 @@
 	icon_state = "match_burnt"
 	item_to_spawn()
 		return pick(/obj/item/weapon/cigbutt,\
-					/obj/effect/decal/cleanable/blood/gibs/robot/,\
 					/obj/effect/decal/cleanable/blood/oil,\
 					/obj/effect/decal/cleanable/blood/oil/streak,\
 					/obj/effect/decal/cleanable/molten_item,\

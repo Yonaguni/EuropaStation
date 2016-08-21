@@ -302,7 +302,7 @@ default behaviour is:
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 /mob/proc/get_contents()
-
+	return contents
 
 //Recursive function to find everything a mob is holding.
 /mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
@@ -310,19 +310,11 @@ default behaviour is:
 
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
-				L += get_contents(D.wrapped)
 		return L
 	else
 		L += src.contents
 		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
 			L += get_contents(S)
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
-				L += get_contents(D.wrapped)
 		return L
 
 /mob/living/proc/check_contents_for(A)

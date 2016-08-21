@@ -103,7 +103,7 @@
 			qdel(B)
 
 	if(hydration_factor > 0)
-		var/datum/gas_mixture/environment = T.return_air()
+		var/atom/environment = T
 		if(environment)
 			// TODO: quench fires. T.visible_message("<span class='warning'>The [name] sizzles as it lands on \the [T]!</span>")
 			if(volume >= 10)

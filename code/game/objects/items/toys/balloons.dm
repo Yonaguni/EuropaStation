@@ -96,8 +96,6 @@
 	w_class = 2.0
 	throw_speed = 1
 	throw_range = 15
-	var/state
-	var/datum/gas_mixture/air_contents = null
 
 /obj/item/latexballon/proc/blow(obj/item/weapon/tank/tank)
 	if (icon_state == "latexballon_bursted")
@@ -106,12 +104,10 @@
 	item_state = "latexballon"
 
 /obj/item/latexballon/proc/burst()
-	if (!air_contents)
-		return
-	playsound(src, 'sound/weapons/Gunshot.ogg', 100, 1)
-	icon_state = "latexballon_bursted"
-	item_state = "lgloves"
-	loc.assume_air(air_contents)
+	if(icon_state != "latexballon_blow")
+		playsound(src, 'sound/weapons/Gunshot.ogg', 100, 1)
+		icon_state = "latexballon_bursted"
+		item_state = "lgloves"
 
 /obj/item/latexballon/ex_act(severity)
 	burst()

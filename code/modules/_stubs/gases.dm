@@ -9,9 +9,19 @@
 		return loc.return_air()
 	return null
 
-/turf/proc/return_gas_list()
+/atom/proc/return_pressure()
+	if(loc)
+		return loc.return_pressure()
+	return null
+
+/atom/proc/return_gas_list()
 	return list()
 
-/turf/proc/get_temperature()
+/atom/proc/has_gas(var/gas_type, var/min=1)
+	return 1
+
+/atom/proc/get_temperature()
 	return T0C
 
+/atom/proc/adjust_gas()
+	return

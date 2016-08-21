@@ -1,4 +1,4 @@
-var/list/uplink_locations = list("Locker", "Disposals")
+var/list/uplink_locations = list("Locker")
 
 /datum/category_item/player_setup_item/antagonism/basic
 	name = "Setup"

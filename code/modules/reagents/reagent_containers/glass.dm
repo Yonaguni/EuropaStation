@@ -28,7 +28,6 @@
 		/obj/item/weapon/storage,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/structure/iv_drip,
-		/obj/machinery/disposal,
 		/obj/machinery/constructable_frame
 		)
 

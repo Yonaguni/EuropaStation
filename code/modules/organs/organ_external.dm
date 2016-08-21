@@ -802,17 +802,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.loc = get_turf(src)
 			qdel(src)
 		if(DROPLIMB_BLUNT)
-			var/obj/effect/decal/cleanable/blood/gibs/gore
+			var/obj/effect/decal/cleanable/blood/gibs/gore = new (get_turf(victim))
 			if(status & ORGAN_ROBOT)
-				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(get_turf(victim))
-			else
-				gore = new /obj/effect/decal/cleanable/blood/gibs(get_turf(victim))
-				if(species)
-					if(species.get_flesh_colour())
-						gore.fleshcolor = species.get_flesh_colour()
-					if(species.get_blood_colour())
-						gore.basecolor = species.get_blood_colour()
-					gore.update_icon()
+				gore.fleshcolor = COLOR_GRAY
+				gore.basecolor = COLOR_BLACK
+			else if(species)
+				gore.fleshcolor = species.get_flesh_colour()
+				gore.basecolor = species.get_blood_colour()
+			gore.update_icon()
 
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 

@@ -217,16 +217,6 @@
 				new_objective = new /datum/objective/survive
 				new_objective.owner = src
 
-			if ("steal")
-				if (!istype(objective, /datum/objective/steal))
-					new_objective = new /datum/objective/steal
-					new_objective.owner = src
-				else
-					new_objective = objective
-				var/datum/objective/steal/steal = new_objective
-				if (!steal.select_target())
-					return
-
 			if ("custom")
 				var/expl = sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text|null)
 				if (!expl) return

@@ -292,10 +292,7 @@
 /mob/new_player/proc/IsSpawnSafe(var/turf/T)
 	if(istype(T, /turf/space)) // Space tiles
 		return "Spawn location is open to space."
-	var/datum/gas_mixture/air = T.return_air()
-	if(!air)
-		return "Spawn location lacks atmosphere."
-	return is_safe_atmosphere(air, 1)
+	return 1
 
 /mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
 	if(src != usr)

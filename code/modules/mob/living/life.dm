@@ -10,7 +10,6 @@
 		return
 	if(!loc)
 		return
-	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(stat != DEAD)
 		//Breathing, if applicable
@@ -31,8 +30,8 @@
 		. = 1
 
 	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
+	if(loc)
+		handle_environment(loc)
 
 	//Check if we're on fire
 	handle_fire()
@@ -69,13 +68,7 @@
 /mob/living/proc/handle_random_events()
 	return
 
-/mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	if(environment)
-		var/depth = environment.total_moles
-		if(depth >= 30)
-			water_act(depth)
-			for(var/obj/item/I in contents)
-				I.water_act(depth)
+/mob/living/proc/handle_environment(var/atom/environment)
 	return
 
 /mob/living/proc/handle_stomach()

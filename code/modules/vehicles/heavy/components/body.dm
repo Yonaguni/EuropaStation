@@ -8,7 +8,7 @@
 	var/obj/item/weapon/cell/cell
 	var/obj/item/mech_component/plating/armour
 	//var/obj/machinery/portable_atmospherics/canister/air_supply
-	var/datum/gas_mixture/cockpit
+	//var/datum/gas_mixture/cockpit
 	var/pilot_offset_x = 0
 	var/pilot_offset_y = 0
 	var/open_cabin = 0
@@ -23,7 +23,7 @@
 
 /obj/item/mech_component/chassis/New()
 	..()
-	cockpit = new(200)
+	//cockpit = new(200)
 	update_air()
 
 /obj/item/mech_component/chassis/proc/update_air(var/take_from_supply)

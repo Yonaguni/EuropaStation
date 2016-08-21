@@ -16,8 +16,6 @@
 
 // Takes care blood loss and regeneration
 /mob/living/human/handle_blood()
-	if(in_stasis)
-		return
 
 	if(!should_have_organ(O_HEART))
 		return

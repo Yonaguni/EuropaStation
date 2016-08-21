@@ -257,15 +257,14 @@
 			origin_turf.visible_message("<span class='danger'>The [thrown.name] splatters against [target]!</span>")
 		qdel(thrown)
 
-/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only)
+/datum/seed/proc/handle_environment(var/turf/current_turf, var/atom/environment, var/light_supplied, var/check_only)
 
 	var/health_change = 0
 	// Handle gas consumption.
 	if(consume_gasses && consume_gasses.len)
 		var/missing_gas = 0
 		for(var/gas in consume_gasses)
-			if(environment && environment.gas && environment.gas[gas] && \
-			 environment.gas[gas] >= consume_gasses[gas])
+			if(environment.has_gas(gas, consume_gasses[gas]))
 				if(!check_only)
 					environment.adjust_gas(gas,-consume_gasses[gas],1)
 			else

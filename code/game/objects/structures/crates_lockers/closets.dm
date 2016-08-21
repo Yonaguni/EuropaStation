@@ -219,8 +219,6 @@
 		usr.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
-		return
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
@@ -356,10 +354,6 @@
 /obj/structure/closet/proc/break_open()
 	welded = 0
 	update_icon()
-	//Do this to prevent contents from being opened into nullspace (read: bluespace)
-	if(istype(loc, /obj/structure/bigDelivery))
-		var/obj/structure/bigDelivery/BD = loc
-		BD.unwrap()
 	open()
 
 /obj/structure/closet/proc/animate_shake()

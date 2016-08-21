@@ -182,7 +182,7 @@
 	var/smoke_duration = 150
 
 	var/pressure = 0
-	var/datum/gas_mixture/environment = location.return_air()
+	var/atom/environment = location
 	if(environment) pressure = environment.return_pressure()
 	smoke_duration = between(5, smoke_duration*pressure/(ONE_ATMOSPHERE/3), smoke_duration)
 
