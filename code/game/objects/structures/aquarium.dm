@@ -245,6 +245,3 @@ var/list/fishtank_cache = list()
 		return 1
 	var/obj/structure/aquarium/A = locate() in target
 	return !!A
-
-/obj/structure/aquarium/CanAtmosPass(turf/T)
-	return !!(locate(/obj/structure/aquarium) in T)

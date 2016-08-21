@@ -37,9 +37,6 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
 
-/obj/machinery/door/CanAtmosPass()
-	return !density
-
 /obj/machinery/door/initialize()
 	. = ..()
 	for(var/checkdir in cardinal)

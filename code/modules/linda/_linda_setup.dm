@@ -1,7 +1,0 @@
-#define AIR_BLOCKED 1
-#define ZONE_BLOCKED 2
-#define BLOCKED 3
-#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION)) //moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC
-#define M_CELL_WITH_RATIO (MOLES_CELLSTANDARD * 0.005)
-
-var/list/atmos_dirs = list(NORTH,SOUTH,EAST,WEST,UP,DOWN)

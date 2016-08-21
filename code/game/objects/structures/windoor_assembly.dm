@@ -25,12 +25,6 @@
 	var/secure = ""		//Whether or not this creates a secure windoor
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 
-/obj/structure/windoor_assembly/CanAtmosPass(var/turf/T)
-	if(get_dir(loc, T) == dir)
-		return !density
-	else
-		return 1
-
 /obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)

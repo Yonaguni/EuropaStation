@@ -56,12 +56,6 @@
 	update_nearby_tiles()
 	..()
 
-/obj/machinery/door/window/CanAtmosPass(var/turf/T)
-	if(get_dir(loc, T) == dir)
-		return !density
-	else
-		return 1
-
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
 		return

@@ -18,9 +18,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		reagents.delete()
 	return ..()
 
-/obj/effect/CanAtmosPass()
-	return !density
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
