@@ -24,11 +24,11 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+			if(H.head && istype(H.head,/obj/item/clothing/head/voidsuit))
 				user << "<span class='warning'>You can't apply [src] through [H.head]!</span>"
 				return 1
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/voidsuit))
 				user << "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>"
 				return 1
 

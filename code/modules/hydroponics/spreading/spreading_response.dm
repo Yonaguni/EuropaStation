@@ -74,7 +74,7 @@
 		var/can_grab = 1
 		if(istype(victim, /mob/living/human))
 			var/mob/living/human/H = victim
-			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
+			if(istype(H.shoes, /obj/item/clothing/shoes) && (H.shoes.item_flags & NOSLIP))
 				can_grab = 0
 		if(can_grab)
 			src.visible_message("<span class='danger'>Tendrils lash out from \the [src] and drag \the [victim] in!</span>")

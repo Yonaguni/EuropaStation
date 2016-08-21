@@ -71,9 +71,7 @@
 				equipment_see_invis = min(equipment_see_invis, G.see_invisible)
 			else
 				equipment_see_invis = G.see_invisible
-
 		add_clothing_protection(G)
-		G.process_hud(src)
 
 /mob/living/human/proc/process_rig(var/obj/item/weapon/rig/O)
 	if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))

@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)
@@ -202,7 +202,7 @@
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!affected) return
@@ -215,7 +215,7 @@
 
 	begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -230,7 +230,7 @@
 
 	end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -246,7 +246,7 @@
 
 	fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 

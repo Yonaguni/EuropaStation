@@ -13,7 +13,7 @@
 	max_duration = 70
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.organ_tag != BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage < 2
@@ -48,7 +48,7 @@
 	max_duration = 70
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.organ_tag == BP_HEAD && (affected.status & ORGAN_BROKEN) && !(affected.status & ORGAN_ROBOT) && affected.is_open() >= 2 && affected.stage == 1
@@ -84,7 +84,7 @@
 	max_duration = 60
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.is_open() >= 2 && !(affected.status & ORGAN_ROBOT) && affected.stage == 2

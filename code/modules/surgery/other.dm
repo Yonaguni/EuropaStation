@@ -16,7 +16,7 @@
 	max_duration = 90
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -66,7 +66,7 @@
 	max_duration = 160
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 
 		if (target_zone == O_MOUTH || target_zone == O_EYES)
@@ -120,7 +120,7 @@
 		if(!container.reagents.has_reagent(REAGENT_ID_ANTISEPTIC)) // Kinda odd but eh
 			return 0
 
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 
 		if (target_zone == O_MOUTH || target_zone == O_EYES)

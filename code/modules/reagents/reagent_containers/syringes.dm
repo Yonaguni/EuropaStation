@@ -157,7 +157,7 @@
 
 					if(istype(H))
 						if(H.wear_suit)
-							if(istype(H.wear_suit, /obj/item/clothing/suit/space))
+							if(istype(H.wear_suit, /obj/item/clothing/suit/voidsuit))
 								injtime = injtime * 2
 							else if(!H.can_inject(user, 1))
 								return

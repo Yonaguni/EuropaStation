@@ -42,7 +42,3 @@
 	if(user.client && user.client.inquisitive_ghost)
 		user.examinate(src)
 	return
-
-/obj/effect/portal/attack_ghost(mob/user as mob)
-	if(target)
-		user.forceMove(get_turf(target))

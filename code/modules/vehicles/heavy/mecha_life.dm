@@ -39,7 +39,6 @@
 
 	lying = 0 // Fuck off, carp.
 	handle_vision()
-	handle_hud_icons()
 
 /mob/living/heavy_vehicle/proc/calc_power_draw()
 	// TODO

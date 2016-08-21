@@ -7,7 +7,7 @@
 /datum/surgery_step/cavity
 	priority = 1
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if(!hasorgans(target))
+		if(!ishuman(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.is_open() == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)

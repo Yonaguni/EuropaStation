@@ -16,10 +16,6 @@
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/human))
 		blood_splatter(T, src, 1)
-	else if(istype(data["donor"], /mob/living/human/alien))
-		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
-		if(B)
-			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
 /datum/reagent/blood/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(dose > 5)

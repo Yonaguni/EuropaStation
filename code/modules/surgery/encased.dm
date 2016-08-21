@@ -16,7 +16,7 @@
 	max_duration = 70
 
 	can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!affected || (affected.status & ORGAN_ROBOT))
@@ -34,7 +34,7 @@
 		..()
 
 	end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] has cut [target]'s [affected.encased] open with \the [tool].",		\
@@ -42,7 +42,7 @@
 		affected.fracture()
 
 	fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!ishuman(target))
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\red [user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!" , \

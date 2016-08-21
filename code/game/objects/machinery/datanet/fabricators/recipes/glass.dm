@@ -38,7 +38,3 @@
 /decl/fabricator_design/glass/general/jar
 	name = "jar"
 	path = /obj/item/glass_jar
-
-/decl/fabricator_design/glass/general/weldermask
-	name = "welding mask"
-	path = /obj/item/clothing/head/welding

@@ -10,8 +10,8 @@
 	var/target_species = "Human"
 
 	var/list/permitted_types = list(
-		/obj/item/clothing/head/helmet/space/void,
-		/obj/item/clothing/suit/space/void
+		/obj/item/clothing/head/voidsuit,
+		/obj/item/clothing/suit/voidsuit
 		)
 
 /obj/item/device/modkit/afterattack(obj/O, mob/user as mob, proximity)

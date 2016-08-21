@@ -179,11 +179,6 @@
 
 	if(world.time < move_delay)	return
 
-	if(locate(/obj/effect/stop/, mob.loc))
-		for(var/obj/effect/stop/S in mob.loc)
-			if(S.victim == mob)
-				return
-
 	if(mob.stat==DEAD && isliving(mob))
 		mob.ghostize()
 		return
@@ -386,10 +381,6 @@
 			else
 				mob.forceMove(get_step(mob, direct))
 			mob.dir = direct
-	// Crossed is always a bit iffy
-	for(var/obj/S in mob.loc)
-		if(istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
-			S.Crossed(mob)
 
 	var/area/A = get_area_master(mob)
 	if(A)

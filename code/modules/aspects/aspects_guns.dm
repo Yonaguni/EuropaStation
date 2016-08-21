@@ -17,7 +17,7 @@
 		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
 		/obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
 		))
-	var/obj/item/clothing/accessory/holster/waist/W = new (holder)
+	var/obj/item/clothing/accessory/holster/W = new (holder)
 	holder.w_uniform.attackby(W, holder)
 	W.holster(new gun_type(holder), holder)
 	..()

@@ -125,8 +125,6 @@
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)	return 0
-
-	handle_hud_icons()
 	handle_vision()
 
 	return 1
@@ -176,10 +174,3 @@
 	sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_PIXELS)
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
-
-/mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
-	handle_hud_glasses()
-
-/mob/living/proc/handle_hud_icons_health()
-	return

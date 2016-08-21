@@ -21,8 +21,8 @@
 	return radio_voice
 
 /mob/living/human/get_radio_voice()
-	if(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas/voice))
-		var/obj/item/clothing/mask/gas/voice/V = wear_mask
+	if(wear_mask && istype(wear_mask, /obj/item/clothing/mask/voice))
+		var/obj/item/clothing/mask/voice/V = wear_mask
 		if(V.changer.active)
 			return V.changer.voice
 	return radio_voice
