@@ -79,9 +79,7 @@
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-
 	health = maxhealth
-
 	update_nearby_tiles(need_rebuild=1)
 	return
 
@@ -429,10 +427,8 @@
 	. = ..(need_rebuild)
 	if(!.)
 		return 0
-
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
-
 	return 1
 
 /obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
@@ -443,7 +439,6 @@
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -452,5 +447,4 @@
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-
 	update_nearby_tiles()

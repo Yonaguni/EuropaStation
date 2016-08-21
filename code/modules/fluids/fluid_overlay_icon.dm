@@ -25,9 +25,9 @@
 		overlays_to_add += I
 
 	var/image/fluid_overlay
-	if(fluid_amount > FLUID_DELETING && fluid_amount <= FLUID_SHALLOW)
+	if(fluid_amount > FLUID_DELETING && fluid_amount <= FLUID_EVAPORATION_POINT)
 		fluid_overlay = get_fluid_icon("shallow_still")
-	else if(fluid_amount >= FLUID_SHALLOW && fluid_amount <= FLUID_DEEP)
+	else if(fluid_amount >= FLUID_EVAPORATION_POINT && fluid_amount <= FLUID_DEEP)
 		fluid_overlay = get_fluid_icon("mid_still")
 	else if(fluid_amount >= FLUID_DEEP && fluid_amount < FLUID_OCEAN_DEPTH)
 		fluid_overlay = get_fluid_icon("deep_still")

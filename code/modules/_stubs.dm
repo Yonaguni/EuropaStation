@@ -23,8 +23,10 @@
 	set name = "Spawn Water"
 	set desc = "Flood the turf you are standing on."
 	set category = "Debug"
-	if(!check_rights(R_SPAWN))	return
-	spawn_fluid_proc()
+	if(!check_rights(R_SPAWN)) return
+	var/mob/user = usr
+	if(istype(user) && user.client)
+		user.client.spawn_fluid_proc()
 
-/datum/admins/proc/spawn_fluid_proc()
+/client/proc/spawn_fluid_proc()
 	return

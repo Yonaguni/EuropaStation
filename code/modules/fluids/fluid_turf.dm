@@ -26,7 +26,12 @@
 
 /turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	var/old_flooded = flooded
+	var/obj/effect/fluid/F = locate() in src
 	. = ..()
+	if(F)
+		F.forceMove(src)
+		F.start_loc = src
+		fluid_update()
 	if(old_flooded)
 		flooded = 1
 		update_icon()
