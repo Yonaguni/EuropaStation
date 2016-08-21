@@ -53,22 +53,6 @@
 	name = "welding tool"
 	path = /obj/item/weapon/weldingtool
 
-/decl/fabricator_design/electronics/tool/jackhammer
-	name = "jackhammer"
-	path = /obj/item/weapon/pickaxe/jackhammer
-
-/decl/fabricator_design/electronics/tool/plasmacutter
-	name = "plasma cutter"
-	path = /obj/item/weapon/pickaxe/plasmacutter
-
-/decl/fabricator_design/electronics/tool/drill
-	name = "mining drill"
-	path = /obj/item/weapon/pickaxe/drill
-
-/decl/fabricator_design/electronics/tool/drill/diamond
-	name = "mining drill (diamond-tipped)"
-	path = /obj/item/weapon/pickaxe/diamonddrill
-
 /decl/fabricator_design/electronics/tool/mass_spectrometer
 	name = "mass spectrometer"
 	path = /obj/item/device/mass_spectrometer

@@ -11,7 +11,6 @@
 		/obj/item/device/flashlight/pen,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
-		/obj/item/weapon/coin,
 		/obj/item/weapon/disk,
 		/obj/item/weapon/implanter,
 		/obj/item/weapon/flame/lighter,
@@ -72,18 +71,11 @@
 	else
 		return ..()
 
-/obj/item/weapon/storage/wallet/random/New()
+/obj/item/weapon/storage/wallet/random/initialize()
 	..()
-	var/item1_type = pick( /obj/item/cash/c10,/obj/item/cash/c100,/obj/item/cash/c1000,/obj/item/cash/c20,/obj/item/cash/c200,/obj/item/cash/c50, /obj/item/cash/c500)
-	var/item2_type
-	if(prob(50))
-		item2_type = pick( /obj/item/cash/c10,/obj/item/cash/c100,/obj/item/cash/c1000,/obj/item/cash/c20,/obj/item/cash/c200,/obj/item/cash/c50, /obj/item/cash/c500)
-	var/item3_type = pick( /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron )
-
-	spawn(2)
-		if(item1_type)
-			new item1_type(src)
-		if(item2_type)
-			new item2_type(src)
-		if(item3_type)
-			new item3_type(src)
+	var/list/cashtypes = list(/obj/item/cash/c10,/obj/item/cash/c100,/obj/item/cash/c1000,/obj/item/cash/c20,/obj/item/cash/c200,/obj/item/cash/c50, /obj/item/cash/c500)
+	var/cashcount = rand(1,3)
+	while(cashcount>0)
+		cashcount--
+		var/item_type = pick(cashtypes)
+		new item_type(src)

@@ -121,7 +121,6 @@ var/list/admin_verbs_spawn = list(
 
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,
-	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -213,7 +212,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
-	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,

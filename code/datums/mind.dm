@@ -31,21 +31,18 @@
 
 /datum/mind
 	var/key
-	var/name				//replaces mob/var/original_name
+	var/name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/mob/living/original
 	var/active = 0
 	var/memory
 	var/assigned_role
 	var/special_role
 	var/role_alt_title
 	var/datum/job/assigned_job
-	var/list/datum/objective/objectives = list()
-	var/list/datum/objective/special_verbs = list()
-	var/datum/faction/faction 			            // associated faction
-	var/brigged_since = -1                          // the world.time since the mob has been brigged, or -1 if not at all
-	var/datum/money_account/initial_account         // put this here for easier tracking ingame
-	var/faction_conversion_cooldown = 0             // used by antagonist factions that convert minds to their cause.
+	var/list/objectives = list()
+	var/list/special_verbs = list()
+	var/faction_conversion_cooldown = 0
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -115,12 +112,10 @@
 
 	else
 		out += "None."
-	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))	return
-
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
 		if(antag)
@@ -128,145 +123,34 @@
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
 				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
-
 	else if(href_list["remove_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
 		if(antag) antag.remove_antagonist(src)
-
 	else if(href_list["equip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
 		if(antag) antag.equip(src.current)
-
 	else if(href_list["unequip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
 		if(antag) antag.unequip(src.current)
-
 	else if(href_list["move_antag_to_spawn"])
 		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
 		if(antag) antag.place_mob(src.current)
-
 	else if (href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in get_job_titles()
 		if (!new_role) return
 		assigned_role = new_role
-
 	else if (href_list["memory_edit"])
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
 		if (isnull(new_memo)) return
 		memory = new_memo
-
-	else if (href_list["obj_edit"] || href_list["obj_add"])
-		var/datum/objective/objective
-		var/objective_pos
-		var/def_value
-
-		if (href_list["obj_edit"])
-			objective = locate(href_list["obj_edit"])
-			if (!objective) return
-			objective_pos = objectives.Find(objective)
-
-			//Text strings are easy to manipulate. Revised for simplicity.
-			var/temp_obj_type = "[objective.type]"//Convert path into a text string.
-			def_value = copytext(temp_obj_type, 19)//Convert last part of path into an objective keyword.
-			if(!def_value)//If it's a custom objective, it will be an empty string.
-				def_value = "custom"
-
-		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "harm", "brig", "escape", "survive", "steal", "custom")
-		if (!new_obj_type) return
-
-		var/datum/objective/new_objective = null
-
-		switch (new_obj_type)
-			if ("assassinate","protect","debrain", "harm", "brig")
-				//To determine what to name the objective in explanation text.
-				var/objective_type_capital = uppertext(copytext(new_obj_type, 1,2))//Capitalize first letter.
-				var/objective_type_text = copytext(new_obj_type, 2)//Leave the rest of the text.
-				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
-
-				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
-					if ((possible_target != src) && istype(possible_target.current, /mob/living/human))
-						possible_targets += possible_target.current
-
-				var/mob/def_target = null
-				var/objective_list[] = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain)
-				if (objective&&(objective.type in objective_list) && objective:target)
-					def_target = objective:target.current
-
-				var/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
-				if (!new_target) return
-
-				var/objective_path = text2path("/datum/objective/[new_obj_type]")
-				var/mob/living/M = new_target
-				if (!istype(M) || !M.mind || new_target == "Free objective")
-					new_objective = new objective_path
-					new_objective.owner = src
-					new_objective:target = null
-					new_objective.explanation_text = "Free objective"
-				else
-					new_objective = new objective_path
-					new_objective.owner = src
-					new_objective:target = M.mind
-					new_objective.explanation_text = "[objective_type] [M.real_name], the [M.mind.special_role ? M.mind:special_role : M.mind:assigned_role]."
-
-			if ("escape")
-				new_objective = new /datum/objective/escape
-				new_objective.owner = src
-
-			if ("survive")
-				new_objective = new /datum/objective/survive
-				new_objective.owner = src
-
-			if ("custom")
-				var/expl = sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text|null)
-				if (!expl) return
-				new_objective = new /datum/objective
-				new_objective.owner = src
-				new_objective.explanation_text = expl
-
-		if (!new_objective) return
-
-		if (objective)
-			objectives -= objective
-			objectives.Insert(objective_pos, new_objective)
-		else
-			objectives += new_objective
-
 	else if (href_list["obj_delete"])
 		var/datum/objective/objective = locate(href_list["obj_delete"])
 		if(!istype(objective))	return
 		objectives -= objective
-
 	else if(href_list["obj_completed"])
 		var/datum/objective/objective = locate(href_list["obj_completed"])
 		if(!istype(objective))	return
 		objective.completed = !objective.completed
-
-	else if(href_list["implant"])
-		var/mob/living/human/H = current
-
-		BITSET(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
-
-		switch(href_list["implant"])
-			if("remove")
-				for(var/obj/item/weapon/implant/loyalty/I in H.contents)
-					for(var/obj/item/organ/external/organs in H.organs)
-						if(I in organs.implants)
-							qdel(I)
-							break
-				H << "<span class='notice'><font size =3><B>Your loyalty implant has been deactivated.</B></font></span>"
-				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
-			if("add")
-				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				H.implant_loyalty(H, override = TRUE)
-				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
-			else
-
-	else if (href_list["common"])
-		switch(href_list["common"])
-			if("undress")
-				for(var/obj/item/W in current)
-					current.drop_from_inventory(W)
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
 		current << "\blue Your current objectives:"
@@ -275,31 +159,6 @@
 			obj_count++
 	edit_memory()
 
-
-// check whether this mind's mob has been brigged for the given duration
-// have to call this periodically for the duration to work properly
-/datum/mind/proc/is_brigged(duration)
-	var/turf/T = current.loc
-	if(!istype(T))
-		brigged_since = -1
-		return 0
-	var/is_currently_brigged = 0
-	var/area/A = T.loc
-	if(istype(A) && (A.flags & SECURE_AREA))
-		is_currently_brigged = 1
-		for(var/obj/item/weapon/card/id/card in current)
-			is_currently_brigged = 0
-			break // if they still have ID they're not brigged
-
-	if(!is_currently_brigged)
-		brigged_since = -1
-		return 0
-
-	if(brigged_since == -1)
-		brigged_since = world.time
-
-	return (duration <= world.time - brigged_since)
-
 /datum/mind/proc/reset()
 	assigned_role =   null
 	special_role =    null
@@ -307,7 +166,6 @@
 	assigned_job =    null
 	objectives =      list()
 	special_verbs =   list()
-	brigged_since =   -1
 
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
@@ -338,8 +196,6 @@
 	..()
 	if(!mind.assigned_role)
 		mind.assigned_role = "[using_map.default_title]"
-
-	mind.special_role = "Larva"
 
 //Animals
 /mob/living/animal/mind_initialize()

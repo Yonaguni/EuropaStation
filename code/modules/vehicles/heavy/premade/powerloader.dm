@@ -9,7 +9,7 @@
 	if(!body) body = new /obj/item/mech_component/chassis/ripley(src)
 	..()
 	install_system(new /obj/item/weapon/mecha_equipment/clamp(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/weapon/mecha_equipment/mounted_system/drill(src), HARDPOINT_RIGHT_HAND)
+	install_system(new /obj/item/weapon/mecha_equipment/clamp(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/manipulators/ripley
 	name = "power loader arms"

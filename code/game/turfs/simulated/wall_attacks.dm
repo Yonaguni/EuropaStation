@@ -115,10 +115,6 @@
 				thermitemelt(user)
 				return
 
-		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-			thermitemelt(user)
-			return
-
 		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
 			var/obj/item/weapon/melee/energy/blade/EB = W
 
@@ -184,11 +180,6 @@
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
 			cut_delay *= 0.5
-		else if(istype(W,/obj/item/weapon/pickaxe))
-			var/obj/item/weapon/pickaxe/P = W
-			dismantle_verb = P.drill_verb
-			dismantle_sound = P.drill_sound
-			cut_delay -= P.digspeed
 
 		if(dismantle_verb)
 
@@ -247,8 +238,6 @@
 					else
 						user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 						return
-				else if (istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-					cut_cover = 1
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the metal cover.</span>"
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -287,8 +276,6 @@
 					else
 						user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 						return
-				else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-					cut_cover = 1
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the support rods.</span>"
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)

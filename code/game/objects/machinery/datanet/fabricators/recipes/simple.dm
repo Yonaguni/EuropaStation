@@ -115,10 +115,6 @@
 	hidden = 1
 	path = /obj/item/weapon/material/butterflyhandle
 
-/decl/fabricator_design/matter/plastic_bag
-	name = "plastic bag"
-	path = /obj/item/weapon/storage/bag/plasticbag
-
 /decl/fabricator_design/matter/blood_pack
 	name = "blood pack (empty)"
 	path = /obj/item/weapon/reagent_containers/blood/empty

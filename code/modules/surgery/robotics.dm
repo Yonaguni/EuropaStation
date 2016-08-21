@@ -22,7 +22,6 @@
 /datum/surgery_step/robotics/unscrew_hatch
 	allowed_tools = list(
 		/obj/item/weapon/screwdriver = 100,
-		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/kitchen/utensil/knife = 50
 	)
 
@@ -118,8 +117,7 @@
 
 /datum/surgery_step/robotics/repair_brute
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 100,
-		/obj/item/weapon/pickaxe/plasmacutter = 50
+		/obj/item/weapon/weldingtool = 100
 	)
 
 	min_duration = 50
