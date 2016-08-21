@@ -29,8 +29,6 @@
 			mob_ai.stop_moving()
 		update_icon()
 
-/mob/living/animal/aquatic/can_drown()
-	return 0
 
 /mob/living/animal/aquatic/random
 	maxHealth = 5

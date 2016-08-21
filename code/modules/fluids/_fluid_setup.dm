@@ -1,5 +1,3 @@
-/turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
-
 // We share overlays for all fluid turfs to sync icon animation.
 var/list/fluid_images = list()
 /proc/get_fluid_icon(var/img_state)

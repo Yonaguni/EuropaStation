@@ -42,15 +42,14 @@
 /obj/structure/sensor/proc/get_sensor_data()
 	var/list/data = list()
 	var/turf/simulated/T = get_turf(src)
-	if(istype(T) && T.air)
+	if(istype(T))
 		if(report_temp)
 			data["temperature"] = "[T.air.temperature]ºK"
-		if(report_gas)
+		if(report_gas && T.air)
 			for(var/gas_type in T.air.gas)
 				data[gas_type] = "[T.air.gas[gas_type]]kPa"
 		if(report_fluid)
-			for(var/obj/effect/fluid/F in T)
-				data[F.fluid_type] = "[F.fluid_amount]L"
+			data["liquid"] = "[T.get_depth()]L"
 
 	return data
 

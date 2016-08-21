@@ -53,11 +53,9 @@ proc/get_mining_overlay(var/overlay_key)
 	explosion_resistance = 2
 
 /turf/simulated/mineral/flooded
-	flooded = 1
 	color = "#0000FF"
 
 /turf/simulated/mineral/floor/flooded
-	flooded = 1
 	color = "#0000FF"
 	accept_lattice = 1
 
@@ -72,12 +70,10 @@ proc/get_mining_overlay(var/overlay_key)
 
 /turf/simulated/mineral/ignore_mapgen/flooded
 	ignore_mapgen = 1
-	flooded = 1
 	color = "#00FFFF"
 
 /turf/simulated/mineral/floor/ignore_mapgen/flooded
 	ignore_mapgen = 1
-	flooded = 1
 	color = "#00FFFF"
 	accept_lattice = 1
 

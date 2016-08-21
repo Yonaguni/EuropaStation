@@ -18,7 +18,6 @@
 		if(istype(F) && F.overlay_pixel_z)
 			neighbor_offset = F.overlay_pixel_z
 			underlay_size = underlay_size-neighbor_offset
-		world << "using state [underlay_size] with offset [neighbor_offset]"
 
 		var/image/I = image(icon = 'icons/effects/water_underlay.dmi', icon_state = "[underlay_size]")
 		if(neighbor_offset)

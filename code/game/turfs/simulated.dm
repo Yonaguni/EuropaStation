@@ -54,7 +54,7 @@
 
 /turf/simulated/New()
 	..()
-	if(flooded || need_init)
+	if(is_flooded(absolute=1) || need_init)
 		if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 			initialize()
 		else

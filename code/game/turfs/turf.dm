@@ -24,13 +24,7 @@ var/list/turf_edge_cache = list()
 	var/blend_with_neighbors = 0
 
 /turf/New()
-
 	..()
-
-	var/area/A = get_area(src)
-	if(istype(A) && (A.flags & IS_OCEAN))
-		flooded = 1
-
 	turfs |= src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
@@ -66,11 +60,7 @@ var/list/turf_edge_cache = list()
 			return
 
 /turf/proc/initialize()
-	var/game_started = (ticker && ticker.current_state == GAME_STATE_PLAYING)
-	if(game_started && fluid_master)
-		fluid_update()
-	update_icon(game_started)
-	return
+	update_icon(ticker && ticker.current_state == GAME_STATE_PLAYING)
 
 /turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
 	var/list/overlays_to_add = previously_added
@@ -83,7 +73,7 @@ var/list/turf_edge_cache = list()
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
 				overlays_to_add += turf_edge_cache[cache_key]
 	var/area/A = get_area(src)
-	if(flooded && (!istype(A) || !(A.flags & IS_OCEAN)))
+	if(is_flooded(absolute=1) && (!istype(A) || !(A.flags & IS_OCEAN)))
 		overlays_to_add += ocean_overlay_img
 
 	overlays = overlays_to_add

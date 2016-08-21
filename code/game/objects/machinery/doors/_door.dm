@@ -40,9 +40,6 @@
 /obj/machinery/door/CanAtmosPass()
 	return !density
 
-/obj/machinery/door/CanFluidPass()
-	return !density
-
 /obj/machinery/door/initialize()
 	. = ..()
 	for(var/checkdir in cardinal)

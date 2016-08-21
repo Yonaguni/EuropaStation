@@ -9,8 +9,9 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = "#66D1FF"
-	var/fluid_amount = 0
-	var/fluid_type = "water"
+	fluid_amount = 0     // Declared in stubs/fluid.dm
+	fluid_type = "water" // Declared in stubs/fluid.dm
+
 	var/turf/start_loc
 
 /obj/effect/fluid/proc/lose_fluid(var/amt = 0, var/fluidtype)

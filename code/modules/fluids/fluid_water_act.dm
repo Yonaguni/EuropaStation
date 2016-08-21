@@ -1,6 +1,3 @@
-/atom/proc/water_act(var/depth)
-	return
-
 /mob/living/water_act(var/depth)
 	..()
 	if(on_fire)

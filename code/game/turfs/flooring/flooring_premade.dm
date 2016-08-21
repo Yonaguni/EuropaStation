@@ -171,7 +171,6 @@
 
 /turf/simulated/floor/flooded
 	color = "#66D1FF"
-	flooded = 1
 
 /turf/simulated/floor/flooded/New()
 	..()

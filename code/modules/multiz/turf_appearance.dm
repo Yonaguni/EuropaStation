@@ -15,7 +15,7 @@ var/list/open_space_cache = list()
 	overlays.Cut()
 
 	// Shallow layers just show the layer below.
-	if(layer_is_shallow(z) && !below.flooded)
+	if(layer_is_shallow(z) && !below.is_flooded(absolute=1))
 		var/old_lum = luminosity
 		appearance = below.appearance
 		name = initial(name)
@@ -62,7 +62,7 @@ var/list/open_space_cache = list()
 			overlays += turf_edge_cache["[tempdir]"]
 
 	// Surface holes will show water under them.
-	if(!flooded && below && below.flooded)
+	if(!is_flooded(absolute=1) && below && below.is_flooded(1))
 		name = "deep water"
 		if(!turf_edge_cache["deepwater"])
 			var/image/I = image(icon = 'icons/turf/water.dmi', icon_state = "seashallow")

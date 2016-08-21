@@ -110,7 +110,7 @@ var/list/admin_verbs_fun = list(
 
 var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_fruit,
-	/datum/admins/proc/spawn_fluid,
+	/datum/admins/proc/spawn_fluid_verb,
 	/datum/admins/proc/spawn_custom_item,
 	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_plant,
@@ -118,6 +118,7 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/respawn_character,
 	/client/proc/spawn_chemdisp_cartridge
 	)
+
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,
 	/client/proc/Set_Holiday,

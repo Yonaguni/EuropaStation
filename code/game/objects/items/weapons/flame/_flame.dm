@@ -41,11 +41,8 @@
 		var/turf/location = get_turf(src)
 		if(istype(location))
 			location.hotspot_expose(700, 5)
-			var/obj/effect/fluid/F = location.return_fluid()
-			var/depth = 0
-			if(istype(F))
-				depth = F.fluid_amount
-			if(depth) water_act(depth)
+			if(location.check_fluid_depth(1))
+				water_act(location.get_fluid_depth())
 		update_icon()
 	return lit
 

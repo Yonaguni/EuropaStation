@@ -43,11 +43,8 @@
 		return PROCESS_KILL
 	if(loc && istype(loc, /turf))
 		var/turf/T = loc
-		var/obj/effect/fluid/F = T.return_fluid()
-		if(F)
-			var/depth = F.fluid_amount
-			if(depth)
-				water_act(depth)
+		if(T.check_fluid_depth())
+			water_act(T.get_fluid_depth())
 	return
 
 /obj/machinery/emp_act(severity)

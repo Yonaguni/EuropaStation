@@ -28,7 +28,6 @@
 /turf/simulated/open/flooded
 	name = "abyss"
 	drop_state = "rockwall"
-	flooded = 1
 
 /mob/var/fall_counter = 0
 
@@ -51,7 +50,7 @@
 		if(!below)
 			return
 
-	if(!mover.is_sinking() && (flooded || below.flooded)) // Swimmers can just go right across flooded turfs.
+	if(!mover.is_sinking() && (is_flooded(absolute=1) || below.is_flooded(absolute=1))) // Swimmers can just go right across flooded turfs.
 		return // TODO: swimming.
 
 	// No gravity in space, apparently.
@@ -64,7 +63,7 @@
 		return
 
 	var/soft = 0
-	if(flooded || below.flooded)
+	if(is_flooded(1) || below.is_flooded(1))
 		soft = 1
 	else if(layer_is_shallow(z))
 		if(below.density)
@@ -83,7 +82,7 @@
 
 	// We've made sure we can move, now.
 	mover.forceMove(below)
-	if(below.flooded)
+	if(below.is_flooded(1))
 		visible_message("<span class='notice'>\The [mover] vanishes with a splash!</span>")
 
 	if(!soft)
@@ -112,7 +111,7 @@
 		O.hide(0)
 
 /turf/simulated/open/attack_hand(var/mob/user)
-	if(below && below.flooded)
+	if(below && below.is_flooded())
 		var/mob/living/human/H = user
 		if(!istype(H))
 			return ..()
@@ -126,7 +125,7 @@
 	return ..()
 
 /turf/simulated/open/attackby(var/obj/item/O, var/mob/user)
-	if(below && below.flooded)
+	if(below && below.is_flooded())
 		var/obj/item/weapon/reagent_containers/RG = O
 		if(istype(RG) && RG.is_open_container())
 			RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))

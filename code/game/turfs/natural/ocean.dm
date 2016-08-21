@@ -30,7 +30,6 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	icon_state = "seafloor"
 	accept_lattice = 1
 	drop_state = "rockwall"
-	flooded = 1
 	blend_with_neighbors = 1
 	initial_air = list()
 	var/detail_decal

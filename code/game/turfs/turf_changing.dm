@@ -24,7 +24,6 @@
 			N = /turf/simulated/open
 
 	var/list/old_affecting_lights = affecting_lights
-	var/old_flooded = flooded
 
 	Destroy()
 
@@ -59,9 +58,5 @@
 
 		W.levelupdate()
 		. =  W
-
-	if(old_flooded)
-		flooded = 1
-		update_icon()
 
 	affecting_lights = old_affecting_lights

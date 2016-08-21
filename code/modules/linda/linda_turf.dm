@@ -24,7 +24,7 @@
 	return 0
 
 /turf/return_air()
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	var/datum/gas_mixture/GM = new
 	GM.adjust_multi(REAGENT_ID_OXYGEN, MOLES_O2STANDARD, REAGENT_ID_NITROGEN, MOLES_N2STANDARD)
@@ -36,7 +36,7 @@
 	return
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
@@ -45,7 +45,7 @@
 		update_visuals_air(my_air)
 
 /turf/simulated/assume_gas(gasid, moles, temp = null)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
@@ -59,7 +59,7 @@
 	return 1
 
 /turf/simulated/remove_air(amount as num)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	air_update_turf(1)
 	var/datum/gas_mixture/my_air = return_air()
@@ -69,7 +69,7 @@
 	return returnval
 
 /turf/simulated/return_air()
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	if(!air)
 		make_air()
@@ -79,7 +79,7 @@
 	return
 
 /turf/simulated/make_air(var/override_mix, var/override_volume, var/override_temp)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	air = new/datum/gas_mixture
 	if(!override_mix)
@@ -96,7 +96,7 @@
 
 /turf/simulated/initialize()
 	..()
-	if(!flooded && !blocks_air && initial_air && initial_air.len)
+	if(!is_flooded(absolute=1) && !blocks_air && initial_air && initial_air.len)
 		make_air()
 		air_update_turf(1)
 
@@ -106,7 +106,7 @@
 	return ..()
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	if(!giver)	return 0
 	var/datum/gas_mixture/receiver = air
@@ -139,7 +139,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	if(!air_master)
 		return
 
-	if(flooded)
+	if(is_flooded(absolute=1))
 		air_master.active_turfs -= src
 		return
 
@@ -218,7 +218,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 	return 1
 
 /turf/simulated/proc/share_air(var/turf/simulated/T)
-	if(flooded)
+	if(is_flooded(absolute=1))
 		return
 	if(T.air_current_cycle >= air_current_cycle)
 		return
@@ -231,7 +231,7 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			T.consider_pressure_difference(src, difference)
 
 /turf/proc/consider_pressure_difference(var/turf/simulated/T, var/difference)
-	if(flooded || !air_master)
+	if(is_flooded(absolute=1) || !air_master)
 		return
 	air_master.high_pressure_delta |= src
 	if(difference > air_pressure_difference)

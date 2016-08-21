@@ -31,9 +31,6 @@
 /mob/living/animal/borer/roundstart
 	roundstart = 1
 
-/mob/living/animal/borer/can_drown()
-	return 0
-
 /mob/living/animal/borer/New()
 	..()
 
