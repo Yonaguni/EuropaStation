@@ -49,18 +49,6 @@
 			else
 				user << "You can't reach the wiring."
 			return
-		// Air tank.
-		if(istype(W,/obj/item/weapon/tank)) //Todo, some kind of check for suits without integrated air supplies.
-
-			if(air_supply)
-				user << "\The [src] already has a tank installed."
-				return
-
-			if(!user.unEquip(W)) return
-			air_supply = W
-			W.forceMove(src)
-			user << "You slot [W] into [src] and tighten the connecting valve."
-			return
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(W,/obj/item/rig_module))
@@ -98,20 +86,6 @@
 			user << "You jack \the [W] into \the [src]'s battery mount."
 			W.forceMove(src)
 			src.cell = W
-			return
-
-		else if(istype(W,/obj/item/weapon/wrench))
-
-			if(!air_supply)
-				user << "There is not tank to remove."
-				return
-
-			if(user.r_hand && user.l_hand)
-				air_supply.forceMove(get_turf(user))
-			else
-				user.put_in_hands(air_supply)
-			user << "You detach and remove \the [air_supply]."
-			air_supply = null
 			return
 
 		else if(istype(W,/obj/item/weapon/screwdriver))

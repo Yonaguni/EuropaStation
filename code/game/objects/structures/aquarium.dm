@@ -21,22 +21,14 @@ var/list/fishtank_cache = list()
 	icon = 'icons/obj/structures/fishtanks.dmi'
 	anchored = 1
 	density = 1
+	climbable = 1
+	flags = ON_BORDER
+
 	var/health = 50
 	var/deleting
 	var/fill_type = REAGENT_ID_WATER
 	var/fill_amt = 300
-	climbable = 1
-	flags = ON_BORDER
-
 	var/obj/effect/aquarium_overlay/AO // I don't like this, but there's no other way to get a mouse-transparent overlay :(
-
-/obj/structure/aquarium/return_air()
-	var/datum/gas_mixture/GM
-	for(var/datum/reagent/A in reagents.reagent_list)
-		if(!isnull(gas_data.flags[A.id]))
-			if(!GM) GM = new
-			GM.adjust_gas(A.id, A.volume)
-	return GM ? GM : ..()
 
 /obj/structure/aquarium/New()
 	..()
@@ -93,16 +85,7 @@ var/list/fishtank_cache = list()
 	qdel(src)
 
 /obj/structure/aquarium/proc/dump_contents()
-	var/datum/gas_mixture/environment = loc.return_air()
-	if(!istype(environment))
-		return
-	for(var/atom/movable/AM in contents)
-		if(!AM.simulated)
-			continue
-		AM.loc = get_turf(src)
-	for(var/datum/reagent/A in reagents.reagent_list)
-		if(!isnull(gas_data.flags[A.id]))
-			environment.adjust_gas(A.id, A.volume)
+	return
 
 /obj/structure/aquarium/update_icon(propagate = 0)
 	var/list/connect_dirs = list()

@@ -37,8 +37,6 @@
 	for(var/obj/item/I in list(helmet,boots,tank))
 		part_list += "\a [I]"
 	user << "\The [src] has [english_list(part_list)] installed."
-	if(tank && in_range(src,user))
-		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
@@ -205,16 +203,4 @@
 			W.forceMove(src)
 			boots = W
 		return
-	else if(istype(W,/obj/item/weapon/tank))
-		if(tank)
-			user << "\The [src] already has an airtank installed."
-		else if(istype(W,/obj/item/weapon/tank/phoron))
-			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
-		else
-			user << "You insert \the [W] into \the [src]'s storage compartment."
-			user.drop_item()
-			W.forceMove(src)
-			tank = W
-		return
-
 	..()

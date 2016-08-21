@@ -28,7 +28,7 @@
 	air_update()
 
 /atom/proc/air_update()
-	blocks_air = null
+	return
 
 /atom/movable/air_update()
 	. = ..()
@@ -38,12 +38,5 @@
 
 /turf/air_update(var/ignore_neighbors)
 	. = ..()
-	CalculateAdjacentTurfs()
-	if(!ignore_neighbors)
-		for(var/checkdir in cardinal)
-			if(!(atmos_adjacent_turfs & checkdir))
-				continue
-			var/turf/T = get_step(src, checkdir)
-			if(T) T.air_update(1)
 	if(air_master)
-		air_master.add_to_active(src,command)
+		air_master.add_to_active(src)

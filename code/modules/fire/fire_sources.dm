@@ -197,8 +197,6 @@ var/list/fire_sounds = list(
 
 		if(istype(thing, /obj/item/weapon/paper) || \
 		 istype(thing, /obj/item/weapon/storage/fancy/egg_box ) || \
-		 istype(thing, /obj/item/clothing/suit/cardborg) || \
-		 istype(thing, /obj/item/clothing/head/cardborg ) || \
 		 istype(thing, /obj/item/pizzabox ) || \
 		 istype(thing, /obj/item/trash))
 			fuel += rand(1,3)
@@ -232,8 +230,6 @@ var/list/fire_sounds = list(
 	 istype(thing, /obj/item/weapon/ore/coal) || \
 	 istype(thing, /obj/item/weapon/paper) || \
 	 istype(thing, /obj/item/weapon/storage/fancy/egg_box ) || \
-	 istype(thing, /obj/item/clothing/suit/cardborg) || \
-	 istype(thing, /obj/item/clothing/head/cardborg ) || \
 	 istype(thing, /obj/item/pizzabox ) || \
 	 istype(thing, /obj/item/trash))
 		accepted_fuel = 1

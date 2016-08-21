@@ -18,17 +18,6 @@
 			      access_RC_announce, access_tcomsat, access_gateway, access_xenoarch, access_maint_tunnels,
 			      access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
-/datum/job/industry/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	if(!H)	return 0
-	switch(alt_rank)
-		if("Miner")
-			..(H)
-			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_belt)
-		else
-			..(H, skip_suit, skip_hat, skip_shoes)
-	return 1
-
 /datum/job/industry/science
 	title = "Scientist"
 	total_positions = 5
@@ -36,9 +25,3 @@
 	supervisors = "the funding committee and colonial law"
 	alt_titles = list("Xenobiologist","Field Technician")
 	idtype = /obj/item/weapon/card/id/lanyard
-
-/datum/job/industry/science/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	if(!H)	return 0
-	..(H, skip_suit = 1)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)
-	return 1

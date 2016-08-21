@@ -75,12 +75,6 @@
 	hidden = 1
 	category = "Devices and Components"
 
-/decl/fabricator_design/cannonframe
-	name = "pneumatic cannon frame"
-	path = /obj/item/weapon/cannonframe
-	category = "Devices and Components"
-	hidden = 1
-
 /decl/fabricator_design/handcuffs
 	name = "handcuffs"
 	path = /obj/item/weapon/handcuffs
@@ -120,10 +114,6 @@
 	name = "knife handle"
 	hidden = 1
 	path = /obj/item/weapon/material/butterflyhandle
-
-/decl/fabricator_design/matter/crate
-	name = "plastic crate"
-	path = /obj/structure/closet/crate/plastic
 
 /decl/fabricator_design/matter/plastic_bag
 	name = "plastic bag"

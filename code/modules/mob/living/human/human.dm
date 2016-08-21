@@ -97,15 +97,6 @@
 			var/eta_status = emergency_shuttle.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
-
-		if (internal)
-			if (!internal.air_contents)
-				qdel(internal)
-			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
-
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back
 			var/cell_status = "ERROR"
@@ -201,8 +192,6 @@
 
 /mob/living/human/restrained()
 	if (handcuffed)
-		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
 	return 0
 

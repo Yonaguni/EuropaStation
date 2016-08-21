@@ -40,4 +40,3 @@
 	..()
 	new /obj/item/clothing/suit/space/diving/medium(src)
 	new /obj/item/clothing/head/helmet/space/diving/medium(src)
-	new /obj/item/weapon/tank/emergency_oxygen/engi(src)

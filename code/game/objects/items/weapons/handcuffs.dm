@@ -95,7 +95,6 @@ var/last_chew = 0
 	if (H.a_intent != I_HURT) return
 	if (H.zone_sel.selecting != O_MOUTH) return
 	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
 	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
 	if (!O) return

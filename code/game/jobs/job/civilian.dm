@@ -18,25 +18,6 @@
             access_construction, access_sec_doors, access_medical, access_medical_equip, access_morgue,
 			access_genetics, access_chemistry, access_virology, access_surgery, access_RC_announce,access_psychiatrist)
 
-/datum/job/civilian/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	if(!H) return
-	switch(alt_rank)
-		if("Doctor")
-			..(H, skip_suit = 1)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-		if("Janitor")
-			..(H, skip_suit = 1, skip_hat = 1, skip_shoes = 1)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/galoshes(H),slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/purple(H),slot_head)
-		if("Gardener")
-			..(H, skip_suit = 1)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/botanic_leather(H), slot_gloves)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
-			H.equip_to_slot_or_del(new /obj/item/device/analyzer/plant_analyzer(H), slot_s_store)
-		else
-			..(H, skip_suit, skip_hat, skip_shoes)
-	return 1
-
 /datum/job/civilian/equip_survival(var/mob/living/human/H)
 	if(!H) return
 	if(H.mind.role_alt_title == "Visitor")

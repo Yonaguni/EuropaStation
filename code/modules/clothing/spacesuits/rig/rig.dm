@@ -38,10 +38,8 @@
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
 	var/glove_type = /obj/item/clothing/gloves/rig
 	var/cell_type =  /obj/item/weapon/cell/high
-	var/air_type =   /obj/item/weapon/tank/oxygen
 
 	//Component/device holders.
-	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
 	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
 	var/obj/item/clothing/head/helmet/space/rig/helmet = null // Deployable helmet, if any.
@@ -118,8 +116,6 @@
 	// Create and initialize our various segments.
 	if(cell_type)
 		cell = new cell_type(src)
-	if(air_type)
-		air_supply = new air_type(src)
 	if(glove_type)
 		gloves = new glove_type(src)
 		verbs |= /obj/item/weapon/rig/proc/toggle_gauntlets

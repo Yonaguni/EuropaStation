@@ -65,30 +65,11 @@
 	return (tally+config.human_delay)
 
 /mob/living/human/Process_Spacemove(var/check_drift = 0)
-	//Can we act?
-	if(restrained())	return 0
-
-	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust
-	if(back)
-		if(istype(back,/obj/item/weapon/tank/jetpack))
-			thrust = back
-		else if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
-			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-				thrust = module.jets
-				break
-
-	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
-			inertia_dir = 0
-			return 1
-
-	//If no working jetpack then use the other checks
+	if(restrained())
+		return 0
 	if(..())
 		return 1
 	return 0
-
 
 /mob/living/human/slip_chance(var/prob_slip = 5)
 	if(!..())

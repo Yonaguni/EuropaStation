@@ -121,42 +121,21 @@
 	var/obj/item/remains/human/bones = new(C)
 	bones.layer = MOB_LAYER
 
+	/*
 	var/loot
-	var/list/suits = list(
-		/obj/item/clothing/suit/storage/toggle/bomber,
-		/obj/item/clothing/suit/storage/leather_jacket,
-		/obj/item/clothing/suit/storage/toggle/brown_jacket,
-		/obj/item/clothing/suit/storage/toggle/hoodie,
-		/obj/item/clothing/suit/storage/toggle/hoodie/black,
-		/obj/item/clothing/suit/poncho
-		)
+	var/list/suits = list()
 	loot = pick(suits)
 	new loot(C)
 
-	var/list/uniforms = list(
-		/obj/item/clothing/under/soviet,
-		/obj/item/clothing/under/redcoat,
-		/obj/item/clothing/under/serviceoveralls,
-		/obj/item/clothing/under/captain_fly,
-		/obj/item/clothing/under/det,
-		/obj/item/clothing/under/brown,
-		)
+	var/list/uniforms = list()
 	loot = pick(uniforms)
 	new loot(C)
 
 	if(prob(30))
-		var/list/misc = list(
-			/obj/item/clothing/accessory/locket,
-			/obj/item/clothing/accessory/badge/marshal/old,
-			/obj/item/clothing/accessory/horrible,
-			/obj/item/clothing/accessory/medal,
-			/obj/item/clothing/accessory/medal/silver,
-			/obj/item/clothing/accessory/medal/silver/valor,
-			/obj/item/clothing/accessory/medal/gold,
-			/obj/item/clothing/accessory/medal/gold/heroism
-			)
+		var/list/misc = list()
 		loot = pick(misc)
 		new loot(C)
+	*/
 
 	var/obj/structure/gravemarker/random/R = new(src.loc)
 	R.generate()

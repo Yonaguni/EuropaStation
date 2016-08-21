@@ -7,7 +7,6 @@
 
 	var/global/possible_items[] = list(
 		"an RCD" = /obj/item/weapon/rcd,
-		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
@@ -17,8 +16,7 @@
 		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
 		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
 		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
-		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
-		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
+		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray
 	)
 
 	var/global/possible_items_special[] = list(

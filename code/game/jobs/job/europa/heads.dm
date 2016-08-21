@@ -35,15 +35,6 @@
 			access_mining, access_medical, access_construction, access_mailsorting, access_heads, access_hos,
 			access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 
-/datum/job/head/marshal/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	if(!H)	return 0
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/petty_officer/marshal(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/grey(H), slot_gloves)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/petty_officer/marshal(H), slot_head)
-	return 1
-
 /datum/job/head/coordinator
 	title = "Corporate Contact Officer"
 	selection_color = "#ffeeff"
@@ -58,13 +49,3 @@
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
 						access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm)
-
-/datum/job/head/coordinator/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	if(!H) return 0
-	//TODO: keycard, headset, weapon.
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/internalaffairs(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/internalaffairs(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(H), slot_glasses)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_l_hand)
-	return 1

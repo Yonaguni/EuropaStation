@@ -15,7 +15,7 @@
 
 	if(drop_type == "custom")
 		if(supplied_drop_types.len)
-			var/obj/structure/largecrate/C = locate() in T
+			var/obj/structure/closet/C = locate() in T
 			for(var/drop_type in supplied_drop_types)
 				var/atom/movable/A = new drop_type(T)
 				if(!istype(A, /mob))

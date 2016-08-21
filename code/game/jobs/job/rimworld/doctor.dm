@@ -6,13 +6,3 @@
 	alt_titles = list("Sawbones","Medic","Surgeon")
 	supervisors = "the Hippocratic Oath"
 	selection_color = "#ffeeff"
-
-/datum/job/borderworld/doctor/equip(var/mob/living/human/H, skip_suit = 0, skip_hat = 0, skip_shoes = 0, var/alt_rank)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/fatigues(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/cigarettes(H), slot_l_store)
-	H.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(H), slot_r_store)
-	return ..(H, 1, 1)
-
-/datum/job/borderworld/doctor/equip_survival(var/mob/living/human/H)
-	return ..()

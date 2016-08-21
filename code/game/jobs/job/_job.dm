@@ -32,62 +32,10 @@
 	var/job_category = IS_CIVIL
 
 /datum/job/proc/equip(var/mob/living/human/H, var/skip_suit = 0, var/skip_hat = 0, var/skip_shoes = 0, var/alt_rank)
-
-	var/list/uniforms = list(
-		/obj/item/clothing/under/soviet,
-		/obj/item/clothing/under/redcoat,
-		/obj/item/clothing/under/serviceoveralls,
-		/obj/item/clothing/under/captain_fly,
-		/obj/item/clothing/under/det,
-		/obj/item/clothing/under/brown,
-		)
-	var/new_uniform = pick(uniforms)
-	H.equip_to_slot_or_del(new new_uniform(H),slot_w_uniform)
-
-	if(!skip_shoes)
-		var/list/shoes = list(
-			/obj/item/clothing/shoes/jackboots,
-			/obj/item/clothing/shoes/workboots,
-			/obj/item/clothing/shoes/brown,
-			/obj/item/clothing/shoes/laceup
-			)
-
-		var/new_shoes = pick(shoes)
-		H.equip_to_slot_or_del(new new_shoes(H),slot_shoes)
-		if(!H.shoes)
-			var/fallback_type = pick(/obj/item/clothing/shoes/sandal)
-			H.equip_to_slot_or_del(new fallback_type(H), slot_shoes)
-
-	if(!skip_hat && prob(60))
-		var/list/hats = list(
-			/obj/item/clothing/head/ushanka,
-			/obj/item/clothing/head/bandana,
-			/obj/item/clothing/head/cowboy_hat,
-			/obj/item/clothing/head/cowboy_hat/wide,
-			/obj/item/clothing/head/cowboy_hat/black
-			)
-		var/new_hat = pick(hats)
-		H.equip_to_slot_or_del(new new_hat(H),slot_head)
-
-	if(!skip_suit && prob(40))
-		var/list/suits = list(
-			/obj/item/clothing/suit/storage/toggle/bomber,
-			/obj/item/clothing/suit/storage/leather_jacket,
-			/obj/item/clothing/suit/storage/toggle/brown_jacket,
-			/obj/item/clothing/suit/storage/toggle/hoodie,
-			/obj/item/clothing/suit/storage/toggle/hoodie/black,
-			/obj/item/clothing/suit/poncho
-			)
-		var/new_suit = pick(suits)
-		H.equip_to_slot_or_del(new new_suit(H),slot_wear_suit)
-
 	return 1
 
 /datum/job/proc/equip_backpack(var/mob/living/human/H)
-	switch(H.backbag)
-		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
 
 /datum/job/proc/equip_survival(var/mob/living/human/H)
 	if(!H)	return 0

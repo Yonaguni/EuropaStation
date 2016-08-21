@@ -182,20 +182,7 @@
 					/obj/effect/decal/cleanable/blood/splatter,\
 					/obj/item/remains/robot)
 
-obj/random/closet //A couple of random closets to spice up maint
-	name = "random closet"
-	desc = "This is a random closet."
-	icon = 'icons/obj/closet.dmi'
-	icon_state = "mixed"
-	item_to_spawn()
-		return pick(/obj/structure/closet,\
-					/obj/structure/closet/firecloset,\
-					/obj/structure/closet/firecloset/full,\
-					/obj/structure/closet/emcloset,\
-					/obj/structure/closet/wardrobe/black)
-
-
-obj/random/material //Random materials for building stuff
+.obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
 	icon = 'icons/obj/items.dmi'
