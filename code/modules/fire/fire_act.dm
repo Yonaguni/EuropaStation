@@ -26,10 +26,6 @@
 		spawn(5)
 			qdel(src)
 
-/obj/item/latexballon/fire_act(datum/gas_mixture/air, temperature, volume)
-	. = ..()
-	burst()
-
 /obj/machinery/door/unpowered/simple/fire_act()
 	. = ..()
 	if(material.combustion_effect())

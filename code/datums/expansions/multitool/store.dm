@@ -1,4 +1,4 @@
-/datum/expansion/multitool/store/interact(var/obj/item/device/multitool/M, var/mob/user)
+/datum/expansion/multitool/store/interact(var/obj/item/multitool/M, var/mob/user)
 	if(CanUseTopic(user) != UI_INTERACTIVE)
 		return
 

@@ -81,8 +81,8 @@ var/list/slot_equipment_priority = list( \
 
 //only used by initial character creation
 /mob/proc/equip_to_backpack_or_del(obj/item/newitem)
-	if(istype(src.back,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/backpack = src.back
+	if(istype(src.back,/obj/item/storage))
+		var/obj/item/storage/backpack = src.back
 		if(istype(backpack))
 			newitem.forceMove(backpack)
 			return 1
@@ -91,14 +91,14 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/equip_to_storage(obj/item/newitem)
 	// Try put it in their backpack
-	if(istype(src.back,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/backpack = src.back
+	if(istype(src.back,/obj/item/storage))
+		var/obj/item/storage/backpack = src.back
 		if(backpack.can_be_inserted(newitem, 1))
 			newitem.forceMove(src.back)
 			return 1
 
 	// Try to place it in any item that can store stuff, on the mob.
-	for(var/obj/item/weapon/storage/S in src.contents)
+	for(var/obj/item/storage/S in src.contents)
 		if(S.can_be_inserted(newitem, 1))
 			newitem.forceMove(S)
 			return 1

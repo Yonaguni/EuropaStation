@@ -8,8 +8,8 @@
 	blood_level = 1
 
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
-	/obj/item/weapon/material/hatchet = 75
+	/obj/item/circular_saw = 100, \
+	/obj/item/material/hatchet = 75
 	)
 
 	min_duration = 50

@@ -9,7 +9,7 @@
 	var/mapped_species
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/human/New(var/new_loc, var/new_species = null)
 
@@ -97,8 +97,8 @@
 			var/eta_status = emergency_shuttle.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
-		if(back && istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/suit = back
+		if(back && istype(back,/obj/item/rig))
+			var/obj/item/rig/suit = back
 			var/cell_status = "ERROR"
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
@@ -171,25 +171,6 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
-/mob/living/human/proc/implant_loyalty(mob/living/human/M, override = FALSE) // Won't override by default.
-	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
-
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(M)
-	L.imp_in = M
-	L.implanted = 1
-	var/obj/item/organ/external/affected = M.organs_by_name[BP_HEAD]
-	affected.implants += L
-	L.part = affected
-	L.implanted(src)
-
-/mob/living/human/proc/is_loyalty_implanted(mob/living/human/M)
-	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
-			for(var/obj/item/organ/external/O in M.organs)
-				if(L in O.implants)
-					return 1
-	return 0
-
 /mob/living/human/restrained()
 	if (handcuffed)
 		return 1
@@ -249,7 +230,7 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/card/id/id = get_idcard()
 	if(id)
 		return id.rank ? id.rank : if_no_job
 	else
@@ -258,7 +239,7 @@
 //gets assignment from ID
 //Useful when player do something with computers
 /mob/living/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/card/id/id = get_idcard()
 	if(id)
 		return id.assignment ? id.assignment : if_no_job
 	else
@@ -267,7 +248,7 @@
 //gets name from ID.
 //Useful when player do something with computers
 /mob/living/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/card/id/id = get_idcard()
 	if(id)
 		return id.registered_name
 	else
@@ -297,7 +278,7 @@
 /mob/living/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
 	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			return I.registered_name
 	return
@@ -712,17 +693,16 @@
 
 	var/list/visible_implants = list()
 	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/material/shard/shrapnel))
+		for(var/obj/item/O in organ.implants)
+			if((O.w_class > class) && !istype(O,/obj/item/material/shard))
 				visible_implants += O
 
 	return(visible_implants)
 
 /mob/living/human/embedded_needs_process()
 	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O, /obj/item/weapon/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
-				return 1
+		if(organ.implants.len)
+			return 1
 	return 0
 
 /mob/living/human/proc/handle_embedded_objects()
@@ -731,7 +711,7 @@
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
+			if(prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				if(!can_feel_pain(organ.organ_tag))
 					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
@@ -1233,8 +1213,8 @@
 
 	if(!item) return
 
-	if (istype(item, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = item
+	if (istype(item, /obj/item/grab))
+		var/obj/item/grab/G = item
 		item = G.throw_held() //throw the person instead of the grab
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors

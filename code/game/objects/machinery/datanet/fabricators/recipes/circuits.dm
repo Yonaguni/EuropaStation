@@ -14,10 +14,6 @@
 	name = "fire alarm electronics"
 	path = /obj/item/weapon/firealarm_electronics
 
-/decl/fabricator_design/circuit/powermodule
-	name = "power control module"
-	path = /obj/item/weapon/module/power_control
-
 /decl/fabricator_design/circuit/mech
 	name = "engineering systems"
 	path = /obj/item/weapon/circuitboard/exosystem/engineering

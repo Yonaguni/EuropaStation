@@ -1,7 +1,7 @@
 #define MIN_NOTABLE_REAGENT 5
 
 // Base object for procs.
-/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix
+/obj/item/reagent_containers/food/snacks/ingredient_mix
 	icon = 'icons/obj/kitchen/staples/dough.dmi'
 	icon_state = "dough"
 
@@ -11,10 +11,10 @@
 	var/examined_descriptor
 	var/list/global/appearance_ignores_reagents = list("sugar",REAGENT_ID_NUTRIMENT,"egg","milk",REAGENT_ID_PROTEIN,"water")
 
-/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/update_icon()
+/obj/item/reagent_containers/food/snacks/ingredient_mix/update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/proc/apply_name()
+/obj/item/reagent_containers/food/snacks/ingredient_mix/proc/apply_name()
 	name = initial(name)
 	if(!isnull(content_descriptor) && content_descriptor != "")
 		name = "[content_descriptor] [name]"
@@ -23,7 +23,7 @@
 		desc += " Tastes of [content_descriptor]."
 	update_icon()
 
-/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/proc/update_from_ingredients()
+/obj/item/reagent_containers/food/snacks/ingredient_mix/proc/update_from_ingredients()
 	// Reset name-desc
 	content_descriptor = ""
 	// Reset desc-desc
@@ -53,7 +53,7 @@
 	apply_name()
 	update_icon()
 
-/obj/item/weapon/reagent_containers/food/snacks/ingredient_mix/proc/update_from_contents()
+/obj/item/reagent_containers/food/snacks/ingredient_mix/proc/update_from_contents()
 	// Init lists.
 	if(!islist(base_ingredients))    base_ingredients = list()
 	if(!islist(reagent_ingredients)) reagent_ingredients = list()

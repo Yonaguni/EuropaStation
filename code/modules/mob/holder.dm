@@ -1,7 +1,7 @@
 var/list/holder_mob_icon_cache = list()
 
 //Helper object for picking dionaea (and other creatures) up.
-/obj/item/weapon/holder
+/obj/item/holder
 	name = "holder"
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
@@ -16,24 +16,24 @@ var/list/holder_mob_icon_cache = list()
 
 	var/last_holder
 
-/obj/item/weapon/holder/New()
+/obj/item/holder/New()
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/holder/Destroy()
+/obj/item/holder/Destroy()
 	last_holder = null
 	processing_objects.Remove(src)
 	..()
 
-/obj/item/weapon/holder/process()
+/obj/item/holder/process()
 	update_state()
 
-/obj/item/weapon/holder/dropped()
+/obj/item/holder/dropped()
 	..()
 	spawn(1)
 		update_state()
 
-/obj/item/weapon/holder/proc/update_state()
+/obj/item/holder/proc/update_state()
 	if(last_holder != loc)
 		for(var/mob/M in contents)
 			unregister_all_movement(last_holder, M)
@@ -50,22 +50,22 @@ var/list/holder_mob_icon_cache = list()
 
 	last_holder = loc
 
-/obj/item/weapon/holder/GetID()
+/obj/item/holder/GetID()
 	for(var/mob/M in contents)
 		var/obj/item/I = M.GetIdCard()
 		if(I)
 			return I
 	return null
 
-/obj/item/weapon/holder/GetAccess()
+/obj/item/holder/GetAccess()
 	var/obj/item/I = GetID()
 	return I ? I.GetAccess() : ..()
 
-/obj/item/weapon/holder/attack_self()
+/obj/item/holder/attack_self()
 	for(var/mob/M in contents)
 		M.show_inv(usr)
 
-/obj/item/weapon/holder/proc/sync(var/mob/living/M)
+/obj/item/holder/proc/sync(var/mob/living/M)
 	dir = 2
 	overlays.Cut()
 	icon = M.icon
@@ -87,10 +87,10 @@ var/list/holder_mob_icon_cache = list()
 		else
 			H.regenerate_icons()
 
-/obj/item/weapon/holder/mouse
+/obj/item/holder/mouse
 	w_class = 1
 
-/obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
 		M.attackby(W,user)
 
@@ -102,7 +102,7 @@ var/list/holder_mob_icon_cache = list()
 	if(!holder_type || buckled || pinned.len)
 		return
 
-	var/obj/item/weapon/holder/H = new holder_type(get_turf(src))
+	var/obj/item/holder/H = new holder_type(get_turf(src))
 	src.forceMove(H)
 	grabber.put_in_hands(H)
 
@@ -118,12 +118,12 @@ var/list/holder_mob_icon_cache = list()
 	H.sync(src)
 	return H
 
-/obj/item/weapon/holder/human
+/obj/item/holder/human
 	icon = 'icons/mob/creatures/holder_complex.dmi'
 	var/list/generate_for_slots = list(slot_l_hand_str, slot_r_hand_str, slot_back_str)
 	slot_flags = SLOT_BACK
 
-/obj/item/weapon/holder/human/sync(var/mob/living/M)
+/obj/item/holder/human/sync(var/mob/living/M)
 	// Generate appropriate on-mob icons.
 	var/mob/living/human/owner = M
 	if(istype(owner) && owner.species)

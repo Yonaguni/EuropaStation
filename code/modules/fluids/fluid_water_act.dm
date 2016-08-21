@@ -40,12 +40,7 @@
 	else
 		return
 
-/obj/item/weapon/flame/water_act()
+/obj/item/flame/water_act()
 	if(!waterproof && lit)
 		die()
-	return ..()
-
-/obj/item/clothing/mask/smokable/water_act()
-	if(lit)
-		die(1)
 	return ..()

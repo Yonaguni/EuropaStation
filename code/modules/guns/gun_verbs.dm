@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/composite/proc/scope()
+/obj/item/gun/composite/proc/scope()
 	set category = "Object"
 	set name = "Use Scope"
 	set popup_menu = 1

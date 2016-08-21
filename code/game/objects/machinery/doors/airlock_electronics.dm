@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/obj/item/weapon/airlock_electronics
+/obj/item/airlock_electronics
 	name = "airlock electronics"
 	w_class = 2.0 //It should be tiny! -Agouri
 
@@ -14,7 +14,7 @@
 	var/last_configurator = null
 	var/locked = 1
 
-/obj/item/weapon/airlock_electronics/secure
+/obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
 	secure = 1

@@ -30,7 +30,7 @@
 	var/mob/living/human/H = loc
 	if(!istype(H) || !H.back)
 		return 0
-	var/obj/item/weapon/rig/suit = H.back
+	var/obj/item/rig/suit = H.back
 	if(!suit || !istype(suit) || !suit.installed_modules.len)
 		return 0
 	for(var/obj/item/rig_module/module in suit.installed_modules)
@@ -49,7 +49,7 @@
 
 /obj/item/clothing/suit/voidsuit/rig
 	name = "chestpiece"
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
+	allowed = list(/obj/item/flashlight,/obj/item/tank)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS

@@ -7,7 +7,7 @@
 	desc = "It's open season."
 	maxHealth = 25
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/venison
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/venison
 	skull_type = /obj/item/bone/skull/deer
 	faction = "deer"
 

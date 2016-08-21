@@ -17,8 +17,8 @@
 		var/mob/M = src.loc
 		M.update_inv_gloves()
 
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/scalpel))
 		if (clipped)
 			user << "<span class='notice'>The [src] have already been clipped!</span>"
 			update_icon()

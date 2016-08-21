@@ -26,7 +26,7 @@
 	if(hardpoints_locked || hardpoints[system_hardpoint])
 		return 0
 
-	var/obj/item/weapon/mecha_equipment/ME = system
+	var/obj/item/mecha_equipment/ME = system
 	if(istype(ME))
 		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints))
 			return 0
@@ -73,7 +73,7 @@
 	if(system_hardpoint == selected_hardpoint)
 		clear_selected_hardpoint()
 
-	var/obj/item/weapon/mecha_equipment/ME = system
+	var/obj/item/mecha_equipment/ME = system
 	if(istype(ME)) ME.owner = null
 	system.forceMove(get_turf(src))
 	system.screen_loc = null

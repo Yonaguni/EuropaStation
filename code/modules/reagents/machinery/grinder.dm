@@ -12,11 +12,11 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/inuse = 0
-	var/obj/item/weapon/reagent_containers/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 	var/limit = 10
 	var/list/holdingitems = list()
 	var/global/list/grind_products = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/slab = /obj/item/weapon/reagent_containers/food/snacks/meat/mince
+		/obj/item/reagent_containers/food/snacks/meat/slab = /obj/item/reagent_containers/food/snacks/meat/mince
 		)
 	var/global/list/sheet_reagents = list(
 		/obj/item/stack/material/iron = "iron",
@@ -28,7 +28,7 @@
 
 /obj/machinery/reagentgrinder/New()
 	..()
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	beaker = new (src)
 	return
 
 /obj/machinery/reagentgrinder/update_icon()
@@ -37,9 +37,9 @@
 
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
+	if (istype(O,/obj/item/reagent_containers/glass) || \
+		istype(O,/obj/item/reagent_containers/food/drinks/drinkingglass) || \
+		istype(O,/obj/item/reagent_containers/food/drinks/shaker))
 
 		if (beaker)
 			return 1
@@ -184,8 +184,8 @@
 				product.color = O.color
 
 				// Snowflakey as fuck, but so far the machine only uses meat so ehhhh.
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatsource = O
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/meatoutput = product
+				var/obj/item/reagent_containers/food/snacks/meat/meatsource = O
+				var/obj/item/reagent_containers/food/snacks/meat/meatoutput = product
 				if(istype(meatsource) && istype(meatoutput))
 					meatoutput.set_source_mob(meatsource.source_mob)
 

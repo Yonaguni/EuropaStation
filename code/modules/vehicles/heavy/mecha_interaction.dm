@@ -55,8 +55,8 @@
 			// to make sure that they work.
 			var/system_moved
 			var/obj/item/temp_system
-			if(istype(selected_system, /obj/item/weapon/mecha_equipment))
-				var/obj/item/weapon/mecha_equipment/ME = selected_system
+			if(istype(selected_system, /obj/item/mecha_equipment))
+				var/obj/item/mecha_equipment/ME = selected_system
 				temp_system = ME.get_effective_obj()
 				if(temp_system in ME)
 					system_moved = 1
@@ -150,7 +150,7 @@
 /mob/living/heavy_vehicle/proc/sync_access()
 	access_card.access = saved_access.Copy()
 	if(!sync_access || !pilot) return
-	var/obj/item/weapon/card/id/pilot_id = pilot.GetIdCard()
+	var/obj/item/card/id/pilot_id = pilot.GetIdCard()
 	if(pilot_id && pilot_id.access) access_card.access |= pilot_id.access
 	pilot << "<span class='notice'>Security access permissions synchronized.</span>"
 
@@ -221,8 +221,8 @@
 	if(..() && !istype(loc, /turf/space))
 		playsound(src.loc,mech_step_sound,40,1)
 
-/mob/living/heavy_vehicle/attackby(var/obj/item/weapon/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/mecha_equipment))
+/mob/living/heavy_vehicle/attackby(var/obj/item/thing, var/mob/user)
+	if(istype(thing, /obj/item/mecha_equipment))
 		if(hardpoints_locked)
 			user << "<span class='warning'>Hardpoint system access is disabled.</span>"
 			return
@@ -234,7 +234,7 @@
 		return
 	else
 		if(user.a_intent != I_HURT)
-			if(istype(thing, /obj/item/device/multitool))
+			if(istype(thing, /obj/item/multitool))
 				if(hardpoints_locked)
 					user << "<span class='warning'>Hardpoint system access is disabled.</span>"
 					return
@@ -243,7 +243,7 @@
 						return
 				user << "<span class='warning'>\The [src] has no hardpoint systems to remove.</span>"
 				return
-			else if(istype(thing, /obj/item/weapon/wrench))
+			else if(istype(thing, /obj/item/wrench))
 				if(!maintenance_protocols)
 					user << "<span class='warning'>The securing bolts are not visible while maintenance protocols are disabled.</span>"
 					return

@@ -9,9 +9,9 @@
 	accuracy_mod = 3
 	installs_into = COMPONENT_MECHANISM
 
-/obj/item/gun_component/accessory/chamber/scope/apply_mod(var/obj/item/weapon/gun/composite/gun)
+/obj/item/gun_component/accessory/chamber/scope/apply_mod(var/obj/item/gun/composite/gun)
 	..()
-	gun.verbs |= /obj/item/weapon/gun/composite/proc/scope
+	gun.verbs |= /obj/item/gun/composite/proc/scope
 
 /obj/item/gun_component/accessory/chamber/flashlight
 	name = "flashlight"

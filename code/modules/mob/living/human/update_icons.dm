@@ -510,7 +510,7 @@ var/global/list/damage_icon_parts = list()
 
 		//Determine the state to use
 		var/t_state
-		if(istype(head, /obj/item/weapon/paper))
+		if(istype(head, /obj/item/paper))
 			/* I don't like this, but bandaid to fix half the hats in the game
 			   being completely broken without re-breaking paper hats */
 			t_state = "paper"
@@ -560,8 +560,8 @@ var/global/list/damage_icon_parts = list()
 			standing.icon = 'icons/mob/clothing/belt.dmi'
 
 		var/belt_layer = BELT_LAYER
-		if(istype(belt, /obj/item/weapon/storage/belt))
-			var/obj/item/weapon/storage/belt/ubelt = belt
+		if(istype(belt, /obj/item/storage/belt))
+			var/obj/item/storage/belt/ubelt = belt
 			if(ubelt.show_above_suit)
 				overlays_standing[BELT_LAYER] = null
 				belt_layer = BELT_LAYER_ALT
@@ -640,7 +640,7 @@ var/global/list/damage_icon_parts = list()
 			standing = image("icon" = 'icons/mob/clothing/mask.dmi', "icon_state" = "[wear_mask.icon_state]")
 		standing.color = wear_mask.color
 
-		if( !istype(wear_mask, /obj/item/clothing/mask/smokable/cigarette) && wear_mask.blood_DNA )
+		if(wear_mask.blood_DNA)
 			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "maskblood")
 			bloodsies.color = wear_mask.blood_color
 			standing.overlays	+= bloodsies
@@ -658,9 +658,9 @@ var/global/list/damage_icon_parts = list()
 		var/icon/overlay_icon
 		if(back.icon_override)
 			overlay_icon = back.icon_override
-		else if(istype(back, /obj/item/weapon/rig))
+		else if(istype(back, /obj/item/rig))
 			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
-			var/obj/item/weapon/rig/rig = back
+			var/obj/item/rig/rig = back
 			overlay_icon = rig.mob_icon
 		else if(back.sprite_sheets && back.sprite_sheets[species.get_bodytype()])
 			overlay_icon = back.sprite_sheets[species.get_bodytype()]

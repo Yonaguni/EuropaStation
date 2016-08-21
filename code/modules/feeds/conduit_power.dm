@@ -9,7 +9,7 @@
 	network_type = /datum/conduit_network/power_net
 	color = "#FF0000"
 
-	deconstruct_tool = /obj/item/weapon/wirecutters
+	deconstruct_tool = /obj/item/wirecutters
 	deconstruct_path = /obj/item/stack/conduit/power
 	deconstruct_time = 0
 	deconstruct_verb = "cut"

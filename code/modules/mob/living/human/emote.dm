@@ -12,10 +12,6 @@
 	var/muzzled = is_muzzled()
 	//var/m_type = 1
 
-	for (var/obj/item/weapon/implant/I in src)
-		if (I.implanted)
-			I.trigger(act, src)
-
 	if(src.stat == 2.0 && (act != "deathgasp"))
 		return
 	switch(act)

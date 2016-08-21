@@ -11,7 +11,7 @@
 	interact_predicates.Cut()
 	return ..()
 
-/datum/expansion/multitool/proc/interact(var/obj/item/device/multitool/M, var/mob/user)
+/datum/expansion/multitool/proc/interact(var/obj/item/multitool/M, var/mob/user)
 	if(CanUseTopic(user) != UI_INTERACTIVE)
 		return
 
@@ -24,13 +24,13 @@
 	else
 		close_window(usr)
 
-/datum/expansion/multitool/proc/get_interact_window(var/obj/item/device/multitool/M, var/mob/user)
+/datum/expansion/multitool/proc/get_interact_window(var/obj/item/multitool/M, var/mob/user)
 	return
 
 /datum/expansion/multitool/proc/close_window(var/mob/user)
 	user << browse(null, "window=multitool")
 
-/datum/expansion/multitool/proc/buffer(var/obj/item/device/multitool/multitool)
+/datum/expansion/multitool/proc/buffer(var/obj/item/multitool/multitool)
 	. += "<b>Buffer Memory:</b><br>"
 	var/buffer_name = multitool.get_buffer_name()
 	if(buffer_name)
@@ -58,7 +58,7 @@
 		return 1
 
 	var/mob/user = usr
-	var/obj/item/device/multitool/M = user.get_multitool()
+	var/obj/item/multitool/M = user.get_multitool()
 	if(href_list["send"])
 		var/atom/buffer = locate(href_list["send"])
 		. = send_buffer(M, buffer, user)
@@ -78,12 +78,12 @@
 /datum/expansion/multitool/proc/on_topic(href, href_list, user)
 	return MT_NOACTION
 
-/datum/expansion/multitool/proc/send_buffer(var/obj/item/device/multitool/M, var/atom/buffer, var/mob/user)
+/datum/expansion/multitool/proc/send_buffer(var/obj/item/multitool/M, var/atom/buffer, var/mob/user)
 	if(M.get_buffer() == buffer && buffer)
 		receive_buffer(M, buffer, user)
 	else if(!buffer)
 		user << "<span class='warning'>Unable to acquire data from the buffered object. Purging from memory.</span>"
 	return MT_REFRESH
 
-/datum/expansion/multitool/proc/receive_buffer(var/obj/item/device/multitool/M, var/atom/buffer, var/mob/user)
+/datum/expansion/multitool/proc/receive_buffer(var/obj/item/multitool/M, var/atom/buffer, var/mob/user)
 	return

@@ -5,7 +5,7 @@
 
 	var/mech_health = 300
 	var/obj/item/component/mech/diagnosis_unit/diagnostics
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/obj/item/mech_component/plating/armour
 	//var/obj/machinery/portable_atmospherics/canister/air_supply
 	//var/datum/gas_mixture/cockpit
@@ -52,7 +52,7 @@
 
 /obj/item/mech_component/chassis/prebuild()
 	diagnostics = new(src)
-	cell = new /obj/item/weapon/cell/hyper(src)
+	cell = new /obj/item/cell(src)
 	cell.charge = cell.maxcharge
 	//air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 
@@ -63,7 +63,7 @@
 			return
 		diagnostics = thing
 		install_component(thing, user)
-	else if(istype(thing, /obj/item/weapon/cell))
+	else if(istype(thing, /obj/item/cell))
 		if(cell)
 			user << "<span class='warning'>\The [src] already has a cell installed.</span>"
 			return

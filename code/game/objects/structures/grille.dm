@@ -86,7 +86,7 @@
 	src.health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
-/obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -198,7 +198,7 @@
 	anchored = 1
 
 /obj/structure/grille/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/screwdriver))
+	if(istype(thing, /obj/item/screwdriver))
 		return
 	return ..()
 

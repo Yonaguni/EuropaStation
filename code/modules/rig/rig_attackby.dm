@@ -1,4 +1,4 @@
-/obj/item/weapon/rig/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/rig/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!istype(user,/mob/living)) return 0
 
@@ -7,7 +7,7 @@
 			return
 
 	// Pass repair items on to the chestpiece.
-	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weapon/weldingtool)))
+	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weldingtool)))
 		return chest.attackby(W,user)
 
 	// Lock or unlock the access panel.
@@ -30,7 +30,7 @@
 		user << "You [locked ? "lock" : "unlock"] \the [src] access panel."
 		return
 
-	else if(istype(W,/obj/item/weapon/crowbar))
+	else if(istype(W,/obj/item/crowbar))
 
 		if(!open && locked)
 			user << "The access panel is locked shut."
@@ -43,7 +43,7 @@
 	if(open)
 
 		// Hacking.
-		if(istype(W,/obj/item/weapon/wirecutters) || istype(W,/obj/item/device/multitool))
+		if(istype(W,/obj/item/wirecutters) || istype(W,/obj/item/multitool))
 			if(open)
 				wires.Interact(user)
 			else
@@ -80,7 +80,7 @@
 			update_icon()
 			return 1
 
-		else if(!cell && istype(W,/obj/item/weapon/cell))
+		else if(!cell && istype(W,/obj/item/cell))
 
 			if(!user.unEquip(W)) return
 			user << "You jack \the [W] into \the [src]'s battery mount."
@@ -88,7 +88,7 @@
 			src.cell = W
 			return
 
-		else if(istype(W,/obj/item/weapon/screwdriver))
+		else if(istype(W,/obj/item/screwdriver))
 
 			var/list/current_mounts = list()
 			if(cell) current_mounts   += "cell"
@@ -153,18 +153,9 @@
 	..()
 
 
-/obj/item/weapon/rig/attack_hand(var/mob/user)
+/obj/item/rig/attack_hand(var/mob/user)
 
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 	..()
-
-/obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)
-	if(!subverted)
-		req_access.Cut()
-		req_one_access.Cut()
-		locked = 0
-		subverted = 1
-		user << "<span class='danger'>You short out the access protocol for the suit.</span>"
-		return 1

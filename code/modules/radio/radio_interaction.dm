@@ -1,5 +1,5 @@
 /obj/item/device/radio/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/screwdriver))
+	if(istype(thing, /obj/item/screwdriver))
 		if(!encryption_keys.len)
 			user << "<span class='warning'>\The [src] has no encryption keys installed.</span>"
 			return

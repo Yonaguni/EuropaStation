@@ -85,8 +85,8 @@
 			remove_self(acid_melt_threshold)
 			return
 	if(alcoholic)
-		if(istype(O, /obj/item/weapon/paper))
-			var/obj/item/weapon/paper/paperaffected = O
+		if(istype(O, /obj/item/paper))
+			var/obj/item/paper/paperaffected = O
 			paperaffected.clearpaper()
 			usr << "The solution dissolves the ink on the paper."
 	return

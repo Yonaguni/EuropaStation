@@ -6,12 +6,12 @@
 	show_messages = 1
 
 	var/slots = 3
-	var/obj/item/weapon/storage/internal/hold
+	var/obj/item/storage/internal/hold
 	w_class = 3.0
 
 /obj/item/clothing/accessory/storage/New()
 	..()
-	hold = new/obj/item/weapon/storage/internal(src)
+	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
 /obj/item/clothing/accessory/storage/attack_hand(mob/user as mob)

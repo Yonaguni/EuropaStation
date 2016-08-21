@@ -1,6 +1,6 @@
 #define BURN_HEAT 999999 //Debug.
 
-/obj/item/weapon/reagent_containers/kitchen
+/obj/item/reagent_containers/kitchen
 	icon = 'icons/obj/kitchen/inedible/tools.dmi'
 	force = 3
 	throwforce = 3
@@ -24,22 +24,22 @@
 	var/list/item_conversion = list()      // Objects of these types in attackby() will be converted
 	var/processes = 1                      // into new objects inside the container. Dough > pie base etc.
 
-/obj/item/weapon/reagent_containers/kitchen/New()
+/obj/item/reagent_containers/kitchen/New()
 	..()
 	if(processes) processing_objects |= src
 	create_reagents(80)
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/weapon/reagent_containers/kitchen/proc/do_burn(var/mob/living/human/victim)
+/obj/item/reagent_containers/kitchen/proc/do_burn(var/mob/living/human/victim)
 	victim.adjustFireLoss(rand(2,8))
 	return
 
-/obj/item/weapon/reagent_containers/kitchen/proc/recieve_heat(var/temperature)
+/obj/item/reagent_containers/kitchen/proc/recieve_heat(var/temperature)
 	current_heat = min(max_heat_capacity,max(0,current_heat+temperature))
 	recieved_heat = 1
 
-/obj/item/weapon/reagent_containers/kitchen/process()
+/obj/item/reagent_containers/kitchen/process()
 	if(current_heat <= 0)
 		return
 
@@ -85,7 +85,7 @@
 			continue
 
 		// Might be burning it or overcooking it, noob.
-		if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/badrecipe))
+		if(istype(I, /obj/item/reagent_containers/food/snacks/badrecipe))
 			make_smoke() // Gross.
 		else if(cooking_objects[objref] >= max_cook_time)
 			// Ya dun goofed.
@@ -95,16 +95,16 @@
 				qdel(subitem)
 			qdel(I)
 			// Delicious carbon.
-			new /obj/item/weapon/reagent_containers/food/snacks/badrecipe(src)
+			new /obj/item/reagent_containers/food/snacks/badrecipe(src)
 			T.visible_message("<span class='danger'>\The [I] in \the [src] is a charred mess!</span>")
 		else if(cooking_objects[objref] >= warning_cook_time && prob(30))
 			T.visible_message("<span class='danger'>\The [I] in \the [src] starts to smoke...</span>")
 			make_smoke()
 
-/obj/item/weapon/reagent_containers/kitchen/proc/make_smoke()
+/obj/item/reagent_containers/kitchen/proc/make_smoke()
 	return
 
-/obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
+/obj/item/reagent_containers/kitchen/attack_hand(var/mob/user)
 	if(current_heat > BURN_HEAT)
 		var/mob/living/human/H = user
 		if(istype(H) && !H.gloves)
@@ -117,14 +117,14 @@
 				return
 	return ..()
 
-/obj/item/weapon/reagent_containers/kitchen/examine(var/user as mob)
+/obj/item/reagent_containers/kitchen/examine(var/user as mob)
 	..()
 	user << "You can see [english_list(src.contents, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )] inside."
 
-/obj/item/weapon/reagent_containers/kitchen/proc/update_overlays()
+/obj/item/reagent_containers/kitchen/proc/update_overlays()
 	return
 
-/obj/item/weapon/reagent_containers/kitchen/proc/can_accept(var/obj/item/O)
+/obj/item/reagent_containers/kitchen/proc/can_accept(var/obj/item/O)
 	if(O.w_class > max_w_class)
 		return 0
 	if(will_accept.len)
@@ -135,12 +135,12 @@
 		return 1
 	return 0
 
-/obj/item/weapon/reagent_containers/kitchen/proc/transfer_to_environment(var/obj/item/thing, var/mob/user)
+/obj/item/reagent_containers/kitchen/proc/transfer_to_environment(var/obj/item/thing, var/mob/user)
 	if(!(thing in contents))
 		return
 	thing.forceMove(get_turf(src))
 	var/list/transferrable_places = list()
-	for(var/obj/item/weapon/dish/D in range(user,1))
+	for(var/obj/item/dish/D in range(user,1))
 		if(user.Adjacent(D))
 			transferrable_places += D
 	if(transferrable_places.len)
@@ -151,7 +151,7 @@
 		thing.forceMove(get_turf(user))
 		thing.visible_message("<span class='notice'>\The [thing] lands on the floor.</span>")
 
-/obj/item/weapon/reagent_containers/kitchen/attack_hand(var/mob/user)
+/obj/item/reagent_containers/kitchen/attack_hand(var/mob/user)
 	if(src.loc == user && contents.len)
 		var/obj/item/grabbed = pick(contents)
 		grabbed.forceMove(get_turf(src))
@@ -170,12 +170,12 @@
 		return
 	return ..()
 
-/obj/item/weapon/reagent_containers/kitchen/attackby(var/obj/item/O, var/mob/user) //Put things inside
+/obj/item/reagent_containers/kitchen/attackby(var/obj/item/O, var/mob/user) //Put things inside
 
 	if(O.is_open_container())
 		return ..(O, user)
 
-	if(istype(O, /obj/item/weapon/material/kitchen/spatula))
+	if(istype(O, /obj/item/material/kitchen/spatula))
 		if(!contents.len)
 			user << "<span class='warning'>There is nothing in \the [src].</span>"
 			return
@@ -206,7 +206,7 @@
 		O.loc = src
 		user.visible_message("\The [user] puts \the [O] into \the [src].")
 
-/obj/item/weapon/reagent_containers/kitchen/attack_self(var/mob/user as mob) //Take things out
+/obj/item/reagent_containers/kitchen/attack_self(var/mob/user as mob) //Take things out
 
 	if(current_heat > BURN_HEAT).
 		var/mob/living/human/H = user

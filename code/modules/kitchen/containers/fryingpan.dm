@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/kitchen/fryingpan
+/obj/item/reagent_containers/kitchen/fryingpan
 	name = "frying pan"
 	desc = "Used to cook on the stove.  Also used to chase people out of your kitchen."
 	icon_state = "fryingpan"

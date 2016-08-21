@@ -16,7 +16,7 @@
 	faction = "mice"
 	alert_offset = 2
 	speech_verbs = list("squeeks","squeaks","squiks")
-	holder_type = /obj/item/weapon/holder
+	holder_type = /obj/item/holder
 
 	var/body_colour = "brown"
 

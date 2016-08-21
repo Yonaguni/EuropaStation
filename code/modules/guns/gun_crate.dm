@@ -1,5 +1,5 @@
 // A combined debugging tool/Borderlands 2 reference in one easy package!
-var/list/all_premade_gun_types = typesof(/obj/item/weapon/gun/composite/premade)-/obj/item/weapon/gun/composite/premade
+var/list/all_premade_gun_types = typesof(/obj/item/gun/composite/premade)-/obj/item/gun/composite/premade
 
 /obj/structure/gun_crate
 	name = "gun chest"

@@ -61,7 +61,7 @@
 	var/vision_flags = SEE_SELF                // Same flags as glasses.
 
 	// Death vars.
-	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human
+	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/human
 	var/remains_type = /obj/item/remains/human
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
@@ -245,11 +245,11 @@
 
 /datum/species/proc/equip_survival_gear(var/mob/living/human/H, var/extendedtank = 1)
 	if(H.backbag == 1)
-		if (extendedtank)	H.equip_to_backpack_or_del(new /obj/item/weapon/storage/box(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		if (extendedtank)	H.equip_to_backpack_or_del(new /obj/item/storage/box(H), slot_r_hand)
+		else	H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H), slot_r_hand)
 	else
-		if (extendedtank)	H.equip_to_backpack_or_del(new /obj/item/weapon/storage/box(H))
-		else	H.equip_to_backpack_or_del(new /obj/item/weapon/storage/box/survival(H))
+		if (extendedtank)	H.equip_to_backpack_or_del(new /obj/item/storage/box(H))
+		else	H.equip_to_backpack_or_del(new /obj/item/storage/box/survival(H))
 
 /datum/species/proc/create_organs(var/mob/living/human/H) //Handles creation of mob organs.
 

@@ -18,9 +18,9 @@
 			return
 	return ..()
 
-/obj/structure/mech_wreckage/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/structure/mech_wreckage/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.isOn())
 			if(!prepared)
 				prepared = 1
@@ -30,7 +30,7 @@
 		else
 			user << "<span class='warning'>Turn the torch on, first.</span>"
 		return 1
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/wrench))
 		if(prepared)
 			user << "<span class='notice'>You finish dismantling \the [src].</span>"
 			new /obj/item/stack/material/steel(get_turf(src),rand(5,10))

@@ -1,18 +1,18 @@
-/obj/item/weapon/reagent_containers/food/snacks/baked/breadslice/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
+/obj/item/reagent_containers/food/snacks/baked/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/shard) || istype(W,/obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
 		S.attackby(W,user)
 		qdel(src)
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/baked/bun/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/csandwich/burger/S = new(get_turf(src))
+/obj/item/reagent_containers/food/snacks/baked/bun/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/shard) || istype(W,/obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/csandwich/burger/S = new(get_turf(src))
 		S.attackby(W,user)
 		qdel(src)
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich
+/obj/item/reagent_containers/food/snacks/csandwich
 	name = "sandwich"
 	icon = 'icons/obj/kitchen/meals/sandwiches.dmi'
 	desc = "The best thing since sliced bread."
@@ -24,7 +24,7 @@
 	var/filling_limit = 4
 	var/list/ingredients = list()
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/burger
+/obj/item/reagent_containers/food/snacks/csandwich/burger
 	name = "burger"
 	desc = "A timeless classic."
 
@@ -34,20 +34,20 @@
 	filling_limit = 2
 	vary_fillings = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(src.contents.len > filling_limit)
 		user << "<span class='warning'>If you put anything else on \the [src] it's going to collapse.</span>"
 		return
-	else if(istype(W,/obj/item/weapon/material/shard))
+	else if(istype(W,/obj/item/material/shard))
 		user << "<span class='notice'>You hide \the [W] in \the [src].</span>"
 		user.drop_item()
 		W.loc = src
 		update_icon()
 		return
-	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks))
+	else if(istype(W,/obj/item/reagent_containers/food/snacks))
 		user << "<span class='notice'>You layer \the [W] over \the [src].</span>"
-		var/obj/item/weapon/reagent_containers/F = W
+		var/obj/item/reagent_containers/F = W
 		F.reagents.trans_to_obj(src, F.reagents.total_volume)
 		user.unEquip(W)
 		W.loc = src
@@ -56,14 +56,14 @@
 		return
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/update_icon()
+/obj/item/reagent_containers/food/snacks/csandwich/update_icon()
 
 	var/fullname = "" //We need to build this from the contents of the var.
 	var/i = 0
 
 	overlays.Cut()
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/O in ingredients)
+	for(var/obj/item/reagent_containers/food/snacks/O in ingredients)
 		i++
 		if(i == 1)
 			fullname += "[O.name]"
@@ -89,21 +89,21 @@
 	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] [initial(name)]"
 	w_class = n_ceil(Clamp((ingredients.len/2),2,4))
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/Destroy()
+/obj/item/reagent_containers/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)
 		qdel(O)
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/examine(mob/user)
+/obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user)
 	..(user)
 	var/obj/item/O = pick(contents)
 	user << "<span class='notice'>You think you can see [O.name] in there.</span>"
 
-/obj/item/weapon/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 
 	var/obj/item/shard
 	for(var/obj/item/O in contents)
-		if(istype(O,/obj/item/weapon/material/shard))
+		if(istype(O,/obj/item/material/shard))
 			shard = O
 			break
 

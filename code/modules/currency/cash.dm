@@ -22,7 +22,7 @@
 	..()
 	update_icon()
 
-/obj/item/cash/attackby(var/obj/item/weapon/W as obj, var/mob/user)
+/obj/item/cash/attackby(var/obj/item/W as obj, var/mob/user)
 	if(istype(W, /obj/item/cash))
 		var/obj/item/cash/bundle = W
 		bundle.worth += src.worth

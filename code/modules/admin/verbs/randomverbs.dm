@@ -444,7 +444,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		customname = "[company_name] Update"
 	for (var/obj/machinery/photocopier/faxmachine/C in machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
+			var/obj/item/paper/P = new /obj/item/paper( C.loc )
 			P.name = "'[command_name()] Update.'"
 			P.info = replacetext(input, "\n", "<br/>")
 			P.update_space(P.info)

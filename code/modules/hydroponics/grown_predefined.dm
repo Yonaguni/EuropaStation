@@ -1,8 +1,8 @@
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
 	plantname = "ambrosia"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus
 	plantname = "ambrosiadeus"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/wheat
+/obj/item/reagent_containers/food/snacks/grown/wheat
 	plantname = "wheat"

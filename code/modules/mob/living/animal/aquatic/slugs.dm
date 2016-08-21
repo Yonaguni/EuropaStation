@@ -5,7 +5,7 @@ var/list/slug_cache = list()
 	desc = "A colourful slimy friend! Probably poisonous."
 	icon_state = "slug"
 	icon = 'icons/mob/creatures/slugs.dmi'
-	holder_type = /obj/item/weapon/holder
+	holder_type = /obj/item/holder
 	mob_ai_type = /datum/ai_mob/animal/herd/fish/sea_slug
 	maxHealth = 15
 

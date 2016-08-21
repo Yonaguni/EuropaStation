@@ -2,7 +2,7 @@
 //Functionally identical to regular drinks. The only difference is that the default bottle size is 100. - Darem
 //Bottles now weaken and break when smashed on people's heads. - Giacom
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle
+/obj/item/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
 	volume = 120
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
@@ -14,24 +14,24 @@
 
 	var/const/duration = 13 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
-	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
+	var/obj/item/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/New()
+/obj/item/reagent_containers/food/drinks/bottle/New()
 	..()
 	if(isGlass)
 		unacidable = 1
 	if(!reagents)
 		create_reagents(volume)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
+/obj/item/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
 		rag.forceMove(src.loc)
 	rag = null
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
-/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
+/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
 	..()
 
 	var/mob/M = thrower
@@ -43,7 +43,7 @@
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
+/obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
 	if(!isGlass || !duration)
 		return 0
 
@@ -53,7 +53,7 @@
 		return 0
 	return prob(chance_table[idx])
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+/obj/item/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
 	var/mob/user
 	if(ismob(loc))
 		var/mob/M = loc
@@ -61,9 +61,9 @@
 		user = M
 
 	//Creates a shattering noise and replaces the bottle with a broken_bottle
-	var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
+	var/obj/item/broken_bottle/B = new /obj/item/broken_bottle(newloc)
 	if(prob(33))
-		new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
+		new/obj/item/material/shard(newloc) // Create a glass shard at the target's location!
 	B.icon_state = src.icon_state
 
 	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
@@ -83,22 +83,22 @@
 	qdel(src)
 	return B
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
-	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
+/obj/item/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
+	if(!rag && istype(W, /obj/item/reagent_containers/glass/rag))
 		insert_rag(W, user)
 		return
-	if(rag && istype(W, /obj/item/weapon/flame))
+	if(rag && istype(W, /obj/item/flame))
 		rag.attackby(W, user)
 		return
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/attack_self(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/attack_self(mob/user)
 	if(rag)
 		remove_rag(user)
 	else
 		..()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/weapon/reagent_containers/glass/rag/R, mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return
 	if(user.unEquip(R))
 		user << "<span class='notice'>You stuff [R] into [src].</span>"
@@ -107,18 +107,18 @@
 		flags &= ~OPENCONTAINER
 		update_icon()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/remove_rag(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/proc/remove_rag(mob/user)
 	if(!rag) return
 	user.put_in_hands(rag)
 	rag = null
 	flags |= (initial(flags) & OPENCONTAINER)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/open(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/open(mob/user)
 	if(rag) return
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/update_icon()
+/obj/item/reagent_containers/food/drinks/bottle/update_icon()
 	underlays.Cut()
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
@@ -128,7 +128,7 @@
 			return
 	kill_light()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()
 
 	if(user.a_intent != I_HURT)
@@ -157,11 +157,11 @@
 		reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
-	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
+	var/obj/item/broken_bottle/B = smash(target.loc, target)
 	user.put_in_active_hand(B)
 
 //Keeping this here for now, I'll ask if I should keep it here.
-/obj/item/weapon/broken_bottle
+/obj/item/broken_bottle
 	name = "Broken Bottle"
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/drinks.dmi'
@@ -177,7 +177,7 @@
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin
+/obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "gin bottle"
 	desc = "A bottle of high-quality gin."
 	icon_state = "ginbottle"
@@ -186,7 +186,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_GIN, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
+/obj/item/reagent_containers/food/drinks/bottle/whiskey
 	name = "whiskey bottle"
 	desc = "A premium single-malt whiskey."
 	icon_state = "whiskeybottle"
@@ -195,7 +195,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_WHISKEY, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
+/obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "vodka bottle"
 	desc = "A rough, powerful alcohol made from potatoes."
 	icon_state = "vodkabottle"
@@ -204,7 +204,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_VODKA, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
+/obj/item/reagent_containers/food/drinks/bottle/tequilla
 	name = "tequilla bottle"
 	desc = "May or may not contain a worm."
 	icon_state = "tequillabottle"
@@ -213,7 +213,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_TEQUILlA, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum
+/obj/item/reagent_containers/food/drinks/bottle/rum
 	name = "rum bottle"
 	desc = "A strong, sweet and spicy drink."
 	icon_state = "rumbottle"
@@ -222,7 +222,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_RUM, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine
+/obj/item/reagent_containers/food/drinks/bottle/wine
 	name = "wine bottle"
 	desc = "Classy!"
 	icon_state = "winebottle"
@@ -231,7 +231,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_WINE, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe
+/obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "absinthe bottle"
 	desc = "One sip of this and you just know you're gonna have a good time."
 	icon_state = "absinthebottle"
@@ -241,12 +241,12 @@
 		reagents.add_reagent(REAGENT_ID_ABSINTHE, 100)
 
 //Small bottles
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small
+/obj/item/reagent_containers/food/drinks/bottle/small
 	volume = 50
 	flags = 0 //starts closed
 	rag_underlay = "rag_small"
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
+/obj/item/reagent_containers/food/drinks/bottle/small/beer
 	name = "beer bottle"
 	desc = "Contains only water, malt and hops."
 	icon_state = "beer"
@@ -255,7 +255,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_BEER, 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/lemonade
+/obj/item/reagent_containers/food/drinks/bottle/small/lemonade
 	name = "lemonade bottle"
 	desc = "A refreshing, fizzy beverage. Tastes like a hull breach in your mouth."
 	icon_state = "space-up_bottle"
@@ -264,7 +264,7 @@
 		..()
 		reagents.add_reagent(REAGENT_ID_LEMONADE, 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cola
+/obj/item/reagent_containers/food/drinks/bottle/small/cola
 	name = "cola bottle"
 	desc = "A refreshing, fizzy beverage. Does not actually contain cocaine."
 	icon_state = "colabottle"

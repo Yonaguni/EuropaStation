@@ -2,13 +2,13 @@
 // Other harvested materials from plants (that are not food)
 // **********************
 
-/obj/item/weapon/grown // Grown weapons
+/obj/item/grown // Grown weapons
 	name = "grown_weapon"
 	icon = 'icons/obj/weapons.dmi'
 	var/plantname
 	var/potency = 1
 
-/obj/item/weapon/grown/New(newloc,planttype)
+/obj/item/grown/New(newloc,planttype)
 
 	..()
 
@@ -34,38 +34,3 @@
 			if(reagent_data.len > 1 && potency > 0)
 				rtotal += round(potency/reagent_data[2])
 			reagents.add_reagent(rid,max(1,rtotal))
-
-/obj/item/weapon/corncob
-	name = "corn cob"
-	desc = "A reminder of meals gone by."
-	icon = 'icons/obj/trash.dmi'
-	icon_state = "corncob"
-	item_state = "corncob"
-	w_class = 2.0
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-
-/obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-	if(W.sharp)
-		user << "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>"
-		new /obj/item/clothing/mask/smokable/pipe/cobpipe (user.loc)
-		qdel(src)
-		return
-
-/obj/item/weapon/bananapeel
-	name = "banana peel"
-	desc = "A peel from a banana."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "banana_peel"
-	item_state = "banana_peel"
-	w_class = 2.0
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-
-/obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
-	if (istype(AM, /mob/living))
-		var/mob/living/M = AM
-		M.slip("the [src.name]",4)

@@ -1,8 +1,8 @@
 /obj/machinery/kitchen/attackby(var/obj/item/O, var/mob/user)
 
 	// A spot of the old ultraviolence.
-	if(istype(O, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = O
+	if(istype(O, /obj/item/grab))
+		var/obj/item/grab/G = O
 		if(G.state < GRAB_AGGRESSIVE)
 			user << "<span class='warning'>You need a better grip!</span>"
 			return
@@ -17,7 +17,7 @@
 		if(accepted_item == 1)
 			take_item(O,user)
 		return 0
-	else if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/))
+	else if(istype(O, /obj/item/reagent_containers/food/snacks/))
 		user << "<span class='warning'>You need a container for \the [O.name].</span>"
 		return 0
 	else

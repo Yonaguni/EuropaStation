@@ -6,16 +6,16 @@
 
 /decl/aspect/ballistics/do_post_spawn(var/mob/living/human/holder)
 	// Already have a gun.
-	if(locate(/obj/item/weapon/gun) in holder.contents)
+	if(locate(/obj/item/gun) in holder.contents)
 		return
 	// Already have a holster
 	if(locate(/obj/item/clothing/accessory/holster) in holder.w_uniform)
 		return
 	var/gun_type = pick(list(
-		/obj/item/weapon/gun/composite/premade/pistol/a9/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a10/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
+		/obj/item/gun/composite/premade/pistol/a9/preloaded,
+		/obj/item/gun/composite/premade/pistol/a10/preloaded,
+		/obj/item/gun/composite/premade/pistol/a38/preloaded,
+		/obj/item/gun/composite/premade/pistol/a45/preloaded
 		))
 	var/obj/item/clothing/accessory/holster/W = new (holder)
 	holder.w_uniform.attackby(W, holder)

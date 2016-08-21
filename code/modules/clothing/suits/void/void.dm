@@ -5,7 +5,7 @@
 	desc = "A high-tech dark red environment suit."
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
+	allowed = list(/obj/item/flashlight,/obj/item/tank)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Human", "Skrell")
@@ -111,14 +111,14 @@
 
 	if(!istype(user,/mob/living)) return
 
-	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/hand_labeler))
 		return ..()
 
 	if(istype(src.loc,/mob/living))
 		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
 		return
 
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(istype(W,/obj/item/screwdriver))
 		if(helmet || boots)
 			var/choice = input("What component would you like to remove?") as null|anything in list(helmet,boots)
 			if(!choice) return

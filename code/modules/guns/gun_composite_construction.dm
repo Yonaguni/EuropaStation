@@ -1,11 +1,11 @@
 var/list/can_dismantle_guns = list(
-	/obj/item/weapon/screwdriver,
-	/obj/item/weapon/pen,
-	/obj/item/weapon/material/kitchen/utensil
+	/obj/item/screwdriver,
+	/obj/item/pen,
+	/obj/item/material/kitchen/utensil
 	)
 
-/obj/item/weapon/gun/composite/proc/dismantle(var/mob/user)
-	var/obj/item/weapon/gun_assembly/assembly = new(get_turf(src))
+/obj/item/gun/composite/proc/dismantle(var/mob/user)
+	var/obj/item/gun_assembly/assembly = new(get_turf(src))
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))
 	assembly.barrel = barrel
@@ -26,9 +26,9 @@ var/list/can_dismantle_guns = list(
 			user.put_in_hands(assembly)
 	qdel(src)
 
-/obj/item/weapon/gun/composite/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/composite/attackby(var/obj/item/thing, var/mob/user)
 
-	if(istype(thing, /obj/item/ammo_casing) || istype(thing, /obj/item/ammo_magazine) || istype(thing, /obj/item/weapon/cell))
+	if(istype(thing, /obj/item/ammo_casing) || istype(thing, /obj/item/ammo_magazine) || istype(thing, /obj/item/cell))
 		chamber.load_ammo(thing, user)
 		return
 

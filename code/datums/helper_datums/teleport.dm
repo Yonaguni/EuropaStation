@@ -149,26 +149,6 @@
 	else
 		return ..()
 
-/datum/teleport/instant/science/setPrecision(aprecision)
-	..()
-	if(istype(teleatom, /obj/item/weapon/storage/backpack/holding))
-		precision = rand(1,100)
-
-	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
-	if(bagholding.len)
-		precision = max(rand(1,100)*bagholding.len,100)
-		if(istype(teleatom, /mob/living))
-			var/mob/living/MM = teleatom
-			MM << "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>"
-	return 1
-
-/datum/teleport/instant/science/teleportChecks()
-	if(destination.z in using_map.admin_levels) //centcomm z-level
-		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
-			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
-			return 0
-
-
 	if(destination.z > max_default_z_level()) //Away mission z-levels
 		return 0
 	return 1

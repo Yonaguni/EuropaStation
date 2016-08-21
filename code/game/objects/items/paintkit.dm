@@ -34,21 +34,3 @@
 /obj/item/device/kit/paint/examine()
 	..()
 	usr << "This kit will add the [new_name] decal to a vehicle."
-
-/obj/item/device/kit/paint/flames_red
-	name = "\"Firestarter\" exosuit customisation kit"
-	new_name = "\"Firestarter\" exosuit"
-	new_desc = "An exosuit with stylish orange flame decals."
-	new_icon = "ripley_flames_red"
-
-/obj/item/device/kit/paint/ripley/flames_blue
-	name = "\"Burning Chrome\" exosuit customisation kit"
-	new_name = "\"Burning Chrome\" exosuit"
-	new_desc = "An exosuit with stylish blue flame decals."
-	new_icon = "ripley_flames_blue"
-
-/obj/item/device/kit/paint/stripes
-	name = "\"First Responder\" exosuit customisation kit"
-	new_name = "\"First Responder\" exosuit"
-	new_desc = "An exosuit with sleek green stripe decals."
-	new_icon = "stripes_green"

@@ -126,17 +126,12 @@
 
 /turf/simulated/open/attackby(var/obj/item/O, var/mob/user)
 	if(below && below.is_flooded())
-		var/obj/item/weapon/reagent_containers/RG = O
+		var/obj/item/reagent_containers/RG = O
 		if(istype(RG) && RG.is_open_container())
 			RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 			user.visible_message("<span class='notice'>\The [user] fills \the [RG] from \the [src].</span>")
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 			return 1
-		if(istype(O, /obj/item/weapon/mop))
-			O.reagents.add_reagent(REAGENT_ID_WATER, 5)
-			user << "<span class='notice'>You wet \the [O] in \the [src].</span>"
-			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-			return
 		user << "<span class='notice'>You start washing \the [O].</span>"
 		if(!do_after(user, 40) || !Adjacent(user))
 			return

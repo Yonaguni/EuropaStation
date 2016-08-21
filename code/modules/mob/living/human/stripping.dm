@@ -100,9 +100,9 @@
 		for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
-				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
+				//var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
 				o.status &= ~ORGAN_SPLINTED
-				W.add_fingerprint(user)
+				//W.add_fingerprint(user)
 				removed_splint = 1
 		if(removed_splint)
 			visible_message("<span class='danger'>\The [user] removes \the [src]'s splints!</span>")

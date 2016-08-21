@@ -21,9 +21,9 @@
 
 /datum/surgery_step/generic/cut_open
 	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 90
@@ -66,10 +66,9 @@
 
 /datum/surgery_step/generic/cauterize_bleeders
 	allowed_tools = list(
-		/obj/item/weapon/cautery = 100,			\
-		/obj/item/clothing/mask/smokable/cigarette = 75,	\
-		/obj/item/weapon/flame/lighter = 50,			\
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/cautery = 100, \
+		/obj/item/flame/lighter = 50, \
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 40

@@ -25,7 +25,7 @@
 
 /datum/job/head/marshal
 	title = "Marshal"
-	idtype = /obj/item/weapon/card/id/dogtags
+	idtype = /obj/item/card/id
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_forensics_lockers,
 			access_morgue, access_maint_tunnels, access_all_personal_lockers, access_research, access_engine,
 			access_mining, access_medical, access_construction, access_mailsorting, access_heads, access_hos,
@@ -38,7 +38,7 @@
 /datum/job/head/coordinator
 	title = "Corporate Contact Officer"
 	selection_color = "#ffeeff"
-	idtype = /obj/item/weapon/card/id/lanyard
+	idtype = /obj/item/card/id
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors, access_mining, access_mining_station,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,

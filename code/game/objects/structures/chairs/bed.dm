@@ -76,8 +76,8 @@
 				qdel(src)
 				return
 
-/obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		dismantle()
 		qdel(src)
@@ -91,12 +91,13 @@
 			qdel(C)
 			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
-		if(istype(W,/obj/item/stack/tile/carpet))
-			padding_type = "carpet"
-		else if(istype(W,/obj/item/stack/material))
+		if(istype(W,/obj/item/stack/material))
 			var/obj/item/stack/material/M = W
 			if(M.material && (M.material.flags & MATERIAL_PADDING))
 				padding_type = "[M.material.name]"
+		else
+			padding_type = "carpet"
+
 		if(!padding_type)
 			user << "You cannot pad \the [src] with that."
 			return
@@ -108,7 +109,7 @@
 		add_padding(padding_type)
 		return
 
-	else if (istype(W, /obj/item/weapon/wirecutters))
+	else if (istype(W, /obj/item/wirecutters))
 		if(!padding_material)
 			user << "\The [src] has no padding to remove."
 			return
@@ -116,8 +117,8 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
 
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		var/mob/living/affecting = G.affecting
 		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
 		if(do_after(user, 20))
@@ -169,8 +170,8 @@
 /obj/structure/bed/roller/update_icon()
 	return // Doesn't care about material or anything else.
 
-/obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+/obj/structure/bed/roller/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/wirecutters))
 		return
 	else if(istype(W,/obj/item/roller_holder))
 		if(buckled_mob)
@@ -195,7 +196,7 @@
 		R.add_fingerprint(user)
 		qdel(src)
 
-/obj/item/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/roller_holder))
 		var/obj/item/roller_holder/RH = W

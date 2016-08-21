@@ -1,83 +1,66 @@
 /decl/fabricator_design/bucket
 	name = "bucket"
-	path = /obj/item/weapon/reagent_containers/glass/bucket
-	category = "General"
-
-/decl/fabricator_design/extinguisher
-	name = "extinguisher"
-	path = /obj/item/weapon/extinguisher
+	path = /obj/item/reagent_containers/glass/bucket
 	category = "General"
 
 /decl/fabricator_design/crowbar
 	name = "crowbar"
-	path = /obj/item/weapon/crowbar
+	path = /obj/item/crowbar
 	category = "Tools"
 
 /decl/fabricator_design/screwdriver
 	name = "screwdriver"
-	path = /obj/item/weapon/screwdriver
+	path = /obj/item/screwdriver
 	category = "Tools"
 
 /decl/fabricator_design/wirecutters
 	name = "wirecutters"
-	path = /obj/item/weapon/wirecutters
+	path = /obj/item/wirecutters
 	category = "Tools"
 
 /decl/fabricator_design/wrench
 	name = "wrench"
-	path = /obj/item/weapon/wrench
+	path = /obj/item/wrench
 	category = "Tools"
 
 /decl/fabricator_design/hatchet
 	name = "hatchet"
-	path = /obj/item/weapon/material/hatchet
+	path = /obj/item/material/hatchet
 	category = "Tools"
 
-/decl/fabricator_design/minihoe
-	name = "mini hoe"
-	path = /obj/item/weapon/material/minihoe
+/decl/fabricator_design/hoe
+	name = "hoe"
+	path = /obj/item/material/hoe
 	category = "Tools"
 
 /decl/fabricator_design/knife
 	name = "kitchen knife"
-	path = /obj/item/weapon/material/knife
+	path = /obj/item/material/knife
 	category = "General"
 
 /decl/fabricator_design/scalpel
 	name = "scalpel"
-	path = /obj/item/weapon/scalpel
+	path = /obj/item/scalpel
 	category = "Medical"
 
 /decl/fabricator_design/retractor
 	name = "retractor"
-	path = /obj/item/weapon/retractor
+	path = /obj/item/retractor
 	category = "Medical"
 
 /decl/fabricator_design/cautery
 	name = "cautery"
-	path = /obj/item/weapon/cautery
+	path = /obj/item/cautery
 	category = "Medical"
 
 /decl/fabricator_design/hemostat
 	name = "hemostat"
-	path = /obj/item/weapon/hemostat
+	path = /obj/item/hemostat
 	category = "Medical"
-
-/decl/fabricator_design/tacknife
-	name = "tactical knife"
-	path = /obj/item/weapon/material/hatchet/tacknife
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/decl/fabricator_design/beartrap
-	name = "mechanical trap"
-	path = /obj/item/weapon/beartrap
-	hidden = 1
-	category = "Devices and Components"
 
 /decl/fabricator_design/handcuffs
 	name = "handcuffs"
-	path = /obj/item/weapon/handcuffs
+	path = /obj/item/handcuffs
 	hidden = 1
 	category = "General"
 
@@ -98,60 +81,30 @@
 	name = "steel floor tile"
 	path = /obj/item/stack/tile/floor
 
-/decl/fabricator_design/matter/floor_tile_dark
-	name = "dark floor tile"
-	path = /obj/item/stack/tile/floor_dark
-
-/decl/fabricator_design/matter/floor_tile_white
-	name = "white floor tile"
-	path = /obj/item/stack/tile/floor_white
-
-/decl/fabricator_design/matter/floor_tile_freezer
-	name = "ceramic floor tile"
-	path = /obj/item/stack/tile/floor_freezer
-
-/decl/fabricator_design/matter/knife_handle
-	name = "knife handle"
-	hidden = 1
-	path = /obj/item/weapon/material/butterflyhandle
-
 /decl/fabricator_design/matter/blood_pack
 	name = "blood pack (empty)"
-	path = /obj/item/weapon/reagent_containers/blood/empty
+	path = /obj/item/reagent_containers/blood/empty
 
 /decl/fabricator_design/matter/chem_disp_large
 	name = "reagent cartridge (large)"
-	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge
+	path = /obj/item/reagent_containers/chem_disp_cartridge
 
 /decl/fabricator_design/matter/chem_disp_med
 	name = "reagent cartridge (medium)"
-	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge/medium
+	path = /obj/item/reagent_containers/chem_disp_cartridge/medium
 
 /decl/fabricator_design/matter/chem_disp_small
 	name = "reagent cartridge (small)"
-	path = /obj/item/weapon/reagent_containers/chem_disp_cartridge/small
-
-/decl/fabricator_design/matter/baseballbat
-	name = "metal baseball bat"
-	path = /obj/item/weapon/material/twohanded/baseballbat
-
-/decl/fabricator_design/matter/ashtray
-	name = "ash tray"
-	path = /obj/item/weapon/material/ashtray
+	path = /obj/item/reagent_containers/chem_disp_cartridge/small
 
 /decl/fabricator_design/matter/spoon
 	name = "spoon"
-	path = /obj/item/weapon/material/kitchen/utensil/spoon
+	path = /obj/item/material/kitchen/utensil/spoon
 
 /decl/fabricator_design/matter/fork
 	name = "fork"
-	path = /obj/item/weapon/material/kitchen/utensil/fork
+	path = /obj/item/material/kitchen/utensil/fork
 
 /decl/fabricator_design/matter/butterknife
 	name = "butter knife"
-	path = /obj/item/weapon/material/kitchen/utensil/knife
-
-/decl/fabricator_design/matter/knife_blade
-	name = "knife blade"
-	hidden = 1
-	path = /obj/item/weapon/material/butterflyblade
+	path = /obj/item/material/kitchen/utensil/knife

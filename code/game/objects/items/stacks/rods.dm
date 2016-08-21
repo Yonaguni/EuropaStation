@@ -13,19 +13,10 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/rods/cyborg
-	name = "metal rod synthesizer"
-	desc = "A device that makes metal rods."
-	gender = NEUTER
-	matter = null
-	uses_charge = 1
-	charge_costs = list(500)
-	stacktype = /obj/item/stack/rods
-
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if (istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(get_amount() < 2)
 			user << "<span class='warning'>You need at least two rods to do this.</span>"
@@ -44,7 +35,6 @@
 				user.put_in_hands(new_item)
 		return
 	..()
-
 
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	src.add_fingerprint(user)

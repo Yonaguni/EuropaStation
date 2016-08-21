@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/stationary
+/obj/item/storage/stationary
 	name = "cabinet"
 	density = 1
 	anchored = 1
@@ -13,7 +13,7 @@
 	var/icon_open = "cabinet_open"
 	var/open
 
-/obj/item/weapon/storage/stationary/New()
+/obj/item/storage/stationary/New()
 	..()
 	if(!icon_open)
 		icon_open = icon_state
@@ -29,24 +29,24 @@
 		for(var/x = 1 to initial_contents[stockpath])
 			new stockpath(src)
 
-/obj/item/weapon/storage/stationary/update_icon()
+/obj/item/storage/stationary/update_icon()
 	..()
 	if(open)
 		icon_state = icon_open
 	else
 		icon_state = icon_closed
 
-/obj/item/weapon/storage/stationary/open(var/mob/user)
+/obj/item/storage/stationary/open(var/mob/user)
 	..()
 	if(!open)
 		open = 1
 		update_icon()
 
-/obj/item/weapon/storage/stationary/close(var/mob/user)
+/obj/item/storage/stationary/close(var/mob/user)
 	..()
 	if(open)
 		open = 0
 		update_icon()
 
-/obj/item/weapon/storage/stationary/attack_hand(var/mob/user)
+/obj/item/storage/stationary/attack_hand(var/mob/user)
 	return open(user)

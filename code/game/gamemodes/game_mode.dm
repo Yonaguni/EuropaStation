@@ -378,7 +378,7 @@ var/global/list/additional_antag_types = list()
 
 	for (var/obj/machinery/photocopier/faxmachine/comm in machines)
 		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
+			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
 			intercept.name = "Cent. Com. Status Summary"
 			intercept.info = intercepttext
 	world << sound('sound/AI/commandreport.ogg')

@@ -9,8 +9,8 @@
 	icon_state = "stove"
 	nano_template = "stove.tmpl"
 	acceptable_containers = list(
-		/obj/item/weapon/reagent_containers/kitchen/fryingpan,
-		/obj/item/weapon/reagent_containers/kitchen/pot
+		/obj/item/reagent_containers/kitchen/fryingpan,
+		/obj/item/reagent_containers/kitchen/pot
 		)
 
 	// BURNER DATA.

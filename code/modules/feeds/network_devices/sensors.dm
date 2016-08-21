@@ -25,7 +25,7 @@
 		pixel_y = D.pixel_y
 
 /obj/structure/sensor/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/device/multitool))
+	if(istype(thing, /obj/item/multitool))
 		var/new_name = sanitize(input("Please specify a new name or leave blank to clear.") as text|null, MAX_MESSAGE_LEN)
 
 		if(src && thing && user && Adjacent(user))

@@ -35,7 +35,7 @@
 	return 1
 
 /datum/job/proc/equip_backpack(var/mob/living/human/H)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack(H), slot_back)
 
 /datum/job/proc/equip_survival(var/mob/living/human/H)
 	if(!H)	return 0

@@ -139,8 +139,8 @@ var/list/fire_sounds = list(
 /obj/structure/fire_source/attackby(var/obj/item/thing, var/mob/user)
 
 	// A spot of the old ultraviolence.
-	if(istype(thing, /obj/item/weapon/grab) && open_flame)
-		var/obj/item/weapon/grab/G = thing
+	if(istype(thing, /obj/item/grab) && open_flame)
+		var/obj/item/grab/G = thing
 		if(G.state < GRAB_AGGRESSIVE)
 			user << "<span class='warning'>You need a better grip!</span>"
 			return
@@ -153,8 +153,8 @@ var/list/fire_sounds = list(
 			qdel(G)
 			return
 
-	if(istype(thing, /obj/item/weapon/reagent_containers))
-		var/obj/item/weapon/reagent_containers/RG = thing
+	if(istype(thing, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/RG = thing
 		if(RG.is_open_container() && RG.reagents && RG.reagents.total_volume)
 			user.visible_message("<span class='danger'>\The [user] pours the contents of \the [thing] into \the [src]!</span>")
 			for(var/datum/reagent/R in RG.reagents.reagent_list)
@@ -194,15 +194,14 @@ var/list/fire_sounds = list(
 
 	for(var/obj/item/thing in contents)
 
-		if(istype(thing, /obj/item/weapon/paper) || \
-		 istype(thing, /obj/item/weapon/storage/fancy/egg_box ) || \
+		if(istype(thing, /obj/item/paper) || \
 		 istype(thing, /obj/item/pizzabox ) || \
 		 istype(thing, /obj/item/trash))
 			fuel += rand(1,3)
 			qdel(thing)
 			return 1
 
-		if(istype(thing, /obj/item/log) || istype(thing, /obj/item/weapon/ore/coal))
+		if(istype(thing, /obj/item/log) || istype(thing, /obj/item/ore/coal))
 			fuel += rand(15,25)
 			qdel(thing)
 			return 1
@@ -214,8 +213,8 @@ var/list/fire_sounds = list(
 				wooden_thing.use(1)
 				return 1
 
-		if(istype(thing, /obj/item/weapon/material))
-			var/obj/item/weapon/material/wooden_thing = thing
+		if(istype(thing, /obj/item/material))
+			var/obj/item/material/wooden_thing = thing
 			if(wooden_thing.material.ignition_point <= (T0C+288))
 				fuel += rand(3,5)
 				qdel(wooden_thing)
@@ -226,9 +225,8 @@ var/list/fire_sounds = list(
 	var/accepted_fuel
 
 	if(istype(thing, /obj/item/log) || \
-	 istype(thing, /obj/item/weapon/ore/coal) || \
-	 istype(thing, /obj/item/weapon/paper) || \
-	 istype(thing, /obj/item/weapon/storage/fancy/egg_box ) || \
+	 istype(thing, /obj/item/ore/coal) || \
+	 istype(thing, /obj/item/paper) || \
 	 istype(thing, /obj/item/pizzabox ) || \
 	 istype(thing, /obj/item/trash))
 		accepted_fuel = 1
@@ -236,8 +234,8 @@ var/list/fire_sounds = list(
 		var/obj/item/stack/material/wooden_thing = thing
 		if(wooden_thing.material.ignition_point <= (T0C+288))
 			accepted_fuel = 1
-	else if(istype(thing, /obj/item/weapon/material))
-		var/obj/item/weapon/material/wooden_thing = thing
+	else if(istype(thing, /obj/item/material))
+		var/obj/item/material/wooden_thing = thing
 		if(wooden_thing.material.ignition_point <= (T0C+288))
 			accepted_fuel =1
 	if(accepted_fuel)

@@ -2,15 +2,15 @@
 	name = "oven"
 	desc = "It's a nice, clean electric oven."
 	acceptable_containers = list(
-		/obj/item/weapon/reagent_containers/kitchen/caketin,
-		/obj/item/weapon/reagent_containers/kitchen/bakingtray,
+		/obj/item/reagent_containers/kitchen/caketin,
+		/obj/item/reagent_containers/kitchen/bakingtray,
 		)
 
 	// All temperatures are in C, note that it does NOT use atmos temp code (yet?)
 	var/internal_temp = 20
 	var/target_temp = 20
 	var/open = 0
-	var/obj/item/weapon/reagent_containers/kitchen/food_inside = null
+	var/obj/item/reagent_containers/kitchen/food_inside = null
 
 /obj/machinery/kitchen/oven/examine()
 	..()
