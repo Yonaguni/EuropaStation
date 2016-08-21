@@ -26,11 +26,9 @@
 		/obj/structure/closet,
 		/obj/structure/sink,
 		/obj/item/weapon/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/structure/iv_drip,
 		/obj/machinery/disposal,
-		/obj/machinery/sleeper,
 		/obj/machinery/constructable_frame
 		)
 

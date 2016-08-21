@@ -36,7 +36,7 @@
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			set_dir(NORTH)
 
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 
 /obj/structure/windoor_assembly/Destroy()
 	density = 0
@@ -241,14 +241,9 @@
 	if (src.anchored)
 		usr << "It is fastened to the floor; therefore, you can't rotate it!"
 		return 0
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
 
 	src.set_dir(turn(src.dir, 270))
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
+	update_nearby_tiles()
 	update_icon()
 	return
 

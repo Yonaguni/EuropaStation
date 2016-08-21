@@ -12,7 +12,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "rock-dark"
 	density = 1
 	opacity = 1
-	blocks_air = 1
 	drop_state = "rockwall"
 	blend_with_neighbors = 20 // Blend over EVERYTHING.
 
@@ -22,8 +21,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "rock"
 	opacity = 1
 	density = 1
-	blocks_air = 1
-	temperature = T0C
 	has_resources = 1
 	drop_state = "rockwall"
 	blend_with_neighbors = 15 // Blend over MOST THINGS.
@@ -47,7 +44,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	blend_with_neighbors = 4
 	accept_lattice = 1
 	explosion_resistance = 2
@@ -104,7 +100,6 @@ proc/get_mining_overlay(var/overlay_key)
 		return
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	update_general()
 	accept_lattice = 1
 	explosion_resistance = 2
@@ -114,14 +109,11 @@ proc/get_mining_overlay(var/overlay_key)
 		return
 	density = 1
 	opacity = 1
-	blocks_air = 1
 	accept_lattice = null
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()
 	update_icon(1)
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		air_update_turf()
 
 /turf/simulated/mineral/initialize()
 	if(prob(20))

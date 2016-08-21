@@ -693,12 +693,6 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.overlays = old_overlays
 					X.underlays = old_underlays
 
-					var/turf/simulated/ST = T
-					if(istype(ST))
-						var/turf/simulated/SX = X
-						if(!SX.air)
-							SX.make_air()
-
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
 					if(direction && findtext(X.icon_state, "swall_s"))
 

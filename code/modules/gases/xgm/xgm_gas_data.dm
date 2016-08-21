@@ -24,6 +24,8 @@
 
 /hook/startup/proc/generateGasData()
 	gas_data = new
+	module_controllers["Gas Data"] = gas_data
+
 	for(var/p in (typesof(/decl/xgm_gas) - /decl/xgm_gas))
 		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
 

@@ -19,11 +19,6 @@
 	. = ..()
 	explode()
 
-/obj/effect/spider/fire_act()
-	. = ..()
-	health -= 5
-	healthcheck()
-
 /obj/effect/effect/foam/fire_act() // foam disolves when heated, except metal foams
 	. = ..()
 	if(!metal)

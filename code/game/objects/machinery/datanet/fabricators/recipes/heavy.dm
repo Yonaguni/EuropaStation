@@ -70,10 +70,6 @@
 	name = "steel closet"
 	path = /obj/structure/closet
 
-/decl/fabricator_design/heavy/furniture/canister
-	name = "atmospherics canister"
-	path = /obj/machinery/portable_atmospherics/canister
-
 /decl/fabricator_design/heavy/furniture/airlock_assembly
 	name = "steel airlock assembly"
 	path = /obj/structure/door_assembly

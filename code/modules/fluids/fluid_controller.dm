@@ -8,6 +8,7 @@ var/datum/controller/process/fluids/fluid_master
 	name = "fluids"
 	schedule_interval = 5
 	fluid_master = src
+	module_controllers["Fluids"] = fluid_master
 
 /datum/controller/process/fluids/statProcess()
 	..()

@@ -25,13 +25,11 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	desc = "Silty."
 	density = 0
 	opacity = 0
-	blocks_air = 1
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	accept_lattice = 1
 	drop_state = "rockwall"
 	blend_with_neighbors = 1
-	initial_air = list()
 	var/detail_decal
 
 /turf/simulated/ocean/is_plating()

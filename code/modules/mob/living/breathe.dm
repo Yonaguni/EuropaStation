@@ -1,6 +1,4 @@
 /mob/living/proc/handle_breathing()
-	if(!air_master)
-		return
 	if(life_tick%2==0 || failed_last_breath || (health < config.health_threshold_crit)) //First, resolve location and get a breath
 		breathe()
 
@@ -22,7 +20,7 @@
 	var/datum/gas_mixture/environment
 
 	if(loc)
-		environment = loc.return_air_for_internal_lifeform()
+		environment = loc.return_air()
 
 	if(environment)
 		breath = environment.remove_volume(volume_needed)

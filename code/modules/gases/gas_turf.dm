@@ -1,4 +1,5 @@
 /turf
+	var/temperature = T20C      // Initial turf temperature.
 	var/air_pressure_difference = 0
 	var/air_pressure_direction = 0
 	var/atmos_adjacent_turfs = 0
@@ -206,3 +207,9 @@
 			if(T.atmos_adjacent_turfs & counterdir)
 				T.atmos_adjacent_turfs_amount -= 1
 			T.atmos_adjacent_turfs &= ~counterdir
+
+/turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+	if(gas_overlay)
+		qdel(gas_overlay)
+		gas_overlay = null
+	. = ..()

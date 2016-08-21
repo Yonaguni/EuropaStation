@@ -64,7 +64,6 @@
 	if(density)
 		layer = closed_layer
 		explosion_resistance = initial(explosion_resistance)
-		update_heat_protection(get_turf(src))
 	else
 		layer = open_layer
 		explosion_resistance = 0
@@ -77,7 +76,7 @@
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
 	health = maxhealth
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 /obj/machinery/door/Destroy()
@@ -411,21 +410,6 @@
 	if(!requiresID())
 		return ..(null) //don't care who they are or what they have, act as if they're NOTHING
 	return ..(M)
-
-/obj/machinery/door/update_nearby_tiles(need_rebuild)
-	. = ..(need_rebuild)
-	if(!.)
-		return 0
-	for(var/turf/simulated/turf in locs)
-		update_heat_protection(turf)
-	return 1
-
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
-	if(istype(source))
-		if(src.density && (src.opacity || src.heat_proof))
-			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
-		else
-			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /obj/machinery/door/Move(new_loc, new_dir)
 	. = ..()

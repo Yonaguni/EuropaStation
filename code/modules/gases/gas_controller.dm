@@ -14,6 +14,7 @@ var/global/datum/controller/process/air_system/air_master
 	name = "air"
 	schedule_interval = 5
 	air_master = src
+	module_controllers["Atmosphere"] = air_master
 
 /datum/controller/process/air_system/doWork()
 	if(kill_air)

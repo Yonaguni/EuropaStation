@@ -8,7 +8,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton, /obj/item/weapon/cell)
+	var/list/allowed_devices = list(/obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton, /obj/item/weapon/cell)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -36,9 +36,6 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			if(istype(L) && L.self_recharge_time)
 				user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
 				return
-		if (istype(G, /obj/item/weapon/gun/energy/crossbow))
-			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
-			return
 		user.drop_item()
 		G.loc = src
 		charging = G
@@ -136,7 +133,7 @@ obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon_state = "wrecharger0"
 	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns and batons only) so make it more powerful
-	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton)
+	allowed_devices = list(/obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton)
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"

@@ -28,21 +28,6 @@
 /atom/proc/reveal_blood()
 	return
 
-/atom/proc/assume_air(datum/gas_mixture/giver)
-	return null
-
-/atom/proc/remove_air(amount)
-	return null
-
-/atom/proc/return_air()
-	if(loc)
-		return loc.return_air()
-	else
-		return null
-
-/atom/proc/return_air_for_internal_lifeform()
-	return return_air()
-
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
@@ -59,15 +44,6 @@
 // false if closed
 /atom/proc/is_open_container()
 	return flags & OPENCONTAINER
-
-/*//Convenience proc to see whether a container can be accessed in a certain way.
-
-	proc/can_subract_container()
-		return flags & EXTRACT_CONTAINER
-
-	proc/can_add_container()
-		return flags & INSERT_CONTAINER
-*/
 
 /atom/proc/CheckExit()
 	return 1

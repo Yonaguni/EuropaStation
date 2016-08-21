@@ -5,14 +5,6 @@ var/list/turf_edge_cache = list()
 	level = 1
 	luminosity = 0
 
-	//Properties for airtight tiles (/wall)
-	var/thermal_conductivity = 0.05
-	var/heat_capacity = 1
-
-	//Properties for both
-	var/temperature = T20C      // Initial turf temperature.
-	var/blocks_air = 0          // Does this turf contain air/let air through?
-
 	// General properties.
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/list/decals

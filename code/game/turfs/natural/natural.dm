@@ -12,7 +12,6 @@ var/list/tree_types = list(
 	desc = "Dirty."
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	accept_lattice = 1

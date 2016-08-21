@@ -44,10 +44,11 @@
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T))
 		if(report_temp)
-			data["temperature"] = "[T.air.get_temperature()]ºK"
-		if(report_gas && T.air)
-			for(var/gas_type in T.air.gas)
-				data[gas_type] = "[T.air.gas[gas_type]]kPa"
+			data["temperature"] = "[T.get_temperature()]ºK"
+		if(report_gas)
+			var/list/tgas = T.return_gas_list()
+			for(var/gas_type in tgas)
+				data[gas_type] = "[tgas[gas_type]]kPa"
 		if(report_fluid)
 			data["liquid"] = "[T.get_fluid_depth()]L"
 

@@ -276,9 +276,8 @@
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
 
-	update_nearby_tiles(need_rebuild=1) //Compel updates before
 	set_dir(turn(dir, 90))
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 
@@ -294,9 +293,8 @@
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
 
-	update_nearby_tiles(need_rebuild=1)
 	set_dir(turn(dir, 270))
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	return
 
 /obj/structure/window/New(Loc, start_dir=null, constructed=0)
@@ -313,7 +311,7 @@
 
 	ini_dir = dir
 
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	update_nearby_icons()
 
 
@@ -329,10 +327,10 @@
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 	..()
 	set_dir(ini_dir)
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles()
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()

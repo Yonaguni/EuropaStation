@@ -363,9 +363,6 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = environment.get_temperature()
-		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.get_temperature()
-
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
@@ -405,17 +402,16 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
 
-		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			var/burn_dam = 0
-			switch(bodytemperature)
-				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_1
-				if(species.cold_level_3 to species.cold_level_2)
-					burn_dam = COLD_DAMAGE_LEVEL_2
-				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_3
-			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, 1)
+		var/burn_dam = 0
+		switch(bodytemperature)
+			if(-INFINITY to species.cold_level_3)
+				burn_dam = COLD_DAMAGE_LEVEL_1
+			if(species.cold_level_3 to species.cold_level_2)
+				burn_dam = COLD_DAMAGE_LEVEL_2
+			if(species.cold_level_2 to species.cold_level_1)
+				burn_dam = COLD_DAMAGE_LEVEL_3
+		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+		fire_alert = max(fire_alert, 1)
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
@@ -877,10 +873,9 @@
 					stomach_contents.Remove(M)
 					qdel(M)
 					continue
-				if(air_master && air_master.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					nutrition += 10
+				if(!(M.status_flags & GODMODE))
+					M.adjustBruteLoss(5)
+				nutrition += 10
 
 /mob/living/human/handle_shock()
 	..()

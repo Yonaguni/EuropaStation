@@ -3,7 +3,6 @@
 	desc = "Smells like old rubber and tar."
 	density = 0
 	opacity = 0
-	blocks_air = 0
 	icon = 'icons/turf/road.dmi'
 	icon_state = "asphalt"
 	accept_lattice = 1

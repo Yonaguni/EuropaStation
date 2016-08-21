@@ -93,65 +93,43 @@
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
 	name = "vacuum floor"
-	temperature = TCMB
-	initial_air = list()
 
 /turf/simulated/floor/airless
 	name = "airless plating"
-	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/tiled/airless
 	name = "airless floor"
-	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/bluegrid/airless
 	name = "airless floor"
-	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/greengrid/airless
 	name = "airless floor"
-	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/greengrid/nitrogen
-	initial_air = list(REAGENT_ID_NITROGEN = MOLES_N2STANDARD)
 
 /turf/simulated/floor/tiled/white/airless
 	name = "airless floor"
-	initial_air = list()
-	temperature = TCMB
 
 /turf/simulated/floor/plating/airless
-	temperature = TCMB
-	initial_air = list()
 
 /turf/simulated/floor/plating/airless/New()
 	..()
 	name = "plating"
 
 /turf/simulated/floor/reinforced/airless
-	initial_air = list()
 
 /turf/simulated/floor/reinforced/airmix
-	initial_air = list(REAGENT_ID_OXYGEN = MOLES_O2ATMOS, REAGENT_ID_NITROGEN = MOLES_N2ATMOS)
 
 /turf/simulated/floor/reinforced/nitrogen
-	initial_air = list(REAGENT_ID_NITROGEN = 5000)
 
 /turf/simulated/floor/reinforced/oxygen
-	initial_air = list(REAGENT_ID_OXYGEN = 5000)
 
 /turf/simulated/floor/reinforced/phoron
-	initial_air = list(REAGENT_ID_FUEL = 5000)
 
 /turf/simulated/floor/reinforced/carbon_dioxide
-	initial_air = list(REAGENT_ID_CARBONDIOXIDE = 5000)
 
 /turf/simulated/floor/reinforced/n20
-	initial_air = list(REAGENT_ID_N2O = 5000)
 
 /turf/simulated/floor/snow
 	name = "snow"
