@@ -51,12 +51,12 @@
 
 /decl/fabricator_design/heavy/furniture/closet
 	name = "steel closet"
-	path = /obj/structure/closet
+	path = /obj/structure/crate/closet
 
 /decl/fabricator_design/heavy/furniture/airlock_assembly
 	name = "steel airlock assembly"
 	path = /obj/structure/door_assembly
 
 /decl/fabricator_design/heavy/furniture/crate
-	name = "crate"
-	path = /obj/structure/closet/crate
+	name = "steel crate"
+	path = /obj/structure/crate

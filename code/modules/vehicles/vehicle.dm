@@ -250,7 +250,7 @@
 		return 0
 
 	// if a create/closet, close before loading
-	var/obj/structure/closet/crate = C
+	var/obj/structure/crate/crate = C
 	if(istype(crate))
 		crate.close()
 

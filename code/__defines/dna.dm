@@ -3,7 +3,6 @@
 #define   UNIDNASIZE 13
 
 // Generic mutations:
-#define TK              1
 #define COLD_RESISTANCE 2
 #define XRAY            3
 #define HULK            4

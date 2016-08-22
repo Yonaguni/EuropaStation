@@ -189,18 +189,8 @@
 	animals lunging, etc.
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
-	if(!mutations.len) return
-	if(TK in mutations)
-		switch(get_dist(src,A))
-			if(1 to 5) // not adjacent may mean blocked by window
-				setMoveCooldown(2)
-			if(5 to 7)
-				setMoveCooldown(5)
-			if(8 to tk_maxrange)
-				setMoveCooldown(10)
-			else
-				return
-		A.attack_tk(src)
+	return
+
 /*
 	Restrained ClickOn
 

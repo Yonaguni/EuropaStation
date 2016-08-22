@@ -578,8 +578,8 @@ default behaviour is:
 		spawn() escape_buckle()
 
 	//Breaking out of a locker?
-	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
-		var/obj/structure/closet/C = loc
+	if( src.loc && (istype(src.loc, /obj/structure/crate)) )
+		var/obj/structure/crate/C = loc
 		spawn() C.mob_breakout(src)
 
 	//Digging yourself out of a grave

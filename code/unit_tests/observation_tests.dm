@@ -92,7 +92,7 @@ datum/unit_test/observation/moved_shall_not_register_on_enter_without_listeners/
 	..()
 	var/turf/T = locate(20,20,1)
 	var/mob/living/human/H = new(T)
-	var/obj/structure/closet/C = new(T)
+	var/obj/structure/crate/C = new(T)
 
 	H.forceMove(C)
 	if(!is_listening_to_movement(C, H))
@@ -111,7 +111,7 @@ datum/unit_test/observation/moved_shall_register_recursively_on_new_listener/sta
 	..()
 	var/turf/T = locate(20,20,1)
 	var/mob/living/human/H = new(T)
-	var/obj/structure/closet/C = new(T)
+	var/obj/structure/crate/C = new(T)
 	var/mob/dead/observer/O = new(T)
 
 	H.forceMove(C)
@@ -135,7 +135,7 @@ datum/unit_test/observation/moved_shall_register_recursively_with_existing_liste
 	..()
 	var/turf/T = locate(20,20,1)
 	var/mob/living/human/H = new(T)
-	var/obj/structure/closet/C = new(T)
+	var/obj/structure/crate/C = new(T)
 	var/mob/dead/observer/O = new(T)
 
 	O.ManualFollow(H)

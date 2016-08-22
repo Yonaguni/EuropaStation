@@ -26,7 +26,7 @@
 		var/list/possible_targets = list()
 		switch(use_drop)
 			if("Locker")
-				for(var/obj/structure/closet/C in all_structures)
+				for(var/obj/structure/crate/closet/C in all_structures)
 					possible_targets |= C
 			else
 				player << "<span class='warning'>A dead drop could not be supplied for this mission; good luck.</span>"

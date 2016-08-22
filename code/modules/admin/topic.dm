@@ -1319,10 +1319,6 @@
 		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
 		item.execute(usr)
 
-	else if(href_list["populate_inactive_customitems"])
-		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)
-
 	else if(href_list["toglang"])
 		if(check_rights(R_SPAWN))
 			var/mob/M = locate(href_list["toglang"])

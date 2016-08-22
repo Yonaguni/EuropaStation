@@ -29,8 +29,7 @@
 	return
 
 /mob/living/human/RangedAttack(var/atom/A)
-	if(TK in mutations)
-		A.attack_tk(src)
+	return
 
 /mob/living/RestrainedClickOn(var/atom/A)
 	return
