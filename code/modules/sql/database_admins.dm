@@ -71,47 +71,32 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	//process each line seperately
 	if(islist(Lines) && Lines.len)
 		for(var/line in Lines)
-			if(!length(line))
+			if(!length(line) || copytext(line,1,2) == "#")
 				continue
-			if(copytext(line,1,2) == "#")
-				continue
-			//Split the line at every "-"
 			var/list/List = splittext(line, "-")
-			if(!List.len)					continue
-			//ckey is before the first "-"
-			var/ckey = ckey(List[1])
-			if(!ckey)						continue
-			//rank follows the first "-"
-			var/rank = ""
-			if(List.len >= 2)
-				rank = ckeyEx(List[2])
-			//load permissions associated with this rank
-			var/rights = admin_ranks[rank] ? admin_ranks[rank] : 0
-			if(global_db) // Inject into the database. They'll be loaded after this point.
-				// Add them to the DB.
-				var/database/query/check_query = new("INSERT INTO admin VALUES ('[ckey]', '[rank]', [rights]);")
-				check_query.Execute(global_db)
-			else // No DB, do it now.
-				//create the admin datum and store it for later use
-				var/datum/admins/D = new /datum/admins(rank, rights, ckey)
-				//find the client for a ckey if they are connected and associate them with the new admin datum
-				D.associate(directory[ckey])
+			if(List.len)
+				var/ckey = ckey(List[1])
+				if(ckey)
+					var/rank = (List.len >= 2) ? ckeyEx(List[2]) : ""
+					var/rights = admin_ranks[rank] ? admin_ranks[rank] : 0
+					if(global_db)
+						var/database/query/check_query = new("INSERT INTO admin VALUES ('[ckey]', '[rank]', [rights]);")
+						check_query.Execute(global_db)
+					else
+						var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+						D.associate(directory[ckey])
 
 	if(global_db)
 		var/database/query/query = new("SELECT * FROM admin")
 		query.Execute(global_db)
 		while(query.NextRow())
 			var/list/querydata = query.GetRowData()
-
 			var/ckey = querydata["ckey"]
 			var/rank = querydata["rank"]
-			if(rank == "Removed")	continue	//This person was de-adminned. They are only in the admin list for archive purposes.
-
+			if(rank == "Removed") continue
 			var/rights = querydata["rights"]
 			if(istext(rights))
 				rights = text2num(rights)
 			var/datum/admins/D = new /datum/admins(rank, rights, ckey)
-
-			//find the client for a ckey if they are connected and associate them with the new admin datum
 			D.associate(directory[ckey])
 	world.log << "Loaded."

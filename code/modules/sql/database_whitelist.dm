@@ -1,8 +1,8 @@
 var/list/alien_whitelist
 
-/hook/startup/proc/loadAlienWhitelist()
+/hook/startup/proc/load_alien_whitelist_h()
 	if(!config.sql_enabled)
-		world.log << "SQL disabled. Alien whitelisting defaulting to off."
+		world.log << "SQL disabled, alien whitelisting defaulting to off."
 		config.usealienwhitelist = 0
 	else
 		load_alien_whitelist()

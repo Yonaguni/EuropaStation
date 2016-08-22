@@ -1,3 +1,6 @@
+#define BAN_JOBBAN    "BAN_JOB"
+#define BAN_SERVERBAN "BAN_SERVER"
+
 var/database/global_db
 
 proc/establish_database_connection()
@@ -69,28 +72,17 @@ proc/establish_database_connection()
 		init_schema = new(
 			"CREATE TABLE IF NOT EXISTS ban ( \
 			id INTEGER PRIMARY KEY NOT NULL, \
-			bantime TEXT NOT NULL, \
-			serverip TEXT NOT NULL, \
 			bantype TEXT NOT NULL, \
 			reason text NOT NULL, \
 			job TEXT DEFAULT NULL, \
-			duration INTEGER NOT NULL, \
-			rounds INTEGER DEFAULT NULL, \
-			expiration_time TEXT NOT NULL, \
+			expiration_time INTEGER DEFAULT NULL, \
 			ckey TEXT NOT NULL, \
 			computerid TEXT NOT NULL, \
 			ip TEXT NOT NULL, \
-			a_ckey TEXT NOT NULL, \
-			a_computerid TEXT NOT NULL, \
-			a_ip TEXT NOT NULL, \
-			who TEXT NOT NULL, \
-			adminwho TEXT NOT NULL, \
-			edits TEXT, \
-			unbanned INTEGER DEFAULT NULL, \
-			unbanned_datetime TEXT DEFAULT NULL, \
-			unbanned_ckey TEXT DEFAULT NULL, \
-			unbanned_computerid TEXT DEFAULT NULL, \
-			unbanned_ip TEXT DEFAULT NULL \
+			banning_ckey TEXT NOT NULL, \
+			banning_time INTEGER DEFAULT NULL, \
+			unbanned_ckey  TEXT NOT NULL, \
+			unbanned_datetime TEXT DEFAULT NULL \
 			);")
 		init_schema.Execute(global_db)
 		if(init_schema.ErrorMsg())

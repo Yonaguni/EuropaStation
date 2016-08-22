@@ -62,10 +62,10 @@ LOG_PDA
 ##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
 
 ## sql switching
-# SQL_ENABLED
+SQL_ENABLED
 
 ## sql db path
-# SQL_PATH data/station.db
+SQL_PATH data/station.db
 
 ## disconnect players who did nothing during the set amount of minutes
 # KICK_INACTIVE 10

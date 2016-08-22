@@ -55,7 +55,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/togglelooc,
 	/datum/admins/proc/toggleoocdead,
 	/datum/admins/proc/toggledsay,
-	/client/proc/game_panel,
 	/client/proc/cmd_admin_say,
 	/datum/admins/proc/togglehubvisibility,
 	/datum/admins/proc/PlayerNotes,
@@ -82,9 +81,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/view_chemical_reaction_logs,
 	/datum/admins/proc/paralyze_mob
 )
-var/list/admin_verbs_ban = list(
-	/client/proc/jobbans
-	)
+var/list/admin_verbs_ban = list()
 
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
@@ -225,7 +222,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc_target,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
-	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
 	/client/proc/roll_dices,
 	/proc/possess,
@@ -245,7 +241,6 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/show_aspects,
 	/client/proc/check_antagonists,
-	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message,
 	/datum/admins/proc/paralyze_mob
 )
@@ -402,25 +397,6 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/jobbans()
-	set name = "Display Job bans"
-	set category = "Admin"
-	if(holder)
-		if(!config.sql_enabled)
-			holder.Jobbans()
-		else
-			holder.DB_ban_panel()
-	feedback_add_details("admin_verb","VJB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/proc/game_panel()
-	set name = "Game Panel"
-	set category = "Admin"
-	if(holder)
-		holder.Game()
-	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
 /client/proc/secrets()
 	set name = "Secrets"
 	set category = "Admin"
@@ -458,48 +434,6 @@ var/list/admin_verbs_mentor = list(
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-#define MAX_WARNS 3
-#define AUTOBANTIME 10
-
-/client/proc/warn(warned_ckey)
-	if(!check_rights(R_ADMIN))	return
-
-	if(!warned_ckey || !istext(warned_ckey))	return
-	if(warned_ckey in admin_datums)
-		usr << "<font color='red'>Error: warn(): You can't warn admins.</font>"
-		return
-
-	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
-	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
-
-	if(!D)
-		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
-		return
-
-	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
-		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
-		if(C)
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			C << "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</font>"
-			del(C)
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
-		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
-		feedback_inc("ban_warn",1)
-	else
-		if(C)
-			C << "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>"
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [MAX_WARNS-D.warns] strikes remaining.")
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [MAX_WARNS-D.warns] strikes remaining.")
-
-	feedback_add_details("admin_verb","WARN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-#undef MAX_WARNS
-#undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
 	set category = "Special Verbs"
