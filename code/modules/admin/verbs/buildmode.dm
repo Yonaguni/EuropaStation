@@ -141,7 +141,7 @@
 	screen_loc = "NORTH,WEST+2"
 	var/varholder = "name"
 	var/valueholder = "derp"
-	var/objholder = /obj/structure/closet
+	var/objholder = /obj/structure/crate/closet
 	var/objsay = 1
 
 	Click(location, control, params)
@@ -173,13 +173,13 @@
 				if(1)
 					return 1
 				if(2)
-					objholder = text2path(input(usr,"Enter typepath:" ,"Typepath","/obj/structure/closet"))
+					objholder = text2path(input(usr,"Enter typepath:" ,"Typepath","/obj/structure/crate"))
 					if(!ispath(objholder))
-						objholder = /obj/structure/closet
+						objholder = /obj/structure/crate/closet
 						alert("That path is not allowed.")
 					else
 						if(ispath(objholder,/mob) && !check_rights(R_DEBUG,0))
-							objholder = /obj/structure/closet
+							objholder = /obj/structure/crate/closet
 				if(3)
 					var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
 

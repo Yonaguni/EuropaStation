@@ -105,9 +105,6 @@
 	user.drop_item(src.loc)
 	return
 
-/obj/structure/table/attack_tk() // no telehulk sorry
-	return
-
 /obj/structure/table/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	if(wallbreaker)
 		break_to_parts()

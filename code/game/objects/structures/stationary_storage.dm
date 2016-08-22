@@ -1,16 +1,16 @@
 /obj/item/storage/stationary
-	name = "cabinet"
+	name = "closet"
 	density = 1
 	anchored = 1
 	layer = 2.9
-	icon = 'icons/obj/closet.dmi'
-	icon_state = "cabinet_closed"
+	icon = 'icons/obj/structures/crate.dmi'
+	icon_state = "closet"
 	max_w_class = 5
 	max_storage_space = 20
 
 	var/list/initial_contents = list()
-	var/icon_closed = "cabinet_closed"
-	var/icon_open = "cabinet_open"
+	var/icon_closed = "closet"
+	var/icon_open = "closetopen"
 	var/open
 
 /obj/item/storage/stationary/New()

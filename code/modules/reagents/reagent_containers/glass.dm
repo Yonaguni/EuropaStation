@@ -23,7 +23,8 @@
 		/obj/machinery/chemical_dispenser,
 		/obj/machinery/reagentgrinder,
 		/obj/structure/table,
-		/obj/structure/closet,
+		/obj/structure/crate,
+		/obj/structure/crate/closet,
 		/obj/item/storage,
 		/obj/machinery/constructable_frame
 		)

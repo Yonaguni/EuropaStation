@@ -542,9 +542,8 @@ About the new airlock wires panel:
 /obj/structure/window/airlock_crush(var/crush_damage)
 	ex_act(2)//Smashin windows
 
-/obj/structure/closet/airlock_crush(var/crush_damage)
+/obj/structure/crate/airlock_crush(var/crush_damage)
 	..()
-	damage(crush_damage)
 	for(var/atom/movable/AM in src)
 		AM.airlock_crush()
 	return 1

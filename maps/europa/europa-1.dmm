@@ -16,7 +16,7 @@
 "q" = (/obj/effect/decal/warning_stripes{tag = "icon-NW-in"; icon_state = "NW-in"},/turf/simulated/floor,/area/shuttle/mining/station)
 "r" = (/obj/effect/decal/warning_stripes{tag = "icon-NE-in"; icon_state = "NE-in"},/turf/simulated/floor,/area/shuttle/mining/station)
 "s" = (/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/dome_ind/foundry)
-"u" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled,/area/dome_ind/foundry)
+"u" = (/obj/structure/crate/closet,/turf/simulated/floor/tiled,/area/dome_ind/foundry)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

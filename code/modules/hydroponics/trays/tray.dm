@@ -439,14 +439,7 @@
 			check_health()
 	return
 
-/obj/machinery/hydroponics/attack_tk(mob/user as mob)
-	if(dead)
-		remove_dead(user)
-	else if(harvest)
-		harvest(user)
-
 /obj/machinery/hydroponics/attack_hand(mob/user as mob)
-
 	if(harvest)
 		harvest(user)
 	else if(dead)

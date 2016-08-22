@@ -6,7 +6,7 @@ var/global/list/protected_objects = list(
 /mob/living/animal/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/structures/crate.dmi'
 	icon_state = "crate"
 	icon_living = "crate"
 
@@ -42,7 +42,7 @@ var/global/list/protected_objects = list(
 			I.forceMove(src)
 
 /mob/living/animal/mimic/crate/death()
-	var/obj/structure/closet/crate/C = new(get_turf(src))
+	var/obj/structure/crate/C = new(get_turf(src))
 	// Put loot in crate
 	for(var/obj/O in src)
 		O.forceMove(C)

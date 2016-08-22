@@ -22,7 +22,7 @@
 	src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
 /obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/reagent_containers))
+	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/crate) || istype(A, /obj/item/reagent_containers))
 		return
 
 	if(proximity)
