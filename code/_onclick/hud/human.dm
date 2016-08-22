@@ -238,14 +238,6 @@
 		src.hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
-	if(hud_data.has_internals)
-		mymob.internals = new /obj/screen()
-		mymob.internals.icon = 'icons/screen/indicators.dmi'
-		mymob.internals.icon_state = "internal0"
-		mymob.internals.name = "internal"
-		mymob.internals.screen_loc = ui_internal
-		hud_elements |= mymob.internals
-
 	if(hud_data.has_warnings)
 		mymob.oxygen = new /obj/screen()
 		mymob.oxygen.icon = 'icons/screen/indicators.dmi'

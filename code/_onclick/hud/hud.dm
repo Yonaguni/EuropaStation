@@ -293,7 +293,6 @@ datum/hud/New(mob/owner)
 			src.hud_used.action_intent.screen_loc = ui_acti_alt	//move this to the alternative position, where zone_select usually is.
 		else
 			src.client.screen -= src.healths
-			src.client.screen -= src.internals
 			src.client.screen -= src.gun_setting_icon
 
 		//These ones are not a part of 'adding', 'other' or 'hotkeybuttons' but we want them gone.
@@ -309,8 +308,6 @@ datum/hud/New(mob/owner)
 			src.client.screen += src.hud_used.hotkeybuttons
 		if(src.healths)
 			src.client.screen |= src.healths
-		if(src.internals)
-			src.client.screen |= src.internals
 		if(src.gun_setting_icon)
 			src.client.screen |= src.gun_setting_icon
 
@@ -340,7 +337,6 @@ datum/hud/New(mob/owner)
 			src.client.screen -= src.hud_used.other
 		if(src.hud_used.hotkeybuttons)
 			src.client.screen -= src.hud_used.hotkeybuttons
-		src.client.screen -= src.internals
 		src.client.screen += src.hud_used.action_intent		//we want the intent swticher visible
 	else
 		hud_used.hud_shown = 1
@@ -350,8 +346,6 @@ datum/hud/New(mob/owner)
 			src.client.screen += src.hud_used.other
 		if(src.hud_used.hotkeybuttons && !src.hud_used.hotkey_ui_hidden)
 			src.client.screen += src.hud_used.hotkeybuttons
-		if(src.internals)
-			src.client.screen |= src.internals
 		src.hud_used.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 
 	hud_used.hidden_inventory_update()
