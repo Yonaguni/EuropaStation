@@ -564,6 +564,7 @@ proc/admin_notice(var/message, var/rights)
 	return 0
 
 /datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
+
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"

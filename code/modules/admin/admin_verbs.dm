@@ -81,8 +81,10 @@ var/list/admin_verbs_admin = list(
 	/client/proc/view_chemical_reaction_logs,
 	/datum/admins/proc/paralyze_mob
 )
-var/list/admin_verbs_ban = list()
-
+var/list/admin_verbs_ban = list(
+	/datum/admins/proc/apply_server_ban,
+	/datum/admins/proc/apply_job_ban
+	)
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound
