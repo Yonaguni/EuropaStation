@@ -4,7 +4,6 @@
 	set name = "Advanced ProcCall"
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
 	var/target = null
 	var/targetselected = 0
@@ -36,17 +35,13 @@
 /client/proc/callproc_target(atom/A in range(world.view))
 	set category = "Debug"
 	set name = "Advanced ProcCall Target"
-
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
-
 	callproc_targetpicked(1, A)
 
 /client/proc/callproc_targetpicked(hastarget, datum/target)
 
 	// this needs checking again here because VV's 'Call Proc' option directly calls this proc with the target datum
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
 	var/returnval = null
 
@@ -149,4 +144,3 @@
 		returnval = call(procname)(arglist(arguments))
 
 	usr << "<span class='info'>[procname]() returned: [isnull(returnval) ? "null" : returnval]</span>"
-	feedback_add_details("admin_verb","APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -26,22 +26,13 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		for(var/i=2, i<=List.len, i++)
 			switch(ckey(List[i]))
 				if("@","prev")					rights |= previous_rights
-				if("buildmode","build")			rights |= R_BUILDMODE
 				if("admin")						rights |= R_ADMIN
 				if("ban")						rights |= R_BAN
-				if("fun")						rights |= R_FUN
 				if("server")					rights |= R_SERVER
 				if("debug")						rights |= R_DEBUG
-				if("permissions","rights")		rights |= R_PERMISSIONS
-				if("possess")					rights |= R_POSSESS
-				if("stealth")					rights |= R_STEALTH
-				if("rejuv","rejuvinate")		rights |= R_REJUVINATE
-				if("varedit")					rights |= R_VAREDIT
-				if("everything","host","all")	rights |= (R_HOST | R_BUILDMODE | R_ADMIN | R_BAN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_POSSESS | R_STEALTH | R_REJUVINATE | R_VAREDIT | R_SOUNDS | R_SPAWN | R_MOD| R_MENTOR)
+				if("everything","host","all")	rights |= (R_HOST | R_ADMIN | R_BAN | R_SERVER | R_DEBUG | R_SOUNDS | R_SPAWN)
 				if("sound","sounds")			rights |= R_SOUNDS
 				if("spawn","create")			rights |= R_SPAWN
-				if("mod")						rights |= R_MOD
-				if("mentor")					rights |= R_MENTOR
 
 		admin_ranks[rank] = rights
 		previous_rights = rights
@@ -60,15 +51,16 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 	load_admin_ranks()
 
-	if(config.sql_enabled)
-		establish_database_connection()
+	world.log << "<b>Loading staff database.</b>"
 
-	world.log << "Loading admins..."
+	var/list/existing_admins = list()
+	var/database/query/check_query = new("SELECT * FROM admin;")
+	check_query.Execute(global_db)
+	while(check_query.NextRow())
+		var/list/row = check_query.GetRowData()
+		existing_admins |= row["ckey"]
 
-	//load text from file
 	var/list/Lines = file2list("config/admins.txt")
-
-	//process each line seperately
 	if(islist(Lines) && Lines.len)
 		for(var/line in Lines)
 			if(!length(line) || copytext(line,1,2) == "#")
@@ -79,24 +71,31 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				if(ckey)
 					var/rank = (List.len >= 2) ? ckeyEx(List[2]) : ""
 					var/rights = admin_ranks[rank] ? admin_ranks[rank] : 0
-					if(global_db)
-						var/database/query/check_query = new("INSERT INTO admin VALUES ('[ckey]', '[rank]', [rights]);")
-						check_query.Execute(global_db)
+					var/database/query/insert_query
+					if(ckey in existing_admins)
+						insert_query = new("UPDATE admin SET rank = '?', rights = '?' WHERE ckey == '?';", rank, rights, ckey)
 					else
-						var/datum/admins/D = new /datum/admins(rank, rights, ckey)
-						D.associate(directory[ckey])
+						insert_query = new("INSERT INTO admin VALUES (?,?,?);", ckey, rank, rights)
+					insert_query.Execute(global_db)
 
-	if(global_db)
-		var/database/query/query = new("SELECT * FROM admin")
-		query.Execute(global_db)
-		while(query.NextRow())
-			var/list/querydata = query.GetRowData()
-			var/ckey = querydata["ckey"]
-			var/rank = querydata["rank"]
-			if(rank == "Removed") continue
-			var/rights = querydata["rights"]
-			if(istext(rights))
-				rights = text2num(rights)
-			var/datum/admins/D = new /datum/admins(rank, rights, ckey)
-			D.associate(directory[ckey])
-	world.log << "Loaded."
+	var/database/query/query = new("SELECT * FROM admin")
+	query.Execute(global_db)
+	while(query.NextRow())
+		var/list/querydata = query.GetRowData()
+		var/ckey = querydata["ckey"]
+		var/rank = querydata["rank"]
+		if(rank == "Removed") continue
+		var/rights = querydata["rights"]
+		if(istext(rights))
+			rights = text2num(rights)
+		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+		D.associate(directory[ckey])
+
+/client/proc/reload_admins()
+	set name = "Reload Admins"
+	set category = "Debug"
+
+	if(!check_rights(R_SERVER))	return
+
+	message_admins("[usr] manually reloaded admins")
+	load_admins()

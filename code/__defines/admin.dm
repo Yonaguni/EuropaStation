@@ -12,31 +12,17 @@
 #define SPAM_TRIGGER_WARNING  5
 #define SPAM_TRIGGER_AUTOMUTE 10
 
-// Some constants for DB_Ban
-#define BANTYPE_PERMA       1
-#define BANTYPE_TEMP        2
-#define BANTYPE_JOB_PERMA   3
-#define BANTYPE_JOB_TEMP    4
-#define BANTYPE_ANY_FULLBAN 5 // Used to locate stuff to unban.
-
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // Admin permissions.
-#define R_BUILDMODE     0x1
+#define R_SPAWN         0x1
 #define R_ADMIN         0x2
 #define R_BAN           0x4
-#define R_FUN           0x8
+#define R_SOUNDS        0x8
 #define R_SERVER        0x10
 #define R_DEBUG         0x20
-#define R_POSSESS       0x40
-#define R_PERMISSIONS   0x80
-#define R_STEALTH       0x100
-#define R_REJUVINATE    0x200
-#define R_VAREDIT       0x400
-#define R_SOUNDS        0x800
-#define R_SPAWN         0x1000
-#define R_MOD           0x2000
-#define R_MENTOR        0x4000
-#define R_HOST          0x8000 //higher than this will overflow
+#define R_HOST          0x40
 
-#define R_MAXPERMISSION 0x8000 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+//unused 0x80 0x100 0x200 0x400 0x800 0x1000 0x2000 0x4000 0x8000, higher than this will overflow
+
+#define R_MAXPERMISSION 0x40 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.

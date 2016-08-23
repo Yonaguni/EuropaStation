@@ -9,8 +9,6 @@
 	if(!query_text || length(query_text) < 1)
 		return
 
-	//world << query_text
-
 	var/list/query_list = SDQL2_tokenize(query_text)
 
 	if(!query_list || query_list.len < 1)

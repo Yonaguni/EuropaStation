@@ -37,6 +37,3 @@ var/datum/world_light/exterior_lighting = new()
 		if(fadetime)
 			sleep(fadetime)
 			M << "<span class='notice'><b>It is now [edata["name"]].</b></span>"
-
-/mob/verb/force_world_time_advance()
-	exterior_lighting.update_tod()

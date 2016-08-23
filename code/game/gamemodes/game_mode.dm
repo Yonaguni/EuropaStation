@@ -50,9 +50,6 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["toggle"])
 			if("respawn")
 				deny_respawn = !deny_respawn
-			if("ert")
-				ert_disabled = !ert_disabled
-				announce_ert_disabled()
 			if("shuttle_recall")
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
@@ -193,11 +190,6 @@ var/global/list/additional_antag_types = list()
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
-		spawn(rand(100,150))
-			announce_ert_disabled()
-
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
 		if(!(antag.flags & ANTAG_OVERRIDE_JOB))
@@ -207,51 +199,11 @@ var/global/list/additional_antag_types = list()
 	if(emergency_shuttle && auto_recall_shuttle)
 		emergency_shuttle.auto_recall = 1
 
-	feedback_set_details("round_start","[time2text(world.realtime)]")
-	if(ticker && ticker.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
-	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return 1
 
 /datum/game_mode/proc/fail_setup()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.reset_antag_selection()
-
-/datum/game_mode/proc/announce_ert_disabled()
-	if(!ert_disabled)
-		return
-
-	var/list/reasons = list(
-		"political instability",
-		"quantum fluctuations",
-		"hostile raiders",
-		"derelict station debris",
-		"REDACTED",
-		"ancient alien artillery",
-		"solar magnetic storms",
-		"sentient time-travelling killbots",
-		"gravitational anomalies",
-		"wormholes to another dimension",
-		"a telescience mishap",
-		"radiation flares",
-		"supermatter dust",
-		"leaks into a negative reality",
-		"antiparticle clouds",
-		"residual bluespace energy",
-		"suspected criminal operatives",
-		"malfunctioning von Neumann probe swarms",
-		"shadowy interlopers",
-		"haywire synthetic constructs",
-		"rogue inner system exiles",
-		"artifacts of eldritch horror",
-		"a brain slug infestation",
-		"killer bugs that lay eggs in the husks of the living",
-		"a deserted transport carrying alien specimens",
-		"an emissary for the gestalt requesting a security detail",
-		"radical Skrellian transevolutionaries",
-		"classified security operations"
-		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.returned() || station_was_nuked)
@@ -281,24 +233,13 @@ var/global/list/additional_antag_types = list()
 			antag.print_player_summary()
 		sleep(10)
 
-	var/clients = 0
-	var/surviving_humans = 0
 	var/surviving_total = 0
 	var/ghosts = 0
-	var/escaped_humans = 0
 	var/escaped_total = 0
-	var/escaped_on_shuttle = 0
-
 	var/list/area/escape_locations = list(/area/shuttle/escape/outpost)
 
 	for(var/mob/M in player_list)
 		if(M.client)
-			clients++
-			if(ishuman(M))
-				if(M.stat != DEAD)
-					surviving_humans++
-					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
-						escaped_humans++
 			if(M.stat != DEAD)
 				surviving_total++
 				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
@@ -315,73 +256,12 @@ var/global/list/additional_antag_types = list()
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	world << text
 
-	if(clients > 0)
-		feedback_set("round_end_clients",clients)
-	if(ghosts > 0)
-		feedback_set("round_end_ghosts",ghosts)
-	if(surviving_humans > 0)
-		feedback_set("survived_human",surviving_humans)
-	if(surviving_total > 0)
-		feedback_set("survived_total",surviving_total)
-	if(escaped_humans > 0)
-		feedback_set("escaped_human",escaped_humans)
-	if(escaped_total > 0)
-		feedback_set("escaped_total",escaped_total)
-	if(escaped_on_shuttle > 0)
-		feedback_set("escaped_on_shuttle",escaped_on_shuttle)
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 
 	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
-
-/datum/game_mode/proc/send_intercept()
-
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
-	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with subversive elements:</B><br>"
-
-	var/list/disregard_roles = list()
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(antag.flags & ANTAG_SUSPICIOUS)
-			disregard_roles |= antag.role_text
-
-	var/list/suspects = list()
-	for(var/mob/living/human/man in player_list) if(man.client && man.mind)
-
-		// NT relation option
-		var/special_role = man.mind.special_role
-		var/datum/antagonist/special_role_data = get_antag_data(special_role)
-
-		if (special_role in disregard_roles)
-			continue
-		else if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED && prob(50) || \
-			man.client.prefs.nanotrasen_relation == COMPANY_SKEPTICAL && prob(20))
-			suspects += man
-		// Antags
-		else if(special_role_data && prob(special_role_data.suspicion_chance))
-			suspects += man
-
-		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
-			suspects += man
-
-	for(var/mob/M in suspects)
-		if(player_is_antag(M.mind, only_offstation_roles = 1))
-			continue
-		switch(rand(1, 100))
-			if(1 to 50)
-				intercepttext += "Someone with the job of <b>[M.mind.assigned_role]</b> <br>"
-			else
-				intercepttext += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b> <br>"
-
-	for (var/obj/machinery/photocopier/faxmachine/comm in machines)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "Cent. Com. Status Summary"
-			intercept.info = intercepttext
-	world << sound('sound/AI/commandreport.ogg')
 
 /datum/game_mode/proc/get_players_for_role(var/role, var/antag_id)
 	var/list/players = list()

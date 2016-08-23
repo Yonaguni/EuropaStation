@@ -90,7 +90,7 @@
 
 /proc/log_unit_test(text)
 	world.log << "## UNIT_TEST ##: [text]"
-	
+
 
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
@@ -137,10 +137,7 @@
 		if(include_link && C)
 			. += "<a href='?priv_msg=\ref[C]'>"
 
-		if(C && C.holder && C.holder.fakekey && !include_name)
-			. += "Administrator"
-		else
-			. += key
+		. += key
 
 		if(include_link)
 			if(C)	. += "</a>"

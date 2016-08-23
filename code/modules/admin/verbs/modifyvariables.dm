@@ -13,7 +13,6 @@ var/list/VVckey_edit = list("key", "ckey")
 		src << "Game hasn't started yet."
 	else
 		src.modify_variables(ticker)
-		feedback_add_details("admin_verb","ETV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/mod_list_add_ass() //haha
 
@@ -121,7 +120,8 @@ var/list/VVckey_edit = list("key", "ckey")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 
 /client/proc/mod_list(var/list/L, atom/O, original_name, objectvar)
-	if(!check_rights(R_VAREDIT))	return
+	if(!check_rights(R_DEBUG))
+		return
 	if(!istype(L,/list)) src << "Not a List."
 
 	if(L.len > 1000)
@@ -167,7 +167,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	if(variable in VVckey_edit)
 		if(!check_rights(R_SPAWN|R_DEBUG)) return
 	if(variable in VVicon_edit_lock)
-		if(!check_rights(R_FUN|R_DEBUG)) return
+		if(!check_rights(R_SPAWN|R_DEBUG)) return
 
 	if(isnull(variable))
 		usr << "Unable to determine variable type."
@@ -335,7 +335,8 @@ var/list/VVckey_edit = list("key", "ckey")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
 /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
-	if(!check_rights(R_VAREDIT))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	for(var/p in forbidden_varedit_object_types)
 		if( istype(O,p) )
@@ -356,7 +357,7 @@ var/list/VVckey_edit = list("key", "ckey")
 		if(param_var_name in VVckey_edit)
 			if(!check_rights(R_SPAWN|R_DEBUG)) return
 		if(param_var_name in VVicon_edit_lock)
-			if(!check_rights(R_FUN|R_DEBUG)) return
+			if(!check_rights(R_DEBUG)) return
 
 		variable = param_var_name
 
@@ -418,7 +419,7 @@ var/list/VVckey_edit = list("key", "ckey")
 		if(variable in VVckey_edit)
 			if(!check_rights(R_SPAWN|R_DEBUG)) return
 		if(variable in VVicon_edit_lock)
-			if(!check_rights(R_FUN|R_DEBUG)) return
+			if(!check_rights(R_DEBUG)) return
 
 	if(!autodetect_class)
 

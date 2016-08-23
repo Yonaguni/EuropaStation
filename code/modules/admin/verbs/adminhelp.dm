@@ -1,4 +1,3 @@
-
 //This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as")
 
@@ -85,21 +84,17 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			//Options bar:  mob, details ( admin = 2, dev = 3, mentor = 4, character name (0 = just ckey, 1 = ckey and character name), link? (0 no don't make it a link, 1 do so),
 			//		highlight special roles (0 = everyone has same looking name, 1 = antags / special roles get a golden name)
 
-	var/mentor_msg = "\blue <b><font color=red>Request for Help: </font>[get_options_bar(mob, 4, 1, 1, 0)][ai_cl]:</b> [msg]"
 	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, 1, 1)][ai_cl]:</b> [msg]"
 
 	var/admin_number_afk = 0
 
 	for(var/client/X in admins)
-		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
+		if(X.holder.rights & R_ADMIN)
 			if(X.is_afk())
 				admin_number_afk++
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				X << 'sound/effects/adminhelp.ogg'
-			if(X.holder.rights == R_MENTOR)
-				X << mentor_msg		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
-			else
-				X << msg
+			X << msg
 
 	//show it to the person adminhelping too
 	src << "<font color='blue'>PM to-<b>Staff </b>: [original_msg]</font>"
@@ -110,6 +105,5 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		send2adminirc("Request for Help from [key_name(src)]: [html_decode(original_msg)] - !![admin_number_afk ? "All admins AFK ([admin_number_afk])" : "No admins online"]!!")
 	else
 		send2adminirc("Request for Help from [key_name(src)]: [html_decode(original_msg)]")
-	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 

@@ -10,99 +10,47 @@
 		check_antagonists()
 		return
 
-	if(href_list["editrights"])
-		if(!check_rights(R_PERMISSIONS))
-			message_admins("[key_name_admin(usr)] attempted to edit the admin permissions without sufficient rights.")
-			log_admin("[key_name(usr)] attempted to edit the admin permissions without sufficient rights.")
-			return
-
-		var/adm_ckey
-
-		var/task = href_list["editrights"]
-		if(task == "add")
-			var/new_ckey = ckey(input(usr,"New admin's ckey","Admin ckey", null) as text|null)
-			if(!new_ckey)	return
-			if(new_ckey in admin_datums)
-				usr << "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>"
-				return
-			adm_ckey = new_ckey
-			task = "rank"
-		else if(task != "show")
-			adm_ckey = ckey(href_list["ckey"])
-			if(!adm_ckey)
-				usr << "<font color='red'>Error: Topic 'editrights': No valid ckey</font>"
-				return
-
-		var/datum/admins/D = admin_datums[adm_ckey]
-
-		if(task == "remove")
-			if(alert("Are you sure you want to remove [adm_ckey]?","Message","Yes","Cancel") == "Yes")
-				if(!D)	return
-				admin_datums -= adm_ckey
-				D.disassociate()
-
-				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
-				log_admin("[key_name(usr)] removed [adm_ckey] from the admins list")
-				log_admin_rank_modification(adm_ckey, "Removed")
-
-		else if(task == "rank")
-			var/new_rank
-			if(admin_ranks.len)
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
-			else
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
-
-			var/rights = 0
-			if(D)
-				rights = D.rights
-			switch(new_rank)
-				if(null,"") return
-				if("*New Rank*")
-					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(!config.sql_enabled)
-						new_rank = ckeyEx(new_rank)
-					if(!new_rank)
-						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
-						return
-					if(!config.sql_enabled)
-						if(admin_ranks.len)
-							if(new_rank in admin_ranks)
-								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
-							else
-								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
-				else
-					if(!config.sql_enabled)
-						new_rank = ckeyEx(new_rank)
-						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
-
-			if(D)
-				D.disassociate()								//remove adminverbs and unlink from client
-				D.rank = new_rank								//update the rank
-				D.rights = rights								//update the rights based on admin_ranks (default: 0)
-			else
-				D = new /datum/admins(new_rank, rights, adm_ckey)
-
-			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
-			D.associate(C)											//link up with the client and add verbs
-
-			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
-			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
-			log_admin_rank_modification(adm_ckey, new_rank)
-
-		else if(task == "permissions")
-			if(!D)	return
-			var/list/permissionlist = list()
-			for(var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
-				permissionlist[rights2text(i)] = i
-			var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
-			if(!new_permission)	return
-			D.rights ^= permissionlist[new_permission]
-
-			message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
-			log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
-			log_admin_permission_modification(adm_ckey, permissionlist[new_permission])
-
-		edit_admin_permissions()
+	// ANTAG STATUS EDITING.
+	if(href_list["antag_edit"])
+		var/datum/mind/M = locate(href_list["antag_edit"])
+		if(istype(M))
+			if(href_list["add_antagonist"])
+				var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
+				if(antag)
+					if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
+						log_admin("[key_name_admin(usr)] made [key_name(M)] into a [antag.role_text].")
+					else
+						usr << "<span class='warning'>[key_name(M)] could not be made into a [antag.role_text]!</span>"
+			else if(href_list["remove_antagonist"])
+				var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
+				if(antag) antag.remove_antagonist(M)
+			else if(href_list["equip_antagonist"])
+				var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
+				if(antag) antag.equip(M.current)
+			else if(href_list["unequip_antagonist"])
+				var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
+				if(antag) antag.unequip(M.current)
+			else if(href_list["move_antag_to_spawn"])
+				var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
+				if(antag) antag.place_mob(M.current)
+			else if (href_list["role_edit"])
+				var/new_role = input("Select new role", "Assigned role", M.assigned_role) as null|anything in get_job_titles()
+				if (!new_role) return
+				M.assigned_role = new_role
+			else if (href_list["obj_delete"])
+				var/datum/objective/objective = locate(href_list["obj_delete"])
+				if(!istype(objective))	return
+				M.objectives -= objective
+			else if(href_list["obj_completed"])
+				var/datum/objective/objective = locate(href_list["obj_completed"])
+				if(!istype(objective))	return
+				objective.completed = !objective.completed
+			else if (href_list["obj_announce"])
+				var/obj_count = 1
+				M.current << "\blue Your current objectives:"
+				for(var/datum/objective/objective in M.objectives)
+					M.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+					obj_count++
 
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))	return
@@ -181,7 +129,8 @@
 			qdel(M.client)
 
 	else if(href_list["mute"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_ADMIN))
+			return
 
 		var/mob/M = locate(href_list["mute"])
 		if(!ismob(M))	return
@@ -220,41 +169,12 @@
 		dat += {"Now: [secret_force_mode]"}
 		usr << browse(dat, "window=f_secret")
 
-	else if(href_list["forcespeech"])
-		if(!check_rights(R_FUN))	return
-
-		var/mob/M = locate(href_list["forcespeech"])
-		if(!ismob(M))
-			usr << "this can only be used on instances of type /mob"
-
-		var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
-		if(!speech)	return
-		M.say(speech)
-		speech = sanitize(speech) // Nah, we don't trust them
-		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins("\blue [key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]")
-
-	else if(href_list["revive"])
-		if(!check_rights(R_REJUVINATE))	return
-
-		var/mob/living/L = locate(href_list["revive"])
-		if(!istype(L))
-			usr << "This can only be used on instances of type /mob/living"
-			return
-
-		if(config.allow_admin_rev)
-			L.revive()
-			message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-			log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-		else
-			usr << "Admin Rejuvinates have been disabled"
-
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])
 		show_player_panel(M)
 
 	else if(href_list["adminplayerobservejump"])
-		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))	return
+		if(!check_rights(R_ADMIN))	return
 
 		var/mob/M = locate(href_list["adminplayerobservejump"])
 
@@ -328,185 +248,6 @@
 		src.owner << "[special_role_description]"
 		src.owner << "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)"
 
-	else if(href_list["adminspawncookie"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
-
-		var/mob/living/human/H = locate(href_list["adminspawncookie"])
-		if(!ishuman(H))
-			usr << "This can only be used on instances of type /mob/living/human"
-			return
-
-		H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/baked/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/reagent_containers/food/snacks/baked/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/baked/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/reagent_containers/food/snacks/baked/cookie)))
-				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
-		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
-		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
-		feedback_inc("admin_cookies_spawned",1)
-		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
-
-	else if(href_list["CentcommReply"])
-		var/mob/living/L = locate(href_list["CentcommReply"])
-		if(!istype(L))
-			usr << "This can only be used on instances of type /mob/living/"
-			return
-
-		if(L.can_centcom_reply())
-			var/input = sanitize(input(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from Centcomm", ""))
-			if(!input)		return
-
-			src.owner << "You sent [input] to [L] via a secure channel."
-			log_admin("[src.owner] replied to [key_name(L)]'s Centcomm message with the message [input].")
-			message_admins("[src.owner] replied to [key_name(L)]'s Centcom message with: \"[input]\"")
-			L << "<span class='info'>You hear something crackle in your headset for a moment before a voice speaks.</span>"
-			L << "<span class='info'>Please stand by for a message from Central Command.</span>"
-			L << "<span class='info'>Message as follows.</span>"
-			L << "<span class='notice'>[input]</span>"
-			L << "<span class='info'>Message ends.</span>"
-		else
-			src.owner << "The person you are trying to contact does not have functional radio equipment."
-
-
-	else if(href_list["SyndicateReply"])
-		var/mob/living/human/H = locate(href_list["SyndicateReply"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/human"
-			return
-		if(!istype(H.l_ear, /obj/item/device/radio/headset) && !istype(H.r_ear, /obj/item/device/radio/headset))
-			usr << "The person you are trying to contact is not wearing a headset"
-			return
-
-		var/input = sanitize(input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", ""))
-		if(!input)	return
-
-		src.owner << "You sent [input] to [H] via a secure channel."
-		log_admin("[src.owner] replied to [key_name(H)]'s illegal message with the message [input].")
-		H << "You hear something crackle in your headset for a moment before a voice speaks.  \"Please stand by for a message from your benefactor.  Message as follows, agent. <b>\"[input]\"</b>  Message ends.\""
-
-	else if(href_list["AdminFaxView"])
-		var/obj/item/fax = locate(href_list["AdminFaxView"])
-		if (istype(fax, /obj/item/paper))
-			var/obj/item/paper/P = fax
-			P.show_content(usr,1)
-		else if (istype(fax, /obj/item/photo))
-			var/obj/item/photo/H = fax
-			H.show(usr)
-		else if (istype(fax, /obj/item/paper_bundle))
-			//having multiple people turning pages on a paper_bundle can cause issues
-			//open a browse window listing the contents instead
-			var/data = ""
-			var/obj/item/paper_bundle/B = fax
-
-			for (var/page = 1, page <= B.pages.len, page++)
-				var/obj/pageobj = B.pages[page]
-				data += "<A href='?src=\ref[src];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
-
-			usr << browse(data, "window=[B.name]")
-		else
-			usr << "\red The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]"
-
-	else if (href_list["AdminFaxViewPage"])
-		var/page = text2num(href_list["AdminFaxViewPage"])
-		var/obj/item/paper_bundle/bundle = locate(href_list["paper_bundle"])
-
-		if (!bundle) return
-
-		if (istype(bundle.pages[page], /obj/item/paper))
-			var/obj/item/paper/P = bundle.pages[page]
-			P.show_content(src.owner, 1)
-		else if (istype(bundle.pages[page], /obj/item/photo))
-			var/obj/item/photo/H = bundle.pages[page]
-			H.show(src.owner)
-		return
-
-	else if(href_list["CentcommFaxReply"])
-		var/mob/sender = locate(href_list["CentcommFaxReply"])
-		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
-
-		//todo: sanitize
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
-		if(!input)	return
-
-		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
-
-		// Create the reply message
-		var/obj/item/paper/P = new /obj/item/paper( null ) //hopefully the null loc won't cause trouble for us
-		P.name = "[command_name()]- [customname]"
-		P.info = input
-		P.update_icon()
-
-		// Stamps
-		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-		stampoverlay.icon_state = "paper_stamp-cent"
-		if(!P.stamped)
-			P.stamped = new
-		P.stamped += /obj/item/stamp
-		P.overlays += stampoverlay
-		P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
-
-		if(fax.recievefax(P))
-			src.owner << "\blue Message reply to transmitted successfully."
-			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(sender)]: [input]")
-			message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(sender)]", 1)
-		else
-			src.owner << "\red Message reply failed."
-
-		spawn(100)
-			qdel(P)
-		return
-
-	else if(href_list["SolGovFaxReply"])
-		//TODO
-		/*
-		var/mob/living/human/H = locate(href_list["SolGovFaxReply"])
-		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
-
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
-		if(!input)	return
-
-		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
-
-		for(var/obj/machinery/photocopier/faxmachine/F in machines)
-			if(F == fax)
-				if(! (F.stat & (BROKEN|NOPOWER) ) )
-
-					// animate! it's alive!
-					flick("faxreceive", F)
-
-					// give the sprite some time to flick
-					spawn(20)
-						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "Sol Government- [customname]"
-						P.info = input
-						P.update_icon()
-
-						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
-
-						// Stamps
-						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-						stampoverlay.icon_state = "paper_stamp-cap"
-						if(!P.stamped)
-							P.stamped = new
-						P.stamped += /obj/item/stamp
-						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Sol Government Quantum Relay.</i>"
-
-				src.owner << "Message reply to transmitted successfully."
-				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
-				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
-				return
-		src.owner << "/red Unable to locate fax!"
-		*/
-
-
-
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))	return
 
@@ -533,144 +274,11 @@
 		usr.client.cmd_admin_direct_narrate(M)
 
 	else if(href_list["subtlemessage"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_ADMIN))
+			return
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
-
-	else if(href_list["traitor"])
-		if(!check_rights(R_ADMIN|R_MOD))	return
-
-		if(!ticker || !ticker.mode)
-			alert("The game hasn't started yet!")
-			return
-
-		var/mob/M = locate(href_list["traitor"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob."
-			return
-		show_traitor_panel(M)
-
-	else if(href_list["create_object"])
-		if(!check_rights(R_SPAWN))	return
-		return create_object(usr)
-
-	else if(href_list["quick_create_object"])
-		if(!check_rights(R_SPAWN))	return
-		return quick_create_object(usr)
-
-	else if(href_list["create_turf"])
-		if(!check_rights(R_SPAWN))	return
-		return create_turf(usr)
-
-	else if(href_list["create_mob"])
-		if(!check_rights(R_SPAWN))	return
-		return create_mob(usr)
-
-	else if(href_list["object_list"])			//this is the laggiest thing ever
-		if(!check_rights(R_SPAWN))	return
-
-		if(!config.allow_admin_spawning)
-			usr << "Spawning of items is not allowed."
-			return
-
-		var/atom/loc = usr.loc
-
-		var/dirty_paths
-		if (istext(href_list["object_list"]))
-			dirty_paths = list(href_list["object_list"])
-		else if (istype(href_list["object_list"], /list))
-			dirty_paths = href_list["object_list"]
-
-		var/paths = list()
-		var/removed_paths = list()
-
-		for(var/dirty_path in dirty_paths)
-			var/path = text2path(dirty_path)
-			if(!path)
-				removed_paths += dirty_path
-				continue
-			else if(!ispath(path, /obj) && !ispath(path, /turf) && !ispath(path, /mob))
-				removed_paths += dirty_path
-				continue
-			paths += path
-
-		if(!paths)
-			alert("The path list you sent is empty")
-			return
-		if(length(paths) > 5)
-			alert("Select fewer object types, (max 5)")
-			return
-		else if(length(removed_paths))
-			alert("Removed:\n" + jointext(removed_paths, "\n"))
-
-		var/list/offset = splittext(href_list["offset"],",")
-		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
-		var/tmp_dir = href_list["object_dir"]
-		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
-		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
-			obj_dir = 2
-		var/obj_name = sanitize(href_list["object_name"])
-		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","inhand","inmarked") ))
-			where = "onfloor"
-
-		if( where == "inhand" )
-			usr << "Support for inhand not available yet. Will spawn on floor."
-			where = "onfloor"
-
-		if ( where == "inhand" )	//Can only give when human or monkey
-			if ( !( ishuman(usr) || issmall(usr) ) )
-				usr << "Can only spawn in hand when you're a human or a monkey."
-				where = "onfloor"
-			else if ( usr.get_active_hand() )
-				usr << "Your active hand is full. Spawning on floor."
-				where = "onfloor"
-
-		if ( where == "inmarked" )
-			if ( !marked_datum )
-				usr << "You don't have any object marked. Abandoning spawn."
-				return
-			else
-				if ( !istype(marked_datum,/atom) )
-					usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
-					return
-
-		var/atom/target //Where the object will be spawned
-		switch ( where )
-			if ( "onfloor" )
-				switch (href_list["offset_type"])
-					if ("absolute")
-						target = locate(0 + X,0 + Y,0 + Z)
-					if ("relative")
-						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
-			if ( "inmarked" )
-				target = marked_datum
-
-		if(target)
-			for (var/path in paths)
-				for (var/i = 0; i < number; i++)
-					if(path in typesof(/turf))
-						var/turf/O = target
-						var/turf/N = O.ChangeTurf(path)
-						if(N)
-							if(obj_name)
-								N.name = obj_name
-					else
-						var/atom/O = new path(target)
-						if(O)
-							O.set_dir(obj_dir)
-							if(obj_name)
-								O.name = obj_name
-								if(istype(O,/mob))
-									var/mob/M = O
-									M.real_name = obj_name
-
-		log_and_message_admins("created [number] [english_list(paths)]")
-		return
 
 	else if(href_list["admin_secrets"])
 		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
@@ -695,7 +303,6 @@
 			show_player_panel(M)
 
 	// player info stuff
-
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
 		var/add = sanitize(input("Add Player Info") as null|text)

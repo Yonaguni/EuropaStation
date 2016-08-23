@@ -44,10 +44,6 @@
 
 	next_click = world.time + 1
 
-	if(client.buildmode)
-		build_click(src, client.buildmode, params, A)
-		return
-
 	// I hate to do this but intercepting it here is much nicer than a dozen overrides.
 	if(istype(loc, /mob/living/heavy_vehicle) && !(A in src.contents))
 		var/mob/living/heavy_vehicle/M = loc

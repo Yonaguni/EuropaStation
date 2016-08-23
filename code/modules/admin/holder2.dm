@@ -4,7 +4,6 @@ var/list/admin_datums = list()
 	var/rank			= "Temporary Admin"
 	var/client/owner	= null
 	var/rights = 0
-	var/fakekey			= null
 	var/datum/marked_datum
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
@@ -43,10 +42,6 @@ checks if usr is an admin with at least ONE of the flags in rights_required. (No
 if rights_required == 0, then it simply checks if they are an admin.
 if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
 generally it would be used like so:
-
-proc/admin_proc()
-	if(!check_rights(R_ADMIN)) return
-	world << "you have enough rights!"
 
 NOTE: It checks usr by default. Supply the "user" argument if you wish to check for a specific mob.
 */
