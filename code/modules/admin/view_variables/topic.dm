@@ -8,7 +8,8 @@
 
 	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
 	else if(href_list["rename"])
-		if(!check_rights(R_VAREDIT))	return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/mob/M = locate(href_list["rename"])
 		if(!istype(M))
@@ -23,7 +24,8 @@
 		href_list["datumrefresh"] = href_list["rename"]
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])
-		if(!check_rights(R_VAREDIT))	return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/D = locate(href_list["datumedit"])
 		if(!istype(D,/datum) && !istype(D,/client))
@@ -33,7 +35,8 @@
 		modify_variables(D, href_list["varnameedit"], 1)
 
 	else if(href_list["varnamechange"] && href_list["datumchange"])
-		if(!check_rights(R_VAREDIT))	return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/D = locate(href_list["datumchange"])
 		if(!istype(D,/datum) && !istype(D,/client))
@@ -54,7 +57,8 @@
 			usr.client.cmd_assume_direct_control(M)
 
 	else if(href_list["varnamemass"] && href_list["datummass"])
-		if(!check_rights(R_VAREDIT))	return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/atom/A = locate(href_list["datummass"])
 		if(!istype(A))
@@ -74,17 +78,6 @@
 		src.holder.show_player_panel(M)
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
-	else if(href_list["godmode"])
-		if(!check_rights(R_REJUVINATE))	return
-
-		var/mob/M = locate(href_list["godmode"])
-		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-
-		src.cmd_admin_godmode(M)
-		href_list["datumrefresh"] = href_list["godmode"]
-
 	else if(href_list["gib"])
 		if(!check_rights(0))	return
 
@@ -95,41 +88,8 @@
 
 		src.cmd_admin_gib(M)
 
-	else if(href_list["build_mode"])
-		if(!check_rights(R_BUILDMODE))	return
-
-		var/mob/M = locate(href_list["build_mode"])
-		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-
-		togglebuildmode(M)
-		href_list["datumrefresh"] = href_list["build_mode"]
-
-	else if(href_list["drop_everything"])
-		if(!check_rights(R_DEBUG|R_ADMIN))	return
-
-		var/mob/M = locate(href_list["drop_everything"])
-		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-
-		if(usr.client)
-			usr.client.cmd_admin_drop_everything(M)
-
-	else if(href_list["explode"])
-		if(!check_rights(R_DEBUG|R_FUN))	return
-
-		var/atom/A = locate(href_list["explode"])
-		if(!isobj(A) && !ismob(A) && !isturf(A))
-			usr << "This can only be done to instances of type /obj, /mob and /turf"
-			return
-
-		src.cmd_admin_explosion(A)
-		href_list["datumrefresh"] = href_list["explode"]
-
 	else if(href_list["emp"])
-		if(!check_rights(R_DEBUG|R_FUN))	return
+		if(!check_rights(R_DEBUG))	return
 
 		var/atom/A = locate(href_list["emp"])
 		if(!isobj(A) && !ismob(A) && !isturf(A))
@@ -327,7 +287,7 @@
 		M.regenerate_icons()
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN))	return
+		if(!check_rights(R_DEBUG|R_ADMIN))	return
 
 		var/mob/living/L = locate(href_list["mobToDamage"])
 		if(!istype(L)) return

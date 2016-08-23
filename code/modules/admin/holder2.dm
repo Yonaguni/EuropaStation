@@ -4,7 +4,6 @@ var/list/admin_datums = list()
 	var/rank			= "Temporary Admin"
 	var/client/owner	= null
 	var/rights = 0
-	var/fakekey			= null
 	var/datum/marked_datum
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)

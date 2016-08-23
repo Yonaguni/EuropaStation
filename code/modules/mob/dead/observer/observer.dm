@@ -238,19 +238,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!client)
 		return
-	var/mentor = is_mentor(usr.client)
-	if(!config.antag_hud_allowed && (!client.holder || mentor))
+	if(!config.antag_hud_allowed && !client.holder)
 		src << "\red Admins have disabled this for this round."
 		return
 	var/mob/dead/observer/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
 		src << "\red <B>You have been banned from using this feature</B>"
 		return
-	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
+	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && !client.holder)
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
 		M.can_reenter_corpse = 0
-	if(!M.has_enabled_antagHUD && (!client.holder || mentor))
+	if(!M.has_enabled_antagHUD && !client.holder)
 		M.has_enabled_antagHUD = 1
 	if(M.antagHUD)
 		M.antagHUD = 0
@@ -409,10 +408,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Write in blood"
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
-
-	if(!(config.cult_ghostwriter))
-		src << "\red That verb is not currently permitted."
-		return
 
 	if (!src.stat)
 		return

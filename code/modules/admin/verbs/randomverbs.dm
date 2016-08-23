@@ -1,20 +1,3 @@
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
-	set category = null
-	set name = "Drop Everything"
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-
-	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
-	if(confirm != "Yes")
-		return
-
-	for(var/obj/item/W in M)
-		M.drop_from_inventory(W)
-
-	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
-
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Subtle Message"
@@ -35,42 +18,6 @@
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
-
-/client/proc/cmd_mentor_check_new_players()	//Allows mentors / admins to determine who the newer players are.
-	set category = "Admin"
-	set name = "Check new Players"
-	if(!holder)
-		src << "Only staff members may use this command."
-
-	var/age = alert(src, "Age check", "Show accounts yonger then _____ days","7", "30" , "All")
-
-	if(age == "All")
-		age = 9999999
-	else
-		age = text2num(age)
-
-	var/missing_ages = 0
-	var/msg = ""
-
-	var/highlight_special_characters = 1
-	if(is_mentor(usr.client))
-		highlight_special_characters = 0
-
-	for(var/client/C in clients)
-		if(C.player_age == "Requires database")
-			missing_ages = 1
-			continue
-		if(C.player_age < age)
-			msg += "[key_name(C, 1, 1, highlight_special_characters)]: account is [C.player_age] days old<br>"
-
-	if(missing_ages)
-		src << "Some accounts did not have proper ages set in their clients.  This function requires database to be present"
-
-	if(msg != "")
-		src << browse(msg, "window=Player_age_check")
-	else
-		src << "No matches for that age range found."
-
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
 	set category = "Special Verbs"
@@ -110,18 +57,6 @@
 	M << msg
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
 	message_admins("\blue \bold DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]<BR>", 1)
-
-/client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
-	set category = "Special Verbs"
-	set name = "Godmode"
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-	M.status_flags ^= GODMODE
-	usr << "\blue Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"
-
-	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	message_admins("[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]", 1)
 
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
@@ -289,118 +224,6 @@ Ccomp's first proc.
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
 
-/*
-If a guy was gibbed and you want to revive him, this is a good way to do so.
-Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
-Traitors and the like can also be revived with the previous role mostly intact.
-/N */
-/client/proc/respawn_character()
-	set category = "Special Verbs"
-	set name = "Respawn Character"
-	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-	var/input = ckey(input(src, "Please specify which key will be respawned.", "Key", ""))
-	if(!input)
-		return
-
-	var/mob/dead/observer/G_found
-	for(var/mob/dead/observer/G in player_list)
-		if(G.ckey == input)
-			G_found = G
-			break
-
-	if(!G_found)//If a ghost was not found.
-		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
-		return
-
-	var/mob/living/human/new_character = new(pick(latejoin))//The mob being spawned.
-
-	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
-	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
-		/*Try and locate a record for the person being respawned through data_core.
-		This isn't an exact science but it does the trick more often than not.*/
-		var/id = md5("[G_found.real_name][G_found.mind.assigned_role]")
-		for(var/datum/data/record/t in data_core.locked)
-			if(t.fields["id"]==id)
-				record_found = t//We shall now reference the record.
-				break
-
-	if(record_found)//If they have a record we can determine a few things.
-		new_character.real_name = record_found.fields["name"]
-		new_character.gender = record_found.fields["sex"]
-		new_character.age = record_found.fields["age"]
-		new_character.b_type = record_found.fields["b_type"]
-	else
-		new_character.gender = pick(MALE,FEMALE)
-		var/datum/preferences/A = new()
-		A.randomize_appearance_for(new_character)
-		new_character.real_name = G_found.real_name
-
-	if(!new_character.real_name)
-		if(new_character.gender == MALE)
-			new_character.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-		else
-			new_character.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-	new_character.name = new_character.real_name
-
-	if(G_found.mind && !G_found.mind.active)
-		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
-		new_character.mind.special_verbs = list()
-	else
-		new_character.mind_initialize()
-	if(!new_character.mind.assigned_role)
-		new_character.mind.assigned_role = "[using_map.default_title]" //If they somehow got a null assigned role.
-
-	//DNA
-	if(record_found)//Pull up their name from database records if they did have a mind.
-		new_character.dna = new()//Let's first give them a new DNA.
-		new_character.dna.unique_enzymes = record_found.fields["b_dna"]//Enzymes are based on real name but we'll use the record for conformity.
-
-		// I HATE BYOND.  HATE.  HATE. - N3X
-		var/list/newSE= record_found.fields["enzymes"]
-		var/list/newUI = record_found.fields["identity"]
-		new_character.dna.SE = newSE.Copy() //This is the default of enzymes so I think it's safe to go with.
-		new_character.dna.UpdateSE()
-		new_character.UpdateAppearance(newUI.Copy())//Now we configure their appearance based on their unique identity, same as with a DNA machine or somesuch.
-	else//If they have no records, we just do a random DNA for them, based on their random appearance/savefile.
-		new_character.dna.ready_dna(new_character)
-
-	new_character.key = G_found.key
-
-	/*
-	The code below functions with the assumption that the mob is already a traitor if they have a special role.
-	So all it does is re-equip the mob with powers and/or items. Or not, if they have no special role.
-	If they don't have a mind, they obviously don't have a special role.
-	*/
-
-	//Two variables to properly announce later on.
-	var/admin = key_name_admin(src)
-	var/player_key = G_found.key
-
-	//Now for special roles and equipment.
-	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
-	if(antag_data)
-		antag_data.add_antagonist(new_character.mind)
-		antag_data.place_mob(new_character)
-	else
-		job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
-
-	//Announces the character on all the systems, based on the record.
-	if(!record_found && !player_is_antag(new_character.mind, only_offstation_roles = 1)) //If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
-		//Power to the user!
-		if(alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,"No","Yes")=="Yes")
-			data_core.manifest_inject(new_character)
-		if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
-			call(/proc/AnnounceArrival)(new_character, new_character.mind.assigned_role)
-
-	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
-
-	new_character << "You have been fully respawned. Enjoy the game."
-
-	return new_character
-
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
@@ -412,13 +235,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!istype(M))
 		alert("Cannot revive a ghost")
 		return
-	if(config.allow_admin_rev)
-		M.revive()
-
-		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", 1)
-	else
-		alert("Admin revive disabled")
+	M.revive()
+	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
+	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", 1)
 
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
@@ -452,38 +271,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])", 1)
 		qdel(O)
 
-/client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in range(world.view))
-	set category = "Special Verbs"
-	set name = "Explosion"
-
-	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
-	if(devastation == null) return
-	var/heavy = input("Range of heavy impact. -1 to none", text("Input"))  as num|null
-	if(heavy == null) return
-	var/light = input("Range of light impact. -1 to none", text("Input"))  as num|null
-	if(light == null) return
-	var/flash = input("Range of flash. -1 to none", text("Input"))  as num|null
-	if(flash == null) return
-
-	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
-		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
-				return
-
-		explosion(O, devastation, heavy, light, flash)
-		log_admin("[key_name(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])", 1)
-		return
-	else
-		return
-
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in range(world.view))
 	set category = "Special Verbs"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return
+	if(!check_rights(R_DEBUG))	return
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
@@ -504,7 +296,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN))	return
+	if(!check_rights(R_ADMIN))	return
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -520,85 +312,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	M.gib()
 
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
-	set name = "Check Contents"
-
-	var/list/L = M.get_contents()
-	for(var/t in L)
-		usr << "[t]"
-
 /client/proc/toggle_view_range()
 	set category = "Special Verbs"
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
-
 	if(view == world.view)
-		view = input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
+		view = input("Select view range:", "View Range", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
 	else
 		view = world.view
-
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].", 1)	//why? removed by order of XSI
-
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Evac"
-
-	if ((!( ticker ) || !emergency_shuttle.location()))
-		return
-
-	if(!check_rights(R_ADMIN))	return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-
-	var/choice
-	if(ticker.mode.auto_recall_shuttle)
-		choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
-		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
-		else
-			return
-	emergency_shuttle.call_evac()
-
-
-
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Evac"
-
-	if(!check_rights(R_ADMIN))	return
-
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
-
-	if(!ticker || !emergency_shuttle.can_recall())
-		return
-
-	emergency_shuttle.recall()
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
-
-	return
-
-/client/proc/admin_deny_shuttle()
-	set category = "Admin"
-	set name = "Toggle Deny Evac"
-
-	if (!ticker)
-		return
-
-	if(!check_rights(R_ADMIN))	return
-
-	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
-
-	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
 	set category = "Special Verbs"

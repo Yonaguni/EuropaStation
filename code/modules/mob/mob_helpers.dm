@@ -314,7 +314,7 @@ proc/is_blind(A)
 	var/keyname
 	if(subject && subject.client)
 		var/client/C = subject.client
-		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
+		keyname = C.key
 		if(C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
 			var/mindname
 			var/realname = C.mob.real_name
@@ -328,28 +328,33 @@ proc/is_blind(A)
 				name = realname
 
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && (M.client.prefs.toggles & CHAT_DEAD))
-			var/follow
-			var/lname
-			if(subject)
-				if(subject != M)
-					follow = "([ghost_follow_link(subject, M)]) "
-				if(M.stat != DEAD && M.client.holder)
-					follow = "([admin_jump_link(subject, M.client.holder)]) "
-				var/mob/dead/observer/DM
-				if(istype(subject, /mob/dead/observer))
-					DM = subject
-				if(M.client.holder) 							// What admins see
-					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
-				else
-					if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
-						lname = "Ghost of [name]"
-					else if(DM)									// Non-anons
-						lname = "[keyname] ([name])"
-					else										// Everyone else (dead people who didn't ghost yet, etc.)
-						lname = name
-				lname = "<span class='name'>[lname]</span> "
-			M << "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>"
+		if(!M.client || !!(M.client.prefs.toggles & CHAT_DEAD))
+			continue
+		if(!M.client.holder)
+			if(istype(M, /mob/new_player) || M.stat != DEAD)
+				continue
+
+		var/follow
+		var/lname
+		if(subject)
+			if(subject != M)
+				follow = "([ghost_follow_link(subject, M)]) "
+			if(M.stat != DEAD && M.client.holder)
+				follow = "([admin_jump_link(subject, M.client.holder)]) "
+			var/mob/dead/observer/DM
+			if(istype(subject, /mob/dead/observer))
+				DM = subject
+			if(M.client.holder) 							// What admins see
+				lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
+			else
+				if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
+					lname = "Ghost of [name]"
+				else if(DM)									// Non-anons
+					lname = "[keyname] ([name])"
+				else										// Everyone else (dead people who didn't ghost yet, etc.)
+					lname = name
+			lname = "<span class='name'>[lname]</span> "
+		M << "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>"
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -380,7 +385,7 @@ proc/is_blind(A)
 				else
 					name = M.real_name
 		if(!name)
-			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
+			name = C.key
 		if(joined_ghosts)
 			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else

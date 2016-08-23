@@ -28,21 +28,13 @@ var/list/gamemode_cache = list()
 
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
-	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
-	var/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
-	var/vote_autotransfer_interval = 36000 // length of time before next sequential autotransfer vote
 	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
 	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
-//	var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
-	var/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
 	var/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
@@ -61,40 +53,20 @@ var/list/gamemode_cache = list()
 	var/list/probabilities = list()		// relative probability of each mode
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/allow_ai = 1					// allow ai job
 	var/hostedby = null
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
-	var/show_mods = 0
-	var/show_mentors = 0
-	var/mods_can_tempban = 0
-	var/mods_can_job_tempban = 0
-	var/mod_tempban_max = 1440
-	var/mod_job_tempban_max = 1440
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
 
-	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
-
 	var/character_slots = 10				// The number of available character slots
 
-	var/max_maint_drones = 5				//This many drones can spawn,
-	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
-
-	var/disable_player_mice = 0
-	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
-
 	var/usealienwhitelist = 0
-	var/limitalienplayers = 0
-	var/alien_to_human_ratio = 0.5
 	var/allow_extra_antags = 0
 	var/guests_allowed = 1
-	var/debugparanoid = 0
 
 	var/serverurl
 	var/server
@@ -103,18 +75,7 @@ var/list/gamemode_cache = list()
 	var/forumurl
 	var/githuburl
 
-	//Alert level description
-	var/alert_desc_green =       "All threats to the colony have passed. Thank you for your cooperation."
-	var/alert_desc_blue_upto =   "A serious threat to station lives has been confirmed. Please cooperate with emergency personnel and naval officers for the duration of the emergency."
-	var/alert_desc_blue_downto = "Martial law has been rescinded, but a state of emergency is still in effect. Cooperation with emergency personnel is required."
-	var/alert_desc_red_upto =    "Sol military personnel are now in control of the colony. Citizens are required to follow all directives or face punitive action."
-	var/alert_desc_red_downto =  "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the colony and martial law remains in effect."
-	var/alert_desc_delta =       "The colony's self-destruct mechanism has been engaged. All citizens are required to obey all instructions given by naval personnel. Any violations of these orders can be punished by death. This is not a drill."
-
-	var/forbid_singulo_possession = 0
-
 	//game_options.txt configs
-
 	var/health_threshold_softcrit = 0
 	var/health_threshold_crit = 0
 	var/health_threshold_dead = -100
@@ -137,7 +98,6 @@ var/list/gamemode_cache = list()
 
 	var/use_loyalty_implants = 0
 
-	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 
@@ -161,8 +121,6 @@ var/list/gamemode_cache = list()
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
-	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
 	var/ghost_interaction = 0
 
 	var/comms_password = ""
@@ -193,8 +151,6 @@ var/list/gamemode_cache = list()
 
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
-	var/looc_allowed = 1
-	var/dooc_allowed = 1
 	var/dsay_allowed = 1
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
@@ -287,9 +243,6 @@ var/list/gamemode_cache = list()
 				if ("log_say")
 					config.log_say = 1
 
-				if ("debug_paranoid")
-					config.debugparanoid = 1
-
 				if ("log_admin")
 					config.log_admin = 1
 
@@ -344,15 +297,6 @@ var/list/gamemode_cache = list()
 				if ("allow_vote_mode")
 					config.allow_vote_mode = 1
 
-				if ("allow_admin_jump")
-					config.allow_admin_jump = 1
-
-				if("allow_admin_rev")
-					config.allow_admin_rev = 1
-
-				if ("allow_admin_spawning")
-					config.allow_admin_spawning = 1
-
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
 
@@ -365,23 +309,8 @@ var/list/gamemode_cache = list()
 				if ("vote_period")
 					config.vote_period = text2num(value)
 
-				if ("vote_autotransfer_initial")
-					config.vote_autotransfer_initial = text2num(value)
-
-				if ("vote_autotransfer_interval")
-					config.vote_autotransfer_interval = text2num(value)
-
 				if ("vote_autogamemode_timeleft")
 					config.vote_autogamemode_timeleft = text2num(value)
-
-				if("ert_admin_only")
-					config.ert_admin_call_only = 1
-
-				if ("allow_ai")
-					config.allow_ai = 1
-
-//				if ("authentication")
-//					config.enable_authentication = 1
 
 				if ("respawn_delay")
 					config.respawn_delay = text2num(value)
@@ -427,13 +356,9 @@ var/list/gamemode_cache = list()
 
 				if ("disable_ooc")
 					config.ooc_allowed = 0
-					config.looc_allowed = 0
 
 				if ("disable_entry")
 					config.enter_allowed = 0
-
-				if ("disable_dead_ooc")
-					config.dooc_allowed = 0
 
 				if ("disable_dsay")
 					config.dsay_allowed = 0
@@ -443,9 +368,6 @@ var/list/gamemode_cache = list()
 
 				if ("usewhitelist")
 					config.usewhitelist = 1
-
-				if ("feature_object_spell_system")
-					config.feature_object_spell_system = 1
 
 				if ("allow_metadata")
 					config.allow_Metadata = 1
@@ -480,45 +402,6 @@ var/list/gamemode_cache = list()
 				if("kick_inactive")
 					config.kick_inactive = text2num(value)
 
-				if("show_mods")
-					config.show_mods = 1
-
-				if("show_mentors")
-					config.show_mentors = 1
-
-				if("mods_can_tempban")
-					config.mods_can_tempban = 1
-
-				if("mods_can_job_tempban")
-					config.mods_can_job_tempban = 1
-
-				if("mod_tempban_max")
-					config.mod_tempban_max = text2num(value)
-
-				if("mod_job_tempban_max")
-					config.mod_job_tempban_max = text2num(value)
-
-				if("alert_red_upto")
-					config.alert_desc_red_upto = value
-
-				if("alert_red_downto")
-					config.alert_desc_red_downto = value
-
-				if("alert_blue_downto")
-					config.alert_desc_blue_downto = value
-
-				if("alert_blue_upto")
-					config.alert_desc_blue_upto = value
-
-				if("alert_green")
-					config.alert_desc_green = value
-
-				if("alert_delta")
-					config.alert_desc_delta = value
-
-				if("forbid_singulo_possession")
-					forbid_singulo_possession = 1
-
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
 
@@ -551,30 +434,11 @@ var/list/gamemode_cache = list()
 				if("automute_on")
 					automute_on = 1
 
-				if("usealienwhitelist")
-					usealienwhitelist = 1
-
-				if("alien_player_ratio")
-					limitalienplayers = 1
-					alien_to_human_ratio = text2num(value)
-
-				if("assistant_maint")
-					config.assistant_maint = 1
-
-				if("gateway_delay")
-					config.gateway_delay = text2num(value)
-
 				if("continuous_rounds")
 					config.continous_rounds = 1
 
 				if("ghost_interaction")
 					config.ghost_interaction = 1
-
-				if("disable_player_mice")
-					config.disable_player_mice = 1
-
-				if("uneducated_mice")
-					config.uneducated_mice = 1
 
 				if("comms_password")
 					config.comms_password = value
@@ -598,32 +462,14 @@ var/list/gamemode_cache = list()
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
 
-				if("allow_cult_ghostwriter")
-					config.cult_ghostwriter = 1
-
-				if("req_cult_ghostwriter")
-					config.cult_ghostwriter_req_cultists = text2num(value)
-
 				if("character_slots")
 					config.character_slots = text2num(value)
-
-				if("allow_drone_spawn")
-					config.allow_drone_spawn = text2num(value)
-
-				if("drone_build_time")
-					config.drone_build_time = text2num(value)
-
-				if("max_maint_drones")
-					config.max_maint_drones = text2num(value)
 
 				if("use_overmap")
 					config.use_overmap = 1
 
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))
-
-				if("disable_welder_vision")
-					config.welder_vision = 0
 
 				if("allow_extra_antags")
 					config.allow_extra_antags = 1

@@ -52,6 +52,3 @@ world/IsBanned(key, address, computer_id)
 		if(M.ckey == B.data["ckey"] )
 			return B.data["reason"]
 	return 0
-
-/client/verb/bantest()
-	world.IsBanned(key, null, computer_id)

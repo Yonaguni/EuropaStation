@@ -65,13 +65,7 @@
 
 	var/recieve_pm_type = "Player"
 	if(holder)
-		//mod PMs are maroon
-		//PMs sent from admins and mods display their rank
-		if(holder)
-			if(!C.holder && holder && holder.fakekey)
-				recieve_pm_type = "Admin"
-			else
-				recieve_pm_type = holder.rank
+		recieve_pm_type = holder.rank
 
 	else if(!C.holder)
 		src << "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>"
@@ -113,7 +107,7 @@
 		//check client/X is an admin and isn't the sender or recipient
 		if(X == C || X == src)
 			continue
-		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN|R_MOD|R_MENTOR))
+		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN))
 			X << "<span class='pm'><span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]</span> to <span class='name'>[key_name(C, X, 0)]</span>: <span class='message'>[msg]</span></span></span>"
 
 /client/proc/cmd_admin_irc_pm(sender)
@@ -142,5 +136,5 @@
 	for(var/client/X in admins)
 		if(X == src)
 			continue
-		if(X.holder.rights & R_ADMIN|R_MOD)
+		if(X.holder.rights & R_ADMIN)
 			X << "<span class='pm'><span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]</span> to <span class='name'>IRC-[sender]</span>: <span class='message'>[msg]</span></span></span>"

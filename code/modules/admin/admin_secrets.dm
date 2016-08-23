@@ -1,5 +1,23 @@
 var/datum/admin_secrets/admin_secrets = new()
 
+/datum/admins/proc/Secrets()
+	if(!check_rights(0))	return
+
+	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
+	for(var/datum/admin_secret_category/category in admin_secrets.categories)
+		if(!category.can_view(usr))
+			continue
+		dat += "<B>[category.name]</B><br>"
+		if(category.desc)
+			dat += "<I>[category.desc]</I><BR>"
+		for(var/datum/admin_secret_item/item in category.items)
+			if(!item.can_view(usr))
+				continue
+			dat += "<A href='?src=\ref[src];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
+		dat += "<BR>"
+	usr << browse(dat, "window=secrets")
+	return
+
 /datum/admin_secrets
 	var/list/datum/admin_secret_category/categories
 	var/list/datum/admin_secret_item/items
@@ -78,8 +96,8 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_category/fun_secrets
 	name = "Fun Secrets"
 
-/datum/admin_secret_category/final_solutions
-	name = "Final Solutions"
+/datum/admin_secret_category/endgame
+	name = "Endgame"
 	desc = "(Warning, these will end the round!)"
 
 /*************************
@@ -92,14 +110,14 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_item/random_event
 	category = /datum/admin_secret_category/random_events
-	permissions = R_FUN
+	permissions = R_SPAWN
 	warn_before_use = 1
 
 /datum/admin_secret_item/fun_secret
 	category = /datum/admin_secret_category/fun_secrets
-	permissions = R_FUN
+	permissions = R_SPAWN
 	warn_before_use = 1
 
-/datum/admin_secret_item/final_solution
-	category = /datum/admin_secret_category/final_solutions
-	permissions = R_FUN|R_SERVER|R_ADMIN
+/datum/admin_secret_item/endgame
+	category = /datum/admin_secret_category/endgame
+	permissions = R_SPAWN|R_SERVER|R_ADMIN
