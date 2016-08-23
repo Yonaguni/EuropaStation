@@ -23,9 +23,6 @@ world/IsBanned(key, address, computer_id)
 		add_server_ban(_ckey=ckey(key), _cid=computer_id, _reason="Use of ToR", _banningkey="Automated Ban")
 		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [config.banappeals]")
 
-	if(!config.sql_enabled)
-		return ..()
-
 	var/ckeytext = ckey(key)
 	establish_database_connection()
 	if(!global_db)
@@ -41,3 +38,27 @@ world/IsBanned(key, address, computer_id)
 			return list("reason"="[B.data["bantype"]]", "desc"="[desc]")
 
 	return ..() //default pager ban stuff
+
+/proc/jobban_isbanned(var/mob/M, var/rank)
+	if(!M || !rank)
+		return 0
+
+	if(guest_jobbans(rank))
+		if(config.guest_jobban && IsGuestKey(M.key))
+			return "Guest Job-ban"
+		if(config.usewhitelist && !check_whitelist(M))
+			return "Whitelisted Job"
+	for(var/thing in jobbans)
+		var/datum/ban/JB = thing
+		if(M.ckey == JB.data["ckey"] && rank == JB.data["job"])
+			return JB.data["reason"]
+	return 0
+
+/proc/server_isbanned(var/mob/M)
+	if(!M)
+		return 0
+	for(var/thing in serverbans)
+		var/datum/ban/B = thing
+		if(M.ckey == B.data["ckey"] )
+			return B.data["reason"]
+	return 0

@@ -5,11 +5,6 @@ var/database/global_db
 
 proc/establish_database_connection()
 
-	if(!config.sql_enabled)
-		del global_db
-		global_db = null
-		return 0
-
 	if(!global_db)
 
 		// Create or load the DB.
@@ -122,8 +117,7 @@ proc/establish_database_connection()
 			world.log << "SQL ERROR: playernotes: [init_schema.ErrorMsg()]."
 
 		if(!global_db)
-			world.log << "Failed to load or create an SQL database. Defaulting to legacy systems."
-			config.sql_enabled = 0
+			world.log << "Failed to load or create an SQL database."
 
 	return 1
 

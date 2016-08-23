@@ -1,17 +1,6 @@
 var/list/alien_whitelist
 
 /hook/startup/proc/load_alien_whitelist_h()
-	if(!config.sql_enabled)
-		world.log << "SQL disabled, alien whitelisting defaulting to off."
-		config.usealienwhitelist = 0
-	else
-		load_alien_whitelist()
-	return 1
-
-/proc/load_alien_whitelist()
-	if(!config.sql_enabled)
-		alien_whitelist = null
-		return 0
 	alien_whitelist = list()
 	var/database/query/query = new("SELECT * FROM whitelist")
 	query.Execute(global_db)
@@ -34,8 +23,6 @@ var/list/alien_whitelist
 		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1
-	if(!alien_whitelist)
-		load_alien_whitelist()
 	if(!alien_whitelist || !alien_whitelist.len)
 		return 0
 	return ("[M.ckey]-[lowertext(species)]" in alien_whitelist)

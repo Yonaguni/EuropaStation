@@ -1,6 +1,4 @@
 proc/sql_report_death(var/mob/living/H)
-	if(!config.sql_enabled)
-		return
 	if(!H)
 		return
 	if(!H.key || !H.mind)

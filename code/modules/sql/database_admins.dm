@@ -60,9 +60,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 	load_admin_ranks()
 
-	if(config.sql_enabled)
-		establish_database_connection()
-
+	establish_database_connection()
 	world.log << "Loading admins..."
 
 	//load text from file

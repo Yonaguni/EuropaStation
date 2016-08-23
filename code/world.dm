@@ -72,9 +72,6 @@ var/global/datum/global_init/init = new ()
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
 
 	src.update_status()
 
@@ -432,52 +429,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
-
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	world.load_mentors() // no need to write another hook.
-	return 1
-
-/world/proc/load_mods()
-	if(!config.sql_enabled)
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			error("Failed to load config/mods.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
-
-/world/proc/load_mentors()
-	if(!config.sql_enabled)
-		var/text = file2text("config/mentors.txt")
-		if (!text)
-			error("Failed to load config/mentors.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Mentor"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""

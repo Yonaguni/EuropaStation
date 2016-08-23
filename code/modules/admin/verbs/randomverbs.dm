@@ -440,16 +440,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/customname = sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null)
 	if(!input)
 		return
-	if(!customname)
-		customname = "[company_name] Update"
-	for (var/obj/machinery/photocopier/faxmachine/C in machines)
-		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/paper/P = new /obj/item/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = replacetext(input, "\n", "<br/>")
-			P.update_space(P.info)
-			P.update_icon()
-
 	switch(alert("Should this be announced to the general population?",,"Yes","No"))
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);

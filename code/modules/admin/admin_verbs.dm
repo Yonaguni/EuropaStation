@@ -75,7 +75,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/aooc,
 	/client/proc/change_human_appearance_admin,
 	/client/proc/change_human_appearance_self,
-	/client/proc/change_security_level,
 	/datum/admins/proc/reload_vips,
 	/datum/admins/proc/show_vips,
 	/client/proc/view_chemical_reaction_logs,
@@ -83,8 +82,13 @@ var/list/admin_verbs_admin = list(
 )
 var/list/admin_verbs_ban = list(
 	/datum/admins/proc/apply_server_ban,
-	/datum/admins/proc/apply_job_ban
+	/datum/admins/proc/apply_job_ban,
+	/datum/admins/proc/clear_server_bans,
+	/datum/admins/proc/clear_job_bans,
+	/datum/admins/proc/list_server_bans,
+	/datum/admins/proc/list_job_bans
 	)
+
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound
@@ -140,8 +144,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/debug_controller,
 	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_admin_delete,
-	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
 	/client/proc/print_random_map,
 	/client/proc/create_random_map,
 	/client/proc/apply_random_map,
@@ -169,9 +171,8 @@ var/list/admin_verbs_possess = list(
 	/proc/possess,
 	/proc/release
 	)
-var/list/admin_verbs_permissions = list(
-	/client/proc/edit_admin_permissions
-	)
+var/list/admin_verbs_permissions = list()
+
 var/list/admin_verbs_rejuv = list(
 	/client/proc/respawn_character
 	)
@@ -585,18 +586,6 @@ var/list/admin_verbs_mentor = list(
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
 */
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/change_security_level()
-	set name = "Set security level"
-	set desc = "Sets the station security level"
-	set category = "Admin"
-
-	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
-		set_security_level(sec_level)
-		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
-
 
 //---- bs12 verbs ----
 

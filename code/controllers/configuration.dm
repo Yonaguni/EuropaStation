@@ -24,8 +24,6 @@ var/list/gamemode_cache = list()
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log world.log << messages
-
-	var/sql_enabled = 0					// for sql switching
 	var/sql_path = "data/station.db"
 
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
@@ -284,9 +282,6 @@ var/list/gamemode_cache = list()
 
 				if ("log_access")
 					config.log_access = 1
-
-				if ("sql_enabled")
-					config.sql_enabled = 1
 
 				if ("sql_path")
 					config.sql_path = value
