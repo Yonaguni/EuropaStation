@@ -1,5 +1,5 @@
 /area/Entered(var/mob/M)
-	..()
+	. = ..()
 	if(istype(M))
 		M.update_env_light()
 

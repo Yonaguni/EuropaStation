@@ -126,7 +126,7 @@
 		if(src.wet)
 
 			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
-				return
+				return ..()
 
 			var/slip_dist = 1
 			var/slip_stun = 6
@@ -150,7 +150,7 @@
 		else
 			M.inertia_dir = 0
 
-	..()
+	return ..()
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/human/M as mob)

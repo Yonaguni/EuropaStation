@@ -147,7 +147,7 @@ var/const/proxloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(!istype(atom, /atom/movable))
-		return
+		return ..()
 
 	var/atom/movable/A = atom
 
@@ -171,7 +171,7 @@ var/const/proxloopsanity = 100
 					A.HasProximity(thing, 1)
 					if(thing.flags & PROXMOVE)
 						thing.HasProximity(A, 1)
-	return
+	return ..()
 
 /*
 /turf/Exited(var/atom/movable/obj)
