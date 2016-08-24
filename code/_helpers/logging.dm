@@ -76,10 +76,6 @@
 	if (config.log_adminwarn)
 		game_log("ADMINWARN", text)
 
-/proc/log_pda(text)
-	if (config.log_pda)
-		game_log("PDA", text)
-
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
 	if(config.log_world_output)
