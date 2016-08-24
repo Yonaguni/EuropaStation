@@ -5,13 +5,6 @@ world/IsBanned(key, address, computer_id)
 		return ban_check_result
 	return ..() //default pager ban stuff
 
-/client/verb/check_self_isbanned()
-	var/list/ban_check_result = check_is_server_banned(key, address, computer_id)
-	if(islist(ban_check_result))
-		src << "<b>You're banned!</b> '[ban_check_result["reason"]]' - '[ban_check_result["desc"]]'"
-	else
-		src << "<b>You're not banned, or something broke.</b>"
-
 /proc/check_is_server_banned(var/key, var/address, var/computer_id)
 
 	if(isnull(computer_id))
