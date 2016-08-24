@@ -16,7 +16,7 @@
 	if(docking_controller_tag)
 		docking_controller = locate(docking_controller_tag)
 		if(!istype(docking_controller))
-			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find its controller!</span>"
+			log_debug("<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find its controller!</span>")
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return
@@ -32,7 +32,6 @@
 		moving_status = SHUTTLE_IDLE
 
 /datum/shuttle/proc/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
-	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(moving_status != SHUTTLE_IDLE) return
 
 	//it would be cool to play a sound here

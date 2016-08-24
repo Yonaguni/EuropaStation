@@ -20,9 +20,5 @@
 		T.blocks_light = -1
 		for(var/turf/neighbor in range(1, T))
 			neighbor.has_corners = -1
-		//dview_mob.loc = T
-		//dview_mob.see_invisible = 0
 		for(var/obj/light/L in range(get_turf(src), world.view)) //view(world.view, dview_mob))
-			//world << "Forcing recast for [L.holder]"
 			L.cast_light()
-		//dview_mob.loc = null
