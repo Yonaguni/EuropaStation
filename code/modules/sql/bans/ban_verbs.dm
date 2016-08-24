@@ -69,16 +69,13 @@
 		return
 
 	var/list/bans = list()
-	var/database/query/query = new ("SELECT bantype, job, reason, banning_ckey, id, unbanned_ckey FROM ban WHERE ckey == ?;", check_ckey)
-	query.Execute()
+	var/database/query/query = new("SELECT bantype, job, reason, banning_ckey, banning_datetime, id FROM ban WHERE ckey == ? AND unbanned_ckey IS NULL;", check_ckey)
+	query.Execute(global_db)
 	if(query.ErrorMsg())
 		world.log << "SQL ERROR: unban (1): [query.ErrorMsg()]."
 
 	while(query.NextRow())
 		var/list/row = query.GetRowData()
-		world << "checkrow [row["unbanned_ckey"]]"
-		if(row["unbanned_ckey"] && row["unbanned_ckey"] != "" && row["unbanned_ckey"] != "NULL")
-			continue
 		bans["[row["job"] ? "JOB - [row["job"]]" : "SERVER"] - [row["banning_ckey"]] - [row["banning_datetime"]]"] = row["id"]
 
 	if(!bans.len)
@@ -91,7 +88,7 @@
 
 	choice = bans[choice]
 	query = new("UPDATE ban SET unbanned_ckey = ?, unbanned_datetime = datetime('now') WHERE id == ?;", check_ckey, choice)
-	query.Execute()
+	query.Execute(global_db)
 	if(query.ErrorMsg())
 		world.log << "SQL ERROR: unban (2): [query.ErrorMsg()]."
 	load_bans()

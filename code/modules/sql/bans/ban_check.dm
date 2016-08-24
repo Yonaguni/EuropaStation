@@ -1,18 +1,31 @@
 //Blocks an attempt to connect before even creating our client datum thing.
 world/IsBanned(key, address, computer_id)
+	var/list/ban_check_result = check_is_server_banned(key, address, computer_id)
+	if(islist(ban_check_result))
+		return ban_check_result
+	return ..() //default pager ban stuff
+
+/client/verb/check_self_isbanned()
+	var/list/ban_check_result = check_is_server_banned(key, address, computer_id)
+	if(islist(ban_check_result))
+		src << "<b>You're banned!</b> '[ban_check_result["reason"]]' - '[ban_check_result["desc"]]'"
+	else
+		src << "<b>You're not banned, or something broke.</b>"
+
+/proc/check_is_server_banned(var/key, var/address, var/computer_id)
 
 	if(isnull(computer_id))
 		message_admins("[key] has logged in with a blank computer id in the ban check.")
 	if(isnull(address))
 		message_admins("[key] has logged in with a blank ip in the ban check.")
 
-	//Guest Checking
+	// Guest checking.
 	if(!config.guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
 		message_admins("\blue Failed Login: [key] - Guests not allowed")
-		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+		return list("reason"="guest", "desc"="\nReason: Sorry! Guests are not allowed on this server. Please sign in with a BYOND account and rejoin.")
 
-	//check if the IP address is a known TOR node
+	// Check if the IP address is a known TOR node.
 	if(config && config.ToRban && ToRban_isbanned(address))
 		log_access("Failed Login: [src] - Banned: ToR")
 		message_admins("\blue Failed Login: [src] - Banned: ToR")
@@ -20,14 +33,13 @@ world/IsBanned(key, address, computer_id)
 		add_ban(_ckey=ckey(key), _cid=computer_id, _reason="Use of ToR", _banningkey="Automated Ban")
 		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [config.banappeals]")
 
+	// Server ban checking.
 	var/ckeytext = ckey(key)
 	for(var/thing in serverbans)
 		var/datum/ban/B = thing
 		if(B.data["ckey"] == ckeytext || B.data["cid"] == computer_id || B.data["ip"] == address)
-			var/desc = "\nReason: You, or another user of this computer or connection ([B.data["ckey"]]) is banned from playing here. The ban reason is:\n[B.data["reason"]]\nThis ban was applied by [B.data["banning_key"]] on [B.get_banned_datetime()], [B.get_expiry_datetime()]"
+			var/desc = "\nReason: You, or another user of this computer or connection ([B.data["ckey"]]) is banned from playing here. The ban reason is:\n[B.data["reason"]]\nThis ban was applied by [B.data["banning_ckey"]] on [B.get_banned_datetime()] and expires [B.get_expiry_datetime() ? "on [B.get_expiry_datetime()]" : "NEVER"]."
 			return list("reason"="[B.data["bantype"]]", "desc"="[desc]")
-
-	return ..() //default pager ban stuff
 
 /proc/jobban_isbanned(var/mob/M, var/rank)
 	if(!M || !rank)
