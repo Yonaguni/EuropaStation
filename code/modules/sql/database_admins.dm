@@ -30,9 +30,9 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				if("ban")						rights |= R_BAN
 				if("server")					rights |= R_SERVER
 				if("debug")						rights |= R_DEBUG
-				if("everything","host","all")	rights |= (R_HOST | R_ADMIN | R_BAN | R_SERVER | R_DEBUG | R_SOUNDS | R_SPAWN)
 				if("sound","sounds")			rights |= R_SOUNDS
 				if("spawn","create")			rights |= R_SPAWN
+				if("everything","all")			rights |= (R_ADMIN | R_BAN | R_SERVER | R_DEBUG | R_SOUNDS | R_SPAWN)
 
 		admin_ranks[rank] = rights
 		previous_rights = rights
@@ -73,7 +73,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 					var/rights = admin_ranks[rank] ? admin_ranks[rank] : 0
 					var/database/query/insert_query
 					if(ckey in existing_admins)
-						insert_query = new("UPDATE admin SET rank = '?', rights = '?' WHERE ckey == '?';", rank, rights, ckey)
+						insert_query = new("UPDATE admin SET rank = ?, rights = ? WHERE ckey == ?;", rank, rights, ckey)
 					else
 						insert_query = new("INSERT INTO admin VALUES (?,?,?);", ckey, rank, rights)
 					insert_query.Execute(global_db)

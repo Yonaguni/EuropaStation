@@ -12,7 +12,7 @@ var/global/datum/controller/occupations/job_master
 	proc/SetupOccupations()
 		occupations = get_job_datums()
 		if(!occupations.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			log_debug("<span class='warning'>Error setting up jobs, no job datums found!</span>")
 			return 0
 		return 1
 

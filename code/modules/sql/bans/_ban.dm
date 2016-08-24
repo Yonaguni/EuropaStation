@@ -28,6 +28,9 @@ var/list/allbans = list()
 				_cid = C.computer_id
 				break
 
+	if(_job)
+		_job = lowertext(_job)
+
 	var/query_names =  "bantype, job, reason, ckey, banning_ckey, banning_datetime, computerid, expiration_datetime"
 	var/query_values = "[_job ? "'[BAN_JOBBAN]', '[_job]'" : "'[BAN_SERVERBAN]', NULL"], '[_reason]', '[_ckey]', '[_banningkey]', datetime('now'), [_cid], [_expires ? "datetime(julianday() + [_expires])" : "NULL"]"
 	var/database/query/dbquery = new("INSERT INTO ban ([query_names]) VALUES ([query_values]);")

@@ -47,6 +47,6 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 			continue
 		A.parent = aspects_by_name[A.parent_name]
 		if(!A.parent)
-			world << "ASPECT BUG: [A.parent_name] has no entry in aspects_by_name ([aspects_by_name[A.parent_name]])"
+			log_debug("ASPECT BUG: [A.parent_name] has no entry in aspects_by_name ([aspects_by_name[A.parent_name]])")
 			continue
 		A.parent.children |= A

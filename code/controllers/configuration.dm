@@ -20,7 +20,6 @@ var/list/gamemode_cache = list()
 	var/log_attack = 0					// log attack messages
 	var/log_adminchat = 0				// log admin chat messages
 	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log world.log << messages
@@ -92,11 +91,7 @@ var/list/gamemode_cache = list()
 	var/bones_can_break = 0
 	var/limbs_can_break = 0
 
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
 	var/revival_brain_life = -1
-
-	var/use_loyalty_implants = 0
 
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
@@ -108,10 +103,6 @@ var/list/gamemode_cache = list()
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
 	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
 	var/animal_delay = 0
 
 	var/use_age_restriction_for_jobs = 0   //Do jobs use account age restrictions?   --requires database
@@ -154,10 +145,6 @@ var/list/gamemode_cache = list()
 	var/dsay_allowed = 1
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
-
-	var/list/ert_species = list("Human")
-
-	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
 	var/aggressive_changelog = 0
 
@@ -269,9 +256,6 @@ var/list/gamemode_cache = list()
 
 				if ("log_adminwarn")
 					config.log_adminwarn = 1
-
-				if ("log_pda")
-					config.log_pda = 1
 
 				if ("log_world_output")
 					config.log_world_output = 1
@@ -502,14 +486,6 @@ var/list/gamemode_cache = list()
 					value = text2num(value)
 					config.starlight = value >= 0 ? value : 0
 
-				if("ert_species")
-					config.ert_species = splittext(value, ";")
-					if(!config.ert_species.len)
-						config.ert_species += "Human"
-
-				if("law_zero")
-					law_zero = value
-
 				if("aggressive_changelog")
 					config.aggressive_changelog = 1
 
@@ -552,10 +528,6 @@ var/list/gamemode_cache = list()
 					config.health_threshold_dead = value
 				if("show_human_death_message")
 					config.show_human_death_message = 1
-				if("revival_pod_plants")
-					config.revival_pod_plants = value
-				if("revival_cloning")
-					config.revival_cloning = value
 				if("revival_brain_life")
 					config.revival_brain_life = value
 				if("organ_health_multiplier")
@@ -582,17 +554,8 @@ var/list/gamemode_cache = list()
 
 				if("human_delay")
 					config.human_delay = value
-				if("robot_delay")
-					config.robot_delay = value
-				if("monkey_delay")
-					config.monkey_delay = value
-				if("alien_delay")
-					config.alien_delay = value
 				if("animal_delay")
 					config.animal_delay = value
-
-				if("use_loyalty_implants")
-					config.use_loyalty_implants = 1
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
