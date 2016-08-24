@@ -69,7 +69,7 @@
 		return
 
 	var/list/bans = list()
-	var/database/query/query = new("SELECT bantype, job, reason, banning_ckey, banning_datetime, id FROM ban WHERE ckey == ? AND unbanned_ckey IS NULL;", check_ckey)
+	var/database/query/query = new("SELECT job, banning_ckey, banning_datetime, id FROM ban WHERE (ckey == ? AND unbanned_ckey IS NULL);", check_ckey)
 	query.Execute(global_db)
 	if(query.ErrorMsg())
 		world.log << "SQL ERROR: unban (1): [query.ErrorMsg()]."
@@ -79,16 +79,18 @@
 		bans["[row["job"] ? "JOB - [row["job"]]" : "SERVER"] - [row["banning_ckey"]] - [row["banning_datetime"]]"] = row["id"]
 
 	if(!bans.len)
-		usr << "No bans exist for that ckey."
+		usr << "No active bans exist for that ckey."
 		return
 
 	var/choice = input("Select a ban to lift.","Unban") as null|anything in bans
 	if(!choice)
 		return
 
+	message_admins("<span class='notice'>[usr.ckey] has lifted a ban from [check_ckey]: '[choice]'.</span>")
 	choice = bans[choice]
 	query = new("UPDATE ban SET unbanned_ckey = ?, unbanned_datetime = datetime('now') WHERE id == ?;", check_ckey, choice)
 	query.Execute(global_db)
 	if(query.ErrorMsg())
 		world.log << "SQL ERROR: unban (2): [query.ErrorMsg()]."
+
 	load_bans()
