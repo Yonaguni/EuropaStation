@@ -32,6 +32,7 @@
 	return contents
 
 /area/Entered(A)
+	. = ..()
 	if(!istype(A,/mob/living))	return
 
 	var/mob/living/L = A

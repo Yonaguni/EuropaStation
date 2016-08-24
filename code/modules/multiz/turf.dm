@@ -42,40 +42,40 @@
 	..()
 
 	if(mover.throwing || !mover.simulated)
-		return
+		return ..()
 
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
 		if(!below)
-			return
+			return ..()
 
 	if(!mover.is_sinking() && (is_flooded(absolute=1) || below.is_flooded(absolute=1))) // Swimmers can just go right across flooded turfs.
-		return // TODO: swimming.
+		return ..() // TODO: swimming.
 
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
 	if(!area.has_gravity)
-		return
+		return ..()
 
 	// See if something prevents us from falling. Long drops don't care.
 	if(locate(/obj/structure/ladder) in src)
-		return
+		return ..()
 
 	var/soft = 0
 	if(is_flooded(1) || below.is_flooded(1))
 		soft = 1
 	else if(layer_is_shallow(z))
 		if(below.density)
-			return
+			return ..()
 		for(var/atom/A in below)
 			if(A.density)
 				if(!istype(A, /obj/structure/window))
-					return
+					return ..()
 				else
 					var/obj/structure/window/W = A
 					if(W.is_fulltile())
-						return
+						return ..()
 			// Dont break here, since we still need to be sure that it isnt blocked
 			if(istype(A, /obj/structure/stairs))
 				soft = 1
@@ -104,6 +104,7 @@
 				M.fall_counter = 0
 				M.Weaken(M.fall_counter * rand(2,3))
 				M.updatehealth()
+	return ..()
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()

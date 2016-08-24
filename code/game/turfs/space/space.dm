@@ -31,7 +31,7 @@
 		kill_light()
 
 /turf/space/Entered(atom/movable/A as mob|obj)
-	..()
+	. = ..()
 	if ((!(A) || src != A.loc))
 		return
 	inertial_drift(A)

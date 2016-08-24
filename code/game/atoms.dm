@@ -379,10 +379,10 @@
 			M.show_message( message, 2, deaf_message, 1)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+	. = ..()
 	if(loc && MOVED_DROP == special_event)
 		AM.forceMove(loc, MOVED_DROP)
 		return CANCEL_MOVE_EVENT
-	return ..()
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
 	return ..(AM, old_loc, 0)

@@ -92,7 +92,6 @@ var/list/light_over_cache = list()
 			update_transform()
 			cast_light()
 
-
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/light/proc/follow_holder()
 	forceMove(get_turf(holder))
