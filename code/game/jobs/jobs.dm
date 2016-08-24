@@ -8,9 +8,6 @@ var/list/all_used_jobs
 var/list/job_titles = list()
 var/list/all_excluded_jobs = list()
 
-/proc/guest_jobbans(var/job)
-	return ((job in head_positions) || (job in nonhuman_positions) || (job in gov_positions))
-
 /proc/get_job_datums(var/exclude)
 	if(!all_used_jobs)
 		all_used_jobs = list()

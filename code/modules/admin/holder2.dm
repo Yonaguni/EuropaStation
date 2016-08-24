@@ -19,7 +19,7 @@ var/list/admin_datums = list()
 	if(istype(C))
 		owner = C
 		owner.holder = src
-		owner.add_admin_verbs()	//TODO
+		owner.add_admin_verbs()
 		admins |= C
 
 /datum/admins/proc/disassociate()
@@ -73,8 +73,6 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 					return 1	//we have all the rights they have and more
 		usr << "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>"
 	return 0
-
-
 
 /client/proc/deadmin()
 	if(holder)

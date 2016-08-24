@@ -90,15 +90,6 @@
 	prefs.save_preferences()
 	src << "You will [(prefs.toggles & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel."
 
-/client/verb/listen_looc()
-	set name = "Show/Hide LOOC"
-	set category = "Preferences"
-	set desc = "Toggles seeing Local OutOfCharacter chat"
-	prefs.toggles ^= CHAT_LOOC
-	prefs.save_preferences()
-
-	src << "You will [(prefs.toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
-
 /client/verb/toggle_chattags()
 	set name = "Show/Hide Chat Tags"
 	set category = "Preferences"

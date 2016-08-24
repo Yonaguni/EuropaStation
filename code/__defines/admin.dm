@@ -21,8 +21,6 @@
 #define R_SOUNDS        0x8
 #define R_SERVER        0x10
 #define R_DEBUG         0x20
-#define R_HOST          0x40
+//unused 0x40 0x80 0x100 0x200 0x400 0x800 0x1000 0x2000 0x4000 0x8000, higher than this will overflow
 
-//unused 0x80 0x100 0x200 0x400 0x800 0x1000 0x2000 0x4000 0x8000, higher than this will overflow
-
-#define R_MAXPERMISSION 0x40 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+#define R_MAXPERMISSION 0x20 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.

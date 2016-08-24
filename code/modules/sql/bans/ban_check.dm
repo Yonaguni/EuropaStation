@@ -33,6 +33,8 @@ world/IsBanned(key, address, computer_id)
 	if(!M || !rank)
 		return 0
 
+	rank = lowertext(rank)
+
 	if(guest_jobbans(rank))
 		if(config.guest_jobban && IsGuestKey(M.key))
 			return "Guest Job-ban"
@@ -43,6 +45,10 @@ world/IsBanned(key, address, computer_id)
 		if(M.ckey == JB.data["ckey"] && rank == JB.data["job"])
 			return JB.data["reason"]
 	return 0
+
+/proc/guest_jobbans(var/job)
+	job = lowertext(job)
+	return ((job in head_positions) || (job in nonhuman_positions) || (job in gov_positions))
 
 /proc/server_isbanned(var/mob/M)
 	if(!M)

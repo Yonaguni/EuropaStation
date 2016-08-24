@@ -15,22 +15,24 @@
 
 /datum/ban/proc/get_summary()
 
-	var/banstatus = "<b>(BID #[data["id"]])</b> "
+	var/banstatus = "<b>(bID #[data["id"]])</b> "
 	if(get_bantype() == BAN_SERVERBAN)
-		banstatus += "Banned from job ([data["job"]])"
-	else
 		banstatus += "Banned from the server"
+	else
+		banstatus += "Banned from job ([data["job"]])"
 
 	banstatus += " by [data["banning_ckey"]] on [get_banned_datetime()] for reason: '[data["reason"]]'. "
 
+	var/strike = 1
 	if(!expired() && !lifted())
-		banstatus += "Active. "
+		strike = 0
+		banstatus += "Active."
 	else if(expired())
-		banstatus += "Expired on [get_expiry_datetime()]. "
+		banstatus += "Expired on [get_expiry_datetime()]."
 	else if(lifted())
-		banstatus += "Unbanned by [data["unbanned_ckey"]] on [get_unbanned_datetime()]. "
+		banstatus += "Unbanned by [data["unbanned_ckey"]] on [get_unbanned_datetime()]."
 
-	return banstatus
+	return strike ? "<strike>[banstatus]</strike>" : banstatus
 
 /datum/ban/proc/expired()
 	return 0
