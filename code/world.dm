@@ -52,7 +52,11 @@ var/global/datum/global_init/init = new ()
 #define RECOMMENDED_VERSION 510
 
 /world/New()
-	//logs
+
+	// SQL.
+	establish_database_connection()
+
+	// Logs.
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
@@ -388,9 +392,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
-	/*spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
 
 	processScheduler.stop()
 

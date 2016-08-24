@@ -2,21 +2,21 @@
 //this is the master controller, that things will try to dock with.
 /obj/machinery/embedded_controller/radio/docking_port_multi
 	name = "docking port controller"
-	
+
 	var/child_tags_txt
 	var/child_names_txt
 	var/list/child_names = list()
-	
+
 	var/datum/computer/file/embedded_program/docking/multi/docking_program
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/initialize()
 	..()
 	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
 	program = docking_program
-	
+
 	var/list/names = splittext(child_names_txt, ";")
 	var/list/tags = splittext(child_tags_txt, ";")
-	
+
 	if (names.len == tags.len)
 		for (var/i = 1; i <= tags.len; i++)
 			child_names[tags[i]] = names[i]
@@ -84,10 +84,10 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/Topic(href, href_list)
 	if(..())
 		return
-	
+
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	
+
 	var/clean = 0
 	switch(href_list["command"])	//anti-HTML-hacking checks
 		if("cycle_ext")
@@ -107,47 +107,3 @@
 		program.receive_user_command(href_list["command"])
 
 	return 1
-
-
-
-/*** DEBUG VERBS ***
-
-/datum/computer/file/embedded_program/docking/multi/proc/print_state()
-	world << "id_tag: [id_tag]"
-	world << "dock_state: [dock_state]"
-	world << "control_mode: [control_mode]"
-	world << "tag_target: [tag_target]"
-	world << "response_sent: [response_sent]"
-
-/datum/computer/file/embedded_program/docking/multi/post_signal(datum/signal/signal, comm_line)
-	world << "Program [id_tag] sent a message!"
-	print_state()
-	world << "[id_tag] sent command \"[signal.data["command"]]\" to \"[signal.data["recipient"]]\""
-	..(signal)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/view_state()
-	set category = "Debug"
-	set src in view(1)
-	src.program:print_state()
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/spoof_signal(var/command as text, var/sender as text)
-	set category = "Debug"
-	set src in view(1)
-	var/datum/signal/signal = new
-	signal.data["tag"] = sender
-	signal.data["command"] = command
-	signal.data["recipient"] = id_tag
-
-	src.program:receive_signal(signal)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_dock(var/target as text)
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_docking(target)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_undock()
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_undocking()
-
-*/

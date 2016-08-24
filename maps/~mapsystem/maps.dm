@@ -10,7 +10,6 @@ var/list/all_maps = list()
 		else
 			M = new type
 		if(!M.path)
-			world << "<span class=danger>Map '[M]' does not have a defined path, not adding to map list!</span>"
 			world.log << "Map '[M]' does not have a defined path, not adding to map list!"
 		else
 			all_maps[M.path] = M

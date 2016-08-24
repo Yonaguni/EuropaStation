@@ -204,8 +204,6 @@ var/global/datum/controller/occupations/job_master
 		//Shuffle players and jobs
 		unassigned = shuffle(unassigned)
 
-		HandleFeedbackGathering()
-
 		//People who wants to be assistants, sure, go on.
 		Debug("DO, Running Assistant Check 1")
 		var/datum/job/assist = new using_map.default_job ()
@@ -480,38 +478,6 @@ var/global/datum/controller/occupations/job_master
 			H.set_id_info(C)
 			H.equip_to_slot_or_del(C, slot_wear_id)
 		return 1
-
-	proc/HandleFeedbackGathering()
-		for(var/datum/job/job in occupations)
-			var/tmp_str = "|[job.title]|"
-
-			var/level1 = 0 //high
-			var/level2 = 0 //medium
-			var/level3 = 0 //low
-			var/level4 = 0 //never
-			var/level5 = 0 //banned
-			var/level6 = 0 //account too young
-			for(var/mob/new_player/player in player_list)
-				if(!(player.ready && player.mind && !player.mind.assigned_role))
-					continue //This player is not ready
-				if(jobban_isbanned(player, job.title))
-					level5++
-					continue
-				if(!job.player_old_enough(player.client))
-					level6++
-					continue
-
-				if(!player.client.prefs.job_preferences[job.title])
-					level4++ //not selected
-				else if(player.client.prefs.job_preferences[job.title] == JOB_LOW)
-					level1++
-				else if(player.client.prefs.job_preferences[job.title] == JOB_MED)
-					level2++
-				else if(player.client.prefs.job_preferences[job.title] == JOB_HIGH)
-					level3++
-
-			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
-			feedback_add_details("job_preferences",tmp_str)
 
 /datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank, var/return_location = 0)
 	//spawn at one of the latespawn locations

@@ -292,7 +292,7 @@ var/global/datum/controller/gameticker/ticker
 						sleep(50)
 
 				callHook("roundend")
-				feedback_set_details("end_proper","proper completion")
+
 				if(!delay_end)
 					world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
 

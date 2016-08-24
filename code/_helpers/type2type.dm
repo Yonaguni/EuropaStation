@@ -131,7 +131,6 @@
 	if (rights & R_FUN)         . += "[seperator]+FUN"
 	if (rights & R_SERVER)      . += "[seperator]+SERVER"
 	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
-	if (rights & R_POSSESS)     . += "[seperator]+POSSESS"
 	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
 	if (rights & R_STEALTH)     . += "[seperator]+STEALTH"
 	if (rights & R_REJUVINATE)  . += "[seperator]+REJUVINATE"

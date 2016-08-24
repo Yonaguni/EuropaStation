@@ -3,8 +3,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/player_panel,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/deadmin_self,
-	/client/proc/hide_verbs,
-	/client/proc/hide_most_verbs,
 	/client/proc/debug_variables,
 	/client/proc/cmd_mentor_check_new_players,
 	/client/proc/cmd_assume_direct_control,
@@ -47,7 +45,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,
 	/client/proc/dsay,
-	/client/proc/toggleprayers,
 	/client/proc/toggle_hear_radio,
 	/client/proc/investigate_show,
 	/client/proc/secrets,
@@ -83,10 +80,8 @@ var/list/admin_verbs_admin = list(
 var/list/admin_verbs_ban = list(
 	/datum/admins/proc/apply_server_ban,
 	/datum/admins/proc/apply_job_ban,
-	/datum/admins/proc/clear_server_bans,
-	/datum/admins/proc/clear_job_bans,
-	/datum/admins/proc/list_server_bans,
-	/datum/admins/proc/list_job_bans
+	/datum/admins/proc/list_bans,
+	/datum/admins/proc/unban
 	)
 
 var/list/admin_verbs_sounds = list(
@@ -95,17 +90,9 @@ var/list/admin_verbs_sounds = list(
 	)
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
-	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
-	/client/proc/everyone_random,
-	/client/proc/cinematic,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
-	/client/proc/roll_dices,
-	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -127,20 +114,15 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/immreboot,
-	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/toggle_random_events
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,
-	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/debug_controller,
 	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_admin_delete,
@@ -149,7 +131,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/apply_random_map,
 	/client/proc/overlay_random_map,
 	/client/proc/delete_random_map,
-	/client/proc/show_plant_genes,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
 	/client/proc/toggledebuglogs,
@@ -167,10 +148,6 @@ var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/debug_controller
 	)
 
-var/list/admin_verbs_possess = list(
-	/proc/possess,
-	/proc/release
-	)
 var/list/admin_verbs_permissions = list()
 
 var/list/admin_verbs_rejuv = list(
@@ -180,7 +157,6 @@ var/list/admin_verbs_rejuv = list(
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
 	/client/proc/deadmin_self,
-	/client/proc/toggleprayers,
 	/client/proc/toggle_hear_radio,
 	/datum/admins/proc/show_traitor_panel,
 	/datum/admins/proc/toggleenter,
@@ -200,11 +176,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/object_talk,
-	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
-	/client/proc/cinematic,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
@@ -214,22 +186,16 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/immreboot,
-	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump,
-	/client/proc/cmd_admin_list_open_jobs,
+	/datum/admins/proc/adjump,,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
 	/client/proc/reload_admins,
-	/client/proc/kill_air,
-	/client/proc/debug_controller,
-	/client/proc/roll_dices,
-	/proc/possess,
-	/proc/release
+	/client/proc/debug_controller
 	)
+
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
@@ -273,7 +239,6 @@ var/list/admin_verbs_mentor = list(
 		verbs += admin_verbs_debug
 		if(config.debugparanoid && !(holder.rights & R_ADMIN))
 			verbs.Remove(admin_verbs_paranoid_debug)
-	if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 	if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
 	if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
 	if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
@@ -291,45 +256,12 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
-		admin_verbs_possess,
 		admin_verbs_permissions,
 		/client/proc/stealth,
 		admin_verbs_rejuv,
 		admin_verbs_sounds,
 		admin_verbs_spawn
 		)
-
-/client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
-	set name = "Adminverbs - Hide Most"
-	set category = "Admin"
-
-	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
-	verbs += /client/proc/show_verbs
-
-	src << "<span class='interface'>Most of your adminverbs have been hidden.</span>"
-	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/proc/hide_verbs()
-	set name = "Adminverbs - Hide All"
-	set category = "Admin"
-
-	remove_admin_verbs()
-	verbs += /client/proc/show_verbs
-
-	src << "<span class='interface'>Almost all of your adminverbs have been hidden.</span>"
-	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/proc/show_verbs()
-	set name = "Adminverbs - Show"
-	set category = "Admin"
-
-	verbs -= /client/proc/show_verbs
-	add_admin_verbs()
-
-	src << "<span class='interface'>All of your adminverbs are now visible.</span>"
-	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/admin_ghost()
 	set category = "Admin"
@@ -346,7 +278,6 @@ var/list/admin_verbs_mentor = list(
 			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
 			return
 
-		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(istype(mob,/mob/new_player))
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
@@ -359,7 +290,6 @@ var/list/admin_verbs_mentor = list(
 			body.teleop = ghost
 			if(!body.key)
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
-		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/invisimin()
 	set name = "Invisimin"
@@ -380,7 +310,6 @@ var/list/admin_verbs_mentor = list(
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_old()
-	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/player_panel_new()
@@ -388,7 +317,6 @@ var/list/admin_verbs_mentor = list(
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_new()
-	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/check_antagonists()
@@ -397,7 +325,6 @@ var/list/admin_verbs_mentor = list(
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
-	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/secrets()
@@ -405,7 +332,6 @@ var/list/admin_verbs_mentor = list(
 	set category = "Admin"
 	if (holder)
 		holder.Secrets()
-	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/colorooc()
@@ -419,7 +345,6 @@ var/list/admin_verbs_mentor = list(
 		prefs.ooccolor = initial(prefs.ooccolor)
 	prefs.save_preferences()
 
-	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/stealth()
@@ -436,7 +361,6 @@ var/list/admin_verbs_mentor = list(
 			holder.fakekey = new_key
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
-	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
 	set category = "Special Verbs"
@@ -462,7 +386,6 @@ var/list/admin_verbs_mentor = list(
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
-	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special Verbs"
@@ -476,7 +399,6 @@ var/list/admin_verbs_mentor = list(
 			V.show_message(message, 2)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
-		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/proc/togglebuildmodeself()
@@ -484,7 +406,6 @@ var/list/admin_verbs_mentor = list(
 	set category = "Special Verbs"
 	if(src.mob)
 		togglebuildmode(src.mob)
-	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special Verbs"
@@ -495,7 +416,6 @@ var/list/admin_verbs_mentor = list(
 			return
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
-	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
 	set category = "Debug"
@@ -507,7 +427,6 @@ var/list/admin_verbs_mentor = list(
 	else
 		air_processing_killed = 1
 		usr << "<b>Disabled air processing.</b>"
-	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
 
@@ -533,7 +452,6 @@ var/list/admin_verbs_mentor = list(
 			deadmin()
 			src << "<span class='interface'>You are now a normal player.</span>"
 			verbs |= /client/proc/readmin_self
-	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
@@ -558,8 +476,6 @@ var/list/admin_verbs_mentor = list(
 	if(!H) return
 
 	usr << "Change Mob Appearance currently disabled pending ui rewrite."
-//	log_and_message_admins("is altering the appearance of [H].")
-	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self()
 	set name = "Change Mob Appearance - Self"
@@ -585,7 +501,6 @@ var/list/admin_verbs_mentor = list(
 			log_and_message_admins("has allowed [H] to change \his appearance, with whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
 */
-	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //---- bs12 verbs ----
 

@@ -255,7 +255,6 @@
 			H.update_inv_l_hand()
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
-		feedback_inc("admin_cookies_spawned",1)
 		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
 
 	else if(href_list["CentcommReply"])

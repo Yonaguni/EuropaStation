@@ -3,9 +3,15 @@
 
 /datum/ban/New(var/list/_data)
 	data = _data
+	if(data["bantype"] == BAN_SERVERBAN)
+		serverbans += src
+	else
+		jobbans += src
+	allbans += src
 
-/datum/ban/proc/get_bantype()
-	return data["bantype"]
+/datum/ban/Destroy()
+	data.Cut()
+	return ..()
 
 /datum/ban/proc/get_summary()
 
@@ -33,10 +39,13 @@
 	return (!isnull(data["unbanned_ckey"]) && data["unbanned_ckey"] != "")
 
 /datum/ban/proc/get_banned_datetime()
-	return "TODO"
+	return data["banning_datetime"]
 
 /datum/ban/proc/get_unbanned_datetime()
-	return "TODO"
+	return data["unbanned_datetime"]
 
 /datum/ban/proc/get_expiry_datetime()
-	return "TODO"
+	return data["expiration_datetime"]
+
+/datum/ban/proc/get_bantype()
+	return data["bantype"]

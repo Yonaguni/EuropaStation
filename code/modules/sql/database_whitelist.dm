@@ -4,9 +4,6 @@ var/list/alien_whitelist
 	alien_whitelist = list()
 	var/database/query/query = new("SELECT * FROM whitelist")
 	query.Execute(global_db)
-	if(query.ErrorMsg())
-		world.log << query.ErrorMsg()
-		return 0
 	while(query.NextRow())
 		var/list/row = query.GetRowData()
 		alien_whitelist |= "[row["ckey"]]-[lowertext(row["race"])]"

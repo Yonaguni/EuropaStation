@@ -84,5 +84,3 @@ mob/var/obj/effect/decal/typing_indicator
 	// Clear out any existing typing indicator.
 	if(prefs.toggles & SHOW_TYPING)
 		if(istype(mob)) mob.set_typing_indicator(0)
-
-	feedback_add_details("admin_verb","TID") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -28,7 +28,7 @@
 #define R_FUN           0x8
 #define R_SERVER        0x10
 #define R_DEBUG         0x20
-#define R_POSSESS       0x40
+#define R_HOST          0x40
 #define R_PERMISSIONS   0x80
 #define R_STEALTH       0x100
 #define R_REJUVINATE    0x200
@@ -37,6 +37,6 @@
 #define R_SPAWN         0x1000
 #define R_MOD           0x2000
 #define R_MENTOR        0x4000
-#define R_HOST          0x8000 //higher than this will overflow
+//unused 0x8000, higher than this will overflow
 
-#define R_MAXPERMISSION 0x8000 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+#define R_MAXPERMISSION 0x4000 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
