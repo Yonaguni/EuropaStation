@@ -192,6 +192,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// Scale the icon.
 	I.transform *= 0.75
+
+	// This might need updating if any offset functions (tables etc.) are added.
+	var/initial_pixel_x = initial(I.pixel_x)
+	var/initial_pixel_y = initial(I.pixel_y)
+	var/initial_pixel_z = initial(I.pixel_z)
+
 	// Set the direction of the icon animation.
 	var/direction = get_dir(src, A)
 	if(direction & NORTH)
@@ -208,7 +214,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_z = 16
 
 	// And animate the attack!
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	animate(I, alpha = 175, pixel_x = initial_pixel_x, pixel_y = initial_pixel_y, pixel_z = initial_pixel_z, time = 3)
 
 /mob/proc/spin(spintime, speed)
 	spawn()
