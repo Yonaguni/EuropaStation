@@ -103,11 +103,7 @@
 		update_inv_legcuffed()
 
 /mob/living/human/proc/can_break_cuffs()
-	if(HULK in mutations)
-		return 1
-	if(species.can_shred(src,1))
-		return 1
-	return 0
+	return species.can_shred(src,1)
 
 /mob/living/human/proc/break_handcuffs()
 	visible_message(

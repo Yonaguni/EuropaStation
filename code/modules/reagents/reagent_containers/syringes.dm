@@ -62,7 +62,7 @@
 			return
 
 		if(user.a_intent == I_HURT && ismob(target))
-			if((CLUMSY in user.mutations) && prob(50))
+			if((user.disabilities & CLUMSY) && prob(50))
 				target = user
 			syringestab(target, user)
 			return
@@ -83,7 +83,7 @@
 					if(istype(target, /mob/living/human))
 						var/amount = reagents.get_free_space()
 						var/mob/living/human/T = target
-						if(NOCLONE in T.mutations) //target done been et, no more blood in him
+						if(T.disabilities & NOCLONE) //target done been et, no more blood in him
 							user << "<span class='warning'>You are unable to locate any blood.</span>"
 							return
 

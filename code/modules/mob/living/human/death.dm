@@ -76,7 +76,8 @@
 	handle_hud_list()
 
 /mob/living/human/proc/ChangeToHusk()
-	if(HUSK in mutations)	return
+	if(disabilities & HUSK)
+		return
 
 	if(f_style)
 		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE
@@ -84,26 +85,7 @@
 		h_style = "Bald"
 	update_hair(0)
 
-	mutations.Add(HUSK)
+	disabilities  |= HUSK
 	status_flags |= DISFIGURED	//makes them unknown without fucking up other stuff like admintools
 	update_body(1)
-	return
-
-/mob/living/human/proc/Drain()
-	ChangeToHusk()
-	mutations |= HUSK
-	return
-
-/mob/living/human/proc/ChangeToSkeleton()
-	if(SKELETON in src.mutations)	return
-
-	if(f_style)
-		f_style = "Shaved"
-	if(h_style)
-		h_style = "Bald"
-	update_hair(0)
-
-	mutations.Add(SKELETON)
-	status_flags |= DISFIGURED
-	update_body(0)
 	return

@@ -53,7 +53,7 @@
 
 	if(user.a_intent != I_HELP)
 		if(user.zone_sel.selecting == BP_HEAD || user.zone_sel.selecting == O_EYES)
-			if((CLUMSY in user.mutations) && prob(50))
+			if((user.disabilities & CLUMSY) && prob(50))
 				M = user
 			return eyestab(M,user)
 		else
@@ -119,7 +119,7 @@
 	unbreakable = 1
 
 /obj/item/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if ((user.disabilities & CLUMSY) && prob(50))
 		user << "<span class='warning'>You somehow managed to cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return

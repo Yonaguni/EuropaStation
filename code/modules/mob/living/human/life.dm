@@ -96,41 +96,9 @@
 		eye_blurry = 1
 	else
 		//blindness
-		if(!(sdisabilities & BLIND))
+		if(!(disabilities & BLIND))
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
 				eye_blurry = max(eye_blurry-2, 0)
-
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		speech_problem_flag = 1
-		if ((prob(10) && paralysis <= 1))
-			Stun(10)
-			spawn( 0 )
-				switch(rand(1, 3))
-					if(1)
-						emote("twitch")
-					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-				make_jittery(100)
-				return
-	if (disabilities & NERVOUS)
-		speech_problem_flag = 1
-		if (prob(10))
-			stuttering = max(10, stuttering)
 
 	if(stat != DEAD)
 		var/rn = rand(0, 200)
@@ -155,9 +123,6 @@
 					Weaken(10)
 
 /mob/living/human/handle_mutations_and_radiation()
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
 
 	radiation = Clamp(radiation,0,100)
 
@@ -307,7 +272,7 @@
 				embedded_flag = 0
 
 		//Ears
-		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
+		if(disabilities & DEAF)	//disabled-deaf, doesn't get better on its own
 			ear_deaf = max(ear_deaf, 1)
 		else if(ear_deaf)			//deafness, heals slowly over time
 			ear_deaf = max(ear_deaf-1, 0)
@@ -742,11 +707,7 @@
 		else if(viewflags)
 			sight |= viewflags
 	else
-		var/isRemoteObserve = 0
-		if((mRemote in mutations) && remoteview_target)
-			if(remoteview_target.stat==CONSCIOUS)
-				isRemoteObserve = 1
-		if(!isRemoteObserve && client && !client.adminobs)
+		if(client && !client.adminobs)
 			remoteview_target = null
 			reset_view(null, 0)
 
@@ -757,5 +718,3 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(XRAY in mutations)
-		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS

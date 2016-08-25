@@ -67,7 +67,7 @@
 					"<span class='notice'>You mend damage to [target]'s [I.name] with [tool_name].</span>" )
 					I.damage = 0
 					if(I.organ_tag == O_EYES)
-						target.sdisabilities &= ~BLIND
+						target.disabilities &= ~BLIND
 
 	fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 

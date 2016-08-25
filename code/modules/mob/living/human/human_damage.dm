@@ -126,16 +126,7 @@
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
-/mob/living/human/Stun(amount)
-	if(HULK in mutations)	return
-	..()
-
-/mob/living/human/Weaken(amount)
-	if(HULK in mutations)	return
-	..()
-
 /mob/living/human/Paralyse(amount)
-	if(HULK in mutations)	return
 	// Notify our AI if they can now control the suit.
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.
 		wearing_rig.notify_ai("<span class='danger'>Warning: user consciousness failure. Mobility control passed to integrated intelligence system.</span>")

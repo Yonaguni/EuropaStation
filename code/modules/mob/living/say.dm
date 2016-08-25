@@ -19,11 +19,6 @@
 /mob/living/proc/handle_speech_problems(var/message, var/verb)
 	var/list/returns[3]
 	var/speech_problem_flag = 0
-
-	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
-		speech_problem_flag = 1
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers","slurs")

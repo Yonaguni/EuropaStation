@@ -19,7 +19,6 @@ var/list/organ_cache = list()
 	var/list/transplant_data          // Transplant match data.
 	var/list/autopsy_data = list()    // Trauma data for forensics.
 	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
-	var/datum/dna/dna                 // Original DNA.
 	var/datum/species/species         // Original species.
 	var/b_type
 

@@ -58,7 +58,7 @@
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 
-		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
+		if((user.disabilities & CLUMSY) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/human/H = M	//mob has protective eyewear
@@ -80,8 +80,6 @@
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					user << "<span class='warning'>\The [M]'s pupils do not react to the light!</span>"
 					return
-				if(XRAY in M.mutations)
-					user << "<span class='notice'>\The [M] pupils give an eerie glow!</span>"
 				if(vision.damage)
 					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
 				else if(M.eye_blurry)

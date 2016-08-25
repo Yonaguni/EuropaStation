@@ -178,7 +178,7 @@
 
 			if (E.damage >= E.min_broken_damage)
 				user << "<span class='danger'>You go blind!</span>"
-				user.sdisabilities |= BLIND
+				user.disabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
 				user << "<span class='danger'>You go blind!</span>"
 				user.eye_blind = 5

@@ -118,12 +118,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/human/proc/update_body(var/update_icons=1)
 
 	var/husk_color_mod = rgb(96,88,80)
-	var/hulk_color_mod = rgb(48,224,40)
-
-	var/husk = (HUSK in src.mutations)
-	var/fat = (FAT in src.mutations)
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
+	var/husk = (disabilities & HUSK)
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
@@ -169,7 +164,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				icon_key += "#000000"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+	icon_key = "[icon_key][husk ? 1 : 0]"
 
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -180,7 +175,7 @@ var/global/list/damage_icon_parts = list()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
-			var/icon/temp = part.get_icon(skeleton)
+			var/icon/temp = part.get_icon()
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 			if(part.icon_position&(LEFT|RIGHT))
@@ -200,12 +195,8 @@ var/global/list/damage_icon_parts = list()
 			else
 				base_icon.Blend(temp, ICON_OVERLAY)
 
-		if(!skeleton)
-			if(husk)
-				base_icon.ColorTone(husk_color_mod)
-			else if(hulk)
-				var/list/tone = ReadRGB(hulk_color_mod)
-				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
+		if(husk)
+			base_icon.ColorTone(husk_color_mod)
 
 		//Handle husk overlay.
 		if(husk && ("overlay_husk" in icon_states(species.icobase)))
