@@ -85,18 +85,6 @@
 	name = "blood pack (empty)"
 	path = /obj/item/reagent_containers/blood/empty
 
-/decl/fabricator_design/matter/chem_disp_large
-	name = "reagent cartridge (large)"
-	path = /obj/item/reagent_containers/chem_disp_cartridge
-
-/decl/fabricator_design/matter/chem_disp_med
-	name = "reagent cartridge (medium)"
-	path = /obj/item/reagent_containers/chem_disp_cartridge/medium
-
-/decl/fabricator_design/matter/chem_disp_small
-	name = "reagent cartridge (small)"
-	path = /obj/item/reagent_containers/chem_disp_cartridge/small
-
 /decl/fabricator_design/matter/spoon
 	name = "spoon"
 	path = /obj/item/material/kitchen/utensil/spoon
