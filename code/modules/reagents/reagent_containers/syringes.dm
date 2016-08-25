@@ -83,9 +83,6 @@
 					if(istype(target, /mob/living/human))
 						var/amount = reagents.get_free_space()
 						var/mob/living/human/T = target
-						if(!T.dna)
-							user << "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>"
-							return
 						if(NOCLONE in T.mutations) //target done been et, no more blood in him
 							user << "<span class='warning'>You are unable to locate any blood.</span>"
 							return

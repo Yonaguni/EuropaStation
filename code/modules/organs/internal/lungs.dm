@@ -19,8 +19,8 @@
 /obj/item/organ/lungs/proc/breathes_water()
 	return 0
 
-/obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
-	..()
+/obj/item/organ/internal/lungs/New()
+	. = ..()
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : REAGENT_ID_OXYGEN
 	poison_type = species.poison_type ? species.poison_type : REAGENT_ID_FUEL

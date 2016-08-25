@@ -17,7 +17,7 @@ var/global/list/blood_decals = list()
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
 	var/base_icon = 'icons/effects/blood.dmi'
 	var/list/viruses = list()
-	blood_DNA = list()
+	blood_traces = list()
 	var/basecolor=DEFAULT_BLOOD_COLOUR // Color when wet.
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
@@ -66,8 +66,8 @@ var/global/list/blood_decals = list()
 		if(src.loc && isturf(src.loc))
 			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
 				if(B != src)
-					if (B.blood_DNA)
-						blood_DNA |= B.blood_DNA.Copy()
+					if (B.blood_traces)
+						blood_traces |= B.blood_traces.Copy()
 					qdel(B)
 	processing_objects += src
 
@@ -103,22 +103,22 @@ var/global/list/blood_decals = list()
 			S.track_blood = max(amount,S.track_blood)
 			if(!S.blood_overlay)
 				S.generate_blood_overlay()
-			if(!S.blood_DNA)
-				S.blood_DNA = list()
+			if(!S.blood_traces)
+				S.blood_traces = list()
 				S.blood_overlay.color = basecolor
 				S.overlays += S.blood_overlay
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
 				S.overlays.Cut()
 				S.overlays += S.blood_overlay
-			S.blood_DNA |= blood_DNA.Copy()
+			S.blood_traces |= blood_traces.Copy()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-		if(!perp.feet_blood_DNA)
-			perp.feet_blood_DNA = list()
-		perp.feet_blood_DNA |= blood_DNA.Copy()
+		if(!perp.feet_blood_traces)
+			perp.feet_blood_traces = list()
+		perp.feet_blood_traces |= blood_traces.Copy()
 
 	perp.update_inv_shoes(1)
 	amount--
@@ -139,9 +139,9 @@ var/global/list/blood_decals = list()
 		var/taken = rand(1,amount)
 		amount -= taken
 		user << "<span class='notice'>You get some of \the [src] on your hands.</span>"
-		if (!user.blood_DNA)
-			user.blood_DNA = list()
-		user.blood_DNA |= blood_DNA.Copy()
+		if (!user.blood_traces)
+			user.blood_traces = list()
+		user.blood_traces |= blood_traces.Copy()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)

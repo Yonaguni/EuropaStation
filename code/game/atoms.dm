@@ -5,7 +5,7 @@
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
-	var/list/blood_DNA
+	var/list/blood_traces
 	var/was_bloodied
 	var/blood_color
 	var/last_bumped = 0
@@ -98,7 +98,7 @@
 /atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+	if(src.blood_traces && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			f_name = "some "
 		else
@@ -140,14 +140,12 @@
 	if(!istype(M) || !M.key) return
 	if (ishuman(M))
 		var/mob/living/human/H = M
-		if (!istype(H.dna, /datum/dna))
-			return 0
-		if (H.gloves)
+		if(H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return 0
-		if (!( src.fingerprints ))
+		if(!( src.fingerprints ))
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
@@ -177,12 +175,6 @@
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/human/H = M
-		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
-			if(!istype(H.dna, /datum/dna))
-				H.dna = new /datum/dna(null)
-				H.dna.real_name = H.real_name
-		H.check_dna()
-
 		//Now, deal with gloves.
 		if (H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
@@ -276,20 +268,15 @@
 
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/human/M as mob)
-
 	if(flags & NOBLOODY)
 		return 0
 
-	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
-		blood_DNA = list()
+	if(!blood_traces || !istype(blood_traces, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
+		blood_traces = list()
 
 	was_bloodied = 1
 	blood_color = DEFAULT_BLOOD_COLOUR
 	if(istype(M))
-		if (!istype(M.dna, /datum/dna))
-			M.dna = new /datum/dna(null)
-			M.dna.real_name = M.real_name
-		M.check_dna()
 		blood_color = M.species.get_blood_colour(M)
 	. = 1
 	return 1
@@ -307,8 +294,8 @@
 		return
 	fluorescent = 0
 	src.germ_level = 0
-	if(istype(blood_DNA, /list))
-		blood_DNA = null
+	if(istype(blood_traces, /list))
+		blood_traces = null
 		return 1
 
 /atom/proc/get_global_map_pos()

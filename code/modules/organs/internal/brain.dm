@@ -46,7 +46,6 @@
 		brainmob = new(src)
 		brainmob.name = H.real_name
 		brainmob.real_name = H.real_name
-		brainmob.dna = H.dna.Clone()
 		brainmob.timeofhostdeath = H.timeofdeath
 
 	if(H.mind)

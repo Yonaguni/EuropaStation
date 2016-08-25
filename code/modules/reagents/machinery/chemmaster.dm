@@ -89,8 +89,8 @@
 							G = F
 							break
 					var/A = G.name
-					var/B = G.data["blood_type"]
-					var/C = G.data["blood_DNA"]
+					var/B = G.data["b_type"]
+					var/C = G.data["blood_traces"]
 					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 				else
 					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"

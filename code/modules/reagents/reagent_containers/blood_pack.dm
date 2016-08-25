@@ -19,13 +19,13 @@
 	icon_state = "empty"
 	volume = 200
 
-	var/blood_type = null
+	var/b_type = null
 
 	initialize()
 		..()
-		if(blood_type != null)
-			name = "BloodPack [blood_type]"
-			reagents.add_reagent(REAGENT_ID_BLOOD, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+		if(b_type != null)
+			name = "BloodPack [b_type]"
+			reagents.add_reagent(REAGENT_ID_BLOOD, 200, list("donor"=null,"viruses"=null,"blood_traces"=null,"b_type"=b_type,"resistances"=null,"trace_chem"=null))
 			update_icon()
 
 	on_reagent_change()
@@ -39,22 +39,22 @@
 			if(51 to INFINITY)	icon_state = "full"
 
 /obj/item/reagent_containers/blood/APlus
-	blood_type = "A+"
+	b_type = "A+"
 
 /obj/item/reagent_containers/blood/AMinus
-	blood_type = "A-"
+	b_type = "A-"
 
 /obj/item/reagent_containers/blood/BPlus
-	blood_type = "B+"
+	b_type = "B+"
 
 /obj/item/reagent_containers/blood/BMinus
-	blood_type = "B-"
+	b_type = "B-"
 
 /obj/item/reagent_containers/blood/OPlus
-	blood_type = "O+"
+	b_type = "O+"
 
 /obj/item/reagent_containers/blood/OMinus
-	blood_type = "O-"
+	b_type = "O-"
 
 /obj/item/reagent_containers/blood/empty
 	name = "Empty BloodPack"

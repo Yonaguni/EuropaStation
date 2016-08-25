@@ -83,7 +83,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
 	. += "Species: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
-	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
+	. += "Blood Type: <a href='?src=\ref[src];b_type=1'>[pref.b_type]</a><br>"
 	if(has_flag(mob_species, HAS_SKIN_TONE))
 		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
@@ -203,7 +203,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.dress_mob = !pref.dress_mob
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["blood_type"])
+	else if(href_list["b_type"])
 		var/new_b_type = input(user, "Choose your character's blood-type:", "Character Preference") as null|anything in valid_bloodtypes
 		if(new_b_type && CanUseTopic(user))
 			pref.b_type = new_b_type

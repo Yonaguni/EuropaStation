@@ -45,3 +45,6 @@
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
 
 	var/mob_behavior_flags = TERRAN // Most mobs can walk.
+
+	var/uni_identity
+	var/b_type = "A+"	//Player's bloodtype

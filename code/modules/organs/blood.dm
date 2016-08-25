@@ -10,7 +10,7 @@
 /mob/living/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == REAGENT_ID_BLOOD)
-			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
+			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_traces"=get_full_print(),"blood_colour"= species.get_blood_colour(src),"b_type"=b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
 			B.color = B.data["blood_colour"]
 
@@ -62,8 +62,8 @@
 
 	//set reagent data
 	B.data["donor"] = src
-	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
-	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["blood_traces"] = get_full_print()
+	B.data["b_type"] = copytext(src.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
 	if(istype(src,/mob/living/human))
@@ -112,7 +112,7 @@
 
 	if (!injected || !our)
 		return
-	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
+	if(blood_incompatible(injected.data["b_type"],our.data["b_type"],injected.data["species"],our.data["species"]) )
 		reagents.add_reagent(REAGENT_ID_TOXIN,amount * 0.5)
 		reagents.update_total()
 	else
@@ -201,10 +201,10 @@ proc/blood_splatter(var/atom/target,var/datum/reagent/blood/source,var/large)
 		B.update_icon()
 
 	// Update blood information.
-	if(source.data["blood_DNA"])
-		B.blood_DNA = list()
-		if(source.data["blood_type"])
-			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
+	if(source.data["blood_traces"])
+		B.blood_traces = list()
+		if(source.data["b_type"])
+			B.blood_traces[source.data["blood_traces"]] = source.data["b_type"]
 		else
-			B.blood_DNA[source.data["blood_DNA"]] = "O+"
+			B.blood_traces[source.data["blood_traces"]] = "O+"
 	return B

@@ -9,7 +9,6 @@
 	..()
 
 /obj/item/device/mmi/digital/transfer_identity(var/mob/living/human/H)
-	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.stat = 0
 	if(H.mind)
@@ -105,7 +104,6 @@
 			brainmob = new(src)
 			brainmob.name = H.real_name
 			brainmob.real_name = H.real_name
-			brainmob.dna = H.dna
 			brainmob.container = src
 
 			name = "Man-Machine Interface: [brainmob.real_name]"

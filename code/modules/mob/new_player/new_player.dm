@@ -320,16 +320,10 @@
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
-	new_character.dna.ready_dna(new_character)
-	new_character.dna.b_type = client.prefs.b_type
-	new_character.sync_organ_dna()
+	new_character.b_type = client.prefs.b_type
+	new_character.force_update_organs()
 	if(client.prefs.disabilities)
-		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
-		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
 		new_character.disabilities |= NEARSIGHTED
-
-	// And uncomment this, too.
-	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()

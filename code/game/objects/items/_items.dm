@@ -507,15 +507,15 @@ var/list/global/slot_flags_enumeration = list(
 		generate_blood_overlay()
 
 	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
+	if(!blood_traces.len)
 		blood_overlay.color = blood_color
 		overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+		if(blood_traces[M.get_full_print()])
 			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		blood_traces[M.get_full_print()] = M.b_type
 	return 1 //we applied blood to the item
 
 /obj/item/proc/generate_blood_overlay()
