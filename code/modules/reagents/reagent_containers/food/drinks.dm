@@ -47,7 +47,7 @@
 			return 1
 		return ..()
 
-	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
+	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispenser/target)
 		if(!is_open_container())
 			user << "<span class='notice'>You need to open [src]!</span>"
 			return 1

@@ -8,7 +8,6 @@
 	nutriment_factor = 0
 	hydration_factor = 1
 	toxic_blood = 2
-	flammable = 1
 	alcoholic = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 
 /datum/reagent/alcohol/whiskey

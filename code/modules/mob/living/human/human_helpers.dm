@@ -79,3 +79,7 @@
 			equipment_tint_total += TINT_BLIND
 	if(O.visor && O.visor.active && O.visor.vision && O.visor.vision.glasses && (!O.helmet || (head && O.helmet == head)))
 		process_glasses(O.visor.vision.glasses)
+
+/mob/living/human/proc/force_update_organs()
+	for(var/obj/item/organ/O in (internal_organs+organs))
+		O.force_update_from_owner()

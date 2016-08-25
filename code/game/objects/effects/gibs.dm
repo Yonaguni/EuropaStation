@@ -1,5 +1,5 @@
-/proc/gibs(atom/location, var/list/viruses, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
-	new gibber_type(location,viruses,MobDNA,fleshcolor,bloodcolor)
+/proc/gibs(atom/location, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
+	new gibber_type(location,fleshcolor,bloodcolor)
 
 /obj/effect/gibspawner
 	var/sparks = 0 //whether sparks spread on Gib()
@@ -10,14 +10,14 @@
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/list/viruses, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	New(location, var/fleshcolor, var/bloodcolor)
 		..()
 
 		if(fleshcolor) src.fleshcolor = fleshcolor
 		if(bloodcolor) src.bloodcolor = bloodcolor
-		Gib(loc,viruses,MobDNA)
+		Gib(loc)
 
-	proc/Gib(atom/location, var/list/viruses = list(), var/datum/dna/MobDNA = null)
+	proc/Gib(atom/location)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			return
 
@@ -33,19 +33,12 @@
 				for(var/j = 1, j<= gibamounts[i], j++)
 					var/gibType = gibtypes[i]
 					gib = new gibType(location)
-
 					// Apply human species colouration to masks.
 					if(fleshcolor)
 						gib.fleshcolor = fleshcolor
 					if(bloodcolor)
 						gib.basecolor = bloodcolor
-
 					gib.update_icon()
-					gib.blood_DNA = list()
-					if(MobDNA)
-						gib.blood_DNA[MobDNA.unique_enzymes] = MobDNA.b_type
-					else if(istype(src, /obj/effect/gibspawner/human)) // Probably a monkey
-						gib.blood_DNA["Non-human DNA"] = "A+"
 					if(istype(location,/turf/))
 						var/list/directions = gibdirections[i]
 						if(directions.len)

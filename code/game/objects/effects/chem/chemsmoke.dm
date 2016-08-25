@@ -135,8 +135,8 @@
 	var/contained = carry.get_reagents()
 	var/area/A = get_area(location)
 
-	var/where = "[A.name] | [location.x], [location.y]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
+	var/where = A.name
+	var/whereLink = "[where] [ADMIN_JUMP_LINK(location.x,location.y,location.z)]"
 
 	if(show_log)
 		if(carry.my_atom.fingerprintslast)

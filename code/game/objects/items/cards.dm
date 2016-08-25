@@ -38,8 +38,7 @@
 	slot_flags = SLOT_ID
 
 	var/age = "\[UNSET\]"
-	var/blood_type = "\[UNSET\]"
-	var/dna_hash = "\[UNSET\]"
+	var/b_type = "\[UNSET\]"
 	var/fingerprint_hash = "\[UNSET\]"
 	var/sex = "\[UNSET\]"
 	var/icon/front
@@ -88,16 +87,13 @@
 	 client && client.prefs && !isnull(client.prefs.citizenship) && client.prefs.citizenship != "None")
 		var/obj/item/card/id/passport/P = id_card
 		P.citizenship = client.prefs.citizenship
-
-	if(dna)
-		id_card.blood_type		= dna.b_type
-		id_card.dna_hash		= dna.unique_enzymes
-		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
 /mob/living/human/set_id_info(var/obj/item/card/id/id_card)
 	..()
 	id_card.age = age
+	id_card.b_type = b_type
+	id_card.fingerprint_hash = get_full_print()
 
 /obj/item/card/id/proc/dat()
 	var/dat = ("<table><tr><td>")
@@ -106,8 +102,7 @@
 	dat += text("Age: []</A><BR>\n", age)
 	dat += text("Rank: []</A><BR>\n", assignment)
 	dat += text("Fingerprint: []</A><BR>\n", fingerprint_hash)
-	dat += text("Blood Type: []<BR>\n", blood_type)
-	dat += text("DNA Hash: []<BR><BR>\n", dna_hash)
+	dat += text("Blood Type: []<BR>\n", b_type)
 	if(front && side)
 		dat +="<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4><img src=side.png height=80 width=80 border=4></td>"
 	dat += "</tr></table>"
@@ -132,8 +127,7 @@
 	set src in usr
 
 	usr << text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment)
-	usr << "The blood type on the card is [blood_type]."
-	usr << "The DNA hash on the card is [dna_hash]."
+	usr << "The blood type on the card is [b_type]."
 	usr << "The fingerprint hash on the card is [fingerprint_hash]."
 	return
 

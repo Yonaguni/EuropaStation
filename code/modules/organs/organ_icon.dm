@@ -26,18 +26,6 @@ var/global/list/limb_icon_cache = list()
 		s_col = list(human.r_skin, human.g_skin, human.b_skin)
 	h_col = list(human.r_hair, human.g_hair, human.b_hair)
 
-/obj/item/organ/external/proc/sync_colour_to_dna()
-	s_tone = null
-	s_col = null
-	h_col = null
-	if(status & ORGAN_ROBOT)
-		return
-	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
-		s_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
-	if(species.appearance_flags & HAS_SKIN_COLOR)
-		s_col = list(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
-	h_col = list(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
-
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/human/human)
 	..()
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
@@ -90,53 +78,45 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
 	var/gender = "m"
-	if(owner && owner.gender == FEMALE)
+	if(gender == FEMALE)
 		gender = "f"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
 	else
-		if(!dna)
-			mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_[gender]" : ""]")
+
+		if(!gendered_icon)
+			gender = null
+
+		if(skeletal)
+			mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+		else if (status & ORGAN_ROBOT)
+			mob_icon = new /icon('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 		else
-
-			if(!gendered_icon)
-				gender = null
+			if (status & ORGAN_MUTATED)
+				mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
 			else
-				if(dna.GetUIState(DNA_UI_GENDER))
-					gender = "f"
+				mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
+
+			if(status & ORGAN_DEAD)
+				mob_icon.ColorTone(rgb(10,50,0))
+				mob_icon.SetIntensity(0.7)
+
+			if(!isnull(s_tone))
+				if(s_tone >= 0)
+					mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
-					gender = "m"
+					mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+			else if(s_col && s_col.len >= 3)
+				mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
 
-			if(skeletal)
-				mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-			else if (status & ORGAN_ROBOT)
-				mob_icon = new /icon('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-			else
-				if (status & ORGAN_MUTATED)
-					mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
-				else
-					mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
-
-				if(status & ORGAN_DEAD)
-					mob_icon.ColorTone(rgb(10,50,0))
-					mob_icon.SetIntensity(0.7)
-
-				if(!isnull(s_tone))
-					if(s_tone >= 0)
-						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-					else
-						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-				else if(s_col && s_col.len >= 3)
-					mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-
-			if(body_hair && islist(h_col) && h_col.len >= 3)
-				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-				if(!limb_icon_cache[cache_key])
-					var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
-					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
-					limb_icon_cache[cache_key] = I
-				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
+		if(body_hair && islist(h_col) && h_col.len >= 3)
+			var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
+			if(!limb_icon_cache[cache_key])
+				var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
+				I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
+				limb_icon_cache[cache_key] = I
+			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
 
 	dir = EAST
 	icon = mob_icon

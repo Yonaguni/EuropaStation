@@ -56,7 +56,7 @@
 	if(!istype(M))
 		return
 	if(flammable > 0)
-		M.adjust_fire_stacks(amount / 15)
+		M.adjust_fire_stacks((amount / 15) * flammable)
 	if(hydration_factor && hydration_factor > 0)
 		var/needed = M.fire_stacks * 10
 		if(amount > needed)

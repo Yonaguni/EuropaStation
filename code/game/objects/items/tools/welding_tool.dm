@@ -54,21 +54,24 @@
 			setWelding(0)
 
 
-/obj/item/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
-		O.reagents.trans_to_obj(src, max_fuel)
-		user << "<span class='notice'>Welder refueled</span>"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+/obj/item/weldingtool/afterattack(var/obj/O, var/mob/user, proximity)
+	if(!proximity)
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
-		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
-		var/obj/structure/reagent_dispensers/fueltank/tank = O
-		tank.explode()
+
+	if (istype(O, /obj/structure/reagent_dispenser))
+		var/obj/structure/reagent_dispenser/RD = O
+		if(RD.has_accelerant())
+			if(src.welding)
+				RD.ignite(user)
+			else
+				RD.reagents.trans_to_obj(src, max_fuel)
+				user << "<span class='notice'>You refuel \the [src].</span>"
+				playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		else
+			user << "<span class='warning'>You cannot refuel \the [src] with this.</span>"
 		return
-	if (src.welding)
+
+	if(src.welding)
 		remove_fuel(1)
 		ignite_location()
 	return

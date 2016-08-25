@@ -83,9 +83,6 @@
 					if(istype(target, /mob/living/human))
 						var/amount = reagents.get_free_space()
 						var/mob/living/human/T = target
-						if(!T.dna)
-							user << "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>"
-							return
 						if(NOCLONE in T.mutations) //target done been et, no more blood in him
 							user << "<span class='warning'>You are unable to locate any blood.</span>"
 							return
@@ -114,7 +111,7 @@
 						user << "<span class='notice'>[target] is empty.</span>"
 						return
 
-					if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers))
+					if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser))
 						user << "<span class='notice'>You cannot directly remove reagents from this object.</span>"
 						return
 
@@ -246,7 +243,7 @@
 
 				user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with \the [src] (INTENT: HARM).</font>"
 				target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: HARM).</font>"
-				msg_admin_attack("[key_name_admin(user)] attacked [key_name_admin(target)] with [src.name] (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+				msg_admin_attack("[key_name_admin(user)] attacked [key_name_admin(target)] with [src.name] (INTENT: HARM) [ADMIN_JUMP_LINK(user.x,user.y,user.z)]")
 
 				return
 

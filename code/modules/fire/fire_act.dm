@@ -15,9 +15,10 @@
 /mob/living/human/fire_act() // TODO
 	. = ..()
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
+/obj/structure/reagent_dispenser/fire_act(datum/gas_mixture/air, temperature, volume)
 	. = ..()
-	explode()
+	if(has_accelerant())
+		explode()
 
 /obj/effect/effect/foam/fire_act() // foam disolves when heated, except metal foams
 	. = ..()

@@ -430,7 +430,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
+	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JUMP_LINK(user.x,user.y,user.z)]")
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
@@ -507,15 +507,15 @@ var/list/global/slot_flags_enumeration = list(
 		generate_blood_overlay()
 
 	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
+	if(!blood_traces.len)
 		blood_overlay.color = blood_color
 		overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+		if(blood_traces[M.get_full_print()])
 			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		blood_traces[M.get_full_print()] = M.b_type
 	return 1 //we applied blood to the item
 
 /obj/item/proc/generate_blood_overlay()

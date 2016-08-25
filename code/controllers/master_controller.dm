@@ -33,7 +33,6 @@ var/global/pipe_processing_killed = 0
 /datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 	setup_objects()
-	setup_genetics()
 
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 	if(init_immediately && ticker && ticker.current_state == GAME_STATE_PREGAME)

@@ -32,5 +32,5 @@
 	id = REAGENT_ID_FUEL
 	color = "#660000"
 	touch_met = 5
-	flammable = 1
+	flammable = 5
 	toxic_blood = 1

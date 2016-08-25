@@ -19,7 +19,12 @@
 		set_light(light_range + 3)
 		update_fire()
 
-
 /mob/living/animal/ignite()
 	. = ..()
 	return
+
+/obj/structure/reagent_dispenser/ignite(var/mob/user)
+	message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
+	log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+	user << "<span class='danger'>You begin welding on \the [src]. In a moment of lucidity you realize that this isn't the smartest thing you've ever done.</span>"
+	explode()

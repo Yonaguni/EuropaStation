@@ -177,7 +177,7 @@ var/list/bike_cache = list()
 			if(istype(load, /mob/living))
 				var/mob/living/driver = load
 				driver << "<span class='danger'>You collide with \the [M]!</span>"
-				msg_admin_attack("[driver.name] ([driver.ckey]) hit [M.name] ([M.ckey]) with [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+				msg_admin_attack("[driver.name] ([driver.ckey]) hit [M.name] ([M.ckey]) with [src]. [ADMIN_JUMP_LINK(src.x,src.y,src.z)]")
 			visible_message("<span class='danger'>\The [src] knocks \the [M] down!</span>")
 			RunOver(M)
 			M.Weaken(rand(5,10))

@@ -333,7 +333,7 @@
 "if" = (/turf/simulated/floor/natural/light,/area/rimworld/settlement)
 "ig" = (/obj/structure/table/woodentable,/obj/item/flashlight,/turf/simulated/floor,/area/rimworld/building/homestead_large_s)
 "ih" = (/turf/simulated/floor,/area/rimworld/building/garage)
-"ii" = (/obj/structure/table/marble,/obj/machinery/chemical_dispenser/bar_alc/full,/turf/simulated/floor,/area/rimworld/building/pub)
+"ii" = (/obj/structure/table/marble,/turf/simulated/floor,/area/rimworld/building/pub)
 "ij" = (/obj/structure/table/woodentable,/turf/simulated/floor,/area/rimworld/building/homestead_large_s)
 "ik" = (/obj/item/stool/padded,/obj/machinery/light/small,/turf/simulated/floor,/area/rimworld/building/pub)
 "il" = (/obj/structure/table/woodentable,/obj/item/paper_bin,/obj/item/pen,/turf/simulated/floor,/area/rimworld/building/homestead_large_s)

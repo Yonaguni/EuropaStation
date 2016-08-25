@@ -105,13 +105,13 @@
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
 					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
-					if(S.track_blood && S.blood_DNA)
-						bloodDNA = S.blood_DNA
+					if(S.track_blood && S.blood_traces)
+						bloodDNA = S.blood_traces
 						bloodcolor=S.blood_color
 						S.track_blood--
 			else
-				if(H.track_blood && H.feet_blood_DNA)
-					bloodDNA = H.feet_blood_DNA
+				if(H.track_blood && H.feet_blood_traces)
+					bloodDNA = H.feet_blood_traces
 					bloodcolor = H.feet_blood_color
 					H.track_blood--
 
@@ -159,10 +159,10 @@
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
-			if(!B.blood_DNA)
-				B.blood_DNA = list()
-			if(!B.blood_DNA[M.dna.unique_enzymes])
-				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+			if(!B.blood_traces)
+				B.blood_traces = list()
+			if(!B.blood_traces[M.get_full_print()])
+				B.blood_traces[M.get_full_print()] = M.b_type
 			return 1 //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
 		return 1 //we bloodied the floor

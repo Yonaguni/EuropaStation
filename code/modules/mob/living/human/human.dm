@@ -21,8 +21,6 @@
 	if(new_species)
 		mapped_species = new_species
 
-	if(!dna)
-		dna = new /datum/dna(null)
 
 	hud_list[HEALTH_HUD]      = image('icons/screen/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/screen/hud.dmi', src, "hudhealthy")
@@ -36,11 +34,6 @@
 	hud_list[STATUS_HUD_OOC]  = image('icons/screen/hud.dmi', src, "hudhealthy")
 
 	human_mob_list |= src
-
-	if(dna)
-		dna.ready_dna(src)
-		dna.real_name = real_name
-		sync_organ_dna()
 
 	. = ..()
 
@@ -410,11 +403,6 @@
 
 	return 0
 
-
-/mob/living/human/proc/check_dna()
-	dna.check_integrity(src)
-	return
-
 /mob/living/human/get_species()
 	if(!species)
 		set_species()
@@ -508,7 +496,6 @@
 		else
 			gender = NEUTER
 	regenerate_icons()
-	check_dna()
 
 	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
 
@@ -626,18 +613,17 @@
 	if (!..())
 		return 0
 	//if this blood isn't already in the list, add it
-	if(istype(M))
-		if(!blood_DNA[M.dna.unique_enzymes])
-			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+	if(istype(M) && !blood_traces[M.get_full_print()])
+		blood_traces[M.get_full_print()] = M.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
 	verbs += /mob/living/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
 /mob/living/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
-		return
-	return md5(dna.uni_identity)
+	if(!uni_identity)
+		uni_identity = md5("\ref[src]")
+	return uni_identity
 
 /mob/living/human/clean_blood(var/clean_feet)
 	. = ..()
@@ -652,9 +638,9 @@
 		germ_level = 0
 	update_icons()
 	gunshot_residue = null
-	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
+	if(clean_feet && !shoes && istype(feet_blood_traces, /list) && feet_blood_traces.len)
 		feet_blood_color = null
-		qdel(feet_blood_DNA)
+		qdel(feet_blood_traces)
 		update_inv_shoes(1)
 		return 1
 
@@ -728,17 +714,8 @@
 
 /mob/living/human/proc/set_species(var/new_species, var/default_colour)
 
-	if(!dna)
-		if(!new_species)
-			new_species = "Human"
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
-
 	// No more invisible screaming wheelchairs because of set_species() typos.
-	if(!all_species[new_species])
+	if(!new_species || !all_species[new_species])
 		new_species = "Human"
 
 	if(species)
@@ -934,20 +911,6 @@
 		return flavor_text
 	else
 		return ..()
-
-/mob/living/human/proc/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	if(isSynthetic())
-		return
-	return dna
-
-/mob/living/human/proc/setDNA(var/datum/dna/newDNA)
-	if(species.flags & NO_SCAN)
-		return
-	if(isSynthetic())
-		return
-	dna = newDNA
 
 /mob/living/human/has_brain()
 	if(internal_organs_by_name[O_BRAIN])
@@ -1195,7 +1158,7 @@
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
-				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] [ADMIN_JUMP_LINK(usr.x,usr.y,usr.z)]")
 
 	if(!item) return //Grab processing has a chance of returning null
 

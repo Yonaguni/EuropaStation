@@ -19,12 +19,9 @@
 	var/label_text = ""
 
 	var/list/can_be_placed_into = list(
-		/obj/machinery/chem_master/,
-		/obj/machinery/chemical_dispenser,
 		/obj/machinery/reagentgrinder,
 		/obj/structure/table,
 		/obj/structure/crate,
-		/obj/structure/crate/closet,
 		/obj/item/storage,
 		/obj/machinery/constructable_frame
 		)

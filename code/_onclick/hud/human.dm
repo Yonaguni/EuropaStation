@@ -350,7 +350,7 @@
 //Used for new human mobs created by cloning/goleming/etc.
 /mob/living/human/proc/set_cloned_appearance()
 	f_style = "Shaved"
-	if(dna.species == "Human") //no more xenos losing ears/tentacles
+	if(species.name == "Human") //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	underwear = null
 	regenerate_icons()
