@@ -1,7 +1,7 @@
 /obj/structure/reagent_dispenser
 	name = "portable tank"
 	desc = "A large wheeled tank, suitable for transporting liquids."
-	icon = 'icons/obj/structures/reagent_dispensers.dmi'
+	icon = 'icons/obj/structures/tanks.dmi'
 	icon_state = "tank"
 	density = 1
 	anchored = 0

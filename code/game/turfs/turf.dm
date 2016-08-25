@@ -3,7 +3,7 @@ var/list/turf_edge_cache = list()
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
-	luminosity = 0
+	luminosity = 1
 
 	// General properties.
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?

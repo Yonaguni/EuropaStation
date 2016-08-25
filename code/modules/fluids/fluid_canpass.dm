@@ -18,6 +18,9 @@
 /obj/structure/girder/CanFluidPass(var/coming_from)
 	return 1
 
+/obj/structure/table/CanFluidPass(var/coming_from)
+	return 1
+
 /obj/structure/window/CanFluidPass(var/coming_from)
 	if(coming_from == dir)
 		return !density

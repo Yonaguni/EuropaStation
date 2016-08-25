@@ -22,8 +22,6 @@
 	var/flesh_color = "#FFC896"                          // Pink.
 	var/base_color                                       // Used by changelings. Should also be used for icon previes..
 
-	var/race_key = 0                                     // Used for mob icon cache string.
-	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
 	var/mob_size = MOB_MEDIUM
 	var/show_ssd = "fast asleep"
 	var/virus_immune
