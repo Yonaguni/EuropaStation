@@ -158,7 +158,7 @@
 					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 				if(prob(1))
 					src << "<span class='warning'>You feel strange!</span>"
-					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+					adjustToxLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 
 		if(damage)

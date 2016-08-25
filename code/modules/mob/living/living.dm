@@ -167,7 +167,7 @@ default behaviour is:
 		health = 100
 		stat = CONSCIOUS
 	else
-		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - subdual
+		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - subdual
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -247,17 +247,6 @@ default behaviour is:
 /mob/living/proc/adjustFireLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	fireloss = min(max(fireloss + amount, 0),(maxHealth*2))
-
-/mob/living/proc/getCloneLoss()
-	return cloneloss
-
-/mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
-
-/mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
@@ -383,7 +372,6 @@ default behaviour is:
 	// shut down various types of badness
 	setToxLoss(0)
 	setOxyLoss(0)
-	setCloneLoss(0)
 	setBrainLoss(0)
 	SetParalysis(0)
 	SetStunned(0)

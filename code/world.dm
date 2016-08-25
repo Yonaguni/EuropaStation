@@ -276,7 +276,6 @@ var/world_topic_spam_protect_time = world.timeofday
 							tox = L.getToxLoss(),
 							fire = L.getFireLoss(),
 							brute = L.getBruteLoss(),
-							clone = L.getCloneLoss(),
 							brain = L.getBrainLoss()
 						))
 			else

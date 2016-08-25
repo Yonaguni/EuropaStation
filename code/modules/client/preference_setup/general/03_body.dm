@@ -556,8 +556,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "</br><b>Does not have a circulatory system.</b>"
 	if(!current_species.has_organ[O_LUNGS])
 		dat += "</br><b>Does not have a respiratory system.</b>"
-	if(current_species.flags & NO_SCAN)
-		dat += "</br><b>Does not have DNA.</b>"
 	if(current_species.flags & NO_PAIN)
 		dat += "</br><b>Does not feel pain.</b>"
 	if(current_species.flags & NO_SLIP)

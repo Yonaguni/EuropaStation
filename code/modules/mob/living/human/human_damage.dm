@@ -15,9 +15,8 @@
 
 	var/oxy_l = getOxyLoss()
 	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())
-	var/clone_l = getCloneLoss()
 
-	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
+	health = maxHealth - oxy_l - tox_l - total_burn - total_brute
 
 	//TODO: fix husking
 	if( ((maxHealth - total_burn) < config.health_threshold_dead) && stat == DEAD)
@@ -131,52 +130,6 @@
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.
 		wearing_rig.notify_ai("<span class='danger'>Warning: user consciousness failure. Mobility control passed to integrated intelligence system.</span>")
 	..()
-
-/mob/living/human/getCloneLoss()
-	if((species.flags & NO_SCAN) || isSynthetic())
-		cloneloss = 0
-	return ..()
-
-/mob/living/human/setCloneLoss(var/amount)
-	if((species.flags & NO_SCAN) || isSynthetic())
-		cloneloss = 0
-	else
-		..()
-
-/mob/living/human/adjustCloneLoss(var/amount)
-	..()
-
-	if((species.flags & NO_SCAN) || isSynthetic())
-		cloneloss = 0
-		return
-
-	var/heal_prob = max(0, 80 - getCloneLoss())
-	var/mut_prob = min(80, getCloneLoss()+10)
-	if (amount > 0)
-		if (prob(mut_prob))
-			var/list/obj/item/organ/external/candidates = list()
-			for (var/obj/item/organ/external/O in organs)
-				if(!(O.status & ORGAN_MUTATED))
-					candidates |= O
-			if (candidates.len)
-				var/obj/item/organ/external/O = pick(candidates)
-				O.mutate()
-				src << "<span class = 'notice'>Something is not right with your [O.name]...</span>"
-				return
-	else
-		if (prob(heal_prob))
-			for (var/obj/item/organ/external/O in organs)
-				if (O.status & ORGAN_MUTATED)
-					O.unmutate()
-					src << "<span class = 'notice'>Your [O.name] is shaped normally again.</span>"
-					return
-
-	if (getCloneLoss() < 1)
-		for (var/obj/item/organ/external/O in organs)
-			if (O.status & ORGAN_MUTATED)
-				O.unmutate()
-				src << "<span class = 'notice'>Your [O.name] is shaped normally again.</span>"
-	BITSET(hud_updateflag, HEALTH_HUD)
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.
 /mob/living/human/getOxyLoss()

@@ -19,26 +19,11 @@
 			adjustToxLoss(damage/(blocked+1))
 		if(OXY)
 			adjustOxyLoss(damage/(blocked+1))
-		if(CLONE)
-			adjustCloneLoss(damage/(blocked+1))
 		if(SUBDUAL)
 			adjustSubdual(damage/(blocked+1))
 	flash_weak_pain()
 	updatehealth()
 	return 1
-
-
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/subdual = 0, var/def_zone = null, var/blocked = 0)
-	if(blocked >= 2)	return 0
-	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
-	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
-	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
-	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
-	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
-	if(subdual) apply_damage(subdual, subdual, def_zone, blocked)
-	return 1
-
-
 
 /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	if(!effect || (blocked >= 2))	return 0

@@ -4,7 +4,6 @@
 #define BURN      "fire"
 #define TOX       "tox"
 #define OXY       "oxy"
-#define CLONE     "clone"
 #define SUBDUAL   "subdual"
 
 #define CUT       "cut"

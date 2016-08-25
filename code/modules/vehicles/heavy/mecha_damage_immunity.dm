@@ -25,15 +25,6 @@
 /mob/living/heavy_vehicle/adjustToxLoss()
 	return 0
 
-/mob/living/heavy_vehicle/getCloneLoss()
-	return 0
-
-/mob/living/heavy_vehicle/setCloneLoss()
-	return 0
-
-/mob/living/heavy_vehicle/adjustCloneLoss()
-	return 0
-
 /mob/living/heavy_vehicle/getBrainLoss()
 	return 0
 
