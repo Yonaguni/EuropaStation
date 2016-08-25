@@ -168,3 +168,8 @@
 	for(var/datum/reagent/A in reagents.reagent_list)
 		var/obj/item/organ/O = pick(organs)
 		O.trace_chemicals[A.name] = 100
+
+/mob/living/human/proc/force_update_limbs()
+	for(var/obj/item/organ/external/O in organs)
+		O.sync_colour_to_human(src)
+	update_body(0)

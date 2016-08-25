@@ -31,12 +31,8 @@
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
 	var/force_icon                     // Used to force override of species-specific limb icons (for prosthetics).
-	var/icon/mob_icon                  // Cached icon for use in mob overlays.
 	var/gendered_icon = 0              // Whether or not the icon state appends a gender.
-	var/s_tone                         // Skin tone.
-	var/list/s_col                     // skin colour
-	var/list/h_col                     // hair colour
-	var/body_hair                      // Icon blend for body hair if any.
+	var/col_skin                       // skin colour
 
 	// Wound and structural data.
 	var/wound_update_accuracy = 1      // how often wounds should be updated, a higher number means less often
@@ -202,8 +198,7 @@
 	if(owner)
 		replaced(owner)
 		sync_colour_to_human(owner)
-	spawn(1)
-		get_icon()
+	get_image()
 
 /obj/item/organ/external/replaced(var/mob/living/human/target)
 	owner = target
@@ -975,7 +970,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	dislocated = -1
 	cannot_break = 1
-	get_icon()
+	get_image()
 
 	for(var/obj/item/organ/external/T in children)
 		T.robotize(company, 1)
@@ -1321,6 +1316,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	base_miss_chance = 40
 
 	var/eye_icon = "eyes_s"
+	var/col_hair = "#FFFFFF"
+	var/col_facial = "#FFFFFF"
+
 
 // These organs are important for robotizing at chargen.
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)

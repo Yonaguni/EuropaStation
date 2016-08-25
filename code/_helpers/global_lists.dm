@@ -145,14 +145,9 @@ var/global/list/string_slot_flags = list(
 		if(!(L.flags & NONGLOBAL))
 			language_keys[lowertext(L.key)] = L
 
-	var/rkey = 0
-	paths = typesof(/datum/species)-/datum/species
-	for(var/T in paths)
-		rkey++
+	for(var/T in typesof(/datum/species)-/datum/species)
 		var/datum/species/S = new T
-		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
-
 		if(!(S.spawn_flags & IS_RESTRICTED))
 			playable_species += S.name
 		if(S.spawn_flags & IS_WHITELISTED)

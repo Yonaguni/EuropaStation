@@ -17,14 +17,11 @@
 	var/damage_mask = 'icons/mob/human_races/masks/dam_mask_human.dmi'
 	var/blood_mask = 'icons/mob/human_races/masks/blood_human.dmi'
 
-	var/prone_icon                                       // If set, draws this from icobase when mob is prone.
 	var/has_floating_eyes                                // Eyes will overlay over darkness (glow)
 	var/blood_color = DEFAULT_BLOOD_COLOUR                          // Red.
 	var/flesh_color = "#FFC896"                          // Pink.
 	var/base_color                                       // Used by changelings. Should also be used for icon previes..
 
-	var/race_key = 0                                     // Used for mob icon cache string.
-	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
 	var/mob_size = MOB_MEDIUM
 	var/show_ssd = "fast asleep"
 	var/virus_immune

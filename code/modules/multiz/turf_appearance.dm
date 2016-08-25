@@ -16,12 +16,10 @@ var/list/open_space_cache = list()
 
 	// Shallow layers just show the layer below.
 	if(layer_is_shallow(z) && !below.is_flooded(absolute=1))
-		var/old_lum = luminosity
 		appearance = below.appearance
 		name = initial(name)
 		desc = initial(desc)
 		opacity = initial(opacity)
-		luminosity = old_lum
 		overlays += open_space_overlay
 		layer = 0
 	// Apply drop icon and fadeout for non-shallow layers.

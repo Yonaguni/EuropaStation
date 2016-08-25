@@ -66,7 +66,7 @@
 	gender = PLURAL
 	organ_tag = O_EYES
 	parent_organ = BP_HEAD
-	var/list/eye_colour = list(0,0,0)
+	var/col_eyes = "#000000"
 
 /obj/item/organ/internal/eyes/robotize()
 	..()
@@ -84,21 +84,15 @@
 /obj/item/organ/internal/eyes/replaced(var/mob/living/human/target)
 
 	// Apply our eye colour to the target.
-	if(istype(target) && eye_colour)
-		target.r_eyes = eye_colour[1]
-		target.g_eyes = eye_colour[2]
-		target.b_eyes = eye_colour[3]
+	if(istype(target))
+		target.col_eyes = col_eyes
 		target.update_eyes()
 	..()
 
 /obj/item/organ/internal/eyes/proc/update_colour()
 	if(!owner)
 		return
-	eye_colour = list(
-		owner.r_eyes ? owner.r_eyes : 0,
-		owner.g_eyes ? owner.g_eyes : 0,
-		owner.b_eyes ? owner.b_eyes : 0
-		)
+	col_eyes = owner.col_eyes
 
 /obj/item/organ/internal/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()

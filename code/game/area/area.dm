@@ -4,7 +4,7 @@
 	icon_state = "unknown"
 	level = null
 	layer = 10
-	luminosity = 0
+	luminosity = 1
 	mouse_opacity = 0
 
 	var/uid                            // Unique identifier for this area instance.

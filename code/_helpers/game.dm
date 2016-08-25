@@ -51,13 +51,10 @@
 // Like view but bypasses luminosity check
 
 /proc/hear(var/range, var/atom/source)
-
 	var/lum = source.luminosity
 	source.luminosity = 6
-
 	var/list/heard = view(range, source)
 	source.luminosity = lum
-
 	return heard
 
 /proc/isStationLevel(var/level)
