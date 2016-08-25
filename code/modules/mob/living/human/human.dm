@@ -1138,8 +1138,6 @@
 
 				if(org.is_stump())
 					status += "MISSING"
-				if(org.status & ORGAN_MUTATED)
-					status += "weirdly shapen"
 				if(org.dislocated == 2)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)

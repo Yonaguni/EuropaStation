@@ -267,7 +267,7 @@
 				wound_flavor_text["[temp.name]"] = ""
 			if(temp.dislocated == 2)
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.joint] is dislocated!</span><br>"
-			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
+			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
 
 	for(var/limb in wound_flavor_text)

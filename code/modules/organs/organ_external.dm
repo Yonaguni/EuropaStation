@@ -476,7 +476,7 @@ This function completely restores a damaged organ to perfect condition.
 
 //Determines if we even need to process this organ.
 /obj/item/organ/external/proc/need_process()
-	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_DESTROYED|ORGAN_SPLINTED|ORGAN_DEAD|ORGAN_MUTATED))
+	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_DESTROYED|ORGAN_SPLINTED|ORGAN_DEAD))
 		return 1
 	if(brute_dam || burn_dam)
 		return 1
@@ -976,7 +976,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	dislocated = -1
 	cannot_break = 1
 	get_icon()
-	unmutate()
 
 	for(var/obj/item/organ/external/T in children)
 		T.robotize(company, 1)
@@ -1002,16 +1001,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	return 1
 
-/obj/item/organ/external/proc/mutate()
-	if(src.status & ORGAN_ROBOT)
-		return
-	src.status |= ORGAN_MUTATED
-	if(owner) owner.update_body()
-
-/obj/item/organ/external/proc/unmutate()
-	src.status &= ~ORGAN_MUTATED
-	if(owner) owner.update_body()
-
 /obj/item/organ/external/proc/get_damage()	//returns total damage
 	return (brute_dam+burn_dam)	//could use max_damage?
 
@@ -1024,7 +1013,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_usable()
 	if((status & ORGAN_ROBOT) && get_damage() >= max_damage) //robot limbs just become inoperable at max damage
 		return
-	return !is_dislocated() && !(status & (ORGAN_DESTROYED|ORGAN_MUTATED|ORGAN_DEAD))
+	return !is_dislocated() && !(status & (ORGAN_DESTROYED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/is_malfunctioning()
 	return ((status & ORGAN_ROBOT) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))

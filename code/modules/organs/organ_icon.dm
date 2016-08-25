@@ -75,7 +75,7 @@ var/global/list/limb_icon_cache = list()
 
 	return mob_icon
 
-/obj/item/organ/external/proc/get_icon(var/skeletal)
+/obj/item/organ/external/proc/get_icon()
 
 	var/gender = "m"
 	if(gender == FEMALE)
@@ -88,15 +88,10 @@ var/global/list/limb_icon_cache = list()
 		if(!gendered_icon)
 			gender = null
 
-		if(skeletal)
-			mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-		else if (status & ORGAN_ROBOT)
+		if (status & ORGAN_ROBOT)
 			mob_icon = new /icon('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 		else
-			if (status & ORGAN_MUTATED)
-				mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
-			else
-				mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
+			mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
 
 			if(status & ORGAN_DEAD)
 				mob_icon.ColorTone(rgb(10,50,0))
