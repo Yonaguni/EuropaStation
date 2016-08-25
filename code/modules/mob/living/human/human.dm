@@ -592,14 +592,9 @@
 		add_language(species.default_language)
 
 	if(species.base_color && default_colour)
-		//Apply colour.
-		r_skin = hex2num(copytext(species.base_color,2,4))
-		g_skin = hex2num(copytext(species.base_color,4,6))
-		b_skin = hex2num(copytext(species.base_color,6,8))
+		col_skin = species.base_color
 	else
-		r_skin = 0
-		g_skin = 0
-		b_skin = 0
+		col_skin = "#FFFFFF"
 
 	if(species.holder_type)
 		holder_type = species.holder_type

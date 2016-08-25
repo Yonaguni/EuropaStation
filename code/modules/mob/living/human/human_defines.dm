@@ -1,27 +1,11 @@
 /mob/living/human
-	//Hair colour and style
-	var/r_hair = 0
-	var/g_hair = 0
-	var/b_hair = 0
+
 	var/h_style = "Bald"
-
-	//Facial hair colour and style
-	var/r_facial = 0
-	var/g_facial = 0
-	var/b_facial = 0
 	var/f_style = "Shaved"
-
-	//Eye colour
-	var/r_eyes = 0
-	var/g_eyes = 0
-	var/b_eyes = 0
-
-	var/s_tone = 0	//Skin tone
-
-	//Skin colour
-	var/r_skin = 0
-	var/g_skin = 0
-	var/b_skin = 0
+	var/col_facial = "#FFFFFF"
+	var/col_hair = "#FFFFFF"
+	var/col_eyes = "#FFFFFF" //Eye colour
+	var/col_skin = "#FFFFFF" //Skin colour
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/damage_multiplier = 1 //multiplies melee combat damage
@@ -54,9 +38,6 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
-
-	var/icon/stand_icon = null
-	var/icon/lying_icon = null
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 

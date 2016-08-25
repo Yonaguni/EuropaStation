@@ -54,8 +54,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 		if (ishuman(body))
 			var/mob/living/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
+			appearance = H.appearance
 		else
 			icon = body.icon
 			icon_state = body.icon_state

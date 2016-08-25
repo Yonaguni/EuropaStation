@@ -6,21 +6,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/general/body/load_character(var/savefile/S)
 	S["species"]			>> pref.species
-	S["hair_red"]			>> pref.r_hair
-	S["hair_green"]			>> pref.g_hair
-	S["hair_blue"]			>> pref.b_hair
-	S["facial_red"]			>> pref.r_facial
-	S["facial_green"]		>> pref.g_facial
-	S["facial_blue"]		>> pref.b_facial
-	S["skin_tone"]			>> pref.s_tone
-	S["skin_red"]			>> pref.r_skin
-	S["skin_green"]			>> pref.g_skin
-	S["skin_blue"]			>> pref.b_skin
 	S["hair_style_name"]	>> pref.h_style
 	S["facial_style_name"]	>> pref.f_style
-	S["eyes_red"]			>> pref.r_eyes
-	S["eyes_green"]			>> pref.g_eyes
-	S["eyes_blue"]			>> pref.b_eyes
+	S["col_hair"]			>> pref.col_hair
+	S["col_facial"]			>> pref.col_facial
+	S["col_skin"]			>> pref.col_skin
+	S["col_eyes"]			>> pref.col_eyes
 	S["b_type"]				>> pref.b_type
 	S["disabilities"]		>> pref.disabilities
 	S["organ_data"]			>> pref.organ_data
@@ -29,21 +20,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
-	S["hair_red"]			<< pref.r_hair
-	S["hair_green"]			<< pref.g_hair
-	S["hair_blue"]			<< pref.b_hair
-	S["facial_red"]			<< pref.r_facial
-	S["facial_green"]		<< pref.g_facial
-	S["facial_blue"]		<< pref.b_facial
-	S["skin_tone"]			<< pref.s_tone
-	S["skin_red"]			<< pref.r_skin
-	S["skin_green"]			<< pref.g_skin
-	S["skin_blue"]			<< pref.b_skin
 	S["hair_style_name"]	<< pref.h_style
 	S["facial_style_name"]	<< pref.f_style
-	S["eyes_red"]			<< pref.r_eyes
-	S["eyes_green"]			<< pref.g_eyes
-	S["eyes_blue"]			<< pref.b_eyes
+	S["col_hair"]			<< pref.col_hair
+	S["col_facial"]			<< pref.col_facial
+	S["col_skin"]			<< pref.col_skin
+	S["col_eyes"]			<< pref.col_eyes
 	S["b_type"]				<< pref.b_type
 	S["disabilities"]		<< pref.disabilities
 	S["organ_data"]			<< pref.organ_data
@@ -52,24 +34,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in playable_species))
 		pref.species = "Human"
-	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
-	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
-	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
-	pref.r_facial		= sanitize_integer(pref.r_facial, 0, 255, initial(pref.r_facial))
-	pref.g_facial		= sanitize_integer(pref.g_facial, 0, 255, initial(pref.g_facial))
-	pref.b_facial		= sanitize_integer(pref.b_facial, 0, 255, initial(pref.b_facial))
-	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.r_skin			= sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
-	pref.g_skin			= sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
-	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
 	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
-	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
-	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
-	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
+	/* TODO: SANITIZE
+	pref.col_hair
+	pref.col_facial
+	pref.col_skin
+	pref.col_eyes
+	*/
 
-	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
+	pref.disabilities = sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
 	if(!pref.organ_data) pref.organ_data = list()
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 
@@ -84,8 +59,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br>"
 	. += "Species: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];b_type=1'>[pref.b_type]</a><br>"
-	if(has_flag(mob_species, HAS_SKIN_TONE))
-		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
 	. += "Limbs: <a href='?src=\ref[src];limbs=1'>Adjust</a> <a href='?src=\ref[src];reset_limbs=1'>Reset</a><br>"
 	. += "Internal Organs: <a href='?src=\ref[src];organs=1'>Adjust</a><br>"
@@ -173,21 +146,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "<b>Hair</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair)]'><tr><td>__</td></tr></table></font> "
+		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> <font face='fixedsys' size='3' color=[pref.col_hair]'><table style='display:inline;' bgcolor='#[pref.col_hair]'><tr><td>__</td></tr></table></font> "
 	. += " Style: <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>"
 
 	. += "<br><b>Facial</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];facial_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial)]'><tr><td>__</td></tr></table></font> "
+		. += "<a href='?src=\ref[src];facial_color=1'>Change Color</a> <font face='fixedsys' size='3' color='[pref.col_facial]'><table  style='display:inline;' bgcolor='#[pref.col_facial]'><tr><td>__</td></tr></table></font> "
 	. += " Style: <a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>"
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
 		. += "<br><b>Eyes</b><br>"
-		. += "<a href='?src=\ref[src];eye_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes)]'><tr><td>__</td></tr></table></font><br>"
+		. += "<a href='?src=\ref[src];eye_color=1'>Change Color</a> <font face='fixedsys' size='3' color='[pref.col_eyes]'><table  style='display:inline;' bgcolor='[pref.col_eyes]'><tr><td>__</td></tr></table></font><br>"
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color</b><br>"
-		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin)]'><tr><td>__</td></tr></table></font><br>"
+		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='[pref.col_skin]'><table style='display:inline;' bgcolor='[pref.col_skin]'><tr><td>__</td></tr></table></font><br>"
 
 /datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.appearance_flags & flag)
@@ -266,10 +239,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.f_style = facial_hair_styles_list["Shaved"]
 
 			//reset hair colour and skin colour
-			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
-			pref.s_tone = 0
+			pref.col_hair = "#FFFFFF"
+			pref.col_skin = "#FFFFFF"
 			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
@@ -282,11 +253,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
-		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(pref.r_hair, pref.g_hair, pref.b_hair)) as color|null
+		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", pref.col_hair) as color|null
 		if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
-			pref.r_hair = hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = hex2num(copytext(new_hair, 6, 8))
+			pref.col_hair = new_hair
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
@@ -306,39 +275,25 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["facial_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
-		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", rgb(pref.r_facial, pref.g_facial, pref.b_facial)) as color|null
+		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", pref.col_facial) as color|null
 		if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
-			pref.r_facial = hex2num(copytext(new_facial, 2, 4))
-			pref.g_facial = hex2num(copytext(new_facial, 4, 6))
-			pref.b_facial = hex2num(copytext(new_facial, 6, 8))
+			pref.col_facial = new_facial
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["eye_color"])
 		if(!has_flag(mob_species, HAS_EYE_COLOR))
 			return TOPIC_NOACTION
-		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", rgb(pref.r_eyes, pref.g_eyes, pref.b_eyes)) as color|null
+		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", pref.col_eyes) as color|null
 		if(new_eyes && has_flag(mob_species, HAS_EYE_COLOR) && CanUseTopic(user))
-			pref.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-			pref.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-			pref.b_eyes = hex2num(copytext(new_eyes, 6, 8))
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["skin_tone"])
-		if(!has_flag(mob_species, HAS_SKIN_TONE))
-			return TOPIC_NOACTION
-		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
-		if(new_s_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))
-			pref.s_tone = 35 - max(min( round(new_s_tone), 220),1)
+			pref.col_eyes = new_eyes
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["skin_color"])
 		if(!has_flag(mob_species, HAS_SKIN_COLOR))
 			return TOPIC_NOACTION
-		var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", rgb(pref.r_skin, pref.g_skin, pref.b_skin)) as color|null
+		var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", pref.col_skin) as color|null
 		if(new_skin && has_flag(mob_species, HAS_SKIN_COLOR) && CanUseTopic(user))
-			pref.r_skin = hex2num(copytext(new_skin, 2, 4))
-			pref.g_skin = hex2num(copytext(new_skin, 4, 6))
-			pref.b_skin = hex2num(copytext(new_skin, 6, 8))
+			pref.col_skin = new_skin
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_style"])
@@ -562,12 +517,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "</br><b>Has excellent traction.</b>"
 	if(current_species.flags & NO_POISON)
 		dat += "</br><b>Immune to most poisons.</b>"
-	if(current_species.appearance_flags & HAS_SKIN_TONE)
-		dat += "</br><b>Has a variety of skin tones.</b>"
-	if(current_species.appearance_flags & HAS_SKIN_COLOR)
-		dat += "</br><b>Has a variety of skin colours.</b>"
-	if(current_species.appearance_flags & HAS_EYE_COLOR)
-		dat += "</br><b>Has a variety of eye colours.</b>"
 	if(current_species.flags & IS_PLANT)
 		dat += "</br><b>Has a plantlike physiology.</b>"
 	dat += "</small></td>"

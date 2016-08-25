@@ -9,113 +9,102 @@ var/global/list/limb_icon_cache = list()
 	for(var/obj/item/organ/external/organ in contents)
 		if(organ.children && organ.children.len)
 			for(var/obj/item/organ/external/child in organ.children)
-				overlays += child.mob_icon
-		overlays += organ.mob_icon
+				overlays += child.get_image()
+		overlays += organ.get_image()
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/human/human)
-	s_tone = null
-	s_col = null
-	h_col = null
-	if(status & ORGAN_ROBOT)
+	if((status & ORGAN_ROBOT) || (species && human.species && species.name != human.species.name))
 		return
-	if(species && human.species && species.name != human.species.name)
-		return
-	if(!isnull(human.s_tone) && (human.species.appearance_flags & HAS_SKIN_TONE))
-		s_tone = human.s_tone
-	if(human.species.appearance_flags & HAS_SKIN_COLOR)
-		s_col = list(human.r_skin, human.g_skin, human.b_skin)
-	h_col = list(human.r_hair, human.g_hair, human.b_hair)
+	col_skin = human.col_skin
+	return 1
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/human/human)
 	..()
+	col_facial = human.col_facial
+	col_hair = human.col_hair
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/removed()
-	get_icon()
+	get_image()
 	..()
 
-/obj/item/organ/external/head/get_icon()
-
-	..()
+/obj/item/organ/external/proc/get_image()
+	var/usegender = "m"
+	if(gender == FEMALE)
+		usegender = "f"
+	var/image/return_icon = image(null)
+	icon_state = null
+	if(force_icon)
+		return_icon = image(force_icon, "[icon_name][gendered_icon ? "_[usegender]" : ""]")
+	else
+		if(!gendered_icon)
+			usegender = null
+		if (status & ORGAN_ROBOT)
+			return_icon.overlays += image('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][usegender ? "_[usegender]" : ""]")
+		else
+			return_icon.overlays += image(species.icobase, "[icon_name][usegender ? "_[usegender]" : ""]")
+			return_icon.color = col_skin
 	overlays.Cut()
-	if(!owner || !owner.species)
-		return
-	if(owner.should_have_organ(O_EYES))
+	overlays += return_icon
+	dir = EAST
+	return return_icon
+
+/obj/item/organ/external/head/proc/get_eye_image()
+	if(owner && owner.should_have_organ(O_EYES))
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
-			var/icon/eyes_icon = new/icon('icons/mob/creatures/human_face.dmi', eye_icon)
+			var/image/eye_base = image('icons/mob/creatures/eyes.dmi', "eyes_base")
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				var/image/pupils = image('icons/mob/creatures/eyes.dmi', eye_icon)
+				pupils.color = eyes.col_eyes
+				eye_base.overlays += pupils
 			else
-				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
-			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-			overlays |= eyes_icon
+				eye_base.color = "#AA0000"
+			return eye_base
+	return image(null)
 
-	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
-		var/icon/lip_icon = new/icon('icons/mob/creatures/human_face.dmi', "lips_[owner.lip_style]_s")
-		overlays |= lip_icon
-		mob_icon.Blend(lip_icon, ICON_OVERLAY)
-
-	if(owner.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
-			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
-			overlays |= facial_s
-
-	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
+/obj/item/organ/external/head/proc/get_head_hair_image()
+	if(owner && owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
 		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
-			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
-			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
-				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
-			overlays |= hair_s
+			var/image/I = image("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+			if(hair_style.do_colouration)
+				I.color = col_hair
+			return I
+	return image(null)
 
-	return mob_icon
+/obj/item/organ/external/head/proc/get_facial_hair_image()
+	if(owner && owner.f_style && !(owner.head && (owner.head.flags_inv & BLOCKHAIR)))
+		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
+			var/image/I = image("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
+			if(facial_hair_style.do_colouration)
+				I.color = col_facial
+			return I
+	return image(null)
 
-/obj/item/organ/external/proc/get_icon()
+/obj/item/organ/external/head/proc/get_lip_image()
+	if(owner && owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
+		return image('icons/mob/creatures/human_face.dmi', "lips_[owner.lip_style]_s")
+	return image(null)
 
-	var/gender = "m"
-	if(gender == FEMALE)
-		gender = "f"
+/obj/item/organ/external/head/get_image()
 
-	if(force_icon)
-		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
-	else
+	var/image/return_image = ..()
+	if(!owner || !owner.species)
+		return return_image
 
-		if(!gendered_icon)
-			gender = null
+	var/list/overlays_to_add = list()
+	overlays_to_add += get_lip_image()
+	overlays_to_add += get_eye_image()
+	overlays_to_add += get_head_hair_image()
+	overlays_to_add += get_facial_hair_image()
 
-		if (status & ORGAN_ROBOT)
-			mob_icon = new /icon('icons/mob/human_races/cyberlimbs/basic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-		else
-			mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
-
-			if(status & ORGAN_DEAD)
-				mob_icon.ColorTone(rgb(10,50,0))
-				mob_icon.SetIntensity(0.7)
-
-			if(!isnull(s_tone))
-				if(s_tone >= 0)
-					mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-				else
-					mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-			else if(s_col && s_col.len >= 3)
-				mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-
-		if(body_hair && islist(h_col) && h_col.len >= 3)
-			var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-			if(!limb_icon_cache[cache_key])
-				var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
-				I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
-				limb_icon_cache[cache_key] = I
-			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
-
-	dir = EAST
-	icon = mob_icon
-	return mob_icon
+	return_image.overlays += overlays_to_add
+	overlays.Cut()
+	overlays += return_image
+	return return_image
 
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)

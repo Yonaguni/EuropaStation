@@ -74,18 +74,11 @@
 #define ui_oxygen "EAST-1:28,NORTH-4:23"
 #define ui_pressure "EAST-1:28,NORTH-5:21"
 
-#define ui_alien_toxin "EAST-1:28,NORTH-2:25"
-#define ui_alien_fire "EAST-1:28,NORTH-3:25"
-#define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
-
 //Middle right (status indicators)
 #define ui_nutrition "EAST-1:28,CENTER-2:13"
 #define ui_temp "EAST-1:28,CENTER-1:13"
 #define ui_health "EAST-1:28,CENTER:15"
-#define ui_internal "EAST-1:28,CENTER+1:17"
 									//borgs
-#define ui_borg_health "EAST-1:28,CENTER-1:13" //borgs have the health display where humans have the pressure damage indicator.
-#define ui_alien_health "EAST-1:28,CENTER-1:13" //aliens have the health display where humans have the pressure damage indicator.
 
 //Pop-up inventory
 #define ui_shoes "WEST+1:8,SOUTH:5"
@@ -107,18 +100,10 @@
 #define ui_grab_small "EAST-3:32,SOUTH:18"
 #define ui_harm_small "EAST-3:39,SOUTH:1"
 
-//#define ui_swapbutton "6:-16,1:5" //Unused
-
-//#define ui_headset "SOUTH,8"
 #define ui_hand "CENTER-1:14,SOUTH:5"
 #define ui_hstore1 "CENTER-2,CENTER-2"
-//#define ui_resist "EAST+1,SOUTH-1"
 #define ui_sleep "EAST+1, NORTH-13"
 #define ui_rest "EAST+1, NORTH-14"
 
-
 #define ui_iarrowleft "SOUTH-1,EAST-4"
 #define ui_iarrowright "SOUTH-1,EAST-2"
-
-#define ui_spell_master "EAST-1:16,NORTH-1:16"
-#define ui_genetic_master "EAST-1:16,NORTH-3:16"
