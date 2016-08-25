@@ -61,7 +61,7 @@
 				var/contained = reagentlist()
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been squirted with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
 				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>")
-				msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+				msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JUMP_LINK(user.x,user.y,user.z)]")
 				return
 
 			else
@@ -70,7 +70,7 @@
 
 		else // Taking from something
 
-			if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
+			if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispenser))
 				user << "<span class='notice'>You cannot directly remove reagents from [target].</span>"
 				return
 

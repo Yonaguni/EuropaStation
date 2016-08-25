@@ -132,7 +132,7 @@
 	if(!proximity)
 		return
 
-	if(istype(A, /obj/structure/reagent_dispensers))
+	if(istype(A, /obj/structure/reagent_dispenser))
 		if(!reagents.get_free_space())
 			user << "<span class='warning'>\The [src] is already soaked.</span>"
 			return
@@ -150,10 +150,12 @@
 		return
 
 //rag must have a minimum of 2 units welder fuel and at least 80% of the reagents must be welder fuel.
-//maybe generalize flammable reagents someday
 /obj/item/reagent_containers/glass/rag/proc/can_ignite()
-	var/fuel = reagents.get_reagent_amount(REAGENT_ID_FUEL)
-	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
+	var/fuel_amt = 0
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.flammable > 0)
+			fuel_amt += (R.volume * R.flammable)
+	return (fuel_amt >= 2 && fuel_amt >= reagents.total_volume*0.8)
 
 /obj/item/reagent_containers/glass/rag/proc/do_ignite()
 	if(on_fire)

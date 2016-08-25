@@ -44,6 +44,8 @@ var/list/organ_cache = list()
 
 /obj/item/organ/New(var/mob/living/human/holder, var/internal)
 	..(holder)
+
+	species = all_species["Human"]
 	create_reagents(5)
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
@@ -67,7 +69,7 @@ var/list/organ_cache = list()
 	blood_traces.Cut()
 	blood_traces[owner.get_full_print()] = owner.b_type
 	b_type = owner.b_type
-	species = all_species[owner.species]
+	species = owner.species
 	gender = owner.gender
 
 /obj/item/organ/proc/die()
@@ -281,7 +283,7 @@ var/list/organ_cache = list()
 		if(user)
 			user.attack_log += "\[[time_stamp()]\]<font color='red'> removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
 			owner.attack_log += "\[[time_stamp()]\]<font color='orange'> had a vital organ ([src]) removed by [user.name] ([user.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
-			msg_admin_attack("[user.name] ([user.ckey]) removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			msg_admin_attack("[user.name] ([user.ckey]) removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)]) [ADMIN_JUMP_LINK(user.x,user.y,user.z)]")
 		owner.death()
 
 	owner = null
