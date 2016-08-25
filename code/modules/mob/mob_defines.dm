@@ -51,7 +51,6 @@
 	var/other_mobs = null
 	var/memory = ""
 	var/poll_answer = 0.0
-	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
 	var/next_move = null
@@ -149,12 +148,7 @@
 	var/can_pull_size = 10              // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER // Whether or not the mob can pull other mobs.
 
-	var/datum/dna/dna = null//Carbon
-	var/radiation = 0.0//Carbon
-
-	var/list/mutations = list() //Carbon -- Doohl
-	//see: setup.dm for list of mutations
-
+	var/radiation = 0 //Carbon
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
@@ -175,9 +169,6 @@
 
 //The last mob/living/human to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/human/LAssailant = null
-
-//Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/spell/list/spell_list = list()
 
 //Changlings, but can be used in other modes
 //	var/obj/effect/proc_holder/changpower/list/power_list = list()

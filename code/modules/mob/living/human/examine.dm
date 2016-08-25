@@ -200,9 +200,6 @@
 		if(o && o.status & ORGAN_SPLINTED)
 			msg += "<span class='warning'>[T.He] [T.has] a splint on [T.his] [o.name]!</span>\n"
 
-	if(mSmallsize in mutations)
-		msg += "[T.He] [T.is] small halfling!\n"
-
 	var/distance = get_dist(usr,src)
 	if(istype(usr, /mob/dead/observer) || usr.stat == 2) // ghosts can see anything
 		distance = 1
@@ -270,7 +267,7 @@
 				wound_flavor_text["[temp.name]"] = ""
 			if(temp.dislocated == 2)
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.joint] is dislocated!</span><br>"
-			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
+			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
 
 	for(var/limb in wound_flavor_text)

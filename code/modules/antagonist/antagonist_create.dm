@@ -64,7 +64,7 @@
 	if (player.current.mind)
 		if (player.current.mind.assigned_role == "Clown")
 			player.current << "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself."
-			player.current.mutations.Remove(CLUMSY)
+			player.current.disabilities &= ~CLUMSY
 	return 1
 
 /datum/antagonist/proc/set_antag_name(var/mob/living/player)

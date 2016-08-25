@@ -187,14 +187,6 @@
 	new /obj/item/stack/material/steel(get_turf(src))
 	qdel(src)
 
-/obj/structure/girder/attack_hand(mob/user as mob)
-	if (HULK in user.mutations)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		dismantle()
-		return
-	return ..()
-
-
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1.0)

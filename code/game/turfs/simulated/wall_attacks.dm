@@ -60,15 +60,7 @@
 	radiate()
 	add_fingerprint(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting
-	if (HULK in user.mutations)
-		if (rotting || !prob(material.hardness))
-			success_smash(user)
-		else
-			fail_smash(user)
-			return 1
-
-	try_touch(user, rotting)
+	try_touch(user)
 
 /turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
 

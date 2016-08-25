@@ -186,9 +186,7 @@ meteor_act
 	if(!affecting)
 		return 0
 
-	// Handle hulk mod and disarm mod.
-	if(HULK in user.mutations)
-		effective_force *= 2
+	// Handle disarm mod.
 	if(user.a_intent == I_DISARM)
 		effective_force /= 2 //half the effective force
 

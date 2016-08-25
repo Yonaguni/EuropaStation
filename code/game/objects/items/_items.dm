@@ -440,7 +440,7 @@ var/list/global/slot_flags_enumeration = list(
 	//	M = user
 		/*
 		M << "<span class='warning'>You stab yourself in the eye.</span>"
-		M.sdisabilities |= BLIND
+		M.disabilities |= BLIND
 		M.weakened += 4
 		M.adjustBruteLoss(10)
 		*/

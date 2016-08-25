@@ -54,14 +54,6 @@
 	taser_effect = 1
 	agony = 80
 
-/obj/item/projectile/energy/declone
-	name = "declone"
-	icon_state = "declone"
-	nodamage = 1
-	damage_type = CLONE
-	irradiate = 40
-
-
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = REAGENT_ID_TOXIN

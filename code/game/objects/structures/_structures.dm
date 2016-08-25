@@ -14,10 +14,7 @@
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
-		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			attack_generic(user,1,"smashes")
-		else if(istype(user,/mob/living/human))
+		if(istype(user,/mob/living/human))
 			var/mob/living/human/H = user
 			if(H.species.can_shred(user))
 				attack_generic(user,1,"slices")

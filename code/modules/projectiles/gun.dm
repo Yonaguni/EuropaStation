@@ -119,10 +119,7 @@
 		return 0
 
 	var/mob/living/M = user
-	if(HULK in M.mutations)
-		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
-		return 0
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+	if((M.disabilities & CLUMSY) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
 			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
