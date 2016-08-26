@@ -217,4 +217,4 @@ var/list/possible_cable_coil_colours = list(
 #define CAPTURE_MODE_ALL 1 //Admin camera mode
 #define CAPTURE_MODE_PARTIAL 3 //Simular to regular mode, but does not do dummy check
 
-#define TABLE_LAYER 2.8
+#define TABLE_LAYER TURF_LAYER + 0.5

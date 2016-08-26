@@ -140,7 +140,6 @@
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	waterproof = -1
 	light_type = LIGHT_SOFT
 
@@ -158,7 +157,6 @@
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
 
-	var/rigged = 0				// true if rigged to explode
 
 // the smaller bulb light fixture
 
@@ -202,7 +200,7 @@
 // create a new lighting fixture
 /obj/machinery/light/initialize()
 	..()
-	on = has_power()
+	on = powered()
 	switch(fitting)
 		if("tube")
 			light_range = rand(6,9)
@@ -241,14 +239,7 @@
 	update_icon()
 	if(on)
 		switchcount++
-		if(rigged)
-			if(status == LIGHT_OK && trigger)
-
-				log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-				message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-
-				explode()
-		else if( prob( min(60, switchcount*switchcount*0.01) ) )
+		if( prob( min(60, switchcount*switchcount*0.01) ) )
 			if(status == LIGHT_OK && trigger)
 				status = LIGHT_BURNED
 				icon_state = "[base_state]-burned"
@@ -281,8 +272,10 @@
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(var/s)
+	var/laston = on
 	on = (s && status == LIGHT_OK)
-	update()
+	if(laston != on)
+		update()
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
@@ -314,22 +307,13 @@
 				status = L.status
 				user << "You insert the [L.name]."
 				switchcount = L.switchcount
-				rigged = L.rigged
 				light_range = L.light_range
 				light_power = L.light_power
 				light_color = L.light_color
-				on = has_power()
+				on = powered()
 				update()
-
 				user.drop_item()	//drop the item to update overlays and such
 				qdel(L)
-
-				if(on && rigged)
-
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-
-					explode()
 			else
 				user << "This type of light requires a [fitting]."
 				return
@@ -380,7 +364,7 @@
 			return
 
 		user << "You stick \the [W] into the light socket!"
-		if(has_power() && (W.flags & CONDUCT))
+		if(powered() && (W.flags & CONDUCT))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
@@ -388,11 +372,6 @@
 			if (prob(75))
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
-
-// returns whether this light has power
-// true if area has power and lightswitch is on
-/obj/machinery/light/proc/has_power()
-	return 1
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
@@ -453,7 +432,6 @@
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/light/L = new bulb_type()
 	L.status = status
-	L.rigged = rigged
 	L.light_range = light_range
 	L.light_power = light_power
 	L.light_color = light_color
@@ -508,22 +486,9 @@
 				broken()
 	return
 
-//blob effect
-// timed process
-// use power
-
-#define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
-
-
 /obj/machinery/light/process()
-	if(on)
-		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
-
-
-// called when area power state changes
-/obj/machinery/light/power_change()
-	spawn(10)
-		seton(has_power())
+	seton(powered())
+	if(on) use_power(light_range * 20) //20W per unit luminosity
 
 // explode the light
 
@@ -553,7 +518,6 @@
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	var/rigged = 0		// true if rigged to explode
 
 /obj/item/light/tube
 	name = "light tube"
@@ -610,26 +574,9 @@
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
 
-// attack bulb/tube with object
-// if a syringe, can inject phoron to make it explode
-/obj/item/light/attackby(var/obj/item/I, var/mob/user)
-	..()
-	if(istype(I, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = I
-		user << "You inject the solution into the [src]."
-		if(S.reagents.has_reagent(REAGENT_ID_FUEL, 5))
-			log_admin("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
-			rigged = 1
-		S.reagents.clear_reagents()
-	else
-		..()
-	return
-
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
-
 /obj/item/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target, /obj/machinery/light))

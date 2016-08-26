@@ -2,7 +2,6 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/airlock.dmi'
 	icon_state = "door_closed"
-	power_channel = ENVIRON
 
 	explosion_resistance = 10
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -699,14 +698,6 @@ About the new airlock wires panel:
 		if(electrified_until > -1 && (duration + world.time) > electrified_until)
 			electrify(duration)
 	..()
-
-/obj/machinery/door/airlock/power_change() //putting this is obj/machinery/door itself makes non-airlock doors turn invisible for some reason
-	..()
-	if(stat & NOPOWER)
-		// If we lost power, disable electrification
-		// Keeping door lights on, runs on internal battery or something.
-		electrified_until = 0
-	update_icon()
 
 /obj/machinery/door/airlock/proc/prison_open()
 	if(arePowerSystemsOn())

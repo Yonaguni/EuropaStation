@@ -28,7 +28,7 @@
 	for(var/obj/machinery/M in T.contents)
 		if(M.data_network)
 			continue
-		if(M.connect_to_datanet)
+		if(M.connect_to_data)
 			if(M.is_data_console)
 				connected_consoles |= M
 			else

@@ -145,10 +145,7 @@ obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
-
 	anchored = 1
-	power_channel = ENVIRON
-
 	waterproof = 0
 
 	var/id_tag
@@ -207,9 +204,7 @@ obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_button_standby"
 	name = "access button"
-
 	anchored = 1
-	power_channel = ENVIRON
 
 	var/master_tag
 	var/frequency = 1449

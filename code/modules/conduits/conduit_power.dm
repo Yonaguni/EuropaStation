@@ -15,3 +15,18 @@
 	deconstruct_verb = "cut"
 	deconstruct_adj = "cutting"
 	deconstruct_sound = 'sound/items/Wirecutter.ogg'
+
+	var/list/machines = list()
+
+/datum/conduit_network/power_net/proc/add_machine(var/obj/machinery/machine)
+	machines |= machine
+
+/datum/conduit_network/power_net/proc/lose_machine(var/obj/machinery/machine)
+	machines -= machine
+
+/datum/conduit_network/power_net/Destroy()
+	for(var/obj/machinery/machine in machines)
+		if(machine.power_network == src)
+			machine.lose_power()
+	machines.Cut()
+	return ..()
