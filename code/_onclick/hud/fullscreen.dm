@@ -67,6 +67,12 @@
 	mouse_opacity = 0
 	var/severity = 0
 
+/obj/screen/fullscreen/New()
+	..()
+	var/matrix/M = matrix()
+	M.Scale(2)
+	transform = M
+
 /obj/screen/fullscreen/Destroy()
 	severity = 0
 	return ..()
