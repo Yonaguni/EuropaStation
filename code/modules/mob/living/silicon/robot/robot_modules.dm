@@ -393,7 +393,7 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/datum/nano_module/crew_monitor)
 	can_be_pushed = 0
-	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
+	supported_upgrades = list()
 
 /obj/item/weapon/robot_module/security/general
 	sprites = list(
@@ -411,19 +411,11 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/sight/hud/sec(src)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
 	src.modules += new /obj/item/weapon/melee/baton/robot(src)
-	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src)
 	src.modules += new /obj/item/taperoll/police(src)
-	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	..()
 
 /obj/item/weapon/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	..()
-	var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
-	if(T.power_supply.charge < T.power_supply.maxcharge)
-		T.power_supply.give(T.charge_cost * amount)
-		T.update_icon()
-	else
-		T.charge_tick = 0
 	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
 	if(B && B.bcell)
 		B.bcell.give(amount)
@@ -628,7 +620,7 @@ var/global/list/robot_modules = list(
 	loc = R
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/melee/energy/sword(src)
-	src.modules += new /obj/item/weapon/gun/energy/pulse_rifle/destroyer(src)
+	src.modules += new /obj/item/weapon/gun/composite/premade/laser_rifle(src)
 	src.modules += new /obj/item/weapon/card/emag(src)
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
@@ -651,11 +643,9 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/security/combat/New()
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
-	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
 	..()
 
 /obj/item/weapon/robot_module/drone

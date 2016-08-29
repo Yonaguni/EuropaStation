@@ -485,64 +485,6 @@ other types of metals and chemistry for reagents).
 			desc = initial(I.desc)
 		..()
 
-/datum/design/item/weapon/stunrevolver
-	id = "stunrevolver"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000)
-	build_path = /obj/item/weapon/gun/energy/stunrevolver
-	sort_string = "TAAAA"
-
-/datum/design/item/weapon/nuclear_gun
-	id = "nuclear_gun"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "uranium" = 500)
-	build_path = /obj/item/weapon/gun/energy/gun/nuclear
-	sort_string = "TAAAB"
-
-/datum/design/item/weapon/lasercannon
-	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
-	id = "lasercannon"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1000, "diamond" = 2000)
-	build_path = /obj/item/weapon/gun/energy/lasercannon
-	sort_string = "TAAAC"
-
-/datum/design/item/weapon/phoronpistol
-	id = "ppistol"
-	req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "phoron" = 3000)
-	build_path = /obj/item/weapon/gun/energy/toxgun
-	sort_string = "TAAAD"
-
-/datum/design/item/weapon/decloner
-	id = "decloner"
-	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
-	materials = list("gold" = 5000,"uranium" = 10000, "mutagen" = 40)
-	build_path = /obj/item/weapon/gun/energy/decloner
-	sort_string = "TAAAE"
-
-/datum/design/item/weapon/smg
-	id = "smg"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, "silver" = 2000, "diamond" = 1000)
-	build_path = /obj/item/weapon/gun/projectile/automatic
-	sort_string = "TAABA"
-
-/datum/design/item/weapon/ammo_9mm
-	id = "ammo_9mm"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 3750, "silver" = 100)
-	build_path = /obj/item/ammo_magazine/box/c9mm
-	sort_string = "TAACA"
-
-/datum/design/item/weapon/stunshell
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000)
-	build_path = /obj/item/ammo_casing/shotgun/stunshell
-	sort_string = "TAACB"
-
 /datum/design/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."
 	id = "chemsprayer"
@@ -558,27 +500,12 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/gun/launcher/syringe/rapid
 	sort_string = "TABAB"
 
-/datum/design/item/weapon/temp_gun
-	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
-	id = "temp_gun"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 500, "silver" = 3000)
-	build_path = /obj/item/weapon/gun/energy/temperature
-	sort_string = "TABAC"
-
 /datum/design/item/weapon/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 3000)
 	build_path = /obj/item/weapon/grenade/chem_grenade/large
 	sort_string = "TACAA"
-
-/datum/design/item/weapon/flora_gun
-	id = "flora_gun"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "uranium" = 500)
-	build_path = /obj/item/weapon/gun/energy/floragun
-	sort_string = "TBAAA"
 
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"

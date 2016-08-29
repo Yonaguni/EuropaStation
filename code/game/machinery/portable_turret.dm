@@ -27,7 +27,7 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/installation = /obj/item/weapon/gun/energy/gun		//the type of weapon installed
+	var/installation = /obj/item/weapon/gun/composite		//the type of weapon installed
 	var/gun_charge = 0		//the charge of the gun inserted
 	var/projectile = null	//holder for bullettype
 	var/eprojectile = null	//holder for the shot when emagged
@@ -98,6 +98,7 @@
 	. = ..()
 
 /obj/machinery/porta_turret/proc/setup()
+	/*
 	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
 
@@ -107,8 +108,10 @@
 	eshot_sound = shot_sound
 
 	weapon_setup(installation)
+	*/
 
 /obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
+/*
 	switch(guntype)
 		if(/obj/item/weapon/gun/energy/laser/practice)
 			iconholder = 1
@@ -147,6 +150,7 @@
 			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
 			eshot_sound = 'sound/weapons/Laser.ogg'
 			egun = 1
+	*/
 
 var/list/turret_icons
 
@@ -276,6 +280,7 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
+	/*
 	if(stat & BROKEN)
 		if(istype(I, /obj/item/weapon/crowbar))
 			//If the turret is destroyed, you can remove it with a crowbar to
@@ -347,6 +352,7 @@ var/list/turret_icons
 					sleep(60)
 					attacked = 0
 		..()
+	*/
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -733,7 +739,7 @@ var/list/turret_icons
 					new /obj/item/stack/material/steel( loc, 2)
 					return
 
-
+	/*
 		if(3)
 			if(istype(I, /obj/item/weapon/gun/energy)) //the gun installation part
 
@@ -757,6 +763,7 @@ var/list/turret_icons
 				user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
 				build_step = 2
 				return
+	*/
 
 		if(4)
 			if(isprox(I))
@@ -840,6 +847,7 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret_construct/attack_hand(mob/user)
+	/*
 	switch(build_step)
 		if(4)
 			if(!installation)
@@ -857,6 +865,7 @@ var/list/turret_icons
 			user << "<span class='notice'>You remove the prox sensor from the turret frame.</span>"
 			new /obj/item/device/assembly/prox_sensor(loc)
 			build_step = 4
+	*/
 
 /obj/machinery/porta_turret_construct/attack_ai()
 	return

@@ -72,7 +72,7 @@
 		/obj/item/toy/balloon,
 		/obj/item/toy/blink,
 		/obj/item/toy/crossbow,
-		/obj/item/weapon/gun/projectile/revolver/capgun,
+		/obj/item/weapon/gun/composite/premade/revolver/toy,
 		/obj/item/toy/katana,
 		/obj/item/toy/prize/deathripley,
 		/obj/item/toy/prize/durand,

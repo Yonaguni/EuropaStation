@@ -24,27 +24,12 @@ var/datum/antagonist/renegade/renegades
 	initial_spawn_target = 6
 
 	var/list/spawn_guns = list(
-		/obj/item/weapon/gun/energy/laser,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/crossbow,
-		/obj/item/weapon/gun/energy/crossbow/largecrossbow,
-		/obj/item/weapon/gun/projectile/automatic,
-		/obj/item/weapon/gun/projectile/automatic/mini_uzi,
-		/obj/item/weapon/gun/projectile/automatic/c20r,
-		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/weapon/gun/projectile/automatic/wt550,
-		/obj/item/weapon/gun/projectile/automatic/z8,
-		/obj/item/weapon/gun/projectile/colt/detective,
-		/obj/item/weapon/gun/projectile/sec/wood,
-		/obj/item/weapon/gun/projectile/silenced,
-		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/weapon/gun/projectile/revolver,
-		/obj/item/weapon/gun/projectile/shotgun/pump,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-		list(/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet, /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn),
-		list(/obj/item/weapon/gun/projectile/deagle, /obj/item/weapon/gun/projectile/deagle/gold, /obj/item/weapon/gun/projectile/deagle/camo),
-		list(/obj/item/weapon/gun/projectile/revolver/detective, /obj/item/weapon/gun/projectile/revolver/deckard)
+		/obj/item/weapon/gun/composite/premade/smg/a10,
+		/obj/item/weapon/gun/composite/premade/assault_rifle,
+		/obj/item/weapon/gun/composite/premade/smg/a9,
+		/obj/item/weapon/gun/composite/premade/assault_rifle,
+		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
+		/obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
 		)
 
 /datum/antagonist/renegade/New()

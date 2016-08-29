@@ -130,7 +130,6 @@
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
 		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/flashlight,
@@ -139,7 +138,7 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/sec,
+		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
 		/obj/item/taperoll/police
 		)
 

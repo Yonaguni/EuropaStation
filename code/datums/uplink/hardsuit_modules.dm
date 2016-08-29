@@ -24,11 +24,6 @@
 	item_cost = 32
 	path = /obj/item/rig_module/maneuvering_jets
 
-/datum/uplink_item/item/hardsuit_modules/egun
-	name = "Mounted Energy Gun"
-	item_cost = 48
-	path = /obj/item/rig_module/mounted/egun
-
 /datum/uplink_item/item/hardsuit_modules/power_sink
 	name = "Power Sink"
 	item_cost = 48

@@ -5,7 +5,7 @@
 //spells/spellbooks have a variable for this but as artefacts are literal items they do not.
 //so we do this instead.
 var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
-								/obj/item/weapon/gun/energy/staff/focus = 	"MF",
+								/obj/item/weapon/gun/staff/focus = 	"MF",
 								/obj/item/weapon/monster_manual = 			"MA",
 								/obj/item/weapon/magic_rock = 				"RA",
 								/obj/item/weapon/contract/apprentice = 		"CP",
@@ -13,8 +13,8 @@ var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
 								/obj/item/weapon/contract/wizard/tk = 		"TK",
 								/obj/structure/closet/wizard/scrying = 		"SO",
 								/obj/item/weapon/teleportation_scroll = 	"TS",
-								/obj/item/weapon/gun/energy/staff = 		"ST",
-								/obj/item/weapon/gun/energy/staff/animate =	"SA",
+								/obj/item/weapon/gun/staff = 		"ST",
+								/obj/item/weapon/gun/staff/animate =	"SA",
 								/obj/item/weapon/dice/d20/cursed = 			"DW")
 
 /obj/item/weapon/spellbook

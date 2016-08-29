@@ -28,10 +28,10 @@
 	else
 		var/lazors = 0
 		var/shottas = 0
-		for (var/obj/item/weapon/gun/G in contents)
-			if (istype(G, /obj/item/weapon/gun/energy))
+		for (var/obj/item/weapon/gun/composite/G in contents)
+			if (G.body.is_laser())
 				lazors++
-			if (istype(G, /obj/item/weapon/gun/projectile/))
+			else
 				shottas++
 		for (var/i = 0 to 2)
 			if(lazors || shottas) // only make icons if we have one of the two types.
