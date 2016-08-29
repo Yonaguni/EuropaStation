@@ -12,7 +12,7 @@
 	mouse_opacity = 0
 	plane = DARK_PLANE // Just below the master plane.
 	icon = 'icons/planar_lighting/over_dark.dmi'
-	alpha = 30
+	alpha = 5
 	appearance_flags = RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA
 	var/first_state_change = 1 // Used by global lighting.
 

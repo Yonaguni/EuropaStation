@@ -598,7 +598,7 @@ obj/machinery/light/proc/burn_out()
 	matter = list("glass" = 100)
 
 	brightness_range = 8	// luminosity when on, also used in power calculation
-	brightness_power = 3
+	brightness_power = 6
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 5, l_power = 1, l_color = "#da0205"),
@@ -619,8 +619,8 @@ obj/machinery/light/proc/burn_out()
 	broken_chance = 5
 	matter = list("glass" = 100)
 
-	brightness_range = 4
-	brightness_power = 2
+	brightness_range = 5
+	brightness_power = 3
 	brightness_color = "#a0a080"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
