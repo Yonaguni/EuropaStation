@@ -1217,6 +1217,7 @@
 #include "code\modules\europa\clothing\borderworld.dm"
 #include "code\modules\europa\clothing\clothing.dm"
 #include "code\modules\europa\clothing\europa.dm"
+#include "code\modules\europa\fluids\_fluid_include.dm"
 #include "code\modules\europa\guns\__gun_setup.dm"
 #include "code\modules\europa\guns\_gun_readme.dm"
 #include "code\modules\europa\guns\gun_assembly.dm"
