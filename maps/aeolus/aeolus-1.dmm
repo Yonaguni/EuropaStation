@@ -1320,7 +1320,7 @@
 "zt" = (/obj/structure/table/reinforced,/obj/machinery/door/blast/shutters{dir = 2; id = "bar"; layer = 3.1; name = "Bar Shutters"},/turf/simulated/floor/lino,/area/crew_quarters/bar)
 "zu" = (/obj/effect/wingrille_spawn,/turf/simulated/floor/plating,/area/crew_quarters/bar)
 "zv" = (/obj/effect/floor_decal/corner/white{tag = "icon-corner_white (SOUTHWEST)"; icon_state = "corner_white"; dir = 10},/turf/simulated/floor/tiled,/area/crew_quarters/fitness)
-"zw" = (/obj/structure/closet/lasertag/red,/obj/effect/floor_decal/corner/white{tag = "icon-corner_white (SOUTHWEST)"; icon_state = "corner_white"; dir = 10},/turf/simulated/floor/tiled,/area/crew_quarters/fitness)
+"zw" = (/obj/effect/floor_decal/corner/white{tag = "icon-corner_white (SOUTHWEST)"; icon_state = "corner_white"; dir = 10},/turf/simulated/floor/tiled,/area/crew_quarters/fitness)
 "zx" = (/obj/effect/floor_decal/corner/white{tag = "icon-corner_white (SOUTHWEST)"; icon_state = "corner_white"; dir = 10},/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled,/area/crew_quarters/fitness)
 "zy" = (/obj/effect/floor_decal/corner/white{dir = 8},/turf/simulated/floor/tiled,/area/crew_quarters/fitness)
 "zz" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/lino,/area/crew_quarters/bar)
