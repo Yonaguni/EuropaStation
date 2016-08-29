@@ -69,8 +69,7 @@
 		/obj/item/clothing/suit/chameleon,
 		/obj/item/clothing/shoes/chameleon,
 		/obj/item/clothing/mask/chameleon,
-		/obj/item/weapon/storage/box/syndie_kit/chameleon,
-		/obj/item/weapon/gun/energy/chameleon,
+		/obj/item/weapon/storage/box/syndie_kit/chameleon
 		)
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon
@@ -106,17 +105,14 @@
 	name = "\improper Smooth operator"
 	desc = "9mm with silencer kit and ammunition."
 	startswith = list(
-		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/weapon/silencer,
-		/obj/item/ammo_magazine/mc9mm
+		/obj/item/weapon/gun/composite/premade/pistol/a9/silenced
 	)
 
 /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
 	name = "\improper Tough operator"
 	desc = "Revolver with ammunition."
 	startswith = list(
-		/obj/item/weapon/gun/projectile/revolver,
-		/obj/item/ammo_magazine/a357
+		/obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
 	)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin
@@ -178,7 +174,7 @@
 
 /obj/item/weapon/storage/secure/briefcase/heavysniper
 	startswith = list(
-		/obj/item/weapon/gun/projectile/heavysniper,
+		/obj/item/weapon/gun/composite/premade/rifle/antimaterial,
 		/obj/item/weapon/storage/box/sniperammo
 	)
 

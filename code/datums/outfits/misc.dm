@@ -26,7 +26,7 @@
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
 	suit = /obj/item/clothing/suit/hgpirate
 	back = /obj/item/weapon/storage/backpack/satchel
-	belt = /obj/item/weapon/gun/projectile/revolver/mateba
+	belt = /obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
 	uniform = /obj/item/clothing/under/soviet
 
 /decl/hierarchy/outfit/merchant

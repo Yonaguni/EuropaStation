@@ -188,9 +188,8 @@
 	damage = 30
 	armor_penetration = 25
 
-/obj/item/projectile/bullet/rifle/a145
-	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
-	damage = 80
+/obj/item/projectile/bullet/rifle/a50bmg
+	damage = 60
 	stun = 3
 	weaken = 3
 	penetrating = 5

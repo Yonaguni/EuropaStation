@@ -183,8 +183,8 @@
 	icon_state = "iron_star"
 
 /obj/item/clothing/accessory/medal/iron/nanotrasen
-	name = "\improper NanoTrasen merit medal"
-	desc = "An iron medal awarded to NanoTrasen employees for merit."
+	name = "\improper corporate merit medal"
+	desc = "An iron medal awarded to company employees for merit."
 	icon_state = "iron_nt"
 
 /obj/item/clothing/accessory/medal/iron/sol
@@ -204,8 +204,8 @@
 	icon_state = "bronze_heart"
 
 /obj/item/clothing/accessory/medal/bronze/nanotrasen
-	name = "\improper NanoTrasen sciences medal"
-	desc = "A bronze medal awarded to NanoTrasen employees for signifigant contributions to the fields of science or engineering."
+	name = "\improper industrial sciences medal"
+	desc = "A bronze medal awarded to employees for signifigant contributions to the fields of science or engineering."
 	icon_state = "bronze_nt"
 
 /obj/item/clothing/accessory/medal/bronze/sol
@@ -225,7 +225,7 @@
 	icon_state = "silver_sword"
 
 /obj/item/clothing/accessory/medal/silver/nanotrasen
-	name = "\improper NanoTrasen service medal"
+	name = "\improper corporate service medal"
 	desc = "A silver medal awarded to NanoTrasen employees for distinguished service in support of corporate interests."
 	icon_state = "silver_nt"
 
@@ -256,8 +256,8 @@
 	icon_state = "gold_crest"
 
 /obj/item/clothing/accessory/medal/gold/nanotrasen
-	name = "\improper NanoTrasen command medal"
-	desc = "A gold medal awarded to NanoTrasen employees for service as the Captain of a NanoTrasen facility, station, or vessel."
+	name = "\improper corporate leadership medal"
+	desc = "A gold medal awarded to employees for service as the administrative head of a corporate facility, station, or vessel."
 	icon_state = "gold_nt"
 
 /obj/item/clothing/accessory/medal/gold/sol

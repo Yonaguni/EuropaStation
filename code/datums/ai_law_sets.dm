@@ -12,7 +12,7 @@
 
 /******************** Nanotrasen/Malf ********************/
 /datum/ai_laws/nanotrasen
-	name = "NT Default"
+	name = "Default"
 	selectable = 1
 
 /datum/ai_laws/nanotrasen/New()
@@ -32,7 +32,7 @@
 
 /************* Nanotrasen Aggressive *************/
 /datum/ai_laws/nanotrasen_aggressive
-	name = "NT Aggressive"
+	name = "Aggressive"
 	selectable = 1
 
 /datum/ai_laws/nanotrasen_aggressive/New()

@@ -39,10 +39,7 @@
 
 /decl/hierarchy/supply_pack/hospitality/lasertag
 	name = "Lasertag equipment"
-	contains = list(/obj/item/weapon/gun/energy/lasertag/red = 3,
-					/obj/item/clothing/suit/redtag = 3,
-					/obj/item/weapon/gun/energy/lasertag/blue = 3,
-					/obj/item/clothing/suit/bluetag = 3)
+	contains = list(/obj/item/weapon/gun/composite/premade/laser_assault/practice = 6)
 	cost = 20
 	containertype = /obj/structure/closet
 	containername = "\improper Lasertag Closet"

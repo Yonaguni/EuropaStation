@@ -2,8 +2,8 @@ var/datum/antagonist/actor/actor
 
 /datum/antagonist/actor
 	id = MODE_ACTOR
-	role_text = "NanoTrasen Actor"
-	role_text_plural = "NanoTrasen Actors"
+	role_text = "Actor"
+	role_text_plural = "Actors"
 	welcome_text = "You've been hired to entertain people through the power of television!"
 	landmark_id = "ActorSpawn"
 	id_type = /obj/item/weapon/card/id/syndicate

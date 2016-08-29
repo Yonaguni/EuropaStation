@@ -134,7 +134,7 @@
 		if(target.status != LIGHT_EMPTY)
 			target.remove_bulb()
 
-		var/obj/item/weapon/light/L = new target.light_type()
+		var/obj/item/weapon/light/L = new target.light_bulb_type()
 		target.insert_bulb(L)
 
 

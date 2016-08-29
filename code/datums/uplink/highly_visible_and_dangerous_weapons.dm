@@ -4,16 +4,6 @@
 /datum/uplink_item/item/visible_weapons
 	category = /datum/uplink_category/visible_weapons
 
-/datum/uplink_item/item/visible_weapons/dartgun
-	name = "Dart Gun"
-	item_cost = 20
-	path = /obj/item/weapon/gun/projectile/dartgun
-
-/datum/uplink_item/item/visible_weapons/crossbow
-	name = "Energy Crossbow"
-	item_cost = 24
-	path = /obj/item/weapon/gun/energy/crossbow
-
 /datum/uplink_item/item/visible_weapons/energy_sword
 	name = "Energy Sword"
 	item_cost = 32
@@ -46,13 +36,13 @@
 	name = "Submachine Gun"
 	item_cost = 52
 	antag_costs = list(MODE_MERCENARY = 6)
-	path = /obj/item/weapon/gun/projectile/automatic/c20r
+	path = /obj/item/weapon/gun/composite/premade/smg/a10
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
 	item_cost = 60
 	antag_costs = list(MODE_MERCENARY = 9)
-	path = /obj/item/weapon/gun/projectile/automatic/sts35
+	path = /obj/item/weapon/gun/composite/premade/assault_rifle
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-materiel Rifle with ammunition"

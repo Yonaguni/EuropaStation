@@ -117,7 +117,7 @@
 
 /mob/living/bot/proc/turn_off()
 	on = 0
-	set_light(0)
+	kill_light()
 	update_icons()
 
 /mob/living/bot/proc/explode()
@@ -134,6 +134,6 @@
 					continue
 			return 0
 	return 1
-				
-			
-	
+
+
+

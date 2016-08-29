@@ -25,6 +25,8 @@
 
 /datum/firemode/proc/apply_to(obj/item/weapon/gun/gun)
 	for(var/propname in settings)
+		if(propname == "name")
+			continue
 		gun.vars[propname] = settings[propname]
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
@@ -92,9 +94,9 @@
 		var/mob/living/M = loc
 		if(istype(M))
 			if(M.can_wield_item(src) && src.is_held_twohanded(M))
-				name = "[initial(name)] (wielded)"
+				name = "[reset_name()] (wielded)"
 			else
-				name = initial(name)
+				name = reset_name()
 		update_icon() // In case item_state is set somewhere else.
 	..()
 
@@ -185,6 +187,19 @@
 	next_fire_time = world.time + shoot_time
 
 	var/held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
+	var/held_acc_mod = 0
+	var/held_disp_mod = 0
+	if(requires_two_hands && !held_twohanded)
+		held_acc_mod = -3
+		held_disp_mod = 3
+	if(recoil > 1 )
+		held_disp_mod++
+	if(recoil > 5)
+		held_disp_mod += 3
+	//actually attempt to shoot
+	var/static_recoil = recoil
+	if(issmall(user))	//it sucks to be short
+		recoil = 2*recoil
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -194,7 +209,7 @@
 			handle_click_empty(user)
 			break
 
-		process_accuracy(projectile, user, target, i, held_twohanded)
+		process_accuracy(projectile, user, target, i, held_twohanded, supplied_acc_mod = held_acc_mod, supplied_disp_mod = held_disp_mod)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -203,12 +218,16 @@
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
 
+		recoil++
+
 		if(i < burst)
 			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
 			pointblank = 0
+
+	recoil = static_recoil
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -302,7 +321,7 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, var/burst, var/held_twohanded)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, var/burst, var/held_twohanded, var/supplied_acc_mod = 0, var/supplied_disp_mod = 0)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -316,8 +335,8 @@
 			disp_mod += requires_two_hands*0.5 //dispersion per point of two-handedness
 
 	//Accuracy modifiers
-	P.accuracy = accuracy + acc_mod
-	P.dispersion = disp_mod
+	P.accuracy = accuracy + acc_mod + supplied_acc_mod
+	P.dispersion = disp_mod + supplied_disp_mod
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
@@ -379,11 +398,6 @@
 			playsound(user, shot_sound, 10, 1)
 		else
 			playsound(user, shot_sound, 50, 1)
-		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
-			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
-			mouthshoot = 0
-			return
-
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")

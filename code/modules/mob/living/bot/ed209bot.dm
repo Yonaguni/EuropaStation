@@ -26,6 +26,7 @@
 
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
 
+	/*
 	var/obj/item/weapon/gun/energy/taser/G = new /obj/item/weapon/gun/energy/taser(Tsec)
 	G.power_supply.charge = 0
 	if(prob(50))
@@ -37,6 +38,7 @@
 			new /obj/item/clothing/head/helmet(Tsec)
 		else
 			new /obj/item/clothing/suit/armor/vest(Tsec)
+	*/
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
@@ -149,6 +151,7 @@
 				return
 
 		if(7)
+			/*
 			if(istype(W, /obj/item/weapon/gun/energy/taser))
 				name = "taser ED-209 assembly"
 				build_step++
@@ -157,7 +160,8 @@
 				icon_state = "ed209_taser"
 				user.drop_item()
 				qdel(W)
-
+			*/
+			;
 		if(8)
 			if(istype(W, /obj/item/weapon/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)

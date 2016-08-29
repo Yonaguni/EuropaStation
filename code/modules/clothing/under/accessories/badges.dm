@@ -45,7 +45,7 @@
 	desc = "This glowing blue badge marks the holder as a member of corporate security."
 	icon_state = "holobadge"
 	item_state = "holobadge"
-	badge_string = "NanoTrasen Security"
+	badge_string = "Corporate Security"
 	var/emagged //Emagging removes Sec check.
 
 /obj/item/clothing/accessory/badge/holo/cord
@@ -142,9 +142,9 @@
 	badge_string = "Sol Central Government"
 
 /obj/item/clothing/accessory/badge/nanotrasen
-	name = "\improper NanoTrasen badge"
-	desc = "A leather-backed plastic badge with a variety of information printed on it. Belongs to a NanoTrasen corporate executive."
+	name = "\improper corporate  badge"
+	desc = "A leather-backed plastic badge with a variety of information printed on it. Belongs to a corporate executive."
 	icon_state = "ntbadge"
 	slot_flags = SLOT_TIE
-	badge_string = "NanoTrasen"
+	badge_string = "Operational Oversight"
 

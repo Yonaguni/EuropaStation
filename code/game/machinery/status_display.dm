@@ -190,7 +190,7 @@ var/list/status_icons_to_colour = list(
 	return ""
 
 /obj/machinery/status_display/proc/remove_display()
-	set_light(0)
+	kill_light()
 	if(overlays.len)
 		overlays.Cut()
 	if(maptext)

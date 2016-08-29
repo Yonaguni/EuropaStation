@@ -185,18 +185,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "energykill100"
 	item_to_spawn()
-		return pick(prob(4);/obj/item/weapon/gun/energy/laser,\
-					prob(3);/obj/item/weapon/gun/energy/gun,\
-					prob(2);/obj/item/weapon/gun/energy/retro,\
-					prob(2);/obj/item/weapon/gun/energy/lasercannon,\
-					prob(3);/obj/item/weapon/gun/energy/xray,\
-					prob(1);/obj/item/weapon/gun/energy/sniperrifle,\
-					prob(1);/obj/item/weapon/gun/energy/gun/nuclear,\
-					prob(2);/obj/item/weapon/gun/energy/ionrifle,\
-					prob(3);/obj/item/weapon/gun/energy/toxgun,\
-					prob(4);/obj/item/weapon/gun/energy/taser,\
-					prob(2);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
-					prob(4);/obj/item/weapon/gun/energy/stunrevolver)
+		return pick(/obj/item/weapon/gun/composite/premade/laser_pistol,/obj/item/weapon/gun/composite/premade/laser_smg,/obj/item/weapon/gun/composite/premade/laser_assault)
 
 /obj/random/projectile
 	name = "Random Projectile Weapon"
@@ -204,36 +193,14 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,\
-					prob(2);/obj/item/weapon/gun/projectile/automatic/c20r,\
-					prob(2);/obj/item/weapon/gun/projectile/automatic/sts35,\
-					prob(2);/obj/item/weapon/gun/projectile/automatic/z8,\
-					prob(4);/obj/item/weapon/gun/projectile/colt,\
-					prob(4);/obj/item/weapon/gun/projectile/sec,\
-					prob(3);/obj/item/weapon/gun/projectile/sec/wood,\
-					prob(4);/obj/item/weapon/gun/projectile/pistol,\
-					prob(5);/obj/item/weapon/gun/projectile/pirate,\
-					prob(2);/obj/item/weapon/gun/projectile/revolver,\
-					prob(3);/obj/item/weapon/gun/projectile/automatic/wt550,\
-					prob(4);/obj/item/weapon/gun/projectile/revolver/detective,\
-					prob(2);/obj/item/weapon/gun/projectile/revolver/mateba,\
-					prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,\
-					prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,\
-					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
-					prob(2);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
-
+		return pick(typesof(/obj/item/weapon/gun/composite/premade)-/obj/item/weapon/gun/composite/premade)
 /obj/random/handgun
 	name = "Random Handgun"
 	desc = "This is a random sidearm."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "secgundark"
 	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/gun/projectile/sec,\
-					prob(2);/obj/item/weapon/gun/energy/gun,\
-					prob(2);/obj/item/weapon/gun/projectile/colt,\
-					prob(2);/obj/item/weapon/gun/projectile/pistol,\
-					prob(1);/obj/item/weapon/gun/energy/retro,\
-					prob(1);/obj/item/weapon/gun/projectile/sec/wood)
+		return pick(typesof(/obj/item/weapon/gun/composite/premade/pistol))
 
 
 /obj/random/ammo
@@ -242,15 +209,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "45-10"
 	item_to_spawn()
-		return pick(prob(6);/obj/item/weapon/storage/box/beanbags,\
-					prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(4);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(1);/obj/item/weapon/storage/box/stunshells,\
-					prob(2);/obj/item/ammo_magazine/c45m,\
-					prob(4);/obj/item/ammo_magazine/c45m/rubber,\
-					prob(4);/obj/item/ammo_magazine/c45m/flash,\
-					prob(2);/obj/item/ammo_magazine/mc9mmt,\
-					prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
+		return pick(typesof(/obj/item/ammo_magazine)-/obj/item/ammo_magazine)
 
 
 /obj/random/action_figure

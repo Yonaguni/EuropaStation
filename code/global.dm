@@ -30,14 +30,14 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 var/diary               = null
 var/href_logfile        = null
-var/station_name        = "NSS Exodus"
-var/station_short       = "Exodus"
-var/const/dock_name     = "N.A.S. Crescent"
-var/const/boss_name     = "Central Command"
-var/const/boss_short    = "Centcomm"
-var/const/company_name  = "NanoTrasen"
-var/const/company_short = "NT"
-var/game_version        = "Baystation12"
+var/station_name        = "SDEV Aeolus"
+var/station_short       = "Aeolus"
+var/const/dock_name     = "Callisto"
+var/const/boss_name     = "Jovian Naval Command"
+var/const/boss_short    = "Headquarters"
+var/const/company_name  = "Sol Central"
+var/const/company_short = "Sol"
+var/game_version        = "ES13"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 

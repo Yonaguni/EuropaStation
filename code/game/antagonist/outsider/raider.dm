@@ -65,34 +65,16 @@ var/datum/antagonist/raider/raiders
 		)
 
 	var/list/raider_guns = list(
-		/obj/item/weapon/gun/energy/laser,
-		/obj/item/weapon/gun/energy/retro,
-		/obj/item/weapon/gun/energy/xray,
-		/obj/item/weapon/gun/energy/xray/pistol,
-		/obj/item/weapon/gun/energy/mindflayer,
-		/obj/item/weapon/gun/energy/toxgun,
-		/obj/item/weapon/gun/energy/stunrevolver,
-		/obj/item/weapon/gun/energy/ionrifle,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/gun/energy/crossbow/largecrossbow,
-		/obj/item/weapon/gun/launcher/crossbow,
-		/obj/item/weapon/gun/launcher/grenade/loaded,
-		/obj/item/weapon/gun/launcher/pneumatic,
-		/obj/item/weapon/gun/projectile/automatic/mini_uzi,
-		/obj/item/weapon/gun/projectile/automatic/c20r,
-		/obj/item/weapon/gun/projectile/automatic/wt550,
-		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/weapon/gun/projectile/silenced,
-		/obj/item/weapon/gun/projectile/shotgun/pump,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
-		/obj/item/weapon/gun/projectile/colt,
-		/obj/item/weapon/gun/projectile/sec,
-		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/weapon/gun/projectile/revolver,
-		/obj/item/weapon/gun/projectile/pirate
+		/obj/item/weapon/gun/composite/premade/shotgun,
+		/obj/item/weapon/gun/composite/premade/shotgun/sawnoff,
+		/obj/item/weapon/gun/composite/premade/shotgun/hunting,
+		/obj/item/weapon/gun/composite/premade/shotgun/hunting/sawnoff,
+		/obj/item/weapon/gun/composite/premade/smg/a9,
+		/obj/item/weapon/gun/composite/premade/smg/a10,
+		/obj/item/weapon/gun/composite/premade/revolver/hunting,
+		/obj/item/weapon/gun/composite/premade/pistol/a9,
+		/obj/item/weapon/gun/composite/premade/pistol/a10,
+		/obj/item/weapon/gun/composite/premade/pistol/a45
 		)
 
 	var/list/raider_holster = list(
@@ -241,16 +223,6 @@ var/datum/antagonist/raider/raiders
 	var/obj/item/primary = new new_gun(T)
 	var/obj/item/clothing/accessory/holster/holster = null
 
-	//Give some of the raiders a pirate gun as a secondary
-	if(prob(60))
-		var/obj/item/secondary = new /obj/item/weapon/gun/projectile/pirate(T)
-		if(!(primary.slot_flags & SLOT_HOLSTER))
-			holster = new new_holster(T)
-			holster.holstered = secondary
-			secondary.loc = holster
-		else
-			player.equip_to_slot_or_del(secondary, slot_belt)
-
 	if(primary.slot_flags & SLOT_HOLSTER)
 		holster = new new_holster(T)
 		holster.holstered = primary
@@ -262,29 +234,12 @@ var/datum/antagonist/raider/raiders
 	else
 		player.put_in_any_hand_if_possible(primary)
 
-	//If they got a projectile gun, give them a little bit of spare ammo
-	equip_ammo(player, primary)
-
 	if(holster)
 		var/obj/item/clothing/under/uniform = player.w_uniform
 		if(istype(uniform) && uniform.can_attach_accessory(holster))
 			uniform.attackby(holster, player)
 		else
 			player.put_in_any_hand_if_possible(holster)
-
-/datum/antagonist/raider/proc/equip_ammo(var/mob/living/carbon/human/player, var/obj/item/weapon/gun/gun)
-	if(istype(gun, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/bullet_thrower = gun
-		if(bullet_thrower.magazine_type)
-			player.equip_to_slot_or_del(new bullet_thrower.magazine_type(player), slot_l_store)
-			if(prob(20)) //don't want to give them too much
-				player.equip_to_slot_or_del(new bullet_thrower.magazine_type(player), slot_r_store)
-		else if(bullet_thrower.ammo_type)
-			var/obj/item/weapon/storage/box/ammobox = new(get_turf(player.loc))
-			for(var/i in 1 to rand(3,5) + rand(0,2))
-				new bullet_thrower.ammo_type(ammobox)
-			player.put_in_any_hand_if_possible(ammobox)
-		return
 
 /datum/antagonist/raider/proc/equip_vox(var/mob/living/carbon/human/player)
 

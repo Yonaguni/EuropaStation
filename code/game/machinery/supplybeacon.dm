@@ -89,7 +89,7 @@
 		icon_state = "beacon_depleted"
 	else
 		icon_state = "beacon"
-	set_light(0)
+	kill_light()
 	use_power = 0
 	target_drop_time = null
 	if(user) user << "<span class='notice'>You deactivate the beacon.</span>"

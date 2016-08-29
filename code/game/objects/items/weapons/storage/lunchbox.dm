@@ -45,35 +45,8 @@
 /obj/item/weapon/storage/lunchbox/cat/filled
 	filled = TRUE
 
-/obj/item/weapon/storage/lunchbox/nt
-	name = "Nanotrasen brand lunchbox"
-	icon_state = "lunchbox_nanotrasen"
-	item_state = "toolbox_blue"
-	desc = "A little lunchbox. This one is branded with the Nanotrasen logo!"
-
-/obj/item/weapon/storage/lunchbox/nt/filled
-	filled = TRUE
-
-/obj/item/weapon/storage/lunchbox/mars
-	name = "\improper Mars university lunchbox"
-	icon_state = "lunchbox_marsuniversity"
-	item_state = "toolbox_red"
-	desc = "A little lunchbox. This one is branded with the Mars university logo!"
-
-/obj/item/weapon/storage/lunchbox/mars/filled
-	filled = TRUE
-
-/obj/item/weapon/storage/lunchbox/cti
-	name = "\improper CTI lunchbox"
-	icon_state = "lunchbox_cti"
-	item_state = "toolbox_blue"
-	desc = "A little lunchbox. This one is branded with the CTI logo!"
-
-/obj/item/weapon/storage/lunchbox/cti/filled
-	filled = TRUE
-
 /obj/item/weapon/storage/lunchbox/nymph
-	name = "\improper Diona nymph lunchbox"
+	name = "\improper diona nymph lunchbox"
 	icon_state = "lunchbox_dionanymph"
 	item_state = "toolbox_yellow"
 	desc = "A little lunchbox. This one is an adorable Diona nymph on the side!"

@@ -32,8 +32,8 @@
 	desc = "A helmet with 'MASTER AT ARMS' printed on the back in silver lettering."
 	icon_state = "helmet_security"
 
-/obj/item/clothing/head/helmet/nt
-	name = "\improper NanoTrasen helmet"
+/obj/item/clothing/head/helmet/corporate
+	name = "\improper security helmet"
 	desc = "A helmet with 'CORPORATE SECURITY' printed on the back in red lettering."
 	icon_state = "helmet_nt"
 

@@ -2,7 +2,7 @@
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
-	dynamic_lighting = 0
+	luminosity = 1
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -28,7 +28,7 @@
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
-		set_light(0)
+		kill_light()
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

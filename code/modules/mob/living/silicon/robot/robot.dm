@@ -300,10 +300,10 @@
 
 	// if we've changed our name, we also need to update the display name for our PDA
 	setup_PDA()
-	
+
 	// Synths aren't in data_core, but are on manifest. Invalidate old one so the
 	// synth shows up.
-	data_core.ResetPDAManifest() 
+	data_core.ResetPDAManifest()
 
 	//We also need to update name of internal camera.
 	if (camera)
@@ -407,7 +407,7 @@
 		else
 			set_light(integrated_light_power)
 	else
-		set_light(0)
+		kill_light()
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()

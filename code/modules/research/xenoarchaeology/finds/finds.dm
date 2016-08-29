@@ -335,71 +335,12 @@
 			new_item = new new_type(src.loc)
 			item_type = new_item.name
 			apply_material_decorations = 0
-		if(25)
+		if(25, 26)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/material/sword/katana(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
-		if(26)
-			//energy gun
-			var/spawn_type = pick(\
-			/obj/item/weapon/gun/energy/laser/practice/xenoarch,\
-			/obj/item/weapon/gun/energy/laser/xenoarch,\
-			/obj/item/weapon/gun/energy/xray/xenoarch,\
-			/obj/item/weapon/gun/energy/captain/xenoarch)
-			if(spawn_type)
-				var/obj/item/weapon/gun/energy/new_gun = new spawn_type(src.loc)
-				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,6)]"
-				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
-
-				//10% chance to have an unchargeable cell
-				//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
-
-				if(prob(10))
-					new_gun.power_supply.maxcharge = 0
-				if(prob(15))
-					new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
-				else
-					new_gun.power_supply.charge = 0
-
-			item_type = "gun"
-		if(27)
-			//revolver
-			var/obj/item/weapon/gun/projectile/new_gun = new /obj/item/weapon/gun/projectile/revolver(src.loc)
-			new_item = new_gun
-			new_item.icon_state = "gun[rand(1,4)]"
-			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
-
-			//33% chance to be able to reload the gun with human ammunition
-			if(prob(66))
-				new_gun.caliber = "999"
-
-			//33% chance to fill it with a random amount of bullets
-			new_gun.max_shells = rand(1,12)
-			if(prob(33))
-				var/num_bullets = rand(1,new_gun.max_shells)
-				if(num_bullets < new_gun.loaded.len)
-					new_gun.loaded.Cut()
-					for(var/i = 1, i <= num_bullets, i++)
-						var/A = new_gun.ammo_type
-						new_gun.loaded += new A(new_gun)
-				else
-					for(var/obj/item/I in new_gun)
-						if(new_gun.loaded.len > num_bullets)
-							if(I in new_gun.loaded)
-								new_gun.loaded.Remove(I)
-								I.loc = null
-						else
-							break
-			else
-				for(var/obj/item/I in new_gun)
-					if(I in new_gun.loaded)
-						new_gun.loaded.Remove(I)
-						I.loc = null
-
-			item_type = "gun"
-		if(28)
+		if(27, 28)
 			//completely unknown alien device
 			if(prob(50))
 				apply_image_decorations = 0

@@ -1,0 +1,6 @@
+#undef MASTER_PLANE
+#undef DARK_PLANE
+#undef GUI_PLANE
+#undef LIGHT_SOFT
+#undef LIGHT_SOFT_FLICKER
+#undef LIGHT_DIRECTIONAL

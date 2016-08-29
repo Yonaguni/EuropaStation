@@ -54,14 +54,14 @@
 		overlays += image('icons/obj/items.dmi', icon_state = "soap_key_overlay")
 
 /obj/item/weapon/soap/nanotrasen
-	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
+	desc = "A cheap bar of soap. Smells of industrial solvents."
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/deluxe
 	icon_state = "soapdeluxe"
 
 /obj/item/weapon/soap/deluxe/New()
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+	desc = "A deluxe bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 	..()
 
 /obj/item/weapon/soap/syndie
