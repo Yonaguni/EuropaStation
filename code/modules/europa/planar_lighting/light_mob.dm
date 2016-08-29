@@ -12,6 +12,10 @@
 
 /mob/observer/ghost/Login()
 	..()
-	if (!seedarkness)
-		client.images -= master_plane
-		client.images -= dark_plane
+	if(client)
+		if(seedarkness)
+			client.images -= master_plane
+			client.images -= dark_plane
+		else
+			client.images += master_plane
+			client.images += dark_plane

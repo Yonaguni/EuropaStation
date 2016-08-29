@@ -1,5 +1,5 @@
-/atom/movable/update_nearby_tiles()
-	. = ..()
+/atom/movable/update_nearby_tiles(var/need_rebuild)
+	. = ..(need_rebuild)
 	fluid_update()
 
 /obj/structure/Destroy()

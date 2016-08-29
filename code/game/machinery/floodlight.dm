@@ -5,12 +5,15 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
 	density = 1
+
+	light_power = 10
+	light_range = 10
+
 	var/on = 0
 	var/obj/item/weapon/cell/high/cell = null
 	var/use = 200 // 200W light
 	var/unlocked = 0
 	var/open = 0
-	var/brightness_on = 8		//can't remember what the maxed out value is
 
 /obj/machinery/floodlight/New()
 	src.cell = new(src)
@@ -32,10 +35,7 @@
 
 	// If the cell is almost empty rarely "flicker" the light. Aesthetic only.
 	if((cell.percent() < 10) && prob(5))
-		set_light(brightness_on/2, brightness_on/4)
-		spawn(20)
-			if(on)
-				set_light(brightness_on, brightness_on/2)
+		set_light()
 
 	cell.use(use*CELLRATE)
 
@@ -48,7 +48,7 @@
 		return 0
 
 	on = 1
-	set_light(brightness_on, brightness_on / 2)
+	set_light()
 	update_icon()
 	if(loud)
 		visible_message("\The [src] turns on.")

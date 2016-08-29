@@ -37,7 +37,7 @@
 	user.update_action_buttons()
 	return 1
 
-/obj/item/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/device/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(light_obj && light_obj.is_directional_light())
 		var/turf/origin = get_turf(light_obj)
 		var/turf/target = get_turf(A)
