@@ -156,7 +156,7 @@
 
 	overlays.Cut()
 	if(!enabled)
-		set_light(0)
+		kill_light()
 		return
 	set_light(light_strength)
 	if(active_program)

@@ -58,7 +58,7 @@
 			new flooring.build_type(src)
 		flooring = null
 
-	set_light(0)
+	kill_light()
 	broken = null
 	burnt = null
 	flooring_override = null

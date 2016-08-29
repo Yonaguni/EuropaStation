@@ -208,7 +208,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/proc/RemoveFire()
 	var/turf/T = loc
 	if (istype(T))
-		set_light(0)
+		kill_light()
 
 		T.fire = null
 		loc = null

@@ -10,9 +10,11 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
+	light_power = 5
+	light_range = 6
+
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -21,10 +23,10 @@
 /obj/item/device/flashlight/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
+		set_light()
 	else
 		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		kill_light()
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -35,6 +37,18 @@
 	user.update_action_buttons()
 	return 1
 
+/obj/item/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
+	if(light_obj && light_obj.is_directional_light())
+		var/turf/origin = get_turf(light_obj)
+		var/turf/target = get_turf(A)
+		if(istype(origin) && istype(target))
+			spawn(1)
+				light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
+				light_obj.update_transform()
+				light_obj.cast_light()
+			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
+			return
+	return ..()
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -109,7 +123,8 @@
 	item_state = ""
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
-	brightness_on = 2
+	light_power = 2
+	light_range = 2
 	w_class = 1
 
 /obj/item/device/flashlight/drone
@@ -118,7 +133,8 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags = CONDUCT
-	brightness_on = 2
+	light_power = 2
+	light_range = 3
 	w_class = 1
 
 
@@ -128,7 +144,8 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	brightness_on = 5
+	light_power = 5
+	light_range = 5
 	w_class = 4
 	flags = CONDUCT
 
@@ -140,7 +157,6 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
-	brightness_on = 4
 	light_color = "#FFC58F"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
@@ -157,8 +173,8 @@
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 1
-	brightness_on = 8 // Pretty bright.
-	light_power = 3
+	light_range = 8 // Pretty bright.
+	light_power = 6
 	light_color = "#e58775"
 	icon_state = "flare"
 	item_state = "flare"
@@ -214,12 +230,13 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
-	brightness_on = 6
+	light_range = 6
+	light_power = 3
 	on = 1 //Bio-luminesence has one setting, on.
 
 /obj/item/device/flashlight/slime/New()
 	..()
-	set_light(brightness_on)
+	set_light()
 
 /obj/item/device/flashlight/slime/update_icon()
 	return

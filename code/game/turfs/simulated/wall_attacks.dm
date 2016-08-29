@@ -11,7 +11,7 @@
 		density = 0
 		opacity = 0
 		update_icon()
-		set_light(0)
+		kill_light()
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)

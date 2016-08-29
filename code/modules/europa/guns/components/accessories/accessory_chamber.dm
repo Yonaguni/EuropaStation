@@ -40,5 +40,5 @@
 		set_light(brightness_on)
 	else
 		if(holder)
-			holder.set_light(0)
-		set_light(0)
+			holder.kill_light()
+		kill_light()

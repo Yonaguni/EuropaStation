@@ -86,7 +86,7 @@
 
 		src.cell = null
 		on = 0
-		set_light(0)
+		kill_light()
 		user << "You remove the power cell"
 		update_icon()
 		return

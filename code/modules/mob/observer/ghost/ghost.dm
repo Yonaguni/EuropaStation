@@ -667,13 +667,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	client.images -= ghost_sightless_images
 	client.images -= ghost_darkness_images
+
 	if(!seedarkness)
+		client.images -= master_plane
+		client.images -= dark_plane
 		client.images |= ghost_sightless_images
 		if(ghostvision)
 			client.images |= ghost_darkness_images
-	else if(seedarkness && !ghostvision)
-		client.images |= ghost_sightless_images
+	else if(seedarkness)
+		client.images += master_plane
+		client.images += dark_plane
+		if(!ghostvision)
+			client.images |= ghost_sightless_images
+
 	client.images -= ghost_image //remove ourself
+
 
 /mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_time = 0)
 	if(!client)

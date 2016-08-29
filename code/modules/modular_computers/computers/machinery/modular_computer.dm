@@ -48,7 +48,7 @@ var/list/global_modular_computers = list()
 	if(!cpu || !cpu.enabled)
 		if (!(stat & NOPOWER) || battery_powered)
 			overlays.Add(screen_icon_screensaver)
-		set_light(0)
+		kill_light()
 		return
 	set_light(light_strength)
 	if(cpu.active_program)
