@@ -111,11 +111,6 @@ var/list/datum/ai_icon/ai_icons
 	alive_icon = "ai-mono"
 	alive_light = "#585858"
 
-/datum/ai_icon/nanotrasen
-	name = "Nanotrasen"
-	alive_icon = "ai-nanotrasen"
-	alive_light = "#000029"
-
 /datum/ai_icon/rainbow
 	name = "Rainbow"
 	alive_icon = "ai-clown"

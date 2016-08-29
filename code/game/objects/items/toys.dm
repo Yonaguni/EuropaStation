@@ -102,18 +102,6 @@
 	item_state = "syndballoon"
 	w_class = 5
 
-/obj/item/toy/nanotrasenballoon
-	name = "criminal balloon"
-	desc = "Across the balloon the following is printed: \"Man, I love NanoTrasen soooo much. I use only NT products. You have NO idea.\"."
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-	force = 0
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "ntballoon"
-	item_state = "ntballoon"
-	w_class = 5
-
 /*
  * Fake telebeacon
  */

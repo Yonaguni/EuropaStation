@@ -923,9 +923,6 @@
 	/obj/item/weapon/storage/lunchbox = 3,
 	/obj/item/weapon/storage/lunchbox/heart = 3,
 	/obj/item/weapon/storage/lunchbox/cat = 3,
-	/obj/item/weapon/storage/lunchbox/nt = 3,
-	/obj/item/weapon/storage/lunchbox/mars = 3,
-	/obj/item/weapon/storage/lunchbox/cti = 3,
 	/obj/item/weapon/storage/lunchbox/nymph = 3,
 	/obj/item/weapon/storage/lunchbox/syndicate = 3)
 

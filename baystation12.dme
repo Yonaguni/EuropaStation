@@ -2155,11 +2155,9 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\_map_include.dm"
-#include "maps\example\example_define.dm"
-#include "maps\exodus\exodus.dm"
-#include "maps\exodus\exodus_define.dm"
+#include "maps\aeolus\aeolus.dm"
+#include "maps\aeolus\aeolus_define.dm"
 #include "maps\overmap\overmap_example_define.dm"
-#include "maps\torch\torch_define.dm"
 #include "maps\~mapsystem\maps.dm"
 #include "~code\global_init.dm"
 // END_INCLUDE

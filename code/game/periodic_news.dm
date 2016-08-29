@@ -5,7 +5,7 @@
 	var
 		round_time // time of the round at which this should be announced, in seconds
 		message // body of the message
-		author = "NanoTrasen Editor"
+		author = "Editor"
 		channel_name = "Nyx Daily"
 		can_be_redacted = 0
 		message_type = "Story"
