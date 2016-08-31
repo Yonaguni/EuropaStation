@@ -660,7 +660,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "Computer"))
 		return 1
 	return istype(src, /mob/living/silicon) || get_species() == "Machine"
 

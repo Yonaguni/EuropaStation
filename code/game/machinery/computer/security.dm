@@ -266,7 +266,7 @@ What a mess.*/
 					src.active1 = null
 					src.active2 = null
 					src.authenticated = usr.name
-					src.rank = "AI"
+					src.rank = "Computer"
 					src.screen = 1
 				else if (istype(usr, /mob/living/silicon/robot))
 					src.active1 = null
@@ -499,7 +499,7 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 							temp += "</ul>"
 					if("rank")
-						var/list/L = list( "Operations Officer", "Commanding Officer", "AI" )
+						var/list/L = list( "Operations Officer", "Commanding Officer", "Computer" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"

@@ -43,7 +43,7 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai
-	name = "AI"
+	name = "Computer"
 	icon = 'icons/mob/AI.dmi'//
 	icon_state = "ai"
 	anchored = 1 // -- TLE
@@ -201,7 +201,7 @@ var/list/ai_verbs_default = list(
 		show_laws()
 		src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
-	job = "AI"
+	job = "Computer"
 	setup_icon()
 	eyeobj.possess(src)
 
@@ -266,18 +266,18 @@ var/list/ai_verbs_default = list(
 
 	// Set ai pda name
 	if(aiPDA)
-		aiPDA.set_owner_rank_job(pickedName, "AI")
+		aiPDA.set_owner_rank_job(pickedName, "Computer")
 
 	data_core.ResetPDAManifest()
 
 /mob/living/silicon/ai/proc/pick_icon()
 	set category = "Silicon Commands"
-	set name = "Set AI Core Display"
+	set name = "Set Core Display"
 	if(stat || !has_power())
 		return
 
 	if (!custom_sprite)
-		var/new_sprite = input("Select an icon!", "AI", selected_sprite) as null|anything in ai_icons
+		var/new_sprite = input("Select an icon!", "Computer", selected_sprite) as null|anything in ai_icons
 		if(new_sprite) selected_sprite = new_sprite
 	updateicon()
 

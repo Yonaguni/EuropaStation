@@ -230,7 +230,7 @@ var/global/datum/controller/occupations/job_master
 		//Holder for Triumvirate is stored in the ticker, this just processes it
 		if(ticker && ticker.triai)
 			for(var/datum/job/A in occupations)
-				if(A.title == "AI")
+				if(A.title == "Computer")
 					A.spawn_positions = 3
 					break
 
@@ -357,7 +357,7 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Drone" && job.title != "Computer")
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
@@ -450,9 +450,9 @@ var/global/datum/controller/occupations/job_master
 			alt_title = H.mind.role_alt_title
 
 			switch(rank)
-				if("Cyborg")
+				if("Drone")
 					return H.Robotize()
-				if("AI")
+				if("Computer")
 					return H
 				if("Commanding Officer")
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
@@ -539,7 +539,7 @@ var/global/datum/controller/occupations/job_master
 				if(!J)	continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
+				if(name == "Computer" || name == "Drone")//I dont like this here but it will do for now
 					J.total_positions = 0
 
 		return 1

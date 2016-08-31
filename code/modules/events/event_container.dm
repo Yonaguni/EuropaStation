@@ -1,6 +1,6 @@
 #define ASSIGNMENT_ANY "Any"
-#define ASSIGNMENT_AI "AI"
-#define ASSIGNMENT_CYBORG "Cyborg"
+#define ASSIGNMENT_AI "Computer"
+#define ASSIGNMENT_CYBORG "Robot"
 #define ASSIGNMENT_ENGINEER "Engineer"
 #define ASSIGNMENT_JANITOR "Science"
 #define ASSIGNMENT_JANITOR "Janitor"

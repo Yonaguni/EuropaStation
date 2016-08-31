@@ -7,7 +7,7 @@ They sell generic supplies and ask for generic supplies.
 */
 
 /datum/trader/trading_beacon
-	name = "AI"
+	name = "Computer"
 	origin = "Trading Beacon"
 	name_language = LANGUAGE_EAL
 	trade_flags = TRADER_MONEY|TRADER_GOODS

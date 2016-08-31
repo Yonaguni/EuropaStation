@@ -30,7 +30,6 @@ var/list/mob_hat_cache = list()
 	universal_understand = 1
 	gender = NEUTER
 	pass_flags = PASSTABLE
-	braintype = "Drone"
 	lawupdate = 0
 	density = 1
 	req_access = list(access_engine, access_robotics)
@@ -50,7 +49,7 @@ var/list/mob_hat_cache = list()
 
 	//Used for self-mailing.
 	var/mail_destination = ""
-	var/law_type = /datum/ai_laws/drone
+	var/law_type = /datum/ai_laws/construction_drone
 	var/module_type = /obj/item/weapon/robot_module/drone
 	var/obj/item/hat
 	var/hat_x_offset = 0
@@ -102,7 +101,7 @@ var/list/mob_hat_cache = list()
 	if(too_many_active_drones())
 		src << "<span class='danger'>The maximum number of active drones has been reached..</span>"
 		return 0
-	if(jobban_isbanned(possessor,"Cyborg"))
+	if(jobban_isbanned(possessor,"Robot"))
 		usr << "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>"
 		return 0
 	if(!possessor.MayRespawn(1,DRONE_SPAWN_DELAY))
@@ -123,7 +122,6 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/construction
 	icon_state = "constructiondrone"
-	law_type = /datum/ai_laws/construction_drone
 	module_type = /obj/item/weapon/robot_module/drone/construction
 	hat_x_offset = 1
 	hat_y_offset = -12
@@ -135,9 +133,6 @@ var/list/mob_hat_cache = list()
 	..()
 
 	verbs += /mob/living/proc/hide
-	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
-	add_language("Drone Talk", 1)
 
 	//They are unable to be upgraded, so let's give them a bit of a better battery.
 	cell.maxcharge = 10000

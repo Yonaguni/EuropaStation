@@ -202,7 +202,7 @@
 				src.active1 = null
 				src.active2 = null
 				src.authenticated = usr.name
-				src.rank = "AI"
+				src.rank = "Computer"
 				src.screen = 1
 
 			else if (istype(usr, /mob/living/silicon/robot))

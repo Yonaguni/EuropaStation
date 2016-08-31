@@ -88,7 +88,7 @@
 		if(("Crewman" in pref.job_low) && (rank != "Crewman"))
 			. += "<font color=grey>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in command_positions) || (rank == "Computer"))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
 			. += "[rank]"

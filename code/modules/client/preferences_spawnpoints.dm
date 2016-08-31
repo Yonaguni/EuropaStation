@@ -41,7 +41,7 @@ var/list/spawntypes = list()
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"
 	msg = "has completed cryogenic revival"
-	disallow_job = list("Cyborg")
+	disallow_job = list("Robot")
 
 /datum/spawnpoint/cryo/New()
 	..()
@@ -50,7 +50,7 @@ var/list/spawntypes = list()
 /datum/spawnpoint/cyborg
 	display_name = "Cyborg Storage"
 	msg = "has been activated from storage"
-	restrict_job = list("Cyborg")
+	restrict_job = list("Robot")
 
 /datum/spawnpoint/cyborg/New()
 	..()

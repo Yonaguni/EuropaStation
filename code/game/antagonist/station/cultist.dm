@@ -10,7 +10,7 @@ var/datum/antagonist/cultist/cult
 	id = MODE_CULTIST
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
-	restricted_jobs = list("AI", "Cyborg", "Chief of Security", "Commanding Officer")
+	restricted_jobs = list("Computer", "Robot", "Chief of Security", "Commanding Officer")
 	protected_jobs = list("Security Officer", "Munitions Officer")
 	feedback_tag = "cult_objective"
 	antag_indicator = "cult"
