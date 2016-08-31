@@ -5,12 +5,10 @@
 	icon_state = "posibrain"
 	w_class = 3
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
-
-	var/searching = 0
-	var/askDelay = 10 * 60 * 1
 	req_access = list(access_robotics)
 	locked = 0
-	mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	var/searching = 0
+	var/askDelay = 10 * 60 * 1
 
 
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)

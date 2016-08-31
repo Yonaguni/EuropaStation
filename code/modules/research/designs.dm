@@ -1029,13 +1029,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/robotics
 	sort_string = "HAAAB"
 
-/datum/design/circuit/mechacontrol
-	name = "exosuit control console"
-	id = "mechacontrol"
-	req_tech = list(TECH_DATA = 3)
-	build_path = /obj/item/weapon/circuitboard/mecha_control
-	sort_string = "HAAAC"
-
 /datum/design/circuit/rdconsole
 	name = "R&D control console"
 	id = "rdconsole"
@@ -1126,27 +1119,6 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/weapon/circuitboard/rdserver
 	sort_string = "HABBB"
-
-/datum/design/circuit/mechfab
-	name = "exosuit fabricator"
-	id = "mechfab"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	build_path = /obj/item/weapon/circuitboard/mechfab
-	sort_string = "HABAE"
-
-/datum/design/circuit/mech_recharger
-	name = "mech recharger"
-	id = "mech_recharger"
-	req_tech = list(TECH_DATA = 2, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	build_path = /obj/item/weapon/circuitboard/mech_recharger
-	sort_string = "HACAA"
-
-/datum/design/circuit/recharge_station
-	name = "cyborg recharge station"
-	id = "recharge_station"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
-	build_path = /obj/item/weapon/circuitboard/recharge_station
-	sort_string = "HACAC"
 
 /datum/design/circuit/atmosalerts
 	name = "atmosphere alert console"

@@ -221,6 +221,9 @@
 	var/burn = 0
 	var/icon_state_broken = "broken"
 
+/obj/item/robot_parts/robot_component/proc/is_functional()
+	return ((brute+burn)<50)
+
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
 	icon_state = "binradio"

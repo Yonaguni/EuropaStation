@@ -14,11 +14,6 @@
 	item_cost = 32
 	path = /obj/item/weapon/storage/box/syndie_kit/g9mm
 
-/datum/uplink_item/item/visible_weapons/riggedlaser
-	name = "Exosuit (APLU) Rigged Laser"
-	item_cost = 32
-	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
-
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
 	item_cost = 56

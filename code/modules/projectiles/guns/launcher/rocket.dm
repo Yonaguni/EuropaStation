@@ -11,7 +11,7 @@
 	slot_flags = 0
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/effects/bang.ogg'
-	
+
 	release_force = 15
 	throw_distance = 30
 	var/max_rockets = 1
@@ -32,6 +32,20 @@
 			user << "\blue [rockets.len] / [max_rockets] rockets."
 		else
 			usr << "\red [src] cannot hold more rockets."
+
+/obj/item/missile
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "missile"
+	var/primed = null
+	throwforce = 15
+
+	throw_impact(atom/hit_atom)
+		if(primed)
+			explosion(hit_atom, 0, 1, 2, 4)
+			qdel(src)
+		else
+			..()
+		return
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)

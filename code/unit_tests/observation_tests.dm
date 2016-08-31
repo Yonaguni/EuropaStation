@@ -185,49 +185,6 @@
 /datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop
 	name = "OBSERVATION: Moved - Shall Only Trigger Once For Recursive Drop"
 
-/datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop/conduct_test()
-	var/turf/T = locate(20,20,1)
-	var/obj/mecha/mech = new(T)
-	var/obj/item/weapon/wrench/held_item = new(T)
-	var/mob/living/carbon/human/dummy/held_mob = new(T)
-	var/mob/living/carbon/human/dummy/holding_mob = new(T)
-
-	held_mob.real_name = "Held Mob"
-	held_mob.name = "Held Mob"
-	held_mob.mob_size = MOB_SMALL
-	held_mob.put_in_active_hand(held_item)
-	held_mob.get_scooped(holding_mob)
-
-	holding_mob.real_name = "Holding Mob"
-	holding_mob.name = "Holding Mob"
-	holding_mob.forceMove(mech)
-
-	mech.occupant = holding_mob
-
-	moved_event.register(held_item, src, /datum/unit_test/observation/proc/receive_move)
-	holding_mob.drop_from_inventory(held_item)
-
-	if(received_moves.len != 1)
-		fail("Expected 1 raised moved event, were [received_moves.len].")
-		dump_received_moves()
-		return 1
-
-	var/list/event = received_moves[1]
-	if(event[1] != held_item || event[2] != held_mob || event[3] != mech)
-		fail("Unexpected move event received. Expected [held_item], was [event[1]]. Expected [held_mob], was [event[2]]. Expected [mech], was [event[3]]")
-	else if(!(held_item in mech.dropped_items))
-		fail("Expected \the [held_item] to be in the mechs' dropped item list")
-	else
-		pass("One one moved event with expected arguments raised.")
-
-	moved_event.unregister(held_item, src)
-	qdel(mech)
-	qdel(held_item)
-	qdel(held_mob)
-	qdel(holding_mob)
-
-	return 1
-
 /datum/unit_test/observation/moved_shall_not_unregister_recursively_one
 	name = "OBSERVATION: Moved - Shall Not Unregister Recursively - One"
 

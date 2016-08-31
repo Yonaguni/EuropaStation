@@ -16,7 +16,7 @@
 							/mob/living/carbon/human                                                   = TRADER_ALL
 							)
 
-	possible_trading_items = list(/obj/mecha/combat                                                    = TRADER_SUBTYPES_ONLY,
+	possible_trading_items = list(
 							/obj/item/weapon/gun/composite/premade/assault_rifle/a762                  = TRADER_BLACKLIST
 							)
 
