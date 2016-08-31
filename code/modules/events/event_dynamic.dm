@@ -34,7 +34,7 @@ var/list/event_last_fired = list()
 	//var/security_count = number_active_with_role("Security")
 	//var/medical_count = number_active_with_role("Medical")
 	//var/AI_count = number_active_with_role("AI")
-	//var/janitor_count = number_active_with_role("Janitor")
+	//var/janitor_count = number_active_with_role("Sanitation Technician")
 
 	// Maps event names to event chances
 	// For each chance, 100 represents "normal likelihood", anything below 100 is "reduced likelihood", anything above 100 is "increased likelihood"
@@ -60,11 +60,11 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"]
+	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10
 	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Gardener"]
+	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50
 
 	if(!spacevines_spawned)
 		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]
@@ -109,67 +109,6 @@ var/list/event_last_fired = list()
 	//and start working via the constructor.
 	new picked_event
 
-	//moved this to proc/check_event()
-	/*var/chance = possibleEvents[picked_event]
-	var/base_chance = 0.4
-	switch(player_list.len)
-		if(5 to 10)
-			base_chance = 0.6
-		if(11 to 15)
-			base_chance = 0.7
-		if(16 to 20)
-			base_chance = 0.8
-		if(21 to 25)
-			base_chance = 0.9
-		if(26 to 30)
-			base_chance = 1.0
-		if(30 to 100000)
-			base_chance = 1.1
-
-	// Trigger the event based on how likely it currently is.
-	if(!prob(chance * eventchance * base_chance / 100))
-		return 0*/
-
-	/*switch(picked_event)
-		if("Meteor")
-			command_alert("Meteors have been detected on collision course with the station.", "Meteor Alert")
-			for(var/mob/M in player_list)
-				if(!istype(M,/mob/new_player))
-					M << sound('sound/AI/meteors.ogg')
-			spawn(100)
-				meteor_wave(10)
-				spawn_meteors()
-			spawn(700)
-				meteor_wave(10)
-				spawn_meteors()
-		if("Space Ninja")
-			//Handled in space_ninja.dm. Doesn't announce arrival, all sneaky-like.
-			space_ninja_arrival()
-		if("Radiation")
-			high_radiation_event()
-		if("Virus")
-			viral_outbreak()
-		if("Alien")
-			alien_infestation()
-		if("Prison Break")
-			prison_break()
-		if("Carp")
-			carp_migration()
-		if("Lights")
-			lightsout(1,2)
-		if("Appendicitis")
-			appendicitis()
-		if("Ion Storm")
-			IonStorm()
-		if("Spacevine")
-			spacevine_infestation()
-		if("Communications")
-			communications_blackout()
-		if("Grid Check")
-			grid_check()
-		if("Meteor")
-			meteor_shower()*/
-
 	return 1
 
 // Returns how many characters are currently active(not logged out, not AFK for more than 10 minutes)
@@ -180,11 +119,9 @@ var/list/event_last_fired = list()
 	active_with_role["Engineer"] = 0
 	active_with_role["Medical"] = 0
 	active_with_role["Security"] = 0
-	active_with_role["Scientist"] = 0
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
 	active_with_role["Janitor"] = 0
-	active_with_role["Gardener"] = 0
 
 	for(var/mob/M in player_list)
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
@@ -201,8 +138,6 @@ var/list/event_last_fired = list()
 					active_with_role["Security"]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/medical))
 					active_with_role["Medical"]++
-				else if(istype(R.module, /obj/item/weapon/robot_module/research))
-					active_with_role["Scientist"]++
 
 		if(M.mind.assigned_role in engineering_positions)
 			active_with_role["Engineer"]++
@@ -213,19 +148,13 @@ var/list/event_last_fired = list()
 		if(M.mind.assigned_role in security_positions)
 			active_with_role["Security"]++
 
-		if(M.mind.assigned_role in science_positions)
-			active_with_role["Scientist"]++
-
 		if(M.mind.assigned_role == "AI")
 			active_with_role["AI"]++
 
 		if(M.mind.assigned_role == "Cyborg")
 			active_with_role["Cyborg"]++
 
-		if(M.mind.assigned_role == "Janitor")
+		if(M.mind.assigned_role == "Sanitation Technician")
 			active_with_role["Janitor"]++
-
-		if(M.mind.assigned_role == "Gardener")
-			active_with_role["Gardener"]++
 
 	return active_with_role

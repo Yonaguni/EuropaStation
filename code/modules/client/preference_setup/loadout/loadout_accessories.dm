@@ -41,7 +41,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Captain", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Commanding Officer", "Operations Officer", "Security Officer", "Munitions Officer", "Chief of Security")
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"
@@ -66,17 +66,17 @@
 /datum/gear/accessory/brown_vest
 	display_name = "webbing, engineering"
 	path = /obj/item/clothing/accessory/storage/brown_vest
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer")
+	allowed_roles = list("Engineering Officer","Chief of Engineering")
 
 /datum/gear/accessory/black_vest
 	display_name = "webbing, security"
 	path = /obj/item/clothing/accessory/storage/black_vest
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Chief of Security","Munitions Officer")
 
 /datum/gear/accessory/white_vest
 	display_name = "webbing, medical"
 	path = /obj/item/clothing/accessory/storage/white_vest
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor")
+	allowed_roles = list("Chief of Medicine","Medical Officer")
 
 /datum/gear/accessory/webbing
 	display_name = "webbing, simple"

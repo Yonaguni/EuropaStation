@@ -2,10 +2,9 @@
 #define ASSIGNMENT_AI "AI"
 #define ASSIGNMENT_CYBORG "Cyborg"
 #define ASSIGNMENT_ENGINEER "Engineer"
-#define ASSIGNMENT_GARDENER "Gardener"
+#define ASSIGNMENT_JANITOR "Science"
 #define ASSIGNMENT_JANITOR "Janitor"
 #define ASSIGNMENT_MEDICAL "Medical"
-#define ASSIGNMENT_SCIENTIST "Scientist"
 #define ASSIGNMENT_SECURITY "Security"
 
 var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major")

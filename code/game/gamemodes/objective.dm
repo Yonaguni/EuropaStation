@@ -149,7 +149,7 @@ datum/objective/anti_revolution/demote
 
 			if(!istype(I)) return 1
 
-			if(I.assignment == "Assistant")
+			if(I.assignment == "Crewman")
 				return 1
 			else
 				return 0
@@ -632,7 +632,7 @@ datum/objective/heist
 
 datum/objective/heist/kidnap
 	choose_target()
-		var/list/roles = list("Chief Engineer","Research Director","Roboticist","Chemist","Station Engineer")
+		var/list/roles = list("Chief of Engineering","Science Officer","Roboticist","Engineering Officer")
 		var/list/possible_targets = list()
 		var/list/priority_targets = list()
 

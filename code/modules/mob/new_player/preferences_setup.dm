@@ -197,8 +197,8 @@ datum/preferences
 	var/datum/job/previewJob
 	if(equip_preview_mob)
 		// Determine what job is marked as 'High' priority, and dress them up as such.
-		if("Assistant" in job_low)
-			previewJob = job_master.GetJob("Assistant")
+		if("Crewman" in job_low)
+			previewJob = job_master.GetJob("Crewman")
 		else
 			for(var/datum/job/job in job_master.occupations)
 				if(job.title == job_high)

@@ -1680,23 +1680,23 @@ area/space/atmosalert()
 
 /area/security/warden
 	name = "\improper Security - Warden's Office"
-	icon_state = "Warden"
+	icon_state = "Munitions Officer"
 
 /area/security/bo
 	name = "\improper Security - Brig Officer"
-	icon_state = "Warden"
+	icon_state = "Munitions Officer"
 
 /area/security/armoury
 	name = "\improper Security - Armory"
-	icon_state = "Warden"
+	icon_state = "Munitions Officer"
 
 /area/security/armourybridge
 	name = "\improper Bridge - Armory"
-	icon_state = "Warden"
+	icon_state = "Munitions Officer"
 
 /area/security/armourybridgeaccess
 	name = "\improper bridge - Armory Access"
-	icon_state = "Warden"
+	icon_state = "Munitions Officer"
 
 /area/security/detectives_office
 	name = "\improper Security - Forensic Office"
