@@ -37,7 +37,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	economic_modifier = 20
 
 	ideal_character_age = 70 // Old geezer captains ftw
-	outfit_type = /decl/hierarchy/outfit/job/captain
+	outfit_type = /decl/hierarchy/outfit/job/bridge/xo
 
 /datum/job/xo/get_access()
 	return get_all_station_access()
@@ -70,7 +70,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			            access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
 			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
 
-	outfit_type = /decl/hierarchy/outfit/job/hop
+	outfit_type = /decl/hierarchy/outfit/job/bridge/operations
 
 // Placeholder
 /datum/job/bridge
@@ -100,5 +100,5 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			            access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
 			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
 
-	outfit_type = /decl/hierarchy/outfit/job/hop
+	outfit_type = /decl/hierarchy/outfit/job/bridge
 // End placeholder

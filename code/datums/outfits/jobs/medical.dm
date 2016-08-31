@@ -6,11 +6,12 @@
 	pda_slot = slot_l_store
 	backpack = /obj/item/weapon/storage/backpack/medic
 	satchel_one = /obj/item/weapon/storage/backpack/satchel_med
+	uniform = /obj/item/clothing/under/aeolus/medical
 
 /decl/hierarchy/outfit/job/medical/cmo
 	name = OUTFIT_JOB_NAME("Chief of Medicine")
 	l_ear  =/obj/item/device/radio/headset/heads/cmo
-	uniform = /obj/item/clothing/under/rank/chief_medical_officer
+	uniform = /obj/item/clothing/under/aeolus/medical/chief
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/brown
 	l_hand = /obj/item/weapon/storage/firstaid/adv
@@ -32,12 +33,10 @@
 
 /decl/hierarchy/outfit/job/medical/doctor/surgeon
 	name = OUTFIT_JOB_NAME("Surgeon")
-	uniform = /obj/item/clothing/under/rank/medical/blue
 	head = /obj/item/clothing/head/surgery/blue
 
 /decl/hierarchy/outfit/job/medical/doctor/virologist
 	name = OUTFIT_JOB_NAME("Virologist")
-	uniform = /obj/item/clothing/under/rank/virologist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/virologist
 	mask = /obj/item/clothing/mask/surgical
 	backpack = /obj/item/weapon/storage/backpack/virology
@@ -61,15 +60,12 @@
 
 /decl/hierarchy/outfit/job/medical/psychiatrist
 	name = OUTFIT_JOB_NAME("Counsellor")
-	uniform = /obj/item/clothing/under/rank/psych
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
 	id_type = /obj/item/weapon/card/id/medical/psychiatrist
 
 /decl/hierarchy/outfit/job/medical/psychiatrist/psychologist
 	name = OUTFIT_JOB_NAME("Psychologist")
-	uniform = /obj/item/clothing/under/rank/psych/turtleneck
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
-	uniform = /obj/item/clothing/under/rank/medical/paramedic
