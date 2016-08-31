@@ -152,9 +152,6 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
-	var/obj/machinery/atmospherics/node1
-	var/obj/machinery/atmospherics/node2
-
 	var/minimum_temperature_difference = 300
 	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
@@ -396,18 +393,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/blue
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/insulated
-	icon = 'icons/obj/atmospherics/red_pipe.dmi'
-	icon_state = "intact"
-
-	minimum_temperature_difference = 10000
-	thermal_conductivity = 0
-	maximum_pressure = 1000*ONE_ATMOSPHERE
-	fatigue_pressure = 900*ONE_ATMOSPHERE
-	alert_pressure = 900*ONE_ATMOSPHERE
-
-	level = 2
-
 
 /obj/machinery/atmospherics/pipe/manifold
 	icon = 'icons/atmos/manifold.dmi'
@@ -420,8 +405,6 @@
 	dir = SOUTH
 	initialize_directions = EAST|NORTH|WEST
 
-	var/obj/machinery/atmospherics/node1
-	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 
 	level = 1
@@ -674,8 +657,6 @@
 	dir = SOUTH
 	initialize_directions = NORTH|SOUTH|EAST|WEST
 
-	var/obj/machinery/atmospherics/node1
-	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 	var/obj/machinery/atmospherics/node4
 
@@ -1053,8 +1034,6 @@
 	initialize_directions = SOUTH
 	density = 1
 
-	var/obj/machinery/atmospherics/node1
-
 /obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"
 	initialize_directions = dir
@@ -1215,8 +1194,6 @@
 	initialize_directions = SOUTH
 
 	var/build_killswitch = 1
-
-	var/obj/machinery/atmospherics/node1
 
 /obj/machinery/atmospherics/pipe/vent/New()
 	initialize_directions = dir

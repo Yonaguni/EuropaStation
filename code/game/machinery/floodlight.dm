@@ -10,15 +10,13 @@
 	light_range = 10
 
 	var/on = 0
-	var/obj/item/weapon/cell/high/cell = null
+	var/obj/item/weapon/cell/cell = null
 	var/use = 200 // 200W light
 	var/unlocked = 0
 	var/open = 0
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
-	cell.maxcharge = 100
-	cell.charge = 100 // 30 minutes @ 200W (assuming no lag)
+	cell = new/obj/item/weapon/cell/crap(src)
 	..()
 
 /obj/machinery/floodlight/update_icon()

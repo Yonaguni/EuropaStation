@@ -25,6 +25,8 @@ var/list/holder_mob_icon_cache = list()
 	processing_objects.Add(src)
 
 /obj/item/weapon/holder/Destroy()
+	for(var/atom/movable/AM in src)
+		AM.forceMove(get_turf(src))
 	last_holder = null
 	processing_objects.Remove(src)
 	return ..()
