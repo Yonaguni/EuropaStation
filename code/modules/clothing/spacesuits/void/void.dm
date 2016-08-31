@@ -11,7 +11,7 @@
 
 	//Species-specific stuff.
 	species_restricted = list("Human")
-	sprite_sheets_refit = list(
+	sprite_sheets = list(
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
 		"Resomi" = 'icons/mob/species/resomi/helmet.dmi'
 		)
@@ -35,7 +35,7 @@
 	siemens_coefficient = 0.4
 
 	species_restricted = list("Human", "Skrell")
-	sprite_sheets_refit = list(
+	sprite_sheets = list(
 		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
 		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
