@@ -53,8 +53,7 @@
 	desc = "The working uniform of a Jovian Navy engineering officer."
 	icon_state = "aeolus_engineering"
 
-/obj/item/clothing/under/aeolus/engineering/chief/New()
-	..()
+/obj/item/clothing/under/aeolus/engineering/chief
 	pips = /obj/item/clothing/accessory/medal/aeolus/commander
 
 /obj/item/clothing/under/aeolus/security
@@ -63,8 +62,7 @@
 	icon_state = "aeolus_security"
 	pips = /obj/item/clothing/accessory/medal/aeolus
 
-/obj/item/clothing/under/aeolus/security/chief/New()
-	..()
+/obj/item/clothing/under/aeolus/security/chief
 	pips = /obj/item/clothing/accessory/medal/aeolus/commander
 
 /obj/item/clothing/under/aeolus/medical
@@ -72,8 +70,7 @@
 	desc = "The working uniform of a Jovian Navy medical officer."
 	icon_state = "aeolus_medical"
 
-/obj/item/clothing/under/aeolus/medical/chief/New()
-	..()
+/obj/item/clothing/under/aeolus/medical/chief
 	pips = /obj/item/clothing/accessory/medal/aeolus/commander
 
 /obj/item/clothing/under/aeolus/science
@@ -81,8 +78,7 @@
 	desc = "The working uniform of a Jovian Navy science officer."
 	icon_state = "aeolus_science"
 
-/obj/item/clothing/under/aeolus/science/New()
-	..()
+/obj/item/clothing/under/aeolus/science
 	pips = /obj/item/clothing/accessory/medal/aeolus/lieutenant
 
 /obj/item/clothing/under/aeolus/supply
@@ -90,8 +86,7 @@
 	desc = "The working uniform of a Jovian Navy supply officer."
 	icon_state = "aeolus_supply"
 
-/obj/item/clothing/under/aeolus/supply/chief/New()
-	..()
+/obj/item/clothing/under/aeolus/supply/chief
 	pips = /obj/item/clothing/accessory/medal/aeolus/commander
 
 /obj/item/clothing/under/aeolus/crewman
