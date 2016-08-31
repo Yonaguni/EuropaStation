@@ -37,7 +37,7 @@
 /obj/item/gun_component/grip/smg
 	icon_state = "smg"
 	weapon_type = GUN_SMG
-	color = COLOR_WOODFINISH
+	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/grip/rifle
 	icon_state = "rifle"

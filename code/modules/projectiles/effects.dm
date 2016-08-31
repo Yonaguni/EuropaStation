@@ -2,10 +2,13 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	layer = LIGHTING_LAYER+0.1
+	var/flash_colour
 
 /obj/effect/projectile/New(var/turf/location)
 	if(istype(location))
 		loc = location
+	if(flash_colour)
+		set_light(2, 2, flash_colour, 3)
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
@@ -20,6 +23,9 @@
 //----------------------------
 // Laser beam
 //----------------------------
+/obj/effect/projectile/laser
+	flash_colour = "#FF0000"
+
 /obj/effect/projectile/laser/tracer
 	icon_state = "beam"
 
@@ -32,6 +38,9 @@
 //----------------------------
 // Blue laser beam
 //----------------------------
+/obj/effect/projectile/laser_blue
+	flash_colour = "#0000FF"
+
 /obj/effect/projectile/laser_blue/tracer
 	icon_state = "beam_blue"
 
@@ -44,6 +53,9 @@
 //----------------------------
 // Omni laser beam
 //----------------------------
+/obj/effect/projectile/laser_omni
+	flash_colour = "#00FF00"
+
 /obj/effect/projectile/laser_omni/tracer
 	icon_state = "beam_omni"
 
@@ -56,6 +68,9 @@
 //----------------------------
 // Xray laser beam
 //----------------------------
+/obj/effect/projectile/xray
+	flash_colour = "#00FF00"
+
 /obj/effect/projectile/xray/tracer
 	icon_state = "xray"
 
@@ -68,6 +83,9 @@
 //----------------------------
 // Heavy laser beam
 //----------------------------
+/obj/effect/projectile/laser_heavy
+	flash_colour = "#FF0000"
+
 /obj/effect/projectile/laser_heavy/tracer
 	icon_state = "beam_heavy"
 
@@ -80,6 +98,9 @@
 //----------------------------
 // Pulse laser beam
 //----------------------------
+/obj/effect/projectile/laser_pulse
+	flash_colour = "#CC00FF"
+
 /obj/effect/projectile/laser_pulse/tracer
 	icon_state = "u_laser"
 
@@ -98,6 +119,9 @@
 //----------------------------
 // Emitter beam
 //----------------------------
+/obj/effect/projectile/emitter
+	flash_colour = "#AADDFF"
+
 /obj/effect/projectile/emitter/tracer
 	icon_state = "emitter"
 
@@ -110,6 +134,9 @@
 //----------------------------
 // Stun beam
 //----------------------------
+/obj/effect/projectile/stun
+	flash_colour = "#FFFF00"
+
 /obj/effect/projectile/stun/tracer
 	icon_state = "stun"
 
@@ -124,3 +151,4 @@
 //----------------------------
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
+	flash_colour = "#FFFF88"

@@ -16,8 +16,8 @@
 	variant_body =    /obj/item/gun_component/body/smg/laser
 	variant_barrel =  /obj/item/gun_component/barrel/laser/variable/smg
 
-/obj/item/weapon/gun/composite/premade/laser_pistol
-	name = "laser pistol"
+/obj/item/weapon/gun/composite/premade/taser_pistol
+	name = "taser pistol"
 	icon_state = "laser_pistol"
 	variant_chamber = /obj/item/gun_component/chamber/laser/pistol
 	variant_stock =   /obj/item/gun_component/stock/pistol/laser

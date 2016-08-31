@@ -67,22 +67,24 @@
 
 /mob/living/carbon/human/set_dir()
 	. = ..()
-	if(l_hand) l_hand.set_dir(dir)
-	if(r_hand) r_hand.set_dir(dir)
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.set_dir(dir)
 
 /mob/living/carbon/human/Move()
 	. = ..()
-	if(l_hand && l_hand.light_obj)
-		l_hand.light_obj.follow_holder()
-	if(r_hand && r_hand.light_obj)
-		r_hand.light_obj.follow_holder()
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.light_obj.follow_holder()
 
 /mob/living/carbon/human/forceMove()
 	. = ..()
-	if(l_hand && l_hand.light_obj)
-		l_hand.light_obj.follow_holder()
-	if(r_hand && r_hand.light_obj)
-		r_hand.light_obj.follow_holder()
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.light_obj.follow_holder()
 
 /obj/effect/light/initialize()
 	..()
@@ -105,12 +107,11 @@
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
 /obj/effect/light/proc/follow_holder_dir()
-	if(istype(holder.loc, /mob) && holder.dir != holder.loc.dir)
-		holder.set_dir(holder.loc.dir)
+
 	if(dir != holder.dir)
 		set_dir(holder.dir)
 
-	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
+	if(is_directional_light())
 		var/last_angle = point_angle
 		switch(dir)
 			if(NORTH)     point_angle = 90
@@ -128,14 +129,12 @@
 
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/effect/light/proc/follow_holder()
-	var/prevloc = loc
 	if(holder && holder.loc)
 		if(holder.loc.loc && ismob(holder.loc))
 			forceMove(holder.loc.loc)
 		else
 			forceMove(holder.loc)
-	if(loc != prevloc)
-		cast_light()
+	cast_light()
 
 /obj/effect/light/proc/is_directional_light()
 	return (holder.light_type == LIGHT_DIRECTIONAL)
