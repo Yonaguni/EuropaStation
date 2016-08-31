@@ -1,4 +1,4 @@
-//IPC-face object for FPB.
+//face object for FPB.
 /obj/item/clothing/mask/monitor
 
 	name = "display monitor"

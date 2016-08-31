@@ -641,8 +641,8 @@
 	icon_state = "wizard"
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
-	desc = "A \"Space Life\" brand Research Director action figure."
+	name = "Science Officer action figure"
+	desc = "A \"Space Life\" brand Science Officer action figure."
 	icon_state = "rd"
 
 /obj/item/toy/figure/roboticist
@@ -816,7 +816,7 @@
 
 /obj/item/toy/plushie/lizard
 	name = "lizard plush"
-	desc = "A plushie of a scaly lizard! Very controversial, after being accused as \"racist\" by some Unathi."
+	desc = "A plushie of a scaly lizard!"
 	icon_state = "lizardplushie"
 
 /obj/item/toy/plushie/spider

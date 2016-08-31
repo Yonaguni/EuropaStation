@@ -195,7 +195,7 @@
 
 /obj/item/weapon/melee/energy/blade/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/weapon/melee/energy/blade/get_storage_cost()
 	return DO_NOT_STORE

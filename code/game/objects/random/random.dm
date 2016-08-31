@@ -452,7 +452,6 @@ obj/random/material //Random materials for building stuff
 					prob(4);/obj/item/weapon/tank/emergency/oxygen,\
 					prob(3);/obj/item/weapon/tank/emergency/oxygen/engi,\
 					prob(2);/obj/item/weapon/tank/emergency/oxygen/double,\
-					prob(2);/obj/item/weapon/tank/emergency/nitrogen,\
 					prob(1);/obj/item/weapon/tank/nitrogen)
 
 
@@ -617,7 +616,6 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/weapon/archaeological_find,\
 					prob(1);/obj/machinery/artifact,\
 					prob(2);/obj/item/device/multitool/hacktool,\
-					prob(3);/obj/item/clothing/mask/gas/vox,\
 					prob(3);/obj/item/device/radio/headset)
 
 /obj/random/voidhelmet
@@ -668,9 +666,7 @@ obj/random/material //Random materials for building stuff
 					/obj/item/weapon/rig/eva,\
 					/obj/item/weapon/rig/light/hacker,\
 					/obj/item/weapon/rig/light/stealth,\
-					/obj/item/weapon/rig/light,\
-					/obj/item/weapon/rig/unathi,\
-					/obj/item/weapon/rig/unathi/fancy)
+					/obj/item/weapon/rig/light)
 
 /*
 	Selects one spawn point out of a group of points with the same ID and asks it to generate its items

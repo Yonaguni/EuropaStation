@@ -693,7 +693,7 @@ var/list/admin_verbs_mentor = list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		src << "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>"
+		src << "<span class='interface'>You now have the keys to control the planet, or at least a small space station</span>"
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -795,7 +795,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/change_security_level()
 	set name = "Set security level"
-	set desc = "Sets the station security level"
+	set desc = "Sets the security level"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
@@ -829,7 +829,7 @@ var/list/admin_verbs_mentor = list(
 	if(!istype(M, /mob/living/carbon/human))
 		usr << "\red You can only do this to humans!"
 		return
-	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
+	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell can result in unintended consequences.",,"Yes","No"))
 		if("No")
 			return
 	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
@@ -851,7 +851,7 @@ var/list/admin_verbs_mentor = list(
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		M.update_eyes()
 
-	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+	var/new_skin = input("Please select body color. This is for Skrell only!", "Character Generation") as color
 	if(new_skin)
 		M.r_skin = hex2num(copytext(new_skin, 2, 4))
 		M.g_skin = hex2num(copytext(new_skin, 4, 6))

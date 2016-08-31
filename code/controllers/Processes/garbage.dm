@@ -96,7 +96,7 @@ world/loop_checks = 0
 		if(A.loc != null)
 			testing("GC: [A] | [A.type] is located in [A.loc] instead of null")
 		if(A.contents.len)
-			testing("GC: [A] | [A.type] has contents: [jointext(A.contents)]")
+			testing("GC: [A] | [A.type] has contents: [jointext(A.contents, ", ")]")
 	var/ref_count = 0
 	for(var/atom/atom)
 		ref_count += LookForRefs(atom, A)
@@ -196,7 +196,7 @@ world/loop_checks = 0
 
 /turf/finalize_qdel()
 	del(src)
-	
+
 /area/finalize_qdel()
     del(src)
 

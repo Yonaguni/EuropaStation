@@ -60,7 +60,7 @@
 /obj/machinery/door/window/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
@@ -125,7 +125,7 @@
 	density = 0
 	update_icon()
 	update_nearby_tiles()
-	
+
 	if(operating == 1) //emag again
 		src.operating = 0
 	return 1

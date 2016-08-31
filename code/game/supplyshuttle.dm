@@ -93,7 +93,7 @@ var/list/mechtoys = list(
 		if(T)
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
-		..()
+		return ..()
 
 /*
 /obj/effect/marker/supplymarker

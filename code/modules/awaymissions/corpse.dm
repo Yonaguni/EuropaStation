@@ -21,7 +21,7 @@
 	var/corpseback = null
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Commanding Officer" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/species = "Human"
 
@@ -122,7 +122,7 @@
 ///////////Civilians//////////////////////
 
 /obj/effect/landmark/corpse/chef
-	name = "Chef"
+	name = "Cook"
 	corpseuniform = /obj/item/clothing/under/rank/chef
 	corpsesuit = /obj/item/clothing/suit/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
@@ -130,8 +130,8 @@
 	corpseback = /obj/item/weapon/storage/backpack
 	corpseradio = /obj/item/device/radio/headset
 	corpseid = 1
-	corpseidjob = "Chef"
-	corpseidaccess = "Chef"
+	corpseidjob = "Cook"
+	corpseidaccess = "Cook"
 
 
 /obj/effect/landmark/corpse/doctor
@@ -143,8 +143,8 @@
 	corpsepocket1 = /obj/item/device/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
-	corpseidjob = "Medical Doctor"
-	corpseidaccess = "Medical Doctor"
+	corpseidjob = "Medical Officer"
+	corpseidaccess = "Medical Officer"
 
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
@@ -156,8 +156,8 @@
 	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Station Engineer"
-	corpseidaccess = "Station Engineer"
+	corpseidjob = "Engineering Officer"
+	corpseidaccess = "Engineering Officer"
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
@@ -176,27 +176,6 @@
 	corpseidjob = "Clown"
 	corpseidaccess = "Clown"
 
-/obj/effect/landmark/corpse/scientist
-	name = "Scientist"
-	corpseradio = /obj/item/device/radio/headset/headset_sci
-	corpseuniform = /obj/item/clothing/under/rank/scientist
-	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-	corpseback = /obj/item/weapon/storage/backpack
-	corpseshoes = /obj/item/clothing/shoes/white
-	corpseid = 1
-	corpseidjob = "Scientist"
-	corpseidaccess = "Scientist"
-
-/obj/effect/landmark/corpse/miner
-	corpseradio = /obj/item/device/radio/headset/headset_cargo
-	corpseuniform = /obj/item/clothing/under/rank/miner
-	corpsegloves = /obj/item/clothing/gloves/thick
-	corpseback = /obj/item/weapon/storage/backpack/industrial
-	corpseshoes = /obj/item/clothing/shoes/black
-	corpseid = 1
-	corpseidjob = "Shaft Miner"
-	corpseidaccess = "Shaft Miner"
-
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
@@ -214,7 +193,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = "Commanding Officer"
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"
@@ -229,4 +208,4 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = "Commanding Officer"

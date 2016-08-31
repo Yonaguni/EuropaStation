@@ -47,9 +47,7 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/ammonia/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustOxyLoss(-removed * 10)
-	else if(alien != IS_DIONA)
+	if(alien != IS_DIONA)
 		M.adjustToxLoss(removed * 1.5)
 
 /datum/reagent/carbon
@@ -408,20 +406,6 @@
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.nutrition += removed * 3
-
-	if(alien == IS_UNATHI)
-		if(dose < 2)
-			if(dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.sleeping = max(M.sleeping, 20)
-			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/sulfur
 	name = "Sulfur"

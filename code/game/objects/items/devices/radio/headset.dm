@@ -125,7 +125,7 @@
 	ks2type = /obj/item/device/encryptionkey/headset_com
 
 /obj/item/device/radio/headset/heads/captain
-	name = "captain's headset"
+	name = "commanding officer's headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset"
 	item_state = "headset"
@@ -147,22 +147,22 @@
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/heads/rd
-	name = "research director's headset"
-	desc = "Headset of the researching God."
+	name = "science officer's headset"
+	desc = "Headset of a science officer."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/hos
-	name = "head of security's headset"
-	desc = "The headset of the man who protects your worthless lifes."
+	name = "chief of security's headset"
+	desc = "The headset of the man who watches the watchers."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/ce
-	name = "chief engineer's headset"
-	desc = "The headset of the guy who is in charge of morons."
+	name = "chief of engineering's headset"
+	desc = "The headset of the guy who is in charge of the power."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
@@ -175,7 +175,7 @@
 	ks2type = /obj/item/device/encryptionkey/heads/cmo
 
 /obj/item/device/radio/headset/heads/hop
-	name = "head of personnel's headset"
+	name = "operations officer's headset"
 	desc = "The headset of the guy who will one day be captain."
 	icon_state = "com_headset"
 	item_state = "headset"

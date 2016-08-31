@@ -37,11 +37,5 @@
 	..(newloc,"silver","gold")
 /turf/simulated/wall/sandstonediamond/New(var/newloc)
 	..(newloc,"sandstone","diamond")
-
-// Kind of wondering if this is going to bite me in the butt.
-/turf/simulated/wall/voxshuttle/New(var/newloc)
-	..(newloc,"voxalloy")
-/turf/simulated/wall/voxshuttle/attackby()
-	return
 /turf/simulated/wall/titanium/New(var/newloc)
 	..(newloc,"titanium")

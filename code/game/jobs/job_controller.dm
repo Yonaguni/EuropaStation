@@ -135,7 +135,7 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				continue
 
-			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+			if(istype(job, GetJob("Crewman"))) // We don't want to give him assistant, that's boring!
 				continue
 
 			if(job.title in command_positions) //If you want a command position, select it!
@@ -230,7 +230,7 @@ var/global/datum/controller/occupations/job_master
 		//Holder for Triumvirate is stored in the ticker, this just processes it
 		if(ticker && ticker.triai)
 			for(var/datum/job/A in occupations)
-				if(A.title == "AI")
+				if(A.title == "Computer")
 					A.spawn_positions = 3
 					break
 
@@ -254,7 +254,7 @@ var/global/datum/controller/occupations/job_master
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
 			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, "Crewman")
 			assistant_candidates -= player
 		Debug("DO, AC1 end")
 
@@ -335,7 +335,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == BE_ASSISTANT)
 				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "Assistant")
+				AssignRole(player, "Crewman")
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
@@ -357,7 +357,7 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Drone" && job.title != "Computer")
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
@@ -450,11 +450,11 @@ var/global/datum/controller/occupations/job_master
 			alt_title = H.mind.role_alt_title
 
 			switch(rank)
-				if("Cyborg")
+				if("Drone")
 					return H.Robotize()
-				if("AI")
+				if("Computer")
 					return H
-				if("Captain")
+				if("Commanding Officer")
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
 					captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 
@@ -539,7 +539,7 @@ var/global/datum/controller/occupations/job_master
 				if(!J)	continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
+				if(name == "Computer" || name == "Drone")//I dont like this here but it will do for now
 					J.total_positions = 0
 
 		return 1

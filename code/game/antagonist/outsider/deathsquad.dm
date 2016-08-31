@@ -65,7 +65,7 @@ var/datum/antagonist/deathsquad/deathsquad
 	if(leader && player == leader)
 		syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
 	else
-		syndicate_commando_rank = pick("Lieutenant", "Captain", "Major")
+		syndicate_commando_rank = pick("Lieutenant", "Commanding Officer", "Major")
 
 	var/syndicate_commando_name = pick(last_names)
 

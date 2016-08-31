@@ -122,9 +122,6 @@
 	icon_state = "boxing"
 	item_state = "boxing"
 
-/obj/structure/window/reinforced/holowindow/Destroy()
-	..()
-
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
@@ -159,12 +156,6 @@
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
 	return
-
-/obj/structure/window/reinforced/holowindow/disappearing/Destroy()
-	..()
-
-/obj/machinery/door/window/holowindoor/Destroy()
-	..()
 
 /obj/machinery/door/window/holowindoor/attackby(obj/item/weapon/I as obj, mob/user as mob)
 
@@ -201,9 +192,6 @@
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
 
-/obj/structure/bed/chair/holochair/Destroy()
-	..()
-
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
@@ -237,7 +225,7 @@
 /obj/item/weapon/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		
+
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
@@ -380,6 +368,8 @@
 		icon_state = "auth_on"
 	else
 		icon_state = "auth_off"
+
+/obj/structure/window/reinforced/holowindow/disappearing
 
 /obj/machinery/readybutton/proc/begin_event()
 

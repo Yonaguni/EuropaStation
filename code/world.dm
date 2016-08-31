@@ -1,4 +1,3 @@
-
 /var/game_id = null
 /hook/global_init/proc/generate_gameid()
 	if(game_id != null)
@@ -230,7 +229,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					positions[dept][person["name"]] = person["rank"]
 
 		for(var/k in positions)
-			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
+			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Commanding Officer", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
 		return list2params(positions)
 

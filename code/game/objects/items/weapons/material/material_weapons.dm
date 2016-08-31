@@ -66,7 +66,7 @@
 
 /obj/item/weapon/material/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/weapon/material/apply_hit_effect()
 	. = ..()

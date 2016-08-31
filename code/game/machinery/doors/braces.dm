@@ -76,7 +76,7 @@
 	if(airlock)
 		airlock.brace = null
 		airlock = null
-	..()
+	return ..()
 
 
 /obj/item/weapon/airlock_brace/attackby(obj/item/weapon/W as obj, mob/user as mob)

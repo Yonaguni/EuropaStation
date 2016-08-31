@@ -11,7 +11,7 @@
 	if(!event_type)
 		return
 
-	var/author = "Nyx Daily"
+	var/author = "The Copernican"
 	var/channel = author
 
 	//see if our location has custom event info for this event
@@ -82,10 +82,10 @@
 			if(MOVIE_RELEASE)
 				body += "From the [pick("desk","home town","homeworld","mind")] of [pick("acclaimed","award-winning","popular","stellar")] \
 				[pick("playwright","author","director","actor","TV star")] [random_name(pick(MALE,FEMALE))] comes the latest sensation: '\
-				[pick("Deadly","The last","Lost","Dead")] [pick("Starships","Warriors","outcasts","Tajarans","Unathi","Skrell")] \
+				[pick("Deadly","The last","Lost","Dead")] [pick("Starships","Warriors","outcasts","Skrell")] \
 				[pick("of","from","raid","go hunting on","visit","ravage","pillage","destroy")] \
-				[pick("Moghes","Earth","Biesel","Ahdomai","S'randarr","the Void","the Edge of Space")]'.\
-				. Own it on webcast today, or visit the galactic premier on [affected_dest.name]!"
+				[pick("Saturn","Earth","Jupiter","Ganymede","Callisto","the Void","the Edge of Space")]'.\
+				. Own it on webcast today, or visit the premiere on [affected_dest.name]!"
 
 			if(BIG_GAME_HUNTERS)
 				body += "Game hunters on [affected_dest.name] "
@@ -120,7 +120,7 @@
 			if(TOURISM)
 				body += "Tourists are flocking to [affected_dest.name] after the surprise announcement of [pick("major shopping bargains by a wily retailer",\
 				"a huge new ARG by a popular entertainment company","a secret tour by popular artiste [random_name(pick(MALE,FEMALE))]")]. \
-				Nyx Daily is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
+				The Copernican is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
 
@@ -133,7 +133,7 @@
 
 	var/datum/trade_destination/affected_dest = pick(weighted_mundaneevent_locations)
 	var/body = pick(
-	"Tree stuck in tajaran; firefighters baffled.",\
+	"Tree stuck in cat; firefighters baffled.",\
 	"Armadillos want aardvarks removed from dictionary claims 'here first'.",\
 	"Angel found dancing on pinhead ordered to stop; cited for public nuisance.",\
 	"Letters claim they are better than number; 'Always have been'.",\
@@ -149,10 +149,10 @@
 	"Question mark worshipped as deity by ancient [affected_dest.name] dwellers.",\
 	"Spilled milk causes whole [affected_dest.name] populace to cry.",\
 	"World largest carp patty at display on [affected_dest.name].",\
-	"'Here kitty kitty' no longer preferred tajaran retrieval technique.",\
+	"'Here kitty kitty' no longer preferred tiger retrieval technique.",\
 	"Man travels 7000 light years to retrieve lost hankie, 'It was my favourite'.",\
 	"New bowling lane that shoots mini-meteors at bowlers very popular.",\
-	"[pick("Unathi","Spacer")] gets tattoo of Nyx on chest '[pick("[boss_short]","star","starship","asteroid")] tickles most'.",\
+	"Spacer gets tattoo of Callisto on chest '[pick("[boss_short]","star","starship","asteroid")] tickles most'.",\
 	"Skrell marries computer; wedding attended by 100 modems.",\
 	"Chef reports successfully using harmonica as cheese grater.",\
 	"[company_name] invents handkerchief that says 'Bless you' after sneeze.",\
@@ -173,16 +173,15 @@
 	"Survey: 80% Of People on [affected_dest.name] Love Clog-Dancing",\
 	"Giant Hairball Has Perfect Grammar But Rolls rr's Too Much, Linguists Say",\
 	"[affected_dest.name] Phonebooks Print All Wrong Numbers; Results In 15 New Marriages",\
-	"Tajaran Burglar Spotted on [affected_dest.name], Mistaken For Dalmatian",\
 	"Gibson Gazette Updates Frequently Absurd, Poll Indicates",\
 	"Esoteric Verbosity Culminates In Communicative Ennui, [affected_dest.name] Academics Note",\
 	"Taj Demand Longer Breaks, Cleaner Litter, Slower Mice",\
 	"Survey: 3 Out Of 5 Skrell Loathe Modern Art",\
 	"Skrell Scientist Discovers Gravity While Falling Down Stairs",\
-	"Boy Saves Tajaran From Tree on [affected_dest.name], Thousands Cheer",\
+	"Boy Saves Resomi From Tree on [affected_dest.name], Thousands Cheer",\
 	"Shipment Of Apples Overturns, [affected_dest.name] Diner Offers Applesauce Special",\
 	"Spotted Owl Spotted on [affected_dest.name]",\
-	"Humans Everywhere Agree: Purring Tajarans Are Happy Tajarans",\
+	"Humans Everywhere Agree: Warbling Skrell Are Happy Skrell",\
 	"From The Desk Of Wise Guy Sammy: One Word In This Gazette Is Sdrawkcab",\
 	"From The Desk Of Wise Guy Sammy: It's Hard To Have Too Much Shelf Space",\
 	"From The Desk Of Wise Guy Sammy: Wine And Friendships Get Better With Age",\

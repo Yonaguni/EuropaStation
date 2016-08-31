@@ -2,7 +2,7 @@
 	name = "Standard Gear"
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/aeolus/crewman
 	l_ear = /obj/item/device/radio/headset
 	back = /obj/item/weapon/storage/backpack
 	shoes = /obj/item/clothing/shoes/black

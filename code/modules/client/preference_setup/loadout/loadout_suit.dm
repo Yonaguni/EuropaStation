@@ -92,11 +92,6 @@
 	display_name = "poncho, red"
 	path = /obj/item/clothing/suit/poncho/red
 
-/datum/gear/suit/unathi_robe
-	display_name = "roughspun robe"
-	path = /obj/item/clothing/suit/unathi/robe
-	cost = 1
-
 /datum/gear/suit/blue_lawyer_jacket
 	display_name = "suit jacket, blue"
 	path = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket

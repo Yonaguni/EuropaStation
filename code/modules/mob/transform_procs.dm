@@ -80,7 +80,7 @@
 	if(move)
 		var/obj/loc_landmark
 		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name != "AI")
+			if (sloc.name != "Computer")
 				continue
 			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
 				continue
@@ -94,7 +94,7 @@
 		if (!loc_landmark)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
 			for(var/obj/effect/landmark/start/sloc in landmarks_list)
-				if (sloc.name == "AI")
+				if (sloc.name == "Computer")
 					loc_landmark = sloc
 
 		O.loc = loc_landmark.loc
@@ -135,7 +135,7 @@
 
 	if(mind)		//TODO
 		mind.transfer_to(O)
-		if(O.mind.assigned_role == "Cyborg")
+		if(O.mind.assigned_role == "Robot")
 			O.mind.original = O
 		else if(mind && mind.special_role)
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
@@ -143,16 +143,9 @@
 		O.key = key
 
 	O.loc = loc
-	O.job = "Cyborg"
-	if(O.mind.assigned_role == "Cyborg")
-		if(O.mind.role_alt_title == "Android")
-			O.mmi = new /obj/item/device/mmi/digital/posibrain(O)
-		else if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/device/mmi/digital/robot(O)
-		else
-			O.mmi = new /obj/item/device/mmi(O)
-
-		O.mmi.transfer_identity(src)
+	O.job = "Robot"
+	O.mmi = new /obj/item/device/mmi/digital/robot(O)
+	O.mmi.transfer_identity(src)
 
 	callHook("borgify", list(O))
 	O.Namepick()

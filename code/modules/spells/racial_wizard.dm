@@ -9,9 +9,8 @@
 	throw_speed = 1
 	throw_range = 3
 	force = 15
-	var/list/potentials = list("Resomi" = /spell/aoe_turf/conjure/summon/resomi, "Human" = /obj/item/weapon/storage/bag/cash/infinite, "Vox" = /spell/targeted/shapeshift/true_form,
-		"Tajara" = /spell/messa_shroud, "Unathi" = /spell/moghes_blessing, "Diona" = /spell/aoe_turf/conjure/grove/gestalt, "Skrell" = /obj/item/weapon/contract/apprentice/skrell,
-		"Machine" = /spell/camera_connection)
+	var/list/potentials = list("Resomi" = /spell/aoe_turf/conjure/summon/resomi, "Human" = /obj/item/weapon/storage/bag/cash/infinite,
+		"Diona" = /spell/aoe_turf/conjure/grove/gestalt, "Skrell" = /obj/item/weapon/contract/apprentice/skrell)
 
 /obj/item/weapon/magic_rock/attack_self(mob/user)
 	if(!istype(user,/mob/living/carbon/human))
@@ -82,109 +81,6 @@
 			var/obj/item/I = new /obj/item/weapon/spacecash/bundle/c1000()
 			src.handle_item_insertion(I,1)
 
-
-//Tajaran
-/spell/messa_shroud
-	name = "Messa's Shroud"
-	desc = "This spell causes darkness at the point of the caster for a duration of time."
-
-	school = "racial"
-	spell_flags = 0
-	invocation_type = SpI_EMOTE
-	invocation = "mutters a small prayer, the light around them darkening."
-	charge_max = 300 //30 seconds
-
-	range = 5
-	duration = 150 //15 seconds
-
-	cast_sound = 'sound/effects/bamf.ogg'
-
-	hud_state = "wiz_tajaran"
-
-/spell/messa_shroud/choose_targets()
-	return list(get_turf(holder))
-
-/spell/messa_shroud/cast(var/list/targets, mob/user)
-	var/turf/T = targets[1]
-
-	if(!istype(T))
-		return
-
-	var/obj/O = new /obj(T)
-	playsound(T,cast_sound,50,1)
-	O.set_light(range, -10, "#FFFFFF")
-
-	spawn(duration)
-		qdel(O)
-
-//VOX
-/spell/targeted/shapeshift/true_form
-	name = "True Form"
-	desc = "Pay respect to your heritage. Become what you once were."
-
-	school = "racial"
-	spell_flags = INCLUDEUSER
-	invocation_type = SpI_EMOTE
-	range = -1
-	invocation = "begins to grow!"
-	charge_max = 1200 //2 minutes
-	duration = 300 //30 seconds
-
-	smoke_amt = 5
-	smoke_spread = 1
-
-	possible_transformations = list(/mob/living/simple_animal/hostile/armalis)
-
-	hud_state = "wiz_vox"
-
-	cast_sound = 'sound/voice/shriek1.ogg'
-	revert_sound = 'sound/voice/shriek1.ogg'
-
-	drop_items = 0
-
-
-//UNATHI
-/spell/moghes_blessing
-	name = "Moghes Blessing"
-	desc = "Imbue your weapon with memories of Moghes"
-
-	school = "racial"
-	spell_flags = 0
-	invocation_type = SpI_EMOTE
-	invocation = "whispers something."
-	charge_type = Sp_HOLDVAR
-	holder_var_type = "bruteloss"
-	holder_var_amount = 10
-
-	hud_state = "wiz_unathi"
-
-/spell/moghes_blessing/choose_targets(mob/user = usr)
-	var/list/hands = list()
-	for(var/obj/item/I in list(user.l_hand, user.r_hand))
-		//make sure it's not already blessed
-		if(istype(I) && !has_extension(I, /datum/extension/moghes_blessing))
-			hands += I
-	return hands
-
-/spell/moghes_blessing/cast(var/list/targets, mob/user)
-	for(var/obj/item/I in targets)
-		set_extension(I, /datum/extension/moghes_blessing, /datum/extension/moghes_blessing)
-
-/datum/extension/moghes_blessing
-	expected_type = /obj/item
-	flags = EXTENSION_FLAG_IMMEDIATE
-
-/datum/extension/moghes_blessing/New(var/datum/holder)
-	..(holder)
-	apply_blessing(holder)
-
-/datum/extension/moghes_blessing/proc/apply_blessing(obj/item/I)
-	I.name += " of Moghes"
-	I.desc += "<BR>It has been imbued with the memories of Moghes."
-	I.force += 10
-	I.throwforce += 14
-	I.color = "#663300"
-
 //DIONA
 /spell/aoe_turf/conjure/grove/gestalt
 	name = "Convert Gestalt"
@@ -239,45 +135,6 @@
 		var/obj/item/I = new /obj/item/weapon/contract/apprentice/skrell(get_turf(src),linked,contract_master)
 		user.put_in_hands(I)
 		new /obj/item/weapon/contract/apprentice/skrell(get_turf(src),linked,contract_master)
-
-//IPC
-/spell/camera_connection
-	name = "Camera Connection"
-	desc = "This spell allows the wizard to connect to the local camera network and see what it sees."
-
-	school = "racial"
-
-	invocation_type = SpI_EMOTE
-	invocation = "emits a beeping sound before standing very, very still."
-
-	charge_max = 600 //1 minute
-	charge_type = Sp_RECHARGE
-
-
-	spell_flags = Z2NOCAST
-	hud_state = "wiz_IPC"
-	var/mob/observer/eye/wizard_eye/vision
-
-/spell/camera_connection/New()
-	..()
-	vision = new(src)
-
-/spell/camera_connection/Destroy()
-	qdel(vision)
-	vision = null
-	. = ..()
-
-/spell/camera_connection/choose_targets()
-	var/mob/living/L = holder
-	if(!istype(L) || L.eyeobj) //no using if we already have an eye on.
-		return null
-	return list(holder)
-
-/spell/camera_connection/cast(var/list/targets, mob/user)
-	var/mob/living/L = targets[1]
-
-	vision.possess(L)
-	L.verbs += /mob/living/proc/release_eye
 
 /mob/observer/eye/wizard_eye
 	name_sufix = "Wizard Eye"

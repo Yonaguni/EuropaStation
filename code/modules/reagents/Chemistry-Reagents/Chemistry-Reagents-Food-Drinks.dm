@@ -46,7 +46,6 @@
 /datum/reagent/nutriment/proc/adjust_nutrition(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
 		if(IS_RESOMI) removed *= 0.8 // Resomi get a bit more nutrition from meat, a bit less from other stuff to compensate
-		if(IS_UNATHI) removed *= 0.1 // Unathi get most of their nutrition from meat.
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 
 /datum/reagent/nutriment/glucose
@@ -72,7 +71,6 @@
 /datum/reagent/nutriment/protein/adjust_nutrition(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
 		if(IS_RESOMI) removed *= 1.25
-		if(IS_UNATHI) removed *= 2.25
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 
 /datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -94,23 +92,6 @@
 	taste_description = "sweetness"
 	nutriment_factor = 10
 	color = "#FFFF00"
-
-/datum/reagent/honey/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-
-	if(alien == IS_UNATHI)
-		if(dose < 2)
-			if(dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.sleeping = max(M.sleeping, 20)
-			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/flour
 	name = "flour"
@@ -427,25 +408,6 @@
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
-// Juices
-/datum/reagent/drink/juice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-
-	var/effective_dose = dose/2
-	if(alien == IS_UNATHI)
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(effective_dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.sleeping = max(M.sleeping, 20)
-			M.drowsyness = max(M.drowsyness, 60)
-
 /datum/reagent/drink/juice/banana
 	name = "Banana Juice"
 	id = "banana"
@@ -544,11 +506,6 @@
 
 	glass_name = "poison berry juice"
 	glass_desc = "A glass of deadly juice."
-
-/datum/reagent/toxin/poisonberryjuice/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_UNATHI)
-		return //unathi are immune!
-	return ..()
 
 /datum/reagent/drink/juice/potato
 	name = "Potato Juice"
@@ -688,26 +645,13 @@
 	if(alien == IS_DIONA)
 		return
 	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 	M.add_chemical_effect(CE_PULSE, 1)
 
-/datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
-
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -851,24 +795,6 @@
 
 	glass_name = "milkshake"
 	glass_desc = "Glorious brainfreezing mixture."
-
-/datum/reagent/milkshake/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-
-	var/effective_dose = dose/2
-	if(alien == IS_UNATHI)
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(effective_dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.sleeping = max(M.sleeping, 20)
-			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
@@ -1171,24 +1097,10 @@
 	M.sleeping = max(0, M.sleeping - 2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
-
-/datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
-	..()
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
-	M.make_jittery(5)
 
 /datum/reagent/ethanol/coffee/kahlua
 	name = "Kahlua"

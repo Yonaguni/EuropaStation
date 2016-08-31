@@ -91,8 +91,7 @@
 	if(istype(loc, /obj/item/organ/external))
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
-
-	..()
+	return ..()
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0,2)
@@ -132,7 +131,7 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))

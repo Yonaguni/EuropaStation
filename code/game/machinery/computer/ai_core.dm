@@ -133,7 +133,7 @@
 					user << "<span class='warning'>Sticking a dead [P] into the frame would sort of defeat the purpose.</span>"
 					return
 
-				if(jobban_isbanned(M.brainmob, "AI"))
+				if(jobban_isbanned(M.brainmob, "Computer"))
 					user << "<span class='warning'>This [P] does not seem to fit.</span>"
 					return
 
@@ -190,7 +190,7 @@
 /obj/structure/AIcore/deactivated/Destroy()
 	if(src in empty_playable_ai_cores)
 		empty_playable_ai_cores -= src
-	..()
+	return ..()
 
 /obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
 

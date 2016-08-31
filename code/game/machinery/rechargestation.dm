@@ -241,7 +241,7 @@
 		return (R.cell)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.isSynthetic()) // FBPs and IPCs
+		if(H.isSynthetic()) // FBPs
 			return 1
 		return H.internal_organs_by_name["cell"]
 	return 0

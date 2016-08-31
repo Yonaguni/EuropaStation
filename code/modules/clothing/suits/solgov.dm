@@ -156,7 +156,7 @@
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet
 	name = "fleet dress jacket"
-	desc = "A crisp white SCG Fleet dress jacket with blue and gold accents. Don't get near pasta sauce or vox."
+	desc = "A crisp white SCG Fleet dress jacket with blue and gold accents. Don't get near pasta sauce."
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet/command
 	name = "expeditionary command dress jacket"

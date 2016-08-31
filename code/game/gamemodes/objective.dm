@@ -16,7 +16,7 @@ datum/objective
 
 	Destroy()
 		all_objectives -= src
-		..()
+		return ..()
 
 	proc/check_completion()
 		return completed
@@ -149,7 +149,7 @@ datum/objective/anti_revolution/demote
 
 			if(!istype(I)) return 1
 
-			if(I.assignment == "Assistant")
+			if(I.assignment == "Crewman")
 				return 1
 			else
 				return 0
@@ -432,11 +432,7 @@ datum/objective/steal
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
-		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
-		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
-		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
-		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
-		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
+		"a command insignia" = /obj/item/clothing/accessory/medal/aeolus/captain,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
@@ -632,7 +628,7 @@ datum/objective/heist
 
 datum/objective/heist/kidnap
 	choose_target()
-		var/list/roles = list("Chief Engineer","Research Director","Roboticist","Chemist","Station Engineer")
+		var/list/roles = list("Chief of Engineering","Science Officer","Roboticist","Engineering Officer")
 		var/list/possible_targets = list()
 		var/list/priority_targets = list()
 

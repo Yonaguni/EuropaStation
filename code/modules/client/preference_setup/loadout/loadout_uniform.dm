@@ -105,7 +105,7 @@
 /datum/gear/uniform/scrubs
 	display_name = "scrubs, black"
 	path = /obj/item/clothing/under/rank/medical/black
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+	allowed_roles = list("Medical Officer","Chief of Medicine")
 
 /datum/gear/uniform/scrubs/blue
 	display_name = "scrubs, blue"
@@ -138,28 +138,28 @@
 /datum/gear/uniform/uniform_captain
 	display_name = "uniform, captain's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Captain")
+	allowed_roles = list("Commanding Officer")
 
 /datum/gear/uniform/corpsecsuit
 	display_name = "uniform, corporate (Security)"
 	path = /obj/item/clothing/under/rank/security/corp
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Chief of Security","Munitions Officer")
 
 /datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list("Operations Officer")
 
 /datum/gear/uniform/uniform_hr
 	display_name = "uniform, HR director (HoP)"
 	path = /obj/item/clothing/under/dress/dress_hr
 
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list("Operations Officer")
 
 /datum/gear/uniform/navysecsuit
 	display_name = "uniform, navyblue (Security)"
 	path = /obj/item/clothing/under/rank/security/navyblue
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Chief of Security","Munitions Officer")
 
 /datum/gear/uniform/skirt
 	display_name = "skirt selection"

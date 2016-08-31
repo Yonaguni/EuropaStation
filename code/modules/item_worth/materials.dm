@@ -58,9 +58,6 @@
 /material/iron
 	value = 5
 
-/material/voxalloy
-	value = 100
-
 /material/wood
 	value = 3
 
