@@ -1,17 +1,3 @@
-// Alien clothing.
-/datum/gear/suit/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajara)"
-	path = /obj/item/clothing/suit/tajaran/furs
-	whitelisted = "Tajara"
-	sort_category = "Xenowear"
-
-/datum/gear/suit/unathi_mantle
-	display_name = "hide mantle (Unathi)"
-	path = /obj/item/clothing/suit/unathi/mantle
-	cost = 1
-	whitelisted = "Unathi"
-	sort_category = "Xenowear"
-
 //Skrell Chains
 /datum/gear/ears/skrell/chains
 	display_name = "headtail chain selection (Skrell)"
@@ -116,9 +102,8 @@
 	path = /obj/item/clothing/under/harness
 	sort_category = "Xenowear"
 
-/datum/gear/mask/ipc_monitor
-	display_name = "display monitor (IPC)"
+/datum/gear/mask/monitor
+	display_name = "display monitor (Full Body Prosthetic)"
 	path = /obj/item/clothing/mask/monitor
 	sort_category = "Xenowear"
-	whitelisted = "Machine"
 	cost = 1

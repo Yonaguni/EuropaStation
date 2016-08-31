@@ -1,7 +1,7 @@
 /obj/item/device/suit_cooling_unit
 	name = "portable cooling unit"
 	desc = "A large portable heat sink with liquid cooled radiator packaged into a modified backpack."
-	description_info = "You may wear this instead of your packpack to cool yourself down. It is commonly used by IPCs, \
+	description_info = "You may wear this instead of your backpack to cool yourself down. It is commonly used by full-body prosthetic users, \
 	as it allows them to go into low pressure environments for more than few seconds without overhating. It runs off energy provided by internal power cell. \
 	Remember to turn it on by clicking it when it's your in your hand before you put it on."
 

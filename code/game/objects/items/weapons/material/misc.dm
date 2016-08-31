@@ -22,7 +22,7 @@
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 
-/obj/item/weapon/material/hatchet/unathiknife
+/obj/item/weapon/material/hatchet/duellingknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/weapons.dmi'

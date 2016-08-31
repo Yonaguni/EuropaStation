@@ -247,73 +247,6 @@ datum/unit_test/mob_damage/halloss
 	damagetype = HALLOSS
 
 // =================================================================
-// Unathi
-// =================================================================
-
-datum/unit_test/mob_damage/unathi
-	name = "MOB: Unathi damage check template"
-	mob_type = /mob/living/carbon/human/unathi
-
-datum/unit_test/mob_damage/unathi/brute
-	name = "MOB: Unathi Brute Damage Check"
-	damagetype = BRUTE
-	expected_vulnerability = ARMORED
-
-datum/unit_test/mob_damage/unathi/fire
-	name = "MOB: Unathi Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/unathi/tox
-	name = "MOB: Unathi Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/unathi/oxy
-	name = "MOB: Unathi Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/unathi/clone
-	name = "MOB: Unathi Clone Damage Check"
-	damagetype = CLONE
-
-datum/unit_test/mob_damage/unathi/halloss
-	name = "MOB: Unathi Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
-// SpessKahjit aka Tajaran
-// =================================================================
-
-datum/unit_test/mob_damage/tajaran
-	name = "MOB: Tajaran damage check template"
-	mob_type = /mob/living/carbon/human/tajaran
-
-datum/unit_test/mob_damage/tajaran/brute
-	name = "MOB: Tajaran Brute Damage Check"
-	damagetype = BRUTE
-	expected_vulnerability = EXTRA_VULNERABLE
-
-datum/unit_test/mob_damage/tajaran/fire
-	name = "MOB: Tajaran Fire Damage Check"
-	damagetype = BURN
-	expected_vulnerability = EXTRA_VULNERABLE
-
-datum/unit_test/mob_damage/tajaran/tox
-	name = "MOB: Tajaran Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/tajaran/oxy
-	name = "MOB: Tajaran Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/tajaran/clone
-	name = "MOB: Tajaran Clone Damage Check"
-	damagetype = CLONE
-
-datum/unit_test/mob_damage/tajaran/halloss
-	name = "MOB: Tajaran Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
 // Resomi
 // =================================================================
 
@@ -380,40 +313,6 @@ datum/unit_test/mob_damage/skrell/halloss
 	damagetype = HALLOSS
 
 // =================================================================
-// Vox
-// =================================================================
-
-datum/unit_test/mob_damage/vox
-	name = "MOB: Vox damage check template"
-	mob_type = /mob/living/carbon/human/vox
-
-datum/unit_test/mob_damage/vox/brute
-	name = "MOB: Vox Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/vox/fire
-	name = "MOB: Vox Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/vox/tox
-	name = "MOB: Vox Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/vox/oxy
-	name = "MOB: Vox Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/vox/clone
-	name = "MOB: Vox Clone Damage Check"
-	damagetype = CLONE
-	expected_vulnerability = IMMUNE
-
-
-datum/unit_test/mob_damage/vox/halloss
-	name = "MOB: Vox Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
 // Diona
 // =================================================================
 
@@ -446,42 +345,6 @@ datum/unit_test/mob_damage/diona/clone
 datum/unit_test/mob_damage/diona/halloss
 	name = "MOB: Diona Halloss Damage Check"
 	damagetype = HALLOSS
-
-// =================================================================
-// SPECIAL WHITTLE SNOWFLAKES aka IPC
-// =================================================================
-
-datum/unit_test/mob_damage/machine
-	name = "MOB: IPC damage check template"
-	mob_type = /mob/living/carbon/human/machine
-
-datum/unit_test/mob_damage/machine/brute
-	name = "MOB: IPC Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/machine/fire
-	name = "MOB: IPC Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/machine/tox
-	name = "MOB: IPC Toxins Damage Check"
-	damagetype = TOX
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/machine/oxy
-	name = "MOB: IPC Oxygen Damage Check"
-	damagetype = OXY
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/machine/clone
-	name = "MOB: IPC Clone Damage Check"
-	damagetype = CLONE
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/machine/halloss
-	name = "MOB: IPC Halloss Damage Check"
-	damagetype = HALLOSS
-
 
 // ==============================================================================
 

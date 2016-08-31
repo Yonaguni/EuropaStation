@@ -39,8 +39,3 @@
 	pda_slot = slot_r_store
 	pda_type = /obj/item/device/pda/chef //cause I like the look
 	id_pda_assignment = "Merchant"
-
-/decl/hierarchy/outfit/merchant/vox
-	name = "Merchant - Vox"
-	shoes = /obj/item/clothing/shoes/jackboots/unathi
-	uniform = /obj/item/clothing/under/vox/vox_robes
