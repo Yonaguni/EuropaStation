@@ -137,7 +137,7 @@ var/list/gamemode_cache = list()
 	var/revival_brain_life = -1
 
 	var/use_loyalty_implants = 0
-
+	var/max_character_aspects = 5
 	var/welder_vision = 1
 	var/generate_map = 0
 	var/no_click_cooldown = 0
@@ -265,6 +265,10 @@ var/list/gamemode_cache = list()
 
 		if(type == "config")
 			switch (name)
+
+				if ("max_character_aspects")
+					config.max_character_aspects = text2num(value)
+
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")
 
