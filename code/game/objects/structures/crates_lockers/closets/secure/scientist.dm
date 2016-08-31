@@ -23,7 +23,7 @@
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/weapon/clipboard(src)
 		return
-		
+
 /obj/structure/closet/secure_closet/xenobio
 	name = "xenobiologist's locker"
 	req_access = list(access_xenobiology)
@@ -39,21 +39,21 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/toxins(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_tox(src)		
+			new /obj/item/weapon/storage/backpack/satchel_tox(src)
 		new /obj/item/clothing/under/rank/scientist(src)
 		//new /obj/item/clothing/suit/labcoat/science(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/clothing/shoes/white(src)
 		//new /obj/item/weapon/cartridge/signal/science(src)
 		new /obj/item/device/radio/headset/headset_sci(src)
-		new /obj/item/clothing/mask/gas(src)		
+		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/weapon/clipboard(src)
 		return
 
 
 /obj/structure/closet/secure_closet/RD
-	name = "research director's locker"
+	name = "science officer's locker"
 	req_access = list(access_rd)
 	icon_state = "rdsecure1"
 	icon_closed = "rdsecure"

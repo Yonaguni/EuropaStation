@@ -1856,7 +1856,7 @@ area/space/atmosalert()
 	icon_state = "toxlab"
 
 /area/rnd/rdoffice
-	name = "\improper Research Director's Office"
+	name = "\improper Science Office"
 	icon_state = "head_quarters"
 
 /area/rnd/supermatter

@@ -61,28 +61,28 @@
 	channels = list("Command" = 1)
 
 /obj/item/device/encryptionkey/heads/captain
-	name = "captain's encryption key"
+	name = "commanding officer's encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
 
 /obj/item/device/encryptionkey/heads/ai_integrated
-	name = "ai integrated encryption key"
+	name = "integrated encryption key"
 	desc = "Integrated encryption key."
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 
 /obj/item/device/encryptionkey/heads/rd
-	name = "research director's encryption key"
+	name = "science officer's encryption key"
 	icon_state = "rd_cypherkey"
 	channels = list("Science" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/hos
-	name = "head of security's encryption key"
+	name = "chief of security's encryption key"
 	icon_state = "hos_cypherkey"
 	channels = list("Security" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/ce
-	name = "chief engineer's encryption key"
+	name = "chief of engineering's encryption key"
 	icon_state = "ce_cypherkey"
 	channels = list("Engineering" = 1, "Command" = 1)
 
@@ -92,7 +92,7 @@
 	channels = list("Medical" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/hop
-	name = "head of personnel's encryption key"
+	name = "operations officer's encryption key"
 	icon_state = "hop_cypherkey"
 	channels = list("Supply" = 1, "Service" = 1, "Command" = 1, "Security" = 0)
 

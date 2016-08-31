@@ -323,7 +323,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
-	desc = "A card issued to station engineering staff."
+	desc = "A card issued to engineering staff."
 	icon_state = "eng"
 	job_access_type = /datum/job/engineer
 
@@ -335,7 +335,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
-	desc = "A card issued to station science staff."
+	desc = "A card issued to science staff."
 	icon_state = "sci"
 	job_access_type = /datum/job/xenobiologist
 
@@ -356,7 +356,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
-	desc = "A card issued to station civilian staff."
+	desc = "A card issued to civilian staff."
 	icon_state = "civ"
 	job_access_type = /datum/job/assistant
 

@@ -24,7 +24,7 @@
 	slot_flags = SLOT_BACK
 	max_w_class = 4
 	max_storage_space = DEFAULT_BACKPACK_STORAGE
-	
+
 /obj/item/weapon/storage/backpack/equipped()
 	if(!has_extension(src, /datum/extension/appearance))
 		set_extension(src, /datum/extension/appearance, /datum/extension/appearance/cardborg)
@@ -110,7 +110,7 @@
 
 /obj/item/weapon/storage/backpack/industrial
 	name = "industrial backpack"
-	desc = "It's a tough backpack for the daily grind of station life."
+	desc = "It's a tough backpack for the daily grind of spaceborne life."
 	icon_state = "engiepack"
 	item_state_slots = null
 

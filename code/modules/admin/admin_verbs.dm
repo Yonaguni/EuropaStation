@@ -693,7 +693,7 @@ var/list/admin_verbs_mentor = list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		src << "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>"
+		src << "<span class='interface'>You now have the keys to control the planet, or at least a small space station</span>"
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -795,7 +795,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/change_security_level()
 	set name = "Set security level"
-	set desc = "Sets the station security level"
+	set desc = "Sets the security level"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return

@@ -11,7 +11,7 @@
 	if(!event_type)
 		return
 
-	var/author = "Nyx Daily"
+	var/author = "The Copernican"
 	var/channel = author
 
 	//see if our location has custom event info for this event
@@ -84,8 +84,8 @@
 				[pick("playwright","author","director","actor","TV star")] [random_name(pick(MALE,FEMALE))] comes the latest sensation: '\
 				[pick("Deadly","The last","Lost","Dead")] [pick("Starships","Warriors","outcasts","Tajarans","Unathi","Skrell")] \
 				[pick("of","from","raid","go hunting on","visit","ravage","pillage","destroy")] \
-				[pick("Moghes","Earth","Biesel","Ahdomai","S'randarr","the Void","the Edge of Space")]'.\
-				. Own it on webcast today, or visit the galactic premier on [affected_dest.name]!"
+				[pick("Saturn","Earth","Jupiter","Ganymede","Callisto","the Void","the Edge of Space")]'.\
+				. Own it on webcast today, or visit the premiere on [affected_dest.name]!"
 
 			if(BIG_GAME_HUNTERS)
 				body += "Game hunters on [affected_dest.name] "
@@ -120,7 +120,7 @@
 			if(TOURISM)
 				body += "Tourists are flocking to [affected_dest.name] after the surprise announcement of [pick("major shopping bargains by a wily retailer",\
 				"a huge new ARG by a popular entertainment company","a secret tour by popular artiste [random_name(pick(MALE,FEMALE))]")]. \
-				Nyx Daily is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
+				The Copernican is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
 
