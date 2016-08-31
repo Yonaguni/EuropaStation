@@ -122,35 +122,35 @@
 	icon_state = "las_pistol"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "retro"
-	base_desc = "It's a laser pistol."
+	base_desc = "It's an energy pistol."
 
 /obj/item/gun_component/body/smg/laser
 	icon_state = "las_smg"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "xray"
-	base_desc = "It's a heavy laser pistol."
+	base_desc = "It's an energy submachine gun."
 
 /obj/item/gun_component/body/rifle/laser
 	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "laser"
-	base_desc = "It's a laser rifle."
+	base_desc = "It's an energy rifle."
 
 /obj/item/gun_component/body/cannon/laser
 	icon_state = "las_cannon"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "lasercannon"
-	base_desc = "It's a laser cannon."
+	base_desc = "It's an energy cannon."
 
 /obj/item/gun_component/body/assault/laser
 	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "laser"
 	w_class = 3
-	base_desc = "It's a laser assault rifle."
+	base_desc = "It's an energy assault rifle."
 
 /obj/item/gun_component/body/shotgun/laser
 	icon_state = "las_shotgun"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "pulse"
-	base_desc = "It's a laser shotgun."
+	base_desc = "It's an energy shotgun."

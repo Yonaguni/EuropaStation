@@ -130,6 +130,14 @@
 	return TRUE
 
 /decl/observ/proc/unregister(var/event_source, var/datum/listener, var/proc_call)
+
+	if(!event_source && listener)
+		log_debug("Unregister call from [listener] has no event_source ([proc_call]).")
+		for(var/esource in event_sources)
+			var/list/L = event_sources[esource]
+			if(islist(L))
+				L -= listener
+
 	// Sanity.
 	if (!(event_source && listener && (event_source in event_sources)))
 		return FALSE

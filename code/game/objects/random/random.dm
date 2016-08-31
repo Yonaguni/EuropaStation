@@ -185,7 +185,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "energykill100"
 	item_to_spawn()
-		return pick(/obj/item/weapon/gun/composite/premade/laser_pistol,/obj/item/weapon/gun/composite/premade/laser_smg,/obj/item/weapon/gun/composite/premade/laser_assault)
+		return pick(/obj/item/weapon/gun/composite/premade/taser_pistol,/obj/item/weapon/gun/composite/premade/laser_smg,/obj/item/weapon/gun/composite/premade/laser_assault)
 
 /obj/random/projectile
 	name = "Random Projectile Weapon"

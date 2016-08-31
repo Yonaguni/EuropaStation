@@ -23,8 +23,8 @@
 	weapon_type = GUN_SMG
 	weight_mod = 1
 	firemodes = list(
-		list(mode_name="stun",                  caliber = CALIBER_LASER_TASER),
-		list(mode_name="stun 3-round bursts",   caliber = CALIBER_LASER_SHOCK, burst=3, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="lethal",                caliber = CALIBER_LASER_WEAK),
-		list(mode_name="lethal 3-round bursts", caliber = CALIBER_LASER,       burst=3, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="stun",                  caliber = CALIBER_LASER_TASER, requires_two_hands = 0),
+		list(mode_name="stun 3-round bursts",   caliber = CALIBER_LASER_SHOCK, burst=3, requires_two_hands = 0, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="lethal",                caliber = CALIBER_LASER_WEAK, requires_two_hands = 0),
+		list(mode_name="lethal 3-round bursts", caliber = CALIBER_LASER, requires_two_hands = 0, burst=3, fire_delay = null, move_delay = 4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
 		)

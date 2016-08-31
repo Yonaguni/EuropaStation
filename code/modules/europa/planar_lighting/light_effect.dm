@@ -1,6 +1,4 @@
-var/list/light_over_cache = list()
-
-/obj/light
+/obj/effect/light
 	simulated = 0
 	mouse_opacity = 0
 	plane = DARK_PLANE
@@ -19,7 +17,7 @@ var/list/light_over_cache = list()
 	var/point_angle
 	var/list/affecting_turfs = list()
 
-/obj/light/New(var/newholder)
+/obj/effect/light/New(var/newholder)
 	holder = newholder
 	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = holder.light_type)
 	light_overlay.blend_mode = BLEND_ADD
@@ -27,10 +25,20 @@ var/list/light_over_cache = list()
 	light_overlay.plane = DARK_PLANE
 	..(get_turf(holder))
 
-/obj/light/Destroy()
+/obj/effect/light/Del()
+	return ..()
+
+/obj/effect/light/Destroy()
+
 	moved_event.unregister(holder, src)
 	dir_set_event.unregister(holder, src)
 	destroyed_event.unregister(holder, src)
+
+	transform = null
+	appearance = null
+	overlays = null
+	light_overlay = null
+
 	if(holder)
 		if(holder.light_obj == src)
 			holder.light_obj = null
@@ -40,28 +48,56 @@ var/list/light_over_cache = list()
 		T.lumcount = -1
 		T.affecting_lights -= src
 	affecting_turfs.Cut()
-	return .. ()
+	. = .. ()
 
-/obj/light/initialize()
+/atom/movable/Move()
+	. = ..()
+	if(light_obj)
+		light_obj.follow_holder()
+
+/atom/movable/forceMove()
+	. = ..()
+	if(light_obj)
+		light_obj.follow_holder()
+
+/atom/set_dir()
+	. = ..()
+	if(light_obj)
+		light_obj.follow_holder_dir()
+
+/mob/living/carbon/human/set_dir()
+	. = ..()
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.set_dir(dir)
+
+/mob/living/carbon/human/Move()
+	. = ..()
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.light_obj.follow_holder()
+
+/mob/living/carbon/human/forceMove()
+	. = ..()
+	for(var/obj/item/I in (contents-(internal_organs+organs)))
+		if(!I.simulated || !I.light_obj)
+			continue
+		I.light_obj.follow_holder()
+
+/obj/effect/light/initialize()
 	..()
-	follow_holder_dir()
-	follow_holder()
-	moved_event.register(holder, src, /obj/light/proc/follow_holder)
-	dir_set_event.register(holder, src, /obj/light/proc/follow_holder_dir)
-	destroyed_event.register(holder, src, /obj/light/proc/destroy_self)
-
-// Would be nice if we didn't need a qdel() wrapper for the event system.
-/obj/light/proc/destroy_self()
-	qdel(src)
+	if(holder)
+		follow_holder_dir()
+		follow_holder()
 
 // Applies power value to size (via Scale()) and updates the current rotation (via Turn())
 // angle for directional lights. This is only ever called before cast_light() so affected turfs
 // are updated elsewhere.
-/obj/light/proc/update_transform(var/newrange)
+/obj/effect/light/proc/update_transform(var/newrange)
 	if(!isnull(newrange) && current_power != newrange)
-		// Update affected turfs based on new size.
 		current_power = newrange
-
 	var/matrix/M = matrix()
 	if(!isnull(point_angle))
 		M.Turn(point_angle)
@@ -70,13 +106,12 @@ var/list/light_over_cache = list()
 
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
-/obj/light/proc/follow_holder_dir()
-	if(istype(holder.loc, /mob) && holder.dir != holder.loc.dir)
-		holder.set_dir(holder.loc.dir)
+/obj/effect/light/proc/follow_holder_dir()
+
 	if(dir != holder.dir)
 		set_dir(holder.dir)
 
-	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
+	if(is_directional_light())
 		var/last_angle = point_angle
 		switch(dir)
 			if(NORTH)     point_angle = 90
@@ -93,9 +128,13 @@ var/list/light_over_cache = list()
 			cast_light()
 
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
-/obj/light/proc/follow_holder()
-	forceMove(get_turf(holder))
+/obj/effect/light/proc/follow_holder()
+	if(holder && holder.loc)
+		if(holder.loc.loc && ismob(holder.loc))
+			forceMove(holder.loc.loc)
+		else
+			forceMove(holder.loc)
 	cast_light()
 
-/obj/light/proc/is_directional_light()
+/obj/effect/light/proc/is_directional_light()
 	return (holder.light_type == LIGHT_DIRECTIONAL)

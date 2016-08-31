@@ -34,9 +34,15 @@
 		qdel(assembly)
 	..(newloc)
 
-/obj/item/weapon/gun/composite/dropped()
-	..()
+/obj/item/weapon/gun/composite/pickup()
+	. = ..()
 	update_strings()
+	update_icon()
+
+/obj/item/weapon/gun/composite/dropped()
+	. = ..()
+	update_strings()
+	update_icon()
 
 /obj/item/weapon/gun/composite/reset_name()
 	update_strings()
@@ -87,7 +93,7 @@
 	fire_delay = chamber.fire_delay
 	silenced = 0
 	verbs -= /obj/item/weapon/gun/composite/proc/scope
-	//requires_two_hands = body.two_handed // Uncomment when we have actual sprites for this.
+	requires_two_hands = body.two_handed
 
 	attack_verb = initial(attack_verb)
 	force = body.force
@@ -149,15 +155,13 @@
 		desc = "[body.base_desc] You can't work out who manufactured this one; it might be an aftermarket job."
 
 /obj/item/weapon/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
-	overlays.Cut()
-	if(force_icon && force_icon_state)
 
+	if(force_icon && force_icon_state)
 		icon = force_icon
 		icon_state = force_icon_state
 	else
 		if (regenerate)
 			icon_state = ""
-
 			if(model && model.force_item_state)
 				item_state = model.force_item_state
 			else
@@ -165,10 +169,16 @@
 			if(body.slot_flags & SLOT_BACK)
 				item_state_slots[slot_back_str] = body.item_state
 
+	overlays.Cut()
 	chamber.update_ammo_overlay()
-
+	var/list/overlays_to_add = list()
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
-		overlays |= GC
+		var/image/I = image(null)
+		I.appearance = GC
+		I.plane = plane
+		I.layer = layer
+		overlays_to_add += I
+	overlays += overlays_to_add
 
 	if(requires_two_hands)
 		var/mob/user = loc
@@ -259,7 +269,10 @@
 		chosen.do_user_interaction(usr)
 	return
 
-/obj/item/weapon/gun/composite/switch_firemodes()
-	..()
+/obj/item/weapon/gun/composite/switch_firemodes(var/mob/user)
+	var/datum/firemode/new_mode = ..()
 	barrel.caliber = caliber
 	barrel.update_from_caliber()
+	if(new_mode)
+		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
+	return new_mode

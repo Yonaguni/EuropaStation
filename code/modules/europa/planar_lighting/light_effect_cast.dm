@@ -8,17 +8,19 @@
 // chunky 'mask everything we can't see' proc which also casts rotated shadows from occluding
 // turf corners. See light_turf.dm for how corners are calculated.
 
-/obj/light/proc/cast_light()
+/obj/effect/light/proc/cast_light()
 
 	if(!isturf(loc))
 		overlays = null
+		for(var/thing in affecting_turfs)
+			var/turf/T = thing
+			T.lumcount = -1
+			T.affecting_lights -= src
+		affecting_turfs.Cut()
 		return
 
 	//Prevent appearance churn by adding all overlays at onces
-	var/list/overlays_to_add = list()
-
-	// Readd core lighting overlay.
-	overlays_to_add += light_overlay
+	var/list/overlays_to_add = list(light_overlay)
 
 	var/turf/origin = get_turf(src)
 	if(!istype(origin))
@@ -79,16 +81,10 @@
 	// Mask off stuff that we 100% cannot see.
 	for(var/thing in concealed_turfs)
 		var/turf/check = thing
-		var/use_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
-		var/use_y = (check.y-origin.y+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
-		var/cache_key = "conceal-[use_x]-[use_y]"
-		if(!light_over_cache[cache_key])
-			var/image/darkmask/I = new
-			I.pixel_x = use_x
-			I.pixel_y = use_y
-			light_over_cache[cache_key] = I
-		overlays_to_add += light_over_cache[cache_key]
-
+		var/image/darkmask/I = new
+		I.pixel_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
+		I.pixel_y = (check.y-origin.y+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
+		overlays_to_add += I
 	overlays = overlays_to_add
 
 #undef BASE_PIXEL_OFFSET

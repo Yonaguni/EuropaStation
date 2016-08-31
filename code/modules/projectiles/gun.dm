@@ -155,7 +155,7 @@
 		return
 
 	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
+		user << "<span class='warning'>You refrain from firing your [src.name] as your intent is set to help.</span>"
 	else
 		Fire(A,user,params) //Otherwise, fire normally.
 
@@ -249,7 +249,7 @@
 //called if there was no projectile to shoot
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
 	if (user)
-		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
+		user.visible_message("<span class='danger'>*click click*</span>")
 	else
 		src.visible_message("*click click*")
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
