@@ -597,8 +597,8 @@ obj/machinery/light/proc/burn_out()
 	item_state = "c_tube"
 	matter = list("glass" = 100)
 
-	brightness_range = 8	// luminosity when on, also used in power calculation
-	brightness_power = 6
+	brightness_range = 7 // luminosity when on, also used in power calculation
+	brightness_power = 5
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 5, l_power = 1, l_color = "#da0205"),

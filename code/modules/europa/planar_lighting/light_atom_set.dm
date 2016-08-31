@@ -1,4 +1,4 @@
-// Destroys and removes a light; replaces previous system's kill_light().
+// Destroys and removes a light; replaces previous system's set_light(0).
 /atom/proc/kill_light()
 	if(light_obj)
 		qdel(light_obj)
@@ -8,6 +8,12 @@
 // Updates all appropriate lighting values and then applies all changed values
 // to the objects light_obj overlay atom.
 /atom/proc/set_light(var/l_range, var/l_power, var/l_color, var/fadeout)
+
+	if(!loc)
+		if(light_obj)
+			qdel(light_obj)
+			light_obj = null
+		return
 
 	// Update or retrieve our variable data.
 	if(isnull(l_range))
@@ -48,3 +54,6 @@
 
 	// Rare enough that we can probably get away with calling animate(). Currently used by muzzle flashes and sparks.
 	if(fadeout) animate(light_obj.light_overlay, time=fadeout, alpha=0)
+
+/obj/effect/light/set_light()
+	return
