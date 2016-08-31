@@ -17,7 +17,7 @@ datum/pipeline
 			temporarily_store_air()
 			qdel(air)
 
-		..()
+		return ..()
 
 	proc/process()//This use to be called called from the pipe networks
 
@@ -218,7 +218,7 @@ datum/pipeline
 		// We only get heat from the star on the exposed surface area.
 		// If the HE pipes gain more energy from AVERAGE_SOLAR_RADIATION than they can radiate, then they have a net heat increase.
 		. = AVERAGE_SOLAR_RADIATION * (exposed_surface_ratio * surface) * thermal_conductivity
-		
+
 		// Previously, the temperature would enter equilibrium at 26C or 294K.
 		// Only would happen if both sides (all 2 square meters of surface area) were exposed to sunlight.  We now assume it aligned edge on.
 		// It currently should stabilise at 129.6K or -143.6C

@@ -38,7 +38,7 @@
 /turf/Destroy()
 	turfs -= src
 	remove_cleanables()
-	..()
+	return ..()
 
 /turf/ex_act(severity)
 	return 0

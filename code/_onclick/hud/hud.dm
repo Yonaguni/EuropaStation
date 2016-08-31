@@ -159,6 +159,7 @@ datum/hud/New(mob/owner)
 	hotkeybuttons = null
 //	item_action_list = null // ?
 	mymob = null
+	return ..()
 
 /datum/hud/proc/common_hud()
     mymob.client.screen += mymob.client.void

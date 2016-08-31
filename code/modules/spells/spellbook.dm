@@ -254,7 +254,7 @@ var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
 
 /obj/item/weapon/spellbook/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/weapon/spellbook/proc/send_feedback(var/path)
 	if(ispath(path,/datum/spellbook))

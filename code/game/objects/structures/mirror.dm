@@ -68,7 +68,7 @@
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()
-	..()
+	return ..()
 
 // The following mirror is ~special~.
 /obj/structure/mirror/raider
@@ -120,4 +120,4 @@
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()
-	..()
+	return ..()

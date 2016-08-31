@@ -20,7 +20,7 @@
 
 /turf/unsimulated/wall/supermatter/Destroy()
 	processing_turfs.Remove(src)
-	..()
+	return ..()
 
 /turf/unsimulated/wall/supermatter/process()
 	// Only check infrequently.

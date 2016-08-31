@@ -103,7 +103,7 @@
 	var/list/viruses = list()
 
 	Destroy()
-		..()
+		return ..()
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"

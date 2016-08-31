@@ -20,7 +20,7 @@
 
 /obj/turbolift_map_holder/New()
 	turbolifts += src
-	..()
+	return ..()
 
 /obj/turbolift_map_holder/initialize()
 

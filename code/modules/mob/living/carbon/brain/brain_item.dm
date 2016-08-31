@@ -58,7 +58,7 @@
 	if(brainmob)
 		qdel(brainmob)
 		brainmob = null
-	..()
+	return ..()
 
 /obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
 

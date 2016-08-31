@@ -16,7 +16,7 @@
 
 /datum/lock/Destroy()
 	holder = null
-	..()
+	return ..()
 
 /datum/lock/proc/unlock(var/key = "", var/mob/user)
 	if(status ^ LOCK_LOCKED)

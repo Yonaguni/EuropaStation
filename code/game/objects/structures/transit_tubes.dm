@@ -50,8 +50,7 @@
 /obj/structure/transit_tube_pod/Destroy()
 	for(var/atom/movable/AM in contents)
 		AM.loc = loc
-
-	..()
+	return ..()
 
 
 

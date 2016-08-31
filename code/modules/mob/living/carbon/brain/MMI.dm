@@ -138,7 +138,7 @@
 	if(brainmob)
 		qdel(brainmob)
 		brainmob = null
-	..()
+	return ..()
 
 /obj/item/device/mmi/radio_enabled
 	name = "radio-enabled man-machine interface"

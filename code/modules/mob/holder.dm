@@ -28,7 +28,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/Destroy()
 	last_holder = null
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/holder/process()
 	update_state()
@@ -54,7 +54,7 @@ var/list/holder_mob_icon_cache = list()
 			register_all_movement(loc, M)
 
 	last_holder = loc
-	
+
 /obj/item/weapon/holder/onDropInto(var/atom/movable/AM)
 	if(ismob(loc))   // Bypass our holding mob and drop directly to its loc
 		return loc.loc
@@ -74,12 +74,12 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/attack_self()
 	for(var/mob/M in contents)
 		M.show_inv(usr)
-		
+
 /obj/item/weapon/holder/attack(mob/target, mob/user)
 	// Devour on click on self with holder
 	if(target == user && istype(user,/mob/living/carbon))
 		var/mob/living/carbon/M = user
-		
+
 		for(var/mob/victim in src.contents)
 			M.devour(victim)
 

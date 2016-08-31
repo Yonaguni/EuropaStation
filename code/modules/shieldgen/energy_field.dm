@@ -20,7 +20,7 @@
 /obj/effect/energy_field/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/effect/energy_field/ex_act(var/severity)
 	Stress(0.5 + severity)
@@ -55,7 +55,7 @@
 	else if(strength < 1)
 		invisibility = 101
 		density = 0
-	
+
 	if (density != old_density)
 		update_nearby_tiles()
 

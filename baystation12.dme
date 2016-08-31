@@ -1213,6 +1213,7 @@
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\error_handler\~defines.dm"
+#include "code\modules\europa\clothing\aeolus.dm"
 #include "code\modules\europa\clothing\borderworld.dm"
 #include "code\modules\europa\clothing\clothing.dm"
 #include "code\modules\europa\clothing\europa.dm"
