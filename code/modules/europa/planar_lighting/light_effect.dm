@@ -28,10 +28,10 @@ var/list/light_over_cache = list()
 	..(get_turf(holder))
 
 /obj/light/Destroy()
+	moved_event.unregister(holder, src)
+	dir_set_event.unregister(holder, src)
+	destroyed_event.unregister(holder, src)
 	if(holder)
-		moved_event.unregister(holder, src)
-		dir_set_event.unregister(holder, src)
-		destroyed_event.unregister(holder, src)
 		if(holder.light_obj == src)
 			holder.light_obj = null
 		holder = null

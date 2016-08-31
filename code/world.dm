@@ -1,4 +1,3 @@
-
 /var/game_id = null
 /hook/global_init/proc/generate_gameid()
 	if(game_id != null)
