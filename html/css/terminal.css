@@ -1,0 +1,82 @@
+html {
+	overflow: hidden;
+}
+
+body {
+	font: bold 19px 'Share Tech Mono', monospace;
+	color: #0F0;
+	overflow: hidden;
+	background: black;
+}
+
+pre {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font: bold 19px 'Share Tech Mono', monospace;
+	overflow: hidden;
+}
+
+input {
+	font: bold 19px 'Share Tech Mono', monospace;
+	color: #0F0;
+	border: none;
+	background: transparent;
+	padding: 0;
+}
+
+a {
+	font: bold 19px 'Share Tech Mono', monospace;
+	color: #0F0;
+	background: transparent;
+}
+
+.outerBorder {
+	background-image: url(terminal_bg.png);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 800px;
+	height: 600px;
+	margin: 0;
+}
+
+.innerBorder {
+	overflow: hidden;
+	position: absolute;
+	top: 58px;
+	left: 80px;
+	width: 640px;
+	height: 484px;
+	margin: 0;
+}
+
+.row {
+	width: 640px;
+	float: left;
+	height: 22px;
+	margin: 0;
+	overflow: hidden;
+}
+
+.alignCentre {
+	text-align: center;
+}
+
+.alignLeft {
+	text-align: left;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.floatLeft {
+	width: auto;
+	float: left;
+}
+
+.floatRight {
+	width: auto;
+	float: right;
+}
