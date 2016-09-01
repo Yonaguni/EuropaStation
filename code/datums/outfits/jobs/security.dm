@@ -13,7 +13,7 @@
 	l_ear = /obj/item/device/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/aeolus/security/chief
 	id_type = /obj/item/weapon/card/id/security/head
-	pda_type = /obj/item/device/pda/heads/hos
+	pda_type = /obj/item/device/pda/command
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/warden
@@ -21,8 +21,6 @@
 	uniform = /obj/item/clothing/under/aeolus/security
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/weapon/card/id/security/warden
-	pda_type = /obj/item/device/pda/warden
-
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")
@@ -30,4 +28,3 @@
 	l_pocket = /obj/item/device/flash
 	r_pocket = /obj/item/weapon/handcuffs
 	id_type = /obj/item/weapon/card/id/security
-	pda_type = /obj/item/device/pda/security

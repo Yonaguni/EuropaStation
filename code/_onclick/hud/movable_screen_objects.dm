@@ -43,6 +43,7 @@
 		var/pix_X = text2num(screen_loc_X[2]) - 16
 		var/pix_Y = text2num(screen_loc_Y[2]) - 16
 		screen_loc = "[screen_loc_X[1]]:[pix_X],[screen_loc_Y[1]]:[pix_Y]"
+	return 1
 
 /obj/screen/movable/proc/encode_screen_X(X)
 	if(X > usr.client.view+1)

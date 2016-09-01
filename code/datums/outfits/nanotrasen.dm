@@ -9,7 +9,7 @@
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/centcom/station
 	pda_slot = slot_r_store
-	pda_type = /obj/item/device/pda/heads
+	pda_type = /obj/item/device/pda/command
 
 /decl/hierarchy/outfit/nanotrasen/representative
 	name = "corporate representative"

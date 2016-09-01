@@ -11,7 +11,7 @@
 	slot_flags = 0
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/effects/bang.ogg'
-	
+
 	release_force = 15
 	throw_distance = 30
 	var/max_rockets = 1
@@ -21,6 +21,15 @@
 	if(!..(user, 2))
 		return
 	user << "\blue [rockets.len] / [max_rockets] rockets."
+
+/obj/item/weapon/gun/launcher/rocket/mech
+	name = "mounted missile pod"
+	max_rockets = 6
+
+/obj/item/weapon/gun/launcher/rocket/mech/New()
+	..()
+	while(rockets.len < max_rockets)
+		rockets += new /obj/item/ammo_casing/rocket(src)
 
 /obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
@@ -32,6 +41,20 @@
 			user << "\blue [rockets.len] / [max_rockets] rockets."
 		else
 			usr << "\red [src] cannot hold more rockets."
+
+/obj/item/missile
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "missile"
+	var/primed = null
+	throwforce = 15
+
+	throw_impact(atom/hit_atom)
+		if(primed)
+			explosion(hit_atom, 0, 1, 2, 4)
+			qdel(src)
+		else
+			..()
+		return
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)

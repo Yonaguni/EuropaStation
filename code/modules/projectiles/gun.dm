@@ -160,7 +160,7 @@
 		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.zone_sel.selecting == BP_MOUTH && !mouthshoot)
+	if (A == user && ishuman(user) && user.zone_sel.selecting == BP_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -440,7 +440,7 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
 
-/obj/item/weapon/gun/proc/switch_firemodes()
+/obj/item/weapon/gun/proc/switch_firemodes(var/mob/user)
 	if(firemodes.len <= 1)
 		return null
 
@@ -449,6 +449,9 @@
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
+
+	if(user)
+		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
 
 	return new_mode
 

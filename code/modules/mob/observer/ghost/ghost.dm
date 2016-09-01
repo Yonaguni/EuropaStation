@@ -657,12 +657,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/proc/updateghostsight()
 	if (!seedarkness)
-		client.images -= master_plane
 		client.images -= dark_plane
+		client.images -= master_plane
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
 	else
-		client.images += master_plane
-		client.images += dark_plane
+		client.images |= dark_plane
+		client.images |= master_plane
 		see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
 	updateghostimages()
 

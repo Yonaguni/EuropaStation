@@ -17,7 +17,7 @@
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 	r_pocket = /obj/item/device/flashlight/pen
 	id_type = /obj/item/weapon/card/id/medical/head
-	pda_type = /obj/item/device/pda/heads/cmo
+	pda_type = /obj/item/device/pda/medical
 
 /decl/hierarchy/outfit/job/medical/doctor
 	name = OUTFIT_JOB_NAME("Medical Officer")

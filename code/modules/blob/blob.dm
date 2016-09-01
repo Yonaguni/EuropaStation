@@ -94,11 +94,6 @@
 	if(B)
 		B.ex_act(2)
 		return
-	var/obj/mecha/M = locate() in T
-	if(M)
-		M.visible_message("<span class='danger'>The blob attacks \the [M]!</span>")
-		M.take_damage(40)
-		return
 
 	// Above things, we destroy completely and thus can use locate. Mobs are different.
 	for(var/mob/living/L in T)

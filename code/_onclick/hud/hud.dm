@@ -162,7 +162,8 @@ datum/hud/New(mob/owner)
 	return ..()
 
 /datum/hud/proc/common_hud()
-    mymob.client.screen += mymob.client.void
+	if(istype(mymob.client.void))
+		mymob.client.screen += mymob.client.void
 
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
@@ -258,6 +259,10 @@ datum/hud/New(mob/owner)
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
 	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
+
+	if(istype(mymob.loc, /mob/living/heavy_vehicle))
+		var/mob/living/heavy_vehicle/M = mymob.loc
+		M.refresh_hud()
 
 /mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	return

@@ -14,7 +14,7 @@
 	shoes = /obj/item/clothing/shoes/brown
 	l_hand = /obj/item/weapon/clipboard
 	id_type = /obj/item/weapon/card/id/science/head
-	pda_type = /obj/item/device/pda/heads/rd
+	pda_type = /obj/item/device/pda/science
 
 /decl/hierarchy/outfit/job/science/xenobiologist
 	name = OUTFIT_JOB_NAME("Xenobiologist")
@@ -29,6 +29,6 @@
 	belt = /obj/item/weapon/storage/belt/utility/full
 	id_type = /obj/item/weapon/card/id/science/roboticist
 	pda_slot = slot_r_store
-	pda_type = /obj/item/device/pda/roboticist
+	pda_type = /obj/item/device/pda/engineering
 	backpack = /obj/item/weapon/storage/backpack
 	satchel_one = /obj/item/weapon/storage/backpack/satchel_norm

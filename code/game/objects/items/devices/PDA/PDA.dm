@@ -4,14 +4,13 @@
 var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda
-	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
-	icon = 'icons/obj/pda.dmi'
-	icon_state = "pda"
-	item_state = "electronic"
+	name = "\improper wrist computer"
+	desc = "A portable wrist-mounted microcomputer, also known as a Personal Data Assistant."
+	icon = 'icons/obj/wristcomp.dmi'
+	icon_state = "wc"
+	item_state = "wc"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/id.dmi')
 
 	//Main variables
 	var/owner = null
@@ -38,7 +37,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/lock_code = "" // Lockcode to unlock uplink
 	var/honkamt = 0 //How many honks left when infected with honk.exe
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
+	var/note = "Thank you for choosing the Kuiper Manufacturing Group Model III!" //Current note in the notepad function
 	var/notehtml = ""
 	var/cart = "" //A place to stick cartridge menu information
 	var/detonate = 1 // Can the PDA be blown up?
@@ -63,6 +62,25 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
 
+/obj/item/device/pda/attack_hand(var/mob/user)
+	if(loc == user)
+		if(user.incapacitated() || user.restrained())
+			return
+		var/mob/living/carbon/human/H = user
+		if(istype(H) && src == H.wear_id)
+			return attack_self(user)
+	return ..()
+
+/obj/item/device/pda/MouseDrop(var/obj/over_object)
+	if(ishuman(usr))
+		if(loc != usr) return
+		if(usr.restrained() || usr.incapacitated()) return
+		if (!usr.unEquip(src)) return
+		usr.put_in_hands(src)
+		src.add_fingerprint(usr)
+		return
+	return ..()
+
 /obj/item/device/pda/examine(mob/user)
 	. = ..(user, 1)
 	if(.)
@@ -70,153 +88,41 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-m"
-
-/obj/item/device/pda/viro
-	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-v"
+	icon_state = "wc-medical"
+	item_state = "wc-medical"
 
 /obj/item/device/pda/engineering
 	default_cartridge = /obj/item/weapon/cartridge/engineering
-	icon_state = "pda-e"
+	icon_state = "wc-engineering"
+	item_state = "wc-engineering"
 
 /obj/item/device/pda/security
 	default_cartridge = /obj/item/weapon/cartridge/security
-	icon_state = "pda-s"
-
-/obj/item/device/pda/detective
-	default_cartridge = /obj/item/weapon/cartridge/detective
-	icon_state = "pda-det"
-
-/obj/item/device/pda/warden
-	default_cartridge = /obj/item/weapon/cartridge/security
-	icon_state = "pda-warden"
-
-/obj/item/device/pda/janitor
-	default_cartridge = /obj/item/weapon/cartridge/janitor
-	icon_state = "pda-j"
-	ttone = "slip"
+	icon_state = "wc-security"
+	item_state = "wc-security"
 
 /obj/item/device/pda/science
 	default_cartridge = /obj/item/weapon/cartridge/signal/science
-	icon_state = "pda-tox"
-	ttone = "boom"
+	icon_state = "wc-science"
+	item_state = "wc-science"
 
-/obj/item/device/pda/clown
-	default_cartridge = /obj/item/weapon/cartridge/clown
-	icon_state = "pda-clown"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
-	ttone = "honk"
-
-/obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
-	icon_state = "pda-mime"
-	message_silent = 1
-	news_silent = 1
-	ttone = "silence"
-	newstone = "silence"
-
-/obj/item/device/pda/heads
+/obj/item/device/pda/command
 	default_cartridge = /obj/item/weapon/cartridge/head
-	icon_state = "pda-h"
-	news_silent = 1
+	icon_state = "wc-command"
+	item_state = "wc-command"
 
-/obj/item/device/pda/heads/hop
-	default_cartridge = /obj/item/weapon/cartridge/hop
-	icon_state = "pda-hop"
-
-/obj/item/device/pda/heads/hos
-	default_cartridge = /obj/item/weapon/cartridge/hos
-	icon_state = "pda-hos"
-
-/obj/item/device/pda/heads/ce
-	default_cartridge = /obj/item/weapon/cartridge/ce
-	icon_state = "pda-ce"
-
-/obj/item/device/pda/heads/cmo
-	default_cartridge = /obj/item/weapon/cartridge/cmo
-	icon_state = "pda-cmo"
-
-/obj/item/device/pda/heads/rd
-	default_cartridge = /obj/item/weapon/cartridge/rd
-	icon_state = "pda-rd"
-
-/obj/item/device/pda/captain
-	default_cartridge = /obj/item/weapon/cartridge/captain
-	icon_state = "pda-c"
-	detonate = 0
-	//toff = 1
-
-/obj/item/device/pda/ert
-	default_cartridge = /obj/item/weapon/cartridge/captain
-	icon_state = "pda-h"
-	detonate = 0
-	hidden = 1
-
-/obj/item/device/pda/cargo
+/obj/item/device/pda/supply
 	default_cartridge = /obj/item/weapon/cartridge/quartermaster
-	icon_state = "pda-cargo"
-
-/obj/item/device/pda/quartermaster
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
-	icon_state = "pda-q"
-
-/obj/item/device/pda/shaftminer
-	icon_state = "pda-miner"
+	icon_state = "wc-supply"
+	item_state = "wc-supply"
 
 /obj/item/device/pda/syndicate
 	default_cartridge = /obj/item/weapon/cartridge/syndicate
 	icon_state = "pda-syn"
+	icon = 'icons/obj/pda.dmi'
 	name = "Military PDA"
 	owner = "John Doe"
 	hidden = 1
-
-/obj/item/device/pda/chaplain
-	icon_state = "pda-holy"
-	ttone = "holy"
-
-/obj/item/device/pda/lawyer
-	default_cartridge = /obj/item/weapon/cartridge/lawyer
-	icon_state = "pda-lawyer"
-	ttone = "..."
-
-/obj/item/device/pda/botanist
-	//default_cartridge = /obj/item/weapon/cartridge/botanist
-	icon_state = "pda-hydro"
-
-/obj/item/device/pda/roboticist
-	icon_state = "pda-robot"
-
-/obj/item/device/pda/librarian
-	icon_state = "pda-libb"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
-	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
-	message_silent = 1 //Quiet in the library!
-	news_silent = 0		// Librarian is above the law!  (That and alt job title is reporter)
-
-/obj/item/device/pda/clear
-	icon_state = "pda-transp"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a special edition with a transparent case."
-	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
-
-/obj/item/device/pda/chef
-	icon_state = "pda-chef"
-
-/obj/item/device/pda/bar
-	icon_state = "pda-bar"
-
-/obj/item/device/pda/atmos
-	default_cartridge = /obj/item/weapon/cartridge/atmos
-	icon_state = "pda-atmo"
-
-/obj/item/device/pda/chemist
-	default_cartridge = /obj/item/weapon/cartridge/chemistry
-	icon_state = "pda-chem"
-
-/obj/item/device/pda/geneticist
-	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-gene"
-
 
 // Special AI/pAI PDAs that cannot explode.
 /obj/item/device/pda/ai
@@ -224,7 +130,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	ttone = "data"
 	newstone = "news"
 	detonate = 0
-
 
 /obj/item/device/pda/ai/proc/set_name_and_job(newname as text, newjob as text, newrank as null|text)
 	owner = newname
@@ -340,13 +245,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/GetID()
 	return id
-
-/obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
-	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use())
-		return attack_self(M)
-	return
-
 
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
@@ -869,10 +767,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/update_icon()
 	..()
-
 	overlays.Cut()
 	if(new_message || new_news)
-		overlays += image('icons/obj/pda.dmi', "pda-r")
+		overlays += image(icon, "pda-r")
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
 	//TODO: sometimes these attacks show up on the message server
@@ -1180,7 +1077,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			return
 		if(!owner)
 			set_owner_rank_job(idcard.registered_name, idcard.rank, idcard.assignment)
-			name = "PDA-[owner] ([ownjob])"
+			name = "[initial(name)]-[owner] ([ownjob])"
 			user << "<span class='notice'>Card scanned.</span>"
 		else
 			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
@@ -1428,4 +1325,4 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	set_rank_job(rank, job)
 
 /obj/item/device/pda/proc/update_label()
-	name = "PDA-[owner] ([ownjob])"
+	name = "[initial(name)]-[owner] ([ownjob])"
