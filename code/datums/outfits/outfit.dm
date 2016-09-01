@@ -151,7 +151,7 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
 	if(!pda_slot)
 		return
-	var/obj/item/device/pda/heads/pda = new pda_type(H)
+	var/obj/item/device/pda/pda = new pda_type(H)
 	pda.set_owner_rank_job(H.real_name, rank, assignment)
 	if(H.equip_to_slot_or_del(pda, pda_slot))
 		return pda

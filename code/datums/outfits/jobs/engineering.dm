@@ -15,7 +15,7 @@
 	l_ear = /obj/item/device/radio/headset/heads/ce
 	gloves = /obj/item/clothing/gloves/thick
 	id_type = /obj/item/weapon/card/id/engineering/head
-	pda_type = /obj/item/device/pda/heads/ce
+	pda_type = /obj/item/device/pda/command
 
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = OUTFIT_JOB_NAME("Engineer")

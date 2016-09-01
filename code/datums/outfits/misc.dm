@@ -37,5 +37,5 @@
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/merchant
 	pda_slot = slot_r_store
-	pda_type = /obj/item/device/pda/chef //cause I like the look
+	pda_type = /obj/item/device/pda
 	id_pda_assignment = "Merchant"

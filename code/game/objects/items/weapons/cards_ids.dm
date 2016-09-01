@@ -96,6 +96,7 @@ var/const/NO_EMAG_ACT = -50
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
 	item_state = "card-id"
+	item_state_slots = list(slot_wear_id_str = "id")
 
 	sprite_sheets = list(
 		"Resomi" = 'icons/mob/species/resomi/id.dmi'

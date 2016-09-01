@@ -8,7 +8,7 @@
 	backpack = /obj/item/weapon/storage/backpack/captain
 	satchel_one = /obj/item/weapon/storage/backpack/satchel_cap
 	id_type = /obj/item/weapon/card/id/gold
-	pda_type = /obj/item/device/pda/captain
+	pda_type = /obj/item/device/pda/command
 	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
@@ -30,7 +30,8 @@
 	l_ear = /obj/item/device/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/weapon/card/id/silver
-	pda_type = /obj/item/device/pda/heads/hop
+	pda_type = /obj/item/device/pda/command
+
 
 /decl/hierarchy/outfit/job/bridge/xo
 	name = OUTFIT_JOB_NAME("Executive Officer")
