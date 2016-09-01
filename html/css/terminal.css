@@ -1,26 +1,34 @@
+html {
+	overflow: hidden;
+}
+
 body {
-	font-family: 'Share Tech Mono', monospace;
-	font-size: 19px;
-	font-weight: bold;
+	font: bold 19px 'Share Tech Mono', monospace;
 	color: #0F0;
 	overflow: hidden;
-	background-color: black;
+	background: black;
 }
 
 pre {
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	font: inherit;
+	font: bold 19px 'Share Tech Mono', monospace;
 	overflow: hidden;
 }
 
 input {
-	font: inherit;
-	color: inherit;
+	font: bold 19px 'Share Tech Mono', monospace;
+	color: #0F0;
 	border: none;
 	background: transparent;
 	padding: 0;
+}
+
+a {
+	font: bold 19px 'Share Tech Mono', monospace;
+	color: #0F0;
+	background: transparent;
 }
 
 .outerBorder {
@@ -48,7 +56,6 @@ input {
 	float: left;
 	height: 22px;
 	margin: 0;
-	position: relative;
 	overflow: hidden;
 }
 
@@ -72,18 +79,4 @@ input {
 .floatRight {
 	width: auto;
 	float: right;
-}
-
-.termInput {
-	background-color: transparent;
-	border: none;
-	font-family: inherit;
-	font-size: inherit;
-	color: inherit;
-	padding: 0;
-}
-
-.inputButton:hover {
-	color: #113218;
-	background-color: #0F0;
 }
