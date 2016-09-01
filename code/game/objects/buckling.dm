@@ -21,11 +21,13 @@
 	unbuckle_mob()
 	return ..()
 
+/mob/var/can_buckle = 1
+/mob/var/buckle_fail_message
 
 /obj/proc/buckle_mob(mob/living/M)
 	if(buckled_mob) //unless buckled_mob becomes a list this can cause problems
 		return 0
-	if(!istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
+	if(!istype(M) || !M.can_buckle || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
 
 	M.buckled = src
@@ -65,9 +67,12 @@
 		return 0
 	if(M == buckled_mob)
 		return 0
-	if(istype(M, /mob/living/carbon/slime))
-		user << "<span class='warning'>The [M] is too squishy to buckle in.</span>"
-		return 0
+
+	if(!M.can_buckle)
+		if(M.buckle_fail_message)
+			user << "<span class='warning'>\The [M] [M.buckle_fail_message]</span>"
+		else
+			user << "<span class='warning'>You cannot restrain \the [M].</span>"
 
 	add_fingerprint(user)
 	unbuckle_mob()

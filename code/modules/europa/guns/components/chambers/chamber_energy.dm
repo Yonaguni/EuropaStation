@@ -118,6 +118,10 @@
 				var/obj/item/weapon/rig/suit = H.back
 				if(istype(suit))
 					return suit.cell
+	if(istype(loc, /obj/item/mecha_equipment))
+		var/obj/item/mecha_equipment/ME = loc
+		if(ME.owner && ME.owner.body && ME.owner.body.cell)
+			return ME.owner.body.cell
 	return null
 
 // Predefined firing mechanisms.

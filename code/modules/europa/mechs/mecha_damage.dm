@@ -14,7 +14,7 @@
 		return
 	return ..()
 
-/mob/living/heavy_vehicle/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
+/mob/living/heavy_vehicle/resolve_item_attack(var/obj/item/I, var/mob/living/user, var/def_zone)
 
 	if(!I.force)
 		user.visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly with \the [I].</span>")
@@ -35,7 +35,8 @@
 	if(armor >= 2)
 		return 0
 	apply_damage(I.force, I.damtype, null, armor, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
-	return 1
+
+	return // Return null so that we don't apply item effects like stun.
 
 /mob/living/heavy_vehicle/getarmor(var/def_zone, var/type)
 	if(body.armour)

@@ -4,18 +4,18 @@
 
 /mob/Login()
 	..()
-	master_plane = new(loc=src)
-	dark_plane = new(loc=src)
+	if(!dark_plane)   dark_plane = new(loc=src)
+	if(!master_plane) master_plane = new(loc=src)
 	if(client)
-		client.images += master_plane
-		client.images += dark_plane
+		client.images |= dark_plane
+		client.images |= master_plane
 
 /mob/observer/ghost/Login()
 	..()
 	if(client)
 		if(seedarkness)
-			client.images -= master_plane
-			client.images -= dark_plane
+			client.images |= dark_plane
+			client.images |= master_plane
 		else
-			client.images += master_plane
-			client.images += dark_plane
+			client.images -= dark_plane
+			client.images -= master_plane

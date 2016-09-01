@@ -60,7 +60,14 @@ default behaviour is:
 	spawn(0)
 		if ((!( yes ) || now_pushing) || !loc)
 			return
+
+		//TODO: make it dependant on mass, user strength, etc.
+		if (istype(AM, /mob/living/heavy_vehicle))
+			now_pushing = 0
+			return
+
 		now_pushing = 1
+
 		if (istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 

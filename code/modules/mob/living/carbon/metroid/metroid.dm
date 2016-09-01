@@ -6,6 +6,9 @@
 	var/is_adult = 0
 	speak_emote = list("chirps")
 
+	can_buckle = 0
+	buckle_fail_message = "is far too squishy restrain."
+
 	layer = 5
 	maxHealth = 150
 	health = 150

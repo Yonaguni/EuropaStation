@@ -179,7 +179,7 @@
 		a_intent = I_HURT
 		pilot = null
 		update_pilot_overlay()
-	return
+	return 1
 
 /mob/living/heavy_vehicle/relaymove(var/mob/living/user, var/direction)
 

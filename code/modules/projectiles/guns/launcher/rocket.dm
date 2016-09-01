@@ -22,6 +22,15 @@
 		return
 	user << "\blue [rockets.len] / [max_rockets] rockets."
 
+/obj/item/weapon/gun/launcher/rocket/mech
+	name = "mounted missile pod"
+	max_rockets = 6
+
+/obj/item/weapon/gun/launcher/rocket/mech/New()
+	..()
+	while(rockets.len < max_rockets)
+		rockets += new /obj/item/ammo_casing/rocket(src)
+
 /obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)

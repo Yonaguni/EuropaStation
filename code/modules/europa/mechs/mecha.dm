@@ -4,9 +4,8 @@
 	density = 1
 	opacity = 1
 	anchored = 1
-
-	//can_buckle = 0
-	//buckle_fail_message = "is far too large and bulky to restrain."
+	can_buckle = 0
+	buckle_fail_message = "is far too large and bulky to restrain."
 
 	status_flags = PASSEMOTES
 	a_intent = I_HURT
@@ -154,7 +153,7 @@
 	update_icon()
 
 /mob/living/heavy_vehicle/return_air()
-	return //body.cockpit
+	return body.cockpit
 
 /mob/living/heavy_vehicle/GetIdCard()
 	return access_card
