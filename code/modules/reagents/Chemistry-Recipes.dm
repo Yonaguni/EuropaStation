@@ -1883,13 +1883,6 @@
 	required_reagents = list("vodka" = 1, "cream" = 1, "ice" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/barefoot
-	name = "Barefoot"
-	id = "barefoot"
-	result = "barefoot"
-	required_reagents = list("berryjuice" = 1, "cream" = 1, "vermouth" = 1)
-	result_amount = 3
-
 /datum/chemical_reaction/grapesoda
 	name = "Grape Soda"
 	id = "grapesoda"
@@ -2044,20 +2037,6 @@
 	result = "bananahonk"
 	required_reagents = list("banana" = 1, "cream" = 1, "sugar" = 1)
 	result_amount = 3
-
-/datum/chemical_reaction/silencer
-	name = "Silencer"
-	id = "silencer"
-	result = "silencer"
-	required_reagents = list("nothing" = 1, "cream" = 1, "sugar" = 1)
-	result_amount = 3
-
-/datum/chemical_reaction/driestmartini
-	name = "Driest Martini"
-	id = "driestmartini"
-	result = "driestmartini"
-	required_reagents = list("nothing" = 1, "gin" = 1)
-	result_amount = 2
 
 /datum/chemical_reaction/lemonade
 	name = "Lemonade"
