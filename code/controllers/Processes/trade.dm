@@ -18,10 +18,7 @@
 	if(stations)
 		possible += subtypesof(/datum/trader) - typesof(/datum/trader/ship)
 	else
-		if(prob(5))
-			possible += subtypesof(/datum/trader/ship/unique)
-		else
-			possible += subtypesof(/datum/trader/ship) - typesof(/datum/trader/ship/unique)
+		possible += subtypesof(/datum/trader/ship)
 
 	for(var/i in 1 to 10)
 		var/type = pick(possible)

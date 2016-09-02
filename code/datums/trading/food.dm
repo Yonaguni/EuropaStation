@@ -12,14 +12,14 @@
 
 				"trade_complete"    = "Thank you for choosing ORIGIN!",
 				"trade_no_goods"    = "I'm sorry but we only take cash.",
-				"trade_blacklisted" = "Sir thats... highly illegal.",
-				"trade_not_enough"  = "Uhh... thats not enough money for pizza.",
+				"trade_blacklisted" = "Sir that's... highly illegal.",
+				"trade_not_enough"  = "Uhh... that's not enough money for pizza.",
 				"how_much"          = "That pizza will cost you VALUE thalers.",
 
 				"compliment_deny"   = "That's a bit forward, don't you think?",
 				"compliment_accept" = "Thanks, sir! You're very nice!",
 				"insult_good"       = "Please stop that, sir.",
-				"insult_bad"        = "Sir, just because I'm contractually obligated to keep you on the line for a minute doesn't mean I have to take this.",
+				"insult_bad"        = "Sir, just because I'm contractually obligated to keep you on the line for a minute doesn't mean I have to take this."
 				)
 
 /datum/trader/pizzaria/trade(var/list/offers, var/num, var/turf/location)

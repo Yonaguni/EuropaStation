@@ -268,7 +268,6 @@
 #include "code\datums\trading\misc.dm"
 #include "code\datums\trading\ship.dm"
 #include "code\datums\trading\trade.dm"
-#include "code\datums\trading\unique.dm"
 #include "code\datums\underwear\bottom.dm"
 #include "code\datums\underwear\socks.dm"
 #include "code\datums\underwear\top.dm"
