@@ -20,14 +20,14 @@
 	ability = new/datum/game_mode/malfunction/verb/unlock_cyborg()
 	price = 1200
 	next = new/datum/malf_research_ability/interdiction/hack_cyborg()
-	name = "Unlock Cyborg"
+	name = "Unlock Robot"
 
 
 /datum/malf_research_ability/interdiction/hack_cyborg
 	ability = new/datum/game_mode/malfunction/verb/hack_cyborg()
 	price = 3000
 	next = new/datum/malf_research_ability/interdiction/hack_ai()
-	name = "Hack Cyborg"
+	name = "Hack Robot"
 
 
 /datum/malf_research_ability/interdiction/hack_ai
@@ -57,8 +57,8 @@
 
 
 /datum/game_mode/malfunction/verb/unlock_cyborg(var/mob/living/silicon/robot/target = null as mob in get_linked_cyborgs(usr))
-	set name = "Unlock Cyborg"
-	set desc = "125 CPU - Bypasses firewalls on Cyborg lock mechanism, allowing you to override lock command from robotics control console."
+	set name = "Unlock Robot"
+	set desc = "125 CPU - Bypasses firewalls on robot lock mechanism, allowing you to override lock command from robotics control console."
 	set category = "Software"
 	var/price = 125
 	var/mob/living/silicon/ai/user = usr
@@ -67,15 +67,15 @@
 		return
 
 	if(target && !istype(target))
-		user << "This is not a cyborg."
+		user << "This is not a robot."
 		return
 
 	if(target && target.connected_ai && (target.connected_ai != user))
-		user << "This cyborg is not connected to you."
+		user << "This robot is not connected to you."
 		return
 
 	if(target && !target.lockcharge)
-		user << "This cyborg is not locked down."
+		user << "This robot is not locked down."
 		return
 
 
@@ -91,7 +91,7 @@
 				robots += R
 				robot_names += R.name
 		if(!robots.len)
-			user << "No locked cyborgs connected."
+			user << "No locked robots connected."
 			return
 
 
@@ -102,48 +102,48 @@
 				break
 
 	if(target)
-		if(alert(user, "Really try to unlock cyborg [target.name]?", "Unlock Cyborg", "Yes", "No") != "Yes")
+		if(alert(user, "Really try to unlock robot [target.name]?", "Unlock Robot", "Yes", "No") != "Yes")
 			return
 		if(!ability_pay(user, price))
 			return
 		user.hacking = 1
-		user << "Attempting to unlock cyborg. This will take approximately 30 seconds."
+		user << "Attempting to unlock robot. This will take approximately 30 seconds."
 		sleep(300)
 		if(target && target.lockcharge)
-			user << "Successfully sent unlock signal to cyborg.."
+			user << "Successfully sent unlock signal to robot."
 			target << "Unlock signal received.."
 			target.SetLockdown(0)
 			if(target.lockcharge)
 				user << "<span class='notice'>Unlock Failed, lockdown wire cut.</span>"
 				target << "<span class='notice'>Unlock Failed, lockdown wire cut.</span>"
 			else
-				user << "Cyborg unlocked."
+				user << "Robot unlocked."
 				target << "You have been unlocked."
 		else if(target)
-			user << "Unlock cancelled - cyborg is already unlocked."
+			user << "Unlock cancelled - robot is already unlocked."
 		else
-			user << "Unlock cancelled - lost connection to cyborg."
+			user << "Unlock cancelled - lost connection to robot."
 		user.hacking = 0
 
 
 /datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
-	set name = "Hack Cyborg"
-	set desc = "350 CPU - Allows you to hack cyborgs which are not slaved to you, bringing them under your control."
+	set name = "Hack Robot"
+	set desc = "350 CPU - Allows you to hack robots which are not slaved to you, bringing them under your control."
 	set category = "Software"
 	var/price = 350
 	var/mob/living/silicon/ai/user = usr
 
 	var/list/L = get_unlinked_cyborgs(user)
 	if(!L.len)
-		user << "<span class='notice'>ERROR: No unlinked cyborgs detected!</span>"
+		user << "<span class='notice'>ERROR: No unlinked robots detected!</span>"
 
 
 	if(target && !istype(target))
-		user << "This is not a cyborg."
+		user << "This is not a robot."
 		return
 
 	if(target && target.connected_ai && (target.connected_ai == user))
-		user << "This cyborg is already connected to you."
+		user << "This robot is already connected to you."
 		return
 
 	if(!target)
@@ -153,7 +153,7 @@
 		return
 
 	if(target)
-		if(alert(user, "Really try to hack cyborg [target.name]?", "Hack Cyborg", "Yes", "No") != "Yes")
+		if(alert(user, "Really try to hack robot [target.name]?", "Hack Robot", "Yes", "No") != "Yes")
 			return
 		if(!ability_pay(user, price))
 			return

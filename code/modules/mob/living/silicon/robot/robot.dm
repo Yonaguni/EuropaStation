@@ -1057,8 +1057,8 @@
 				lawupdate = 0
 				disconnect_from_ai()
 				user << "You emag [src]'s interface."
-				message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
-				log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
+				message_admins("[key_name_admin(user)] emagged robot [key_name_admin(src)].  Laws overridden.")
+				log_game("[key_name(user)] emagged robot [key_name(src)].  Laws overridden.")
 				clear_supplied_laws()
 				clear_inherent_laws()
 				laws = new /datum/ai_laws/syndicate_override

@@ -158,7 +158,7 @@ proc/admin_notice(var/message, var/rights)
 				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
 				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
 				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
+				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Robot</A> |
 				<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
 				<A href='?src=\ref[src];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
 				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |

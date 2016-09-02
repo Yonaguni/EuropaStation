@@ -91,7 +91,7 @@
 				body += "Game hunters on [affected_dest.name] "
 				if(prob(33))
 					body += "were surprised when an unusual species experts have since identified as \
-					[pick("a subclass of mammal","a divergent abhuman species","an intelligent species of lemur","organic/cyborg hybrids")] turned up. Believed to have been brought in by \
+					[pick("a subclass of mammal","a divergent abhuman species","an intelligent species of lemur","organic/robot hybrids")] turned up. Believed to have been brought in by \
 					[pick("alien smugglers","early colonists","mercenary raiders","unwitting tourists")], this is the first such specimen discovered in the wild."
 				else if(prob(50))
 					body += "were attacked by a vicious [pick("nas'r","diyaab","samak","predator which has not yet been identified")]\

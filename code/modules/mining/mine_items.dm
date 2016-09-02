@@ -133,7 +133,7 @@
 	drill_verb = "drilling"
 
 /obj/item/weapon/pickaxe/borgdrill
-	name = "cyborg mining drill"
+	name = "robot mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 	digspeed = 15

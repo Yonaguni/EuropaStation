@@ -1,5 +1,5 @@
 /obj/item/weapon/reagent_containers/borghypo
-	name = "cyborg hypospray"
+	name = "robot hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
@@ -113,7 +113,7 @@
 	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
 
 /obj/item/weapon/reagent_containers/borghypo/service
-	name = "cyborg drink synthesizer"
+	name = "robot drink synthesizer"
 	desc = "A portable drink dispencer."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"

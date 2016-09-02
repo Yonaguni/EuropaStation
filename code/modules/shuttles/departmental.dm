@@ -37,13 +37,3 @@
 	req_access = list(access_merchant)
 	shuttle_tag = "Merchant"
 
-
-/*
-/obj/machinery/computer/shuttle_control/multi/turbolift
-	name = "turbolift control console"
-	icon_state = "tcstation"
-	icon_keyboard = "tcstation_key"
-	icon_screen = "syndie"
-	shuttle_tag = "turbolift"
-	density = 0
-*/

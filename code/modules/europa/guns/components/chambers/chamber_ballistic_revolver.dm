@@ -35,7 +35,7 @@
 			chamber_offset = rand(0,max_shots-loaded.len)
 		return 1
 	else
-		visible_message("<span class='notice'>\The [user] undloads the cylinder of \the [holder].</span>")
+		visible_message("<span class='notice'>\The [user] unloads the cylinder of \the [holder].</span>")
 		for(var/obj/item/ammo_casing/C in loaded)
 			C.forceMove(get_turf(src))
 		loaded.Cut()

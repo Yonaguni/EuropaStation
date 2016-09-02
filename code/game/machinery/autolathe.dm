@@ -8,6 +8,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 
+	var/lathe_type = "generic"
 	var/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
@@ -37,15 +38,14 @@
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
-	
+
 /obj/machinery/autolathe/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
 /obj/machinery/autolathe/proc/update_recipe_list()
-	if(!machine_recipes)
-		machine_recipes = autolathe_recipes
+	machine_recipes = autolathe_generic
 
 /obj/machinery/autolathe/interact(mob/user as mob)
 
@@ -58,7 +58,7 @@
 	if(shocked)
 		shock(user, 50)
 
-	var/dat = "<center><h1>Autolathe Control Panel</h1><hr/>"
+	var/dat = "<center><h1>[capitalize(src.name)] Control Panel</h1><hr/>"
 
 	if(!disabled)
 		dat += "<table width = '100%'>"
@@ -305,3 +305,12 @@
 			qdel(S)
 	..()
 	return 1
+
+/obj/machinery/autolathe/robotics
+	name = "robotics fabricator"
+	lathe_type = "robotics"
+	stored_material =  list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
+	storage_capacity = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
+
+/obj/machinery/autolathe/robotics/update_recipe_list()
+	machine_recipes = autolathe_robotics

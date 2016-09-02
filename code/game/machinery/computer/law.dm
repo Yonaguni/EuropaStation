@@ -57,8 +57,8 @@
 
 
 /obj/machinery/computer/borgupload
-	name = "cyborg upload console"
-	desc = "Used to upload laws to Cyborgs."
+	name = "robot upload console"
+	desc = "Used to upload laws to robots."
 	icon_keyboard = "rd_key"
 	icon_screen = "command"
 	circuit = /obj/item/weapon/circuitboard/borgupload
@@ -83,7 +83,7 @@
 		src.current = freeborg()
 
 		if (!src.current)
-			usr << "No free cyborgs detected."
+			usr << "No free robots detected."
 		else
 			usr << "[src.current.name] selected for law changes."
 		return

@@ -48,7 +48,7 @@ var/list/spawntypes = list()
 	turfs = latejoin_cryo
 
 /datum/spawnpoint/cyborg
-	display_name = "Cyborg Storage"
+	display_name = "Robot Storage"
 	msg = "has been activated from storage"
 	restrict_job = list("Robot")
 

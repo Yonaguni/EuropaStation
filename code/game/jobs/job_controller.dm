@@ -450,7 +450,7 @@ var/global/datum/controller/occupations/job_master
 			alt_title = H.mind.role_alt_title
 
 			switch(rank)
-				if("Drone")
+				if("Robot")
 					return H.Robotize()
 				if("Computer")
 					return H

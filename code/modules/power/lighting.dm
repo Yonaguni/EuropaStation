@@ -584,8 +584,8 @@ obj/machinery/light/proc/burn_out()
 	var/rigged = 0		// true if rigged to explode
 	var/broken_chance = 2
 
-	var/brightness_range = 5 //how much light it gives off
-	var/brightness_power = 4
+	var/brightness_range = 6 //how much light it gives off
+	var/brightness_power = 5
 	var/brightness_color = null
 	var/list/lighting_modes = list()
 
@@ -597,8 +597,8 @@ obj/machinery/light/proc/burn_out()
 	item_state = "c_tube"
 	matter = list("glass" = 100)
 
-	brightness_range = 7 // luminosity when on, also used in power calculation
-	brightness_power = 5
+	brightness_range = 8 // luminosity when on, also used in power calculation
+	brightness_power = 7
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 5, l_power = 1, l_color = "#da0205"),

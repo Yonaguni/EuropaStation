@@ -17,7 +17,12 @@
 	emergency_shuttle_called_message = "An emergency wave jump has been initiated. This is not a drill. Drive spooling will be complete in approximately %ETA%."
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
 
-	evac_controller_type = /datum/evacuation_controller/pods
+	evac_controller_type = /datum/evacuation_controller
 
 /datum/map/aeolus/perform_map_generation()
 	return 1
+
+/obj/effect/landmark/map_data/aeolus
+	name = "SDEV Aeolus"
+	desc = "A Jovian naval vessel."
+	height = 2

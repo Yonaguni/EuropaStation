@@ -167,7 +167,7 @@ var/datum/antagonist/ninja/ninjas
 		if(17)
 			directive += "The Spider Clan has recently begun recruiting outsiders. Consider suitable candidates and assess their behavior amongst the crew."
 		if(18)
-			directive += "A cyborg liberation group has expressed interest in our serves. Prove the Spider Clan merciful towards law-bound synthetics."
+			directive += "An AI liberation group has expressed interest in our services. Prove the Spider Clan merciful towards law-bound synthetics."
 		else
 			directive += "There are no special supplemental instructions at this time."
 	return directive
