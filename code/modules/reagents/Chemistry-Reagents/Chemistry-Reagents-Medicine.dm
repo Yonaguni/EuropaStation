@@ -49,22 +49,6 @@
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(0, 6 * removed)
 
-/datum/reagent/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
-	taste_description = "bitterness"
-	taste_mult = 1.5
-	reagent_state = LIQUID
-	color = "#FF8000"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 12 * removed)
-
 /datum/reagent/dylovene
 	name = "Dylovene"
 	id = "anti_toxin"

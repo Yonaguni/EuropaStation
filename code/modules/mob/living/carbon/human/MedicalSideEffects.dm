@@ -99,7 +99,7 @@
 // ===========
 /datum/medical_effect/bad_stomach
 	name = "Bad Stomach"
-	triggers = list("kelotane" = 30, "dermaline" = 15)
+	triggers = list("kelotane" = 30)
 	cures = list("anti_toxin")
 	cure_message = "Your stomach feels a little better now..."
 

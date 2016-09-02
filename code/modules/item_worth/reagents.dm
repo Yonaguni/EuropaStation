@@ -378,9 +378,6 @@
 /datum/reagent/kelotane
 	value = 2.9
 
-/datum/reagent/dermaline
-	value = 3.9
-
 /datum/reagent/dylovene
 	value = 2.1
 

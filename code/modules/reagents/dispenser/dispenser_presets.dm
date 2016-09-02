@@ -34,7 +34,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sterilizine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/leporazine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/kelotane,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dermaline,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dylovene,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/synaptizine,

@@ -314,13 +314,6 @@
 	inhibitors = list("water" = 1) // Messes with cryox
 	result_amount = 1
 
-/datum/chemical_reaction/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	result = "dermaline"
-	required_reagents = list("acetone" = 1, "phosphorus" = 1, "kelotane" = 1)
-	result_amount = 3
-
 /datum/chemical_reaction/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"

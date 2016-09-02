@@ -181,14 +181,6 @@
 		..()
 		reagents.add_reagent("dexalin", 15)
 
-/obj/item/weapon/reagent_containers/pill/dermaline
-	name = "Dermaline pill"
-	desc = "Used to treat burn wounds."
-	icon_state = "pill12"
-	New()
-		..()
-		reagents.add_reagent("dermaline", 15)
-
 /obj/item/weapon/reagent_containers/pill/dylovene
 	name = "Dylovene pill"
 	desc = "A broad-spectrum anti-toxin."
