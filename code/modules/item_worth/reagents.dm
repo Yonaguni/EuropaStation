@@ -387,9 +387,6 @@
 /datum/reagent/dexalin
 	value = 2.4
 
-/datum/reagent/tricordrazine
-	value = 6
-
 /datum/reagent/cryoxadone
 	value = 3.9
 

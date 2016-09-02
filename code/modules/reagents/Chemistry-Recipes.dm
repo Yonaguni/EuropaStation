@@ -298,13 +298,6 @@
 	required_reagents = list("potassium" = 1, "acetone" = 1, "sugar" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	result = "tricordrazine"
-	required_reagents = list("adrenaline" = 1, "anti_toxin" = 1)
-	result_amount = 2
-
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"
 	id = "alkysine"
@@ -1742,13 +1735,6 @@
 	result = "beepskysmash"
 	required_reagents = list("limejuice" = 1, "whiskey" = 1, "iron" = 1)
 	result_amount = 2
-
-/datum/chemical_reaction/doctor_delight
-	name = "The Doctor's Delight"
-	id = "doctordelight"
-	result = "doctorsdelight"
-	required_reagents = list("limejuice" = 1, "tomatojuice" = 1, "orangejuice" = 1, "cream" = 2, "tricordrazine" = 1)
-	result_amount = 6
 
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"

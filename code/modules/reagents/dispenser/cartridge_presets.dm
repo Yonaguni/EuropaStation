@@ -73,7 +73,6 @@
 	dermaline	spawn_reagent = "dermaline"
 	dexalin		spawn_reagent = "dexalin"
 	dexalin/small	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
-	tricord		spawn_reagent = "tricordrazine"
 	dylovene	spawn_reagent = "anti_toxin"
 	synaptizine	spawn_reagent = "synaptizine"
 	hyronalin	spawn_reagent = "hyronalin"

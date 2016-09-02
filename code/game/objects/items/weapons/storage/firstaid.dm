@@ -98,7 +98,6 @@
 	startswith = list(
 		/obj/item/weapon/storage/pill_bottle/bicaridine,
 		/obj/item/weapon/storage/pill_bottle/dermaline,
-		/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 		/obj/item/weapon/storage/pill_bottle/dylovene,
 		/obj/item/weapon/storage/pill_bottle/morphine,
 		/obj/item/weapon/storage/pill_bottle/spaceacillin,
@@ -154,12 +153,6 @@
 	desc = "Contains pills used to stabilize the severely injured."
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/bicaridine = 7)
-
-/obj/item/weapon/storage/pill_bottle/dexalin_plus
-	name = "bottle of Dexalin Plus pills"
-	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
-
-	startswith = list(/obj/item/weapon/reagent_containers/pill/dexalin_plus = 7)
 
 /obj/item/weapon/storage/pill_bottle/dermaline
 	name = "bottle of Dermaline pills"

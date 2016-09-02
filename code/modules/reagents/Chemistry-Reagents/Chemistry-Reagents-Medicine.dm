@@ -98,22 +98,6 @@
 
 	holder.remove_reagent("lexorin", 2 * removed)
 
-/datum/reagent/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
-	taste_description = "grossness"
-	reagent_state = LIQUID
-	color = "#8040FF"
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-6 * removed)
-		M.heal_organ_damage(3 * removed, 3 * removed)
-		M.adjustToxLoss(-3 * removed)
-
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
 	id = "cryoxadone"

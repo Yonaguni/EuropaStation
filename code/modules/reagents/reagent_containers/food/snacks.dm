@@ -217,7 +217,7 @@
 
 //Notes by Darem: Food in the "snacks" subtype can hold a maximum of 50 units Generally speaking, you don't want to go over 40
 //	total for the item because you want to leave space for extra condiments. If you want effect besides healing, add a reagent for
-//	it. Try to stick to existing reagents when possible (so if you want a stronger healing effect, just use Tricordrazine). On use
+//	it. Try to stick to existing reagents when possible. On use
 //	effect (such as the old officer eating a donut code) requires a unique reagent (unless you can figure out a better way).
 
 //The nutriment reagent and bitesize variable replace the old heal_amt and amount variables. Each unit of nutriment is equal to
@@ -236,24 +236,6 @@
 //		reagents.add_reagent("nutriment", 2)							//	this line of code for all the contents.
 //		bitesize = 3													//This is the amount each bite consumes.
 
-
-
-
-/obj/item/weapon/reagent_containers/food/snacks/aesirsalad
-	name = "Aesir salad"
-	desc = "Probably too incredible for mortal men to fully enjoy."
-	icon_state = "aesirsalad"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#468C00"
-	center_of_mass = "x=17;y=11"
-	nutriment_amt = 8
-	nutriment_desc = list("apples" = 3,"salad" = 5)
-
-	New()
-		..()
-		reagents.add_reagent("doctorsdelight", 8)
-		reagents.add_reagent("tricordrazine", 8)
-		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
 	name = "candy"
@@ -396,7 +378,7 @@
 		..()
 		reagents.add_reagent("sprinkles", 1)
 		bitesize = 10
-		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,10)
+		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,)
 		switch(chaosselect)
 			if(1)
 				reagents.add_reagent("nutriment", 3)
@@ -416,8 +398,6 @@
 				reagents.add_reagent("banana", 3)
 			if(9)
 				reagents.add_reagent("berryjuice", 3)
-			if(10)
-				reagents.add_reagent("tricordrazine", 3)
 		if(prob(30))
 			src.icon_state = "donut2"
 			src.overlay_state = "box-donut2"
@@ -725,7 +705,7 @@
 	name = "\improper Sin-pocket"
 	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
 	filling_color = "#6D6D00"
-	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 0.75, "synaptizine" = 0.25)
+	heated_reagents = list("bicaridine" = 3, "hyperzine" = 0.75, "synaptizine" = 0.25)
 	var/has_been_heated = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
@@ -751,7 +731,7 @@
 		reagents.add_reagent("protein", 2)
 
 	var/warm = 0
-	var/list/heated_reagents = list("tricordrazine" = 5)
+	var/list/heated_reagents = list("bicaridine" = 5)
 	proc/heat()
 		warm = 1
 		for(var/reagent in heated_reagents)
@@ -1088,7 +1068,7 @@
 		if(prob(10))
 			name = "exceptional plump pie"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent("tramadol", 5)
 			bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/xemeatpie
@@ -1252,7 +1232,7 @@
 	trash = /obj/item/trash/syndi_cakes
 	New()
 		..()
-		reagents.add_reagent("doctorsdelight", 5)
+		reagents.add_reagent("bicaridine", 5)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
@@ -1483,7 +1463,7 @@
 	New()
 		..()
 		reagents.add_reagent("water", 5)
-		reagents.add_reagent("tricordrazine", 5)
+		reagents.add_reagent("bicaridine", 5)
 		bitesize = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/mysterysoup
@@ -1510,7 +1490,7 @@
 			if(3)
 				reagents.add_reagent("nutriment", 5)
 				reagents.add_reagent("water", 5)
-				reagents.add_reagent("tricordrazine", 5)
+				reagents.add_reagent("bicaridine", 5)
 			if(4)
 				reagents.add_reagent("nutriment", 5)
 				reagents.add_reagent("water", 10)
@@ -2121,7 +2101,7 @@
 			name = "exceptional plump helmet biscuit"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
 			reagents.add_reagent("nutriment", 3)
-			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent("tramadol", 5)
 			bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chawanmushi

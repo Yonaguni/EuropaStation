@@ -13,7 +13,7 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("tricordrazine", "adrenaline", "spaceacillin")
+	var/list/reagent_ids = list("adrenaline", "spaceacillin")
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
@@ -21,7 +21,7 @@
 	reagent_ids = list("bicaridine", "adrenaline", "dexalin")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "adrenaline", "morphine")
+	reagent_ids = list("adrenaline", "morphine")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
