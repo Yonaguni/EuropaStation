@@ -358,10 +358,10 @@
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	result = "spaceacillin"
+/datum/chemical_reaction/antibiotic
+	name = "Antibiotic"
+	id = "antibiotic"
+	result = "antibiotic"
 	required_reagents = list("cryptobiolin" = 1, "adrenaline" = 1)
 	result_amount = 2
 

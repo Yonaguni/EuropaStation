@@ -370,10 +370,10 @@
 	if(prob(60))
 		M.take_organ_damage(4 * removed, 0)
 
-/datum/reagent/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	description = "An all-purpose antiviral agent."
+/datum/reagent/antibiotic
+	name = "Antibiotic"
+	id = "antibiotic"
+	description = "An all-purpose antibiotic."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"

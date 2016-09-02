@@ -429,7 +429,7 @@
 /datum/reagent/arithrazine
 	value = 2.7
 
-/datum/reagent/spaceacillin
+/datum/reagent/antibiotic
 	value = 2.5
 
 /datum/reagent/sterilizine

@@ -25,7 +25,7 @@
 	var/treatment_oxy = "dexalin"
 	var/treatment_fire = "kelotane"
 	var/treatment_tox = "antitox"
-	var/treatment_virus = "spaceacillin"
+	var/treatment_virus = "antibiotic"
 	var/treatment_emag = "toxin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 

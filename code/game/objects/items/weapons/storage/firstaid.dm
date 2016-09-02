@@ -100,7 +100,7 @@
 		/obj/item/weapon/storage/pill_bottle/dermaline,
 		/obj/item/weapon/storage/pill_bottle/dylovene,
 		/obj/item/weapon/storage/pill_bottle/morphine,
-		/obj/item/weapon/storage/pill_bottle/spaceacillin,
+		/obj/item/weapon/storage/pill_bottle/antibiotic,
 		/obj/item/stack/medical/splint,
 		)
 
@@ -178,11 +178,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/kelotane = 7)
 
-/obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "bottle of Spaceacillin pills"
-	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
+/obj/item/weapon/storage/pill_bottle/antibiotic
+	name = "bottle of Antibiotic pills"
+	desc = "A broad-spectrum antibiotic. Effective against many diseases likely to be encountered in space."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/antibiotic = 7)
 
 /obj/item/weapon/storage/pill_bottle/morphine
 	name = "bottle of Morphine pills"

@@ -138,7 +138,7 @@
 
 	charges = list(
 		list("morphine",      "morphine",      0, 80),
-		list("antibiotics",   "spaceacillin",  0, 80),
+		list("antibiotics",   "antibiotic",  0, 80),
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 80),
@@ -153,7 +153,7 @@
 	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
 		list("morphine",      "morphine",      0, 20),
-		list("antibiotics",   "spaceacillin",  0, 20),
+		list("antibiotics",   "antibiotic",  0, 20),
 		list("antitoxins",    "anti_toxin",    0, 20),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 20),
