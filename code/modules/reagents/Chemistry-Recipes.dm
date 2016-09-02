@@ -322,10 +322,10 @@
 	inhibitors = list("sugar" = 1) // Messes up with adrenaline
 	result_amount = 2
 
-/datum/chemical_reaction/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	result = "hyperzine"
+/datum/chemical_reaction/jumpstart
+	name = "Jumpstart"
+	id = "jumpstart"
+	result = "jumpstart"
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
 	result_amount = 3
 

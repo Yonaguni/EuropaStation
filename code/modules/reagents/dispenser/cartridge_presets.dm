@@ -80,7 +80,7 @@
 	imidazoline	spawn_reagent = "imidazoline"
 	peridaxon	spawn_reagent = "peridaxon"
 	styptazine	spawn_reagent = "styptazine"
-	hyperzine	spawn_reagent = "hyperzine"
+	jumpstart	spawn_reagent = "jumpstart"
 	rezadone	spawn_reagent = "rezadone"
 	antibiotic	spawn_reagent = "antibiotic"
 	ethylredox	spawn_reagent = "ethylredoxrazine"

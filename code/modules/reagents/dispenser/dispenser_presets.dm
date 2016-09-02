@@ -43,7 +43,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/imidazoline,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/peridaxon,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/styptazine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyperzine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/jumpstart,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/rezadone,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/antibiotic,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethylredox,

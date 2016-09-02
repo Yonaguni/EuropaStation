@@ -661,7 +661,7 @@
 	New()
 		..()
 		reagents.add_reagent("protein", 12)
-		reagents.add_reagent("hyperzine", 5)
+		reagents.add_reagent("jumpstart", 5)
 		src.bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/xenomeat
@@ -705,7 +705,7 @@
 	name = "\improper Sin-pocket"
 	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
 	filling_color = "#6D6D00"
-	heated_reagents = list("styptazine" = 3, "hyperzine" = 0.75, "synaptizine" = 0.25)
+	heated_reagents = list("styptazine" = 3, "jumpstart" = 0.75, "synaptizine" = 0.25)
 	var/has_been_heated = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)

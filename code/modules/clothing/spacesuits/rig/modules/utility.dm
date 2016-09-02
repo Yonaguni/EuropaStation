@@ -242,7 +242,7 @@
 
 	charges = list(
 		list("synaptizine",   "synaptizine",   0, 30),
-		list("hyperzine",     "hyperzine",     0, 30),
+		list("jumpstart",     "jumpstart",     0, 30),
 		list("oxycodone",     "oxycodone",     0, 30),
 		list("nutrients",     "glucose",     0, 80),
 		)

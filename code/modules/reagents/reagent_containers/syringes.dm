@@ -362,5 +362,5 @@
 	New()
 		..()
 		reagents.add_reagent("adrenaline",5)
-		reagents.add_reagent("hyperzine",10)
+		reagents.add_reagent("jumpstart",10)
 

@@ -414,7 +414,7 @@
 /datum/reagent/ryetalyn
 	value = 3.6
 
-/datum/reagent/hyperzine
+/datum/reagent/jumpstart
 	value = 3.9
 
 /datum/reagent/ethylredoxrazine

@@ -284,17 +284,17 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-/datum/reagent/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+/datum/reagent/jumpstart
+	name = "Jumpstart"
+	id = "jumpstart"
+	description = "Jumpstart is a highly effective, highly -illegal-, long-lasting muscle stimulant."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.5
 
-/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/jumpstart/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(5))
