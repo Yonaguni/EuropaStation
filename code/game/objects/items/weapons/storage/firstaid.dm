@@ -30,7 +30,7 @@
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment,
-		/obj/item/weapon/reagent_containers/pill/kelotane = 3,
+		/obj/item/weapon/reagent_containers/pill/fotiazine = 3,
 		)
 
 /obj/item/weapon/storage/firstaid/fire/New()
@@ -165,11 +165,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/adrenaline = 7)
 
-/obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
+/obj/item/weapon/storage/pill_bottle/fotiazine
+	name = "bottle of Fotiazine pills"
 	desc = "Contains pills used to treat burns."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/kelotane = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/fotiazine = 7)
 
 /obj/item/weapon/storage/pill_bottle/antibiotic
 	name = "bottle of Antibiotic pills"

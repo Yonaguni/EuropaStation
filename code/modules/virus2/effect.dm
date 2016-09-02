@@ -277,7 +277,7 @@
 		if(c_data)
 			data = c_data
 		else
-			data = pick("styptazine", "kelotane", "anti_toxin", "adrenaline", "space_drugs", "sugar",
+			data = pick("styptazine", "fotiazine", "anti_toxin", "adrenaline", "space_drugs", "sugar",
 						"morphine", "dexalin", "cryptobiolin", "impedrezene", "hyperzine", "ethylredoxrazine",
 						"mindbreaker", "glucose")
 		var/datum/reagent/R = chemical_reagents_list[data]

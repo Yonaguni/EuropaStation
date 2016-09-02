@@ -375,7 +375,7 @@
 /datum/reagent/styptazine
 	value = 4.9
 
-/datum/reagent/kelotane
+/datum/reagent/fotiazine
 	value = 2.9
 
 /datum/reagent/dylovene

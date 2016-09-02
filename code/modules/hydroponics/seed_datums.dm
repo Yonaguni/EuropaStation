@@ -288,7 +288,7 @@
 	seed_name = "ambrosia vulgaris"
 	display_name = "ambrosia vulgaris"
 	mutants = list("ambrosiadeus")
-	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "kelotane" = list(1,8,1), "styptazine" = list(1,10,1), "toxin" = list(1,10))
+	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "fotiazine" = list(1,8,1), "styptazine" = list(1,10,1), "toxin" = list(1,10))
 	kitchen_tag = "ambrosia"
 
 /datum/seed/ambrosia/New()
@@ -611,7 +611,7 @@
 	seed_name = "green grape"
 	display_name = "green grapevines"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "kelotane" = list(3,5), "grapejuice" = list(10,10))
+	chems = list("nutriment" = list(1,10), "fotiazine" = list(3,5), "grapejuice" = list(10,10))
 
 /datum/seed/grapes/green/New()
 	..()
@@ -1065,7 +1065,7 @@
 	name = "mtear"
 	seed_name = "Messa's tear"
 	display_name = "Messa's tear leaves"
-	chems = list("honey" = list(1,10), "kelotane" = list(3,5))
+	chems = list("honey" = list(1,10), "fotiazine" = list(3,5))
 	kitchen_tag = "mtear"
 
 /datum/seed/mtear/New()

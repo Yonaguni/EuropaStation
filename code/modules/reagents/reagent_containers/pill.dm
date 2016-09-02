@@ -123,13 +123,13 @@
 		..()
 		reagents.add_reagent("stoxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/kelotane
-	name = "Kelotane pill"
+/obj/item/weapon/reagent_containers/pill/fotiazine
+	name = "Fotiazine pill"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
 	New()
 		..()
-		reagents.add_reagent("kelotane", 15)
+		reagents.add_reagent("fotiazine", 15)
 
 /obj/item/weapon/reagent_containers/pill/paracetamol
 	name = "Paracetamol pill"

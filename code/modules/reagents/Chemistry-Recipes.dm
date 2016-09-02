@@ -260,10 +260,10 @@
 	required_reagents = list("mercury" = 1, "acetone" = 1, "sugar" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	result = "kelotane"
+/datum/chemical_reaction/fotiazine
+	name = "Fotiazine"
+	id = "fotiazine"
+	result = "fotiazine"
 	required_reagents = list("silicon" = 1, "carbon" = 1)
 	result_amount = 2
 	log_is_important = 1

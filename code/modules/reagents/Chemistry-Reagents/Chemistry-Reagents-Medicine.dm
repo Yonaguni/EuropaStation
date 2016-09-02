@@ -34,10 +34,10 @@
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(2 * removed, 0)
 
-/datum/reagent/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	description = "Kelotane is a drug used to treat burns."
+/datum/reagent/fotiazine
+	name = "Fotiazine"
+	id = "fotiazine"
+	description = "Fotiazine is a drug derived from the TLR3 protein. It is used to treat burns."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFA800"
@@ -45,9 +45,9 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fotiazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 6 * removed)
+		M.heal_organ_damage(0, 2 * removed)
 
 /datum/reagent/dylovene
 	name = "Dylovene"

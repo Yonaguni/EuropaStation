@@ -69,7 +69,7 @@
 	oxycodone	spawn_reagent = "oxycodone"
 	sterilizine	spawn_reagent = "sterilizine"
 	leporazine	spawn_reagent = "leporazine"
-	kelotane	spawn_reagent = "kelotane"
+	fotiazine	spawn_reagent = "fotiazine"
 	dexalin		spawn_reagent = "dexalin"
 	dexalin/small	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
 	dylovene	spawn_reagent = "anti_toxin"

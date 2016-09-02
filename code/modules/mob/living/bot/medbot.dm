@@ -23,7 +23,7 @@
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
 	var/treatment_brute = "styptazine"
 	var/treatment_oxy = "dexalin"
-	var/treatment_fire = "kelotane"
+	var/treatment_fire = "fotiazine"
 	var/treatment_tox = "anti_toxin"
 	var/treatment_virus = "antibiotic"
 	var/treatment_emag = "toxin"

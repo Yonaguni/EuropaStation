@@ -135,7 +135,7 @@
 					prob(1);/obj/item/stack/medical/splint,\
 					prob(2);/obj/item/bodybag,\
 					prob(1);/obj/item/bodybag/cryobag,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/kelotane,\
+					prob(2);/obj/item/weapon/storage/pill_bottle/fotiazine,\
 					prob(2);/obj/item/weapon/storage/pill_bottle/antitox,\
 					prob(2);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
