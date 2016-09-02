@@ -4,7 +4,7 @@
 	origin = "Toy Shop"
 	trade_flags = TRADER_GOODS|TRADER_MONEY|TRADER_WANTED_ONLY
 	possible_origins = list("Toys R Ours", "LEGS GO", "Kay-Cee Toys", "Build-a-Cat", "Magic Box", "The Positronic's Dungeon and Baseball Card Shop")
-	speech = list("hail_generic"    = "Uuhh... hello? Welcome to ORIGIN, I hope you have a uh.... good shoping trip.",
+	speech = list("hail_generic"    = "Uuhh... hello? Welcome to ORIGIN, I hope you have a uh.... good shopping trip.",
 				"hail_deny"         = "Nah, you're not allowed here. At all",
 
 				"trade_complete"       = "Thanks for shopping... here.... at ORIGIN.",

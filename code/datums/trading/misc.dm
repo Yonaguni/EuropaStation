@@ -12,7 +12,7 @@
 				"trade_blacklist"   = "Legally I can' do that. Morally, I refuse to do that.",
 				"trade_found_unwanted" = "I only want animals. I don't need food, shiny things, I'm looking for specific ones at that. Ones I already have the cage and food for.",
 				"trade_not_enough"   = "I'd give you the animal for free, but I need the money to feed the others. So you must pay in full.",
-				"how_much"          = "This is a fine specimin, I believe it will cost you VALUE thalers.",
+				"how_much"          = "This is a fine specimen, I believe it will cost you VALUE thalers.",
 				"what_want"         = "I have the facilities currently to support",
 
 				"compliment_deny"   = "That was almost charming.",
