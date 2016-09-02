@@ -3,7 +3,7 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
-	desc = "A device which uses Hawking Radiation and phoron to produce power."
+	desc = "A device which uses Hawking Radiation to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
 	anchored = 0
@@ -32,11 +32,11 @@ var/global/list/rad_collectors = list()
 
 
 	if(P)
-		if(P.air_contents.gas["phoron"] == 0)
+		if(P.air_contents.gas[GAS_FUEL] == 0)
 			investigate_log("<font color='red'>out of fuel</font>.","singulo")
 			eject()
 		else
-			P.air_contents.adjust_gas("phoron", -0.001*drainratio)
+			P.air_contents.adjust_gas(GAS_FUEL, -0.001*drainratio)
 	return
 
 
@@ -46,7 +46,7 @@ var/global/list/rad_collectors = list()
 			toggle_power()
 			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
 			"You turn the [src.name] [active? "on":"off"].")
-			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["phoron"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
+			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas[GAS_FUEL]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
 			user << "\red The controls are locked!"
@@ -60,7 +60,7 @@ var/global/list/rad_collectors = list()
 			user << "\red The [src] needs to be secured to the floor first."
 			return 1
 		if(src.P)
-			user << "\red There's already a phoron tank loaded."
+			user << "\red There's already a fuel tank loaded."
 			return 1
 		user.drop_item()
 		src.P = W
@@ -73,7 +73,7 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(P)
-			user << "\blue Remove the phoron tank first."
+			user << "\blue Remove the fuel tank first."
 			return 1
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		src.anchored = !src.anchored
@@ -126,7 +126,7 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
 	if(P && active)
 		var/power_produced = 0
-		power_produced = P.air_contents.gas["phoron"]*pulse_strength*20
+		power_produced = P.air_contents.gas[GAS_FUEL]*pulse_strength*20
 		add_avail(power_produced)
 		last_power_new = power_produced
 		return

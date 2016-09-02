@@ -87,7 +87,7 @@
 	desc = "A power generator that runs on solid phoron sheets. Rated for 80 kW max safe output."
 
 	var/sheet_name = "Phoron Sheets"
-	var/sheet_path = /obj/item/stack/material/phoron
+	var/sheet_path
 	var/board_path = /obj/item/weapon/circuitboard/pacman
 
 	/*
@@ -231,7 +231,7 @@
 	var/phoron = (sheets+sheet_left)*20
 	var/datum/gas_mixture/environment = loc.return_air()
 	if (environment)
-		environment.adjust_gas_temp("phoron", phoron/10, temperature + T0C)
+		environment.adjust_gas_temp(GAS_FUEL, phoron/10, temperature + T0C)
 
 	sheets = 0
 	sheet_left = 0

@@ -429,7 +429,7 @@ datum/objective/steal
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
-		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
+		"28 moles of fuel (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 		"a command insignia" = /obj/item/clothing/accessory/medal/aeolus/captain,
@@ -486,13 +486,13 @@ datum/objective/steal
 		if(!isliving(owner.current))	return 0
 		var/list/all_items = owner.current.get_contents()
 		switch (target_name)
-			if("28 moles of phoron (full tank)","10 diamonds","50 gold bars","25 refined uranium bars")
+			if("28 moles of fuel (full tank)","10 diamonds","50 gold bars","25 refined uranium bars")
 				var/target_amount = text2num(target_name)//Non-numbers are ignored.
 				var/found_amount = 0.0//Always starts as zero.
 
-				for(var/obj/item/I in all_items) //Check for phoron tanks
+				for(var/obj/item/I in all_items)
 					if(istype(I, steal_target))
-						found_amount += (target_name=="28 moles of phoron (full tank)" ? (I:air_contents:gas["phoron"]) : (I:amount))
+						found_amount += (target_name=="28 moles of fuel (full tank)" ? (I:air_contents:gas[GAS_FUEL]) : (I:amount))
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")
@@ -731,9 +731,6 @@ datum/objective/heist/salvage
 				target_amount = 200
 			if(3)
 				target = "plasteel"
-				target_amount = 100
-			if(4)
-				target = "phoron"
 				target_amount = 100
 			if(5)
 				target = "silver"

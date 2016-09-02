@@ -59,7 +59,7 @@
 /obj/effect/mine/proc/triggerphoron(obj)
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("phoron", 30)
+			target.assume_gas(GAS_FUEL, 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
 
@@ -85,7 +85,7 @@
 	triggerproc = "triggerrad"
 
 /obj/effect/mine/phoron
-	name = "Phoron Mine"
+	name = "Incendiary Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggerphoron"
 

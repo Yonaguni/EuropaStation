@@ -482,7 +482,7 @@
     var/nitrousoxide = 0
     if(atmosphere.total_moles) // Division by zero prevention
         oxygen = (atmosphere.gas["oxygen"] / atmosphere.total_moles) * 100 // Percentage of the gas
-        phoron = (atmosphere.gas["phoron"] / atmosphere.total_moles) * 100
+        phoron = (atmosphere.gas[GAS_FUEL] / atmosphere.total_moles) * 100
         carbondioxide = (atmosphere.gas["carbon_dioxide"] / atmosphere.total_moles) * 100
         nitrousoxide = (atmosphere.gas["sleeping_agent"] / atmosphere.total_moles) * 100
 
@@ -494,7 +494,7 @@
 
 
     if(phoron > 0.1)        // Toxic even in small amounts.
-        status.Add("Phoron contamination.")
+        status.Add("Toxins contamination.")
     if(nitrousoxide > 0.1)    // Probably slightly less dangerous but still.
         status.Add("N2O contamination.")
     if(carbondioxide > 5)    // Not as dangerous until very large amount is present.

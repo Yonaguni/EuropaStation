@@ -1152,7 +1152,7 @@
 	icon_state = "co2"
 
 /obj/machinery/atmospherics/pipe/tank/phoron
-	name = "Pressure Tank (Phoron)"
+	name = "Pressure Tank (Fuel)"
 	icon_state = "phoron_map"
 
 /obj/machinery/atmospherics/pipe/tank/phoron/New()
@@ -1160,10 +1160,10 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("phoron", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_FUEL, (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 
 	..()
-	icon_state = "phoron"
+	icon_state = GAS_FUEL
 
 /obj/machinery/atmospherics/pipe/tank/nitrous_oxide
 	name = "Pressure Tank (Nitrous Oxide)"

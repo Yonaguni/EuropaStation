@@ -23,18 +23,18 @@
 /obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
 	..()
 	sync_breath_types()
-	
+
 /obj/item/organ/internal/lungs/replaced()
 	..()
 	sync_breath_types()
-	
+
 /**
  *  Set these lungs' breath types based on the lungs' species
  */
 /obj/item/organ/internal/lungs/proc/sync_breath_types()
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : "oxygen"
-	poison_type = species.poison_type ? species.poison_type : "phoron"
+	poison_type = species.poison_type ? species.poison_type : GAS_FUEL
 	exhale_type = species.exhale_type ? species.exhale_type : "carbon_dioxide"
 
 /obj/item/organ/internal/lungs/process()
@@ -144,9 +144,9 @@
 		var/ratio = (poison/safe_toxins_max) * 10
 		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
-		owner.phoron_alert = 1
+		owner.toxins_alert = 1
 	else
-		owner.phoron_alert = 0
+		owner.toxins_alert = 0
 
 	// If there's some other shit in the air lets deal with it here.
 	if(breath.gas["sleeping_agent"])

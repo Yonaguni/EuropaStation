@@ -36,12 +36,12 @@
 	access = access_robotics
 
 /decl/hierarchy/supply_pack/science/phoron
-	name = "Phoron assembly crate"
+	name = "Air-fuel bomb assembly crate"
 	contains = list(/obj/item/weapon/tank/phoron = 3,
 					/obj/item/device/assembly/igniter = 3,
 					/obj/item/device/assembly/prox_sensor = 3,
 					/obj/item/device/assembly/timer = 3)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "\improper Phoron assembly crate"
+	containername = "\improper Air-fuel bomb assembly crate"
 	access = access_tox_storage

@@ -13,9 +13,6 @@
 /material/silver
 	value = 35
 
-/material/phoron
-	value = 200
-
 /material/stone/marble
 	value = 4
 
@@ -36,9 +33,6 @@
 
 /material/glass/reinforced
 	value = 2
-
-/material/glass/phoron
-	value = 30
 
 /material/glass/phoron/reinforced
 	value = 40

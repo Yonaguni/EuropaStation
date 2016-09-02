@@ -110,11 +110,6 @@
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
 
-/obj/item/stack/material/phoron
-	name = "solid phoron"
-	icon_state = "sheet-phoron"
-	default_type = "phoron"
-
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
@@ -214,13 +209,6 @@
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
 	default_type = "rglass"
-
-/obj/item/stack/material/glass/phoronglass
-	name = "borosilicate glass"
-	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures."
-	singular_name = "borosilicate glass sheet"
-	icon_state = "sheet-phoronglass"
-	default_type = "phglass"
 
 /obj/item/stack/material/glass/phoronrglass
 	name = "reinforced borosilicate glass"

@@ -92,18 +92,13 @@
 	name = "Crescent window grille spawner"
 	win_path = /obj/structure/window/reinforced/crescent
 
-/obj/effect/wingrille_spawn/phoron
-	name = "phoron window grille spawner"
-	icon_state = "p-wingrille"
-	win_path = /obj/structure/window/phoronbasic
-
 /obj/effect/wingrille_spawn/reinforced_phoron
-	name = "reinforced phoron window grille spawner"
+	name = "reinforced borosillicate glass window grille spawner"
 	icon_state = "pr-wingrille"
 	win_path = /obj/structure/window/phoronreinforced
 
 /obj/effect/wingrille_spawn/reinforced_phoron/full
-	name = "reinforced phoron window grille spawner - full tile"
+	name = "reinforced borosillicate glass window grille spawner - full tile"
 	fulltile = TRUE
 	win_path = /obj/structure/window/phoronreinforced/full
 

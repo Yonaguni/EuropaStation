@@ -401,8 +401,7 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/weapon/coin/diamond,\
 					prob(4);/obj/item/weapon/coin/iron,\
 					prob(3);/obj/item/weapon/coin/uranium,\
-					prob(1);/obj/item/weapon/coin/platinum,\
-					prob(1);/obj/item/weapon/coin/phoron)
+					prob(1);/obj/item/weapon/coin/platinum)
 
 
 /obj/random/toy
@@ -605,7 +604,6 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/stack/material/diamond{amount = 10},\
 					prob(2);/obj/item/stack/material/glass/phoronrglass{amount = 10},\
 					prob(3);/obj/item/stack/material/marble{amount = 10},\
-					prob(2);/obj/item/stack/material/phoron{amount = 10},\
 					prob(2);/obj/item/stack/material/gold{amount = 10},\
 					prob(2);/obj/item/stack/material/silver{amount = 10},\
 					prob(2);/obj/item/stack/material/osmium{amount = 10},\

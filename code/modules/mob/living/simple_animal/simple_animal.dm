@@ -149,10 +149,10 @@
 				if(Environment.gas["oxygen"] > max_oxy)
 					atmos_suitable = 0
 			if(min_tox)
-				if(Environment.gas["phoron"] < min_tox)
+				if(Environment.gas[GAS_FUEL] < min_tox)
 					atmos_suitable = 0
 			if(max_tox)
-				if(Environment.gas["phoron"] > max_tox)
+				if(Environment.gas[GAS_FUEL] > max_tox)
 					atmos_suitable = 0
 			if(min_n2)
 				if(Environment.gas["nitrogen"] < min_n2)

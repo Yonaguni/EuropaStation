@@ -58,10 +58,10 @@
 	containertype = /obj/structure/largecrate
 
 /decl/hierarchy/supply_pack/atmospherics/canister_phoron
-	name = "Phoron gas canister"
+	name = "Fuel gas canister"
 	contains = list(/obj/machinery/portable_atmospherics/canister/phoron)
 	cost = 60
-	containername = "\improper Phoron gas canister crate"
+	containername = "\improper Fuel gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
 

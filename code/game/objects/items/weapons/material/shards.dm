@@ -93,6 +93,3 @@
 // Preset types - left here for the code that uses them
 /obj/item/weapon/material/shard/shrapnel/New(loc)
 	..(loc, "steel")
-
-/obj/item/weapon/material/shard/phoron/New(loc)
-	..(loc, "phglass")

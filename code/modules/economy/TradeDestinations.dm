@@ -204,7 +204,7 @@ Wilderness
 /datum/trade_destination/jupiter
 	name = "Jupiter"
 	description = "The high demand for hydrogen and helium-derived fuel during the initial phases of human expansion to other planets \
-	caused Jupiter's mining corporations to skyrocket in power and influence. These days Jupiter has been eclipsed by the booming phoron \
+	caused Jupiter's mining corporations to skyrocket in power and influence. These days Jupiter has been eclipsed by the booming HE3 \
 	trade, but it is still a hub for mining and fabrication conglomerates without the cash to establish themselves in the Kuiper Belt."
 	distance = 5.2
 	viable_random_events = list(RIOTS, INDUSTRIAL_ACCIDENT, BIOHAZARD_OUTBREAK, WARSHIPS_ARRIVE, PIRATES, CORPORATE_ATTACK, ALIEN_RAIDERS, AI_LIBERATION, MOURNING, CULT_CELL_REVEALED, SECURITY_BREACH, FESTIVAL)

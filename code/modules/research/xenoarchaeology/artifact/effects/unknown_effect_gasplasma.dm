@@ -20,4 +20,4 @@
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas("phoron", pick(0, 0, 0.1, rand()))
+			holder_loc.assume_gas(GAS_FUEL, pick(0, 0, 0.1, rand()))

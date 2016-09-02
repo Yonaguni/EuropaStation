@@ -155,7 +155,7 @@
 			user.unEquip(src)
 			var/obj/item/weapon/gun/composite/new_gun = new(get_turf(src), src)
 			if(istype(M))
-				user.put_in_hands(new_gun)// Todo - spawn a composite gun using the assembly.
+				user.put_in_hands(new_gun)
 			user << "<span class='notice'>You have assembled \the [new_gun].</span>"
 		return
 
@@ -172,16 +172,16 @@
 	if(body)
 		item_state = body.item_state
 
-	overlays.Cut()
 	var/gun_type
 	var/dam_type
 
+	var/list/overlays_to_add = list()
 	var/decl/weapon_model/model // If all the parts are from the same producer, we get a bonus.
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber))
 		if (!GC) continue
 		if(!gun_type) gun_type = GC.weapon_type
 		if(!dam_type) dam_type = GC.projectile_type
-		overlays |= GC
+		overlays_to_add += GC
 		if(GC.model)
 			if(isnull(model))
 				model = GC.model
@@ -198,7 +198,7 @@
 		GC.installed_dam_type = dam_type
 		GC.installed_gun_type = gun_type
 		GC.update_icon()
-		overlays |= GC
+		overlays_to_add += GC
 
 	if(model)
 		if(model.force_gun_name)
@@ -209,6 +209,8 @@
 	else
 		name = "[get_gun_name(src, dam_type, gun_type)] assembly"
 		desc = "[initial(desc)] You can't work out who manufactured this one; it might be an aftermarket job."
+
+	overlays = overlays_to_add
 
 /obj/item/weapon/gun_assembly/examine()
 	..()
