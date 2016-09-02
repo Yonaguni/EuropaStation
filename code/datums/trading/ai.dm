@@ -78,7 +78,6 @@ They sell generic supplies and ask for generic supplies.
 								/obj/item/stack/material/marble           = TRADER_THIS_TYPE,
 								/obj/item/stack/material/diamond          = TRADER_THIS_TYPE,
 								/obj/item/stack/material/uranium          = TRADER_THIS_TYPE,
-								/obj/item/stack/material/phoron           = TRADER_THIS_TYPE,
 								/obj/item/stack/material/plastic          = TRADER_THIS_TYPE,
 								/obj/item/stack/material/gold             = TRADER_THIS_TYPE,
 								/obj/item/stack/material/silver           = TRADER_THIS_TYPE,

@@ -1900,7 +1900,7 @@
 
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
-	id = "phoronspecial"
+	id = "toxinsspecial"
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
 	taste_description = "spicy toxins"
 	reagent_state = LIQUID

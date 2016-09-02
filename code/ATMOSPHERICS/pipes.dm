@@ -1152,7 +1152,7 @@
 	icon_state = "co2"
 
 /obj/machinery/atmospherics/pipe/tank/phoron
-	name = "Pressure Tank (Phoron)"
+	name = "Pressure Tank (Fuel)"
 	icon_state = "phoron_map"
 
 /obj/machinery/atmospherics/pipe/tank/phoron/New()

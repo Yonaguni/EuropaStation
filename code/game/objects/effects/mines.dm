@@ -85,7 +85,7 @@
 	triggerproc = "triggerrad"
 
 /obj/effect/mine/phoron
-	name = "Phoron Mine"
+	name = "Incendiary Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggerphoron"
 

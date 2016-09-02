@@ -284,31 +284,6 @@
 		L.apply_effect(15,IRRADIATE, blocked = L.getarmor(null, "rad"))
 	return
 
-/obj/machinery/door/airlock/phoron
-	name = "Phoron Airlock"
-	desc = "No way this can end badly."
-	icon = 'icons/obj/doors/Doorphoron.dmi'
-	mineral = GAS_FUEL
-
-/obj/machinery/door/airlock/phoron/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		PhoronBurn(exposed_temperature)
-
-/obj/machinery/door/airlock/phoron/proc/ignite(exposed_temperature)
-	if(exposed_temperature > 300)
-		PhoronBurn(exposed_temperature)
-
-/obj/machinery/door/airlock/phoron/proc/PhoronBurn(temperature)
-	for(var/turf/simulated/floor/target_tile in range(2,loc))
-		target_tile.assume_gas(GAS_FUEL, 35, 400+T0C)
-		spawn (0) target_tile.hotspot_expose(temperature, 400)
-	for(var/turf/simulated/wall/W in range(3,src))
-		W.burn((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
-	for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
-		D.ignite(temperature/4)
-	new/obj/structure/door_assembly( src.loc )
-	qdel(src)
-
 /obj/machinery/door/airlock/sandstone
 	name = "Sandstone Airlock"
 	icon = 'icons/obj/doors/Doorsand.dmi'
@@ -864,11 +839,6 @@ About the new airlock wires panel:
 	else
 		..()
 	return
-
-/obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
-	if(C)
-		ignite(is_hot(C))
-	..()
 
 /obj/machinery/door/airlock/set_broken()
 	src.p_open = 1

@@ -3,7 +3,7 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
-	desc = "A device which uses Hawking Radiation and phoron to produce power."
+	desc = "A device which uses Hawking Radiation to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
 	anchored = 0
@@ -60,7 +60,7 @@ var/global/list/rad_collectors = list()
 			user << "\red The [src] needs to be secured to the floor first."
 			return 1
 		if(src.P)
-			user << "\red There's already a phoron tank loaded."
+			user << "\red There's already a fuel tank loaded."
 			return 1
 		user.drop_item()
 		src.P = W
@@ -73,7 +73,7 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(P)
-			user << "\blue Remove the phoron tank first."
+			user << "\blue Remove the fuel tank first."
 			return 1
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		src.anchored = !src.anchored

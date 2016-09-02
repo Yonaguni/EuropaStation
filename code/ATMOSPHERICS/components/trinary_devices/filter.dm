@@ -172,7 +172,7 @@
 			<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 			<b>Filtering: </b>[current_filter_type]<br><HR>
 			<h4>Set Filter Type:</h4>
-			<A href='?src=\ref[src];filterset=0'>Phoron</A><BR>
+			<A href='?src=\ref[src];filterset=0'>Hydrocarbons</A><BR>
 			<A href='?src=\ref[src];filterset=1'>Oxygen</A><BR>
 			<A href='?src=\ref[src];filterset=2'>Nitrogen</A><BR>
 			<A href='?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>

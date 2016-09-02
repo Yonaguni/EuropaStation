@@ -59,7 +59,6 @@ var/list/worths = list(
 					/obj/item/stack/material/cloth = -3,
 					/obj/item/stack/material/cardboard = -1,
 					/obj/item/stack/material/glass/reinforced = -12,
-					/obj/item/stack/material/glass/phoronglass = -35,
 					/obj/item/stack/material/glass/phoronrglass = -65,
 					/obj/item/stack/material = -5,
 //STACKS,

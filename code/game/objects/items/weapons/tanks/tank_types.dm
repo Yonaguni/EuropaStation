@@ -69,8 +69,8 @@
  * Phoron
  */
 /obj/item/weapon/tank/phoron
-	name = "phoron tank"
-	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
+	name = "fuel tank"
+	desc = "Contains dangerous fuel gas. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
 	gauge_icon = null
 	flags = CONDUCT

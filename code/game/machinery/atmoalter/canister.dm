@@ -49,7 +49,7 @@
 	name = "\improper Canister: \[O2 (Cryo)\]"
 
 /obj/machinery/portable_atmospherics/canister/phoron
-	name = "\improper Canister \[Phoron\]"
+	name = "\improper Canister \[Fuel\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
@@ -318,7 +318,7 @@ update_flag
 					"\[N2O\]" = "redws", \
 					"\[N2\]" = "red", \
 					"\[O2\]" = "blue", \
-					"\[Phoron\]" = "orange", \
+					"\[Fuel\]" = "orange", \
 					"\[CO2\]" = "black", \
 					"\[Air\]" = "grey", \
 					"\[CAUTION\]" = "yellow", \

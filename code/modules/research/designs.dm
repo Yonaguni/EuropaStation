@@ -314,7 +314,7 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/mining/plasmacutter
 	id = "plasmacutter"
 	req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 500, "gold" = 500, "phoron" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 500, "gold" = 500)
 	build_path = /obj/item/weapon/pickaxe/plasmacutter
 	sort_string = "KAAAC"
 
@@ -336,7 +336,7 @@ other types of metals and chemistry for reagents).
 ///////////////////////////////////
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PHORON = 3)
-	materials = list("$glass" = 2000, "sacid" = 20, "$phoron" = 10000, "$diamond" = 5000, "$gold" = 10000)
+	materials = list("$glass" = 2000, "sacid" = 20, "$diamond" = 5000, "$gold" = 10000)
 
 /datum/design/item/medical
 	materials = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 20)
@@ -392,15 +392,6 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 3000)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	sort_string = "MADAA"
-
-/datum/design/item/beaker/bluespace
-	name = TECH_BLUESPACE
-	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
-	id = "bluespacebeaker"
-	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "phoron" = 3000, "diamond" = 500)
-	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
-	sort_string = "MADAB"
 
 /datum/design/item/medical/nanopaste
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
@@ -581,16 +572,6 @@ other types of metals and chemistry for reagents).
 	materials = list("glass" = 1000, "gold" = 200)
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
-
-/datum/design/item/posibrain
-	name = "Positronic brain"
-	id = "posibrain"
-	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
-	build_type = PROTOLATHE | MECHFAB
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 500, "diamond" = 100)
-	build_path = /obj/item/device/mmi/digital/posibrain
-	category = "Misc"
-	sort_string = "VACAB"
 
 /datum/design/item/mmi
 	name = "Man-machine interface"

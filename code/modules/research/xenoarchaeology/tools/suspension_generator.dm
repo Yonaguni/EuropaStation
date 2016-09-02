@@ -89,7 +89,7 @@
 		dat += "[field_type=="iron"?"<b>":""		]<A href='?src=\ref[src];select_field=iron'>Iron wafer conduction field</A></b><br>"
 		dat += "[field_type=="calcium"?"<b>":""	]<A href='?src=\ref[src];select_field=calcium'>Calcium binary deoxidiser</A></b><br>"
 		dat += "[field_type=="phoron"?"<b>":""	]<A href='?src=\ref[src];select_field=chlorine'>Chlorine diffusion emissions</A></b><br>"
-		dat += "[field_type=="phoron"?"<b>":""	]<A href='?src=\ref[src];select_field=phoron'>Phoron saturated field</A></b><br>"
+		dat += "[field_type=="phoron"?"<b>":""	]<A href='?src=\ref[src];select_field=phoron'>Hydrocarbon-saturated field</A></b><br>"
 	else
 		dat += "<br>"
 		dat += "<br>"

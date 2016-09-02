@@ -429,7 +429,7 @@ datum/objective/steal
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
-		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
+		"28 moles of fuel (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 		"a command insignia" = /obj/item/clothing/accessory/medal/aeolus/captain,
@@ -731,9 +731,6 @@ datum/objective/heist/salvage
 				target_amount = 200
 			if(3)
 				target = "plasteel"
-				target_amount = 100
-			if(4)
-				target = "phoron"
 				target_amount = 100
 			if(5)
 				target = "silver"

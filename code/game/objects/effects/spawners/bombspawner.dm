@@ -114,7 +114,7 @@
 
 	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom
 
-	var/p = input("Enter phoron amount (mol):","Fuel", initial(proto.phoron_amt)) as num|null
+	var/p = input("Enter fuel amount (mol):","Fuel", initial(proto.phoron_amt)) as num|null
 	if(p == null) return
 
 	var/o = input("Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt)) as num|null

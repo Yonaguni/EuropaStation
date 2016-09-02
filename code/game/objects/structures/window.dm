@@ -433,23 +433,12 @@
 	damage_per_fire_tick = 2.0
 	maxhealth = 12.0
 
-/obj/structure/window/phoronbasic
-	name = "phoron window"
-	desc = "A borosilicate alloy window. It seems to be quite strong."
-	basestate = "phoronwindow"
-	icon_state = "phoronwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
-	glasstype = /obj/item/stack/material/glass/phoronglass
-	maximal_heat = T0C + 2000
-	damage_per_fire_tick = 1.0
-	maxhealth = 40.0
-
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
 	basestate = "phoronrwindow"
 	icon_state = "phoronrwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
+	shardtype = /obj/item/weapon/material/shard
 	glasstype = /obj/item/stack/material/glass/phoronrglass
 	reinf = 1
 	maximal_heat = T0C + 4000
