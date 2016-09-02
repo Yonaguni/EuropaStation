@@ -213,9 +213,6 @@
 /datum/reagent/ethanol/bananahonk
 	value = 0.15
 
-/datum/reagent/ethanol/barefoot
-	value = 0.14
-
 /datum/reagent/ethanol/beepsky_smash
 	value = 0.2
 
@@ -248,9 +245,6 @@
 
 /datum/reagent/ethanol/devilskiss
 	value = 0.14
-
-/datum/reagent/ethanol/driestmartini
-	value = 0.16
 
 /datum/reagent/ethanol/ginfizz
 	value = 0.13
@@ -365,9 +359,6 @@
 
 /datum/reagent/ethanol/whiskeysoda
 	value = 0.15
-
-/datum/reagent/ethanol/specialwhiskey
-	value = 0.3
 
 /datum/reagent/adrenaline
 	value = 3.5

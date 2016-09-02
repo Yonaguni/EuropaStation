@@ -131,7 +131,6 @@
 			new/obj/item/clothing/head/beret(src)
 			new/obj/item/clothing/suit/suspenders(src)
 			new/obj/item/weapon/pen/crayon/mime(src)
-			new/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(src)
 		if(96)
 			new/obj/item/weapon/vampiric(src)
 		if(97)
