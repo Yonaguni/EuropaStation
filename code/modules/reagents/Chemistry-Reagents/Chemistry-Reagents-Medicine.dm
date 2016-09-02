@@ -18,10 +18,10 @@
 		M.add_chemical_effect(CE_PAINKILLER, 25)
 	M.add_chemical_effect(CE_PULSE, 1)
 
-/datum/reagent/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
+/datum/reagent/styptazine
+	name = "Styptazine"
+	id = "styptazine"
+	description = "An advanced form of styptic medication used for treating open wounds and bleeding."
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -30,9 +30,9 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/styptazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(6 * removed, 0)
+		M.heal_organ_damage(2 * removed, 0)
 
 /datum/reagent/kelotane
 	name = "Kelotane"

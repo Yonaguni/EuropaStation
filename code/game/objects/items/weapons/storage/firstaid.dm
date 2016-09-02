@@ -96,7 +96,7 @@
 	item_state = "firstaid-advanced"
 
 	startswith = list(
-		/obj/item/weapon/storage/pill_bottle/bicaridine,
+		/obj/item/weapon/storage/pill_bottle/styptazine,
 		/obj/item/weapon/storage/pill_bottle/dylovene,
 		/obj/item/weapon/storage/pill_bottle/morphine,
 		/obj/item/weapon/storage/pill_bottle/antibiotic,
@@ -147,11 +147,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/antitox = 7)
 
-/obj/item/weapon/storage/pill_bottle/bicaridine
-	name = "bottle of Bicaridine pills"
+/obj/item/weapon/storage/pill_bottle/styptazine
+	name = "bottle of Styptazine pills"
 	desc = "Contains pills used to stabilize the severely injured."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/bicaridine = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/styptazine = 7)
 
 /obj/item/weapon/storage/pill_bottle/dylovene
 	name = "bottle of Dylovene pills"

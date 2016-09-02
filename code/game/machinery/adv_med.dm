@@ -269,7 +269,7 @@
 		"inaprovaline_amount" = H.reagents.get_reagent_amount("adrenaline"),
 		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
 		"stoxin_amount" = H.reagents.get_reagent_amount("stoxin"),
-		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
+		"styptazine_amount" = H.reagents.get_reagent_amount("styptazine"),
 		"kelotane_amount" = H.reagents.get_reagent_amount("kelotane"),
 		"blood_amount" = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100),
 		"disabilities" = H.sdisabilities,
@@ -314,7 +314,7 @@
 	dat += text("Adrenaline: [] units<BR>", occ["inaprovaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["stoxin_amount"])
 	dat += text("[]\tKelotane: [] units</FONT><BR>", ("<font color='[occ["kelotane_amount"] < 30  ? "black" : "red"]'>"), occ["kelotane_amount"])
-	dat += text("[]\tBicaridine: [] units</font><BR>", ("<font color='[occ["bicaridine_amount"] < 30  ? "black" : "red"]'>"), occ["bicaridine_amount"])
+	dat += text("[]\tStyptazine: [] units</font><BR>", ("<font color='[occ["styptazine_amount"] < 30  ? "black" : "red"]'>"), occ["styptazine_amount"])
 	dat += text("[]\tDexalin: [] units</font><BR>", ("<font color='[occ["dexalin_amount"] < 30  ? "black" : "red"]'>"), occ["dexalin_amount"])
 
 	dat += "<HR><table border='1'>"

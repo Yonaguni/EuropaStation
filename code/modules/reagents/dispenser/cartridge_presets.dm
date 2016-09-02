@@ -79,7 +79,7 @@
 	alkysine	spawn_reagent = "alkysine"
 	imidazoline	spawn_reagent = "imidazoline"
 	peridaxon	spawn_reagent = "peridaxon"
-	bicaridine	spawn_reagent = "bicaridine"
+	styptazine	spawn_reagent = "styptazine"
 	hyperzine	spawn_reagent = "hyperzine"
 	rezadone	spawn_reagent = "rezadone"
 	antibiotic	spawn_reagent = "antibiotic"

@@ -272,7 +272,7 @@
 	name = "Peridaxon"
 	id = "peridaxon"
 	result = "peridaxon"
-	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
+	required_reagents = list("styptazine" = 2, "clonexadone" = 2)
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
 
@@ -314,10 +314,10 @@
 	inhibitors = list("water" = 1) // Messes with cryox
 	result_amount = 1
 
-/datum/chemical_reaction/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	result = "bicaridine"
+/datum/chemical_reaction/styptazine
+	name = "Styptazine"
+	id = "styptazine"
+	result = "styptazine"
 	required_reagents = list("adrenaline" = 1, "carbon" = 1)
 	inhibitors = list("sugar" = 1) // Messes up with adrenaline
 	result_amount = 2

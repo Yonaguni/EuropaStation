@@ -372,7 +372,7 @@
 /datum/reagent/adrenaline
 	value = 3.5
 
-/datum/reagent/bicaridine
+/datum/reagent/styptazine
 	value = 4.9
 
 /datum/reagent/kelotane

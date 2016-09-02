@@ -197,13 +197,13 @@
 		..()
 		reagents.add_reagent("adrenaline", 30)
 
-/obj/item/weapon/reagent_containers/pill/bicaridine
-	name = "Bicaridine pill"
+/obj/item/weapon/reagent_containers/pill/styptazine
+	name = "Styptazine pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill18"
 	New()
 		..()
-		reagents.add_reagent("bicaridine", 20)
+		reagents.add_reagent("styptazine", 20)
 
 /obj/item/weapon/reagent_containers/pill/happy
 	name = "Happy pill"
