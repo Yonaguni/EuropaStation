@@ -181,14 +181,6 @@
 		..()
 		reagents.add_reagent("dexalin", 15)
 
-/obj/item/weapon/reagent_containers/pill/dexalin_plus
-	name = "Dexalin Plus pill"
-	desc = "Used to treat extreme oxygen deprivation."
-	icon_state = "pill8"
-	New()
-		..()
-		reagents.add_reagent("dexalinp", 15)
-
 /obj/item/weapon/reagent_containers/pill/dermaline
 	name = "Dermaline pill"
 	desc = "Used to treat burn wounds."

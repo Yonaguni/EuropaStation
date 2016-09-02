@@ -98,23 +98,6 @@
 
 	holder.remove_reagent("lexorin", 2 * removed)
 
-/datum/reagent/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
-	taste_description = "bitterness"
-	reagent_state = LIQUID
-	color = "#0040FF"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
-
-	holder.remove_reagent("lexorin", 3 * removed)
-
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
 	id = "tricordrazine"
