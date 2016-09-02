@@ -20,7 +20,7 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		//TODO: replace with standard_feed_mob() call.
-		
+
 		if(M == user)
 			if(!M.can_eat(src))
 				return
@@ -123,13 +123,13 @@
 		..()
 		reagents.add_reagent("stoxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/kelotane
-	name = "Kelotane pill"
+/obj/item/weapon/reagent_containers/pill/fotiazine
+	name = "Fotiazine pill"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
 	New()
 		..()
-		reagents.add_reagent("kelotane", 15)
+		reagents.add_reagent("fotiazine", 15)
 
 /obj/item/weapon/reagent_containers/pill/paracetamol
 	name = "Paracetamol pill"
@@ -139,13 +139,13 @@
 		..()
 		reagents.add_reagent("paracetamol", 15)
 
-/obj/item/weapon/reagent_containers/pill/tramadol
-	name = "Tramadol pill"
-	desc = "A simple painkiller."
+/obj/item/weapon/reagent_containers/pill/morphine
+	name = "Morphine pill"
+	desc = "A highly addictive painkiller."
 	icon_state = "pill8"
 	New()
 		..()
-		reagents.add_reagent("tramadol", 15)
+		reagents.add_reagent("morphine", 15)
 
 
 /obj/item/weapon/reagent_containers/pill/methylphenidate
@@ -165,13 +165,13 @@
 		reagents.add_reagent("citalopram", 15)
 
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
+/obj/item/weapon/reagent_containers/pill/adrenaline
+	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 30)
+		reagents.add_reagent("adrenaline", 30)
 
 /obj/item/weapon/reagent_containers/pill/dexalin
 	name = "Dexalin pill"
@@ -181,22 +181,6 @@
 		..()
 		reagents.add_reagent("dexalin", 15)
 
-/obj/item/weapon/reagent_containers/pill/dexalin_plus
-	name = "Dexalin Plus pill"
-	desc = "Used to treat extreme oxygen deprivation."
-	icon_state = "pill8"
-	New()
-		..()
-		reagents.add_reagent("dexalinp", 15)
-
-/obj/item/weapon/reagent_containers/pill/dermaline
-	name = "Dermaline pill"
-	desc = "Used to treat burn wounds."
-	icon_state = "pill12"
-	New()
-		..()
-		reagents.add_reagent("dermaline", 15)
-
 /obj/item/weapon/reagent_containers/pill/dylovene
 	name = "Dylovene pill"
 	desc = "A broad-spectrum anti-toxin."
@@ -205,21 +189,21 @@
 		..()
 		reagents.add_reagent("anti_toxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
+/obj/item/weapon/reagent_containers/pill/adrenaline
+	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 30)
+		reagents.add_reagent("adrenaline", 30)
 
-/obj/item/weapon/reagent_containers/pill/bicaridine
-	name = "Bicaridine pill"
+/obj/item/weapon/reagent_containers/pill/styptazine
+	name = "Styptazine pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill18"
 	New()
 		..()
-		reagents.add_reagent("bicaridine", 20)
+		reagents.add_reagent("styptazine", 20)
 
 /obj/item/weapon/reagent_containers/pill/happy
 	name = "Happy pill"
@@ -238,15 +222,15 @@
 		..()
 		reagents.add_reagent("impedrezene", 10)
 		reagents.add_reagent("synaptizine", 5)
-		reagents.add_reagent("hyperzine", 5)
+		reagents.add_reagent("jumpstart", 5)
 
-/obj/item/weapon/reagent_containers/pill/spaceacillin
-	name = "Spaceacillin pill"
+/obj/item/weapon/reagent_containers/pill/antibiotic
+	name = "antibiotic pill"
 	desc = "Contains antiviral agents."
 	icon_state = "pill19"
 	New()
 		..()
-		reagents.add_reagent("spaceacillin", 15)
+		reagents.add_reagent("antibiotic", 15)
 
 /obj/item/weapon/reagent_containers/pill/diet
 	name = "diet pill"

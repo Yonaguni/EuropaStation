@@ -369,29 +369,20 @@
 /datum/reagent/ethanol/specialwhiskey
 	value = 0.3
 
-/datum/reagent/inaprovaline
+/datum/reagent/adrenaline
 	value = 3.5
 
-/datum/reagent/bicaridine
+/datum/reagent/styptazine
 	value = 4.9
 
-/datum/reagent/kelotane
+/datum/reagent/fotiazine
 	value = 2.9
-
-/datum/reagent/dermaline
-	value = 3.9
 
 /datum/reagent/dylovene
 	value = 2.1
 
 /datum/reagent/dexalin
 	value = 2.4
-
-/datum/reagent/dexalinp
-	value = 3.6
-
-/datum/reagent/tricordrazine
-	value = 6
 
 /datum/reagent/cryoxadone
 	value = 3.9
@@ -402,7 +393,7 @@
 /datum/reagent/paracetamol
 	value = 3.3
 
-/datum/reagent/tramadol
+/datum/reagent/morphine
 	value = 3.1
 
 /datum/reagent/oxycodone
@@ -423,7 +414,7 @@
 /datum/reagent/ryetalyn
 	value = 3.6
 
-/datum/reagent/hyperzine
+/datum/reagent/jumpstart
 	value = 3.9
 
 /datum/reagent/ethylredoxrazine
@@ -435,7 +426,7 @@
 /datum/reagent/arithrazine
 	value = 2.7
 
-/datum/reagent/spaceacillin
+/datum/reagent/antibiotic
 	value = 2.5
 
 /datum/reagent/sterilizine

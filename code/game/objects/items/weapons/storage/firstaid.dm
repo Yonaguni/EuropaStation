@@ -30,7 +30,7 @@
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment,
-		/obj/item/weapon/reagent_containers/pill/kelotane = 3,
+		/obj/item/weapon/reagent_containers/pill/fotiazine = 3,
 		)
 
 /obj/item/weapon/storage/firstaid/fire/New()
@@ -72,7 +72,7 @@
 	startswith = list(
 		/obj/item/weapon/reagent_containers/pill/dexalin = 4,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
-		/obj/item/weapon/reagent_containers/syringe/inaprovaline,
+		/obj/item/weapon/reagent_containers/syringe/adrenaline,
 		/obj/item/device/healthanalyzer,
 		)
 
@@ -96,12 +96,10 @@
 	item_state = "firstaid-advanced"
 
 	startswith = list(
-		/obj/item/weapon/storage/pill_bottle/bicaridine,
-		/obj/item/weapon/storage/pill_bottle/dermaline,
-		/obj/item/weapon/storage/pill_bottle/dexalin_plus,
+		/obj/item/weapon/storage/pill_bottle/styptazine,
 		/obj/item/weapon/storage/pill_bottle/dylovene,
-		/obj/item/weapon/storage/pill_bottle/tramadol,
-		/obj/item/weapon/storage/pill_bottle/spaceacillin,
+		/obj/item/weapon/storage/pill_bottle/morphine,
+		/obj/item/weapon/storage/pill_bottle/antibiotic,
 		/obj/item/stack/medical/splint,
 		)
 
@@ -149,23 +147,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/antitox = 7)
 
-/obj/item/weapon/storage/pill_bottle/bicaridine
-	name = "bottle of Bicaridine pills"
+/obj/item/weapon/storage/pill_bottle/styptazine
+	name = "bottle of Styptazine pills"
 	desc = "Contains pills used to stabilize the severely injured."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/bicaridine = 7)
-
-/obj/item/weapon/storage/pill_bottle/dexalin_plus
-	name = "bottle of Dexalin Plus pills"
-	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
-
-	startswith = list(/obj/item/weapon/reagent_containers/pill/dexalin_plus = 7)
-
-/obj/item/weapon/storage/pill_bottle/dermaline
-	name = "bottle of Dermaline pills"
-	desc = "Contains pills used to treat burn wounds."
-
-	startswith = list(/obj/item/weapon/reagent_containers/pill/dermaline = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/styptazine = 7)
 
 /obj/item/weapon/storage/pill_bottle/dylovene
 	name = "bottle of Dylovene pills"
@@ -173,29 +159,29 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/dylovene = 7)
 
-/obj/item/weapon/storage/pill_bottle/inaprovaline
-	name = "bottle of Inaprovaline pills"
+/obj/item/weapon/storage/pill_bottle/adrenaline
+	name = "bottle of Adrenaline pills"
 	desc = "Contains pills used to stabilize patients."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/inaprovaline = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/adrenaline = 7)
 
-/obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
+/obj/item/weapon/storage/pill_bottle/fotiazine
+	name = "bottle of Fotiazine pills"
 	desc = "Contains pills used to treat burns."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/kelotane = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/fotiazine = 7)
 
-/obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "bottle of Spaceacillin pills"
-	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
+/obj/item/weapon/storage/pill_bottle/antibiotic
+	name = "bottle of Antibiotic pills"
+	desc = "A broad-spectrum antibiotic. Effective against many diseases likely to be encountered in space."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/antibiotic = 7)
 
-/obj/item/weapon/storage/pill_bottle/tramadol
-	name = "bottle of Tramadol pills"
+/obj/item/weapon/storage/pill_bottle/morphine
+	name = "bottle of Morphine pills"
 	desc = "Contains pills used to relieve pain."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/tramadol = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/morphine = 7)
 
 /obj/item/weapon/storage/pill_bottle/citalopram
 	name = "bottle of Citalopram pills"

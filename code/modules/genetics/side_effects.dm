@@ -32,7 +32,7 @@
 /datum/genetics/side_effect/bone_snap
 	name = "Bone Snap"
 	symptom = "Subject's limbs tremble notably."
-	treatment = "Inject small dose of bicaridine."
+	treatment = "Inject small dose of styptazine."
 	effect = "Subject's bone breaks."
 	duration = 10*60
 
@@ -40,7 +40,7 @@
 		H.emote("me", 1, "'s limbs start shivering uncontrollably.")
 
 	finish(mob/living/carbon/human/H)
-		if(!H.reagents.has_reagent("bicaridine"))
+		if(!H.reagents.has_reagent("styptazine"))
 			var/organ_name = pick(BP_ALL_LIMBS)
 			var/obj/item/organ/external/E = H.get_organ(organ_name)
 			E.take_damage(20, 0, 0)

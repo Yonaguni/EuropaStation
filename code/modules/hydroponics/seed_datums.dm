@@ -288,7 +288,7 @@
 	seed_name = "ambrosia vulgaris"
 	display_name = "ambrosia vulgaris"
 	mutants = list("ambrosiadeus")
-	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "kelotane" = list(1,8,1), "bicaridine" = list(1,10,1), "toxin" = list(1,10))
+	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "fotiazine" = list(1,8,1), "styptazine" = list(1,10,1), "toxin" = list(1,10))
 	kitchen_tag = "ambrosia"
 
 /datum/seed/ambrosia/New()
@@ -308,7 +308,7 @@
 	seed_name = "ambrosia deus"
 	display_name = "ambrosia deus"
 	mutants = null
-	chems = list("nutriment" = list(1), "bicaridine" = list(1,8), "synaptizine" = list(1,8,1), "hyperzine" = list(1,10,1), "space_drugs" = list(1,10))
+	chems = list("nutriment" = list(1), "styptazine" = list(1,8), "synaptizine" = list(1,8,1), "jumpstart" = list(1,10,1), "space_drugs" = list(1,10))
 	kitchen_tag = "ambrosiadeus"
 
 /datum/seed/ambrosia/deus/New()
@@ -534,7 +534,7 @@
 	name = "poppies"
 	seed_name = "poppy"
 	display_name = "poppies"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list("nutriment" = list(1,20), "styptazine" = list(1,10))
 	kitchen_tag = "poppy"
 
 /datum/seed/flower/poppy/New()
@@ -569,7 +569,7 @@
 	name = "lavender"
 	seed_name = "lavender"
 	display_name = "lavender"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list("nutriment" = list(1,20), "styptazine" = list(1,10))
 
 /datum/seed/flower/lavender/New()
 	..()
@@ -611,7 +611,7 @@
 	seed_name = "green grape"
 	display_name = "green grapevines"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "kelotane" = list(3,5), "grapejuice" = list(10,10))
+	chems = list("nutriment" = list(1,10), "fotiazine" = list(3,5), "grapejuice" = list(10,10))
 
 /datum/seed/grapes/green/New()
 	..()
@@ -1045,7 +1045,7 @@
 	name = "shand"
 	seed_name = "S'randar's hand"
 	display_name = "S'randar's hand leaves"
-	chems = list("bicaridine" = list(0,10))
+	chems = list("styptazine" = list(0,10))
 	kitchen_tag = "shand"
 
 /datum/seed/shand/New()
@@ -1065,7 +1065,7 @@
 	name = "mtear"
 	seed_name = "Messa's tear"
 	display_name = "Messa's tear leaves"
-	chems = list("honey" = list(1,10), "kelotane" = list(3,5))
+	chems = list("honey" = list(1,10), "fotiazine" = list(3,5))
 	kitchen_tag = "mtear"
 
 /datum/seed/mtear/New()

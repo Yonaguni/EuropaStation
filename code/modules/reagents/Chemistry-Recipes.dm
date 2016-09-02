@@ -147,10 +147,10 @@
 
 /* Common reactions */
 
-/datum/chemical_reaction/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	result = "inaprovaline"
+/datum/chemical_reaction/adrenaline
+	name = "Adrenaline"
+	id = "adrenaline"
+	result = "adrenaline"
 	required_reagents = list("acetone" = 1, "carbon" = 1, "sugar" = 1)
 	result_amount = 3
 
@@ -161,25 +161,25 @@
 	required_reagents = list("silicon" = 1, "potassium" = 1, "ammonia" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
-	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "acetone" = 1)
+/datum/chemical_reaction/morphine
+	name = "Morphine"
+	id = "morphine"
+	result = "morphine"
+	required_reagents = list("adrenaline" = 1, "ethanol" = 1, "acetone" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/paracetamol
 	name = "Paracetamol"
 	id = "paracetamol"
 	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("morphine" = 1, "sugar" = 1, "water" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
 	result = "oxycodone"
-	required_reagents = list("ethanol" = 1, "tramadol" = 1)
+	required_reagents = list("ethanol" = 1, "morphine" = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
@@ -260,10 +260,10 @@
 	required_reagents = list("mercury" = 1, "acetone" = 1, "sugar" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	result = "kelotane"
+/datum/chemical_reaction/fotiazine
+	name = "Fotiazine"
+	id = "fotiazine"
+	result = "fotiazine"
 	required_reagents = list("silicon" = 1, "carbon" = 1)
 	result_amount = 2
 	log_is_important = 1
@@ -272,7 +272,7 @@
 	name = "Peridaxon"
 	id = "peridaxon"
 	result = "peridaxon"
-	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
+	required_reagents = list("styptazine" = 2, "clonexadone" = 2)
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
 
@@ -298,13 +298,6 @@
 	required_reagents = list("potassium" = 1, "acetone" = 1, "sugar" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	result = "tricordrazine"
-	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
-	result_amount = 2
-
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"
 	id = "alkysine"
@@ -321,32 +314,18 @@
 	inhibitors = list("water" = 1) // Messes with cryox
 	result_amount = 1
 
-/datum/chemical_reaction/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	result = "dermaline"
-	required_reagents = list("acetone" = 1, "phosphorus" = 1, "kelotane" = 1)
-	result_amount = 3
-
-/datum/chemical_reaction/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	result = "dexalinp"
-	required_reagents = list("dexalin" = 1, "carbon" = 1, "iron" = 1)
-	result_amount = 3
-
-/datum/chemical_reaction/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	result = "bicaridine"
-	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
-	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+/datum/chemical_reaction/styptazine
+	name = "Styptazine"
+	id = "styptazine"
+	result = "styptazine"
+	required_reagents = list("adrenaline" = 1, "carbon" = 1)
+	inhibitors = list("sugar" = 1) // Messes up with adrenaline
 	result_amount = 2
 
-/datum/chemical_reaction/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	result = "hyperzine"
+/datum/chemical_reaction/jumpstart
+	name = "Jumpstart"
+	id = "jumpstart"
+	result = "jumpstart"
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
 	result_amount = 3
 
@@ -372,11 +351,11 @@
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	result = "spaceacillin"
-	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
+/datum/chemical_reaction/antibiotic
+	name = "Antibiotic"
+	id = "antibiotic"
+	result = "antibiotic"
+	required_reagents = list("cryptobiolin" = 1, "adrenaline" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/imidazoline
@@ -541,7 +520,7 @@
 	name = "Paroxetine"
 	id = "paroxetine"
 	result = "paroxetine"
-	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "inaprovaline" = 1)
+	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "adrenaline" = 1)
 	result_amount = 3
 
 /* Solidification */
@@ -1749,13 +1728,6 @@
 	result = "beepskysmash"
 	required_reagents = list("limejuice" = 1, "whiskey" = 1, "iron" = 1)
 	result_amount = 2
-
-/datum/chemical_reaction/doctor_delight
-	name = "The Doctor's Delight"
-	id = "doctordelight"
-	result = "doctorsdelight"
-	required_reagents = list("limejuice" = 1, "tomatojuice" = 1, "orangejuice" = 1, "cream" = 2, "tricordrazine" = 1)
-	result_amount = 6
 
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"

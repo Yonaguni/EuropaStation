@@ -1,9 +1,9 @@
 /* General medicine */
 
-/datum/reagent/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	id = "adrenaline"
+	description = "Adrenaline is a hormone that can be used as a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
@@ -12,16 +12,16 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_STABLE)
 		M.add_chemical_effect(CE_PAINKILLER, 25)
 	M.add_chemical_effect(CE_PULSE, 1)
 
-/datum/reagent/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
+/datum/reagent/styptazine
+	name = "Styptazine"
+	id = "styptazine"
+	description = "An advanced form of styptic medication used for treating open wounds and bleeding."
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -30,14 +30,14 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/styptazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(6 * removed, 0)
+		M.heal_organ_damage(2 * removed, 0)
 
-/datum/reagent/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	description = "Kelotane is a drug used to treat burns."
+/datum/reagent/fotiazine
+	name = "Fotiazine"
+	id = "fotiazine"
+	description = "Fotiazine is a drug derived from the TLR3 protein. It is used to treat burns."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFA800"
@@ -45,25 +45,9 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fotiazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 6 * removed)
-
-/datum/reagent/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
-	taste_description = "bitterness"
-	taste_mult = 1.5
-	reagent_state = LIQUID
-	color = "#FF8000"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 12 * removed)
+		M.heal_organ_damage(0, 2 * removed)
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -97,39 +81,6 @@
 		M.adjustOxyLoss(-15 * removed)
 
 	holder.remove_reagent("lexorin", 2 * removed)
-
-/datum/reagent/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
-	taste_description = "bitterness"
-	reagent_state = LIQUID
-	color = "#0040FF"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
-
-	holder.remove_reagent("lexorin", 3 * removed)
-
-/datum/reagent/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
-	taste_description = "grossness"
-	reagent_state = LIQUID
-	color = "#8040FF"
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-
-/datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-6 * removed)
-		M.heal_organ_damage(3 * removed, 3 * removed)
-		M.adjustToxLoss(-3 * removed)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -190,10 +141,10 @@
 	..()
 	M.hallucination = max(M.hallucination, 2)
 
-/datum/reagent/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	description = "A simple, yet effective painkiller."
+/datum/reagent/morphine
+	name = "Morphine"
+	id = "morphine"
+	description = "An opiod painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
@@ -202,10 +153,10 @@
 	metabolism = 0.02
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 80)
 
-/datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/morphine/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.hallucination = max(M.hallucination, 2)
 
@@ -333,17 +284,17 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-/datum/reagent/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+/datum/reagent/jumpstart
+	name = "Jumpstart"
+	id = "jumpstart"
+	description = "Jumpstart is a highly effective, highly -illegal-, long-lasting muscle stimulant."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.5
 
-/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/jumpstart/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(5))
@@ -403,10 +354,10 @@
 	if(prob(60))
 		M.take_organ_damage(4 * removed, 0)
 
-/datum/reagent/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	description = "An all-purpose antiviral agent."
+/datum/reagent/antibiotic
+	name = "Antibiotic"
+	id = "antibiotic"
+	description = "An all-purpose antibiotic."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"

@@ -137,10 +137,8 @@
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream."
 
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 80),
-		list("tramadol",      "tramadol",      0, 80),
-		list("dexalin plus",  "dexalinp",      0, 80),
-		list("antibiotics",   "spaceacillin",  0, 80),
+		list("morphine",      "morphine",      0, 80),
+		list("antibiotics",   "antibiotic",  0, 80),
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 80),
@@ -154,10 +152,8 @@
 
 	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 20),
-		list("tramadol",      "tramadol",      0, 20),
-		list("dexalin plus",  "dexalinp",      0, 20),
-		list("antibiotics",   "spaceacillin",  0, 20),
+		list("morphine",      "morphine",      0, 20),
+		list("antibiotics",   "antibiotic",  0, 20),
 		list("antitoxins",    "anti_toxin",    0, 20),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 20),
@@ -246,7 +242,7 @@
 
 	charges = list(
 		list("synaptizine",   "synaptizine",   0, 30),
-		list("hyperzine",     "hyperzine",     0, 30),
+		list("jumpstart",     "jumpstart",     0, 30),
 		list("oxycodone",     "oxycodone",     0, 30),
 		list("nutrients",     "glucose",     0, 80),
 		)

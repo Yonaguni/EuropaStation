@@ -135,12 +135,12 @@
 					prob(1);/obj/item/stack/medical/splint,\
 					prob(2);/obj/item/bodybag,\
 					prob(1);/obj/item/bodybag/cryobag,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/kelotane,\
+					prob(2);/obj/item/weapon/storage/pill_bottle/fotiazine,\
 					prob(2);/obj/item/weapon/storage/pill_bottle/antitox,\
-					prob(2);/obj/item/weapon/storage/pill_bottle/tramadol,\
+					prob(2);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,\
-					prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
+					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline,\
 					prob(1);/obj/item/stack/nanopaste)
 
 
@@ -166,7 +166,7 @@
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/tramadol,\
+		return pick(prob(3);/obj/item/weapon/storage/pill_bottle/morphine,\
 					prob(4);/obj/item/weapon/haircomb,\
 					prob(2);/obj/item/weapon/storage/pill_bottle/happy,\
 					prob(2);/obj/item/weapon/storage/pill_bottle/zoom,\

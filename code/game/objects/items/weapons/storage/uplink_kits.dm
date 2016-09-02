@@ -125,7 +125,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/cigarette
 	name = "\improper Tricky smokes"
-	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker, 1xTricordrazine. Avoid mixing them up."
+	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker. Avoid mixing them up."
 
 /obj/item/weapon/storage/box/syndie_kit/cigarette/New()
 	..()
@@ -152,10 +152,6 @@
 	fill_cigarre_package(pack, list("silicon" = 1.5, "hydrogen" = 1.5))
 
 	pack.desc += " 'MB' has been scribbled on it."
-
-	pack = new /obj/item/weapon/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("tricordrazine" = 4))
-	pack.desc += " 'T' has been scribbled on it."
 
 	new /obj/item/weapon/flame/lighter/zippo(src)
 

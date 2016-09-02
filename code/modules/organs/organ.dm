@@ -138,7 +138,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount("antibiotic")
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
@@ -211,7 +211,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/handle_antibiotics()
 	var/antibiotics = 0
 	if(owner)
-		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+		antibiotics = owner.reagents.get_reagent_amount("antibiotic")
 
 	if (!germ_level || antibiotics < 5)
 		return
@@ -297,7 +297,7 @@ var/list/organ_cache = list()
 	owner.internal_organs -= src
 
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
-	if(affected) 
+	if(affected)
 		affected.internal_organs -= src
 		status |= ORGAN_CUT_AWAY
 
@@ -327,11 +327,11 @@ var/list/organ_cache = list()
 
 	if(status & ORGAN_CUT_AWAY)
 		return 0 //organs don't work very well in the body when they aren't properly attached
-		
+
 	// robotic organs emulate behavior of the equivalent flesh organ of the species
 	if(robotic >= ORGAN_ROBOT || !species)
 		species = target.species
-		
+
 	owner = target
 	forceMove(owner) //just in case
 	processing_objects -= src
