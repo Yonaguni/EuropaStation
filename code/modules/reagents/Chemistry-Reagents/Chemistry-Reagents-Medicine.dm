@@ -190,10 +190,10 @@
 	..()
 	M.hallucination = max(M.hallucination, 2)
 
-/datum/reagent/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	description = "A simple, yet effective painkiller."
+/datum/reagent/morphine
+	name = "Morphine"
+	id = "morphine"
+	description = "An opiod painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
@@ -202,10 +202,10 @@
 	metabolism = 0.02
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 80)
 
-/datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/morphine/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.hallucination = max(M.hallucination, 2)
 

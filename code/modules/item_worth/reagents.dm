@@ -402,7 +402,7 @@
 /datum/reagent/paracetamol
 	value = 3.3
 
-/datum/reagent/tramadol
+/datum/reagent/morphine
 	value = 3.1
 
 /datum/reagent/oxycodone

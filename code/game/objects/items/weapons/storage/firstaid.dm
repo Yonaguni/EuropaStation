@@ -100,7 +100,7 @@
 		/obj/item/weapon/storage/pill_bottle/dermaline,
 		/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 		/obj/item/weapon/storage/pill_bottle/dylovene,
-		/obj/item/weapon/storage/pill_bottle/tramadol,
+		/obj/item/weapon/storage/pill_bottle/morphine,
 		/obj/item/weapon/storage/pill_bottle/spaceacillin,
 		/obj/item/stack/medical/splint,
 		)
@@ -191,11 +191,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 7)
 
-/obj/item/weapon/storage/pill_bottle/tramadol
-	name = "bottle of Tramadol pills"
+/obj/item/weapon/storage/pill_bottle/morphine
+	name = "bottle of Morphine pills"
 	desc = "Contains pills used to relieve pain."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/tramadol = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/morphine = 7)
 
 /obj/item/weapon/storage/pill_bottle/citalopram
 	name = "bottle of Citalopram pills"

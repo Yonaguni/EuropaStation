@@ -21,7 +21,7 @@
 	reagent_ids = list("bicaridine", "adrenaline", "dexalin")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "adrenaline", "tramadol")
+	reagent_ids = list("tricordrazine", "adrenaline", "morphine")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()

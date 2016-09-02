@@ -161,10 +161,10 @@
 	required_reagents = list("silicon" = 1, "potassium" = 1, "ammonia" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
+/datum/chemical_reaction/morphine
+	name = "Morphine"
+	id = "morphine"
+	result = "morphine"
 	required_reagents = list("adrenaline" = 1, "ethanol" = 1, "acetone" = 1)
 	result_amount = 3
 
@@ -172,14 +172,14 @@
 	name = "Paracetamol"
 	id = "paracetamol"
 	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("morphine" = 1, "sugar" = 1, "water" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
 	result = "oxycodone"
-	required_reagents = list("ethanol" = 1, "tramadol" = 1)
+	required_reagents = list("ethanol" = 1, "morphine" = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
 

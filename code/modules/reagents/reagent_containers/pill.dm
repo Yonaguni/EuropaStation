@@ -139,13 +139,13 @@
 		..()
 		reagents.add_reagent("paracetamol", 15)
 
-/obj/item/weapon/reagent_containers/pill/tramadol
-	name = "Tramadol pill"
-	desc = "A simple painkiller."
+/obj/item/weapon/reagent_containers/pill/morphine
+	name = "Morphine pill"
+	desc = "A highly addictive painkiller."
 	icon_state = "pill8"
 	New()
 		..()
-		reagents.add_reagent("tramadol", 15)
+		reagents.add_reagent("morphine", 15)
 
 
 /obj/item/weapon/reagent_containers/pill/methylphenidate

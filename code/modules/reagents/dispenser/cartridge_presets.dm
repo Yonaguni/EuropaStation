@@ -65,7 +65,7 @@
 	inaprov		spawn_reagent = "adrenaline"
 	ryetalyn	spawn_reagent = "ryetalyn"
 	paracetamol	spawn_reagent = "paracetamol"
-	tramadol	spawn_reagent = "tramadol"
+	morphine	spawn_reagent = "morphine"
 	oxycodone	spawn_reagent = "oxycodone"
 	sterilizine	spawn_reagent = "sterilizine"
 	leporazine	spawn_reagent = "leporazine"
