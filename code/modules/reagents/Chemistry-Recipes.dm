@@ -147,10 +147,10 @@
 
 /* Common reactions */
 
-/datum/chemical_reaction/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	result = "inaprovaline"
+/datum/chemical_reaction/adrenaline
+	name = "Adrenaline"
+	id = "adrenaline"
+	result = "adrenaline"
 	required_reagents = list("acetone" = 1, "carbon" = 1, "sugar" = 1)
 	result_amount = 3
 
@@ -165,7 +165,7 @@
 	name = "Tramadol"
 	id = "tramadol"
 	result = "tramadol"
-	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "acetone" = 1)
+	required_reagents = list("adrenaline" = 1, "ethanol" = 1, "acetone" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/paracetamol
@@ -302,7 +302,7 @@
 	name = "Tricordrazine"
 	id = "tricordrazine"
 	result = "tricordrazine"
-	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
+	required_reagents = list("adrenaline" = 1, "anti_toxin" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/alkysine
@@ -339,8 +339,8 @@
 	name = "Bicaridine"
 	id = "bicaridine"
 	result = "bicaridine"
-	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
-	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+	required_reagents = list("adrenaline" = 1, "carbon" = 1)
+	inhibitors = list("sugar" = 1) // Messes up with adrenaline
 	result_amount = 2
 
 /datum/chemical_reaction/hyperzine
@@ -376,7 +376,7 @@
 	name = "Spaceacillin"
 	id = "spaceacillin"
 	result = "spaceacillin"
-	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
+	required_reagents = list("cryptobiolin" = 1, "adrenaline" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/imidazoline
@@ -541,7 +541,7 @@
 	name = "Paroxetine"
 	id = "paroxetine"
 	result = "paroxetine"
-	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "inaprovaline" = 1)
+	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "adrenaline" = 1)
 	result_amount = 3
 
 /* Solidification */

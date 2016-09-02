@@ -140,7 +140,7 @@
 					prob(2);/obj/item/weapon/storage/pill_bottle/tramadol,\
 					prob(2);/obj/item/weapon/reagent_containers/syringe/antitoxin,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,\
-					prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
+					prob(2);/obj/item/weapon/reagent_containers/syringe/adrenaline,\
 					prob(1);/obj/item/stack/nanopaste)
 
 

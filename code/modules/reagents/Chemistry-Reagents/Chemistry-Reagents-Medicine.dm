@@ -1,9 +1,9 @@
 /* General medicine */
 
-/datum/reagent/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	id = "adrenaline"
+	description = "Adrenaline is a hormone that can be used as a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
@@ -12,7 +12,7 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_STABLE)
 		M.add_chemical_effect(CE_PAINKILLER, 25)

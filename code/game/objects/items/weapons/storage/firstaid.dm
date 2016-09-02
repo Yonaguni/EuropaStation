@@ -72,7 +72,7 @@
 	startswith = list(
 		/obj/item/weapon/reagent_containers/pill/dexalin = 4,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
-		/obj/item/weapon/reagent_containers/syringe/inaprovaline,
+		/obj/item/weapon/reagent_containers/syringe/adrenaline,
 		/obj/item/device/healthanalyzer,
 		)
 
@@ -173,11 +173,11 @@
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/dylovene = 7)
 
-/obj/item/weapon/storage/pill_bottle/inaprovaline
-	name = "bottle of Inaprovaline pills"
+/obj/item/weapon/storage/pill_bottle/adrenaline
+	name = "bottle of Adrenaline pills"
 	desc = "Contains pills used to stabilize patients."
 
-	startswith = list(/obj/item/weapon/reagent_containers/pill/inaprovaline = 7)
+	startswith = list(/obj/item/weapon/reagent_containers/pill/adrenaline = 7)
 
 /obj/item/weapon/storage/pill_bottle/kelotane
 	name = "bottle of kelotane pills"

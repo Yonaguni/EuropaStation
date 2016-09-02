@@ -20,7 +20,7 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		//TODO: replace with standard_feed_mob() call.
-		
+
 		if(M == user)
 			if(!M.can_eat(src))
 				return
@@ -165,13 +165,13 @@
 		reagents.add_reagent("citalopram", 15)
 
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
+/obj/item/weapon/reagent_containers/pill/adrenaline
+	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 30)
+		reagents.add_reagent("adrenaline", 30)
 
 /obj/item/weapon/reagent_containers/pill/dexalin
 	name = "Dexalin pill"
@@ -205,13 +205,13 @@
 		..()
 		reagents.add_reagent("anti_toxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
+/obj/item/weapon/reagent_containers/pill/adrenaline
+	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 30)
+		reagents.add_reagent("adrenaline", 30)
 
 /obj/item/weapon/reagent_containers/pill/bicaridine
 	name = "Bicaridine pill"

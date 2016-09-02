@@ -369,7 +369,7 @@
 /datum/reagent/ethanol/specialwhiskey
 	value = 0.3
 
-/datum/reagent/inaprovaline
+/datum/reagent/adrenaline
 	value = 3.5
 
 /datum/reagent/bicaridine

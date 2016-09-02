@@ -10,7 +10,7 @@
 					/obj/item/weapon/storage/firstaid/o2,
 					/obj/item/weapon/storage/firstaid/adv,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
+					/obj/item/weapon/reagent_containers/glass/bottle/adrenaline,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
 					/obj/item/weapon/storage/box/syringes,
 					/obj/item/weapon/storage/box/autoinjectors)

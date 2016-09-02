@@ -66,7 +66,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
 	..()
-	reagents.add_reagent("inaprovaline", 5)
+	reagents.add_reagent("adrenaline", 5)
 	update_icon()
 	return
 

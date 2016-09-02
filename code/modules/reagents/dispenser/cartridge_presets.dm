@@ -62,7 +62,7 @@
 	watermelon	spawn_reagent = "watermelonjuice"
 
 	// ERT
-	inaprov		spawn_reagent = "inaprovaline"
+	inaprov		spawn_reagent = "adrenaline"
 	ryetalyn	spawn_reagent = "ryetalyn"
 	paracetamol	spawn_reagent = "paracetamol"
 	tramadol	spawn_reagent = "tramadol"

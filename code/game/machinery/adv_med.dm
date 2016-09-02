@@ -266,7 +266,7 @@
 		"paralysis" = H.paralysis,
 		"bodytemp" = H.bodytemperature,
 		"borer_present" = H.has_brain_worms(),
-		"inaprovaline_amount" = H.reagents.get_reagent_amount("inaprovaline"),
+		"inaprovaline_amount" = H.reagents.get_reagent_amount("adrenaline"),
 		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
 		"stoxin_amount" = H.reagents.get_reagent_amount("stoxin"),
 		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
@@ -311,7 +311,7 @@
 
 	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", ("<font color='[occ["blood_amount"] > 80  ? "blue" : "red"]'>"), occ["blood_amount"], occ["blood_amount"])
 
-	dat += text("Inaprovaline: [] units<BR>", occ["inaprovaline_amount"])
+	dat += text("Adrenaline: [] units<BR>", occ["inaprovaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["stoxin_amount"])
 	dat += text("[]\tDermaline: [] units</FONT><BR>", ("<font color='[occ["dermaline_amount"] < 30  ? "black" : "red"]'>"), occ["dermaline_amount"])
 	dat += text("[]\tBicaridine: [] units</font><BR>", ("<font color='[occ["bicaridine_amount"] < 30  ? "black" : "red"]'>"), occ["bicaridine_amount"])

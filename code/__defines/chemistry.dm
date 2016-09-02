@@ -22,7 +22,7 @@
 #define IS_XENOS   6
 #define IS_RESOMI  7
 
-#define CE_STABLE "stable" // Inaprovaline
+#define CE_STABLE "stable" // Adrenaline
 #define CE_ANTIBIOTIC "antibiotic" // Spaceacilin
 #define CE_BLOODRESTORE "bloodrestore" // Iron/nutriment
 #define CE_PAINKILLER "painkiller"
