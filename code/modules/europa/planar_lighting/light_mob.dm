@@ -1,21 +1,21 @@
 /mob
-	var/image/master_plane/master_plane
-	var/image/dark_plane/dark_plane
+	var/obj/screen/master_plane/master_plane
+	var/obj/screen/dark_plane/dark_plane
 
 /mob/Login()
 	..()
-	if(!dark_plane)   dark_plane = new(loc=src)
-	if(!master_plane) master_plane = new(loc=src)
+	if(!dark_plane)   dark_plane = new()
+	if(!master_plane) master_plane = new()
 	if(client)
-		client.images |= dark_plane
-		client.images |= master_plane
+		client.screen |= dark_plane
+		client.screen |= master_plane
 
 /mob/observer/ghost/Login()
 	..()
 	if(client)
 		if(seedarkness)
-			client.images |= dark_plane
-			client.images |= master_plane
+			client.screen |= dark_plane
+			client.screen |= master_plane
 		else
-			client.images -= dark_plane
-			client.images -= master_plane
+			client.screen -= dark_plane
+			client.screen -= master_plane
