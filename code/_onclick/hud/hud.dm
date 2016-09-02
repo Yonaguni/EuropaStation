@@ -369,7 +369,8 @@ datum/hud/New(mob/owner)
 /mob/proc/add_click_catcher()
 	if(!client.void)
 		client.void = create_click_catcher()
-	client.screen |= client.void
+	if(istype(client.void))
+		client.screen |= client.void
 
 /mob/new_player/add_click_catcher()
 	return

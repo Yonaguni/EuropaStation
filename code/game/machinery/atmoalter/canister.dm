@@ -364,7 +364,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/phoron/New()
 	..()
 
-	src.air_contents.adjust_gas("phoron", MolesForPressure())
+	src.air_contents.adjust_gas(GAS_FUEL, MolesForPressure())
 	src.update_icon()
 	return 1
 
@@ -445,6 +445,6 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/phoron/engine_setup/New()
 	..()
-	src.air_contents.adjust_gas("phoron", MolesForPressure())
+	src.air_contents.adjust_gas(GAS_FUEL, MolesForPressure())
 	src.update_icon()
 	return 1

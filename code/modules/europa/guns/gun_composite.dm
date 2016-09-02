@@ -173,11 +173,8 @@
 	chamber.update_ammo_overlay()
 	var/list/overlays_to_add = list()
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
-		var/image/I = image(null)
-		I.appearance = GC
-		I.plane = plane
-		I.layer = layer
-		overlays_to_add += I
+		overlays_to_add += GC
+
 	overlays += overlays_to_add
 
 	if(requires_two_hands)

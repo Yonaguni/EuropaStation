@@ -102,7 +102,7 @@
 			else if(env.temperature > 375)
 				trigger_hot = 1
 
-			if(env.gas["phoron"] >= 10)
+			if(env.gas[GAS_FUEL] >= 10)
 				trigger_phoron = 1
 			if(env.gas["oxygen"] >= 10)
 				trigger_oxy = 1

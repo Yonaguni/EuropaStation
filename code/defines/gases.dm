@@ -18,9 +18,9 @@
 	specific_heat = 30	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol
 
-/decl/xgm_gas/phoron
-	id = "phoron"
-	name = "Phoron"
+/decl/xgm_gas/fuel
+	id = GAS_FUEL
+	name = "Fuel"
 
 	//Note that this has a significant impact on TTV yield.
 	//Because it is so high, any leftover phoron soaks up a lot of heat and drops the yield pressure.
