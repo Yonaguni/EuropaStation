@@ -3,7 +3,7 @@
 	head_position = 1
 	department = "Medical"
 	department_flag = MED|COM
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
@@ -25,7 +25,7 @@
 	title = "Medical Officer"
 	department = "Medical"
 	department_flag = MED
-	faction = "Station"
+	faction = "Crew"
 	minimal_player_age = 3
 	total_positions = 5
 	spawn_positions = 3
@@ -44,7 +44,7 @@
 	title = "Counsellor"
 	department = "Medical"
 	department_flag = MED
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	economic_modifier = 5
@@ -60,7 +60,7 @@
 	title = "Xenobiologist"
 	department = "Medical"
 	department_flag = SCI
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the Chief Medical Officer"

@@ -230,7 +230,7 @@ var/specops_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		M << "<span class='notice'>You have arrived to [station_name]. Commence operation!</span>"
+		M << "<span class='notice'>You have arrived at [station_name]. Commence operation!</span>"
 
 	for(var/obj/machinery/computer/specops_shuttle/S in world)
 		S.specops_shuttle_timereset = world.time + SPECOPS_RETURN_DELAY

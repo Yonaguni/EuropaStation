@@ -3,7 +3,7 @@
 	title = "Cook"
 	department = "Civilian"
 	department_flag = CIV
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Quartermaster"
@@ -17,7 +17,7 @@
 	title = "Quartermaster"
 	department = "Civilian"
 	department_flag = CIV|CRG
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the ship's Operations Officer"
@@ -33,7 +33,7 @@
 	title = "Sanitation Technician"
 	department = "Civilian"
 	department_flag = CIV
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Quartermaster"

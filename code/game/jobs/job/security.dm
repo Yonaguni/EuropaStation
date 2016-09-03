@@ -3,7 +3,7 @@
 	head_position = 1
 	department = "Security"
 	department_flag = SEC|COM
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the ship's Commanding Officer"
@@ -30,7 +30,7 @@
 	title = "Munitions Officer"
 	department = "Security"
 	department_flag = SEC
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Security Chief"
@@ -45,7 +45,7 @@
 	title = "Security Officer"
 	department = "Security"
 	department_flag = SEC
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Security Chief"

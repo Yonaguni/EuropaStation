@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/security
 	name = "security camera monitor"
-	desc = "Used to access the various cameras on the station."
+	desc = "Used to access the various cameras on the ship."
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = "#a91515"
@@ -90,7 +90,7 @@
 
 	attack_hand(var/mob/user as mob)
 		if (src.z > 6)
-			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
+			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the ship!"
 			return
 		if(stat & (NOPOWER|BROKEN))	return
 
@@ -219,7 +219,7 @@
 
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
-	desc = "An old TV hooked into the stations camera network."
+	desc = "An old TV hooked into the camera network."
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"

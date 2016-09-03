@@ -47,7 +47,7 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		user << "<span class='warning'>\The [src] can only be used on station flooring.</span>"
+		user << "<span class='warning'>\The [src] can only be used on flooring.</span>"
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)

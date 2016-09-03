@@ -93,7 +93,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id
 	name = "identification card"
-	desc = "A card used to provide ID and determine access across the station."
+	desc = "A card used to provide ID and determine access to restricted areas."
 	icon_state = "id"
 	item_state = "card-id"
 	item_state_slots = list(slot_wear_id_str = "id")
@@ -294,7 +294,7 @@ var/const/NO_EMAG_ACT = -50
 // Department-flavor IDs
 /obj/item/weapon/card/id/medical
 	name = "identification card"
-	desc = "A card issued to station medical staff."
+	desc = "A card issued to medical staff."
 	icon_state = "med"
 	job_access_type = /datum/job/doctor
 
@@ -309,7 +309,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
-	desc = "A card issued to station security staff."
+	desc = "A card issued to security staff."
 	icon_state = "sec"
 	job_access_type = /datum/job/officer
 
