@@ -6,11 +6,10 @@ var/list/nuke_disks = list()
 
 /datum/game_mode/nuclear
 	name = "Mercenary"
-	round_description = "A mercenary strike force is approaching the station!"
-	extended_round_description = "The Company's majority control of resources in Nyx has marked the \
-		station to be a highly valuable target for many competing organizations and individuals. Being a \
-		colony of sizable population and considerable wealth causes it to often be the target of various \
-		attempts of robbery, fraud and other malicious actions."
+	round_description = "A mercenary strike force is approaching the ship!"
+	extended_round_description = "Many competing organizations and individuals covet the resources represented by the ship. Being a \
+		vessel of sizable population and considerable wealth causes it to often be the target of various attempts at robbery, fraud and \
+		other malicious actions."
 	config_tag = "mercenary"
 	required_players = 15
 	required_enemies = 1
