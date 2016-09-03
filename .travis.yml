@@ -11,7 +11,6 @@ env:
 # ALL MAPS MUST BE PRESENT HERE
 # IF THEY ARE NOT, YOUR BUILD WILL FAIL
   matrix:
-    - MAP_PATH=aeolus
     - MAP_PATH=overmap_example
 
 cache:
