@@ -59,7 +59,7 @@
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
-	icon_state = "helmet_riot"
+	icon_state = "helmet"
 	body_parts_covered = HEAD|FACE|EYES //face shield
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
 	siemens_coefficient = 0.7

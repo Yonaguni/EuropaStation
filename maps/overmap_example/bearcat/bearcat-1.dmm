@@ -5,7 +5,7 @@
 "e" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
 "f" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (SOUTHEAST)"; icon_state = "corner_white"; dir = 6},/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
 "g" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (NORTHWEST)"; icon_state = "corner_white"; dir = 9},/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
-"h" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
+"h" = (/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
 "i" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (SOUTHEAST)"; icon_state = "corner_white"; dir = 6},/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
 "j" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (NORTHWEST)"; icon_state = "corner_white"; dir = 9},/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
 "k" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (SOUTHEAST)"; icon_state = "corner_white"; dir = 6},/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled,/area/ship/scrap/cargo/lower)
