@@ -2,6 +2,8 @@
 	name = "gun component"
 	desc = "A mysterious gun component."
 	w_class = 2
+	randpixel = 0
+
 	var/weapon_type = GUN_PISTOL             // What kind of weapon does this fit into?
 	var/component_type = COMPONENT_BARREL    // What part of the gun is this?
 	var/projectile_type = GUN_TYPE_BALLISTIC // What is this component designed to help fire?

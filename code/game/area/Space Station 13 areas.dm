@@ -1167,7 +1167,7 @@ area/space/atmosalert()
 	sound_env = SMALL_ENCLOSED
 
 /area/lawoffice
-	name = "\improper Internal Affairs"
+	name = "\improper Administrative Office"
 	icon_state = "law"
 
 /area/holocontrol
@@ -1421,7 +1421,7 @@ area/space/atmosalert()
 //Teleporter
 
 /area/teleporter
-	name = "\improper Teleporter"
+	name = "\improper Shield Storage"
 	icon_state = "teleporter"
 
 /area/gateway

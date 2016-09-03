@@ -3,6 +3,7 @@
 	desc = "It's a firearm in progress. When finished, it will make small pieces of stuff go very fast."
 	icon_state = "blank"
 	item_state = "gun"
+	appearance_flags = KEEP_TOGETHER
 
 	// Tracking helpers for objects to update from and to pass to finished gun.
 	// See gun_composite.dm for what the objects are actually used for.
