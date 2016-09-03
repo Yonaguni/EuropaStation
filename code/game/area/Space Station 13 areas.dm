@@ -2309,7 +2309,7 @@ area/space/atmosalert()
 	ambience = list('sound/ambience/ambimalf.ogg')
 
 /area/turret_protected/ai_cyborg_station
-	name = "\improper Cyborg Station"
+	name = "\improper Robot Station"
 	icon_state = "ai_cyborg"
 	sound_env = SMALL_ENCLOSED
 

@@ -339,7 +339,7 @@
 		if(isAI(M))
 			dat += "<td>AI</td>"
 		else if(isrobot(M))
-			dat += "<td>Cyborg</td>"
+			dat += "<td>Robot</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/living/silicon/pai))

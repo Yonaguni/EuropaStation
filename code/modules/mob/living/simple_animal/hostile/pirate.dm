@@ -44,8 +44,7 @@
 	rapid = 1
 	projectiletype = /obj/item/projectile/beam
 	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
-	weapon1 = /obj/item/weapon/gun/energy/laser
-
+	//weapon1 = /obj/item/weapon/gun/energy/laser
 
 /mob/living/simple_animal/hostile/pirate/death()
 	..()

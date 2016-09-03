@@ -131,8 +131,8 @@
 	return
 
 /obj/item/clothing/shoes/cyborg
-	name = "cyborg boots"
-	desc = "Shoes for a cyborg costume."
+	name = "robot boots"
+	desc = "Shoes for a robot costume."
 	icon_state = "boots"
 
 /obj/item/clothing/shoes/slippers

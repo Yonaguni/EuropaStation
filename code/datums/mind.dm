@@ -389,7 +389,7 @@
 							else if(R.module_state_3 == R.module.emag)
 								R.module_state_3 = null
 								R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
+					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s robots.")
 
 	else if (href_list["common"])
 		switch(href_list["common"])

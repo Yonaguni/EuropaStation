@@ -1,6 +1,6 @@
 /obj/machinery/computer/robotics
 	name = "robotics control console"
-	desc = "Used to remotely lockdown or detonate linked cyborgs."
+	desc = "Used to remotely lockdown or detonate linked robots."
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
@@ -146,8 +146,8 @@
 			user << "Self-destruct aborted - safety active"
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] detonated all cyborgs!</span>")
-		log_game("[key_name(usr)] detonated all cyborgs!")
+		message_admins("<span class='notice'>[key_name_admin(usr)] detonated all robots!</span>")
+		log_game("[key_name(usr)] detonated all robots!")
 
 		for(var/mob/living/silicon/robot/R in mob_list)
 			if(istype(R, /mob/living/silicon/robot/drone))

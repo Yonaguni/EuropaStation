@@ -19,7 +19,7 @@
 
 /obj/item/borg/upgrade/reset
 	name = "robotic module reset board"
-	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
+	desc = "Used to reset a robot's module. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
 	require_module = 1
 
@@ -39,7 +39,7 @@
 
 /obj/item/borg/upgrade/rename
 	name = "robot reclassification board"
-	desc = "Used to rename a cyborg."
+	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
 	var/heldname = "default name"
 
@@ -57,14 +57,14 @@
 
 /obj/item/borg/upgrade/floodlight
 	name = "robot floodlight module"
-	desc = "Used to boost cyborg's light intensity."
+	desc = "Used to boost robot's light intensity."
 	icon_state = "cyborg_upgrade1"
 
 /obj/item/borg/upgrade/floodlight/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(R.intenselight)
-		usr << "This cyborg's light was already upgraded"
+		usr << "This robot's light was already upgraded"
 		return 0
 	else
 		R.intenselight = 1

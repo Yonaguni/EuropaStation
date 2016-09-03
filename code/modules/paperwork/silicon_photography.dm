@@ -10,7 +10,7 @@
 	name = "AI photo camera"
 
 /obj/item/device/camera/siliconcam/robot_camera //camera cyborgs can take pictures with
-	name = "Cyborg photo camera"
+	name = "Robot photo camera"
 
 /obj/item/device/camera/siliconcam/drone_camera //currently doesn't offer the verbs, thus cannot be used
 	name = "Drone photo camera"

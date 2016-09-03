@@ -1053,7 +1053,7 @@ CIRCUITS BELOW
 	sort_string = "HAABA"
 
 /datum/design/circuit/borgupload
-	name = "cyborg upload console"
+	name = "robot upload console"
 	id = "borgupload"
 	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/borgupload

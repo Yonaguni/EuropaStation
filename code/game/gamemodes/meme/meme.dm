@@ -6,7 +6,7 @@
 	name = "Memetic Anomaly"
 	config_tag = "meme"
 	required_players = 3
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("Computer", "Robot")
 	recommended_enemies = 2 // need at least a meme and a host
 	votable = 0 // temporarily disable this mode for voting
 	end_on_antag_death = 1

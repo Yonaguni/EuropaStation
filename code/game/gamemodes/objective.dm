@@ -420,7 +420,6 @@ datum/objective/steal
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
@@ -669,7 +668,7 @@ datum/objective/heist/loot
 
 	choose_target()
 		var/loot = "an object"
-		switch(rand(1,8))
+		switch(rand(1,5))
 			if(1)
 				target = /obj/structure/particle_accelerator
 				target_amount = 6
@@ -690,14 +689,6 @@ datum/objective/heist/loot
 				target = /obj/item/weapon/gun
 				target_amount = 6
 				loot = "six guns"
-			if(6)
-				target = /obj/item/weapon/gun/energy
-				target_amount = 4
-				loot = "four energy guns"
-			if(7)
-				target = /obj/item/weapon/gun/energy/laser
-				target_amount = 2
-				loot = "two laser guns"
 
 		explanation_text = "It's a buyer's market out here. Steal [loot] for resale."
 

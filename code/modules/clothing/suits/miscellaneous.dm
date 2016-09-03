@@ -26,8 +26,8 @@
 
 
 /obj/item/clothing/suit/cyborg_suit
-	name = "cyborg suit"
-	desc = "Suit for a cyborg costume."
+	name = "robot suit"
+	desc = "Suit for a robot costume."
 	icon_state = "death"
 	item_state = "death"
 	flags = CONDUCT

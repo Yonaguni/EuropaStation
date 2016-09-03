@@ -74,13 +74,13 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Warden")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Detective")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Security Officer")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Robot")
 		return 1
 	if(rank == "Engineering")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Station Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Atmospheric Technician")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Engineer")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Robot")
 		return 1
 	if(rank == "Research")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Scientist")
@@ -93,7 +93,7 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Medical Doctor")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Medical Officer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chemist")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Robot")
 		return 1
 	if(rank == "CE_Station_Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Station Engineer")
@@ -126,8 +126,8 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Scientist")
 		return 1
 	if(rank == "AI_Cyborg")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "AI")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Robot")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Computer")
 		return 1
 	if(rank == "Detective_HoS")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Detective")
