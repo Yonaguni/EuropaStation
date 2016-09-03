@@ -22,7 +22,6 @@
 	icon_state = "tcomsatcham"
 	requires_power = 0
 	luminosity = 1
-	lighting_use_dynamic = 0
 
 /area/sector/shuttle/ingoing1
 	name = "\improper Entry Point #1"

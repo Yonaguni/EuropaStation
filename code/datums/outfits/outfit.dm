@@ -145,15 +145,25 @@ var/list/outfits_decls_by_type_
 	if(assignment)
 		W.assignment = assignment
 	H.set_id_info(W)
-	if(H.equip_to_slot_or_del(W, id_slot))
-		return W
+	H.equip_to_slot_if_possible(W, id_slot)
+	return W
 
 /decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
 	if(!pda_slot)
 		return
-	var/obj/item/device/pda/pda = new pda_type(H)
+	var/obj/item/device/radio/headset/pda/pda = new pda_type(H)
 	pda.set_owner_rank_job(H.real_name, rank, assignment)
+
+	var/obj/item/weapon/card/id/id
+	if(pda_slot == slot_wear_id)
+		id = locate() in H
+		if(id)
+			H.drop_from_inventory(id)
 	if(H.equip_to_slot_or_del(pda, pda_slot))
+		if(id)
+			id.forceMove(pda)
+			pda.id = id
+			pda.id_check(H,2)
 		return pda
 
 /decl/hierarchy/outfit/dd_SortValue()

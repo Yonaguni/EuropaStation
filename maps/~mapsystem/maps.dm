@@ -86,3 +86,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	for(var/thing in mining_floors)
 		var/turf/simulated/floor/asteroid/M = thing
 		M.updateMineralOverlays()
+
+// Can be overridden/updated to be more interesting later.
+/datum/map/proc/do_roundstart_intro()
+	return

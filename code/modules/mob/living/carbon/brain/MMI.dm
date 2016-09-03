@@ -75,7 +75,7 @@
 
 		return
 
-	if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
+	if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/radio/headset/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
 			user << "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>"

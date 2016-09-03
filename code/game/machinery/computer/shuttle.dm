@@ -19,9 +19,9 @@
 		if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || evacuation_controller.has_evacuated() || !( user )))
 			return
 
-		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-			if (istype(W, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = W
+		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+			if (istype(W, /obj/item/device/radio/headset/pda))
+				var/obj/item/device/radio/headset/pda/pda = W
 				W = pda.id
 			if (!W:access) //no access
 				user << "The access level of [W:registered_name]\'s card is not high enough. "

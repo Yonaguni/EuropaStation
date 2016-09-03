@@ -6,7 +6,7 @@
 
 /decl/aspect/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
 	// Already have a gun.
-	if(locate(/obj/item/gun) in holder.contents)
+	if(locate(/obj/item/weapon/gun) in holder.contents)
 		return
 	// Already have a holster
 	if(locate(/obj/item/clothing/accessory/holster) in holder.w_uniform)

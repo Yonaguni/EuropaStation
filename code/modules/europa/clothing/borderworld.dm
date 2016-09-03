@@ -87,13 +87,6 @@
 	icon_state = "blackhat"
 	desc = "Whoever wears this is probably pretty villainous."
 
-/obj/item/clothing/under/mechanic
-	name = "mechanic's clothes"
-	desc = "They small like oil."
-	icon_state = "mechanic"
-	worn_state = "mechanic"
-	item_state = null
-
 /obj/item/clothing/under/merchant
 	name = "merchant's clothes"
 	desc = "Rich as butter."

@@ -108,6 +108,10 @@
 		/obj/item/weapon/gun/composite/premade/pistol/a9/silenced
 	)
 
+/obj/item/weapon/storage/box/syndie_kit/g9mm/New()
+	..()
+	make_exact_fit()
+
 /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
 	name = "\improper Tough operator"
 	desc = "Revolver with ammunition."

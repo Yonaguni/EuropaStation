@@ -25,9 +25,6 @@
 	light_overlay.plane = DARK_PLANE
 	..(get_turf(holder))
 
-/obj/effect/light/Del()
-	return ..()
-
 /obj/effect/light/Destroy()
 
 	moved_event.unregister(holder, src)

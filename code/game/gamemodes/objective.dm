@@ -143,8 +143,8 @@ datum/objective/anti_revolution/demote
 	check_completion()
 		if(target && target.current && istype(target,/mob/living/carbon/human))
 			var/obj/item/weapon/card/id/I = target.current:wear_id
-			if(istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/P = I
+			if(istype(I, /obj/item/device/radio/headset/pda))
+				var/obj/item/device/radio/headset/pda/P = I
 				I = P.id
 
 			if(!istype(I)) return 1

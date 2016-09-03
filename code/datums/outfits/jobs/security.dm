@@ -1,7 +1,6 @@
 /decl/hierarchy/outfit/job/security
 	hierarchy_type = /decl/hierarchy/outfit/job/security
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	l_ear = /obj/item/device/radio/headset/headset_sec
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack = /obj/item/weapon/storage/backpack/security
@@ -10,10 +9,9 @@
 
 /decl/hierarchy/outfit/job/security/hos
 	name = OUTFIT_JOB_NAME("Chief of Security")
-	l_ear = /obj/item/device/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/aeolus/security/chief
 	id_type = /obj/item/weapon/card/id/security/head
-	pda_type = /obj/item/device/pda/command
+	pda_type = /obj/item/device/radio/headset/pda/command
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/warden

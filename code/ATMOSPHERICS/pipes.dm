@@ -1163,7 +1163,7 @@
 	air_temporary.adjust_gas(GAS_FUEL, (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 
 	..()
-	icon_state = GAS_FUEL
+	icon_state = "phoron"
 
 /obj/machinery/atmospherics/pipe/tank/nitrous_oxide
 	name = "Pressure Tank (Nitrous Oxide)"

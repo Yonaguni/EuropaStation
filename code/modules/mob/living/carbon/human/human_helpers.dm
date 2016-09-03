@@ -107,8 +107,8 @@
 				ID.registered_name = new_name
 				ID.update_name()
 				search_id = 0
-		else if(search_pda && istype(A,/obj/item/device/pda))
-			var/obj/item/device/pda/PDA = A
+		else if(search_pda && istype(A,/obj/item/device/radio/headset/pda))
+			var/obj/item/device/radio/headset/pda/PDA = A
 			if(PDA.owner == old_name)
 				PDA.set_owner(new_name)
 				search_pda = 0
