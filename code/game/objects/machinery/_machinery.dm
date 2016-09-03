@@ -41,10 +41,12 @@
 /obj/machinery/process()//If you dont use process or power why are you here
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
+	/* TODO: uncomment this once fluid depth code is fixed
 	if(loc && istype(loc, /turf))
 		var/turf/T = loc
 		if(T.check_fluid_depth())
 			water_act(T.get_fluid_depth())
+	*/
 	return
 
 /obj/machinery/emp_act(severity)
