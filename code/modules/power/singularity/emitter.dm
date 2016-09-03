@@ -26,7 +26,7 @@
 
 	var/_wifi_id
 	var/datum/wifi/receiver/button/emitter/wifi_receiver
-	
+
 /obj/machinery/power/emitter/anchored
 	anchored = 1
 	state = 2
@@ -208,7 +208,7 @@
 					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 		return
 
-	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/radio/headset/pda))
 		if(emagged)
 			user << "<span class='warning'>The lock seems to be broken.</span>"
 			return

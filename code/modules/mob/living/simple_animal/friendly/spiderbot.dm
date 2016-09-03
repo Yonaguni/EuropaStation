@@ -105,7 +105,7 @@
 		else
 			user << "<span class='danger'>You need more welding fuel for this task!</span>"
 			return
-	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/radio/headset/pda))
 		if (!mmi)
 			user << "<span class='danger'>There's no reason to swipe your ID - \the [src] has no brain to remove.</span>"
 			return 0
@@ -115,7 +115,7 @@
 		if(istype(O, /obj/item/weapon/card/id))
 			id_card = O
 		else
-			var/obj/item/device/pda/pda = O
+			var/obj/item/device/radio/headset/pda/pda = O
 			id_card = pda.id
 
 		if(access_robotics in id_card.access)

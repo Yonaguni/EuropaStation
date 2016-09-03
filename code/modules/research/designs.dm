@@ -1525,7 +1525,7 @@ CIRCUITS BELOW
 	id = "pda"
 	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
-	build_path = /obj/item/device/pda
+	build_path = /obj/item/device/radio/headset/pda
 	sort_string = "VAAAA"
 
 // Cartridges

@@ -160,10 +160,10 @@
 			return
 
 	// OTHER
-	else if (can_use() && (istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if (can_use() && (istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/radio/headset/pda)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/weapon/paper/X = null
-		var/obj/item/device/pda/P = null
+		var/obj/item/device/radio/headset/pda/P = null
 
 		var/itemname = ""
 		var/info = ""

@@ -3,14 +3,13 @@
 	hierarchy_type = /decl/hierarchy/outfit/job
 
 	uniform = /obj/item/clothing/under/aeolus/crewman
-	l_ear = /obj/item/device/radio/headset
 	back = /obj/item/weapon/storage/backpack
 	shoes = /obj/item/clothing/shoes/black
 
-	id_slot = slot_wear_id
+	id_slot = slot_l_hand
 	id_type = /obj/item/weapon/card/id/civilian
-	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda
+	pda_slot = slot_wear_id
+	pda_type = /obj/item/device/radio/headset/pda
 
 	var/backpack = /obj/item/weapon/storage/backpack
 	var/satchel_one  = /obj/item/weapon/storage/backpack/satchel_norm
@@ -26,7 +25,6 @@
 
 /decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H)
 	var/obj/item/weapon/card/id/C = ..()
-	if(H.mind)
-		if(H.mind.initial_account)
-			C.associated_account_number = H.mind.initial_account.account_number
+	if(C && H.mind && H.mind.initial_account)
+		C.associated_account_number = H.mind.initial_account.account_number
 	return C

@@ -56,7 +56,7 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
-	var/obj/item/device/pda/ai/aiPDA = null
+	var/obj/item/device/radio/headset/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
@@ -115,7 +115,7 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
+	aiPDA = new/obj/item/device/radio/headset/pda/ai(src)
 	fully_replace_character_name(pickedName)
 	anchored = 1
 	canmove = 0

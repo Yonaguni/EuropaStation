@@ -37,7 +37,7 @@ var/const/boss_name     = "Naval Command"
 var/const/boss_short    = "Headquarters"
 var/const/company_name  = "Sol Central"
 var/const/company_short = "Sol"
-var/game_version        = "ES13 r0-indev"
+var/game_version        = "ES13 <b><font-color = '#FF0000'>r0-indev</font></b>"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 

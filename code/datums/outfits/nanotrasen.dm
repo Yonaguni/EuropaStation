@@ -5,11 +5,8 @@
 	gloves = /obj/item/clothing/gloves/white
 	l_ear = /obj/item/device/radio/headset/heads/hop
 	glasses = /obj/item/clothing/glasses/sunglasses
-
-	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/centcom/station
-	pda_slot = slot_r_store
-	pda_type = /obj/item/device/pda/command
+	pda_type = /obj/item/device/radio/headset/pda/command
 
 /decl/hierarchy/outfit/nanotrasen/representative
 	name = "corporate representative"

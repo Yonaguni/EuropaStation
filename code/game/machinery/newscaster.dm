@@ -102,7 +102,7 @@
 		NEWSCASTER.update_icon()
 
 	var/list/receiving_pdas = new
-	for (var/obj/item/device/pda/P in PDAs)
+	for (var/obj/item/device/radio/headset/pda/P in PDAs)
 		if (!P.owner)
 			continue
 		if (P.toff)
@@ -112,7 +112,7 @@
 	spawn(0)	// get_receptions sleeps further down the line, spawn of elsewhere
 		var/datum/receptions/receptions = get_receptions(null, receiving_pdas) // datums are not atoms, thus we have to assume the newscast network always has reception
 
-		for(var/obj/item/device/pda/PDA in receiving_pdas)
+		for(var/obj/item/device/radio/headset/pda/PDA in receiving_pdas)
 			if(!(receptions.receiver_reception[PDA] & TELECOMMS_RECEPTION_RECEIVER))
 				continue
 
@@ -926,8 +926,8 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(user,/mob/living/carbon/human))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.wear_id)                                      //Newscaster scans you
-			if(istype(human_user.wear_id, /obj/item/device/pda) )	//autorecognition, woo!
-				var/obj/item/device/pda/P = human_user.wear_id
+			if(istype(human_user.wear_id, /obj/item/device/radio/headset/pda) )	//autorecognition, woo!
+				var/obj/item/device/radio/headset/pda/P = human_user.wear_id
 				if(P.id)
 					src.scanned_user = GetNameAndAssignmentFromId(P.id)
 				else

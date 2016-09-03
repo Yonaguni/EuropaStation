@@ -480,8 +480,8 @@
 			var/obj/item/weapon/card/id/I
 			if(istype(human_user.wear_id, /obj/item/weapon/card/id) )
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
-				var/obj/item/device/pda/P = human_user.wear_id
+			else if(istype(human_user.wear_id, /obj/item/device/radio/headset/pda) )
+				var/obj/item/device/radio/headset/pda/P = human_user.wear_id
 				I = P.id
 			if(I)
 				return I

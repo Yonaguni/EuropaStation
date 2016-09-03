@@ -42,7 +42,7 @@
 	if(!(..(user, 1) && radio_desc))
 		return
 
-	user << "The following channels are available:"
+	user << "The following radio channels are available:"
 	user << radio_desc
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
@@ -62,7 +62,7 @@
 		return ..(freq, level)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
-		if(H.l_ear == src || H.r_ear == src)
+		if(H.l_ear == src || H.r_ear == src || H.wear_id == src)
 			return ..(freq, level)
 	return -1
 

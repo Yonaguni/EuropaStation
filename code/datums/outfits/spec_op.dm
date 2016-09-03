@@ -2,7 +2,6 @@
 	name = "Special ops - Officer"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/swat/officer
-	l_ear = /obj/item/device/radio/headset/ert
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
 	mask = /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	head = /obj/item/clothing/head/beret/deathsquad
@@ -29,7 +28,6 @@
 	uniform = /obj/item/clothing/under/ert
 	shoes = /obj/item/clothing/shoes/swat
 	gloves = /obj/item/clothing/gloves/thick/swat
-	l_ear = /obj/item/device/radio/headset/ert
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/weapon/storage/backpack/satchel
 
