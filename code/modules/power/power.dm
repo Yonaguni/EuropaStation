@@ -24,6 +24,12 @@
 // General procedures
 //////////////////////////////
 
+
+/obj/machinery/power/powered()
+	if(use_power)
+		return ..()
+	return 1 //doesn't require an external power source
+
 // common helper procs for all power machines
 /obj/machinery/power/drain_power(var/drain_check, var/surge, var/amount = 0)
 	if(drain_check)
