@@ -152,6 +152,7 @@
 	new /obj/item/clothing/suit/space/diving/medium(src)
 	new /obj/item/clothing/head/helmet/space/diving/medium(src)
 	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
+	make_exact_fit()
 
 //Government
 /obj/item/clothing/head/petty_officer/marshal

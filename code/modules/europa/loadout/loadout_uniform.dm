@@ -177,10 +177,6 @@
 	display_name = "blazer, blue"
 	path = /obj/item/clothing/under/blazer
 
-/datum/gear/clothing/mechanicclothes
-	display_name = "mechanic's clothes"
-	path = /obj/item/clothing/under/mechanic
-
 /datum/gear/clothing/merchantclothes
 	display_name = "merchant's clothes"
 	path = /obj/item/clothing/under/merchant
