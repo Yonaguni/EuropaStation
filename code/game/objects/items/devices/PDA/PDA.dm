@@ -11,6 +11,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	item_state = "wc"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
+	light_color = "#00FF00"
 
 	//Main variables
 	var/owner = null
