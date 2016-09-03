@@ -207,9 +207,6 @@
 
 
 // COMPONENT OBJECTS
-
-
-
 // Component Objects
 // These objects are visual representation of modules
 /obj/item/robot_parts/robot_component
@@ -226,9 +223,12 @@
 	burn += burn_amt
 	total_dam = brute+burn
 	if(total_dam >= max_dam)
-		var/obj/item/broken_device/BD = new(src.loc)
-		BD.name = "broken [name]"
-		return BD
+		var/obj/item/weapon/circuitboard/broken/broken_device = new (get_turf(src))
+		if(icon_state_broken != "broken")
+			broken_device.icon = src.icon
+			broken_device.icon_state = icon_state_broken
+		broken_device.name = "broken [name]"
+		return broken_device
 	return 0
 
 /obj/item/robot_parts/robot_component/proc/is_functional()

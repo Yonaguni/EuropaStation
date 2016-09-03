@@ -182,9 +182,6 @@
 
 	return 1
 
-/datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop
-	name = "OBSERVATION: Moved - Shall Only Trigger Once For Recursive Drop"
-
 /datum/unit_test/observation/moved_shall_not_unregister_recursively_one
 	name = "OBSERVATION: Moved - Shall Not Unregister Recursively - One"
 
