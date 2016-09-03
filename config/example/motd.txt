@@ -4,4 +4,4 @@
 <br>
 Please check over the rules and get familiar with our roleplaying expectations before you dive in.
 <br>
-<strong>Bugtracker:</strong> <a href="https://github.com/Yonaguni/EuropaStation/issues">for posting of bugs and issues.</a>
+<strong>Bugtracker:</strong> <a href="https://github.com/Yonaguni/Baystation12/issues">for posting of bugs and issues.</a>
