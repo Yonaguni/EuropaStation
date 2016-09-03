@@ -116,7 +116,7 @@
 				else
 					body += "is recovering from plastic surgery in a clinic on [affected_dest.name] for the [pick("second","third","fourth")] time, reportedly having made the decision in response to "
 					body += "[pick("unkind comments by an ex","rumours started by jealous friends",\
-					"the decision to be dropped by a major sponsor","a disasterous interview on Nyx Tonight")]."
+					"the decision to be dropped by a major sponsor","a disasterous interview on Sol Tonight")]."
 			if(TOURISM)
 				body += "Tourists are flocking to [affected_dest.name] after the surprise announcement of [pick("major shopping bargains by a wily retailer",\
 				"a huge new ARG by a popular entertainment company","a secret tour by popular artiste [random_name(pick(MALE,FEMALE))]")]. \
@@ -162,7 +162,7 @@
 	"This space for rent.",\
 	"[affected_dest.name] Baker Wins Pickled Crumpet Toss Three Years Running",\
 	"Skrell Scientist Discovers Abacus Can Be Used To Dry Towels",\
-	"Survey: 'Cheese Louise' Voted Best Pizza Restaurant In Nyx",\
+	"Survey: 'Cheese Louise' Voted Best Pizza Restaurant In Sol",\
 	"I Was Framed, jokes [affected_dest.name] artist",\
 	"Mysterious Loud Rumbling Noises In [affected_dest.name] Found To Be Mysterious Loud Rumblings",\
 	"Alien ambassador becomes lost on [affected_dest.name], refuses to ask for directions",\

@@ -3,7 +3,7 @@
 	head_position = 1
 	department = "Engineering"
 	department_flag = ENG|COM
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the ship's Commanding Officer"
@@ -29,7 +29,7 @@
 	title = "Engineering Officer"
 	department = "Engineering"
 	department_flag = ENG
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the Chief Engineer"
@@ -45,7 +45,7 @@
 	title = "Roboticist"
 	department = "Science"
 	department_flag = SCI
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Chief Engineer"

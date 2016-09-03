@@ -3,7 +3,7 @@
 	head_position = 1
 	department = "Science"
 	department_flag = COM|SCI
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the ship's Commanding Officer"

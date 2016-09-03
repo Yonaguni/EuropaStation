@@ -415,7 +415,7 @@
 /client/proc/startSinglo()
 	set category = "Debug"
 	set name = "Start Singularity"
-	set desc = "Sets up the singularity and all machines to get power flowing through the station"
+	set desc = "Sets up the singularity and all machines to get power flowing through the map"
 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
 		return

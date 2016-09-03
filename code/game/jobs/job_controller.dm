@@ -15,7 +15,7 @@ var/global/datum/controller/occupations/job_master
 	var/list/job_debug = list()
 
 
-	proc/SetupOccupations(var/faction = "Station", var/setup_titles = 0)
+	proc/SetupOccupations(var/faction = "Crew", var/setup_titles = 0)
 		occupations = list()
 		occupations_by_type = list()
 		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
@@ -602,14 +602,14 @@ var/global/datum/controller/occupations/job_master
 				if(H)
 					H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the default spawn point instead."
 					H.forceMove(pick(latejoin))
-				return "has arrived on the station"
+				return "has arrived on the operations deck"
 	else
 		if(return_location)
 			return pick(latejoin)
 		else
 			if(H)
 				H.forceMove(pick(latejoin))
-			return "has arrived on the station"
+			return "has arrived on the operations deck"
 
 /datum/controller/occupations/proc/GetJobByType(var/job_type)
 	return occupations_by_type[job_type]

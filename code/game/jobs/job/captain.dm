@@ -5,7 +5,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	department = "Command"
 	head_position = 1
 	department_flag = COM
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Jovian Naval Authority and the Admirality"
@@ -25,7 +25,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	department = "Command"
 	head_position = 1
 	department_flag = COM
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the ship's Commanding Officer"
@@ -47,7 +47,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	title = "Operations Officer"
 	head_position = 1
 	department_flag = COM|CIV
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the ship's Commanding Officer"
@@ -77,7 +77,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	title = "Flight Controller"
 	head_position = 1
 	department_flag = COM|CIV
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 1
 	supervisors = "the ship's Commanding Officer"

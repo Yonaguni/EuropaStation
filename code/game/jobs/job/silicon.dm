@@ -1,7 +1,7 @@
 /datum/job/ai
 	title = "Computer"
 	department_flag = MSC
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 0 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
 	spawn_positions = 1
 	selection_color = "#3f823f"
@@ -22,7 +22,7 @@
 /datum/job/cyborg
 	title = "Robot"
 	department_flag = MSC
-	faction = "Station"
+	faction = "Crew"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "your laws and the ship's computer"

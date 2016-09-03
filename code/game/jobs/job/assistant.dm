@@ -2,7 +2,7 @@
 	title = "Crewman"
 	department = "Civilian"
 	department_flag = CIV
-	faction = "Station"
+	faction = "Crew"
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "absolutely everyone"

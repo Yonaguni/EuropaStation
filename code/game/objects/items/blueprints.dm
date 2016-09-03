@@ -1,6 +1,6 @@
 /obj/item/blueprints
-	name = "station blueprints"
-	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
+	name = "digital blueprints"
+	desc = "Blueprints of the ship. There is a \"Classified\" stamp and several coffee stains on it."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "blueprints"
 	attack_verb = list("attacked", "bapped", "hit")
@@ -185,7 +185,7 @@ move an amendment</a> to the drawing, or <a href='?src=\ref[src];action=delete_a
 		interact()
 		return
 	usr << "<span class='notice'>You scrub [A.name] off the blueprint.</span>"
-	log_and_message_admins("deleted area [A.name] via station blueprints.")
+	log_and_message_admins("deleted area [A.name] via the blueprints.")
 	qdel(A)
 	interact()
 

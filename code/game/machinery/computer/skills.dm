@@ -43,7 +43,7 @@
 
 /obj/machinery/computer/skills/ui_interact(mob/user as mob)
 	if (src.z > 6)
-		user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
+		user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the ship!"
 		return
 	var/dat
 
