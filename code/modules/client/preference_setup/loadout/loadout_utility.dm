@@ -41,3 +41,49 @@
 	display_name = "tablet computer"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
 	cost = 4
+
+/datum/gear/utility/fanny_pack
+	display_name = "fanny pack, orange"
+	path = /obj/item/weapon/storage/belt/fanny_pack
+	slot = slot_belt
+	cost = 2
+
+/datum/gear/utility/fanny_pack
+	display_name = "fanny pack, "
+	path = /obj/item/weapon/storage/belt/fanny_pack/black
+
+/datum/gear/utility/fanny_pack/red
+	display_name = "fanny pack, red"
+	path = /obj/item/weapon/storage/belt/fanny_pack/red
+
+/datum/gear/utility/fanny_pack/purple
+	display_name = "fanny pack, purple"
+	path = /obj/item/weapon/storage/belt/fanny_pack/purple
+
+/datum/gear/utility/fanny_pack/blue
+	display_name = "fanny pack, blue"
+	path = /obj/item/weapon/storage/belt/fanny_pack/blue
+
+/datum/gear/utility/fanny_pack/leather
+	display_name = "fanny pack, leather"
+	path = /obj/item/weapon/storage/belt/fanny_pack/leather
+
+/datum/gear/utility/fanny_pack/white
+	display_name = "fanny pack, white"
+	path = /obj/item/weapon/storage/belt/fanny_pack/white
+
+/datum/gear/utility/fanny_pack/green
+	display_name = "fanny pack, green"
+	path = /obj/item/weapon/storage/belt/fanny_pack/green
+
+/datum/gear/utility/fanny_pack/pink
+	display_name = "fanny pack, pink"
+	path = /obj/item/weapon/storage/belt/fanny_pack/pink
+
+/datum/gear/utility/fanny_pack/yellow
+	display_name = "fanny pack, yellow "
+	path = /obj/item/weapon/storage/belt/fanny_pack/yellow
+
+/datum/gear/utility/fanny_pack/cyan
+	display_name = "fanny pack, cyan"
+	path = /obj/item/weapon/storage/belt/fanny_pack/cyan

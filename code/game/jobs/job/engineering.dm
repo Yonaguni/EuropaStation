@@ -43,13 +43,13 @@
 
 /datum/job/roboticist
 	title = "Roboticist"
-	department = "Science"
+	department = "Engineering"
 	department_flag = SCI
 	faction = "Crew"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Chief Engineer"
-	selection_color = "#633d63"
+	selection_color = "#7f6e2c"
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.

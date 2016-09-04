@@ -16,3 +16,6 @@
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Sanitation Technician")
 	id_type = /obj/item/weapon/card/id/civilian
+
+/decl/hierarchy/outfit/job/cultural_attache
+	name = OUTFIT_JOB_NAME("Cultural Attache")

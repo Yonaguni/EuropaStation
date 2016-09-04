@@ -41,3 +41,17 @@
 	access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
 	minimal_access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
+
+/datum/job/cultural_attache //todo
+	title = "Cultural Attache"
+	outfit_type = /decl/hierarchy/outfit/job/cultural_attache
+	department = "Civilian"
+	department_flag = CIV
+	faction = "Crew"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "your home government"
+	access = list()
+	minimal_access = list()
+	selection_color = "#633d63"
+
