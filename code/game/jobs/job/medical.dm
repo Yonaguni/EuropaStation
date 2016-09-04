@@ -59,12 +59,12 @@
 /datum/job/xenobiologist
 	title = "Xenobiologist"
 	department = "Medical"
-	department_flag = SCI
+	department_flag = MED
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the Chief Medical Officer"
-	selection_color = "#633d63"
+	selection_color = "#013d3b"
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
 	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
