@@ -1161,6 +1161,11 @@
 		create_stack()
 	full_prosthetic = null
 	if(species)
+		if(mind)
+			for(var/aspect in mind.aspects)
+				var/decl/aspect/A = aspects_by_name[aspect]
+				if(A.apply_post_species_change)
+					A.do_post_spawn(src)
 		return 1
 	else
 		return 0

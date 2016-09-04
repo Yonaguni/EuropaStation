@@ -46,9 +46,9 @@
 	*/
 
 	if(caller)
-		result += "<a href='?src=\ref[caller];toggle_aspect=[name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font></a>"
+		result += "<a href='?src=\ref[caller];toggle_aspect=[name]'>[ticked ? "<font color='#E67300'>[name]</font>" : "[name]"]</a>"
 	else
-		result += "<font color='[ticked ? "#E67300" : "#3366CC"]'>[name]</font>"
+		result += ticked ? "<font color='#E67300'>[name]</font>" : "[name]"
 
 	result += "</td><td>"
 	if(ticked)
