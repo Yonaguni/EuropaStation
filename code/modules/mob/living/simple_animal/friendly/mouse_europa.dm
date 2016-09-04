@@ -9,6 +9,7 @@
 	density = 1
 	holder_type = null
 	layer = MOB_LAYER
+	sleep_icon = null
 
 /mob/living/simple_animal/mouse/brain/death()
 	. = ..()

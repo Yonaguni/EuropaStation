@@ -22,6 +22,7 @@
 	response_harm   = "stamps on"
 	density = 0
 	var/body_color //brown, gray and white, leave blank for random
+	var/sleep_icon = "_sleep"
 	layer = MOB_LAYER
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223		//Below -50 Degrees Celcius
@@ -43,14 +44,16 @@
 
 	if(!ckey && stat == CONSCIOUS && prob(0.5))
 		stat = UNCONSCIOUS
-		icon_state = "mouse_[body_color]_sleep"
+		if(sleep_icon)
+			icon_state = "mouse_[body_color][sleep_icon]"
 		wander = 0
 		speak_chance = 0
 		//snuffles
 	else if(stat == UNCONSCIOUS)
 		if(ckey || prob(1))
 			stat = CONSCIOUS
-			icon_state = "mouse_[body_color]"
+			if(sleep_icon)
+				icon_state = "mouse_[body_color]"
 			wander = 1
 		else if(prob(5))
 			audible_emote("snuffles.")
