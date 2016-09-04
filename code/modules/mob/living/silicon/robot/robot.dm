@@ -4,7 +4,7 @@
 	name = "Robot"
 	real_name = "Robot"
 	icon = 'icons/mob/robots.dmi'
-	icon_state = "robot"
+	icon_state = "motile"
 	maxHealth = 200
 	health = 200
 
@@ -109,8 +109,8 @@
 	robot_modules_background.icon_state = "block"
 	robot_modules_background.layer = SCREEN_LAYER
 	ident = rand(1, 999)
-	module_sprites["Basic"] = "robot"
-	icontype = "Basic"
+	module_sprites["Default"] = "motile"
+	icontype = "Default"
 	updatename("Default")
 	updateicon()
 
