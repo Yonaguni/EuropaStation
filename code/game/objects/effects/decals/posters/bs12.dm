@@ -268,13 +268,3 @@
 	icon_state="bsposter56"
 	name = "Mars appreciation poster"
 	desc = "This is a poster produced by the Generic Space Company, as a part of a series of commemorative posters on the wonders of space. Three of three."
-
-/datum/poster/bay_57
-	icon_state="bsposter57"
-	name = "space carp warning poster"
-	desc = "This poster tells of the dangers of space carp infestations."
-
-/datum/poster/bay_58
-	icon_state="bsposter58"
-	name = "space carp information poster"
-	desc = "This poster showcases an old spacer saying on the dangers of migrant space carp."

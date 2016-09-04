@@ -1,8 +1,8 @@
 
 
 /mob/living/simple_animal/hostile/carp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	name = "lithovore"
+	desc = "A ferocious, metal-eating monster. Do not hug."
 	icon_state = "carp"
 	icon_living = "carp"
 	icon_dead = "carp_dead"
