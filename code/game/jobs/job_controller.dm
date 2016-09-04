@@ -25,6 +25,15 @@ var/global/datum/controller/occupations/job_master
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
 			if(!job)	continue
+
+			var/found_spawn_point
+			for(var/obj/effect/landmark/start/S in world)
+				if(S.name == job.title)
+					found_spawn_point = 1
+					break
+			if(!found_spawn_point)
+				world << "<span class='warning'>Error setting up jobs, [job.title] has no roundstart spawn point!</span>"
+
 			if(job.faction != faction)	continue
 			occupations += job
 			occupations_by_type[job.type] = job
