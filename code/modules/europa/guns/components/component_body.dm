@@ -4,7 +4,7 @@
 	projectile_type = GUN_TYPE_BALLISTIC
 	icon = 'icons/obj/gun_components/body.dmi'
 	var/base_desc = "It is an ambiguous firearm of some sort."
-	var/wielded_state = "gun_wielded"
+	var/wielded_state = "assault-wielded"
 
 /obj/item/gun_component/body/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/gun_component))
@@ -57,6 +57,7 @@
 	item_state = "c20r"
 	base_desc = "It's a submachine gun."
 	color = COLOR_GUNMETAL
+	wielded_state = "assault-wielded"
 
 /obj/item/gun_component/body/rifle
 	icon_state = "rifle"
@@ -69,12 +70,14 @@
 	base_desc = "It's a rifle."
 	two_handed = 1
 	recoil_mod = -1
+	wielded_state = "rifle-wielded"
 
 /obj/item/gun_component/body/rifle/black
 	icon_state = "sniper"
 	base_desc = "It's a heavy rifle."
 	item_state = "l6closednomag"
 	w_class = 3
+	wielded_state = "sniper-wielded"
 
 /obj/item/gun_component/body/cannon
 	icon_state = "cannon"
@@ -87,6 +90,7 @@
 	base_desc = "It's a cannon."
 	two_handed = 1
 	recoil_mod = -2
+	wielded_state = "cannon-wielded"
 
 /obj/item/gun_component/body/assault
 	icon_state = "assault"
@@ -99,6 +103,7 @@
 	base_desc = "It's an assault rifle."
 	two_handed = 1
 	recoil_mod = -1
+	wielded_state = "assault-wielded"
 
 /obj/item/gun_component/body/shotgun
 	icon_state = "shotgun"
@@ -111,6 +116,7 @@
 	base_desc = "It's a shotgun."
 	two_handed = 1
 	recoil_mod = -1
+	wielded_state = "shotgun-wielded"
 
 /obj/item/gun_component/body/shotgun/combat
 	item_state = "cshotgun"
@@ -129,18 +135,21 @@
 	projectile_type = GUN_TYPE_LASER
 	item_state = "xray"
 	base_desc = "It's an energy submachine gun."
+	wielded_state = "lassault-wielded"
 
 /obj/item/gun_component/body/rifle/laser
 	icon_state = "las_assault"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "laser"
 	base_desc = "It's an energy rifle."
+	wielded_state = "lassault-wielded"
 
 /obj/item/gun_component/body/cannon/laser
 	icon_state = "las_cannon"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "lasercannon"
 	base_desc = "It's an energy cannon."
+	wielded_state = "lassault-wielded"
 
 /obj/item/gun_component/body/assault/laser
 	icon_state = "las_assault"
@@ -148,9 +157,11 @@
 	item_state = "laser"
 	w_class = 3
 	base_desc = "It's an energy assault rifle."
+	wielded_state = "lassault-wielded"
 
 /obj/item/gun_component/body/shotgun/laser
 	icon_state = "las_shotgun"
 	projectile_type = GUN_TYPE_LASER
 	item_state = "pulse"
 	base_desc = "It's an energy shotgun."
+	wielded_state = "lassault-wielded"
