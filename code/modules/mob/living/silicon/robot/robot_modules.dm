@@ -167,8 +167,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/standard
 	name = "standard robot module"
 	sprites = list(
-				"Default" = "robot",
-				"Roller" = "omoikane"
+				"Default" = "motile"
 				  )
 
 /obj/item/weapon/robot_module/standard/New()
@@ -300,7 +299,7 @@ var/global/list/robot_modules = list(
 	subsystems = list(/datum/nano_module/power_monitor)
 	supported_upgrades = list(/obj/item/borg/upgrade/rcd)
 	sprites = list(
-					"Default" = "engieborg"
+					"Default" = "motile-eng"
 					)
 
 /obj/item/weapon/robot_module/engineering/general/New()
@@ -377,7 +376,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/general
 	sprites = list(
-					"Default" = "secborg"
+					"Default" = "motile-sec"
 
 				)
 
@@ -424,6 +423,10 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/clerical
 	name = "service robot module"
 	channels = list("Service" = 1)
+	sprites = list(
+				"Default" = "omoikane"
+				)
+
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
 					LANGUAGE_SKRELLIAN	= 1,
@@ -543,7 +546,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/security/combat
 	name = "combat robot module"
 	hide_on_manifest = 1
-	sprites = list("Combat Android" = "droid-combat")
+	sprites = list("Default" = "motile-combat")
 
 /obj/item/weapon/robot_module/security/combat/New()
 	src.modules += new /obj/item/device/flash(src)
