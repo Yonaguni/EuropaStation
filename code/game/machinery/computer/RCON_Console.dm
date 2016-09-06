@@ -7,7 +7,6 @@
 /obj/machinery/computer/rcon
 	name = "\improper RCON console"
 	desc = "Console used to remotely control machinery."
-	icon_keyboard = "power_key"
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
 	circuit = /obj/item/weapon/circuitboard/rcon_console

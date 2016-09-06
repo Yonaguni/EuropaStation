@@ -6,7 +6,6 @@
 /obj/machinery/computer/supply
 	name = "cargo supply console"
 	icon = 'icons/obj/computer.dmi'
-	icon_keyboard = "tech_key"
 	icon_screen = "request"
 	light_color = "#b88b2e"
 	req_access = list(access_cargo)
