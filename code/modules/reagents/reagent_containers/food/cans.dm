@@ -41,6 +41,15 @@
 		..()
 		reagents.add_reagent("thirteenloko", 30)
 
+/obj/item/weapon/reagent_containers/food/drinks/cans/sarge
+	name = "\improper Sarge"
+	desc = "It's not Space Mountian Wind!"
+	icon_state = "sarge"
+	center_of_mass = "x=16;y=8"
+	New()
+		..()
+		reagents.add_reagent("spacemountainwind", 30)
+
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper cherry cola"
 	desc = "A delicious mixture of 42 different flavors."
