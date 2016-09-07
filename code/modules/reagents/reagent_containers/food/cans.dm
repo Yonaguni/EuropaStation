@@ -43,7 +43,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sarge
 	name = "\improper Sarge"
-	desc = "It's not Space Mountian Wind!"
+	desc = "This tastes familiar."
 	icon_state = "sarge"
 	center_of_mass = "x=16;y=8"
 	New()
