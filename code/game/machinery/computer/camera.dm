@@ -3,7 +3,6 @@
 /obj/machinery/computer/security
 	name = "security camera monitor"
 	desc = "Used to access the various cameras on the ship."
-	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = "#a91515"
 	var/current_network = null
@@ -230,7 +229,6 @@
 /obj/machinery/computer/security/mining
 	name = "outpost camera monitor"
 	desc = "Used to access the various cameras on the outpost."
-	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list("MINE")
 	circuit = /obj/item/weapon/circuitboard/security/mining
@@ -239,7 +237,6 @@
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
 	desc = "Used to monitor fires and breaches."
-	icon_keyboard = "power_key"
 	icon_screen = "engie_cams"
 	circuit = /obj/item/weapon/circuitboard/security/engineering
 	light_color = "#FAC54B"
@@ -252,7 +249,6 @@
 /obj/machinery/computer/security/research
 	name = "research camera monitor"
 	desc = "Used to access the various cameras in the Research Wing."
-	icon_keyboard = "telesci_key"
 	icon_screen = "mining"
 	network = list("POD","CALYPSO","EXPEDITION","RESEARCH")
 	circuit = /obj/item/weapon/circuitboard/security/research
@@ -261,7 +257,6 @@
 /obj/machinery/computer/security/supply
 	name = "supply camera monitor"
 	desc = "Used to access the various cameras around the Hangar Deck."
-	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list("SUPPLY","POD","CALYPSO")
 	circuit = /obj/item/weapon/circuitboard/security/supply

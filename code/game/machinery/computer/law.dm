@@ -3,7 +3,6 @@
 /obj/machinery/computer/aiupload
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
-	icon_keyboard = "rd_key"
 	icon_screen = "command"
 	circuit = /obj/item/weapon/circuitboard/aiupload
 	var/mob/living/silicon/ai/current = null
@@ -59,7 +58,6 @@
 /obj/machinery/computer/borgupload
 	name = "robot upload console"
 	desc = "Used to upload laws to robots."
-	icon_keyboard = "rd_key"
 	icon_screen = "command"
 	circuit = /obj/item/weapon/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
