@@ -804,6 +804,7 @@
 #include "code\modules\planar_lighting\light_images.dm"
 #include "code\modules\planar_lighting\light_item.dm"
 #include "code\modules\planar_lighting\light_mob.dm"
+#include "code\modules\planar_lighting\light_planes.dm"
 #include "code\modules\planar_lighting\light_turf.dm"
 #include "code\modules\projectiles\effects.dm"
 #include "code\modules\projectiles\gun.dm"

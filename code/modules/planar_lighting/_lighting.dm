@@ -4,6 +4,25 @@
 // BordListian on Reddit for more advice and discussion, and whoever else was involved that I have forgotten.
 // Also thanks to Lummox for BYOND 510's awesome new features.
 
-#define MASTER_PLANE 0
-#define DARK_PLANE -10
-#define GUI_PLANE    10
+#define	MASTER_PLANE	0
+
+#define	DARK_PLANE		MASTER_PLANE - 1
+
+#define	GUI_PLANE		MASTER_PLANE + 1
+
+
+//Light colour presets
+
+//common lights
+#define	LIGHT_CANDLE	"#ff9329"	//warm
+#define	LIGHT_40WBULB	"#ffc58f"	// ^
+#define	LIGHT_100WBULB	"#ffd6aa"	// |
+#define	LIGHT_HALOGEN	"#fff1e0"	// |
+#define	LIGHT_CARBONARC	"#fffaf4"	// |
+#define	LIGHT_MIDDAYSUN	"#fffffb"	// v
+#define	LIGHT_SUNLIGHT	"#ffffff"	//white
+
+//Flourescent lights
+#define LIGHT_F_WARM	"#fff4e5"	//warm
+#define LIGHT_F_STD		"#f4fffa"	//white
+#define LIGHT_F_COOL	"#d4ebff"	//cool

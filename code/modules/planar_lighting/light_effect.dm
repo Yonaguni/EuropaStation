@@ -13,7 +13,9 @@ var/list/light_over_cache = list()
 	glide_size = 32
 	blend_mode = BLEND_ADD
 
-	var/image/light_overlay
+	light_range = 5
+
+//	var/image/light_overlay
 	var/current_power = 1
 	var/atom/movable/holder
 	var/point_angle
@@ -21,10 +23,28 @@ var/list/light_over_cache = list()
 
 /obj/light/New(var/newholder)
 	holder = newholder
-	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = holder.light_type)
+
+	light_range = max(0, min(5, light_range))
+	pixel_x = pixel_y = -(world.icon_size * light_range)
+	switch(light_range)
+		if(0)
+			qdel(src)
+			return
+		if(1)
+			icon = 'icons/planar_lighting/light_range_1.dmi'
+		if(2)
+			icon = 'icons/planar_lighting/light_range_2.dmi'
+		if(3)
+			icon = 'icons/planar_lighting/light_range_3.dmi'
+		if(4)
+			icon = 'icons/planar_lighting/light_range_4.dmi'
+		if(5)
+			icon = 'icons/planar_lighting/light_range_5.dmi'
+
+/*	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = holder.light_type)
 	light_overlay.blend_mode = BLEND_ADD
 	light_overlay.mouse_opacity = 0
-	light_overlay.plane = DARK_PLANE
+	light_overlay.plane = DARK_PLANE*/
 	..(get_turf(holder))
 
 /obj/light/Destroy()
@@ -58,7 +78,7 @@ var/list/light_over_cache = list()
 // angle for directional lights. This is only ever called before cast_light() so affected turfs
 // are updated elsewhere.
 /obj/light/proc/update_transform(var/newrange)
-	if(!isnull(newrange) && current_power != newrange)
+/*	if(!isnull(newrange) && current_power != newrange)
 		// Update affected turfs based on new size.
 		current_power = newrange
 
@@ -67,7 +87,7 @@ var/list/light_over_cache = list()
 		M.Turn(point_angle)
 	M.Scale(current_power)
 	light_overlay.transform = M
-
+*/
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
 /obj/light/proc/follow_holder_dir()
@@ -75,7 +95,7 @@ var/list/light_over_cache = list()
 		holder.set_dir(holder.loc.dir)
 	if(dir != holder.dir)
 		set_dir(holder.dir)
-
+/*
 	if(light_overlay.icon_state == LIGHT_DIRECTIONAL)
 		var/last_angle = point_angle
 		switch(dir)
@@ -91,7 +111,7 @@ var/list/light_over_cache = list()
 		if(last_angle != point_angle)
 			update_transform()
 			cast_light()
-
+*/
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/light/proc/follow_holder()
 	forceMove(get_turf(holder))
