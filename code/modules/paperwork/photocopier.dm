@@ -2,13 +2,13 @@
 	name = "photocopier"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
-	var/insert_anim = "bigscanner1"
 	anchored = 1
 	density = 1
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
-	power_channel = EQUIP
+
+	var/insert_anim = "bigscanner1"
 	var/obj/item/copyitem = null	//what's in the copier!
 	var/copies = 1	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~

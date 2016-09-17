@@ -3,13 +3,7 @@
 	icon = 'icons/obj/machines/machines.dmi'
 	w_class = 10
 
-	var/global/gl_uid = 1
-
 	var/stat = 0
-	var/emagged = 0
-	var/uid
-
-	// Construction variables.
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/list/build_components = list()
 	var/dismantle_sound = 'sound/items/Crowbar.ogg'
@@ -84,10 +78,6 @@
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
-
-/obj/machinery/proc/assign_uid()
-	uid = gl_uid
-	gl_uid++
 
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))

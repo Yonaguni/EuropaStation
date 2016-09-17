@@ -23,7 +23,7 @@
 	var/datum/conduit_network/data_cable/feed_network = network
 	var/turf/T = get_turf(src)
 	for(var/obj/machinery/M in T.contents)
-		if(M.connect_to_datanet)
+		if(M.connect_to_data)
 			if(M.is_data_console)
 				feed_network.connected_consoles |= M
 			else

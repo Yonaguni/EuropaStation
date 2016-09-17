@@ -3,9 +3,9 @@
 	var/can_remote_trigger
 	var/can_remote_connect
 	var/console_interface_only
-	var/connect_to_datanet = 1
-	var/connect_to_powernet = 1
-	var/connect_to_feednet = 0
+	var/connect_to_data = 1
+	var/connect_to_power = 1
+	var/connect_to_feed = 0
 	var/is_data_console = 0
 
 	var/datum/conduit_network/power_net/power_network
@@ -14,26 +14,43 @@
 
 /obj/machinery/initialize()
 	..()
-	if(connect_to_datanet)
+	if(connect_to_data)
 		find_data_network()
-	if(connect_to_feednet)
-		find_data_network()
-	if(connect_to_powernet)
+	if(connect_to_feed)
+		find_feed_network()
+	if(connect_to_power)
 		find_power_network()
 
-/obj/machinery/proc/find_power_network()
+/obj/machinery/Destroy()
+	if(power_network)
+		power_network.lose_machine(src)
+		power_network = null
+	if(data_network)
+		data_network.connected_consoles -= src
+		data_network.connected_machines -= src
+		data_network = null
 	if(feed_network)
+		feed_network = null
+	return ..()
+
+/obj/machinery/proc/find_power_network()
+	if(power_network)
 		return
 	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
 	for(var/obj/structure/conduit/power/PN in T.contents)
 		if(!PN.network) PN.build_network()
 		power_network = PN.network
+		power_network.add_machine(src)
 		break
 
 /obj/machinery/proc/find_feed_network()
 	if(feed_network)
 		return
 	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
 	for(var/obj/structure/conduit/matter/MF in T.contents)
 		if(!MF.network) MF.build_network()
 		feed_network = MF.network
@@ -43,6 +60,8 @@
 	if(data_network)
 		return
 	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
 	for(var/obj/structure/conduit/data/D in T.contents)
 		if(!D.network) D.build_network()
 		data_network = D.network

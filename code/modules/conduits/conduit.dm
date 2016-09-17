@@ -8,7 +8,7 @@ var/list/feed_cache = list()
 	icon = 'icons/obj/structures/conduits/matter_feed.dmi'
 	anchored = 1
 	density = 0
-	layer = 2.5
+	layer = TURF_LAYER + 0.1
 
 	// Track type and nature of connections.
 	var/deconstruct_tool = /obj/item/wrench

@@ -90,7 +90,7 @@
 	for(var/obj/machinery/M in T.contents)
 		if(M.feed_network)
 			continue
-		if(M.connect_to_feednet)
+		if(M.connect_to_feed)
 			M.feed_network = src
 	for(var/obj/structure/conduit_storage/CS in T.contents)
 		connected_storage |= CS
