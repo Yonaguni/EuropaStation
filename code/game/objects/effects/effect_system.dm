@@ -104,6 +104,9 @@ steam.start() -- spawns the effect
 	light_power = 10
 	light_color = "#FFFF88"
 
+/obj/effect/sparks/is_sinking()
+	return 0
+
 /obj/effect/sparks/New()
 	..()
 	playsound(src.loc, "sparks", 100, 1)
@@ -176,6 +179,9 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
+
+/obj/effect/effect/smoke/is_sinking()
+	return 0
 
 /obj/effect/effect/smoke/New()
 	..()

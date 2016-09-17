@@ -43,8 +43,8 @@ var/list/facial_hair_styles_female_list = list()
 var/list/skin_styles_female_list = list()		//unused
 
 //Underwear
-var/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
-var/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
+var/list/underwear_m = list("Default" = "m1")
+var/list/underwear_f = list("Default" = "f1")
 
 //Backpacks
 var/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")

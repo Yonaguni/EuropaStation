@@ -32,7 +32,7 @@
 /mob/var/fall_counter = 0
 
 /atom/movable/proc/is_sinking()
-	return 1
+	return simulated
 
 /mob/is_sinking()
 	return 0
