@@ -9,7 +9,79 @@
 // turf corners. See light_turf.dm for how corners are calculated.
 
 /obj/light/proc/cast_light()
+	//we dont cast shadows from lights with less than 2 range
+	if(light_range < 2)
+		return
 
+	//loop through the turfs in range of the light, from closest to furthest
+	//starting with the turfs closest to the source, until the second to last "ring" of turfs
+	for(var/cur_loop = 1 to light_range - 1)
+		//run through the current "ring" row by row, starting at the bottom
+		for(var/test_y = -cur_loop to cur_loop)
+			//if we are at the top or bottom of the "ring"
+			if(abs(test_y) == cur_loop)
+				//go through each turf from left to right
+				for(var/test_x = -cur_loop to cur_loop)
+					var/turf/T = locate(x + test_x, y + test_y, z)
+					if(T.density)
+						CastShadow(T)
+			//otherwise we are going up the sides of the "ring" and only do the leftmost and rightmost turfs
+			else
+				var/turf/T = locate(x - cur_loop, y + test_y, z)
+				if(T.density)
+					CastShadow(T)
+
+				T = locate(x + cur_loop, y + test_y, z)
+				if(T.density)
+					CastShadow(T)
+
+/obj/light/proc/CastShadow(var/turf/target_turf)
+	//get the x and y offsets for how far the target turf is from the light
+	var/x_offset = target_turf.x - x
+	var/y_offset = target_turf.y - y
+
+	//due to only having one set of shadow templates, we need to rotate and flip them for up to 8 different directions
+	//first check is to see if we will need to "rotate" the shadow template
+	var/xy_swap = 0
+	if(abs(x_offset) > abs(y_offset))
+		xy_swap = 1
+
+	var/image/I = image(icon)
+
+	//due to the way the offsets are named, we can just swap the x and y offsets to "rotate" the icon state
+	if(xy_swap)
+		I.icon_state = "[abs(y_offset)]_[abs(x_offset)]"
+	else
+		I.icon_state = "[abs(x_offset)]_[abs(y_offset)]"
+
+	var/matrix/M = matrix()
+
+	//TODO: rewrite this:
+	//using scale to flip the shadow template if needed
+	//horizontal (x) flip is easy, we just check if the offset is negative
+	//vertical (y) flip is a little harder, if the shadow will be rotated we need to flip if the offset is positive,
+	// but if it wont be rotated then we just check if its negative to flip (like the x flip)
+	var/x_flip
+	var/y_flip
+	if(xy_swap)
+		x_flip = y_offset > 0 ? -1 : 1
+		y_flip = x_offset < 0 ? -1 : 1
+	else
+		x_flip = x_offset < 0 ? -1 : 1
+		y_flip = y_offset < 0 ? -1 : 1
+
+	M.Scale(x_flip, y_flip)
+
+	//here we do the actual rotate if needed
+	if(xy_swap)
+		M.Turn(90)
+
+	//apply the transform matrix
+	I.transform = M
+
+	//and add it to the lights overlays
+	overlays += I
+/*
 	if(!isturf(loc))
 		overlays = null
 		return
@@ -153,7 +225,7 @@
 		overlays_to_add += light_over_cache[cache_key]
 
 	overlays = overlays_to_add
-
+*/
 #undef BASE_PIXEL_OFFSET
 #undef BASE_TURF_OFFSET
 #undef WIDE_SHADOW_THRESHOLD
