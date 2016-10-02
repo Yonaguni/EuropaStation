@@ -110,6 +110,9 @@
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
 
+/obj/item/stack/material/uranium/fifty
+	amount = 50
+
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
@@ -147,11 +150,24 @@
 	default_type = "tritium"
 	apply_colour = 1
 
+/obj/item/stack/material/tritium/fifty
+	amount = 50
+
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = "osmium"
 	apply_colour = 1
+
+// Fusion fuel.
+/obj/item/stack/material/deuterium
+	name = "deuterium"
+	icon_state = "sheet-silver"
+	default_type = "deuterium"
+	apply_colour = 1
+
+/obj/item/stack/material/deuterium/fifty
+	amount = 50
 
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL
