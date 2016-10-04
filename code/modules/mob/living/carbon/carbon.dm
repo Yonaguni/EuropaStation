@@ -476,3 +476,16 @@
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
+
+
+/mob/living/carbon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
+	if(effect && blocked < 100 && effecttype == IRRADIATE)
+		if(chem_effects[CE_ANTIRAD] == 2)
+			return 1
+		else if(chem_effects[CE_ANTIRAD] == 1)
+			radiation += round((effect * blocked_mult(blocked))/2)
+		else
+			radiation += effect * blocked_mult(blocked)
+		updatehealth()
+		return 1
+	. = ..()

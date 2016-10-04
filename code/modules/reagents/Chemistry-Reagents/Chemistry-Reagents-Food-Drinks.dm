@@ -1073,7 +1073,7 @@
 	strength = 50
 
 	glass_name = "gin"
-	glass_desc = "A crystal clear glass of Griffeater gin."
+	glass_desc = "A crystal clear glass of gin."
 
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee

@@ -124,15 +124,15 @@
 		reagents.add_reagent("anti_toxin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/mutagen
-	name = "unstable mutagen bottle"
-	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
+/obj/item/weapon/reagent_containers/glass/bottle/gc161
+	name = "\improper GC-161 bottle"
+	desc = "A small bottle of a mutagenic compound. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
 
 	New()
 		..()
-		reagents.add_reagent("mutagen", 60)
+		reagents.add_reagent("gc161", 60)
 		update_icon()
 
 /obj/item/weapon/reagent_containers/glass/bottle/ammonia

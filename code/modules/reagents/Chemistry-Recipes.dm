@@ -197,10 +197,10 @@
 	required_reagents = list("aluminum" = 1, "silicon" = 1, "acetone" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/mutagen
-	name = "Unstable mutagen"
-	id = "mutagen"
-	result = "mutagen"
+/datum/chemical_reaction/gc161
+	name = "GC-161"
+	id = "gc161"
+	result = "gc161"
 	required_reagents = list("radium" = 1, "phosphorus" = 1, "hclacid" = 1)
 	result_amount = 3
 
@@ -211,10 +211,10 @@
 	required_reagents = list("aluminum" = 1, "iron" = 1, "acetone" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/space_drugs
-	name = "Space Drugs"
-	id = "space_drugs"
-	result = "space_drugs"
+/datum/chemical_reaction/glint
+	name = "Glint"
+	id = "glint"
+	result = "glint"
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
 
@@ -239,10 +239,10 @@
 	required_reagents = list("sugar" = 1, "lithium" = 1, "water" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/hyronalin
-	name = "Hyronalin"
-	id = "hyronalin"
-	result = "hyronalin"
+/datum/chemical_reaction/entolimod
+	name = "Entolimod"
+	id = "entolimod"
+	result = "entolimod"
 	required_reagents = list("radium" = 1, "anti_toxin" = 1)
 	result_amount = 2
 
@@ -250,7 +250,7 @@
 	name = "Arithrazine"
 	id = "arithrazine"
 	result = "arithrazine"
-	required_reagents = list("hyronalin" = 1, "hydrazine" = 1)
+	required_reagents = list("entolimod" = 1, "hydrazine" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/impedrezene
@@ -401,17 +401,17 @@
 	required_reagents = list("potassium_chloride" = 1, "enzyme" = 1, "chloralhydrate" = 1)
 	result_amount = 4
 
-/datum/chemical_reaction/zombiepowder
-	name = "Zombie Powder"
-	id = "zombiepowder"
-	result = "zombiepowder"
+/datum/chemical_reaction/byphodine
+	name = "Byphodine"
+	id = "byphodine"
+	result = "byphodine"
 	required_reagents = list("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/mindbreaker
-	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
-	result = "mindbreaker"
+/datum/chemical_reaction/lsd
+	name = "LSD"
+	id = "lsd"
+	result = "lsd"
 	required_reagents = list("silicon" = 1, "hydrazine" = 1, "anti_toxin" = 1)
 	result_amount = 3
 
@@ -505,14 +505,14 @@
 	name = "Methylphenidate"
 	id = "methylphenidate"
 	result = "methylphenidate"
-	required_reagents = list("mindbreaker" = 1, "hydrazine" = 1)
+	required_reagents = list("lsd" = 1, "hydrazine" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/citalopram
 	name = "Citalopram"
 	id = "citalopram"
 	result = "citalopram"
-	required_reagents = list("mindbreaker" = 1, "carbon" = 1)
+	required_reagents = list("lsd" = 1, "carbon" = 1)
 	result_amount = 3
 
 
@@ -520,7 +520,7 @@
 	name = "Paroxetine"
 	id = "paroxetine"
 	result = "paroxetine"
-	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "adrenaline" = 1)
+	required_reagents = list("lsd" = 1, "acetone" = 1, "adrenaline" = 1)
 	result_amount = 3
 
 /* Solidification */

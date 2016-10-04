@@ -124,9 +124,9 @@
 			H.Weaken(10)
 		M.add_chemical_effect(CE_NOPULSE, 1)
 
-/datum/reagent/toxin/zombiepowder
-	name = "Zombie Powder"
-	id = "zombiepowder"
+/datum/reagent/toxin/byphodine
+	name = "Byphodine"
+	id = "byphodine"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "death"
 	reagent_state = SOLID
@@ -134,7 +134,7 @@
 	metabolism = REM
 	strength = 3
 
-/datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/toxin/byphodine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
@@ -145,7 +145,7 @@
 	M.tod = stationtime2text()
 	M.add_chemical_effect(CE_NOPULSE, 1)
 
-/datum/reagent/toxin/zombiepowder/Destroy()
+/datum/reagent/toxin/byphodine/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
@@ -230,24 +230,24 @@
 	if(M.losebreath < 15)
 		M.losebreath++
 
-/datum/reagent/mutagen
-	name = "Unstable mutagen"
-	id = "mutagen"
-	description = "Might cause unpredictable mutations. Keep away from children."
+/datum/reagent/gc161
+	name = "GC-161"
+	id = "gc161"
+	description = "An extremely dangerous mutagenic compound. Keep away from children."
 	taste_description = "slime"
 	taste_mult = 0.9
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/gc161/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(33))
 		affect_blood(M, alien, removed)
 
-/datum/reagent/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/gc161/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(67))
 		affect_blood(M, alien, removed)
 
-/datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/gc161/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 
 	if(M.isSynthetic())
 		return
@@ -349,28 +349,6 @@
 
 	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
-/* Drugs */
-
-/datum/reagent/space_drugs
-	name = "Space drugs"
-	id = "space_drugs"
-	description = "An illegal chemical compound used as drug."
-	taste_description = "bitterness"
-	taste_mult = 0.4
-	reagent_state = LIQUID
-	color = "#60A584"
-	metabolism = REM * 0.5
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/space_drugs/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-	M.druggy = max(M.druggy, 15)
-	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
-	if(prob(7))
-		M.emote(pick("twitch", "drool", "moan", "giggle"))
-	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -424,55 +402,6 @@
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))
 		M.emote("drool")
-
-/datum/reagent/mindbreaker
-	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
-	taste_description = "sourness"
-	reagent_state = LIQUID
-	color = "#B31008"
-	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/mindbreaker/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-	M.hallucination = max(M.hallucination, 100)
-
-/datum/reagent/psilocybin
-	name = "Psilocybin"
-	id = "psilocybin"
-	description = "A strong psycotropic derived from certain species of mushroom."
-	taste_description = "mushroom"
-	color = "#E700E7"
-	overdose = REAGENTS_OVERDOSE
-	metabolism = REM * 0.5
-
-/datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-	M.druggy = max(M.druggy, 30)
-
-	if(dose < 1)
-		M.apply_effect(3, STUTTER)
-		M.make_dizzy(5)
-		if(prob(5))
-			M.emote(pick("twitch", "giggle"))
-	else if(dose < 2)
-		M.apply_effect(3, STUTTER)
-		M.make_jittery(5)
-		M.make_dizzy(5)
-		M.druggy = max(M.druggy, 35)
-		if(prob(10))
-			M.emote(pick("twitch", "giggle"))
-	else
-		M.apply_effect(3, STUTTER)
-		M.make_jittery(10)
-		M.make_dizzy(10)
-		M.druggy = max(M.druggy, 40)
-		if(prob(15))
-			M.emote(pick("twitch", "giggle"))
 
 /* Transformations */
 
