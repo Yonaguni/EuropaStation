@@ -1,28 +1,25 @@
 /mob
-	var/image/master_plane/master_plane
-	var/image/dark_plane/dark_plane
+	var/obj/screen/plane/master/master_plane
+	var/obj/screen/plane/dark/dark_plane
 
 /mob/Login()
 	..()
-	master_plane = new(loc=src)
-	dark_plane = new(loc=src)
-	if(client)
-		client.images += master_plane
-		client.images += dark_plane
+	master_plane = new(client)
+	dark_plane = new(client)
 	update_env_light()
 
 /mob/dead/observer/Login()
 	..()
 	if (!seedarkness)
-		client.images -= master_plane
-		client.images -= dark_plane
+		client.screen -= master_plane
+		client.screen -= dark_plane
 
 /mob/dead/observer/updateghostsight()
 	..()
 	if(client)
 		if(!seedarkness)
-			client.images -= master_plane
-			client.images -= dark_plane
+			client.screen -= master_plane
+			client.screen -= dark_plane
 		else
-			client.images += master_plane
-			client.images += dark_plane
+			client.screen += master_plane
+			client.screen += dark_plane
