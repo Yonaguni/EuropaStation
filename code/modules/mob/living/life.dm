@@ -187,7 +187,7 @@
 		clear_fullscreen("blind")
 		set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
 		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-		set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
+		set_fullscreen(druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 
 	if(machine)
 		var/viewflags = machine.check_eye(src)

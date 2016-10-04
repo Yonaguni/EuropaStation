@@ -94,16 +94,6 @@
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.add_chemical_effect(CE_PULSE, 2)
 
-/datum/reagent/redeye
-	name = "Red Eye"
-	id = "redeye"
-	description = "Red Eye, named for the bloodshot eyes of users, is a potent cocktail of banned combat stimulants."
-	taste_description = "copper"
-	reagent_state = LIQUID
-	color = "#DD0000"
-	metabolism = REM * 0.15
-	overdose = REAGENTS_OVERDOSE * 0.5
-
 /datum/reagent/glint
 	name = "Glint"
 	id = "glint"
@@ -137,17 +127,12 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/pax/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.a_intent = I_HELP
-	M.add_chemical_effect(CE_LOCK_HELP, 1)
-
-/datum/reagent/short
-	name = "Short"
-	id = "short"
-	description = "A broad-spectrum antichemical agent which suppresses many other drugs."
-	taste_description = "wax"
-	reagent_state = LIQUID
-	color = "#FFCCCC"
-	metabolism = REM * 0.15
+	if(alien == IS_DIONA)
+		return
+	if(M.a_intent != I_HELP && M.a_intent != I_DISARM)
+		M.a_intent_change(I_HELP)
+	M.add_chemical_effect(CE_PULSE, -1)
+	M.add_chemical_effect(CE_PACIFIED, 1)
 
 /datum/reagent/ladder
 	name = "Ladder"
@@ -159,8 +144,12 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/ladder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.a_intent = I_HURT
-	M.add_chemical_effect(CE_LOCK_HARM, 1)
+	if(alien == IS_DIONA)
+		return
+	if(M.a_intent != I_HURT && M.a_intent != I_GRAB)
+		M.a_intent_change(I_HURT)
+	M.add_chemical_effect(CE_PULSE, 2)
+	M.add_chemical_effect(CE_BERSERK, 1)
 
 /datum/reagent/threeeye
 	name = "Three Eye"
@@ -172,4 +161,20 @@
 	metabolism = REM * 0.15
 
 /datum/reagent/threeeye/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
 	M.add_chemical_effect(CE_THIRDEYE, 1)
+
+/datum/reagent/short
+	name = "Short"
+	id = "short"
+	description = "A broad-spectrum antichemical agent which suppresses many other drugs."
+	taste_description = "wax"
+	reagent_state = LIQUID
+	color = "#FFCCCC"
+	metabolism = REM * 0.15
+
+/datum/reagent/short/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.add_chemical_effect(CE_DRUG_SUPPRESSANT, 1)

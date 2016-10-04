@@ -406,7 +406,7 @@
 			H.clear_fullscreen("impaired")
 
 	H.set_fullscreen(H.eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-	H.set_fullscreen(H.druggy, "high", /obj/screen/fullscreen/high)
+	H.set_fullscreen(H.druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay

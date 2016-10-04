@@ -489,3 +489,9 @@
 		updatehealth()
 		return 1
 	. = ..()
+
+/mob/living/carbon/is_berserk()
+	return (CE_BERSERK in chem_effects)
+
+/mob/living/carbon/is_pacified()
+	return (CE_PACIFIED in chem_effects)

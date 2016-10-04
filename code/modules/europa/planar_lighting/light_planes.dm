@@ -1,13 +1,14 @@
 /obj/screen/plane
 	name = ""
 	screen_loc = "CENTER"
+	blend_mode = BLEND_MULTIPLY
 
 /obj/screen/plane/New(var/client/C)
-	C.screen += src
+	..()
+	if(istype(C)) C.screen += src
 	verbs.Cut()
 
 /obj/screen/plane/master
-	blend_mode = BLEND_MULTIPLY
 	appearance_flags = NO_CLIENT_COLOR | PLANE_MASTER | RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA
 	color = list(null,null,null,"#0000","#000f")  // Completely black.
 	plane = MASTER_PLANE

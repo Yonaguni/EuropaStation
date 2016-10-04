@@ -10,25 +10,25 @@
 	condition ? overlay_fullscreen(screen_name, screen_type, arg) : clear_fullscreen(screen_name)
 
 /mob/proc/overlay_fullscreen(category, type, severity)
-    var/obj/screen/fullscreen/screen = screens[category]
+	var/obj/screen/fullscreen/screen = screens[category]
 
-    if(screen)
-        if(screen.type != type)
-            clear_fullscreen(category, FALSE)
-            screen = null
-        else if(!severity || severity == screen.severity)
-            return null
+	if(screen)
+		if(screen.type != type)
+			clear_fullscreen(category, FALSE)
+			screen = null
+		else if(!severity || severity == screen.severity)
+			return null
 
-    if(!screen)
-        screen = PoolOrNew(type)
+	if(!screen)
+		screen = PoolOrNew(type)
 
-    screen.icon_state = "[initial(screen.icon_state)][severity]"
-    screen.severity = severity
+	screen.icon_state = "[initial(screen.icon_state)][severity]"
+	screen.severity = severity
 
-    screens[category] = screen
-    if(client && stat != DEAD)
-        client.screen += screen
-    return screen
+	screens[category] = screen
+	if(client && stat != DEAD)
+		client.screen += screen
+	return screen
 
 /mob/proc/clear_fullscreen(category, animated = 10)
 	var/obj/screen/fullscreen/screen = screens[category]
@@ -106,11 +106,6 @@
 
 /obj/screen/fullscreen/flash/noise
 	icon_state = "noise"
-
-/obj/screen/fullscreen/high
-	icon = 'icons/mob/screen1.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "druggy"
 
 #undef FULLSCREEN_LAYER
 #undef BLIND_LAYER

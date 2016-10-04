@@ -239,3 +239,27 @@
 	New()
 		..()
 		reagents.add_reagent("lipozine", 2)
+
+/obj/item/weapon/reagent_containers/pill/pax
+	name = "Pax pill"
+	desc = "You're already feeling peaceful."
+	icon_state = "pill18"
+	New()
+		..()
+		reagents.add_reagent("pax", 15)
+
+/obj/item/weapon/reagent_containers/pill/ladder
+	name = "Ladder pill"
+	desc = "You won't like you when you're angry."
+	icon_state = "pill18"
+	New()
+		..()
+		reagents.add_reagent("ladder", 15)
+
+/obj/item/weapon/reagent_containers/pill/threeeye
+	name = "Three Eye pill"
+	desc = "Whoa."
+	icon_state = "pill18"
+	New()
+		..()
+		reagents.add_reagent("threeeye", 15)

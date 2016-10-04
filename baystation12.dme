@@ -1291,7 +1291,7 @@
 #include "code\modules\europa\planar_lighting\light_obj_types.dm"
 #include "code\modules\europa\planar_lighting\light_planes.dm"
 #include "code\modules\europa\planar_lighting\light_turf.dm"
-#include "code\modules\europa\planar_lighting\~light.dm"
+#include "code\modules\europa\planar_lighting\effects\effects_drugs.dm"
 #include "code\modules\events\apc_damage.dm"
 #include "code\modules\events\blob.dm"
 #include "code\modules\events\brand_intelligence.dm"

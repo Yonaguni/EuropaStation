@@ -667,6 +667,12 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
+
+	if(is_berserk())
+		if(!silent)
+			src << "<span class='warning'>You are in no state to use that!</span>"
+		return 0
+
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
