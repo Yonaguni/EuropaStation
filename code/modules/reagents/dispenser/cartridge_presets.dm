@@ -74,7 +74,7 @@
 	dexalin/small	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
 	dylovene	spawn_reagent = "anti_toxin"
 	synaptizine	spawn_reagent = "synaptizine"
-	hyronalin	spawn_reagent = "hyronalin"
+	entolimod	spawn_reagent = "entolimod"
 	arithrazine	spawn_reagent = "arithrazine"
 	alkysine	spawn_reagent = "alkysine"
 	imidazoline	spawn_reagent = "imidazoline"

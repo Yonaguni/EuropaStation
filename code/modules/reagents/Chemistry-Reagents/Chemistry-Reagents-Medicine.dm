@@ -199,7 +199,7 @@
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
-	holder.remove_reagent("mindbreaker", 5)
+	holder.remove_reagent("lsd", 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
@@ -284,24 +284,6 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-/datum/reagent/jumpstart
-	name = "Jumpstart"
-	id = "jumpstart"
-	description = "Jumpstart is a highly effective, highly -illegal-, long-lasting muscle stimulant."
-	taste_description = "acid"
-	reagent_state = LIQUID
-	color = "#FF3300"
-	metabolism = REM * 0.15
-	overdose = REAGENTS_OVERDOSE * 0.5
-
-/datum/reagent/jumpstart/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.add_chemical_effect(CE_PULSE, 2)
-
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
@@ -322,10 +304,10 @@
 			if(istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - removed * 5, 0)
 
-/datum/reagent/hyronalin
-	name = "Hyronalin"
-	id = "hyronalin"
-	description = "Hyronalin is a medicinal drug used to counter the effect of radiation poisoning."
+/datum/reagent/entolimod
+	name = "Entolimod"
+	id = "entolimod"
+	description = "An artificial recombinant protein used to counter the effects of radiation poisoning."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#408000"
@@ -334,8 +316,8 @@
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.radiation = max(M.radiation - 30 * removed, 0)
+/datum/reagent/entolimod/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_ANTIRAD, 1)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"

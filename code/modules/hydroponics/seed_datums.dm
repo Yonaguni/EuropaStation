@@ -288,7 +288,7 @@
 	seed_name = "ambrosia vulgaris"
 	display_name = "ambrosia vulgaris"
 	mutants = list("ambrosiadeus")
-	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "fotiazine" = list(1,8,1), "styptazine" = list(1,10,1), "toxin" = list(1,10))
+	chems = list("nutriment" = list(1), "glint" = list(1,8), "fotiazine" = list(1,8,1), "styptazine" = list(1,10,1), "toxin" = list(1,10))
 	kitchen_tag = "ambrosia"
 
 /datum/seed/ambrosia/New()
@@ -308,7 +308,7 @@
 	seed_name = "ambrosia deus"
 	display_name = "ambrosia deus"
 	mutants = null
-	chems = list("nutriment" = list(1), "styptazine" = list(1,8), "synaptizine" = list(1,8,1), "jumpstart" = list(1,10,1), "space_drugs" = list(1,10))
+	chems = list("nutriment" = list(1), "styptazine" = list(1,8), "synaptizine" = list(1,8,1), "jumpstart" = list(1,10,1), "glint" = list(1,10))
 	kitchen_tag = "ambrosiadeus"
 
 /datum/seed/ambrosia/deus/New()
@@ -413,7 +413,7 @@
 	seed_name = "liberty cap"
 	display_name = "liberty cap mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "space_drugs" = list(1,25))
+	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "glint" = list(1,25))
 
 /datum/seed/mushroom/hallucinogenic/strong/New()
 	..()
@@ -1130,7 +1130,7 @@
 	name = "amauri"
 	seed_name = "amauri"
 	display_name = "amauri plant"
-	chems = list("zombiepowder" = list(1,10),"condensedcapsaicin" = list(1,5),"nutriment" = list(1,5))
+	chems = list("byphodine" = list(1,10),"condensedcapsaicin" = list(1,5),"nutriment" = list(1,5))
 
 /datum/seed/amauri/New()
 	..()

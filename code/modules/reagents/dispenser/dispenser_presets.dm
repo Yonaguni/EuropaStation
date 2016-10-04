@@ -37,7 +37,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dylovene,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/synaptizine,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyronalin,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/entolimod,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/arithrazine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/alkysine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/imidazoline,

@@ -120,7 +120,7 @@
 	// than a bound as the lists above specify.
 	var/global/list/mutagenic_reagents = list(
 		"radium" =  8,
-		"mutagen" = 15
+		"gc161" = 15
 		)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()

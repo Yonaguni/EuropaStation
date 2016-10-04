@@ -141,7 +141,7 @@
 		list("antibiotics",   "antibiotic",  0, 80),
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "glucose",     0, 80),
-		list("hyronalin",     "hyronalin",     0, 80),
+		list("entolimod",     "entolimod",     0, 80),
 		list("radium",        "radium",        0, 80)
 		)
 
@@ -156,7 +156,7 @@
 		list("antibiotics",   "antibiotic",  0, 20),
 		list("antitoxins",    "anti_toxin",    0, 20),
 		list("nutrients",     "glucose",     0, 80),
-		list("hyronalin",     "hyronalin",     0, 20),
+		list("entolimod",     "entolimod",     0, 20),
 		list("radium",        "radium",        0, 20)
 		)
 

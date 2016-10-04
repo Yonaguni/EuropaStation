@@ -411,7 +411,7 @@
 /datum/reagent/ethylredoxrazine
 	value = 3.1
 
-/datum/reagent/hyronalin
+/datum/reagent/entolimod
 	value = 2.3
 
 /datum/reagent/arithrazine
@@ -512,7 +512,7 @@
 /datum/reagent/toxin/potassium_chlorophoride
 	value = 4.5
 
-/datum/reagent/toxin/zombiepowder
+/datum/reagent/toxin/byphodine
 	value = 2.9
 
 /datum/reagent/toxin/fertilizer
@@ -527,7 +527,7 @@
 /datum/reagent/lexorin
 	value = 2.4
 
-/datum/reagent/mutagen
+/datum/reagent/gc161
 	value = 3.1
 
 /datum/reagent/slimejelly
@@ -542,7 +542,7 @@
 /datum/reagent/chloralhydrate/beer2
 	value = 2.2
 
-/datum/reagent/space_drugs
+/datum/reagent/glint
 	value = 2.8
 
 /datum/reagent/serotrotium
@@ -554,7 +554,7 @@
 /datum/reagent/impedrezene
 	value = 1.8
 
-/datum/reagent/mindbreaker
+/datum/reagent/lsd
 	value = 0.6
 
 /datum/reagent/psilocybin

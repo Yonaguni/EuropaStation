@@ -115,7 +115,7 @@
 
 /obj/item/weapon/pen/reagent/paralysis/New()
 	..()
-	reagents.add_reagent("zombiepowder", 10)
+	reagents.add_reagent("byphodine", 10)
 	reagents.add_reagent("cryptobiolin", 15)
 
 /*
