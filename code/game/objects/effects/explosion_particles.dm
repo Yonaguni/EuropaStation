@@ -6,6 +6,9 @@
 	anchored = 1
 	mouse_opacity = 0
 
+/obj/effect/expl_particles/is_sinking()
+	return 0
+
 /obj/effect/expl_particles/New()
 	..()
 	spawn (15)
@@ -45,6 +48,9 @@
 	mouse_opacity = 0
 	pixel_x = -32
 	pixel_y = -32
+
+/obj/effect/explosion/is_sinking()
+	return 0
 
 /obj/effect/explosion/New()
 	..()
