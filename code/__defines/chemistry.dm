@@ -33,9 +33,9 @@
 #define CE_NOPULSE          "heartstop" // stops heartbeat
 #define CE_ANTIRAD          "antirad" // Reduces radiation.
 #define CE_DRUG_SUPPRESSANT "drugsuppress"
-#define CE_LOCK_HARM        "lockharm"
-#define CE_LOCK_HELP        "lockhelp"
+#define CE_PACIFIED         "pacified"
 #define CE_THIRDEYE         "thirdeye"
+#define CE_BERSERK          "berserk"
 
 //reagent flags
 #define IGNORE_MOB_SIZE 0x1

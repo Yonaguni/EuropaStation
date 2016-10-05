@@ -362,13 +362,26 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set hidden = 1
 
 	if(ishuman(src) || isbrain(src) || isslime(src))
-		switch(input)
-			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
-				a_intent = input
-			if("right")
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if("left")
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+
+		var/next_intent
+
+		if(input == "right")
+			next_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+		else if(input == "left")
+			next_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+		else
+			next_intent = input
+
+		switch(next_intent)
+			if(I_HELP,I_DISARM)
+				if(src.is_berserk())
+					return
+				a_intent = next_intent
+			if(I_GRAB,I_HURT)
+				if(src.is_pacified())
+					return
+				a_intent = next_intent
+
 		if(hud_used && hud_used.action_intent)
 			hud_used.action_intent.icon_state = "intent_[a_intent]"
 

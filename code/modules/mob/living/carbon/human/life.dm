@@ -568,8 +568,19 @@
 			if(ingested) ingested.metabolize()
 			if(bloodstr) bloodstr.metabolize()
 
+			// Handle chemical effect flags.
 			if(CE_PAINKILLER in chem_effects)
 				analgesic = chem_effects[CE_PAINKILLER]
+
+			if(client)
+				if(CE_BERSERK in chem_effects)
+					animate(client, color = list(1.5,0.3,0.3,1.5,0.3,0.3,1.5,0.3,0.3), time = 6)
+				else if(CE_PACIFIED in chem_effects)
+					animate(client, color = list(0.6,0.8,1.15,0.6,0.8,1.15,0.6,0.8,1.15), time = 6)
+				else if(CE_THIRDEYE in chem_effects)
+					animate(client, color = list(0.1,0.1,0.1, 0.2,0.2,0.2, 0.05,0.05,0.05), time = 6)
+				else if(client.color && client.color != "#FFFFFF")
+					animate(client, color = "#FFFFFF", time = 3)
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
@@ -1172,5 +1183,5 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(XRAY in mutations)
+	if((XRAY in mutations) || (CE_THIRDEYE in chem_effects))
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
