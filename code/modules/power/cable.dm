@@ -140,7 +140,7 @@ var/list/possible_cable_coil_colours
 	if(!T.is_plating())
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.iswirecutter())
 		if(d1 == 12 || d2 == 12)
 			user << "<span class='warning'>You must cut this cable from above.</span>"
 			return
@@ -173,14 +173,14 @@ var/list/possible_cable_coil_colours
 		return
 
 
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(W.iscoil())
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.get_amount() < 1)
 			user << "Not enough cable"
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(W.ismultitool())
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
@@ -481,6 +481,9 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
+
+/obj/item/stack/cable_coil/iscoil()
+	return 1
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"

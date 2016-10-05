@@ -177,7 +177,7 @@ obj/machinery/resleever/process()
 		else
 			user << "<span class='warning'>\The [src] already has a neural lace inside it!</span>"
 			return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.iswrench())
 		if(isnull(occupant))
 			if(anchored)
 				anchored = 0

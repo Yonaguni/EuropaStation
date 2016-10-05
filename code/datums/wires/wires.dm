@@ -104,7 +104,6 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 	if (random)
 		html += "<i>\The [holder] appears to have tamper-resistant electronics installed.</i><br><br>" //maybe this could be more generic?
-
 	return html
 
 /datum/wires/Topic(href, href_list)
@@ -116,14 +115,14 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 			var/obj/item/I = L.get_active_hand()
 			holder.add_hiddenprint(L)
 			if(href_list["cut"]) // Toggles the cut/mend status
-				if(istype(I, /obj/item/weapon/wirecutters))
+				if(I.iswirecutter())
 					var/colour = href_list["cut"]
 					CutWireColour(colour)
 				else
 					L << "<span class='error'>You need wirecutters!</span>"
 
 			else if(href_list["pulse"])
-				if(istype(I, /obj/item/device/multitool))
+				if(I.ismultitool())
 					var/colour = href_list["pulse"]
 					PulseColour(colour)
 				else

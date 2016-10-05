@@ -27,7 +27,7 @@
 	if(istype(W, /obj/item/device/analyzer))
 		bombtank.attackby(W, user)
 		return
-	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+	if(W.iswrench() && !status)	//This is basically bomb assembly code inverted. apparently it works.
 
 		user << "<span class='notice'>You disassemble [src].</span>"
 
@@ -41,7 +41,7 @@
 
 		qdel(src)
 		return
-	if((istype(W, /obj/item/weapon/weldingtool) && W:welding))
+	if((W.iswelder() && W:welding))
 		if(!status)
 			status = 1
 			bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"

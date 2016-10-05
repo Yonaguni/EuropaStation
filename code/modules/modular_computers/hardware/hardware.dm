@@ -15,7 +15,7 @@
 
 /obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
 	// Multitool. Runs diagnostics
-	if(istype(W, /obj/item/device/multitool))
+	if(W.ismultitool())
 		user << "***** DIAGNOSTICS REPORT *****"
 		diagnostics(user)
 		user << "******************************"
@@ -31,7 +31,7 @@
 			damage = 0
 		return 1
 	// Cable coil. Works as repair method, but will probably require multiple applications and more cable.
-	if(istype(S, /obj/item/stack/cable_coil))
+	if(S.iscoil())
 		if(!damage)
 			user << "\The [src] doesn't seem to require repairs."
 			return 1

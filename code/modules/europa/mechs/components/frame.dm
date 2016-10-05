@@ -49,7 +49,7 @@
 /obj/structure/heavy_vehicle_frame/attackby(var/obj/item/thing, var/mob/user)
 
 	// Removing components.
-	if(istype(thing, /obj/item/weapon/crowbar))
+	if(thing.iscrowbar())
 		var/obj/item/component
 		if(arms)
 			component = arms
@@ -75,7 +75,7 @@
 		return
 
 	// Final construction step.
-	else if(istype(thing, /obj/item/weapon/screwdriver))
+	else if(thing.isscrewdriver())
 
 		// Check for basic components.
 		if(!(arms && legs && head && body))
@@ -108,7 +108,7 @@
 		return
 
 	// Installing wiring.
-	else if(istype(thing,/obj/item/stack/cable_coil))
+	else if(thing.iscoil())
 
 		if(is_wired)
 			user << "<span class='warning'>\The [src] has already been wired.</span>"
@@ -132,7 +132,7 @@
 		playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		is_wired = 1
 	// Securing wiring.
-	else if(istype(thing, /obj/item/weapon/wirecutters))
+	else if(thing.iswirecutter())
 		if(!is_wired)
 			user << "There is no wiring in \the [src] to neaten."
 			return
@@ -156,7 +156,7 @@
 		else
 			return ..()
 	// Securing metal.
-	else if(istype(thing, /obj/item/weapon/wrench))
+	else if(thing.iswrench())
 		if(!is_reinforced)
 			user << "<span class='warning'>There is no metal to secure inside \the [src].</span>"
 			return
@@ -167,7 +167,7 @@
 		playsound(user.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		is_reinforced = (is_reinforced == 2) ? 1 : 2
 	// Welding metal.
-	else if(istype(thing, /obj/item/weapon/weldingtool))
+	else if(thing.iswelder())
 		var/obj/item/weapon/weldingtool/WT = thing
 		if(!is_reinforced)
 			user << "<span class='warning'>There is no metal to secure inside \the [src].</span>"

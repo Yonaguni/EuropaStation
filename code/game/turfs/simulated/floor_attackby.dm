@@ -3,11 +3,11 @@
 	if(!C || !user)
 		return 0
 
-	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
+	if(C.iscoil() || (flooring && istype(C, /obj/item/stack/rods)))
 		return ..(C, user)
 
 	if(flooring)
-		if(istype(C, /obj/item/weapon/crowbar))
+		if(C.iscrowbar())
 			if(broken || burnt)
 				user << "<span class='notice'>You remove the broken [flooring.descriptor].</span>"
 				make_plating()
@@ -21,14 +21,14 @@
 				return
 			playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+		else if(C.isscrewdriver() && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 			if(broken || burnt)
 				return
 			user << "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>"
 			make_plating(1)
 			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
+		else if(C.iswrench() && (flooring.flags & TURF_REMOVE_WRENCH))
 			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
 			make_plating(1)
 			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
@@ -38,7 +38,7 @@
 			make_plating(1)
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/stack/cable_coil))
+		else if(C.iscoil())
 			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
 			return
 	else
@@ -72,7 +72,7 @@
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Repairs.
-		else if(istype(C, /obj/item/weapon/weldingtool))
+		else if(C.iswelder())
 			var/obj/item/weapon/weldingtool/welder = C
 			if(welder.isOn() && (is_plating()))
 				if(broken || burnt)

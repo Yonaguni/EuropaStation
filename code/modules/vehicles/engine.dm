@@ -41,7 +41,7 @@
 			user.drop_from_inventory(I)
 			I.forceMove(src)
 		return 1
-	else if(istype(I,/obj/item/weapon/crowbar))
+	else if(I.iscrowbar())
 		if(cell)
 			user << "You pry out \the [cell]."
 			cell.forceMove(get_turf(src))

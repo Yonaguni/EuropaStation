@@ -41,6 +41,7 @@
 	var/heartbeat = 0
 
 /mob/living/carbon/human/Life()
+
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
@@ -82,7 +83,6 @@
 
 		if(!client)
 			species.handle_npc(src)
-
 
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.

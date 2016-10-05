@@ -18,7 +18,7 @@
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
 
 	// Using a multitool lets you access the receiver's interface
-	if(istype(P, /obj/item/device/multitool))
+	if(P.ismultitool())
 		attack_hand(user)
 
 
@@ -36,25 +36,25 @@
 
 	switch(construct_op)
 		if(0)
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(P.isscrewdriver())
 				user << "You unfasten the bolts."
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op ++
 		if(1)
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(P.isscrewdriver())
 				user << "You fasten the bolts."
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op --
-			if(istype(P, /obj/item/weapon/wrench))
+			if(P.iswrench())
 				user << "You dislodge the external plating."
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op ++
 		if(2)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(P.iswrench())
 				user << "You secure the external plating."
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op --
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(P.iswirecutter())
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "You remove the cables."
 				construct_op ++
@@ -62,7 +62,7 @@
 				A.amount = 5
 				stat |= BROKEN // the machine's been borked!
 		if(3)
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(P.iscoil())
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
 					user << "<span class='notice'>You insert the cables.</span>"
@@ -70,7 +70,7 @@
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
 					user << "<span class='warning'>You need five coils of wire for this.</span>"
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(P.iscrowbar())
 				user << "You begin prying out the circuit board other components..."
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				if(do_after(user,60, src))
@@ -89,7 +89,7 @@
 							for(var/i = 1, i <= C.req_components[I], i++)
 								var/obj/item/s = new I
 								s.loc = user.loc
-								if(istype(P, /obj/item/stack/cable_coil))
+								if(P.iscoil())
 									var/obj/item/stack/cable_coil/A = P
 									A.amount = 1
 

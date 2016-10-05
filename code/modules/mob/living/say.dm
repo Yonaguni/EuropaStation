@@ -197,7 +197,11 @@ proc/get_radio_key_from_channel(var/channel)
 	if(handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name))
 		return 1
 
-	var/list/handle_v = handle_speech_sound()
+	var/list/handle_v = speaking ? speaking.get_spoken_sound() : null
+
+	if(!handle_v)
+		handle_v = handle_speech_sound()
+
 	var/sound/speech_sound = handle_v[1]
 	var/sound_vol = handle_v[2]
 

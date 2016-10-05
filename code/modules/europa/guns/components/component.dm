@@ -93,7 +93,7 @@
 	return
 
 /obj/item/gun_component/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/weapon/screwdriver))
+	if(thing.isscrewdriver())
 		var/offset = input(user,"New vertical offset:","Part offset",pixel_y)
 		pixel_y = Clamp(offset,-world.icon_size,world.icon_size)
 		offset = input(user,"New horizontal offset:","Part offset",pixel_x)

@@ -58,7 +58,7 @@
 			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 			chargelevel = -1
 		update_icon()
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.iswrench())
 		if(charging)
 			user << "<span class='warning'>Remove the cell first!</span>"
 			return

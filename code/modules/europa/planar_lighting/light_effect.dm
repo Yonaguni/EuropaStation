@@ -65,23 +65,20 @@
 /mob/living/carbon/human/set_dir()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		if(!I.simulated || !I.light_obj)
-			continue
-		I.set_dir(dir)
+		if(I.light_obj)
+			I.set_dir(dir)
 
 /mob/living/carbon/human/Move()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		if(!I.simulated || !I.light_obj)
-			continue
-		I.light_obj.follow_holder()
+		if(I.light_obj)
+			I.light_obj.follow_holder()
 
 /mob/living/carbon/human/forceMove()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		if(!I.simulated || !I.light_obj)
-			continue
-		I.light_obj.follow_holder()
+		if(I.light_obj)
+			I.light_obj.follow_holder()
 
 /obj/effect/light/initialize()
 	..()

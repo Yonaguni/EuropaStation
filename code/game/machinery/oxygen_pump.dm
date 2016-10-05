@@ -80,7 +80,7 @@
 
 
 /obj/machinery/oxygen_pump/attackby(var/mob/user, var/obj/item/I)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(I.isscrewdriver())
 		stat ^= MAINT
 		user.visible_message("<span class='notice'>\The [user] [stat & MAINT ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [stat & MAINT ? "open" : "close"] \the [src].</span>")
 		//TO-DO: Open icon

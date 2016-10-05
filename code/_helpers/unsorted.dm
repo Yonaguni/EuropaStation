@@ -917,49 +917,28 @@ var/global/list/common_tools = list(
 /obj/item/device/multitool,
 /obj/item/weapon/crowbar)
 
-/proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
-		return 1
+/obj/item/proc/istool()
+	return is_type_in_list(src, common_tools)
+
+/obj/item/proc/iswrench()
 	return 0
 
-/proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
-		return 1
+/obj/item/proc/iswelder()
 	return 0
 
-/proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
-		return 1
+/obj/item/proc/iscoil()
 	return 0
 
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
+/obj/item/proc/iswirecutter()
 	return 0
 
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/weapon/wirecutters))
-		return 1
+/obj/item/proc/isscrewdriver()
 	return 0
 
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/weapon/screwdriver))
-		return 1
+/obj/item/proc/ismultitool()
 	return 0
 
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/weapon/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
+/obj/item/proc/iscrowbar()
 	return 0
 
 proc/is_hot(obj/item/W as obj)

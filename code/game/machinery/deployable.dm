@@ -183,7 +183,7 @@ for reference:
 					visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 					return
 			return
-		else if (istype(W, /obj/item/weapon/wrench))
+		else if (W.iswrench())
 			if (src.health < src.maxhealth)
 				src.health = src.maxhealth
 				src.emagged = 0

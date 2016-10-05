@@ -38,7 +38,7 @@
 	icon_state = "coin_adamantine"
 
 /obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack/cable_coil))
+	if(W.iscoil())
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
 			user << "<span class='notice'>There already is a string attached to this coin.</span>"
@@ -50,7 +50,7 @@
 		else
 			user << "<span class='notice'>This cable coil appears to be empty.</span>"
 		return
-	else if(istype(W,/obj/item/weapon/wirecutters))
+	else if(W.iswirecutter())
 		if(!string_attached)
 			..()
 			return

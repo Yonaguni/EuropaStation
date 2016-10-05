@@ -8,6 +8,16 @@
 	key = "q"
 	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
+	speech_sounds = list(
+		'sound/voice/rootspeak/rootspeak1.ogg',
+		'sound/voice/rootspeak/rootspeak2.ogg',
+		'sound/voice/rootspeak/rootspeak3.ogg',
+		'sound/voice/rootspeak/rootspeak4.ogg',
+		'sound/voice/rootspeak/rootspeak5.ogg',
+		'sound/voice/rootspeak/rootspeak6.ogg',
+		'sound/voice/rootspeak/rootspeak7.ogg',
+		'sound/voice/rootspeak/rootspeak8.ogg'
+		)
 
 /datum/language/diona/get_random_name()
 	var/new_name = "[pick(list("To Sleep Beneath","Wind Over","Embrace of","Dreams of","Witnessing","To Walk Beneath","Approaching the"))]"
@@ -24,6 +34,19 @@
 	key = "k"
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
+	speech_sounds = list(
+		'sound/voice/skrellian/skrellian1.ogg',
+		'sound/voice/skrellian/skrellian2.ogg',
+		'sound/voice/skrellian/skrellian3.ogg',
+		'sound/voice/skrellian/skrellian4.ogg',
+		'sound/voice/skrellian/skrellian5.ogg',
+		'sound/voice/skrellian/skrellian6.ogg',
+		'sound/voice/skrellian/skrellian7.ogg',
+		'sound/voice/skrellian/skrellian8.ogg',
+		'sound/voice/skrellian/skrellian9.ogg',
+		'sound/voice/skrellian/skrellian10.ogg',
+		'sound/voice/skrellian/skrellian11.ogg'
+		)
 
 /datum/language/human
 	name = LANGUAGE_SOL_COMMON
@@ -67,6 +90,11 @@
 			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
 			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
+		)
+	speech_sounds = list(
+		'sound/voice/resomi/owl1.ogg',
+		'sound/voice/resomi/owl2.ogg',
+		'sound/voice/resomi/owl3.ogg'
 		)
 
 /datum/language/resomi/get_random_name(gender)

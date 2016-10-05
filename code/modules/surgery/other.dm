@@ -188,7 +188,9 @@
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 80,
 		/obj/item/weapon/circular_saw = 60,
-		/obj/item/weapon/pickaxe/plasmacutter = 100
+		/obj/item/weapon/pickaxe/plasmacutter = 100,
+		/obj/item/psychic_power/kinesis/lesser = 80,
+		/obj/item/psychic_power/kinesis/paramount = 100
 		)
 
 	can_infect = 0
@@ -200,7 +202,7 @@
 /datum/surgery_step/hardsuit/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		return 0
-	if(istype(tool,/obj/item/weapon/weldingtool))
+	if(tool.iswelder())
 		var/obj/item/weapon/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
