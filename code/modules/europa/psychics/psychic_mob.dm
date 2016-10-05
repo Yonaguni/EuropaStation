@@ -15,7 +15,8 @@
 	var/lastrank = rank
 	rank = newrank
 	if(!silent)
-		owner << "<span class = '[rank > lastrank ? "notice" : "danger"]'>Your understanding of [associated_faculty.name] [rank > lastrank ? "surges" : "falls"] to the level of [psychic_ranks_to_strings[rank]].</span>"
+		var/use_span = (rank > lastrank)  ? "notice" : "danger"
+		owner << "<span class = '[use_span]'>Your understanding of [associated_faculty.name] [rank > lastrank ? "surges" : "falls"] to the level of [psychic_ranks_to_strings[rank]].</span>"
 	owner.update_psychic_powers(silent)
 
 /datum/psychic_power_assay/New(var/mob/living/_owner, var/decl/psychic_faculty/_associated_faculty)
