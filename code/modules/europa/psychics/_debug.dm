@@ -1,7 +1,7 @@
 /mob/living/verb/give_all_powers()
 
 	set name = "Give All Psychic Powers"
-	set category = "Sleights"
+	set category = "Abilities"
 	set desc = "CHEATER CHEATER."
 
 	for(var/thing in psychic_faculties)

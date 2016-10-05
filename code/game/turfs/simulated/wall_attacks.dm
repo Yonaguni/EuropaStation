@@ -217,7 +217,7 @@
 					user << "<span class='notice'>You sink your hands into the wall and begin trying to rip out the support frame...</span>"
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
-					if(!do_after(50,src))
+					if(!do_after(user, 60, src))
 						return
 
 					user << "<span class='notice'>You tear through the wall's support system and plating!</span>"

@@ -54,18 +54,17 @@
 	user << 'sound/effects/psi/power_evoke.ogg'
 
 /decl/psychic_power/proc/cancelled(var/mob/living/user, var/obj/item/psychic_power/caller)
-
 	for(var/mob/living/M in viewers(world.view, user)-user)
 		if(M.stat == CONSCIOUS && M.check_psychic_faculty(PSYCHIC_FARSENSE, 1) && prob(M.get_psychic_faculty_rank(PSYCHIC_FARSENSE)*20))
 			M << "<span class='notice'>You feel the tension of the psi-lattices ease as \the [user] ceases manifesting the power of [name].</span>"
 			M << 'sound/effects/psi/power_fail.ogg'
 	user << 'sound/effects/psi/power_fail.ogg'
-
 	for(var/datum/maintained_power/mpower in user.maintaining_powers)
 		if(mpower.power == src) mpower.fail(skip_cancel=1)
 	if(caller)
 		caller.power = null
-		user.drop_from_inventory(caller)
+		if(caller.owner && caller.loc == caller.owner)
+			caller.owner.drop_from_inventory(caller)
 		qdel(caller)
 	user << "<span class='notice'>You cease manifesting [name].</span>"
 

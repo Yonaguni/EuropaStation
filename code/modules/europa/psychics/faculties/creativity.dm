@@ -11,7 +11,7 @@
 
 /decl/psychic_power/spark
 	name = "Sparks"
-	description = "Create sparks. Can be used to melt through handcuffs."
+	description = "Create some sparks. Pretty!"
 	target_melee = 1
 	target_ranged = 1
 	target_self = 1
@@ -38,7 +38,7 @@
 /decl/psychic_power/electrocute/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
 		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
-		target.electrocute_act(rand(15,30), user, 1, user.zone_sel.selecting)
+		target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
 
 /decl/psychic_power/transmute
 	name = "Transmute"

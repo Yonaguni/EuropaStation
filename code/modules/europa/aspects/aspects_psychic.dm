@@ -8,12 +8,12 @@
 
 /decl/aspect/psi/do_post_spawn(var/mob/living/carbon/human/holder)
 	if(assoc_faculty && assoc_rank)
-		world << "setting [assoc_faculty] to [assoc_rank]"
 		var/datum/psychic_power_assay/assay = holder.psychic_faculties[assoc_faculty]
 		if(!assay)
-			world << "first"
 			assay = new(holder, all_psychic_faculties[assoc_faculty])
-		assay.set_rank(assoc_rank, silent=1)
+			holder.psychic_faculties[assoc_faculty] = assay
+		if(assoc_rank > assay.rank)
+			assay.set_rank(assoc_rank, silent=1)
 
 // COERCIVE
 /decl/aspect/psi/coercion
