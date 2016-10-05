@@ -9,11 +9,7 @@
 	flags = NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
 	space_chance = 10
-
-/datum/language/machine/get_spoken_sound()
-
-	var/list/result[2]
-	result[1] = pick(list(
+	speech_sounds = list(
 		'sound/voice/eal/eal1.ogg',
 		'sound/voice/eal/eal2.ogg',
 		'sound/voice/eal/eal3.ogg',
@@ -22,9 +18,7 @@
 		'sound/voice/eal/eal6.ogg',
 		'sound/voice/eal/eal7.ogg',
 		'sound/voice/eal/eal8.ogg'
-		))
-	result[2] = 25
-	return result
+		)
 
 /datum/language/binary
 	name = "Robot Talk"
