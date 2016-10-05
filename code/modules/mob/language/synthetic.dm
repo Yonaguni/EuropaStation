@@ -1,3 +1,31 @@
+/datum/language/machine
+	name = LANGUAGE_EAL
+	desc = "A efficient language of encoded tones developed by synthetics and cyborgs."
+	speech_verb = "whistles"
+	ask_verb = "chirps"
+	exclaim_verb = "whistles loudly"
+	colour = "changeling"
+	key = "6"
+	flags = NO_STUTTER
+	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
+	space_chance = 10
+
+/datum/language/machine/get_spoken_sound()
+
+	var/list/result[2]
+	result[1] = pick(list(
+		'sound/voice/eal/eal1.ogg',
+		'sound/voice/eal/eal2.ogg',
+		'sound/voice/eal/eal3.ogg',
+		'sound/voice/eal/eal4.ogg',
+		'sound/voice/eal/eal5.ogg',
+		'sound/voice/eal/eal6.ogg',
+		'sound/voice/eal/eal7.ogg',
+		'sound/voice/eal/eal8.ogg'
+		))
+	result[2] = 25
+	return result
+
 /datum/language/binary
 	name = "Robot Talk"
 	desc = "Most human stations support free-use communications protocols and routing hubs for synthetic use."
