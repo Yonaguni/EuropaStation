@@ -67,11 +67,11 @@ var/global/list/rad_collectors = list()
 		W.loc = src
 		update_icons()
 		return 1
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(W.iscrowbar())
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.iswrench())
 		if(P)
 			user << "\blue Remove the fuel tank first."
 			return 1

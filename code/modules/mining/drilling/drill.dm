@@ -308,7 +308,7 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 
-	if(istype(W,/obj/item/weapon/wrench))
+	if(W.iswrench())
 
 		if(istype(get_turf(src), /turf/space))
 			user << "<span class='notice'>You can't anchor something to empty space. Idiot.</span>"

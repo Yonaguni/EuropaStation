@@ -110,7 +110,7 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(W.iswelder())
 				var/obj/item/weapon/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
@@ -137,7 +137,7 @@
 				icon_state = "ed209_prox"
 
 		if(6)
-			if(istype(W, /obj/item/stack/cable_coil))
+			if(W.iscoil())
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
 					user << "<span class='warning'>You need one coil of wire to wire [src].</span>"
@@ -163,7 +163,7 @@
 			*/
 			;
 		if(8)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(W.isscrewdriver())
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				var/turf/T = get_turf(user)
 				user << "<span class='notice'>Now attaching the gun to the frame...</span>"

@@ -41,7 +41,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		G.loc = src
 		charging = G
 		update_icon()
-	else if(portable && istype(G, /obj/item/weapon/wrench))
+	else if(portable && G.iswrench())
 		if(charging)
 			user << "<span class='warning'>Remove [charging] first!</span>"
 			return

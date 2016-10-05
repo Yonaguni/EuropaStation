@@ -99,13 +99,13 @@ var/list/fusion_cores = list()
 		user << "<span class='warning'>Shut \the [src] off first!</span>"
 		return
 
-	if(istype(W, /obj/item/device/multitool))
+	if(W.ismultitool())
 		var/new_ident = input("Enter a new ident tag.", "Fusion Core", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.iswrench())
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)

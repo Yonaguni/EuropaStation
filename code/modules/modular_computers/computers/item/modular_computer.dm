@@ -515,7 +515,7 @@
 			try_install_component(user, C)
 		else
 			user << "This component is too large for \the [src]."
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.iswrench())
 		var/list/components = get_all_components()
 		if(components.len)
 			user << "Remove all components from \the [src] before disassembling it."
@@ -525,7 +525,7 @@
 		relay_qdel()
 		qdel(src)
 		return
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.iswelder())
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.isOn())
 			user << "\The [W] is off."
@@ -541,7 +541,7 @@
 			user << "You repair \the [src]."
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.isscrewdriver())
 		var/list/all_components = get_all_components()
 		if(!all_components.len)
 			user << "This device doesn't have any components installed."

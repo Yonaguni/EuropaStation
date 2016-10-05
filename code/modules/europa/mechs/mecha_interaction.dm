@@ -234,7 +234,7 @@
 		return
 	else
 		if(user.a_intent != I_HURT)
-			if(istype(thing, /obj/item/device/multitool))
+			if(thing.ismultitool())
 				if(hardpoints_locked)
 					user << "<span class='warning'>Hardpoint system access is disabled.</span>"
 					return
@@ -243,7 +243,7 @@
 						return
 				user << "<span class='warning'>\The [src] has no hardpoint systems to remove.</span>"
 				return
-			else if(istype(thing, /obj/item/weapon/wrench))
+			else if(thing.iswrench())
 				if(!maintenance_protocols)
 					user << "<span class='warning'>The securing bolts are not visible while maintenance protocols are disabled.</span>"
 					return

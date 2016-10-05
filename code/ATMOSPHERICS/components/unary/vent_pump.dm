@@ -349,7 +349,7 @@
 	return
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.iswelder())
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			user << "<span class='notice'>Now welding the vent.</span>"
@@ -381,7 +381,7 @@
 		user << "It seems welded shut."
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!W.iswrench())
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		user << "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>"

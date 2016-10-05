@@ -5,6 +5,9 @@
 	abstract = 1
 	simulated = 0
 	flags = NOBLUDGEON
+	anchored = 1
+
+	var/use_like_weapon
 	var/mob/living/owner
 	var/decl/psychic_power/power
 
@@ -18,10 +21,17 @@
 	power.cancelled(user, src)
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
-	afterattack(target, user, user.Adjacent(target))
+	if(use_like_weapon)
+		if(user.spend_psychic_power(power.melee_power_cost, power))
+			return ..()
+	else
+		afterattack(target, user, user.Adjacent(target))
 	return 1
 
 /obj/item/psychic_power/afterattack(var/atom/movable/target, var/mob/living/user, var/proximity)
+
+	if(use_like_weapon)
+		return ..()
 
 	if(!power)
 		qdel(src)
@@ -93,3 +103,74 @@
 		attack_self(owner)
 		return 0
 	return 1
+
+/obj/item/psychic_power/telekinesis // todo
+	var/obj/item/held
+
+/obj/item/psychic_power/telekinesis/Destroy()
+	held = null
+	. = ..()
+
+/obj/item/psychic_power/kinesis
+	use_like_weapon = TRUE
+	force = 5
+
+/obj/item/psychic_power/kinesis/tinker/iswirecutter()
+	return TRUE
+
+/obj/item/psychic_power/kinesis/tinker
+	force = 1
+	var/emulating = "crowbar"
+
+/obj/item/psychic_power/kinesis/tinker/iscrowbar()
+	return emulating == "Crowbar"
+
+/obj/item/psychic_power/kinesis/tinker/iswrench()
+	return emulating == "Wrench"
+
+/obj/item/psychic_power/kinesis/tinker/isscrewdriver()
+	return emulating == "Screwdriver"
+
+/obj/item/psychic_power/kinesis/tinker/iswirecutter()
+	return emulating == "Wirecutters"
+
+/obj/item/psychic_power/kinesis/tinker/update_from_power()
+	. = ..()
+	name = "evoked power (Psychic [emulating])"
+
+/obj/item/psychic_power/kinesis/tinker/attack_self()
+	var/choice = input("Select a tool to emulate.","Power") as null|anything in list("Crowbar","Wrench","Screwdriver","Wirecutters","Dismiss Power")
+	if(!choice)
+		return
+	if(choice == "Dismiss Power")
+		return ..()
+	emulating = choice
+	name = "evoked power (Psychic [emulating])"
+
+/obj/item/psychic_power/kinesis/update_from_power()
+	. = ..()
+	name = "\proper [owner.name]'s bare hands"
+
+/obj/item/psychic_power/kinesis/update_from_power()
+	. = ..()
+	force = rand(min_force, max_force)
+
+/obj/item/psychic_power/kinesis
+	flags = 0
+	var/min_force = 1
+	var/max_force = 3
+
+/obj/item/psychic_power/kinesis/lesser
+	attack_verb = list("battered", "bludgeoned")
+	min_force = 5
+	max_force = 15
+
+/obj/item/psychic_power/kinesis/process()
+	. = ..()
+	if(.)
+		force = rand(min_force, max_force)
+
+/obj/item/psychic_power/kinesis/paramount
+	attack_verb = list("rended", "ripped", "torn")
+	min_force = 35
+	max_force = 70

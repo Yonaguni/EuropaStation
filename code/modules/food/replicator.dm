@@ -49,7 +49,7 @@
 				biomass = Clamp(biomass + round(N.volume*deconstruct_eff),1,biomass_max)
 			qdel(G)
 
-	if (istype(O, /obj/item/weapon/wrench))
+	if (O.iswrench())
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(anchored)
 			user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

@@ -271,7 +271,7 @@
 		user << "<span class='warning'>You need to open access hatch on [src] first!</span>"
 		return 0
 
-	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
+	if(W.iscoil() && !terminal && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
 		if (CC.get_amount() < 10)
@@ -290,7 +290,7 @@
 		stat = 0
 		return 0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.iswelder())
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.isOn())
 			user << "Turn on \the [WT] first!"
@@ -302,7 +302,7 @@
 			user << "You repair all structural damage to \the [src]"
 			damage = 0
 		return 0
-	else if(istype(W, /obj/item/weapon/wirecutters) && terminal && !building_terminal)
+	else if(W.iswirecutter() && terminal && !building_terminal)
 		building_terminal = 1
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))

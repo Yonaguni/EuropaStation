@@ -58,7 +58,7 @@
 		install_software(thing, user)
 		return
 
-	if(istype(thing, /obj/item/weapon/screwdriver))
+	if(thing.isscrewdriver())
 		var/result = ..()
 		update_software()
 		return result

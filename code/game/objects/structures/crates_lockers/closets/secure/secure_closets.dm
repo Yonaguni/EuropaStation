@@ -87,7 +87,7 @@
 			spark_system.start()
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src.loc, "sparks", 50, 1)
-	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
+	else if(istype(W,/obj/item/weapon/packageWrap) || W.iswelder())
 		return ..(W,user)
 	else
 		togglelock(user)

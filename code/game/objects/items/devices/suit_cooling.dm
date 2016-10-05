@@ -109,7 +109,7 @@
 	user << "<span class='notice'>You switch \the [src] [on ? "on" : "off"].</span>"
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if (W.isscrewdriver())
 		if(cover_open)
 			cover_open = 0
 			user << "You screw the panel into place."

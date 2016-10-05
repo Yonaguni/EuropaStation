@@ -107,7 +107,7 @@
 			unlock_brace(user)
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.iswelder())
 		var/obj/item/weapon/weldingtool/C = W
 		if(cur_health == max_health)
 			user << "\The [src] does not require repairs."

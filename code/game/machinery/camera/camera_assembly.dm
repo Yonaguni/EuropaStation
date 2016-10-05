@@ -40,7 +40,7 @@
 
 		if(1)
 			// State 1
-			if(iswelder(W))
+			if(W.iswelder())
 				if(weld(W, user))
 					user << "You weld the assembly securely into place."
 					anchored = 1
@@ -66,7 +66,7 @@
 					user << "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>"
 				return
 
-			else if(iswelder(W))
+			else if(W.iswelder())
 
 				if(weld(W, user))
 					user << "You unweld the assembly from its place."
@@ -77,7 +77,7 @@
 
 		if(3)
 			// State 3
-			if(isscrewdriver(W))
+			if(W.isscrewdriver())
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 
 				var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: Exodus,Security,Secret", "Set Network", camera_network ? camera_network : NETWORK_EXODUS))
@@ -115,7 +115,7 @@
 							break
 				return
 
-			else if(iswirecutter(W))
+			else if(W.iswirecutter())
 
 				new/obj/item/stack/cable_coil(get_turf(src), 2)
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
@@ -132,7 +132,7 @@
 		return
 
 	// Taking out upgrades
-	else if(iscrowbar(W) && upgrades.len)
+	else if(W.iscrowbar() && upgrades.len)
 		var/obj/U = locate(/obj) in upgrades
 		if(U)
 			user << "You unattach an upgrade from the assembly."

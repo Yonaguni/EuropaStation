@@ -132,11 +132,11 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.isscrewdriver())
 		user << ("<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if(W.iscrowbar() && reinf && state <= 1)
 		user << ("<span class='notice'>It's a holowindow, you can't pry it!</span>")
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
+	else if(W.iswrench() && !anchored && (!state || !reinf))
 		user << ("<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
@@ -193,7 +193,7 @@
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.iswrench())
 		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 

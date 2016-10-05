@@ -110,12 +110,12 @@
 	return ..()
 
 /obj/machinery/ntnet_relay/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.isscrewdriver())
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		panel_open = !panel_open
 		user << "You [panel_open ? "open" : "close"] the maintenance hatch"
 		return
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.iscrowbar())
 		if(!panel_open)
 			user << "Open the maintenance panel first."
 			return

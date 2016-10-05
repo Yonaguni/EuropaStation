@@ -54,7 +54,7 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
+	if(W.iswrench() && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "<span class='notice'>Now disassembling the girder...</span>"
@@ -69,7 +69,7 @@
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			if(!src) return
@@ -80,7 +80,7 @@
 		user << "<span class='notice'>You drill through the girder!</span>"
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(W.isscrewdriver())
 		if(state == 2)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			user << "<span class='notice'>Now unsecuring support struts...</span>"
@@ -93,7 +93,7 @@
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
+	else if((W.iswirecutter() || istype(W, /obj/item/psychic_power/kinesis)) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << "<span class='notice'>Now removing support struts...</span>"
 		if(do_after(user, 40,src))
@@ -103,7 +103,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
+	else if(W.iscrowbar() && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user << "<span class='notice'>Now dislodging the girder...</span>"
 		if(do_after(user, 40,src))
@@ -231,14 +231,14 @@
 	qdel(src)
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.iswrench())
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		user << "<span class='notice'>Now disassembling the girder...</span>"
 		if(do_after(user,40,src))
 			user << "<span class='notice'>You dissasembled the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			user << "<span class='notice'>You slice apart the girder!</span>"

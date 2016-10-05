@@ -23,8 +23,8 @@ var/prison_shuttle_timeleft = 0
 	attack_ai(var/mob/user as mob)
 		return src.attack_hand(user)
 
-	attackby(I as obj, user as mob)
-		if(istype(I, /obj/item/weapon/screwdriver))
+	attackby(var/obj/item/I, var/mob/user)
+		if(I.isscrewdriver())
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20, src))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )

@@ -11,8 +11,8 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+/obj/machinery/computer/diseasesplicer/attackby(var/obj/item/I, var/mob/user)
+	if(I.isscrewdriver())
 		return ..(I,user)
 
 	if(istype(I,/obj/item/weapon/virusdish))

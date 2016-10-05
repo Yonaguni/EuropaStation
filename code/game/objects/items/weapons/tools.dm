@@ -29,6 +29,8 @@
 	center_of_mass = "x=17;y=16"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
+/obj/item/weapon/wrench/iswrench()
+	return 1
 
 /*
  * Screwdriver
@@ -49,6 +51,9 @@
 	center_of_mass = "x=16;y=7"
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
+
+/obj/item/weapon/screwdriver/isscrewdriver()
+	return 1
 
 /obj/item/weapon/screwdriver/New()
 	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
@@ -175,7 +180,7 @@
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(W.isscrewdriver())
 		if(welding)
 			user << "<span class='danger'>Stop welding first!</span>"
 			return
@@ -425,6 +430,9 @@
 	center_of_mass = "x=16;y=20"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
+/obj/item/weapon/crowbar/iscrowbar()
+	return 1
+
 /obj/item/weapon/crowbar/red
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_crowbar"
@@ -448,6 +456,9 @@
 
 	else
 		return ..()
+
+/obj/item/weapon/weldingtool/iswelder()
+	return 1
 
 /*/obj/item/weapon/combitool
 	name = "combi-tool"

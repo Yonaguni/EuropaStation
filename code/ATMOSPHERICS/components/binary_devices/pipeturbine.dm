@@ -86,7 +86,7 @@
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/wrench))
+		if(W.iswrench())
 			anchored = !anchored
 			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
 
@@ -257,7 +257,7 @@
 
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/wrench))
+		if(W.iswrench())
 			anchored = !anchored
 			turbine = null
 			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
