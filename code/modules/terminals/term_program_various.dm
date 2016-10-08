@@ -17,7 +17,7 @@
 	html[11] = "<pre> Please login below:"
 	html[12] = " "
 	html[13] = "----------------------------------------------------------"
-	html[14] = "<input type='hidden' name='src' value='\ref[src]' ><input type='hidden' name='action' value='login'>"
+	html[14] = "<input type='hidden' name='src' value='\ref[owner]' ><input type='hidden' name='action' value='login'>"
 	html[15] = "<pre class='floatLeft'> Username: </pre><input id='loginName' type='text' name='loginName' class='floatLeft' style='[TERM_STD_STYLE]'>"
 	html[16] = " "
 	html[17] = "<pre class='floatLeft'> Password: </pre><input id='loginPass' type='password' name='loginPass' class='floatLeft' style='[TERM_STD_STYLE]'>"
@@ -30,25 +30,37 @@
 
 /datum/console_program/main_menu
 	name = "Main Menu"
+	main_menu_hide = 1
 
 /datum/console_program/main_menu/initialize()
 	..()
 	html[1] =  "<pre class='alignCentre'>=== [owner] ==="
 	html[2] =  "=========================================================="
-	html[3] =  " "
 
-	var/i = 4
-	for(var/a in owner.installed_software)
-		var/datum/console_program/P = owner.installed_software[a]
-		if(i < 21)
-			html[i] = "<pre class='alignCentre'>\[[P]\]"
-		else
-			break
-		i++
-
-	while(i < 21)
-		html[i] = " "
-		i++
+	Run()
 
 	html[21] = "=========================================================="
 	html[22] = " "
+
+/datum/console_program/main_menu/Run()
+	..()
+	for(var/n = 3 to 20)
+		html[n] = " "
+
+	var/i = 3
+	for(var/b in owner.installed_software)
+		if(i > 20)
+			break
+		var/datum/console_program/P = owner.installed_software[b]
+		if(P.main_menu_hide)
+			continue
+		html[i] = "<div class='alignCentre'>\[<a href='?src=\ref[owner]&action=program&name=[b]' style='[TERM_STD_STYLE]; text-decoration: none'>[b]</a>\]</div>"
+		i++
+
+/datum/console_program/main_menu/HandleTopic(var/list/href_list)
+	if(..())
+		return 1
+
+	switch(href_list["action"])
+		if("program")
+			owner.SwitchProgram(href_list["name"])

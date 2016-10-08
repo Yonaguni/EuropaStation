@@ -26,9 +26,10 @@ input {
 }
 
 a {
-	font: bold 19px 'Share Tech Mono', monospace;
-	color: #0F0;
-	background: transparent;
+	font: inherit;
+	color: inherit;;
+	background: inherit;
+	text-decoration: inherit;
 }
 
 .outerBorder {
