@@ -217,7 +217,7 @@ datum/unit_test/zas_supply_shuttle_moved/check_result()
 	if(world.time < testtime)
 		return 0
 
-	var/list/test = test_air_in_area(/area/supply/station)
+	var/list/test = test_air_in_area(/area/supply/dock)
 	if(isnull(test))
 		fail("Check Runtimed")
 		return 1
