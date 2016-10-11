@@ -1,3 +1,7 @@
+/obj/item/clothing/under/color
+	name = "jumpsuit"
+	icon_state = "white"
+
 /obj/item/clothing/under/color/black
 	name = "black jumpsuit"
 	icon_state = "black"
