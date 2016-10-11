@@ -12,17 +12,17 @@
 	worn_state = "resomi_white"
 
 /obj/item/clothing/under/resomi/red
-	name = "small Security smock"
+	name = "small red smock"
 	icon_state = "resomi_red"
 	worn_state = "resomi_red"
 
 /obj/item/clothing/under/resomi/yellow
-	name = "small Engineering smock"
+	name = "small yellow smock"
 	icon_state = "resomi_yellow"
 	worn_state = "resomi_yellow"
 
 /obj/item/clothing/under/resomi/medical
-	name = "small Medical uniform"
+	name = "small medical uniform"
 	icon_state = "resomi_medical"
 	worn_state = "resomi_medical"
 

@@ -70,7 +70,7 @@
 	worn_state = "psyche"
 
 /obj/item/clothing/under/color/lightblue
-	name = "lightblue jumpsuit"
+	name = "light blue jumpsuit"
 	desc = "A lightblue jumpsuit."
 	icon_state = "lightblue"
 	item_state = "b_suit"
@@ -83,7 +83,7 @@
 	item_state = "b_suit"
 	worn_state = "aqua"
 
-/obj/item/clothing/under/color
+/obj/item/clothing/under/color/purple
 	name = "purple jumpsuit"
 	desc = "The latest in space fashion."
 	icon_state = "purple"

@@ -67,7 +67,7 @@
 				return 1
 			else if(isnewplayer(player.current))
 				if(player.current.client && player.current.client.prefs)
-					var/datum/species/S = all_species[player.current.client.prefs.species]
+					var/datum/species/S = player.current.client.prefs.get_current_species()
 					if(S && (S.flags & NO_SCAN))
 						return 0
 					if(player.current.client.prefs.organ_data[BP_CHEST] == "cyborg") // Full synthetic.

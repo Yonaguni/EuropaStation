@@ -6,6 +6,12 @@
 /obj/item/clothing/gloves/color/white
 	color = COLOR_WHITE
 
+/obj/item/clothing/gloves/color/blue
+	color = COLOR_BLUE
+
+/obj/item/clothing/gloves/color/purple
+	color = COLOR_PURPLE
+
 /obj/item/clothing/gloves/color/evening
 	desc = "A pair of gloves that reach past the elbow. Fancy!"
 	name = "evening gloves"

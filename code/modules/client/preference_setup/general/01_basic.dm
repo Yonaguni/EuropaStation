@@ -22,8 +22,7 @@ datum/preferences
 	S["OOC_Notes"]				<< pref.metadata
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
-	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
-	if(!S) S = all_species["Human"]
+	var/datum/species/S = pref.get_current_species()
 	pref.age                = sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender             = sanitize_inlist(pref.gender, S.genders, pick(S.genders))
 	pref.real_name          = sanitize_name(pref.real_name, pref.species)
@@ -47,7 +46,7 @@ datum/preferences
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
-	var/datum/species/S = all_species[pref.species]
+	var/datum/species/S = pref.get_current_species()
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))

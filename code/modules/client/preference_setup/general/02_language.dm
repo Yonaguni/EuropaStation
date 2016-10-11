@@ -13,7 +13,7 @@
 
 /datum/category_item/player_setup_item/general/language/content()
 	. += "<b>Languages</b><br>"
-	var/datum/species/S = all_species[pref.species]
+	var/datum/species/S = pref.get_current_species()
 	if(S.language)
 		. += "- [S.language]<br>"
 	if(S.default_language && S.default_language != S.language)
@@ -35,7 +35,7 @@
 		pref.alternate_languages.Cut(index, index+1)
 		return TOPIC_REFRESH
 	else if(href_list["add_language"])
-		var/datum/species/S = all_species[pref.species]
+		var/datum/species/S = pref.get_current_species()
 		if(pref.alternate_languages.len >= S.num_alternate_languages)
 			alert(user, "You have already selected the maximum number of alternate languages for this species!")
 		else

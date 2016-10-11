@@ -1,10 +1,10 @@
 /datum/species/resomi
 	name = "Resomi"
 	name_plural = "Resomii"
-	blurb = "A race of feathered raptors who developed on a cold world, almost \
-	outside of the Goldilocks zone. Extremely fragile, they developed hunting skills \
-	that emphasized taking out their prey without themselves getting hit. They are an \
-	advanced culture on good terms with Skrellian and Human interests."
+	blurb = "The Resomi are a race of feathered raptors who developed as pack hunters on a dim, freezing cold world; the bright \
+	lights of Human habitations tend to be overwhelming to them. They live and serve beneath a technologically advanced despotic \
+	empire, the details of which are kept secret from Humanity. They are highly advanced, extremely fragile, easily agitated, and \
+	are usually found in packs of up to six."
 
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_RESOMI)
@@ -16,6 +16,9 @@
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
+	base_hair_color = "#333333"
+	has_default_hair = "Resomi Ears"
+
 	tail = "resomitail"
 	tail_hair = "feathers"
 	reagent_tag = IS_RESOMI
@@ -37,7 +40,7 @@
 	blood_volume = 280
 	hunger_factor = 0.2
 
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL

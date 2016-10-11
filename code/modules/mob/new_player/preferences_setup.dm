@@ -1,8 +1,10 @@
 datum/preferences
+	proc/get_current_species()
+		return all_species[species] ? all_species[species] : all_species["Human"]
+
 	//The mob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
-		var/datum/species/current_species = all_species[species]
-		if(!current_species) current_species = all_species["Human"]
+		var/datum/species/current_species = get_current_species()
 		gender = pick(current_species.genders)
 
 		h_style = random_hair_style(gender, species)
@@ -206,6 +208,9 @@ datum/preferences
 					break
 	else
 		return
+
+	if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob && previewJob.equip_species(mannequin, player_alt_titles[previewJob.title]))
+		update_icon = TRUE
 
 	if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 		var/list/equipped_slots = list() //If more than one item takes the same slot only spawn the first
