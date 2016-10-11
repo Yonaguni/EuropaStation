@@ -80,7 +80,11 @@
         <tab name='{{name}}'>
           {{#each pack}}
             <ui-section label='{{name}}' candystripe right>
-              <ui-button action='add' params='{"id": "{{id}}"}'>{{cost}} Credits</ui-button>
+			  {{#if adata.available}}
+                 <ui-button action='add' params='{"id": "{{id}}"}'>{{cost}} Credits</ui-button>
+              {{else}}
+			     <span>Unavailable</span>
+			  {{/if}}
             </ui-section>
           {{/each}}
         </tab>

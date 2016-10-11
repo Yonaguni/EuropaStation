@@ -38,12 +38,15 @@
 				"pack" = list()
 				)
 			for(var/decl/hierarchy/supply_pack/spc in sp.children)
-				if(spc.hidden && !emagged || spc.contraband && !can_order_contraband)
+				if((spc.hidden && !emagged) || (spc.contraband && !can_order_contraband))
 					continue
 				supplylist[sp.name]["pack"] += list(list(
 					"name" = spc.name,
 					"cost" = spc.cost,
-					"id" = "\ref[spc]"
+					"id" = "\ref[spc]",
+					"available" = !(using_map && using_map.stellar_location && \
+					 using_map.stellar_location.blacklisted_cargo && \
+					 (spc.type in using_map.stellar_location.blacklisted_cargo))
 					))
 
 /obj/machinery/computer/supply/proc/isActiveTerminal()
@@ -83,19 +86,18 @@
 	var/canlaunch = 0
 
 	if (shuttle.has_arrive_time())
-		shuttlestatus = "In transit ([shuttle.eta_minutes()] Mins.)"
+		shuttlestatus = "In transit ([shuttle.eta_minutes()] minute\s.)"
 	else
 		if (shuttle.at_station())
 			if (shuttle.docking_controller)
 				switch(shuttle.docking_controller.get_docking_status())
 					if ("docked")
-						shuttlestatus = "Docked at station"
-					if ("undocked") shuttlestatus = "Undocked from station"
-					if ("docking") shuttlestatus = "Docking with station"
-					if ("undocking") shuttlestatus = "Undocking from station"
+						shuttlestatus = "Docked."
+					if ("undocked") shuttlestatus = "Undocked."
+					if ("docking") shuttlestatus = "Docking..."
+					if ("undocking") shuttlestatus = "Undocking..."
 		else
-			shuttlestatus = "Docked at remote location"
-
+			shuttlestatus = "Docked at [using_map.get_specific_location()]."
 
 	if(activeterminal)
 		data["cart"] = list()
@@ -159,6 +161,11 @@
 			var/notenoughpoints = 0
 			var/decl/hierarchy/supply_pack/P = locate(params["id"]) in supply_controller.master_supply_list
 			if(!istype(P) || P.is_category())	return TRUE
+
+			if(using_map && using_map.stellar_location && \
+			 using_map.stellar_location.blacklisted_cargo && \
+			 (P.type in using_map.stellar_location.blacklisted_cargo))
+				return TRUE
 
 			if(P.hidden && !emagged) return TRUE
 

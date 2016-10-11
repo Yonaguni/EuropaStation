@@ -8,7 +8,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Jovian Naval Authority and the Admirality"
+	supervisors = "the Jovian Naval Authority and the Free Trade Union Admirality"
 	selection_color = "#1d1d4f"
 	req_admin_notify = 1
 	access = list() 			//See get_access()

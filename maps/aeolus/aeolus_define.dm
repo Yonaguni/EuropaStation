@@ -16,61 +16,34 @@
 	emergency_shuttle_leaving_dock = "Emergency wave jump initiated. Estimate %ETA% until arrival at %dock_name%."
 	emergency_shuttle_called_message = "An emergency wave jump has been initiated. This is not a drill. Drive spooling will be complete in approximately %ETA%."
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
-
 	evac_controller_type = /datum/evacuation_controller
-	var/stellar_location
-	var/specific_location
+
+	var/datum/trade_destination/destination_location
+	var/initial_announcement
 
 /datum/map/aeolus/perform_map_generation()
+	//new /datum/random_map/automata/asteroids(null, 1, 1, 3, 255, 255)
 	return 1
 
-// These are all either real stellar objects or fictional facilities built on real stellar objects,
-// please refer to both Wikipedia and the Europa lore document before adding/removing them.
+/datum/map/aeolus/update_locations()
+	. = ..()
+	destination_location = pick(all_trade_destinations - stellar_location)
+	if(stellar_location.flavour_locations && stellar_location.flavour_locations.len)
+		specific_location = pick(stellar_location.flavour_locations)
+		initial_announcement = "Wave jump complete. The [station_name()] has safely arrived in the vicinity of [specific_location], [stellar_location.is_a_planet ? "orbiting" : "within"] [stellar_location.name]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
+	else
+		specific_location = stellar_location.name
+		initial_announcement = "Wave jump complete. The [station_name()] has safely arrived at [specific_location]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
+
 /datum/map/aeolus/do_roundstart_intro()
-
-	stellar_location = pick("the Kuiper Belt", "the Oort cloud", "the Halo asteroid belt")
-
-	if(stellar_location == "the Oort cloud")
-		specific_location = pick(list(
-			"Eris",
-			"Dysnomia",
-			"Hyakutake-2",
-			"Hale-Bopp-54",
-			"Sedna",
-			"2006 SQ372",
-			"2008 KV42",
-			"2000 CR105"
-			))
-
-	else if(stellar_location == "the Kuiper Belt")
-		specific_location = pick(list(
-			"the Haumea archive",
-			"the Makemake Correctional Facility",
-			"the ruins of Pluto",
-			"Charon",
-			"2003 UB",
-			"1992 QB1",
-			"Orcus",
-			"Quaoar",
-			"Ixion",
-			"Varuna"
-			))
-
-	else if(stellar_location == "the Halo asteroid belt")
-		specific_location = pick(list(
-			"Ceres",
-			"Vesta",
-			"Pallas",
-			"Hygiea",
-			"the Gefion family",
-			"434 Hungaria",
-			"the Phocaea family",
-			"the Karin cluster"
-			))
-
-	priority_announcement.Announce("Wave jump complete. The [station_name()] has safely arrived in the vicinity of [specific_location], within [stellar_location]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties.")
+	. = ..()
+	if(initial_announcement)
+		priority_announcement.Announce(initial_announcement)
+	sleep(600)
+	if(destination_location)
+		priority_announcement.Announce("Vector plotting for scheduled jump complete. Departure for [destination_location.name] will be undertaken in two standard hours.")
 
 /obj/effect/landmark/map_data/aeolus
-	name = "SDEV Aeolus"
-	desc = "A Jovian naval vessel."
-	height = 2
+	name = "FTV Aeolus"
+	desc = "A Free Trade Union freight vessel."
+	height = 1

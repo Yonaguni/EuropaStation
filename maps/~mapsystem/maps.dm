@@ -54,6 +54,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/emergency_shuttle_called_message
 	var/emergency_shuttle_recall_message
 
+	var/datum/trade_destination/stellar_location
+	var/specific_location
+
 	var/list/holodeck_programs = list() // map of string ids to /datum/holodeck_program instances
 	var/list/holodeck_supported_programs = list() // map of maps - first level maps from list-of-programs string id (e.g. "BarPrograms") to another map
                                                   // this is in order to support multiple holodeck program listings for different holodecks
@@ -90,4 +93,11 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 // Can be overridden/updated to be more interesting later.
 /datum/map/proc/do_roundstart_intro()
-	return
+	set waitfor = 0
+	set background = 1
+
+/datum/map/proc/update_locations()
+	stellar_location = pick(all_trade_destinations)
+
+/datum/map/proc/get_specific_location()
+	return (specific_location ? specific_location : (stellar_location ? stellar_location.name : "Unknown"))
