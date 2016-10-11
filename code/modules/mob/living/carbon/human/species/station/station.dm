@@ -13,6 +13,7 @@
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
 	max_age = 100
+	has_genotypes = 1
 
 	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
@@ -27,11 +28,10 @@
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	primitive_form = "Neaera"
 	unarmed_types = list(/datum/unarmed_attack/punch)
-	blurb = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
-	the royals' or 'Light of the Crown'.<br/><br/>Skrell are a highly advanced and logical race who live under the rule \
-	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
-	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
-	the secrets of their empire to their allies."
+	blurb = "The Skrell are an advanced and logical race who live under the rule of the Qerr'Katish, a social caste which keeps the \
+	empire running smoothly. They have a natural bent towards psi discipline and even the lowliest Skrell is more than likely a match for \
+	an average human operant. Skrell are herbivores and tend to be peaceful towards Humanity, although they refrain from revealing the \
+	secrets of their empire to their allies."
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = null
@@ -40,12 +40,14 @@
 	min_age = 19
 	max_age = 90
 
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
+	base_hair_color = "#006666"
+	has_default_hair = "Skrell Male Tentacles"
 
 	reagent_tag = IS_SKRELL
 
@@ -62,6 +64,9 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
+
+/datum/species/skrell/get_default_hair(var/mob/living/carbon/human/H)
+	return "Skrell [H.gender == MALE ? "Male" : "Female"] Tentacles"
 
 /datum/species/diona
 	name = "Diona"
@@ -84,13 +89,11 @@
 	min_age = 1
 	max_age = 300
 
-	blurb = "Commonly referred to (erroneously) as 'plant people', the Dionaea are a strange space-dwelling collective \
-	species hailing from Epsilon Ursae Minoris. Each 'diona' is a cluster of numerous cat-sized organisms called nymphs; \
-	there is no effective upper limit to the number that can fuse in gestalt, and reports exist	of the Epsilon Ursae \
-	Minoris primary being ringed with a cloud of singing space-station-sized entities.<br/><br/>The Dionaea coexist peacefully with \
-	all known species, especially the Skrell. Their communal mind makes them slow to react, and they have difficulty understanding \
-	even the simplest concepts of other minds. Their alien physiology allows them survive happily off a diet of nothing but light, \
-	water and other radiation."
+	blurb = "The Dionaea are a pacifistic, space-dwelling collective species with no known government or culture; they do not build, but \
+	instead grow to enormous sizes in the orbits of stars. Each 'one' is a cluster of cat-sized organisms called nymphs. The Dionaea possess \
+	a total inability to understand aggression or experience pain, and they coexist peacefully with all known species. Their communal mind \
+	makes them slow to react, and they have difficulty understanding concepts like individuality or being alone. Their alien physiology allows \
+	them survive happily off a diet of nothing but light."
 
 	has_organ = list(
 		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients,
@@ -134,7 +137,7 @@
 
 	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP
 	appearance_flags = 0
-	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"

@@ -30,13 +30,13 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 var/diary               = null
 var/href_logfile        = null
-var/station_name        = "SDEV Aeolus"
+var/station_name        = "FTV Aeolus"
 var/station_short       = "Aeolus"
 var/const/dock_name     = "Callisto"
-var/const/boss_name     = "Naval Command"
+var/const/boss_name     = "Naval Administration"
 var/const/boss_short    = "Headquarters"
-var/const/company_name  = "Sol Central"
-var/const/company_short = "Sol"
+var/const/company_name  = "Free Trade Union"
+var/const/company_short = "FTU"
 var/game_version        = "ES13 <b><font color = '#FF0000'>r0-indev</font></b>"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)

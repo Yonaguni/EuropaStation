@@ -163,7 +163,7 @@
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
-		var/datum/species/S = all_species[client.prefs.species]
+		var/datum/species/S = client.prefs.get_current_species()
 		if(!check_species_allowed(S))
 			return 0
 
@@ -329,7 +329,7 @@
 
 		character.loc = C.loc
 
-		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
+		AnnounceCyborg(character, rank, "has been booted in \the [character.loc.loc]")
 		ticker.mode.handle_latejoin(character)
 
 		qdel(C)
@@ -350,8 +350,6 @@
 		if(character.mind.assigned_role != "Robot")
 			data_core.manifest_inject(character)
 			ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-
-			//Grab some data from the character prefs for use in random news procs.
 
 			AnnounceArrival(character, rank, join_message)
 		else
@@ -404,7 +402,7 @@
 
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = client.prefs.get_current_species()
 
 	if(chosen_species)
 		if(!check_species_allowed(chosen_species))
@@ -491,11 +489,9 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
-
+		chosen_species = client.prefs.get_current_species()
 	if(!chosen_species || !check_species_allowed(chosen_species, 0))
 		return "Human"
-
 	return chosen_species.name
 
 /mob/new_player/get_gender()

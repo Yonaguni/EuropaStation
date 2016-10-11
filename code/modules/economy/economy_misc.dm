@@ -75,14 +75,14 @@
 //Frigates are medium sized vessels, often used for escorting larger ships. They will rapidly find themselves outclassed if forced to face heavy warships head on.
 
 var/global/current_date_string
-
-var/global/datum/money_account/vendor_account
-var/global/datum/money_account/station_account
-var/global/list/datum/money_account/department_accounts = list()
-var/global/num_financial_terminals = 1
-var/global/next_account_number = 0
-var/global/list/all_money_accounts = list()
-var/global/economy_init = 0
+var/datum/money_account/vendor_account
+var/datum/money_account/station_account
+var/list/datum/money_account/department_accounts = list()
+var/num_financial_terminals = 1
+var/next_account_number = 0
+var/list/all_money_accounts = list()
+var/economy_init = 0
+var/list/all_trade_destinations = list()
 
 /proc/setup_economy()
 	if(economy_init)
@@ -93,8 +93,11 @@ var/global/economy_init = 0
 
 	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)
 		var/datum/trade_destination/D = new loc_type
+		all_trade_destinations += D
 		weighted_randomevent_locations[D] = D.viable_random_events.len
 		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
+
+	using_map.update_locations()
 
 	create_station_account()
 

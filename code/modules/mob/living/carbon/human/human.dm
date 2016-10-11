@@ -1131,9 +1131,19 @@
 		g_skin = 0
 		b_skin = 0
 
+	if(default_colour)
+		if(species.base_hair_color)
+			r_hair = hex2num(copytext(species.base_hair_color,2,4))
+			g_hair = hex2num(copytext(species.base_hair_color,4,6))
+			b_hair = hex2num(copytext(species.base_hair_color,6,8))
+		if(species.has_default_hair)
+			h_style = species.get_default_hair(src)
+		if(species.has_default_facial_hair)
+			f_style = species.get_default_facial_hair(src)
+		update_hair()
+
 	if(species.holder_type)
 		holder_type = species.holder_type
-
 
 	if(!(gender in species.genders))
 		gender = species.genders[1]
@@ -1145,8 +1155,8 @@
 
 	maxHealth = species.total_health
 
+	regenerate_icons()
 	spawn(0)
-		regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)

@@ -22,7 +22,11 @@
 	var/has_floating_eyes                                // Eyes will overlay over darkness (glow)
 	var/blood_color = "#A10808"                          // Red.
 	var/flesh_color = "#FFC896"                          // Pink.
-	var/base_color                                       // Used by changelings. Should also be used for icon previes..
+	var/base_color                                       // Used by changelings. Should also be used for icon previews.
+	var/base_hair_color
+	var/has_default_hair
+	var/has_default_facial_hair
+
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
 	var/tail_hair
@@ -35,6 +39,8 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/hunger_factor = DEFAULT_HUNGER_FACTOR            // Multiplier for hunger.
 	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
+
+	var/has_genotypes
 
 	var/min_age = 17
 	var/max_age = 70
@@ -167,6 +173,12 @@
 
 /datum/species/proc/get_eyes(var/mob/living/carbon/human/H)
 	return
+
+/datum/species/proc/get_default_hair(var/mob/living/carbon/human/H)
+	return has_default_hair
+
+/datum/species/proc/get_default_facial_hair(var/mob/living/carbon/human/H)
+	return has_default_facial_hair
 
 /datum/species/New()
 	if(hud_type)

@@ -1880,6 +1880,7 @@
 #include "code\modules\random_map\_random_map_setup.dm"
 #include "code\modules\random_map\random_map.dm"
 #include "code\modules\random_map\random_map_verbs.dm"
+#include "code\modules\random_map\automata\asteroids.dm"
 #include "code\modules\random_map\automata\automata.dm"
 #include "code\modules\random_map\automata\caves.dm"
 #include "code\modules\random_map\building\building.dm"

@@ -30,6 +30,7 @@
 	var/list/allowed_ranks				  // Ditto
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+	equip_species(H, alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
@@ -40,6 +41,9 @@
 		. = alt_titles[alt_title]
 	. = . ? . : outfit_type
 	. = outfit_by_type(.)
+
+/datum/job/proc/handle_misc_notifications(var/mob/living/carbon/human/H)
+	return
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
@@ -93,6 +97,9 @@
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
 	return (available_in_days(C) == 0) //Available in 0 days = available right now = player is old enough to play.
+
+/datum/job/proc/equip_species(var/mob/living/carbon/human/H, var/alt_title)
+	return
 
 /datum/job/proc/available_in_days(client/C)
 	if(C && config.use_age_restriction_for_jobs && isnum(C.player_age) && isnum(minimal_player_age))

@@ -154,79 +154,9 @@ datum/unit_test/zas_area_test/west_hall_mining_outpost
 	name = "ZAS: Mining outpost West Hallway"
 	area_path = /area/outpost/mining_main/west_hall
 
-/*
-datum/unit_test/zas_area_test/mining_area
-	name = "ZAS: Mining Area (Vacuum)"
-	area_path = /area/mine/explored
-	expectation = UT_VACUUM
-	disabled = 1
-	why_disabled = "Asteroid Generation disabled"
- */
 datum/unit_test/zas_area_test/
 	name = "ZAS: Cargo Bay"
 	area_path = /area/quartermaster/storage
-
-
-// ==================================================================================================
-
-
-// Here we move a shuttle then test it's area once the shuttle has arrived.
-
-datum/unit_test/zas_supply_shuttle_moved
-	name = "ZAS: Supply Shuttle (When Moved)"
-	async=1				// We're moving the shuttle using built in procs.
-
-	var/datum/shuttle/ferry/supply/shuttle = null
-
-	var/testtime = 0	//Used as a timer.
-
-datum/unit_test/zas_supply_shuttle_moved/start_test()
-
-	if(!shuttle_controller)
-		fail("Shuttle Controller not setup at time of test.")
-		return 1
-	if(!shuttle_controller.shuttles.len)
-		skip("No shuttles have been setup for this map.")
-		return 1
-
-	shuttle = supply_controller.shuttle
-	if(isnull(shuttle))
-		return 1
-
-	// Initiate the Move.
-	supply_controller.movetime = 5 // Speed up the shuttle movement.
-	shuttle.short_jump(shuttle.area_offsite, shuttle.area_station)
-
-	return 1
-
-datum/unit_test/zas_supply_shuttle_moved/check_result()
-	if(!shuttle)
-		skip("This map has no supply shuttle.")
-		return 1
-
-	if(shuttle.moving_status == SHUTTLE_IDLE && !shuttle.at_station())
-		fail("Shuttle Did not Move")
-		return 1
-
-	if(!shuttle.at_station())
-		return 0
-
-	if(!testtime)
-		testtime = world.time+40                // Wait another 2 ticks then proceed.
-
-	if(world.time < testtime)
-		return 0
-
-	var/list/test = test_air_in_area(/area/supply/station)
-	if(isnull(test))
-		fail("Check Runtimed")
-		return 1
-
-	switch(test["result"])
-		if(SUCCESS) pass(test["msg"])
-		if(SKIP)    skip(test["msg"])
-		else        fail(test["msg"])
-	return 1
 
 #undef UT_NORMAL
 #undef UT_VACUUM

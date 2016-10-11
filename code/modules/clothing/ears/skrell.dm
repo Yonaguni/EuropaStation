@@ -78,45 +78,49 @@
 	desc = "A cloth shawl worn by female skrell draped around their head tails."
 	icon_state = "skrell_cloth_female"
 
-//spawnable presets
 /obj/item/clothing/ears/skrell/cloth_female/red
-	color = "#c20c00"
+	color = COLOR_RED
 
 /obj/item/clothing/ears/skrell/cloth_female/blue
-	color = "#0227f7"
+	color = COLOR_BLUE
 
 /obj/item/clothing/ears/skrell/cloth_female/lblue
-	color = "#6262ff"
+	color = COLOR_BLUE_LIGHT
+
+/obj/item/clothing/ears/skrell/cloth_female/purple
+	color = COLOR_PURPLE
 
 /obj/item/clothing/ears/skrell/cloth_female/black
-	color = "#454545"
+	color = COLOR_BLACK
 
 /obj/item/clothing/ears/skrell/cloth_female/green
-	color = "#009900"
+	color = COLOR_GREEN
 
 /obj/item/clothing/ears/skrell/cloth_female/pink
-	color = "#e17291"
+	color = COLOR_PINK
 
 /obj/item/clothing/ears/skrell/cloth_male
 	name = "headtail cloth"
 	desc = "A cloth band worn by male skrell around their head tails."
 	icon_state = "skrell_cloth_male"
 
-//spawnable presets
 /obj/item/clothing/ears/skrell/cloth_male/red
-	color = "#c20c00"
+	color = COLOR_RED
 
 /obj/item/clothing/ears/skrell/cloth_male/blue
-	color = "#0227f7"
+	color = COLOR_BLUE
 
 /obj/item/clothing/ears/skrell/cloth_male/lblue
-	color = "#6262ff"
+	color = COLOR_BLUE_LIGHT
+
+/obj/item/clothing/ears/skrell/cloth_male/purple
+	color = COLOR_PURPLE
 
 /obj/item/clothing/ears/skrell/cloth_male/black
-	color = "#454545"
+	color = COLOR_BLACK
 
 /obj/item/clothing/ears/skrell/cloth_male/green
-	color = "#009900"
+	color = COLOR_GREEN
 
 /obj/item/clothing/ears/skrell/cloth_male/pink
-	color = "#e17291"
+	color = COLOR_PINK

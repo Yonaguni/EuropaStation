@@ -29,8 +29,9 @@
 	var/obj/fire/old_fire = fire
 	var/list/old_affecting_lights = affecting_lights
 	for(var/thing in affecting_lights)
-		var/obj/effect/light/L = thing
-		L.affecting_turfs -= src
+		if(thing)
+			var/obj/effect/light/L = thing
+			L.affecting_turfs -= src
 
 	//world << "Replacing [src.type] with [N]"
 

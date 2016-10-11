@@ -13,6 +13,10 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	slot_flags = SLOT_ID | SLOT_BELT
 	light_color = "#00FF00"
 
+	sprite_sheets = list(
+		"Resomi" = 'icons/mob/species/resomi/id.dmi'
+		)
+
 	//Main variables
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
