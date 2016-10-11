@@ -1172,6 +1172,8 @@
 		if(hud_used)
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
+		client.screen |= master_plane
+		client.screen |= dark_plane
 
 	if(config && config.use_cortical_stacks && client && client.prefs.has_cortical_stack)
 		create_stack()

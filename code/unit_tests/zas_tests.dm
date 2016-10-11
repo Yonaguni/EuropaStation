@@ -106,7 +106,7 @@ proc/test_air_in_area(var/test_area, var/expectation = UT_NORMAL)
 
 datum/unit_test/zas_area_test/supply_centcomm
 	name = "ZAS: Supply Shuttle (CentComm)"
-	area_path = /area/supply/dock
+	area_path = /area/supply/station
 
 datum/unit_test/zas_area_test/emergency_shuttle
 	name = "ZAS: Emergency Shuttle"
