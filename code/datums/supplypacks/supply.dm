@@ -67,7 +67,6 @@
 	name = "Shaft miner equipment"
 	contains = list(/obj/item/weapon/storage/backpack/industrial,
 					/obj/item/weapon/storage/backpack/satchel_eng,
-					/obj/item/device/radio/headset/headset_cargo,
 					/obj/item/clothing/under/rank/miner,
 					/obj/item/clothing/gloves/thick,
 					/obj/item/clothing/shoes/black,

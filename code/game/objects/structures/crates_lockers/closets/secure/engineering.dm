@@ -28,7 +28,6 @@
 		new /obj/item/clothing/gloves/insulated(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/weapon/cartridge/ce(src)
-		new /obj/item/device/radio/headset/heads/ce(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
@@ -118,7 +117,6 @@
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
-		new /obj/item/device/radio/headset/headset_eng(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/glasses/meson(src)
@@ -151,7 +149,6 @@
 		new /obj/item/clothing/suit/fire/firefighter(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/weapon/extinguisher(src)
-		new /obj/item/device/radio/headset/headset_eng(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/weapon/cartridge/atmos(src)

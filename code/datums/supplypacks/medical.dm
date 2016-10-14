@@ -47,7 +47,6 @@
 /decl/hierarchy/supply_pack/medical/cmogear
 	name = "Chief medical officer equipment"
 	contains = list(/obj/item/weapon/storage/belt/medical,
-					/obj/item/device/radio/headset/heads/cmo,
 					/obj/item/clothing/under/rank/chief_medical_officer,
 					/obj/item/weapon/reagent_containers/hypospray,
 					/obj/item/clothing/accessory/stethoscope,
@@ -69,7 +68,6 @@
 /decl/hierarchy/supply_pack/medical/doctorgear
 	name = "Medical Doctor equipment"
 	contains = list(/obj/item/weapon/storage/belt/medical,
-					/obj/item/device/radio/headset/headset_med,
 					/obj/item/clothing/under/rank/medical,
 					/obj/item/clothing/accessory/stethoscope,
 					/obj/item/clothing/glasses/hud/health,
@@ -90,7 +88,6 @@
 /decl/hierarchy/supply_pack/medical/chemistgear
 	name = "Chemist equipment"
 	contains = list(/obj/item/weapon/storage/box/beakers,
-					/obj/item/device/radio/headset/headset_med,
 					/obj/item/weapon/storage/box/autoinjectors,
 					/obj/item/clothing/under/rank/chemist,
 					/obj/item/clothing/glasses/science,
@@ -111,7 +108,6 @@
 /decl/hierarchy/supply_pack/medical/paramedicgear
 	name = "Paramedic equipment"
 	contains = list(/obj/item/weapon/storage/belt/medical/emt,
-					/obj/item/device/radio/headset/headset_med,
 					/obj/item/clothing/under/rank/medical/black,
 					/obj/item/clothing/accessory/armband/medgreen,
 					/obj/item/clothing/glasses/hud/health,
@@ -137,7 +133,6 @@
 /decl/hierarchy/supply_pack/medical/psychiatristgear
 	name = "Psychiatrist equipment"
 	contains = list(/obj/item/clothing/under/rank/psych,
-					/obj/item/device/radio/headset/headset_med,
 					/obj/item/clothing/under/rank/psych/turtleneck,
 					/obj/item/clothing/shoes/laceup,
 					/obj/item/clothing/suit/storage/toggle/labcoat,
