@@ -18,9 +18,9 @@
 /decl/hierarchy/outfit/job/pre_equip(mob/living/carbon/human/H)
 	..()
 	switch(H.backbag)
-		if(2) back = backpack
-		if(3) back = satchel_one
-		if(4) back = satchel_two
+		if(2) back = satchel_one
+		if(3) back = satchel_two
+		if(4) back = backpack
 		else back = null
 
 /decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H)
