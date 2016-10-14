@@ -22,7 +22,7 @@
 	var/initial_announcement
 
 /datum/map/aeolus/perform_map_generation()
-	//new /datum/random_map/automata/asteroids(null, 1, 1, 3, 255, 255)
+	stellar_location.build_level(3)
 	return 1
 
 /datum/map/aeolus/update_locations()

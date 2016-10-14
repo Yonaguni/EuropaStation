@@ -1,9 +1,6 @@
 /datum/random_map/automata/cave_system
 	iterations = 5
 	descriptor = "moon caves"
-	wall_type =  /turf/simulated/mineral
-	floor_type = /turf/simulated/floor/asteroid
-	target_turf_type = /turf/unsimulated/mask
 	var/mineral_sparse =  /turf/simulated/mineral/random
 	var/mineral_rich = /turf/simulated/mineral/random/high_chance
 	var/list/ore_turfs = list()
@@ -41,7 +38,6 @@
 /datum/random_map/automata/cave_system/cleanup()
 	var/ore_count = round(map.len/20)
 	while((ore_count>0) && (ore_turfs.len>0))
-		if(!priority_process) sleep(-1)
 		var/check_cell = pick(ore_turfs)
 		ore_turfs -= check_cell
 		if(prob(75))

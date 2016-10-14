@@ -69,7 +69,7 @@
 	var/view = 0
 
 /obj/machinery/computer/arcade/orion_trail/proc/newgame(var/emag = 0)
-	name = "orion trail[emag ? ": Realism Edition" : ""]"
+	name = "Orion Trail[emag ? ": Realism Edition" : ""]"
 	supplies = list("1" = 1, "2" = 1, "3" = 1, "4" = 60, "5" = 20, "6" = 5000)
 	emagged = emag
 	distance = 0
@@ -94,7 +94,7 @@
 	switch(view)
 		if(ORION_VIEW_MAIN)
 			if(event == ORION_TRAIL_START) //new game? New game.
-				dat = "<center><h1>Orion Trail[emagged ? ": Realism Edition" : ""]</h1><br>Learn how our ancestors got to Orion, and have fun in the process!</center><br><P ALIGN=Right><a href='?src=\ref[src];continue=1'>Start New Game</a></P>"
+				dat = "<center><h1>Orion Trail[emagged ? ": Realism Edition" : ""]</h1><br>Learn how future explorers might reach Orion, and have fun in the process!</center><br><P ALIGN=Right><a href='?src=\ref[src];continue=1'>Start New Game</a></P>"
 				user << browse(dat, "window=arcade")
 				return
 			else
