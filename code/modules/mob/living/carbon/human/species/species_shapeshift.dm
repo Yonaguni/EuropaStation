@@ -15,6 +15,10 @@ var/list/wrapped_species_by_ref = list()
 	var/monochromatic
 	var/default_form = "Human"
 
+/datum/species/shapeshifter/do_pre_spawn(var/mob/living/carbon/human/H)
+	. = ..()
+	wrapped_species_by_ref["\ref[H]"] = default_form
+
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
 	return valid_transform_species
 
@@ -27,7 +31,7 @@ var/list/wrapped_species_by_ref = list()
 	return "[..()]-[wrapped_species_by_ref["\ref[H]"]]"
 
 /datum/species/shapeshifter/get_bodytype(var/mob/living/carbon/human/H)
-	if(!H) return ..()
+	if(!H || !wrapped_species_by_ref["\ref[H]"]) return ..()
 	var/datum/species/S = all_species[wrapped_species_by_ref["\ref[H]"]]
 	return S.get_bodytype(H)
 
@@ -62,8 +66,7 @@ var/list/wrapped_species_by_ref = list()
 	return S.get_tail_hair(H)
 
 /datum/species/shapeshifter/handle_post_spawn(var/mob/living/carbon/human/H)
-	..()
-	wrapped_species_by_ref["\ref[H]"] = default_form
+	. = ..()
 	if(monochromatic)
 		H.r_hair =   H.r_skin
 		H.g_hair =   H.g_skin

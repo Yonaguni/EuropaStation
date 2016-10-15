@@ -1122,6 +1122,7 @@
 		holder_type = null
 
 	species = all_species[new_species]
+	species.do_pre_spawn(src)
 
 	if(species.language)
 		add_language(species.language)

@@ -1,6 +1,6 @@
 /datum/species/kharmaani
-	name = "Kharmaan alate"
-	name_plural = "Kharmaan alates"
+	name = "Kharmaani Alate"
+	name_plural = "Kharmaani Alates"
 
 	icobase = 'icons/mob/human_races/kharmaani/r_alate.dmi'
 	deform = 'icons/mob/human_races/kharmaani/r_alate.dmi'
@@ -38,7 +38,8 @@
 	blood_color = "#660066"
 	flesh_color = "#009999"
 
-	flags = SPECIES_IS_RESTRICTED | NO_SCAN | NO_SLIP
+	flags = NO_SCAN | NO_SLIP
+	spawn_flags = SPECIES_IS_RESTRICTED
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/leap,
@@ -46,8 +47,8 @@
 		)
 
 /datum/species/kharmaani/gyne
-	name = "Kharmaan gyne"
-	name_plural = "Kharmaan gynes"
+	name = "Kharmaani Gyne"
+	name_plural = "Kharmaani Gynes"
 	gluttonous = 3
 	slowdown = 2
 	num_alternate_languages = 1

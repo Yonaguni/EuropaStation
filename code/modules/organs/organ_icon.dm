@@ -67,11 +67,12 @@ var/list/limb_icon_cache = list()
 	else if (robotic >= ORGAN_ROBOT)
 		icon = 'icons/mob/human_races/robotic.dmi'
 	else if (status & ORGAN_MUTATED)
-		icon = species.deform
+		icon = species.get_icobase(owner,1)
 	else if (owner && (SKELETON in owner.mutations))
 		icon = 'icons/mob/human_races/r_skeleton.dmi'
 	else
-		icon = species.icobase
+		icon = species.get_icobase(owner)
+
 	mob_icon = new/icon(icon, icon_state)
 	if(status & ORGAN_DEAD)
 		icon_cache_key += "_dead"
@@ -92,7 +93,7 @@ var/list/limb_icon_cache = list()
 	if(body_hair && islist(h_col) && h_col.len >= 3)
 		var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
 		if(!limb_icon_cache[cache_key])
-			var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
+			var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
 			I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
 			limb_icon_cache[cache_key] = I
 		mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
@@ -181,6 +182,7 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 	var/list/hud_colours = (robotic < ORGAN_ROBOT) ? flesh_hud_colours : robot_hud_colours
 	hud_damage_image.color = hud_colours[max(1,min(ceil(dam_state*hud_colours.len),hud_colours.len))]
 	return hud_damage_image
+
 /obj/item/organ/external/proc/apply_colouration(var/icon/applying)
 
 	if(nonsolid)

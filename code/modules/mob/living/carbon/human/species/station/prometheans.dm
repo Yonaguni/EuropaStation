@@ -51,9 +51,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 	rarity_value =          5
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
-	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
+	has_organ =     list(BP_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
 	has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unbreakable/slime),
+		BP_CHEST =  list("path" = /obj/item/organ/external/chest/unbreakable/slime),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unbreakable/slime),
 		BP_HEAD =   list("path" = /obj/item/organ/external/head/unbreakable/slime),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/unbreakable/slime),
@@ -75,9 +75,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_gender
 		)
 
-	valid_transform_species = list("Human", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
+	valid_transform_species = list("Human", "Skrell", "Diona", "Resomi", "Monkey", "Xenomorph Drone", "Kharmaani Alate")
 	monochromatic = 1
-
 	var/heal_rate = 5 // Temp. Regen per tick.
 
 /datum/species/shapeshifter/promethean/New()
@@ -112,8 +111,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			//TODO: gain nutriment
 
 	// Regenerate limbs and heal damage if we have any. Copied from Bay xenos code.
-
-	// Theoretically the only internal organ a slime will have
+		// Theoretically the only internal organ a slime will have
 	// is the slime core. but we might as well be thorough.
 	for(var/obj/item/organ/I in H.internal_organs)
 		if(I.damage > 0)
@@ -125,7 +123,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 	// Replace completely missing limbs.
 	for(var/limb_type in has_limbs)
 		var/obj/item/organ/external/E = H.organs_by_name[limb_type]
+		world << "found [E ? E.name : "missing"]"
 		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
+			world << "status [E.is_stump()]|[(E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))], removing"
 			E.removed()
 			qdel(E)
 			E = null
