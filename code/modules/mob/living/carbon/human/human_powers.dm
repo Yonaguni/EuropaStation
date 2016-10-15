@@ -148,12 +148,12 @@
 		var/mob/living/carbon/human/H = G.affecting
 
 		if(!H.species.has_limbs["head"])
-			src << "<span class='warning'>\The [H] does not have a head!<span>"
+			src << "<span class='warning'>\The [H] does not have a head!</span>"
 			return
 
 		var/obj/item/organ/external/affecting = H.get_organ("head")
 		if(!istype(affecting) || affecting.is_stump())
-			src << "<span class='warning'>\The [H] does not have a head!<span>"
+			src << "<span class='warning'>\The [H] does not have a head!</span>"
 			return
 
 		visible_message("<span class='danger'>\The [src] closes their jaws around \the [H]'s head!</span>")

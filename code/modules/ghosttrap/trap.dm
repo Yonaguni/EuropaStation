@@ -214,3 +214,17 @@ datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silic
 
 /datum/ghosttrap/familiar/welcome_candidate(var/mob/target)
 	return 0
+
+/******************
+* Slime *
+******************/
+/datum/ghosttrap/slime
+	object = "slime"
+	pref_check = MODE_XENOMORPH
+	ghost_trap_message = "They are occupying a slime now."
+	ghost_trap_role = "Slime"
+	ban_checks = list(MODE_XENOMORPH)
+
+/datum/ghosttrap/slime/welcome_candidate(var/mob/target)
+	target << "You are a <b>Slime</b>. You have limited sentience, limited affection for the people that feed you, and no bones."
+	return 0

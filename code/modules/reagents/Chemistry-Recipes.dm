@@ -1246,11 +1246,12 @@
 //Black
 /datum/chemical_reaction/slime/mutate2
 	name = "Advanced Mutation Toxin"
-	id = "mutationtoxin2"
-	result = "amutationtoxin"
+	id = "prometheanserum"
+	result = "prometheanserum"
 	required_reagents = list("enzyme" = 1)
 	result_amount = 1
 	required = /obj/item/slime_extract/black
+
 
 //Oil
 /datum/chemical_reaction/slime/explosion
@@ -1285,16 +1286,10 @@
 /datum/chemical_reaction/slime/golem
 	name = "Slime Golem"
 	id = "m_golem"
-	result = null
+	result = "slimecrystal"
 	required_reagents = list("enzyme" = 1)
 	result_amount = 1
 	required = /obj/item/slime_extract/adamantine
-
-/datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
-	..()
-	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
-	Z.loc = get_turf(holder.my_atom)
-	Z.announce_to_ghosts()
 
 //Sepia
 /datum/chemical_reaction/slime/film
@@ -2105,4 +2100,17 @@
 /datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/T = get_turf(holder.my_atom)
 	if(istype(T)) new /obj/item/stack/material/deuterium(T, created_volume)
+	return
+
+/datum/chemical_reaction/nullglass
+	name = "nullglass"
+	id = "nullglass"
+	result = null
+	required_reagents = list("blood" = 15, "slimecrystal" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nullglass/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/device/soulstone(location)
 	return

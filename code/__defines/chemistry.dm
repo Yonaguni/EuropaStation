@@ -21,6 +21,7 @@
 #define IS_SKRELL  3
 #define IS_XENOS   6
 #define IS_RESOMI  7
+#define IS_SLIME   8
 
 #define CE_STABLE           "stable" // Adrenaline
 #define CE_ANTIBIOTIC       "antibiotic" // Spaceacilin

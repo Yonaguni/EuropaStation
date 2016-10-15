@@ -135,3 +135,7 @@
 		new/datum/stack_recipe("white folder", /obj/item/weapon/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/weapon/folder/yellow), \
 		))
+
+/material/nullglass/generate_recipes()
+	. = ..()
+	recipes += new/datum/stack_recipe("nullglass floor tile", /obj/item/stack/tile/floor_nullglass, 1, 1, 20)

@@ -15,10 +15,10 @@
 	max_age = 100
 	has_genotypes = 1
 
-	spawn_flags = CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
-/datum/species/human/get_bodytype()
+/datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return "Human"
 
 /datum/species/skrell
@@ -40,7 +40,7 @@
 	min_age = 19
 	max_age = 90
 
-	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
+	spawn_flags = SPECIES_IS_WHITELISTED | SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
@@ -135,9 +135,9 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP
+	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT
 	appearance_flags = 0
-	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
+	spawn_flags = SPECIES_IS_WHITELISTED | SPECIES_IS_RESTRICTED
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"

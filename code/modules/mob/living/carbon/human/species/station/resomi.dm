@@ -40,7 +40,7 @@
 	blood_volume = 280
 	hunger_factor = 0.2
 
-	spawn_flags = IS_WHITELISTED | IS_RESTRICTED
+	spawn_flags = SPECIES_IS_WHITELISTED | SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL

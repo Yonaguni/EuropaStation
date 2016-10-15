@@ -8,7 +8,7 @@
 	language = "Sol Common" //todo?
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch)
 	flags = NO_PAIN | NO_SCAN | NO_POISON
-	spawn_flags = IS_RESTRICTED
+	spawn_flags = SPECIES_IS_RESTRICTED
 	siemens_coefficient = 0
 
 	breath_type = null
@@ -18,7 +18,7 @@
 	flesh_color = "#137E8F"
 
 	has_organ = list(
-		BP_BRAIN = /obj/item/organ/internal/brain/golem
+		BP_BRAIN = /obj/item/organ/internal/brain/slime
 		)
 
 	death_message = "becomes completely motionless..."
@@ -28,6 +28,6 @@
 	if(H.mind)
 		H.mind.assigned_role = "Golem"
 		H.mind.special_role = "Golem"
-	H.real_name = "adamantine golem ([rand(1, 1000)])"
+	H.real_name = "golem ([rand(1, 1000)])"
 	H.name = H.real_name
 	..()

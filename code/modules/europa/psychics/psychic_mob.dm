@@ -111,6 +111,14 @@
 			if(maintaining_powers.len)
 				backblast(maintaining_powers.len)
 		else
+			var/turf/T = get_turf(src)
+			if(T.is_psi_null())
+				if(maintaining_powers.len)
+					backblast(maintaining_powers.len)
+				if(psychic_power)
+					psychic_power = max(0, psychic_power - rand(1,3))
+					src << "<span class='warning'>You feel your psi-power leeched away by \the [T]...</span>"
+				return
 			if(psychic_power < max_psychic_power)
 				psychic_power = min(max_psychic_power, psychic_power + rand(1,3))
 			for(var/datum/maintained_power/mpower in maintaining_powers)

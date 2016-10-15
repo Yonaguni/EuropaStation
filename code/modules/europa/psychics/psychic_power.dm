@@ -29,6 +29,12 @@
 
 /decl/psychic_power/proc/evoke(var/mob/living/user)
 
+	var/turf/T = get_turf(user)
+
+	if(T.is_psi_null())
+		user << "<span class='warning'>You feel your psi-power bleeding away into \the [T]...</span>"
+		return
+
 	if(passive)
 		for(var/datum/maintained_power/mpower in user.maintaining_powers)
 			if(mpower.power == src)

@@ -232,3 +232,11 @@
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-phoronrglass"
 	default_type = "rphglass"
+
+/obj/item/stack/material/nullglass
+	name = "nullglass"
+	icon_state = "sheet-nullglass"
+	default_type = "nullglass"
+
+/obj/item/stack/material/nullglass/fifty
+	amount = 50
