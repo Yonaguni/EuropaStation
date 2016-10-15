@@ -607,7 +607,7 @@ obj/machinery/light/proc/burn_out()
 /obj/item/weapon/light/tube/large
 	w_class = 2
 	name = "large light tube"
-	brightness_range = 6
+	brightness_range = 7
 	brightness_power = 5
 
 /obj/item/weapon/light/bulb
@@ -620,7 +620,7 @@ obj/machinery/light/proc/burn_out()
 	matter = list("glass" = 100)
 
 	brightness_range = 5
-	brightness_power = 3
+	brightness_power = 5
 	brightness_color = "#a0a080"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),

@@ -17,11 +17,13 @@ var/list/weighted_mundaneevent_locations = list()
 	var/list/viable_mundane_events = list()
 
 /datum/trade_destination/proc/get_custom_eventstring(var/event_type)
-	return null
+	return
+
+/datum/trade_destination/proc/build_level(var/tz)
+	return
 
 // These are all either real stellar objects or fictional facilities built on real stellar objects,
 // please refer to both Wikipedia and the Europa lore document before adding/removing them.
-
 // Energy and gas mining stations around the Sun.
 /datum/trade_destination/sol
 	name = "Sol"
@@ -40,6 +42,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"the Vulcanoids"
 		)
 
+/datum/trade_destination/sol/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/superheated(null, 1, 1, tz, 255, 255)
+
 /datum/trade_destination/mercury
 	name = "Mercury"
 	description = "Due to its stable and unique rotational period, tremendously hostile conditions, and huge exploitable solar power \
@@ -53,6 +58,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"the public docks",
 		"the Caduceus listening post"
 		)
+
+/datum/trade_destination/mercury/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/superheated(null, 1, 1, tz, 255, 255)
 
 /datum/trade_destination/venus
 	name = "Venus"
@@ -73,6 +81,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Neith"
 		)
 
+/datum/trade_destination/venus/build_level(var/tz)
+	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+
 // Cradle of Humanity, warpgate coordination facility, corp central.
 /datum/trade_destination/earth
 	name = "Earth"
@@ -90,6 +101,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"the public docks",
 		"the corporate docks"
 		)
+
+/datum/trade_destination/earth/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
 
 // Capitol of Sol.
 /datum/trade_destination/mars
@@ -111,6 +125,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"the public docks",
 		"the corporate docks"
 		)
+
+/datum/trade_destination/mars/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
 
 // Asteroid belt.
 /datum/trade_destination/asteroids
@@ -134,6 +151,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"the Karin cluster"
 		)
 
+/datum/trade_destination/asteroids/build_level(var/tz)
+	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+
 /datum/trade_destination/jupiter
 	name = "Jupiter"
 	description = "The high demand for hydrogen and helium-derived fuel during the initial phases of human expansion to other planets \
@@ -152,6 +172,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Ganymede"
 		)
 
+/datum/trade_destination/jupiter/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+
 /datum/trade_destination/europa
 	name = "Europa"
 	is_a_planet = 1
@@ -162,6 +185,9 @@ var/list/weighted_mundaneevent_locations = list()
 	// Europa is spookily out of touch and the base for the game, so no events should proc using it.
 	viable_random_events = list()
 	viable_mundane_events = list()
+
+/datum/trade_destination/europa/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris/strange(null, 1, 1, tz, 255, 255)
 
 /datum/trade_destination/saturn
 	name = "Saturn"
@@ -181,6 +207,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Prometheus",
 		"Pandora"
 		)
+
+/datum/trade_destination/saturn/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
 
 /datum/trade_destination/uranus
 	name = "Uranus"
@@ -203,6 +232,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Oberon"
 		)
 
+/datum/trade_destination/uranus/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+
 /datum/trade_destination/neptune
 	name = "Neptune"
 	is_a_planet = 1
@@ -216,6 +248,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Triton",
 		"Phoebe"
 		)
+
+/datum/trade_destination/neptune/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
 
 // Kuiper belt
 /datum/trade_destination/kuiperbelt
@@ -240,6 +275,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"Varuna"
 		)
 
+/datum/trade_destination/kuiperbelt/build_level(var/tz)
+	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+
 // Furthest extreme of the Solar System.
 /datum/trade_destination/oort
 	name = "the Oort cloud"
@@ -262,6 +300,9 @@ var/list/weighted_mundaneevent_locations = list()
 		"2008 KV42",
 		"2000 CR105"
 		)
+
+/datum/trade_destination/oort/build_level(var/tz)
+	new /datum/random_map/automata/asteroids/distant(null, 1, 1, tz, 255, 255)
 
 /datum/trade_destination/oort/New()
 	..()

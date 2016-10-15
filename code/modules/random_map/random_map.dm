@@ -2,7 +2,18 @@
 var/global/list/random_maps = list()
 var/global/list/map_count = list()
 
+// If we aren't doing a unit test, add some sleep checks so the lobby will function.
+#ifdef UNIT_TEST
+#define CHECK_SLEEP_MAP
+#else
+#define CHECK_SLEEP_MAP  if(++sleep_ticker>500) { sleep_ticker=0;sleep(world.tick_lag); }
+#endif
+
 /datum/random_map
+
+#ifndef UNIT_TEST
+	var/sleep_ticker = 0
+#endif
 
 	// Strings.
 	var/name                        // Set in New()
@@ -27,10 +38,6 @@ var/global/list/map_count = list()
 	// Storage for the final iteration of the map.
 	var/list/map = list()           // Actual map.
 
-	// If set, all sleep(-1) calls will be skipped.
-	// Test to see if rand_seed() can be used reliably.
-	var/priority_process
-
 /datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
 
 	// Store this for debugging.
@@ -54,25 +61,17 @@ var/global/list/map_count = list()
 
 	var/start_time = world.timeofday
 	if(!do_not_announce) admin_notice("<span class='danger'>Generating [name].</span>", R_DEBUG)
-	sleep(-1)
+	CHECK_SLEEP_MAP
 
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
 	if(seed)
 		rand_seed(seed)
-		priority_process = 1
 
 	for(var/i = 0;i<max_attempts;i++)
 		if(generate())
 			if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] generation completed in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
 			return
 	if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map.</span>", R_DEBUG)
-
-/datum/random_map/proc/get_map_cell(var/x,var/y)
-	if(!map)
-		set_map_size()
-	. = ((y-1)*limit_x)+x
-	if((. < 1) || (. > map.len))
-		return null
 
 /datum/random_map/proc/get_map_char(var/value)
 	switch(value)
@@ -99,9 +98,9 @@ var/global/list/map_count = list()
 		user = world
 
 	var/dat = "<code>+------+<br>"
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(current_cell)
 				dat += get_map_char(map[current_cell])
 		dat += "<br>"
@@ -112,18 +111,19 @@ var/global/list/map_count = list()
 	map.len = limit_x * limit_y
 
 /datum/random_map/proc/seed_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			if(prob(initial_wall_cell))
 				map[current_cell] = WALL_CHAR
 			else
 				map[current_cell] = FLOOR_CHAR
+			CHECK_SLEEP_MAP
 
 /datum/random_map/proc/clear_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			map[get_map_cell(x,y)] = 0
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			map[GET_MAP_CELL(x,y)] = 0
 
 /datum/random_map/proc/generate()
 	seed_map()
@@ -152,22 +152,22 @@ var/global/list/map_count = list()
 	if(!origin_y) origin_y = 1
 	if(!origin_z) origin_z = 1
 
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			if(!priority_process) sleep(-1)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
 			apply_to_turf(x,y)
 
 /datum/random_map/proc/apply_to_turf(var/x,var/y)
-	var/current_cell = get_map_cell(x,y)
+	var/current_cell = GET_MAP_CELL(x,y)
 	if(!current_cell)
 		return 0
 	var/turf/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
 	if(!T || (target_turf_type && !istype(T,target_turf_type)))
 		return 0
 	var/newpath = get_appropriate_path(map[current_cell])
-	if(newpath)
+	if(newpath && T.type != newpath)
 		T.ChangeTurf(newpath)
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+	CHECK_SLEEP_MAP
 	return T
 
 /datum/random_map/proc/get_spawn_dir()
@@ -192,18 +192,23 @@ var/global/list/map_count = list()
 		return
 	tx-- // Update origin so that x/y index
 	ty-- // doesn't push it off-kilter by one.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
-			if(!current_cell)
+	for(var/x = 1 to limit_x)
+		for(var/y = 1 to limit_y)
+			var/current_cell = GET_MAP_CELL(x,y)
+			if(!current_cell || map[current_cell] == EMPTY_CHAR)
 				continue
 			if(tx+x > target_map.limit_x)
 				continue
 			if(ty+y > target_map.limit_y)
 				continue
-			target_map.map[target_map.get_map_cell(tx+x,ty+y)] = map[current_cell]
-	handle_post_overlay_on(target_map,tx,ty)
 
+			// Var juggling due to GET_MAP_CELL becoming a macro.
+			var/olx = limit_x
+			limit_x = target_map.limit_x
+			target_map.map[GET_MAP_CELL(tx+x,ty+y)] = map[current_cell]
+			limit_x = olx
+
+	handle_post_overlay_on(target_map,tx,ty)
 
 /datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	return

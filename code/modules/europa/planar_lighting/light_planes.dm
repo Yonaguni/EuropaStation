@@ -26,6 +26,11 @@
 	M.Scale(world.view*2.2)
 	transform = M
 
+/image/lightmask
+	name = ""
+	screen_loc = "CENTER"
+	blend_mode = BLEND_MULTIPLY
+
 /image/darkmask
 	blend_mode = BLEND_SUBTRACT
 	mouse_opacity = 0

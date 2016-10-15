@@ -1,6 +1,9 @@
 /datum/random_map/automata
 	descriptor = "generic caves"
 	initial_wall_cell = 55
+	wall_type =  /turf/simulated/mineral
+	floor_type = /turf/simulated/floor/asteroid
+	target_turf_type = /turf/unsimulated/mask
 	var/iterations = 0               // Number of times to apply the automata rule.
 	var/cell_live_value = WALL_CHAR  // Cell is alive if it has this value.
 	var/cell_dead_value = FLOOR_CHAR // As above for death.
@@ -18,30 +21,30 @@
 	var/list/next_map[limit_x*limit_y]
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
-			var/current_cell = get_map_cell(x,y)
+			var/current_cell = GET_MAP_CELL(x,y)
 			next_map[current_cell] = map[current_cell]
 			var/count = 0
 
 			// Every attempt to place this in a proc or a list has resulted in
 			// the generator being totally bricked and useless. Fuck it. We're
 			// hardcoding this shit. Feel free to rewrite and PR a fix. ~ Z
-			var/tmp_cell = get_map_cell(x,y)
+			var/tmp_cell = GET_MAP_CELL(x,y)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x+1,y+1)
+			tmp_cell = GET_MAP_CELL(x+1,y+1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x-1,y-1)
+			tmp_cell = GET_MAP_CELL(x-1,y-1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x+1,y-1)
+			tmp_cell = GET_MAP_CELL(x+1,y-1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x-1,y+1)
+			tmp_cell = GET_MAP_CELL(x-1,y+1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x-1,y)
+			tmp_cell = GET_MAP_CELL(x-1,y)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x,y-1)
+			tmp_cell = GET_MAP_CELL(x,y-1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x+1,y)
+			tmp_cell = GET_MAP_CELL(x+1,y)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
-			tmp_cell = get_map_cell(x,y+1)
+			tmp_cell = GET_MAP_CELL(x,y+1)
 			if(tmp_cell && cell_is_alive(map[tmp_cell])) count++
 
 			if(count >= cell_threshold)

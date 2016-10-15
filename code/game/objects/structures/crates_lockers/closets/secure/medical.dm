@@ -94,7 +94,6 @@
 		new /obj/item/clothing/suit/storage/toggle/fr_jacket(src)
 		new /obj/item/clothing/shoes/white(src)
 //		new /obj/item/weapon/cartridge/medical(src)
-		new /obj/item/device/radio/headset/headset_med(src)
 		new /obj/item/taperoll/medical(src)
 		new /obj/item/weapon/storage/belt/medical/emt(src)
 		return
@@ -120,7 +119,6 @@
     new /obj/item/clothing/mask/gas(src)
     new /obj/item/clothing/suit/storage/toggle/fr_jacket(src)
     new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-    new /obj/item/device/radio/headset/headset_med(src)
     new /obj/item/weapon/cartridge/medical(src)
     new /obj/item/device/flashlight(src)
     new /obj/item/weapon/tank/emergency/oxygen/engi(src)
@@ -176,7 +174,6 @@
 		new /obj/item/weapon/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
-		new /obj/item/device/radio/headset/heads/cmo(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
 		return

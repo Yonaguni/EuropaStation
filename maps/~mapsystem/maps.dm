@@ -84,11 +84,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	set background = 1
 	set waitfor = 0
 
-	for(var/thing in mining_walls)
-		var/turf/simulated/mineral/M = thing
+	for(var/turf/simulated/mineral/M in mining_walls)
 		M.updateMineralOverlays()
-	for(var/thing in mining_floors)
-		var/turf/simulated/floor/asteroid/M = thing
+	for(var/turf/simulated/floor/asteroid/M in mining_floors)
 		M.updateMineralOverlays()
 
 // Can be overridden/updated to be more interesting later.

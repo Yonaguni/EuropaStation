@@ -1,3 +1,5 @@
+var/image/space_light_overlay
+
 /turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
@@ -13,7 +15,13 @@
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
 	if(!istype(src, /turf/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
-	update_starlight()
+	if(config.starlight)
+		if(!space_light_overlay)
+			space_light_overlay = image(icon = 'icons/planar_lighting/space.dmi')
+			space_light_overlay.blend_mode = BLEND_ADD
+			space_light_overlay.mouse_opacity = 0
+			space_light_overlay.plane = -10
+		overlays += space_light_overlay
 	..()
 
 // override for space turfs, since they should never hide anything
@@ -23,14 +31,6 @@
 
 /turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
-
-/turf/space/proc/update_starlight()
-	if(!config.starlight)
-		return
-	if(locate(/turf/simulated) in orange(src,1))
-		set_light(config.starlight)
-	else
-		kill_light()
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

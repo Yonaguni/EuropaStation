@@ -902,7 +902,7 @@ area/space/atmosalert()
 	icon_state = "hallC3"
 
 /area/hallway/secondary/exit
-	name = "\improper Escape Shuttle Hallway"
+	name = "\improper Observation Area"
 	icon_state = "escape"
 
 /area/hallway/secondary/construction
