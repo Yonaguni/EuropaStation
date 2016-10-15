@@ -413,26 +413,14 @@
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
+	if(M.transforming || isslime(M))
+		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name != "Promethean")
-			M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-			H.set_species("Promethean")
-			H.shapeshifter_set_colour("#05FF9B")
-			H.verbs -= /mob/living/carbon/human/proc/shapeshifter_select_colour
+		if(H.species.name == "Promethean")
+			return
 
-/datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
-	id = "amutationtoxin"
-	description = "An advanced corruptive toxin produced by slimes."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-/datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
-	if(M.transforming)
-		return
 	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
 	M.transforming = 1
 	M.canmove = 0
@@ -451,13 +439,72 @@
 		M.mind.transfer_to(new_mob)
 	else
 		new_mob.key = M.key
+	new_mob.request_player()
 	qdel(M)
+
+/datum/reagent/prometheanserum
+	name = "Promethean Serum"
+	id = "prometheanserum"
+	description = "A dangerously unstable mutagen produced by slimes."
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#13BC5E"
+
+
+/datum/reagent/prometheanserum/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.transforming)
+		return
+	if(ishuman(M))
+		M.reagents.add_reagent("mutationtoxin", removed)
+	else if(isslime(M))
+		var/mob/living/carbon/slime/S = M
+		S.start_promethean_evolution()
+
+/datum/reagent/slimecrystal
+	name = "Crystallizing Agent"
+	id = "slimecrystal"
+	description = "A strange, glasslike substance that crystallizes matter."
+	taste_description = "sharpness"
+	reagent_state = LIQUID
+	color = "#13BC5E"
+
+/datum/reagent/slimecrystal/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.transforming || istype(M.loc, /obj/structure/closet/statue))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species.name == "Golem")
+			return
+		if(H.species.name == "Promethean")
+			H.visible_message("<span class='notice'>\The [H]'s flesh begins to crystallize!</span>")
+			H.set_species("Golem")
+			return
+		else // It is VERY BAD for humans.
+			if(prob(3))
+				var/obj/item/organ/external/E = pick(H.organs)
+				if(E && !E.is_stump() && !E.robotic && E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN)
+					H << "<span class='danger'>Your [E.name] is being lacerated from within!</span>"
+					if(H.can_feel_pain())
+						H.emote("scream")
+					for(var/i = 1 to rand(1,3))
+						new /obj/item/weapon/material/shard(get_turf(E))
+					E.droplimb(0, DROPLIMB_BLUNT)
+					return
+	else if(isslime(M))
+		M.visible_message("<span class='danger'>\The [M] rapidly crystallizes!</span>")
+		new /obj/structure/closet/statue(get_turf(M), M)
+		return
+
+	M << "<span class='danger'>Your flesh is being lacerated from within!</span>"
+	M.adjustBruteLoss(rand(2,5))
+	if(prob(10))
+		new /obj/item/weapon/material/shard(get_turf(M))
 
 /datum/reagent/nanites
 	name = "Nanomachines"
 	id = "nanites"
 	description = "Microscopic construction robots."
-	taste_description = "slimey metal"
+	taste_description = "slimy metal"
 	reagent_state = LIQUID
 	color = "#535E66"
 

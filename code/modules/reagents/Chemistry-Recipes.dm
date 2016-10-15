@@ -1246,11 +1246,12 @@
 //Black
 /datum/chemical_reaction/slime/mutate2
 	name = "Advanced Mutation Toxin"
-	id = "mutationtoxin2"
-	result = "amutationtoxin"
+	id = "prometheanserum"
+	result = "prometheanserum"
 	required_reagents = list("enzyme" = 1)
 	result_amount = 1
 	required = /obj/item/slime_extract/black
+
 
 //Oil
 /datum/chemical_reaction/slime/explosion
@@ -1285,16 +1286,10 @@
 /datum/chemical_reaction/slime/golem
 	name = "Slime Golem"
 	id = "m_golem"
-	result = null
+	result = "slimecrystal"
 	required_reagents = list("enzyme" = 1)
 	result_amount = 1
 	required = /obj/item/slime_extract/adamantine
-
-/datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
-	..()
-	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
-	Z.loc = get_turf(holder.my_atom)
-	Z.announce_to_ghosts()
 
 //Sepia
 /datum/chemical_reaction/slime/film

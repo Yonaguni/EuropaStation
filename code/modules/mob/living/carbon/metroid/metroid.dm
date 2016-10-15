@@ -384,3 +384,67 @@
 			powerlevel = 10
 			adjustToxLoss(-10)
 	nutrition = max(nutrition, get_max_nutrition())
+
+/mob/living/carbon/slime/proc/request_player()
+	if(ckey || client) return
+	var/datum/ghosttrap/slime/S = get_ghost_trap("slime")
+	S.request_player(src, " A slime is achieving sentience.")
+	sleep(100)
+
+/mob/living/carbon/slime/proc/start_promethean_evolution()
+
+	set waitfor = 0
+	set background = 1
+
+	if(transforming)
+		return
+	transforming = 1
+
+	request_player()
+
+	if(!ckey || !client)
+		transforming = 0
+		return
+
+	src << "<span class='danger'>Your flesh rapidly mutates!</span>"
+	var/mob/living/carbon/human/promethean = new /mob/living/carbon/human(get_turf(src))
+	promethean.set_species("Promethean")
+	if(mind)
+		mind.transfer_to(promethean)
+	else
+		promethean.key = key
+	for (var/obj/item/W in contents)
+		drop_from_inventory(W)
+	for(var/datum/language/L in languages)
+		promethean.add_language(L.name)
+
+	switch(colour)
+		if("grey")
+			promethean.shapeshifter_set_colour(COLOR_GRAY)
+		if("purple")
+			promethean.shapeshifter_set_colour(COLOR_PURPLE_GRAY)
+		if("metal")
+			promethean.shapeshifter_set_colour(COLOR_DARK_GRAY)
+		if("orange")
+			promethean.shapeshifter_set_colour(COLOR_ORANGE)
+		if("blue")
+			promethean.shapeshifter_set_colour(COLOR_TEAL)
+		if("dark blue")
+			promethean.shapeshifter_set_colour(COLOR_BLUE)
+		if("dark purple")
+			promethean.shapeshifter_set_colour(COLOR_PURPLE)
+		if("yellow")
+			promethean.shapeshifter_set_colour(COLOR_YELLOW)
+		if("silver")
+			promethean.shapeshifter_set_colour(COLOR_SILVER)
+		if("pink")
+			promethean.shapeshifter_set_colour(COLOR_PINK)
+		if("red")
+			promethean.shapeshifter_set_colour(COLOR_RED)
+		if("gold")
+			promethean.shapeshifter_set_colour(COLOR_BROWN)
+		if("green")
+			promethean.shapeshifter_set_colour(COLOR_GREEN)
+		else
+			promethean.shapeshifter_set_colour(COLOR_DARK_GRAY)
+	qdel(src)

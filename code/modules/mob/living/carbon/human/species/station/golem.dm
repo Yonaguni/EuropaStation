@@ -18,7 +18,7 @@
 	flesh_color = "#137E8F"
 
 	has_organ = list(
-		BP_BRAIN = /obj/item/organ/internal/brain/golem
+		BP_BRAIN = /obj/item/organ/internal/brain/slime
 		)
 
 	death_message = "becomes completely motionless..."
@@ -28,6 +28,6 @@
 	if(H.mind)
 		H.mind.assigned_role = "Golem"
 		H.mind.special_role = "Golem"
-	H.real_name = "adamantine golem ([rand(1, 1000)])"
+	H.real_name = "golem ([rand(1, 1000)])"
 	H.name = H.real_name
 	..()

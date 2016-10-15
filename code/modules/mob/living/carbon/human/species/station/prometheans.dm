@@ -70,7 +70,6 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender
 		)
@@ -123,7 +122,6 @@ var/datum/species/shapeshifter/promethean/prometheans
 	// Replace completely missing limbs.
 	for(var/limb_type in has_limbs)
 		var/obj/item/organ/external/E = H.organs_by_name[limb_type]
-		world << "found [E ? E.name : "missing"]"
 		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
 			world << "status [E.is_stump()]|[(E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))], removing"
 			E.removed()

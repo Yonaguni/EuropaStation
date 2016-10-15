@@ -364,3 +364,23 @@
 		reagents.add_reagent("adrenaline",5)
 		reagents.add_reagent("jumpstart",10)
 
+/obj/item/weapon/reagent_containers/syringe/mutationtoxin
+	name = "Syringe (slime mutation toxin)"
+	desc = "Contains slime mutation toxin."
+	New()
+		..()
+		reagents.add_reagent("mutationtoxin",15)
+
+/obj/item/weapon/reagent_containers/syringe/promethean
+	name = "Syringe (promethean serum)"
+	desc = "Contains a sample of promethean serum."
+	New()
+		..()
+		reagents.add_reagent("prometheanserum",15)
+
+/obj/item/weapon/reagent_containers/syringe/slimecrystal
+	name = "Syringe (crystallizing agent)"
+	desc = "Contains drugs for crystallizing slimes."
+	New()
+		..()
+		reagents.add_reagent("slimecrystal",15)
