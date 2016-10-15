@@ -2,11 +2,11 @@
 	return
 
 /obj/item/device/soulstone
-	name = "Soul Stone Shard"
+	name = "soul stone"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
 	item_state = "electronic"
-	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefacts power."
+	desc = "An unshaped, ridged chunk of a strange, psi-devouring material called nullglass. In the hands of unsavoury operants, it can be used to siphon echoes of the dead into a tormented un-life."
 	w_class = 2
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
@@ -34,6 +34,23 @@
 	transfer_soul("VICTIM", M, user)
 	return
 
+/obj/item/device/soulstone/attackby(var/obj/item/thing, var/mob/user)
+	if(!thing.force)
+		return ..()
+	user.visible_message("<span class='danger'>\The [user] shatters \the [src] with \the [thing]!</span>")
+	playsound(user.loc, "shatter", 70, 1)
+	for(var/i=1 to rand(2,5))
+		new /obj/item/weapon/material/shard(get_turf(src), "nullglass")
+	var/mob/M = loc
+	if(istype(M))
+		M.drop_from_inventory(src)
+	for(var/mob/living/simple_animal/shade/A in src)
+		A << "<span class='notice'><b>Your prison is broken!</b> You are free!</span>"
+		A.status_flags &= ~GODMODE
+		A.canmove = 1
+		A.forceMove(get_turf(src))
+		A.cancel_camera()
+	qdel(src)
 
 ///////////////////Options for using captured souls///////////////////////////////////////
 

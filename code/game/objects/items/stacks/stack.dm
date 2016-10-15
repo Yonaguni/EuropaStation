@@ -21,6 +21,7 @@
 	var/uses_charge = 0
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
+	var/builds_flooring
 
 /obj/item/stack/New(var/loc, var/amount=null)
 	..()

@@ -21,8 +21,12 @@
 	return
 
 /obj/item/weapon/gun/composite/update_plane()
-	..()
+	var/lastplane = plane
+	. = ..()
+	var/f_update_icon
 	for(var/obj/item/I in src)
-		I.plane = plane
-	for(var/image/I in overlays)
-		I.plane = plane
+		if(I.plane != plane)
+			f_update_icon = 1
+			I.plane = plane
+	if(f_update_icon || plane != lastplane)
+		update_icon()

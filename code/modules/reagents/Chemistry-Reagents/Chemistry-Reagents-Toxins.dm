@@ -480,14 +480,14 @@
 			H.set_species("Golem")
 			return
 		else // It is VERY BAD for humans.
-			if(prob(3))
+			if(prob(5))
 				var/obj/item/organ/external/E = pick(H.organs)
 				if(E && !E.is_stump() && !E.robotic && E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN)
 					H << "<span class='danger'>Your [E.name] is being lacerated from within!</span>"
 					if(H.can_feel_pain())
 						H.emote("scream")
-					for(var/i = 1 to rand(1,3))
-						new /obj/item/weapon/material/shard(get_turf(E))
+					for(var/i = 1 to rand(3,5))
+						new /obj/item/weapon/material/shard(get_turf(E), "nullglass")
 					E.droplimb(0, DROPLIMB_BLUNT)
 					return
 	else if(isslime(M))
@@ -496,9 +496,9 @@
 		return
 
 	M << "<span class='danger'>Your flesh is being lacerated from within!</span>"
-	M.adjustBruteLoss(rand(2,5))
+	M.adjustBruteLoss(rand(3,6))
 	if(prob(10))
-		new /obj/item/weapon/material/shard(get_turf(M))
+		new /obj/item/weapon/material/shard(get_turf(M), "nullglass")
 
 /datum/reagent/nanites
 	name = "Nanomachines"

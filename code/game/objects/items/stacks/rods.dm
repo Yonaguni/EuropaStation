@@ -14,6 +14,7 @@
 	center_of_mass = null
 	attack_verb = list("hit", "bludgeoned", "whacked")
 	lock_picking_level = 3
+	builds_flooring = /decl/flooring/reinforced
 
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"

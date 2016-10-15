@@ -2101,3 +2101,16 @@
 	var/turf/T = get_turf(holder.my_atom)
 	if(istype(T)) new /obj/item/stack/material/deuterium(T, created_volume)
 	return
+
+/datum/chemical_reaction/nullglass
+	name = "nullglass"
+	id = "nullglass"
+	result = null
+	required_reagents = list("blood" = 15, "slimecrystal" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/nullglass/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/device/soulstone(location)
+	return
