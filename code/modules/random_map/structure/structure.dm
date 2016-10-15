@@ -51,9 +51,9 @@
 	// Generator limits.
 	var/min_split_x
 	var/min_split_y
-	var/min_room_x = 8
-	var/min_room_y = 8
-	var/min_room_size_variance = 1
+	var/min_room_x = 6
+	var/min_room_y = 6
+	var/min_room_size_variance = 2
 	var/max_room_size_variance = 4
 
 	// Holder/tracker lists for generating the map geometry.
