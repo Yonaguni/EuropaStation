@@ -21,7 +21,7 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
+
 	var/mode = 1;
 
 /obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
@@ -208,7 +208,7 @@ REAGENT SCANNER
 
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
 	var/air = user.return_air()
@@ -242,7 +242,7 @@ REAGENT SCANNER
 
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 
@@ -288,7 +288,7 @@ REAGENT SCANNER
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+
 
 /obj/item/device/reagent_scanner
 	name = "reagent scanner"
@@ -303,7 +303,7 @@ REAGENT SCANNER
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 
@@ -337,13 +337,13 @@ REAGENT SCANNER
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+
 
 /obj/item/device/slime_scanner
 	name = "slime scanner"
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
-	origin_tech = list(TECH_BIO = 1)
+
 	w_class = 2.0
 	flags = CONDUCT
 	throwforce = 0

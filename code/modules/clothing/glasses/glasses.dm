@@ -40,7 +40,7 @@
 	icon_state = "meson"
 	item_state = "glasses"
 	action_button_name = "Toggle Goggles"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
+
 	toggleable = 1
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -70,7 +70,7 @@
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
-	origin_tech = list(TECH_MAGNET = 2)
+
 	darkness_view = 7
 	toggleable = 1
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -99,7 +99,7 @@
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+
 	toggleable = 1
 	vision_flags = SEE_OBJS
 
@@ -238,7 +238,7 @@
 	icon_state = "thermal"
 	item_state = "glasses"
 	action_button_name = "Toggle Goggles"
-	origin_tech = list(TECH_MAGNET = 3)
+
 	toggleable = 1
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -266,7 +266,7 @@
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
+
 
 /obj/item/clothing/glasses/thermal/plain
 	toggleable = 0

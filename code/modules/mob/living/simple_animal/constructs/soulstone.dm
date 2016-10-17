@@ -9,7 +9,7 @@
 	desc = "An unshaped, ridged chunk of a strange, psi-devouring material called nullglass. In the hands of unsavoury operants, it can be used to siphon echoes of the dead into a tormented un-life."
 	w_class = 2
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
+
 	var/imprinted = "empty"
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////

@@ -235,8 +235,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 							screen = 1.0
 							return
 
-						for(var/T in linked_destroy.loaded_item.origin_tech)
-							files.UpdateTech(T, linked_destroy.loaded_item.origin_tech[T])
 						if(linked_lathe && linked_destroy.loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
 							for(var/t in linked_destroy.loaded_item.matter)
 								if(t in linked_lathe.materials)
@@ -606,12 +604,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Name: [linked_destroy.loaded_item.name]<BR>"
 			dat += "Origin Tech:"
 			dat += "<UL>"
-			for(var/T in linked_destroy.loaded_item.origin_tech)
-				dat += "<LI>[CallTechName(T)] [linked_destroy.loaded_item.origin_tech[T]]"
-				for(var/datum/tech/F in files.known_tech)
-					if(F.name == CallTechName(T))
-						dat += " (Current: [F.level])"
-						break
 			dat += "</UL>"
 			dat += "<HR><A href='?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
 			dat += "<A href='?src=\ref[src];eject_item=1'>Eject Item</A> || "

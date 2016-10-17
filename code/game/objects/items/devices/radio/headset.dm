@@ -67,12 +67,12 @@
 	return -1
 
 /obj/item/device/radio/headset/syndicate
-	origin_tech = list(TECH_ILLEGAL = 3)
+
 	syndie = 1
 	ks1type = /obj/item/device/encryptionkey/syndicate
 
 /obj/item/device/radio/headset/binary
-	origin_tech = list(TECH_ILLEGAL = 3)
+
 	ks1type = /obj/item/device/encryptionkey/binary
 
 /obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.

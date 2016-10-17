@@ -64,12 +64,6 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(!loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
-		if(!O.origin_tech)
-			user << "<span class='notice'>This doesn't seem to have a tech origin.</span>"
-			return
-		if(O.origin_tech.len == 0)
-			user << "<span class='notice'>You cannot deconstruct this item.</span>"
-			return
 		busy = 1
 		loaded_item = O
 		user.drop_item()

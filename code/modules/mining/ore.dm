@@ -10,25 +10,25 @@
 /obj/item/weapon/ore/uranium
 	name = "pitchblende"
 	icon_state = "ore_uranium"
-	origin_tech = list(TECH_MATERIAL = 5)
+
 	material = "uranium"
 
 /obj/item/weapon/ore/iron
 	name = "hematite"
 	icon_state = "ore_iron"
-	origin_tech = list(TECH_MATERIAL = 1)
+
 	material = "hematite"
 
 /obj/item/weapon/ore/coal
 	name = "raw carbon"
 	icon_state = "ore_coal"
-	origin_tech = list(TECH_MATERIAL = 1)
+
 	material = "carbon"
 
 /obj/item/weapon/ore/glass
 	name = "sand"
 	icon_state = "ore_glass"
-	origin_tech = list(TECH_MATERIAL = 1)
+
 	material = "sand"
 	slot_flags = SLOT_HOLSTER
 
@@ -46,19 +46,19 @@
 /obj/item/weapon/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"
-	origin_tech = list(TECH_MATERIAL = 3)
+
 	material = "silver"
 
 /obj/item/weapon/ore/gold
 	name = "native gold ore"
 	icon_state = "ore_gold"
-	origin_tech = list(TECH_MATERIAL = 4)
+
 	material = "gold"
 
 /obj/item/weapon/ore/diamond
 	name = "diamonds"
 	icon_state = "ore_diamond"
-	origin_tech = list(TECH_MATERIAL = 6)
+
 	material = "diamond"
 
 /obj/item/weapon/ore/osmium
