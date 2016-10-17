@@ -14,9 +14,9 @@
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
-//	causeerrorheresoifixthis
+
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
+
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/lock_picking_level = 0 //used to determine whether something can pick a lock, and how well.
 	var/force = 0

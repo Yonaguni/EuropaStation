@@ -4,7 +4,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = 3
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
+
 
 /obj/item/device/mmi/digital/robot/PickName()
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[random_id(type,1000,9999)]"

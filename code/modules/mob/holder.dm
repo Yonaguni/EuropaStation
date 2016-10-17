@@ -11,7 +11,6 @@ var/list/holder_mob_icon_cache = list()
 		"Resomi" = 'icons/mob/species/resomi/head.dmi'
 		)
 
-	origin_tech = null
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
@@ -106,17 +105,17 @@ var/list/holder_mob_icon_cache = list()
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
+
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
 
 /obj/item/weapon/holder/drone
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
+
 
 /obj/item/weapon/holder/mouse
 	w_class = 1
 
 /obj/item/weapon/holder/borer
-	origin_tech = list(TECH_BIO = 6)
+
 
 /obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)

@@ -12,7 +12,7 @@
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE //enough to hold all starting contents
-	origin_tech = list(TECH_COMBAT = 1)
+
 	attack_verb = list("robusted")
 
 /obj/item/weapon/storage/toolbox/emergency
@@ -66,7 +66,7 @@
 	name = "black and red toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
+
 	force = 7.0
 
 /obj/item/weapon/storage/toolbox/syndicate/New()

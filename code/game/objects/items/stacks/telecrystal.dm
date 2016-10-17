@@ -8,7 +8,7 @@
 	w_class = 1
 	max_amount = 50
 	flags = NOBLUDGEON
-	origin_tech = list(TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
+
 
 /obj/item/stack/telecrystal/afterattack(var/obj/item/I as obj, mob/user as mob, proximity)
 	if(!proximity)

@@ -18,7 +18,7 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+
 
 	var/buffer_name
 	var/atom/buffer_object

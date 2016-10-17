@@ -11,6 +11,8 @@
 	var/damage_state = 1
 	var/list/has_hardpoints = list()
 
+	matter = list("steel" = 15000, "plastic" = 3000, "osmium" = 1500)
+
 /obj/item/mech_component/emp_act(var/severity)
 	take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))
 	for(var/obj/item/thing in contents)
@@ -20,8 +22,19 @@
 	..()
 	set_dir(SOUTH)
 
+/obj/item/mech_component/examine()
+	. = ..()
+	if(.)
+		if(ready_to_install())
+			usr << "<span class='notice'>It is ready for installation.</span>"
+		else
+			show_missing_parts(usr)
+
 /obj/item/mech_component/set_dir()
 	..(SOUTH)
+
+/obj/item/mech_component/proc/show_missing_parts(var/mob/user)
+	return
 
 /obj/item/mech_component/proc/prebuild()
 	return

@@ -13,7 +13,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
+
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
@@ -156,7 +156,7 @@
 	icon_state = "rcd"
 	item_state = "rcdammo"
 	w_class = 2
-	origin_tech = list(TECH_MATERIAL = 2)
+
 	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
 
 /obj/item/weapon/rcd/borg

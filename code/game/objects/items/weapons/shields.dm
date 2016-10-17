@@ -60,7 +60,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = 5
-	origin_tech = list(TECH_MATERIAL = 2)
+
 	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -98,7 +98,7 @@
 	throw_speed = 10
 	throw_range = 20
 	w_class = 5
-	origin_tech = list(TECH_MATERIAL = 1)
+
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "Wood" = 1000)
 	attack_verb = list("shoved", "bashed")
 
@@ -126,7 +126,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = 2
-	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
+
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
 

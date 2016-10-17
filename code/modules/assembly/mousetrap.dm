@@ -2,7 +2,7 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	origin_tech = list(TECH_COMBAT = 1)
+
 	matter = list(DEFAULT_WALL_MATERIAL = 100, "waste" = 10)
 	var/armed = 0
 

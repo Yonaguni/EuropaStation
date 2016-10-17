@@ -20,7 +20,7 @@
 	action_button_name = "Toggle Heatsink"
 
 	matter = list("steel" = 15000, "glass" = 3500)
-	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)
+
 
 	var/on = 0								//is it turned on?
 	var/cover_open = 0						//is the cover open?

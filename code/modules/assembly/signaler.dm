@@ -3,7 +3,7 @@
 	desc = "Used to remotely activate devices."
 	icon_state = "signaller"
 	item_state = "signaler"
-	origin_tech = list(TECH_MAGNET = 1)
+
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 200, "waste" = 100)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 

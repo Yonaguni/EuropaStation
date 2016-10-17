@@ -84,7 +84,7 @@ var/list/name_to_material
 	var/icon_base = "metal"                              // Wall and table base icon tag. See header.
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
-	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
+	var/list/stack_ // Research level for stacks.
 
 	// Attributes
 	var/cut_delay = 0            // Delay in ticks when cutting through this wall.
@@ -233,7 +233,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_stone"
 	icon_colour = "#007A00"
 	weight = 22
-	stack_origin_tech = list(TECH_MATERIAL = 5)
+	stack_
 	door_icon_base = "stone"
 
 /material/diamond
@@ -246,7 +246,7 @@ var/list/name_to_material
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
-	stack_origin_tech = list(TECH_MATERIAL = 6)
+	stack_
 	conductive = 0
 
 /material/gold
@@ -256,7 +256,7 @@ var/list/name_to_material
 	weight = 25
 	hardness = 25
 	integrity = 100
-	stack_origin_tech = list(TECH_MATERIAL = 4)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -270,7 +270,7 @@ var/list/name_to_material
 	icon_colour = "#D1E6E3"
 	weight = 22
 	hardness = 50
-	stack_origin_tech = list(TECH_MATERIAL = 3)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -354,7 +354,7 @@ var/list/name_to_material
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
 	hitsound = 'sound/effects/blobattack.ogg'
 
@@ -486,7 +486,7 @@ var/list/name_to_material
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	weight = 17
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
@@ -499,10 +499,10 @@ var/list/name_to_material
 	icon_colour = "#FC2BC5"
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronrglass
-	stack_origin_tech = list(TECH_MATERIAL = 5)
+	stack_
 	composite_material = list() //todo
 	created_window = /obj/structure/window/phoronreinforced
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	composite_material = list() //todo
 	rod_product = null
 	integrity = 100
@@ -517,7 +517,7 @@ var/list/name_to_material
 	hardness = 10
 	weight = 5
 	melting_point = T0C+371 //assuming heat resistant plastic
-	stack_origin_tech = list(TECH_MATERIAL = 3)
+	stack_
 	conductive = 0
 
 /material/plastic/holographic
@@ -530,7 +530,7 @@ var/list/name_to_material
 	name = "osmium"
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -538,7 +538,7 @@ var/list/name_to_material
 	name = "tritium"
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
@@ -547,7 +547,7 @@ var/list/name_to_material
 	name = "deuterium"
 	stack_type = /obj/item/stack/material/deuterium
 	icon_colour = "#999999"
-	stack_origin_tech = list(TECH_MATERIAL = 3)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
@@ -556,7 +556,7 @@ var/list/name_to_material
 	name = "mhydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
-	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
+	stack_
 	is_fusion_fuel = 1
 
 /material/platinum
@@ -564,7 +564,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -603,7 +603,7 @@ var/list/name_to_material
 	weight = 18
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
-	stack_origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+	stack_
 	dooropen_noise = 'sound/effects/doorcreaky.ogg'
 	door_icon_base = "wood"
 	destruction_desc = "splinters"
@@ -630,14 +630,14 @@ var/list/name_to_material
 	weight = 1
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
-	stack_origin_tech = list(TECH_MATERIAL = 1)
+	stack_
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	conductive = 0
 
 /material/cloth //todo
 	name = "cloth"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	door_icon_base = "wood"
 	ignition_point = T0C+232
 	melting_point = T0C+300
@@ -688,7 +688,7 @@ var/list/name_to_material
 /material/leather
 	name = "leather"
 	icon_colour = "#5C4831"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
