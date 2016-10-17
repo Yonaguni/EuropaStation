@@ -4,6 +4,10 @@
 	category = "Exosuit Components"
 	lathe_type = LATHE_TYPE_HEAVY
 
+/datum/autolathe/recipe/heavy/control
+	name = "exosuit software control module"
+	path = /obj/item/mech_component/control_module
+
 /datum/autolathe/recipe/heavy/ripleyarms
 	name = "power loader arms"
 	path = /obj/item/mech_component/manipulators/ripley

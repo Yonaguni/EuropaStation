@@ -113,6 +113,9 @@
 	sharp = 1
 	edge = 1
 
+/obj/item/weapon/wirecutters/iswirecutter()
+	return TRUE
+
 /obj/item/weapon/wirecutters/New()
 	if(prob(50))
 		icon_state = "cutters-y"

@@ -10,6 +10,14 @@
 	var/obj/item/mech_component/control_module/software
 	has_hardpoints = list(HARDPOINT_HEAD)
 
+/obj/item/mech_component/sensors/show_missing_parts(var/mob/user)
+	if(!radio)
+		user << "<span class='warning'>It is missing a radio.</span>"
+	if(!camera)
+		user << "<span class='warning'>It is missing a camera.</span>"
+	if(!software)
+		user << "<span class='warning'>It is missing a software control module.</span>"
+
 /obj/item/mech_component/sensors/prebuild()
 	radio = new(src)
 	camera = new(src)

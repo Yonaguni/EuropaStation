@@ -6,7 +6,7 @@
 	var/mech_health = 300
 	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
 	var/obj/item/weapon/cell/cell
-	var/obj/item/mech_component/plating/armour
+	var/obj/item/robot_parts/robot_component/armour/armour
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/datum/gas_mixture/cockpit
 	var/pilot_offset_x = 0
@@ -20,6 +20,14 @@
 	cell = locate() in src
 	armour = locate() in src
 	air_supply = locate() in src
+
+/obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
+	if(!cell)
+		user << "<span class='warning'>It is missing a power cell.</span>"
+	if(!diagnostics)
+		user << "<span class='warning'>It is missing a diagnostics unit.</span>"
+	if(!armour)
+		user << "<span class='warning'>It is missing armour plating.</span>"
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -68,7 +76,7 @@
 			return
 		cell = thing
 		install_component(thing,user)
-	else if(istype(thing, /obj/item/mech_component/plating))
+	else if(istype(thing, /obj/item/robot_parts/robot_component/armour))
 		if(armour)
 			user << "<span class='warning'>\The [src] already has armour installed.</span>"
 			return
@@ -76,10 +84,3 @@
 		install_component(thing, user)
 	else
 		return ..()
-
-/obj/item/mech_component/plating
-	name = "vehicle armour"
-	armor = list(melee = 80, bullet = 65, laser = 50, energy = 15, bomb = 80, bio = 100, rad = 60) // Rebalance this.
-	icon_state = "armour"
-	icon = 'icons/mecha/mech_part_items.dmi'
-	pixel_x = 0

@@ -22,6 +22,28 @@
 	var/is_reinforced = 0
 	var/set_name
 
+/obj/structure/heavy_vehicle_frame/examine()
+	. = ..()
+	if(.)
+		if(!arms)
+			usr << "<span class='warning'>It is missing arms.</span>"
+		if(!legs)
+			usr << "<span class='warning'>It is missing legs.</span>"
+		if(!head)
+			usr << "<span class='warning'>It is missing a head.</span>"
+		if(!body)
+			usr << "<span class='warning'>It is missing a chassis.</span>"
+		if(is_wired == 1)
+			usr << "<span class='warning'>It has not had its wiring adjusted.</span>"
+		else if(!is_wired)
+			usr << "<span class='warning'>It has not yet been wired.</span>"
+		if(is_reinforced == 1)
+			usr << "<span class='warning'>It has not had its internal reinforcement secured.</span>"
+		else if(is_reinforced == 2)
+			usr << "<span class='warning'>It has not had its internal reinforcement welded in.</span>"
+		else if(!is_reinforced)
+			usr << "<span class='warning'>It does not have any internal reinforcement.</span>"
+
 /obj/structure/heavy_vehicle_frame/update_icon()
 	overlays.Cut()
 	overlays |= get_mech_icon(arms, legs, head, body)
@@ -214,7 +236,7 @@
 /obj/structure/heavy_vehicle_frame/proc/install_component(var/obj/item/thing, var/mob/user)
 	var/obj/item/mech_component/MC = thing
 	if(istype(MC) && !MC.ready_to_install())
-		if(user) user << "<span class='warning'>\The [MC] is not ready to install.</span>"
+		if(user) user << "<span class='warning'>\The [MC] [MC.gender == PLURAL ? "are" : "is"] not ready to install.</span>"
 		return 0
 	user.unEquip(thing)
 	thing.forceMove(src)
