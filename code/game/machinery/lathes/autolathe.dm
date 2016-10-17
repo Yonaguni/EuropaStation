@@ -7,6 +7,7 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
+	icon = 'icons/obj/machines/autolathes.dmi'
 
 	var/base_icon = "autolathe"
 	var/lathe_type = LATHE_TYPE_GENERIC
@@ -54,6 +55,8 @@
 			machine_recipes = autolathe_circuits
 		if(LATHE_TYPE_ADVANCED)
 			machine_recipes = autolathe_advanced
+		if(LATHE_TYPE_HEAVY)
+			machine_recipes = autolathe_heavy
 		else
 			machine_recipes = autolathe_generic
 

@@ -1,14 +1,15 @@
-/var/list/autolathe_recipes
-/var/list/autolathe_categories
+var/list/autolathe_recipes
+var/list/autolathe_categories
 
-/var/list/autolathe_generic =  list()
-/var/list/autolathe_robotics = list()
-/var/list/autolathe_circuits =  list()
-/var/list/autolathe_advanced = list()
+var/list/autolathe_generic =  list()
+var/list/autolathe_robotics = list()
+var/list/autolathe_circuits = list()
+var/list/autolathe_advanced = list()
+var/list/autolathe_heavy =    list()
 
 /proc/populate_lathe_recipes()
 
-	if(autolathe_recipes.len)
+	if(autolathe_recipes && autolathe_recipes.len)
 		return
 
 	//Create global autolathe recipe lists if they hasn't been made already.
@@ -26,6 +27,8 @@
 				autolathe_circuits += recipe
 			if(LATHE_TYPE_ADVANCED)
 				autolathe_advanced += recipe
+			if(LATHE_TYPE_HEAVY)
+				autolathe_heavy += recipe
 			else
 				autolathe_generic += recipe
 

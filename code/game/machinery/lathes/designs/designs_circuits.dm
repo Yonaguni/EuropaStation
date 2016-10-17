@@ -159,3 +159,29 @@
 /datum/autolathe/recipe/circuit/arcade/orion
 	name = "arcade machine circuit (Orion Trail)"
 	path = /obj/item/weapon/circuitboard/arcade/orion_trail
+
+// EXOSUITS
+/datum/autolathe/recipe/circuit/exosoftware
+	name = "exosuit software module"
+	path = /obj/item/weapon/circuitboard/exosystem
+	category = "Exosuit Software"
+
+/datum/autolathe/recipe/circuit/exosoftware/engineering
+	name = "engineering software module"
+	path = /obj/item/weapon/circuitboard/exosystem/engineering
+
+/datum/autolathe/recipe/circuit/exosoftware/utility
+	name = "utility software module"
+	path = /obj/item/weapon/circuitboard/exosystem/utility
+
+/datum/autolathe/recipe/circuit/exosoftware/medical
+	name = "medical software module"
+	path = /obj/item/weapon/circuitboard/exosystem/medical
+
+/datum/autolathe/recipe/circuit/exosoftware/weapons
+	name = "weapon software module"
+	path = /obj/item/weapon/circuitboard/exosystem/weapons
+
+/datum/autolathe/recipe/circuit/exosoftware/advweapons
+	name = "advanced weapon software module"
+	path = /obj/item/weapon/circuitboard/exosystem/advweapons
