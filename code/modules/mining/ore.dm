@@ -4,7 +4,6 @@
 	icon_state = "ore2"
 	randpixel = 8
 	w_class = 2
-	var/datum/geosample/geologic_data
 	var/material
 
 /obj/item/weapon/ore/uranium
@@ -76,10 +75,3 @@
 	desc = "Someone screwed up..."
 	icon_state = "slag"
 	material = null
-
-/obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/core_sampler))
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-	else
-		return ..()

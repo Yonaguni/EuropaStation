@@ -1,7 +1,12 @@
 /datum/autolathe/recipe/robotics
+	name = "nanopaste"
+	path = /obj/item/stack/nanopaste
+	category = "Robot Parts"
+	lathe_type = LATHE_TYPE_ROBOTICS
+
+/datum/autolathe/recipe/robotics/chassis
 	name = "robotic chassis"
 	path = /obj/item/robot_parts/robot_suit
-	category = "Robot Parts"
 
 /datum/autolathe/recipe/robotics/arm
 	name = "robotic left arm"

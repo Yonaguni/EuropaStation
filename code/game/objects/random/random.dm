@@ -611,8 +611,6 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/stack/material/tritium{amount = 10},\
 					prob(2);/obj/item/stack/material/mhydrogen{amount = 10},\
 					prob(3);/obj/item/stack/material/plasteel{amount = 10},\
-					prob(2);/obj/item/weapon/archaeological_find,\
-					prob(1);/obj/machinery/artifact,\
 					prob(2);/obj/item/device/multitool/hacktool,\
 					prob(3);/obj/item/device/radio/headset)
 

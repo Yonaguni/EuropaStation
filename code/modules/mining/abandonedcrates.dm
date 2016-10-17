@@ -21,7 +21,7 @@
 	generate_loot()
 
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
-	var/loot = rand(1, 100)
+	var/loot = rand(1, 98)
 	switch(loot)
 		if(1 to 5) // Common things go, 5%
 			new/obj/item/weapon/reagent_containers/food/drinks/bottle/rum(src)
@@ -132,15 +132,11 @@
 			new/obj/item/clothing/suit/suspenders(src)
 			new/obj/item/weapon/pen/crayon/mime(src)
 		if(96)
-			new/obj/item/weapon/vampiric(src)
-		if(97)
-			new/obj/item/weapon/archaeological_find(src)
-		if(98)
 			new/obj/item/weapon/melee/energy/sword(src)
-		if(99)
+		if(97)
 			new/obj/item/weapon/storage/belt/champion(src)
 			new/obj/item/clothing/mask/luchador(src)
-		if(100)
+		if(98)
 			new/obj/item/clothing/head/bearpelt(src)
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)

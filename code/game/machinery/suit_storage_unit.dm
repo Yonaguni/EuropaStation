@@ -68,14 +68,6 @@
 	req_access = list(access_mining)
 	islocked = 1
 
-/obj/machinery/suit_storage_unit/science
-	name = "Excavation Voidsuit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/excavation
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/excavation
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_xenoarch)
-	islocked = 1
-
 /obj/machinery/suit_storage_unit/security
 	name = "Security Voidsuit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/security

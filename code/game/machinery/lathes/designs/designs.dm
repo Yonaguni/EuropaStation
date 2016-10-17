@@ -1,12 +1,17 @@
 /var/list/autolathe_recipes
 /var/list/autolathe_categories
 
-/var/list/autolathe_generic = list()
+/var/list/autolathe_generic =  list()
 /var/list/autolathe_robotics = list()
+/var/list/autolathe_circuits =  list()
+/var/list/autolathe_advanced = list()
 
 /proc/populate_lathe_recipes()
 
-	//Create global autolathe recipe list if it hasn't been made already.
+	if(autolathe_recipes.len)
+		return
+
+	//Create global autolathe recipe lists if they hasn't been made already.
 	autolathe_recipes = list()
 	autolathe_categories = list()
 	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
@@ -14,10 +19,15 @@
 		autolathe_recipes += recipe
 		autolathe_categories |= recipe.category
 
-		if(recipe.lathe_type == "generic")
-			autolathe_generic += recipe
-		else
-			autolathe_robotics += recipe
+		switch(recipe.lathe_type)
+			if(LATHE_TYPE_ROBOTICS)
+				autolathe_robotics += recipe
+			if(LATHE_TYPE_CIRCUIT)
+				autolathe_circuits += recipe
+			if(LATHE_TYPE_ADVANCED)
+				autolathe_advanced += recipe
+			else
+				autolathe_generic += recipe
 
 		var/obj/item/I = new recipe.path
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.
@@ -34,7 +44,7 @@
 	var/category
 	var/power_use = 0
 	var/is_stack
-	var/lathe_type = "generic"
+	var/lathe_type = LATHE_TYPE_GENERIC
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"
