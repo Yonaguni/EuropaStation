@@ -288,7 +288,7 @@
 		msg += is_bleeding[limb]
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='danger'>[src] [T.has] \a [implant] sticking out of [T.his] flesh!</span>\n"
-	if(digitalcamo)
+	if(digitalcamo || has_aspect(ASPECT_UNCANNY))
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
 	if(hasHUD(usr,"security"))

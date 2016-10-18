@@ -3,6 +3,7 @@
 	desc = "Fastest gun on Mars."
 	use_icon_state = "guns_2"
 	category = "Ranged Combat"
+	aspect_cost = 2
 
 /decl/aspect/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
 	// Already have a gun.

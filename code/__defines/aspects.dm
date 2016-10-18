@@ -7,11 +7,15 @@
 #define ASPECT_SHARPEYED        "Sharp-Eyed"
 #define ASPECT_RADHARDENED      "Lead Poisoning"
 #define ASPECT_UNCANNY          "Uncanny"
-#define ASPECT_FRAIL            "Frail"
+#define ASPECT_FRAGILE          "Fragile"
+#define ASPECT_GLASS_BONES      "Glass Bones"
+#define ASPECT_PAPER_SKIN       "Paper Skin"
+#define ASPECT_HAEMOPHILE       "Haemophile"
 
 // Combat aspects
 #define ASPECT_WRESTLER         "Wrestler"
 #define ASPECT_BRAWLER          "Brawler"
+#define ASPECT_GUNPLAY          "Gunslinger"
 
 // Skill aspects.
 #define ASPECT_SURGEON          "Surgeon"
