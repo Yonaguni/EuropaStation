@@ -53,6 +53,8 @@
 		if(AGONY)
 			halloss += effect * blocked_mult(blocked) // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
+			if(has_aspect(ASPECT_RADHARDENED))
+				effect *= 0.5
 			radiation += effect * blocked_mult(blocked)
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter - TODO CANSTUTTER flag?

@@ -20,8 +20,7 @@
 		if(motivator)
 			user << "<span class='warning'>\The [src] already has an actuator installed.</span>"
 			return
-		motivator = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) motivator = thing
 	else
 		return ..()
 

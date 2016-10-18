@@ -68,19 +68,16 @@
 		if(diagnostics)
 			user << "<span class='warning'>\The [src] already has a diagnostic system installed.</span>"
 			return
-		diagnostics = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) diagnostics = thing
 	else if(istype(thing, /obj/item/weapon/cell))
 		if(cell)
 			user << "<span class='warning'>\The [src] already has a cell installed.</span>"
 			return
-		cell = thing
-		install_component(thing,user)
+		if(install_component(thing,user)) cell = thing
 	else if(istype(thing, /obj/item/robot_parts/robot_component/armour))
 		if(armour)
 			user << "<span class='warning'>\The [src] already has armour installed.</span>"
 			return
-		armour = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) armour = thing
 	else
 		return ..()

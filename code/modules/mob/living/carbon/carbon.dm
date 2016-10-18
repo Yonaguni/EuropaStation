@@ -482,7 +482,7 @@
 	if(effect && blocked < 100 && effecttype == IRRADIATE)
 		if(chem_effects[CE_ANTIRAD] == 2)
 			return 1
-		else if(chem_effects[CE_ANTIRAD] == 1)
+		else if(chem_effects[CE_ANTIRAD] == 1 || has_aspect(ASPECT_RADHARDENED))
 			radiation += round((effect * blocked_mult(blocked))/2)
 		else
 			radiation += effect * blocked_mult(blocked)

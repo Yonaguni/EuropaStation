@@ -29,7 +29,7 @@
 			return
 		visible_message("<span class='notice'>\The [src] begins loading \the [target] into \the [src].</span>")
 		var/mob/living/M = target
-		if(do_after(user, 20) && src && owner && M && user && owner.Adjacent(M))
+		if(do_after(user, 50) && src && owner && M && user && owner.Adjacent(M))
 			target << "<span class='notice'>\The [owner] scoops you into \the [src], and everything goes dark and cool.</span>"
 			occupant = M
 			M.forceMove(src)
