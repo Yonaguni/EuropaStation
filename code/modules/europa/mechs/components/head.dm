@@ -35,20 +35,17 @@
 		if(software)
 			user << "<span class='warning'>\The [src] already has a control modules installed.</span>"
 			return
-		software = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) software = thing
 	else if(istype(thing,/obj/item/robot_parts/robot_component/radio))
 		if(radio)
 			user << "<span class='warning'>\The [src] already has a radio installed.</span>"
 			return
-		radio = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) radio = thing
 	else if(istype(thing,/obj/item/robot_parts/robot_component/camera))
 		if(camera)
 			user << "<span class='warning'>\The [src] already has a camera installed.</span>"
 			return
-		camera = thing
-		install_component(thing, user)
+		if(install_component(thing, user)) camera = thing
 	else
 		return ..()
 

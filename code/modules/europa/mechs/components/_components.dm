@@ -24,7 +24,7 @@
 
 /obj/item/mech_component/examine()
 	. = ..()
-	if(.)
+	if(. && usr.has_aspect(ASPECT_EXOSUIT_TECH))
 		if(ready_to_install())
 			usr << "<span class='notice'>It is ready for installation.</span>"
 		else
@@ -40,9 +40,12 @@
 	return
 
 /obj/item/mech_component/proc/install_component(var/obj/item/thing, var/mob/user)
-	user.unEquip(thing)
+	if(!user.has_aspect(ASPECT_EXOSUIT_TECH) && !do_after(user, 50))
+		return 0
+	user.drop_from_inv(thing)
 	thing.forceMove(src)
 	user.visible_message("<span class='notice'>\The [user] installs \the [thing] in \the [src].</span>")
+	return 1
 
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage

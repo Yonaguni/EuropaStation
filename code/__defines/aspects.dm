@@ -1,15 +1,12 @@
 // General aspects.
-#define ASPECT_BRAWLER    "Brawler"
-#define ASPECT_GUNPLAY    "Gunslinger"
-#define ASPECT_KNIVES     "Knife to a Gunfight"
-#define ASPECT_SWORDS     "Swordsman"
-#define ASPECT_GAMBLER    "Card Shark"
-#define ASPECT_DAREDEVIL  "Daredevil"
-#define ASPECT_HOTSTUFF   "Hot Stuff"
-#define ASPECT_HARDY      "Hardy"
-#define ASPECT_THICKBONES "Thick Bones"
-#define ASPECT_SCARRED    "Scarred"
-#define ASPECT_APPRAISER  "Appraiser"
+#define ASPECT_BRAWLER          "Brawler"
+#define ASPECT_GUNPLAY          "Gunslinger"
+#define ASPECT_DAREDEVIL        "Daredevil"
+#define ASPECT_HOTSTUFF         "Hot Stuff"
+#define ASPECT_HARDY            "Hardy"
+#define ASPECT_THICKBONES       "Thick Bones"
+#define ASPECT_SCARRED          "Scarred"
+#define ASPECT_APPRAISER        "Appraiser"
 
 // Psychic aspects.
 #define ASPECT_PSI_ROOT "Gifted"
@@ -33,3 +30,7 @@
 #define ASPECT_PSI_REDACTOR_O   "Operant Redactive Faculty"
 #define ASPECT_PSI_REDACTOR_MC  "Master Redactor"
 #define ASPECT_PSI_REDACTOR_GMC "Grandmaster Redactor"
+
+// Exosuit aspects.
+#define ASPECT_EXOSUIT_PILOT    "Exosuit Pilot"
+#define ASPECT_EXOSUIT_TECH     "Exosuit Technician"

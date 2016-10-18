@@ -1,13 +1,3 @@
-/decl/aspect/gambling
-	name = ASPECT_GAMBLER
-	desc = "You know all about running games of chance."
-	use_icon_state = "kitchen_2"
-
-/decl/aspect/daredevil
-	name = ASPECT_DAREDEVIL
-	desc = "You always land on your feet."
-	use_icon_state = "kitchen_3"
-
 /decl/aspect/hardy
 	name = ASPECT_HARDY
 	desc = "You were born with thick skin."

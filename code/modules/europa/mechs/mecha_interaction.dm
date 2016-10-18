@@ -201,12 +201,15 @@
 
 	next_move = world.time + legs.move_delay
 
+	if(!user.has_aspect(ASPECT_EXOSUIT_PILOT))
+		next_move += rand(15,30)
+
 	if(maintenance_protocols)
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
 		return
 
-	//if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
-	//	direction = pick(cardinal)
+	if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
+		direction = pick(cardinal)
 
 	if(dir == direction)
 		var/turf/target_loc = get_step(src, direction)

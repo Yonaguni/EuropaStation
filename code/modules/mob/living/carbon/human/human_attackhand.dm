@@ -213,6 +213,8 @@
 
 			var/real_damage = rand_damage
 			real_damage += attack.get_unarmed_damage(H)
+			if(H.has_aspect(ASPECT_BRAWLER))
+				real_damage *= 1.25
 			if((HULK in H.mutations) || H.is_berserk())
 				real_damage *= 2 // Hulks do twice the damage
 				rand_damage *= 2
