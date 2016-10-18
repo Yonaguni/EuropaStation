@@ -5,6 +5,7 @@
 	var/desc = "An aspect is a kind of skill."        // Flavour text.
 	var/use_icon_state = ""                           // State to use for the above.
 	//var/icon/use_icon                               // I REALLY HATE \icon A LOT. Causes a lot of lag.
+	var/aspect_cost = 1
 	var/category = "Traits"                           // Header for root aspects in char prefs.
 
 	var/parent_name
@@ -46,7 +47,7 @@
 	*/
 
 	if(caller)
-		result += "<a href='?src=\ref[caller];toggle_aspect=[name]'>[ticked ? "<font color='#E67300'>[name]</font>" : "[name]"]</a>"
+		result += "<a href='?src=\ref[caller];toggle_aspect=[name]'>[ticked ? "<font color='#E67300'>[name]</font>" : "[name]"] ([aspect_cost])</a>"
 	else
 		result += ticked ? "<font color='#E67300'>[name]</font>" : "[name]"
 
@@ -76,7 +77,12 @@
 		show_to << "That mob has no aspects."
 		return
 
-	var/dat = "<b>[mind.aspects.len]/[config.max_character_aspects] aspects chosen.</b><br>"
+	var/aspect_cost = 0
+	for(var/aspect_name in mind.aspects)
+		var/decl/aspect/A = aspects_by_name[aspect_name]
+		aspect_cost += A.aspect_cost
+
+	var/dat = "<b>[aspect_cost]/[config.max_character_aspects] aspects chosen.</b><br>"
 
 	for(var/aspect_category in aspect_categories)
 		var/datum/aspect_category/AC = aspect_categories[aspect_category]

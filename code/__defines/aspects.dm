@@ -1,15 +1,28 @@
 // General aspects.
-#define ASPECT_BRAWLER          "Brawler"
-#define ASPECT_GUNPLAY          "Gunslinger"
-#define ASPECT_DAREDEVIL        "Daredevil"
 #define ASPECT_HOTSTUFF         "Hot Stuff"
 #define ASPECT_HARDY            "Hardy"
 #define ASPECT_THICKBONES       "Thick Bones"
 #define ASPECT_SCARRED          "Scarred"
 #define ASPECT_APPRAISER        "Appraiser"
+#define ASPECT_SHARPEYED        "Sharp-Eyed"
+#define ASPECT_RADHARDENED      "Lead Poisoning"
+#define ASPECT_UNCANNY          "Uncanny"
+#define ASPECT_FRAIL            "Frail"
+
+// Combat aspects
+#define ASPECT_WRESTLER         "Wrestler"
+#define ASPECT_BRAWLER          "Brawler"
+
+// Skill aspects.
+#define ASPECT_SURGEON          "Surgeon"
+#define ASPECT_DIAGNOSTICIAN    "Diagnostician"
+#define ASPECT_BUILDER          "Construction Worker"
+#define ASPECT_EXOSUIT_PILOT    "Exosuit Pilot"
+#define ASPECT_EXOSUIT_TECH     "Exosuit Technician"
+#define ASPECT_JOGGER           "Jogger"
 
 // Psychic aspects.
-#define ASPECT_PSI_ROOT "Gifted"
+#define ASPECT_PSI_ROOT         "Gifted"
 #define ASPECT_PSI_COERCION_L   "Latent Coercive Faculty"
 #define ASPECT_PSI_COERCION_O   "Operant Coercive Faculty"
 #define ASPECT_PSI_COERCION_MC  "Master Coercor"
@@ -30,7 +43,3 @@
 #define ASPECT_PSI_REDACTOR_O   "Operant Redactive Faculty"
 #define ASPECT_PSI_REDACTOR_MC  "Master Redactor"
 #define ASPECT_PSI_REDACTOR_GMC "Grandmaster Redactor"
-
-// Exosuit aspects.
-#define ASPECT_EXOSUIT_PILOT    "Exosuit Pilot"
-#define ASPECT_EXOSUIT_TECH     "Exosuit Technician"

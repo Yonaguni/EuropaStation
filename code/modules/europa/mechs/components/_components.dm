@@ -42,7 +42,7 @@
 /obj/item/mech_component/proc/install_component(var/obj/item/thing, var/mob/user)
 	if(!user.has_aspect(ASPECT_EXOSUIT_TECH) && !do_after(user, 50))
 		return 0
-	user.drop_from_inv(thing)
+	user.drop_from_inventory(thing)
 	thing.forceMove(src)
 	user.visible_message("<span class='notice'>\The [user] installs \the [thing] in \the [src].</span>")
 	return 1

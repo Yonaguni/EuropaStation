@@ -202,7 +202,7 @@
 	next_move = world.time + legs.move_delay
 
 	if(!user.has_aspect(ASPECT_EXOSUIT_PILOT))
-		next_move += rand(15,30)
+		next_move += rand(10,20)
 
 	if(maintenance_protocols)
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"

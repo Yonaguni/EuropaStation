@@ -240,7 +240,7 @@
 		return 0
 	if(!user.has_aspect(ASPECT_EXOSUIT_TECH) && !do_after(user, 30))
 		return 0
-	user.drop_from_inv(thing)
+	user.drop_from_inventory(thing)
 	thing.forceMove(src)
 	visible_message("\The [user] installs \the [thing] into \the [src].")
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)

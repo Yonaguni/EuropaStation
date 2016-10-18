@@ -16,9 +16,9 @@
 
 /decl/aspect/thickbones/do_post_spawn(var/mob/living/carbon/human/holder)
 	for(var/obj/item/organ/external/E in holder.organs) //15% limb damage cap increase.
-		E.min_bruised_damage = initial(E.min_bruised_damage)*1.15
-		E.min_broken_damage =  initial(E.min_broken_damage)*1.15
-		E.max_damage =         initial(E.max_damage)*1.15
+		E.min_bruised_damage += initial(E.min_bruised_damage)*0.15
+		E.min_broken_damage +=  initial(E.min_broken_damage)*0.15
+		E.max_damage +=         initial(E.max_damage)*0.15
 
 /decl/aspect/scarred
 	name = ASPECT_SCARRED
