@@ -416,7 +416,7 @@
 
 /datum/reagent/arithrazine
 	value = 2.7
-
+z
 /datum/reagent/antibiotic
 	value = 2.5
 
