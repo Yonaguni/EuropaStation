@@ -54,10 +54,13 @@
 			pref.player_alt_titles -= job.title
 
 /datum/category_item/player_setup_item/occupation/content(mob/user, limit = 16, list/splitJobs, splitLimit = 1)
-	if(!job_master)
-		return
 
 	. = list()
+
+	if (!job_master)
+		. += "The job controller isn't set up yet, hold your horses!"
+		return
+
 	. += "<tt><center>"
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
 	if(using_map.flags & MAP_HAS_BRANCH)
@@ -73,7 +76,6 @@
 
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	if (!job_master)		return
 	for(var/datum/job/job in job_master.occupations)
 
 		index += 1
