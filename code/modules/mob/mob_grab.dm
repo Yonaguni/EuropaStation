@@ -233,8 +233,14 @@
 		return
 	if(!assailant.canClick())
 		return
-	if(world.time < (last_action + UPGRADE_COOLDOWN))
+
+	var/checktime = UPGRADE_COOLDOWN
+	if(assailant.has_aspect(ASPECT_WRESTLER))
+		checktime *= 0.75
+
+	if(world.time < (last_action + checktime))
 		return
+
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)
 		return
@@ -301,7 +307,11 @@
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
 		return
-	if(world.time < (last_action + 20))
+
+	var/checktime = 20
+	if(assailant.has_aspect(ASPECT_WRESTLER))
+		checktime *= 0.75
+	if(world.time < (last_action + checktime))
 		return
 
 	last_action = world.time

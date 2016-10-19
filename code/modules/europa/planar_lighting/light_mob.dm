@@ -4,8 +4,10 @@
 
 /mob/Login()
 	. = ..()
-	dark_plane = new(client)
-	master_plane = new(client)
+	if(!dark_plane)
+		dark_plane = new(client)
+	if(!master_plane)
+		master_plane = new(client)
 
 /mob/observer/ghost/Login()
 	. = ..()

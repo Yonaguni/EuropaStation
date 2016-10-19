@@ -22,9 +22,10 @@
 	desc = "You could cut yourself on a plastic spork."
 	parent_name = ASPECT_FRAGILE
 	aspect_cost = -2
+	apply_post_species_change = 1
 
 /decl/aspect/negative/paper_skin/do_post_spawn(var/mob/living/carbon/human/holder)
-	for(var/obj/item/organ/external/E in holder.organs) //15% burn resist.
+	for(var/obj/item/organ/external/E in holder.organs)
 		E.brute_mod += initial(E.brute_mod)*0.2
 		E.burn_mod  += initial(E.burn_mod)*0.2
 
@@ -35,7 +36,7 @@
 	parent_name = ASPECT_FRAGILE
 
 /decl/aspect/negative/glassbones/do_post_spawn(var/mob/living/carbon/human/holder)
-	for(var/obj/item/organ/external/E in holder.organs) //15% limb damage cap decrease.
+	for(var/obj/item/organ/external/E in holder.organs)
 		E.min_bruised_damage -= initial(E.min_bruised_damage)*0.2
 		E.min_broken_damage -=  initial(E.min_broken_damage)*0.2
 		E.max_damage -=         initial(E.max_damage)*0.2

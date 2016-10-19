@@ -1105,6 +1105,9 @@
 		else
 			dna.species = new_species
 
+	if(dark_plane)
+		dark_plane.alpha = initial(dark_plane.alpha)
+
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
 		new_species = "Human"

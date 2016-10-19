@@ -1,6 +1,6 @@
 /decl/aspect/leadpoisoning
 	name = ASPECT_RADHARDENED
-	desc = "Those ancient pipes have left you resistant to radiation."
+	desc = "Those ancient water pipes have left you resistant to radiation."
 
 /decl/aspect/hardy
 	name = ASPECT_HARDY
@@ -19,7 +19,7 @@
 	apply_post_species_change = 1
 
 /decl/aspect/thickbones/do_post_spawn(var/mob/living/carbon/human/holder)
-	for(var/obj/item/organ/external/E in holder.organs) //15% limb damage cap increase.
+	for(var/obj/item/organ/external/E in holder.organs)
 		E.min_bruised_damage += initial(E.min_bruised_damage)*0.1
 		E.min_broken_damage +=  initial(E.min_broken_damage)*0.1
 		E.max_damage +=         initial(E.max_damage)*0.1
@@ -32,7 +32,7 @@
 	apply_post_species_change = 1
 
 /decl/aspect/scarred/do_post_spawn(var/mob/living/carbon/human/holder)
-	for(var/obj/item/organ/external/E in holder.organs) //15% burn resist.
+	for(var/obj/item/organ/external/E in holder.organs)
 		E.brute_mod -= initial(E.brute_mod)*0.1
 
 /decl/aspect/hotstuff
@@ -43,6 +43,13 @@
 	apply_post_species_change = 1
 
 /decl/aspect/hotstuff/do_post_spawn(var/mob/living/carbon/human/holder)
-	for(var/obj/item/organ/external/E in holder.organs) //15% burn resist.
+	for(var/obj/item/organ/external/E in holder.organs)
 		E.burn_mod -= initial(E.burn_mod)*0.1
 
+/decl/aspect/sharpeyed
+	name = ASPECT_SHARPEYED
+	desc = "You can see well in darkness."
+	apply_post_species_change = 1
+
+/decl/aspect/sharpeyed/do_post_spawn(var/mob/living/carbon/human/holder)
+	holder.dark_plane.alpha = 30
