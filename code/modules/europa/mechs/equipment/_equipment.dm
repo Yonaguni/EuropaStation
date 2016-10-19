@@ -31,7 +31,7 @@
 			icon = holding.icon
 			icon_state = holding.icon_state
 		name = holding.name
-		desc = "[holding.desc] This one is suitable for mounting on an exosuit."
+		desc = "[holding.desc] This one is suitable for installation on an exosuit."
 
 /obj/item/mecha_equipment/mounted_system/get_effective_obj()
 	return (holding ? holding : src)
