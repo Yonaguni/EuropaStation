@@ -1,5 +1,5 @@
 /obj/item/frame_holder
-	matter = list("steel" = 65000, "plastic" = 10000, "osmium" = 10000)
+	matter = list("steel" = 40000, "plastic" = 10000, "osmium" = 10000)
 
 /obj/item/frame_holder/New(var/newloc)
 	new /obj/structure/heavy_vehicle_frame(newloc)
@@ -7,7 +7,7 @@
 
 /obj/structure/heavy_vehicle_frame
 	name = "exosuit frame"
-	desc = "The frame for am exosuit, apparently."
+	desc = "The frame for an exosuit, apparently."
 	icon = 'icons/mecha/mech_parts.dmi'
 	icon_state = "backbone"
 	density = 1

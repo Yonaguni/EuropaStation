@@ -4,6 +4,8 @@
 	name = "mech hardpoint system"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = ""
+	matter = list("steel" = 10000, "plastic" = 5000, "osmium" = 2000)
+
 	var/restricted_hardpoints
 	var/mob/living/heavy_vehicle/owner
 	var/list/restricted_software
