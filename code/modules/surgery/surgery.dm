@@ -99,7 +99,12 @@
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, src)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(src)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				var/surgery_time = rand(S.min_duration, S.max_duration)
+				var/effective_quality = S.tool_quality(src)
+				if(user.has_aspect(ASPECT_SURGEON))
+					effective_quality = min(100, effective_quality * 1.5)
+					surgery_time *= 0.75
+				if(prob(effective_quality) &&  do_mob(user, M, surgery_time))
 					S.end_step(user, M, zone, src)		//finish successfully
 				else if ((src in user.contents) && user.Adjacent(M))			//or
 					S.fail_step(user, M, zone, src)		//malpractice~
