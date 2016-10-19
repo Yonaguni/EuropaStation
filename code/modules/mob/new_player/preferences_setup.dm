@@ -193,6 +193,10 @@ datum/preferences
 		b_skin = blue
 
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+
+	if(!job_master)
+		return
+
 	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
 

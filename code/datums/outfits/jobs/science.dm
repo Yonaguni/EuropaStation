@@ -25,7 +25,7 @@
 	uniform = /obj/item/clothing/under/aeolus/engineering
 	shoes = /obj/item/clothing/shoes/black
 	belt = /obj/item/weapon/storage/belt/utility/full
-	id_type = /obj/item/weapon/card/id/science/roboticist
+	id_type = /obj/item/weapon/card/id/engineering
 	pda_type = /obj/item/device/radio/headset/pda/engineering
 	backpack = /obj/item/weapon/storage/backpack
 	satchel_one = /obj/item/weapon/storage/backpack/satchel_norm

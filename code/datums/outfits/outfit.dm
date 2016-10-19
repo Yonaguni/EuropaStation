@@ -142,6 +142,11 @@ var/list/outfits_decls_by_type_
 		W.desc = id_desc
 	if(rank)
 		W.rank = rank
+		if(job_master)
+			var/datum/job/job = job_master.GetJob(rank)
+			if(job)
+				W.access = job.get_access()
+
 	if(assignment)
 		W.assignment = assignment
 	H.set_id_info(W)
