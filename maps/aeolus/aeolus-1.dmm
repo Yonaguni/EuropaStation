@@ -1569,7 +1569,7 @@
 "aEi" = (/obj/structure/table/rack,/obj/item/weapon/storage/briefcase{pixel_x = -2; pixel_y = -5},/obj/item/weapon/storage/briefcase{pixel_x = 3; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/security/detectives_office)
 "aEj" = (/obj/structure/closet{name = "Evidence Closet"},/obj/item/weapon/handcuffs,/turf/simulated/floor/tiled/dark,/area/security/detectives_office)
 "aEk" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/papershredder,/turf/simulated/floor/tiled/dark,/area/security/detectives_office)
-"aEl" = (/obj/structure/table/steel,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/turf/simulated/floor/tiled,/area/assembly/robotics)
+"aEl" = (/obj/structure/table/steel,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/obj/item/stack/material/osmium/fifty,/turf/simulated/floor/tiled,/area/assembly/robotics)
 "aEm" = (/obj/structure/cable/green,/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "aEn" = (/obj/structure/reagent_dispensers/acid{density = 0; pixel_x = 0; pixel_y = -32},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "aEo" = (/obj/structure/extinguisher_cabinet{pixel_x = 0; pixel_y = -30},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/assembly/robotics)
