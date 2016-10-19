@@ -1,5 +1,5 @@
 /obj/item/frame_holder
-	matter = list("steel" = 35000, "plastic" = 10000, "osmium" = 10000)
+	matter = list("steel" = 175000, "plastic" = 50000, "osmium" = 30000)
 
 /obj/item/frame_holder/New(var/newloc)
 	new /obj/structure/heavy_vehicle_frame(newloc)
@@ -107,19 +107,19 @@
 		// Check for wiring.
 		if(is_wired < 2)
 			if(is_wired == 1)
-				user << "<span class='warning'>The [src]'s wiring has not been adjusted!</span>"
+				user << "<span class='warning'>\The [src]'s wiring has not been adjusted!</span>"
 			else
-				user << "<span class='warning'>The [src] is not wired!</span>"
+				user << "<span class='warning'>\The [src] is not wired!</span>"
 			return
 
 		// Check for basing metal internal plating.
 		if(is_reinforced < 3)
 			if(is_reinforced == 1)
-				user << "<span class='warning'>The [src]'s internal reinforcement has not been secured!</span>"
+				user << "<span class='warning'>\The [src]'s internal reinforcement has not been secured!</span>"
 			else if(is_reinforced == 2)
-				user << "<span class='warning'>The [src]'s internal reinforcement has not been welded down!</span>"
+				user << "<span class='warning'>\The [src]'s internal reinforcement has not been welded down!</span>"
 			else
-				user << "<span class='warning'>The [src] has no internal reinforcement!</span>"
+				user << "<span class='warning'>\The [src] has no internal reinforcement!</span>"
 			return
 
 		// We're all done. Finalize the mech and pass the frame to the new system.
@@ -164,12 +164,12 @@
 	// Installing metal.
 	else if(istype(thing, /obj/item/stack/material))
 		var/obj/item/stack/material/M = thing
-		if(M.material && M.material.name == "steel")
+		if(M.material && M.material.name == "plasteel")
 			if(is_reinforced)
-				user << "<span class='warning'>There is already metal reinforcement installed in \the [src].</span>"
+				user << "<span class='warning'>There is already plasteel reinforcement installed in \the [src].</span>"
 				return
 			if(M.amount < 15)
-				user << "<span class='warning'>You need at least fifteen sheets of steel to reinforce \the [src].</span>"
+				user << "<span class='warning'>You need at least fifteen sheets of plasteel to reinforce \the [src].</span>"
 				return
 			visible_message("\The [user] reinforces \the [src] with \the [M].")
 			playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)

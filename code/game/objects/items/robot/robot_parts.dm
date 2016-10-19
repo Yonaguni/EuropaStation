@@ -5,10 +5,14 @@
 	icon_state = "blank"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	dir = SOUTH
+	matter = list("steel" = 15000, "glass" = 5000, "plastic" = 1500, "osmium" = 500)
+
 	var/list/part = null // Order of args is important for installing robolimbs.
 	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
 	var/model_info
-	dir = SOUTH
+
+
 
 /obj/item/robot_parts/set_dir()
 	return
@@ -74,6 +78,8 @@
 	name = "endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
+	matter = list("steel" = 25000, "glass" = 7500, "plastic" = 3000, "osmium" = 1500)
+
 	var/obj/item/robot_parts/l_arm/l_arm = null
 	var/obj/item/robot_parts/r_arm/r_arm = null
 	var/obj/item/robot_parts/l_leg/l_leg = null

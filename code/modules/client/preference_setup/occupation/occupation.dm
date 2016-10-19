@@ -59,7 +59,6 @@
 
 	if (!job_master)
 		. += "The job controller isn't set up yet, hold your horses!"
-		return
 
 	. += "<tt><center>"
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
