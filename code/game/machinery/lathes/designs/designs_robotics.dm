@@ -1,12 +1,13 @@
 /datum/autolathe/recipe/robotics
-	name = "nanopaste"
-	path = /obj/item/stack/nanopaste
+	name = "robotic chassis"
+	path = /obj/item/robot_parts/robot_suit
 	category = "Robot Parts"
 	lathe_type = LATHE_TYPE_ROBOTICS
 
-/datum/autolathe/recipe/robotics/chassis
-	name = "robotic chassis"
-	path = /obj/item/robot_parts/robot_suit
+/datum/autolathe/recipe/robotics/nanopaste
+	name = "nanopaste"
+	path = /obj/item/stack/nanopaste
+	is_stack = 1
 
 /datum/autolathe/recipe/robotics/arm
 	name = "robotic left arm"
@@ -17,7 +18,7 @@
 	path = /obj/item/robot_parts/r_arm
 
 /datum/autolathe/recipe/robotics/leg
-	name = "robotic left arm"
+	name = "robotic left leg"
 	path = /obj/item/robot_parts/l_leg
 
 /datum/autolathe/recipe/robotics/leg/right
@@ -56,3 +57,25 @@
 /datum/autolathe/recipe/robotics/internal/diag
 	name = "diagnosis unit"
 	path = /obj/item/robot_parts/robot_component/diagnosis_unit
+
+/datum/autolathe/recipe/robotics/sheet
+	name = "steel sheets"
+	path = /obj/item/stack/material/steel
+	category = "General"
+	is_stack = 1
+
+/datum/autolathe/recipe/robotics/sheet/plastic
+	name = "plastic sheets"
+	path = /obj/item/stack/material/plastic
+
+/datum/autolathe/recipe/robotics/sheet/glass
+	name = "glass sheets"
+	path = /obj/item/stack/material/glass
+
+/datum/autolathe/recipe/robotics/sheet/osmium
+	name = "osmium ingots"
+	path = /obj/item/stack/material/osmium
+
+/datum/autolathe/recipe/robotics/sheet/gold
+	name = "gold ingots"
+	path = /obj/item/stack/material/gold

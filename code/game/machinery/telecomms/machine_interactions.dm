@@ -28,7 +28,7 @@
 		if (integrity < 100)               								//Damaged, let's repair!
 			if (T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				usr << "You apply the Nanopaste to [src], repairing some of the damage."
+				usr << "You apply \the [T] to [src], repairing some of the damage."
 		else
 			usr << "This machine is already in perfect condition."
 		return

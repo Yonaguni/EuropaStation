@@ -157,6 +157,9 @@
 	default_type = "osmium"
 	apply_colour = 1
 
+/obj/item/stack/material/osmium/fifty
+	amount = 50
+
 // Fusion fuel.
 /obj/item/stack/material/deuterium
 	name = "deuterium"

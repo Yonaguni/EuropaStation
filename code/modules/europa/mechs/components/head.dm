@@ -70,7 +70,7 @@
 	else
 		return ..()
 
-/obj/item/mech_component/control_module/proc/install_software(var/obj/item/software, var/mob/user, var/obj/item/circuitboard/exosystem/software, var/mob/user)
+/obj/item/mech_component/control_module/proc/install_software(var/obj/item/weapon/circuitboard/exosystem/software, var/mob/user)
 	if(installed_software.len >= max_installed_software)
 		if(user) user << "<span class='warning'>\The [src] can only hold [max_installed_software] software modules.</span>"
 		return

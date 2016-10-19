@@ -40,3 +40,17 @@
 /datum/autolathe/recipe/heavy/utility/floodlight
 	name = "mounted floodlight"
 	path = /obj/item/mecha_equipment/light
+
+/datum/autolathe/recipe/heavy/sheet
+	name = "steel sheets"
+	path = /obj/item/stack/material/steel
+	category = "General"
+	is_stack = 1
+
+/datum/autolathe/recipe/heavy/sheet/plastic
+	name = "plastic sheets"
+	path = /obj/item/stack/material/plastic
+
+/datum/autolathe/recipe/heavy/sheet/osmium
+	name = "osmium ingots"
+	path = /obj/item/stack/material/osmium

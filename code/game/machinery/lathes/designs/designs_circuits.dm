@@ -185,3 +185,15 @@
 /datum/autolathe/recipe/circuit/exosoftware/advweapons
 	name = "advanced weapon software module"
 	path = /obj/item/weapon/circuitboard/exosystem/advweapons
+
+/datum/autolathe/recipe/circuit/glass
+	name = "glass sheets"
+	path = /obj/item/stack/material/glass
+	category = "General"
+	is_stack = 1
+
+/datum/autolathe/recipe/circuit/gold
+	name = "gold ingots"
+	path = /obj/item/stack/material/gold
+	category = "General"
+	is_stack = 1

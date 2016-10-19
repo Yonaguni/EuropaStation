@@ -66,16 +66,19 @@
 		var/aspect_text = href_list["toggle_aspect"]
 		var/decl/aspect/A = aspects_by_name[aspect_text]
 		if(aspect_text in pref.aspects)
+			var/total_aspect_cost = 0
 			var/list/aspects_to_remove = list()
 			if(A && A.children)
 				aspects_to_remove = A.children.Copy()
 			while(aspects_to_remove.len)
 				A = aspects_to_remove[1]
+				total_aspect_cost += A.aspect_cost
 				aspects_to_remove -= A
 				pref.aspects -= A.name
 				if(A.children)
 					aspects_to_remove |= A.children.Copy()
-			pref.aspects -= aspect_text
+			if(get_aspect_total() - total_aspect_cost <= config.max_character_aspects)
+				pref.aspects -= aspect_text
 		else
 			if(get_aspect_total() + A.aspect_cost <= config.max_character_aspects)
 				pref.aspects |= aspect_text
