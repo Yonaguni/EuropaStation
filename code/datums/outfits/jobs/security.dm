@@ -18,7 +18,7 @@
 	name = OUTFIT_JOB_NAME("Munitions Officer")
 	uniform = /obj/item/clothing/under/aeolus/security
 	l_pocket = /obj/item/device/flash
-	id_type = /obj/item/weapon/card/id/security/warden
+	id_type = /obj/item/weapon/card/id/security
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")

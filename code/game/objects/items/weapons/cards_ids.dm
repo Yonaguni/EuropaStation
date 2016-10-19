@@ -119,17 +119,6 @@ var/const/NO_EMAG_ACT = -50
 	var/rank = null			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
 
-	var/job_access_type     // Job type to acquire access rights from, if any
-
-/obj/item/weapon/card/id/New()
-	..()
-	if(job_access_type)
-		var/datum/job/j = job_master.GetJobByType(job_access_type)
-		if(j)
-			rank = j.title
-			assignment = rank
-			access |= j.get_access()
-
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)
 	if(in_range(usr, src))
@@ -220,14 +209,12 @@ var/const/NO_EMAG_ACT = -50
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
 	item_state = "silver_id"
-	job_access_type = /datum/job/hop
 
 /obj/item/weapon/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
 	item_state = "gold_id"
-	job_access_type = /datum/job/captain
 
 /obj/item/weapon/card/id/syndicate_command
 	name = "syndicate ID card"
@@ -296,73 +283,51 @@ var/const/NO_EMAG_ACT = -50
 	name = "identification card"
 	desc = "A card issued to medical staff."
 	icon_state = "med"
-	job_access_type = /datum/job/doctor
-
-/obj/item/weapon/card/id/medical/psychiatrist
-	job_access_type = /datum/job/psychiatrist
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
 	icon_state = "medGold"
-	job_access_type = /datum/job/cmo
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
 	desc = "A card issued to security staff."
 	icon_state = "sec"
-	job_access_type = /datum/job/officer
-
-/obj/item/weapon/card/id/security/warden
-	job_access_type = /datum/job/warden
 
 /obj/item/weapon/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
 	icon_state = "secGold"
-	job_access_type = /datum/job/hos
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
 	desc = "A card issued to engineering staff."
 	icon_state = "eng"
-	job_access_type = /datum/job/engineer
 
 /obj/item/weapon/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
 	icon_state = "engGold"
-	job_access_type = /datum/job/chief_engineer
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
 	desc = "A card issued to science staff."
 	icon_state = "sci"
-	job_access_type = /datum/job/xenobiologist
-
-/obj/item/weapon/card/id/science/roboticist
-	job_access_type = /datum/job/roboticist
 
 /obj/item/weapon/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
 	icon_state = "sciGold"
-	job_access_type = /datum/job/rd
 
 /obj/item/weapon/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
 	icon_state = "cargoGold"
-	job_access_type = /datum/job/qm
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
 	desc = "A card issued to civilian staff."
 	icon_state = "civ"
-	job_access_type = /datum/job/assistant
-
-/obj/item/weapon/card/id/civilian/chef
-	job_access_type = /datum/job/chef
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"

@@ -19,6 +19,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+/datum/job/captain/get_access()
+	return get_all_station_access()
+
 // Placeholder
 /datum/job/xo
 	title = "Executive Officer"
