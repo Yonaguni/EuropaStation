@@ -16,8 +16,8 @@
 	base_icon = "circuit"
 	icon_state = "circuit"
 	lathe_type = LATHE_TYPE_CIRCUIT
-	stored_material =  list("glass" = 0)
-	storage_capacity = list("glass" = 0)
+	stored_material =  list("glass" = 0, "gold" = 0)
+	storage_capacity = list("glass" = 0, "gold" = 0)
 
 /obj/machinery/autolathe/advanced
 	name = "device fabricator"

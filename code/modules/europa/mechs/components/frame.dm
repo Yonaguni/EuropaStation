@@ -168,13 +168,13 @@
 			if(is_reinforced)
 				user << "<span class='warning'>There is already plasteel reinforcement installed in \the [src].</span>"
 				return
-			if(M.amount < 15)
+			if(M.amount < 10)
 				user << "<span class='warning'>You need at least fifteen sheets of plasteel to reinforce \the [src].</span>"
 				return
 			visible_message("\The [user] reinforces \the [src] with \the [M].")
 			playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			is_reinforced = 1
-			M.use(15)
+			M.use(10)
 		else
 			return ..()
 	// Securing metal.
