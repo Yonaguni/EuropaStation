@@ -9,27 +9,6 @@
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "\improper Monkey crate"
 
-/decl/hierarchy/supply_pack/hydroponics/farwa
-	name = "Farwa crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Farwa crate"
-
-/decl/hierarchy/supply_pack/hydroponics/skrell
-	name = "Neaera crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Neaera crate"
-
-/decl/hierarchy/supply_pack/hydroponics/stok
-	name = "Stok crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Stok crate"
-
 /decl/hierarchy/supply_pack/hydroponics/lisa
 	name = "Corgi Crate"
 	contains = list()

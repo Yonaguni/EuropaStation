@@ -50,8 +50,8 @@ datum/controller/vote
 				voting.Cut()
 
 	proc/autotransfer()
-		initiate_vote("crew_transfer","the server", 1)
-		log_debug("The server has called a crew transfer vote")
+		initiate_vote("leave_system","the server", 1)
+		log_debug("The server has called a departure vote")
 
 	proc/autogamemode()
 		initiate_vote("gamemode","the server", 1)
@@ -95,7 +95,7 @@ datum/controller/vote
 				else if(mode == "gamemode")
 					if(master_mode in choices)
 						choices[master_mode] += non_voters
-				else if(mode == "crew_transfer")
+				else if(mode == "leave_system")
 					var/factor = 0.5
 					switch(world.time / (10 * 60)) // minutes
 						if(0 to 60)
@@ -108,8 +108,8 @@ datum/controller/vote
 							factor = 1.2
 						else
 							factor = 1.4
-					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-					world << "<font color='purple'>Crew Transfer Factor: [factor]</font>"
+					choices["Depart System"] = round(choices["Depart System"] * factor)
+					world << "<font color='purple'>Transfer Factor: [factor]</font>"
 
 		for(var/option in choices)
 			var/votes = choices[option]
@@ -204,8 +204,8 @@ datum/controller/vote
 							master_mode = .[1]
 					secondary_mode = .[2]
 					tertiary_mode = .[3]
-				if("crew_transfer")
-					if(.[1] == "Initiate Crew Transfer")
+				if("leave_system")
+					if(.[1] == "Depart System")
 						init_shift_change(null, 1)
 					else if(.[1] == "Add Antagonist")
 						spawn(10)
@@ -309,21 +309,21 @@ datum/controller/vote
 						gamemode_names[M.config_tag] = capitalize(M.name) //It's ugly to put this here but it works
 						additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 					gamemode_names["secret"] = "Secret"
-				if("crew_transfer")
+				if("leave_system")
 					if(check_rights(R_ADMIN|R_MOD, 0))
 						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
+						choices.Add("Depart System", "Continue The Round")
 						if (config.allow_extra_antags && !antag_add_finished)
 							choices.Add("Add Antagonist")
 					else
 						if (get_security_level() == "red" || get_security_level() == "delta")
-							initiator_key << "The current alert status is too high to call for a crew transfer!"
+							initiator_key << "The current alert status is too high to leave the system!"
 							return 0
 						if(ticker.current_state <= GAME_STATE_SETTING_UP)
 							return 0
-							initiator_key << "The crew transfer button has been disabled!"
+							initiator_key << "The transfer button has been disabled!"
 						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
+						choices.Add("Depart System", "Continue The Round")
 						if (config.allow_extra_antags && is_addantag_allowed(1))
 							choices.Add("Add Antagonist")
 				if("add_antagonist")
@@ -440,9 +440,9 @@ datum/controller/vote
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
 			if(trialmin || config.allow_vote_restart)
-				. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
+				. += "<a href='?src=\ref[src];vote=leave_system'>Depart System</a>"
 			else
-				. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
+				. += "<font color='grey'>Depart System (Disallowed)</font>"
 			if(trialmin)
 				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
 			. += "</li><li>"
@@ -497,9 +497,9 @@ datum/controller/vote
 				if("gamemode")
 					if(config.allow_vote_mode || usr.client.holder)
 						initiate_vote("gamemode",usr.key)
-				if("crew_transfer")
+				if("leave_system")
 					if(config.allow_vote_restart || usr.client.holder)
-						initiate_vote("crew_transfer",usr.key)
+						initiate_vote("leave_system",usr.key)
 				if("add_antagonist")
 					if(config.allow_extra_antags)
 						initiate_vote("add_antagonist",usr.key)

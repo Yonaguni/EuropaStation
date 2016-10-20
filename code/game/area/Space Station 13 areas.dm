@@ -280,7 +280,21 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 	base_turf = /turf/space/transit/east/shuttlespace_ew1
 
-/area/shuttle/escape_pod5 //Pod 4 was lost to meteors
+/area/shuttle/escape_pod4
+	name = "\improper Escape Pod Four"
+	flags = RAD_SHIELDED
+
+/area/shuttle/escape_pod4/station
+	icon_state = "shuttle2"
+
+/area/shuttle/escape_pod4/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod4/transit
+	icon_state = "shuttle"
+	base_turf = /turf/space/transit/east/shuttlespace_ew1
+
+/area/shuttle/escape_pod5
 	name = "\improper Escape Pod Five"
 	flags = RAD_SHIELDED
 
@@ -291,6 +305,20 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/escape_pod5/transit
+	icon_state = "shuttle"
+	base_turf = /turf/space/transit/east/shuttlespace_ew1
+
+/area/shuttle/escape_pod6
+	name = "\improper Escape Pod Six"
+	flags = RAD_SHIELDED
+
+/area/shuttle/escape_pod6/station
+	icon_state = "shuttle2"
+
+/area/shuttle/escape_pod6/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod6/transit
 	icon_state = "shuttle"
 	base_turf = /turf/space/transit/east/shuttlespace_ew1
 
@@ -902,7 +930,7 @@ area/space/atmosalert()
 	icon_state = "hallC3"
 
 /area/hallway/secondary/exit
-	name = "\improper Observation Area"
+	name = "\improper Escape Wing"
 	icon_state = "escape"
 
 /area/hallway/secondary/construction

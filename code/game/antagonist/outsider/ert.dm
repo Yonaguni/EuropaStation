@@ -1,5 +1,8 @@
 var/datum/antagonist/ert/ert
 
+/obj/effect/landmark/start/ert
+	name = "Response Team"
+
 /datum/antagonist/ert
 	id = MODE_ERT
 	role_text = "Emergency Responder"

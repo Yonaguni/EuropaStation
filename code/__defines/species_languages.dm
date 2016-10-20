@@ -25,7 +25,6 @@
 
 // Languages.
 #define LANGUAGE_EAL "Encoded Audio Language"
-#define LANGUAGE_SOL_COMMON "Sol Common"
 #define LANGUAGE_SKRELLIAN "Skrellian"
 #define LANGUAGE_RESOMI "Schechi"
 #define LANGUAGE_ROOTSPEAK "Rootspeak"

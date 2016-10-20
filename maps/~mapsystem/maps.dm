@@ -33,7 +33,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 
-	var/list/allowed_jobs	       //Job datums to use.
+	var/default_role = "Crewman"
+	var/list/default_job_type = /datum/job/assistant
+	var/list/allowed_jobs          //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
 	                               //We don't have to C&P ones that are only common between two of them
 	                               //That doesn't mean we have to include them with the rest of the jobs though, especially for map specific ones.

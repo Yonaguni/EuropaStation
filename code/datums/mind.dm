@@ -70,7 +70,7 @@
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
-		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
+		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob."
 	if(current)					//remove ourself from our old body's mind variable
 		if(changeling)
 			current.remove_changeling_powers()
@@ -489,14 +489,14 @@
 		if(ticker)
 			ticker.minds += mind
 		else
-			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
+			world.log << "## DEBUG: mind_initialize(): No ticker ready yet!"
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Crewman"	//defualt
+	if(!mind.assigned_role)	mind.assigned_role = using_map.default_role
 
 //slime
 /mob/living/carbon/slime/mind_initialize()

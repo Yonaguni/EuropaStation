@@ -6,8 +6,12 @@
 	. = ..()
 	if(!dark_plane)
 		dark_plane = new(client)
+	else
+		client.screen |= dark_plane
 	if(!master_plane)
 		master_plane = new(client)
+	else
+		client.screen |= master_plane
 
 /mob/observer/ghost/Login()
 	. = ..()

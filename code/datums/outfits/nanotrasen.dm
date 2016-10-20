@@ -22,5 +22,5 @@
 	name = "corporate administrator"
 	uniform = /obj/item/clothing/under/rank/centcom_captain
 	head = /obj/item/clothing/head/beret/centcom/captain
-	belt = /obj/item/weapon/gun/composite/premade/laser_smg
+	belt = /obj/item/weapon/gun/composite/premade/smg/a9
 	id_pda_assignment = "Company Operations Manager"

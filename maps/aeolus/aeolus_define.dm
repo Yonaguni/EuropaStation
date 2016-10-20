@@ -1,12 +1,12 @@
 /datum/map/aeolus
 	name = "Aeolus"
-	full_name = "SDEV Aeolus"
+	full_name = "FTV Aeolus"
 	path = "aeolus"
 
 	station_levels = list(1)
 	admin_levels = list(1)
-	contact_levels = list(1)
-	player_levels = list(1)
+	contact_levels = list(1,3)
+	player_levels = list(1,3)
 
 	shuttle_docked_message = "Spooling complete. The scheduled wave jump will occur in approximately %ETD%. All hands, please prepare for departure."
 	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel until the jump is complete. Estimate %ETA% until arrival at %dock_name%."

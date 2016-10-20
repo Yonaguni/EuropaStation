@@ -95,51 +95,6 @@
 	cost = 10
 	containername = "\improper Solar Assembly crate"
 
-/decl/hierarchy/supply_pack/engineering/emitter
-	name = "Emitter crate"
-	contains = list(/obj/machinery/power/emitter = 2)
-	cost = 10
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper Emitter crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/field_gen
-	name = "Field Generator crate"
-	contains = list(/obj/machinery/field_generator = 2)
-	cost = 10
-	containername = "\improper Field Generator crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/sing_gen
-	name = "Singularity Generator crate"
-	contains = list(/obj/machinery/the_singularitygen)
-	cost = 10
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper Singularity Generator crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/collector
-	name = "Collector crate"
-	contains = list(/obj/machinery/power/rad_collector = 3)
-	cost = 10
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper Collector crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/PA
-	name = "Particle Accelerator crate"
-	contains = list(/obj/structure/particle_accelerator/fuel_chamber,
-					/obj/machinery/particle_accelerator/control_box,
-					/obj/structure/particle_accelerator/particle_emitter/center,
-					/obj/structure/particle_accelerator/particle_emitter/left,
-					/obj/structure/particle_accelerator/particle_emitter/right,
-					/obj/structure/particle_accelerator/power_box,
-					/obj/structure/particle_accelerator/end_cap)
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper Particle Accelerator crate"
-	access = access_ce
-
 /decl/hierarchy/supply_pack/engineering/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"
 	contains = list(/obj/item/weapon/stock_parts/micro_laser,
@@ -194,38 +149,6 @@
 	containername = "\improper Disposal Dispenser Crate"
 	access = access_atmospherics
 
-/decl/hierarchy/supply_pack/engineering/shield_gen
-	name = "Bubble shield generator circuitry"
-	contains = list(/obj/item/weapon/circuitboard/shield_gen)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper bubble shield generator circuitry crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/shield_gen_ex
-	name = "Hull shield generator circuitry"
-	contains = list(/obj/item/weapon/circuitboard/shield_gen_ex)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper hull shield generator circuitry crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/shield_cap
-	name = "Bubble shield capacitor circuitry"
-	contains = list(/obj/item/weapon/circuitboard/shield_cap)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "\improper shield capacitor circuitry crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/smbig
-	name = "Supermatter Core"
-	contains = list(/obj/machinery/power/supermatter)
-	cost = 150
-	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "\improper Supermatter crate (CAUTION)"
-	access = access_ce
-
 /decl/hierarchy/supply_pack/engineering/fueltank
 	name = "Fuel tank crate"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
@@ -253,21 +176,10 @@
 	containername = "\improper Radiation suit locker"
 
 /decl/hierarchy/supply_pack/engineering/painters
-	name = "Station Painting Supplies"
+	name = "Industrial Painting Supplies"
 	contains = list(/obj/item/device/pipe_painter = 2,
 					/obj/item/device/floor_painter = 2,
 					/obj/item/device/cable_painter = 2)
 	cost = 10
 	containername = "\improper station painting supplies crate"
 	containertype = /obj/structure/closet/crate
-
-/decl/hierarchy/supply_pack/engineering/bluespacerelay
-	name = "Emergency Bluespace Relay Assembly Kit"
-	contains = list(/obj/item/weapon/circuitboard/bluespacerelay,
-					/obj/item/weapon/stock_parts/manipulator,
-					/obj/item/weapon/stock_parts/manipulator,
-					/obj/item/weapon/stock_parts/subspace/filter,
-					/obj/item/weapon/stock_parts/subspace/crystal,
-					/obj/item/weapon/storage/toolbox/electrical)
-	cost = 75
-	containername = "\improper emergency bluespace relay assembly kit"

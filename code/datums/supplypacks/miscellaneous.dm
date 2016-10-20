@@ -11,10 +11,10 @@
 	containername = "\improper Wizard costume crate"
 
 /decl/hierarchy/supply_pack/miscellaneous/carpet
-	name = "Imported carpet"
+	name = "Carpet"
 	contains = list(/obj/item/stack/tile/carpet/fifty)
 	cost = 15
-	containername = "\improper Imported carpet crate"
+	containername = "\improper Carpet crate"
 
 /decl/hierarchy/supply_pack/miscellaneous/linoleum
 	name = "Linoleum"
@@ -206,42 +206,3 @@
 	cost = 200
 	containername = "heavy crate"
 	supply_method = /decl/supply_method/randomized
-
-/decl/hierarchy/supply_pack/miscellaneous/exosuit_mod_durand
-	num_contained = 1
-	name = "Random Durand exosuit modkit"
-	contains = list(
-		/obj/item/device/kit/paint/durand,
-		/obj/item/device/kit/paint/durand/seraph,
-		/obj/item/device/kit/paint/durand/phazon
-		)
-	cost = 200
-	containername = "heavy crate"
-	supply_method = /decl/supply_method/randomized
-
-/decl/hierarchy/supply_pack/miscellaneous/exosuit_mod_gygax
-	num_contained = 1
-	name = "Random Gygax exosuit modkit"
-	contains = list(
-		/obj/item/device/kit/paint/gygax,
-		/obj/item/device/kit/paint/gygax/darkgygax,
-		/obj/item/device/kit/paint/gygax/recitence
-		)
-	cost = 200
-	containername = "heavy crate"
-	supply_method = /decl/supply_method/randomized
-
-/decl/hierarchy/supply_pack/miscellaneous/chaplaingear
-	name = "Chaplain equipment"
-	contains = list(/obj/item/clothing/under/rank/chaplain,
-					/obj/item/clothing/shoes/black,
-					/obj/item/clothing/suit/nun,
-					/obj/item/clothing/head/nun_hood,
-					/obj/item/clothing/suit/chaplain_hoodie,
-					/obj/item/clothing/head/chaplain_hood,
-					/obj/item/clothing/suit/holidaypriest,
-					/obj/item/clothing/under/wedding/bride_white,
-					/obj/item/weapon/storage/backpack/cultpack,
-					/obj/item/weapon/storage/fancy/candle_box = 3)
-	cost = 10
-	containername = "\improper Chaplain equipment crate"

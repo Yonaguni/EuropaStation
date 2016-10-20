@@ -1,13 +1,6 @@
 /decl/hierarchy/supply_pack/operations
 	name = "Operations"
 
-/decl/hierarchy/supply_pack/operations/mule
-	name = "MULEbot Crate"
-	contains = list(/obj/machinery/bot/mulebot)
-	cost = 20
-	containertype = /obj/structure/largecrate/mule
-	containername = "\improper MULEbot Crate"
-
 /decl/hierarchy/supply_pack/operations/cargotrain
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/cargo/engine)

@@ -63,8 +63,17 @@ var/global/list/antag_names_to_ids = list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
 		var/datum/antagonist/A = new antag_type
 		all_antag_types[A.id] = A
-		all_antag_spawnpoints[A.landmark_id] = list()
 		antag_names_to_ids[A.role_text] = A.id
+		if(A.landmark_id)
+			all_antag_spawnpoints[A.landmark_id] = list()
+			var/found_spawn_point
+			for(var/obj/effect/landmark/start/S in world)
+				if(S.name == A.landmark_id)
+					found_spawn_point = 1
+					break
+			if(!found_spawn_point)
+				world << "<span class='warning'>Error setting up antagonists, [A.id] has no spawn point!</span>"
+
 
 /proc/get_antags(var/atype)
 	var/datum/antagonist/antag = all_antag_types[atype]

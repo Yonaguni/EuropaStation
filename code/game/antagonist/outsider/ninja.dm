@@ -1,5 +1,8 @@
 var/datum/antagonist/ninja/ninjas
 
+/obj/effect/landmark/start/ninja
+	name = "ninjastart"
+
 /datum/antagonist/ninja
 	id = MODE_NINJA
 	role_text = "Ninja"

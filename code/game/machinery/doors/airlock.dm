@@ -721,6 +721,10 @@ About the new airlock wires panel:
 	return 1
 
 /obj/machinery/door/airlock/attackby(var/obj/item/C, mob/user as mob)
+
+	if(!istype(C))
+		return
+
 	// Brace is considered installed on the airlock, so interacting with it is protected from electrification.
 	if(brace && (istype(C, /obj/item/weapon/brace_keycard) || istype(C, /obj/item/weapon/crowbar/brace_jack)))
 		return brace.attackby(C, user)

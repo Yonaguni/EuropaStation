@@ -9,9 +9,10 @@ var/list/weighted_mundaneevent_locations = list()
 	var/distance = 0
 	var/can_shuttle_here = 0
 	var/is_a_planet
+
+	var/list/beacon_responders = list()
 	var/list/flavour_locations = list()
 	var/list/blacklisted_cargo
-
 	var/list/temp_price_change[BIOMEDICAL]
 	var/list/viable_random_events = list()
 	var/list/viable_mundane_events = list()

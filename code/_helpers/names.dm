@@ -44,6 +44,10 @@ var/religion_name = null
 	return capitalize(name)
 
 /proc/station_name()
+
+	if(using_map)
+		return using_map.full_name
+
 	if (station_name)
 		return station_name
 

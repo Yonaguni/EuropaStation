@@ -18,7 +18,7 @@ var/global/datum/controller/occupations/job_master
 	proc/SetupOccupations(var/faction = "Crew", var/setup_titles = 0)
 		occupations = list()
 		occupations_by_type = list()
-		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
+		var/list/all_jobs = list(using_map.default_job_type) | using_map.allowed_jobs
 		if(!all_jobs.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0
@@ -144,7 +144,7 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				continue
 
-			if(istype(job, GetJob("Crewman"))) // We don't want to give him assistant, that's boring!
+			if(istype(job, GetJob(using_map.default_role))) // We don't want to give him assistant, that's boring!
 				continue
 
 			if(job.title in command_positions) //If you want a command position, select it!
@@ -258,12 +258,12 @@ var/global/datum/controller/occupations/job_master
 
 		//People who wants to be assistants, sure, go on.
 		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new DEFAULT_JOB_TYPE ()
+		var/datum/job/assist = new using_map.default_job_type ()
 		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
 			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "Crewman")
+			AssignRole(player, using_map.default_role)
 			assistant_candidates -= player
 		Debug("DO, AC1 end")
 
@@ -344,7 +344,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == BE_ASSISTANT)
 				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "Crewman")
+				AssignRole(player, using_map.default_role)
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)

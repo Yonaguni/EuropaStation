@@ -1,5 +1,8 @@
 var/datum/antagonist/raider/raiders
 
+/obj/effect/landmark/start/raider
+	name = "voxstart"
+
 /datum/antagonist/raider
 	id = MODE_RAIDER
 	role_text = "Raider"
