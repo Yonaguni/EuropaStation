@@ -33,7 +33,7 @@
 /mob/living/silicon/New()
 	silicon_mob_list |= src
 	..()
-	add_language("Galactic Common")
+	add_language("Sol Common")
 	init_id()
 	init_subsystems()
 

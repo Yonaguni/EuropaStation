@@ -58,7 +58,7 @@
 	. = list()
 
 	if (!job_master)
-		. += "The job controller isn't set up yet, hold your horses!"
+		return "The job controller isn't set up yet, hold your horses!"
 
 	. += "<tt><center>"
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
@@ -106,7 +106,7 @@
 		if((job.allowed_branches && !(pref.char_branch in job.allowed_branches)) || (job.allowed_ranks && !(pref.char_rank in job.allowed_ranks)))
 			. += "<del>[rank]</del></td><td><b> \[NOT AVAILABLE]</b></td></tr>"
 			continue
-		if(("Assistant" in pref.job_low) && (rank != "Crewman"))
+		if(("Assistant" in pref.job_low) && (rank != using_map.default_role))
 			. += "<font color=grey>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in command_positions) || (rank == "Computer"))//Bold head jobs
@@ -118,8 +118,8 @@
 
 		. += "<a href='?src=\ref[src];set_job=[rank]'>"
 
-		if(rank == "Crewman")//Assistant is special
-			if("Crewman" in pref.job_low)
+		if(rank == using_map.default_role)//Assistant is special
+			if(using_map.default_role in pref.job_low)
 				. += " <font color=55cc55>\[Yes]</font>"
 			else
 				. += " <font color=black>\[No]</font>"
@@ -193,7 +193,7 @@
 		world << "Nope"
 		return 0
 
-	if(role == "Crewman")
+	if(role == using_map.default_role)
 		if(job.title in pref.job_low)
 			pref.job_low -= job.title
 		else

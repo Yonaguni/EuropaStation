@@ -24,19 +24,11 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/arrivals
 	display_name = "Arrivals Shuttle"
-	msg = "has arrived on the operations deck"
+	msg = "has arrived on the ship"
 
 /datum/spawnpoint/arrivals/New()
 	..()
 	turfs = latejoin
-
-/datum/spawnpoint/gateway
-	display_name = "Gateway"
-	msg = "has completed translation from offsite gateway"
-
-/datum/spawnpoint/gateway/New()
-	..()
-	turfs = latejoin_gateway
 
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"

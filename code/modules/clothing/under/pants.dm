@@ -4,6 +4,7 @@
 	icon_state = "jeans"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO|LEGS
+	valid_accessory_slots = list("shirt", "armband", "utility")
 
 /obj/item/clothing/under/pants/classicjeans
 	name = "classic jeans"

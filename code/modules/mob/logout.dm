@@ -1,6 +1,8 @@
 /mob/Logout()
-	nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
-	tgui_process.on_logout(src)
+	if(nanomanager)
+		nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	if(tgui_process)
+		tgui_process.on_logout(src)
 	player_list -= src
 	log_access("Logout: [key_name(src)]")
 	handle_admin_logout()

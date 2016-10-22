@@ -149,7 +149,7 @@ datum/objective/anti_revolution/demote
 
 			if(!istype(I)) return 1
 
-			if(I.assignment == "Crewman")
+			if(I.assignment == using_map.default_role)
 				return 1
 			else
 				return 0

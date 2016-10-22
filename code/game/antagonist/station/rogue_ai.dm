@@ -5,7 +5,7 @@ var/datum/antagonist/rogue_ai/malf
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	mob_path = /mob/living/silicon/ai
-	landmark_id = "AI"
+	landmark_id = "Computer"
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
 	victory_text = "The AI has taken control of all of the station's systems."
 	loss_text = "The AI has been shut down!"

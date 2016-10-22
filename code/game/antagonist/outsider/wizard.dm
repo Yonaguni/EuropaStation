@@ -1,5 +1,8 @@
 var/datum/antagonist/wizard/wizards
 
+/obj/effect/landmark/start/wizard
+	name = "wizard"
+
 /datum/antagonist/wizard
 	id = MODE_WIZARD
 	role_text = "Space Wizard"

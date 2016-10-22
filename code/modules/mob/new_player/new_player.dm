@@ -375,9 +375,9 @@
 		dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 	else if(evacuation_controller.is_evacuating())
 		if(evacuation_controller.emergency_evacuation) // Emergency shuttle is past the point of no recall
-			dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
-		else                                           // Crew transfer initiated
-			dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
+			dat += "<font color='red'>The ship is currently preparing for an emergency jump.</font><br>"
+		else                                           // transfer initiated
+			dat += "<font color='red'>The ship is currently preparing for departure.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in job_master.occupations)

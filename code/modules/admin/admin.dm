@@ -1080,9 +1080,9 @@ proc/admin_notice(var/message, var/rights)
 	out += "<hr>"
 
 	if(ticker.mode.ert_disabled)
-		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>disabled</a>"
+		out += "<b>Distress beacon:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>disabled</a>"
 	else
-		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>enabled</a>"
+		out += "<b>Distress beacon:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>enabled</a>"
 	out += "<br/>"
 
 	if(ticker.mode.deny_respawn)

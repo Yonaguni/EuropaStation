@@ -428,13 +428,12 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
+	. = ..()
 	if(!air_master)
 		return 0
-
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
 		air_master.mark_for_update(turf)
-
 	return 1
 
 /obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
@@ -445,7 +444,6 @@
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))

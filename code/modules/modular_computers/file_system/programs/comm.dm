@@ -40,11 +40,6 @@
 
 /datum/nano_module/program/comm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 
-	var/datum/evacuation_controller/pods/shuttle/evac_control = evacuation_controller
-	if(!istype(evac_control))
-		user << "<span class='danger'>This console should not in use on this map. Please report this to a developer.</span>"
-		return
-
 	var/list/data = host.initial_data()
 
 	if(program)
@@ -81,7 +76,8 @@
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
 
-	if(evac_control.shuttle.location)
+	var/datum/evacuation_controller/pods/shuttle/evac_control = evacuation_controller
+	if(istype(evac_control) && evac_control.shuttle.location)
 		data["have_shuttle"] = 1
 		if(evac_control.is_idle())
 			data["have_shuttle_called"] = 0
@@ -349,10 +345,6 @@ var/last_message_id = 0
 
 	if(!universe.OnShuttleCall(usr))
 		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
-		return
-
-	if(deathsquad.deployed)
-		user << "[boss_short] will not allow an evacuation to take place. Consider all contracts terminated."
 		return
 
 	if(evacuation_controller.deny)

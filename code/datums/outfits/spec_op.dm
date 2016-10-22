@@ -5,7 +5,7 @@
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
 	mask = /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	head = /obj/item/clothing/head/beret/deathsquad
-	belt = /obj/item/weapon/gun/composite/premade/laser_rifle
+	belt = /obj/item/weapon/gun/composite/premade/assault_rifle
 	back = /obj/item/weapon/storage/backpack/satchel
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/thick/combat
@@ -33,13 +33,6 @@
 
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/centcom/ERT
-
-/decl/hierarchy/outfit/death_command
-	name = "Spec ops - Death commando"
-
-/decl/hierarchy/outfit/death_command/equip(var/mob/living/carbon/human/H)
-	deathsquad.equip(H)
-	return 1
 
 /decl/hierarchy/outfit/syndicate_command
 	name = "Spec ops - Syndicate commando"

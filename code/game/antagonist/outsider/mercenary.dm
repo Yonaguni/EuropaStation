@@ -1,5 +1,8 @@
 var/datum/antagonist/mercenary/mercs
 
+/obj/effect/landmark/start/merc
+	name = "Syndicate-Spawn"
+
 /datum/antagonist/mercenary
 	id = MODE_MERCENARY
 	role_text = "Mercenary"
