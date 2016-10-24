@@ -9,83 +9,130 @@
 // turf corners. See light_turf.dm for how corners are calculated.
 
 /obj/effect/light/proc/cast_light()
+	overlays = list()
 
 	if(!isturf(loc))
-		overlays = null
-		for(var/thing in affecting_turfs)
-			var/turf/T = thing
+		for(var/turf/T in affecting_turfs)
 			T.lumcount = -1
 			T.affecting_lights -= src
 		affecting_turfs.Cut()
 		return
 
-	//Prevent appearance churn by adding all overlays at onces
-	var/list/overlays_to_add = list(light_overlay)
+	switch(light_range)
+		if(1)
+			icon = 'icons/planar_lighting/light_range_1.dmi'
+		if(2)
+			icon = 'icons/planar_lighting/light_range_2.dmi'
+		if(3)
+			icon = 'icons/planar_lighting/light_range_3.dmi'
+		if(4)
+			icon = 'icons/planar_lighting/light_range_4.dmi'
+		if(5)
+			icon = 'icons/planar_lighting/light_range_5.dmi'
+		else
+			qdel(src)
+			return
 
-	var/turf/origin = get_turf(src)
-	if(!istype(origin))
-		overlays = null
+	icon_state = "white"
+	pixel_x = pixel_y = -(world.icon_size * light_range)
+
+	var/image/base_image = image(icon)
+	base_image.icon_state = "overlay"
+	base_image.layer = 4
+	overlays += base_image
+
+	//no shadows
+	if(light_range < 2)
 		return
 
-	// We're using dview in a context it wasn't written for so gotta hardcode this.
-	dview_mob.loc = origin
-	dview_mob.see_invisible = 0
-
-	// Get a list of turfs that are visible according to BYOND. It will be worth rewriting this
-	// somewhere down the track so that angles other than multiples of 45 degrees will occlude
-	// properly, at the moment if you move 2 up 1 across from a wall, it won't block light at all.
-	var/effective_power = current_power+1 // This seems to be needed for good shadow casting effects at low power.
 	var/list/visible_turfs = list()
-	for(var/turf/T in view(effective_power, dview_mob))
+
+	for(var/turf/T in view(light_range, src))
 		visible_turfs += T
 
-	// As above, hardcode.
-	dview_mob.loc = null
+	for(var/turf/T in visible_turfs)
+		if(CheckOcclusion(T))
+			CastShadow(T)
 
-	// Work out which turfs we cannot see from this point.
-	var/list/concealed_turfs = list()
-	for(var/turf/T in (trange(effective_power, origin) - visible_turfs))
-		concealed_turfs += T
 
-	/*
-	// Check if this is a turf we want to use in corner masking checks. Apply masking if needed.
-	var/n_x = 2*origin.x
-	var/n_y = 2*origin.y
-	*/
 
-	// Now the fun part. Check over visible turfs and apply lighting appropriately.
-	var/list/walls = list()
-	for(var/thing in visible_turfs)
-		var/turf/check = thing
+/obj/effect/light/proc/CastShadow(var/turf/target_turf)
+	//get the x and y offsets for how far the target turf is from the light
+	var/x_offset = target_turf.x - x
+	var/y_offset = target_turf.y - y
 
-		if(!(check in affecting_turfs))
-			affecting_turfs += check
-			check.lumcount = -1
-			check.affecting_lights += src
+	//due to only having one set of shadow templates, we need to rotate and flip them for up to 8 different directions
+	//first check is to see if we will need to "rotate" the shadow template
+	var/xy_swap = 0
+	if(abs(x_offset) > abs(y_offset))
+		xy_swap = 1
 
-		if(!check.check_blocks_light())
-			continue
+	var/image/I = image(icon)
 
-		walls += check // Used later for bleed masking.
+	//due to the way the offsets are named, we can just swap the x and y offsets to "rotate" the icon state
+	if(xy_swap)
+		I.icon_state = "[abs(y_offset)]_[abs(x_offset)]"
+	else
+		I.icon_state = "[abs(x_offset)]_[abs(y_offset)]"
 
-	// Update turfs we are no longer lighting.
-	for(var/thing in (affecting_turfs-visible_turfs))
-		affecting_turfs -= thing
-		var/turf/T = thing
-		T.lumcount = -1
-		T.affecting_lights -= src
+	var/matrix/M = matrix()
 
-	//TO(re)DO: iterate over 'walls' and apply an edge lighting overlay based on direction of source.
-	// The client lag seems to be coming from elsewhere than the number of blocking overlays (maybe).
+	//TODO: rewrite this comment:
+	//using scale to flip the shadow template if needed
+	//horizontal (x) flip is easy, we just check if the offset is negative
+	//vertical (y) flip is a little harder, if the shadow will be rotated we need to flip if the offset is positive,
+	// but if it wont be rotated then we just check if its negative to flip (like the x flip)
+	var/x_flip
+	var/y_flip
+	if(xy_swap)
+		x_flip = y_offset > 0 ? -1 : 1
+		y_flip = x_offset < 0 ? -1 : 1
+	else
+		x_flip = x_offset < 0 ? -1 : 1
+		y_flip = y_offset < 0 ? -1 : 1
 
-	// Mask off stuff that we 100% cannot see.
-	for(var/thing in concealed_turfs)
-		var/turf/check = thing
-		var/image/darkmask/I = new
-		I.pixel_x = (check.x-origin.x+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
-		I.pixel_y = (check.y-origin.y+BASE_TURF_OFFSET) * OFFSET_MULTIPLIER_SIZE
-		overlays_to_add += I
-	overlays = overlays_to_add
+	M.Scale(x_flip, y_flip)
+
+	//here we do the actual rotate if needed
+	if(xy_swap)
+		M.Turn(90)
+
+	//apply the transform matrix
+	I.transform = M
+	I.layer = 2
+
+	//and add it to the lights overlays
+	overlays += I
+
+
+	var/targ_dir = get_dir(target_turf, src)
+
+	var/blocking_dirs = 0
+	for(var/d in cardinal)
+		var/turf/T = get_step(target_turf, d)
+		if(CheckOcclusion(T))//.opacity)
+			blocking_dirs |= d
+
+	I = image('icons/planar_lighting/wall_lighting.dmi')
+	I.icon_state = "[blocking_dirs]-[targ_dir]"
+	I.pixel_x = (world.icon_size * light_range) + (x_offset * world.icon_size)
+	I.pixel_y = (world.icon_size * light_range) + (y_offset * world.icon_size)
+	I.layer = 3
+
+	overlays += I
+
+/obj/effect/light/proc/CheckOcclusion(var/turf/T)
+	if(!istype(T))
+		return 0
+
+	if(T.opacity)
+		return 1
+
+	for(var/obj/machinery/door/D in T)
+		if(D.opacity)
+			return 1
+
+	return 0
 
 #undef BASE_PIXEL_OFFSET
 #undef BASE_TURF_OFFSET

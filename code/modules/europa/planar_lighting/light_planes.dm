@@ -2,6 +2,7 @@
 	name = ""
 	screen_loc = "CENTER"
 	blend_mode = BLEND_MULTIPLY
+	layer = 1
 
 /obj/screen/plane/New(var/client/C)
 	..()
@@ -17,7 +18,7 @@
 	blend_mode = BLEND_ADD
 	plane = DARK_PLANE // Just below the master plane.
 	icon = 'icons/planar_lighting/over_dark.dmi'
-	alpha = 5
+	alpha = 25
 	appearance_flags = RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA
 
 /obj/screen/plane/dark/New()

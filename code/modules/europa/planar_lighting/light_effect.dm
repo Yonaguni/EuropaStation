@@ -2,7 +2,13 @@
 	simulated = 0
 	mouse_opacity = 0
 	plane = DARK_PLANE
-	layer = 20 // Over EVERYTHING.
+
+	layer = 1
+	//layer 1 = base plane layer
+	//layer 2 = base shadow templates
+	//layer 3 = wall lighting overlays
+	//layer 4 = light falloff overlay
+
 	appearance_flags = KEEP_TOGETHER
 	icon = null
 	invisibility = SEE_INVISIBLE_NOLIGHTING
@@ -11,7 +17,6 @@
 	glide_size = 32
 	blend_mode = BLEND_ADD
 
-	var/image/light_overlay
 	var/current_power = 1
 	var/atom/movable/holder
 	var/point_angle
@@ -19,10 +24,11 @@
 
 /obj/effect/light/New(var/newholder)
 	holder = newholder
-	light_overlay = image(icon = 'icons/planar_lighting/lighting_overlays.dmi', icon_state = holder.light_type)
-	light_overlay.blend_mode = BLEND_ADD
-	light_overlay.mouse_opacity = 0
-	light_overlay.plane = DARK_PLANE
+	if(istype(holder, /atom))
+		var/atom/A = holder
+		light_range = A.light_range
+		light_color = A.light_color
+		color = light_color
 	..(get_turf(holder))
 
 /obj/effect/light/Destroy()
@@ -34,7 +40,6 @@
 	transform = null
 	appearance = null
 	overlays = null
-	light_overlay = null
 
 	if(holder)
 		if(holder.light_obj == src)
@@ -92,11 +97,6 @@
 /obj/effect/light/proc/update_transform(var/newrange)
 	if(!isnull(newrange) && current_power != newrange)
 		current_power = newrange
-	var/matrix/M = matrix()
-	if(!isnull(point_angle))
-		M.Turn(point_angle)
-	M.Scale(current_power)
-	light_overlay.transform = M
 
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
@@ -104,7 +104,7 @@
 
 	if(dir != holder.dir)
 		set_dir(holder.dir)
-
+/*
 	if(is_directional_light())
 		var/last_angle = point_angle
 		switch(dir)
@@ -120,7 +120,7 @@
 		if(last_angle != point_angle)
 			update_transform()
 			cast_light()
-
+*/
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/effect/light/proc/follow_holder()
 	if(holder && holder.loc)
