@@ -18,31 +18,40 @@
 		affecting_turfs.Cut()
 		return
 
-	switch(light_range)
-		if(1)
-			icon = 'icons/planar_lighting/light_range_1.dmi'
-		if(2)
-			icon = 'icons/planar_lighting/light_range_2.dmi'
-		if(3)
-			icon = 'icons/planar_lighting/light_range_3.dmi'
-		if(4)
-			icon = 'icons/planar_lighting/light_range_4.dmi'
-		if(5)
-			icon = 'icons/planar_lighting/light_range_5.dmi'
-		else
-			qdel(src)
-			return
+	//cap light range to 5
+	light_range = min(5, light_range)
+
+	if(is_directional_light())
+		icon = 'icons/planar_lighting/directional_overlays.dmi'
+		light_range = 2.5
+	else
+		switch(light_range)
+			if(1)
+				icon = 'icons/planar_lighting/light_range_1.dmi'
+			if(2)
+				icon = 'icons/planar_lighting/light_range_2.dmi'
+			if(3)
+				icon = 'icons/planar_lighting/light_range_3.dmi'
+			if(4)
+				icon = 'icons/planar_lighting/light_range_4.dmi'
+			if(5)
+				icon = 'icons/planar_lighting/light_range_5.dmi'
+			else
+				qdel(src)
+				return
 
 	icon_state = "white"
-	pixel_x = pixel_y = -(world.icon_size * light_range)
 
-	var/image/base_image = image(icon)
-	base_image.icon_state = "overlay"
-	base_image.layer = 4
-	overlays += base_image
+	if(!is_directional_light())
+		pixel_x = pixel_y = -(world.icon_size * light_range)
+
+	var/image/I = image(icon)
+	I.icon_state = "overlay"
+	I.layer = 4
+	overlays += I
 
 	//no shadows
-	if(light_range < 2)
+	if(light_range < 2 || is_directional_light())
 		return
 
 	var/list/visible_turfs = list()

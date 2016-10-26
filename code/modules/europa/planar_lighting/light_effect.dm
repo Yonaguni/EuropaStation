@@ -77,12 +77,14 @@
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
 		if(I.light_obj)
+			spawn(0)
 			I.light_obj.follow_holder()
 
 /mob/living/carbon/human/forceMove()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
 		if(I.light_obj)
+			spawn(0)
 			I.light_obj.follow_holder()
 
 /obj/effect/light/initialize()
@@ -132,3 +134,19 @@
 
 /obj/effect/light/proc/is_directional_light()
 	return (holder.light_type == LIGHT_DIRECTIONAL)
+
+/obj/effect/light/set_dir()
+	..()
+	switch(dir)
+		if(NORTH)
+			pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
+			pixel_y = world.icon_size / 2
+		if(SOUTH)
+			pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
+			pixel_y = -(world.icon_size * light_range) - world.icon_size * light_range
+		if(EAST)
+			pixel_x = world.icon_size / 2
+			pixel_y = -(world.icon_size * light_range) + world.icon_size / 4
+		if(WEST)
+			pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size / 2
+			pixel_y = -(world.icon_size * light_range) + (world.icon_size / 4)

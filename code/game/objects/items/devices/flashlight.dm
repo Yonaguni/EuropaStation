@@ -11,7 +11,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	light_power = 5
-	light_range = 6
+	light_range = 5
 
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
