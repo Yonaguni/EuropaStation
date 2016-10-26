@@ -30,6 +30,10 @@
 					break
 	return blocks_light
 
+/turf/proc/door_light_update()
+	for(var/obj/effect/light/L in affecting_lights)
+		L.cast_light()
+
 // Returns a list of occluding corners based on the angle of the light to the turf
 // as well as the available edges of clear space around the turf. Calculated and
 // called in light_effect_cast.dm.
