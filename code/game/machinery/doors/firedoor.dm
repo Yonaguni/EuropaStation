@@ -11,14 +11,16 @@
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
-	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
+	icon = 'icons/obj/doors/doorhazard.dmi'
+
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	opacity = 0
 	density = 0
 	layer = DOOR_OPEN_LAYER - 0.01
 	open_layer = DOOR_OPEN_LAYER - 0.01 // Just below doors when open
 	closed_layer = DOOR_CLOSED_LAYER + 0.01 // Just above doors when closed
+	invisibility = INVISIBILITY_MAXIMUM
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
@@ -382,48 +384,3 @@
 
 	if(do_set_light)
 		set_light(1.5, 0.5, COLOR_SUN)
-
-//These are playing merry hell on ZAS.  Sorry fellas :(
-
-/obj/machinery/door/firedoor/border_only
-/*
-	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	glass = 1 //There is a glass window so you can see through the door
-			  //This is needed due to BYOND limitations in controlling visibility
-	heat_proof = 1
-	air_properties_vary_with_direction = 1
-
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-			if(air_group) return 0
-			return !density
-		else
-			return 1
-
-	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir)
-			return !density
-		else
-			return 1
-
-
-	update_nearby_tiles(need_rebuild)
-		if(!air_master) return 0
-
-		var/turf/simulated/source = loc
-		var/turf/simulated/destination = get_step(source,dir)
-
-		update_heat_protection(loc)
-
-		if(istype(source)) air_master.tiles_to_update += source
-		if(istype(destination)) air_master.tiles_to_update += destination
-		return 1
-*/
-
-/obj/machinery/door/firedoor/multi_tile
-	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
-	width = 2
