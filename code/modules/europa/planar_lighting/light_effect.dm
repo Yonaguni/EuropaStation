@@ -32,7 +32,6 @@
 	..(get_turf(holder))
 
 /obj/effect/light/Destroy()
-
 	moved_event.unregister(holder, src)
 	dir_set_event.unregister(holder, src)
 	destroyed_event.unregister(holder, src)
@@ -55,42 +54,42 @@
 /atom/movable/Move()
 	. = ..()
 	if(light_obj)
-		light_obj.follow_holder()
+		spawn()
+			light_obj.follow_holder()
 
 /atom/movable/forceMove()
 	. = ..()
 	if(light_obj)
-		light_obj.follow_holder()
+		spawn()
+			light_obj.follow_holder()
 
 /atom/set_dir()
 	. = ..()
 	if(light_obj)
-		light_obj.follow_holder_dir()
+		spawn()
+			light_obj.follow_holder()
 
 /mob/living/carbon/human/set_dir()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
 		if(I.light_obj)
-			I.set_dir(dir)
+			I.light_obj.follow_holder()
 
 /mob/living/carbon/human/Move()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
 		if(I.light_obj)
-			spawn(0)
 			I.light_obj.follow_holder()
 
 /mob/living/carbon/human/forceMove()
 	. = ..()
 	for(var/obj/item/I in (contents-(internal_organs+organs)))
 		if(I.light_obj)
-			spawn(0)
 			I.light_obj.follow_holder()
 
 /obj/effect/light/initialize()
 	..()
 	if(holder)
-		follow_holder_dir()
 		follow_holder()
 
 // Applies power value to size (via Scale()) and updates the current rotation (via Turn())
@@ -103,26 +102,11 @@
 // Orients the light to the holder's (or the holder's holder) current dir.
 // Also updates rotation for directional lights when appropriate.
 /obj/effect/light/proc/follow_holder_dir()
-
-	if(dir != holder.dir)
+	if(holder.loc.loc && ismob(holder.loc))
+		set_dir(holder.loc.dir)
+	else
 		set_dir(holder.dir)
-/*
-	if(is_directional_light())
-		var/last_angle = point_angle
-		switch(dir)
-			if(NORTH)     point_angle = 90
-			if(SOUTH)     point_angle = -90
-			if(EAST)      point_angle = -180
-			if(WEST)      point_angle = 0
-			if(NORTHEAST) point_angle = 135
-			if(NORTHWEST) point_angle = 45
-			if(SOUTHEAST) point_angle = -135
-			if(SOUTHWEST) point_angle = -45
-			else          point_angle = null
-		if(last_angle != point_angle)
-			update_transform()
-			cast_light()
-*/
+
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/effect/light/proc/follow_holder()
 	if(holder && holder.loc)
@@ -130,7 +114,8 @@
 			forceMove(holder.loc.loc)
 		else
 			forceMove(holder.loc)
-	cast_light()
+		follow_holder_dir()
+		cast_light()
 
 /obj/effect/light/proc/is_directional_light()
 	return (holder.light_type == LIGHT_DIRECTIONAL)
@@ -140,13 +125,13 @@
 	switch(dir)
 		if(NORTH)
 			pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
-			pixel_y = world.icon_size / 2
+			pixel_y = world.icon_size
 		if(SOUTH)
 			pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
 			pixel_y = -(world.icon_size * light_range) - world.icon_size * light_range
 		if(EAST)
-			pixel_x = world.icon_size / 2
-			pixel_y = -(world.icon_size * light_range) + world.icon_size / 4
+			pixel_x = world.icon_size
+			pixel_y = -(world.icon_size * light_range) + world.icon_size / 2
 		if(WEST)
-			pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size / 2
-			pixel_y = -(world.icon_size * light_range) + (world.icon_size / 4)
+			pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range)
+			pixel_y = -(world.icon_size * light_range) + (world.icon_size / 2)

@@ -25,6 +25,7 @@
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
 	else
+		pixel_x = pixel_y = -(world.icon_size * light_range)
 		switch(light_range)
 			if(1)
 				icon = 'icons/planar_lighting/light_range_1.dmi'
@@ -42,12 +43,16 @@
 
 	icon_state = "white"
 
-	if(!is_directional_light())
-		pixel_x = pixel_y = -(world.icon_size * light_range)
-
 	var/image/I = image(icon)
-	I.icon_state = "overlay"
 	I.layer = 4
+	I.icon_state = "overlay"
+	if(is_directional_light())
+		var/turf/next_turf = get_step(src, dir)
+		for(var/i = 1 to 4)
+			if(CheckOcclusion(next_turf))
+				I.icon_state = "[I.icon_state]_[i]"
+				break
+			next_turf = get_step(next_turf, dir)
 	overlays += I
 
 	//no shadows
@@ -119,7 +124,7 @@
 	var/blocking_dirs = 0
 	for(var/d in cardinal)
 		var/turf/T = get_step(target_turf, d)
-		if(CheckOcclusion(T))//.opacity)
+		if(CheckOcclusion(T))
 			blocking_dirs |= d
 
 	I = image('icons/planar_lighting/wall_lighting.dmi')
