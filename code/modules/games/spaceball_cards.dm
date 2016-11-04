@@ -11,10 +11,10 @@
 		P = new()
 		if(prob(1))
 			P.name = "Spaceball Jones, [year] Brickburn Galaxy Trekers"
-			P.desc = "An autographed Spaceball Jones card!!"
+			P.desc = "An autographed Spaceball Jones card!"
 			P.card_icon = "spaceball_jones"
 		else
-			var/language_type = pick(/datum/language/human,/datum/language/diona)
+			var/language_type = pick(/datum/language/common,/datum/language/skrell,/datum/language/resomi,/datum/language/diona)
 			var/datum/language/L = new language_type()
 			var/team = pick("Jupiter Slingshots", "Ganymede Slammers", "Sol Trekkers","Mars Rovers","Terran Terrors")
 			P.name = "[L.get_random_name(pick(MALE,FEMALE))], [year - rand(0,50)] [team]"
