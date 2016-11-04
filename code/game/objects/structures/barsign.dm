@@ -3,6 +3,9 @@
 	icon_state = "empty"
 	appearance_flags = 0
 	anchored = 1
+	pixel_x = -16
+	pixel_y = -16
+
 	var/cult = 0
 
 /obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
@@ -28,6 +31,7 @@
 /obj/structure/sign/double/barsign/New()
 	..()
 	icon_state = pick(get_valid_states())
+	set_light(l_range = 2, l_power = 1, l_color = "#FF55FF")
 
 /obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user)
 	if(cult)

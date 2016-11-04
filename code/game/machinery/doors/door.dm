@@ -193,7 +193,8 @@
 		return
 	..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/attackby(var/obj/item/I, var/mob/user)
+
 	src.add_fingerprint(user)
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())

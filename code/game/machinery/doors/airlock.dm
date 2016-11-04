@@ -71,6 +71,7 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/dooreng.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+	req_access = list(access_engine)
 
 /obj/machinery/door/airlock/medical
 	name = "Airlock"
@@ -85,11 +86,13 @@
 	name = "Maintenance Access"
 	icon = 'icons/obj/doors/doormaint.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
+	req_access = list(access_maint_tunnels)
 
 /obj/machinery/door/airlock/external
 	name = "External Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
 	icon = 'icons/obj/doors/doorext.dmi'
+	req_access = list(access_external_airlocks)
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
@@ -246,6 +249,7 @@
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 	icon = 'icons/obj/doors/doorsecure.dmi'
+	req_access = list(access_heads)
 
 /*
 About the new airlock wires panel:
@@ -572,7 +576,8 @@ About the new airlock wires panel:
 				s.start()
 	return ..()
 
-/obj/machinery/door/airlock/attack_hand(mob/user as mob)
+/obj/machinery/door/airlock/attack_hand(var/mob/user)
+
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
@@ -662,7 +667,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/attackby(var/obj/item/C, mob/user as mob)
 
 	if(!istype(C))
-		return
+		return ..()
 
 	// Brace is considered installed on the airlock, so interacting with it is protected from electrification.
 	if(brace && (istype(C, /obj/item/weapon/brace_keycard) || istype(C, /obj/item/weapon/crowbar/brace_jack)))
