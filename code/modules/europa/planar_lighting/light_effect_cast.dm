@@ -18,31 +18,45 @@
 		affecting_turfs.Cut()
 		return
 
-	switch(light_range)
-		if(1)
-			icon = 'icons/planar_lighting/light_range_1.dmi'
-		if(2)
-			icon = 'icons/planar_lighting/light_range_2.dmi'
-		if(3)
-			icon = 'icons/planar_lighting/light_range_3.dmi'
-		if(4)
-			icon = 'icons/planar_lighting/light_range_4.dmi'
-		if(5)
-			icon = 'icons/planar_lighting/light_range_5.dmi'
-		else
-			qdel(src)
-			return
+	//cap light range to 5
+	light_range = min(5, light_range)
+
+	if(is_directional_light())
+		icon = 'icons/planar_lighting/directional_overlays.dmi'
+		light_range = 2.5
+	else
+		pixel_x = pixel_y = -(world.icon_size * light_range)
+		switch(light_range)
+			if(1)
+				icon = 'icons/planar_lighting/light_range_1.dmi'
+			if(2)
+				icon = 'icons/planar_lighting/light_range_2.dmi'
+			if(3)
+				icon = 'icons/planar_lighting/light_range_3.dmi'
+			if(4)
+				icon = 'icons/planar_lighting/light_range_4.dmi'
+			if(5)
+				icon = 'icons/planar_lighting/light_range_5.dmi'
+			else
+				qdel(src)
+				return
 
 	icon_state = "white"
-	pixel_x = pixel_y = -(world.icon_size * light_range)
 
-	var/image/base_image = image(icon)
-	base_image.icon_state = "overlay"
-	base_image.layer = 4
-	overlays += base_image
+	var/image/I = image(icon)
+	I.layer = 4
+	I.icon_state = "overlay"
+	if(is_directional_light())
+		var/turf/next_turf = get_step(src, dir)
+		for(var/i = 1 to 4)
+			if(CheckOcclusion(next_turf))
+				I.icon_state = "[I.icon_state]_[i]"
+				break
+			next_turf = get_step(next_turf, dir)
+	overlays += I
 
 	//no shadows
-	if(light_range < 2)
+	if(light_range < 2 || is_directional_light())
 		return
 
 	var/list/visible_turfs = list()
@@ -110,7 +124,7 @@
 	var/blocking_dirs = 0
 	for(var/d in cardinal)
 		var/turf/T = get_step(target_turf, d)
-		if(CheckOcclusion(T))//.opacity)
+		if(CheckOcclusion(T))
 			blocking_dirs |= d
 
 	I = image('icons/planar_lighting/wall_lighting.dmi')

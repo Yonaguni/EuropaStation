@@ -10,8 +10,7 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
-	light_power = 5
-	light_range = 6
+	light_range = 4
 
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
@@ -43,9 +42,7 @@
 		var/turf/target = get_turf(A)
 		if(istype(origin) && istype(target))
 			spawn(1)
-				light_obj.point_angle = -(round(Atan2(origin.x-target.x,origin.y-target.y)))
-				light_obj.update_transform()
-				light_obj.cast_light()
+				light_obj.follow_holder()
 			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
 			return
 	return ..()
@@ -123,7 +120,6 @@
 	item_state = ""
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
-	light_power = 2
 	light_range = 2
 	w_class = 1
 
@@ -133,7 +129,6 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags = CONDUCT
-	light_power = 2
 	light_range = 3
 	w_class = 1
 
@@ -144,8 +139,7 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	light_power = 5
-	light_range = 5
+	light_range = 4
 	w_class = 4
 	flags = CONDUCT
 
@@ -173,8 +167,7 @@
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 1
-	light_range = 8 // Pretty bright.
-	light_power = 6
+	light_range = 5 // Pretty bright.
 	light_color = "#e58775"
 	icon_state = "flare"
 	item_state = "flare"
@@ -230,8 +223,7 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
-	light_range = 6
-	light_power = 3
+	light_range = 5
 	on = 1 //Bio-luminesence has one setting, on.
 
 /obj/item/device/flashlight/slime/New()
