@@ -52,4 +52,4 @@
 	apply_post_species_change = 1
 
 /decl/aspect/sharpeyed/do_post_spawn(var/mob/living/carbon/human/holder)
-	holder.dark_plane.alpha = 30
+	holder.dark_plane.alpha = 80

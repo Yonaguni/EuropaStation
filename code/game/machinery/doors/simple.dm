@@ -1,8 +1,7 @@
 /obj/machinery/door/unpowered/simple
 	name = "door"
-	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
-
+	icon = 'icons/obj/doors/material_doors.dmi'
 	var/material/material
 	var/icon_base
 	hitsound = 'sound/weapons/genhit.ogg'

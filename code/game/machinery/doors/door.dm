@@ -462,6 +462,3 @@
 			bound_height = width * world.icon_size
 
 	update_nearby_tiles()
-
-/obj/machinery/door/morgue
-	icon = 'icons/obj/doors/doormorgue.dmi'
