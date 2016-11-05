@@ -111,8 +111,6 @@
 	minimal_player_age = 6
 	selection_color = "#026865"
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/doctor
-	access = list(access_heads, access_maint_tunnels)
-	minimal_access = list(access_heads, access_maint_tunnels)
 	access = list(access_medical)
 	minimal_access = list(access_medical)
 
