@@ -16,6 +16,7 @@
 #define ASPECT_WRESTLER         "Wrestler"
 #define ASPECT_BRAWLER          "Brawler"
 #define ASPECT_GUNPLAY          "Gunslinger"
+#define ASPECT_TASER            "Pacifier"
 
 // Skill aspects.
 #define ASPECT_SURGEON          "Surgeon"

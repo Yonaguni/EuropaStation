@@ -76,6 +76,8 @@
 /obj/machinery/door/airlock/medical
 	name = "Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
+	icon = 'icons/obj/doors/doormed.dmi'
+	req_access = list(access_medical)
 
 /obj/machinery/door/airlock/virology
 	name = "Airlock"
@@ -947,21 +949,20 @@ About the new airlock wires panel:
 	if(!istype(loc, /turf))
 		return ..()
 
-	var/turf/T = get_step(loc, NORTH)
-	if(istype(T) && !T.CanPass(src, T, 0, 0))
-		dir = NORTH
-		return ..()
-	T = get_step(src.loc, SOUTH)
-	if(istype(T) && !T.CanPass(src, T, 0, 0))
-		dir = SOUTH
-		return ..()
-	T = get_step(src.loc, EAST)
-	if(istype(T) && !T.CanPass(src, T, 0, 0))
-		dir = EAST
-		return ..()
-	T = get_step(src.loc, WEST)
-	if(istype(T) && !T.CanPass(src, T, 0, 0))
-		dir = WEST
+	var/founddir
+	for(var/checkdir in cardinal)
+		var/turf/T = get_step(loc, checkdir)
+		if(istype(T) && !T.CanPass(src, T, 0, 0))
+			founddir = 1
+			dir = checkdir
+			break
+	if(!founddir)
+		for(var/checkdir in cardinal)
+			var/turf/T = get_step(loc, checkdir)
+			if(istype(T) && (locate(/obj/machinery/door/airlock) in T))
+				dir = checkdir
+				break
+
 	return ..()
 
 /obj/machinery/door/airlock/Destroy()

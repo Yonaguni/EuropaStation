@@ -20,7 +20,6 @@
 	layer = DOOR_OPEN_LAYER - 0.01
 	open_layer = DOOR_OPEN_LAYER - 0.01 // Just below doors when open
 	closed_layer = DOOR_CLOSED_LAYER + 0.01 // Just above doors when closed
-	invisibility = INVISIBILITY_MAXIMUM
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
