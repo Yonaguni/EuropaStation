@@ -41,7 +41,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_ENGINEERING "Engineering"
 #define NETWORK_ENGINEERING_OUTPOST "Engineering Outpost"
 #define NETWORK_ERT "ZeEmergencyResponseTeam"
-#define NETWORK_EXODUS "Exodus"
+#define NETWORK_EXODUS "Main"
 #define NETWORK_EXPEDITION "Expedition"
 #define NETWORK_FIRST_DECK "First Deck"
 #define NETWORK_FOURTH_DECK "Fourth Deck"

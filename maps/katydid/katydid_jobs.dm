@@ -129,6 +129,7 @@
 	name = "Crewman"
 	uniform = /obj/item/clothing/under/hireling
 	id_type = /obj/item/weapon/card/id
+	pda_type = /obj/item/device/radio/headset/pda
 
 /decl/hierarchy/outfit/job/katydid/crew/doctor
 	name = "Ship's Doctor"
@@ -139,11 +140,11 @@
 
 /decl/hierarchy/outfit/job/katydid/crew/gunner
 	name = "Gunner"
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/device/radio/headset/pda/security
 
 /decl/hierarchy/outfit/job/katydid/crew/firstmate
 	name = "First Mate"
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/device/radio/headset/pda/command
 
 /decl/hierarchy/outfit/job/katydid/crew/captain
 	name = "Captain"

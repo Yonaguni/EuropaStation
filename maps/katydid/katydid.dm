@@ -4,6 +4,7 @@
 	#include "katydid-2.dmm"
 	#include "katydid-3.dmm"
 	#include "katydid_jobs.dm"
+	#include "katydid_shuttles.dm"
 	#include "katydid_unit_testing.dm"
 
 	#define USING_MAP_DATUM /datum/map/katydid
