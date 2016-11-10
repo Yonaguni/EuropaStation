@@ -23,7 +23,7 @@
 	variant_stock =   /obj/item/gun_component/stock/pistol/laser
 	variant_grip =    /obj/item/gun_component/grip/pistol/laser
 	variant_body =    /obj/item/gun_component/body/pistol/laser
-	variant_barrel =  /obj/item/gun_component/barrel/laser/variable
+	variant_barrel =  /obj/item/gun_component/barrel/laser/taser
 
 /obj/item/weapon/gun/composite/premade/laser_rifle
 	name = "laser rifle"

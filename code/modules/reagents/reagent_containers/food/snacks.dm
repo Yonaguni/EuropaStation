@@ -1042,7 +1042,7 @@
 		if(prob(10))
 			name = "exceptional plump pie"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-			reagents.add_reagent("tramadol", 5)
+			reagents.add_reagent("morphine", 5)
 			bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/xemeatpie
@@ -2075,7 +2075,7 @@
 			name = "exceptional plump helmet biscuit"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
 			reagents.add_reagent("nutriment", 3)
-			reagents.add_reagent("tramadol", 5)
+			reagents.add_reagent("morphine", 5)
 			bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chawanmushi

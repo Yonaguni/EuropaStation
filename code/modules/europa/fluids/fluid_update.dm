@@ -27,7 +27,6 @@
 	fluid_update()
 
 /atom/proc/fluid_update()
-	fluid_can_pass = null
 	var/turf/T = get_turf(src)
 	if(istype(T))
 		T.fluid_update()
@@ -35,6 +34,7 @@
 /turf/fluid_update(var/ignore_neighbors)
 
 	fluid_blocked_dirs = null
+	fluid_can_pass = null
 
 	if(!fluid_master)
 		return
