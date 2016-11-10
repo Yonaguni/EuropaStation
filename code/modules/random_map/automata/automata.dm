@@ -2,7 +2,7 @@
 	descriptor = "generic caves"
 	initial_wall_cell = 55
 	wall_type =  /turf/simulated/mineral
-	floor_type = /turf/simulated/floor/asteroid
+	floor_type = /turf/simulated/mineral/floor
 	target_turf_type = /turf/unsimulated/mask
 	var/iterations = 0               // Number of times to apply the automata rule.
 	var/cell_live_value = WALL_CHAR  // Cell is alive if it has this value.

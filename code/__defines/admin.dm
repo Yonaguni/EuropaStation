@@ -40,3 +40,5 @@
 #define ADDANTAG_PLAYER 1	// Any player may call the add antagonist vote.
 #define ADDANTAG_ADMIN 2	// Any player with admin privilegies may call the add antagonist vote.
 #define ADDANTAG_AUTO 4		// The add antagonist vote is available as an alternative for transfer vote.
+
+#define ADMIN_JUMP_LINK(JX,JY,JZ) "([JX],[JY],[JZ]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[JX];Y=[JY];Z=[JZ]'>JMP</a>)"

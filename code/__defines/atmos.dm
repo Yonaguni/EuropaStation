@@ -97,3 +97,6 @@
 #define ATMOSTANK_NITROUSOXIDE  10000 // N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?
 
 #define GAS_FUEL "fuel"
+#define GAS_OVERLAY_LAYER 4.9
+#define GAS_MAX_ALPHA 130
+#define GAS_MIN_ALPHA 60

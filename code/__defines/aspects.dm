@@ -25,6 +25,7 @@
 #define ASPECT_EXOSUIT_PILOT    "Exosuit Pilot"
 #define ASPECT_EXOSUIT_TECH     "Exosuit Technician"
 #define ASPECT_JOGGER           "Jogger"
+#define ASPECT_DAREDEVIL        "Daredevil"
 
 // Psychic aspects.
 #define ASPECT_PSI_ROOT         "Gifted"

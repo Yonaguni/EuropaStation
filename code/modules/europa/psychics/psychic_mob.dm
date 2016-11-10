@@ -112,7 +112,7 @@
 				backblast(maintaining_powers.len)
 		else
 			var/turf/T = get_turf(src)
-			if(T.is_psi_null())
+			if(T && T.is_psi_null())
 				if(maintaining_powers.len)
 					backblast(maintaining_powers.len)
 				if(psychic_power)

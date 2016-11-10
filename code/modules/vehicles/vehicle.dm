@@ -31,12 +31,14 @@
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
 	var/obj/item/weapon/cell/cell
-	var/charge_use = 200 //W
+	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
 	var/atom/movable/load		//all vehicles can take a load, since they should all be a least drivable
 	var/load_item_visible = 1	//set if the loaded item should be overlayed on the vehicle sprite
 	var/load_offset_x = 0		//pixel_x offset for item overlay
 	var/load_offset_y = 0		//pixel_y offset for item overlay
+	var/mob_offset_y = 0		//pixel_y offset for mob overlay
+	var/debris_path
 
 //-------------------------------------------
 // Standard procs
@@ -61,7 +63,7 @@
 		anchored = init_anc
 
 		if(on && powered)
-			cell.use(charge_use * CELLRATE)
+			cell.use(charge_use)
 
 		//Dummy loads do not have to be moved as they are just an overlay
 		//See load_object() proc in cargo_trains.dm for an example
@@ -73,7 +75,7 @@
 	else
 		return 0
 
-/obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/vehicle/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(W.isscrewdriver())
@@ -86,7 +88,7 @@
 
 	else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 		insert_cell(W, user)
-	else if(W.iswelder())
+	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/T = W
 		if(T.welding)
 			if(health < maxhealth)
@@ -138,15 +140,6 @@
 /obj/vehicle/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
-	pulse2.icon = 'icons/effects/effects.dmi'
-	pulse2.icon_state = "empdisable"
-	pulse2.name = "emp sparks"
-	pulse2.anchored = 1
-	pulse2.set_dir(pick(cardinal))
-
-	spawn(10)
-		qdel(pulse2)
 	if(on)
 		turn_off()
 	spawn(severity*300)
@@ -154,13 +147,9 @@
 		if(was_on)
 			turn_on()
 
-/obj/vehicle/attack_ai(mob/user as mob)
+// For downstream compatibility (in particular Paradise)
+/obj/vehicle/proc/handle_rotation()
 	return
-
-/obj/vehicle/unbuckle_mob(mob/user)
-	. = ..(user)
-	if(load == .)
-		unload(.)
 
 //-------------------------------------------
 // Vehicle procs
@@ -171,7 +160,7 @@
 	if(powered && cell.charge < charge_use)
 		return 0
 	on = 1
-	set_light(initial(light_range))
+	set_light()
 	update_icon()
 	return 1
 
@@ -180,21 +169,9 @@
 	kill_light()
 	update_icon()
 
-/obj/vehicle/emag_act(var/remaining_charges, mob/user as mob)
-	if(!emagged)
-		emagged = 1
-		if(locked)
-			locked = 0
-			user << "<span class='warning'>You bypass [src]'s controls.</span>"
-		return 1
-
 /obj/vehicle/proc/explode()
 	src.visible_message("<span class='danger'>\The [src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
-
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
 
 	if(cell)
 		cell.forceMove(Tsec)
@@ -205,11 +182,10 @@
 	if(istype(load, /mob/living))
 		var/mob/living/M = load
 		M.apply_effects(5, 5)
-
 	unload()
 
-	new /obj/effect/gibspawner/robot(Tsec)
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	if(debris_path) new debris_path(Tsec)
+	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 
 	qdel(src)
 
@@ -275,8 +251,8 @@
 
 	// if a create/closet, close before loading
 	var/obj/structure/closet/crate = C
-	if(istype(crate) && crate.opened && !crate.close())
-		return 0
+	if(istype(crate))
+		crate.close()
 
 	C.forceMove(loc)
 	C.set_dir(dir)
@@ -285,13 +261,15 @@
 	load = C
 
 	if(load_item_visible)
+		C.pixel_x += load_offset_x
+		if(ismob(C))
+			C.pixel_y += mob_offset_y
+		else
+			C.pixel_y += load_offset_y
 		C.layer = layer + 0.1		//so it sits above the vehicle
 
 	if(ismob(C))
 		buckle_mob(C)
-	else if(load_item_visible)
-		C.pixel_x += load_offset_x
-		C.pixel_y += load_offset_y
 
 	return 1
 
@@ -329,13 +307,8 @@
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
 	load.anchored = 0		//we can only load non-anchored items, so it makes sense to set this to false
-	if(ismob(load)) //atoms should probably have their own procs to define how their pixel shifts and layer can be manipulated, someday
-		var/mob/M = load
-		M.pixel_x = M.default_pixel_x
-		M.pixel_y = M.default_pixel_y
-	else
-		load.pixel_x = initial(load.pixel_x)
-		load.pixel_y = initial(load.pixel_y)
+	load.pixel_x = initial(load.pixel_x)
+	load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
 	if(ismob(load))

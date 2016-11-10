@@ -66,6 +66,14 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+	admin_notice("<span class='danger'>Initializing turfs</span>", R_DEBUG)
+	for(var/thing in init_turfs)
+		if(!deleted(thing))
+			var/turf/turf = thing
+			turf.initialize()
+			CHECK_SLEEP_MASTER
+	init_turfs.Cut()
+
 	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
 	for(var/thing in turbolifts)
 		if(!deleted(thing))

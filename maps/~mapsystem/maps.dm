@@ -19,7 +19,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			all_maps[M.path] = M
 	return 1
 
-
 /datum/map
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
@@ -32,6 +31,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/player_levels = list()  // Z-levels a character can typically reach
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
+	var/list/shallow_levels = list()
 
 	var/default_role = "Crewman"
 	var/list/default_job_type = /datum/job/assistant
@@ -70,6 +70,10 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/evac_controller_type = /datum/evacuation_controller
 	var/overmap_z = 0		//If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 
+	var/test_x = 20
+	var/test_y = 20
+	var/test_z = 1
+
 /datum/map/New()
 	..()
 	if(!map_levels)
@@ -82,14 +86,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	return
 
 /datum/map/proc/refresh_mining_turfs()
-
-	set background = 1
-	set waitfor = 0
-
-	for(var/turf/simulated/mineral/M in mining_walls)
-		M.updateMineralOverlays()
-	for(var/turf/simulated/floor/asteroid/M in mining_floors)
-		M.updateMineralOverlays()
+	return
 
 // Can be overridden/updated to be more interesting later.
 /datum/map/proc/do_roundstart_intro()
@@ -101,3 +98,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 /datum/map/proc/get_specific_location()
 	return (specific_location ? specific_location : (stellar_location ? stellar_location.name : "Unknown"))
+
+/proc/layer_is_shallow(var/layer)
+	return using_map && (layer in using_map.shallow_levels)

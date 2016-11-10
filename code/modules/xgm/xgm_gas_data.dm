@@ -23,6 +23,7 @@
 	var/molar_mass = 0.032	// kg/mol
 
 	var/tile_overlay = null
+	var/tile_overlay_colour = null
 	var/overlay_limit = null
 
 	var/flags = 0
@@ -39,7 +40,10 @@
 		gas_data.name[gas.id] = gas.name
 		gas_data.specific_heat[gas.id] = gas.specific_heat
 		gas_data.molar_mass[gas.id] = gas.molar_mass
-		if(gas.tile_overlay) gas_data.tile_overlay[gas.id] = image('icons/effects/tile_effects.dmi', gas.tile_overlay, FLY_LAYER)
+		if(gas.tile_overlay)
+			var/image/I = image('icons/effects/xgm_overlays.dmi', gas.tile_overlay, FLY_LAYER)
+			if(gas.tile_overlay_colour) I.color = gas.tile_overlay_colour
+			gas_data.tile_overlay[gas.id] = I
 		if(gas.overlay_limit) gas_data.overlay_limit[gas.id] = gas.overlay_limit
 		gas_data.flags[gas.id] = gas.flags
 

@@ -1,6 +1,6 @@
 // Returns the lowest turf available on a given Z-level
 var/global/list/base_turf_by_z = list(
-	"5" = /turf/simulated/floor/asteroid // Moonbase.
+	"5" = /turf/simulated/mineral/floor // Moonbase.
 	)
 
 proc/get_base_turf(var/z)

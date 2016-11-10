@@ -227,7 +227,7 @@
 /obj/item/stack/flag/attack_self(mob/user as mob)
 
 	var/turf/T = get_turf(src)
-	if(!T || !istype(T,/turf/simulated/floor/asteroid))
+	if(!T || !istype(T,/turf/simulated/mineral/floor))
 		user << "The flag won't stand up in this terrain."
 		return
 

@@ -5,6 +5,7 @@ var/image/space_light_overlay
 	name = "\proper space"
 	icon_state = "0"
 	luminosity = 1
+	accept_lattice = 1
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -32,37 +33,7 @@ var/image/space_light_overlay
 /turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
 
-/turf/space/attackby(obj/item/C as obj, mob/user as mob)
-
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			return
-		var/obj/item/stack/rods/R = C
-		if (R.use(1))
-			user << "<span class='notice'>Constructing support lattice ...</span>"
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			ReplaceWithLattice()
-		return
-
-	if (istype(C, /obj/item/stack/tile/floor))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
-			return
-		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
-	return
-
-
 // Ported from unstable r355
-
 /turf/space/Entered(atom/movable/A as mob|obj)
 	..()
 	if(A && A.loc == src && ticker && ticker.mode)

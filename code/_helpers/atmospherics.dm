@@ -45,3 +45,7 @@
 
 /obj/item/weapon/flamethrower/atmosanalyze(var/mob/user)
 	if(ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)
+
+/atom/proc/has_gas(var/gas_type, var/min=1)
+	var/datum/gas_mixture/GM = return_air()
+	return (GM && GM.gas[gas_type] && GM.gas[gas_type] >= min)
