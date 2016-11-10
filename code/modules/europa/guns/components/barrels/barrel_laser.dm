@@ -7,6 +7,9 @@
 	recoil_mod = 0
 	accuracy_mod = 1
 
+/obj/item/gun_component/barrel/laser/taser
+	caliber = CALIBER_LASER_TASER
+
 /obj/item/gun_component/barrel/laser/get_projectile_type()
 	return assume_projectile
 

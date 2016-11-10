@@ -1,25 +1,21 @@
-/atom/var/fluid_can_pass
 
 /atom/proc/CanFluidPass(var/coming_from)
+	return 1
+
+/turf/var/fluid_can_pass
+/turf/CanFluidPass(var/coming_from)
+	if(density)
+		return 0
 	if(isnull(fluid_can_pass))
-		if(density)
-			fluid_can_pass = 0
-			return fluid_can_pass
-		else
-			for(var/atom/movable/AM in src)
-				if(!AM.simulated)
-					continue
-				if(!AM.CanFluidPass(coming_from))
-					fluid_can_pass = 0
-					return fluid_can_pass
 		fluid_can_pass = 1
+		for(var/atom/movable/AM in src)
+			if(AM.simulated && !AM.CanFluidPass(coming_from))
+				fluid_can_pass = 0
+				break
 	return fluid_can_pass
 
-/obj/structure/girder/CanFluidPass(var/coming_from)
-	return 1
-
-/obj/structure/table/CanFluidPass(var/coming_from)
-	return 1
+/obj/structure/inflatable/CanFluidPass(var/coming_from)
+	return !density
 
 /obj/structure/window/CanFluidPass(var/coming_from)
 	if(coming_from == dir)

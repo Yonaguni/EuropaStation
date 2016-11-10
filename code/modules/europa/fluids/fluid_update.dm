@@ -27,7 +27,6 @@
 	fluid_update()
 
 /atom/proc/fluid_update()
-	fluid_can_pass = null
 	var/turf/T = get_turf(src)
 	if(istype(T))
 		T.fluid_update()
