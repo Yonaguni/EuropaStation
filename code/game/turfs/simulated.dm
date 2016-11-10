@@ -68,9 +68,6 @@
 	task_unwet_floor(unwet_task, FALSE)
 	return ..()
 
-/turf/simulated/proc/initialize()
-	return
-
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)

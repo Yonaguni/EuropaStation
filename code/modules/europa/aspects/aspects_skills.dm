@@ -13,3 +13,8 @@
 	name = ASPECT_EXOSUIT_TECH
 	desc = "You know exosuits inside and out, and know how to put them together."
 	category = "Skills"
+
+/decl/aspect/daredevil
+	name = ASPECT_DAREDEVIL
+	desc = "You always land on your feet."
+	category = "Skills"

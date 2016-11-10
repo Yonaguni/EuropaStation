@@ -158,7 +158,7 @@ area/space/atmosalert()
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 /area/shuttle/specops/centcom
 	name = "\improper Special Ops Shuttle"
@@ -332,7 +332,7 @@ area/space/atmosalert()
 
 /area/shuttle/research/outpost
 	icon_state = "shuttle"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 /area/airtunnel1/      // referenced in airtunnel.dm:759
 
@@ -522,7 +522,7 @@ area/space/atmosalert()
 /area/rescue_base/mining
 	name = "\improper northeast of the engineering station"
 	icon_state = "northeast"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 /area/rescue_base/arrivals_dock
 	name = "\improper docked with station"
@@ -577,7 +577,7 @@ area/space/atmosalert()
 /area/syndicate_station/mining
 	name = "\improper northeast of the mining station"
 	icon_state = "north"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 /area/syndicate_station/arrivals_dock
 	name = "\improper docked with station"
@@ -630,7 +630,7 @@ area/space/atmosalert()
 /area/skipjack_station/mining
 	name = "\improper south of mining station"
 	icon_state = "north"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 //PRISON
 /area/shuttle/prison/
@@ -2207,7 +2207,7 @@ area/space/atmosalert()
 
 /area/shuttle/constructionsite/site
 	name = "\improper Construction Site Shuttle"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/simulated/mineral/floor
 
 /area/constructionsite
 	name = "\improper Construction Site"

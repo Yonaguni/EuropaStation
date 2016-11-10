@@ -21,6 +21,7 @@
 		equalizing_fluids += F
 
 /obj/effect/fluid/proc/equalize()
+
 	if(!loc || loc != start_loc || fluid_amount <= FLUID_EVAPORATION_POINT)
 		return
 
@@ -30,11 +31,16 @@
 			equalizing_fluids -= F
 			continue
 		equalize_avg_depth += F.fluid_amount
+
 	if(islist(equalizing_fluids) && equalizing_fluids.len > 1)
 		equalize_avg_depth = Floor(equalize_avg_depth/equalizing_fluids.len)
-		if(!equalize_avg_depth)
-			return
-		for(var/thing in equalizing_fluids)
-			var/obj/effect/fluid/F = thing
-			F.set_depth(equalize_avg_depth)
+		if(equalize_avg_depth)
+			for(var/thing in equalizing_fluids)
+				var/obj/effect/fluid/F = thing
+				F.set_depth(equalize_avg_depth)
 	equalizing_fluids.Cut()
+
+	if(istype(loc, /turf/space))
+		qdel(src)
+		return
+

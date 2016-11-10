@@ -410,3 +410,5 @@ var/list/floor_decals = list()
 	icon = 'icons/turf/overlays.dmi'
 	icon_state = "snowfloor"
 
+/obj/effect/floor_decal/road_stripe
+	icon_state = "road_stripe"

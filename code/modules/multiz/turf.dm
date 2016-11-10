@@ -1,168 +1,144 @@
+/turf/var/drop_state = "metalwall"
+/turf/var/open_space
+
 /turf/simulated/open
 	name = "open space"
-	icon = 'icons/turf/space.dmi'
-	icon_state = "empty"
-	layer = 0
+	icon = 'icons/turf/seafloor.dmi'
+	icon_state = "openspace"
+	layer = 1.9
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
+	accept_lattice = 1
+	drop_state = null
+	open_space = 1
+	blend_with_neighbors = -10 // Will accept overlays but shouldn't generate its own.
 
 	var/turf/below
-	var/list/underlay_references
-	var/global/overlay_map = list()
+	var/need_appearance_update
 
-/turf/simulated/open/New()
-	..()
-	update_cliff()
-
-/turf/simulated/open/post_change()
-	..()
-	for(var/A in src)
-		Entered(A)
-
-/turf/simulated/open/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	if(!istype(N,/turf/simulated/open))
-		update_cliff(src)
-	..()
-
-/turf/simulated/open/proc/update_cliff(turf/ignore)
-	var/turf/simulated/open/O = get_step(src,SOUTH)
-	if(istype(O))
-		O.update_icon(ignore)
-	update_icon()
-
-/turf/simulated/open/update_dirt()
-	return 0
+/turf/simulated/open/ex_act()
+	return
 
 /turf/simulated/open/initialize()
 	..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
-	update_icon()
+	if(below) queue_open_turf_update(src)
+
+/turf/simulated/open/flooded
+	name = "abyss"
+	drop_state = "rockwall"
+
+/mob/var/fall_counter = 0
+
+/atom/movable/proc/is_sinking()
+	return simulated
+
+/mob/is_sinking()
+	return 0
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
+
+	..()
+
+	if(mover.throwing || !mover.simulated)
+		return ..()
+
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
 		if(!below)
-			return
+			return ..()
+
+	if(!mover.is_sinking() && (is_flooded(absolute=1) || below.is_flooded(absolute=1))) // Swimmers can just go right across flooded turfs.
+		return ..() // TODO: swimming.
 
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
-	if(!area.has_gravity || area.name == "Space")
-		return
+	if(!area.has_gravity)
+		return ..()
 
-	if(mover.throwing)
-		return
+	// See if something prevents us from falling. Long drops don't care.
+	if(locate(/obj/structure/ladder) in src)
+		return ..()
 
-	if(istype(mover,/obj/effect/decal/cleanable))
-		mover.forceMove(below)
-	else if (istype(mover,/obj/effect))
-		return
-
-	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L)
-		if(istype(mover,/obj))
-			var/obj/O = mover
-			if(O.density || O.w_class > 2)
-				return
-		else
-			return
-
-	// Prevent pipes from falling into the void... if there is a pipe to support it.
-	if(mover.anchored || istype(mover, /obj/item/pipe) && \
-		(locate(/obj/structure/disposalpipe/up) in below) || \
-		 locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
-		return
-
-	// See if something prevents us from falling.
 	var/soft = 0
-	for(var/atom/A in below)
-		if(A.density)
-			if(!istype(A, /obj/structure/window))
-				return
-			else
-				var/obj/structure/window/W = A
-				if(W.is_fulltile())
-					return
-		// Dont break here, since we still need to be sure that it isnt blocked
-		if(istype(A, /obj/structure/stairs))
-			soft = 1
+	if(is_flooded(1) || below.is_flooded(1))
+		soft = 1
+	else if(layer_is_shallow(z))
+		if(below.density)
+			return ..()
+		for(var/atom/A in below)
+			if(A.density)
+				if(!istype(A, /obj/structure/window))
+					return ..()
+				else
+					var/obj/structure/window/W = A
+					if(W.is_fulltile())
+						return ..()
+			// Dont break here, since we still need to be sure that it isnt blocked
+			if(istype(A, /obj/structure/stairs))
+				soft = 1
 
 	// We've made sure we can move, now.
-	mover.Move(below)
+	mover.forceMove(below)
+	if(below.is_flooded(1))
+		visible_message("<span class='notice'>\The [mover] vanishes with a splash!</span>")
 
 	if(!soft)
-		if(!istype(mover, /mob))
-			if(istype(below, /turf/simulated/open))
-				mover.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a whoosh of displaced air.")
+		//todo - loop over below.contents, call handle_falling_collision() on objects
+		if(!istype(mover, /mob/living))
+			if(below.open_space)
+				mover.visible_message("<span class='warning'>\The [mover] falls into view from above!</span>", "<span class='warning'>You hear a whoosh of displaced air.</span>")
 			else
-				mover.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You hear something slam into the deck.")
+				mover.visible_message("<span class='warning'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='warning'>You hear something slam into the ground.</span>")
 		else
-			var/mob/M = mover
-			if(istype(below, /turf/simulated/open))
-				below.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a soft whoosh of displaced air..")
+			var/mob/living/M = mover
+			M.fall_counter += (layer_is_shallow(z) ? 1 : 10)
+			if(below.open_space)
+				below.visible_message("<span class='warning'>\The [mover] falls from above and plummets through \the [below]!</span>", "<span class='warning'>You hear a soft whoosh[M.stat ? "" : " and some screaming"].</span>")
 			else
-				M.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You land on \the [below].", "You hear a soft whoosh and a crunch")
-
-			// Handle people getting hurt, it's funny!
-			if (istype(mover, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = mover
-				var/damage = 5
-				H.apply_damage(rand(0, damage), BRUTE, BP_HEAD)
-				H.apply_damage(rand(0, damage), BRUTE, BP_CHEST)
-				H.apply_damage(rand(0, damage), BRUTE, BP_L_LEG)
-				H.apply_damage(rand(0, damage), BRUTE, BP_R_LEG)
-				H.apply_damage(rand(0, damage), BRUTE, BP_L_ARM)
-				H.apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
-				H.weakened = max(H.weakened,2)
-				H.updatehealth()
+				M.visible_message("<span class='danger'>\The [mover] falls from above and slams into \the [below]!</span>", "<span class='danger'>You collide with \the [below]!</span>", "<span class='warning'>You hear a soft whoosh and a crunch.</span>")
+				// Handle people getting hurt, it's funny!
+				M.adjustBruteLoss(M.fall_counter * rand(15,30))
+				M.fall_counter = 0
+				M.Weaken(M.fall_counter * rand(2,3))
+				M.updatehealth()
+	return ..()
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(0)
 
-/turf/simulated/open/update_icon(turf/ignore)
-	underlays.Cut()
-	overlays.Cut()
-	if(below)
-		var/image/I = image(icon = below.icon, icon_state = below.icon_state)
-		I.overlays = below.overlays
-		underlays += I
-	var/turf/simulated/T = get_step(src,NORTH)
-	if(istype(T) && (!istype(T,/turf/simulated/open) || T==ignore))
-		overlays += image(icon ='icons/turf/cliff.dmi', icon_state = "metal", layer = TURF_LAYER+0.1)
-	var/obj/structure/stairs/S = locate() in below
-	if(S && S.loc == below)
-		var/image/I = image(icon = S.icon, icon_state = "below", dir = S.dir, layer = TURF_LAYER+0.2)
-		I.pixel_x = S.pixel_x
-		I.pixel_y = S.pixel_y
-		overlays += I
-
-// Straight copy from space.
-/turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
+/turf/simulated/open/attack_hand(var/mob/user)
+	if(below && below.is_flooded())
+		var/mob/living/carbon/human/H = user
+		if(!istype(H))
+			return ..()
+		H << "<span class='notice'>You start washing your hands.</span>"
+		if(!do_after(H, 40) || !Adjacent(H))
 			return
-		var/obj/item/stack/rods/R = C
-		if (R.use(1))
-			user << "<span class='notice'>You lay down the support lattice.</span>"
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			new /obj/structure/lattice(locate(src.x, src.y, src.z))
+		H.clean_blood()
+		H.update_inv_gloves()
+		H.visible_message("<span class='notice'>\The [user] washes their hands in \the [src].</span>")
 		return
+	return ..()
 
-	if (istype(C, /obj/item/stack/tile))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
+/turf/simulated/open/attackby(var/obj/item/O, var/mob/user)
+	if(below && below.is_flooded())
+		var/obj/item/weapon/reagent_containers/RG = O
+		if(istype(RG) && RG.is_open_container())
+			RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+			user.visible_message("<span class='notice'>\The [user] fills \the [RG] from \the [src].</span>")
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+			return 1
+		user << "<span class='notice'>You start washing \the [O].</span>"
+		if(!do_after(user, 40) || !Adjacent(user))
 			return
-		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
-	return
+		if(user.get_active_hand() != O)
+			return
+		O.clean_blood()
+		user.visible_message("<span class='notice'>\The [user] washes \the [O] in \the [src].</span>")
+		return
+	return ..()

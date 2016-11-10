@@ -13,6 +13,7 @@ env:
   matrix:
     - MAP_PATH=aeolus
     - MAP_PATH=katydid
+    - MAP_PATH=borderworld
     - MAP_PATH=overmap_example
 
 cache:

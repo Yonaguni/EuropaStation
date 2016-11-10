@@ -1,7 +1,7 @@
 /obj/structure/grille
 	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
@@ -238,3 +238,20 @@
 	if(air_group)
 		return 0 //Make sure air doesn't drain
 	..()
+
+/obj/structure/grille/fence
+	name = "fence"
+	icon = 'icons/obj/structures/fence.dmi'
+	icon_state = "fence"
+	density = 1
+	anchored = 1
+
+/obj/structure/grille/attackby(var/obj/item/thing, var/mob/user)
+	if(thing.isscrewdriver())
+		return
+	return ..()
+
+/obj/structure/grille/fence/gate
+	name = "fence gate"
+	icon_state = "fence_gate"
+	density = 0

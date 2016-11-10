@@ -7,8 +7,8 @@
 	floor_type = /turf/space
 
 	var/ore_divisor = 20
-	var/mineral_sparse =  /turf/simulated/mineral/random
-	var/mineral_rich = /turf/simulated/mineral/random/high_chance
+	var/mineral_sparse =  /turf/simulated/mineral //random
+	var/mineral_rich = /turf/simulated/mineral //random/high_chance
 	var/list/ore_turfs = list()
 
 /datum/random_map/automata/asteroids/get_map_char(var/value)

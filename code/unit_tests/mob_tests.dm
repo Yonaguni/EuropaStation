@@ -24,17 +24,9 @@ datum/unit_test/human_breath
 	var/mob/living/carbon/human/H
 	async = 1
 
-
 datum/unit_test/human_breath/start_test()
-	var/turf/T = locate(20,20,1) //TODO:  Find better way.
-
-	if(!istype(T, /turf/space))	//If the above isn't a space turf then we force it to find one will most likely pick 1,1,1
-		T = locate(/turf/space)
-
-	H = new(T)
-
+	H = new(locate(/turf/space))
 	starting_oxyloss = damage_check(H, OXY)
-
 	return 1
 
 datum/unit_test/human_breath/check_result()
@@ -44,10 +36,12 @@ datum/unit_test/human_breath/check_result()
 
 	ending_oxyloss = damage_check(H, OXY)
 
-	if(starting_oxyloss < ending_oxyloss)
+	if(!H.loc)
+		pass("Mob could not find a space turf, skipping.")
+	else if(starting_oxyloss < ending_oxyloss)
 		pass("Oxyloss = [ending_oxyloss]")
 	else
-		fail("Mob is not taking oxygen damage.  Damange is [ending_oxyloss]")
+		fail("Mob is not taking oxygen damage.  Damage is [ending_oxyloss]")
 
 	return 1	// return 1 to show we're done and don't want to recheck the result.
 

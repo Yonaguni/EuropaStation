@@ -31,13 +31,15 @@
 
 /turf/simulated/floor/New(var/newloc, var/floortype)
 	..(newloc)
-	if(!floortype && initial_flooring)
-		floortype = initial_flooring
 	if(floortype)
-		set_flooring(get_flooring_data(floortype))
+		initial_flooring = floortype
+	if(initial_flooring)
+		set_flooring(get_flooring_data(initial_flooring))
+	..()
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
-	make_plating(defer_icon_update = 1)
+	if(flooring)
+		make_plating(defer_icon_update = 1)
 	flooring = newflooring
 	update_icon(1)
 	levelupdate()

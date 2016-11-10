@@ -1,3 +1,5 @@
+var/list/turf_edge_cache = list()
+
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
@@ -22,6 +24,10 @@
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
 
+	var/accept_lattice
+	var/blend_with_neighbors = 0
+	var/outside
+
 	var/list/decals
 
 /turf/New()
@@ -31,9 +37,61 @@
 			src.Entered(AM)
 			return
 	turfs |= src
+	if(blend_with_neighbors || flooded)
+		if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
+			initialize()
+		else
+			init_turfs |= src
 
-/turf/proc/update_icon()
-	return
+/turf/proc/initialize()
+	update_icon(1)
+
+/turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
+	var/list/overlays_to_add = previously_added
+	if(blend_with_neighbors)
+		for(var/checkdir in cardinal)
+			var/turf/T = get_step(src, checkdir)
+			if(istype(T) && T.blend_with_neighbors && blend_with_neighbors < T.blend_with_neighbors && icon_state != T.icon_state)
+				var/cache_key = "[T.icon_state]-[checkdir]"
+				if(!turf_edge_cache[cache_key])
+					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
+				overlays_to_add += turf_edge_cache[cache_key]
+
+	if(is_flooded(absolute=1))
+		overlays_to_add += ocean_overlay_img
+	overlays = overlays_to_add
+	if(update_neighbors)
+		for(var/check_dir in alldirs)
+			var/turf/T = get_step(src, check_dir)
+			if(istype(T))
+				T.update_icon()
+
+/turf/attackby(var/obj/item/C, var/mob/user)
+	if(!accept_lattice)
+		return
+
+	if(istype(C, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L) return
+		var/obj/item/stack/rods/R = C
+		if (R.use(1))
+			user << "<span class='notice'>Constructing support lattice ...</span>"
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			new /obj/structure/lattice(src)
+		return
+
+	if(istype(C, /obj/item/stack/tile/floor))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/floor/S = C
+			if (S.get_amount() < 1) return
+			qdel(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.use(1)
+			ChangeTurf(/turf/simulated/floor)
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
+		return
 
 /turf/Destroy()
 	turfs -= src

@@ -1,94 +1,75 @@
-/obj/vehicle/bike/
-	name = "space-bike"
-	desc = "Space wheelies! Woo!"
+var/list/bike_cache = list()
+
+/obj/vehicle/bike
+	name = "motorbike"
+	desc = "Wheelies! Head trauma! Woo! "
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
 	dir = SOUTH
 
 	load_item_visible = 1
-	buckle_pixel_shift = "x=0;y=5"
+	mob_offset_y = 5
 	health = 100
 	maxhealth = 100
-
-	locked = 0
+	pixel_x = -16
+	pixel_y = -16
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
+	debris_path = /obj/structure/scrap/vehicle
+	light_type = LIGHT_DIRECTIONAL
+	light_power = 5
+	light_range = 6
+
+	var/max_move_speed = 3
+	var/cur_move_speed = 0
+	var/cur_move_dir = 0
+	var/moved
 	var/protection_percent = 60
-
-	var/land_speed = 10 //if 0 it can't go on turf
-	var/space_speed = 2
+	var/land_speed = 1 //if 0 it can't go on turf
+	var/space_speed = 0
 	var/bike_icon = "bike"
-
-	var/datum/effect/effect/system/trail/trail
+	var/idle_sound = 'sound/misc/bike_idle.ogg'
+	var/start_sound = 'sound/misc/bike_start.ogg'
+	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
-	var/obj/item/weapon/engine/engine = null
-	var/engine_type
-	var/prefilled = 0
-
-/obj/vehicle/bike/New()
-	..()
-	if(engine_type)
-		load_engine(new engine_type(src.loc))
-		if(prefilled)
-			engine.prefill()
-	update_icon()
+	var/collision_cooldown
 
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
-	set category = "Object"
+	set category = "Vehicle"
 	set src in view(0)
 
 	if(usr.incapacitated()) return
-	if(!engine)
-		usr << "<span class='warning'>\The [src] does not have an engine block installed...</span>"
-		return
 
 	if(!on)
 		turn_on()
+		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		playsound(src.loc, start_sound, 100)
 	else
 		turn_off()
+		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
 /obj/vehicle/bike/verb/kickstand()
 	set name = "Toggle Kickstand"
-	set category = "Object"
+	set category = "Vehicle"
 	set src in view(0)
 
 	if(usr.incapacitated()) return
 
 	if(kickstand)
-		usr.visible_message("\The [usr] puts up \the [src]'s kickstand.")
+		src.visible_message("You put up \the [src]'s kickstand.")
+		playsound(src.loc, 'sound/misc/bike_stand_up.ogg', 75,1)
 	else
 		if(istype(src.loc,/turf/space))
 			usr << "<span class='warning'> You don't think kickstands work in space...</span>"
 			return
-		usr.visible_message("\The [usr] puts down \the [src]'s kickstand.")
+		src.visible_message("You put down \the [src]'s kickstand.")
+		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75,1)
 		if(pulledby)
 			pulledby.stop_pulling()
 
 	kickstand = !kickstand
 	anchored = (kickstand || on)
-
-/obj/vehicle/bike/proc/load_engine(var/obj/item/weapon/engine/E, var/mob/user)
-	if(engine)
-		return
-	if(user)
-		user.drop_from_inventory(E)
-	engine = E
-	engine.forceMove(src)
-	if(trail)
-		qdel(trail)
-	trail = engine.get_trail()
-	if(trail)
-		trail.set_up(src)
-
-/obj/vehicle/bike/proc/unload_engine()
-	if(!engine)
-		return
-	engine.forceMove(get_turf(src))
-	if(trail)
-		trail.stop()
-		qdel(trail)
-	trail = null
 
 /obj/vehicle/bike/load(var/atom/movable/C)
 	var/mob/living/M = C
@@ -96,31 +77,6 @@
 	if(M.buckled || M.restrained() || !Adjacent(M) || !M.Adjacent(src))
 		return 0
 	return ..(M)
-
-/obj/vehicle/bike/emp_act(var/severity)
-	if(engine)
-		engine.emp_act(severity)
-	..()
-
-/obj/vehicle/bike/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
-	return
-
-/obj/vehicle/bike/attackby(obj/item/W as obj, mob/user as mob)
-	if(open)
-		if(istype(W, /obj/item/weapon/engine))
-			if(engine)
-				user << "<span class='warning'>There is already an engine block in \the [src].</span>"
-				return 1
-			user.visible_message("<span class='warning'>\The [user] installs \the [W] into \the [src].</span>")
-			load_engine(W)
-			return
-		else if(engine && engine.attackby(W,user))
-			return 1
-		else if(W.iscrowbar() && engine)
-			user << "You pop out \the [engine] from \the [src]."
-			unload_engine()
-			return 1
-	return ..()
 
 /obj/vehicle/bike/MouseDrop_T(var/atom/movable/C, mob/user as mob)
 	if(!load(C))
@@ -133,56 +89,115 @@
 		user << "You unbuckle yourself from \the [src]"
 
 /obj/vehicle/bike/relaymove(mob/user, direction)
-	if(user != load || !on || user.incapacitated())
+	if(user != load || !on)
 		return
 	return Move(get_step(src, direction))
 
 /obj/vehicle/bike/Move(var/turf/destination)
-	if(kickstand || (world.time <= l_move_time + move_delay)) return
+	if(kickstand) return
 	//these things like space, not turf. Dragging shouldn't weigh you down.
-	if(!pulledby)
-		if(istype(destination,/turf/space) || pulledby)
-			if(!space_speed)
-				return 0
-			move_delay = space_speed
-		else
-			if(!land_speed)
-				return 0
-			move_delay = land_speed
-		if(!engine || !engine.use_power())
-			turn_off()
+	if(istype(destination,/turf/space) || pulledby)
+		if(!space_speed)
 			return 0
-	return ..()
+		move_delay = space_speed
+	else
+		if(!land_speed)
+			return 0
+		move_delay = land_speed
+	moved = ..()
+	return moved
 
 /obj/vehicle/bike/turn_on()
-	if(!engine || on)
-		return
-
-	engine.rev_engine(src)
-	if(trail)
-		trail.start()
 	anchored = 1
-
 	update_icon()
-
+	processing_objects |= src
 	if(pulledby)
 		pulledby.stop_pulling()
 	..()
 
 /obj/vehicle/bike/turn_off()
-	if(!on)
-		return
-	if(engine)
-		engine.putter(src)
-
-	if(trail)
-		trail.stop()
-
 	anchored = kickstand
-
+	processing_objects -= src
 	update_icon()
-
 	..()
+
+/obj/vehicle/bike/Bump(var/atom/thing)
+
+	if(!istype(thing, /atom/movable))
+		return
+
+	var/crashed
+	var/atom/movable/A = thing
+
+	// Bump things away!
+	if(istype(A, /turf))
+		var/turf/T = A
+		if(T.density)
+			if(collision_cooldown)
+				return
+			crashed = 1
+	else if(!A.anchored)
+		var/turf/T = get_step(A, dir)
+		if(isturf(T))
+			A.Move(T)
+	else
+		if(cur_move_speed > 1)
+			if(collision_cooldown)
+				return
+			A.attack_generic(src, rand(30,50), "slams into")
+			crashed = 1
+
+	if(crashed)
+		collision_cooldown = 1
+		if(prob(50))
+			var/mob/living/M = load
+			unload(load, dir)
+			if(istype(M))
+				M << "<span class='danger'>You are hurled off \the [src]!</span>"
+				if(!M.has_aspect(ASPECT_DAREDEVIL))
+					M.Weaken(rand(6,10))
+				M.throw_at(get_edge_target_turf(src,src.dir),rand(1,2), move_delay)
+				spawn(3)
+					if(!M.lying)
+						M << "<span class='notice'>You land on your feet!</span>"
+
+			src.ex_act(2)
+
+	if(cur_move_speed > 1 && istype(A, /mob/living))
+		var/mob/living/M = A
+		if(!M.lying)
+			if(istype(load, /mob/living))
+				var/mob/living/driver = load
+				driver << "<span class='danger'>You collide with \the [M]!</span>"
+				msg_admin_attack("[driver.name] ([driver.ckey]) hit [M.name] ([M.ckey]) with [src]. [ADMIN_JUMP_LINK(src.x,src.y,src.z)]")
+			visible_message("<span class='danger'>\The [src] knocks \the [M] down!</span>")
+			RunOver(M)
+			M.Weaken(rand(5,10))
+			M.throw_at(get_edge_target_turf(src,get_dir(src,M)),rand(1,2), move_delay)
+
+/obj/vehicle/bike/RunOver(var/mob/living/carbon/human/H)
+	if(istype(load, /mob/living))
+		load << "<span class='danger'>You run \the [H] down!</span>"
+		H << "<span class='danger'>\The [load] runs you down!</span>"
+	else
+		H << "<span class='danger'>\The [src] runs you down!</span>"
+	if(istype(H))
+		var/list/parts = list(BP_HEAD, BP_CHEST, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
+		for(var/i = 0, i < rand(1,3), i++)
+			H.apply_damage((rand(1,5)), BRUTE, pick(parts))
+
+
+/obj/vehicle/bike/process()
+	if(on)
+		if(moved && cur_move_speed < max_move_speed)
+			cur_move_speed++
+		else if(cur_move_speed > 0)
+			cur_move_speed--
+		playsound(src.loc, idle_sound, 100)
+	else
+		cur_move_speed = 0
+	moved = 0
+	collision_cooldown = 0
 
 /obj/vehicle/bike/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(protection_percent))
@@ -193,23 +208,21 @@
 /obj/vehicle/bike/update_icon()
 	overlays.Cut()
 
-	if(on)
-		icon_state = "[bike_icon]_on"
-	else
-		icon_state = "[bike_icon]_off"
-	overlays += image('icons/obj/bike.dmi', "[icon_state]_overlay", MOB_LAYER + 1)
+	// Update base.
+	icon_state = "[bike_icon]_[on ? "on" : "off"]"
+
+	// Update over-driver image.
+	if(!bike_cache[icon_state])
+		bike_cache[icon_state] = image(icon, "[icon_state]_overlay", MOB_LAYER+0.5)
+	overlays += bike_cache[icon_state]
+
+	// Update wheel image.
+	var/cache_key = "[bike_icon]_wheels"
+	if(!bike_cache[cache_key])
+		bike_cache[cache_key] = image(icon, cache_key)
+	underlays += bike_cache[cache_key]
 	..()
 
-
 /obj/vehicle/bike/Destroy()
-	qdel(trail)
-	qdel(engine)
+	processing_objects -= src
 	return ..()
-
-/obj/vehicle/bike/thermal
-	engine_type = /obj/item/weapon/engine/thermal
-	prefilled = 1
-
-/obj/vehicle/bike/electric
-	engine_type = /obj/item/weapon/engine/electric
-	prefilled = 1

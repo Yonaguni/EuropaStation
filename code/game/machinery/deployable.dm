@@ -57,7 +57,7 @@ for reference:
 /obj/structure/barricade
 	name = "barricade"
 	desc = "This space is blocked off by a barricade."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "barricade"
 	anchored = 1.0
 	density = 1.0
