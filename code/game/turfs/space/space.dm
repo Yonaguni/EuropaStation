@@ -1,4 +1,12 @@
-var/image/space_light_overlay
+var/image/exterior_light_overlay
+
+/proc/get_exterior_light_overlay()
+	if(!exterior_light_overlay)
+		exterior_light_overlay = image(icon = 'icons/planar_lighting/space.dmi')
+		exterior_light_overlay.blend_mode = BLEND_ADD
+		exterior_light_overlay.mouse_opacity = 0
+		exterior_light_overlay.plane = -10
+	return exterior_light_overlay
 
 /turf/space
 	icon = 'icons/turf/space.dmi'
@@ -17,12 +25,7 @@ var/image/space_light_overlay
 	if(!istype(src, /turf/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
 	if(config.starlight)
-		if(!space_light_overlay)
-			space_light_overlay = image(icon = 'icons/planar_lighting/space.dmi')
-			space_light_overlay.blend_mode = BLEND_ADD
-			space_light_overlay.mouse_opacity = 0
-			space_light_overlay.plane = -10
-		overlays += space_light_overlay
+		overlays += get_exterior_light_overlay()
 	..()
 
 // override for space turfs, since they should never hide anything
