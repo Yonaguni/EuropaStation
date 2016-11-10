@@ -170,7 +170,8 @@
 				item_state_slots[slot_back_str] = body.item_state
 
 	overlays.Cut()
-	chamber.update_ammo_overlay()
+	if(chamber)
+		chamber.update_ammo_overlay()
 	var/list/overlays_to_add = list()
 	for(var/obj/item/gun_component/GC in list(body, barrel, grip, stock, chamber) + accessories)
 		overlays_to_add += GC

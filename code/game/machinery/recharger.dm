@@ -100,7 +100,7 @@ obj/machinery/recharger/process()
 			var/obj/item/weapon/gun/composite/C = charging
 			if(istype(C.chamber, /obj/item/gun_component/chamber/laser))
 				var/obj/item/gun_component/chamber/laser/hcell = C.chamber
-				if(hcell.power_supply && !hcell.power_supply.fully_charged())
+				if(hcell && hcell.power_supply && !hcell.power_supply.fully_charged())
 					hcell.power_supply.give(active_power_usage*CELLRATE)
 					icon_state = icon_state_charging
 					update_use_power(2)

@@ -1,24 +1,6 @@
 
 // see code/datums/recipe.dm
 
-
-/* No telebacon. just no...
-/datum/recipe/telebacon
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-
-I said no!
-/datum/recipe/syntitelebacon
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-*/
-
 /datum/recipe/friedegg
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
@@ -105,7 +87,7 @@ I said no!
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/xenoburger
 
@@ -224,9 +206,9 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
@@ -297,7 +279,7 @@ I said no!
 /datum/recipe/xemeatpie
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/xemeatpie
 
@@ -325,7 +307,7 @@ I said no!
 /datum/recipe/wingfangchu
 	reagents = list("soysauce" = 5)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/wingfangchu
 

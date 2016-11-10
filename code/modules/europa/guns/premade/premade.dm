@@ -35,4 +35,5 @@
 			for(var/i in 1 to (max_shots-1))
 				new ammo_type (B)
 		spawn(0)
-			B.update_ammo_from_contents()
+			if(B)
+				B.update_ammo_from_contents()
