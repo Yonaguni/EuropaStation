@@ -651,32 +651,6 @@
 		..()
 		src.bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat
-	name = "bear meat"
-	desc = "A very manly slab of meat."
-	icon_state = "bearmeat"
-	filling_color = "#DB0000"
-	center_of_mass = "x=16;y=10"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 12)
-		reagents.add_reagent("jumpstart", 5)
-		src.bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	name = "meat"
-	desc = "A slab of green meat. Smells like acid."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	center_of_mass = "x=16;y=10"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		reagents.add_reagent("pacid",6)
-		src.bitesize = 6
-
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
