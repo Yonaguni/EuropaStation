@@ -35,6 +35,7 @@
 /turf/fluid_update(var/ignore_neighbors)
 
 	fluid_blocked_dirs = null
+	fluid_can_pass = null
 
 	if(!fluid_master)
 		return
