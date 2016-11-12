@@ -152,13 +152,14 @@ area/space/atmosalert()
 
 /area/shuttle/mining
 	name = "\improper Mining Shuttle"
+	requires_power = 1
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
-	base_turf = /turf/simulated/mineral/floor
+	base_turf = /turf/space
 
 /area/shuttle/specops/centcom
 	name = "\improper Special Ops Shuttle"
