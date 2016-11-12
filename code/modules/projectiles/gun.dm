@@ -171,10 +171,10 @@
 	if(!user || !target) return
 	if(target.z != user.z) return
 
-	add_fingerprint(user)
-
-	if(!special_check(user))
-		return
+	if(istype(user))
+		add_fingerprint(user)
+		if(!special_check(user))
+			return
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
@@ -182,27 +182,32 @@
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
+	if(istype(user))
+		user.setClickCooldown(shoot_time) //no clicking on things while shooting
+		user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
-	var/held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
+	var/held_twohanded = TRUE
 	var/held_acc_mod = 0
 	var/held_disp_mod = 0
-	if(requires_two_hands && !held_twohanded)
-		held_acc_mod = -3
-		held_disp_mod = 3
-	if(recoil > 1 )
-		held_disp_mod++
-	if(recoil > 5)
-		held_disp_mod += 3
-	//actually attempt to shoot
 	var/static_recoil = recoil
-	if(issmall(user))	//it sucks to be short
-		recoil = 2*recoil
+
+	if(istype(user))
+		held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
+		if(requires_two_hands && !held_twohanded)
+			held_acc_mod = -3
+			held_disp_mod = 3
+		if(recoil > 1 )
+			held_disp_mod++
+		if(recoil > 5)
+			held_disp_mod += 3
+		//actually attempt to shoot
+		if(issmall(user))	//it sucks to be short
+			recoil = 2*recoil
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
+	var/target_def_zone = (istype(user) ? user.zone_sel.selecting : get_exposed_defense_zone(target))
 	for(var/i in 1 to burst)
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
@@ -214,7 +219,7 @@
 		if(pointblank)
 			process_point_blank(projectile, user, target)
 
-		if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
+		if(process_projectile(projectile, user, target, target_def_zone, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
 
@@ -230,8 +235,9 @@
 	recoil = static_recoil
 
 	//update timing
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.setMoveCooldown(move_delay)
+	if(istype(user))
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 //obtains the next projectile to fire
@@ -251,56 +257,56 @@
 	if (user)
 		user.visible_message("<span class='danger'>*click click*</span>")
 	else
-		src.visible_message("*click click*")
+		src.visible_message("<span class='danger'>*click click*</span>")
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 //called after successfully firing
-/obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/weapon/gun/proc/handle_post_fire(atom/movable/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(!silenced)
 		if(reflex)
 			user.visible_message(
 				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
 				"You hear a [fire_sound_text]!"
 			)
 		else
 			user.visible_message(
 				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
 				"You hear a [fire_sound_text]!"
 				)
 
-	if(requires_two_hands)
-		if(!src.is_held_twohanded(user))
-			switch(requires_two_hands)
-				if(1)
-					if(prob(50)) //don't need to tell them every single time
-						user << "<span class='warning'>Your aim wavers slightly.</span>"
-				if(2)
-					user << "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>"
-				if(3)
-					user << "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>"
-				if(4 to INFINITY)
-					user << "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>"
-		else if(!user.can_wield_item(src))
-			switch(requires_two_hands)
-				if(1)
-					if(prob(50)) //don't need to tell them every single time
-						user << "<span class='warning'>Your aim wavers slightly.</span>"
-				if(2)
-					user << "<span class='warning'>Your aim wavers as you try to hold \the [src] steady.</span>"
-				if(3)
-					user << "<span class='warning'>You have trouble holding \the [src] steady.</span>"
-				if(4 to INFINITY)
-					user << "<span class='warning'>You struggle to hold \the [src] steady!</span>"
+	if(ismob(user))
+		var/mob/M = user
+		if(requires_two_hands)
+			if(!src.is_held_twohanded(user))
+				switch(requires_two_hands)
+					if(1)
+						if(prob(50)) //don't need to tell them every single time
+							user << "<span class='warning'>Your aim wavers slightly.</span>"
+					if(2)
+						user << "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>"
+					if(3)
+						user << "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>"
+					if(4 to INFINITY)
+						user << "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>"
+			else if(!M.can_wield_item(src))
+				switch(requires_two_hands)
+					if(1)
+						if(prob(50)) //don't need to tell them every single time
+							user << "<span class='warning'>Your aim wavers slightly.</span>"
+					if(2)
+						user << "<span class='warning'>Your aim wavers as you try to hold \the [src] steady.</span>"
+					if(3)
+						user << "<span class='warning'>You have trouble holding \the [src] steady.</span>"
+					if(4 to INFINITY)
+						user << "<span class='warning'>You struggle to hold \the [src] steady!</span>"
 
-	if(screen_shake)
-		spawn()
-			shake_camera(user, screen_shake+1, screen_shake)
+		if(screen_shake)
+			spawn()
+				shake_camera(user, screen_shake+1, screen_shake)
 	update_icon()
 
 
-/obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
+/obj/item/weapon/gun/proc/process_point_blank(obj/projectile, atom/movable/user, atom/target)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -321,7 +327,7 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, var/burst, var/held_twohanded, var/supplied_acc_mod = 0, var/supplied_disp_mod = 0)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, atom/movable/user, atom/target, var/burst, var/held_twohanded, var/supplied_acc_mod = 0, var/supplied_disp_mod = 0)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -346,7 +352,7 @@
 		P.accuracy += 2
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/weapon/gun/proc/process_projectile(obj/projectile, atom/movable/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return 0 //default behaviour only applies to true projectiles
@@ -440,7 +446,7 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
 
-/obj/item/weapon/gun/proc/switch_firemodes(var/mob/user)
+/obj/item/weapon/gun/proc/switch_firemodes(var/atom/movable/user)
 	if(firemodes.len <= 1)
 		return null
 

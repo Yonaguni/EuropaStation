@@ -65,7 +65,9 @@
 		return M
 	return null
 
-/obj/item/weapon/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)
-	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]) at [target].")
-	log_game("[key_name_admin(user)] used a rocket launcher ([src.name]) at [target].")
+/obj/item/weapon/gun/launcher/rocket/handle_post_fire(atom/movable/user, atom/target)
+	if(ismob(user))
+		var/mob/M = user
+		message_admins("[key_name_admin(M)] fired a rocket from a rocket launcher ([src.name]) at [target].")
+		log_game("[key_name_admin(M)] used a rocket launcher ([src.name]) at [target].")
 	..()

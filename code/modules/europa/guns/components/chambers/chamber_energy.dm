@@ -77,7 +77,7 @@
 	update_icon()
 
 /obj/item/gun_component/chamber/laser/Destroy()
-	if(self_recharge_time)
+	if(!self_recharge_time)
 		processing_objects.Remove(src)
 	return ..()
 
@@ -100,8 +100,16 @@
 	return round(power_supply ? (power_supply.charge / charge_cost) : 0)
 
 /obj/item/gun_component/chamber/laser/consume_next_projectile()
-	if(!power_supply || !power_supply.checked_use(charge_cost))
-		return null
+
+	if(holder.installed_in_turret)
+		var/obj/machinery/porta_turret/turret = loc.loc
+		if(turret.stat & (BROKEN|NOPOWER))
+			return null
+		turret.use_power(charge_cost)
+	else
+		if(!power_supply || !power_supply.checked_use(charge_cost))
+			return null
+
 	var/projtype
 	if(holder && holder.barrel)
 		projtype = holder.barrel.get_projectile_type()

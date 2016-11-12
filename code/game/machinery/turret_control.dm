@@ -119,8 +119,20 @@
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
 	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
+
+	var/check_firemode
+	if(istype(control_area))
+		for (var/obj/machinery/porta_turret/aTurret in control_area)
+			if(aTurret.installed_gun.firemodes.len)
+				var/datum/firemode/current_mode = aTurret.installed_gun.firemodes[aTurret.installed_gun.sel_mode]
+				if(!check_firemode)
+					check_firemode = current_mode.name
+				else if(check_firemode != current_mode.name)
+					data["cannot_cycle_firemode"] = 1
+					break
+		data["current_firemode"] = check_firemode
+	else
+		data["cannot_cycle_firemode"] = 1
 
 	if(data["access"])
 		var/settings[0]
@@ -143,6 +155,10 @@
 	if(..())
 		return 1
 
+	if(href_list["cycle_firemode"] && istype(control_area))
+		for (var/obj/machinery/porta_turret/aTurret in control_area)
+			aTurret.cycle_fire_mode()
+		return 1
 
 	if(href_list["command"] && href_list["value"])
 		var/log_action = null
@@ -179,7 +195,6 @@
 /obj/machinery/turretid/proc/updateTurrets()
 	var/datum/turret_checks/TC = new
 	TC.enabled = enabled
-	TC.lethal = lethal
 	TC.check_synth = check_synth
 	TC.check_access = check_access
 	TC.check_records = check_records

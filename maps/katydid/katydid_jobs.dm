@@ -53,8 +53,8 @@
 	title = "Engineer"
 	total_positions = 1
 	spawn_positions = 1
-	access = list(access_heads, access_engine, access_maint_tunnels)
-	minimal_access = list(access_heads, access_engine, access_maint_tunnels)
+	access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	minimal_access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
 	supervisors = "the ship's Captain and First Mate"
 	department = "Engineering"
 	department_flag = ENG
@@ -74,8 +74,8 @@
 	minimal_player_age = 9
 	economic_modifier = 20
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/captain
-	access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels)
-	minimal_access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels)
+	access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	minimal_access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
 
 /datum/job/katydid/crew/mate
 	title = "First Mate"
@@ -87,8 +87,8 @@
 	spawn_positions = 1
 	minimal_player_age = 6
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/firstmate
-	access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels)
-	minimal_access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels)
+	access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	minimal_access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
 
 /datum/job/katydid/crew/gunner
 	title = "Gunner"

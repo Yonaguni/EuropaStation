@@ -15,6 +15,9 @@
 	name = "10mm submachine gun"
 	variant_barrel = /obj/item/gun_component/barrel/smg/a10
 
+/obj/item/weapon/gun/composite/premade/smg/a10/preloaded
+	ammo_type = /obj/item/ammo_magazine/submachine/large
+
 /obj/item/weapon/gun/composite/premade/smg/a45
 	name = "a45 submachine gun"
 	variant_barrel = /obj/item/gun_component/barrel/smg/a45

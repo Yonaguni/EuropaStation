@@ -32,7 +32,7 @@
 		var/obj/item/gun_component/chamber/ballistic/B = chamber
 		new ammo_type (B)
 		if(B.load_method != MAGAZINE)
-			for(var/i in 1 to (max_shots-1))
+			for(var/i in 2 to max_shots)
 				new ammo_type (B)
 		spawn(0)
 			if(B)

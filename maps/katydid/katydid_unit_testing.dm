@@ -7,6 +7,7 @@
 		/area/maintenance = NO_SCRUBBER|NO_VENT,
 		/area/supply = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/shuttle = NO_SCRUBBER|NO_VENT|NO_APC,
+		/area/shuttle/mining/station = NO_SCRUBBER,
 		/area/maintenance/starboard = 0,
 		/area/maintenance/port = 0,
 		/area/maintenance/medbay = 0,

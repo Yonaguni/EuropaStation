@@ -24,8 +24,16 @@
 /decl/psychic_power/telekinesis
 	name = "Telekinesis"
 	description = "Manipulate objects at a distance."
-	target_ranged = 1
-	item_path = /obj/item/psychic_power/telekinesis
+	passive = 1
+	passive_cost = 3
+
+/decl/psychic_power/telekinesis/tick(var/mob/living/user)
+	. = ..()
+	user.mutations |= TK
+
+/decl/psychic_power/telekinesis/cancelled(var/mob/living/user, var/obj/item/psychic_power/caller)
+	. = ..()
+	user.mutations -= TK
 
 /decl/psychic_power/rend
 	name = "Rend"

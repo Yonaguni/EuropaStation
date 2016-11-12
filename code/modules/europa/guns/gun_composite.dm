@@ -12,6 +12,7 @@
 	var/gun_type                               // General class of gun.
 	var/dam_type                               // General class of projectile.
 	var/jammed                                 // Are we jammed?
+	var/installed_in_turret = FALSE            // Are we installed in a turret?
 
 	// Component helpers.
 	var/obj/item/gun_component/barrel/barrel   // Caliber, projectile type.
@@ -32,7 +33,16 @@
 		accessories = assembly.accessories.Copy()
 		update_from_components()
 		qdel(assembly)
+	if(istype(newloc, /obj/machinery/porta_turret))
+		installed_in_turret = TRUE
 	..(newloc)
+
+/obj/item/weapon/gun/composite/forceMove()
+	. = ..()
+	if(istype(loc, /obj/machinery/porta_turret))
+		installed_in_turret = TRUE
+	else
+		installed_in_turret = FALSE
 
 /obj/item/weapon/gun/composite/pickup()
 	. = ..()

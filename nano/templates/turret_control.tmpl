@@ -15,18 +15,25 @@
 		</div>
 	</div>	
 
-    {{if data.is_lethal}}
-        <div class="item">
-            <div class="itemLabelWide">
-                Lethal Mode:
-            </div>
-            <div class="itemContentNarrow">
-                {{:helper.link('On', null, {'command' : 'lethal', 'value' : 1},  data.lethal ?'redButton' : null)}}
-                {{:helper.link('Off',null, {'command' : 'lethal', 'value' : 0}, !data.lethal ? 'selected' : null)}}
-            </div>
-        </div>	
-    {{/if}}
-    
+	{{if data.cannot_cycle_firemode}}
+			<div class="item">
+				<div class="itemLabelWide">
+					Firemode: ERROR
+				</div>
+			</div>
+	{{else}}
+		{{if data.current_firemode}}
+			<div class="item">
+				<div class="itemLabelWide">
+					Firemode: {{:data.current_firemode}}
+				</div>
+				<div class="itemContentNarrow">
+					{{:helper.link('Cycle', null, {'cycle_firemode' : 1},  null)}}
+				</div>
+			</div>	
+		{{/if}}
+	{{/if}}
+		
     {{for data.settings}}
         <div class="item">
             <div class="itemLabelWide">
