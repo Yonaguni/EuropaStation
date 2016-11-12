@@ -2,7 +2,11 @@
 /obj/effect/fluid/var/equalize_avg_depth = 0
 
 /obj/effect/fluid/proc/spread()
-	if(!loc || loc != start_loc || fluid_amount <= FLUID_EVAPORATION_POINT)
+	if(!loc || loc != start_loc || !loc.CanFluidPass())
+		qdel(src)
+		return
+
+	if(fluid_amount <= FLUID_EVAPORATION_POINT)
 		return
 
 	equalizing_fluids = list(src)
@@ -14,7 +18,7 @@
 			continue
 		var/obj/effect/fluid/F = locate() in T.contents
 		if(F)
-			if(F.fluid_amount <= FLUID_DELETING)
+			if(deleted(F) || F.fluid_amount <= FLUID_DELETING)
 				continue
 		if(!F)
 			F = new /obj/effect/fluid(T)
@@ -27,7 +31,7 @@
 
 	equalize_avg_depth = 0
 	for(var/obj/effect/fluid/F in equalizing_fluids)
-		if(!istype(F) || F.fluid_amount <= FLUID_DELETING)
+		if(!istype(F) || deleted(F) || F.fluid_amount <= FLUID_DELETING)
 			equalizing_fluids -= F
 			continue
 		equalize_avg_depth += F.fluid_amount
@@ -36,6 +40,8 @@
 		equalize_avg_depth = Floor(equalize_avg_depth/equalizing_fluids.len)
 		if(equalize_avg_depth)
 			for(var/thing in equalizing_fluids)
+				if(deleted(thing))
+					continue
 				var/obj/effect/fluid/F = thing
 				F.set_depth(equalize_avg_depth)
 	equalizing_fluids.Cut()

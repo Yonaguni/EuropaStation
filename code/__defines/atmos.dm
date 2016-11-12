@@ -99,4 +99,4 @@
 #define GAS_FUEL "fuel"
 #define GAS_OVERLAY_LAYER 4.9
 #define GAS_MAX_ALPHA 130
-#define GAS_MIN_ALPHA 60
+#define GAS_MIN_ALPHA 30

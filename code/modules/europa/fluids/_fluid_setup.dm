@@ -10,7 +10,7 @@ var/list/fluid_images = list()
 #define FLUID_SHALLOW 200                  // Depth shallow icon is used
 #define FLUID_DEEP 800                     // Depth deep icon is used
 #define FLUID_MAX_ALPHA 180
-#define FLUID_MIN_ALPHA 120
+#define FLUID_MIN_ALPHA 30
 #define FLUID_MAX_DEPTH 1000
 #define FLUID_OCEAN_DEPTH 600
 

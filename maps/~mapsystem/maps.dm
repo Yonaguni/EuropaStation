@@ -101,3 +101,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 /proc/layer_is_shallow(var/layer)
 	return using_map && (layer in using_map.shallow_levels)
+
+/datum/map/proc/handle_captain_join(var/mob/living/carbon/human/captain)
+	return
