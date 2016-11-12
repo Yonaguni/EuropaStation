@@ -27,13 +27,10 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/installation = /obj/item/weapon/gun/composite		//the type of weapon installed
-	var/gun_charge = 0		//the charge of the gun inserted
-	var/projectile = null	//holder for bullettype
-	var/eprojectile = null	//holder for the shot when emagged
-	var/reqpower = 500		//holder for power needed
+	var/initial_installation_type = /obj/item/weapon/gun/composite/premade/laser_pistol
+	var/obj/item/weapon/gun/installed_gun
+
 	var/iconholder = null	//holder for the icon_state. 1 for orange sprite, null for blue.
-	var/egun = null			//holder to handle certain guns switching bullettypes
 
 	var/last_fired = 0		//1: if the turret is cooling down from a shot, 0: turret is ready to fire
 	var/shot_delay = 15		//1.5 seconds between each shot
@@ -49,7 +46,6 @@
 	var/attacked = 0		//if set to 1, the turret gets pissed off and shoots at people nearby (unless they have sec access!)
 
 	var/enabled = 1				//determines if the turret is on
-	var/lethal = 0			//whether in lethal or stun mode
 	var/disabled = 0
 
 	var/shot_sound 			//what sound should play when the turret fires
@@ -72,8 +68,6 @@
 
 /obj/machinery/porta_turret/stationary
 	ailock = 1
-	lethal = 1
-	installation //= /obj/item/weapon/gun/energy/laser
 
 /obj/machinery/porta_turret/New()
 	..()
@@ -98,62 +92,10 @@
 	. = ..()
 
 /obj/machinery/porta_turret/proc/setup()
-	/*
-	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
-	//var/obj/item/ammo_casing/shottype = E.projectile_type
-
-	projectile = initial(E.projectile_type)
-	eprojectile = projectile
-	shot_sound = initial(E.fire_sound)
-	eshot_sound = shot_sound
-
-	weapon_setup(installation)
-	*/
-
-/obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
-/*
-	switch(guntype)
-		if(/obj/item/weapon/gun/energy/laser/practice)
-			iconholder = 1
-			eprojectile = /obj/item/projectile/beam
-
-//			if(/obj/item/weapon/gun/energy/laser/practice/sc_laser)
-//				iconholder = 1
-//				eprojectile = /obj/item/projectile/beam
-
-		if(/obj/item/weapon/gun/energy/retro)
-			iconholder = 1
-
-//			if(/obj/item/weapon/gun/energy/retro/sc_retro)
-//				iconholder = 1
-
-		if(/obj/item/weapon/gun/energy/captain)
-			iconholder = 1
-
-		if(/obj/item/weapon/gun/energy/lasercannon)
-			iconholder = 1
-
-		if(/obj/item/weapon/gun/energy/taser)
-			eprojectile = /obj/item/projectile/beam
-			eshot_sound = 'sound/weapons/Laser.ogg'
-
-		if(/obj/item/weapon/gun/energy/stunrevolver)
-			eprojectile = /obj/item/projectile/beam
-			eshot_sound = 'sound/weapons/Laser.ogg'
-
-		if(/obj/item/weapon/gun/energy/gun)
-			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
-			eshot_sound = 'sound/weapons/Laser.ogg'
-			egun = 1
-
-		if(/obj/item/weapon/gun/energy/gun/nuclear)
-			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
-			eshot_sound = 'sound/weapons/Laser.ogg'
-			egun = 1
-	*/
+	if(!installed_gun)
+		installed_gun = new initial_installation_type(src)
 
 var/list/turret_icons
-
 /obj/machinery/porta_turret/update_icon()
 	if(!turret_icons)
 		turret_icons = list()
@@ -197,7 +139,6 @@ var/list/turret_icons
 /obj/machinery/porta_turret/attack_hand(mob/user)
 	if(isLocked(user))
 		return
-
 	ui_interact(user)
 
 /obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -205,8 +146,9 @@ var/list/turret_icons
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
 	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
+	if(installed_gun.firemodes.len)
+		var/datum/firemode/current_mode = installed_gun.firemodes[installed_gun.sel_mode]
+		data["current_firemode"] = current_mode.name
 
 	if(data["access"])
 		var/settings[0]
@@ -243,17 +185,22 @@ var/list/turret_icons
 
 	return ..()
 
+/obj/machinery/porta_turret/proc/cycle_fire_mode()
+	if(installed_gun)
+		installed_gun.switch_firemodes()
 
 /obj/machinery/porta_turret/Topic(href, href_list)
 	if(..())
+		return 1
+
+	if(href_list["cycle_firemode"])
+		cycle_fire_mode()
 		return 1
 
 	if(href_list["command"] && href_list["value"])
 		var/value = text2num(href_list["value"])
 		if(href_list["command"] == "enable")
 			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
 		else if(href_list["command"] == "check_synth")
 			check_synth = value
 		else if(href_list["command"] == "check_weapons")
@@ -280,7 +227,6 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
-	/*
 	if(stat & BROKEN)
 		if(I.iscrowbar())
 			//If the turret is destroyed, you can remove it with a crowbar to
@@ -289,10 +235,8 @@ var/list/turret_icons
 			if(do_after(user, 20, src))
 				if(prob(70))
 					user << "<span class='notice'>You remove the turret and salvage some components.</span>"
-					if(installation)
-						var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-						Gun.power_supply.charge = gun_charge
-						Gun.update_icon()
+					if(installed_gun)
+						installed_gun.forceMove(get_turf(src))
 					if(prob(50))
 						new /obj/item/stack/material/steel(loc, rand(1,4))
 					if(prob(50))
@@ -300,6 +244,9 @@ var/list/turret_icons
 				else
 					user << "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>"
 				qdel(src) // qdel
+
+	else if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/ammo_casing)) && installed_gun)
+		return installed_gun.attackby(I, user)
 
 	else if((I.iswrench()))
 		if(enabled || raised)
@@ -352,7 +299,6 @@ var/list/turret_icons
 					sleep(60)
 					attacked = 0
 		..()
-	*/
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -494,12 +440,12 @@ var/list/turret_icons
 	if(emagged)		// If emagged not even the dead get a rest
 		return L.stat ? TURRET_SECONDARY_TARGET : TURRET_PRIORITY_TARGET
 
-	if(lethal && locate(/mob/living/silicon/ai) in get_turf(L))		//don't accidentally kill the AI!
+	if(locate(/mob/living/silicon/ai) in get_turf(L))		//don't accidentally kill the AI!
 		return TURRET_NOT_TARGET
 
 	if(check_synth)	//If it's set to attack all non-silicons, target them!
 		if(L.lying)
-			return lethal ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
+			return TURRET_SECONDARY_TARGET
 		return TURRET_PRIORITY_TARGET
 
 	if(iscuffed(L)) // If the target is handcuffed, leave it alone
@@ -516,7 +462,7 @@ var/list/turret_icons
 			return TURRET_NOT_TARGET	//if threat level < 4, keep going
 
 	if(L.lying)		//if the perp is lying down, it's still a target but a less-important target
-		return lethal ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
+		return TURRET_SECONDARY_TARGET
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
@@ -616,27 +562,10 @@ var/list/turret_icons
 		return
 
 	update_icon()
-	var/obj/item/projectile/A
-	if(emagged || lethal)
-		A = new eprojectile(loc)
-		playsound(loc, eshot_sound, 75, 1)
-	else
-		A = new projectile(loc)
-		playsound(loc, shot_sound, 75, 1)
-
-	// Lethal/emagged turrets use twice the power due to higher energy beams
-	// Emagged turrets again use twice as much power due to higher firing rates
-	use_power(reqpower * (2 * (emagged || lethal)) * (2 * emagged))
-
-	//Turrets aim for the center of mass by default.
-	//If the target is grabbing someone then the turret smartly aims for extremities
-	var/def_zone = get_exposed_defense_zone(target)
-	//Shooting Code:
-	A.launch(target, def_zone)
+	installed_gun.Fire(target, src)
 
 /datum/turret_checks
 	var/enabled
-	var/lethal
 	var/check_synth
 	var/check_access
 	var/check_records
@@ -649,9 +578,6 @@ var/list/turret_icons
 	if(controllock)
 		return
 	src.enabled = TC.enabled
-	src.lethal = TC.lethal
-	src.iconholder = TC.lethal
-
 	check_synth = TC.check_synth
 	check_access = TC.check_access
 	check_records = TC.check_records
@@ -672,12 +598,11 @@ var/list/turret_icons
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_frame"
 	density=1
+
 	var/target_type = /obj/machinery/porta_turret	// The type we intend to build
 	var/build_step = 0			//the current step in the building process
 	var/finish_name="turret"	//the name applied to the product turret
-	var/installation = null		//the gun type installed
-	var/gun_charge = 0			//the gun charge of the gun type installed
-
+	var/obj/installed_gun = null		//the gun type installed
 
 /obj/machinery/porta_turret_construct/attackby(obj/item/I, mob/user)
 	//this is a bit unwieldy but self-explanatory
@@ -739,23 +664,19 @@ var/list/turret_icons
 					new /obj/item/stack/material/steel( loc, 2)
 					return
 
-	/*
 		if(3)
-			if(istype(I, /obj/item/weapon/gun/energy)) //the gun installation part
+			if(istype(I, /obj/item/weapon/gun)) //the gun installation part
 
 				if(isrobot(user))
 					return
-				var/obj/item/weapon/gun/energy/E = I //typecasts the item to an energy gun
 				if(!user.unEquip(I))
 					user << "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>"
 					return
-				installation = I.type //installation becomes I.type
-				gun_charge = E.power_supply.charge //the gun's charge is stored in gun_charge
-				user << "<span class='notice'>You add [I] to the turret.</span>"
+				installed_gun = I
+				I.forceMove(src)
 				target_type = /obj/machinery/porta_turret
-
+				user << "<span class='notice'>You add [I] to the turret.</span>"
 				build_step = 4
-				qdel(I) //delete the gun :(
 				return
 
 			else if(I.iswrench())
@@ -763,7 +684,6 @@ var/list/turret_icons
 				user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
 				build_step = 2
 				return
-	*/
 
 		if(4)
 			if(isprox(I))
@@ -819,8 +739,8 @@ var/list/turret_icons
 					//The final step: create a full turret
 					var/obj/machinery/porta_turret/Turret = new target_type(loc)
 					Turret.name = finish_name
-					Turret.installation = installation
-					Turret.gun_charge = gun_charge
+					Turret.installed_gun = installed_gun
+					installed_gun.forceMove(Turret)
 					Turret.enabled = 0
 					Turret.setup()
 
@@ -847,25 +767,20 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret_construct/attack_hand(mob/user)
-	/*
 	switch(build_step)
 		if(4)
-			if(!installation)
+			if(!installed_gun)
 				return
 			build_step = 3
 
-			var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-			Gun.power_supply.charge = gun_charge
-			Gun.update_icon()
-			installation = null
-			gun_charge = 0
-			user << "<span class='notice'>You remove [Gun] from the turret frame.</span>"
-
+			installed_gun.forceMove(get_turf(user))
+			user.put_in_hands(installed_gun)
+			user << "<span class='notice'>You remove [installed_gun] from the turret frame.</span>"
+			installed_gun = null
 		if(5)
 			user << "<span class='notice'>You remove the prox sensor from the turret frame.</span>"
 			new /obj/item/device/assembly/prox_sensor(loc)
 			build_step = 4
-	*/
 
 /obj/machinery/porta_turret_construct/attack_ai()
 	return

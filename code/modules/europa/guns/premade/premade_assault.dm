@@ -10,3 +10,6 @@
 /obj/item/weapon/gun/composite/premade/assault_rifle/a762
 	name = "7.62 assault rifle"
 	variant_barrel =  /obj/item/gun_component/barrel/assault/a762
+
+/obj/item/weapon/gun/composite/premade/assault_rifle/a762/preloaded
+	ammo_type = /obj/item/ammo_magazine/assault/large

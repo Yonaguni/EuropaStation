@@ -90,9 +90,11 @@
 		chambered.activate(null)
 	return chambered
 
-/obj/item/weapon/gun/launcher/grenade/handle_post_fire(mob/user)
-	message_admins("[key_name_admin(user)] fired a grenade ([chambered.name]) from a grenade launcher ([src.name]).")
-	log_game("[key_name_admin(user)] used a grenade ([chambered.name]).")
+/obj/item/weapon/gun/launcher/grenade/handle_post_fire(atom/movable/user)
+	if(ismob(user))
+		var/mob/M = user
+		message_admins("[key_name_admin(M)] fired a grenade ([chambered.name]) from a grenade launcher ([src.name]).")
+		log_game("[key_name_admin(M)] used a grenade ([chambered.name]).")
 	chambered = null
 	..()
 

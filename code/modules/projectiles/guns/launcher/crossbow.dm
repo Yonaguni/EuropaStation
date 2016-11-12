@@ -65,7 +65,7 @@
 		return null
 	return bolt
 
-/obj/item/weapon/gun/launcher/crossbow/handle_post_fire(mob/user, atom/target)
+/obj/item/weapon/gun/launcher/crossbow/handle_post_fire(atom/movable/user, atom/target)
 	bolt = null
 	tension = 0
 	update_icon()
