@@ -12,6 +12,7 @@
 /decl/psychic_power/spark
 	name = "Sparks"
 	description = "Create some sparks. Pretty!"
+	item_path = /obj/item/psychic_power/spark
 	target_melee = 1
 	target_ranged = 1
 	target_self = 1
