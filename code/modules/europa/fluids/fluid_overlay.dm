@@ -17,6 +17,9 @@
 /obj/effect/fluid/ex_act()
 	return
 
+/obj/effect/fluid/airlock_crush()
+	qdel(src)
+
 /obj/effect/fluid/proc/lose_fluid(var/amt = 0, var/fluidtype)
 	if(amt)
 		fluid_amount = max(-1, fluid_amount - amt)

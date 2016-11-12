@@ -100,13 +100,6 @@
 		return 0
 	return 1
 
-/obj/item/psychic_power/telekinesis // todo
-	var/obj/item/held
-
-/obj/item/psychic_power/telekinesis/Destroy()
-	held = null
-	. = ..()
-
 /obj/item/psychic_power/kinesis
 	use_like_weapon = TRUE
 	force = 5

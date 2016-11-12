@@ -100,3 +100,43 @@
 	if(using_map)
 		name = using_map.full_name
 	. = ..()
+
+/datum/map/katydid/handle_captain_join(var/mob/living/carbon/human/captain)
+	var/obj/item/weapon/paper/charter = new(get_turf(captain))
+	charter.info = {"
+		<center><h1>VESSEL CHARTER AGREEMENT</h1></center>
+		<br>This charter made and entered into, with a commencement date of [stationdate2text()], by and between THE CALLISTO FREE TRADERS, a Jovian Free Trade Union affiliate, hereinafter referred to as 'Owner', and [uppertext(captain.real_name)] hereinafter referred to as 'Operator'.
+		</br>
+		</br>
+		WHEREAS, the Operator desires to charter a vessel for the purpose of private cargo shipping within Sol, and
+		</br>
+		</br>
+		WHEREAS, the Owner has a vessel available to charter for such purpose,
+		</br>
+		</br>
+		NOW, THEREFORE, the parties hereto hereinafter agree as follows:
+		<br>
+		</br>
+		<ol>
+		<li>Owner shall conduct appropriate vetting procedures to ensure a properly qualified captain and crew adequate for the safety of the vessel and all other persons related to the operation of the vessel, as well as current Sol Navy certification of registration and trading limits, as applicable.</li>
+		<li>Subject to such reimbursement and payment as may be specifically provided in this charter, Operator, solely at their own cost and expense, shall furnish the vessel, the captain and full complement of crew, sleeping accommodations and meals for a maximum of thirty passengers, including staff and/or instructors and the vessel's operating and maintenance costs, including but not limited to, fuel, including increased fuel costs which may exist at the time of the charter, water, other consumable stores, docking and wharf charges, permits, licenses, tariffs, fees, taxes, and any and all other expenses relating to such operation and maintenance.</li>
+		<li>Owner agrees to secure and keep in force during the entire term of this charter, at Owner's sole cost and expense, a standard intersystem insurance policy including Hull (to full value) and Protection and Indemnity coverage, in such form, with such carriers, and in such amounts as are acceptable to Operator to protect Operator against all claims, demands, damages, liabilities, actions and causes of actions incident to the use of or resulting from any accident occurring in connection with the operation of the vessel.  Said policy or policies shall contain a provision naming the Operator as an additional insured except that such a provision shall not apply to the extent such losses are caused by the negligent acts or omissions of Operator, its officers, agents or employees.  Certificates of insurance acceptable to the Operator shall be furnished to Operator prior to execution of this agreement.  Said policy or policies shall contain a provision requiring Owner's carrier or carriers to notify Operator at least five (5) months prior to cancellation or modification of said policy or policies.</li>
+		<li>As and for a material part of the consideration for the entry of Operator into this charter, Owner agrees to defend, indemnify and hold harmless Operator, its officers, agents, and employees from and against any claims, damages, expenses or liability, including without limitation, damages to any property, including Owner's property, or damages arising from the death or injury of any person or persons, including Owner's employees and agents, arising out of the performance of this Charter Agreement or the use of the Vessel, to the extent such claims, damages, expenses and liabilities are not caused by the negligence or willful misconduct of Operator, its officers, agents, or employees acting within the scope of official business of the Operator.</li>
+		<li>In the event the vessel is disabled or damaged by breakdown of machinery, fire, grounding, collision or other cause, Operator then shall not be charged for the use of such vessel except that the daily charter rate of the date of such occurrence shall be on a prorated basis.  In the event the vessel is lost or damaged or the disability is of such extent that the vessel cannot be repaired within 15 days following such disability, the Operator, as its election, forthwith may terminate the agreement.</li>
+		<li>Payment of the chartering rate for the use of the vessel shall be made by the Operator to the Owner as agreed in the preceeding document.</li>
+		<li>Owner shall retain full care, custody and control of the vessel including final authority with respect to the management and operation of the same, and with respect to any determination regarding conditions affecting the safety of its crew and passengers and/or the safe navigation of the vessel itself.
+		<li>The charter may be cancelled by Operator on or before the date of commencement, without any cost or obligation to the Operator. Departure from the Vessel by the Operator prior to departure constitutes forfeiture of this charter. Any amount paid by Operator to the Owner prior to such cancellation shall be refunded by payment to the Operator within five (5) months of cancellation.  Cancellation after the above-specified date shall result in forfeiture of any amount paid by the Operator prior to cancellation.
+		</ol><br>
+		<br>
+		IN WITNESS WHEREOF, the parties hereto have hereunto set their hands and seals to the above written:
+		<br>
+		<br>
+		<i>[captain.real_name]</i>, Captain<br>
+		<i>[random_name(pick(list(MALE,FEMALE)))]</i>, Speaker for the Callisto Free Traders
+	"}
+
+	if(!captain.put_in_hands(charter))
+		if(!captain.l_store)
+			captain.equip_to_slot(charter, slot_l_store)
+		else if(!captain.r_store)
+			captain.equip_to_slot(charter, slot_r_store)
