@@ -17,6 +17,7 @@
 	emergency_shuttle_called_message = "An emergency wave jump has been initiated and escape pods are being prepped. Preparations will be complete in approximately %ETA%"
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
 	evac_controller_type = /datum/evacuation_controller/pods
+	single_card_authentication = TRUE
 
 	var/ship_prefix = "ICV"
 	var/ship_name = "Katydid"
@@ -103,6 +104,8 @@
 
 /datum/map/katydid/handle_captain_join(var/mob/living/carbon/human/captain)
 	var/obj/item/weapon/paper/charter = new(get_turf(captain))
+	charter.name = "document (ship charter)"
+	charter.desc = "An official-looking watermarked charter of hire for a spacecraft. Don't lose it."
 	charter.info = {"
 		<center><h1>VESSEL CHARTER AGREEMENT</h1></center>
 		<br>This charter made and entered into, with a commencement date of [stationdate2text()], by and between THE CALLISTO FREE TRADERS, a Jovian Free Trade Union affiliate, hereinafter referred to as 'Owner', and [uppertext(captain.real_name)] hereinafter referred to as 'Operator'.
