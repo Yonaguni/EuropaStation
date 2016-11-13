@@ -39,8 +39,8 @@
 	title = "Crewman"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 15
+	spawn_positions = 15
 	department = "Security"
 	department_flag = SEC
 	supervisors = "the ship's Captain and First Mate"
