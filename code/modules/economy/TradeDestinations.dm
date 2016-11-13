@@ -1,4 +1,3 @@
-
 var/list/weighted_randomevent_locations = list()
 var/list/weighted_mundaneevent_locations = list()
 
