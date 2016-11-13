@@ -4,14 +4,11 @@
 /datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state
 	name = "ICON STATE - All sprite accessories shall have a unique icon state"
 	var/list/excepted_paths = list(
+		/datum/sprite_accessory,
 		/datum/sprite_accessory/hair,
-		/datum/sprite_accessory/facial_hair/shaved,
 		/datum/sprite_accessory/facial_hair,
-		/datum/sprite_accessory/skin/human_tatt01,
-		/datum/sprite_accessory/skin,
-		/datum/sprite_accessory
+		/datum/sprite_accessory/facial_hair/shaved
 		)
-
 	var/list/excepted_states = list(
 		"lips_red_s",
 		"lips_purple_s",
@@ -21,6 +18,8 @@
 
 /datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state/start_test()
 
+	excepted_paths += typesof(/datum/sprite_accessory/skin)
+
 	var/list/hairicons = icon_states('icons/mob/human_face.dmi')
 	var/list/foundicons = list()
 	hairicons = hairicons.Copy()
@@ -29,7 +28,7 @@
 	for(var/headtype in typesof(/obj/item/organ/external/head))
 		var/obj/item/organ/external/head/H = headtype
 		if(initial(H.eye_icon))
-			excepted_states -= initial(H.eye_icon)
+			excepted_states += initial(H.eye_icon)
 
 	var/failed = FALSE
 	for(var/htype in typesof(/datum/sprite_accessory) - excepted_paths)
