@@ -339,7 +339,8 @@
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
-		cameratext += "[(cameratext == "")? "" : "|"]<A HREF=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
+		if(C && !deleted(C))
+			cameratext += "[(cameratext == "")? "" : "|"]<a href=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag ? C.c_tag : "Unknown"]</a>"
 	src << "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])"
 
 

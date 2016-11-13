@@ -939,6 +939,9 @@ About the new airlock wires panel:
 	else
 		wires = new/datum/wires/airlock(src)
 
+	var/area/A = get_area(src)
+	name = "[initial(name)] - [A.name]"
+
 /obj/machinery/door/airlock/initialize()
 	if(src.closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in world)
