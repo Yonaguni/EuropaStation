@@ -24,7 +24,11 @@
 		var/obj/item/clothing/accessory/holster/W = new (holder)
 		holder.w_uniform.attackby(W, holder)
 		W.holster(gun, holder)
-	else
+		if(W.loc != holder.w_uniform)
+			W.forceMove(get_turf(holder))
+			holder.put_in_hands(W)
+	if(!istype(gun.loc, /obj/item/clothing/accessory/holster))
+		gun.forceMove(get_turf(holder))
 		holder.put_in_hands(gun)
 	..()
 

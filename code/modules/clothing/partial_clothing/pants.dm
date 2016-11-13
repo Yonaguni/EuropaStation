@@ -3,7 +3,7 @@
 	desc = "A smooth and straight pair of comfortable slacks."
 	icon = 'icons/obj/clothing/pants.dmi'
 	icon_state = "slacks"
-	valid_accessory_slots = list("shirt", "vest", "overalls")
+	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls")
 
 /obj/item/clothing/under/partial/pants/dresspants
 	name = "dress pants"
