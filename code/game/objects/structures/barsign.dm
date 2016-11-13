@@ -3,8 +3,12 @@
 	icon_state = "empty"
 	appearance_flags = 0
 	anchored = 1
-	pixel_x = -16
-	pixel_y = -16
+	pixel_x = -32
+	pixel_y = -32
+
+	light_range = 2
+	light_power = 1
+	light_color = "#FF55FF"
 
 	var/cult = 0
 
@@ -21,8 +25,6 @@
 	switch(icon_state)
 		if("Off")
 			user << "It appears to be switched off."
-		if("narsiebistro")
-			user << "It shows a picture of a large black and red being. Spooky!"
 		if("on", "empty")
 			user << "The lights are on, but there's no picture."
 		else
@@ -31,7 +33,10 @@
 /obj/structure/sign/double/barsign/New()
 	..()
 	icon_state = pick(get_valid_states())
-	set_light(l_range = 2, l_power = 1, l_color = "#FF55FF")
+
+/obj/structure/sign/double/barsign/initialize()
+	..()
+	set_light()
 
 /obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user)
 	if(cult)

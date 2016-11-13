@@ -18,7 +18,7 @@
 	qdel(src)
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
-	if(use_like_weapon)
+	if(user.Adjacent(target) && use_like_weapon)
 		if(user.spend_psychic_power(power.melee_power_cost, power))
 			return ..()
 	else
