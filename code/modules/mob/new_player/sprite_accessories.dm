@@ -139,10 +139,6 @@
 		icon_state = "hair_ponytail5"
 		gender = FEMALE
 
-	fringetail
-		name = "Fringetail"
-		icon_state = "hair_fringetail"
-
 	sideponytail
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
