@@ -55,6 +55,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/emergency_shuttle_leaving_dock
 	var/emergency_shuttle_called_message
 	var/emergency_shuttle_recall_message
+	var/single_card_authentication = FALSE
 
 	var/datum/trade_destination/stellar_location
 	var/specific_location

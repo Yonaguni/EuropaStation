@@ -39,8 +39,8 @@
 	title = "Crewman"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 15
+	spawn_positions = 15
 	department = "Security"
 	department_flag = SEC
 	supervisors = "the ship's Captain and First Mate"
@@ -74,21 +74,22 @@
 	minimal_player_age = 9
 	economic_modifier = 20
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/captain
-	access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
-	minimal_access = list(access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	access = list(access_keycard_auth, access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	minimal_access = list(access_keycard_auth, access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
 
 /datum/job/katydid/crew/mate
 	title = "First Mate"
 	selection_color = "#1d1d4f"
 	head_position = 1
+	supervisors = "the ship's Captain"
 	department = "Command"
 	department_flag = COM
 	total_positions = 1
 	spawn_positions = 1
 	minimal_player_age = 6
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/firstmate
-	access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
-	minimal_access = list(access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	access = list(access_keycard_auth, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	minimal_access = list(access_keycard_auth, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
 
 /datum/job/katydid/crew/gunner
 	title = "Gunner"

@@ -6,6 +6,7 @@
 	#include "katydid_jobs.dm"
 	#include "katydid_shuttles.dm"
 	#include "katydid_unit_testing.dm"
+	#include "katydid_verbs.dm"
 
 	#define USING_MAP_DATUM /datum/map/katydid
 

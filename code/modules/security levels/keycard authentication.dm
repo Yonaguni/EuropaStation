@@ -30,6 +30,7 @@
 		return
 	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
+		visible_message("<span class='notice'>\The [src] swipes \the [W] through \the [src].</span>")
 		if(access_keycard_auth in ID.access)
 			if(active == 1)
 				//This is not the device that made the initial request. It is the device confirming the request.
@@ -37,8 +38,15 @@
 					event_source.confirmed = 1
 					event_source.event_confirmed_by = usr
 			else if(screen == 2)
-				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+				if(using_map.single_card_authentication)
+					confirmed = 0
+					log_game("[key_name(usr)] triggered event [event]")
+					message_admins("[key_name(usr)] triggered event [event]", 1)
+					trigger_event(event)
+					reset()
+				else
+					event_triggered_by = usr
+					broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
 //icon_state gets set everwhere besides here, that needs to be fixed sometime
 /obj/machinery/keycard_auth/update_icon()
@@ -67,7 +75,7 @@
 		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
 		if(!config.ert_admin_call_only)
 			dat += "<li><A href='?src=\ref[src];triggerevent=Distress Beacon'>Distress Beacon</A></li>"
-
+		dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Jump'>Emergency Jump</A></li>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
@@ -140,6 +148,8 @@
 
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
+		if("Emergency Jump")
+			evacuation_controller.call_evacuation(usr, TRUE)
 		if("Red alert")
 			set_security_level(SEC_LEVEL_RED)
 			feedback_inc("alert_keycard_auth_red",1)
@@ -153,7 +163,6 @@
 			if(is_ert_blocked())
 				usr << "<span class='warning'>Long-range scanning indicates there is nobody out here to help you.</span>"
 				return
-
 			trigger_armed_response_team(1)
 			feedback_inc("alert_keycard_auth_ert",1)
 
