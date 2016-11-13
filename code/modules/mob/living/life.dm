@@ -205,7 +205,7 @@
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
-		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		sight = SEE_SELF //&= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = initial(see_in_dark)
 		see_invisible = initial(see_invisible)
 

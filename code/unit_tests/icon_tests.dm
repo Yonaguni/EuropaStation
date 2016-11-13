@@ -1,6 +1,60 @@
 /datum/unit_test/icon_test
 	name = "ICON STATE template"
 
+/datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state
+	name = "ICON STATE - All sprite accessories shall have a unique icon state"
+	var/list/excepted_paths = list(
+		/datum/sprite_accessory,
+		/datum/sprite_accessory/hair,
+		/datum/sprite_accessory/facial_hair,
+		/datum/sprite_accessory/facial_hair/shaved
+		)
+	var/list/excepted_states = list(
+		"lips_red_s",
+		"lips_purple_s",
+		"lips_jade_s",
+		"lips_black_s"
+		)
+
+/datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state/New()
+	for(var/headtype in typesof(/obj/item/organ/external/head))
+		var/obj/item/organ/external/head/H = headtype
+		if(initial(H.eye_icon))
+			excepted_states += initial(H.eye_icon)
+	..()
+
+/datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state/start_test()
+
+	excepted_paths += typesof(/datum/sprite_accessory/skin)
+
+	var/list/hairicons = icon_states('icons/mob/human_face.dmi')
+	var/list/foundicons = list()
+	hairicons = hairicons.Copy()-excepted_states
+
+	var/failed = FALSE
+	for(var/htype in typesof(/datum/sprite_accessory) - excepted_paths)
+		var/datum/sprite_accessory/H = new htype()
+		var/hstate = "[H.icon_state]_s"
+		if(hstate in foundicons)
+			log_unit_test("Duplicate icon state '[hstate]' for [htype].")
+			failed = TRUE
+		else if(!(hstate in hairicons))
+			log_unit_test("Missing icon state '[hstate]' for [htype]")
+			failed = TRUE
+		else
+			hairicons -= hstate
+			foundicons += hstate
+		qdel(H)
+
+	if(hairicons.len)
+		log_unit_test("Unused icon states: [english_list(hairicons)]")
+
+	if(failed)
+		fail("Some sprite accessories were missing unique icon states.")
+	else
+		pass("All sprite accessories have a unique icon state.")
+	return 1
+
 /datum/unit_test/icon_test/robots_shall_have_eyes_for_each_state
 	name = "ICON STATE - Robot shall have eyes for each icon state"
 	var/list/excepted_icon_states_ = list(

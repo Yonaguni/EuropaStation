@@ -35,17 +35,21 @@
 
 	var/affected_by_emp_until = 0
 
+var/list/camera_tag_count = list()
+
 /obj/machinery/camera/New()
 	wires = new(src)
 	assembly = new(src)
 	assembly.state = 4
 
-	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in cameranet.cameras)
-		var/list/tempnetwork = C.network&src.network
-		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
-			world.log << "[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]"
-	*/
+	if(!c_tag && loc)
+		var/area/A = get_area(src)
+		if(istype(A))
+			if(!camera_tag_count[A.name])
+				camera_tag_count[A.name] = 0
+			camera_tag_count[A.name]++
+			c_tag = "[A.name] #[camera_tag_count[A.name]]"
+
 	if(!src.network || src.network.len < 1)
 		if(loc)
 			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")

@@ -317,13 +317,10 @@
 	var/throw_range = item.throw_range
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
-		item = G.throw_held() //throw the person instead of the grab
-		if(ismob(item))
-			var/mob/M = item
-
+		var/mob/M = G.throw_held()
+		if(istype(M))
 			//limit throw range by relative mob size
 			throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
-
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
 			if(start_T && end_T)
@@ -334,26 +331,22 @@
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 
-	src.drop_from_inventory(item)
-	if(!item || !isturf(item.loc))
+			src.drop_from_inventory(item)
+			item = M
+
+	if(!item || deleted(item) || !isturf(item.loc))
 		return
+	if(istype(item) && item.loc == src)
+		src.drop_from_inventory(item)
 
 	//actually throw it!
-	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+	src.visible_message("<span class='danger'>[src] has thrown [item]!</span>")
 
 	if(!src.lastarea)
 		src.lastarea = get_area(src.loc)
 	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
-
-
-/*
-	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
-		src.inertia_dir = get_dir(target, src)
-		step(src, inertia_dir)
-*/
-
 
 	item.throw_at(target, throw_range, item.throw_speed, src)
 
