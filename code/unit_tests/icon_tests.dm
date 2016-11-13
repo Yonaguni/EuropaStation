@@ -16,19 +16,20 @@
 		"lips_black_s"
 		)
 
+/datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state/New()
+	for(var/headtype in typesof(/obj/item/organ/external/head))
+		var/obj/item/organ/external/head/H = headtype
+		if(initial(H.eye_icon))
+			excepted_states += initial(H.eye_icon)
+	..()
+
 /datum/unit_test/icon_test/sprite_accessories_shall_have_a_unique_icon_state/start_test()
 
 	excepted_paths += typesof(/datum/sprite_accessory/skin)
 
 	var/list/hairicons = icon_states('icons/mob/human_face.dmi')
 	var/list/foundicons = list()
-	hairicons = hairicons.Copy()
-	hairicons -= excepted_states
-
-	for(var/headtype in typesof(/obj/item/organ/external/head))
-		var/obj/item/organ/external/head/H = headtype
-		if(initial(H.eye_icon))
-			excepted_states += initial(H.eye_icon)
+	hairicons = hairicons.Copy()-excepted_states
 
 	var/failed = FALSE
 	for(var/htype in typesof(/datum/sprite_accessory) - excepted_paths)

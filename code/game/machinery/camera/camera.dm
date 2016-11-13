@@ -42,12 +42,13 @@ var/list/camera_tag_count = list()
 	assembly = new(src)
 	assembly.state = 4
 
-	if(!c_tag)
+	if(!c_tag && loc)
 		var/area/A = get_area(src)
-		if(!camera_tag_count[A.name])
-			camera_tag_count[A.name] = 0
-		camera_tag_count[A.name]++
-		c_tag = "[A.name] #[camera_tag_count[A.name]]"
+		if(istype(A))
+			if(!camera_tag_count[A.name])
+				camera_tag_count[A.name] = 0
+			camera_tag_count[A.name]++
+			c_tag = "[A.name] #[camera_tag_count[A.name]]"
 
 	if(!src.network || src.network.len < 1)
 		if(loc)
