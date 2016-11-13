@@ -15,9 +15,9 @@
 	target_ranged = 1
 	target_melee = 1
 	target_mob_only = 1
-	melee_power_cost = 5
-	ranged_power_cost = 10
-
+	melee_power_cost = 10
+	ranged_power_cost = 15
+	time_cost = 50
 
 /decl/psychic_power/spasm/do_proximity(var/mob/living/user, var/atom/target)
 	if(..())

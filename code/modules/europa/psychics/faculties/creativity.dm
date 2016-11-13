@@ -34,7 +34,8 @@
 	description = "Zap whoever you can reach."
 	target_melee = 1
 	target_mob_only = 1
-	melee_power_cost = 10
+	melee_power_cost = 15
+	time_cost = 30
 
 /decl/psychic_power/electrocute/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
