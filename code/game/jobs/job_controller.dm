@@ -385,11 +385,11 @@ var/global/datum/controller/occupations/job_master
 							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
-						if(G.slot && !(G.slot in custom_equip_slots))
+						if(G.slot && (G.slot == slot_tie || !(G.slot in custom_equip_slots)))
 							// This is a miserable way to fix the loadout overwrite bug, but the alternative requires
 							// adding an arg to a bunch of different procs. Will look into it after this merge. ~ Z
 							var/metadata = H.client.prefs.gear[G.display_name]
-							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
+							if(G.slot == slot_tie || G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
 							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 								H << "<span class='notice'>Equipping you with \the [thing]!</span>"
@@ -406,10 +406,11 @@ var/global/datum/controller/occupations/job_master
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
 				var/datum/gear/G = gear_datums[thing]
-				if(G.slot in custom_equip_slots)
+				if(G.slot != slot_tie && (G.slot in custom_equip_slots))
 					spawn_in_storage += thing
 				else
 					var/metadata = H.client.prefs.gear[G.display_name]
+					world << "trying to equip [G.display_name] in [G.slot]"
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
 						custom_equip_slots.Add(G.slot)

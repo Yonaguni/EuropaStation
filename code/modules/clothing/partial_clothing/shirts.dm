@@ -5,7 +5,7 @@
 	icon_state = "tshirt-grey"
 	slot = "shirt"
 	body_parts_covered = UPPER_TORSO
-	slot_flags = SLOT_ICLOTHING
+	slot_flags = SLOT_ICLOTHING|SLOT_TIE
 
 /obj/item/clothing/accessory/shirt/longsleeve
 	name = "longsleeve shirt"
@@ -57,7 +57,7 @@
 	icon_state = "overalls"
 	slot = "overalls"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	slot_flags = SLOT_OCLOTHING
+	slot_flags = SLOT_OCLOTHING|SLOT_TIE
 
 /obj/item/clothing/accessory/overalls/emergency
 	name = "emergency overalls"
@@ -78,7 +78,7 @@
 	icon_state = "factoryworker-vest"
 	slots = 2
 	body_parts_covered = UPPER_TORSO
-	slot_flags = SLOT_OCLOTHING
+	slot_flags = SLOT_OCLOTHING|SLOT_TIE
 	slot = "vest"
 
 /obj/item/clothing/accessory/storage/factoryvest/apron

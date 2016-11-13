@@ -269,7 +269,7 @@
 
 		mymob.healths = new /obj/screen()
 		mymob.healths.icon = ui_style
-		mymob.healths.icon_state = "health0"
+		mymob.healths.icon_state = (mymob.stat != DEAD ? "health0" : "health7")
 		mymob.healths.name = "health"
 		mymob.healths.screen_loc = ui_health
 		hud_elements |= mymob.healths
