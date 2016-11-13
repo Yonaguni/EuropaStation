@@ -54,7 +54,7 @@
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
 			break
-		if(O.density || O.anchored || istype(O,/obj/structure/closet) || istype(O,/obj/effect))
+		if(O.density || O.anchored || !O.simulated || istype(O,/obj/structure/closet))
 			continue
 		if(istype(O, /obj/structure/bed)) //This is only necessary because of rollerbeds and swivel chairs.
 			var/obj/structure/bed/B = O
