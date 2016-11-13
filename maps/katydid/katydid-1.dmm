@@ -1286,7 +1286,7 @@
 "yL" = (/obj/machinery/door/airlock/engineering,/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/engineering/hardstorage)
 "yM" = (/obj/structure/table/woodentable,/obj/item/device/radio/intercom{dir = 2; icon_state = "intercom"; pixel_y = 24; tag = "icon-intercom (WEST)"},/turf/simulated/floor/wood,/area/engineering/break_room)
 "yN" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{tag = "icon-intact-scrubbers (NORTHEAST)"; icon_state = "intact-scrubbers"; dir = 5},/turf/simulated/floor,/area/engineering/hardstorage)
-"yO" = (/obj/machinery/power/emitter/gyrotron/anchored{id_tag = "engine"},/turf/simulated/floor,/area/engineering/hardstorage)
+"yO" = (/obj/machinery/power/emitter/gyrotron,/turf/simulated/floor,/area/engineering/hardstorage)
 "yP" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor,/area/engineering/hardstorage)
 "yQ" = (/turf/simulated/floor,/area/engineering/hardstorage)
 "yR" = (/obj/machinery/power/port_gen/pacman/super,/turf/simulated/floor,/area/engineering/hardstorage)
