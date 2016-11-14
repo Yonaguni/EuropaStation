@@ -34,4 +34,5 @@ delete-after: True
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
   - wip: "Implemented all of the redactive powers."
+  - wip: "Implemented the remaining coercive powers."
   - tweak: "Backblast will now blow the user's head up if they would otherwise die from brain damage resulting."

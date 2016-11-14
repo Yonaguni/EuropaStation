@@ -151,18 +151,26 @@
 /decl/psychic_power/revive/do_proximity(var/mob/living/user, var/atom/target)
 	if(do_redactive_living_check(user, target))
 		var/mob/living/M = target
-
 		if(M.stat != DEAD && !(M.status_flags & FAKEDEATH))
 			user << "<span class='warning'>\The [target] is still alive!</span>"
 			return
 
-		if(..())
+		if((world.time - M.timeofdeath) > 6000)
+			user << "<span class='warning'>\The [target] has been dead for too long to revive.</span>"
+			return
 
+		if(..())
 			user.visible_message("<span class='notice'><i>\The [user] splays out their hands over \the [target]'s body...</i></span>")
 			if(!do_after(user, 30, target, 0, 1))
 				user.backblast(rand(10,25))
 				return
 
+			for(var/mob/observer/G in dead_mob_list_)
+				if(G.mind && G.mind.current == target && G.client)
+					G << "<span class='notice'>Your body has been revived, <b>Re-Enter Corpse</b> to return to it.</span>"
+					break
+
+			M << "<span class='notice'>Life floods back into your body!</span>"
 			M.visible_message("<span class='notice'>\The [target] shudders violently!</span>")
 			if(M.status_flags & FAKEDEATH)
 				M.changeling_revive()

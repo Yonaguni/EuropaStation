@@ -3,9 +3,9 @@
 	colour = "#3399ff"
 	powers = list(
 		/decl/psychic_power/latent,
-		/decl/psychic_power/spasm,
 		/decl/psychic_power/blindstrike,
-		/decl/psychic_power/coercion_placeholder,
+		/decl/psychic_power/spasm,
+		/decl/psychic_power/agony,
 		/decl/psychic_power/mindream
 		)
 
@@ -17,7 +17,7 @@
 	target_mob_only = 1
 	melee_power_cost = 10
 	ranged_power_cost = 15
-	time_cost = 50
+	time_cost = 100
 
 /decl/psychic_power/spasm/do_proximity(var/mob/living/user, var/atom/target)
 	if(..())
@@ -52,7 +52,8 @@
 	target_melee = 1
 	target_mob_only = 1
 	melee_power_cost = 8
-	ranged_power_cost = 12
+	ranged_power_cost = 8
+	time_cost = 50
 
 /decl/psychic_power/blindstrike/do_proximity(var/mob/living/user, var/atom/target)
 	if(..())
@@ -80,10 +81,22 @@
 	target.eye_blind = max(target.eye_blind,10)
 	target.ear_deaf = max(target.ear_deaf,10)
 
-/decl/psychic_power/coercion_placeholder
-	name = "Coercion Placeholder"
-	description = "Grandmasterclass coercive power."
-	visible = 0
+/decl/psychic_power/agony
+	name = "Agony"
+	description = "Wrack them with crippling pain."
+	target_melee = 1
+	target_mob_only = 1
+	melee_power_cost = 8
+	time_cost = 50
+
+/decl/psychic_power/agony/do_proximity(var/mob/living/user, var/atom/target)
+	if(..())
+		var/mob/living/M = target
+		user.visible_message("<span class='danger'>\The [target] has been struck by \the [user]!</span>")
+		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		M.stun_effect_act(0, 60, user.zone_sel.selecting)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/mindream
 	name = "Mind Ream"
@@ -91,3 +104,37 @@
 	target_ranged = 0
 	target_melee = 1
 	target_mob_only = 1
+	time_cost = 9000
+	melee_power_cost = 28
+
+/decl/psychic_power/mindream/do_proximity(var/mob/living/user, var/atom/target)
+	if(do_redactive_living_check(user, target))
+		var/mob/living/M = target
+
+		if(M.stat == DEAD || (M.status_flags & FAKEDEATH))
+			user << "<span class='warning'>\The [target] is dead!</span>"
+			return FALSE
+
+		if(!M.mind || !M.key)
+			user << "<span class='warning'>\The [target] is mindless!</span>"
+			return FALSE
+
+		if(thralls.is_antagonist(M.mind))
+			user << "<span class='warning'>\The [target] is already in thrall to someone!</span>"
+			return FALSE
+
+		if(..())
+			user.visible_message("<span class='danger'><i>\The [user] seizes the head of \the [target] in both hands...</i></span>")
+			user << "<span class='warning'>You plunge your mentality into that of \the [target]...</span>"
+			target << "<span class='danger'>Your mind is invaded by the presence of \the [user]! They are trying to make you a slave!</span>"
+
+			if(!do_after(user, M.stat == CONSCIOUS ? 80 : 40, target, 0, 1))
+				user.backblast(rand(25,45)) // Almost certainly going to kill you.
+				return TRUE
+
+			user << "<span class='danger'>You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!</span>"
+			target << "<span class='danger'>Your defenses have eroded away and \the [user] has made you their mindslave.</span>"
+			thralls.add_antagonist(M.mind, new_controller = user)
+			return TRUE
+
+	return FALSE
