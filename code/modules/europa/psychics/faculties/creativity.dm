@@ -22,12 +22,16 @@
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
 		sparks.start()
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/spark/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
 		sparks.start()
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/electrocute
 	name = "Electrocution"
@@ -41,6 +45,8 @@
 	if(..())
 		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
 		target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/transmute
 	name = "Transmute"
@@ -67,3 +73,5 @@
 		pew.yo = target.y - user.y
 		pew.xo = target.x - user.x
 		pew.launch(target)
+		return TRUE
+	return FALSE

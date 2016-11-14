@@ -312,7 +312,8 @@
 
 	var/atom/movable/item = src.get_active_hand()
 
-	if(!item) return
+	if(!item)
+		return
 
 	var/throw_range = item.throw_range
 	if (istype(item, /obj/item/weapon/grab))
@@ -334,10 +335,13 @@
 			src.drop_from_inventory(item)
 			item = M
 
-	if(!item || deleted(item) || !isturf(item.loc))
+	if(!item)
 		return
+
 	if(istype(item) && item.loc == src)
 		src.drop_from_inventory(item)
+	if(!isturf(item.loc) || deleted(item))
+		return
 
 	//actually throw it!
 	src.visible_message("<span class='danger'>[src] has thrown [item]!</span>")
@@ -381,8 +385,6 @@
 		update_inv_legcuffed()
 	else
 	 ..()
-
-	return
 
 /mob/living/carbon/verb/mob_sleep()
 	set name = "Sleep"

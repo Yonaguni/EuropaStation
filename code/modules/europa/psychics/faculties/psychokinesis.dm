@@ -3,14 +3,14 @@
 	colour = "#ff9900"
 	powers = list(
 		/decl/psychic_power/latent,
-		/decl/psychic_power/warp,
+		/decl/psychic_power/rend,
 		/decl/psychic_power/tinker,
 		/decl/psychic_power/telekinesis,
-		/decl/psychic_power/rend
+		/decl/psychic_power/sunder
 		)
 
-/decl/psychic_power/warp
-	name = "Warp"
+/decl/psychic_power/rend
+	name = "Rend"
 	description = "Your bare hands, cloaked in power, are enough to tear through metal."
 	target_self = 1
 	item_path = /obj/item/psychic_power/kinesis/lesser
@@ -35,8 +35,7 @@
 	. = ..()
 	user.mutations -= TK
 
-/decl/psychic_power/rend
-	name = "Rend"
+/decl/psychic_power/sunder
+	name = "Sunder"
 	description = "Rip through walls and doors like butter."
 	item_path = /obj/item/psychic_power/kinesis/paramount
-

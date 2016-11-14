@@ -22,10 +22,14 @@
 /decl/psychic_power/spasm/do_proximity(var/mob/living/user, var/atom/target)
 	if(..())
 		cramp(user, target)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/spasm/do_ranged(var/mob/living/user, var/atom/target)
 	if(..())
 		cramp(user, target)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/spasm/proc/cramp(var/mob/living/user, var/mob/living/target)
 
@@ -53,10 +57,14 @@
 /decl/psychic_power/blindstrike/do_proximity(var/mob/living/user, var/atom/target)
 	if(..())
 		blind(user, target)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/blindstrike/do_ranged(var/mob/living/user, var/atom/target)
 	if(..())
 		blind(user, target)
+		return TRUE
+	return FALSE
 
 /decl/psychic_power/blindstrike/proc/blind(var/mob/living/user, var/mob/living/target)
 

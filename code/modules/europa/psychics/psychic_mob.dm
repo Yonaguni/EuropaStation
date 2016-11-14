@@ -60,6 +60,19 @@
 	for(var/obj/item/psychic_power/power_holder in contents)
 		drop_from_inventory(power_holder)
 
+/mob/living/carbon/human/backblast(var/amount)
+	..()
+	if(should_have_organ(BP_BRAIN))
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
+		if(!sponge)
+			return
+		if(sponge.damage >= sponge.max_damage)
+			var/obj/item/organ/external/affecting = get_organ("head")
+			if(affecting && !affecting.is_stump())
+				affecting.droplimb(0, DROPLIMB_BLUNT)
+				if(sponge)
+					qdel(sponge)
+
 /mob/living/proc/update_psychic_powers(var/silent)
 	if(psychic_faculties.len)
 		if(!(/mob/living/proc/evoke_psychic_power in verbs))
