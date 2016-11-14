@@ -186,7 +186,6 @@ default behaviour is:
 		src.health = src.maxHealth - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
 
-
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
@@ -435,6 +434,23 @@ default behaviour is:
 	ExtinguishMob()
 	fire_stacks = 0
 
+/mob/living/proc/basic_revival()
+
+	if(stat == DEAD)
+		switch_from_dead_to_living_mob_list()
+		tod = null
+		timeofdeath = 0
+
+	stat = CONSCIOUS
+	regenerate_icons()
+
+	BITSET(hud_updateflag, HEALTH_HUD)
+	BITSET(hud_updateflag, STATUS_HUD)
+	BITSET(hud_updateflag, LIFE_HUD)
+
+	failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
+	reload_fullscreen()
+
 /mob/living/proc/rejuvenate()
 	if(reagents)
 		reagents.clear_reagents()
@@ -465,24 +481,7 @@ default behaviour is:
 	// fix all of our organs
 	restore_all_organs()
 
-	// remove the character from the list of the dead
-	if(stat == DEAD)
-		switch_from_dead_to_living_mob_list()
-		tod = null
-		timeofdeath = 0
-
-	// restore us to conciousness
-	stat = CONSCIOUS
-
-	// make the icons look correct
-	regenerate_icons()
-
-	BITSET(hud_updateflag, HEALTH_HUD)
-	BITSET(hud_updateflag, STATUS_HUD)
-	BITSET(hud_updateflag, LIFE_HUD)
-
-	failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
-	reload_fullscreen()
+	basic_revival()
 	return
 
 /mob/living/proc/UpdateDamageIcon()

@@ -42,7 +42,8 @@
 		var/turf/target = get_turf(A)
 		if(istype(origin) && istype(target))
 			spawn(1)
-				light_obj.follow_holder()
+				if(light_obj && !deleted(light_obj))
+					light_obj.follow_holder()
 			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
 			return
 	return ..()

@@ -19,16 +19,17 @@
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
 	if(user.Adjacent(target) && use_like_weapon)
+		if(user.next_psy > world.time)
+			user << "<span class='warning'>You cannot use this power again so soon.</span>"
+			return
 		if(user.spend_psychic_power(power.melee_power_cost, power))
+			user.next_psy = world.time + (power ? power.time_cost : 30)
 			return ..()
 	else
 		afterattack(target, user, user.Adjacent(target))
 	return 1
 
 /obj/item/psychic_power/afterattack(var/atom/movable/target, var/mob/living/user, var/proximity)
-
-	if(use_like_weapon)
-		return ..()
 
 	if(!power)
 		qdel(src)
@@ -37,6 +38,9 @@
 	if(user.next_psy > world.time)
 		user << "<span class='warning'>You cannot use this power again so soon.</span>"
 		return
+
+	if(use_like_weapon)
+		return ..()
 
 	if(target == user)
 		if(power.target_self)
@@ -60,7 +64,7 @@
 			user << "<span class='warning'>You cannot use this power at a distance.</span>"
 			return
 
-	user.next_psy = world.time + (power ? power.time_cost : 10)
+	user.next_psy = world.time + (power ? power.time_cost : 30)
 	return 1
 
 /obj/item/psychic_power/dropped()
@@ -156,18 +160,18 @@
 	owner << "<span class='notice'>You begin emulating \a [lowertext(emulating)].</span>"
 	owner << 'sound/effects/psi/power_fabrication.ogg'
 
-/obj/item/psychic_power/kinesis/update_from_power()
-	. = ..()
-	name = "\proper [owner.name]'s bare hands"
-
-/obj/item/psychic_power/kinesis/update_from_power()
-	. = ..()
-	force = rand(min_force, max_force)
-
 /obj/item/psychic_power/kinesis
 	flags = 0
 	var/min_force = 1
 	var/max_force = 3
+
+/obj/item/psychic_power/kinesis/update_from_power()
+	. = ..()
+	name = "\proper [owner.name]'s bare hands"
+	force = rand(min_force, max_force)
+
+/obj/item/psychic_power/kinesis/iscrowbar()
+	return TRUE
 
 /obj/item/psychic_power/kinesis/lesser
 	attack_verb = list("battered", "bludgeoned")
