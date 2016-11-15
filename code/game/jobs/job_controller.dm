@@ -410,7 +410,6 @@ var/global/datum/controller/occupations/job_master
 					spawn_in_storage += thing
 				else
 					var/metadata = H.client.prefs.gear[G.display_name]
-					world << "trying to equip [G.display_name] in [G.slot]"
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
 						custom_equip_slots.Add(G.slot)
