@@ -9,6 +9,8 @@
 	opacity = 0
 	anchored = 1
 	mouse_opacity = 2
+	light_range = 2
+	light_color = "#103300"
 
 	var/maxHealth = 30
 	var/health
@@ -20,6 +22,10 @@
 	health = maxHealth
 	update_icon()
 	return ..(loc)
+
+/obj/effect/blob/initialize()
+	. = ..()
+	set_light()
 
 /obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target, var/height = 0, var/air_group = 0)
 	if(air_group || height == 0)
