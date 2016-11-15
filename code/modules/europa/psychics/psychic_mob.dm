@@ -1,4 +1,3 @@
-/mob/living/var/next_psy = 0
 /mob/living/var/list/psychic_faculties = list()
 /mob/living/var/list/maintaining_powers = list()
 /mob/living/var/psychic_power = 30

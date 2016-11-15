@@ -10,8 +10,8 @@
 	var/obj/item/I = usr.get_active_hand()
 	if(!I)
 		I = usr.get_inactive_hand()
-	if(!I)
-		usr << "<span class='warning'>You don't have anything in your hands to give to \the [target].</span>"
+	if(!I || !I.simulated || I.anchored || I.abstract)
+		usr << "<span class='warning'>You don't have anything in your hands that you can give to \the [target].</span>"
 		return
 
 	if(alert(target,"[usr] wants to give you \a [I]. Will you accept it?",,"Yes","No") == "No")
