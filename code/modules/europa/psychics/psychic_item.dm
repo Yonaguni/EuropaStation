@@ -2,6 +2,8 @@
 /obj/item/psychic_power
 	name = "Psychic Power"
 	icon = 'icons/obj/psychic_powers.dmi'
+	flags = 0
+
 	abstract = 1
 	simulated = 0
 	anchored = 1
@@ -20,7 +22,7 @@
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
 	if(user.Adjacent(target) && use_like_weapon)
 		if(user.next_psy > world.time)
-			user << "<span class='warning'>You cannot use this power again so soon.</span>"
+			user << "<span class='warning'>You cannot use a mental power again so soon.</span>"
 			return
 		if(user.spend_psychic_power(power.melee_power_cost, power))
 			user.next_psy = world.time + (power ? power.time_cost : 30)
@@ -33,11 +35,11 @@
 
 	if(!power)
 		qdel(src)
-		return
+		return 1
 
 	if(user.next_psy > world.time)
-		user << "<span class='warning'>You cannot use this power again so soon.</span>"
-		return
+		user << "<span class='warning'>You cannot use a mental power again so soon.</span>"
+		return 1
 
 	if(use_like_weapon)
 		return ..()
@@ -45,32 +47,43 @@
 	if(target == user)
 		if(power.target_self)
 			if(!power.do_proximity(user, target))
-				return
+				return 1
 		else
 			user << "<span class='warning'>You cannot use this power on yourself.</span>"
-			return
+			return 1
+
 	else if(proximity)
 		if(power.target_melee)
 			if(!power.do_proximity(user, target))
-				return
+				return 1
 		else
 			user << "<span class='warning'>You cannot use this power at close range.</span>"
-			return
+			return 1
 	else
 		if(power.target_ranged)
 			if(!power.do_ranged(user, target))
-				return
+				return 1
 		else
 			user << "<span class='warning'>You cannot use this power at a distance.</span>"
-			return
+			return 1
 
 	user.next_psy = world.time + (power ? power.time_cost : 30)
 	return 1
 
 /obj/item/psychic_power/dropped()
-	qdel(src)
+	. = ..()
+	loc = null
+	if(!deleted(src))
+		qdel(src)
+
+/obj/item/psychic_power/forceMove()
+	. = ..()
+	if(loc != owner && !deleted(src))
+		loc = null
+		qdel(src)
 
 /obj/item/psychic_power/throw_at()
+	loc = null
 	qdel(src)
 
 /obj/item/psychic_power/New(var/mob/living/_owner, var/decl/psychic_power/_power)

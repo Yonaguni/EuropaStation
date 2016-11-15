@@ -64,7 +64,7 @@
 		user << "<span class='notice'>Access Denied</span>"
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(src.opened)
+	if(src.opened && W.simulated && !W.abstract)
 		if(istype(W, /obj/item/weapon/storage/laundry_basket))
 			return ..(W,user)
 		if(istype(W, /obj/item/weapon/grab))

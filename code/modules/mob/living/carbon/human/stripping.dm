@@ -12,7 +12,7 @@
 	// Are we placing or stripping?
 	var/stripping
 	var/obj/item/held = user.get_active_hand()
-	if(!istype(held) || is_robot_module(held))
+	if(!istype(held) || is_robot_module(held) || !held.simulated || held.abstract)
 		stripping = 1
 
 	switch(slot_to_strip_text)

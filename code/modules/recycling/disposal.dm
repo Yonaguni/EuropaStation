@@ -93,7 +93,7 @@
 				user << "You need more welding fuel to complete this task."
 				return
 
-	if(istype(I, /obj/item/weapon/melee/energy/blade))
+	if(istype(I, /obj/item/weapon/melee/energy/blade) || !I.simulated || I.abstract)
 		user << "You can't place that item inside the disposal unit."
 		return
 
