@@ -216,7 +216,7 @@ var/list/flooring_types
 
 /decl/flooring/diona
 	name = "biomass"
-	desc = "a mass of small intertwined aliens forming a floor... Creepy."
+	desc = "A mass of small intertwined aliens forming a floor... creepy."
 	icon = 'icons/turf/floors.dmi'
 	icon_base = "diona"
 	flags = TURF_ACID_IMMUNE | TURF_REMOVE_SHOVEL

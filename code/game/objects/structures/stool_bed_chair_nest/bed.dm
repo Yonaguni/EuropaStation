@@ -16,6 +16,8 @@
 	can_buckle = 1
 	buckle_dir = SOUTH
 	buckle_lying = 1
+
+	var/extra_desc
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
@@ -67,6 +69,8 @@
 	if(material_alteration & MATERIAL_ALTERATION_DESC)
 		desc = initial(desc)
 		desc += padding_material ? " It's made of [material.use_name] and covered with [padding_material.use_name]." : " It's made of [material.use_name]."
+		if(extra_desc)
+			desc += " [extra_desc]"
 
 /obj/structure/bed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))

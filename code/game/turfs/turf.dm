@@ -37,7 +37,7 @@ var/list/turf_edge_cache = list()
 			src.Entered(AM)
 			return
 	turfs |= src
-	if(blend_with_neighbors || flooded)
+	if(blend_with_neighbors || flooded || outside)
 		if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
 			initialize()
 		else
@@ -46,7 +46,7 @@ var/list/turf_edge_cache = list()
 /turf/proc/initialize()
 	update_icon(1)
 
-/turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
+/turf/proc/update_icon(var/update_neighbors, var/list/previously_added = list())
 	var/list/overlays_to_add = previously_added
 	if(blend_with_neighbors)
 		for(var/checkdir in cardinal)
@@ -59,8 +59,14 @@ var/list/turf_edge_cache = list()
 
 	if(is_flooded(absolute=1))
 		overlays_to_add += ocean_overlay_img
-	if(outside)
+
+	if(config.starlight && outside)
 		overlays_to_add += get_exterior_light_overlay()
+		/* Too expensive in init.
+		for(var/thing in trange(1,src))
+			var/turf/T = thing
+			if(!T.outside)
+				set_light(1) */
 
 	overlays = overlays_to_add
 	if(update_neighbors)

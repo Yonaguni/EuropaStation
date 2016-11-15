@@ -14,19 +14,17 @@ var/image/exterior_light_overlay
 	icon_state = "0"
 	luminosity = 1
 	accept_lattice = 1
-
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
-//	heat_capacity = 700000 No.
+	light_color = COLOUR_LTEMP_FLURO_COOL
+	outside = 1
 
-/turf/space/New()
+/turf/space/update_icon()
+	. = ..()
 	if(icon_state == "0")
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
 	if(!istype(src, /turf/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
-	if(config.starlight)
-		overlays += get_exterior_light_overlay()
-	..()
 
 // override for space turfs, since they should never hide anything
 /turf/space/levelupdate()
