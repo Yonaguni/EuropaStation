@@ -16,7 +16,7 @@
 		if (I.implanted)
 			I.trigger(act, src)
 
-	if(src.stat == 2.0 && (act != "deathgasp"))
+	if(src.stat == DEAD && (act != "deathgasp"))
 		return
 	switch(act)
 
@@ -226,8 +226,12 @@
 				m_type = AUDIBLE_MESSAGE
 
 		if ("deathgasp")
-			message = "[species.get_death_message()]"
 			m_type = VISIBLE_MESSAGE
+
+			if(species.name == "Resomi")
+				message = "swoons dramatically, letting out a long, fading gasp before dropping to the floor in a heap!"
+			else
+				message = "[species.get_death_message()]"
 
 		if ("giggle")
 			if (!muzzled)
@@ -525,14 +529,13 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, vomit"}
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list."
 
-
-
-
-
 	if (message)
 		log_emote("[name]/[key] : [message]")
 		custom_emote(m_type,message)
 
+	// Woop woop snowflake snowflake
+	if(act == "deathgasp" && species.name == "Resomi" && stat != DEAD)
+		death()
 
 /mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"

@@ -147,3 +147,27 @@
 			captain.equip_to_slot(charter, slot_l_store)
 		else if(!captain.r_store)
 			captain.equip_to_slot(charter, slot_r_store)
+
+// Defined here so I can add it to the admin verbs.
+/datum/admins/proc/katydid_rename_ship()
+	set category = "Admin"
+	set desc = "Forcibly rename the ship."
+	set name = "Admin Rename Ship"
+
+	if(!check_rights(R_ADMIN))	return
+
+	var/datum/map/katydid/katydid = using_map
+	if(!istype(katydid))
+		usr << "This map doesn't support a map name, sorry."
+		return
+
+	var/newprefix = input("Select a new prefix.", "Ship Name") as null|anything in katydid.possible_ship_prefix
+	if(!newprefix)
+		return
+	var/newname = sanitizeSafe(input("Enter a new name.", "Ship Name"), MAX_LNAME_LEN)
+	if(!newname || newname == "")
+		return
+	katydid.ship_prefix = newprefix
+	katydid.ship_name = newname
+	katydid.full_name = "[katydid.ship_prefix] [katydid.ship_name]"
+	world << "<span class='notice'><b>Naval Command has registered this vessel as the [katydid.full_name]!</b></span>"
