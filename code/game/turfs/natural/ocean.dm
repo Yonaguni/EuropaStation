@@ -43,7 +43,7 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 		detail_decal = "asteroid[rand(0,9)]"
 
 /turf/simulated/ocean/update_icon(var/update_neighbors)
-	overlays.Cut()
 	if(detail_decal)
-		overlays |= get_mining_overlay(detail_decal)
-	..(update_neighbors)
+		..(update_neighbors, list(get_mining_overlay(detail_decal)))
+	else
+		..(update_neighbors)

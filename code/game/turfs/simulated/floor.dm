@@ -35,7 +35,6 @@
 		initial_flooring = floortype
 	if(initial_flooring)
 		set_flooring(get_flooring_data(initial_flooring))
-	..()
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	if(flooring)
