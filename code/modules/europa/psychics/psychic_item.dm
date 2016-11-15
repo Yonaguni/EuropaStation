@@ -9,6 +9,7 @@
 	anchored = 1
 	flags = NOBLUDGEON
 
+	var/next_psy = 0
 	var/use_like_weapon
 	var/mob/living/owner
 	var/decl/psychic_power/power
@@ -21,11 +22,11 @@
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
 	if(user.Adjacent(target) && use_like_weapon)
-		if(user.next_psy > world.time)
+		if(next_psy > world.time)
 			user << "<span class='warning'>You cannot use a mental power again so soon.</span>"
 			return
 		if(user.spend_psychic_power(power.melee_power_cost, power))
-			user.next_psy = world.time + (power ? power.time_cost : 30)
+			next_psy = world.time + (power ? power.time_cost : 30)
 			return ..()
 	else
 		afterattack(target, user, user.Adjacent(target))
@@ -37,8 +38,8 @@
 		qdel(src)
 		return 1
 
-	if(user.next_psy > world.time)
-		user << "<span class='warning'>You cannot use a mental power again so soon.</span>"
+	if(next_psy > world.time)
+		user << "<span class='warning'>You cannot use this power again so soon.</span>"
 		return 1
 
 	if(use_like_weapon)
@@ -67,7 +68,7 @@
 			user << "<span class='warning'>You cannot use this power at a distance.</span>"
 			return 1
 
-	user.next_psy = world.time + (power ? power.time_cost : 30)
+	next_psy = world.time + (power ? power.time_cost : 30)
 	return 1
 
 /obj/item/psychic_power/dropped()
