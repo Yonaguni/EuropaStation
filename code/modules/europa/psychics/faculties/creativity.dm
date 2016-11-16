@@ -2,14 +2,14 @@
 	name = PSYCHIC_CREATIVITY
 	colour = "#00cc99"
 	powers = list(
-		/decl/psychic_power/latent,
-		/decl/psychic_power/spark,
-		/decl/psychic_power/electrocute,
-		/decl/psychic_power/transmute,
-		/decl/psychic_power/zorch
+		/datum/psychic_power/latent,
+		/datum/psychic_power/spark,
+		/datum/psychic_power/electrocute,
+		/datum/psychic_power/transmute,
+		/datum/psychic_power/zorch
 		)
 
-/decl/psychic_power/spark
+/datum/psychic_power/spark
 	name = "Sparks"
 	description = "Create some sparks. Pretty!"
 	item_path = /obj/item/psychic_power/spark
@@ -17,7 +17,7 @@
 	target_ranged = 1
 	target_self = 1
 
-/decl/psychic_power/spark/do_ranged(var/mob/living/user, var/mob/living/target)
+/datum/psychic_power/spark/do_ranged(var/mob/living/user, var/mob/living/target)
 	if(..())
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
@@ -25,7 +25,7 @@
 		return TRUE
 	return FALSE
 
-/decl/psychic_power/spark/do_proximity(var/mob/living/user, var/mob/living/target)
+/datum/psychic_power/spark/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
@@ -33,7 +33,7 @@
 		return TRUE
 	return FALSE
 
-/decl/psychic_power/electrocute
+/datum/psychic_power/electrocute
 	name = "Electrocution"
 	description = "Zap whoever you can reach."
 	target_melee = 1
@@ -41,26 +41,26 @@
 	melee_power_cost = 15
 	time_cost = 30
 
-/decl/psychic_power/electrocute/do_proximity(var/mob/living/user, var/mob/living/target)
+/datum/psychic_power/electrocute/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
 		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
 		target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
 		return TRUE
 	return FALSE
 
-/decl/psychic_power/transmute
+/datum/psychic_power/transmute
 	name = "Transmute"
 	description = "Who needs an autolathe?"
 	target_self = 1
 
-/decl/psychic_power/zorch
+/datum/psychic_power/zorch
 	name = "Mindblast"
 	description = "Your very own personal gigawatt brain laser."
 	target_ranged = 1
 	melee_power_cost = 15
 	ranged_power_cost = 20
 
-/decl/psychic_power/zorch/do_ranged(var/mob/living/user, var/mob/living/target)
+/datum/psychic_power/zorch/do_ranged(var/mob/living/user, var/mob/living/target)
 	if(..())
 		user.visible_message("<span class='danger'>\The [user]'s eyes flare with ruby light!</span>")
 		var/obj/item/projectile/beam/heavylaser/pew = new(get_turf(user))

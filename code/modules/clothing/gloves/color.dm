@@ -3,6 +3,9 @@
 	item_state = "lgloves"
 	icon_state = "white"
 
+/obj/item/clothing/gloves/color/black
+	color = COLOR_BLACK
+
 /obj/item/clothing/gloves/color/white
 	color = COLOR_WHITE
 

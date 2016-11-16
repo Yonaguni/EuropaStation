@@ -38,7 +38,7 @@
 #define MODE_MERCENARY "mercenary"
 #define MODE_NINJA "ninja"
 #define MODE_RAIDER "raider"
-#define MODE_WIZARD "wizard"
+#define MODE_WIZARD "paramount"
 #define MODE_CHANGELING "changeling"
 #define MODE_CULTIST "cultist"
 #define MODE_HIGHLANDER "highlander"

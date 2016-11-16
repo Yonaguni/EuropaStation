@@ -1,29 +1,52 @@
-/mob/living/var/list/psychic_faculties = list()
-/mob/living/var/list/maintaining_powers = list()
-/mob/living/var/psychic_power = 30
-/mob/living/var/max_psychic_power = 30
+/datum/mind
+	var/list/psychic_faculties = list()
+	var/list/psychic_powers = list()
+	var/list/maintaining_powers = list()
+	var/psychic_power = 30
+	var/max_psychic_power = 30
+
+/mob/Login()
+	. = ..()
+	if(mind && mind.psychic_powers)
+		mind.update_psychic_powers()
 
 /datum/psychic_power_assay
-	var/mob/living/owner
+	var/datum/mind/owner
 	var/rank = 1
 	var/decl/psychic_faculty/associated_faculty
+	var/list/powers = list()
 
 /datum/psychic_power_assay/proc/set_rank(var/newrank, var/silent)
+
+	if(!owner)
+		return
+
 	if(rank == newrank)
 		return
 	var/lastrank = rank
 	rank = newrank
 	if(!silent)
 		var/use_span = (rank > lastrank)  ? "notice" : "danger"
-		owner << "<span class = '[use_span]'>Your understanding of [associated_faculty.name] [rank > lastrank ? "surges" : "falls"] to the level of [psychic_ranks_to_strings[rank]].</span>"
+		owner.current << "<span class = '[use_span]'>Your understanding of [associated_faculty.name] [rank > lastrank ? "surges" : "falls"] to the level of [psychic_ranks_to_strings[rank]].</span>"
+
+	owner.psychic_powers -= powers
+	if(rank > lastrank)
+		for(var/i = lastrank+1 to rank)
+			var/ptype = associated_faculty.powers[i]
+			powers += new ptype(owner, associated_faculty, i)
+	else
+		for(var/i = rank+1 to lastrank)
+			qdel(powers[i])
+			powers -= powers[i]
+	owner.psychic_powers |= powers
 	owner.update_psychic_powers(silent)
 
-/datum/psychic_power_assay/New(var/mob/living/_owner, var/decl/psychic_faculty/_associated_faculty)
+/datum/psychic_power_assay/New(var/datum/mind/_owner, var/decl/psychic_faculty/_associated_faculty)
 	. = ..()
 	associated_faculty = _associated_faculty
 	owner = _owner
 
-/mob/living/proc/check_psychic_faculty(var/faculty = PSYCHIC_CREATIVITY, var/min_rank = 1, var/opposing_rank, var/opposing_school = PSYCHIC_CREATIVITY)
+/datum/mind/proc/check_psychic_faculty(var/faculty = PSYCHIC_CREATIVITY, var/min_rank = 1, var/opposing_rank, var/opposing_school = PSYCHIC_CREATIVITY)
 	if(!(faculty in psychic_faculties) || psychic_power <= 0)
 		return 0
 	var/prank = get_psychic_faculty_rank(faculty)
@@ -31,30 +54,33 @@
 		return 0
 	return (prank >= min_rank)
 
-/mob/living/proc/get_psychic_faculty_rank(var/faculty = PSYCHIC_CREATIVITY)
+/datum/mind/proc/get_psychic_faculty_rank(var/faculty = PSYCHIC_CREATIVITY)
 	if(!(faculty in psychic_faculties) || psychic_power <= 0)
 		return 0
 	var/datum/psychic_power_assay/power = psychic_faculties[faculty]
 	return power.rank
 
-/mob/living/proc/spend_psychic_power(var/amount, var/decl/psychic_power/power)
+/datum/mind/proc/spend_psychic_power(var/amount, var/datum/psychic_power/power)
 	if(psychic_power <= 0)
 		power.cancelled(src)
-		backblast(amount)
+		current.backblast(amount)
 		return 0
 	psychic_power -= amount
 	if(psychic_power <= 0)
-		backblast(amount)
+		current.backblast(amount)
 	return 1
 
-/mob/living/proc/backblast(var/amount)
+/mob/proc/backblast(var/amount)
+	return
+
+/mob/living/backblast(var/amount)
 	src << 'sound/effects/psi/power_feedback.ogg'
 	src << "<span class='danger'><font size=3>Wild energistic feedback blasts across your psyche!</font></span>"
 	if(prob(60))
 		emote("scream")
 	if(amount)
 		adjustBrainLoss(amount)
-	for(var/datum/maintained_power/power in maintaining_powers)
+	for(var/datum/maintained_power/power in mind.maintaining_powers)
 		power.fail()
 	for(var/obj/item/psychic_power/power_holder in contents)
 		drop_from_inventory(power_holder)
@@ -72,67 +98,61 @@
 				if(sponge)
 					qdel(sponge)
 
-/mob/living/proc/update_psychic_powers(var/silent)
-	if(psychic_faculties.len)
-		if(!(/mob/living/proc/evoke_psychic_power in verbs))
-			verbs += /mob/living/proc/evoke_psychic_power
-			if(!silent)
-				src << "<span class='notice'>You feel your mind's eye open...</span>"
-				usr << 'sound/effects/psi/power_unlock.ogg'
-	else
-		if(/mob/living/proc/evoke_psychic_power in verbs)
-			verbs -= /mob/living/proc/evoke_psychic_power
-			if(!silent)
-				src << "<span class='danger'>Your mind's eye slams shut!</span>"
-				usr << 'sound/effects/psi/power_unlock.ogg'
+/datum/mind/proc/update_psychic_powers(var/silent)
 
-/mob/living/proc/evoke_psychic_power()
-	set name = "Evoke Power"
-	set desc = "Evoke a metaspychic power."
-	set category = "Abilities"
-
-	/* TODO BETTER INTERFACE */
-	var/list/usable_powers = list()
-	for(var/faculty in psychic_faculties)
-		var/datum/psychic_power_assay/power_assay = psychic_faculties[faculty]
-		for(var/i=1 to power_assay.rank)
-			var/decl/psychic_power/power = power_assay.associated_faculty.powers[i]
-			if(!power.visible)
-				continue
-			usable_powers[power.name] = power
-	var/chosen = input("Select a power to evoke.","Psychic Powers") as null|anything in usable_powers
-	if(!chosen)
+	if(!current || !current.client)
 		return
-	/* END TODO */
 
-	var/decl/psychic_power/power = usable_powers[chosen]
-	power.evoke(src)
+	if(current.client.psi_toggle)
+		current.client.screen -= current.client.psi_toggle
+	if(current.client.psi_hud && current.client.psi_hud.len)
+		current.client.screen -= current.client.psi_hud
+	current.client.psi_hud.Cut()
+
+	if(psychic_powers && psychic_powers.len)
+		for(var/datum/psychic_power/power in psychic_powers)
+			if(!current.client.psychic_hud_elements["\ref[power]"])
+				current.client.psychic_hud_elements["\ref[power]"] = new /obj/screen/psi/power(power)
+		for(var/psiref in current.client.psychic_hud_elements)
+			var/datum/psychic_power/power = locate(psiref)
+			if(!power || !(power in psychic_powers))
+				current.client.psychic_hud_elements[psiref] = null
+				current.client.psychic_hud_elements -= psiref
+				qdel(power)
+			else
+				current.client.psi_hud += current.client.psychic_hud_elements[psiref]
+
+		if(!current.client.hide_psi_powers)
+			current.client.screen += current.client.psi_hud
+		if(!current.client.psi_toggle)
+			current.client.psi_toggle = new()
+		current.client.screen |= current.client.psi_toggle
+		current.client.psi_toggle.update_state(current)
+		spawn(1)
+			current.client.psi_toggle.update_state(current)
 
 /mob/living/Stat()
 	. = ..()
-	if(. && psychic_faculties && psychic_faculties.len)
-		statpanel("Sleights", "Power Points", "[max(0,psychic_power)]/[max_psychic_power]")
-		for(var/pname in psychic_faculties)
-			var/datum/psychic_power_assay/assay = psychic_faculties[pname]
-			statpanel("Sleights", "[capitalize(assay.associated_faculty.name)]", "[capitalize(psychic_ranks_to_strings[assay.rank])]")
+	if(. && statpanel("Status") && mind && mind.psychic_faculties && mind.psychic_faculties.len)
+		stat("Psipower", "[max(0,mind.psychic_power)]/[mind.max_psychic_power]")
 
 /mob/living/Life()
 	. = ..()
-	if(stat != DEAD)
+	if(stat != DEAD && mind)
 		if(stat == UNCONSCIOUS)
-			if(maintaining_powers.len)
-				backblast(maintaining_powers.len)
+			if(mind.maintaining_powers.len)
+				backblast(mind.maintaining_powers.len)
 		else
 			var/turf/T = get_turf(src)
 			if(T && T.is_psi_null())
-				if(maintaining_powers.len)
-					backblast(maintaining_powers.len)
-				if(psychic_power)
-					psychic_power = max(0, psychic_power - rand(1,3))
+				if(mind.maintaining_powers.len)
+					backblast(mind.maintaining_powers.len)
+				if(mind.psychic_power)
+					mind.psychic_power = max(0, mind.psychic_power - rand(1,3))
 					src << "<span class='warning'>You feel your psi-power leeched away by \the [T]...</span>"
 				return
-			if(psychic_power < max_psychic_power)
-				psychic_power = min(max_psychic_power, psychic_power + rand(1,3))
-			for(var/datum/maintained_power/mpower in maintaining_powers)
-				if(spend_psychic_power(mpower.power.passive_cost, mpower.power))
+			if(mind.psychic_power < mind.max_psychic_power)
+				mind.psychic_power = min(mind.max_psychic_power, mind.psychic_power + rand(1,3))
+			for(var/datum/maintained_power/mpower in mind.maintaining_powers)
+				if(mind.spend_psychic_power(mpower.power.passive_cost, mpower.power) && mpower && !deleted(mpower))
 					mpower.power.tick(mpower.owner)
