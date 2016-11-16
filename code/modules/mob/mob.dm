@@ -6,14 +6,10 @@
 	qdel(hud_used)
 	clear_fullscreen()
 	if(client)
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
-			qdel(spell_master)
 		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	if(mind && mind.current == src)
-		spellremove(src)
 	ghostize()
 	. = ..()
 
@@ -36,7 +32,6 @@
 	item_use_icon = null
 	gun_move_icon = null
 	gun_setting_icon = null
-	spell_masters = null
 	zone_sel = null
 
 /mob/New()

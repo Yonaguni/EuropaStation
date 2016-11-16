@@ -126,9 +126,6 @@
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant = null
 
-//Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/spell/list/spell_list = list()
-
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
