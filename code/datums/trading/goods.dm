@@ -36,8 +36,7 @@
 								/obj/item/weapon/storage/box/checkers = TRADER_ALL,
 								/obj/item/weapon/deck                 = TRADER_SUBTYPES_ONLY,
 								/obj/item/weapon/pack                 = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/dice                 = TRADER_ALL,
-								/obj/item/weapon/dice/d20/cursed      = TRADER_BLACKLIST)
+								/obj/item/weapon/dice                 = TRADER_ALL)
 
 /datum/trader/ship/electronics
 	name = "Electronic Shop Employee"

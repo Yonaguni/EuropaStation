@@ -12,14 +12,14 @@
 	name = PSYCHIC_REDACTION
 	colour = "#ff3300"
 	powers = list(
-		/decl/psychic_power/latent,
-		/decl/psychic_power/skinsight,
-		/decl/psychic_power/mend,
-		/decl/psychic_power/cleanse,
-		/decl/psychic_power/revive
+		/datum/psychic_power/latent,
+		/datum/psychic_power/skinsight,
+		/datum/psychic_power/mend,
+		/datum/psychic_power/cleanse,
+		/datum/psychic_power/revive
 		)
 
-/decl/psychic_power/skinsight
+/datum/psychic_power/skinsight
 	name = "Skinsight"
 	description = "See the damage beneath."
 	target_self = 1
@@ -28,13 +28,13 @@
 	time_cost = 30
 	melee_power_cost = 3
 
-/decl/psychic_power/skinsight/do_proximity(var/mob/living/user, var/atom/target)
+/datum/psychic_power/skinsight/do_proximity(var/mob/living/user, var/atom/target)
 	if(do_redactive_living_check(user, target) && ..())
 		health_scan_mob(target, user, "\The [user] rests a hand on \the [target].", ignore_clumsiness = TRUE)
 		return TRUE
 	return FALSE
 
-/decl/psychic_power/mend
+/datum/psychic_power/mend
 	name = "Mend"
 	description = "Mend broken bones and ruptured organs."
 	target_self = 1
@@ -43,7 +43,7 @@
 	time_cost = 100
 	melee_power_cost = 10
 
-/decl/psychic_power/mend/do_proximity(var/mob/living/user, var/atom/target)
+/datum/psychic_power/mend/do_proximity(var/mob/living/user, var/atom/target)
 	if(do_redactive_living_check(user, target))
 		if(!ishuman(target))
 			user << "<span class='warning'>\The [target]'s body is not complex enough to require healing of this kind.</span>"
@@ -94,7 +94,7 @@
 
 	return FALSE
 
-/decl/psychic_power/cleanse
+/datum/psychic_power/cleanse
 	name = "Cleanse"
 	description = "Purge the body of toxins and radiation."
 	target_self = 1
@@ -103,7 +103,7 @@
 	time_cost = 50
 	melee_power_cost = 10
 
-/decl/psychic_power/cleanse/do_proximity(var/mob/living/user, var/atom/target)
+/datum/psychic_power/cleanse/do_proximity(var/mob/living/user, var/atom/target)
 	if(do_redactive_living_check(user, target) && ..())
 
 		user.visible_message("<span class='notice'><i>\The [user] rests a hand on \the [target]...</i></span>")
@@ -140,7 +140,7 @@
 		return TRUE
 	return FALSE
 
-/decl/psychic_power/revive
+/datum/psychic_power/revive
 	name = "Revive"
 	description = "Back from the gates of death."
 	target_melee = 1
@@ -148,7 +148,7 @@
 	time_cost = 3000
 	melee_power_cost = 25
 
-/decl/psychic_power/revive/do_proximity(var/mob/living/user, var/atom/target)
+/datum/psychic_power/revive/do_proximity(var/mob/living/user, var/atom/target)
 	if(do_redactive_living_check(user, target))
 		var/mob/living/M = target
 		if(M.stat != DEAD && !(M.status_flags & FAKEDEATH))

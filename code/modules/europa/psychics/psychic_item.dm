@@ -9,10 +9,9 @@
 	anchored = 1
 	flags = NOBLUDGEON
 
-	var/next_psy = 0
 	var/use_like_weapon
 	var/mob/living/owner
-	var/decl/psychic_power/power
+	var/datum/psychic_power/power
 
 /obj/item/psychic_power/attack_hand(var/mob/user)
 	qdel(src)
@@ -21,15 +20,16 @@
 	qdel(src)
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
-	if(user.Adjacent(target) && use_like_weapon)
-		if(next_psy > world.time)
-			user << "<span class='warning'>You cannot use a mental power again so soon.</span>"
-			return
-		if(user.spend_psychic_power(power.melee_power_cost, power))
-			next_psy = world.time + (power ? power.time_cost : 30)
-			return ..()
-	else
-		afterattack(target, user, user.Adjacent(target))
+	if(user.mind)
+		if(user.Adjacent(target) && use_like_weapon)
+			if(power.next_psy > world.time)
+				user << "<span class='warning'>You cannot use this power again so soon.</span>"
+				return
+			if(user.mind.spend_psychic_power(power.melee_power_cost, power))
+				power.set_next_psy(world.time + power.time_cost)
+				return ..()
+		else
+			afterattack(target, user, user.Adjacent(target))
 	return 1
 
 /obj/item/psychic_power/afterattack(var/atom/movable/target, var/mob/living/user, var/proximity)
@@ -38,7 +38,7 @@
 		qdel(src)
 		return 1
 
-	if(next_psy > world.time)
+	if(power.next_psy > world.time)
 		user << "<span class='warning'>You cannot use this power again so soon.</span>"
 		return 1
 
@@ -68,7 +68,7 @@
 			user << "<span class='warning'>You cannot use this power at a distance.</span>"
 			return 1
 
-	next_psy = world.time + (power ? power.time_cost : 30)
+	power.set_next_psy(world.time + power.time_cost)
 	return 1
 
 /obj/item/psychic_power/dropped()
@@ -87,7 +87,7 @@
 	loc = null
 	qdel(src)
 
-/obj/item/psychic_power/New(var/mob/living/_owner, var/decl/psychic_power/_power)
+/obj/item/psychic_power/New(var/mob/living/_owner, var/datum/psychic_power/_power)
 	. = ..()
 	owner = _owner
 	power = _power
@@ -201,3 +201,88 @@
 	attack_verb = list("rended", "ripped", "torn")
 	min_force = 35
 	max_force = 70
+
+//Psi-boosting item (antag only)
+/obj/item/clothing/head/helmet/space/paramount
+	name = "cerebro-energetic enhancement rig"
+	desc = "A crown-of-thorns cerebro-energetic enhancer. Kind of looks like a tiara having sex with an industrial robot."
+	icon_state = "amp"
+	action_button_name = "Install Boosters"
+	flags_inv = 0
+
+	item_state_slots = list(
+		slot_l_hand_str = "helmet",
+		slot_r_hand_str = "helmet",
+		)
+
+	var/list/boosted_faculties = list()
+	var/static/list/boostable_faculties = list(
+		"Farsensing" =    PSYCHIC_FARSENSE,
+		"Coercion" =      PSYCHIC_COERCION,
+		"Psychokinesis" = PSYCHIC_PSYCHOKINESIS,
+		"Redaction" =     PSYCHIC_REDACTION,
+		"Creativity" =    PSYCHIC_CREATIVITY
+		)
+	var/boosted_rank = 5
+	var/unboosted_rank = 3
+	var/max_boosted_faculties = 3
+	var/boosted_psipower = 120
+
+/obj/item/clothing/head/helmet/space/paramount/New()
+	..()
+	verbs += /obj/item/clothing/head/helmet/space/paramount/proc/integrate
+
+/obj/item/clothing/head/helmet/space/paramount/attack_self(var/mob/user)
+	if(boosted_faculties.len >= max_boosted_faculties)
+		integrate()
+		return
+	var/choice = input("Select a brainboard to install.","CE Rig") as null|anything in boostable_faculties
+	if(!choice || !boostable_faculties[choice] || (boostable_faculties[choice] in boosted_faculties))
+		return ..()
+	boosted_faculties += boostable_faculties[choice]
+	var/slots_left = max_boosted_faculties-boosted_faculties.len
+	user << "<span class='notice'>You install the [choice] brainboard in \the [src]. There [slots_left!=1 ? "are" : "is"] [slots_left] slot\s left.</span>"
+
+/obj/item/clothing/head/helmet/space/paramount/proc/integrate()
+
+	set name = "Integrate CE Rig"
+	set desc = "Enhance your brainpower."
+	set category = "Abilities"
+	set src in usr
+
+	if(!canremove || !usr.mind)
+		return
+
+	if(boosted_faculties.len < max_boosted_faculties)
+		usr << "<span class='notice'>You still have [max_boosted_faculties-boosted_faculties.len] facult[boosted_faculties.len == 1 ? "y" : "ies"] to select. Use \the [src] in-hand to select them.</span>"
+		return
+
+	var/mob/living/carbon/human/H = loc
+	if(!istype(H) || H.head != src)
+		usr << "<span class='warning'>\The [src] must be worn on your head in order to be activated.</span>"
+		return
+
+	canremove = FALSE
+	verbs -= /obj/item/clothing/head/helmet/space/paramount/proc/integrate
+	action_button_name = null
+	H.update_action_buttons()
+
+	H << "<span class='warning'>You feel a series of sharp pinpricks as \the [src] anaesthetises your scalp before drilling down into your brain...</span>"
+	playsound(H, 'sound/weapons/circsawhit.ogg', 50, 1, -1)
+
+	sleep(80)
+
+	for(var/thing in H.mind.psychic_faculties)
+		qdel(H.mind.psychic_faculties[thing])
+	H.mind.psychic_faculties.Cut()
+	for(var/pname in all_psychic_faculties)
+		var/datum/psychic_power_assay/assay = new(H.mind, all_psychic_faculties[pname])
+		H.mind.psychic_faculties[assay.associated_faculty.name] = assay
+		assay.set_rank((pname in boosted_faculties) ? boosted_rank : unboosted_rank)
+		sleep(25)
+
+	H.mind.max_psychic_power = boosted_psipower
+	H.mind.psychic_power = H.mind.max_psychic_power
+
+	H << "<span class='notice'>\The [src] chimes quietly as it finishes boosting your brain.</span>"
+	set_light(1, 1, "#880000")
