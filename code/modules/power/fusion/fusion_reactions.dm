@@ -75,7 +75,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	products = list("tritium"= 1)
 	instability = 1
 
-// Unideal reactions
+// Unideal/material production reactions
 /decl/fusion_reaction/oxygen_oxygen
 	p_react = "oxygen"
 	s_react = "oxygen"

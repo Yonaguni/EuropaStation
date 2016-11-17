@@ -259,6 +259,7 @@ var/list/name_to_material
 	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	is_fusion_fuel = 1
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
@@ -273,6 +274,7 @@ var/list/name_to_material
 	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	is_fusion_fuel = 1
 
 /material/supermatter
 	name = "supermatter"
@@ -567,6 +569,7 @@ var/list/name_to_material
 	stack_
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	is_fusion_fuel = 1
 
 /material/iron
 	name = "iron"
@@ -576,6 +579,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
+	is_fusion_fuel = 1
 
 // Adminspawn only, do not let anyone get this.
 /material/elevatorium

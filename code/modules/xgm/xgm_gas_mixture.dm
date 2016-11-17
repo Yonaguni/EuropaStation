@@ -128,6 +128,9 @@
 		return 0
 
 	var/heat_capacity = heat_capacity()
+	if(!heat_capacity)
+		return 0
+
 	if (thermal_energy < 0)
 		if (temperature < TCMB)
 			return 0

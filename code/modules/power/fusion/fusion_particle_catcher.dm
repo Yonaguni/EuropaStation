@@ -21,9 +21,6 @@
 /obj/effect/fusion_particle_catcher/proc/AddParticles(var/name, var/quantity = 1)
 	if(parent && parent.size >= mysize)
 		parent.AddParticles(name, quantity)
-		set_light(1,1)
-		spawn(3)
-			kill_light()
 		return 1
 	return 0
 
@@ -36,11 +33,8 @@
 		name = "collector [mysize] OFF"
 
 /obj/effect/fusion_particle_catcher/bullet_act(var/obj/item/projectile/Proj)
-	parent.AddEnergy(Proj.damage * 1000, 0, 1)
+	parent.AddEnergy(Proj.damage)
 	update_icon()
-	set_light(1,1)
-	spawn(3)
-		kill_light()
 	return 0
 
 /obj/effect/fusion_particle_catcher/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
