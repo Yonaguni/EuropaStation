@@ -287,7 +287,7 @@
 	if(istype(loc, /turf))
 		var/empsev = max(1, min(3, ceil(size/2)))
 		for(var/atom/movable/AM in range(max(1,Floor(size/2)), loc))
-			if(AM == src || AM == owned_core || !AM.simulated || istype(AM, /obj/item/projectile))
+			if(AM == src || AM == owned_core || !AM.simulated || istype(AM, /obj/item/projectile) || !istype(AM, /obj/effect))
 				continue
 			log_debug("R-UST DEBUG: [AM] is [AM.type]")
 			AM.visible_message("<span class='danger'>The field buckles visibly around \the [AM]!</span>")
