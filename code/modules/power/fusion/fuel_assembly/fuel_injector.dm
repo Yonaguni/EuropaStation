@@ -123,9 +123,11 @@ var/list/fuel_injectors = list()
 				A.particle_type = reagent
 				A.additional_particles = numparticles - 1
 				A.move(1)
-				cur_assembly.rod_quantities[reagent] -= amount
-				amount_left += cur_assembly.rod_quantities[reagent]
-		cur_assembly.percent_depleted = amount_left / cur_assembly.initial_amount
+				if(cur_assembly)
+					cur_assembly.rod_quantities[reagent] -= amount
+					amount_left += cur_assembly.rod_quantities[reagent]
+		if(cur_assembly)
+			cur_assembly.percent_depleted = amount_left / cur_assembly.initial_amount
 		flick("injector-emitting",src)
 	else
 		StopInjecting()

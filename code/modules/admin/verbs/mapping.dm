@@ -153,6 +153,7 @@ var/list/debug_verbs = list (
         ,/client/proc/testZAScolors
         ,/client/proc/testZAScolors_remove
         ,/datum/admins/proc/setup_supermatter
+        ,/datum/admins/proc/setup_fusion
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 	)

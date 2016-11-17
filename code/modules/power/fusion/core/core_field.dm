@@ -1,6 +1,4 @@
-// temperature of the core of the sun
-#define FUSION_HEAT_CAP 1.57e7
-#define FUSION_ENERGY_PER_K 50
+#define FUSION_ENERGY_PER_K 20
 
 /obj/effect/fusion_em_field
 	name = "electromagnetic field"
@@ -108,6 +106,20 @@
 	if(!owned_core)
 		qdel(src)
 
+	// Take some gas up from our environment.
+	var/added_particles = FALSE
+	var/datum/gas_mixture/uptake_gas = owned_core.loc.return_air()
+	if(uptake_gas)
+		uptake_gas = uptake_gas.remove_by_flag(XGM_GAS_FUSION_FUEL, rand(50,100))
+	if(uptake_gas && uptake_gas.total_moles)
+		for(var/gasname in uptake_gas.gas)
+			if(uptake_gas.gas[gasname]*10 > dormant_reactant_quantities[gasname])
+				AddParticles(gasname, uptake_gas.gas[gasname]*10)
+				uptake_gas.adjust_gas(gasname, -(uptake_gas.gas[gasname]), update=FALSE)
+				added_particles = TRUE
+		if(added_particles)
+			uptake_gas.update_values()
+
 	//let the particles inside the field react
 	React()
 
@@ -154,7 +166,7 @@
 
 /obj/effect/fusion_em_field/proc/check_instability()
 	if(tick_instability > 0)
-		percent_unstable += (tick_instability*size)/1000000
+		percent_unstable += (tick_instability*size)/10000
 		tick_instability = 0
 	else
 		if(percent_unstable < 0)
@@ -239,7 +251,7 @@
 	energy += a_energy
 	plasma_temperature += a_plasma_temperature
 	if(a_energy && percent_unstable > 0)
-		percent_unstable -= a_energy/1000
+		percent_unstable -= a_energy/10000
 		if(percent_unstable < 0)
 			percent_unstable = 0
 	while(energy >= 100)
@@ -280,11 +292,18 @@
 	if(istype(loc, /turf))
 		var/empsev = max(1, min(3, ceil(size/2)))
 		for(var/atom/movable/AM in range(max(1,Floor(size/2)), loc))
-			if(AM == src || AM == owned_core)
+			if(AM == src || AM == owned_core || !AM.simulated)
 				continue
+			AM.visible_message("<span class='danger'>The field buckles visibly around \the [AM]!</span>")
+			tick_instability += rand(15,30)
 			AM.emp_act(empsev)
-		for(var/mob/living/L in range(max(1,ceil(radiation/100)),loc))
-			L.apply_effect(radiation,IRRADIATE, blocked = L.getarmor(null, "rad"))
+		if(loc)
+			for(var/mob/living/L in range(max(1,ceil(radiation/100)),loc))
+				L.apply_effect(radiation,IRRADIATE, blocked = L.getarmor(null, "rad"))
+	if(owned_core && owned_core.loc)
+		var/datum/gas_mixture/environment = owned_core.loc.return_air()
+		if(environment && environment.temperature < (T0C+1000)) // Putting an upper bound on it to stop it being used in a TEG.
+			environment.add_thermal_energy(plasma_temperature*1000)
 	radiation = 0
 
 /obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
