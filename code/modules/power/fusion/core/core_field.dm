@@ -206,14 +206,9 @@
 				else
 					var/lost_plasma = (plasma_temperature*percent_unstable)
 					radiation += lost_plasma
-					plasma_temperature -= lost_plasma
-
 					if(flare)
-						var/turf/T = get_turf(owned_core)
-						var/datum/gas_mixture/GM = T.return_air()
-						GM.adjust_gas("oxygen", (size*50)*percent_unstable, 0)
-						GM.adjust_gas("phoron", (size*50)*percent_unstable, 0)
 						radiation += plasma_temperature/2
+					plasma_temperature -= lost_plasma
 
 					if(fuel_loss)
 						for(var/particle in dormant_reactant_quantities)
@@ -292,8 +287,9 @@
 	if(istype(loc, /turf))
 		var/empsev = max(1, min(3, ceil(size/2)))
 		for(var/atom/movable/AM in range(max(1,Floor(size/2)), loc))
-			if(AM == src || AM == owned_core || !AM.simulated)
+			if(AM == src || AM == owned_core || !AM.simulated || istype(AM, /obj/item/projectile))
 				continue
+			log_debug("R-UST DEBUG: [AM] is [AM.type]")
 			AM.visible_message("<span class='danger'>The field buckles visibly around \the [AM]!</span>")
 			tick_instability += rand(15,30)
 			AM.emp_act(empsev)
@@ -303,7 +299,7 @@
 	if(owned_core && owned_core.loc)
 		var/datum/gas_mixture/environment = owned_core.loc.return_air()
 		if(environment && environment.temperature < (T0C+1000)) // Putting an upper bound on it to stop it being used in a TEG.
-			environment.add_thermal_energy(plasma_temperature*1000)
+			environment.add_thermal_energy(plasma_temperature*20000)
 	radiation = 0
 
 /obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
@@ -469,7 +465,7 @@
 	. = ..()
 
 /obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)
-	AddEnergy(Proj.damage * 20, 0, 1)
+	AddEnergy(Proj.damage)
 	update_icon()
 	return 0
 
