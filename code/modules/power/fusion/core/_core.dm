@@ -119,3 +119,11 @@ var/list/fusion_cores = list()
 		return
 
 	return ..()
+
+/obj/machinery/power/fusion_core/proc/jumpstart(var/field_temperature)
+	field_strength = 501 // Generally a good size.
+	Startup()
+	if(!owned_field)
+		return FALSE
+	owned_field.plasma_temperature = field_temperature
+	return TRUE
