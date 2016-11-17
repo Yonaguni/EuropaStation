@@ -89,9 +89,11 @@ var/list/fusion_cores = list()
 		owned_field.ChangeFieldStrength(value)
 
 /obj/machinery/power/fusion_core/attack_hand(var/mob/user)
+	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
+		return
 	visible_message("<span class='notice'>\The [user] hugs \the [src] to make it feel better!</span>")
-	if(owned_field) Shutdown()
-	return
+	if(owned_field)
+		Shutdown()
 
 /obj/machinery/power/fusion_core/attackby(var/obj/item/W, var/mob/user)
 
@@ -113,7 +115,7 @@ var/list/fusion_cores = list()
 				"You secure the [src.name] to the floor.", \
 				"You hear a ratchet")
 		else
-			user.visible_message("[user.name] unsecures [src.name] from the flo	or.", \
+			user.visible_message("[user.name] unsecures [src.name] from the floor.", \
 				"You unsecure the [src.name] from the floor.", \
 				"You hear a ratchet")
 		return

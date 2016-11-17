@@ -145,7 +145,7 @@
 	description = "Back from the gates of death."
 	target_melee = 1
 	target_mob_only = 1
-	time_cost = 3000
+	time_cost = 150
 	melee_power_cost = 25
 
 /datum/psychic_power/revive/do_proximity(var/mob/living/user, var/atom/target)
