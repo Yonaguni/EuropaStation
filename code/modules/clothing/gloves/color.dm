@@ -4,7 +4,10 @@
 	icon_state = "white"
 
 /obj/item/clothing/gloves/color/black
-	color = COLOR_BLACK
+	color = COLOR_DARK_GRAY
+
+/obj/item/clothing/gloves/color/gray
+	color = COLOR_GRAY
 
 /obj/item/clothing/gloves/color/white
 	color = COLOR_WHITE

@@ -3,15 +3,15 @@
 	full_name = "Yonaguni Facility"
 	path = "europa"
 
-	admin_levels = list(3,4)
-	station_levels = list(2)
-	contact_levels = list(2)
-	player_levels = list(1,2)
-	shallow_levels = list(1,2)
+	admin_levels = list(1)
+	station_levels = list(1)
+	contact_levels = list(1)
+	player_levels = list(1)
+	shallow_levels = list(1)
 
 	test_x = 70
 	test_y = 70
-	test_z = 2
+	test_z = 1
 
 	/*
 	motd_override = {"<h1>Welcome to Europa, colonist.</h1>
@@ -24,7 +24,7 @@
 
 	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
 	sleep(-1)
-	new /datum/random_map/noise/seafloor(null,1,1,2,255,255)
+	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
 
 /obj/effect/landmark/map_data/europa
 	name = "europa"

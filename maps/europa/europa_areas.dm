@@ -1,197 +1,244 @@
-// Tram tunnels.
-/area/tram
-	name = "Tram"
-	icon_state = "tram"
-
-/area/tram/tunnel_south
-	name = "Tram Tunnel - South"
-	icon_state = "tram_tunnel_south"
-
-/area/tram/stop_south
-	name = "Tram Stop - South"
-	icon_state = "tram_stop_south"
-
-/area/tram/tunnel_north
-	name = "Tram Tunnel - North"
-	icon_state = "tram_tunnel_north"
-
-/area/tram/stop_north
-	name = "Tram Stop - North"
-	icon_state = "tram_stop_north"
-
-/area/tram/tunnel_east
-	name = "Tram Tunnel - East"
-	icon_state = "tram_tunnel_east"
-
-/area/tram/stop_east
-	name = "Tram Stop - East"
-	icon_state = "tram_stop_east"
-
 // Slum areas.
-/area/slums
+/area/europa
+	icon = 'icons/areas_europa.dmi'
+	base_turf = /turf/simulated/ocean
+
+/area/europa/slums
 	name = "Slums"
 	icon_state = "slums"
 
-/area/slums/east
+/area/europa/slums/east
 	name = "Slums - East"
 	icon_state = "slums_east"
 
-/area/slums/west
+/area/europa/slums/west
 	name = "Slums - West"
 	icon_state = "slums_west"
 
-// Dome 1 - Civilian Dome.
-/area/dome_civ
-	name = "Civilian Dome - Foyer"
+// Dome 1 - Civil Dome.
+/area/europa/dome_civ
+	name = "Civil Dome - Foyer"
 
-/area/dome_civ/kitchen
-	name = "Civilian Dome - Cafeteria"
+/area/europa/dome_civ/kitchen
+	name = "Civil Dome - Cafeteria"
 	icon_state = "cafe"
 
-/area/dome_civ/medical
-	name = "Civilian Dome - Hospital"
+/area/europa/dome_civ/medical
+	name = "Civil Dome - Hospital"
 	icon_state = "medical"
 
-/area/dome_civ/garden
-	name = "Civilian Dome - Garden"
+/area/europa/dome_civ/garden
+	name = "Civil Dome - Garden"
 	icon_state = "garden"
 
-/area/docks_civil
-	name = "Civilian Dome - Docks"
+/area/europa/docks_civil
+	name = "Civil Dome - Docks"
 	icon_state = "docks"
 
-/area/docks_evac
-	name = "Civilian Dome - Evacuation Bay"
+/area/europa/docks_evac
+	name = "Civil Dome - Evacuation Bay"
 	icon_state = "docks"
 
-/area/dome_civ/admin
-	name = "Civilian Dome - Administration"
+/area/europa/dome_civ/admin
+	name = "Civil Dome - Administration"
 	icon_state = "admin"
 
-/area/dome_civ/dorms_general
-	name = "Civilian Dome - Flophouse"
+/area/europa/dome_civ/dorms_general
+	name = "Civil Dome - Dormitory Hallway"
 	icon_state = "dorms_general"
 
-/area/dome_civ/dorms_east
-	name = "Civilian Dome - East Dorms"
+/area/europa/dome_civ/dorms_east
+	name = "Civil Dome - East Dorms"
 	icon_state = "dorms_east"
 
-/area/dome_civ/dorms_west
-	name = "Civilian Dome - West Dorms"
+/area/europa/dome_civ/dorms_west
+	name = "Civil Dome - West Dorms"
 	icon_state = "dorms_west"
 
-/area/dome_civ/apartments
-	name = "Civilian Dome - Apartments"
-	icon_state = "dorms"
+/area/europa/dome_civ/clinic
+	name = "Civil Dome - Clinic"
+	icon_state = "clinic"
 
-/area/dome_civ/engineering
-	name = "Civilian Dome - Engineering Storage"
+/area/europa/dome_civ/clinic_store
+	name = "Civil Dome - Medical Storage"
+	icon_state = "storage"
+
+/area/europa/dome_civ/engineering
+	name = "Civil Dome - Engineering"
 	icon_state = "engineering"
 
-/area/dome_civ/atmos
-	name = "Civilian Dome - Life Support"
+/area/europa/dome_civ/engineering/enter_north
+	name = "Civil Dome - Engineering North Entrance"
+	icon_state = "engineering_enter"
+
+/area/europa/dome_civ/engineering/enter_south
+	name = "Civil Dome - Engineering South Entrance"
+	icon_state = "engineering_enter"
+
+/area/europa/dome_civ/engineering/enter_east
+	name = "Civil Dome - Engineering East Entrance"
+	icon_state = "engineering_enter"
+
+/area/europa/dome_civ/engineering/drones
+	name = "Civil Dome - Drone Fabrication"
+	icon_state = "engineering_enter"
+
+/area/europa/dome_civ/engineering/storage
+	name = "Civil Dome - Engineering Storage"
+	icon_state = "engineering_store"
+
+/area/europa/dome_civ/engineering/lockers
+	name = "Civil Dome - Engineering Lockers"
+	icon_state = "engineering_lockers"
+
+/area/europa/dome_civ/engineering/engine
+	name = "Civil Dome - Fusion Core"
+	icon_state = "fusion"
+
+/area/europa/dome_civ/engineering/engine_obs
+	name = "Civil Dome - Core Observation"
+	icon_state = "fusion_obs"
+
+/area/europa/dome_civ/engineering/engine_entry
+	name = "Civil Dome - Fusion Core Entrance"
+	icon_state = "fusion_enter"
+
+/area/europa/dome_civ/atmos
+	name = "Civil Dome - Life Support"
 	icon_state = "atmospherics"
 
 // Dome 2 - Industrial/Science Dome.
-/area/docks_industrial
-	name = "Industrial Dome - Docks"
+/area/europa/docks_industrial
+	name = "Research Dome - Docks"
 	icon_state = "docks"
 
-/area/dome_ind
-	name = "Industrial Dome - Foyer"
+/area/europa/dome_ind
+	name = "Research Dome - Foyer"
 	icon_state = "hallway"
 
-/area/dome_ind/shops
-	name = "Industrial Dome - Shops"
-	icon_state = "shops"
+/area/europa/walkway
+	name = "Southern Walkway"
+	icon_state = "walk"
 
-/area/dome_ind/commons
-	name = "Industrial Dome - Common Area"
-	icon_state = "dorms"
+/area/europa/walkway/central
+	name = "Central Walkway"
+	icon_state = "walk"
 
-/area/dome_ind/foundry
-	name = "Industrial Dome - Foundry"
-	icon_state = "mining"
+/area/europa/walkway/north
+	name = "Northern Walkway"
+	icon_state = "walk"
+
+/area/europa/dome_ind/admin
+	name = "Research Dome - Administration"
+	icon_state = "admin"
+
+/area/europa/dome_ind/dome
+	name = "Research Dome - Dome Two"
+	icon_state = "science"
+
+/area/europa/dome_ind/xenobio
+	name = "Research Dome - Xenobiology"
+	icon_state = "xeno0"
+
+/area/europa/dome_ind/xenobio_access
+	name = "Research Dome - Xenobiology Access"
+	icon_state = "xeno1"
+
+/area/europa/dome_ind/xenobio_storage
+	name = "Research Dome - Xenobiology Storage"
+	icon_state = "xeno2"
+
+/area/europa/dome_ind/xenobio_secure
+	name = "Research Dome - Xenobiology Secure Testing"
+	icon_state = "xeno3"
+
+/area/europa/dome_ind/xenoflora
+	name = "Research Dome - Xenoflora"
+	icon_state = "xeno4"
 
 // Dome 3 - Naval Dome
-/area/docks_navy
+/area/europa/docks_navy
 	name = "Naval Dome - Docks"
 	icon_state = "docks"
 
-/area/dome_navy
+/area/europa/dome_navy
 	name = "Naval Dome - Offices"
 	icon_state = "admin"
 
-/area/dome_navy/medical
+/area/europa/dome_navy/medical
 	name = "Naval Dome - First Aid"
 	icon_state = "medical"
 
-/area/dome_navy/armory
+/area/europa/dome_navy/armory
 	name = "Naval Dome - Armory"
 	icon_state = "armory"
 
-/area/dome_navy/marshal
+/area/europa/dome_navy/marshal
 	name = "Naval Dome - Marshal Quarters"
 	icon_state = "dorms"
 
-/area/dome_navy/lockers
+/area/europa/dome_navy/lockers
 	name = "Naval Dome - Locker Room"
 	icon_state = "storage"
 
-/area/hallway
+/area/europa/hallway
 	name = "Hallway"
 	icon_state = "hallway"
 
 // Maintenance.
-/area/maintenance
+/area/europa/maintenance
 	flags = RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	icon_state = "maint"
 
-/area/maintenance/industrial_south
-	name = "Industrial Dome - South Maintenance"
+/area/europa/maintenance/industrial_east
+	name = "Industrial Dome - East Maintenance"
 	icon_state = "maint_south"
 
-/area/maintenance/industrial_north
+/area/europa/maintenance/industrial_north
 	name = "Industrial Dome - North Maintenance"
 	icon_state = "maint_north"
 
-/area/maintenance/civil_core
-	name = "Civilian Dome - Core Maintenance"
+/area/europa/maintenance/civil_core
+	name = "Civil Dome - Core Maintenance"
 	icon_state = "maint_core"
 
-/area/maintenance/civil_north
-	name = "Civilian Dome - North Maintenance"
+/area/europa/maintenance/civil_north
+	name = "Civil Dome - North Maintenance"
 	icon_state = "maint_north"
 
-/area/maintenance/civil_east
-	name = "Civilian Dome - North Maintenance"
+/area/europa/maintenance/civil_east
+	name = "Civil Dome - East Maintenance"
 	icon_state = "maint_east"
 
-/area/maintenance/navy_east
+/area/europa/maintenance/navy_east
 	name = "Naval Dome - East Maintenance"
 	icon_state = "maint_east"
 
-/area/maintenance/navy_west
+/area/europa/maintenance/navy_west
 	name = "Naval Dome - West Maintenance"
 	icon_state = "maint_west"
 
-/area/mining
+/area/europa/maintenance/navy_south
+	name = "Naval Dome - South Maintenance"
+	icon_state = "maint_south"
+
+/area/europa/mining
 	name = "Mining Station"
 
-/area/ocean
+/area/europa/ocean
 	name = "Ocean"
 	icon_state = "ocean"
 
-/area/ocean/abyss
+/area/europa/ocean/abyss
 	name = "Abyss Floor"
 	icon_state = "abyss"
 	sound_env = ASTEROID
 
-/area/ocean/surface
+/area/europa/ocean/surface
 	name = "Icy Wastes"
 	icon_state = "surface"
 
-/area/offstation
+/area/europa/offstation
 	name = "Rhadamanthus"
 	icon_state = "offstation"
