@@ -12,3 +12,6 @@
 
 /obj/item/device/flashlight/lamp
 	light_type = LIGHT_SOFT
+
+/obj/item/clothing/head
+	light_type = LIGHT_DIRECTIONAL
