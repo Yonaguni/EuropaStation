@@ -204,15 +204,14 @@
 
 //Psi-boosting item (antag only)
 /obj/item/clothing/head/helmet/space/paramount
-	name = "cerebro-energetic enhancement rig"
-	desc = "A crown-of-thorns cerebro-energetic enhancer. Kind of looks like a tiara having sex with an industrial robot."
-	icon_state = "amp"
+	name = "cerebro-energetic enhancer"
+	desc = "A matte-black, eyeless cerebro-energetic enhancement helmet. Rather unsettling to look at."
 	action_button_name = "Install Boosters"
-	flags_inv = 0
+	icon_state = "cerebro"
 
 	item_state_slots = list(
 		slot_l_hand_str = "helmet",
-		slot_r_hand_str = "helmet",
+		slot_r_hand_str = "helmet"
 		)
 
 	var/list/boosted_faculties = list()
@@ -223,22 +222,41 @@
 		"Redaction" =     PSYCHIC_REDACTION,
 		"Creativity" =    PSYCHIC_CREATIVITY
 		)
+
 	var/boosted_rank = 5
 	var/unboosted_rank = 3
 	var/max_boosted_faculties = 3
 	var/boosted_psipower = 120
+
+/obj/item/clothing/head/helmet/space/paramount/lesser
+	name = "psi-amp"
+	desc = "A crown-of-thorns cerebro-energetic enhancer. Kind of looks like a tiara having sex with an industrial robot."
+	icon_state = "amp"
+	flags_inv = 0
+	body_parts_covered = 0
+
+	max_boosted_faculties = 1
+	boosted_rank = 3
+	unboosted_rank = 1
+	boosted_psipower = 50
 
 /obj/item/clothing/head/helmet/space/paramount/New()
 	..()
 	verbs += /obj/item/clothing/head/helmet/space/paramount/proc/integrate
 
 /obj/item/clothing/head/helmet/space/paramount/attack_self(var/mob/user)
+
+	if(!canremove)
+		return ..()
+
 	if(boosted_faculties.len >= max_boosted_faculties)
 		integrate()
 		return
+
 	var/choice = input("Select a brainboard to install.","CE Rig") as null|anything in boostable_faculties
 	if(!choice || !boostable_faculties[choice] || (boostable_faculties[choice] in boosted_faculties))
-		return ..()
+		return
+
 	boosted_faculties += boostable_faculties[choice]
 	var/slots_left = max_boosted_faculties-boosted_faculties.len
 	user << "<span class='notice'>You install the [choice] brainboard in \the [src]. There [slots_left!=1 ? "are" : "is"] [slots_left] slot\s left.</span>"
