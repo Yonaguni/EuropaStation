@@ -1263,4 +1263,20 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	update_icon()
 	return 1
 
+/obj/machinery/power/apc/north
+	dir = NORTH
+	pixel_y = 24
+
+/obj/machinery/power/apc/south
+	dir = SOUTH
+	pixel_y = -24
+
+/obj/machinery/power/apc/east
+	dir = EAST
+	pixel_x = 24
+
+/obj/machinery/power/apc/west
+	dir = WEST
+	pixel_x = -24
+
 #undef APC_UPDATE_ICON_COOLDOWN

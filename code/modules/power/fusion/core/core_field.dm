@@ -21,6 +21,13 @@
 	var/list/dormant_reactant_quantities = list()
 	var/list/particle_catchers = list()
 
+	var/list/ignore_types = list(
+		/obj/item/projectile,
+		/obj/effect,
+		/obj/structure/cable,
+		/obj/machinery/atmospherics
+		)
+
 	var/light_min_range = 2
 	var/light_min_power = 3
 	var/light_max_range = 10
@@ -103,8 +110,9 @@
 
 /obj/effect/fusion_em_field/process()
 	//make sure the field generator is still intact
-	if(!owned_core)
+	if(!owned_core || deleted(owned_core))
 		qdel(src)
+		return
 
 	// Take some gas up from our environment.
 	var/added_particles = FALSE
@@ -287,15 +295,27 @@
 	if(istype(loc, /turf))
 		var/empsev = max(1, min(3, ceil(size/2)))
 		for(var/atom/movable/AM in range(max(1,Floor(size/2)), loc))
-			if(AM == src || AM == owned_core || !AM.simulated || istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
+
+			if(AM == src || AM == owned_core || !AM.simulated)
 				continue
+
+			var/skip_obstacle
+			for(var/ignore_path in ignore_types)
+				if(istype(AM, ignore_path))
+					skip_obstacle = TRUE
+					break
+			if(skip_obstacle)
+				continue
+
 			log_debug("R-UST DEBUG: [AM] is [AM.type]")
 			AM.visible_message("<span class='danger'>The field buckles visibly around \the [AM]!</span>")
 			tick_instability += rand(15,30)
 			AM.emp_act(empsev)
+
 		if(loc)
 			for(var/mob/living/L in range(max(1,ceil(radiation/100)),loc))
 				L.apply_effect(radiation,IRRADIATE, blocked = L.getarmor(null, "rad"))
+
 	if(owned_core && owned_core.loc)
 		var/datum/gas_mixture/environment = owned_core.loc.return_air()
 		if(environment && environment.temperature < (T0C+1000)) // Putting an upper bound on it to stop it being used in a TEG.
