@@ -35,6 +35,10 @@
 		update_cast = 1
 		light_obj = new(src)
 
+	if(light_obj.light_power != l_power)
+		update_cast = 1
+		light_obj.light_power = l_power
+
 	if(light_obj.current_power != l_range)
 		update_cast = 1
 		light_obj.update_transform(l_range)

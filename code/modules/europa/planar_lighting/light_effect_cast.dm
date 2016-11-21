@@ -21,6 +21,8 @@
 	//cap light range to 5
 	light_range = min(5, light_range)
 
+	alpha = min(255,max(0,round(light_power*25)))
+
 	if(is_directional_light())
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
