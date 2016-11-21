@@ -14,7 +14,7 @@
 	icon_state = "flash"
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
-	device_type = /obj/item/device/flash
+	device_type = /obj/item/flash
 
 /obj/item/rig_module/grenade_launcher
 
@@ -31,9 +31,9 @@
 	var/fire_distance = 10
 
 	charges = list(
-		list("flashbang",   "flashbang",   /obj/item/weapon/grenade/flashbang,  3),
-		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  3),
-		list("EMP grenade", "EMP grenade", /obj/item/weapon/grenade/empgrenade, 3),
+		list("flashbang",   "flashbang",   /obj/item/grenade/flashbang,  3),
+		list("smoke bomb",  "smoke bomb",  /obj/item/grenade/smokebomb,  3),
+		list("EMP grenade", "EMP grenade", /obj/item/grenade/empgrenade, 3),
 		)
 
 /obj/item/rig_module/grenade_launcher/accepts_item(var/obj/item/input_device, var/mob/living/user)
@@ -85,7 +85,7 @@
 		return 0
 
 	charge.charges--
-	var/obj/item/weapon/grenade/new_grenade = new charge.product_type(get_turf(H))
+	var/obj/item/grenade/new_grenade = new charge.product_type(get_turf(H))
 	H.visible_message("<span class='danger'>[H] launches \a [new_grenade]!</span>")
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
@@ -112,7 +112,7 @@
 /obj/item/rig_module/energy_blade/process()
 
 	if(holder && holder.wearer)
-		if(!(locate(/obj/item/weapon/melee/energy/blade) in holder.wearer))
+		if(!(locate(/obj/item/melee/energy/blade) in holder.wearer))
 			deactivate()
 			return 0
 
@@ -129,7 +129,7 @@
 		deactivate()
 		return
 
-	var/obj/item/weapon/melee/energy/blade/blade = new(M)
+	var/obj/item/melee/energy/blade/blade = new(M)
 	blade.creator = M
 	M.put_in_hands(blade)
 
@@ -142,7 +142,7 @@
 	if(!M)
 		return
 
-	for(var/obj/item/weapon/melee/energy/blade/blade in M.contents)
+	for(var/obj/item/melee/energy/blade/blade in M.contents)
 		M.drop_from_inventory(blade)
 		qdel(blade)
 
@@ -160,7 +160,7 @@
 	interface_name = "death blossom launcher"
 	interface_desc = "An integrated microfactory that produces poisoned throwing stars from thin air and electricity."
 
-	var/fabrication_type = /obj/item/weapon/material/star/ninja
+	var/fabrication_type = /obj/item/material/star/ninja
 	var/fire_force = 30
 	var/fire_distance = 10
 

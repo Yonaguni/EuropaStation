@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/composite
+/obj/item/gun/composite
 	name = "composite weapon"
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
@@ -21,7 +21,7 @@
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/chamber/chamber // Loading type, firing modes, special behavior.
 
-/obj/item/weapon/gun/composite/New(var/newloc, var/obj/item/weapon/gun_assembly/assembly)
+/obj/item/gun/composite/New(var/newloc, var/obj/item/gun_assembly/assembly)
 	if(istype(assembly))
 		for(var/obj/item/I in assembly.contents)
 			I.forceMove(src)
@@ -37,28 +37,28 @@
 		installed_in_turret = TRUE
 	..(newloc)
 
-/obj/item/weapon/gun/composite/forceMove()
+/obj/item/gun/composite/forceMove()
 	. = ..()
 	if(istype(loc, /obj/machinery/porta_turret))
 		installed_in_turret = TRUE
 	else
 		installed_in_turret = FALSE
 
-/obj/item/weapon/gun/composite/pickup()
+/obj/item/gun/composite/pickup()
 	. = ..()
 	update_strings()
 	update_icon()
 
-/obj/item/weapon/gun/composite/dropped()
+/obj/item/gun/composite/dropped()
 	. = ..()
 	update_strings()
 	update_icon()
 
-/obj/item/weapon/gun/composite/reset_name()
+/obj/item/gun/composite/reset_name()
 	update_strings()
 	return name
 
-/obj/item/weapon/gun/composite/Destroy()
+/obj/item/gun/composite/Destroy()
 	barrel = null
 	body = null
 	grip = null
@@ -69,7 +69,7 @@
 		qdel(I)
 	return ..()
 
-/obj/item/weapon/gun/composite/proc/update_from_components()
+/obj/item/gun/composite/proc/update_from_components()
 
 	// Should we actually exist?
 	if(!barrel || !body || !grip || !chamber)
@@ -102,7 +102,7 @@
 	fire_sound = barrel.fire_sound
 	fire_delay = chamber.fire_delay
 	silenced = 0
-	verbs -= /obj/item/weapon/gun/composite/proc/scope
+	verbs -= /obj/item/gun/composite/proc/scope
 	requires_two_hands = body.two_handed
 
 	attack_verb = initial(attack_verb)
@@ -147,7 +147,7 @@
 	update_icon(regenerate=1)
 	update_strings()
 
-/obj/item/weapon/gun/composite/proc/update_strings()
+/obj/item/gun/composite/proc/update_strings()
 	if(model)
 		if(model.force_gun_name)
 			name = "\improper [model.force_gun_name]"
@@ -164,7 +164,7 @@
 		name = "[get_gun_name(src, dam_type, gun_type)]"
 		desc = "[body.base_desc] You can't work out who manufactured this one; it might be an aftermarket job."
 
-/obj/item/weapon/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
+/obj/item/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
 
 	if(force_icon && force_icon_state)
 		icon = force_icon
@@ -196,7 +196,7 @@
 		else
 			item_state = body.item_state
 
-/obj/item/weapon/gun/composite/AltClick()
+/obj/item/gun/composite/AltClick()
 	if(!(src in usr))
 		return ..()
 	var/list/possible_interactions = list()
@@ -212,7 +212,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/gun/composite/proc/explode()
+/obj/item/gun/composite/proc/explode()
 
 	// Grab refs.
 	var/mob/M = loc
@@ -240,14 +240,14 @@
 	chamber = null
 	qdel(src)
 
-/obj/item/weapon/gun/composite/proc/jam()
+/obj/item/gun/composite/proc/jam()
 	if(jammed) return
 	var/mob/M = loc
 	if(istype(M))
 		M << "<span class='danger'>\The [src] jams!</span>"
 	jammed = 1
 
-/obj/item/weapon/gun/composite/attack_self(var/mob/user)
+/obj/item/gun/composite/attack_self(var/mob/user)
 	if(!(src in usr))
 		return ..()
 
@@ -277,7 +277,7 @@
 		chosen.do_user_interaction(usr)
 	return
 
-/obj/item/weapon/gun/composite/switch_firemodes(var/mob/user)
+/obj/item/gun/composite/switch_firemodes(var/mob/user)
 	var/datum/firemode/new_mode = ..()
 	barrel.caliber = caliber
 	barrel.update_from_caliber()

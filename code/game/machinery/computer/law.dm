@@ -4,7 +4,7 @@
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
 	icon_screen = "command"
-	circuit = /obj/item/weapon/circuitboard/aiupload
+	circuit = /obj/item/circuitboard/aiupload
 	var/mob/living/silicon/ai/current = null
 	var/opened = 0
 
@@ -24,18 +24,18 @@
 		return
 
 
-	attackby(obj/item/weapon/O as obj, mob/user as mob)
+	attackby(var/obj/item/O, var/mob/user)
 		if (user.z > 6)
 			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the ship!"
 			return
-		if(istype(O, /obj/item/weapon/aiModule))
-			var/obj/item/weapon/aiModule/M = O
+		if(istype(O, /obj/item/aiModule))
+			var/obj/item/aiModule/M = O
 			M.install(src)
 		else
 			..()
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if(src.stat & NOPOWER)
 			usr << "The upload computer has no power!"
 			return
@@ -51,7 +51,7 @@
 			usr << "[src.current.name] selected for law changes."
 		return
 
-	attack_ghost(user as mob)
+	attack_ghost(var/mob/user)
 		return 1
 
 
@@ -59,18 +59,18 @@
 	name = "robot upload console"
 	desc = "Used to upload laws to robots."
 	icon_screen = "command"
-	circuit = /obj/item/weapon/circuitboard/borgupload
+	circuit = /obj/item/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
 
 
-	attackby(obj/item/weapon/aiModule/module as obj, mob/user as mob)
-		if(istype(module, /obj/item/weapon/aiModule))
+	attackby(var/obj/item/aiModule/module as obj, var/mob/user)
+		if(istype(module, /obj/item/aiModule))
 			module.install(src)
 		else
 			return ..()
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if(src.stat & NOPOWER)
 			usr << "The upload computer has no power!"
 			return
@@ -86,5 +86,5 @@
 			usr << "[src.current.name] selected for law changes."
 		return
 
-	attack_ghost(user as mob)
+	attack_ghost(var/mob/user)
 		return 1

@@ -144,7 +144,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/datum/changeling/changeling = changeling_power(0,0,100)
 	if(!changeling)	return
 
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
 		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
 		return
@@ -348,7 +348,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.dna = chosen_dna.Clone()
 
 	var/list/implants = list()
-	for (var/obj/item/weapon/implant/I in C) //Still preserving implants
+	for (var/obj/item/implant/I in C) //Still preserving implants
 		implants += I
 
 	C.transforming = 1
@@ -388,7 +388,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
-	for (var/obj/item/weapon/implant/I in implants)
+	for (var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 
@@ -657,7 +657,7 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 	//STINGS//	//They get a pretty header because there's just so fucking many of them ;_;
 	//////////
 
-/mob/proc/sting_can_reach(mob/M as mob, sting_range = 1)
+/mob/proc/sting_can_reach(mob/M, sting_range = 1)
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))

@@ -41,10 +41,10 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(var/mob/living/carbon/human/M, var/mob/user)
 	return
 
-/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/toy/balloon/afterattack(atom/A as mob|obj, var/mob/user, proximity)
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
@@ -53,8 +53,8 @@
 		src.update_icon()
 	return
 
-/obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+/obj/item/toy/balloon/attackby(obj/O as obj, var/mob/user)
+	if(istype(O, /obj/item/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
 				user << "The [O] is empty."
@@ -97,7 +97,7 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
 	w_class = 5
@@ -143,7 +143,7 @@
 		if(..(user, 2) && bullets)
 			user << "<span class='notice'>It is loaded with [bullets] foam darts!</span>"
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I as obj, var/mob/user)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
 			if(bullets <= 4)
 				user.drop_item()
@@ -154,7 +154,7 @@
 				usr << "<span class='warning'>It's already fully loaded.</span>"
 
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+	afterattack(atom/target as mob|obj|turf|area, var/mob/user, flag)
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
@@ -202,7 +202,7 @@
 				O.show_message(text("<span class='warning'>\The [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
 
-	attack(mob/M as mob, mob/user as mob)
+	attack(var/mob/M, var/mob/user)
 		src.add_fingerprint(user)
 
 // ******* Check
@@ -246,14 +246,14 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = 2.0
 	attack_verb = list("attacked", "struck", "hit")
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		src.active = !( src.active )
 		if (src.active)
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
@@ -276,7 +276,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "katana"
 	item_state = "katana"
 	flags = CONDUCT
@@ -326,7 +326,7 @@
 /obj/item/toy/waterflower
 	name = "water flower"
 	desc = "A seemingly innocent sunflower...with a twist."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	var/empty = 0
@@ -338,12 +338,12 @@
 	R.my_atom = src
 	R.add_reagent("water", 10)
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(var/mob/living/carbon/human/M, var/mob/user)
 	return
 
-/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, var/mob/user)
 
-	if (istype(A, /obj/item/weapon/storage/backpack ))
+	if (istype(A, /obj/item/storage/backpack ))
 		return
 
 	else if (locate (/obj/structure/table, src.loc))
@@ -401,7 +401,7 @@
 	w_class = 1
 	slot_flags = SLOT_EARS
 
-/obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
+/obj/item/toy/bosunwhistle/attack_self(var/mob/user)
 	if(cooldown < world.time - 35)
 		user << "<span class='notice'>You blow on [src], creating an ear-splitting noise!</span>"
 		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
@@ -416,13 +416,13 @@
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
-/obj/item/toy/prize/attack_self(mob/user as mob)
+/obj/item/toy/prize/attack_self(var/mob/user)
 	if(cooldown < world.time - 8)
 		user << "<span class='notice'>You play with [src].</span>"
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(var/mob/user)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			user << "<span class='notice'>You play with [src].</span>"
@@ -688,7 +688,7 @@
 /obj/item/toy/therapy_red
 	name = "red therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is red."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
 	w_class = 1
@@ -696,7 +696,7 @@
 /obj/item/toy/therapy_purple
 	name = "purple therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is purple."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
 	w_class = 1
@@ -704,7 +704,7 @@
 /obj/item/toy/therapy_blue
 	name = "blue therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is blue."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
 	w_class = 1
@@ -712,7 +712,7 @@
 /obj/item/toy/therapy_yellow
 	name = "yellow therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
 	w_class = 1
@@ -720,7 +720,7 @@
 /obj/item/toy/therapy_orange
 	name = "orange therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is orange."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
 	w_class = 1
@@ -728,7 +728,7 @@
 /obj/item/toy/therapy_green
 	name = "green therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is green."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
 	w_class = 1
@@ -789,7 +789,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
 
-/obj/item/toy/plushie/attack_self(mob/user as mob)
+/obj/item/toy/plushie/attack_self(var/mob/user)
 	if(user.a_intent == I_HELP)
 		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
 	else if (user.a_intent == I_HURT)
@@ -833,14 +833,14 @@
 /obj/item/toy/cultsword
 	name = "foam sword"
 	desc = "An arcane weapon (made of foam) wielded by the followers of the hit Saturday morning cartoon \"King Nursee and the Acolytes of Heroism\"."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	w_class = 5
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
 
 /* NYET.
-/obj/item/weapon/toddler
+/obj/item/toddler
 	icon_state = "toddler"
 	name = "toddler"
 	desc = "This baby looks almost real. Wait, did it just burp?"
@@ -851,7 +851,7 @@
 
 //This should really be somewhere else but I don't know where. w/e
 
-/obj/item/weapon/inflatable_duck
+/obj/item/inflatable_duck
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
 	icon_state = "inflatable"

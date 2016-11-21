@@ -1,4 +1,4 @@
-/obj/item/weapon/hand_labeler
+/obj/item/hand_labeler
 	name = "hand labeler"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
@@ -7,10 +7,10 @@
 	var/labels_left = 30
 	var/mode = 0	//off or on.
 
-/obj/item/weapon/hand_labeler/attack()
+/obj/item/hand_labeler/attack()
 	return
 
-/obj/item/weapon/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/hand_labeler/afterattack(atom/A, var/mob/user, proximity)
 	if(!proximity)
 		return
 	if(!mode)	//if it's off, give up.
@@ -36,7 +36,7 @@
 	if(isobserver(A))
 		user << "<span class='notice'>[src] passes through [A.name].</span>"
 		return
-	if(istype(A, /obj/item/weapon/reagent_containers/glass))
+	if(istype(A, /obj/item/reagent_containers/glass))
 		user << "<span class='notice'>The label can't stick to the [A.name].  (Try using a pen)</span>"
 		return
 	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
@@ -52,7 +52,7 @@
 						 "<span class='notice'>You label [A] as [label].</span>")
 	A.name = "[A.name] ([label])"
 
-/obj/item/weapon/hand_labeler/attack_self(mob/user as mob)
+/obj/item/hand_labeler/attack_self(var/mob/user)
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)

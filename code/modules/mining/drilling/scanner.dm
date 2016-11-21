@@ -1,13 +1,13 @@
-/obj/item/weapon/mining_scanner
+/obj/item/mining_scanner
 	name = "ore detector"
 	desc = "A complex device used to locate ore deep underground."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "forensic0-old" //GET A BETTER SPRITE.
 	item_state = "electronic"
 
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
 
-/obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
+/obj/item/mining_scanner/attack_self(var/mob/user)
 	user << "You begin sweeping \the [src] about, scanning for metal deposits."
 
 	if(!do_after(user, 50,src))

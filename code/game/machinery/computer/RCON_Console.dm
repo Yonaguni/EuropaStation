@@ -9,7 +9,7 @@
 	desc = "Console used to remotely control machinery."
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
-	circuit = /obj/item/weapon/circuitboard/rcon_console
+	circuit = /obj/item/circuitboard/rcon_console
 	req_one_access = list(access_engine)
 	var/current_tag = null
 	var/datum/nano_module/rcon/rcon
@@ -26,7 +26,7 @@
 // Proc: attack_hand()
 // Parameters: 1 (user - Person which clicked this computer)
 // Description: Opens UI of this machine.
-/obj/machinery/computer/rcon/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/rcon/attack_hand(var/mob/user)
 	..()
 	ui_interact(user)
 

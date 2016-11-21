@@ -29,9 +29,9 @@
 	..()
 	update_icon()
 
-/obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/rods/attackby(obj/item/W as obj, var/mob/user)
 	if (W.iswelder())
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 
 		if(get_amount() < 2)
 			user << "<span class='warning'>You need at least two rods to do this.</span>"
@@ -50,7 +50,7 @@
 				user.put_in_hands(new_item)
 		return
 
-	if (istype(W, /obj/item/weapon/tape_roll))
+	if (istype(W, /obj/item/tape_roll))
 		var/obj/item/stack/medical/splint/ghetto/new_splint = new(user.loc)
 		new_splint.dropInto(loc)
 		new_splint.add_fingerprint(user)
@@ -63,7 +63,7 @@
 	..()
 
 
-/obj/item/stack/rods/attack_self(mob/user as mob)
+/obj/item/stack/rods/attack_self(var/mob/user)
 	src.add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
@@ -97,7 +97,7 @@
 
 /obj/item/stack/rods/update_icon()
 	if(amount == 1)
-		icon = 'icons/obj/weapons.dmi'
+		icon = 'icons/obj/items.dmi'
 		icon_state = "metal-rod"
 	else
 		icon = initial(icon)

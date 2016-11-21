@@ -28,9 +28,9 @@
 /obj/machinery/modular_computer/console/New()
 	..()
 	cpu.battery_module = null
-	cpu.network_card = new/obj/item/weapon/computer_hardware/network_card/wired(src)
-	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
-	cpu.hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/super(src) // Consoles generally have better HDDs due to lower space limitations
+	cpu.network_card = new/obj/item/computer_hardware/network_card/wired(src)
+	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
+	cpu.hard_drive = new/obj/item/computer_hardware/hard_drive/super(src) // Consoles generally have better HDDs due to lower space limitations
 	var/area/A = get_area(src)
 	// Attempts to set this console's tag according to our area. Since some areas have stuff like "XX - YY" in their names we try to remove that too.
 	if(A && console_department)

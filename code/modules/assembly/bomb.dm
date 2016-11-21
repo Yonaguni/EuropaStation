@@ -1,4 +1,4 @@
-/obj/item/device/onetankbomb
+/obj/item/onetankbomb
 	name = "bomb"
 	icon = 'icons/obj/tank.dmi'
 	item_state = "assembly"
@@ -8,14 +8,14 @@
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
 	var/status = 0   //0 - not readied //1 - bomb finished with welder
-	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
-	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a phoron tank
+	var/obj/item/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
+	var/obj/item/tank/bombtank = null //the second part of the bomb is a phoron tank
 
-/obj/item/device/onetankbomb/examine(mob/user)
+/obj/item/onetankbomb/examine(mob/user)
 	..(user)
 	user.examinate(bombtank)
 
-/obj/item/device/onetankbomb/update_icon()
+/obj/item/onetankbomb/update_icon()
 	if(bombtank)
 		icon_state = bombtank.icon_state
 	if(bombassembly)
@@ -23,8 +23,8 @@
 		overlays += bombassembly.overlays
 		overlays += "bomb_assembly"
 
-/obj/item/device/onetankbomb/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/analyzer))
+/obj/item/onetankbomb/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W, /obj/item/analyzer))
 		bombtank.attackby(W, user)
 		return
 	if(W.iswrench() && !status)	//This is basically bomb assembly code inverted. apparently it works.
@@ -54,12 +54,12 @@
 	add_fingerprint(user)
 	..()
 
-/obj/item/device/onetankbomb/attack_self(mob/user as mob) //pressing the bomb accesses its assembly
+/obj/item/onetankbomb/attack_self(var/mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, 1)
 	add_fingerprint(user)
 	return
 
-/obj/item/device/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+/obj/item/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
 	visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
 	sleep(10)
 	if(!src)
@@ -69,21 +69,21 @@
 	else
 		bombtank.release()
 
-/obj/item/device/onetankbomb/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/onetankbomb/HasProximity(var/atom/movable/AM)
 	if(bombassembly)
 		bombassembly.HasProximity(AM)
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/weapon/tank/proc/bomb_assemble(W,user)	//Bomb assembly proc. This turns assembly+tank into a bomb
-	var/obj/item/device/assembly_holder/S = W
+/obj/item/tank/proc/bomb_assemble(W,user)	//Bomb assembly proc. This turns assembly+tank into a bomb
+	var/obj/item/assembly_holder/S = W
 	var/mob/M = user
 	if(!S.secured)										//Check if the assembly is secured
 		return
 	if(isigniter(S.a_left) == isigniter(S.a_right))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 		return
 
-	var/obj/item/device/onetankbomb/R = new /obj/item/device/onetankbomb(loc)
+	var/obj/item/onetankbomb/R = new /obj/item/onetankbomb(loc)
 
 	M.drop_item()			//Remove the assembly from your hands
 	M.remove_from_mob(src)	//Remove the tank from your character,in case you were holding it
@@ -99,7 +99,7 @@
 	R.update_icon()
 	return
 
-/obj/item/weapon/tank/proc/ignite()	//This happens when a bomb is told to explode
+/obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.gas[GAS_FUEL] + air_contents.gas["oxygen"] / 6
 	var/strength = 1
 
@@ -147,7 +147,7 @@
 		qdel(master)
 	qdel(src)
 
-/obj/item/weapon/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
+/obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles)
 	var/turf/simulated/T = get_turf(src)
 	if(!T)

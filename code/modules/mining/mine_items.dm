@@ -14,22 +14,22 @@
 	..()
 	sleep(2)
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		new /obj/item/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/storage/backpack/satchel_eng(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/device/analyzer(src)
-	new /obj/item/weapon/storage/ore(src)
-	new /obj/item/device/flashlight/lantern(src)
-	new /obj/item/weapon/shovel(src)
-	new /obj/item/weapon/pickaxe(src)
+	new /obj/item/analyzer(src)
+	new /obj/item/storage/ore(src)
+	new /obj/item/flashlight/lantern(src)
+	new /obj/item/shovel(src)
+	new /obj/item/pickaxe(src)
 	new /obj/item/clothing/glasses/material(src)
 
 /******************************Lantern*******************************/
 
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
@@ -37,7 +37,7 @@
 
 /*****************************Pickaxe********************************/
 
-/obj/item/weapon/pickaxe
+/obj/item/pickaxe
 	name = "mining drill"
 	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
 	icon = 'icons/obj/items.dmi'
@@ -58,12 +58,12 @@
 
 	var/excavation_amount = 100
 
-/obj/item/weapon/pickaxe/hammer
+/obj/item/pickaxe/hammer
 	name = "sledgehammer"
 	//icon_state = "sledgehammer" Waiting on sprite
 	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 
-/obj/item/weapon/pickaxe/silver
+/obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
@@ -71,7 +71,7 @@
 
 	desc = "This makes no metallurgic sense."
 
-/obj/item/weapon/pickaxe/drill
+/obj/item/pickaxe/drill
 	name = "advanced mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
 	item_state = "jackhammer"
@@ -80,7 +80,7 @@
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/jackhammer
+/obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
@@ -89,7 +89,7 @@
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
-/obj/item/weapon/pickaxe/gold
+/obj/item/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
@@ -98,7 +98,7 @@
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
-/obj/item/weapon/pickaxe/plasmacutter
+/obj/item/pickaxe/plasmacutter
 	name = "plasma cutter"
 	icon_state = "plasmacutter"
 	item_state = "gun"
@@ -112,7 +112,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/pickaxe/diamond
+/obj/item/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
@@ -121,7 +121,7 @@
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
 
-/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+/obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -130,7 +130,7 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/borgdrill
+/obj/item/pickaxe/borgdrill
 	name = "robot mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -140,7 +140,7 @@
 
 /*****************************Shovel********************************/
 
-/obj/item/weapon/shovel
+/obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
@@ -157,7 +157,7 @@
 	sharp = 0
 	edge = 1
 
-/obj/item/weapon/shovel/spade
+/obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
@@ -209,13 +209,13 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/flag/attackby(obj/item/W as obj, var/mob/user)
 	if(upright && istype(W,src.type))
 		src.attack_hand(user)
 	else
 		..()
 
-/obj/item/stack/flag/attack_hand(user as mob)
+/obj/item/stack/flag/attack_hand(var/mob/user)
 	if(upright)
 		upright = 0
 		icon_state = base_state
@@ -224,7 +224,7 @@
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user as mob)
+/obj/item/stack/flag/attack_self(var/mob/user)
 
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T,/turf/simulated/mineral/floor))

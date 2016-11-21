@@ -135,7 +135,7 @@
 	return !density
 
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
+/obj/machinery/door/proc/bumpopen(var/mob/user)
 	if(operating)	return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
@@ -169,7 +169,7 @@
 
 
 
-/obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
+/obj/machinery/door/hitby(var/atom/movable/AM, var/speed=5)
 
 	..()
 	visible_message("<span class='danger'>[src.name] was hit by [AM].</span>")
@@ -182,13 +182,13 @@
 	take_damage(tforce)
 	return
 
-/obj/machinery/door/attack_ai(mob/user as mob)
+/obj/machinery/door/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/door/attack_hand(mob/user as mob)
+/obj/machinery/door/attack_hand(var/mob/user)
 	return src.attackby(user, user)
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+/obj/machinery/door/attack_tk(var/mob/user)
 	if(requiresID() && !allowed(null))
 		return
 	..()
@@ -234,7 +234,7 @@
 			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
 			return
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -254,8 +254,8 @@
 		return
 
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-		var/obj/item/weapon/W = I
+	if(src.density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
+		var/obj/item/W = I
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)

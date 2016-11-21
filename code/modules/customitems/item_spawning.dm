@@ -67,17 +67,17 @@
 			U.update_rolldown_status()
 
 	// Kits are dumb so this is going to have to be hardcoded/snowflake.
-	if(istype(item, /obj/item/device/kit))
-		var/obj/item/device/kit/K = item
+	if(istype(item, /obj/item/kit))
+		var/obj/item/kit/K = item
 		K.new_name = kit_name
 		K.new_desc = kit_desc
 		K.new_icon = kit_icon
 		K.new_icon_file = CUSTOM_ITEM_OBJ
-		if(istype(item, /obj/item/device/kit/paint))
-			var/obj/item/device/kit/paint/kit = item
+		if(istype(item, /obj/item/kit/paint))
+			var/obj/item/kit/paint/kit = item
 			kit.allowed_types = splittext(additional_data, ", ")
-		else if(istype(item, /obj/item/device/kit/suit))
-			var/obj/item/device/kit/suit/kit = item
+		else if(istype(item, /obj/item/kit/suit))
+			var/obj/item/kit/suit/kit = item
 			kit.new_light_overlay = additional_data
 			kit.new_mob_icon_file = CUSTOM_ITEM_MOB
 
@@ -197,7 +197,7 @@
 			continue
 
 		// Check for required access.
-		var/obj/item/weapon/card/id/current_id = M.wear_id
+		var/obj/item/card/id/current_id = M.wear_id
 		if(citem.req_access && citem.req_access > 0)
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
 				continue
@@ -215,10 +215,10 @@
 
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.
 		var/obj/item/existing_item
-		if(citem.item_path == /obj/item/weapon/card/id && istype(current_id)) //Set earlier.
+		if(citem.item_path == /obj/item/card/id && istype(current_id)) //Set earlier.
 			existing_item = M.wear_id
-		else if(citem.item_path == /obj/item/device/radio/headset/pda)
-			existing_item = locate(/obj/item/device/radio/headset/pda) in M.contents
+		else if(citem.item_path == /obj/item/radio/headset/pda)
+			existing_item = locate(/obj/item/radio/headset/pda) in M.contents
 
 		// Spawn and equip the item.
 		if(existing_item)

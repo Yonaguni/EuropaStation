@@ -4,7 +4,7 @@
 
 var/list/global/tank_gauge_cache = list()
 
-/obj/item/weapon/tank
+/obj/item/tank
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 
@@ -31,7 +31,7 @@ var/list/global/tank_gauge_cache = list()
 	var/volume = 70
 	var/manipulated_by = null		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
-/obj/item/weapon/tank/New()
+/obj/item/tank/New()
 	..()
 
 	src.air_contents = new /datum/gas_mixture()
@@ -41,17 +41,17 @@ var/list/global/tank_gauge_cache = list()
 	update_gauge()
 	return
 
-/obj/item/weapon/tank/Destroy()
+/obj/item/tank/Destroy()
 	if(air_contents)
 		qdel(air_contents)
 	processing_objects.Remove(src)
-	if(istype(loc, /obj/item/device/transfer_valve))
-		var/obj/item/device/transfer_valve/TTV = loc
+	if(istype(loc, /obj/item/transfer_valve))
+		var/obj/item/transfer_valve/TTV = loc
 		TTV.remove_tank(src)
 
 	return ..()
 
-/obj/item/weapon/tank/examine(mob/user)
+/obj/item/tank/examine(mob/user)
 	. = ..(user, 0)
 	if(.)
 		var/celsius_temperature = air_contents.temperature - T0C
@@ -71,32 +71,32 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "cold"
 		user << "<span class='notice'>\The [src] feels [descriptive].</span>"
 
-/obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tank/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
-		var/obj/item/device/analyzer/A = W
+	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/device/assembly_holder))
+	if(istype(W, /obj/item/assembly_holder))
 		bomb_assemble(W,user)
 
-/obj/item/weapon/tank/attack_self(mob/user as mob)
+/obj/item/tank/attack_self(var/mob/user)
 	if (!(src.air_contents))
 		return
 
 	ui_interact(user)
 
-/obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/mob/living/carbon/location = null
 
-	if(istype(loc, /obj/item/weapon/rig))		// check for tanks in rigs
+	if(istype(loc, /obj/item/rig))		// check for tanks in rigs
 		if(istype(loc.loc, /mob/living/carbon))
 			location = loc.loc
 	else if(istype(loc, /mob/living/carbon))
@@ -125,7 +125,7 @@ var/list/global/tank_gauge_cache = list()
 		else if(src in location)		// or if tank is in the mobs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
-		else if(istype(src.loc, /obj/item/weapon/rig) && src.loc in location)	// or the rig is in the mobs possession
+		else if(istype(src.loc, /obj/item/rig) && src.loc in location)	// or the rig is in the mobs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
 
@@ -150,7 +150,7 @@ var/list/global/tank_gauge_cache = list()
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/item/weapon/tank/Topic(href, href_list)
+/obj/item/tank/Topic(href, href_list)
 	..()
 	if (usr.stat|| usr.restrained())
 		return 0
@@ -172,7 +172,7 @@ var/list/global/tank_gauge_cache = list()
 	src.add_fingerprint(usr)
 	return 1
 
-/obj/item/weapon/tank/proc/toggle_valve(var/mob/user)
+/obj/item/tank/proc/toggle_valve(var/mob/user)
 	if(istype(loc,/mob/living/carbon))
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
@@ -198,19 +198,19 @@ var/list/global/tank_gauge_cache = list()
 			else
 				user << "<span class='warning'>You need something to connect to \the [src].</span>"
 
-/obj/item/weapon/tank/remove_air(amount)
+/obj/item/tank/remove_air(amount)
 	return air_contents.remove(amount)
 
-/obj/item/weapon/tank/return_air()
+/obj/item/tank/return_air()
 	return air_contents
 
-/obj/item/weapon/tank/assume_air(datum/gas_mixture/giver)
+/obj/item/tank/assume_air(datum/gas_mixture/giver)
 	air_contents.merge(giver)
 
 	check_status()
 	return 1
 
-/obj/item/weapon/tank/proc/remove_air_volume(volume_to_return)
+/obj/item/tank/proc/remove_air_volume(volume_to_return)
 	if(!air_contents)
 		return null
 
@@ -222,14 +222,14 @@ var/list/global/tank_gauge_cache = list()
 
 	return remove_air(moles_needed)
 
-/obj/item/weapon/tank/process()
+/obj/item/tank/process()
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)
 		update_gauge()
 	check_status()
 
-/obj/item/weapon/tank/proc/update_gauge()
+/obj/item/tank/proc/update_gauge()
 	var/gauge_pressure = 0
 	if(air_contents)
 		gauge_pressure = air_contents.return_pressure()
@@ -248,7 +248,7 @@ var/list/global/tank_gauge_cache = list()
 		tank_gauge_cache[indicator] = image(icon, indicator)
 	overlays += tank_gauge_cache[indicator]
 
-/obj/item/weapon/tank/proc/check_status()
+/obj/item/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
 
 	if(!air_contents)
@@ -256,7 +256,7 @@ var/list/global/tank_gauge_cache = list()
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(src.loc,/obj/item/device/transfer_valve))
+		if(!istype(src.loc,/obj/item/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
 			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
 

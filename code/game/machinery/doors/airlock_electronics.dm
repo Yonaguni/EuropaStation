@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/obj/item/weapon/airlock_electronics
+/obj/item/airlock_electronics
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -18,7 +18,7 @@
 
 
 
-/obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
+/obj/item/airlock_electronics/attack_self(var/mob/user)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
@@ -27,7 +27,7 @@
 
 
 //tgui interact code generously lifted from tgstation.
-/obj/item/weapon/airlock_electronics/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+/obj/item/airlock_electronics/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
 	datum/tgui/master_ui = null, datum/ui_state/state = hands_state)
 
 	tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
@@ -35,7 +35,7 @@
 		ui = new(user, src, ui_key, "airlock_electronics", src.name, 1000, 500, master_ui, state)
 		ui.open()
 
-/obj/item/weapon/airlock_electronics/ui_data(mob/user)
+/obj/item/airlock_electronics/ui_data(mob/user)
 	var/list/data = list()
 	var/list/regions = list()
 
@@ -57,7 +57,7 @@
 
 	return data
 
-/obj/item/weapon/airlock_electronics/ui_act(action, params)
+/obj/item/airlock_electronics/ui_act(action, params)
 	if(..())
 		return TRUE
 	switch(action)
@@ -82,10 +82,10 @@
 				return TRUE
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/pda = I
+				if (istype(I, /obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/pda = I
 					I = pda.id
-				if(!istype(I, /obj/item/weapon/card/id))
+				if(!istype(I, /obj/item/card/id))
 					usr << "<span class='warning'>[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?</span>"
 					return TRUE
 				if (I && src.check_access(I))
@@ -98,7 +98,7 @@
 			locked = 1
 			. = TRUE
 
-/obj/item/weapon/airlock_electronics/secure
+/obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
 

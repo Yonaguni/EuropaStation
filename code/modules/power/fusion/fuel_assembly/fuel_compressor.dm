@@ -21,19 +21,19 @@
 			return 1
 		var/datum/reagent/R = thing.reagents.reagent_list[1]
 		visible_message("<span class='notice'>\The [src] compresses the contents of \the [thing] into a new fuel assembly.</span>")
-		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), R.id, R.color)
+		var/obj/item/fuel_assembly/F = new(get_turf(src), R.id, R.color)
 		thing.reagents.remove_reagent(R.id, R.volume)
 		user.put_in_hands(F)
 
 	else if(istype(thing, /obj/machinery/power/supermatter/shard))
-		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), "supermatter")
+		var/obj/item/fuel_assembly/F = new(get_turf(src), "supermatter")
 		visible_message("<span class='notice'>\The [src] compresses the \[thing] into a new fuel assembly.</span>")
 		qdel(thing)
 		user.put_in_hands(F)
 		return 1
 	return 0
 
-/obj/machinery/fusion_fuel_compressor/attackby(var/obj/item/weapon/thing, var/mob/user)
+/obj/machinery/fusion_fuel_compressor/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/stack/material))
 		var/obj/item/stack/material/M = thing
 		var/material/mat = M.get_material()
@@ -43,7 +43,7 @@
 		if(M.get_amount() < 25)
 			user << "<span class='warning'>You need at least 25 [mat.sheet_plural_name] to make a fuel rod.</span>"
 			return
-		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), mat.name)
+		var/obj/item/fuel_assembly/F = new(get_turf(src), mat.name)
 		visible_message("<span class='notice'>\The [src] compresses the [mat.use_name] into a new fuel assembly.</span>")
 		M.use(25)
 		user.put_in_hands(F)

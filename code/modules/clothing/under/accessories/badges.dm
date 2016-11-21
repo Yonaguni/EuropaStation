@@ -22,7 +22,7 @@
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
-/obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/attack_self(var/mob/user)
 
 	if(!stored_name)
 		user << "You polish your [src.name] fondly, shining up the surface."
@@ -52,7 +52,7 @@
 	icon_state = "holobadge-cord"
 	slot_flags = SLOT_MASK | SLOT_TIE
 
-/obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attack_self(var/mob/user)
 	if(!stored_name)
 		user << "Waving around a holobadge before swiping an ID would be pretty pointless."
 		return
@@ -67,15 +67,15 @@
 		user << "<span class='danger'>You crack the holobadge security checks.</span>"
 		return 1
 
-/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/id) || istype(O, /obj/item/device/radio/headset/pda))
+/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/card/id) || istype(O, /obj/item/radio/headset/pda))
 
-		var/obj/item/weapon/card/id/id_card = null
+		var/obj/item/card/id/id_card = null
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
-			var/obj/item/device/radio/headset/pda/pda = O
+			var/obj/item/radio/headset/pda/pda = O
 			id_card = pda.id
 
 		if(access_security in id_card.access || emagged)
@@ -86,7 +86,7 @@
 		return
 	..()
 
-/obj/item/weapon/storage/box/holobadge
+/obj/item/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 	New()

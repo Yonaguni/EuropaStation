@@ -90,7 +90,7 @@
 		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
 		if(confirm != "Yes")
 			return 0
-	var/obj/item/device/paicard/card = new(T)
+	var/obj/item/paicard/card = new(T)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.name = sanitizeSafe(input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text)
 	pai.real_name = pai.name
@@ -181,7 +181,7 @@
 		else
 			if(alert("Spawn that person a tome?",,"Yes","No")=="Yes")
 				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a message from your new master, appears on the ground."
-				new /obj/item/weapon/book/tome(M.loc)
+				new /obj/item/book/tome(M.loc)
 			else
 				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie."
 			var/glimpse=pick("1","2","3","4","5","6","7","8")
@@ -252,14 +252,14 @@
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if (H.wear_id)
-			var/obj/item/weapon/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/device/radio/headset/pda))
-				var/obj/item/device/radio/headset/pda/pda = H.wear_id
+			var/obj/item/card/id/id = H.wear_id
+			if(istype(H.wear_id, /obj/item/radio/headset/pda))
+				var/obj/item/radio/headset/pda/pda = H.wear_id
 				id = pda.id
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 		else
-			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
+			var/obj/item/card/id/id = new/obj/item/card/id(M);
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 			id.registered_name = H.real_name
@@ -340,7 +340,7 @@
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
-	for(var/obj/item/device/radio/intercom/I in world)
+	for(var/obj/item/radio/intercom/I in world)
 		var/area/A = get_area(I)
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
@@ -449,7 +449,7 @@
 	for(var/obj/machinery/power/rad_collector/Rad in world)
 		if(Rad.anchored)
 			if(!Rad.P)
-				var/obj/item/weapon/tank/phoron/Phoron = new/obj/item/weapon/tank/phoron(Rad)
+				var/obj/item/tank/phoron/Phoron = new/obj/item/tank/phoron(Rad)
 				Phoron.air_contents.gas[GAS_FUEL] = 70
 				Rad.drainratio = 0
 				Rad.P = Phoron

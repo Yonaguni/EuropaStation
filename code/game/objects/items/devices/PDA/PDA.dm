@@ -1,9 +1,9 @@
 
 //The advanced pea-green monochrome lcd of tomorrow.
 
-var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
+var/global/list/obj/item/radio/headset/pda/PDAs = list()
 
-/obj/item/device/radio/headset/pda
+/obj/item/radio/headset/pda
 	name = "\improper wrist computer"
 	desc = "A portable wrist-mounted microcomputer, also known as a Personal Data Assistant."
 	icon = 'icons/obj/wristcomp.dmi'
@@ -20,7 +20,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	//Main variables
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
-	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/obj/item/cartridge/cartridge = null //current cartridge
 	var/mode = 0 //Controls what menu the PDA will display. 0 is hub; the rest are either built in or based on cartridge.
 
 	var/lastmode = 0
@@ -61,13 +61,13 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)		     // These modes we turn off autoupdate
 	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)			     // These we update every 5 ticks
 
-	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
+	var/obj/item/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above - this is assignment (potentially alt title)
 	var/ownrank = null // this one is rank, never alt title
 
-	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
+	var/obj/item/paicard/pai = null	// A slot for a personal AI device
 
-/obj/item/device/radio/headset/pda/attack_hand(var/mob/user)
+/obj/item/radio/headset/pda/attack_hand(var/mob/user)
 	if(loc == user)
 		if(user.incapacitated() || user.restrained())
 			return
@@ -76,7 +76,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 			return attack_self(user)
 	return ..()
 
-/obj/item/device/radio/headset/pda/MouseDrop(var/obj/over_object)
+/obj/item/radio/headset/pda/MouseDrop(var/obj/over_object)
 	if(ishuman(usr))
 		if(loc != usr) return
 		if(usr.restrained() || usr.incapacitated()) return
@@ -86,64 +86,64 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		return
 	return ..()
 
-/obj/item/device/radio/headset/pda/examine(mob/user)
+/obj/item/radio/headset/pda/examine(mob/user)
 	. = ..(user, 1)
 	if(.)
 		user << "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/device/radio/headset/pda/medical
-	default_cartridge = /obj/item/weapon/cartridge/medical
+/obj/item/radio/headset/pda/medical
+	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "wc-medical"
 	item_state = "wc-medical"
-	ks2type = /obj/item/device/encryptionkey/headset_med
+	ks2type = /obj/item/encryptionkey/headset_med
 
-/obj/item/device/radio/headset/pda/engineering
-	default_cartridge = /obj/item/weapon/cartridge/engineering
+/obj/item/radio/headset/pda/engineering
+	default_cartridge = /obj/item/cartridge/engineering
 	icon_state = "wc-engineering"
 	item_state = "wc-engineering"
-	ks2type = /obj/item/device/encryptionkey/headset_eng
+	ks2type = /obj/item/encryptionkey/headset_eng
 
-/obj/item/device/radio/headset/pda/security
-	default_cartridge = /obj/item/weapon/cartridge/security
+/obj/item/radio/headset/pda/security
+	default_cartridge = /obj/item/cartridge/security
 	icon_state = "wc-security"
 	item_state = "wc-security"
-	ks2type = /obj/item/device/encryptionkey/headset_sec
+	ks2type = /obj/item/encryptionkey/headset_sec
 
-/obj/item/device/radio/headset/pda/science
-	default_cartridge = /obj/item/weapon/cartridge/signal/science
+/obj/item/radio/headset/pda/science
+	default_cartridge = /obj/item/cartridge/signal/science
 	icon_state = "wc-science"
 	item_state = "wc-science"
-	ks2type = /obj/item/device/encryptionkey/headset_sci
+	ks2type = /obj/item/encryptionkey/headset_sci
 
-/obj/item/device/radio/headset/pda/command
-	default_cartridge = /obj/item/weapon/cartridge/head
+/obj/item/radio/headset/pda/command
+	default_cartridge = /obj/item/cartridge/head
 	icon_state = "wc-command"
 	item_state = "wc-command"
-	ks2type = /obj/item/device/encryptionkey/headset_com
+	ks2type = /obj/item/encryptionkey/headset_com
 
-/obj/item/device/radio/headset/pda/supply
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
+/obj/item/radio/headset/pda/supply
+	default_cartridge = /obj/item/cartridge/quartermaster
 	icon_state = "wc-supply"
 	item_state = "wc-supply"
-	ks2type = /obj/item/device/encryptionkey/headset_cargo
+	ks2type = /obj/item/encryptionkey/headset_cargo
 
-/obj/item/device/radio/headset/pda/syndicate
-	default_cartridge = /obj/item/weapon/cartridge/syndicate
+/obj/item/radio/headset/pda/syndicate
+	default_cartridge = /obj/item/cartridge/syndicate
 	icon_state = "pda-syn"
 	icon = 'icons/obj/pda.dmi'
 	name = "Military PDA"
 	owner = "John Doe"
 	hidden = 1
-	ks1type = /obj/item/device/encryptionkey/syndicate
+	ks1type = /obj/item/encryptionkey/syndicate
 
 // Special AI/pAI PDAs that cannot explode.
-/obj/item/device/radio/headset/pda/ai
+/obj/item/radio/headset/pda/ai
 	icon_state = "NONE"
 	ttone = "data"
 	newstone = "news"
 	detonate = 0
 
-/obj/item/device/radio/headset/pda/ai/proc/set_name_and_job(newname as text, newjob as text, newrank as null|text)
+/obj/item/radio/headset/pda/ai/proc/set_name_and_job(newname as text, newjob as text, newrank as null|text)
 	owner = newname
 	ownjob = newjob
 	if(newrank)
@@ -154,7 +154,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 
 //AI verb and proc for sending PDA messages.
-/obj/item/device/radio/headset/pda/ai/verb/cmd_send_pdamesg()
+/obj/item/radio/headset/pda/ai/verb/cmd_send_pdamesg()
 	set category = "AI IM"
 	set name = "Send Message"
 	set src in usr
@@ -170,7 +170,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		create_message(usr, selected, 0)
 
 
-/obj/item/device/radio/headset/pda/ai/verb/cmd_toggle_pda_receiver()
+/obj/item/radio/headset/pda/ai/verb/cmd_toggle_pda_receiver()
 	set category = "AI IM"
 	set name = "Toggle Sender/Receiver"
 	set src in usr
@@ -181,7 +181,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	usr << "<span class='notice'>PDA sender/receiver toggled [(toff ? "Off" : "On")]!</span>"
 
 
-/obj/item/device/radio/headset/pda/ai/verb/cmd_toggle_pda_silent()
+/obj/item/radio/headset/pda/ai/verb/cmd_toggle_pda_silent()
 	set category = "AI IM"
 	set name = "Toggle Ringer"
 	set src in usr
@@ -192,7 +192,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	usr << "<span class='notice'>PDA ringer toggled [(message_silent ? "Off" : "On")]!</span>"
 
 
-/obj/item/device/radio/headset/pda/ai/verb/cmd_show_message_log()
+/obj/item/radio/headset/pda/ai/verb/cmd_show_message_log()
 	set category = "AI IM"
 	set name = "Show Message Log"
 	set src in usr
@@ -209,33 +209,33 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 
 
-/obj/item/device/radio/headset/pda/ai/can_use()
+/obj/item/radio/headset/pda/ai/can_use()
 	return 1
 
 
-/obj/item/device/radio/headset/pda/ai/attack_self(mob/user as mob)
+/obj/item/radio/headset/pda/ai/attack_self(var/mob/user)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
 	return
 
 
-/obj/item/device/radio/headset/pda/ai/pai
+/obj/item/radio/headset/pda/ai/pai
 	ttone = "assist"
 
 /*
  *	The Actual PDA
  */
 
-/obj/item/device/radio/headset/pda/New()
+/obj/item/radio/headset/pda/New()
 	..()
 	PDAs += src
 	PDAs = sortAtom(PDAs)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
-	new /obj/item/weapon/pen(src)
+	new /obj/item/pen(src)
 
-/obj/item/device/radio/headset/pda/proc/can_use()
+/obj/item/radio/headset/pda/proc/can_use()
 
 	if(!ismob(loc))
 		return 0
@@ -248,16 +248,16 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	else
 		return 0
 
-/obj/item/device/radio/headset/pda/GetAccess()
+/obj/item/radio/headset/pda/GetAccess()
 	if(id)
 		return id.GetAccess()
 	else
 		return ..()
 
-/obj/item/device/radio/headset/pda/GetID()
+/obj/item/radio/headset/pda/GetID()
 	return id
 
-/obj/item/device/radio/headset/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/radio/headset/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
 	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
 	var/auto_update = 1
@@ -353,7 +353,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		var/convopdas[0]
 		var/pdas[0]
 		var/count = 0
-		for (var/obj/item/device/radio/headset/pda/P in PDAs)
+		for (var/obj/item/radio/headset/pda/P in PDAs)
 			if (!P.owner||P.toff||P == src||P.hidden)       continue
 			if(conversations.Find("\ref[P]"))
 				convopdas.Add(list(list("Name" = "[P]", "Reference" = "\ref[P]", "Detonate" = "[P.detonate]", "inconvo" = "1")))
@@ -468,7 +468,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	ui.set_auto_update(auto_update)
 
 //NOTE: graphic resources are loaded on client login
-/obj/item/device/radio/headset/pda/attack_self(mob/user as mob)
+/obj/item/radio/headset/pda/attack_self(var/mob/user)
 	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/pda)
 	assets.send(user)
 
@@ -480,7 +480,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	ui_interact(user) //NanoUI requires this proc
 	return
 
-/obj/item/device/radio/headset/pda/Topic(href, href_list)
+/obj/item/radio/headset/pda/Topic(href, href_list)
 	if(href_list["cartmenu"] && !isnull(cartridge))
 		cartridge.Topic(href, href_list)
 		return 1
@@ -643,7 +643,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 				return 0
 		if("Message")
 
-			var/obj/item/device/radio/headset/pda/P = locate(href_list["target"])
+			var/obj/item/radio/headset/pda/P = locate(href_list["target"])
 			var/tap = istype(U, /mob/living/carbon)
 			src.create_message(U, P, tap)
 			if(mode == 2)
@@ -665,7 +665,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 					mode=61
 		if("Send Honk")//Honk virus
 			if(cartridge && cartridge.access_clown)//Cartridge checks are kind of unnecessary since everything is done through switch.
-				var/obj/item/device/radio/headset/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
+				var/obj/item/radio/headset/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
 				if(!isnull(P))
 					if (!P.toff && cartridge.charges > 0)
 						cartridge.charges--
@@ -678,7 +678,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 				return 0
 		if("Send Silence")//Silent virus
 			if(cartridge && cartridge.access_mime)
-				var/obj/item/device/radio/headset/pda/P = locate(href_list["target"])
+				var/obj/item/radio/headset/pda/P = locate(href_list["target"])
 				if(!isnull(P))
 					if (!P.toff && cartridge.charges > 0)
 						cartridge.charges--
@@ -707,7 +707,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 		if("Detonate")//Detonate PDA... maybe
 			if(cartridge && cartridge.access_detonate_pda)
-				var/obj/item/device/radio/headset/pda/P = locate(href_list["target"])
+				var/obj/item/radio/headset/pda/P = locate(href_list["target"])
 				var/datum/reception/reception = get_reception(src, P, "", do_sleep = 0)
 				if(!(reception.message_server && reception.telecomms_reception & TELECOMMS_RECEPTION_SENDER))
 					U.show_message("<span class='warning'>An error flashes on your [src]: Connection unavailable</span>", 1)
@@ -788,13 +788,13 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
-/obj/item/device/radio/headset/pda/update_icon()
+/obj/item/radio/headset/pda/update_icon()
 	..()
 	overlays.Cut()
 	if(new_message || new_news)
 		overlays += image(icon, "pda-r")
 
-/obj/item/device/radio/headset/pda/proc/detonate_act(var/obj/item/device/radio/headset/pda/P)
+/obj/item/radio/headset/pda/proc/detonate_act(var/obj/item/radio/headset/pda/P)
 	//TODO: sometimes these attacks show up on the message server
 	var/i = rand(1,100)
 	var/j = rand(0,1) //Possibility of losing the PDA after the detonation
@@ -858,7 +858,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		message = "<span class='warning'>[message]</span>"
 		M.show_message(message, 1)
 
-/obj/item/device/radio/headset/pda/proc/remove_id()
+/obj/item/radio/headset/pda/proc/remove_id()
 	if (id)
 		if (ismob(loc))
 			var/mob/M = loc
@@ -868,7 +868,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 			id.loc = get_turf(src)
 		id = null
 
-/obj/item/device/radio/headset/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/radio/headset/pda/P, var/tap = 1)
+/obj/item/radio/headset/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/radio/headset/pda/P, var/tap = 1)
 	if(tap)
 		U.visible_message("<span class='notice'>\The [U] taps on \his PDA's screen.</span>")
 	var/t = input(U, "Please enter message", P.name, null) as text
@@ -930,7 +930,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	else
 		U << "<span class='notice'>ERROR: Messaging server is not responding.</span>"
 
-/obj/item/device/radio/headset/pda/proc/new_info(var/beep_silent, var/message_tone, var/reception_message)
+/obj/item/radio/headset/pda/proc/new_info(var/beep_silent, var/message_tone, var/reception_message)
 	if (!beep_silent)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
@@ -948,20 +948,20 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 			L << reception_message
 		nanomanager.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
-/obj/item/device/radio/headset/pda/proc/new_news(var/message)
+/obj/item/radio/headset/pda/proc/new_news(var/message)
 	new_info(news_silent, newstone, news_silent ? "" : "\icon[src] <b>[message]</b>")
 
 	if(!news_silent)
 		new_news = 1
 		update_icon()
 
-/obj/item/device/radio/headset/pda/ai/new_news(var/message)
+/obj/item/radio/headset/pda/ai/new_news(var/message)
 	// Do nothing
 
-/obj/item/device/radio/headset/pda/proc/new_message_from_pda(var/obj/item/device/radio/headset/pda/sending_device, var/message)
+/obj/item/radio/headset/pda/proc/new_message_from_pda(var/obj/item/radio/headset/pda/sending_device, var/message)
 	new_message(sending_device, sending_device.owner, sending_device.ownjob, message)
 
-/obj/item/device/radio/headset/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
+/obj/item/radio/headset/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
 	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>)"
 	new_info(message_silent, ttone, reception_message)
 
@@ -969,7 +969,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	new_message = 1
 	update_icon()
 
-/obj/item/device/radio/headset/pda/ai/new_message(var/atom/movable/sending_unit, var/sender, var/sender_job, var/message)
+/obj/item/radio/headset/pda/ai/new_message(var/atom/movable/sending_unit, var/sender, var/sender_job, var/message)
 	var/track = ""
 	if(ismob(sending_unit.loc) && isAI(loc))
 		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[html_encode(sender)]'>Follow</a>)"
@@ -980,7 +980,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	log_pda("[usr] (PDA: [sending_unit]) sent \"[message]\" to [name]")
 	new_message = 1
 
-/obj/item/device/radio/headset/pda/verb/verb_reset_pda()
+/obj/item/radio/headset/pda/verb/verb_reset_pda()
 	set category = "Object"
 	set name = "Reset PDA"
 	set src in usr
@@ -995,7 +995,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	else
 		usr << "<span class='notice'>You cannot do this while restrained.</span>"
 
-/obj/item/device/radio/headset/pda/verb/verb_remove_id()
+/obj/item/radio/headset/pda/verb/verb_remove_id()
 	set category = "Object"
 	set name = "Remove id"
 	set src in usr
@@ -1012,7 +1012,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		usr << "<span class='notice'>You cannot do this while restrained.</span>"
 
 
-/obj/item/device/radio/headset/pda/verb/verb_remove_pen()
+/obj/item/radio/headset/pda/verb/verb_remove_pen()
 	set category = "Object"
 	set name = "Remove pen"
 	set src in usr
@@ -1021,7 +1021,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		return
 
 	if ( can_use(usr) )
-		var/obj/item/weapon/pen/O = locate() in src
+		var/obj/item/pen/O = locate() in src
 		if(O)
 			if (istype(loc, /mob))
 				var/mob/M = loc
@@ -1035,7 +1035,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	else
 		usr << "<span class='notice'>You cannot do this while restrained.</span>"
 
-/obj/item/device/radio/headset/pda/verb/verb_remove_cartridge()
+/obj/item/radio/headset/pda/verb/verb_remove_cartridge()
 	set category = "Object"
 	set name = "Remove cartridge"
 	set src in usr
@@ -1060,20 +1060,20 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	else
 		usr << "<span class='notice'>You cannot do this while restrained.</span>"
 
-/obj/item/device/radio/headset/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+/obj/item/radio/headset/pda/proc/id_check(var/mob/user, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if (id)
 			remove_id()
 			return 1
 		else
 			var/obj/item/I = user.get_active_hand()
-			if (istype(I, /obj/item/weapon/card/id) && user.unEquip(I))
+			if (istype(I, /obj/item/card/id) && user.unEquip(I))
 				I.loc = src
 				id = I
 			return 1
 	else
-		var/obj/item/weapon/card/I = user.get_active_hand()
-		if (istype(I, /obj/item/weapon/card/id) && I:registered_name && user.unEquip(I))
+		var/obj/item/card/I = user.get_active_hand()
+		if (istype(I, /obj/item/card/id) && I:registered_name && user.unEquip(I))
 			var/obj/old_id = id
 			I.loc = src
 			id = I
@@ -1082,9 +1082,9 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 	return 0
 
 // access to status display signals
-/obj/item/device/radio/headset/pda/attackby(var/obj/item/C, var/mob/user)
+/obj/item/radio/headset/pda/attackby(var/obj/item/C, var/mob/user)
 
-	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
+	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
 		user.drop_item()
 		cartridge.loc = src
@@ -1093,8 +1093,8 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 		return
-	else if(istype(C, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = C
+	else if(istype(C, /obj/item/card/id))
+		var/obj/item/card/id/idcard = C
 		if(!idcard.registered_name)
 			user << "<span class='notice'>\The [src] rejects the ID.</span>"
 			return
@@ -1111,15 +1111,15 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
 		return
-	else if(istype(C, /obj/item/device/paicard) && !src.pai)
+	else if(istype(C, /obj/item/paicard) && !src.pai)
 		user.drop_item()
 		C.loc = src
 		pai = C
 		user << "<span class='notice'>You slot \the [C] into [src].</span>"
 		nanomanager.update_uis(src) // update all UIs attached to src
 		return
-	else if(istype(C, /obj/item/weapon/pen))
-		var/obj/item/weapon/pen/O = locate() in src
+	else if(istype(C, /obj/item/pen))
+		var/obj/item/pen/O = locate() in src
 		if(O)
 			user << "<span class='notice'>There is already a pen in \the [src].</span>"
 		else
@@ -1129,7 +1129,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		return
 	return 	..()
 
-/obj/item/device/radio/headset/pda/attack(mob/living/C as mob, mob/living/user as mob)
+/obj/item/radio/headset/pda/attack(var/mob/living/C, var/mob/living/user)
 	if (istype(C, /mob/living/carbon))
 		switch(scanmode)
 			if(1)
@@ -1185,7 +1185,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 				else
 					user.show_message("<span class='notice'>No radiation detected.</span>")
 
-/obj/item/device/radio/headset/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/radio/headset/pda/afterattack(atom/A as mob|obj|turf|area, var/mob/user, proximity)
 	if(!proximity) return
 	switch(scanmode)
 
@@ -1206,7 +1206,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		if(5)
 			analyze_gases(A, user)
 
-	if (!scanmode && istype(A, /obj/item/weapon/paper) && owner)
+	if (!scanmode && istype(A, /obj/item/paper) && owner)
 		// JMO 20140705: Makes scanned document show up properly in the notes. Not pretty for formatted documents,
 		// as this will clobber the HTML, but at least it lets you scan a document. You can restore the original
 		// notes by editing the note again. (Was going to allow you to edit, but scanned documents are too long.)
@@ -1257,7 +1257,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 
 
-/obj/item/device/radio/headset/pda/proc/explode() //This needs tuning. //Sure did.
+/obj/item/radio/headset/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate) return
 	var/turf/T = get_turf(src.loc)
 	if(T)
@@ -1265,21 +1265,21 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		explosion(T, 0, 0, 1, rand(1,2))
 	return
 
-/obj/item/device/radio/headset/pda/Destroy()
+/obj/item/radio/headset/pda/Destroy()
 	PDAs -= src
 	if (src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
 
-/obj/item/device/radio/headset/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
+/obj/item/radio/headset/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if (istype(AM, /mob/living))
 		var/mob/living/M = AM
 
-		if(M.slip("the PDA",8) && M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
+		if(M.slip("the PDA",8) && M.real_name != src.owner && istype(src.cartridge, /obj/item/cartridge/clown))
 			if(src.cartridge.charges < 5)
 				src.cartridge.charges++
 
-/obj/item/device/radio/headset/pda/proc/available_pdas()
+/obj/item/radio/headset/pda/proc/available_pdas()
 	var/list/names = list()
 	var/list/plist = list()
 	var/list/namecounts = list()
@@ -1288,7 +1288,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 		usr << "Turn on your receiver in order to send messages."
 		return
 
-	for (var/obj/item/device/radio/headset/pda/P in PDAs)
+	for (var/obj/item/radio/headset/pda/P in PDAs)
 		if (!P.owner)
 			continue
 		else if(P.hidden)
@@ -1311,7 +1311,7 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 
 //Some spare PDAs in a box
-/obj/item/weapon/storage/box/PDAs
+/obj/item/storage/box/PDAs
 	name = "box of spare PDAs"
 	desc = "A box of spare PDA microcomputers."
 	icon = 'icons/obj/pda.dmi'
@@ -1319,36 +1319,36 @@ var/global/list/obj/item/device/radio/headset/pda/PDAs = list()
 
 	New()
 		..()
-		new /obj/item/device/radio/headset/pda(src)
-		new /obj/item/device/radio/headset/pda(src)
-		new /obj/item/device/radio/headset/pda(src)
-		new /obj/item/device/radio/headset/pda(src)
-		new /obj/item/weapon/cartridge/head(src)
+		new /obj/item/radio/headset/pda(src)
+		new /obj/item/radio/headset/pda(src)
+		new /obj/item/radio/headset/pda(src)
+		new /obj/item/radio/headset/pda(src)
+		new /obj/item/cartridge/head(src)
 
-		var/newcart = pick(	/obj/item/weapon/cartridge/engineering,
-							/obj/item/weapon/cartridge/security,
-							/obj/item/weapon/cartridge/medical,
-							/obj/item/weapon/cartridge/signal/science,
-							/obj/item/weapon/cartridge/quartermaster)
+		var/newcart = pick(	/obj/item/cartridge/engineering,
+							/obj/item/cartridge/security,
+							/obj/item/cartridge/medical,
+							/obj/item/cartridge/signal/science,
+							/obj/item/cartridge/quartermaster)
 		new newcart(src)
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/device/radio/headset/pda/emp_act(severity)
+/obj/item/radio/headset/pda/emp_act(severity)
 	for(var/atom/A in src)
 		A.emp_act(severity)
 
-/obj/item/device/radio/headset/pda/proc/set_owner(var/owner)
+/obj/item/radio/headset/pda/proc/set_owner(var/owner)
 	src.owner = owner
 	update_label()
 
-/obj/item/device/radio/headset/pda/proc/set_rank_job(var/owner, var/rank, var/job)
+/obj/item/radio/headset/pda/proc/set_rank_job(var/owner, var/rank, var/job)
 	ownrank = rank
 	ownjob = job ? job : rank
 	update_label()
 
-/obj/item/device/radio/headset/pda/proc/set_owner_rank_job(var/owner, var/rank, var/job)
+/obj/item/radio/headset/pda/proc/set_owner_rank_job(var/owner, var/rank, var/job)
 	set_owner(owner)
 	set_rank_job(rank, job)
 
-/obj/item/device/radio/headset/pda/proc/update_label()
+/obj/item/radio/headset/pda/proc/update_label()
 	name = "[initial(name)]-[owner] ([ownjob])"

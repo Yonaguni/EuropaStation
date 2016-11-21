@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/weapon/implant/freedom
+/obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
 	implant_color = "r"
@@ -14,7 +14,7 @@
 		..()
 		return
 
-	trigger(emote, mob/living/carbon/source as mob)
+	trigger(emote, var/mob/living/carbon/source)
 		if (src.uses < 1)	return 0
 		if (emote == src.activation_emote)
 			if(remove_cuffs_and_unbuckle(source))

@@ -42,7 +42,7 @@
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/cracker/
+	meat_type = /obj/item/reagent_containers/food/snacks/cracker/
 
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
@@ -62,7 +62,7 @@
 	var/list/available_channels = list()
 
 	//Headset for Poly to yell at engineers :)
-	var/obj/item/device/radio/headset/ears = null
+	var/obj/item/radio/headset/ears = null
 
 	//The thing the parrot is currently interested in. This gets used for items the parrot wants to pick up, mobs it wants to steal from,
 	//mobs it wants to attack or mobs that have attacked it
@@ -106,7 +106,7 @@
 /*
  * Inventory
  */
-/mob/living/simple_animal/parrot/show_inv(mob/user as mob)
+/mob/living/simple_animal/parrot/show_inv(var/mob/user)
 	user.set_machine(src)
 	if(user.stat) return
 
@@ -164,11 +164,11 @@
 						if(!item_to_add)
 							return
 
-						if( !istype(item_to_add,  /obj/item/device/radio/headset) )
+						if( !istype(item_to_add,  /obj/item/radio/headset) )
 							usr << "\red This object won't fit."
 							return
 
-						var/obj/item/device/radio/headset/headset_to_add = item_to_add
+						var/obj/item/radio/headset/headset_to_add = item_to_add
 
 						usr.drop_item()
 						headset_to_add.loc = src
@@ -200,7 +200,7 @@
  * Attack responces
  */
 //Humans, monkeys, aliens
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M as mob)
+/mob/living/simple_animal/parrot/attack_hand(var/mob/living/carbon/M)
 	..()
 	if(client) return
 	if(!stat && M.a_intent == I_HURT)
@@ -221,7 +221,7 @@
 	return
 
 //Mobs with objects
-/mob/living/simple_animal/parrot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/parrot/attackby(var/obj/item/O, var/mob/user)
 	..()
 	if(!stat && !client && !istype(O, /obj/item/stack/medical))
 		if(O.force)
@@ -629,8 +629,8 @@
 		return 0
 
 	if(!drop_gently)
-		if(istype(held_item, /obj/item/weapon/grenade))
-			var/obj/item/weapon/grenade/G = held_item
+		if(istype(held_item, /obj/item/grenade))
+			var/obj/item/grenade/G = held_item
 			G.loc = src.loc
 			G.detonate()
 			src << "You let go of the [held_item]!"
@@ -670,7 +670,7 @@
 	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
 
 /mob/living/simple_animal/parrot/Poly/New()
-	ears = new /obj/item/device/radio/headset(src)
+	ears = new /obj/item/radio/headset(src)
 	available_channels = list(":e")
 	..()
 
@@ -701,7 +701,7 @@
 
 	if(message_mode)
 		if(message_mode in radiochannels)
-			if(ears && istype(ears,/obj/item/device/radio))
+			if(ears && istype(ears,/obj/item/radio))
 				ears.talk_into(src,sanitize(message), message_mode, verb, null)
 
 

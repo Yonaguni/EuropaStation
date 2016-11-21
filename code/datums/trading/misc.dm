@@ -64,7 +64,7 @@
 								/mob/living/simple_animal/hostile/samak= TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/retaliate/goat = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/carp= TRADER_THIS_TYPE,
-								/obj/item/device/dociler              = TRADER_THIS_TYPE,
+								/obj/item/dociler              = TRADER_THIS_TYPE,
 								/obj/structure/dogbed                 = TRADER_THIS_TYPE)
 
 /datum/trader/ship/prank_shop
@@ -93,18 +93,18 @@
 								/obj/item/clothing/mask/gas/mime        = TRADER_THIS_TYPE,
 								/obj/item/clothing/shoes/clown_shoes    = TRADER_THIS_TYPE,
 								/obj/item/clothing/under/rank/clown     = TRADER_THIS_TYPE,
-								/obj/item/device/radio/headset/pda/clown              = TRADER_THIS_TYPE,
-								/obj/item/weapon/cartridge/clown        = TRADER_THIS_TYPE,
-								/obj/item/weapon/stamp/clown            = TRADER_THIS_TYPE,
-								/obj/item/weapon/storage/backpack/clown = TRADER_THIS_TYPE,
-								/obj/item/weapon/bananapeel             = TRADER_THIS_TYPE,
-								/obj/item/weapon/reagent_containers/food/snacks/pie = TRADER_THIS_TYPE,
-								/obj/item/weapon/bikehorn               = TRADER_THIS_TYPE,
+								/obj/item/radio/headset/pda/clown              = TRADER_THIS_TYPE,
+								/obj/item/cartridge/clown        = TRADER_THIS_TYPE,
+								/obj/item/stamp/clown            = TRADER_THIS_TYPE,
+								/obj/item/storage/backpack/clown = TRADER_THIS_TYPE,
+								/obj/item/bananapeel             = TRADER_THIS_TYPE,
+								/obj/item/reagent_containers/food/snacks/pie = TRADER_THIS_TYPE,
+								/obj/item/bikehorn               = TRADER_THIS_TYPE,
 								/obj/item/toy/waterflower               = TRADER_THIS_TYPE,
-								/obj/item/weapon/gun/launcher/pneumatic/small = TRADER_THIS_TYPE,
-								/obj/item/weapon/gun/composite/premade/revolver/toy = TRADER_THIS_TYPE,
+								/obj/item/gun/launcher/pneumatic/small = TRADER_THIS_TYPE,
+								/obj/item/gun/composite/premade/revolver/toy = TRADER_THIS_TYPE,
 								/obj/item/clothing/mask/fakemoustache   = TRADER_THIS_TYPE,
-								/obj/item/weapon/grenade/spawnergrenade/fake_carp = TRADER_THIS_TYPE)
+								/obj/item/grenade/spawnergrenade/fake_carp = TRADER_THIS_TYPE)
 
 /datum/trader/ship/replica_shop
 	name = "Replica Store Owner"
@@ -126,7 +126,7 @@
 				"insult_bad"     = "Well, I'll never!"
 				)
 	possible_trading_items = list(/obj/item/clothing/head/wizard/magus = TRADER_THIS_TYPE,
-								/obj/item/weapon/shield/buckler        = TRADER_THIS_TYPE,
+								/obj/item/shield/buckler        = TRADER_THIS_TYPE,
 								/obj/item/clothing/head/redcoat        = TRADER_THIS_TYPE,
 								/obj/item/clothing/head/powdered_wig   = TRADER_THIS_TYPE,
 								/obj/item/clothing/head/hasturhood     = TRADER_THIS_TYPE,
@@ -144,8 +144,8 @@
 								/obj/item/clothing/under/kilt          = TRADER_THIS_TYPE,
 								/obj/item/clothing/under/redcoat       = TRADER_THIS_TYPE,
 								/obj/item/clothing/under/soviet        = TRADER_THIS_TYPE,
-								/obj/item/weapon/material/harpoon      = TRADER_THIS_TYPE,
-								/obj/item/weapon/material/sword        = TRADER_ALL,
-								/obj/item/weapon/material/scythe       = TRADER_THIS_TYPE,
-								/obj/item/weapon/material/star         = TRADER_THIS_TYPE,
-								/obj/item/weapon/material/twohanded/baseballbat = TRADER_THIS_TYPE)
+								/obj/item/material/harpoon      = TRADER_THIS_TYPE,
+								/obj/item/material/sword        = TRADER_ALL,
+								/obj/item/material/scythe       = TRADER_THIS_TYPE,
+								/obj/item/material/star         = TRADER_THIS_TYPE,
+								/obj/item/material/twohanded/baseballbat = TRADER_THIS_TYPE)

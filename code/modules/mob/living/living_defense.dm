@@ -63,7 +63,7 @@
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	//Being hit while using a deadman switch
-	var/obj/item/device/assembly/signaler/signaler = get_active_hand()
+	var/obj/item/assembly/signaler/signaler = get_active_hand()
 	if(istype(signaler) && signaler.deadman)
 		log_and_message_admins("has triggered a signaler deadman's switch")
 		src.visible_message("<span class='warning'>[src] triggers their deadman's switch!</span>")
@@ -149,7 +149,7 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(var/atom/movable/AM,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 		var/dtype = O.damtype

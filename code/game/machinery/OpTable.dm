@@ -41,7 +41,7 @@
 		else
 	return
 
-/obj/machinery/optable/attack_hand(mob/user as mob)
+/obj/machinery/optable/attack_hand(var/mob/user)
 	if (HULK in usr.mutations)
 		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
 		src.density = 0
@@ -57,9 +57,9 @@
 		return 0
 
 
-/obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/machinery/optable/MouseDrop_T(obj/O as obj, var/mob/user)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if ((!( istype(O, /obj/item) ) || user.get_active_hand() != O))
 		return
 	user.drop_item()
 	if (O.loc != src.loc)
@@ -80,7 +80,7 @@
 /obj/machinery/optable/process()
 	check_victim()
 
-/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user as mob)
+/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, var/mob/living/carbon/user)
 	if (C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
@@ -120,15 +120,15 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
-	if (istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+/obj/machinery/optable/attackby(var/obj/item/W, var/mob/living/carbon/user)
+	if (istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(iscarbon(G.affecting) && check_table(G.affecting))
 			take_victim(G.affecting,usr)
 			qdel(W)
 			return
 
-/obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
+/obj/machinery/optable/proc/check_table(var/mob/living/carbon/patient)
 	check_victim()
 	if(src.victim && get_turf(victim) == get_turf(src) && victim.lying)
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"

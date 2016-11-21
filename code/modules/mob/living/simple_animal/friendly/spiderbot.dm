@@ -7,11 +7,11 @@
 	maxbodytemp = 500
 	mob_size = MOB_SMALL
 
-	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
-	var/obj/item/device/mmi/mmi = null
+	var/obj/item/mmi/mmi = null
 	var/list/req_access = list(access_robotics) //Access needed to pop out the brain.
 	var/positronic
 
@@ -48,10 +48,10 @@
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 
-/mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/spiderbot/attackby(var/obj/item/O, var/mob/user)
 
-	if(istype(O, /obj/item/device/mmi))
-		var/obj/item/device/mmi/B = O
+	if(istype(O, /obj/item/mmi))
+		var/obj/item/mmi/B = O
 		if(src.mmi)
 			user << "<span class='warning'>There's already a brain in [src]!</span>"
 			return
@@ -79,7 +79,7 @@
 
 		user << "<span class='notice'>You install \the [O] in \the [src]!</span>"
 
-		if(istype(O, /obj/item/device/mmi/digital))
+		if(istype(O, /obj/item/mmi/digital))
 			positronic = 1
 			add_language("Robot Talk")
 
@@ -92,7 +92,7 @@
 		return 1
 
 	if (O.iswelder())
-		var/obj/item/weapon/weldingtool/WT = O
+		var/obj/item/weldingtool/WT = O
 		if (WT.remove_fuel(0))
 			if(health < maxHealth)
 				health += pick(1,1,1,2,2,3)
@@ -105,17 +105,17 @@
 		else
 			user << "<span class='danger'>You need more welding fuel for this task!</span>"
 			return
-	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/radio/headset/pda))
+	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/radio/headset/pda))
 		if (!mmi)
 			user << "<span class='danger'>There's no reason to swipe your ID - \the [src] has no brain to remove.</span>"
 			return 0
 
-		var/obj/item/weapon/card/id/id_card
+		var/obj/item/card/id/id_card
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
-			var/obj/item/device/radio/headset/pda/pda = O
+			var/obj/item/radio/headset/pda/pda = O
 			id_card = pda.id
 
 		if(access_robotics in id_card.access)
@@ -142,7 +142,7 @@
 		spawn(200)	src << "<span class='danger'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>"
 		spawn(300)	src.explode()
 
-/mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
+/mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/mmi/M as obj)
 
 		src.mind = M.brainmob.mind
 		src.mind.key = M.brainmob.key
@@ -186,7 +186,7 @@
 
 /mob/living/simple_animal/spiderbot/New()
 
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "spiderbot-[real_name]"
 	camera.replace_networks(list("SS13"))
@@ -219,11 +219,11 @@
 		usr << "\red You have nothing to drop!"
 		return 0
 
-	if(istype(held_item, /obj/item/weapon/grenade))
+	if(istype(held_item, /obj/item/grenade))
 		visible_message("<span class='danger'>\The [src] launches \the [held_item]!</span>", \
 			"<span class='danger'>You launch \the [held_item]!</span>", \
 			"You hear a skittering noise and a thump!")
-		var/obj/item/weapon/grenade/G = held_item
+		var/obj/item/grenade/G = held_item
 		G.loc = src.loc
 		G.detonate()
 		held_item = null

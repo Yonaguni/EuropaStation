@@ -24,22 +24,22 @@
 
 	say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
 		if (istype(other, /mob/living/silicon/ai))
-			if(!(container && istype(container, /obj/item/device/mmi)))
+			if(!(container && istype(container, /obj/item/mmi)))
 				return 0
 			else
 				return 1
 		if (istype(other, /mob/living/silicon/decoy))
-			if(!(container && istype(container, /obj/item/device/mmi)))
+			if(!(container && istype(container, /obj/item/mmi)))
 				return 0
 			else
 				return 1
 		if (istype(other, /mob/living/silicon/pai))
-			if(!(container && istype(container, /obj/item/device/mmi)))
+			if(!(container && istype(container, /obj/item/mmi)))
 				return 0
 			else
 				return 1
 		if (istype(other, /mob/living/silicon/robot))
-			if(!(container && istype(container, /obj/item/device/mmi)))
+			if(!(container && istype(container, /obj/item/mmi)))
 				return 0
 			else
 				return 1
@@ -50,7 +50,7 @@
 		return ..()
 
 /mob/living/carbon/brain/update_canmove()
-	if(istype(loc, /obj/item/device/mmi))
+	if(istype(loc, /obj/item/mmi))
 		canmove = 1
 		use_me = 1
 	else
@@ -58,7 +58,7 @@
 	return canmove
 
 /mob/living/carbon/brain/binarycheck()
-	return istype(loc, /obj/item/device/mmi/digital)
+	return istype(loc, /obj/item/mmi/digital)
 
 /mob/living/carbon/brain/check_has_mouth()
 	return 0

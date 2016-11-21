@@ -18,7 +18,7 @@ var/list/mechtoys = list(
 	/obj/item/toy/prize/phazon
 )
 
-/obj/item/weapon/paper/manifest
+/obj/item/paper/manifest
 	name = "supply manifest"
 	var/is_copy = 1
 
@@ -147,11 +147,11 @@ var/list/mechtoys = list(
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			return 1
-		if(istype(A,/obj/item/weapon/disk/nuclear))
+		if(istype(A,/obj/item/disk/nuclear))
 			return 1
 		if(istype(A,/obj/machinery/nuclearbomb))
 			return 1
-		if(istype(A,/obj/item/device/radio/beacon))
+		if(istype(A,/obj/item/radio/beacon))
 			return 1
 
 		for(var/i=1, i<=A.contents.len, i++)
@@ -180,8 +180,8 @@ var/list/mechtoys = list(
 				for(var/atom in MA)
 					// Sell manifests
 					var/atom/A = atom
-					if(find_slip && istype(A,/obj/item/weapon/paper/manifest))
-						var/obj/item/weapon/paper/manifest/slip = A
+					if(find_slip && istype(A,/obj/item/paper/manifest))
+						var/obj/item/paper/manifest/slip = A
 						if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
 							points += points_per_slip
 							find_slip = 0
@@ -230,9 +230,9 @@ var/list/mechtoys = list(
 			A.name = "[SP.containername][SO.comment ? " ([SO.comment])":"" ]"
 			//supply manifest generation begin
 
-			var/obj/item/weapon/paper/manifest/slip
+			var/obj/item/paper/manifest/slip
 			if(!SP.contraband)
-				slip = new /obj/item/weapon/paper/manifest(A)
+				slip = new /obj/item/paper/manifest(A)
 				slip.is_copy = 0
 				slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 				slip.info +="Order #[SO.ordernum]<br>"

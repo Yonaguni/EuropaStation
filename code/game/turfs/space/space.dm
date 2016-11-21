@@ -35,7 +35,7 @@ var/image/exterior_light_overlay
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
 
 // Ported from unstable r355
-/turf/space/Entered(atom/movable/A as mob|obj)
+/turf/space/Entered(var/atom/movable/A)
 	..()
 	if(A && A.loc == src && ticker && ticker.mode)
 
@@ -44,7 +44,7 @@ var/image/exterior_light_overlay
 		if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
 			A.touch_map_edge()
 
-/turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
+/turf/space/proc/Sandbox_Spacemove(var/atom/movable/A)
 	var/cur_x
 	var/cur_y
 	var/next_x

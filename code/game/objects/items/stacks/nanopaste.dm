@@ -7,7 +7,7 @@
 	amount = 10
 	matter = list("steel" = 10000, "gold" = 10000)
 
-/obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/stack/nanopaste/attack(var/mob/living/M, var/mob/user)
 	if (!istype(M) || !istype(user))
 		return 0
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs

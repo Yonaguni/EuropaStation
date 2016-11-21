@@ -77,7 +77,7 @@
 /obj/machinery/computer/shuttle_control/multi
 	icon_screen = "syndishuttle"
 
-/obj/machinery/computer/shuttle_control/multi/attack_hand(user as mob)
+/obj/machinery/computer/shuttle_control/multi/attack_hand(var/mob/user)
 
 	if(..(user))
 		return

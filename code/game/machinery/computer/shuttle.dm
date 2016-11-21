@@ -7,7 +7,7 @@
 	var/list/authorized = list(  )
 
 
-	attackby(var/obj/item/weapon/card/W as obj, var/mob/user as mob)
+	attackby(var/obj/item/card/W as obj, var/mob/user)
 		if(stat & (BROKEN|NOPOWER))	return
 
 		var/datum/evacuation_controller/pods/shuttle/evac_control = evacuation_controller
@@ -15,12 +15,12 @@
 			user << "<span class='danger'>This console should not in use on this map. Please report this to a developer.</span>"
 			return
 
-		if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || evacuation_controller.has_evacuated() || !( user )))
+		if ((!( istype(W, /obj/item/card) ) || !( ticker ) || evacuation_controller.has_evacuated() || !( user )))
 			return
 
-		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/radio/headset/pda))
-			if (istype(W, /obj/item/device/radio/headset/pda))
-				var/obj/item/device/radio/headset/pda/pda = W
+		if (istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
+			if (istype(W, /obj/item/radio/headset/pda))
+				var/obj/item/radio/headset/pda/pda = W
 				W = pda.id
 			if (!W:access) //no access
 				user << "The access level of [W:registered_name]\'s card is not high enough. "
@@ -64,7 +64,7 @@
 					src.authorized.len = 0
 					src.authorized = list(  )
 
-		else if (istype(W, /obj/item/weapon/card/emag) && !emagged)
+		else if (istype(W, /obj/item/card/emag) && !emagged)
 			var/choice = alert(user, "Would you like to launch the shuttle?","Shuttle control", "Launch", "Cancel")
 
 			if(!emagged && !evacuation_controller.is_prepared() && user.get_active_hand() == W)

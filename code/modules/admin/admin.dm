@@ -1188,7 +1188,7 @@ proc/admin_notice(var/message, var/rights)
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/client/proc/update_mob_sprite(var/mob/living/carbon/human/H)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
@@ -1339,7 +1339,7 @@ proc/admin_notice(var/message, var/rights)
 	log_and_message_admins("attempting to force mode autospawn.")
 	ticker.mode.process_autoantag()
 
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
+/datum/admins/proc/paralyze_mob(var/mob/living/H)
 	set category = "Admin"
 	set name = "Toggle Paralyze"
 	set desc = "Paralyzes a player. Or unparalyses them."
@@ -1372,7 +1372,7 @@ proc/admin_notice(var/message, var/rights)
 
 			var/replyorigin = input(src.owner, "Please specify who the fax is coming from", "Origin") as text|null
 
-			var/obj/item/weapon/paper/admin/P = new /obj/item/weapon/paper/admin( null ) //hopefully the null loc won't cause trouble for us
+			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
 			faxreply = P
 
 			P.admindatum = src
@@ -1382,9 +1382,9 @@ proc/admin_notice(var/message, var/rights)
 			P.adminbrowse()
 
 
-datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies in
+datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 
-/datum/admins/proc/faxCallback(var/obj/item/weapon/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
+/datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
 	var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
 	P.name = "[P.origin] - [customname]"
@@ -1415,7 +1415,7 @@ datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies
 
 		if(!P.stamped)
 			P.stamped = new
-		P.stamped += /obj/item/weapon/stamp/centcomm
+		P.stamped += /obj/item/stamp/centcomm
 		P.overlays += stampoverlay
 
 	var/obj/item/rcvdcopy

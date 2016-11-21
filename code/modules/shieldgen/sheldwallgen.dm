@@ -27,7 +27,7 @@
 		var/max_stored_power = 50000 //50 kW
 		use_power = 0	//Draws directly from power net. Does not use APC power.
 
-/obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldwallgen/attack_hand(var/mob/user)
 	if(state != 1)
 		user << "\red The shield generator needs to be firmly secured to the floor first."
 		return 1
@@ -178,7 +178,7 @@
 			src.anchored = 0
 			return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -259,7 +259,7 @@
 	update_nearby_tiles()
 	return ..()
 
-/obj/machinery/shieldwall/attack_hand(mob/user as mob)
+/obj/machinery/shieldwall/attack_hand(var/mob/user)
 	return
 
 

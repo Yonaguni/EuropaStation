@@ -73,7 +73,7 @@
 			if(contents.len > 0)
 				user << "Eject the items first!"
 				return
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				user << "You start slicing the floorweld off the disposal unit."
@@ -93,12 +93,12 @@
 				user << "You need more welding fuel to complete this task."
 				return
 
-	if(istype(I, /obj/item/weapon/melee/energy/blade) || !I.simulated || I.abstract)
+	if(istype(I, /obj/item/melee/energy/blade) || !I.simulated || I.abstract)
 		user << "You can't place that item inside the disposal unit."
 		return
 
-	if(istype(I, /obj/item/weapon/storage/bag/trash))
-		var/obj/item/weapon/storage/bag/trash/T = I
+	if(istype(I, /obj/item/storage/bag/trash))
+		var/obj/item/storage/bag/trash/T = I
 		user << "\blue You empty the bag."
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
@@ -106,7 +106,7 @@
 		update_icon()
 		return
 
-	var/obj/item/weapon/grab/G = I
+	var/obj/item/grab/G = I
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))
 			var/mob/GM = G.affecting
@@ -195,7 +195,7 @@
 	return
 
 // attempt to move while inside
-/obj/machinery/disposal/relaymove(mob/user as mob)
+/obj/machinery/disposal/relaymove(var/mob/user)
 	if(user.stat || src.flushing)
 		return
 	if(user.loc == src)
@@ -213,11 +213,11 @@
 	return
 
 // ai as human but can't flush
-/obj/machinery/disposal/attack_ai(mob/user as mob)
+/obj/machinery/disposal/attack_ai(var/mob/user)
 	interact(user, 1)
 
 // human interact with machine
-/obj/machinery/disposal/attack_hand(mob/user as mob)
+/obj/machinery/disposal/attack_hand(var/mob/user)
 
 	if(stat & BROKEN)
 		return
@@ -612,7 +612,7 @@
 
 
 	// called when player tries to move while in a pipe
-	relaymove(mob/user as mob)
+	relaymove(var/mob/user)
 
 		if(!istype(user,/mob/living))
 			return
@@ -867,7 +867,7 @@
 			return		// prevent interaction with T-scanner revealed pipes
 		src.add_fingerprint(user)
 		if(I.iswelder())
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weldingtool/W = I
 
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
@@ -1152,8 +1152,8 @@
 		if(..())
 			return
 
-		if(istype(I, /obj/item/device/destTagger))
-			var/obj/item/device/destTagger/O = I
+		if(istype(I, /obj/item/destTagger))
+			var/obj/item/destTagger/O = I
 
 			if(O.currTag)// Tag set
 				sort_tag = O.currTag
@@ -1220,8 +1220,8 @@
 		if(..())
 			return
 
-		if(istype(I, /obj/item/device/destTagger))
-			var/obj/item/device/destTagger/O = I
+		if(istype(I, /obj/item/destTagger))
+			var/obj/item/destTagger/O = I
 
 			if(O.currTag)// Tag set
 				sortType = O.currTag
@@ -1347,7 +1347,7 @@
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
 	if(I.iswelder())
-		var/obj/item/weapon/weldingtool/W = I
+		var/obj/item/weldingtool/W = I
 
 		if(W.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
@@ -1476,7 +1476,7 @@
 				user << "You attach the screws around the power connection."
 				return
 		else if(I.iswelder() && mode==1)
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				user << "You start slicing the floorweld off the disposal outlet."

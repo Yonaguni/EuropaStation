@@ -60,11 +60,11 @@ mob/living/carbon/proc/handle_hallucinations()
 								if(prob(25))
 									halitem.icon_state = "c4small_1"
 							if(3) //sword
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/items.dmi'
 								halitem.icon_state = "sword1"
 								halitem.name = "Sword"
 							if(4) //stun baton
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/items.dmi'
 								halitem.icon_state = "stunbaton"
 								halitem.name = "Stun Baton"
 							if(5) //emag
@@ -242,7 +242,7 @@ proc/check_panel(mob/M)
 
 	var/health = 100
 
-	attackby(var/obj/item/weapon/P as obj, mob/user as mob)
+	attackby(var/obj/item/P, var/mob/user)
 		step_away(src,my_target,2)
 		for(var/mob/M in oviewers(world.view,my_target))
 			M << "\red <B>[my_target] flails around wildly.</B>"
@@ -334,20 +334,20 @@ proc/check_panel(mob/M)
 	return
 
 var/list/non_fakeattack_weapons = \
-	list(/obj/item/weapon/gun/composite,/obj/item/weapon/melee/energy/sword,\
-	/obj/item/weapon/storage/box/syndie_kit, /obj/item/weapon/storage/box/emps,\
-	/obj/item/weapon/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
-	/obj/item/clothing/shoes/syndigaloshes, /obj/item/weapon/card/id/syndicate,\
+	list(/obj/item/gun/composite,/obj/item/melee/energy/sword,\
+	/obj/item/storage/box/syndie_kit, /obj/item/storage/box/emps,\
+	/obj/item/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
+	/obj/item/clothing/shoes/syndigaloshes, /obj/item/card/id/syndicate,\
 	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,\
-	/obj/item/device/chameleon, /obj/item/weapon/card/emag,\
-	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,\
-	/obj/item/device/radio/headset/syndicate,	/obj/item/weapon/plastique,\
-	/obj/item/device/powersink, /obj/item/weapon/storage/box/syndie_kit,\
+	/obj/item/chameleon, /obj/item/card/emag,\
+	/obj/item/storage/toolbox/syndicate, /obj/item/aiModule,\
+	/obj/item/radio/headset/syndicate,	/obj/item/plastique,\
+	/obj/item/powersink, /obj/item/storage/box/syndie_kit,\
 	/obj/item/toy/syndicateballoon, \
-	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
-	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/weapon/disk/nuclear,\
-	/obj/item/clothing/suit/space/void, /obj/item/weapon/tank)
+	/obj/item/hand_tele, /obj/item/rcd, /obj/item/tank/jetpack,\
+	/obj/item/clothing/under/rank/captain, /obj/item/aicard,\
+	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
+	/obj/item/clothing/suit/space/void, /obj/item/tank)
 
 /proc/fake_attack(var/mob/living/target)
 //	var/list/possible_clones = new/list()

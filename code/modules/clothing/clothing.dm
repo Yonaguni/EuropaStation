@@ -200,7 +200,7 @@ BLIND     // can't see anything
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.75
 	var/wired = 0
-	var/obj/item/weapon/cell/cell = 0
+	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
@@ -227,8 +227,8 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(W.iswirecutter() || istype(W, /obj/item/weapon/scalpel))
+/obj/item/clothing/gloves/attackby(var/obj/item/W, mob/user)
+	if(W.iswirecutter() || istype(W, /obj/item/scalpel))
 		if (clipped)
 			user << "<span class='notice'>The [src] have already been clipped!</span>"
 			update_icon()
@@ -447,7 +447,7 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && is_type_in_list(I, list(/obj/item/weapon/material/shard, /obj/item/weapon/material/butterfly, /obj/item/weapon/material/kitchen/utensil, /obj/item/weapon/material/hatchet/tacknife)))
+	if(can_hold_knife && is_type_in_list(I, list(/obj/item/material/shard, /obj/item/material/butterfly, /obj/item/material/kitchen/utensil, /obj/item/material/hatchet/tacknife)))
 		if(holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return
@@ -481,7 +481,7 @@ BLIND     // can't see anything
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/tank/emergency)
+	allowed = list(/obj/item/tank/emergency)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	blood_overlay_type = "suit"
@@ -638,7 +638,7 @@ BLIND     // can't see anything
 		if(3)
 			user << "Its vital tracker and tracking beacon appear to be enabled."
 
-/obj/item/clothing/under/proc/set_sensors(mob/user as mob)
+/obj/item/clothing/under/proc/set_sensors(var/mob/user)
 	var/mob/M = user
 	if (isobserver(M)) return
 	if (user.incapacitated()) return

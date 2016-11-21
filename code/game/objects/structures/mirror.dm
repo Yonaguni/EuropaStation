@@ -9,7 +9,7 @@
 	var/shattered = 0
 	var/list/ui_users = list()
 
-/obj/structure/mirror/attack_hand(mob/user as mob)
+/obj/structure/mirror/attack_hand(var/mob/user)
 
 	if(shattered)	return
 
@@ -38,7 +38,7 @@
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 	..()
 
-/obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/mirror/attackby(obj/item/I as obj, var/mob/user)
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
@@ -70,14 +70,14 @@
 	ui_users.Cut()
 	return ..()
 
-/obj/item/weapon/mirror
+/obj/item/mirror
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! Now a portable version."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "mirror"
 	var/list/ui_users = list()
 
-/obj/item/weapon/mirror/attack_self(mob/user as mob)
+/obj/item/mirror/attack_self(var/mob/user)
 	if(ishuman(user))
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		if(!AC)
@@ -87,7 +87,7 @@
 			ui_users[user] = AC
 		AC.ui_interact(user)
 
-/obj/item/weapon/mirror/Destroy()
+/obj/item/mirror/Destroy()
 	for(var/user in ui_users)
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)

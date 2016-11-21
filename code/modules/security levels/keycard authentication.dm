@@ -20,16 +20,16 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
+/obj/machinery/keycard_auth/attack_ai(var/mob/user)
 	user << "The station AI is not to interact with these devices."
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(var/obj/item/W, var/mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		user << "This device is not powered."
 		return
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
+	if(istype(W,/obj/item/card/id))
+		var/obj/item/card/id/ID = W
 		visible_message("<span class='notice'>\The [src] swipes \the [W] through \the [src].</span>")
 		if(access_keycard_auth in ID.access)
 			if(active == 1)
@@ -53,7 +53,7 @@
 	if(stat &NOPOWER)
 		icon_state = "auth_off"
 
-/obj/machinery/keycard_auth/attack_hand(mob/user as mob)
+/obj/machinery/keycard_auth/attack_hand(var/mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		user << "This device is not powered."
 		return

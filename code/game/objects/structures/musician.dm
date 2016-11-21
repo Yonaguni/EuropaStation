@@ -254,7 +254,7 @@
 	playing = 0
 	updateUsrDialog()
 
-/obj/structure/device/piano/attack_hand(var/mob/user as mob)
+/obj/structure/device/piano/attack_hand(var/mob/user)
 	if(!anchored)
 		return
 
@@ -411,7 +411,7 @@
 	updateUsrDialog()
 	return
 
-/obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/device/piano/attackby(obj/item/O as obj, var/mob/user)
 	if (O.iswrench())
 		if (anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)

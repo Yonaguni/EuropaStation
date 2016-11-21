@@ -85,7 +85,7 @@
 		if (kin_energy > 1000000)
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(W.iswrench())
 			anchored = !anchored
 			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
@@ -256,7 +256,7 @@
 		add_avail(power_generated)
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(W.iswrench())
 			anchored = !anchored
 			turbine = null

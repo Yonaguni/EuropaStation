@@ -1,4 +1,4 @@
-/obj/item/weapon/grenade/chem_grenade
+/obj/item/grenade/chem_grenade
 	name = "grenade casing"
 	icon_state = "chemg"
 	item_state = "grenade"
@@ -10,15 +10,15 @@
 	var/stage = 0
 	var/state = 0
 	var/path = 0
-	var/obj/item/device/assembly_holder/detonator = null
+	var/obj/item/assembly_holder/detonator = null
 	var/list/beakers = new/list()
-	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
+	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
 	var/affected_area = 3
 
 	New()
 		create_reagents(1000)
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		if(!stage || stage==1)
 			if(detonator)
 //				detonator.loc=src.loc
@@ -45,10 +45,10 @@
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 
-		if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
-			var/obj/item/device/assembly_holder/det = W
+		if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && path != 2)
+			var/obj/item/assembly_holder/det = W
 			if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 				user << "<span class='warning'>Assembly must contain one igniter.</span>"
 				return
@@ -62,10 +62,10 @@
 			det.loc = src
 			detonator = det
 			if(istimer(detonator.a_left))
-				var/obj/item/device/assembly/timer/T = detonator.a_left
+				var/obj/item/assembly/timer/T = detonator.a_left
 				det_time = 10*T.time
 			if(istimer(detonator.a_right))
-				var/obj/item/device/assembly/timer/T = detonator.a_right
+				var/obj/item/assembly/timer/T = detonator.a_right
 				det_time = 10*T.time
 			icon_state = initial(icon_state) +"_ass"
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
@@ -116,7 +116,7 @@
 		if(detonator)
 			user << "With attached [detonator.name]"
 
-	activate(mob/user as mob)
+	activate(var/mob/user)
 		if(active) return
 
 		if(detonator)
@@ -142,7 +142,7 @@
 		if(!stage || stage<2) return
 
 		var/has_reagents = 0
-		for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
+		for(var/obj/item/reagent_containers/glass/G in beakers)
 			if(G.reagents.total_volume) has_reagents = 1
 
 		active = 0
@@ -151,16 +151,16 @@
 			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
 			spawn(0) //Otherwise det_time is erroneously set to 0 after this
 				if(istimer(detonator.a_left)) //Make sure description reflects that the timer has been reset
-					var/obj/item/device/assembly/timer/T = detonator.a_left
+					var/obj/item/assembly/timer/T = detonator.a_left
 					det_time = 10*T.time
 				if(istimer(detonator.a_right))
-					var/obj/item/device/assembly/timer/T = detonator.a_right
+					var/obj/item/assembly/timer/T = detonator.a_right
 					det_time = 10*T.time
 			return
 
 		playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
 
-		for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
+		for(var/obj/item/reagent_containers/glass/G in beakers)
 			G.reagents.trans_to_obj(src, G.reagents.total_volume)
 
 		if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
@@ -183,15 +183,15 @@
 			qdel(src)	   //correctly before deleting the grenade.
 
 
-/obj/item/weapon/grenade/chem_grenade/large
+/obj/item/grenade/chem_grenade/large
 	name = "large chem grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
-	allowed_containers = list(/obj/item/weapon/reagent_containers/glass)
+	allowed_containers = list(/obj/item/reagent_containers/glass)
 
 	affected_area = 4
 
-/obj/item/weapon/grenade/chem_grenade/metalfoam
+/obj/item/grenade/chem_grenade/metalfoam
 	name = "metal-foam grenade"
 	desc = "Used for emergency sealing of air breaches."
 	path = 1
@@ -199,20 +199,20 @@
 
 	New()
 		..()
-		var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
-		var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 		B1.reagents.add_reagent("aluminum", 30)
 		B2.reagents.add_reagent("foaming_agent", 10)
 		B2.reagents.add_reagent("pacid", 10)
 
-		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+		detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 		beakers += B1
 		beakers += B2
 		icon_state = initial(icon_state) +"_locked"
 
-/obj/item/weapon/grenade/chem_grenade/incendiary
+/obj/item/grenade/chem_grenade/incendiary
 	name = "incendiary grenade"
 	desc = "Used for clearing rooms of living things."
 	path = 1
@@ -220,8 +220,8 @@
 
 	New()
 		..()
-		var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
-		var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 		B1.reagents.add_reagent("aluminum", 15)
 		B1.reagents.add_reagent("fuel",20)
@@ -229,13 +229,13 @@
 		B2.reagents.add_reagent("sacid", 15)
 		B1.reagents.add_reagent("fuel",20)
 
-		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+		detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 		beakers += B1
 		beakers += B2
 		icon_state = initial(icon_state) +"_locked"
 
-/obj/item/weapon/grenade/chem_grenade/antiweed
+/obj/item/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	path = 1
@@ -243,21 +243,21 @@
 
 	New()
 		..()
-		var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
-		var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 		B1.reagents.add_reagent("plantbgone", 25)
 		B1.reagents.add_reagent("potassium", 25)
 		B2.reagents.add_reagent("phosphorus", 25)
 		B2.reagents.add_reagent("sugar", 25)
 
-		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+		detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 		beakers += B1
 		beakers += B2
 		icon_state = "grenade"
 
-/obj/item/weapon/grenade/chem_grenade/cleaner
+/obj/item/grenade/chem_grenade/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = 2
@@ -265,20 +265,20 @@
 
 	New()
 		..()
-		var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
-		var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 		B1.reagents.add_reagent("surfactant", 40)
 		B2.reagents.add_reagent("water", 40)
 		B2.reagents.add_reagent("cleaner", 10)
 
-		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+		detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 		beakers += B1
 		beakers += B2
 		icon_state = initial(icon_state) +"_locked"
 
-/obj/item/weapon/grenade/chem_grenade/teargas
+/obj/item/grenade/chem_grenade/teargas
 	name = "tear gas grenade"
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
 	stage = 2
@@ -286,8 +286,8 @@
 
 	New()
 		..()
-		var/obj/item/weapon/reagent_containers/glass/beaker/large/B1 = new(src)
-		var/obj/item/weapon/reagent_containers/glass/beaker/large/B2 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
+		var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
 
 		B1.reagents.add_reagent("phosphorus", 40)
 		B1.reagents.add_reagent("potassium", 40)
@@ -295,7 +295,7 @@
 		B2.reagents.add_reagent("sugar", 40)
 		B2.reagents.add_reagent("condensedcapsaicin", 80)
 
-		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+		detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 		beakers += B1
 		beakers += B2

@@ -29,7 +29,7 @@
 	w_class = 5//bulky item
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.4
@@ -52,7 +52,7 @@
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
 	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
-	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
+	var/obj/item/tank/tank = null              // Deployable tank, if any.
 
 /obj/item/clothing/suit/space/void/examine(user)
 	..(user)
@@ -179,11 +179,11 @@
 	H.drop_from_inventory(tank)
 	src.tank = null
 
-/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, var/mob/user)
 
 	if(!istype(user,/mob/living)) return
 
-	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/hand_labeler))
 		return ..()
 
 	if(istype(src.loc,/mob/living))
@@ -228,10 +228,10 @@
 			W.forceMove(src)
 			boots = W
 		return
-	else if(istype(W,/obj/item/weapon/tank))
+	else if(istype(W,/obj/item/tank))
 		if(tank)
 			user << "\The [src] already has an airtank installed."
-		else if(istype(W,/obj/item/weapon/tank/phoron))
+		else if(istype(W,/obj/item/tank/phoron))
 			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
 		else
 			user << "You insert \the [W] into \the [src]'s storage compartment."

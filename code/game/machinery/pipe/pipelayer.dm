@@ -12,7 +12,7 @@
 	var/P_type_t = ""
 	var/max_metal = 50
 	var/metal = 10
-	var/obj/item/weapon/wrench/W
+	var/obj/item/wrench/W
 	var/list/Pipes = list("regular pipes"=0,"scrubbers pipes"=31,"supply pipes"=29,"heat exchange pipes"=2)
 
 /obj/machinery/pipelayer/New()
@@ -29,7 +29,7 @@
 	old_turf = new_turf
 	old_dir = turn(M_Dir,180)
 
-/obj/machinery/pipelayer/attack_hand(mob/user as mob)
+/obj/machinery/pipelayer/attack_hand(var/mob/user)
 	if(!metal&&!on)
 		user << "<span class='warning'>\The [src] doesn't work without metal.</span>"
 		return
@@ -37,7 +37,7 @@
 	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/pipelayer/attackby(var/obj/item/W, var/mob/user)
 
 	if (W.iswrench())
 		P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes

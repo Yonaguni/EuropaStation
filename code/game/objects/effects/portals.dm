@@ -10,7 +10,7 @@
 	var/creator = null
 	anchored = 1.0
 
-/obj/effect/portal/Bumped(mob/M as mob|obj)
+/obj/effect/portal/Bumped(var/mob/M)
 	spawn(0)
 		src.teleport(M)
 		return
@@ -22,7 +22,7 @@
 		return
 	return
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(var/mob/user)
 	spawn(0)
 		src.teleport(user)
 		return
@@ -34,7 +34,7 @@
 		return
 	return
 
-/obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
+/obj/effect/portal/proc/teleport(var/atom/movable/M)
 	if(istype(M, /obj/effect)) //sparks don't teleport
 		return
 	if (icon_state == "portal1")

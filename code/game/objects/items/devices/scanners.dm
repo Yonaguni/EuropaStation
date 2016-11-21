@@ -9,7 +9,7 @@ REAGENT SCANNER
 */
 
 
-/obj/item/device/healthanalyzer
+/obj/item/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
@@ -24,17 +24,17 @@ REAGENT SCANNER
 
 	var/mode = TRUE
 
-/obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	health_scan_mob(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/attack(mob/living/M, mob/living/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	health_scan_mob(M, user, show_limb_damage = mode)
 
-/obj/item/device/healthanalyzer/verb/toggle_mode()
+/obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
 
@@ -45,7 +45,7 @@ REAGENT SCANNER
 		usr << "The scanner no longer shows limb damage."
 
 
-/obj/item/device/analyzer
+/obj/item/analyzer
 	name = "analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	icon_state = "atmos"
@@ -61,14 +61,14 @@ REAGENT SCANNER
 
 
 
-/obj/item/device/analyzer/atmosanalyze(var/mob/user)
+/obj/item/analyzer/atmosanalyze(var/mob/user)
 	var/air = user.return_air()
 	if (!air)
 		return
 
 	return atmosanalyzer_scan(src, air, user)
 
-/obj/item/device/analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/attack_self(var/mob/user)
 
 	if (user.stat)
 		return
@@ -79,7 +79,7 @@ REAGENT SCANNER
 	analyze_gases(src, user)
 	return
 
-/obj/item/device/mass_spectrometer
+/obj/item/mass_spectrometer
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
@@ -97,19 +97,19 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/mass_spectrometer/New()
+/obj/item/mass_spectrometer/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src
 
-/obj/item/device/mass_spectrometer/on_reagent_change()
+/obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state) + "_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
+/obj/item/mass_spectrometer/attack_self(var/mob/user)
 	if (user.stat)
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
@@ -135,13 +135,13 @@ REAGENT SCANNER
 		reagents.clear_reagents()
 	return
 
-/obj/item/device/mass_spectrometer/adv
+/obj/item/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
 
 
-/obj/item/device/reagent_scanner
+/obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
@@ -158,7 +158,7 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/reagent_scanner/afterattack(obj/O, var/mob/user, proximity)
 	if(!proximity)
 		return
 	if (user.stat)
@@ -184,13 +184,13 @@ REAGENT SCANNER
 
 	return
 
-/obj/item/device/reagent_scanner/adv
+/obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
 
 
-/obj/item/device/slime_scanner
+/obj/item/slime_scanner
 	name = "slime scanner"
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
@@ -202,7 +202,7 @@ REAGENT SCANNER
 	throw_range = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
-/obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/slime_scanner/attack(var/mob/living/M, var/mob/living/user)
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
 		return
@@ -233,7 +233,7 @@ REAGENT SCANNER
 		user.show_message("Anomalious slime core amount detected")
 	user.show_message("Growth progress: [T.amount_grown]/10")
 
-/obj/item/device/price_scanner
+/obj/item/price_scanner
 	name = "price scanner"
 	desc = "Using an up-to-date database of various costs and prices, this device estimates the market price of an item up to 0.001% accuracy."
 	icon_state = "price_scanner"
@@ -244,7 +244,7 @@ REAGENT SCANNER
 	throw_range = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 25, "glass" = 25)
 
-/obj/item/device/price_scanner/afterattack(atom/movable/target, mob/user as mob, proximity)
+/obj/item/price_scanner/afterattack(atom/movable/target, var/mob/user, proximity)
 	if(!proximity)
 		return
 

@@ -1,4 +1,4 @@
-/obj/item/device/assembly/timer
+/obj/item/assembly/timer
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
@@ -68,7 +68,7 @@
 		return
 
 
-	interact(mob/user as mob)//TODO: Have this use the wires
+	interact(var/mob/user)//TODO: Have this use the wires
 		if(!secured)
 			user.show_message("\red The [name] is unsecured!")
 			return 0

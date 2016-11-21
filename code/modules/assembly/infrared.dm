@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/device/assembly/infra
+/obj/item/assembly/infra
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
@@ -108,7 +108,7 @@
 		return
 
 
-	interact(mob/user as mob)//TODO: change this this to the wire control panel
+	interact(var/mob/user)//TODO: change this this to the wire control panel
 		if(!secured)	return
 		user.set_machine(src)
 		var/dat = text("<TT><B>Infrared Laser</B>\n<B>Status</B>: []<BR>\n<B>Visibility</B>: []<BR>\n</TT>", (on ? text("<A href='?src=\ref[];state=0'>On</A>", src) : text("<A href='?src=\ref[];state=1'>Off</A>", src)), (src.visible ? text("<A href='?src=\ref[];visible=0'>Visible</A>", src) : text("<A href='?src=\ref[];visible=1'>Invisible</A>", src)))
@@ -163,7 +163,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
 	var/obj/effect/beam/i_beam/next = null
-	var/obj/item/device/assembly/infra/master = null
+	var/obj/item/assembly/infra/master = null
 	var/limit = null
 	var/visible = 0.0
 	var/left = null
@@ -245,7 +245,7 @@
 	hit()
 	return
 
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
+/obj/effect/beam/i_beam/Crossed(var/atom/movable/AM)
 	if(istype(AM, /obj/effect/beam))
 		return
 	spawn(0)

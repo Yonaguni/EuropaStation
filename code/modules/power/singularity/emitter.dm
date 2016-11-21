@@ -63,11 +63,11 @@
 	else
 		icon_state = "emitter"
 
-/obj/machinery/power/emitter/attack_hand(mob/user as mob)
+/obj/machinery/power/emitter/attack_hand(var/mob/user)
 	src.add_fingerprint(user)
 	activate(user)
 
-/obj/machinery/power/emitter/proc/activate(mob/user as mob)
+/obj/machinery/power/emitter/proc/activate(var/mob/user)
 	if(state == 2)
 		if(!powernet)
 			user << "\The [src] isn't connected to a wire."
@@ -173,7 +173,7 @@
 		return
 
 	if(W.iswelder())
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(active)
 			user << "Turn off [src] first."
 			return
@@ -208,7 +208,7 @@
 					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 		return
 
-	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/radio/headset/pda))
 		if(emagged)
 			user << "<span class='warning'>The lock seems to be broken.</span>"
 			return

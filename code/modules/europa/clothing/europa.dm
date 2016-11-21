@@ -143,15 +143,15 @@
 	icon_state = "diving_heavy"
 	light_overlay = "helmet_light_dual"
 
-/obj/item/weapon/storage/box/divingsuit
+/obj/item/storage/box/divingsuit
 	name = "diving suit box"
 	desc = "A box containing a complete diving suit."
 
-/obj/item/weapon/storage/box/divingsuit/New()
+/obj/item/storage/box/divingsuit/New()
 	..()
 	new /obj/item/clothing/suit/space/diving/medium(src)
 	new /obj/item/clothing/head/helmet/space/diving/medium(src)
-	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
+	new /obj/item/tank/emergency/oxygen/engi(src)
 	make_exact_fit()
 
 //Government

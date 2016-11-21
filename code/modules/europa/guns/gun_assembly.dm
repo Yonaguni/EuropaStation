@@ -1,4 +1,4 @@
-/obj/item/weapon/gun_assembly //temp for testing.
+/obj/item/gun_assembly //temp for testing.
 	name = "gun assembly"
 	desc = "It's a firearm in progress. When finished, it will make small pieces of stuff go very fast."
 	icon_state = "blank"
@@ -14,7 +14,7 @@
 	var/obj/item/gun_component/chamber/chamber
 	var/list/accessories = list()
 
-/obj/item/weapon/gun_assembly/Destroy()
+/obj/item/gun_assembly/Destroy()
 	barrel = null
 	body = null
 	grip = null
@@ -25,7 +25,7 @@
 		qdel(thing)
 	return ..()
 
-/obj/item/weapon/gun_assembly/proc/update_components()
+/obj/item/gun_assembly/proc/update_components()
 	barrel =  locate(/obj/item/gun_component/barrel)  in contents
 	body =    locate(/obj/item/gun_component/body)    in contents
 	grip =    locate(/obj/item/gun_component/grip)    in contents
@@ -38,19 +38,19 @@
 		GC.holder = src
 	update_icon()
 
-/obj/item/weapon/gun_assembly/attack_self(var/mob/user)
+/obj/item/gun_assembly/attack_self(var/mob/user)
 	remove_component(user)
 
-/obj/item/weapon/gun_assembly/AltClick(var/mob/user)
+/obj/item/gun_assembly/AltClick(var/mob/user)
 	remove_component(user)
 
-/obj/item/weapon/gun_assembly/MouseDrop(var/atom/movable/over_atom,)
+/obj/item/gun_assembly/MouseDrop(var/atom/movable/over_atom,)
 	if(over_atom == usr)
 		remove_component(usr)
 		return
 	..()
 
-/obj/item/weapon/gun_assembly/proc/remove_component(var/mob/user)
+/obj/item/gun_assembly/proc/remove_component(var/mob/user)
 	var/obj/item/gun_component/removed
 	if(barrel)
 		removed = barrel
@@ -94,7 +94,7 @@
 		return
 	update_icon()
 
-/obj/item/weapon/gun_assembly/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun_assembly/attackby(var/obj/item/thing, var/mob/user)
 
 	if(istype(thing, /obj/item/gun_component))
 		var/obj/item/gun_component/GC = thing
@@ -154,7 +154,7 @@
 		if(barrel && body && grip && chamber)
 			var/mob/M = src.loc
 			user.unEquip(src)
-			var/obj/item/weapon/gun/composite/new_gun = new(get_turf(src), src)
+			var/obj/item/gun/composite/new_gun = new(get_turf(src), src)
 			if(istype(M))
 				user.put_in_hands(new_gun)
 			user << "<span class='notice'>You have assembled \the [new_gun].</span>"
@@ -162,11 +162,11 @@
 
 	return ..()
 
-/obj/item/weapon/gun_assembly/New()
+/obj/item/gun_assembly/New()
 	..()
 	update_components()
 
-/obj/item/weapon/gun_assembly/update_icon()
+/obj/item/gun_assembly/update_icon()
 
 	icon_state = "blank"
 
@@ -213,7 +213,7 @@
 
 	overlays = overlays_to_add
 
-/obj/item/weapon/gun_assembly/examine()
+/obj/item/gun_assembly/examine()
 	..()
 	if(usr && usr.Adjacent(get_turf(src)))
 		for(var/obj/item/gun_component/GC in list(barrel, body, grip, stock, chamber))

@@ -1,6 +1,6 @@
-/obj/item/weapon/gun/staff
+/obj/item/gun/staff
 	name = "staff"
 
-/obj/item/weapon/gun/staff/focus
+/obj/item/gun/staff/focus
 
-/obj/item/weapon/gun/staff/animate
+/obj/item/gun/staff/animate

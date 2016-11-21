@@ -10,7 +10,7 @@
 	flags = NOBLUDGEON
 
 
-/obj/item/stack/telecrystal/afterattack(var/obj/item/I as obj, mob/user as mob, proximity)
+/obj/item/stack/telecrystal/afterattack(var/obj/item/I, var/mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(I, /obj/item))

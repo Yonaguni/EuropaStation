@@ -213,7 +213,7 @@ Class Procs:
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/attack_ai(mob/user as mob)
+/obj/machinery/attack_ai(var/mob/user)
 	if(isrobot(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
@@ -222,7 +222,7 @@ Class Procs:
 	else
 		return src.attack_hand(user)
 
-/obj/machinery/attack_hand(mob/user as mob)
+/obj/machinery/attack_hand(var/mob/user)
 	if(inoperable(MAINT))
 		return 1
 	if(user.lying || user.stat)
@@ -286,14 +286,14 @@ Class Procs:
 			return 1
 	return 0
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)
+/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/crowbar/C)
 	if(!istype(C))
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
+/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/screwdriver/S)
 	if(!istype(S))
 		return 0
 	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -302,20 +302,20 @@ Class Procs:
 	update_icon()
 	return 1
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
 		return 0
 	if(panel_open)
-		var/obj/item/weapon/circuitboard/CB = locate(/obj/item/weapon/circuitboard) in component_parts
+		var/obj/item/circuitboard/CB = locate(/obj/item/circuitboard) in component_parts
 		var/P
-		for(var/obj/item/weapon/stock_parts/A in component_parts)
+		for(var/obj/item/stock_parts/A in component_parts)
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
-			for(var/obj/item/weapon/stock_parts/B in R.contents)
+			for(var/obj/item/stock_parts/B in R.contents)
 				if(istype(B, P) && istype(A, P))
 					if(B.rating > A.rating)
 						R.remove_from_storage(B, src)
@@ -329,7 +329,7 @@ Class Procs:
 			RefreshParts()
 	else
 		user << "<span class='notice'>Following parts detected in the machine:</span>"
-		for(var/var/obj/item/C in component_parts)
+		for(var/obj/item/C in component_parts)
 			user << "<span class='notice'>    [C.name]</span>"
 	return 1
 

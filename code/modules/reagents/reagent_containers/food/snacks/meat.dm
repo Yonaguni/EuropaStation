@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/food/snacks/meat
+/obj/item/reagent_containers/food/snacks/meat
 	name = "meat"
 	desc = "A slab of meat."
 	icon_state = "meat"
@@ -12,11 +12,11 @@
 		reagents.add_reagent("protein", 9)
 		src.bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/initialize()
+/obj/item/reagent_containers/food/snacks/meat/initialize()
 	..()
 	if(source_mob) set_source_mob(source_mob)
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/proc/set_source_mob(var/new_source_mob)
+/obj/item/reagent_containers/food/snacks/meat/proc/set_source_mob(var/new_source_mob)
 	source_mob = new_source_mob
 	if(source_mob)
 		name = "[source_mob] [initial(name)]"
@@ -24,33 +24,33 @@
 		name = "[initial(name)]"
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+/obj/item/reagent_containers/food/snacks/meat/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W,/obj/item/material/knife))
+		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
+		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
+		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		user << "You cut the meat into thin strips."
 		qdel(src)
 	else
 		..()
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh
+/obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	name = "synthetic meat"
 	desc = "A synthetic slab of flesh."
 
 // Seperate definitions because some food likes to know if it's human.
 // TODO: rewrite kitchen code to check a var on the meat item so we can remove
 // all these sybtypes.
-/obj/item/weapon/reagent_containers/food/snacks/meat/human
-/obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+/obj/item/reagent_containers/food/snacks/meat/human
+/obj/item/reagent_containers/food/snacks/meat/monkey
 	//same as plain meat
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+/obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well, you know."
 
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat
+/obj/item/reagent_containers/food/snacks/meat/bearmeat
 	name = "bear meat"
 	desc = "A very manly slab of meat."
 	icon_state = "bearmeat"
@@ -63,7 +63,7 @@
 		reagents.add_reagent("jumpstart", 5)
 		src.bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat
+/obj/item/reagent_containers/food/snacks/meat/xenomeat
 	name = "meat"
 	desc = "A slab of green meat. Smells like acid."
 	icon_state = "xenomeat"

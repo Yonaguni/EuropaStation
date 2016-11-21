@@ -1,40 +1,40 @@
-/obj/item/weapon/pen/crayon/red
+/obj/item/pen/crayon/red
 	icon_state = "crayonred"
 	colour = "#da0000"
 	shadeColour = "#810c0c"
 	colourName = "red"
 
-/obj/item/weapon/pen/crayon/orange
+/obj/item/pen/crayon/orange
 	icon_state = "crayonorange"
 	colour = "#ff9300"
 	shadeColour = "#a55403"
 	colourName = "orange"
 
-/obj/item/weapon/pen/crayon/yellow
+/obj/item/pen/crayon/yellow
 	icon_state = "crayonyellow"
 	colour = "#fff200"
 	shadeColour = "#886422"
 	colourName = "yellow"
 
-/obj/item/weapon/pen/crayon/green
+/obj/item/pen/crayon/green
 	icon_state = "crayongreen"
 	colour = "#a8e61d"
 	shadeColour = "#61840f"
 	colourName = "green"
 
-/obj/item/weapon/pen/crayon/blue
+/obj/item/pen/crayon/blue
 	icon_state = "crayonblue"
 	colour = "#00b7ef"
 	shadeColour = "#0082a8"
 	colourName = "blue"
 
-/obj/item/weapon/pen/crayon/purple
+/obj/item/pen/crayon/purple
 	icon_state = "crayonpurple"
 	colour = "#da00ff"
 	shadeColour = "#810cff"
 	colourName = "purple"
 
-/obj/item/weapon/pen/crayon/mime
+/obj/item/pen/crayon/mime
 	icon_state = "crayonmime"
 	desc = "A very sad-looking crayon."
 	colour = "#ffffff"
@@ -42,7 +42,7 @@
 	colourName = "mime"
 	uses = 0
 
-/obj/item/weapon/pen/crayon/mime/attack_self(mob/living/user as mob) //inversion
+/obj/item/pen/crayon/mime/attack_self(var/mob/living/user) //inversion
 	if(colour != "#ffffff" && shadeColour != "#000000")
 		colour = "#ffffff"
 		shadeColour = "#000000"
@@ -53,19 +53,19 @@
 		user << "You will now draw in black and white with this crayon."
 	return
 
-/obj/item/weapon/pen/crayon/rainbow
+/obj/item/pen/crayon/rainbow
 	icon_state = "crayonrainbow"
 	colour = "#fff000"
 	shadeColour = "#000fff"
 	colourName = "rainbow"
 	uses = 0
 
-/obj/item/weapon/pen/crayon/rainbow/attack_self(mob/living/user as mob)
+/obj/item/pen/crayon/rainbow/attack_self(var/mob/living/user)
 	colour = input(user, "Please select the main colour.", "Crayon colour") as color
 	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
 	return
 
-/obj/item/weapon/pen/crayon/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/pen/crayon/afterattack(atom/target, var/mob/user, proximity)
 	if(!proximity) return
 	if(istype(target,/turf/simulated/floor))
 		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter","arrow")
@@ -91,7 +91,7 @@
 					qdel(src)
 	return
 
-/obj/item/weapon/pen/crayon/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/pen/crayon/attack(var/mob/living/carbon/M, var/mob/user)
 	if(istype(M) && M == user)
 		M << "You take a bite of the crayon and swallow it."
 		M.nutrition += 1

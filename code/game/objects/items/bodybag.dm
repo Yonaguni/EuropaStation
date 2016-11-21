@@ -13,7 +13,7 @@
 		qdel(src)
 
 
-/obj/item/weapon/storage/box/bodybags
+/obj/item/storage/box/bodybags
 	name = "body bags"
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
@@ -43,7 +43,7 @@
 	var/contains_body = 0
 
 /obj/structure/closet/body_bag/attackby(var/obj/item/W, var/mob/user)
-	if (istype(W, /obj/item/weapon/pen))
+	if (istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != W)
 			return
@@ -118,10 +118,10 @@
 	store_misc = 0
 	store_items = 0
 	var/used = 0
-	var/obj/item/weapon/tank/tank = null
+	var/obj/item/tank/tank = null
 
 /obj/structure/closet/body_bag/cryobag/New()
-	tank = new /obj/item/weapon/tank/emergency/oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
+	tank = new /obj/item/tank/emergency/oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
@@ -168,8 +168,8 @@
 	if(opened)
 		..()
 	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		if(istype(W,/obj/item/device/healthanalyzer))
-			var/obj/item/device/healthanalyzer/analyzer = W
+		if(istype(W,/obj/item/healthanalyzer))
+			var/obj/item/healthanalyzer/analyzer = W
 			for(var/mob/living/L in contents)
 				analyzer.attack(L,user)
 		else

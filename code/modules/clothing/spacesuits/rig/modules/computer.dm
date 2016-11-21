@@ -51,7 +51,7 @@
 
 /obj/item/rig_module/ai_container/process()
 	if(integrated_ai)
-		var/obj/item/weapon/rig/rig = get_rig()
+		var/obj/item/rig/rig = get_rig()
 		if(rig && rig.ai_override_enabled)
 			integrated_ai.get_rig_stats = 1
 		else
@@ -60,7 +60,7 @@
 /mob/living/Stat()
 	. = ..()
 	if(. && get_rig_stats)
-		var/obj/item/weapon/rig/rig = get_rig()
+		var/obj/item/rig/rig = get_rig()
 		if(rig)
 			SetupStat(rig)
 
@@ -81,14 +81,14 @@
 	else
 		target_ai = locate(/mob/living/silicon/ai) in input_device.contents
 
-	var/obj/item/device/aicard/card = ai_card
+	var/obj/item/aicard/card = ai_card
 
 	// Downloading from/loading to a terminal.
 	if(istype(input_device,/obj/machinery/computer/aifixer) || istype(input_device,/mob/living/silicon/ai) || istype(input_device,/obj/structure/AIcore/deactivated))
 
 		// If we're stealing an AI, make sure we have a card for it.
 		if(!card)
-			card = new /obj/item/device/aicard(src)
+			card = new /obj/item/aicard(src)
 
 		// Terminal interaction only works with an intellicarded AI.
 		if(!istype(card))
@@ -106,7 +106,7 @@
 		update_verb_holder()
 		return 1
 
-	if(istype(input_device,/obj/item/device/aicard))
+	if(istype(input_device,/obj/item/aicard))
 		// We are carding the AI in our suit.
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
@@ -122,7 +122,7 @@
 		return 1
 
 	// Okay, it wasn't a terminal being touched, check for all the simple insertions.
-	if(input_device.type in list(/obj/item/device/paicard, /obj/item/device/mmi, /obj/item/device/mmi/digital/posibrain))
+	if(input_device.type in list(/obj/item/paicard, /obj/item/mmi, /obj/item/mmi/digital/posibrain))
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
 			// If the transfer was successful, we can clear out our vars.
@@ -144,7 +144,7 @@
 
 	if(!target)
 		if(ai_card)
-			if(istype(ai_card,/obj/item/device/aicard))
+			if(istype(ai_card,/obj/item/aicard))
 				ai_card.ui_interact(H, state = deep_inventory_state)
 			else
 				eject_ai(H)
@@ -163,7 +163,7 @@
 /obj/item/rig_module/ai_container/proc/eject_ai(var/mob/user)
 
 	if(ai_card)
-		if(istype(ai_card, /obj/item/device/aicard))
+		if(istype(ai_card, /obj/item/aicard))
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
 					user << "<span class='danger'>You cannot eject your currently stored AI. Purge it manually.</span>"
@@ -193,13 +193,13 @@
 
 		if(ai_mob.key && ai_mob.client)
 
-			if(istype(ai, /obj/item/device/aicard))
+			if(istype(ai, /obj/item/aicard))
 
 				if(!ai_card)
-					ai_card = new /obj/item/device/aicard(src)
+					ai_card = new /obj/item/aicard(src)
 
-				var/obj/item/device/aicard/source_card = ai
-				var/obj/item/device/aicard/target_card = ai_card
+				var/obj/item/aicard/source_card = ai
+				var/obj/item/aicard/target_card = ai_card
 				if(istype(source_card) && istype(target_card))
 					if(target_card.grab_ai(ai_mob, user))
 						source_card.clear()

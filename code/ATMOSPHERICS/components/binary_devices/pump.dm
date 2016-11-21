@@ -178,7 +178,7 @@ Thus, the two variables affect pump operation are set in New():
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/binary/pump/attack_hand(user as mob)
+/obj/machinery/atmospherics/binary/pump/attack_hand(var/mob/user)
 	if(..())
 		return
 	src.add_fingerprint(usr)
@@ -209,7 +209,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	src.update_icon()
 
-/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/W, var/mob/user)
 	if (!W.iswrench())
 		return ..()
 	if (!(stat & NOPOWER) && use_power)

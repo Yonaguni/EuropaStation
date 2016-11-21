@@ -1,32 +1,32 @@
 #define JAMMER_MAX_RANGE world.view*2
 #define JAMMER_POWER_CONSUMPTION ((max(0.75, range)**2 * jammer_method.energy_cost * process_schedule_interval("obj")) / 10)
 
-/obj/item/device/suit_sensor_jammer
+/obj/item/suit_sensor_jammer
 	name = "small device"
 	desc = "This object menaces with tiny, dull spikes of plastic."
 	icon_state = "jammer"
 	w_class = 2
 	var/active = FALSE
 	var/range = 2 // This is a radius, thus a range of 7 covers the entire visible screen
-	var/obj/item/weapon/cell/bcell = /obj/item/weapon/cell/high
+	var/obj/item/cell/bcell = /obj/item/cell/high
 	var/suit_sensor_jammer_method/jammer_method
 	var/list/suit_sensor_jammer_methods_by_type
 	var/list/suit_sensor_jammer_methods
 
-/obj/item/device/suit_sensor_jammer/New()
+/obj/item/suit_sensor_jammer/New()
 	..()
 	if(ispath(bcell))
 		bcell = new bcell(src)
 	suit_sensor_jammer_methods = list()
 	suit_sensor_jammer_methods_by_type = list()
 	for(var/jammer_method_type in subtypesof(/suit_sensor_jammer_method))
-		var/new_method = new jammer_method_type(src, /obj/item/device/suit_sensor_jammer/proc/may_process_crew_data)
+		var/new_method = new jammer_method_type(src, /obj/item/suit_sensor_jammer/proc/may_process_crew_data)
 		dd_insertObjectList(suit_sensor_jammer_methods, new_method)
 		suit_sensor_jammer_methods_by_type[jammer_method_type] = new_method
 	jammer_method = suit_sensor_jammer_methods[1]
 	update_icon()
 
-/obj/item/device/suit_sensor_jammer/Destroy()
+/obj/item/suit_sensor_jammer/Destroy()
 	. = ..()
 	qdel(bcell)
 	bcell = null
@@ -37,10 +37,10 @@
 	suit_sensor_jammer_methods_by_type = null
 	disable()
 
-/obj/item/device/suit_sensor_jammer/attack_self(var/mob/user)
+/obj/item/suit_sensor_jammer/attack_self(var/mob/user)
 	tg_ui_interact(user)
 
-/obj/item/device/suit_sensor_jammer/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/suit_sensor_jammer/attackby(obj/item/I as obj, var/mob/user)
 	if(I.iscrowbar())
 		if(bcell)
 			user << "<span class='notice'>You remove \the [bcell].</span>"
@@ -49,7 +49,7 @@
 			bcell = null
 		else
 			user << "<span class='warning'>There is no cell to remove.</span>"
-	else if(istype(I, /obj/item/weapon/cell))
+	else if(istype(I, /obj/item/cell))
 		if(bcell)
 			user << "<span class='warning'>There's already a cell in \the [src].</span>"
 		else if(user.unEquip(I))
@@ -59,7 +59,7 @@
 		else
 			user << "<span class='warning'>You're unable to insert the battery.</span>"
 
-/obj/item/device/suit_sensor_jammer/update_icon()
+/obj/item/suit_sensor_jammer/update_icon()
 	overlays.Cut()
 	if(bcell)
 		switch(bcell.charge/bcell.maxcharge)
@@ -80,7 +80,7 @@
 		if(active)
 			overlays += "active"
 
-/obj/item/device/suit_sensor_jammer/emp_act(var/severity)
+/obj/item/suit_sensor_jammer/emp_act(var/severity)
 	..()
 	if(bcell)
 		bcell.emp_act(severity)
@@ -98,7 +98,7 @@
 	var/new_range = range + (rand(0,6) / severity) - (rand(0,3) / severity)
 	set_range(new_range)
 
-obj/item/device/suit_sensor_jammer/examine(var/user)
+obj/item/suit_sensor_jammer/examine(var/user)
 	. = ..(user, 3)
 	if(.)
 		var/list/message = list()
@@ -109,18 +109,18 @@ obj/item/device/suit_sensor_jammer/examine(var/user)
 			message += "is lacking a cell."
 		user << jointext(message,.)
 
-obj/item/device/suit_sensor_jammer/ui_status(mob/user, datum/ui_state/state)
+obj/item/suit_sensor_jammer/ui_status(mob/user, datum/ui_state/state)
 	if(!bcell || bcell.charge <= 0)
 		return UI_CLOSE
 	return ..()
 
-obj/item/device/suit_sensor_jammer/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_default_state)
+obj/item/suit_sensor_jammer/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_default_state)
 	ui = tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "suit_sensor_jammer", "Sensor Jammer", 350, 610, master_ui, state)
 		ui.open()
 
-obj/item/device/suit_sensor_jammer/ui_data()
+obj/item/suit_sensor_jammer/ui_data()
 	var/list/methods = new
 	for(var/suit_sensor_jammer_method/ssjm in suit_sensor_jammer_methods)
 		methods[++methods.len] = list("name" = ssjm.name, "cost" = ssjm.energy_cost, "ref" = "\ref[ssjm]")
@@ -139,7 +139,7 @@ obj/item/device/suit_sensor_jammer/ui_data()
 
 	return data
 
-obj/item/device/suit_sensor_jammer/ui_act(action, params)
+obj/item/suit_sensor_jammer/ui_act(action, params)
 	if(..())
 		return TRUE
 	switch(action)
@@ -161,7 +161,7 @@ obj/item/device/suit_sensor_jammer/ui_act(action, params)
 				set_method(method)
 				. = TRUE
 
-/obj/item/device/suit_sensor_jammer/process()
+/obj/item/suit_sensor_jammer/process()
 	if(bcell)
 		// With a range of 2 and jammer cost of 3 the default (high capacity) cell will last for almost 14 minutes, give or take
 		// 10000 / (2^2 * 3 / 10) ~= 8333 ticks ~= 13.8 minutes
@@ -172,7 +172,7 @@ obj/item/device/suit_sensor_jammer/ui_act(action, params)
 		disable()
 	update_icon()
 
-/obj/item/device/suit_sensor_jammer/proc/enable()
+/obj/item/suit_sensor_jammer/proc/enable()
 	if(active)
 		return FALSE
 	active = TRUE
@@ -181,7 +181,7 @@ obj/item/device/suit_sensor_jammer/ui_act(action, params)
 	update_icon()
 	return TRUE
 
-/obj/item/device/suit_sensor_jammer/proc/disable()
+/obj/item/suit_sensor_jammer/proc/disable()
 	if(!active)
 		return FALSE
 	active = FALSE
@@ -190,11 +190,11 @@ obj/item/device/suit_sensor_jammer/ui_act(action, params)
 	update_icon()
 	return TRUE
 
-/obj/item/device/suit_sensor_jammer/proc/set_range(var/new_range)
+/obj/item/suit_sensor_jammer/proc/set_range(var/new_range)
 	range = Clamp(new_range, 0, JAMMER_MAX_RANGE) // 0 range still covers the current turf
 	return range != new_range
 
-/obj/item/device/suit_sensor_jammer/proc/set_method(var/suit_sensor_jammer_method/sjm)
+/obj/item/suit_sensor_jammer/proc/set_method(var/suit_sensor_jammer_method/sjm)
 	if(sjm == jammer_method)
 		return
 	if(active)
@@ -202,7 +202,7 @@ obj/item/device/suit_sensor_jammer/ui_act(action, params)
 		sjm.enable()
 	jammer_method = sjm
 
-/obj/item/device/suit_sensor_jammer/proc/may_process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos)
+/obj/item/suit_sensor_jammer/proc/may_process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos)
 	if(!pos)
 		return FALSE
 	var/turf/T = get_turf(src)

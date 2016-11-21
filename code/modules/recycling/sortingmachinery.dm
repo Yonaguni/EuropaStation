@@ -14,7 +14,7 @@
 	var/label_x
 	var/tag_x
 
-/obj/structure/bigDelivery/attack_hand(mob/user as mob)
+/obj/structure/bigDelivery/attack_hand(var/mob/user)
 	unwrap()
 
 /obj/structure/bigDelivery/proc/unwrap()
@@ -25,9 +25,9 @@
 			O.welded = 0
 	qdel(src)
 
-/obj/structure/bigDelivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+/obj/structure/bigDelivery/attackby(obj/item/W as obj, var/mob/user)
+	if(istype(W, /obj/item/destTagger))
+		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
 				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
@@ -42,7 +42,7 @@
 		else
 			user << "<span class='warning'>You need to set a destination first!</span>"
 
-	else if(istype(W, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
@@ -121,7 +121,7 @@
 	var/nameset = 0
 	var/tag_x
 
-/obj/item/smallDelivery/attack_self(mob/user as mob)
+/obj/item/smallDelivery/attack_self(var/mob/user)
 	if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(user.loc)
 		if(ishuman(user))
@@ -132,9 +132,9 @@
 	qdel(src)
 	return
 
-/obj/item/smallDelivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+/obj/item/smallDelivery/attackby(obj/item/W as obj, var/mob/user)
+	if(istype(W, /obj/item/destTagger))
+		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
 				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
@@ -149,7 +149,7 @@
 		else
 			user << "<span class='warning'>You need to set a destination first!</span>"
 
-	else if(istype(W, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
@@ -214,7 +214,7 @@
 			user << "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 	return
 
-/obj/item/weapon/packageWrap
+/obj/item/packageWrap
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
@@ -222,12 +222,12 @@
 	var/amount = 25.0
 
 
-/obj/item/weapon/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
+/obj/item/packageWrap/afterattack(var/obj/target as obj, var/mob/user, proximity)
 	if(!proximity) return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
 	if(istype(target, /obj/item/smallDelivery) || istype(target,/obj/structure/bigDelivery) \
-	|| istype(target, /obj/item/weapon/gift) || istype(target, /obj/item/weapon/evidencebag))
+	|| istype(target, /obj/item/gift) || istype(target, /obj/item/evidencebag))
 		return
 	if(target.anchored)
 		return
@@ -239,7 +239,7 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
 
 
-	if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
+	if (istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
 		var/obj/item/O = target
 		if (src.amount > 1)
 			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
@@ -299,12 +299,12 @@
 	else
 		user << "\blue The object you are trying to wrap is unsuitable for the sorting machinery!"
 	if (src.amount <= 0)
-		new /obj/item/weapon/c_tube( src.loc )
+		new /obj/item/c_tube( src.loc )
 		qdel(src)
 		return
 	return
 
-/obj/item/weapon/packageWrap/examine(mob/user)
+/obj/item/packageWrap/examine(mob/user)
 	if(..(user, 0))
 		user << "\blue There are [amount] units of package wrap left!"
 
@@ -321,7 +321,7 @@
 		AM.loc = T
 	return ..()
 
-/obj/item/device/destTagger
+/obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
@@ -332,7 +332,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
-/obj/item/device/destTagger/proc/openwindow(mob/user as mob)
+/obj/item/destTagger/proc/openwindow(var/mob/user)
 	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
@@ -347,11 +347,11 @@
 	user << browse(dat, "window=destTagScreen;size=450x375")
 	onclose(user, "destTagScreen")
 
-/obj/item/device/destTagger/attack_self(mob/user as mob)
+/obj/item/destTagger/attack_self(var/mob/user)
 	openwindow(user)
 	return
 
-/obj/item/device/destTagger/Topic(href, href_list)
+/obj/item/destTagger/Topic(href, href_list)
 	src.add_fingerprint(usr)
 	if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
 		src.currTag = href_list["nextTag"]
@@ -442,7 +442,7 @@
 			user << "You attach the screws around the power connection."
 			return
 	else if(I.iswelder() && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
+		var/obj/item/weldingtool/W = I
 		if(W.remove_fuel(1,user))
 			user << "You start slicing the floorweld off the delivery chute."
 			if(do_after(user,20, src))

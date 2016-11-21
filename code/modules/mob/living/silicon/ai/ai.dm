@@ -56,9 +56,9 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
-	var/obj/item/device/radio/headset/pda/ai/aiPDA = null
-	var/obj/item/device/multitool/aiMulti = null
-	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
+	var/obj/item/radio/headset/pda/ai/aiPDA = null
+	var/obj/item/multitool/aiMulti = null
+	var/obj/item/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
@@ -99,7 +99,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -115,7 +115,7 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/radio/headset/pda/ai(src)
+	aiPDA = new/obj/item/radio/headset/pda/ai(src)
 	fully_replace_character_name(pickedName)
 	anchored = 1
 	canmove = 0
@@ -136,7 +136,7 @@ var/list/ai_verbs_default = list(
 	aiRadio.myAi = src
 	additional_law_channels["Holopad"] = ":h"
 
-	aiCamera = new/obj/item/device/camera/siliconcam/ai_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
@@ -250,7 +250,7 @@ var/list/ai_verbs_default = list(
 			selected_sprite = default_ai_icon
 	updateicon()
 
-/mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
+/mob/living/silicon/ai/pointed(var/atom/A as obj|turf|mob in view())
 	set popup_menu = 0
 	set src = usr.contents
 	return 0
@@ -362,7 +362,7 @@ var/list/ai_verbs_default = list(
 		emergency_message_cooldown = 0
 
 
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
+/mob/living/silicon/ai/check_eye(var/mob/user)
 	if (!camera)
 		return -1
 	return 0
@@ -581,10 +581,10 @@ var/list/ai_verbs_default = list(
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 
 
-/mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/aicard))
+/mob/living/silicon/ai/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W, /obj/item/aicard))
 
-		var/obj/item/device/aicard/card = W
+		var/obj/item/aicard/card = W
 		card.grab_ai(src, user)
 
 	else if(W.iswrench())
@@ -683,7 +683,7 @@ var/list/ai_verbs_default = list(
 	set category = "IC"
 
 	resting = 0
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
 

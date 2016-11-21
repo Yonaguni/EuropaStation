@@ -18,7 +18,7 @@ obj/structure/windoor_assembly
 	dir = NORTH
 	w_class = 3
 
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/airlock_electronics/electronics = null
 
 	//Vars to help with the icon's name
 	var/facing = "l"	//Does the windoor open to the left or right?
@@ -55,7 +55,7 @@ obj/structure/windoor_assembly/Destroy()
 	else
 		return 1
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/windoor_assembly/CheckExit(var/atom/movable/mover, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir)
@@ -64,12 +64,12 @@ obj/structure/windoor_assembly/Destroy()
 		return 1
 
 
-/obj/structure/windoor_assembly/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/windoor_assembly/attackby(obj/item/W as obj, var/mob/user)
 	//I really should have spread this out across more states but thin little windoors are hard to sprite.
 	switch(state)
 		if("01")
 			if(W.iswelder() && !anchored )
-				var/obj/item/weapon/weldingtool/WT = W
+				var/obj/item/weldingtool/WT = W
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -165,7 +165,7 @@ obj/structure/windoor_assembly/Destroy()
 						src.name = "Anchored Windoor Assembly"
 
 			//Adding airlock electronics for access. Step 6 complete.
-			else if(istype(W, /obj/item/weapon/airlock_electronics) && W:icon_state != "door_electronics_smoked")
+			else if(istype(W, /obj/item/airlock_electronics) && W:icon_state != "door_electronics_smoked")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
@@ -192,7 +192,7 @@ obj/structure/windoor_assembly/Destroy()
 						src.name = "Secure Wired Windoor Assembly"
 					else
 						src.name = "Wired Windoor Assembly"
-					var/obj/item/weapon/airlock_electronics/ae = electronics
+					var/obj/item/airlock_electronics/ae = electronics
 					electronics = null
 					ae.loc = src.loc
 

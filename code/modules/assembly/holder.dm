@@ -1,4 +1,4 @@
-/obj/item/device/assembly_holder
+/obj/item/assembly_holder
 	name = "Assembly"
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
@@ -10,17 +10,17 @@
 	throw_range = 10
 
 	var/secured = 0
-	var/obj/item/device/assembly/a_left = null
-	var/obj/item/device/assembly/a_right = null
+	var/obj/item/assembly/a_left = null
+	var/obj/item/assembly/a_right = null
 	var/obj/special_assembly = null
 
-	proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
+	proc/attach(var/obj/item/D, var/obj/item/D2, var/mob/user)
 		return
 
 	proc/attach_special(var/obj/O, var/mob/user)
 		return
 
-	proc/process_activation(var/obj/item/device/D)
+	proc/process_activation(var/obj/item/D)
 		return
 
 	proc/detached()
@@ -31,7 +31,7 @@
 		return 1
 
 
-	attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
+	attach(var/obj/item/D, var/obj/item/D2, var/mob/user)
 		if((!D)||(!D2))	return 0
 		if((!isassembly(D))||(!isassembly(D2)))	return 0
 		if((D:secured)||(D2:secured))	return 0
@@ -94,7 +94,7 @@
 		return
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	HasProximity(var/atom/movable/AM)
 		if(a_left)
 			a_left.HasProximity(AM)
 		if(a_right)
@@ -103,7 +103,7 @@
 			special_assembly.HasProximity(AM)
 
 
-	Crossed(atom/movable/AM as mob|obj)
+	Crossed(var/atom/movable/AM)
 		if(a_left)
 			a_left.Crossed(AM)
 		if(a_right)
@@ -112,7 +112,7 @@
 			special_assembly.Crossed(AM)
 
 
-	on_found(mob/finder as mob)
+	on_found(var/mob/finder)
 		if(a_left)
 			a_left.on_found(finder)
 		if(a_right)
@@ -143,7 +143,7 @@
 		return
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(W.isscrewdriver())
 			if(!a_left || !a_right)
 				user << "\red BUG:Assembly part missing, please report this!"
@@ -164,7 +164,7 @@
 		return
 
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		src.add_fingerprint(user)
 		if(src.secured)
 			if(!a_left || !a_right)
@@ -176,9 +176,9 @@
 					if("Right")	a_right.attack_self(user)
 				return
 			else
-				if(!istype(a_left,/obj/item/device/assembly/igniter))
+				if(!istype(a_left,/obj/item/assembly/igniter))
 					a_left.attack_self(user)
-				if(!istype(a_right,/obj/item/device/assembly/igniter))
+				if(!istype(a_right,/obj/item/assembly/igniter))
 					a_right.attack_self(user)
 		else
 			var/turf/T = get_turf(src)
@@ -211,16 +211,16 @@
 		return 1
 
 
-/obj/item/device/assembly_holder/New()
+/obj/item/assembly_holder/New()
 	..()
 	listening_objects += src
 
-/obj/item/device/assembly_holder/Destroy()
+/obj/item/assembly_holder/Destroy()
 	listening_objects -= src
 	return ..()
 
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
+/obj/item/assembly_holder/hear_talk(var/mob/living/M, msg, verb, datum/language/speaking)
 	if(a_right)
 		a_right.hear_talk(M,msg,verb,speaking)
 	if(a_left)
@@ -229,16 +229,16 @@
 
 
 
-/obj/item/device/assembly_holder/timer_igniter
+/obj/item/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"
 
 	New()
 		..()
 
-		var/obj/item/device/assembly/igniter/ign = new(src)
+		var/obj/item/assembly/igniter/ign = new(src)
 		ign.secured = 1
 		ign.holder = src
-		var/obj/item/device/assembly/timer/tmr = new(src)
+		var/obj/item/assembly/timer/tmr = new(src)
 		tmr.time=5
 		tmr.secured = 1
 		tmr.holder = src
@@ -249,10 +249,10 @@
 		update_icon()
 		name = initial(name) + " ([tmr.time] secs)"
 
-		loc.verbs += /obj/item/device/assembly_holder/timer_igniter/verb/configure
+		loc.verbs += /obj/item/assembly_holder/timer_igniter/verb/configure
 
 	detached()
-		loc.verbs -= /obj/item/device/assembly_holder/timer_igniter/verb/configure
+		loc.verbs -= /obj/item/assembly_holder/timer_igniter/verb/configure
 		..()
 
 	verb/configure()
@@ -261,14 +261,14 @@
 		set src in usr
 
 		if ( !(usr.stat || usr.restrained()) )
-			var/obj/item/device/assembly_holder/holder
-			if(istype(src,/obj/item/weapon/grenade/chem_grenade))
-				var/obj/item/weapon/grenade/chem_grenade/gren = src
+			var/obj/item/assembly_holder/holder
+			if(istype(src,/obj/item/grenade/chem_grenade))
+				var/obj/item/grenade/chem_grenade/gren = src
 				holder=gren.detonator
-			var/obj/item/device/assembly/timer/tmr = holder.a_left
-			if(!istype(tmr,/obj/item/device/assembly/timer))
+			var/obj/item/assembly/timer/tmr = holder.a_left
+			if(!istype(tmr,/obj/item/assembly/timer))
 				tmr = holder.a_right
-			if(!istype(tmr,/obj/item/device/assembly/timer))
+			if(!istype(tmr,/obj/item/assembly/timer))
 				usr << "<span class='notice'>This detonator has no timer.</span>"
 				return
 

@@ -19,7 +19,7 @@ var/datum/antagonist/raider/raiders
 	initial_spawn_target = 6
 	min_player_age = 14
 
-	id_type = /obj/item/weapon/card/id/syndicate
+	id_type = /obj/item/card/id/syndicate
 
 	faction = "pirate"
 
@@ -67,16 +67,16 @@ var/datum/antagonist/raider/raiders
 		)
 
 	var/list/raider_guns = list(
-		/obj/item/weapon/gun/composite/premade/shotgun,
-		/obj/item/weapon/gun/composite/premade/shotgun/sawnoff,
-		/obj/item/weapon/gun/composite/premade/shotgun/hunting,
-		/obj/item/weapon/gun/composite/premade/shotgun/hunting/sawnoff,
-		/obj/item/weapon/gun/composite/premade/smg/a9,
-		/obj/item/weapon/gun/composite/premade/smg/a10,
-		/obj/item/weapon/gun/composite/premade/revolver/hunting,
-		/obj/item/weapon/gun/composite/premade/pistol/a9,
-		/obj/item/weapon/gun/composite/premade/pistol/a10,
-		/obj/item/weapon/gun/composite/premade/pistol/a45
+		/obj/item/gun/composite/premade/shotgun,
+		/obj/item/gun/composite/premade/shotgun/sawnoff,
+		/obj/item/gun/composite/premade/shotgun/hunting,
+		/obj/item/gun/composite/premade/shotgun/hunting/sawnoff,
+		/obj/item/gun/composite/premade/smg/a9,
+		/obj/item/gun/composite/premade/smg/a10,
+		/obj/item/gun/composite/premade/revolver/hunting,
+		/obj/item/gun/composite/premade/pistol/a9,
+		/obj/item/gun/composite/premade/pistol/a10,
+		/obj/item/gun/composite/premade/pistol/a45
 		)
 
 	var/list/raider_holster = list(
@@ -90,8 +90,8 @@ var/datum/antagonist/raider/raiders
 	raiders = src
 
 /datum/antagonist/raider/update_access(var/mob/living/player)
-	for(var/obj/item/weapon/storage/wallet/W in player.contents)
-		for(var/obj/item/weapon/card/id/id in W.contents)
+	for(var/obj/item/storage/wallet/W in player.contents)
+		for(var/obj/item/card/id/id in W.contents)
 			id.name = "[player.real_name]'s Passport"
 			id.registered_name = player.real_name
 			W.name = "[initial(W.name)] ([id.name])"
@@ -203,10 +203,10 @@ var/datum/antagonist/raider/raiders
 	player.equip_to_slot_or_del(new new_suit(player),slot_wear_suit)
 	equip_weapons(player)
 
-	var/obj/item/weapon/card/id/id = create_id("Visitor", player, equip = 0)
+	var/obj/item/card/id/id = create_id("Visitor", player, equip = 0)
 	id.name = "[player.real_name]'s Passport"
 	id.assignment = "Visitor"
-	var/obj/item/weapon/storage/wallet/W = new(player)
+	var/obj/item/storage/wallet/W = new(player)
 	W.handle_item_insertion(id)
 	player.equip_to_slot_or_del(W, slot_wear_id)
 	spawn_money(rand(50,150)*10,W)

@@ -575,7 +575,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		if(src.amount <= 14)
 			usr << "\red You need at least 15 lengths to make restraints!"
 			return
-		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
+		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
 		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
 		src.use(15)

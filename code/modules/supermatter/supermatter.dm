@@ -82,13 +82,13 @@
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 
 	var/debug = 0
 
 /obj/machinery/power/supermatter/New()
 	. = ..()
-	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	radio = new /obj/item/radio{channels=list("Engineering")}(src)
 
 
 /obj/machinery/power/supermatter/Destroy()
@@ -284,17 +284,17 @@
 		damage += proj_damage * config_bullet_energy
 	return 0
 
-/obj/machinery/power/supermatter/attack_robot(mob/user as mob)
+/obj/machinery/power/supermatter/attack_robot(var/mob/user)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
 		ui_interact(user)
 	return
 
-/obj/machinery/power/supermatter/attack_ai(mob/user as mob)
+/obj/machinery/power/supermatter/attack_ai(var/mob/user)
 	ui_interact(user)
 
-/obj/machinery/power/supermatter/attack_hand(mob/user as mob)
+/obj/machinery/power/supermatter/attack_hand(var/mob/user)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash.</span>",\
 		"<span class=\"danger\">You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>",\
 		"<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
@@ -337,7 +337,7 @@
 	return
 */
 
-/obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/power/supermatter/attackby(var/obj/item/W, var/mob/living/user)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
 		"<span class=\"warning\">Everything suddenly goes silent.</span>")

@@ -52,7 +52,7 @@
 	visible_message("<span class='warning'>\The [P] hits [src]!</span>")
 	return 0
 
-/obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
+/obj/structure/table/CheckExit(var/atom/movable/O, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
 	if (flipped==1)
@@ -63,9 +63,9 @@
 	return 1
 
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/table/MouseDrop_T(obj/O as obj, var/mob/user)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if ((!( istype(O, /obj/item) ) || user.get_active_hand() != O))
 		return ..()
 	if(isrobot(user))
 		return
@@ -79,8 +79,8 @@
 	if (!W) return
 
 	// Handle harm intent grabbing/tabling.
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src,user)<2)
+		var/obj/item/grab/G = W
 		if (istype(G.affecting, /mob/living))
 			var/mob/living/M = G.affecting
 			var/obj/occupied = turf_is_crowded()
@@ -102,7 +102,7 @@
 						playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 					var/list/L = take_damage(rand(1,5))
 					// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
-					for(var/obj/item/weapon/material/shard/S in L)
+					for(var/obj/item/material/shard/S in L)
 						if(S.sharp && prob(50))
 							M.visible_message("<span class='danger'>\The [S] slices into [M]'s face!</span>",
 							                  "<span class='danger'>\The [S] slices into your face!</span>")
@@ -121,7 +121,7 @@
 	if(W.loc != user) // This should stop mounted modules ending up outside the module.
 		return
 
-	if(istype(W, /obj/item/weapon/melee/energy/blade) || istype(W, /obj/item/psychic_power/kinesis/paramount))
+	if(istype(W, /obj/item/melee/energy/blade) || istype(W, /obj/item/psychic_power/kinesis/paramount))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
 		spark_system.start()

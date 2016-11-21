@@ -13,7 +13,7 @@
 
 /mob/living/simple_animal/mouse/brain/death()
 	. = ..()
-	holder_type = /obj/item/weapon/holder/mouse
+	holder_type = /obj/item/holder/mouse
 	explosion(src.loc, -1, -1, 1, 2)
 
 

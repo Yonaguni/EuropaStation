@@ -2,25 +2,25 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/weapon/circuitboard/supplycomp
+/obj/item/circuitboard/supplycomp
 	name = T_BOARD("supply control console")
 	build_path = /obj/machinery/computer/supply
 
 	var/contraband_enabled = 0
 	var/emagged = 0
 
-/obj/item/weapon/circuitboard/supplycomp/construct(var/obj/machinery/computer/supply/SC)
+/obj/item/circuitboard/supplycomp/construct(var/obj/machinery/computer/supply/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
 		SC.emagged = emagged
 		SC.generateSupplyList()
 
-/obj/item/weapon/circuitboard/supplycomp/deconstruct(var/obj/machinery/computer/supply/SC)
+/obj/item/circuitboard/supplycomp/deconstruct(var/obj/machinery/computer/supply/SC)
 	if (..(SC))
 		contraband_enabled = SC.can_order_contraband
 		emagged = SC.emagged
 
-/obj/item/weapon/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/circuitboard/supplycomp/attackby(obj/item/I as obj, var/mob/user)
 	if(I.ismultitool())
 		var/catastasis = src.contraband_enabled
 		var/opposite_catastasis

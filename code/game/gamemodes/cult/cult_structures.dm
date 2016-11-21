@@ -27,16 +27,16 @@
 	light_color = "#3e0000"
 	var/obj/item/wepon = null
 
-/obj/structure/cult/pylon/attack_hand(mob/M as mob)
+/obj/structure/cult/pylon/attack_hand(var/mob/M)
 	attackpylon(M, 5)
 
 /obj/structure/cult/pylon/attack_generic(var/mob/user, var/damage)
 	attackpylon(user, damage)
 
-/obj/structure/cult/pylon/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/cult/pylon/attackby(obj/item/W as obj, var/mob/user)
 	attackpylon(user, W.force)
 
-/obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
+/obj/structure/cult/pylon/proc/attackpylon(var/mob/user, var/damage)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
@@ -63,7 +63,7 @@
 		playsound(get_turf(src), 'sound/effects/Glasshit.ogg', 75, 1)
 
 
-/obj/structure/cult/pylon/proc/repair(mob/user as mob)
+/obj/structure/cult/pylon/proc/repair(var/mob/user)
 	if(isbroken)
 		user << "You repair the pylon."
 		isbroken = 0
@@ -96,7 +96,7 @@
 	anchored = 1.0
 	var/spawnable = null
 
-/obj/effect/gateway/Bumped(mob/M as mob|obj)
+/obj/effect/gateway/Bumped(var/mob/M)
 	spawn(0)
 		return
 	return
@@ -160,7 +160,7 @@
 				qdel(Robot.mmi)
 		else
 			for(var/obj/item/W in M)
-				if(istype(W, /obj/item/weapon/implant))
+				if(istype(W, /obj/item/implant))
 					qdel(W)
 					continue
 				M.drop_from_inventory(W)

@@ -18,7 +18,7 @@ var/datum/antagonist/ninja/ninjas
 	hard_cap_round = 3
 	min_player_age = 18
 
-	id_type = /obj/item/weapon/card/id/syndicate
+	id_type = /obj/item/card/id/syndicate
 
 	faction = "ninja"
 
@@ -101,13 +101,13 @@ var/datum/antagonist/ninja/ninjas
 	if(!..())
 		return 0
 
-	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(player)
+	var/obj/item/radio/R = new /obj/item/radio/headset(player)
 	player.equip_to_slot_or_del(R, slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/device/flashlight(player), slot_belt)
+	player.equip_to_slot_or_del(new /obj/item/flashlight(player), slot_belt)
 	create_id("Infiltrator", player)
 
-	var/obj/item/weapon/rig/light/ninja/ninjasuit = new(get_turf(player))
+	var/obj/item/rig/light/ninja/ninjasuit = new(get_turf(player))
 	ninjasuit.seal_delay = 0
 	player.put_in_hands(ninjasuit)
 	player.equip_to_slot_or_del(ninjasuit,slot_back)
@@ -115,8 +115,8 @@ var/datum/antagonist/ninja/ninjas
 		ninjasuit.toggle_seals(src,1)
 		ninjasuit.seal_delay = initial(ninjasuit.seal_delay)
 
-	if(istype(player.back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = player.back
+	if(istype(player.back,/obj/item/rig))
+		var/obj/item/rig/rig = player.back
 		if(rig.air_supply)
 			player.internal = rig.air_supply
 

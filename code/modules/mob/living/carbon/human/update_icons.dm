@@ -552,8 +552,8 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_belt(var/update_icons=1)
 	if(belt)
 		var/belt_layer = BELT_LAYER
-		if(istype(belt, /obj/item/weapon/storage/belt))
-			var/obj/item/weapon/storage/belt/ubelt = belt
+		if(istype(belt, /obj/item/storage/belt))
+			var/obj/item/storage/belt/ubelt = belt
 			if(ubelt.show_above_suit)
 				overlays_standing[BELT_LAYER] = null
 				belt_layer = BELT_LAYER_ALT

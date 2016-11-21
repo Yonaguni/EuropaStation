@@ -43,8 +43,8 @@
 	item_records = null
 	return ..()
 
-/obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+/obj/machinery/smartfridge/proc/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
@@ -56,7 +56,7 @@
 	icon_on = "seeds"
 	icon_off = "seeds-off"
 
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O)
 	if(istype(O,/obj/item/seeds/))
 		return 1
 	return 0
@@ -66,7 +66,7 @@
 	desc = "A refrigerated storage unit for slime extracts."
 	req_access = list(access_research)
 
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O)
 	if(istype(O,/obj/item/slime_extract))
 		return 1
 	return 0
@@ -78,12 +78,12 @@
 	icon_on = "smartfridge_chem"
 	req_one_access = list(access_medical,access_chemistry)
 
-/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/))
+/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/reagent_containers/glass/))
 		return 1
-	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
+	if(istype(O,/obj/item/storage/pill_bottle/))
 		return 1
-	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
+	if(istype(O,/obj/item/reagent_containers/pill/))
 		return 1
 	return 0
 
@@ -95,10 +95,10 @@
 	icon_on = "smartfridge_virology"
 	icon_off = "smartfridge_virology-off"
 
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
+/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
 		return 1
-	if(istype(O,/obj/item/weapon/virusdish/))
+	if(istype(O,/obj/item/virusdish/))
 		return 1
 	return 0
 
@@ -106,8 +106,8 @@
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))
+/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
 		return 1
 	return 0
 
@@ -120,8 +120,8 @@
 	name = "\improper Drink Showcase"
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
-/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
+/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1
 
 /obj/machinery/smartfridge/drying_rack
@@ -131,9 +131,9 @@
 	icon_on = "drying_rack_on"
 	icon_off = "drying_rack"
 
-/obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/))
-		var/obj/item/weapon/reagent_containers/food/snacks/S = O
+/obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O)
+	if(istype(O, /obj/item/reagent_containers/food/snacks/))
+		var/obj/item/reagent_containers/food/snacks/S = O
 		if (S.dried_type)
 			return 1
 	return 0
@@ -159,7 +159,7 @@
 
 /obj/machinery/smartfridge/drying_rack/proc/dry()
 	for(var/datum/stored_items/I in item_records)
-		for(var/obj/item/weapon/reagent_containers/food/snacks/S in I.instances)
+		for(var/obj/item/reagent_containers/food/snacks/S in I.instances)
 			if(S.dry || !I.get_specific_product(get_turf(src), S)) continue
 			if(S.dried_type == S.type)
 				S.dry = 1
@@ -190,7 +190,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/smartfridge/attackby(var/obj/item/O, var/mob/user)
 	if(O.isscrewdriver())
 		panel_open = !panel_open
 		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
@@ -215,8 +215,8 @@
 		stock_item(O)
 		user.visible_message("<span class='notice'>\The [user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
 
-	else if(istype(O, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/bag/P = O
+	else if(istype(O, /obj/item/storage))
+		var/obj/item/storage/bag/P = O
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(P.remove_from_storage(G, src) && accept_check(G))
@@ -253,10 +253,10 @@
 	I.add_product(O)
 	nanomanager.update_uis(src)
 
-/obj/machinery/smartfridge/attack_ai(mob/user as mob)
+/obj/machinery/smartfridge/attack_ai(var/mob/user)
 	attack_hand(user)
 
-/obj/machinery/smartfridge/attack_hand(mob/user as mob)
+/obj/machinery/smartfridge/attack_hand(var/mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	wires.Interact(user)

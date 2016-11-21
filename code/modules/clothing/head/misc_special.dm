@@ -88,7 +88,7 @@
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
+/obj/item/clothing/head/cakehat/attack_self(var/mob/user)
 	src.onfire = !( src.onfire )
 	if (src.onfire)
 		src.force = 3
@@ -113,7 +113,7 @@
 	icon_state = "ushankadown"
 	flags_inv = HIDEEARS
 
-/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
+/obj/item/clothing/head/ushanka/attack_self(var/mob/user)
 	if(src.icon_state == "ushankadown")
 		src.icon_state = "ushankaup"
 		user << "You raise the ear flaps on the ushanka."

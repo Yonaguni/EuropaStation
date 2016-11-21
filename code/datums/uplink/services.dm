@@ -8,35 +8,35 @@
 	name = "Ion Storm Announcement"
 	desc = "Interferes with the station's ion sensors."
 	item_cost = 8
-	path = /obj/item/device/uplink_service/fake_ion_storm
+	path = /obj/item/uplink_service/fake_ion_storm
 
 /datum/uplink_item/item/services/suit_sensor_garble
 	name = "Complete Suit Sensor Jamming"
 	desc = "Garbles all suit sensor data for 10 minutes."
 	item_cost = 16
-	path = /obj/item/device/uplink_service/jamming/garble
+	path = /obj/item/uplink_service/jamming/garble
 
 /datum/uplink_item/item/services/fake_rad_storm
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the station's radiation sensors."
 	item_cost = 24
-	path = /obj/item/device/uplink_service/fake_rad_storm
+	path = /obj/item/uplink_service/fake_rad_storm
 
 /datum/uplink_item/item/services/fake_crew_annoncement
 	name = "Crew Arrival Announcement and Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Prepare well!"
 	item_cost = 32
-	path = /obj/item/device/uplink_service/fake_crew_announcement
+	path = /obj/item/uplink_service/fake_crew_announcement
 
 /datum/uplink_item/item/services/suit_sensor_shutdown
 	name = "Complete Suit Sensor Shutdown"
 	desc = "Completely disables all suit sensors for 10 minutes."
 	item_cost = 40
-	path = /obj/item/device/uplink_service/jamming
+	path = /obj/item/uplink_service/jamming
 
 /datum/uplink_item/item/services/fake_update_annoncement
 	item_cost = 40
-	path = /obj/item/device/uplink_service/fake_update_announcement
+	path = /obj/item/uplink_service/fake_update_announcement
 
 /datum/uplink_item/item/services/fake_update_annoncement/New()
 	..()
@@ -52,7 +52,7 @@
 #define CURRENTLY_ACTIVE 1
 #define HAS_BEEN_ACTIVATED 2
 
-/obj/item/device/uplink_service
+/obj/item/uplink_service
 	name = "tiny device"
 	desc = "Press button to activate. Can be done once and only once."
 	w_class = 1
@@ -61,12 +61,12 @@
 	var/service_label = "Unnamed Service"
 	var/service_duration = 0 SECONDS
 
-/obj/item/device/uplink_service/Destroy()
+/obj/item/uplink_service/Destroy()
 	if(state == CURRENTLY_ACTIVE)
 		deactivate()
 	. = ..()
 
-/obj/item/device/uplink_service/examine(var/user)
+/obj/item/uplink_service/examine(var/user)
 	. = ..(user, 1)
 	if(.)
 		switch(state)
@@ -77,7 +77,7 @@
 			if(HAS_BEEN_ACTIVATED)
 				user << "It is labeled '[service_label]' and appears to be permanently disabled."
 
-/obj/item/device/uplink_service/attack_self(var/mob/user)
+/obj/item/uplink_service/attack_self(var/mob/user)
 	if(state != AWAITING_ACTIVATION)
 		user << "<span class='warning'>\The [src] won't activate again.</span>"
 		return
@@ -89,11 +89,11 @@
 	log_and_message_admins("has activated the service '[service_label]'", user)
 
 	if(service_duration)
-		schedule_task_with_source_in(service_duration, src, /obj/item/device/uplink_service/proc/deactivate)
+		schedule_task_with_source_in(service_duration, src, /obj/item/uplink_service/proc/deactivate)
 	else
 		deactivate()
 
-/obj/item/device/uplink_service/proc/deactivate()
+/obj/item/uplink_service/proc/deactivate()
 	if(state != CURRENTLY_ACTIVE)
 		return
 	disable()
@@ -102,7 +102,7 @@
 	playsound(loc, "sparks", 50, 1)
 	visible_message("<span class='warning'>\The [src] shuts down with a spark.</span>")
 
-/obj/item/device/uplink_service/update_icon()
+/obj/item/uplink_service/update_icon()
 	switch(state)
 		if(AWAITING_ACTIVATION)
 			icon_state = initial(icon_state)
@@ -111,57 +111,57 @@
 		if(HAS_BEEN_ACTIVATED)
 			icon_state = "flashburnt"
 
-/obj/item/device/uplink_service/proc/enable(var/mob/user = usr)
+/obj/item/uplink_service/proc/enable(var/mob/user = usr)
 	return TRUE
 
-/obj/item/device/uplink_service/proc/disable(var/mob/user = usr)
+/obj/item/uplink_service/proc/disable(var/mob/user = usr)
 	return
 
 /*****************
 * Sensor Jamming *
 *****************/
-/obj/item/device/uplink_service/jamming
+/obj/item/uplink_service/jamming
 	service_duration = 10 MINUTES
 	service_label = "Suit Sensor Shutdown"
 	var/suit_sensor_jammer_method/ssjm = /suit_sensor_jammer_method/cap_off
 
-/obj/item/device/uplink_service/jamming/New()
+/obj/item/uplink_service/jamming/New()
 	..()
 	ssjm = new ssjm()
 
-/obj/item/device/uplink_service/jamming/Destroy()
+/obj/item/uplink_service/jamming/Destroy()
 	. = ..()
 	qdel(ssjm)
 	ssjm = null
 
-/obj/item/device/uplink_service/jamming/enable(var/mob/user = usr)
+/obj/item/uplink_service/jamming/enable(var/mob/user = usr)
 	ssjm.enable()
 	. = ..()
 
-/obj/item/device/uplink_service/jamming/disable(var/mob/user = usr)
+/obj/item/uplink_service/jamming/disable(var/mob/user = usr)
 	ssjm.disable()
 
-/obj/item/device/uplink_service/jamming/garble
+/obj/item/uplink_service/jamming/garble
 	service_label = "Suit Sensor Garble"
 	ssjm = /suit_sensor_jammer_method/random/moderate
 
 /*****************
 * Fake Ion storm *
 *****************/
-/obj/item/device/uplink_service/fake_ion_storm
+/obj/item/uplink_service/fake_ion_storm
 	service_label = "Ion Storm Announcement"
 
-/obj/item/device/uplink_service/fake_ion_storm/enable(var/mob/user = usr)
+/obj/item/uplink_service/fake_ion_storm/enable(var/mob/user = usr)
 	ion_storm_announcement()
 	. = ..()
 
 /*****************
 * Fake Rad storm *
 *****************/
-/obj/item/device/uplink_service/fake_rad_storm
+/obj/item/uplink_service/fake_rad_storm
 	service_label = "Radiation Storm Announcement"
 
-/obj/item/device/uplink_service/fake_rad_storm/enable(var/mob/user = usr)
+/obj/item/uplink_service/fake_rad_storm/enable(var/mob/user = usr)
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	. = ..()
@@ -169,10 +169,10 @@
 /***************************
 * Fake CentCom Annoncement *
 ***************************/
-/obj/item/device/uplink_service/fake_update_announcement
+/obj/item/uplink_service/fake_update_announcement
 	service_label = "Update Announcement"
 
-/obj/item/device/uplink_service/fake_update_announcement/enable(var/mob/user = usr)
+/obj/item/uplink_service/fake_update_announcement/enable(var/mob/user = usr)
 	var/title = sanitize(input(user, "Enter your announcement title.", "Announcement Title") as null|text)
 	if(!title)
 		return
@@ -188,11 +188,11 @@
 /*********************************
 * Fake Crew Records/Announcement *
 *********************************/
-/obj/item/device/uplink_service/fake_crew_announcement
+/obj/item/uplink_service/fake_crew_announcement
 	service_label = "Crew Arrival Announcement and Records"
 
-/obj/item/device/uplink_service/fake_crew_announcement/enable(var/mob/user = usr)
-	var/obj/item/weapon/card/id/I = user.GetIdCard()
+/obj/item/uplink_service/fake_crew_announcement/enable(var/mob/user = usr)
+	var/obj/item/card/id/I = user.GetIdCard()
 	var/datum/data/record/random_general_record
 	var/datum/data/record/random_medical_record
 	if(data_core.general.len)

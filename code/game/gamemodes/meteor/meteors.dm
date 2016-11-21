@@ -99,7 +99,7 @@
 	var/heavy = 0
 	var/z_original = 1
 
-	var/meteordrop = /obj/item/weapon/ore/iron
+	var/meteordrop = /obj/item/ore/iron
 	var/dropamt = 2
 
 /obj/effect/meteor/Move()
@@ -157,8 +157,8 @@
 /obj/effect/meteor/ex_act()
 	return
 
-/obj/effect/meteor/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
-	if(istype(W, /obj/item/weapon/pickaxe))
+/obj/effect/meteor/attackby(var/obj/item/W, var/mob/user, params)
+	if(istype(W, /obj/item/pickaxe))
 		qdel(src)
 		return
 	..()
@@ -189,7 +189,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
 	hitpwr = 3
-	meteordrop = /obj/item/weapon/ore/glass
+	meteordrop = /obj/item/ore/glass
 
 //Medium-sized
 /obj/effect/meteor/medium
@@ -218,7 +218,7 @@
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/coal
+	meteordrop = /obj/item/ore/coal
 
 /obj/effect/meteor/flaming/meteor_effect()
 	..(heavy)
@@ -229,7 +229,7 @@
 	name = "glowing meteor"
 	icon_state = "glowing"
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/uranium
+	meteordrop = /obj/item/ore/uranium
 
 
 /obj/effect/meteor/irradiated/meteor_effect()
@@ -247,7 +247,7 @@
 	hits = 30
 	hitpwr = 1
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/coal
+	meteordrop = /obj/item/ore/coal
 
 /obj/effect/meteor/tunguska/meteor_effect()
 	..(heavy)

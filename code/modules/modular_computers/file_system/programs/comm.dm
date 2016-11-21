@@ -119,7 +119,7 @@
 			. = 1
 			if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 				if(user)
-					var/obj/item/weapon/card/id/id_card = user.GetIdCard()
+					var/obj/item/card/id/id_card = user.GetIdCard()
 					crew_announcement.announcer = GetNameAndAssignmentFromId(id_card)
 				else
 					crew_announcement.announcer = "Unknown"
@@ -274,7 +274,7 @@ var/last_message_id = 0
 			if(computer.cpu.hard_drive)
 				var/datum/computer_file/program/comm/C = locate(/datum/computer_file/program/comm) in computer.cpu.hard_drive.stored_files
 				if(C)
-					var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper(computer.loc)
+					var/obj/item/paper/intercept = new /obj/item/paper(computer.loc)
 					intercept.name = message_title
 					intercept.info = message_text
 

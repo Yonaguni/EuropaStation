@@ -45,7 +45,7 @@
 			src.state = STATE_DEFAULT
 		if("login")
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I = M.get_active_hand()
 			if (I && istype(I))
 				if(src.check_access(I))
 					authenticated = 1
@@ -56,13 +56,13 @@
 
 	src.updateUsrDialog()
 
-/obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_paw(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_hand(var/mob/user)
 	if(..())
 		return
 	user.machine = src

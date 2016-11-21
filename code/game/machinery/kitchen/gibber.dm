@@ -67,11 +67,11 @@
 	else
 		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/relaymove(mob/user as mob)
+/obj/machinery/gibber/relaymove(var/mob/user)
 	src.go_out()
 	return
 
-/obj/machinery/gibber/attack_hand(mob/user as mob)
+/obj/machinery/gibber/attack_hand(var/mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
@@ -90,7 +90,7 @@
 	return 1
 
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
-	var/obj/item/weapon/grab/G = W
+	var/obj/item/grab/G = W
 
 	if(!istype(G))
 		return ..()
@@ -166,7 +166,7 @@
 	return
 
 
-/obj/machinery/gibber/proc/startgibbing(mob/user as mob)
+/obj/machinery/gibber/proc/startgibbing(var/mob/user)
 	if(src.operating)
 		return
 	if(!src.occupant)
@@ -180,7 +180,7 @@
 
 	var/slab_name = occupant.name
 	var/slab_count = 3
-	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	var/slab_type = /obj/item/reagent_containers/food/snacks/meat
 	var/slab_nutrition = 20
 	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
@@ -204,7 +204,7 @@
 	slab_nutrition /= slab_count
 
 	for(var/i=1 to slab_count)
-		var/obj/item/weapon/reagent_containers/food/snacks/meat/new_meat = new slab_type(src, rand(3,8))
+		var/obj/item/reagent_containers/food/snacks/meat/new_meat = new slab_type(src, rand(3,8))
 		if(istype(new_meat))
 			new_meat.name = "[slab_name] [new_meat.name]"
 			new_meat.reagents.add_reagent("nutriment",slab_nutrition)

@@ -5,14 +5,14 @@
 	slot = "utility"
 	var/slots = 3
 	var/max_w_class = 2 //pocket sized
-	var/obj/item/weapon/storage/internal/pockets/hold
+	var/obj/item/storage/internal/pockets/hold
 	w_class = 3
 
 /obj/item/clothing/accessory/storage/New()
 	..()
-	hold = new/obj/item/weapon/storage/internal/pockets(src, slots, max_w_class)
+	hold = new/obj/item/storage/internal/pockets(src, slots, max_w_class)
 
-/obj/item/clothing/accessory/storage/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/storage/attack_hand(var/mob/user)
 	if (has_suit)	//if we are part of a suit
 		hold.open(user)
 		return
@@ -27,14 +27,14 @@
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/accessory/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/accessory/storage/attackby(obj/item/W as obj, var/mob/user)
 	return hold.attackby(W, user)
 
 /obj/item/clothing/accessory/storage/emp_act(severity)
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/accessory/storage/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/storage/attack_self(var/mob/user)
 	user << "<span class='notice'>You empty [src].</span>"
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
@@ -81,14 +81,14 @@
 /obj/item/clothing/accessory/storage/knifeharness/New()
 	..()
 	hold.can_hold = list(
-		/obj/item/weapon/material/hatchet,
-		/obj/item/weapon/material/kitchen/utensil/knife,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/material/butterfly,
+		/obj/item/material/hatchet,
+		/obj/item/material/kitchen/utensil/knife,
+		/obj/item/material/knife,
+		/obj/item/material/butterfly,
 	)
 
-	new /obj/item/weapon/material/hatchet/duellingknife(hold)
-	new /obj/item/weapon/material/hatchet/duellingknife(hold)
+	new /obj/item/material/hatchet/duellingknife(hold)
+	new /obj/item/material/hatchet/duellingknife(hold)
 
 /obj/item/clothing/accessory/storage/bandolier
 	name = "bandolier"
@@ -101,15 +101,15 @@
 	..()
 	hold.can_hold = list(
 		/obj/item/ammo_casing,
-		/obj/item/weapon/grenade,
-		/obj/item/weapon/material/hatchet/tacknife,
-		/obj/item/weapon/material/kitchen/utensil/knife,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/material/star,
-		/obj/item/weapon/rcd_ammo,
-		/obj/item/weapon/reagent_containers/syringe,
-		/obj/item/weapon/syringe_cartridge,
-		/obj/item/weapon/plastique,
+		/obj/item/grenade,
+		/obj/item/material/hatchet/tacknife,
+		/obj/item/material/kitchen/utensil/knife,
+		/obj/item/material/knife,
+		/obj/item/material/star,
+		/obj/item/rcd_ammo,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/syringe_cartridge,
+		/obj/item/plastique,
 		/obj/item/clothing/mask/smokable
 	)
 

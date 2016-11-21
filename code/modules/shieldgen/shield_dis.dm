@@ -1,11 +1,11 @@
-/obj/item/device/shield_disrupter
+/obj/item/shield_disrupter
 	name = "shield disrupter"
 	desc = "It temporarily reverses the polarity of shield bubbles."
 	icon_state = "shield1"
 	var/recharging = FALSE
 	var/static/icon/flick_icon
 
-/obj/item/device/shield_disrupter/attack_self(var/mob/user)
+/obj/item/shield_disrupter/attack_self(var/mob/user)
 	if(recharging)
 		user << "<span class='warning'>\The [src] is still recharging.</span>"
 		return
@@ -17,14 +17,14 @@
 		recharging = FALSE
 		update_icon()
 
-/obj/item/device/shield_disrupter/update_icon(var/mob/user)
+/obj/item/shield_disrupter/update_icon(var/mob/user)
 	if(recharging)
 		icon_state = "shield0"
 	else
 		icon_state = initial(icon_state)
 
 #define GET_DIST(A) max(1, get_dist(T, A))
-/obj/item/device/shield_disrupter/proc/disrupt_shields()
+/obj/item/shield_disrupter/proc/disrupt_shields()
 	var/turf/T = get_turf(src)
 	for(var/obj/O in range(3, T))
 		var/do_flick = FALSE

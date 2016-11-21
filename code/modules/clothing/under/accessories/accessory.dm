@@ -74,7 +74,7 @@
 	..()
 
 //default attack_hand behaviour
-/obj/item/clothing/accessory/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/attack_hand(var/mob/user)
 	if(has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()

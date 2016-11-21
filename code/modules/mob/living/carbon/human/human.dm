@@ -7,7 +7,7 @@
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
+	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
@@ -76,8 +76,8 @@
 		if(P)
 			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
-		if(back && istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/suit = back
+		if(back && istype(back,/obj/item/rig))
+			var/obj/item/rig/suit = back
 			var/cell_status = "ERROR"
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
@@ -155,7 +155,7 @@
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(M)
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
 	var/obj/item/organ/external/affected = M.organs_by_name[BP_HEAD]
@@ -165,7 +165,7 @@
 
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
+		if(istype(L, /obj/item/implant/loyalty))
 			for(var/obj/item/organ/external/O in M.organs)
 				if(L in O.implants)
 					return 1
@@ -182,7 +182,7 @@
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/human/show_inv(mob/user as mob)
+/mob/living/carbon/human/show_inv(var/mob/user)
 	if(user.incapacitated()  || !user.Adjacent(src))
 		return
 
@@ -211,7 +211,7 @@
 
 	// Do they get an option to set internals?
 	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space))
-		if(istype(back, /obj/item/weapon/tank) || istype(belt, /obj/item/weapon/tank) || istype(s_store, /obj/item/weapon/tank))
+		if(istype(back, /obj/item/tank) || istype(belt, /obj/item/tank) || istype(s_store, /obj/item/tank))
 			dat += "<BR><A href='?src=\ref[src];item=internals'>Toggle internals.</A>"
 
 	// Other incidentals.
@@ -245,14 +245,14 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.rank
 		else
 			return pda.ownrank
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+		var/obj/item/card/id/id = get_idcard()
 		if(id)
 			return id.rank ? id.rank : if_no_job
 		else
@@ -261,14 +261,14 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.assignment
 		else
 			return pda.ownjob
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+		var/obj/item/card/id/id = get_idcard()
 		if(id)
 			return id.assignment ? id.assignment : if_no_job
 		else
@@ -277,14 +277,14 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.registered_name
 		else
 			return pda.owner
 	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+		var/obj/item/card/id/id = get_idcard()
 		if(id)
 			return id.registered_name
 		else
@@ -313,11 +313,11 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
-	if(istype(wear_id,/obj/item/device/radio/headset/pda))
-		var/obj/item/device/radio/headset/pda/P = wear_id
+	if(istype(wear_id,/obj/item/radio/headset/pda))
+		var/obj/item/radio/headset/pda/P = wear_id
 		return P.owner
 	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			return I.registered_name
 	return
@@ -369,7 +369,7 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
+				var/obj/item/card/id/I = wear_id.GetID()
 				if(I)
 					perpname = I.registered_name
 				else
@@ -408,10 +408,10 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -438,10 +438,10 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -466,10 +466,10 @@
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -497,10 +497,10 @@
 			var/modified = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -536,10 +536,10 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -567,10 +567,10 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -595,10 +595,10 @@
 		if(hasHUD(usr,"medical"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -986,7 +986,7 @@
 */
 //returns 1 if made bloody, returns 0 otherwise
 
-/mob/living/carbon/human/add_blood(mob/living/carbon/human/M as mob)
+/mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
 	if (!..())
 		return 0
 	//if this blood isn't already in the list, add it
@@ -1016,8 +1016,8 @@
 
 	var/list/visible_implants = list()
 	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/material/shard/shrapnel))
+		for(var/obj/item/O in organ.implants)
+			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/material/shard/shrapnel))
 				visible_implants += O
 
 	return(visible_implants)
@@ -1025,7 +1025,7 @@
 /mob/living/carbon/human/embedded_needs_process()
 	for(var/obj/item/organ/external/organ in src.organs)
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O, /obj/item/weapon/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
+			if(!istype(O, /obj/item/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
 				return 1
 	return 0
 
@@ -1034,7 +1034,7 @@
 		if(organ.splinted)
 			continue
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
+			if(!istype(O,/obj/item/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				jossle_internal_object(organ, O)
 	var/obj/item/organ/external/groin = src.get_organ(BP_GROIN)
 	if(groin && stomach_contents && stomach_contents.len)
@@ -1489,7 +1489,7 @@
 			return DEVOUR_SLOW
 		else if(src.species.gluttonous & GLUT_ANYTHING) // Eat anything ever
 			return DEVOUR_FAST
-	else if(istype(victim, /obj/item) && !istype(victim, /obj/item/weapon/holder)) //Don't eat holders. They are special.
+	else if(istype(victim, /obj/item) && !istype(victim, /obj/item/holder)) //Don't eat holders. They are special.
 		var/obj/item/I = victim
 		var/cost = I.get_storage_cost()
 		if(cost != DO_NOT_STORE)

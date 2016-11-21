@@ -82,7 +82,7 @@ for reference:
 /obj/structure/barricade/get_material()
 	return material
 
-/obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/barricade/attackby(obj/item/W as obj, var/mob/user)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
@@ -163,8 +163,8 @@ for reference:
 
 		src.icon_state = "barrier[src.locked]"
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/card/id/))
+	attackby(var/obj/item/W, var/mob/user)
+		if (istype(W, /obj/item/card/id/))
 			if (src.allowed(user))
 				if	(src.emagged < 2.0)
 					src.locked = !src.locked

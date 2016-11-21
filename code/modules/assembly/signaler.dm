@@ -1,4 +1,4 @@
-/obj/item/device/assembly/signaler
+/obj/item/assembly/signaler
 	name = "remote signaling device"
 	desc = "Used to remotely activate devices."
 	icon_state = "signaller"
@@ -38,7 +38,7 @@
 			holder.update_icon()
 		return
 
-	interact(mob/user as mob, flag1)
+	interact(var/mob/user, flag1)
 		var/t1 = "-------"
 //		if ((src.b_stat && !( flag1 )))
 //			t1 = text("-------<BR>\nGreen Wire: []<BR>\nRed Wire:   []<BR>\nBlue Wire:  []<BR>\n", (src.wires & 4 ? text("<A href='?src=\ref[];wires=4'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=4'>Mend Wire</A>", src)), (src.wires & 2 ? text("<A href='?src=\ref[];wires=2'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=2'>Mend Wire</A>", src)), (src.wires & 1 ? text("<A href='?src=\ref[];wires=1'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=1'>Mend Wire</A>", src)))
@@ -109,7 +109,7 @@
 		radio_connection.post_signal(src, signal)
 		return
 /*
-		for(var/obj/item/device/assembly/signaler/S in world)
+		for(var/obj/item/assembly/signaler/S in world)
 			if(!S)	continue
 			if(S == src)	continue
 			if((S.frequency == src.frequency) && (S.code == src.code))
@@ -174,7 +174,7 @@
 		log_and_message_admins("is threatening to trigger a signaler deadman's switch")
 		usr.visible_message("\red [usr] moves their finger over [src]'s signal button...")
 
-/obj/item/device/assembly/signaler/Destroy()
+/obj/item/assembly/signaler/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
 	frequency = 0

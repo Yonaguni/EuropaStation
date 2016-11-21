@@ -35,15 +35,15 @@
 	..()
 	OnDeathInLife()
 
-/mob/living/simple_animal/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	if(istype(O, /obj/item/device/soulstone))
-		var/obj/item/device/soulstone/S = O;
+/mob/living/simple_animal/shade/attackby(var/obj/item/O, var/mob/user)  //Marker -Agouri
+	if(istype(O, /obj/item/soulstone))
+		var/obj/item/soulstone/S = O;
 		S.transfer_soul("SHADE", src, user)
 		return
 
 /mob/living/simple_animal/shade/proc/OnDeathInLife()
 	if(stat == 2)
-		new /obj/item/weapon/ectoplasm (src.loc)
+		new /obj/item/ectoplasm (src.loc)
 		for(var/mob/M in viewers(src, null))
 			if((M.client && !( M.blinded )))
 				M.show_message("\red [src] lets out a contented sigh as their form unwinds. ")

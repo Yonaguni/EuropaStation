@@ -11,7 +11,7 @@
 
 	var/list/obj/machinery/am_shielding/linked_shielding
 	var/list/obj/machinery/am_shielding/linked_cores
-	var/obj/item/weapon/am_containment/fueljar
+	var/obj/item/am_containment/fueljar
 	var/update_shield_icons = 0
 	var/stability = 100
 	var/exploding = 0
@@ -152,7 +152,7 @@
 			user << "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!"
 		return
 
-	if(istype(W, /obj/item/weapon/am_containment))
+	if(istype(W, /obj/item/am_containment))
 		if(fueljar)
 			user << "\red There is already a [fueljar] inside!"
 			return
@@ -172,7 +172,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/attack_hand(mob/user as mob)
+/obj/machinery/power/am_control_unit/attack_hand(var/mob/user)
 	if(anchored)
 		interact(user)
 	return

@@ -10,13 +10,13 @@
 	light_range = 10
 
 	var/on = 0
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/use = 200 // 200W light
 	var/unlocked = 0
 	var/open = 0
 
 /obj/machinery/floodlight/New()
-	cell = new/obj/item/weapon/cell/crap(src)
+	cell = new/obj/item/cell/crap(src)
 	..()
 
 /obj/machinery/floodlight/update_icon()
@@ -59,7 +59,7 @@
 	if(loud)
 		visible_message("\The [src] shuts down.")
 
-/obj/machinery/floodlight/attack_ai(mob/user as mob)
+/obj/machinery/floodlight/attack_ai(var/mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
 		return attack_hand(user)
 
@@ -70,7 +70,7 @@
 			user << "You try to turn on \the [src] but it does not work."
 
 
-/obj/machinery/floodlight/attack_hand(mob/user as mob)
+/obj/machinery/floodlight/attack_hand(var/mob/user)
 	if(open && cell)
 		if(ishuman(user))
 			if(!user.get_active_hand())
@@ -98,7 +98,7 @@
 	update_icon()
 
 
-/obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/floodlight/attackby(var/obj/item/W, var/mob/user)
 	if (W.isscrewdriver())
 		if (!open)
 			if(unlocked)
@@ -119,7 +119,7 @@
 					open = 1
 					user << "You remove the battery panel."
 
-	if (istype(W, /obj/item/weapon/cell))
+	if (istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
 				user << "There is a power cell already installed."

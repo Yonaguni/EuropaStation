@@ -24,10 +24,10 @@
 	wifi_sender = null
 	return..()
 
-/obj/machinery/button/attack_ai(mob/user as mob)
+/obj/machinery/button/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/button/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/attackby(var/obj/item/W, var/mob/user)
 	return attack_hand(user)
 
 /obj/machinery/button/attack_hand(mob/living/user)

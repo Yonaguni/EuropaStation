@@ -11,6 +11,6 @@ var/list/chatrooms = list()
 	var/password = "" // blank for no password.
 	var/operator = "" // name of the operator
 
-/datum/chatroom/proc/attempt_connect(var/obj/item/device/radio/headset/pda/device, var/obj/password)
+/datum/chatroom/proc/attempt_connect(var/obj/item/radio/headset/pda/device, var/obj/password)
 	if(!device)
 		return

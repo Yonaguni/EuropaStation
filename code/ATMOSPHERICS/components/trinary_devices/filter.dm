@@ -122,7 +122,7 @@
 	set_frequency(frequency)
 	..()
 
-/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/W, var/mob/user)
 	if (!W.iswrench())
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
@@ -142,7 +142,7 @@
 		qdel(src)
 
 
-/obj/machinery/atmospherics/trinary/filter/attack_hand(user as mob) // -- TLE
+/obj/machinery/atmospherics/trinary/filter/attack_hand(var/mob/user) // -- TLE
 	if(..())
 		return
 

@@ -185,7 +185,7 @@ steam.start() -- spawns the effect
 	spawn (time_to_live)
 		qdel(src)
 
-/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/Crossed(var/mob/living/carbon/M )
 	..()
 	if(istype(M))
 		affect(M)
@@ -258,7 +258,7 @@ steam.start() -- spawns the effect
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/sleepy/affect(var/mob/living/carbon/M )
 	if (!..())
 		return 0
 

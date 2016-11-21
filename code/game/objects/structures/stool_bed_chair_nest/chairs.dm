@@ -8,7 +8,7 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
@@ -24,7 +24,7 @@
 		SK.master = E
 		qdel(src)
 
-/obj/structure/bed/chair/attack_tk(mob/user as mob)
+/obj/structure/bed/chair/attack_tk(var/mob/user)
 	if(buckled_mob)
 		..()
 	else
@@ -127,7 +127,7 @@
 	buckle_movable = 1
 	material_alteration = MATERIAL_ALTERATION_NONE
 
-/obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/office/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack) || W.iswirecutter())
 		return
 	..()
@@ -187,7 +187,7 @@
 	icon_state = "wooden_chair_preview"
 	material_alteration = MATERIAL_ALTERATION_NAME
 
-/obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/wood/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack) || W.iswirecutter())
 		return
 	..()

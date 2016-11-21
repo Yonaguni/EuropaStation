@@ -16,7 +16,7 @@
 /*
  * Twohanded
  */
-/obj/item/weapon/material/twohanded
+/obj/item/material/twohanded
 	w_class = 5
 	var/wielded = 0
 	var/force_wielded = 0
@@ -27,7 +27,7 @@
 	var/base_name
 	var/unwielded_force_divisor = 0.25
 
-/obj/item/weapon/material/twohanded/update_twohanding()
+/obj/item/material/twohanded/update_twohanding()
 	var/mob/living/M = loc
 	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
 		wielded = 1
@@ -40,7 +40,7 @@
 	update_icon()
 	..()
 
-/obj/item/weapon/material/twohanded/update_force()
+/obj/item/material/twohanded/update_force()
 	base_name = name
 	if(sharp || edge)
 		force_wielded = material.get_edge_damage()
@@ -52,19 +52,19 @@
 	throwforce = round(force*thrown_force_divisor)
 	//world << "[src] has unwielded force [force_unwielded], wielded force [force_wielded] and throwforce [throwforce] when made from default material [material.name]"
 
-/obj/item/weapon/material/twohanded/New()
+/obj/item/material/twohanded/New()
 	..()
 	update_icon()
 
 //Allow a small chance of parrying melee attacks when wielded - maybe generalize this to other weapons someday
-/obj/item/weapon/material/twohanded/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/twohanded/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(15))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/weapon/material/twohanded/update_icon()
+/obj/item/material/twohanded/update_icon()
 	icon_state = "[base_icon][wielded]"
 	item_state_slots[slot_l_hand_str] = icon_state
 	item_state_slots[slot_r_hand_str] = icon_state
@@ -72,12 +72,12 @@
 /*
  * Fireaxe
  */
-/obj/item/weapon/material/twohanded/fireaxe  // DEM AXES MAN, marker -Agouri
+/obj/item/material/twohanded/fireaxe  // DEM AXES MAN, marker -Agouri
 	icon_state = "fireaxe0"
 	base_icon = "fireaxe"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
-	
+
 	// 15/32 with hardness 60 (steel) and 20/42 with hardness 80 (plasteel)
 	force_divisor = 0.525
 	unwielded_force_divisor = 0.25
@@ -89,7 +89,7 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	applies_material_colour = 0
 
-/obj/item/weapon/material/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/material/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, var/mob/user, proximity)
 	if(!proximity) return
 	..()
 	if(A && wielded)
@@ -103,7 +103,7 @@
 			P.die_off()
 
 //spears, bay edition
-/obj/item/weapon/material/twohanded/spear
+/obj/item/material/twohanded/spear
 	icon_state = "spearglass0"
 	base_icon = "spearglass"
 	name = "spear"
@@ -123,7 +123,7 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	default_material = "glass"
 
-/obj/item/weapon/material/twohanded/spear/shatter(var/consumed)
+/obj/item/material/twohanded/spear/shatter(var/consumed)
 	if(!consumed)
-		new /obj/item/weapon/material/wirerod(get_turf(src)) //give back the wired rod
+		new /obj/item/material/wirerod(get_turf(src)) //give back the wired rod
 	..()

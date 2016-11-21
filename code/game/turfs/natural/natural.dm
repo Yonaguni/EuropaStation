@@ -39,7 +39,7 @@ var/list/tree_types = list(
 	return ..()
 
 /turf/simulated/floor/natural/attackby(obj/item/C, mob/user)
-	if(diggable && istype(C,/obj/item/weapon/shovel))
+	if(diggable && istype(C,/obj/item/shovel))
 		var/obj/structure/pit/P = locate(/obj/structure/pit) in src
 		if(P)
 			P.attackby(C, user)
@@ -142,7 +142,7 @@ var/list/tree_types = list(
 	H.visible_message("<span class='notice'>\The [user] washes their hands in \the [src].</span>")
 
 /turf/simulated/floor/water/attackby(var/obj/item/O, var/mob/user)
-	var/obj/item/weapon/reagent_containers/RG = O
+	var/obj/item/reagent_containers/RG = O
 	if(istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>\The [user] fills \the [RG] from \the [src].</span>")

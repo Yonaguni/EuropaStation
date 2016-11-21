@@ -27,8 +27,8 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/initial_installation_type = /obj/item/weapon/gun/composite/premade/laser_pistol
-	var/obj/item/weapon/gun/installed_gun
+	var/initial_installation_type = /obj/item/gun/composite/premade/laser_pistol
+	var/obj/item/gun/installed_gun
 
 	var/iconholder = null	//holder for the icon_state. 1 for orange sprite, null for blue.
 
@@ -240,7 +240,7 @@ var/list/turret_icons
 					if(prob(50))
 						new /obj/item/stack/material/steel(loc, rand(1,4))
 					if(prob(50))
-						new /obj/item/device/assembly/prox_sensor(loc)
+						new /obj/item/assembly/prox_sensor(loc)
 				else
 					user << "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>"
 				qdel(src) // qdel
@@ -279,7 +279,7 @@ var/list/turret_icons
 				update_icon()
 		wrenching = 0
 
-	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/radio/headset/pda))
+	else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/radio/headset/pda))
 		//Behavior lock/unlock mangement
 		if(allowed(user))
 			locked = !locked
@@ -649,7 +649,7 @@ var/list/turret_icons
 				return
 
 			else if(I.iswelder())
-				var/obj/item/weapon/weldingtool/WT = I
+				var/obj/item/weldingtool/WT = I
 				if(!WT.isOn())
 					return
 				if(WT.get_fuel() < 5) //uses up 5 fuel.
@@ -665,7 +665,7 @@ var/list/turret_icons
 					return
 
 		if(3)
-			if(istype(I, /obj/item/weapon/gun)) //the gun installation part
+			if(istype(I, /obj/item/gun)) //the gun installation part
 
 				if(isrobot(user))
 					return
@@ -724,7 +724,7 @@ var/list/turret_icons
 
 		if(7)
 			if(I.iswelder())
-				var/obj/item/weapon/weldingtool/WT = I
+				var/obj/item/weldingtool/WT = I
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)
 					user << "<span class='notice'>You need more fuel to complete this task.</span>"
@@ -753,7 +753,7 @@ var/list/turret_icons
 				build_step = 6
 				return
 
-	if(istype(I, /obj/item/weapon/pen))	//you can rename turrets like bots!
+	if(istype(I, /obj/item/pen))	//you can rename turrets like bots!
 		var/t = sanitizeSafe(input(user, "Enter new turret name", name, finish_name) as text, MAX_NAME_LEN)
 		if(!t)
 			return
@@ -779,7 +779,7 @@ var/list/turret_icons
 			installed_gun = null
 		if(5)
 			user << "<span class='notice'>You remove the prox sensor from the turret frame.</span>"
-			new /obj/item/device/assembly/prox_sensor(loc)
+			new /obj/item/assembly/prox_sensor(loc)
 			build_step = 4
 
 /obj/machinery/porta_turret_construct/attack_ai()

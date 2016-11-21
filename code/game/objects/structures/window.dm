@@ -16,7 +16,7 @@
 	var/state = 2
 	var/reinf = 0
 	var/basestate
-	var/shardtype = /obj/item/weapon/material/shard
+	var/shardtype = /obj/item/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 
@@ -140,7 +140,7 @@
 		return 1
 
 
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
+/obj/structure/window/CheckExit(var/atom/movable/O, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
@@ -163,11 +163,11 @@
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
 
-/obj/structure/window/attack_tk(mob/user as mob)
+/obj/structure/window/attack_tk(var/mob/user)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
@@ -208,10 +208,10 @@
 		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
 	return 1
 
-/obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/window/attackby(obj/item/W as obj, var/mob/user)
 	if(!istype(W)) return//I really wish I did not need this
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
+	if (istype(W, /obj/item/grab) && get_dist(src,user)<2)
+		var/obj/item/grab/G = W
 		if(istype(G.affecting,/mob/living))
 			grab_smash_attack(G, BRUTE)
 			return
@@ -261,7 +261,7 @@
 		..()
 	return
 
-/obj/structure/window/proc/grab_smash_attack(obj/item/weapon/grab/G, var/damtype = BRUTE)
+/obj/structure/window/proc/grab_smash_attack(var/obj/item/grab/G, var/damtype = BRUTE)
 	var/mob/living/M = G.affecting
 	var/mob/living/user = G.assailant
 
@@ -438,7 +438,7 @@
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
 	basestate = "phoronrwindow"
 	icon_state = "phoronrwindow"
-	shardtype = /obj/item/weapon/material/shard
+	shardtype = /obj/item/material/shard
 	glasstype = /obj/item/stack/material/glass/phoronrglass
 	reinf = 1
 	maximal_heat = T0C + 4000
@@ -539,7 +539,7 @@
 	desc = "A remote control switch for polarized windows."
 	var/range = 7
 
-/obj/machinery/button/windowtint/attack_hand(mob/user as mob)
+/obj/machinery/button/windowtint/attack_hand(var/mob/user)
 	if(..())
 		return 1
 

@@ -5,10 +5,10 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 
-/obj/item/weapon/weldingtool/get_hardpoint_status_value()
+/obj/item/weldingtool/get_hardpoint_status_value()
 	return (get_fuel()/max_fuel)
 
-/obj/item/weapon/weldingtool/get_hardpoint_maptext()
+/obj/item/weldingtool/get_hardpoint_maptext()
 	return "[get_fuel()]/[max_fuel]"
 
 // A lot of this is copied from flashlights.

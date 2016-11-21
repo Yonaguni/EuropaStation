@@ -6,7 +6,7 @@
 	use_power = 1
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 
-	circuit = /obj/item/weapon/circuitboard/holodeckcontrol
+	circuit = /obj/item/circuitboard/holodeckcontrol
 
 	var/item_power_usage = 500
 
@@ -32,10 +32,10 @@
 	if (programs_list_id in using_map.holodeck_restricted_programs)
 		restricted_programs |= using_map.holodeck_restricted_programs[programs_list_id]
 
-/obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user)
 	if(..())
 		return 1
 	user.set_machine(src)
@@ -129,7 +129,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
@@ -147,11 +147,11 @@
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
 		item_power_usage = 2500
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
 		item_power_usage = initial(item_power_usage)
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = initial(H.damtype)
 
 	for(var/mob/living/simple_animal/hostile/carp/holodeck/C in holographic_mobs)

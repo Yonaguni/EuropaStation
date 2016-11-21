@@ -21,7 +21,7 @@
 /obj/structure/artilleryplaceholder/decorative
 	density = 0
 
-/obj/machinery/artillerycontrol/attack_hand(mob/user as mob)
+/obj/machinery/artillerycontrol/attack_hand(var/mob/user)
 	user.set_machine(src)
 	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
 	dat += "Locked on<BR>"

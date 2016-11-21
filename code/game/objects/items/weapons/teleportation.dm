@@ -7,10 +7,10 @@
 /*
  * Locator
  */
-/obj/item/weapon/locator
+/obj/item/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "locator"
 	var/temp = null
 	var/frequency = 1451
@@ -24,7 +24,7 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 400)
 
-/obj/item/weapon/locator/attack_self(mob/user as mob)
+/obj/item/locator/attack_self(var/mob/user)
 	user.set_machine(src)
 	var/dat
 	if (src.temp)
@@ -43,7 +43,7 @@ Frequency:
 	onclose(user, "radio")
 	return
 
-/obj/item/weapon/locator/Topic(href, href_list)
+/obj/item/locator/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return
@@ -60,7 +60,7 @@ Frequency:
 			if (sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/device/radio/beacon/W in world)
+				for(var/obj/item/radio/beacon/W in world)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -78,7 +78,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/weapon/implant/tracking/W in world)
+				for (var/obj/item/implant/tracking/W in world)
 					if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc)))
 						continue
 					else
@@ -122,10 +122,10 @@ Frequency:
 /*
  * Hand-tele
  */
-/obj/item/weapon/hand_tele
+/obj/item/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5
@@ -137,16 +137,16 @@ Frequency:
 	var/max_portals = 3
 	var/list/spawned_portals
 
-/obj/item/weapon/hand_tele/New()
+/obj/item/hand_tele/New()
 	spawned_portals = list()
 	..()
 
-/obj/item/weapon/hand_tele/Destroy()
+/obj/item/hand_tele/Destroy()
 	for(var/portal in spawned_portals)
 		portal_destroyed(portal)
 	. = ..()
 
-/obj/item/weapon/hand_tele/attack_self(mob/user as mob)
+/obj/item/hand_tele/attack_self(var/mob/user)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location || !isPlayerLevel(current_location.z))//If turf was not found or they're on z level outside the what's normally accesible
 		user << "<span class='notice'>\The [src] is malfunctioning.</span>"
@@ -176,12 +176,12 @@ Frequency:
 	create_portal(T)
 	add_fingerprint(user)
 
-/obj/item/weapon/hand_tele/proc/create_portal(var/location)
+/obj/item/hand_tele/proc/create_portal(var/location)
 	var/obj/effect/portal/P = new /obj/effect/portal(get_turf(src))
 	P.target = location
-	destroyed_event.register(P, src, /obj/item/weapon/hand_tele/proc/portal_destroyed)
+	destroyed_event.register(P, src, /obj/item/hand_tele/proc/portal_destroyed)
 	spawned_portals += P
 
-/obj/item/weapon/hand_tele/proc/portal_destroyed(var/portal)
+/obj/item/hand_tele/proc/portal_destroyed(var/portal)
 	spawned_portals -= portal
-	destroyed_event.unregister(portal, src, /obj/item/weapon/hand_tele/proc/portal_destroyed)
+	destroyed_event.unregister(portal, src, /obj/item/hand_tele/proc/portal_destroyed)

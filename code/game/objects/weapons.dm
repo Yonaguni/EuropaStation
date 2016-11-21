@@ -1,9 +1,9 @@
-/obj/item/weapon
+/obj/item
 	name = "weapon"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	hitsound = "swing_hit"
 
-/obj/item/weapon/Bump(mob/M as mob)
+/obj/item/Bump(var/mob/M)
 	spawn(0)
 		..()
 	return

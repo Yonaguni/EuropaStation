@@ -1,4 +1,4 @@
-/obj/item/weapon/material/harpoon
+/obj/item/material/harpoon
 	name = "harpoon"
 	sharp = 1
 	edge = 1
@@ -8,10 +8,10 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/hatchet
+/obj/item/material/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "hatchet"
 	force_divisor = 0.2 // 12 with hardness 60 (steel)
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
@@ -22,26 +22,26 @@
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 
-/obj/item/weapon/material/hatchet/duellingknife
+/obj/item/material/hatchet/duellingknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 
-/obj/item/weapon/material/hatchet/tacknife
+/obj/item/material/hatchet/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "tacknife"
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
-/obj/item/weapon/material/minihoe // -- Numbers
+/obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
 	force_divisor = 0.25 // 5 with weight 20 (steel)
@@ -49,7 +49,7 @@
 	w_class = 2
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
-/obj/item/weapon/material/scythe
+/obj/item/material/scythe
 	icon_state = "scythe0"
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."

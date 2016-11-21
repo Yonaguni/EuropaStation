@@ -1,6 +1,6 @@
 // The lighting system
 //
-// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
+// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/light)
 
 
 // status values shared between lighting fixtures and items
@@ -60,7 +60,7 @@ var/global/list/light_bulb_type_cache = list()
 		if(2) user << "It's wired."
 		if(3) user << "The casing is closed."
 
-/obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/light_construct/attackby(var/obj/item/W, var/mob/user)
 	src.add_fingerprint(user)
 	if (W.iswrench())
 		if (src.stage == 1)
@@ -151,7 +151,7 @@ var/global/list/light_bulb_type_cache = list()
 	var/on = 0					// 1 if on, 0 if off
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
-	var/light_bulb_type = /obj/item/weapon/light/tube		// the type of light item
+	var/light_bulb_type = /obj/item/light/tube		// the type of light item
 	var/construct_type = /obj/machinery/light_construct
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
@@ -172,18 +172,18 @@ var/global/list/light_bulb_type_cache = list()
 	icon_state = "bulb1"
 	base_state = "bulb"
 	desc = "A small lighting fixture."
-	light_bulb_type = /obj/item/weapon/light/bulb
+	light_bulb_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 
 /obj/machinery/light/small/emergency
-	light_bulb_type = /obj/item/weapon/light/bulb/red
+	light_bulb_type = /obj/item/light/bulb/red
 
 /obj/machinery/light/small/red
-	light_bulb_type = /obj/item/weapon/light/bulb/red
+	light_bulb_type = /obj/item/light/bulb/red
 
 /obj/machinery/light/spot
 	name = "spotlight"
-	light_bulb_type = /obj/item/weapon/light/tube/large
+	light_bulb_type = /obj/item/light/tube/large
 
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
@@ -197,7 +197,7 @@ var/global/list/light_bulb_type_cache = list()
 		construct.transfer_fingerprints_to(src)
 		set_dir(construct.dir)
 	else
-		var/obj/item/weapon/light/L = get_light_bulb_type_instance(light_bulb_type)
+		var/obj/item/light/L = get_light_bulb_type_instance(light_bulb_type)
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -312,10 +312,10 @@ var/global/list/light_bulb_type_cache = list()
 			user << "[desc] The [fitting] has been smashed."
 
 /obj/machinery/light/proc/get_fitting_name()
-	var/obj/item/weapon/light/L = light_bulb_type
+	var/obj/item/light/L = light_bulb_type
 	return initial(L.name)
 
-/obj/machinery/light/proc/update_from_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/update_from_bulb(var/obj/item/light/L)
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
@@ -326,7 +326,7 @@ var/global/list/light_bulb_type_cache = list()
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/proc/insert_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/insert_bulb(var/obj/item/light/L)
 	update_from_bulb(L)
 	qdel(L)
 
@@ -350,15 +350,15 @@ var/global/list/light_bulb_type_cache = list()
 /obj/machinery/light/attackby(obj/item/W, mob/user)
 
 	//Light replacer code
-	if(istype(W, /obj/item/device/lightreplacer))
-		var/obj/item/device/lightreplacer/LR = W
+	if(istype(W, /obj/item/lightreplacer))
+		var/obj/item/lightreplacer/LR = W
 		if(isliving(user))
 			var/mob/living/U = user
 			LR.ReplaceLight(src, U)
 			return
 
 	// attempt to insert light
-	if(istype(W, /obj/item/weapon/light))
+	if(istype(W, /obj/item/light))
 		if(status != LIGHT_EMPTY)
 			user << "There is a [get_fitting_name()] already inserted."
 			return
@@ -572,7 +572,7 @@ obj/machinery/light/proc/burn_out()
 // can be tube or bulb subtypes
 // will fit into empty /obj/machinery/light of the corresponding type
 
-/obj/item/weapon/light
+/obj/item/light
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
@@ -589,7 +589,7 @@ obj/machinery/light/proc/burn_out()
 	var/brightness_color = null
 	var/list/lighting_modes = list()
 
-/obj/item/weapon/light/tube
+/obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
@@ -604,13 +604,13 @@ obj/machinery/light/proc/burn_out()
 		"emergency_lighting" = list(l_range = 5, l_power = 1, l_color = "#da0205"),
 		)
 
-/obj/item/weapon/light/tube/large
+/obj/item/light/tube/large
 	w_class = 2
 	name = "large light tube"
 	brightness_range = 5
 	brightness_power = 5
 
-/obj/item/weapon/light/bulb
+/obj/item/light/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -626,15 +626,15 @@ obj/machinery/light/proc/burn_out()
 		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
 		)
 
-/obj/item/weapon/light/bulb/red
+/obj/item/light/bulb/red
 	color = "#da0205"
 	brightness_color = "#da0205"
 
-/obj/item/weapon/light/throw_impact(atom/hit_atom)
+/obj/item/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
 
-/obj/item/weapon/light/bulb/fire
+/obj/item/light/bulb/fire
 	name = "fire bulb"
 	desc = "A replacement fire bulb."
 	icon_state = "fbulb"
@@ -645,7 +645,7 @@ obj/machinery/light/proc/burn_out()
 	brightness_power = 2
 
 // update the icon state and description of the light
-/obj/item/weapon/light/update_icon()
+/obj/item/light/update_icon()
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
@@ -658,7 +658,7 @@ obj/machinery/light/proc/burn_out()
 			desc = "A broken [name]."
 
 
-/obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
+/obj/item/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	..()
 	if(fixture)
 		status = fixture.status
@@ -676,10 +676,10 @@ obj/machinery/light/proc/burn_out()
 
 // attack bulb/tube with object
 // if a syringe, can inject fuel to make it explode
-/obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(var/obj/item/I, var/mob/user)
 	..()
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = I
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 
 		user << "You inject the solution into the [src]."
 
@@ -699,7 +699,7 @@ obj/machinery/light/proc/burn_out()
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
 
-/obj/item/weapon/light/afterattack(atom/target, mob/user, proximity)
+/obj/item/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target, /obj/machinery/light))
 		return
@@ -708,7 +708,7 @@ obj/machinery/light/proc/burn_out()
 
 	shatter()
 
-/obj/item/weapon/light/proc/shatter()
+/obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN

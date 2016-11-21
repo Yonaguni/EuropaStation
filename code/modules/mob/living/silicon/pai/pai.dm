@@ -10,7 +10,7 @@
 	can_pull_size = SMALL_ITEM
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 
 	var/network = "SS13"
 	var/obj/machinery/camera/current = null
@@ -18,8 +18,8 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/radio		// Our primary radio
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/radio		// Our primary radio
 
 	var/chassis = "repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -38,7 +38,7 @@
 		"Feline" = list("purrs","yowls","meows")
 		)
 
-	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
 	var/master_dna			// DNA string for owner verification
@@ -54,7 +54,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/radio/headset/pda/ai/pai/pda = null
+	var/obj/item/radio/headset/pda/ai/pai/pda = null
 
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
@@ -77,14 +77,14 @@
 
 	var/current_pda_messaging = null
 
-/mob/living/silicon/pai/New(var/obj/item/device/paicard)
+/mob/living/silicon/pai/New(var/obj/item/paicard)
 	status_flags |= NO_ANTAG
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio(src.card)
+			card.radio = new /obj/item/radio(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -119,13 +119,13 @@
 	if (src.client.statpanel == "Status")
 		show_silenced()
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
+/mob/living/silicon/pai/check_eye(var/mob/user)
 	if (!src.current)
 		return -1
 	return 0
 
 /mob/living/silicon/pai/restrained()
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
@@ -227,7 +227,7 @@
 /*
 // Debug command - Maybe should be added to admin verbs later
 /mob/verb/makePAI(var/turf/t in view())
-	var/obj/item/device/paicard/card = new(t)
+	var/obj/item/paicard/card = new(t)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.key = src.key
 	card.setPersonality(pai)
@@ -268,8 +268,8 @@
 					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in a shower of gore!</span>")
 					break
 		holder.drop_from_inventory(card)
-	else if(istype(card.loc,/obj/item/device/radio/headset/pda))
-		var/obj/item/device/radio/headset/pda/holder = card.loc
+	else if(istype(card.loc,/obj/item/radio/headset/pda))
+		var/obj/item/radio/headset/pda/holder = card.loc
 		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
@@ -334,9 +334,9 @@
 	set category = "IC"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		resting = 0
-		var/obj/item/weapon/rig/rig = src.get_rig()
+		var/obj/item/rig/rig = src.get_rig()
 		if(istype(rig))
 			rig.force_rest(src)
 	else
@@ -347,7 +347,7 @@
 	canmove = !resting
 
 //Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/pai/attackby(var/obj/item/W, var/mob/user)
 	if(W.force)
 		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
 		src.adjustBruteLoss(W.force)
@@ -358,7 +358,7 @@
 		if(stat != 2) close_up()
 	return
 
-/mob/living/silicon/pai/attack_hand(mob/user as mob)
+/mob/living/silicon/pai/attack_hand(var/mob/user)
 	visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
 	close_up()
 
@@ -381,7 +381,7 @@
 	resting = 0
 
 	// If we are being held, handle removing our holder from their inv.
-	var/obj/item/weapon/holder/H = loc
+	var/obj/item/holder/H = loc
 	if(istype(H))
 		var/mob/living/M = H.loc
 		if(istype(M))
@@ -404,7 +404,7 @@
 
 // Handle being picked up.
 /mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
-	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
 	H.icon_state = "pai-[icon_state]"

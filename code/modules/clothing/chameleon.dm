@@ -181,7 +181,7 @@
 //**********************
 //**Chameleon Backpack**
 //**********************
-/obj/item/weapon/storage/backpack/chameleon
+/obj/item/storage/backpack/chameleon
 	name = "backpack"
 	icon_state = "backpack"
 	item_state = "backpack"
@@ -189,13 +189,13 @@
 
 	var/global/list/clothing_choices
 
-/obj/item/weapon/storage/backpack/chameleon/New()
+/obj/item/storage/backpack/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/withwallet)
-		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/backpack, blocked)
+		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/withwallet)
+		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
 
-/obj/item/weapon/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+/obj/item/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
@@ -205,7 +205,7 @@
 		var/mob/M = src.loc
 		M.update_inv_back()
 
-/obj/item/weapon/storage/backpack/chameleon/verb/change(picked in clothing_choices)
+/obj/item/storage/backpack/chameleon/verb/change(picked in clothing_choices)
 	set name = "Change Backpack Appearance"
 	set category = "Chameleon Items"
 	set src in usr

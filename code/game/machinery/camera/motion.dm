@@ -56,7 +56,7 @@
 	detectTime = -1
 	return 1
 
-/obj/machinery/camera/HasProximity(atom/movable/AM as mob|obj)
+/obj/machinery/camera/HasProximity(var/atom/movable/AM)
 	// Motion cameras outside of an "ai monitored" area will use this to detect stuff.
 	if (!area_motion)
 		if(isliving(AM))

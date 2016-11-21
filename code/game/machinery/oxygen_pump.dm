@@ -3,11 +3,11 @@
 	icon = 'icons/obj/walllocker.dmi'
 	icon_state = "emerg"
 
-	var/obj/item/weapon/tank/tank
+	var/obj/item/tank/tank
 	var/obj/item/clothing/mask/gas/contained
 	var/mob/living/carbon/breather
 
-	var/spawn_type = /obj/item/weapon/tank/emergency/oxygen/engi
+	var/spawn_type = /obj/item/tank/emergency/oxygen/engi
 
 	power_channel = ENVIRON
 	idle_power_usage = 10
@@ -84,7 +84,7 @@
 		stat ^= MAINT
 		user.visible_message("<span class='notice'>\The [user] [stat & MAINT ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [stat & MAINT ? "open" : "close"] \the [src].</span>")
 		//TO-DO: Open icon
-	if(istype(I, /obj/item/weapon/tank) && (stat & MAINT))
+	if(istype(I, /obj/item/tank) && (stat & MAINT))
 		if(tank)
 			user << "<span class='warning'>\The [src] already has a tank installed!</span>"
 		else
@@ -129,5 +129,5 @@
 
 /obj/machinery/oxygen_pump/anesthetic
 	name = "anesthetic pump"
-	spawn_type = /obj/item/weapon/tank/anesthetic
+	spawn_type = /obj/item/tank/anesthetic
 //	icon_state = "anesthetic_tank" //TODO

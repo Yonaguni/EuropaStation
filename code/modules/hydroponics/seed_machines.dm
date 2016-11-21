@@ -1,4 +1,4 @@
-/obj/item/weapon/disk/botany
+/obj/item/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -8,7 +8,7 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/weapon/disk/botany/attack_self(var/mob/user as mob)
+/obj/item/disk/botany/attack_self(var/mob/user)
 	if(genes.len)
 		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
@@ -18,14 +18,14 @@
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/weapon/storage/box/botanydisk
+/obj/item/storage/box/botanydisk
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-/obj/item/weapon/storage/box/botanydisk/New()
+/obj/item/storage/box/botanydisk/New()
 	..()
 	for(var/i = 0;i<7;i++)
-		new /obj/item/weapon/disk/botany(src)
+		new /obj/item/disk/botany(src)
 
 /obj/machinery/botany
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -35,7 +35,7 @@
 	use_power = 1
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
-	var/obj/item/weapon/disk/botany/loaded_disk //Currently loaded data disk.
+	var/obj/item/disk/botany/loaded_disk //Currently loaded data disk.
 
 	var/open = 0
 	var/active = 0
@@ -53,10 +53,10 @@
 	if(world.time > last_action + action_time)
 		finished_task()
 
-/obj/machinery/botany/attack_ai(mob/user as mob)
+/obj/machinery/botany/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/botany/attack_hand(mob/user as mob)
+/obj/machinery/botany/attack_hand(var/mob/user)
 	ui_interact(user)
 
 /obj/machinery/botany/proc/finished_task()
@@ -74,7 +74,7 @@
 			visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
-/obj/machinery/botany/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/botany/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/seeds))
 		if(seed)
 			user << "There is already a seed loaded."
@@ -99,12 +99,12 @@
 			dismantle()
 			return
 
-	if(istype(W,/obj/item/weapon/disk/botany))
+	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
 			user << "There is already a data disk loaded."
 			return
 		else
-			var/obj/item/weapon/disk/botany/B = W
+			var/obj/item/disk/botany/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)

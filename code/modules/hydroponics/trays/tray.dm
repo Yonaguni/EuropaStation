@@ -420,12 +420,12 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O, var/mob/user)
 
 	if (O.is_open_container())
 		return 0
 
-	if(O.iswirecutter() || istype(O, /obj/item/weapon/scalpel))
+	if(O.iswirecutter() || istype(O, /obj/item/scalpel))
 
 		if(!seed)
 			user << "There is nothing to take a sample from in \the [src]."
@@ -453,9 +453,9 @@
 
 		return
 
-	else if(istype(O, /obj/item/weapon/reagent_containers/syringe))
+	else if(istype(O, /obj/item/reagent_containers/syringe))
 
-		var/obj/item/weapon/reagent_containers/syringe/S = O
+		var/obj/item/reagent_containers/syringe/S = O
 
 		if (S.mode == 1)
 			if(seed)
@@ -499,7 +499,7 @@
 		else
 			user << "<span class='danger'>\The [src] already has seeds in it!</span>"
 
-	else if (istype(O, /obj/item/weapon/material/minihoe))  // The minihoe
+	else if (istype(O, /obj/item/material/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
 			user.visible_message("<span class='danger'>[user] starts uprooting the weeds.</span>", "<span class='danger'>You remove the weeds from the [src].</span>")
@@ -508,19 +508,19 @@
 		else
 			user << "<span class='danger'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>"
 
-	else if (istype(O, /obj/item/weapon/storage/plants))
+	else if (istype(O, /obj/item/storage/plants))
 
 		attack_hand(user)
 
-		var/obj/item/weapon/storage/plants/S = O
-		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
+		var/obj/item/storage/plants/S = O
+		for (var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G, user))
 				return
 			S.handle_item_insertion(G, 1)
 
-	else if ( istype(O, /obj/item/weapon/plantspray) )
+	else if ( istype(O, /obj/item/plantspray) )
 
-		var/obj/item/weapon/plantspray/spray = O
+		var/obj/item/plantspray/spray = O
 		user.remove_from_mob(O)
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str
@@ -548,13 +548,13 @@
 			check_health()
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attack_tk(var/mob/user)
 	if(dead)
 		remove_dead(user)
 	else if(harvest)
 		harvest(user)
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attack_hand(var/mob/user)
 
 	if(istype(usr,/mob/living/silicon))
 		return

@@ -1,5 +1,5 @@
 /*
- *	Absorbs /obj/item/weapon/secstorage.
+ *	Absorbs /obj/item/secstorage.
  *	Reimplements it only slightly to use existing storage functionality.
  *
  *	Contains:
@@ -10,7 +10,7 @@
 // -----------------------------
 //         Generic Item
 // -----------------------------
-/obj/item/weapon/storage/secure
+/obj/item/storage/secure
 	name = "secstorage"
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
@@ -31,9 +31,9 @@
 		if(..(user, 1))
 			user << text("The service panel is [src.open ? "open" : "closed"].")
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(locked)
-			if (istype(W, /obj/item/weapon/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
+			if (istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
 				spark_system.start()
@@ -77,7 +77,7 @@
 		..()
 
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		user.set_machine(src)
 		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 		var/message = "Code"
@@ -126,7 +126,7 @@
 				return
 		return
 
-/obj/item/weapon/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
+/obj/item/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
 	if(!emagged)
 		emagged = 1
 		src.overlays += image('icons/obj/storage.dmi', icon_sparking)
@@ -140,7 +140,7 @@
 // -----------------------------
 //        Secure Briefcase
 // -----------------------------
-/obj/item/weapon/storage/secure/briefcase
+/obj/item/storage/secure/briefcase
 	name = "secure briefcase"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "secure"
@@ -153,7 +153,7 @@
 	max_w_class = 3
 	max_storage_space = DEFAULT_BACKPACK_STORAGE
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		if ((src.loc == user) && (src.locked == 1))
 			usr << "<span class='warning'>[src] is locked and cannot be opened!</span>"
 		else if ((src.loc == user) && (!src.locked))
@@ -170,7 +170,7 @@
 //        Secure Safe
 // -----------------------------
 
-/obj/item/weapon/storage/secure/safe
+/obj/item/storage/secure/safe
 	name = "secure safe"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
@@ -183,16 +183,16 @@
 	max_storage_space = 56
 	anchored = 1.0
 	density = 0
-	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)
+	cant_hold = list(/obj/item/storage/secure/briefcase)
 
 	New()
 		..()
-		new /obj/item/weapon/paper(src)
-		new /obj/item/weapon/pen(src)
+		new /obj/item/paper(src)
+		new /obj/item/pen(src)
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		return attack_self(user)
 
-/obj/item/weapon/storage/secure/safe/HoS/New()
+/obj/item/storage/secure/safe/HoS/New()
 	..()
-	//new /obj/item/weapon/storage/lockbox/clusterbang(src) This item is currently broken... and probably shouldnt exist to begin with (even though it's cool)
+	//new /obj/item/storage/lockbox/clusterbang(src) This item is currently broken... and probably shouldnt exist to begin with (even though it's cool)

@@ -47,7 +47,7 @@
 	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/device/uplink/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/obj/item/uplink/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
@@ -93,9 +93,6 @@
 		m.update_inv_l_hand()
 		src.loc = null
 	return ..()
-
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_twohanding()
@@ -174,7 +171,7 @@
 			size = "huge"
 	return ..(user, distance, "", "It is a [size] item.")
 
-/obj/item/attack_hand(mob/user as mob)
+/obj/item/attack_hand(var/mob/user)
 	if (!user) return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
@@ -188,8 +185,8 @@
 			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
 			return
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if (istype(src.loc, /obj/item/storage))
+		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src)
 
 	src.throwing = 0
@@ -209,8 +206,8 @@
 			pixel_y = 0
 	return
 
-/obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/weapon/robot_module))
+/obj/item/attack_ai(var/mob/user)
+	if (istype(src.loc, /obj/item/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
 			return
@@ -220,9 +217,9 @@
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
+/obj/item/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W,/obj/item/storage))
+		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 				if(isturf(src.loc))
@@ -251,14 +248,14 @@
 
 	return
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+/obj/item/proc/talk_into(var/mob/M, var/text)
 	return
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
+/obj/item/proc/moved(var/mob/user, old_loc as turf)
 	return
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(var/mob/user)
 	if(randpixel)
 		pixel_z = randpixel //an idea borrowed from some of the older pixel_y randomizations. Intended to make items appear to drop at a character
 	if(zoom)
@@ -276,15 +273,15 @@
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/obj/item/proc/on_exit_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_exit_storage(var/obj/item/storage/S as obj)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/obj/item/proc/on_enter_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_enter_storage(var/obj/item/storage/S as obj)
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
-/obj/item/proc/on_found(mob/finder as mob)
+/obj/item/proc/on_found(var/mob/finder)
 	return
 
 // called after an item is placed in an equipment slot
@@ -384,18 +381,18 @@ var/list/global/slot_flags_enumeration = list(
 				if(!disable_warning)
 					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
 				return 0
-			if( !(istype(src, /obj/item/device/radio/headset/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/radio/headset/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
 		if(slot_handcuffed)
-			if(!istype(src, /obj/item/weapon/handcuffs))
+			if(!istype(src, /obj/item/handcuffs))
 				return 0
 		if(slot_legcuffed)
-			if(!istype(src, /obj/item/weapon/legcuffs))
+			if(!istype(src, /obj/item/legcuffs))
 				return 0
 		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
 			var/allow = 0
-			if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-				var/obj/item/weapon/storage/backpack/B = H.back
+			if(H.back && istype(H.back, /obj/item/storage/backpack))
+				var/obj/item/storage/backpack/B = H.back
 				if(B.can_be_inserted(src,M,1))
 					allow = 1
 			if(!allow)
@@ -437,7 +434,7 @@ var/list/global/slot_flags_enumeration = list(
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		usr << "<span class='warning'>You can't pick things up!</span>"
 		return
-	if(src.anchored) //Object isn't anchored
+	if(src.anchored) //object isn't anchored
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
@@ -446,7 +443,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(usr.hand && usr.l_hand) //Left hand is not full
 		usr << "<span class='warning'>Your left hand is full.</span>"
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!istype(src.loc, /turf)) //object is on a turf
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
 	//All checks are done, time to pick it up!
@@ -474,7 +471,7 @@ var/list/global/slot_flags_enumeration = list(
 		L = L.loc
 	return loc
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/proc/eyestab(var/mob/living/carbon/M, var/mob/living/carbon/user)
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
@@ -558,11 +555,11 @@ var/list/global/slot_flags_enumeration = list(
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+/obj/item/add_blood(var/mob/living/carbon/human/M)
 	if (!..())
 		return 0
 
-	if(istype(src, /obj/item/weapon/melee/energy))
+	if(istype(src, /obj/item/melee/energy))
 		return
 
 	//if we haven't made our blood_overlay already

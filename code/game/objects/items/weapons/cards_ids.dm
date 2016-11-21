@@ -11,7 +11,7 @@
 /*
  * DATA CARDS - Used for the teleporter
  */
-/obj/item/weapon/card
+/obj/item/card
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
@@ -21,7 +21,7 @@
 
 	var/list/files = list(  )
 
-/obj/item/weapon/card/data
+/obj/item/card/data
 	name = "data disk"
 	desc = "A disk of data."
 	icon_state = "data"
@@ -30,7 +30,7 @@
 	var/special = null
 	item_state = "card-id"
 
-/obj/item/weapon/card/data/verb/label(t as text)
+/obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
 	set category = "Object"
 	set src in usr
@@ -42,7 +42,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/item/weapon/card/data/clown
+/obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
 	icon_state = "data"
 	item_state = "card-id"
@@ -56,14 +56,14 @@
  * ID CARDS
  */
 
-/obj/item/weapon/card/emag_broken
+/obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
 
 
-/obj/item/weapon/card/emag
+/obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
@@ -72,7 +72,7 @@
 	var/uses = 10
 
 var/const/NO_EMAG_ACT = -50
-/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
+/obj/item/card/emag/resolve_attackby(atom/A, mob/user)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses == NO_EMAG_ACT)
 		return ..(A, user)
@@ -85,13 +85,13 @@ var/const/NO_EMAG_ACT = -50
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
 		user.drop_item()
-		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
+		var/obj/item/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
 		qdel(src)
 
 	return 1
 
-/obj/item/weapon/card/id
+/obj/item/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access to restricted areas."
 	icon_state = "id"
@@ -119,7 +119,7 @@ var/const/NO_EMAG_ACT = -50
 	var/rank = null			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
 
-/obj/item/weapon/card/id/examine(mob/user)
+/obj/item/card/id/examine(mob/user)
 	set src in oview(1)
 	if(in_range(usr, src))
 		show(usr)
@@ -127,10 +127,10 @@ var/const/NO_EMAG_ACT = -50
 	else
 		usr << "<span class='warning'>It is too far away.</span>"
 
-/obj/item/weapon/card/id/proc/prevent_tracking()
+/obj/item/card/id/proc/prevent_tracking()
 	return 0
 
-/obj/item/weapon/card/id/proc/show(mob/user as mob)
+/obj/item/card/id/proc/show(var/mob/user)
 	if(front && side)
 		user << browse_rsc(front, "front.png")
 		user << browse_rsc(side, "side.png")
@@ -140,17 +140,17 @@ var/const/NO_EMAG_ACT = -50
 	popup.open()
 	return
 
-/obj/item/weapon/card/id/proc/update_name()
+/obj/item/card/id/proc/update_name()
 	if(assignment)
 		name = "[registered_name]'s ID Card ([assignment])"
 	else
 		name = "[registered_name]'s ID Card"
 
-/obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
+/obj/item/card/id/proc/set_id_photo(var/mob/M)
 	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
 	side = getFlatIcon(M, WEST, always_use_defdir = 1)
 
-/mob/proc/set_id_info(var/obj/item/weapon/card/id/id_card)
+/mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
@@ -162,11 +162,11 @@ var/const/NO_EMAG_ACT = -50
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
+/mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
 	..()
 	id_card.age = age
 
-/obj/item/weapon/card/id/proc/dat()
+/obj/item/card/id/proc/dat()
 	var/dat = ("<table><tr><td>")
 	dat += text("Name: []</A><BR>", registered_name)
 	dat += text("Sex: []</A><BR>\n", sex)
@@ -180,20 +180,20 @@ var/const/NO_EMAG_ACT = -50
 	dat += "</tr></table>"
 	return dat
 
-/obj/item/weapon/card/id/attack_self(mob/user as mob)
+/obj/item/card/id/attack_self(var/mob/user)
 	user.visible_message("\The [user] shows you: \icon[src] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: \icon[src] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/card/id/GetAccess()
+/obj/item/card/id/GetAccess()
 	return access
 
-/obj/item/weapon/card/id/GetID()
+/obj/item/card/id/GetID()
 	return src
 
-/obj/item/weapon/card/id/verb/read()
+/obj/item/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
 	set src in usr
@@ -204,137 +204,137 @@ var/const/NO_EMAG_ACT = -50
 	usr << "The fingerprint hash on the card is [fingerprint_hash]."
 	return
 
-/obj/item/weapon/card/id/silver
+/obj/item/card/id/silver
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
 	item_state = "silver_id"
 
-/obj/item/weapon/card/id/gold
+/obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
 	item_state = "gold_id"
 
-/obj/item/weapon/card/id/syndicate_command
+/obj/item/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(access_syndicate, access_external_airlocks)
 
-/obj/item/weapon/card/id/captains_spare
+/obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
 	registered_name = "Commanding Officer"
 	assignment = "Commanding Officer"
-/obj/item/weapon/card/id/captains_spare/New()
+/obj/item/card/id/captains_spare/New()
 	access = get_all_station_access()
 	..()
 
-/obj/item/weapon/card/id/synthetic
+/obj/item/card/id/synthetic
 	name = "\improper Synthetic ID"
 	desc = "Access module for synthetics."
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Synthetic"
 
-/obj/item/weapon/card/id/synthetic/New()
+/obj/item/card/id/synthetic/New()
 	access = get_all_station_access() + access_synth
 	..()
 
-/obj/item/weapon/card/id/centcom
+/obj/item/card/id/centcom
 	name = "\improper CentCom. ID"
 	desc = "An ID straight from Cent. Com."
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-/obj/item/weapon/card/id/centcom/New()
+/obj/item/card/id/centcom/New()
 	access = get_all_centcom_access()
 	..()
 
-/obj/item/weapon/card/id/centcom/station/New()
+/obj/item/card/id/centcom/station/New()
 	..()
 	access |= get_all_station_access()
 
-/obj/item/weapon/card/id/centcom/ERT
+/obj/item/card/id/centcom/ERT
 	name = "\improper Emergency Response Team ID"
 	assignment = "Emergency Response Team"
 
-/obj/item/weapon/card/id/centcom/ERT/New()
+/obj/item/card/id/centcom/ERT/New()
 	..()
 	access |= get_all_station_access()
 
-/obj/item/weapon/card/id/all_access
+/obj/item/card/id/all_access
 	name = "\improper Administrator's spare ID"
 	desc = "The spare ID of the Lord of Lords himself."
 	icon_state = "data"
 	item_state = "tdgreen"
 	registered_name = "Administrator"
 	assignment = "Administrator"
-/obj/item/weapon/card/id/all_access/New()
+/obj/item/card/id/all_access/New()
 	access = get_access_ids()
 	..()
 
 // Department-flavor IDs
-/obj/item/weapon/card/id/medical
+/obj/item/card/id/medical
 	name = "identification card"
 	desc = "A card issued to medical staff."
 	icon_state = "med"
 
-/obj/item/weapon/card/id/medical/head
+/obj/item/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
 	icon_state = "medGold"
 
-/obj/item/weapon/card/id/security
+/obj/item/card/id/security
 	name = "identification card"
 	desc = "A card issued to security staff."
 	icon_state = "sec"
 
-/obj/item/weapon/card/id/security/head
+/obj/item/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
 	icon_state = "secGold"
 
-/obj/item/weapon/card/id/engineering
+/obj/item/card/id/engineering
 	name = "identification card"
 	desc = "A card issued to engineering staff."
 	icon_state = "eng"
 
-/obj/item/weapon/card/id/engineering/head
+/obj/item/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
 	icon_state = "engGold"
 
-/obj/item/weapon/card/id/science
+/obj/item/card/id/science
 	name = "identification card"
 	desc = "A card issued to science staff."
 	icon_state = "sci"
 
-/obj/item/weapon/card/id/science/head
+/obj/item/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
 	icon_state = "sciGold"
 
-/obj/item/weapon/card/id/cargo/head
+/obj/item/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
 	icon_state = "cargoGold"
 
-/obj/item/weapon/card/id/civilian
+/obj/item/card/id/civilian
 	name = "identification card"
 	desc = "A card issued to civilian staff."
 	icon_state = "civ"
 
-/obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
+/obj/item/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
 	desc = "A card which represents common sense and responsibility."
 	icon_state = "civGold"
 
-/obj/item/weapon/card/id/merchant
+/obj/item/card/id/merchant
 	name = "identification card"
 	desc = "A card issued to Merchants, indicating their right to sell and buy goods."
 	icon_state = "trader"

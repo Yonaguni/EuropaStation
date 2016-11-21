@@ -140,7 +140,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			Console.set_light(2)
 
 
-/obj/machinery/message_server/attack_hand(user as mob)
+/obj/machinery/message_server/attack_hand(var/mob/user)
 //	user << "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
 	user << "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]"
 	active = !active
@@ -149,9 +149,9 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 	return
 
-/obj/machinery/message_server/attackby(obj/item/weapon/O as obj, mob/living/user as mob)
+/obj/machinery/message_server/attackby(var/obj/item/O, var/mob/living/user)
 	if (active && !(stat & (BROKEN|NOPOWER)) && (spamfilter_limit < MESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
-		istype(O,/obj/item/weapon/circuitboard/message_monitor))
+		istype(O,/obj/item/circuitboard/message_monitor))
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.drop_item()
 		qdel(O)

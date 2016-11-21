@@ -1,8 +1,8 @@
-/obj/item/weapon/gun/composite/description_fluff = null
-/obj/item/weapon/gun/composite/description_info =  null
-/obj/item/weapon/gun/composite/description_antag = null
+/obj/item/gun/composite/description_fluff = null
+/obj/item/gun/composite/description_info =  null
+/obj/item/gun/composite/description_antag = null
 
-/obj/item/weapon/gun/composite/examine()
+/obj/item/gun/composite/examine()
 	..()
 
 	if(usr && usr.Adjacent(get_turf(src)))
@@ -23,7 +23,7 @@
 				accessory_list += "\a [acc.name]"
 			usr << "[english_list(accessories)] [accessories.len == 1 ? "is" : "are"] installed."
 
-/obj/item/weapon/gun/composite/get_description_info()
+/obj/item/gun/composite/get_description_info()
 	var/result = ""
 
 	if(model && model.produced_by)
@@ -99,7 +99,7 @@
 
 	return result
 
-/obj/item/weapon/gun/composite/get_description_fluff()
+/obj/item/gun/composite/get_description_fluff()
 	var/result = ""
 	if(model && model.produced_by)
 		result += "This weapon was manufacured by [model.produced_by.manufacturer_name]. [model.produced_by.manufacturer_description]<br><br>"
@@ -120,6 +120,6 @@
 	return result
 
 // TODO.
-/obj/item/weapon/gun/composite/get_description_antag()
+/obj/item/gun/composite/get_description_antag()
 	var/result = description_antag
 	return result

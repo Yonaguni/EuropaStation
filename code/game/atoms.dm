@@ -48,7 +48,7 @@
 
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
+/atom/proc/check_eye(var/mob/user)
 	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
 		return 0
 	return -1
@@ -79,7 +79,7 @@
 
 // If you want to use this, the atom must have the PROXMOVE flag, and the moving
 // atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+/atom/proc/HasProximity(var/atom/movable/AM)
 	return
 
 /atom/proc/emp_act(var/severity)
@@ -241,12 +241,12 @@ its easier to just keep the beam vertical.
 /atom/proc/melt()
 	return
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(var/atom/movable/AM)
 	if (density)
 		AM.throwing = 0
 	return
 
-/atom/proc/add_hiddenprint(mob/living/M as mob)
+/atom/proc/add_hiddenprint(var/mob/living/M)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
 	if (ishuman(M))
@@ -269,7 +269,7 @@ its easier to just keep the beam vertical.
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = 0)
+/atom/proc/add_fingerprint(var/mob/living/M, ignoregloves = 0)
 	if(isnull(M)) return
 	if(isAI(M)) return
 	if(isnull(M.key)) return
@@ -392,7 +392,7 @@ its easier to just keep the beam vertical.
 
 
 //returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(var/mob/living/carbon/human/M)
 
 	if(flags & NOBLOODY)
 		return 0
@@ -411,7 +411,7 @@ its easier to just keep the beam vertical.
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
+/atom/proc/add_vomit_floor(var/mob/living/carbon/M, var/toxvomit = 0)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 

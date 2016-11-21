@@ -91,7 +91,7 @@
 	gl_uid++
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,15)
-	component_parts += new /obj/item/weapon/circuitboard/ntnet_relay(src)
+	component_parts += new /obj/item/circuitboard/ntnet_relay(src)
 
 	if(ntnet_global)
 		ntnet_global.relays.Add(src)
@@ -109,7 +109,7 @@
 		D.error = "Connection to quantum relay severed"
 	return ..()
 
-/obj/machinery/ntnet_relay/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/ntnet_relay/attackby(var/obj/item/W, var/mob/user)
 	if(W.isscrewdriver())
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		panel_open = !panel_open

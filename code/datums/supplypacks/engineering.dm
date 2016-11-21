@@ -3,7 +3,7 @@
 
 /decl/hierarchy/supply_pack/engineering/lightbulbs
 	name = "Replacement lights"
-	contains = list(/obj/item/weapon/storage/box/lights/mixed = 3)
+	contains = list(/obj/item/storage/box/lights/mixed = 3)
 	cost = 10
 	containername = "\improper Replacement lights"
 
@@ -33,46 +33,46 @@
 
 /decl/hierarchy/supply_pack/engineering/smes_circuit
 	name = "Superconducting Magnetic Energy Storage Unit Circuitry"
-	contains = list(/obj/item/weapon/circuitboard/smes)
+	contains = list(/obj/item/circuitboard/smes)
 	cost = 20
 	containername = "\improper Superconducting Magnetic Energy Storage Unit Circuitry"
 
 /decl/hierarchy/supply_pack/engineering/smescoil
 	name = "Superconductive Magnetic Coil"
-	contains = list(/obj/item/weapon/smes_coil)
+	contains = list(/obj/item/smes_coil)
 	cost = 35
 	containername = "\improper Superconductive Magnetic Coil crate"
 
 /decl/hierarchy/supply_pack/engineering/smescoil_weak
 	name = "Basic Superconductive Magnetic Coil"
-	contains = list(/obj/item/weapon/smes_coil/weak)
+	contains = list(/obj/item/smes_coil/weak)
 	cost = 25
 	containername = "\improper Basic Superconductive Magnetic Coil crate"
 
 /decl/hierarchy/supply_pack/engineering/smescoil_super_capacity
 	name = "Superconductive Capacitance Coil"
-	contains = list(/obj/item/weapon/smes_coil/super_capacity)
+	contains = list(/obj/item/smes_coil/super_capacity)
 	cost = 45
 	containername = "\improper Superconductive Capacitance Coil crate"
 
 /decl/hierarchy/supply_pack/engineering/smescoil_super_io
 	name = "Superconductive Transmission Coil"
-	contains = list(/obj/item/weapon/smes_coil/super_io)
+	contains = list(/obj/item/smes_coil/super_io)
 	cost = 45
 	containername = "\improper Superconductive Transmission Coil crate"
 
 /decl/hierarchy/supply_pack/engineering/electrical
 	name = "Electrical maintenance crate"
-	contains = list(/obj/item/weapon/storage/toolbox/electrical = 2,
+	contains = list(/obj/item/storage/toolbox/electrical = 2,
 					/obj/item/clothing/gloves/insulated = 2,
-					/obj/item/weapon/cell = 2,
-					/obj/item/weapon/cell/high = 2)
+					/obj/item/cell = 2,
+					/obj/item/cell/high = 2)
 	cost = 15
 	containername = "\improper Electrical maintenance crate"
 
 /decl/hierarchy/supply_pack/engineering/mechanical
 	name = "Mechanical maintenance crate"
-	contains = list(/obj/item/weapon/storage/belt/utility/full = 3,
+	contains = list(/obj/item/storage/belt/utility/full = 3,
 					/obj/item/clothing/suit/storage/hazardvest = 3,
 					/obj/item/clothing/head/welding = 2,
 					/obj/item/clothing/head/hardhat)
@@ -82,9 +82,9 @@
 /decl/hierarchy/supply_pack/engineering/solar
 	name = "Solar Pack crate"
 	contains  = list(/obj/item/solar_assembly = 14,
-					/obj/item/weapon/circuitboard/solar_control,
-					/obj/item/weapon/tracker_electronics,
-					/obj/item/weapon/paper/solar
+					/obj/item/circuitboard/solar_control,
+					/obj/item/tracker_electronics,
+					/obj/item/paper/solar
 					)
 	cost = 15
 	containername = "\improper Solar Pack crate"
@@ -97,10 +97,10 @@
 
 /decl/hierarchy/supply_pack/engineering/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"
-	contains = list(/obj/item/weapon/stock_parts/micro_laser,
-					/obj/item/weapon/stock_parts/capacitor,
-					/obj/item/weapon/stock_parts/matter_bin,
-					/obj/item/weapon/circuitboard/pacman)
+	contains = list(/obj/item/stock_parts/micro_laser,
+					/obj/item/stock_parts/capacitor,
+					/obj/item/stock_parts/matter_bin,
+					/obj/item/circuitboard/pacman)
 	cost = 45
 	containername = "\improper P.A.C.M.A.N. Portable Generator Construction Kit"
 	containertype = /obj/structure/closet/crate/secure
@@ -108,10 +108,10 @@
 
 /decl/hierarchy/supply_pack/engineering/super_pacman_parts
 	name = "Super P.A.C.M.A.N. portable generator parts"
-	contains = list(/obj/item/weapon/stock_parts/micro_laser,
-					/obj/item/weapon/stock_parts/capacitor,
-					/obj/item/weapon/stock_parts/matter_bin,
-					/obj/item/weapon/circuitboard/pacman/super)
+	contains = list(/obj/item/stock_parts/micro_laser,
+					/obj/item/stock_parts/capacitor,
+					/obj/item/stock_parts/matter_bin,
+					/obj/item/circuitboard/pacman/super)
 	cost = 55
 	containername = "\improper Super P.A.C.M.A.N. portable generator construction kit"
 	containertype = /obj/structure/closet/crate/secure
@@ -158,10 +158,10 @@
 
 /decl/hierarchy/supply_pack/engineering/robotics
 	name = "Robotics assembly crate"
-	contains = list(/obj/item/device/assembly/prox_sensor = 3,
-					/obj/item/weapon/storage/toolbox/electrical,
-					/obj/item/device/flash = 4,
-					/obj/item/weapon/cell/high = 2)
+	contains = list(/obj/item/assembly/prox_sensor = 3,
+					/obj/item/storage/toolbox/electrical,
+					/obj/item/flash = 4,
+					/obj/item/cell/high = 2)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "\improper Robotics assembly"
@@ -177,9 +177,9 @@
 
 /decl/hierarchy/supply_pack/engineering/painters
 	name = "Industrial Painting Supplies"
-	contains = list(/obj/item/device/pipe_painter = 2,
-					/obj/item/device/floor_painter = 2,
-					/obj/item/device/cable_painter = 2)
+	contains = list(/obj/item/pipe_painter = 2,
+					/obj/item/floor_painter = 2,
+					/obj/item/cable_painter = 2)
 	cost = 10
 	containername = "\improper station painting supplies crate"
 	containertype = /obj/structure/closet/crate

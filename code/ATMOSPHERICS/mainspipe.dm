@@ -622,13 +622,13 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		return 1
 
-	attack_ai(mob/user as mob)
+	attack_ai(var/mob/user)
 		return
 
-	attack_paw(mob/user as mob)
+	attack_paw(var/mob/user)
 		return attack_hand(user)
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		src.add_fingerprint(usr)
 		update_icon(1)
 		sleep(10)
@@ -642,10 +642,10 @@ obj/machinery/atmospherics/mains_pipe/valve
 		desc = "A digitally controlled valve."
 		icon_state = "dvalve0"
 
-		attack_ai(mob/user as mob)
+		attack_ai(var/mob/user)
 			return src.attack_hand(user)
 
-		attack_hand(mob/user as mob)
+		attack_hand(var/mob/user)
 			if(!src.allowed(user))
 				user << "<span class='warning'>Access denied.</span>"
 				return

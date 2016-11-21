@@ -1,5 +1,5 @@
 
-/obj/item/weapon/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
@@ -41,7 +41,7 @@
 		if(!bad)
 			user << "<span class='notice'>[H]'s skin is normal.</span>"
 
-/obj/item/weapon/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
+/obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
 		attacker << "<span class='warning'>You require a better grab to do this.</span>"
 		return
@@ -62,7 +62,7 @@
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
 		affecting.adjustHalLoss(Clamp(0, max_halloss - affecting.halloss, 30))
 
-/obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 
@@ -87,7 +87,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/weapon/grab/proc/headbut(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/grab/proc/headbut(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -123,7 +123,7 @@
 	qdel(src)
 	return
 
-/obj/item/weapon/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
+/obj/item/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
 		attacker << "<span class='warning'>You require a better grab to do this.</span>"
 		return
@@ -131,7 +131,7 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		return
 
-/obj/item/weapon/grab/proc/pin_down(mob/target, mob/attacker)
+/obj/item/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
 		attacker << "<span class='warning'>You require a better grab to do this.</span>"
 		return
@@ -148,7 +148,7 @@
 		attacker.visible_message("<span class='danger'>[attacker] forces [target] to the ground!</span>")
 		apply_pinning(target, attacker)
 
-/obj/item/weapon/grab/proc/apply_pinning(mob/target, mob/attacker)
+/obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
 	force_down = 1
 	target.Weaken(3)
 	target.lying = 1

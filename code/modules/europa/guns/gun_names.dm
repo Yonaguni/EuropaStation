@@ -8,8 +8,8 @@
 
 	if(assembly)
 		sniper = (locate(/obj/item/gun_component/accessory/chamber/scope) in assembly)
-		if(istype(assembly, /obj/item/weapon/gun_assembly))
-			var/obj/item/weapon/gun_assembly/GA = assembly
+		if(istype(assembly, /obj/item/gun_assembly))
+			var/obj/item/gun_assembly/GA = assembly
 			if(istype(GA.chamber))
 				if(GA.chamber.automatic)
 					auto = 1
@@ -19,8 +19,8 @@
 				caliber = GA.barrel
 				if(GA.barrel.override_name)
 					override_type_name = GA.barrel.override_name
-		else if(istype(assembly, /obj/item/weapon/gun/composite))
-			var/obj/item/weapon/gun/composite/CG = assembly
+		else if(istype(assembly, /obj/item/gun/composite))
+			var/obj/item/gun/composite/CG = assembly
 			caliber = CG.caliber
 			dam_type = CG.dam_type
 			gun_type = CG.gun_type

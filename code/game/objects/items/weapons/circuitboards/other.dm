@@ -4,7 +4,7 @@
 
 //Stuff that doesn't fit into any category goes here
 
-/obj/item/weapon/circuitboard/aicore
+/obj/item/circuitboard/aicore
 	name = T_BOARD("AI core")
 
 	board_type = "other"

@@ -4,7 +4,7 @@
 	density = 1
 	anchored = 1
 	layer = 3
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "uglymine"
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
@@ -15,7 +15,7 @@
 /obj/effect/mine/Crossed(AM as mob|obj)
 	Bumped(AM)
 
-/obj/effect/mine/Bumped(mob/M as mob|obj)
+/obj/effect/mine/Bumped(var/mob/M)
 
 	if(triggered) return
 

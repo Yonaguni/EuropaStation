@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/cultblade
+/obj/item/melee/cultblade
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
@@ -11,10 +11,10 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/melee/cultblade/cultify()
+/obj/item/melee/cultblade/cultify()
 	return
 
-/obj/item/weapon/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(iscultist(user))
 		return ..()
 
@@ -38,7 +38,7 @@
 
 	return 1
 
-/obj/item/weapon/melee/cultblade/pickup(mob/living/user as mob)
+/obj/item/melee/cultblade/pickup(var/mob/living/user)
 	if(!iscultist(user))
 		user << "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>"
 		user.make_dizzy(120)
@@ -74,7 +74,7 @@
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade)
+	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0
@@ -108,7 +108,7 @@
 	name = "cult armour"
 	icon_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
-	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade,/obj/item/weapon/tank/emergency,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade,/obj/item/tank/emergency,/obj/item/suit_cooling_unit)
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS

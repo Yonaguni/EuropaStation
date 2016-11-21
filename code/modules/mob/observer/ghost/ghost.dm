@@ -28,7 +28,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
 	var/seedarkness = 1
 
-	var/obj/item/device/multitool/ghost_multitool
+	var/obj/item/multitool/ghost_multitool
 	incorporeal_move = 1
 
 	var/list/hud_images // A list of hud images
@@ -103,7 +103,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				ManualFollow(target)
 
 /mob/observer/ghost/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weapon/book/tome))
+	if(istype(W,/obj/item/book/tome))
 		var/mob/observer/ghost/M = src
 		M.manifest()
 
@@ -572,7 +572,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
 
-/mob/observer/ghost/pointed(atom/A as mob|obj|turf in view())
+/mob/observer/ghost/pointed(var/atom/A as obj|turf|mob in view())
 	if(!..())
 		return 0
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")

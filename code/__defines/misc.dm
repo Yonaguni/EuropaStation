@@ -149,7 +149,7 @@
 #define CAPTURE_MODE_ALL 1 //Admin camera mode
 #define CAPTURE_MODE_PARTIAL 3 //Simular to regular mode, but does not do dummy check
 
-//objectives
+/objectives
 #define CONFIG_OBJECTIVE_NONE 2
 #define CONFIG_OBJECTIVE_VERB 1
 #define CONFIG_OBJECTIVE_ALL  0

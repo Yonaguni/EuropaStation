@@ -29,9 +29,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/unscrew_hatch
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
-		/obj/item/weapon/coin = 50,
-		/obj/item/weapon/material/kitchen/utensil/knife = 50
+		/obj/item/screwdriver = 100,
+		/obj/item/coin = 50,
+		/obj/item/material/kitchen/utensil/knife = 50
 	)
 
 	min_duration = 90
@@ -64,9 +64,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/open_hatch
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
+		/obj/item/retractor = 100,
+		/obj/item/crowbar = 100,
+		/obj/item/material/kitchen/utensil = 50
 	)
 
 	min_duration = 30
@@ -99,9 +99,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/close_hatch
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
+		/obj/item/retractor = 100,
+		/obj/item/crowbar = 100,
+		/obj/item/material/kitchen/utensil = 50
 	)
 
 	min_duration = 70
@@ -135,8 +135,8 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/repair_brute
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 100,
-		/obj/item/weapon/pickaxe/plasmacutter = 50,
+		/obj/item/weldingtool = 100,
+		/obj/item/pickaxe/plasmacutter = 50,
 		/obj/item/psychic_power/kinesis = 100
 	)
 
@@ -147,7 +147,7 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(tool.iswelder())
-			var/obj/item/weapon/weldingtool/welder = tool
+			var/obj/item/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
 		return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != BP_MOUTH
@@ -231,8 +231,8 @@
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
-	/obj/item/weapon/bonegel = 30, 		\
-	/obj/item/weapon/screwdriver = 70,	\
+	/obj/item/bonegel = 30, 		\
+	/obj/item/screwdriver = 70,	\
 	)
 
 	min_duration = 70
@@ -296,7 +296,7 @@
 /datum/surgery_step/robotics/detatch_organ_robotic
 
 	allowed_tools = list(
-	/obj/item/device/multitool = 100
+	/obj/item/multitool = 100
 	)
 
 	min_duration = 90
@@ -349,9 +349,9 @@
 /datum/surgery_step/internal/remove_organ_robotic
 
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
+	/obj/item/hemostat = 100,	\
+	/obj/item/wirecutters = 75,	\
+	/obj/item/material/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 60
@@ -415,7 +415,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/attach_organ_robotic
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
+		/obj/item/screwdriver = 100,
 	)
 
 	min_duration = 100
@@ -465,7 +465,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/install_mmi
 	allowed_tools = list(
-	/obj/item/device/mmi = 100
+	/obj/item/mmi = 100
 	)
 
 	min_duration = 60
@@ -476,7 +476,7 @@
 	if(target_zone != BP_HEAD)
 		return
 
-	var/obj/item/device/mmi/M = tool
+	var/obj/item/mmi/M = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && affected.open == 3))
 		return 0
@@ -513,7 +513,7 @@
 	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
 
-	var/obj/item/device/mmi/M = tool
+	var/obj/item/mmi/M = tool
 	var/obj/item/organ/internal/mmi_holder/holder = new(target, 1)
 	target.internal_organs_by_name[BP_BRAIN] = holder
 	user.drop_from_inventory(tool)

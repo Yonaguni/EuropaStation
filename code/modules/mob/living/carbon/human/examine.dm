@@ -121,7 +121,7 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "<span class='warning'>[T.He] [T.is] \icon[handcuffed] restrained with cable!</span>\n"
 		else
 			msg += "<span class='warning'>[T.He] [T.is] \icon[handcuffed] handcuffed!</span>\n"
@@ -171,11 +171,11 @@
 	//ID
 	if(wear_id)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/radio/headset/pda))
-			var/obj/item/device/radio/headset/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/radio/headset/pda))
+			var/obj/item/radio/headset/pda/pda = wear_id
 			id = pda.owner
-		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/weapon/card/id/idcard = wear_id
+		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
+			var/obj/item/card/id/idcard = wear_id
 			id = idcard.registered_name
 		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
@@ -296,7 +296,7 @@
 		var/criminal = "None"
 
 		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				perpname = I.registered_name
 			else
@@ -319,10 +319,10 @@
 		var/medical = "None"
 
 		if(wear_id)
-			if(istype(wear_id,/obj/item/weapon/card/id))
+			if(istype(wear_id,/obj/item/card/id))
 				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-				var/obj/item/device/radio/headset/pda/tempPda = wear_id
+			else if(istype(wear_id,/obj/item/radio/headset/pda))
+				var/obj/item/radio/headset/pda/tempPda = wear_id
 				perpname = tempPda.owner
 		else
 			perpname = src.name
@@ -350,7 +350,7 @@
 	user << jointext(msg, null)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
-/proc/hasHUD(mob/M as mob, hudtype)
+/proc/hasHUD(var/mob/M, hudtype)
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		switch(hudtype)

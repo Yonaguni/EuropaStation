@@ -245,7 +245,7 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/W, var/mob/user)
 	if (!W.iswrench())
 		return ..()
 	if (!(stat & NOPOWER) && use_power)

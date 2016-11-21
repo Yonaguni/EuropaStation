@@ -1,6 +1,6 @@
 /obj/machinery/ai_slipper
 	name = "\improper AI Liquid Dispenser"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "motion0"
 	layer = 3
 	anchored = 1.0
@@ -31,7 +31,7 @@
 	src.uses = uses
 	src.power_change()
 
-/obj/machinery/ai_slipper/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/ai_slipper/attackby(var/obj/item/W, mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (istype(user, /mob/living/silicon))
@@ -52,10 +52,10 @@
 			return
 	return
 
-/obj/machinery/ai_slipper/attack_ai(mob/user as mob)
+/obj/machinery/ai_slipper/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/ai_slipper/attack_hand(mob/user as mob)
+/obj/machinery/ai_slipper/attack_hand(var/mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if ( (get_dist(src, user) > 1 ))

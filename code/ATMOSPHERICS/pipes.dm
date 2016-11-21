@@ -68,13 +68,13 @@
 		loc.assume_air(air_temporary)
 	return ..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(var/obj/item/W, var/mob/user)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W,/obj/item/device/pipe_painter))
+	if(istype(W,/obj/item/pipe_painter))
 		return 0
 
 	if (!W.iswrench())
@@ -1085,12 +1085,12 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/device/pipe_painter))
+/obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W, /obj/item/pipe_painter))
 		return
 
-	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
-		var/obj/item/device/analyzer/A = W
+	if(istype(W, /obj/item/analyzer) && in_range(user, src))
+		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 
 /obj/machinery/atmospherics/pipe/tank/air

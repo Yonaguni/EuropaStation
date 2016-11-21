@@ -94,7 +94,7 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/device/analyzer/plant_analyzer))
+	else if(istype(I, /obj/item/analyzer/plant_analyzer))
 		user << "<span class='notice'>Scan result of \the [src]...</span>"
 		user << "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]"
 		if(frames)
@@ -182,11 +182,11 @@
 			honey += processing
 			processing = 0
 			icon_state = "centrifuge"
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
 			user << "<span class='notice'>There is no honey in \the [src].</span>"
 			return
-		var/obj/item/weapon/reagent_containers/glass/G = I
+		var/obj/item/reagent_containers/glass/G = I
 		var/transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, honey)
 		G.reagents.add_reagent("honey", transferred)
 		honey -= transferred
@@ -196,7 +196,7 @@
 /obj/item/bee_smoker
 	name = "bee smoker"
 	desc = "A device used to calm down bees before harvesting honey."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "battererburnt"
 	w_class = 2
 
@@ -245,7 +245,7 @@
 	recipes = wax_recipes
 
 var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/weapon/flame/candle) \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
 )
 
 /obj/item/bee_pack

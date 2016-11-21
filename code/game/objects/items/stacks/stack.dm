@@ -45,10 +45,10 @@
 		else
 			user << "There is enough charge for [get_amount()]."
 
-/obj/item/stack/attack_self(mob/user as mob)
+/obj/item/stack/attack_self(var/mob/user)
 	list_recipes(user)
 
-/obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
+/obj/item/stack/proc/list_recipes(var/mob/user, recipes_sublist)
 	if (!recipes)
 		return
 	if (!src || get_amount() <= 0)
@@ -141,7 +141,7 @@
 			S.amount = produced
 			S.add_to_stacks(user)
 
-		if (istype(O, /obj/item/weapon/storage)) //BubbleWrap - so newly formed boxes are empty
+		if (istype(O, /obj/item/storage)) //BubbleWrap - so newly formed boxes are empty
 			for (var/obj/item/I in O)
 				qdel(I)
 
@@ -287,7 +287,7 @@
 		return
 	return max_amount
 
-/obj/item/stack/proc/add_to_stacks(mob/user as mob)
+/obj/item/stack/proc/add_to_stacks(var/mob/user)
 	for (var/obj/item/stack/item in user.loc)
 		if (item==src)
 			continue
@@ -302,7 +302,7 @@
 	if (amount < max_amount)
 		. = ceil(. * amount / max_amount)
 
-/obj/item/stack/attack_hand(mob/user as mob)
+/obj/item/stack/attack_hand(var/mob/user)
 	if (user.get_inactive_hand() == src)
 		var/N = input("How many stacks of [src] would you like to split off?", "Split stacks", 1) as num|null
 		if(N)
@@ -318,7 +318,7 @@
 		..()
 	return
 
-/obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/attackby(obj/item/W as obj, var/mob/user)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)

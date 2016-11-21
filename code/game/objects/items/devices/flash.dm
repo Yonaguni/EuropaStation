@@ -1,4 +1,4 @@
-/obj/item/device/flash
+/obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and being an asshole."
 	icon_state = "flash"
@@ -14,14 +14,14 @@
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
 
-/obj/item/device/flash/proc/clown_check(var/mob/user)
+/obj/item/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>\The [src] slips out of your hand.</span>"
 		user.drop_item()
 		return 0
 	return 1
 
-/obj/item/device/flash/proc/flash_recharge()
+/obj/item/flash/proc/flash_recharge()
 	//capacitor recharges over time
 	for(var/i=0, i<3, i++)
 		if(last_used+600 > world.time)
@@ -32,7 +32,7 @@
 	times_used = max(0,round(times_used)) //sanity
 
 //attack_as_weapon
-/obj/item/device/flash/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/flash/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(!user || !M)	return	//sanity
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")
@@ -115,7 +115,7 @@
 
 
 
-/obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
 	if(broken)
@@ -159,7 +159,7 @@
 
 	return
 
-/obj/item/device/flash/emp_act(severity)
+/obj/item/flash/emp_act(severity)
 	if(broken)	return
 	flash_recharge()
 	switch(times_used)
@@ -179,21 +179,21 @@
 						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()
 
-/obj/item/device/flash/synthetic
+/obj/item/flash/synthetic
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
 
 
 //attack_as_weapon
-/obj/item/device/flash/synthetic/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/flash/synthetic/attack(mob/living/M, mob/living/user, var/target_zone)
 	..()
 	if(!broken)
 		broken = 1
 		user << "<span class='warning'>The bulb has burnt out!</span>"
 		icon_state = "flashburnt"
 
-/obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/synthetic/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1

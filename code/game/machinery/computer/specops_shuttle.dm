@@ -22,7 +22,7 @@ var/specops_shuttle_timeleft = 0
 	var/specops_shuttle_timereset = 0
 
 /proc/specops_return()
-	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
+	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
 	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
@@ -71,7 +71,7 @@ var/specops_shuttle_timeleft = 0
 					// find the turf to move things to
 		var/turf/D = locate(T.x, throwy - 1, 1)
 					//var/turf/E = get_step(D, SOUTH)
-		for(var/atom/movable/AM as mob|obj in T)
+		for(var/atom/movable/AM in T)
 			AM.Move(D)
 		if(istype(T, /turf/simulated))
 			qdel(T)
@@ -97,7 +97,7 @@ var/specops_shuttle_timeleft = 0
 
 /proc/specops_process()
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
-	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
+	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
 	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
@@ -220,7 +220,7 @@ var/specops_shuttle_timeleft = 0
 					// find the turf to move things to
 		var/turf/D = locate(T.x, throwy - 1, 1)
 					//var/turf/E = get_step(D, SOUTH)
-		for(var/atom/movable/AM as mob|obj in T)
+		for(var/atom/movable/AM in T)
 			AM.Move(D)
 		if(istype(T, /turf/simulated))
 			qdel(T)
@@ -244,13 +244,13 @@ var/specops_shuttle_timeleft = 0
 			return 0
 	return 1
 
-/obj/machinery/computer/specops_shuttle/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/specops_shuttle/attack_ai(var/mob/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/specops_shuttle/emag_act(var/remaining_charges, var/mob/user)
 	user << "<span class='notice'>The electronic systems in this console are far too advanced for your primitive hacking peripherals.</span>"
 
-/obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user)
 	if(!allowed(user))
 		user << "<span class='warning'>Access Denied.</span>"
 		return

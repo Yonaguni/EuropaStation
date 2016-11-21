@@ -72,7 +72,7 @@
 		return 0
 	return 1
 
-/obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/omni/attackby(var/obj/item/W, var/mob/user)
 	if(!W.iswrench())
 		return ..()
 
@@ -94,7 +94,7 @@
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/omni/attack_hand(user as mob)
+/obj/machinery/atmospherics/omni/attack_hand(var/mob/user)
 	if(..())
 		return
 

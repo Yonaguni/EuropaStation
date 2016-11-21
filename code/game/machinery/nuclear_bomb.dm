@@ -18,7 +18,7 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0
 	var/safety = 1
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open, 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	var/lastentered
 	var/previous_level = ""
@@ -43,7 +43,7 @@ var/bomb_set
 		nanomanager.update_uis(src)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob, params)
+/obj/machinery/nuclearbomb/attackby(var/obj/item/O, var/mob/user, params)
 	if (O.isscrewdriver())
 		src.add_fingerprint(user)
 		if (src.auth)
@@ -72,7 +72,7 @@ var/bomb_set
 		return attack_hand(user)
 
 	if (src.extended)
-		if (istype(O, /obj/item/weapon/disk/nuclear))
+		if (istype(O, /obj/item/disk/nuclear))
 			usr.drop_item()
 			O.loc = src
 			src.auth = O
@@ -83,7 +83,7 @@ var/bomb_set
 		switch(removal_stage)
 			if(0)
 				if(O.iswelder())
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << "<span class='warning'>You need more fuel to complete this task.</span>"
@@ -110,7 +110,7 @@ var/bomb_set
 			if(2)
 				if(O.iswelder())
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << "<span class='warning'>You need more fuel to complete this task.</span>"
@@ -148,10 +148,10 @@ var/bomb_set
 				return
 	..()
 
-/obj/machinery/nuclearbomb/attack_ghost(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_ghost(var/mob/user)
 	attack_hand(user)
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_hand(var/mob/user)
 	if (extended)
 		if (panel_open)
 			wires.Interact(user)
@@ -236,7 +236,7 @@ var/bomb_set
 			auth = null
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/disk/nuclear))
+			if (istype(I, /obj/item/disk/nuclear))
 				usr.drop_item()
 				I.loc = src
 				auth = I
@@ -358,7 +358,7 @@ var/bomb_set
 		icon_state = "idle"
 
 //====The nuclear authentication disc====
-/obj/item/weapon/disk/nuclear
+/obj/item/disk/nuclear
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
 	icon = 'icons/obj/items.dmi'
@@ -366,30 +366,30 @@ var/bomb_set
 	item_state = "card-id"
 	w_class = 1.0
 
-/obj/item/weapon/disk/nuclear/New()
+/obj/item/disk/nuclear/New()
 	..()
 	nuke_disks |= src
 
-/obj/item/weapon/disk/nuclear/initialize()
+/obj/item/disk/nuclear/initialize()
 	..()
 	// Can never be quite sure that a game mode has been properly initiated or not at this point, so always register
-	moved_event.register(src, src, /obj/item/weapon/disk/nuclear/proc/check_z_level)
+	moved_event.register(src, src, /obj/item/disk/nuclear/proc/check_z_level)
 
-/obj/item/weapon/disk/nuclear/proc/check_z_level()
+/obj/item/disk/nuclear/proc/check_z_level()
 	if(!(ticker && istype(ticker.mode, /datum/game_mode/nuclear)))
-		moved_event.unregister(src, src, /obj/item/weapon/disk/nuclear/proc/check_z_level) // However, when we are certain unregister if necessary
+		moved_event.unregister(src, src, /obj/item/disk/nuclear/proc/check_z_level) // However, when we are certain unregister if necessary
 		return
 	var/turf/T = get_turf(src)
 	if(!T || isNotStationLevel(T.z))
 		qdel(src)
 
-/obj/item/weapon/disk/nuclear/Destroy()
-	moved_event.unregister(src, src, /obj/item/weapon/disk/nuclear/proc/check_z_level)
+/obj/item/disk/nuclear/Destroy()
+	moved_event.unregister(src, src, /obj/item/disk/nuclear/proc/check_z_level)
 	nuke_disks -= src
 	if(!nuke_disks.len)
 		var/turf/T = pick_area_turf(/area/maintenance, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
 		if(T)
-			var/obj/D = new /obj/item/weapon/disk/nuclear(T)
+			var/obj/D = new /obj/item/disk/nuclear(T)
 			log_and_message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).", location = T)
 		else
 			log_and_message_admins("[src], the last authentication disk, has been destroyed. Failed to respawn disc!")

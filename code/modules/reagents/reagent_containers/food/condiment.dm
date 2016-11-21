@@ -5,7 +5,7 @@
 //	to mixed-drinks code. If you want an object that starts pre-loaded, you need to make it in addition to the other code.
 
 //Food items that aren't eaten normally and leave an empty container behind.
-/obj/item/weapon/reagent_containers/food/condiment
+/obj/item/reagent_containers/food/condiment
 	name = "Condiment Container"
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/food.dmi'
@@ -15,13 +15,13 @@
 	center_of_mass = "x=16;y=6"
 	volume = 50
 
-	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		return
 
-	attack_self(var/mob/user as mob)
+	attack_self(var/mob/user)
 		return
 
-	attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
+	attack(var/mob/M, var/mob/user, var/def_zone)
 		if(standard_feed_mob(user, M))
 			return
 
@@ -34,7 +34,7 @@
 		if(standard_pour_into(user, target))
 			return
 
-		if(istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them
+		if(istype(target, /obj/item/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them
 			if(!reagents || !reagents.total_volume)
 				user << "<span class='notice'>There is no condiment left in \the [src].</span>"
 				return
@@ -118,7 +118,7 @@
 			center_of_mass = "x=16;y=6"
 			return
 
-/obj/item/weapon/reagent_containers/food/condiment/enzyme
+/obj/item/reagent_containers/food/condiment/enzyme
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
@@ -126,12 +126,12 @@
 		..()
 		reagents.add_reagent("enzyme", 50)
 
-/obj/item/weapon/reagent_containers/food/condiment/sugar
+/obj/item/reagent_containers/food/condiment/sugar
 	New()
 		..()
 		reagents.add_reagent("sugar", 50)
 
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
+/obj/item/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
@@ -142,7 +142,7 @@
 		..()
 		reagents.add_reagent("sodiumchloride", 20)
 
-/obj/item/weapon/reagent_containers/food/condiment/peppermill
+/obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
@@ -153,7 +153,7 @@
 		..()
 		reagents.add_reagent("blackpepper", 20)
 
-/obj/item/weapon/reagent_containers/food/condiment/flour
+/obj/item/reagent_containers/food/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
 	icon = 'icons/obj/food.dmi'

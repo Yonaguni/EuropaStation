@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/wallet
+/obj/item/storage/wallet
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	icon = 'icons/obj/wallet.dmi'
@@ -7,37 +7,37 @@
 	max_w_class = 1
 	max_storage_space = 10
 	can_hold = list(
-		/obj/item/weapon/spacecash,
-		/obj/item/weapon/card,
+		/obj/item/spacecash,
+		/obj/item/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/seeds,
-		/obj/item/weapon/coin,
-		/obj/item/weapon/dice,
-		/obj/item/weapon/disk,
-		/obj/item/weapon/implanter,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/flame/match,
-		/obj/item/weapon/paper,
-		/obj/item/weapon/pen,
-		/obj/item/weapon/photo,
-		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/stamp)
+		/obj/item/coin,
+		/obj/item/dice,
+		/obj/item/disk,
+		/obj/item/implanter,
+		/obj/item/flame/lighter,
+		/obj/item/flame/match,
+		/obj/item/paper,
+		/obj/item/pen,
+		/obj/item/photo,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/screwdriver,
+		/obj/item/stamp)
 	slot_flags = SLOT_ID
 
-	var/obj/item/weapon/card/id/front_id = null
+	var/obj/item/card/id/front_id = null
 
-/obj/item/weapon/storage/wallet/leather
+/obj/item/storage/wallet/leather
 	color = COLOR_SEDONA
 
-/obj/item/weapon/storage/wallet/Destroy()
+/obj/item/storage/wallet/Destroy()
 	if(front_id)
 		front_id.dropInto(loc)
 		front_id = null
 	return ..()
 
-/obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)
 	if(.)
 		if(W == front_id)
@@ -45,15 +45,15 @@
 			name = initial(name)
 			update_icon()
 
-/obj/item/weapon/storage/wallet/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/wallet/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	. = ..(W, prevent_warning)
 	if(.)
-		if(!front_id && istype(W, /obj/item/weapon/card/id))
+		if(!front_id && istype(W, /obj/item/card/id))
 			front_id = W
 			name = "[name] ([front_id])"
 			update_icon()
 
-/obj/item/weapon/storage/wallet/update_icon()
+/obj/item/storage/wallet/update_icon()
 	overlays.Cut()
 	if(front_id)
 		var/tiny_state = "id-generic"
@@ -63,23 +63,23 @@
 		tiny_image.appearance_flags = RESET_COLOR
 		overlays += tiny_image
 
-/obj/item/weapon/storage/wallet/GetID()
+/obj/item/storage/wallet/GetID()
 	return front_id
 
-/obj/item/weapon/storage/wallet/GetAccess()
+/obj/item/storage/wallet/GetAccess()
 	var/obj/item/I = GetID()
 	if(I)
 		return I.GetAccess()
 	else
 		return ..()
 
-/obj/item/weapon/storage/wallet/random/New()
+/obj/item/storage/wallet/random/New()
 	..()
-	var/item1_type = pick( /obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50, /obj/item/weapon/spacecash/bundle/c500)
+	var/item1_type = pick( /obj/item/spacecash/bundle/c10,/obj/item/spacecash/bundle/c100,/obj/item/spacecash/bundle/c1000,/obj/item/spacecash/bundle/c20,/obj/item/spacecash/bundle/c200,/obj/item/spacecash/bundle/c50, /obj/item/spacecash/bundle/c500)
 	var/item2_type
 	if(prob(50))
-		item2_type = pick( /obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50, /obj/item/weapon/spacecash/bundle/c500)
-	var/item3_type = pick( /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron )
+		item2_type = pick( /obj/item/spacecash/bundle/c10,/obj/item/spacecash/bundle/c100,/obj/item/spacecash/bundle/c1000,/obj/item/spacecash/bundle/c20,/obj/item/spacecash/bundle/c200,/obj/item/spacecash/bundle/c50, /obj/item/spacecash/bundle/c500)
+	var/item3_type = pick( /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron )
 
 	spawn(2)
 		if(item1_type)
@@ -90,16 +90,16 @@
 			new item3_type(src)
 	update_icon()
 
-/obj/item/weapon/storage/wallet/poly
+/obj/item/storage/wallet/poly
 	name = "polychromic wallet"
 	desc = "You can recolor it! Fancy! The future is NOW!"
 
-/obj/item/weapon/storage/wallet/poly/New()
+/obj/item/storage/wallet/poly/New()
 	..()
 	color = get_random_colour()
 	update_icon()
 
-/obj/item/weapon/storage/wallet/poly/verb/change_color()
+/obj/item/storage/wallet/poly/verb/change_color()
 	set name = "Change Wallet Color"
 	set category = "Object"
 	set desc = "Change the color of the wallet."
@@ -113,7 +113,7 @@
 		return
 	color = new_color
 
-/obj/item/weapon/storage/wallet/poly/emp_act()
+/obj/item/storage/wallet/poly/emp_act()
 	icon_state = "wallet-emp"
 	update_icon()
 

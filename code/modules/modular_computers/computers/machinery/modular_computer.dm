@@ -30,7 +30,7 @@ var/list/global_modular_computers = list()
 	var/_max_damage = 100
 	var/_break_damage = 50
 
-	var/obj/item/weapon/computer_hardware/tesla_link/tesla_link		// Tesla Link component of this computer. Allows remote charging from nearest APC.
+	var/obj/item/computer_hardware/tesla_link/tesla_link		// Tesla Link component of this computer. Allows remote charging from nearest APC.
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
@@ -135,7 +135,7 @@ var/list/global_modular_computers = list()
 		battery_powered = 0
 
 	var/power_usage = cpu.screen_on ? base_active_power_usage : base_idle_power_usage
-	for(var/obj/item/weapon/computer_hardware/CH in src.cpu.get_all_components())
+	for(var/obj/item/computer_hardware/CH in src.cpu.get_all_components())
 		if(CH.enabled)
 			power_usage += CH.power_usage
 
@@ -168,7 +168,7 @@ var/list/global_modular_computers = list()
 		return
 	..()
 
-/obj/machinery/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/modular_computer/attackby(var/obj/item/W, var/mob/user)
 	if(cpu)
 		return cpu.attackby(W, user)
 	return ..()

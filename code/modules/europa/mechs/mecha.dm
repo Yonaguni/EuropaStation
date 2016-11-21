@@ -17,14 +17,14 @@
 	var/offset_x = -8
 	var/offset_y = 0
 
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 
 	var/wreckage_path = /obj/structure/mech_wreckage
 	var/mech_turn_sound = 'sound/mecha/mechturn.ogg'
 	var/mech_step_sound = 'sound/mecha/mechstep.ogg'
 
 	// Access updating/container.
-	var/obj/item/weapon/card/id/access_card
+	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
 	var/sync_access = 1
 

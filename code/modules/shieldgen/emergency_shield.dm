@@ -42,7 +42,7 @@
 	if(!height || air_group) return 0
 	else return ..()
 
-/obj/machinery/shield/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/shield/attackby(var/obj/item/W, var/mob/user)
 	if(!istype(W)) return
 
 	//Calculate damage
@@ -240,7 +240,7 @@
 				malfunction = 1
 	checkhp()
 
-/obj/machinery/shieldgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldgen/attack_hand(var/mob/user)
 	if(locked)
 		user << "The machine is locked, you are unable to use it."
 		return
@@ -269,7 +269,7 @@
 		update_icon()
 		return 1
 
-/obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/shieldgen/attackby(var/obj/item/W, var/mob/user)
 	if(W.isscrewdriver())
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
@@ -308,7 +308,7 @@
 			anchored = 1
 
 
-	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/radio/headset/pda))
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/radio/headset/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"

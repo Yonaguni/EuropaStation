@@ -1,11 +1,11 @@
-/obj/item/weapon/grenade/fake
+/obj/item/grenade/fake
 	icon_state = "frggrenade"
 
-/obj/item/weapon/grenade/fake/detonate()
+/obj/item/grenade/fake/detonate()
 	active = 0
 	playsound(src.loc, get_sfx("explosion"), 50, 1, 30)
 
-/obj/item/weapon/grenade/spawnergrenade/fake_carp
+/obj/item/grenade/spawnergrenade/fake_carp
 
 	spawner_type = /mob/living/simple_animal/hostile/carp/holodeck
 	deliveryamt = 4

@@ -4,11 +4,11 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/aeolus/command
 	shoes = /obj/item/clothing/shoes/brown
-	backpack = /obj/item/weapon/storage/backpack/captain
-	satchel_one = /obj/item/weapon/storage/backpack/satchel_cap
-	id_type = /obj/item/weapon/card/id/gold
-	pda_type = /obj/item/device/radio/headset/pda/command
-	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
+	backpack = /obj/item/storage/backpack/captain
+	satchel_one = /obj/item/storage/backpack/satchel_cap
+	id_type = /obj/item/card/id/gold
+	pda_type = /obj/item/radio/headset/pda/command
+	backpack_contents = list(/obj/item/storage/box/ids = 1)
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
@@ -27,8 +27,8 @@
 	name = OUTFIT_JOB_NAME("Bridge Officer")
 	uniform = /obj/item/clothing/under/aeolus/bridge
 	shoes = /obj/item/clothing/shoes/brown
-	id_type = /obj/item/weapon/card/id/silver
-	pda_type = /obj/item/device/radio/headset/pda/command
+	id_type = /obj/item/card/id/silver
+	pda_type = /obj/item/radio/headset/pda/command
 
 
 /decl/hierarchy/outfit/job/bridge/xo
@@ -38,4 +38,4 @@
 /decl/hierarchy/outfit/job/bridge/operations
 	name = OUTFIT_JOB_NAME("Operations Officer")
 	uniform = /obj/item/clothing/under/aeolus/bridge/operations
-	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
+	backpack_contents = list(/obj/item/storage/box/ids = 1)

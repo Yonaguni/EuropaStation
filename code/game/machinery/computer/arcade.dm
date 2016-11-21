@@ -4,14 +4,14 @@
 	icon_state = "arcade"
 	icon_keyboard = null
 	icon_screen = "invaders"
-	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops			= 2,
+	var/list/prizes = list(	/obj/item/storage/box/snappops			= 2,
 							/obj/item/toy/blink								= 2,
 							/obj/item/clothing/under/syndicate/tacticool	= 2,
 							/obj/item/toy/sword								= 2,
-							/obj/item/weapon/gun/composite/premade/revolver/toy	= 2,
+							/obj/item/gun/composite/premade/revolver/toy	= 2,
 							/obj/item/toy/crossbow							= 2,
 							/obj/item/clothing/suit/syndicatefake			= 2,
-							/obj/item/weapon/storage/fancy/crayons			= 2,
+							/obj/item/storage/fancy/crayons			= 2,
 							/obj/item/toy/spinningtoy						= 2,
 							/obj/item/toy/prize/ripley						= 1,
 							/obj/item/toy/prize/fireripley					= 1,
@@ -35,8 +35,8 @@
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
 	if(!circuit)
-		var/choice = pick(typesof(/obj/item/weapon/circuitboard/arcade) - /obj/item/weapon/circuitboard/arcade)
-		var/obj/item/weapon/circuitboard/CB = new choice()
+		var/choice = pick(typesof(/obj/item/circuitboard/arcade) - /obj/item/circuitboard/arcade)
+		var/obj/item/circuitboard/CB = new choice()
 		new CB.build_path(loc, CB)
 		qdel(src)
 
@@ -52,7 +52,7 @@
 		var/atom/movable/prize = pick(contents)
 		prize.forceMove(src.loc)
 
-/obj/machinery/computer/arcade/attack_ai(mob/user as mob)
+/obj/machinery/computer/arcade/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
 
@@ -81,7 +81,7 @@
 	name = "arcade machine"
 	desc = "Does not support Pinball."
 	icon_state = "arcade"
-	circuit = /obj/item/weapon/circuitboard/arcade/battle
+	circuit = /obj/item/circuitboard/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners don't use space drugs" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
@@ -107,7 +107,7 @@
 	src.name = (name_action + name_part1 + name_part2)
 
 
-/obj/machinery/computer/arcade/battle/attack_hand(mob/user as mob)
+/obj/machinery/computer/arcade/battle/attack_hand(var/mob/user)
 	if(..())
 		return
 	user.set_machine(src)

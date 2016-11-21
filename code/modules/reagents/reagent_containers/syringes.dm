@@ -5,7 +5,7 @@
 #define SYRINGE_INJECT 1
 #define SYRINGE_BROKEN 2
 
-/obj/item/weapon/reagent_containers/syringe
+/obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/syringe.dmi'
@@ -35,7 +35,7 @@
 		..()
 		update_icon()
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 
 		switch(mode)
 			if(SYRINGE_DRAW)
@@ -50,7 +50,7 @@
 		..()
 		update_icon()
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I as obj, var/mob/user)
 		return
 
 	do_surgery(mob/living/carbon/M, mob/living/user)
@@ -146,10 +146,10 @@
 					user << "<span class='notice'>The syringe is empty.</span>"
 					mode = SYRINGE_DRAW
 					return
-				if(istype(target, /obj/item/weapon/implantcase/chem))
+				if(istype(target, /obj/item/implantcase/chem))
 					return
 
-				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
+				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/storage/fancy/cigarettes))
 					user << "<span class='notice'>You cannot directly fill this object.</span>"
 					return
 				if(!target.reagents.get_free_space())
@@ -217,7 +217,7 @@
 			filling.color = reagents.get_color()
 			overlays += filling
 
-	proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+	proc/syringestab(var/mob/living/carbon/target, var/mob/living/carbon/user)
 
 		if(istype(target, /mob/living/carbon/human))
 
@@ -291,7 +291,7 @@
 			on_reagent_change()
 			reagents.handle_reactions()
 
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe
+/obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
 	amount_per_transfer_from_this = 60
@@ -311,7 +311,7 @@
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/syringe/adrenaline
+/obj/item/reagent_containers/syringe/adrenaline
 	name = "Syringe (adrenaline)"
 	desc = "Contains adrenaline - used to stabilize patients."
 	New()
@@ -320,7 +320,7 @@
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/antitoxin
+/obj/item/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 	New()
@@ -329,7 +329,7 @@
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/antiviral
+/obj/item/reagent_containers/syringe/antiviral
 	name = "Syringe (antibiotic)"
 	desc = "Contains antibiotic agents."
 	New()
@@ -338,7 +338,7 @@
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/drugs
+/obj/item/reagent_containers/syringe/drugs
 	name = "Syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	New()
@@ -349,14 +349,14 @@
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
+/obj/item/reagent_containers/syringe/ld50_syringe/choral
 	New()
 		..()
 		reagents.add_reagent("chloralhydrate", 60)
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/steroid
+/obj/item/reagent_containers/syringe/steroid
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 	New()
@@ -364,21 +364,21 @@
 		reagents.add_reagent("adrenaline",5)
 		reagents.add_reagent("jumpstart",10)
 
-/obj/item/weapon/reagent_containers/syringe/mutationtoxin
+/obj/item/reagent_containers/syringe/mutationtoxin
 	name = "Syringe (slime mutation toxin)"
 	desc = "Contains slime mutation toxin."
 	New()
 		..()
 		reagents.add_reagent("mutationtoxin",15)
 
-/obj/item/weapon/reagent_containers/syringe/promethean
+/obj/item/reagent_containers/syringe/promethean
 	name = "Syringe (promethean serum)"
 	desc = "Contains a sample of promethean serum."
 	New()
 		..()
 		reagents.add_reagent("prometheanserum",15)
 
-/obj/item/weapon/reagent_containers/syringe/slimecrystal
+/obj/item/reagent_containers/syringe/slimecrystal
 	name = "Syringe (crystallizing agent)"
 	desc = "Contains drugs for crystallizing slimes."
 	New()

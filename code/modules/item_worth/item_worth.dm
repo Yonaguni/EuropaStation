@@ -1,4 +1,4 @@
-/proc/get_value(atom/A) // A can be either type *or* instance; ie get_value(/obj) is valid, as is get_value(new /obj)
+/proc/get_value(var/atom/A) // A can be either type *or* instance; ie get_value(var/obj) is valid, as is get_value(new /obj)
 	var/atom/t = ispath(A) ? A : A.type
 	while(!(t in worths)) // Find the first parent that is in the list
 		t = PARENT(t)

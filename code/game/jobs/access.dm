@@ -197,7 +197,7 @@
 	return null
 
 /mob/observer/ghost
-	var/static/obj/item/weapon/card/id/all_access/ghost_all_access
+	var/static/obj/item/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
 	if(!is_admin(src))
 		return
@@ -222,7 +222,7 @@
 	return idcard
 
 proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
-	var/obj/item/weapon/card/id/C = M.GetIdCard()
+	var/obj/item/card/id/C = M.GetIdCard()
 	if(C)
 		return C.registered_name
 	return missing_id_name
@@ -231,7 +231,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = GetID()
+	var/obj/item/card/id/I = GetID()
 
 	if(I)
 		var/job_icons = get_all_job_icons()

@@ -19,7 +19,7 @@
 	var/list/construction_options = list("One Direction", "Full Window")
 	default_type = "glass"
 
-/obj/item/stack/material/glass/attack_self(mob/user as mob)
+/obj/item/stack/material/glass/attack_self(var/mob/user)
 	construct_window(user)
 
 /obj/item/stack/material/glass/attackby(obj/item/W, mob/user)
@@ -52,7 +52,7 @@
 			if (!G && replace)
 				user.put_in_hands(RG)
 
-/obj/item/stack/material/glass/proc/construct_window(mob/user as mob)
+/obj/item/stack/material/glass/proc/construct_window(var/mob/user)
 	if(!user || !src)	return 0
 	if(!istype(user.loc,/turf)) return 0
 	if(!user.IsAdvancedToolUser())
