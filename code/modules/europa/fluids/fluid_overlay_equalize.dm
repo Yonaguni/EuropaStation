@@ -1,5 +1,6 @@
 /obj/effect/fluid/var/list/equalizing_fluids = list()
 /obj/effect/fluid/var/equalize_avg_depth = 0
+/obj/effect/fluid/var/equalize_avg_temp = 0
 
 /obj/effect/fluid/proc/spread()
 	if(!loc || loc != start_loc || !loc.CanFluidPass())
@@ -22,6 +23,7 @@
 				continue
 		if(!F)
 			F = new /obj/effect/fluid(T)
+			F.temperature = temperature
 		equalizing_fluids += F
 
 /obj/effect/fluid/proc/equalize()
@@ -30,20 +32,24 @@
 		return
 
 	equalize_avg_depth = 0
+	equalize_avg_temp = 0
 	for(var/obj/effect/fluid/F in equalizing_fluids)
 		if(!istype(F) || deleted(F) || F.fluid_amount <= FLUID_DELETING)
 			equalizing_fluids -= F
 			continue
 		equalize_avg_depth += F.fluid_amount
+		equalize_avg_temp += F.temperature
 
 	if(islist(equalizing_fluids) && equalizing_fluids.len > 1)
 		equalize_avg_depth = Floor(equalize_avg_depth/equalizing_fluids.len)
-		if(equalize_avg_depth)
-			for(var/thing in equalizing_fluids)
-				if(deleted(thing))
-					continue
-				var/obj/effect/fluid/F = thing
-				F.set_depth(equalize_avg_depth)
+		equalize_avg_temp = Floor(equalize_avg_temp/equalizing_fluids.len)
+		for(var/thing in equalizing_fluids)
+			if(deleted(thing))
+				continue
+			var/obj/effect/fluid/F = thing
+			F.set_depth(equalize_avg_depth)
+			F.temperature = equalize_avg_temp
+
 	equalizing_fluids.Cut()
 
 	if(istype(loc, /turf/space))

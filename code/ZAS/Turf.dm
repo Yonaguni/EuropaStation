@@ -231,11 +231,13 @@
 
 /turf/return_air()
 	//Create gas mixture to hold data for passing
-	var/datum/gas_mixture/GM = new
-
-	GM.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, GAS_FUEL, phoron)
-	GM.temperature = temperature
-
+	var/datum/gas_mixture/GM
+	if(outside && using_map)
+		GM = using_map.get_exterior_air()
+	else
+		GM = new
+		GM.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, GAS_FUEL, phoron)
+		GM.temperature = temperature
 	return GM
 
 /turf/remove_air(amount as num)
@@ -272,6 +274,10 @@
 	return my_air.remove(amount)
 
 /turf/simulated/return_air()
+
+	if(outside)
+		return ..()
+
 	if(zone)
 		if(!zone.invalid)
 			air_master.mark_zone_update(zone)

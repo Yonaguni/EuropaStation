@@ -45,3 +45,12 @@
 	tile_overlay = "gas_sparse"
 	overlay_limit = 1
 	flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
+
+// This is only to be used for abstract stuff (drowning on Europa etc) for the moment
+// may add it as 'Steam' at some point down the track
+/decl/xgm_gas/water
+	id = "water"
+	name = "Water"
+	specific_heat = 75.97	// J/(mol*K)
+	molar_mass = 1.8		// kg/mol
+	tile_overlay = "gas_dense"

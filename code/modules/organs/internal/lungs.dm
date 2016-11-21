@@ -5,6 +5,7 @@
 	organ_tag = "lungs"
 	parent_organ = BP_CHEST
 
+	var/has_gills = FALSE
 	var/breath_type
 	var/poison_type
 	var/exhale_type
@@ -16,6 +17,13 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 	var/breathing = 0
+
+/obj/item/organ/internal/lungs/skrell
+	name = "respiration sac"
+	icon_state = "liver"
+	color = COLOR_CYAN
+	gender = NEUTER
+	has_gills = TRUE
 
 /obj/item/organ/internal/lungs/robotize()
 	. = ..()

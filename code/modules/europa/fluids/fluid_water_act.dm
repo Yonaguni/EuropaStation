@@ -15,13 +15,6 @@ var/atom/movable/waterproof
 /datum/species/proc/water_act(var/mob/living/carbon/human/H, var/depth)
 	return
 
-/obj/item/organ/internal/gills
-	name = "gills"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "gills"
-	parent_organ = "head"
-
 /datum/species/skrell/water_act(var/mob/living/carbon/human/H, var/depth)
 	..()
 	if(depth >= 40)
