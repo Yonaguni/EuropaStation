@@ -845,7 +845,7 @@
 "qv" = (/obj/effect/floor_decal/corner/purple{dir = 9},/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)
 "qw" = (/obj/effect/floor_decal/corner/purple{tag = "icon-corner_purple (SOUTHEAST)"; dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{tag = "icon-intact-supply (NORTH)"; icon_state = "intact-supply"; dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{tag = "icon-intact-scrubbers (NORTH)"; icon_state = "intact-scrubbers"; dir = 1},/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)
 "qx" = (/obj/structure/table/standard,/obj/item/storage/box/botanydisk,/obj/item/storage/box/beakers{pixel_x = 2; pixel_y = 2},/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)
-"qy" = (/obj/structure/table/standard,/obj/item/device/analyzer/plant_analyzer,/obj/item/tape_roll,/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)
+"qy" = (/obj/structure/table/standard,/obj/item/analyzer/plant_analyzer,/obj/item/tape_roll,/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)
 "qz" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/unary/vent_pump/on{tag = "icon-map_vent_out (NORTH)"; icon_state = "map_vent_out"; dir = 1},/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenobio)
 "qA" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/freezer,/area/europa/dome_ind/xenoflora)
 "qB" = (/obj/structure/table/standard,/obj/item/storage/box/syringes,/turf/simulated/floor/tiled/white,/area/europa/dome_ind/xenoflora)

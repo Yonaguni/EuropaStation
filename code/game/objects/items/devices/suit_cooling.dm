@@ -1,4 +1,4 @@
-/obj/item/device/suit_cooling_unit
+/obj/item/suit_cooling_unit
 	name = "portable cooling unit"
 	desc = "A large portable heat sink with liquid cooled radiator packaged into a modified backpack."
 	description_info = "You may wear this instead of your backpack to cool yourself down. It is commonly used by full-body prosthetic users, \
@@ -29,15 +29,15 @@
 	var/charge_consumption = 2 KILOWATTS	// energy usage at full power
 	var/thermostat = T20C
 
-/obj/item/device/suit_cooling_unit/ui_action_click()
+/obj/item/suit_cooling_unit/ui_action_click()
 	toggle(usr)
 
-/obj/item/device/suit_cooling_unit/New()
+/obj/item/suit_cooling_unit/New()
 	processing_objects |= src
 	cell = new/obj/item/cell/high()		// 10K rated cell.
 	cell.forceMove(src)
 
-/obj/item/device/suit_cooling_unit/process()
+/obj/item/suit_cooling_unit/process()
 	if (!on || !cell)
 		return
 
@@ -63,14 +63,14 @@
 
 // Checks whether the cooling unit is being worn on the back/suit slot.
 // That way you can't carry it in your hands while it's running to cool yourself down.
-/obj/item/device/suit_cooling_unit/proc/is_in_slot()
+/obj/item/suit_cooling_unit/proc/is_in_slot()
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H))
 		return 0
 
 	return (H.back == src) || (H.s_store == src)
 
-/obj/item/device/suit_cooling_unit/proc/turn_on()
+/obj/item/suit_cooling_unit/proc/turn_on()
 	if(!cell)
 		return
 	if(cell.charge <= 0)
@@ -79,12 +79,12 @@
 	on = 1
 	update_icon()
 
-/obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
+/obj/item/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	update_icon()
 
-/obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
+/obj/item/suit_cooling_unit/attack_self(var/mob/user)
 	if(cover_open && cell)
 		if(ishuman(user))
 			user.put_in_hands(cell)
@@ -101,14 +101,14 @@
 
 	toggle(user)
 
-/obj/item/device/suit_cooling_unit/proc/toggle(var/mob/user)
+/obj/item/suit_cooling_unit/proc/toggle(var/mob/user)
 	if(on)
 		turn_off()
 	else
 		turn_on()
 	user << "<span class='notice'>You switch \the [src] [on ? "on" : "off"].</span>"
 
-/obj/item/device/suit_cooling_unit/attackby(var/obj/item/W, var/mob/user)
+/obj/item/suit_cooling_unit/attackby(var/obj/item/W, var/mob/user)
 	if (W.isscrewdriver())
 		if(cover_open)
 			cover_open = 0
@@ -133,7 +133,7 @@
 
 	return ..()
 
-/obj/item/device/suit_cooling_unit/update_icon()
+/obj/item/suit_cooling_unit/update_icon()
 	overlays.Cut()
 	if (cover_open)
 		if (cell)
@@ -162,7 +162,7 @@
 			overlays.Add("battery-5")
 
 
-/obj/item/device/suit_cooling_unit/examine(mob/user)
+/obj/item/suit_cooling_unit/examine(mob/user)
 	if(!..(user, 1))
 		return
 

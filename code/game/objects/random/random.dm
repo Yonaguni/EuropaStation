@@ -51,7 +51,7 @@
 					/obj/item/weldingtool,\
 					/obj/item/crowbar,\
 					/obj/item/wrench,\
-					/obj/item/device/flashlight)
+					/obj/item/flashlight)
 
 
 /obj/random/technology_scanner
@@ -60,9 +60,9 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
 	item_to_spawn()
-		return pick(prob(5);/obj/item/device/t_scanner,\
-					prob(2);/obj/item/device/radio,\
-					prob(5);/obj/item/device/analyzer)
+		return pick(prob(5);/obj/item/t_scanner,\
+					prob(2);/obj/item/radio,\
+					prob(5);/obj/item/analyzer)
 
 
 /obj/random/powercell
@@ -84,10 +84,10 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 	item_to_spawn()
-		return pick(/obj/item/device/assembly/igniter,\
-					/obj/item/device/assembly/prox_sensor,\
-					/obj/item/device/assembly/signaler,\
-					/obj/item/device/multitool)
+		return pick(/obj/item/assembly/igniter,\
+					/obj/item/assembly/prox_sensor,\
+					/obj/item/assembly/signaler,\
+					/obj/item/multitool)
 
 
 /obj/random/toolbox
@@ -472,7 +472,7 @@ obj/random/material //Random materials for building stuff
 					prob(3);/obj/random/coin,\
 					prob(5);/obj/random/toy,\
 					prob(3);/obj/random/tank,\
-					prob(3);/obj/item/device/flashlight/lantern,\
+					prob(3);/obj/item/flashlight/lantern,\
 					prob(5);/obj/item/storage/fancy/cigarettes,\
 					prob(4);/obj/item/storage/fancy/cigarettes/dromedaryco,\
 					prob(3);/obj/item/storage/fancy/cigarettes/killthroat,\
@@ -496,8 +496,8 @@ obj/random/material //Random materials for building stuff
 					prob(3);/obj/item/storage/wallet,\
 					prob(2);/obj/item/storage/belt/utility/full,\
 					prob(2);/obj/item/storage/belt/medical/emt,\
-					prob(4);/obj/item/device/toner,\
-					prob(1);/obj/item/device/paicard,\
+					prob(4);/obj/item/toner,\
+					prob(1);/obj/item/paicard,\
 					prob(3);/obj/item/clothing/shoes/workboots,\
 					prob(3);/obj/item/clothing/shoes/jackboots,\
 					prob(1);/obj/item/clothing/shoes/swat,\
@@ -535,7 +535,7 @@ obj/random/material //Random materials for building stuff
 					prob(4);/obj/item/caution,\
 					prob(4);/obj/item/caution/cone,\
 					prob(1);/obj/random/loot,\
-					prob(3);/obj/item/device/radio/headset)
+					prob(3);/obj/item/radio/headset)
 
 
 /obj/random/loot /*Better loot for away missions and salvage */
@@ -559,7 +559,7 @@ obj/random/material //Random materials for building stuff
 					prob(3);/obj/random/tank,\
 					prob(1);/obj/random/energy,\
 					prob(1);/obj/random/projectile,\
-					prob(4);/obj/item/device/flashlight/lantern,\
+					prob(4);/obj/item/flashlight/lantern,\
 					prob(4);/obj/item/storage/fancy/cigarettes/dromedaryco,\
 					prob(3);/obj/item/storage/fancy/cigarettes/killthroat,\
 					prob(2);/obj/item/storage/fancy/cigar,\
@@ -611,8 +611,8 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/stack/material/tritium{amount = 10},\
 					prob(2);/obj/item/stack/material/mhydrogen{amount = 10},\
 					prob(3);/obj/item/stack/material/plasteel{amount = 10},\
-					prob(2);/obj/item/device/multitool/hacktool,\
-					prob(3);/obj/item/device/radio/headset)
+					prob(2);/obj/item/multitool/hacktool,\
+					prob(3);/obj/item/radio/headset)
 
 /obj/random/voidhelmet
 	name = "Random Voidsuit Helmet"

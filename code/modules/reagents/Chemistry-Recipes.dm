@@ -1171,7 +1171,7 @@
 
 /datum/chemical_reaction/slime/glow/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
-	var/obj/item/device/flashlight/slime/F = new /obj/item/device/flashlight/slime
+	var/obj/item/flashlight/slime/F = new /obj/item/flashlight/slime
 	F.loc = get_turf(holder.my_atom)
 
 //Purple
@@ -1302,7 +1302,7 @@
 
 /datum/chemical_reaction/slime/film/on_reaction(var/datum/reagents/holder)
 	for(var/i in 1 to result_amount)
-		new /obj/item/device/camera_film(get_turf(holder.my_atom))
+		new /obj/item/camera_film(get_turf(holder.my_atom))
 	..()
 
 /datum/chemical_reaction/slime/camera
@@ -1314,7 +1314,7 @@
 	required = /obj/item/slime_extract/sepia
 
 /datum/chemical_reaction/slime/camera/on_reaction(var/datum/reagents/holder)
-	new /obj/item/device/camera(get_turf(holder.my_atom))
+	new /obj/item/camera(get_turf(holder.my_atom))
 	..()
 
 //Bluespace
@@ -2112,5 +2112,5 @@
 /datum/chemical_reaction/nullglass/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/device/soulstone(location)
+		new /obj/item/soulstone(location)
 	return

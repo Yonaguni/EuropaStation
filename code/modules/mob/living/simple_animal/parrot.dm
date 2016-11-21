@@ -62,7 +62,7 @@
 	var/list/available_channels = list()
 
 	//Headset for Poly to yell at engineers :)
-	var/obj/item/device/radio/headset/ears = null
+	var/obj/item/radio/headset/ears = null
 
 	//The thing the parrot is currently interested in. This gets used for items the parrot wants to pick up, mobs it wants to steal from,
 	//mobs it wants to attack or mobs that have attacked it
@@ -164,11 +164,11 @@
 						if(!item_to_add)
 							return
 
-						if( !istype(item_to_add,  /obj/item/device/radio/headset) )
+						if( !istype(item_to_add,  /obj/item/radio/headset) )
 							usr << "\red This object won't fit."
 							return
 
-						var/obj/item/device/radio/headset/headset_to_add = item_to_add
+						var/obj/item/radio/headset/headset_to_add = item_to_add
 
 						usr.drop_item()
 						headset_to_add.loc = src
@@ -670,7 +670,7 @@
 	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
 
 /mob/living/simple_animal/parrot/Poly/New()
-	ears = new /obj/item/device/radio/headset(src)
+	ears = new /obj/item/radio/headset(src)
 	available_channels = list(":e")
 	..()
 
@@ -701,7 +701,7 @@
 
 	if(message_mode)
 		if(message_mode in radiochannels)
-			if(ears && istype(ears,/obj/item/device/radio))
+			if(ears && istype(ears,/obj/item/radio))
 				ears.talk_into(src,sanitize(message), message_mode, verb, null)
 
 

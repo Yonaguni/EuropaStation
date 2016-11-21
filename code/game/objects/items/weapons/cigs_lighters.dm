@@ -23,7 +23,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(A, /obj/item/flame))
 		var/obj/item/flame/F = A
 		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
+	else if(istype(A, /obj/item/assembly/igniter))
 		return 1
 	return 0
 
@@ -182,7 +182,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			text = lightermes
 		else if(W.iswelder())
 			text = weldermes
-		else if(istype(W, /obj/item/device/assembly/igniter))
+		else if(istype(W, /obj/item/assembly/igniter))
 			text = ignitermes
 		text = replacetext(text, "USER", "[user]")
 		text = replacetext(text, "NAME", "[name]")
@@ -413,7 +413,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(M.lit)
 			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name] with the power of science.</span>")
 
 	user.update_inv_wear_mask(0)

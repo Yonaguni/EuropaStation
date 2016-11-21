@@ -9,7 +9,7 @@
 	id_slot = slot_l_hand
 	id_type = /obj/item/card/id/civilian
 	pda_slot = slot_wear_id
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/radio/headset/pda
 
 	var/backpack = /obj/item/storage/backpack
 	var/satchel_one  = /obj/item/storage/backpack/satchel_norm

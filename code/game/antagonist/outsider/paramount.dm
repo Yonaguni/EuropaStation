@@ -22,7 +22,7 @@ var/datum/antagonist/paramount/paramounts
 /datum/antagonist/paramount/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
 	var/obj/item/card/id/W = ..(assignment, player, equip = 0)
 	if(!W) return
-	var/obj/item/device/radio/headset/pda/command/pda = new(get_turf(player))
+	var/obj/item/radio/headset/pda/command/pda = new(get_turf(player))
 	pda.id = W
 	player.drop_from_inventory(W)
 	W.forceMove(pda)

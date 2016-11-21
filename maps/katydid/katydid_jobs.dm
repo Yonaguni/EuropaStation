@@ -130,26 +130,26 @@
 	name = "Crewman"
 	uniform = /obj/item/clothing/under/hireling
 	id_type = /obj/item/card/id
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/radio/headset/pda
 
 /decl/hierarchy/outfit/job/katydid/crew/doctor
 	name = "Ship's Doctor"
 	uniform = 	/obj/item/clothing/under/fatigues
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/white
-	pda_type = /obj/item/device/radio/headset/pda/medical
+	pda_type = /obj/item/radio/headset/pda/medical
 
 /decl/hierarchy/outfit/job/katydid/crew/gunner
 	name = "Gunner"
-	pda_type = /obj/item/device/radio/headset/pda/security
+	pda_type = /obj/item/radio/headset/pda/security
 
 /decl/hierarchy/outfit/job/katydid/crew/firstmate
 	name = "First Mate"
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 
 /decl/hierarchy/outfit/job/katydid/crew/captain
 	name = "Captain"
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 
 /decl/hierarchy/outfit/job/katydid/crew/captain/equip(mob/living/carbon/human/H, var/rank, var/assignment)
 	. = ..()
@@ -181,7 +181,7 @@
 	name = "Engineer"
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/workboots
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering
 
 /obj/effect/landmark/start/katydid
 	name = "Passenger"

@@ -120,11 +120,11 @@
     new /obj/item/clothing/suit/storage/toggle/fr_jacket(src)
     new /obj/item/clothing/suit/storage/toggle/labcoat(src)
     new /obj/item/cartridge/medical(src)
-    new /obj/item/device/flashlight(src)
+    new /obj/item/flashlight(src)
     new /obj/item/tank/emergency/oxygen/engi(src)
     new /obj/item/clothing/glasses/hud/health(src)
-    new /obj/item/device/healthanalyzer(src)
-    new /obj/item/device/radio/off(src)
+    new /obj/item/healthanalyzer(src)
+    new /obj/item/radio/off(src)
     new /obj/random/medical(src)
     new /obj/item/crowbar(src)
     new /obj/item/extinguisher/mini(src)
@@ -174,7 +174,7 @@
 		new /obj/item/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/reagent_containers/hypospray(src)
 		return
 
@@ -187,10 +187,10 @@
 
 	New()
 		..()
-		new /obj/item/device/assembly/signaler(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
+		new /obj/item/assembly/signaler(src)
+		new /obj/item/radio/electropack(src)
+		new /obj/item/radio/electropack(src)
+		new /obj/item/radio/electropack(src)
 		return
 
 

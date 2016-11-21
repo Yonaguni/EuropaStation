@@ -1,4 +1,4 @@
-/obj/item/device/dociler
+/obj/item/dociler
 	name = "dociler"
 	desc = "A complex single use recharging injector that spreads a complex neurological serum that makes animals docile and friendly. Somewhat."
 	w_class = 3
@@ -13,11 +13,11 @@
 	var/loaded = 1
 	var/mode = "completely"
 
-/obj/item/device/dociler/examine(var/mob/user)
+/obj/item/dociler/examine(var/mob/user)
 	..(user)
 	user << "<span class='notice'>It is currently set to [mode] docile mode.</span>"
 
-/obj/item/device/dociler/attack_self(var/mob/user)
+/obj/item/dociler/attack_self(var/mob/user)
 	if(mode == "somewhat")
 		mode = "completely"
 	else
@@ -25,7 +25,7 @@
 
 	user << "You set \the [src] to [mode] docile mode."
 
-/obj/item/device/dociler/attack(var/mob/living/L, var/mob/user)
+/obj/item/dociler/attack(var/mob/living/L, var/mob/user)
 	if(!istype(L, /mob/living/simple_animal))
 		user << "<span class='warning'>\The [src] cannot not work on \the [L].</span>"
 		return

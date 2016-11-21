@@ -23,7 +23,7 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
+	if(rigged && locate(/obj/item/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -81,7 +81,7 @@
 			user  << "<span class='notice'>You rig [src].</span>"
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/device/radio/electropack))
+	else if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
 			user  << "<span class='notice'>You attach [W] to [src].</span>"
 			user.drop_item()
@@ -184,7 +184,7 @@
 		src.toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(var/obj/item/W, var/mob/user)
-	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/wirecutters)))
+	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/wirecutters)))
 		return ..()
 	if(istype(W, /obj/item/melee/energy/blade))
 		emag_act(INFINITY, user)
@@ -512,8 +512,8 @@
 		new /obj/item/material/hatchet(src)
 		new /obj/item/wirecutters/clippers(src)
 		new /obj/item/wirecutters/clippers(src)
-		new /obj/item/device/analyzer/plant_analyzer(src)
-		new /obj/item/device/analyzer/plant_analyzer(src)
+		new /obj/item/analyzer/plant_analyzer(src)
+		new /obj/item/analyzer/plant_analyzer(src)
 //		new /obj/item/weedspray(src)
 //		new /obj/item/weedspray(src)
 //		new /obj/item/pestspray(src)

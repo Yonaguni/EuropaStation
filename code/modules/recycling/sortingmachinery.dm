@@ -26,8 +26,8 @@
 	qdel(src)
 
 /obj/structure/bigDelivery/attackby(obj/item/W as obj, var/mob/user)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+	if(istype(W, /obj/item/destTagger))
+		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
 				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
@@ -133,8 +133,8 @@
 	return
 
 /obj/item/smallDelivery/attackby(obj/item/W as obj, var/mob/user)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+	if(istype(W, /obj/item/destTagger))
+		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
 				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
@@ -321,7 +321,7 @@
 		AM.loc = T
 	return ..()
 
-/obj/item/device/destTagger
+/obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
@@ -332,7 +332,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
-/obj/item/device/destTagger/proc/openwindow(var/mob/user)
+/obj/item/destTagger/proc/openwindow(var/mob/user)
 	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
@@ -347,11 +347,11 @@
 	user << browse(dat, "window=destTagScreen;size=450x375")
 	onclose(user, "destTagScreen")
 
-/obj/item/device/destTagger/attack_self(var/mob/user)
+/obj/item/destTagger/attack_self(var/mob/user)
 	openwindow(user)
 	return
 
-/obj/item/device/destTagger/Topic(href, href_list)
+/obj/item/destTagger/Topic(href, href_list)
 	src.add_fingerprint(usr)
 	if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
 		src.currTag = href_list["nextTag"]

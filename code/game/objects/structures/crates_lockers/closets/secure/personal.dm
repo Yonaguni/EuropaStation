@@ -11,7 +11,7 @@
 			new /obj/item/storage/backpack(src)
 		else
 			new /obj/item/storage/backpack/satchel_norm(src)
-		new /obj/item/device/radio/headset( src )
+		new /obj/item/radio/headset( src )
 	return
 
 
@@ -57,7 +57,7 @@
 		for(var/atom/movable/AM in contents)
 			qdel(AM)
 		new /obj/item/storage/backpack/satchel/withwallet( src )
-		new /obj/item/device/radio/headset( src )
+		new /obj/item/radio/headset( src )
 	return
 
 /obj/structure/closet/secure_closet/personal/attackby(var/obj/item/W, var/mob/user)

@@ -1,7 +1,7 @@
 //
 //Robotic Component Analyser, basically a health analyser for robots
 //
-/obj/item/device/robotanalyzer
+/obj/item/robotanalyzer
 	name = "robot analyzer"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
@@ -16,7 +16,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
 
-/obj/item/device/robotanalyzer/attack(var/mob/living/M, var/mob/living/user)
+/obj/item/robotanalyzer/attack(var/mob/living/M, var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))

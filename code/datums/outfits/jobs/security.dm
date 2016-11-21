@@ -11,18 +11,18 @@
 	name = OUTFIT_JOB_NAME("Chief of Security")
 	uniform = /obj/item/clothing/under/aeolus/security/chief
 	id_type = /obj/item/card/id/security/head
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 	backpack_contents = list(/obj/item/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/warden
 	name = OUTFIT_JOB_NAME("Munitions Officer")
 	uniform = /obj/item/clothing/under/aeolus/security
-	l_pocket = /obj/item/device/flash
+	l_pocket = /obj/item/flash
 	id_type = /obj/item/card/id/security
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")
 	uniform = /obj/item/clothing/under/aeolus/security
-	l_pocket = /obj/item/device/flash
+	l_pocket = /obj/item/flash
 	r_pocket = /obj/item/handcuffs
 	id_type = /obj/item/card/id/security

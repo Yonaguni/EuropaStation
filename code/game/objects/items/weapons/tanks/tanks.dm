@@ -45,8 +45,8 @@ var/list/global/tank_gauge_cache = list()
 	if(air_contents)
 		qdel(air_contents)
 	processing_objects.Remove(src)
-	if(istype(loc, /obj/item/device/transfer_valve))
-		var/obj/item/device/transfer_valve/TTV = loc
+	if(istype(loc, /obj/item/transfer_valve))
+		var/obj/item/transfer_valve/TTV = loc
 		TTV.remove_tank(src)
 
 	return ..()
@@ -76,15 +76,15 @@ var/list/global/tank_gauge_cache = list()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
-		var/obj/item/device/analyzer/A = W
+	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/device/assembly_holder))
+	if(istype(W, /obj/item/assembly_holder))
 		bomb_assemble(W,user)
 
 /obj/item/tank/attack_self(var/mob/user)
@@ -256,7 +256,7 @@ var/list/global/tank_gauge_cache = list()
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(src.loc,/obj/item/device/transfer_valve))
+		if(!istype(src.loc,/obj/item/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
 			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
 

@@ -46,16 +46,16 @@
 		/obj/item/weldingtool,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
-		/obj/item/device/multitool,
-		/obj/item/device/flashlight,
+		/obj/item/multitool,
+		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
 		/obj/item/taperoll/engineering,
-		/obj/item/device/robotanalyzer,
+		/obj/item/robotanalyzer,
 		/obj/item/material/minihoe,
 		/obj/item/material/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/analyzer/plant_analyzer,
 		/obj/item/extinguisher/mini
 		)
 
@@ -77,7 +77,7 @@
 	new /obj/item/weldingtool(src)
 	new /obj/item/crowbar(src)
 	new /obj/item/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
+	new /obj/item/t_scanner(src)
 
 
 
@@ -87,7 +87,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
@@ -98,14 +98,14 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/crowbar,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/extinguisher/mini
 		)
 
@@ -124,7 +124,7 @@
 		/obj/item/grenade,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/handcuffs,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
@@ -132,11 +132,11 @@
 		/obj/item/melee/baton,
 		/obj/item/flame/lighter,
 		/obj/item/clothing/glasses/hud/security,
-		/obj/item/device/flashlight,
-		/obj/item/device/radio/headset/pda,
-		/obj/item/device/radio/headset,
-		/obj/item/device/hailer,
-		/obj/item/device/megaphone,
+		/obj/item/flashlight,
+		/obj/item/radio/headset/pda,
+		/obj/item/radio/headset,
+		/obj/item/hailer,
+		/obj/item/megaphone,
 		/obj/item/melee,
 		/obj/item/gun/composite/premade/pistol/a38/preloaded,
 		/obj/item/taperoll/police
@@ -149,17 +149,17 @@
 	item_state = "soulstonebelt"
 	storage_slots = 6
 	can_hold = list(
-		/obj/item/device/soulstone
+		/obj/item/soulstone
 		)
 
 /obj/item/storage/belt/soulstone/full/New()
 	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
 
 
 /obj/item/storage/belt/champion

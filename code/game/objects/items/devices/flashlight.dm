@@ -1,4 +1,4 @@
-/obj/item/device/flashlight
+/obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
@@ -17,11 +17,11 @@
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
 
-/obj/item/device/flashlight/initialize()
+/obj/item/flashlight/initialize()
 	..()
 	update_icon()
 
-/obj/item/device/flashlight/update_icon()
+/obj/item/flashlight/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		set_light()
@@ -29,7 +29,7 @@
 		icon_state = "[initial(icon_state)]"
 		kill_light()
 
-/obj/item/device/flashlight/attack_self(mob/user)
+/obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return 0
@@ -38,7 +38,7 @@
 	user.update_action_buttons()
 	return 1
 
-/obj/item/device/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/flashlight/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(light_obj && light_obj.is_directional_light())
 		var/turf/origin = get_turf(light_obj)
 		var/turf/target = get_turf(A)
@@ -48,7 +48,7 @@
 			return
 	return ..()
 
-/obj/item/device/flashlight/attack(var/mob/living/M, var/mob/living/user)
+/obj/item/flashlight/attack(var/mob/living/M, var/mob/living/user)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == BP_EYES)
 
@@ -83,7 +83,7 @@
 	else
 		return ..()
 
-/obj/item/device/flashlight/proc/inspect_vision(obj/item/organ/vision, mob/living/user)
+/obj/item/flashlight/proc/inspect_vision(obj/item/organ/vision, mob/living/user)
 	var/mob/living/carbon/human/H = vision.owner
 
 	if(H == user)	//can't look into your own eyes buster
@@ -114,7 +114,7 @@
 
 	//if someone wants to implement inspecting robot eyes here would be the place to do it.
 
-/obj/item/device/flashlight/pen
+/obj/item/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
@@ -124,7 +124,7 @@
 	light_range = 2
 	w_class = 1
 
-/obj/item/device/flashlight/drone
+/obj/item/flashlight/drone
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
@@ -135,7 +135,7 @@
 
 
 // the desk lamps are a bit special
-/obj/item/device/flashlight/lamp
+/obj/item/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
@@ -148,13 +148,13 @@
 
 
 // green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
+/obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	light_color = "#FFC58F"
 
-/obj/item/device/flashlight/lamp/verb/toggle_light()
+/obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
 	set src in oview(1)
@@ -164,7 +164,7 @@
 
 // FLARES
 
-/obj/item/device/flashlight/flare
+/obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 1
@@ -177,11 +177,11 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 
-/obj/item/device/flashlight/flare/New()
+/obj/item/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
-/obj/item/device/flashlight/flare/process()
+/obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
@@ -192,17 +192,17 @@
 			src.icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
 
-/obj/item/device/flashlight/flare/proc/turn_off()
+/obj/item/flashlight/flare/proc/turn_off()
 	on = 0
 	src.force = initial(src.force)
 	src.damtype = initial(src.damtype)
 	update_icon()
 
-/obj/item/device/flashlight/flare/attack_self(mob/user)
+/obj/item/flashlight/flare/attack_self(mob/user)
 	if(turn_on(user))
 		user.visible_message("<span class='notice'>\The [user] activates \the [src].</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 
-/obj/item/device/flashlight/flare/proc/turn_on(var/mob/user)
+/obj/item/flashlight/flare/proc/turn_on(var/mob/user)
 	if(on)
 		return FALSE
 	if(!fuel)
@@ -216,7 +216,7 @@
 	update_icon()
 	return 1
 
-/obj/item/device/flashlight/slime
+/obj/item/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
 	desc = "A glowing ball of what appears to be amber."
@@ -227,12 +227,12 @@
 	light_range = 5
 	on = 1 //Bio-luminesence has one setting, on.
 
-/obj/item/device/flashlight/slime/New()
+/obj/item/flashlight/slime/New()
 	..()
 	set_light()
 
-/obj/item/device/flashlight/slime/update_icon()
+/obj/item/flashlight/slime/update_icon()
 	return
 
-/obj/item/device/flashlight/slime/attack_self(mob/user)
+/obj/item/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.

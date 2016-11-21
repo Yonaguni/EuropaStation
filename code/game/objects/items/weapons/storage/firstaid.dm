@@ -27,7 +27,7 @@
 	item_state = "firstaid-ointment"
 
 	startswith = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/pill/fotiazine = 3,
@@ -43,7 +43,7 @@
 	startswith = list(
 		/obj/item/stack/medical/bruise_pack = 3,
 		/obj/item/stack/medical/ointment = 2,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		)
 
@@ -56,7 +56,7 @@
 	startswith = list(
 		/obj/item/reagent_containers/syringe/antitoxin = 3,
 		/obj/item/reagent_containers/pill/antitox = 3,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		)
 
 /obj/item/storage/firstaid/toxin/New()
@@ -73,7 +73,7 @@
 		/obj/item/reagent_containers/pill/dexalin = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/reagent_containers/syringe/adrenaline,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		)
 
 /obj/item/storage/firstaid/adv

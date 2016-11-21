@@ -20,16 +20,16 @@
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/device/analyzer(src)
+	new /obj/item/analyzer(src)
 	new /obj/item/storage/ore(src)
-	new /obj/item/device/flashlight/lantern(src)
+	new /obj/item/flashlight/lantern(src)
 	new /obj/item/shovel(src)
 	new /obj/item/pickaxe(src)
 	new /obj/item/clothing/glasses/material(src)
 
 /******************************Lantern*******************************/
 
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."

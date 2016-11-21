@@ -219,7 +219,7 @@
 			return
 		if(default_part_replacement(user, W))
 			return
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
 		if(!check_access(W))
 			user << "<span class='warning'>Access Denied.</span>"
 			return

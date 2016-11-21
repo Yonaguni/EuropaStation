@@ -52,7 +52,7 @@
 		new /obj/item/cartridge/hop(src)
 		new /obj/item/storage/box/ids(src)
 		new /obj/item/storage/box/ids( src )
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		return
 
 /obj/structure/closet/secure_closet/hop2
@@ -114,7 +114,7 @@
 		new /obj/item/shield/riot(src)
 		new /obj/item/storage/box/flashbangs(src)
 		new /obj/item/storage/belt/security(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/melee/baton/loaded(src)
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/melee/telebaton(src)
@@ -183,13 +183,13 @@
 		new /obj/item/clothing/suit/armor/vest/nt(src)
 		new /obj/item/clothing/head/helmet(src)
 		new /obj/item/storage/belt/security(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/reagent_containers/spray/pepper(src)
 		new /obj/item/grenade/chem_grenade/teargas(src)
 		new /obj/item/melee/baton/loaded(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/device/hailer(src)
+		new /obj/item/hailer(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/clothing/under/rank/security/corp(src)
@@ -201,7 +201,7 @@
 	New()
 		..()
 		new /obj/item/clothing/accessory/armband/cargo(src)
-		new /obj/item/device/encryptionkey/headset_cargo(src)
+		new /obj/item/encryptionkey/headset_cargo(src)
 		return
 
 /obj/structure/closet/secure_closet/security/engine
@@ -209,7 +209,7 @@
 	New()
 		..()
 		new /obj/item/clothing/accessory/armband/engine(src)
-		new /obj/item/device/encryptionkey/headset_eng(src)
+		new /obj/item/encryptionkey/headset_eng(src)
 		return
 
 /obj/structure/closet/secure_closet/security/science
@@ -217,7 +217,7 @@
 	New()
 		..()
 		new /obj/item/clothing/accessory/armband/science(src)
-		new /obj/item/device/encryptionkey/headset_sci(src)
+		new /obj/item/encryptionkey/headset_sci(src)
 		return
 
 /obj/structure/closet/secure_closet/security/med
@@ -225,7 +225,7 @@
 	New()
 		..()
 		new /obj/item/clothing/accessory/armband/medgreen(src)
-		new /obj/item/device/encryptionkey/headset_med(src)
+		new /obj/item/encryptionkey/headset_med(src)
 		return
 
 
@@ -347,14 +347,14 @@
 
 	New()
 		..()
-		new /obj/item/device/flash(src)
-		new /obj/item/device/flash(src)
-		new /obj/item/device/camera(src)
-		new /obj/item/device/camera(src)
-		new /obj/item/device/camera_film(src)
-		new /obj/item/device/camera_film(src)
-		new /obj/item/device/taperecorder(src)
-		new /obj/item/device/taperecorder(src)
+		new /obj/item/flash(src)
+		new /obj/item/flash(src)
+		new /obj/item/camera(src)
+		new /obj/item/camera(src)
+		new /obj/item/camera_film(src)
+		new /obj/item/camera_film(src)
+		new /obj/item/taperecorder(src)
+		new /obj/item/taperecorder(src)
 		new /obj/item/storage/secure/briefcase(src)
 		new /obj/item/storage/secure/briefcase(src)
 		return

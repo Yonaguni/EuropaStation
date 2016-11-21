@@ -439,7 +439,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			else
 				processing_objects.Remove(src)
 
-		var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/pda/command(null)
+		var/obj/item/radio/headset/a = new /obj/item/radio/headset/pda/command(null)
 		for(var/channel in list("Security", "Medical", "Command"))
 			a.autosay(death_message, "[mobname]'s Death Alarm", channel)
 		qdel(a)

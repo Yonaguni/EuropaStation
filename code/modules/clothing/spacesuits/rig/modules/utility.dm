@@ -48,7 +48,7 @@
 	interface_desc = "Shows an informative health readout when used on a subject."
 	use_power_cost = 200
 
-	device_type = /obj/item/device/healthanalyzer
+	device_type = /obj/item/healthanalyzer
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"

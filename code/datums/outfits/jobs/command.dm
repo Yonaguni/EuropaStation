@@ -7,7 +7,7 @@
 	backpack = /obj/item/storage/backpack/captain
 	satchel_one = /obj/item/storage/backpack/satchel_cap
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 	backpack_contents = list(/obj/item/storage/box/ids = 1)
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
@@ -28,7 +28,7 @@
 	uniform = /obj/item/clothing/under/aeolus/bridge
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 
 
 /decl/hierarchy/outfit/job/bridge/xo

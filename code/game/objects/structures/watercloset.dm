@@ -154,7 +154,7 @@
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, var/mob/user)
-	if(I.type == /obj/item/device/analyzer)
+	if(I.type == /obj/item/analyzer)
 		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if(I.iswrench())
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings

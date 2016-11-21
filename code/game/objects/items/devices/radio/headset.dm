@@ -1,4 +1,4 @@
-/obj/item/device/radio/headset
+/obj/item/radio/headset
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	var/radio_desc = ""
@@ -11,15 +11,15 @@
 	slot_flags = SLOT_EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
-	var/obj/item/device/encryptionkey/keyslot1 = null
-	var/obj/item/device/encryptionkey/keyslot2 = null
+	var/obj/item/encryptionkey/keyslot1 = null
+	var/obj/item/encryptionkey/keyslot2 = null
 
-	var/ks1type = /obj/item/device/encryptionkey
+	var/ks1type = /obj/item/encryptionkey
 	var/ks2type = null
 
 	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/ears.dmi')
 
-/obj/item/device/radio/headset/New()
+/obj/item/radio/headset/New()
 	..()
 	internal_channels.Cut()
 	if(ks1type)
@@ -28,24 +28,24 @@
 		keyslot2 = new ks2type(src)
 	recalculateChannels(1)
 
-/obj/item/device/radio/headset/Destroy()
+/obj/item/radio/headset/Destroy()
 	qdel(keyslot1)
 	qdel(keyslot2)
 	keyslot1 = null
 	keyslot2 = null
 	return ..()
 
-/obj/item/device/radio/headset/list_channels(var/mob/user)
+/obj/item/radio/headset/list_channels(var/mob/user)
 	return list_secure_channels()
 
-/obj/item/device/radio/headset/examine(mob/user)
+/obj/item/radio/headset/examine(mob/user)
 	if(!(..(user, 1) && radio_desc))
 		return
 
 	user << "The following radio channels are available:"
 	user << radio_desc
 
-/obj/item/device/radio/headset/handle_message_mode(var/mob/living/M, message, channel)
+/obj/item/radio/headset/handle_message_mode(var/mob/living/M, message, channel)
 	if (channel == "special")
 		if (translate_binary)
 			var/datum/language/binary = all_languages["Robot Talk"]
@@ -57,7 +57,7 @@
 
 	return ..()
 
-/obj/item/device/radio/headset/receive_range(freq, level, aiOverride = 0)
+/obj/item/radio/headset/receive_range(freq, level, aiOverride = 0)
 	if (aiOverride)
 		return ..(freq, level)
 	if(ishuman(src.loc))
@@ -66,41 +66,41 @@
 			return ..(freq, level)
 	return -1
 
-/obj/item/device/radio/headset/syndicate
+/obj/item/radio/headset/syndicate
 
 	syndie = 1
-	ks1type = /obj/item/device/encryptionkey/syndicate
+	ks1type = /obj/item/encryptionkey/syndicate
 
-/obj/item/device/radio/headset/binary
+/obj/item/radio/headset/binary
 
-	ks1type = /obj/item/device/encryptionkey/binary
+	ks1type = /obj/item/encryptionkey/binary
 
-/obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
+/obj/item/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
 	name = "\improper AI subspace transceiver"
 	desc = "Integrated AI radio transceiver."
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "radio"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/ai_integrated
+	ks2type = /obj/item/encryptionkey/heads/ai_integrated
 	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
 	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
 
-/obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
+/obj/item/radio/headset/heads/ai_integrated/receive_range(freq, level)
 	if (disabledAi)
 		return -1 //Transciever Disabled.
 	return ..(freq, level, 1)
 
-/obj/item/device/radio/headset/entertainment
+/obj/item/radio/headset/entertainment
 	name = "actor's radio headset"
 	desc = "specially made to make you sound less cheesy."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/entertainment
+	ks2type = /obj/item/encryptionkey/entertainment
 
-/obj/item/device/radio/headset/attackby(var/obj/item/W, var/mob/user)
+/obj/item/radio/headset/attackby(var/obj/item/W, var/mob/user)
 //	..()
 	user.set_machine(src)
-	if (!( W.isscrewdriver() || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( W.isscrewdriver() || (istype(W, /obj/item/encryptionkey/ ))))
 		return
 
 	if(W.isscrewdriver())
@@ -132,7 +132,7 @@
 		else
 			user << "\The [src] doesn't have any encryption keys!  How useless..."
 
-	if(istype(W, /obj/item/device/encryptionkey/))
+	if(istype(W, /obj/item/encryptionkey/))
 		if(keyslot1 && keyslot2)
 			user << "\The [src ]can't hold another key!"
 			return
@@ -153,7 +153,7 @@
 	return
 
 
-/obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/radio/headset/proc/recalculateChannels(var/setDescription = 0)
 	src.channels = list()
 	src.translate_binary = 0
 	src.translate_hive = 0
@@ -206,7 +206,7 @@
 
 	return
 
-/obj/item/device/radio/headset/proc/setupRadioDescription()
+/obj/item/radio/headset/proc/setupRadioDescription()
 	var/radio_text = ""
 	for(var/i = 1 to channels.len)
 		var/channel = channels[i]

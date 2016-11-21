@@ -2,7 +2,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/white
-	pda_type = /obj/item/device/radio/headset/pda/science
+	pda_type = /obj/item/radio/headset/pda/science
 	backpack = /obj/item/storage/backpack/toxins
 	satchel_one = /obj/item/storage/backpack/satchel_tox
 
@@ -12,7 +12,7 @@
 	shoes = /obj/item/clothing/shoes/brown
 	l_hand = /obj/item/clipboard
 	id_type = /obj/item/card/id/science/head
-	pda_type = /obj/item/device/radio/headset/pda/science
+	pda_type = /obj/item/radio/headset/pda/science
 
 /decl/hierarchy/outfit/job/science/xenobiologist
 	name = OUTFIT_JOB_NAME("Xenobiologist")
@@ -26,6 +26,6 @@
 	shoes = /obj/item/clothing/shoes/black
 	belt = /obj/item/storage/belt/utility/full
 	id_type = /obj/item/card/id/engineering
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering
 	backpack = /obj/item/storage/backpack
 	satchel_one = /obj/item/storage/backpack/satchel_norm

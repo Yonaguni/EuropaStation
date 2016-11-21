@@ -50,7 +50,7 @@
 	var/module_state_2 = null
 	var/module_state_3 = null
 
-	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
@@ -60,9 +60,9 @@
 	// Components are basically robot organs.
 	var/list/components = list()
 
-	var/obj/item/device/mmi/mmi = null
+	var/obj/item/mmi/mmi = null
 
-	var/obj/item/device/radio/headset/pda/ai/rbPDA = null
+	var/obj/item/radio/headset/pda/ai/rbPDA = null
 
 	var/obj/item/stock_parts/matter_bin/storage = null
 
@@ -116,7 +116,7 @@
 	updatename("Default")
 	updateicon()
 
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	common_radio = radio
 
 	if(!scrambledcodes && !camera)
@@ -167,7 +167,7 @@
 		M.set_multiplier(mult)
 
 /mob/living/silicon/robot/proc/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 	laws = new /datum/ai_laws/nanotrasen()
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
@@ -209,7 +209,7 @@
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()
 	if (!rbPDA)
-		rbPDA = new/obj/item/device/radio/headset/pda/ai(src)
+		rbPDA = new/obj/item/radio/headset/pda/ai(src)
 	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
@@ -606,13 +606,13 @@
 			user << "Unable to locate a radio."
 		updateicon()
 
-	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
+	else if(istype(W, /obj/item/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
 			radio.attackby(W,user)//GTFO, you have your own procs
 		else
 			user << "Unable to locate a radio."
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda)||istype(W, /obj/item/card/robot))			// trying to unlock the interface with an ID card
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda)||istype(W, /obj/item/card/robot))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			user << "The interface seems slightly damaged"
 		if(opened)
@@ -643,7 +643,7 @@
 
 
 	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
+		if( !(istype(W, /obj/item/robotanalyzer) || istype(W, /obj/item/healthanalyzer)) )
 			spark_system.start()
 		return ..()
 

@@ -133,8 +133,8 @@
 				user << "<span class='notice'>Nothing happens.</span>"
 				return
 
-	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		var/obj/item/device/analyzer/A = W
+	else if ((istype(W, /obj/item/analyzer)) && Adjacent(user))
+		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 		return
 

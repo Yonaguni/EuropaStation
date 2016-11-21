@@ -138,7 +138,7 @@
 
 	O.loc = loc
 	O.job = "Robot"
-	O.mmi = new /obj/item/device/mmi/digital/robot(O)
+	O.mmi = new /obj/item/mmi/digital/robot(O)
 	O.mmi.transfer_identity(src)
 
 	callHook("borgify", list(O))

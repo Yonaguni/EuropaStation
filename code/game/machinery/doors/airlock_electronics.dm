@@ -82,8 +82,8 @@
 				return TRUE
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/pda = I
+				if (istype(I, /obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/pda = I
 					I = pda.id
 				if(!istype(I, /obj/item/card/id))
 					usr << "<span class='warning'>[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?</span>"

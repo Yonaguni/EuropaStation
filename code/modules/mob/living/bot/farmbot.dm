@@ -246,8 +246,8 @@
 
 	new /obj/item/material/minihoe(Tsec)
 	new /obj/item/reagent_containers/glass/bucket(Tsec)
-	new /obj/item/device/assembly/prox_sensor(Tsec)
-	new /obj/item/device/analyzer/plant_analyzer(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
+	new /obj/item/analyzer/plant_analyzer(Tsec)
 
 	if(tank)
 		tank.loc = Tsec
@@ -315,7 +315,7 @@
 
 /obj/item/farmbot_arm_assembly/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if((istype(W, /obj/item/device/analyzer/plant_analyzer)) && (build_step == 0))
+	if((istype(W, /obj/item/analyzer/plant_analyzer)) && (build_step == 0))
 		build_step++
 		user << "You add the plant analyzer to [src]."
 		name = "farmbot assembly"

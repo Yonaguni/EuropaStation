@@ -31,9 +31,9 @@
 /decl/hierarchy/outfit/merchant
 	name = "Merchant"
 	shoes = /obj/item/clothing/shoes/black
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/color/grey
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id/merchant
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/radio/headset/pda
 	id_pda_assignment = "Merchant"

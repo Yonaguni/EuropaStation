@@ -131,7 +131,7 @@ obj/machinery/gateway/centerstation/process()
 		return
 
 
-/obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, var/mob/user)
+/obj/machinery/gateway/centerstation/attackby(obj/item/W as obj, var/mob/user)
 	if(W.ismultitool())
 		user << "\black The gate is already calibrated, there is no work for you to do here."
 		return
@@ -225,7 +225,7 @@ obj/machinery/gateway/centerstation/process()
 	M.set_dir(SOUTH)
 
 
-/obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, var/mob/user)
+/obj/machinery/gateway/centeraway/attackby(obj/item/W as obj, var/mob/user)
 	if(W.ismultitool())
 		if(calibrated)
 			user << "\black The gate is already calibrated, there is no work for you to do here."

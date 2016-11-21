@@ -32,4 +32,4 @@
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
 	item_cost = 32
-	path = /obj/item/device/chameleon
+	path = /obj/item/chameleon

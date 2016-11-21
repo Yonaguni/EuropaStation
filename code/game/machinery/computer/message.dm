@@ -25,7 +25,7 @@
 	var/optioncount = 8
 	// Custom Message Properties
 	var/customsender = "System Administrator"
-	var/obj/item/device/radio/headset/pda/customrecepient = null
+	var/obj/item/radio/headset/pda/customrecepient = null
 	var/customjob		= "Admin"
 	var/custommessage 	= "This is a test, please ignore."
 
@@ -414,8 +414,8 @@
 					//Select Receiver
 					if("Recepient")
 						//Get out list of viable PDAs
-						var/list/obj/item/device/radio/headset/pda/sendPDAs = list()
-						for(var/obj/item/device/radio/headset/pda/P in PDAs)
+						var/list/obj/item/radio/headset/pda/sendPDAs = list()
+						for(var/obj/item/radio/headset/pda/P in PDAs)
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
 						if(PDAs && PDAs.len > 0)
@@ -446,8 +446,8 @@
 							message = "<span class='notice'>NOTICE: No message entered!</span>"
 							return src.attack_hand(usr)
 
-						var/obj/item/device/radio/headset/pda/PDARec = null
-						for (var/obj/item/device/radio/headset/pda/P in PDAs)
+						var/obj/item/radio/headset/pda/PDARec = null
+						for (var/obj/item/radio/headset/pda/P in PDAs)
 							if (!P.owner || P.toff || P.hidden)	continue
 							if(P.owner == customsender)
 								PDARec = P

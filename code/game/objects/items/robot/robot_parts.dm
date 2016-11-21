@@ -71,8 +71,8 @@
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
 	icon_state = "head"
 	part = list(BP_HEAD)
-	var/obj/item/device/flash/flash1 = null
-	var/obj/item/device/flash/flash2 = null
+	var/obj/item/flash/flash1 = null
+	var/obj/item/flash/flash2 = null
 
 /obj/item/robot_parts/robot_suit
 	name = "endoskeleton"
@@ -179,8 +179,8 @@
 		else
 			user << "<span class='warning'>You need to attach a flash to it first!</span>"
 
-	if(istype(W, /obj/item/device/mmi))
-		var/obj/item/device/mmi/M = W
+	if(istype(W, /obj/item/mmi))
+		var/obj/item/mmi/M = W
 		if(check_completion())
 			if(!istype(loc,/turf))
 				user << "<span class='warning'>You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.</span>"
@@ -277,7 +277,7 @@
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, var/mob/user)
 	..()
-	if(istype(W, /obj/item/device/flash))
+	if(istype(W, /obj/item/flash))
 		if(istype(user,/mob/living/silicon/robot))
 			var/current_module = user.get_active_hand()
 			if(current_module == W)

@@ -307,7 +307,7 @@
 	Sa.build_step = 1
 	Sa.overlays += image('icons/obj/aibots.dmi', "hs_hole")
 	Sa.created_name = name
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
 	new /obj/item/melee/baton(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
@@ -489,7 +489,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/helmet/attackby(var/obj/item/device/assembly/signaler/S, var/mob/user)
+/obj/item/clothing/head/helmet/attackby(var/obj/item/assembly/signaler/S, var/mob/user)
 	..()
 	if(!issignaler(S))
 		..()

@@ -240,7 +240,7 @@ var/list/turret_icons
 					if(prob(50))
 						new /obj/item/stack/material/steel(loc, rand(1,4))
 					if(prob(50))
-						new /obj/item/device/assembly/prox_sensor(loc)
+						new /obj/item/assembly/prox_sensor(loc)
 				else
 					user << "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>"
 				qdel(src) // qdel
@@ -279,7 +279,7 @@ var/list/turret_icons
 				update_icon()
 		wrenching = 0
 
-	else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/device/radio/headset/pda))
+	else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/radio/headset/pda))
 		//Behavior lock/unlock mangement
 		if(allowed(user))
 			locked = !locked
@@ -779,7 +779,7 @@ var/list/turret_icons
 			installed_gun = null
 		if(5)
 			user << "<span class='notice'>You remove the prox sensor from the turret frame.</span>"
-			new /obj/item/device/assembly/prox_sensor(loc)
+			new /obj/item/assembly/prox_sensor(loc)
 			build_step = 4
 
 /obj/machinery/porta_turret_construct/attack_ai()

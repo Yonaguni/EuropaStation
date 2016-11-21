@@ -308,7 +308,7 @@
 			anchored = 1
 
 
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/radio/headset/pda))
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/radio/headset/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"

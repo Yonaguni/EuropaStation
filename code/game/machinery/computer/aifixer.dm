@@ -11,7 +11,7 @@
 /obj/machinery/computer/aifixer/New()
 	update_icon()
 
-/obj/machinery/computer/aifixer/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
+/obj/machinery/computer/aifixer/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/aicard/card, var/mob/user)
 
 	if(!transfer)
 		return
@@ -32,13 +32,13 @@
 
 /obj/machinery/computer/aifixer/attackby(I as obj, var/mob/user)
 
-	if(istype(I, /obj/item/device/aicard))
+	if(istype(I, /obj/item/aicard))
 
 		if(stat & (NOPOWER|BROKEN))
 			user << "This terminal isn't functioning right now."
 			return
 
-		var/obj/item/device/aicard/card = I
+		var/obj/item/aicard/card = I
 		var/mob/living/silicon/ai/comp_ai = locate() in src
 		var/mob/living/silicon/ai/card_ai = locate() in card
 

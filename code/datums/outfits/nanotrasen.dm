@@ -5,7 +5,7 @@
 	gloves = /obj/item/clothing/gloves/white
 	glasses = /obj/item/clothing/glasses/sunglasses
 	id_type = /obj/item/card/id/centcom/station
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 
 /decl/hierarchy/outfit/nanotrasen/representative
 	name = "corporate representative"

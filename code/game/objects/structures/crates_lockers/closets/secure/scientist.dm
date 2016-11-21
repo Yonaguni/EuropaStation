@@ -71,6 +71,6 @@
 		new /obj/item/clothing/shoes/leather(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/clipboard(src)
 		return

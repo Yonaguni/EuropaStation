@@ -137,7 +137,7 @@
 /decl/hierarchy/outfit/job/europa/scientist
 	name = OUTFIT_JOB_NAME("Scientist")
 	id_type = /obj/item/card/id/lanyard
-	pda_type = /obj/item/device/radio/headset/pda/science
+	pda_type = /obj/item/radio/headset/pda/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 /datum/job/head
@@ -162,7 +162,7 @@
 
 /decl/hierarchy/outfit/job/europa/liaison
 	name = OUTFIT_JOB_NAME("Colony Liaison")
-	pda_type = /obj/item/device/radio/headset/pda
+	pda_type = /obj/item/radio/headset/pda
 
 /datum/job/head/marshal
 	title = "Marshal"
@@ -184,7 +184,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	head = /obj/item/clothing/head/petty_officer/marshal
 	id_type = /obj/item/card/id/dogtags
-	pda_type = /obj/item/device/radio/headset/pda/security
+	pda_type = /obj/item/radio/headset/pda/security
 
 /datum/job/head/coordinator
 	title = "Corporate Contact Officer"
@@ -210,7 +210,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	l_hand = /obj/item/storage/briefcase
 	id_type = /obj/item/card/id/lanyard
-	pda_type = /obj/item/device/radio/headset/pda/science
+	pda_type = /obj/item/radio/headset/pda/science
 
 /datum/job/civilian/engineering
 	title = "Civil Engineer"
@@ -224,19 +224,19 @@
 	name = OUTFIT_JOB_NAME("Civil Engineer")
 	head = /obj/item/clothing/head/hardhat
 	belt = /obj/item/storage/belt/utility
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering
 
 /decl/hierarchy/outfit/job/europa/ses
 	name = OUTFIT_JOB_NAME("Emergency Services")
 	head = /obj/item/clothing/head/hardhat/red
 	belt = /obj/item/storage/belt/utility
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering
 
 /decl/hierarchy/outfit/job/europa/electrician
 	name = OUTFIT_JOB_NAME("Electrician")
 	gloves = /obj/item/clothing/gloves/insulated
 	belt = /obj/item/storage/belt/utility
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering
 
 /datum/job/government
 	title = "Petty Officer"
@@ -265,4 +265,4 @@
 	backpack = /obj/item/storage/backpack/captain
 	gloves = /obj/item/clothing/gloves/color/gray
 	id_type = /obj/item/card/id/dogtags
-	pda_type = /obj/item/device/radio/headset/pda/security
+	pda_type = /obj/item/radio/headset/pda/security

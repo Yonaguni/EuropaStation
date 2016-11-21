@@ -240,8 +240,8 @@
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/storage/firstaid(Tsec)
-	new /obj/item/device/assembly/prox_sensor(Tsec)
-	new /obj/item/device/healthanalyzer(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
+	new /obj/item/healthanalyzer(Tsec)
 	if (prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
 
@@ -337,7 +337,7 @@
 	else
 		switch(build_step)
 			if(0)
-				if(istype(W, /obj/item/device/healthanalyzer))
+				if(istype(W, /obj/item/healthanalyzer))
 					user.drop_item()
 					qdel(W)
 					build_step++

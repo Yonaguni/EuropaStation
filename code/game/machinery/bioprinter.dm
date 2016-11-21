@@ -176,7 +176,7 @@
 
 /obj/machinery/organ_printer/flesh/New()
 	..()
-	component_parts += new /obj/item/device/healthanalyzer
+	component_parts += new /obj/item/healthanalyzer
 	component_parts += new /obj/item/circuitboard/bioprinter
 
 /obj/machinery/organ_printer/flesh/print_organ(var/choice)

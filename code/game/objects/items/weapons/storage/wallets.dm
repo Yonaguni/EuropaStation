@@ -10,7 +10,7 @@
 		/obj/item/spacecash,
 		/obj/item/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/seeds,
 		/obj/item/coin,
 		/obj/item/dice,

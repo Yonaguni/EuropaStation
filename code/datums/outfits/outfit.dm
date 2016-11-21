@@ -156,7 +156,7 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
 	if(!pda_slot || !pda_type)
 		return
-	var/obj/item/device/radio/headset/pda/pda = new pda_type(H)
+	var/obj/item/radio/headset/pda/pda = new pda_type(H)
 	pda.set_owner_rank_job(H.real_name, rank, assignment)
 
 	var/obj/item/card/id/id

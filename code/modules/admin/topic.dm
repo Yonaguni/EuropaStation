@@ -1324,7 +1324,7 @@
 		if(!istype(H))
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
-		if(!istype(H.l_ear, /obj/item/device/radio/headset) && !istype(H.r_ear, /obj/item/device/radio/headset))
+		if(!istype(H.l_ear, /obj/item/radio/headset) && !istype(H.r_ear, /obj/item/radio/headset))
 			usr << "The person you are trying to contact is not wearing a headset"
 			return
 
@@ -1826,7 +1826,7 @@ mob/living/proc/can_centcom_reply()
 	return 0
 
 mob/living/carbon/human/can_centcom_reply()
-	return istype(l_ear, /obj/item/device/radio/headset) || istype(r_ear, /obj/item/device/radio/headset)
+	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
 
 mob/living/silicon/ai/can_centcom_reply()
 	return common_radio != null && !check_unable(2)

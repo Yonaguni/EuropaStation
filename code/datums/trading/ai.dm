@@ -26,14 +26,14 @@ They sell generic supplies and ask for generic supplies.
 				"insult_good"       = "I do not understand, are we not on good terms?",
 				"insult_bad"        = "I do not understand, are you insulting me?",
 				)
-	possible_wanted_items = list(/obj/item/device/                       = TRADER_SUBTYPES_ONLY,
-								/obj/item/device/assembly                = TRADER_BLACKLIST_ALL,
-								/obj/item/device/assembly_holder         = TRADER_BLACKLIST_ALL,
-								/obj/item/device/encryptionkey/syndicate = TRADER_BLACKLIST,
-								/obj/item/device/onetankbomb             = TRADER_BLACKLIST,
-								/obj/item/device/radio                   = TRADER_BLACKLIST_ALL,
-								/obj/item/device/radio/headset/pda                     = TRADER_BLACKLIST_SUB,
-								/obj/item/device/uplink                  = TRADER_BLACKLIST)
+	possible_wanted_items = list(/obj/item/                       = TRADER_SUBTYPES_ONLY,
+								/obj/item/assembly                = TRADER_BLACKLIST_ALL,
+								/obj/item/assembly_holder         = TRADER_BLACKLIST_ALL,
+								/obj/item/encryptionkey/syndicate = TRADER_BLACKLIST,
+								/obj/item/onetankbomb             = TRADER_BLACKLIST,
+								/obj/item/radio                   = TRADER_BLACKLIST_ALL,
+								/obj/item/radio/headset/pda                     = TRADER_BLACKLIST_SUB,
+								/obj/item/uplink                  = TRADER_BLACKLIST)
 	possible_trading_items = list(/obj/item/storage/bag                       = TRADER_SUBTYPES_ONLY,
 								/obj/item/storage/backpack                    = TRADER_ALL,
 								/obj/item/storage/backpack/cultpack           = TRADER_BLACKLIST,

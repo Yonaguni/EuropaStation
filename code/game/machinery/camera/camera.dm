@@ -164,10 +164,10 @@ var/list/camera_tag_count = list()
 			return
 
 	// OTHER
-	else if (can_use() && (istype(W, /obj/item/paper) || istype(W, /obj/item/device/radio/headset/pda)) && isliving(user))
+	else if (can_use() && (istype(W, /obj/item/paper) || istype(W, /obj/item/radio/headset/pda)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
-		var/obj/item/device/radio/headset/pda/P = null
+		var/obj/item/radio/headset/pda/P = null
 
 		var/itemname = ""
 		var/info = ""

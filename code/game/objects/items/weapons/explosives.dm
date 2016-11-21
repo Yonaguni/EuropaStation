@@ -28,7 +28,7 @@
 	if(I.isscrewdriver())
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-	else if(I.iswirecutter() || I.ismultitool() || istype(I, /obj/item/device/assembly/signaler ))
+	else if(I.iswirecutter() || I.ismultitool() || istype(I, /obj/item/assembly/signaler ))
 		wires.Interact(user)
 	else
 		..()

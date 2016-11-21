@@ -105,7 +105,7 @@
 	supply_method = /decl/supply_method/randomized
 
 /decl/hierarchy/supply_pack/miscellaneous/eftpos
-	contains = list(/obj/item/device/eftpos)
+	contains = list(/obj/item/eftpos)
 	name = "EFTPOS scanner"
 	cost = 10
 	containername = "\improper EFTPOS crate"
@@ -198,10 +198,10 @@
 	num_contained = 1
 	name = "Random APLU modkit"
 	contains = list(
-		/obj/item/device/kit/paint/ripley,
-		/obj/item/device/kit/paint/ripley/death,
-		/obj/item/device/kit/paint/ripley/flames_red,
-		/obj/item/device/kit/paint/ripley/flames_blue
+		/obj/item/kit/paint/ripley,
+		/obj/item/kit/paint/ripley/death,
+		/obj/item/kit/paint/ripley/flames_red,
+		/obj/item/kit/paint/ripley/flames_blue
 		)
 	cost = 200
 	containername = "heavy crate"

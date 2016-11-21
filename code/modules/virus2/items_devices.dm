@@ -1,6 +1,6 @@
 ///////////////ANTIBODY SCANNER///////////////
 
-/obj/item/device/antibody_scanner
+/obj/item/antibody_scanner
 	name = "antibody scanner"
 	desc = "Scans living beings for antibodies in their blood."
 	icon_state = "health"
@@ -8,7 +8,7 @@
 	item_state = "electronic"
 	flags = CONDUCT
 
-/obj/item/device/antibody_scanner/attack(var/mob/M, var/mob/user)
+/obj/item/antibody_scanner/attack(var/mob/M, var/mob/user)
 	if(!istype(M,/mob/living/carbon/))
 		report("Scan aborted: Incompatible target.", user)
 		return
@@ -30,7 +30,7 @@
 	else
 		report("Antibodies detected: [antigens2string(C.antibodies)]", user)
 
-/obj/item/device/antibody_scanner/proc/report(var/text, var/mob/user)
+/obj/item/antibody_scanner/proc/report(var/text, var/mob/user)
 	user << "\blue \icon[src] \The [src] beeps, \"[text]\""
 
 ///////////////VIRUS DISH///////////////

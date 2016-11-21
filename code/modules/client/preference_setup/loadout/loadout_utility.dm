@@ -30,7 +30,7 @@
 
 /datum/gear/utility/paicard
 	display_name = "personal AI device"
-	path = /obj/item/device/paicard
+	path = /obj/item/paicard
 
 /datum/gear/utility/cheaptablet
 	display_name = "cheap tablet computer"

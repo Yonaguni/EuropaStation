@@ -143,8 +143,8 @@ datum/objective/anti_revolution/demote
 	check_completion()
 		if(target && target.current && istype(target,/mob/living/carbon/human))
 			var/obj/item/card/id/I = target.current:wear_id
-			if(istype(I, /obj/item/device/radio/headset/pda))
-				var/obj/item/device/radio/headset/pda/P = I
+			if(istype(I, /obj/item/radio/headset/pda))
+				var/obj/item/radio/headset/pda/P = I
 				I = P.id
 
 			if(!istype(I)) return 1
@@ -424,7 +424,7 @@ datum/objective/steal
 		"an RCD" = /obj/item/rcd,
 		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
-		"a functional AI" = /obj/item/device/aicard,
+		"a functional AI" = /obj/item/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
@@ -506,7 +506,7 @@ datum/objective/steal
 
 			if("a functional AI")
 
-				for(var/obj/item/device/aicard/C in all_items) //Check for ai card
+				for(var/obj/item/aicard/C in all_items) //Check for ai card
 					for(var/mob/living/silicon/ai/M in C)
 						if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
 							return 1

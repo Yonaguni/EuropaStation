@@ -17,7 +17,7 @@
 	var/offset_x = -8
 	var/offset_y = 0
 
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 
 	var/wreckage_path = /obj/structure/mech_wreckage
 	var/mech_turn_sound = 'sound/mecha/mechturn.ogg'

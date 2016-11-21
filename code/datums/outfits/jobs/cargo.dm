@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/cargo
 	hierarchy_type = /obj/item/clothing/under/aeolus/supply
-	pda_type = /obj/item/device/radio/headset/pda/supply
+	pda_type = /obj/item/radio/headset/pda/supply
 
 /decl/hierarchy/outfit/job/cargo/qm
 	name = OUTFIT_JOB_NAME("Cargo")

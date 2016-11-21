@@ -245,7 +245,7 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.rank
@@ -261,7 +261,7 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.assignment
@@ -277,7 +277,7 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/device/radio/headset/pda/pda = wear_id
+	var/obj/item/radio/headset/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.registered_name
@@ -313,8 +313,8 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
-	if(istype(wear_id,/obj/item/device/radio/headset/pda))
-		var/obj/item/device/radio/headset/pda/P = wear_id
+	if(istype(wear_id,/obj/item/radio/headset/pda))
+		var/obj/item/radio/headset/pda/P = wear_id
 		return P.owner
 	if(wear_id)
 		var/obj/item/card/id/I = wear_id.GetID()
@@ -410,8 +410,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -440,8 +440,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -468,8 +468,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -499,8 +499,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -538,8 +538,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -569,8 +569,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -597,8 +597,8 @@
 			if(wear_id)
 				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-					var/obj/item/device/radio/headset/pda/tempPda = wear_id
+				else if(istype(wear_id,/obj/item/radio/headset/pda))
+					var/obj/item/radio/headset/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name

@@ -16,7 +16,7 @@
 
 /decl/hierarchy/supply_pack/supply/toner
 	name = "Toner cartridges"
-	contains = list(/obj/item/device/toner = 6)
+	contains = list(/obj/item/toner = 6)
 	cost = 10
 	containername = "\improper Toner cartridges"
 
@@ -26,7 +26,7 @@
 					/obj/item/mop,
 					/obj/item/caution = 4,
 					/obj/item/storage/bag/trash,
-					/obj/item/device/lightreplacer,
+					/obj/item/lightreplacer,
 					/obj/item/reagent_containers/spray/cleaner,
 					/obj/item/reagent_containers/glass/rag,
 					/obj/item/grenade/chem_grenade/cleaner = 3,
@@ -45,7 +45,7 @@
 					 /obj/item/clipboard,
 					 /obj/item/pen/red,
 					 /obj/item/pen/blue = 2,
-					 /obj/item/device/camera_film,
+					 /obj/item/camera_film,
 					 /obj/item/folder/blue,
 					 /obj/item/folder/red,
 					 /obj/item/folder/yellow,
@@ -59,6 +59,6 @@
 
 /decl/hierarchy/supply_pack/supply/spare_pda
 	name = "Spare Wrist Computers"
-	contains = list(/obj/item/device/radio/headset/pda = 3)
+	contains = list(/obj/item/radio/headset/pda = 3)
 	cost = 10
 	containername = "\improper Spare Wrist Computer crate"

@@ -64,7 +64,7 @@
 								/mob/living/simple_animal/hostile/samak= TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/retaliate/goat = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/carp= TRADER_THIS_TYPE,
-								/obj/item/device/dociler              = TRADER_THIS_TYPE,
+								/obj/item/dociler              = TRADER_THIS_TYPE,
 								/obj/structure/dogbed                 = TRADER_THIS_TYPE)
 
 /datum/trader/ship/prank_shop
@@ -93,7 +93,7 @@
 								/obj/item/clothing/mask/gas/mime        = TRADER_THIS_TYPE,
 								/obj/item/clothing/shoes/clown_shoes    = TRADER_THIS_TYPE,
 								/obj/item/clothing/under/rank/clown     = TRADER_THIS_TYPE,
-								/obj/item/device/radio/headset/pda/clown              = TRADER_THIS_TYPE,
+								/obj/item/radio/headset/pda/clown              = TRADER_THIS_TYPE,
 								/obj/item/cartridge/clown        = TRADER_THIS_TYPE,
 								/obj/item/stamp/clown            = TRADER_THIS_TYPE,
 								/obj/item/storage/backpack/clown = TRADER_THIS_TYPE,

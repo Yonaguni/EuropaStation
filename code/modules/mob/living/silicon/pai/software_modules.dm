@@ -95,7 +95,7 @@
 			var/ch_stat = user.radio.channels[ch_name]
 			var/ch_dat[0]
 			ch_dat["name"] = ch_name
-			// FREQ_LISTENING is const in /obj/item/device/radio
+			// FREQ_LISTENING is const in /obj/item/radio
 			ch_dat["listening"] = !!(ch_stat & user.radio.FREQ_LISTENING)
 			channels[++channels.len] = ch_dat
 
@@ -151,7 +151,7 @@
 
 		var/pdas[0]
 		if(!user.pda.toff)
-			for(var/obj/item/device/radio/headset/pda/P in sortAtom(PDAs))
+			for(var/obj/item/radio/headset/pda/P in sortAtom(PDAs))
 				if(!P.owner || P.toff || P == user.pda || P.hidden) continue
 				var/pda[0]
 				pda["name"] = "[P]"

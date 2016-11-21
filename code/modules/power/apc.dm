@@ -529,7 +529,7 @@
 			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 			update_icon()
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda))			// trying to unlock the interface with an ID card
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))			// trying to unlock the interface with an ID card
 		if(emagged)
 			user << "The interface is broken."
 		else if(opened)
@@ -675,7 +675,7 @@
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				(W.ismultitool() || \
-				W.iswirecutter() || istype(W, /obj/item/device/assembly/signaler)))
+				W.iswirecutter() || istype(W, /obj/item/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message("<span class='danger'>The [src.name] has been hit with the [W.name] by [user.name]!</span>", \
 				"<span class='danger'>You hit the [src.name] with your [W.name]!</span>", \

@@ -208,7 +208,7 @@
 					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 		return
 
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/radio/headset/pda))
 		if(emagged)
 			user << "<span class='warning'>The lock seems to be broken.</span>"
 			return

@@ -1,7 +1,7 @@
-/obj/item/device/soulstone/cultify()
+/obj/item/soulstone/cultify()
 	return
 
-/obj/item/device/soulstone
+/obj/item/soulstone
 	name = "soul stone"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
@@ -14,7 +14,7 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/device/soulstone/attack(var/mob/living/carbon/human/M, var/mob/user)
+/obj/item/soulstone/attack(var/mob/living/carbon/human/M, var/mob/user)
 	if(!istype(M, /mob/living/carbon/human))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
@@ -34,7 +34,7 @@
 	transfer_soul("VICTIM", M, user)
 	return
 
-/obj/item/device/soulstone/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/soulstone/attackby(var/obj/item/thing, var/mob/user)
 	if(!thing.force)
 		return ..()
 	user.visible_message("<span class='danger'>\The [user] shatters \the [src] with \the [thing]!</span>")
@@ -54,7 +54,7 @@
 
 ///////////////////Options for using captured souls///////////////////////////////////////
 
-/obj/item/device/soulstone/attack_self(mob/user)
+/obj/item/soulstone/attack_self(mob/user)
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -71,7 +71,7 @@
 
 
 
-/obj/item/device/soulstone/Topic(href, href_list)
+/obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
 	if (!in_range(src, U)||U.machine!=src)
 		U << browse(null, "window=aicard")
@@ -112,13 +112,13 @@
 	desc = "This eerie contraption looks like it would come alive if supplied with a missing ingredient."
 
 /obj/structure/constructshell/attackby(obj/item/O as obj, var/mob/user)
-	if(istype(O, /obj/item/device/soulstone))
-		var/obj/item/device/soulstone/S = O;
+	if(istype(O, /obj/item/soulstone))
+		var/obj/item/soulstone/S = O;
 		S.transfer_soul("CONSTRUCT",src,user)
 
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-/obj/item/device/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
@@ -171,7 +171,7 @@
 	src.imprinted = "[S.name]"
 	qdel(T)
 
-/obj/item/device/soulstone/proc/transfer_shade(var/mob/living/simple_animal/shade/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_shade(var/mob/living/simple_animal/shade/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if (T.stat == DEAD)
@@ -192,7 +192,7 @@
 
 	T << "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form"
 	U << "<span class='notice'>Capture successful!</span> : [T.name]'s has been recaptured and stored within the soul stone."
-/obj/item/device/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
 	var/mob/living/simple_animal/shade/A = locate() in src
 	if(!A)
 		U << "<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!"
@@ -229,7 +229,7 @@
 			Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 			Z.cancel_camera()
 			qdel(src)
-/obj/item/device/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U).
+/obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U).
 	switch(choice)
 		if("VICTIM")
 			transfer_human(target,U)

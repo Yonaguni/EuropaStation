@@ -3,14 +3,12 @@
 	desc = "An electronic radio system."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "power_mod"
-	var/obj/item/device/radio/headset/pda/hostpda = null
-
-	var/on = 0 //Are we currently active??
+	var/obj/item/radio/headset/pda/hostpda = null
 	var/menu_message = ""
 
 	New()
 		..()
-		if (istype(loc.loc, /obj/item/device/radio/headset/pda))
+		if (istype(loc.loc, /obj/item/radio/headset/pda))
 			hostpda = loc.loc
 
 	proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
@@ -54,7 +52,7 @@
 	// create/populate list as they are recvd
 
 	receive_signal(datum/signal/signal)
-//		var/obj/item/device/radio/headset/pda/P = src.loc
+//		var/obj/item/radio/headset/pda/P = src.loc
 
 		/*
 		world << "recvd:[P] : [signal.source]"
@@ -76,7 +74,7 @@
 
 	Topic(href, href_list)
 		..()
-		var/obj/item/device/radio/headset/pda/PDA = src.hostpda
+		var/obj/item/radio/headset/pda/PDA = src.hostpda
 
 		switch(href_list["op"])
 
@@ -130,7 +128,7 @@
 	// create/populate lists as they are recvd
 
 	receive_signal(datum/signal/signal)
-//		var/obj/item/device/radio/headset/pda/P = src.loc
+//		var/obj/item/radio/headset/pda/P = src.loc
 
 		/*
 		world << "recvd:[P] : [signal.source]"
@@ -212,11 +210,8 @@
 
 
 /obj/item/radio/integrated/signal
-	var/frequency = 1457
-	var/code = 30.0
-	var/last_transmission
-	var/datum/radio_frequency/radio_connection
 
+	var/code = 30.0
 	initialize()
 		if(!radio_controller)
 			return
@@ -225,11 +220,6 @@
 			src.frequency = sanitize_frequency(src.frequency)
 
 		set_frequency(frequency)
-
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
-		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency)
 
 	proc/send_signal(message="ACTIVATE")
 

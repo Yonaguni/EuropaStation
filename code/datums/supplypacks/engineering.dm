@@ -158,9 +158,9 @@
 
 /decl/hierarchy/supply_pack/engineering/robotics
 	name = "Robotics assembly crate"
-	contains = list(/obj/item/device/assembly/prox_sensor = 3,
+	contains = list(/obj/item/assembly/prox_sensor = 3,
 					/obj/item/storage/toolbox/electrical,
-					/obj/item/device/flash = 4,
+					/obj/item/flash = 4,
 					/obj/item/cell/high = 2)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -177,9 +177,9 @@
 
 /decl/hierarchy/supply_pack/engineering/painters
 	name = "Industrial Painting Supplies"
-	contains = list(/obj/item/device/pipe_painter = 2,
-					/obj/item/device/floor_painter = 2,
-					/obj/item/device/cable_painter = 2)
+	contains = list(/obj/item/pipe_painter = 2,
+					/obj/item/floor_painter = 2,
+					/obj/item/cable_painter = 2)
 	cost = 10
 	containername = "\improper station painting supplies crate"
 	containertype = /obj/structure/closet/crate

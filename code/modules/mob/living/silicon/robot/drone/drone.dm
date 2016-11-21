@@ -148,7 +148,7 @@ var/list/mob_hat_cache = list()
 	updateicon()
 
 /mob/living/silicon/robot/drone/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
 	if(!laws) laws = new law_type
 	if(!module) module = new module_type(src)
@@ -208,7 +208,7 @@ var/list/mob_hat_cache = list()
 		user << "<span class='danger'>\The [src] is hermetically sealed. You can't open the case.</span>"
 		return
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
 
 		if(stat == 2)
 

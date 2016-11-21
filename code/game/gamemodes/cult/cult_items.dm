@@ -108,7 +108,7 @@
 	name = "cult armour"
 	icon_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
-	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade,/obj/item/tank/emergency,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade,/obj/item/tank/emergency,/obj/item/suit_cooling_unit)
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS

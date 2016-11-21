@@ -90,15 +90,15 @@
 		/obj/item/hand_labeler,
 		/obj/item/stamp/chameleon,
 		/obj/item/pen/chameleon,
-		/obj/item/device/destTagger,
+		/obj/item/destTagger,
 		)
 
 /obj/item/storage/box/syndie_kit/spy
 	name = "spy kit"
 	desc = "For when you want to conduct voyeurism from afar."
 	startswith = list(
-		/obj/item/device/spy_bug = 6,
-		/obj/item/device/spy_monitor
+		/obj/item/spy_bug = 6,
+		/obj/item/spy_monitor
 	)
 
 /obj/item/storage/box/syndie_kit/g9mm

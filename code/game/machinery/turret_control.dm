@@ -84,7 +84,7 @@
 	if(stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
 		if(src.allowed(usr))
 			if(emagged)
 				user << "<span class='notice'>The turret control is unresponsive.</span>"

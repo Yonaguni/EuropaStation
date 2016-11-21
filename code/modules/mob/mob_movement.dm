@@ -225,8 +225,8 @@
 					var/obj/item/gun/energy/sniperrifle/s = locate() in mob
 					if(s.zoom)
 						s.zoom()
-				if(locate(/obj/item/device/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/device/binoculars/b = locate() in mob
+				if(locate(/obj/item/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
+					var/obj/item/binoculars/b = locate() in mob
 					if(b.zoom)
 						b.zoom()
 				*/

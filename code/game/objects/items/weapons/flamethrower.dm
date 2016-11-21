@@ -18,7 +18,7 @@
 	var/operating = 0//cooldown
 	var/turf/previousturf = null
 	var/obj/item/weldingtool/weldtool = null
-	var/obj/item/device/assembly/igniter/igniter = null
+	var/obj/item/assembly/igniter/igniter = null
 	var/obj/item/tank/phoron/ptank = null
 
 
@@ -93,7 +93,7 @@
 		return
 
 	if(isigniter(W))
-		var/obj/item/device/assembly/igniter/I = W
+		var/obj/item/assembly/igniter/I = W
 		if(I.secured)	return
 		if(igniter)		return
 		user.drop_item()
@@ -112,8 +112,8 @@
 		update_icon()
 		return
 
-	if(istype(W, /obj/item/device/analyzer))
-		var/obj/item/device/analyzer/A = W
+	if(istype(W, /obj/item/analyzer))
+		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 		return
 	..()
@@ -203,7 +203,7 @@
 	..()
 	weldtool = new /obj/item/weldingtool(src)
 	weldtool.status = 0
-	igniter = new /obj/item/device/assembly/igniter(src)
+	igniter = new /obj/item/assembly/igniter(src)
 	igniter.secured = 0
 	status = 1
 	update_icon()

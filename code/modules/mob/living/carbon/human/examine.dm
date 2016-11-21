@@ -171,8 +171,8 @@
 	//ID
 	if(wear_id)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/radio/headset/pda))
-			var/obj/item/device/radio/headset/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/radio/headset/pda))
+			var/obj/item/radio/headset/pda/pda = wear_id
 			id = pda.owner
 		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/card/id/idcard = wear_id
@@ -321,8 +321,8 @@
 		if(wear_id)
 			if(istype(wear_id,/obj/item/card/id))
 				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/radio/headset/pda))
-				var/obj/item/device/radio/headset/pda/tempPda = wear_id
+			else if(istype(wear_id,/obj/item/radio/headset/pda))
+				var/obj/item/radio/headset/pda/tempPda = wear_id
 				perpname = tempPda.owner
 		else
 			perpname = src.name

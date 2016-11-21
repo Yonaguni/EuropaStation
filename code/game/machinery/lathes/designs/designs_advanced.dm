@@ -6,16 +6,16 @@
 
 /datum/autolathe/recipe/advanced/pai
 	name = "personal artificial intelligence card"
-	path = /obj/item/device/paicard
+	path = /obj/item/paicard
 
 /datum/autolathe/recipe/advanced/smartcard
 	name = "AI smartcard"
-	path = /obj/item/device/aicard
+	path = /obj/item/aicard
 
 // SCANNERS
 /datum/autolathe/recipe/advanced/scanners
 	name = "health analyzer"
-	path = /obj/item/device/healthanalyzer
+	path = /obj/item/healthanalyzer
 	category = "Scanners and HUDs"
 
 /datum/autolathe/recipe/advanced/scanners/healthhud
@@ -32,23 +32,23 @@
 
 /datum/autolathe/recipe/advanced/scanners/analyzer
 	name = "atmosphere analyzer"
-	path = /obj/item/device/analyzer
+	path = /obj/item/analyzer
 
 /datum/autolathe/recipe/advanced/scanners/spectrometer
 	name = "mass spectrometer"
-	path = /obj/item/device/mass_spectrometer
+	path = /obj/item/mass_spectrometer
 
 /datum/autolathe/recipe/advanced/scanners/reagent
 	name = "reagent scanner"
-	path = /obj/item/device/reagent_scanner
+	path = /obj/item/reagent_scanner
 
 /datum/autolathe/recipe/advanced/scanners/advreagent
 	name = "advanced reagent scanner"
-	path = /obj/item/device/reagent_scanner/adv
+	path = /obj/item/reagent_scanner/adv
 
 /datum/autolathe/recipe/advanced/scanners/price
 	name = "price scanner"
-	path = /obj/item/device/price_scanner
+	path = /obj/item/price_scanner
 
 /datum/autolathe/recipe/advanced/capacitor
 	name = "capacitor"

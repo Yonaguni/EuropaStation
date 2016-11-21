@@ -12,11 +12,11 @@
 	uniform = /obj/item/clothing/under/aeolus/engineering/chief
 	gloves = /obj/item/clothing/gloves/thick
 	id_type = /obj/item/card/id/engineering/head
-	pda_type = /obj/item/device/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command
 
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = OUTFIT_JOB_NAME("Engineer")
 	uniform = /obj/item/clothing/under/aeolus/engineering
-	r_pocket = /obj/item/device/t_scanner
+	r_pocket = /obj/item/t_scanner
 	id_type = /obj/item/card/id/engineering
-	pda_type = /obj/item/device/radio/headset/pda/engineering
+	pda_type = /obj/item/radio/headset/pda/engineering

@@ -33,23 +33,23 @@
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
 	item_cost = 16
-	path = /obj/item/device/encryptionkey/syndicate
+	path = /obj/item/encryptionkey/syndicate
 
 /datum/uplink_item/item/tools/shield_disrupter
 	name = "Shield disrupter"
 	item_cost = 16
-	path = /obj/item/device/shield_disrupter
+	path = /obj/item/shield_disrupter
 
 /datum/uplink_item/item/tools/suit_sensor_mobile
 	name = "Suit Sensor Jamming Device"
 	desc = "This device will affect suit sensor data using method and radius defined by the user."
 	item_cost = 20
-	path = /obj/item/device/suit_sensor_jammer
+	path = /obj/item/suit_sensor_jammer
 
 /datum/uplink_item/item/tools/encryptionkey_binary
 	name = "Binary Translator Key"
 	item_cost = 20
-	path = /obj/item/device/encryptionkey/binary
+	path = /obj/item/encryptionkey/binary
 
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
@@ -59,7 +59,7 @@
 /datum/uplink_item/item/tools/hacking_tool
 	name = "Door Hacking Tool"
 	item_cost = 24
-	path = /obj/item/device/multitool/hacktool
+	path = /obj/item/multitool/hacktool
 	desc = "Appears and functions as a standard multitool until the mode is toggled by applying a screwdriver appropriately. \
 			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
@@ -77,7 +77,7 @@
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"
 	item_cost = 40
-	path = /obj/item/device/powersink
+	path = /obj/item/powersink
 
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"

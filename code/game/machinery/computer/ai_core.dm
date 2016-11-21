@@ -7,7 +7,7 @@
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
 	var/obj/item/circuitboard/circuit = null
-	var/obj/item/device/mmi/brain = null
+	var/obj/item/mmi/brain = null
 
 
 /obj/structure/AIcore/attackby(obj/item/P as obj, var/mob/user)
@@ -124,8 +124,8 @@
 				laws.add_inherent_law(M.newFreeFormLaw)
 				usr << "Added a freeform law."
 
-			if(istype(P, /obj/item/device/mmi))
-				var/obj/item/device/mmi/M = P
+			if(istype(P, /obj/item/mmi))
+				var/obj/item/mmi/M = P
 				if(!M.brainmob)
 					user << "<span class='warning'>Sticking an empty [P] into the frame would sort of defeat the purpose.</span>"
 					return
@@ -192,7 +192,7 @@
 		empty_playable_ai_cores -= src
 	return ..()
 
-/obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
+/obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/aicard/card, var/mob/user)
 
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
@@ -219,8 +219,8 @@
 
 /obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
 
-	if(istype(W, /obj/item/device/aicard))
-		var/obj/item/device/aicard/card = W
+	if(istype(W, /obj/item/aicard))
+		var/obj/item/aicard/card = W
 		var/mob/living/silicon/ai/transfer = locate() in card
 		if(transfer)
 			load_ai(transfer,card,user)

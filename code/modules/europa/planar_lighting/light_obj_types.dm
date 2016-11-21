@@ -1,16 +1,16 @@
-/obj/item/device/flashlight
+/obj/item/flashlight
 	light_type = LIGHT_DIRECTIONAL
 
-/obj/item/device/flashlight/flare
+/obj/item/flashlight/flare
 	light_type = LIGHT_SOFT_FLICKER
 
-/obj/item/device/flashlight/slime
+/obj/item/flashlight/slime
 	light_type = LIGHT_SOFT_FLICKER
 
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	light_type = LIGHT_SOFT
 
-/obj/item/device/flashlight/lamp
+/obj/item/flashlight/lamp
 	light_type = LIGHT_SOFT
 
 /obj/item/clothing/head

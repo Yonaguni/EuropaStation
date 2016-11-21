@@ -68,10 +68,10 @@
 	can_hold = list(
 		/obj/item/cell,
 		/obj/item/stock_parts,
-		/obj/item/device/mmi,
+		/obj/item/mmi,
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/organ/internal/brain,
 		/obj/item/stack/cable_coil,
 		/obj/item/circuitboard,
@@ -395,7 +395,7 @@
 		else
 			module_string += text("[O]: <A HREF=?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
-		if((istype(O,/obj/item) || istype(O,/obj/item/device)) && !(O.iscoil()))
+		if((istype(O,/obj/item) || istype(O,/obj/item)) && !(O.iscoil()))
 			tools += module_string
 		else
 			resources += module_string

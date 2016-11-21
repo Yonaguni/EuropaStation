@@ -31,8 +31,8 @@
 		new /obj/item/storage/toolbox/mechanical(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/multitool(src)
+		new /obj/item/flash(src)
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/crowbar/brace_jack(src)
 		return
@@ -60,9 +60,9 @@
 		new /obj/item/module/power_control(src)
 		new /obj/item/module/power_control(src)
 		new /obj/item/module/power_control(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/multitool(src)
+		new /obj/item/multitool(src)
+		new /obj/item/multitool(src)
+		new /obj/item/multitool(src)
 		return
 
 
@@ -147,7 +147,7 @@
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/clothing/suit/fire/firefighter(src)
-		new /obj/item/device/flashlight(src)
+		new /obj/item/flashlight(src)
 		new /obj/item/extinguisher(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)

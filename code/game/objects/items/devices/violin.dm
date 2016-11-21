@@ -1,6 +1,6 @@
 //copy pasta of the space piano, don't hurt me -Pete
 
-/obj/item/device/violin
+/obj/item/violin
 	name = "space violin"
 	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\"."
 	icon = 'icons/obj/musician.dmi'
@@ -13,7 +13,7 @@
 	var/edit = 1
 	var/repeat = 0
 
-/obj/item/device/violin/proc/playnote(var/note as text)
+/obj/item/violin/proc/playnote(var/note as text)
 	//world << "Note: [note]"
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -192,7 +192,7 @@
 
 	hearers(15, get_turf(src)) << sound(soundfile)
 
-/obj/item/device/violin/proc/playsong()
+/obj/item/violin/proc/playsong()
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
@@ -235,7 +235,7 @@
 	while(repeat > 0)
 	playing = 0
 
-/obj/item/device/violin/attack_self(var/mob/user)
+/obj/item/violin/attack_self(var/mob/user)
 	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 
@@ -287,7 +287,7 @@
 	user << browse(dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
-/obj/item/device/violin/Topic(href, href_list)
+/obj/item/violin/Topic(href, href_list)
 
 	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=violin;size=700x300")

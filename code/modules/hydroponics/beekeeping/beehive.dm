@@ -94,7 +94,7 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/device/analyzer/plant_analyzer))
+	else if(istype(I, /obj/item/analyzer/plant_analyzer))
 		user << "<span class='notice'>Scan result of \the [src]...</span>"
 		user << "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]"
 		if(frames)

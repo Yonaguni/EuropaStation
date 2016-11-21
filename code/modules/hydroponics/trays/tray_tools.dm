@@ -4,7 +4,7 @@
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 
-/obj/item/device/analyzer/plant_analyzer
+/obj/item/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
@@ -12,7 +12,7 @@
 	var/form_title
 	var/last_data
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
+/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
@@ -21,13 +21,13 @@
 		return
 	print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/Topic(href, href_list)
+/obj/item/analyzer/plant_analyzer/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["print"])
 		print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	if(!last_data)
 		user << "There is no scan data to print."
 		return
@@ -39,11 +39,11 @@
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return
 
-/obj/item/device/analyzer/plant_analyzer/attack_self(var/mob/user)
+/obj/item/analyzer/plant_analyzer/attack_self(var/mob/user)
 	print_report(user)
 	return 0
 
-/obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag) return
 
 	var/datum/seed/grown_seed

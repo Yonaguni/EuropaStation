@@ -84,7 +84,7 @@
 
 		if(toner >= 5)
 			var/mob/living/silicon/tempAI = usr
-			var/obj/item/device/camera/siliconcam/camera = tempAI.aiCamera
+			var/obj/item/camera/siliconcam/camera = tempAI.aiCamera
 
 			if(!camera)
 				return
@@ -112,11 +112,11 @@
 			updateUsrDialog()
 		else
 			user << "<span class='notice'>There is already something in \the [src].</span>"
-	else if(istype(O, /obj/item/device/toner))
+	else if(istype(O, /obj/item/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
 			user << "<span class='notice'>You insert the toner cartridge into \the [src].</span>"
-			var/obj/item/device/toner/T = O
+			var/obj/item/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
 			updateUsrDialog()
@@ -228,7 +228,7 @@
 	p.name = bundle.name
 	return p
 
-/obj/item/device/toner
+/obj/item/toner
 	name = "toner cartridge"
 	icon_state = "tonercartridge"
 	var/toner_amount = 30

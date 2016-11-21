@@ -268,7 +268,7 @@
 	name = "box of Pest-B-Gon mousetraps"
 	desc = "<B><FONT color='red'>WARNING:</FONT></B> <I>Keep out of reach of children</I>."
 	icon_state = "mousetraps"
-	startswith = list(/obj/item/device/assembly/mousetrap = 6)
+	startswith = list(/obj/item/assembly/mousetrap = 6)
 
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"

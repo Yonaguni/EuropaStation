@@ -86,7 +86,7 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/flashlight
 	name = "flashlight"
-	path = /obj/item/device/flashlight
+	path = /obj/item/flashlight
 	category = "General"
 
 /datum/autolathe/recipe/floor_light
@@ -111,12 +111,12 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/multitool
 	name = "multitool"
-	path = /obj/item/device/multitool
+	path = /obj/item/multitool
 	category = "Tools"
 
 /datum/autolathe/recipe/t_scanner
 	name = "T-ray scanner"
-	path = /obj/item/device/t_scanner
+	path = /obj/item/t_scanner
 	category = "Tools"
 
 /datum/autolathe/recipe/weldertool
@@ -151,17 +151,17 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/radio_headset
 	name = "radio headset"
-	path = /obj/item/device/radio/headset
+	path = /obj/item/radio/headset
 	category = "General"
 
 /datum/autolathe/recipe/radio_bounced
 	name = "bounced radio"
-	path = /obj/item/device/radio/off
+	path = /obj/item/radio/off
 	category = "General"
 
 /datum/autolathe/recipe/suit_cooler
 	name = "suit cooling unit"
-	path = /obj/item/device/suit_cooling_unit
+	path = /obj/item/suit_cooling_unit
 	category = "General"
 
 /datum/autolathe/recipe/weldermask
@@ -200,12 +200,12 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/taperecorder
 	name = "tape recorder"
-	path = /obj/item/device/taperecorder/empty
+	path = /obj/item/taperecorder/empty
 	category = "General"
 
 /datum/autolathe/recipe/tape
 	name = "tape"
-	path = /obj/item/device/tape
+	path = /obj/item/tape
 	category = "General"
 
 /datum/autolathe/recipe/airlockmodule
@@ -295,27 +295,27 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/igniter
 	name = "igniter"
-	path = /obj/item/device/assembly/igniter
+	path = /obj/item/assembly/igniter
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/signaler
 	name = "signaler"
-	path = /obj/item/device/assembly/signaler
+	path = /obj/item/assembly/signaler
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/sensor_infra
 	name = "infrared sensor"
-	path = /obj/item/device/assembly/infra
+	path = /obj/item/assembly/infra
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/timer
 	name = "timer"
-	path = /obj/item/device/assembly/timer
+	path = /obj/item/assembly/timer
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/sensor_prox
 	name = "proximity sensor"
-	path = /obj/item/device/assembly/prox_sensor
+	path = /obj/item/assembly/prox_sensor
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/tube
@@ -369,7 +369,7 @@ var/list/autolathe_heavy =    list()
 
 /datum/autolathe/recipe/electropack
 	name = "electropack"
-	path = /obj/item/device/radio/electropack
+	path = /obj/item/radio/electropack
 	hidden = 1
 	category = "Devices and Components"
 
