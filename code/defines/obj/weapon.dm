@@ -95,7 +95,7 @@
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
@@ -259,14 +259,14 @@
 /obj/item/staff/gentcane
 	name = "Gentlemans Cane"
 	desc = "An ebony can with an ivory tip."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 
 /obj/item/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "stick"
 	item_state = "stick"
 	force = 3.0
@@ -323,7 +323,7 @@
 
 /obj/item/camera_bug
 	name = "camera bug"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "flash"
 	w_class = 1.0
 	item_state = "electronic"

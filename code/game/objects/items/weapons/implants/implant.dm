@@ -4,7 +4,7 @@
 
 /obj/item/implant
 	name = "implant"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "implant"
 	w_class = 1
 	var/implanted = null

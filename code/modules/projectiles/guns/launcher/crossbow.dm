@@ -3,7 +3,7 @@
 /obj/item/arrow
 	name = "bolt"
 	desc = "It's got a tip for you - get the point?"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "bolt"
 	item_state = "bolt"
 	throwforce = 8
@@ -22,7 +22,7 @@
 	edge = 0
 	throwforce = 5
 	w_class = 2
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "metal-rod"
 	item_state = "bolt"
 
@@ -41,7 +41,7 @@
 /obj/item/gun/launcher/crossbow
 	name = "powered crossbow"
 	desc = "A 2557AD twist on an old classic. Pick up that can."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow-solid"
 	fire_sound = 'sound/weapons/punchmiss.ogg' // TODO: Decent THWOK noise.

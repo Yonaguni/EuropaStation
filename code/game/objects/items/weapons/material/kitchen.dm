@@ -88,7 +88,7 @@
 /obj/item/material/kitchen/utensil/knife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "tacknife"
 	item_state = "knife"
 	applies_material_colour = 0

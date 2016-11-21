@@ -10,7 +10,7 @@
 /obj/item/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "locator"
 	var/temp = null
 	var/frequency = 1451
@@ -125,7 +125,7 @@ Frequency:
 /obj/item/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5

@@ -1,7 +1,7 @@
 /obj/item/spy_bug
 	name = "bug"
 	desc = ""	// Nothing to see here
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "eshield0"
 	item_state = "nothing"
 	layer = TURF_LAYER+0.2
