@@ -17,6 +17,8 @@
 	glide_size = 32
 	blend_mode = BLEND_ADD
 
+	alpha = 180
+
 	var/current_power = 1
 	var/atom/movable/holder
 	var/point_angle
@@ -28,6 +30,7 @@
 		var/atom/A = holder
 		light_range = A.light_range
 		light_color = A.light_color
+		light_power = A.light_power
 		color = light_color
 	..(get_turf(holder))
 

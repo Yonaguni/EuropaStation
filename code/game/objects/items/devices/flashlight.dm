@@ -41,9 +41,7 @@
 		var/turf/origin = get_turf(light_obj)
 		var/turf/target = get_turf(A)
 		if(istype(origin) && istype(target))
-			spawn(1)
-				if(light_obj && !deleted(light_obj))
-					light_obj.follow_holder()
+			user.face_atom(A)
 			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
 			return
 	return ..()
