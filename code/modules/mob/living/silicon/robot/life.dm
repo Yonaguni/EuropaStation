@@ -50,11 +50,7 @@
 			cell_use_power(50)
 
 		if(lights_on)
-			if(intenselight)
-				cell_use_power(100)	// Upgraded light. Double intensity, much larger power usage.
-			else
-				cell_use_power(30) 	// 30W light. Normal lights would use ~15W, but increased for balance reasons.
-
+			cell_use_power(light_power * 10)
 		src.has_power = 1
 	else
 		if (src.has_power)

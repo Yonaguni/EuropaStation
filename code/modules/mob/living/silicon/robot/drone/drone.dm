@@ -33,7 +33,7 @@ var/list/mob_hat_cache = list()
 	lawupdate = 0
 	density = 1
 	req_access = list(access_engine, access_robotics)
-	integrated_light_power = 3
+	light_range = 3
 	local_transmit = 1
 	possession_candidate = 1
 
@@ -127,6 +127,8 @@ var/list/mob_hat_cache = list()
 	hat_y_offset = -12
 	can_pull_size = 5
 	can_pull_mobs = MOB_PULL_SAME
+	light_range = 5
+	light_color = COLOUR_LTEMP_HALOGEN
 
 /mob/living/silicon/robot/drone/New()
 

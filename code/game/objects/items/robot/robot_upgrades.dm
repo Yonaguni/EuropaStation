@@ -63,11 +63,12 @@
 /obj/item/borg/upgrade/floodlight/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(R.intenselight)
+	if(R.light_power > initial(R.light_power))
 		usr << "This robot's light was already upgraded"
 		return 0
 	else
-		R.intenselight = 1
+		R.light_power = min(10, R.light_power*2)
+		R.light_range = min(5, R.light_range*2)
 		R.update_robot_light()
 		R << "Lighting systems upgrade detected."
 	return 1
