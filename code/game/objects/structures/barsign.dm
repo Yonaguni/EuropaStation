@@ -6,8 +6,8 @@
 	pixel_x = -32
 	pixel_y = -32
 
-	light_range = 2
-	light_power = 1
+	light_power = 6
+	light_range = 5
 	light_color = "#FF55FF"
 
 	var/cult = 0

@@ -12,6 +12,10 @@
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
 
+	light_power = 6
+	light_range = 5
+	light_color = COLOUR_LTEMP_HALOGEN
+
 	var/lights_on = 0 // Is our integrated light on?
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
@@ -19,7 +23,6 @@
 	var/custom_sprite = 0 //Due to all the sprites involved, a var for our custom borgs may be best
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
-	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
 
 //Icon stuff
@@ -88,7 +91,6 @@
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Robot"
-	var/intenselight = 0	// Whether cyborg's integrated light was upgraded
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
@@ -394,10 +396,7 @@
 
 /mob/living/silicon/robot/proc/update_robot_light()
 	if(lights_on)
-		if(intenselight)
-			set_light(integrated_light_power * 2, integrated_light_power)
-		else
-			set_light(integrated_light_power)
+		set_light()
 	else
 		kill_light()
 
