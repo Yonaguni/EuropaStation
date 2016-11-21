@@ -20,7 +20,7 @@
 		plane = GUI_PLANE
 	return
 
-/obj/item/weapon/gun/composite/update_plane()
+/obj/item/gun/composite/update_plane()
 	var/lastplane = plane
 	. = ..()
 	var/f_update_icon

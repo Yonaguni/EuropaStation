@@ -156,7 +156,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 					// find the turf to move things to
 		var/turf/D = locate(T.x, throwy - 1, 1)
 					//var/turf/E = get_step(D, SOUTH)
-		for(var/atom/movable/AM as mob|obj in T)
+		for(var/atom/movable/AM in T)
 			AM.Move(D)
 		if(istype(T, /turf/simulated))
 			qdel(T)
@@ -177,16 +177,16 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
 	else return 1
 
-/obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attack_ai(var/mob/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/syndicate_elite_shuttle/emag_act(var/remaining_charges, var/mob/user)
 	user << "<span class='notice'>The electronic systems in this console are far too advanced for your primitive hacking peripherals.</span>"
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user)
 	if(!allowed(user))
 		user << "<span class='warning'>Access Denied.</span>"
 		return

@@ -87,7 +87,7 @@
 	update_icon()
 
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
+/obj/item/device/taperecorder/hear_talk(var/mob/living/M, msg, var/verb="says", datum/language/speaking=null)
 	if(mytape && recording)
 
 		if(speaking)
@@ -98,7 +98,7 @@
 			mytape.record_speech("[M.name] [verb], \"[msg]\"")
 
 
-/obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
+/obj/item/device/taperecorder/see_emote(var/mob/M, text, var/emote_type)
 	if(emote_type != 2) //only hearable emotes
 		return
 	if(mytape && recording)
@@ -328,7 +328,7 @@
 		return
 
 	usr << "<span class='notice'>Transcript printed.</span>"
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
 	for(var/i=1,mytape.storedinfo.len >= i,i++)
 		var/printedmessage = mytape.storedinfo[i]
@@ -420,7 +420,7 @@
 			user << "<span class='notice'>You wound the tape back in.</span>"
 			fix()
 		return
-	else if(istype(I, /obj/item/weapon/pen))
+	else if(istype(I, /obj/item/pen))
 		if(loc == user && !user.incapacitated())
 			var/new_name = input(user, "What would you like to label the tape?", "Tape labeling") as null|text
 			if(isnull(new_name)) return

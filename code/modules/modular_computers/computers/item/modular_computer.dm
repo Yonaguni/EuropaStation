@@ -36,14 +36,14 @@
 	var/max_damage = 100		// Damage level at which the computer breaks apart.
 
 	// Important hardware (must be installed for computer to work)
-	var/obj/item/weapon/computer_hardware/processor_unit/processor_unit				// CPU. Without it the computer won't run. Better CPUs can run more programs at once.
-	var/obj/item/weapon/computer_hardware/network_card/network_card					// Network Card component of this computer. Allows connection to NTNet
-	var/obj/item/weapon/computer_hardware/hard_drive/hard_drive						// Hard Drive component of this computer. Stores programs and files.
-	var/obj/item/weapon/computer_hardware/battery_module/battery_module				// An internal power source for this computer. Can be recharged.
+	var/obj/item/computer_hardware/processor_unit/processor_unit				// CPU. Without it the computer won't run. Better CPUs can run more programs at once.
+	var/obj/item/computer_hardware/network_card/network_card					// Network Card component of this computer. Allows connection to NTNet
+	var/obj/item/computer_hardware/hard_drive/hard_drive						// Hard Drive component of this computer. Stores programs and files.
+	var/obj/item/computer_hardware/battery_module/battery_module				// An internal power source for this computer. Can be recharged.
 	// Optional hardware (improves functionality, but is not critical for computer to work)
-	var/obj/item/weapon/computer_hardware/card_slot/card_slot						// ID Card slot component of this computer. Mostly for HoP modification console that needs ID slot for modification.
-	var/obj/item/weapon/computer_hardware/nano_printer/nano_printer					// Nano Printer component of this computer, for your everyday paperwork needs.
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
+	var/obj/item/computer_hardware/card_slot/card_slot						// ID Card slot component of this computer. Mostly for HoP modification console that needs ID slot for modification.
+	var/obj/item/computer_hardware/nano_printer/nano_printer					// Nano Printer component of this computer, for your everyday paperwork needs.
+	var/obj/item/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
 
 	var/list/idle_threads = list()							// Idle programs on background. They still receive process calls but can't be interacted with.
 
@@ -146,7 +146,7 @@
 /obj/item/modular_computer/Destroy()
 	kill_program(1)
 	processing_objects.Remove(src)
-	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
+	for(var/obj/item/computer_hardware/CH in src.get_all_components())
 		uninstall_component(null, CH)
 		qdel(CH)
 	return ..()
@@ -223,7 +223,7 @@
 	visible_message("\The [src] breaks apart!")
 	var/turf/newloc = get_turf(src)
 	new /obj/item/stack/material/steel(newloc, round(steel_sheet_cost/2))
-	for(var/obj/item/weapon/computer_hardware/H in get_all_components())
+	for(var/obj/item/computer_hardware/H in get_all_components())
 		uninstall_component(null, H)
 		H.forceMove(newloc)
 		if(prob(25))
@@ -381,12 +381,12 @@
 		kill_program()
 		return 1
 	if( href_list["PC_enable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_enable_component"])
+		var/obj/item/computer_hardware/H = find_hardware_by_name(href_list["PC_enable_component"])
 		if(H && istype(H) && !H.enabled)
 			H.enabled = 1
 		. = 1
 	if( href_list["PC_disable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_disable_component"])
+		var/obj/item/computer_hardware/H = find_hardware_by_name(href_list["PC_disable_component"])
 		if(H && istype(H) && H.enabled)
 			H.enabled = 0
 		. = 1
@@ -477,7 +477,7 @@
 
 	var/power_usage = screen_on ? base_active_power_usage : base_idle_power_usage
 
-	for(var/obj/item/weapon/computer_hardware/H in get_all_components())
+	for(var/obj/item/computer_hardware/H in get_all_components())
 		if(H.enabled)
 			power_usage += H.power_usage
 
@@ -489,9 +489,9 @@
 
 	last_power_usage = power_usage
 
-/obj/item/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/id)) // ID Card, try to insert it.
-		var/obj/item/weapon/card/id/I = W
+/obj/item/modular_computer/attackby(var/obj/item/W, var/mob/user)
+	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
+		var/obj/item/card/id/I = W
 		if(!card_slot)
 			user << "You try to insert \the [I] into \the [src], but it does not have an ID card slot installed."
 			return
@@ -505,12 +505,12 @@
 		update_uis()
 		user << "You insert \the [I] into \the [src]."
 		return
-	if(istype(W, /obj/item/weapon/paper))
+	if(istype(W, /obj/item/paper))
 		if(!nano_printer)
 			return
 		nano_printer.attackby(W, user)
-	if(istype(W, /obj/item/weapon/computer_hardware))
-		var/obj/item/weapon/computer_hardware/C = W
+	if(istype(W, /obj/item/computer_hardware))
+		var/obj/item/computer_hardware/C = W
 		if(C.hardware_size <= max_hardware_size)
 			try_install_component(user, C)
 		else
@@ -526,7 +526,7 @@
 		qdel(src)
 		return
 	if(W.iswelder())
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(!WT.isOn())
 			user << "\The [W] is off."
 			return
@@ -547,7 +547,7 @@
 			user << "This device doesn't have any components installed."
 			return
 		var/list/component_names = list()
-		for(var/obj/item/weapon/computer_hardware/H in all_components)
+		for(var/obj/item/computer_hardware/H in all_components)
 			component_names.Add(H.name)
 
 		var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
@@ -558,7 +558,7 @@
 		if(!Adjacent(usr))
 			return
 
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
+		var/obj/item/computer_hardware/H = find_hardware_by_name(choice)
 
 		if(!H)
 			return
@@ -574,45 +574,45 @@
 	return
 
 // Attempts to install the hardware into apropriate slot.
-/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0)
+/obj/item/modular_computer/proc/try_install_component(var/mob/living/user, var/obj/item/computer_hardware/H, var/found = 0)
 	// "USB" flash drive.
-	if(istype(H, /obj/item/weapon/computer_hardware/hard_drive/portable))
+	if(istype(H, /obj/item/computer_hardware/hard_drive/portable))
 		if(portable_drive)
 			user << "This computer's portable drive slot is already occupied by \the [portable_drive]."
 			return
 		found = 1
 		portable_drive = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/hard_drive))
+	else if(istype(H, /obj/item/computer_hardware/hard_drive))
 		if(hard_drive)
 			user << "This computer's hard drive slot is already occupied by \the [hard_drive]."
 			return
 		found = 1
 		hard_drive = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/network_card))
+	else if(istype(H, /obj/item/computer_hardware/network_card))
 		if(network_card)
 			user << "This computer's network card slot is already occupied by \the [network_card]."
 			return
 		found = 1
 		network_card = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/nano_printer))
+	else if(istype(H, /obj/item/computer_hardware/nano_printer))
 		if(nano_printer)
 			user << "This computer's nano printer slot is already occupied by \the [nano_printer]."
 			return
 		found = 1
 		nano_printer = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/card_slot))
+	else if(istype(H, /obj/item/computer_hardware/card_slot))
 		if(card_slot)
 			user << "This computer's card slot is already occupied by \the [card_slot]."
 			return
 		found = 1
 		card_slot = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/battery_module))
+	else if(istype(H, /obj/item/computer_hardware/battery_module))
 		if(battery_module)
 			user << "This computer's battery slot is already occupied by \the [battery_module]."
 			return
 		found = 1
 		battery_module = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/processor_unit))
+	else if(istype(H, /obj/item/computer_hardware/processor_unit))
 		if(processor_unit)
 			user << "This computer's processor slot is already occupied by \the [processor_unit]."
 			return
@@ -625,7 +625,7 @@
 		H.forceMove(src)
 
 // Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0)
+/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/computer_hardware/H, var/found = 0, var/critical = 0)
 	if(portable_drive == H)
 		portable_drive = null
 		found = 1
@@ -750,7 +750,7 @@
 		damage = between(0, damage, max_damage)
 
 	if(component_probability)
-		for(var/obj/item/weapon/computer_hardware/H in get_all_components())
+		for(var/obj/item/computer_hardware/H in get_all_components())
 			if(prob(component_probability))
 				H.take_damage(round(amount / 2))
 

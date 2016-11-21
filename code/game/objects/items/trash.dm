@@ -76,5 +76,5 @@
 	name = "bread tube"
 	icon_state = "tastybread"
 
-/obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/trash/attack(var/mob/M, var/mob/living/user)
 	return

@@ -27,7 +27,7 @@
 	return
 
 /obj/item/gun_component/barrel/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/circular_saw) || istype(thing, /obj/item/weapon/melee/energy) || thing.iswirecutter())
+	if(istype(thing, /obj/item/circular_saw) || istype(thing, /obj/item/melee/energy) || thing.iswirecutter())
 		if(shortened_icon && icon_state != shortened_icon)
 			user << "<span class='notice'>You begin to shorten \the [src].</span>"
 			if(do_after(user, 30))

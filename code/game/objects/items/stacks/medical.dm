@@ -11,7 +11,7 @@
 	var/heal_burn = 0
 	var/animal_heal = 3
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/attack(var/mob/living/carbon/M, var/mob/user)
 	if (!istype(M))
 		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
 		return 1
@@ -58,7 +58,7 @@
 
 	animal_heal = 5
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
 
@@ -118,7 +118,7 @@
 
 	animal_heal = 4
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
 
@@ -153,7 +153,7 @@
 
 	animal_heal = 12
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/bruise_pack/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
 
@@ -213,7 +213,7 @@
 	animal_heal = 7
 
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/ointment/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
 
@@ -249,7 +249,7 @@
 	animal_heal = 0
 	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)	//List of organs you can splint, natch.
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/splint/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
 

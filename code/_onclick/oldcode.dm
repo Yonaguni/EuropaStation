@@ -159,7 +159,7 @@
 			// ------- CLICKED OBJECT EXISTS IN GAME WORLD, DISTANCE FROM PERSON TO OBJECT IS 1 SQUARE OR THEY'RE ON THE SAME SQUARE -------
 
 			var/direct = get_dir(usr, src)
-			var/obj/item/weapon/dummy/D = new /obj/item/weapon/dummy( usr.loc )
+			var/obj/item/dummy/D = new /obj/item/dummy( usr.loc )
 			var/ok = 0
 			if ( (direct - 1) & direct)
 

@@ -66,7 +66,7 @@ var/list/outfits_decls_by_type_
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)
 	if(flags & OUTFIT_HAS_JETPACK)
-		var/obj/item/weapon/tank/jetpack/J = locate(/obj/item/weapon/tank/jetpack) in H
+		var/obj/item/tank/jetpack/J = locate(/obj/item/tank/jetpack) in H
 		if(!J)
 			return
 		J.toggle()
@@ -77,7 +77,7 @@ var/list/outfits_decls_by_type_
 
 	rank = id_pda_assignment ? id_pda_assignment : rank
 	assignment = id_pda_assignment ? id_pda_assignment : (assignment ? assignment : rank)
-	var/obj/item/weapon/card/id/W = equip_id(H, rank, assignment)
+	var/obj/item/card/id/W = equip_id(H, rank, assignment)
 	if(W)
 		rank = W.rank
 		assignment = W.assignment
@@ -137,7 +137,7 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
 	if(!id_slot || !id_type)
 		return
-	var/obj/item/weapon/card/id/W = new id_type(H)
+	var/obj/item/card/id/W = new id_type(H)
 	if(id_desc)
 		W.desc = id_desc
 	if(rank)
@@ -159,7 +159,7 @@ var/list/outfits_decls_by_type_
 	var/obj/item/device/radio/headset/pda/pda = new pda_type(H)
 	pda.set_owner_rank_job(H.real_name, rank, assignment)
 
-	var/obj/item/weapon/card/id/id
+	var/obj/item/card/id/id
 	if(pda_slot == slot_wear_id)
 		id = locate() in H
 		if(id)

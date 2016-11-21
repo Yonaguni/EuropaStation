@@ -23,7 +23,7 @@
 	desc = "A silencer."
 	weight_mod = 1
 
-/obj/item/gun_component/accessory/barrel/silencer/apply_mod(var/obj/item/weapon/gun/composite/gun)
+/obj/item/gun_component/accessory/barrel/silencer/apply_mod(var/obj/item/gun/composite/gun)
 	..()
 	gun.silenced = 1
 

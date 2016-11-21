@@ -20,7 +20,7 @@
 		if(holder)
 			holder.update_icon()
 
-	proc/triggered(mob/target as mob, var/type = "feet")
+	proc/triggered(var/mob/target, var/type = "feet")
 		if(!armed)
 			return
 		var/obj/item/organ/external/affecting = null
@@ -50,7 +50,7 @@
 		pulse(0)
 
 
-	attack_self(mob/living/user as mob)
+	attack_self(var/mob/living/user)
 		if(!armed)
 			user << "<span class='notice'>You arm [src].</span>"
 		else
@@ -68,7 +68,7 @@
 		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
 
-	attack_hand(mob/living/user as mob)
+	attack_hand(var/mob/living/user)
 		if(armed)
 			if((CLUMSY in user.mutations) && prob(50))
 				var/which_hand = BP_L_HAND
@@ -94,7 +94,7 @@
 		..()
 
 
-	on_found(mob/finder as mob)
+	on_found(var/mob/finder)
 		if(armed)
 			finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
 								   "<span class='warning'>You accidentally trigger [src]!</span>")

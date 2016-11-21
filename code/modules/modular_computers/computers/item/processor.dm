@@ -56,7 +56,7 @@
 	qdel(machinery_computer)
 
 /obj/item/modular_computer/processor/find_hardware_by_name(var/N)
-	var/obj/item/weapon/computer_hardware/H = machinery_computer.find_hardware_by_name(N)
+	var/obj/item/computer_hardware/H = machinery_computer.find_hardware_by_name(N)
 	if(H)
 		return H
 	else
@@ -95,21 +95,21 @@
 	return
 
 // Tesla links only work on machinery types, so we'll override the default try_install_component() proc
-/obj/item/modular_computer/processor/try_install_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0)
-	if(istype(H, /obj/item/weapon/computer_hardware/tesla_link))
+/obj/item/modular_computer/processor/try_install_component(var/mob/living/user, var/obj/item/computer_hardware/H, var/found = 0)
+	if(istype(H, /obj/item/computer_hardware/tesla_link))
 		if(machinery_computer.tesla_link)
 			user << "This computer's tesla link slot is already occupied by \the [machinery_computer.tesla_link]."
 			return
-		var/obj/item/weapon/computer_hardware/tesla_link/L = H
+		var/obj/item/computer_hardware/tesla_link/L = H
 		L.holder = machinery_computer
 		machinery_computer.tesla_link = L
 		found = 1
 	..(user, H, found)
 
-/obj/item/modular_computer/processor/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0)
+/obj/item/modular_computer/processor/uninstall_component(var/mob/living/user, var/obj/item/computer_hardware/H, var/found = 0, var/critical = 0)
 	if(machinery_computer.tesla_link == H)
 		machinery_computer.tesla_link = null
-		var/obj/item/weapon/computer_hardware/tesla_link/L = H
+		var/obj/item/computer_hardware/tesla_link/L = H
 		L.holder = null
 		found = 1
 	..(user, H, found, critical)

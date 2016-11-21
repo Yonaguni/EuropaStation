@@ -1,4 +1,4 @@
-/obj/item/weapon/tank/jetpack/verb/moveup()
+/obj/item/tank/jetpack/verb/moveup()
 	set name = "Move Upwards"
 	set category = "Object"
 
@@ -24,7 +24,7 @@
 	usr.Move(above)
 	usr << "<span class='notice'>You move upwards.</span>"
 
-/obj/item/weapon/tank/jetpack/verb/movedown()
+/obj/item/tank/jetpack/verb/movedown()
 	set name = "Move Downwards"
 	set category = "Object"
 

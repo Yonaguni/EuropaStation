@@ -13,8 +13,8 @@
 	var/enhanced = 0 //has it been enhanced before?
 	flags = OPENCONTAINER
 
-	attackby(obj/item/O as obj, mob/user as mob)
-		if(istype(O, /obj/item/weapon/slimesteroid2))
+	attackby(obj/item/O as obj, var/mob/user)
+		if(istype(O, /obj/item/slimesteroid2))
 			if(enhanced == 1)
 				user << "<span class='warning'> This extract has already been enhanced!</span>"
 				return ..()
@@ -121,13 +121,13 @@
 
 ////Pet Slime Creation///
 
-/obj/item/weapon/slimepotion
+/obj/item/slimepotion
 	name = "docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(var/mob/living/carbon/slime/M, var/mob/user)
 		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
 			user << "<span class='warning'> The potion only works on baby slimes!</span>"
 			return ..()
@@ -155,13 +155,13 @@
 		pet.real_name = newname
 		qdel(src)
 
-/obj/item/weapon/slimepotion2
+/obj/item/slimepotion2
 	name = "advanced docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame. This one is meant for adult slimes."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(var/mob/living/carbon/slime/M, var/mob/user)
 		if(!istype(M, /mob/living/carbon/slime/))//If target is not a slime.
 			user << "<span class='warning'> The potion only works on slimes!</span>"
 			return ..()
@@ -187,13 +187,13 @@
 		qdel(src)
 
 
-/obj/item/weapon/slimesteroid
+/obj/item/slimesteroid
 	name = "slime steroid"
 	desc = "A potent chemical mix that will cause a slime to generate more extract."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(var/mob/living/carbon/slime/M, var/mob/user)
 		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
 			user << "<span class='warning'> The steroid only works on baby slimes!</span>"
 			return ..()
@@ -211,13 +211,13 @@
 		M.cores = 3
 		qdel(src)
 
-/obj/item/weapon/slimesteroid2
+/obj/item/slimesteroid2
 	name = "extract enhancer"
 	desc = "A potent chemical mix that will give a slime extract three uses."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
 
-/obj/item/weapon/slimesteroid2/afterattack(obj/target, mob/user , flag)
+/obj/item/slimesteroid2/afterattack(obj/target, mob/user , flag)
 	if(istype(target, /obj/item/slime_extract))
 		var/obj/item/slime_extract/extract = target
 		if(extract.enhanced == 1)

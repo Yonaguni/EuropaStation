@@ -40,7 +40,7 @@
 	desc = "A label on it reads: <i>Activate to have a singularity beacon teleported to your location</i>."
 
 
-/obj/item/device/radio/beacon/syndicate/attack_self(mob/user as mob)
+/obj/item/device/radio/beacon/syndicate/attack_self(var/mob/user)
 	if(user)
 		user << "<span class='notice'>Locked In</span>"
 		new /obj/machinery/power/singularity_beacon/syndicate( user.loc )

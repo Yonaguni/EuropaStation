@@ -80,11 +80,11 @@
 
 	return ..()
 
-/obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/turretid/attackby(var/obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/radio/headset/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/radio/headset/pda))
 		if(src.allowed(usr))
 			if(emagged)
 				user << "<span class='notice'>The turret control is unresponsive.</span>"
@@ -102,13 +102,13 @@
 		ailock = 0
 		return 1
 
-/obj/machinery/turretid/attack_ai(mob/user as mob)
+/obj/machinery/turretid/attack_ai(var/mob/user)
 	if(isLocked(user))
 		return
 
 	ui_interact(user)
 
-/obj/machinery/turretid/attack_hand(mob/user as mob)
+/obj/machinery/turretid/attack_hand(var/mob/user)
 	if(isLocked(user))
 		return
 

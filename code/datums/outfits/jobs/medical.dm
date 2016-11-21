@@ -2,8 +2,8 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/medical
 	shoes = /obj/item/clothing/shoes/white
 	pda_type = /obj/item/device/radio/headset/pda/medical
-	backpack = /obj/item/weapon/storage/backpack/medic
-	satchel_one = /obj/item/weapon/storage/backpack/satchel_med
+	backpack = /obj/item/storage/backpack/medic
+	satchel_one = /obj/item/storage/backpack/satchel_med
 	uniform = /obj/item/clothing/under/aeolus/medical
 
 /decl/hierarchy/outfit/job/medical/cmo
@@ -11,18 +11,18 @@
 	uniform = /obj/item/clothing/under/aeolus/medical/chief
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/brown
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/adv
 	r_pocket = /obj/item/device/flashlight/pen
-	id_type = /obj/item/weapon/card/id/medical/head
+	id_type = /obj/item/card/id/medical/head
 	pda_type = /obj/item/device/radio/headset/pda/medical
 
 /decl/hierarchy/outfit/job/medical/doctor
 	name = OUTFIT_JOB_NAME("Medical Officer")
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/adv
 	r_pocket = /obj/item/device/flashlight/pen
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/card/id/medical
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
 	name = OUTFIT_JOB_NAME("Emergency physician")
@@ -36,8 +36,8 @@
 	name = OUTFIT_JOB_NAME("Virologist")
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/virologist
 	mask = /obj/item/clothing/mask/surgical
-	backpack = /obj/item/weapon/storage/backpack/virology
-	satchel_one = /obj/item/weapon/storage/backpack/satchel_vir
+	backpack = /obj/item/storage/backpack/virology
+	satchel_one = /obj/item/storage/backpack/satchel_vir
 
 /decl/hierarchy/outfit/job/medical/doctor/nurse
 	name = OUTFIT_JOB_NAME("Nurse")
@@ -59,7 +59,7 @@
 	name = OUTFIT_JOB_NAME("Counsellor")
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/card/id/medical
 
 /decl/hierarchy/outfit/job/medical/psychiatrist/psychologist
 	name = OUTFIT_JOB_NAME("Psychologist")

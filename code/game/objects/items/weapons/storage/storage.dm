@@ -5,7 +5,7 @@
 // -Sayu
 
 
-/obj/item/weapon/storage
+/obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = 3
@@ -33,7 +33,7 @@
 	//the assoc value can either be the quantity, or a list whose first value is the quantity and the rest are args.
 	var/list/startswith
 
-/obj/item/weapon/storage/Destroy()
+/obj/item/storage/Destroy()
 	close_all()
 	qdel(boxes)
 	qdel(src.storage_start)
@@ -45,7 +45,7 @@
 	qdel(closer)
 	return ..()
 
-/obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
+/obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
@@ -73,21 +73,21 @@
 					usr.put_in_l_hand(src)
 
 
-/obj/item/weapon/storage/proc/return_inv()
+/obj/item/storage/proc/return_inv()
 
 	var/list/L = list(  )
 
 	L += src.contents
 
-	for(var/obj/item/weapon/storage/S in src)
+	for(var/obj/item/storage/S in src)
 		L += S.return_inv()
-	for(var/obj/item/weapon/gift/G in src)
+	for(var/obj/item/gift/G in src)
 		L += G.gift
-		if (istype(G.gift, /obj/item/weapon/storage))
+		if (istype(G.gift, /obj/item/storage))
 			L += G.gift:return_inv()
 	return L
 
-/obj/item/weapon/storage/proc/show_to(mob/user as mob)
+/obj/item/storage/proc/show_to(var/mob/user)
 	if(user.s_active != src)
 		for(var/obj/item/I in src)
 			if(I.on_found(user))
@@ -112,7 +112,7 @@
 	is_seeing |= user
 	return
 
-/obj/item/weapon/storage/proc/hide_from(mob/user as mob)
+/obj/item/storage/proc/hide_from(var/mob/user)
 
 	if(!user.client)
 		return
@@ -126,7 +126,7 @@
 		user.s_active = null
 	is_seeing -= user
 
-/obj/item/weapon/storage/proc/open(mob/user as mob)
+/obj/item/storage/proc/open(var/mob/user)
 	if (src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
@@ -135,17 +135,17 @@
 		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/weapon/storage/proc/close(mob/user as mob)
+/obj/item/storage/proc/close(var/mob/user)
 	src.hide_from(user)
 	user.s_active = null
 	return
 
-/obj/item/weapon/storage/proc/close_all()
+/obj/item/storage/proc/close_all()
 	for(var/mob/M in can_see_contents())
 		close(M)
 		. = 1
 
-/obj/item/weapon/storage/proc/can_see_contents()
+/obj/item/storage/proc/can_see_contents()
 	var/list/cansee = list()
 	for(var/mob/M in is_seeing)
 		if(M.s_active == src && M.client)
@@ -156,7 +156,7 @@
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
-/obj/item/weapon/storage/proc/orient_objs(tx, ty, mx, my)
+/obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
 	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
@@ -171,7 +171,7 @@
 	return
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
-/obj/item/weapon/storage/proc/slot_orient_objs()
+/obj/item/storage/proc/slot_orient_objs()
 	var/adjusted_contents = contents.len
 	var/row_num = 0
 	var/col_count = min(7,storage_slots) -1
@@ -180,7 +180,7 @@
 	src.arrange_item_slots(row_num, col_count)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/weapon/storage/proc/arrange_item_slots(var/rows, var/cols)
+/obj/item/storage/proc/arrange_item_slots(var/rows, var/cols)
 	var/cx = 4
 	var/cy = 2+rows
 	src.boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -197,7 +197,7 @@
 	src.closer.screen_loc = "[4+cols+1]:16,2:16"
 	return
 
-/obj/item/weapon/storage/proc/space_orient_objs()
+/obj/item/storage/proc/space_orient_objs()
 
 	var/baseline_max_storage_space = DEFAULT_BOX_STORAGE //storage size corresponding to 224 pixels
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -253,7 +253,7 @@
 		number = 1
 
 //Creates the storage UI
-/obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
+/obj/item/storage/proc/orient2hud(var/mob/user)
 	//if storage slots is null then use the storage space UI, otherwise use the slots UI
 	if(storage_slots == null)
 		src.space_orient_objs()
@@ -261,14 +261,14 @@
 		src.slot_orient_objs()
 	return
 
-/obj/item/weapon/storage/proc/storage_space_used()
+/obj/item/storage/proc/storage_space_used()
 	. = 0
 	for(var/obj/item/I in contents)
 		. += I.get_storage_cost()
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/weapon/storage/proc/can_be_inserted(obj/item/W, mob/user, stop_messages = 0)
+/obj/item/storage/proc/can_be_inserted(obj/item/W, mob/user, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
 	if(user && user.isEquipped(W) && !user.canUnEquip(W))
@@ -286,12 +286,12 @@
 
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
-			if(!stop_messages && ! istype(W, /obj/item/weapon/hand_labeler))
+			if(!stop_messages && ! istype(W, /obj/item/hand_labeler))
 				user << "<span class='notice'>\The [src] cannot hold [W].</span>"
 			return 0
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
-			if(!stop_messages && !istype(W, /obj/item/weapon/hand_labeler))
+			if(!stop_messages && !istype(W, /obj/item/hand_labeler))
 				user << "<span class='notice'>\The [src] has no more space specifically for [W].</span>"
 			return 0
 
@@ -322,8 +322,8 @@
 //This means that storage items with max_w_class greater than their own w_class
 //can now be exploited for infinite storage, so don't let players have those okay?
 /*
-	if(istype(W, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/other = W
+	if(istype(W, /obj/item/storage))
+		var/obj/item/storage/other = W
 		if(other.w_class > src.w_class || other.max_w_class >= src.w_class)
 			if(!stop_messages)
 				usr << "<span class='notice'>\The [src] cannot hold [W].</span>"
@@ -335,7 +335,7 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
 		usr.remove_from_mob(W)
@@ -361,7 +361,7 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
 	for(var/mob/M in range(1, src.loc))
@@ -391,7 +391,7 @@
 	return 1
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/attackby(obj/item/W as obj, var/mob/user)
 	..()
 
 	if(isrobot(user))
@@ -401,7 +401,7 @@
 		var/obj/item/device/lightreplacer/LP = W
 		var/amt_inserted = 0
 		var/turf/T = get_turf(user)
-		for(var/obj/item/weapon/light/L in src.contents)
+		for(var/obj/item/light/L in src.contents)
 			if(L.status == 0)
 				if(LP.uses < LP.max_uses)
 					LP.AddUses(1)
@@ -415,8 +415,8 @@
 	if(!can_be_inserted(W, user))
 		return
 
-	if(istype(W, /obj/item/weapon/tray))
-		var/obj/item/weapon/tray/T = W
+	if(istype(W, /obj/item/tray))
+		var/obj/item/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
 				user << "<span class='warning'>The tray won't fit in [src].</span>"
@@ -428,7 +428,7 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
 
-/obj/item/weapon/storage/attack_hand(mob/user as mob)
+/obj/item/storage/attack_hand(var/mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
@@ -450,7 +450,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/storage/verb/toggle_gathering_mode()
+/obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
 	set category = "Object"
 
@@ -462,7 +462,7 @@
 			usr << "[src] now picks up one item at a time."
 
 
-/obj/item/weapon/storage/verb/quick_empty()
+/obj/item/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
 
@@ -474,17 +474,17 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/weapon/storage/New()
+/obj/item/storage/New()
 	..()
 	if(allow_quick_empty)
-		verbs += /obj/item/weapon/storage/verb/quick_empty
+		verbs += /obj/item/storage/verb/quick_empty
 	else
-		verbs -= /obj/item/weapon/storage/verb/quick_empty
+		verbs -= /obj/item/storage/verb/quick_empty
 
 	if(allow_quick_gather)
-		verbs += /obj/item/weapon/storage/verb/toggle_gathering_mode
+		verbs += /obj/item/storage/verb/toggle_gathering_mode
 	else
-		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
+		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
 	if(isnull(max_storage_space) && !isnull(storage_slots))
 		max_storage_space = storage_slots*base_storage_cost(max_w_class)
@@ -551,20 +551,20 @@
 					new item_path(src)
 		update_icon()
 
-/obj/item/weapon/storage/emp_act(severity)
+/obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()
 
-/obj/item/weapon/storage/attack_self(mob/user as mob)
+/obj/item/storage/attack_self(var/mob/user)
 	//Clicking on itself will empty it, if it has the verb to do that.
 	if(user.get_active_hand() == src)
-		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
+		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
 			src.quick_empty()
 			return 1
 
-/obj/item/weapon/storage/proc/make_exact_fit()
+/obj/item/storage/proc/make_exact_fit()
 	storage_slots = contents.len
 
 	can_hold.Cut()
@@ -584,7 +584,7 @@
 	while (cur_atom && !(cur_atom in container.contents))
 		if (isarea(cur_atom))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/weapon/storage))
+		if (istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 
@@ -602,7 +602,7 @@
 	while (cur_atom && !isturf(cur_atom))
 		if (isarea(cur_atom))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/weapon/storage))
+		if (istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 

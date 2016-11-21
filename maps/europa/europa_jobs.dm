@@ -1,6 +1,6 @@
-/obj/item/weapon/card/id/corpcard
-/obj/item/weapon/card/id/lanyard
-/obj/item/weapon/card/id/dogtags
+/obj/item/card/id/corpcard
+/obj/item/card/id/lanyard
+/obj/item/card/id/dogtags
 
 /datum/map/europa
 	default_role = "Civilian"
@@ -124,7 +124,7 @@
 
 /decl/hierarchy/outfit/job/europa/industry
 	name = OUTFIT_JOB_NAME("Employee")
-	id_type = /obj/item/weapon/card/id/corpcard
+	id_type = /obj/item/card/id/corpcard
 
 /datum/job/industry/science
 	title = "Scientist"
@@ -136,7 +136,7 @@
 
 /decl/hierarchy/outfit/job/europa/scientist
 	name = OUTFIT_JOB_NAME("Scientist")
-	id_type = /obj/item/weapon/card/id/lanyard
+	id_type = /obj/item/card/id/lanyard
 	pda_type = /obj/item/device/radio/headset/pda/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
@@ -183,7 +183,7 @@
 	gloves = /obj/item/clothing/gloves/color/gray
 	glasses = /obj/item/clothing/glasses/sunglasses
 	head = /obj/item/clothing/head/petty_officer/marshal
-	id_type = /obj/item/weapon/card/id/dogtags
+	id_type = /obj/item/card/id/dogtags
 	pda_type = /obj/item/device/radio/headset/pda/security
 
 /datum/job/head/coordinator
@@ -208,8 +208,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses/big
-	l_hand = /obj/item/weapon/storage/briefcase
-	id_type = /obj/item/weapon/card/id/lanyard
+	l_hand = /obj/item/storage/briefcase
+	id_type = /obj/item/card/id/lanyard
 	pda_type = /obj/item/device/radio/headset/pda/science
 
 /datum/job/civilian/engineering
@@ -223,19 +223,19 @@
 /decl/hierarchy/outfit/job/europa/engineer
 	name = OUTFIT_JOB_NAME("Civil Engineer")
 	head = /obj/item/clothing/head/hardhat
-	belt = /obj/item/weapon/storage/belt/utility
+	belt = /obj/item/storage/belt/utility
 	pda_type = /obj/item/device/radio/headset/pda/engineering
 
 /decl/hierarchy/outfit/job/europa/ses
 	name = OUTFIT_JOB_NAME("Emergency Services")
 	head = /obj/item/clothing/head/hardhat/red
-	belt = /obj/item/weapon/storage/belt/utility
+	belt = /obj/item/storage/belt/utility
 	pda_type = /obj/item/device/radio/headset/pda/engineering
 
 /decl/hierarchy/outfit/job/europa/electrician
 	name = OUTFIT_JOB_NAME("Electrician")
 	gloves = /obj/item/clothing/gloves/insulated
-	belt = /obj/item/weapon/storage/belt/utility
+	belt = /obj/item/storage/belt/utility
 	pda_type = /obj/item/device/radio/headset/pda/engineering
 
 /datum/job/government
@@ -262,7 +262,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/petty_officer
 	shoes = /obj/item/clothing/shoes/jackboots
-	backpack = /obj/item/weapon/storage/backpack/captain
+	backpack = /obj/item/storage/backpack/captain
 	gloves = /obj/item/clothing/gloves/color/gray
-	id_type = /obj/item/weapon/card/id/dogtags
+	id_type = /obj/item/card/id/dogtags
 	pda_type = /obj/item/device/radio/headset/pda/security

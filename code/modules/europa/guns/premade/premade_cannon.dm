@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/composite/premade/autocannon
+/obj/item/gun/composite/premade/autocannon
 	name = "autocannon"
 	icon_state = "ballistic_cannon"
 	variant_chamber = /obj/item/gun_component/chamber/ballistic/auto/cannon

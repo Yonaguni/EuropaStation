@@ -3,7 +3,7 @@
 
 /decl/hierarchy/supply_pack/miscellaneous/wizard
 	name = "Wizard costume"
-	contains = list(/obj/item/weapon/staff,
+	contains = list(/obj/item/staff,
 					/obj/item/clothing/suit/wizrobe/fake,
 					/obj/item/clothing/shoes/sandal,
 					/obj/item/clothing/head/wizard/fake)
@@ -96,9 +96,9 @@
 
 /decl/hierarchy/supply_pack/miscellaneous/card_packs
 	num_contained = 5
-	contains = list(/obj/item/weapon/pack/cardemon,
-					/obj/item/weapon/pack/spaceball,
-					/obj/item/weapon/deck/holder)
+	contains = list(/obj/item/pack/cardemon,
+					/obj/item/pack/spaceball,
+					/obj/item/deck/holder)
 	name = "\improper Trading Card Crate"
 	cost = 20
 	containername = "\improper cards crate"
@@ -148,7 +148,7 @@
 	contains = list(/obj/item/clothing/suit/wizrobe/marisa/fake,
 					/obj/item/clothing/shoes/sandal,
 					/obj/item/clothing/head/wizard/marisa/fake,
-					/obj/item/weapon/staff/broom)
+					/obj/item/staff/broom)
 	cost = 20
 	containername = "\improper Witch costume"
 	containertype = /obj/structure/closet

@@ -14,7 +14,7 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/device/soulstone/attack(var/mob/living/carbon/human/M, var/mob/user)
 	if(!istype(M, /mob/living/carbon/human))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
@@ -40,7 +40,7 @@
 	user.visible_message("<span class='danger'>\The [user] shatters \the [src] with \the [thing]!</span>")
 	playsound(user.loc, "shatter", 70, 1)
 	for(var/i=1 to rand(2,5))
-		new /obj/item/weapon/material/shard(get_turf(src), "nullglass")
+		new /obj/item/material/shard(get_turf(src), "nullglass")
 	var/mob/M = loc
 	if(istype(M))
 		M.drop_from_inventory(src)
@@ -111,7 +111,7 @@
 	icon_state = "construct-cult"
 	desc = "This eerie contraption looks like it would come alive if supplied with a missing ingredient."
 
-/obj/structure/constructshell/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/constructshell/attackby(obj/item/O as obj, var/mob/user)
 	if(istype(O, /obj/item/device/soulstone))
 		var/obj/item/device/soulstone/S = O;
 		S.transfer_soul("CONSTRUCT",src,user)
@@ -229,7 +229,7 @@
 			Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 			Z.cancel_camera()
 			qdel(src)
-/obj/item/device/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U as mob).
+/obj/item/device/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U).
 	switch(choice)
 		if("VICTIM")
 			transfer_human(target,U)

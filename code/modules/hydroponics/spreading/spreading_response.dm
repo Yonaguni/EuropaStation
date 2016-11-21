@@ -44,7 +44,7 @@
 		buckled_mob = null
 	return
 
-/obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
+/obj/effect/plant/proc/manual_unbuckle(var/mob/user)
 	if(buckled_mob)
 		var/chance = 20
 		if(seed)

@@ -84,4 +84,4 @@
 /obj/machinery/computer/shuttle_control/expedition
 	name = "expedition shuttle control console"
 	shuttle_tag = "Expedition"
-	circuit = /obj/item/weapon/circuitboard/mining_shuttle
+	circuit = /obj/item/circuitboard/mining_shuttle

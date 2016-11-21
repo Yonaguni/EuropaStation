@@ -30,9 +30,9 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src, 3)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src, 3)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
 
 	RefreshParts()
 	update_icon()
@@ -86,13 +86,13 @@ obj/machinery/resleever/process()
 			return 1
 	return 0
 
-/obj/machinery/resleever/attack_ai(mob/user as mob)
+/obj/machinery/resleever/attack_ai(var/mob/user)
 
 	add_hiddenprint(user)
 	return attack_hand(user)
 
 
-/obj/machinery/resleever/attack_hand(mob/user as mob)
+/obj/machinery/resleever/attack_hand(var/mob/user)
 	if(!anchored)
 		return
 
@@ -153,7 +153,7 @@ obj/machinery/resleever/process()
 	else
 		return
 
-/obj/machinery/resleever/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/resleever/attackby(var/obj/item/W, var/mob/user)
 	if(default_deconstruction_screwdriver(user, W))
 		if(occupant)
 			user << "<span class='warning'>You need to remove the occupant first!</span>"
@@ -189,8 +189,8 @@ obj/machinery/resleever/process()
 		else
 			user << "<span class='warning'>Can not do that while [src] is occupied.</span>"
 
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/grab = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/grab = W
 		if(occupant)
 			user << "<span class='notice'>\The [src] is in use.</span>"
 			return
@@ -244,21 +244,21 @@ obj/machinery/resleever/process()
 /obj/machinery/resleever/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)

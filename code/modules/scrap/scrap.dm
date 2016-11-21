@@ -6,7 +6,7 @@
 	density = 0
 	icon_state = "small"
 	icon = 'icons/obj/structures/scrap/base.dmi'
-	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
+	var/obj/item/storage/internal/updating/loot	//the visible loot
 	var/loot_min = 3
 	var/loot_max = 5
 	var/list/loot_list = list(
@@ -15,8 +15,8 @@
 		/obj/item/stack/material/scrap,
 		/obj/item/stack/material/glass/scrap,
 		/obj/item/stack/material/plasteel/scrap,
-		/obj/item/weapon/material/shard,
-		/obj/item/weapon/material/shard/shrapnel
+		/obj/item/material/shard,
+		/obj/item/material/shard/shrapnel
 		)
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
 	var/base_min = 3	//min and max number of random pieces of base icon
@@ -90,7 +90,7 @@
 	..(over_object)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weapon/shovel))
+	if(istype(W,/obj/item/shovel))
 		var/list/ways = list("pokes around", "digs through", "rummages through", "goes through","picks through")
 		visible_message("<span class='notice'>\The [user] [pick(ways)] \the [src].</span>")
 		shuffle_loot()
@@ -109,7 +109,7 @@
 		/obj/item/stack/rods/scrap,
 		/obj/item/stack/material/plastic/scrap,
 		/obj/item/stack/material/scrap,
-		/obj/item/weapon/material/shard
+		/obj/item/material/shard
 		)
 
 /obj/structure/scrap/large
@@ -124,5 +124,5 @@
 	base_max = 14
 	base_spread = 16
 
-/obj/item/weapon/storage/internal/updating/update_icon()
+/obj/item/storage/internal/updating/update_icon()
 	master_item.update_icon()

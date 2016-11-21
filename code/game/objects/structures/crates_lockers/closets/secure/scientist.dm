@@ -11,16 +11,16 @@
 	New()
 		..()
 		if(prob(50))
-			new /obj/item/weapon/storage/backpack/toxins(src)
+			new /obj/item/storage/backpack/toxins(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_tox(src)
+			new /obj/item/storage/backpack/satchel_tox(src)
 		new /obj/item/clothing/under/rank/scientist(src)
 		//new /obj/item/clothing/suit/labcoat/science(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/clothing/shoes/white(src)
-		//new /obj/item/weapon/cartridge/signal/science(src)
+		//new /obj/item/cartridge/signal/science(src)
 		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/weapon/clipboard(src)
+		new /obj/item/clipboard(src)
 		return
 
 /obj/structure/closet/secure_closet/xenobio
@@ -36,15 +36,15 @@
 	New()
 		..()
 		if(prob(50))
-			new /obj/item/weapon/storage/backpack/toxins(src)
+			new /obj/item/storage/backpack/toxins(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_tox(src)
+			new /obj/item/storage/backpack/satchel_tox(src)
 		new /obj/item/clothing/under/rank/scientist(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/gloves/latex(src)
-		new /obj/item/weapon/clipboard(src)
+		new /obj/item/clipboard(src)
 		return
 
 
@@ -66,11 +66,11 @@
 		new /obj/item/clothing/under/rank/research_director/rdalt(src)
 		new /obj/item/clothing/under/rank/research_director/dress_rd(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-		new /obj/item/weapon/cartridge/rd(src)
+		new /obj/item/cartridge/rd(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/shoes/leather(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/flash(src)
-		new /obj/item/weapon/clipboard(src)
+		new /obj/item/clipboard(src)
 		return

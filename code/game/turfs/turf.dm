@@ -32,7 +32,7 @@ var/list/turf_edge_cache = list()
 
 /turf/New()
 	..()
-	for(var/atom/movable/AM as mob|obj in src)
+	for(var/atom/movable/AM in src)
 		spawn( 0 )
 			src.Entered(AM)
 			return
@@ -135,7 +135,7 @@ var/list/turf_edge_cache = list()
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
+/turf/Enter(var/atom/movable/mover, atom/forget as mob|obj|turf|area)
 
 	..()
 

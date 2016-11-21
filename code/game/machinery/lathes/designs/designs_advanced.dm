@@ -1,6 +1,6 @@
 /datum/autolathe/recipe/advanced
 	name = "rapid part exchanger"
-	path = /obj/item/weapon/storage/part_replacer
+	path = /obj/item/storage/part_replacer
 	category = "Advanced Components"
 	lathe_type = LATHE_TYPE_ADVANCED
 
@@ -52,110 +52,110 @@
 
 /datum/autolathe/recipe/advanced/capacitor
 	name = "capacitor"
-	path = /obj/item/weapon/stock_parts/capacitor
+	path = /obj/item/stock_parts/capacitor
 
 /datum/autolathe/recipe/advanced/scanningmodule
 	name = "scanning module"
-	path = /obj/item/weapon/stock_parts/scanning_module
+	path = /obj/item/stock_parts/scanning_module
 
 /datum/autolathe/recipe/advanced/manipulator
 	name = "micro-manipulator"
-	path = /obj/item/weapon/stock_parts/manipulator
+	path = /obj/item/stock_parts/manipulator
 
 /datum/autolathe/recipe/advanced/microlaser
 	name = "microlaser"
-	path = /obj/item/weapon/stock_parts/micro_laser
+	path = /obj/item/stock_parts/micro_laser
 
 /datum/autolathe/recipe/advanced/matterbin
 	name = "matter bin"
-	path = /obj/item/weapon/stock_parts/matter_bin
+	path = /obj/item/stock_parts/matter_bin
 
 /datum/autolathe/recipe/advanced/advancedcapacitor
 	name = "advanced capacitor"
-	path = /obj/item/weapon/stock_parts/capacitor/adv
+	path = /obj/item/stock_parts/capacitor/adv
 
 /datum/autolathe/recipe/advanced/advancescanner
 	name = "advanced scanning module"
-	path = /obj/item/weapon/stock_parts/scanning_module/adv
+	path = /obj/item/stock_parts/scanning_module/adv
 
 /datum/autolathe/recipe/advanced/nanomanip
 	name = "nano-manipulator"
-	path = /obj/item/weapon/stock_parts/manipulator/nano
+	path = /obj/item/stock_parts/manipulator/nano
 
 /datum/autolathe/recipe/advanced/highlaser
 	name = "high-power microlaser"
-	path = /obj/item/weapon/stock_parts/micro_laser/high
+	path = /obj/item/stock_parts/micro_laser/high
 
 /datum/autolathe/recipe/advanced/advancedmatterbin
 	name = "advanced matter bin"
-	path = /obj/item/weapon/stock_parts/matter_bin/adv
+	path = /obj/item/stock_parts/matter_bin/adv
 
 /datum/autolathe/recipe/advanced/supercapacitor
 	name = "super capacitor"
-	path = /obj/item/weapon/stock_parts/capacitor/super
+	path = /obj/item/stock_parts/capacitor/super
 
 /datum/autolathe/recipe/advanced/phasicscanner
 	name = "phasic scanning module"
-	path = /obj/item/weapon/stock_parts/scanning_module/phasic
+	path = /obj/item/stock_parts/scanning_module/phasic
 
 /datum/autolathe/recipe/advanced/picomanip
 	name = "pico-manipulator"
-	path = /obj/item/weapon/stock_parts/manipulator/pico
+	path = /obj/item/stock_parts/manipulator/pico
 
 /datum/autolathe/recipe/advanced/ultralaser
 	name = "ultra-power microlaser"
-	path = /obj/item/weapon/stock_parts/micro_laser/ultra
+	path = /obj/item/stock_parts/micro_laser/ultra
 
 /datum/autolathe/recipe/advanced/supermatterbin
 	name = "super matter bin"
-	path = /obj/item/weapon/stock_parts/matter_bin/super
+	path = /obj/item/stock_parts/matter_bin/super
 
 /datum/autolathe/recipe/advanced/sansible
 	name = "subspace ansible"
-	path = /obj/item/weapon/stock_parts/subspace/ansible
+	path = /obj/item/stock_parts/subspace/ansible
 
 /datum/autolathe/recipe/advanced/sfilter
 	name = "subspace filter"
-	path = /obj/item/weapon/stock_parts/subspace/filter
+	path = /obj/item/stock_parts/subspace/filter
 
 /datum/autolathe/recipe/advanced/samplifier
 	name = "subspace amplifier"
-	path = /obj/item/weapon/stock_parts/subspace/amplifier
+	path = /obj/item/stock_parts/subspace/amplifier
 
 /datum/autolathe/recipe/advanced/streatment
 	name = "subspace treatment disk"
-	path = /obj/item/weapon/stock_parts/subspace/treatment
+	path = /obj/item/stock_parts/subspace/treatment
 
 /datum/autolathe/recipe/advanced/sanalyzer
 	name = "subspace analyzer"
-	path = /obj/item/weapon/stock_parts/subspace/analyzer
+	path = /obj/item/stock_parts/subspace/analyzer
 
 /datum/autolathe/recipe/advanced/scrystal
 	name = "ansible crystal"
-	path = /obj/item/weapon/stock_parts/subspace/crystal
+	path = /obj/item/stock_parts/subspace/crystal
 
 /datum/autolathe/recipe/advanced/stransmitter
 	name = "subspace transmitter"
-	path = /obj/item/weapon/stock_parts/subspace/transmitter
+	path = /obj/item/stock_parts/subspace/transmitter
 
 // POWER CELLS
 /datum/autolathe/recipe/advanced/cell
 	name = "power cell"
-	path = /obj/item/weapon/cell
+	path = /obj/item/cell
 	category = "Power Cells"
 
 /datum/autolathe/recipe/advanced/cell/device
 	name = "device power cell"
-	path = /obj/item/weapon/cell/device
+	path = /obj/item/cell/device
 
 /datum/autolathe/recipe/advanced/cell/high
 	name = "high-capacity cell"
-	path = /obj/item/weapon/cell/high
+	path = /obj/item/cell/high
 
 /datum/autolathe/recipe/advanced/cell/super
 	name = "super-capacity cell"
-	path = /obj/item/weapon/cell/super
+	path = /obj/item/cell/super
 
 /datum/autolathe/recipe/advanced/cell/hyper
 	name = "hyper-capacity cell"
-	path = /obj/item/weapon/cell/hyper
+	path = /obj/item/cell/hyper

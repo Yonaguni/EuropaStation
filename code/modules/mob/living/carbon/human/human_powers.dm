@@ -106,7 +106,7 @@
 
 	src.visible_message("<span class='warning'><b>\The [src]</b> seizes [T] aggressively!</span>")
 
-	var/obj/item/weapon/grab/G = new(src,T)
+	var/obj/item/grab/G = new(src,T)
 	if(use_hand == "left")
 		l_hand = G
 	else
@@ -118,7 +118,7 @@
 
 /mob/living/carbon/human/proc/get_aggressive_grab()
 
-	var/obj/item/weapon/grab/G = locate() in src
+	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
 		src << "<span class='warning'>You are not grabbing anyone.</span>"
 		return
@@ -141,7 +141,7 @@
 		src << "<span class='warning'>You cannot do that in your current state.</span>"
 		return
 
-	var/obj/item/weapon/grab/G = get_aggressive_grab()
+	var/obj/item/grab/G = get_aggressive_grab()
 	if(!G) return
 
 	if(istype(G.affecting,/mob/living/carbon/human))
@@ -180,7 +180,7 @@
 		src << "<span class='warning'>You cannot do that in your current state.</span>"
 		return
 
-	var/obj/item/weapon/grab/G = get_aggressive_grab()
+	var/obj/item/grab/G = get_aggressive_grab()
 	if(!G) return
 
 	last_special = world.time + 50
@@ -249,7 +249,7 @@
 		src.visible_message("<span class='danger'>[src] hurls out the contents of their stomach!</span>")
 	return
 
-/mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
+/mob/living/carbon/human/proc/psychic_whisper(mob/M in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"

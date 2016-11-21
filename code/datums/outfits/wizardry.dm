@@ -1,9 +1,9 @@
 /decl/hierarchy/outfit/wizard
 	uniform = /obj/item/clothing/under/color/lightpurple
 	shoes = /obj/item/clothing/shoes/sandal
-	l_hand = /obj/item/weapon/staff
-	back = /obj/item/weapon/storage/backpack
-	backpack_contents = list(/obj/item/weapon/storage/box = 1)
+	l_hand = /obj/item/staff
+	back = /obj/item/storage/backpack
+	backpack_contents = list(/obj/item/storage/box = 1)
 
 /decl/hierarchy/outfit/wizard/blue
 	name = "Wizard - Blue"

@@ -45,7 +45,7 @@
 	user << "The following radio channels are available:"
 	user << radio_desc
 
-/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
+/obj/item/device/radio/headset/handle_message_mode(var/mob/living/M, message, channel)
 	if (channel == "special")
 		if (translate_binary)
 			var/datum/language/binary = all_languages["Robot Talk"]
@@ -97,7 +97,7 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/entertainment
 
-/obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/headset/attackby(var/obj/item/W, var/mob/user)
 //	..()
 	user.set_machine(src)
 	if (!( W.isscrewdriver() || (istype(W, /obj/item/device/encryptionkey/ ))))

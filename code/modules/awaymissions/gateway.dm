@@ -77,7 +77,7 @@ obj/machinery/gateway/centerstation/process()
 		ready = 1
 
 
-/obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
+/obj/machinery/gateway/centerstation/proc/toggleon(var/mob/user)
 	if(!ready)			return
 	if(linked.len != 8)	return
 	if(!powered())		return
@@ -103,7 +103,7 @@ obj/machinery/gateway/centerstation/process()
 	update_icon()
 
 
-/obj/machinery/gateway/centerstation/attack_hand(mob/user as mob)
+/obj/machinery/gateway/centerstation/attack_hand(var/mob/user)
 	if(!ready)
 		detect()
 		return
@@ -114,7 +114,7 @@ obj/machinery/gateway/centerstation/process()
 
 
 //okay, here's the good teleporting stuff
-/obj/machinery/gateway/centerstation/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/gateway/centerstation/Bumped(var/atom/movable/M)
 	if(!ready)		return
 	if(!active)		return
 	if(!awaygate)	return
@@ -131,7 +131,7 @@ obj/machinery/gateway/centerstation/process()
 		return
 
 
-/obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
+/obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, var/mob/user)
 	if(W.ismultitool())
 		user << "\black The gate is already calibrated, there is no work for you to do here."
 		return
@@ -181,7 +181,7 @@ obj/machinery/gateway/centerstation/process()
 		ready = 1
 
 
-/obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
+/obj/machinery/gateway/centeraway/proc/toggleon(var/mob/user)
 	if(!ready)			return
 	if(linked.len != 8)	return
 	if(!stationgate)
@@ -203,7 +203,7 @@ obj/machinery/gateway/centerstation/process()
 	update_icon()
 
 
-/obj/machinery/gateway/centeraway/attack_hand(mob/user as mob)
+/obj/machinery/gateway/centeraway/attack_hand(var/mob/user)
 	if(!ready)
 		detect()
 		return
@@ -213,11 +213,11 @@ obj/machinery/gateway/centerstation/process()
 	toggleoff()
 
 
-/obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/gateway/centeraway/Bumped(var/atom/movable/M)
 	if(!ready)	return
 	if(!active)	return
 	if(istype(M, /mob/living/carbon))
-		for(var/obj/item/weapon/implant/exile/E in M)//Checking that there is an exile implant in the contents
+		for(var/obj/item/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
 				M << "\black The gate has detected your exile implant and is blocking your entry."
 				return
@@ -225,7 +225,7 @@ obj/machinery/gateway/centerstation/process()
 	M.set_dir(SOUTH)
 
 
-/obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
+/obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, var/mob/user)
 	if(W.ismultitool())
 		if(calibrated)
 			user << "\black The gate is already calibrated, there is no work for you to do here."

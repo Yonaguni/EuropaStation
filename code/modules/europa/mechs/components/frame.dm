@@ -190,7 +190,7 @@
 		is_reinforced = (is_reinforced == 2) ? 1 : 2
 	// Welding metal.
 	else if(thing.iswelder())
-		var/obj/item/weapon/weldingtool/WT = thing
+		var/obj/item/weldingtool/WT = thing
 		if(!is_reinforced)
 			user << "<span class='warning'>There is no metal to secure inside \the [src].</span>"
 			return

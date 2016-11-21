@@ -3,12 +3,12 @@
 
 /decl/hierarchy/supply_pack/supply/food
 	name = "Kitchen supply crate"
-	contains = list(/obj/item/weapon/reagent_containers/food/condiment/flour = 6,
-					/obj/item/weapon/reagent_containers/food/drinks/milk = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/soymilk = 2,
-					/obj/item/weapon/storage/fancy/egg_box = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/tofu = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/meat = 4
+	contains = list(/obj/item/reagent_containers/food/condiment/flour = 6,
+					/obj/item/reagent_containers/food/drinks/milk = 4,
+					/obj/item/reagent_containers/food/drinks/soymilk = 2,
+					/obj/item/storage/fancy/egg_box = 2,
+					/obj/item/reagent_containers/food/snacks/tofu = 4,
+					/obj/item/reagent_containers/food/snacks/meat = 4
 					)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
@@ -22,37 +22,37 @@
 
 /decl/hierarchy/supply_pack/supply/janitor
 	name = "Janitorial supplies"
-	contains = list(/obj/item/weapon/reagent_containers/glass/bucket,
-					/obj/item/weapon/mop,
-					/obj/item/weapon/caution = 4,
-					/obj/item/weapon/storage/bag/trash,
+	contains = list(/obj/item/reagent_containers/glass/bucket,
+					/obj/item/mop,
+					/obj/item/caution = 4,
+					/obj/item/storage/bag/trash,
 					/obj/item/device/lightreplacer,
-					/obj/item/weapon/reagent_containers/spray/cleaner,
-					/obj/item/weapon/reagent_containers/glass/rag,
-					/obj/item/weapon/grenade/chem_grenade/cleaner = 3,
+					/obj/item/reagent_containers/spray/cleaner,
+					/obj/item/reagent_containers/glass/rag,
+					/obj/item/grenade/chem_grenade/cleaner = 3,
 					/obj/structure/mopbucket)
 	cost = 10
 	containername = "\improper Janitorial supplies"
 
 /decl/hierarchy/supply_pack/supply/boxes
 	name = "Empty boxes"
-	contains = list(/obj/item/weapon/storage/box = 10)
+	contains = list(/obj/item/storage/box = 10)
 	cost = 10
 	containername = "\improper Empty box crate"
 
 /decl/hierarchy/supply_pack/supply/bureaucracy
-	contains = list(/obj/item/weapon/clipboard,
-					 /obj/item/weapon/clipboard,
-					 /obj/item/weapon/pen/red,
-					 /obj/item/weapon/pen/blue = 2,
+	contains = list(/obj/item/clipboard,
+					 /obj/item/clipboard,
+					 /obj/item/pen/red,
+					 /obj/item/pen/blue = 2,
 					 /obj/item/device/camera_film,
-					 /obj/item/weapon/folder/blue,
-					 /obj/item/weapon/folder/red,
-					 /obj/item/weapon/folder/yellow,
-					 /obj/item/weapon/hand_labeler,
-					 /obj/item/weapon/tape_roll,
+					 /obj/item/folder/blue,
+					 /obj/item/folder/red,
+					 /obj/item/folder/yellow,
+					 /obj/item/hand_labeler,
+					 /obj/item/tape_roll,
 					 /obj/structure/filingcabinet/chestdrawer{anchored = 0},
-					 /obj/item/weapon/paper_bin)
+					 /obj/item/paper_bin)
 	name = "Office supplies"
 	cost = 15
 	containername = "\improper Office supplies crate"

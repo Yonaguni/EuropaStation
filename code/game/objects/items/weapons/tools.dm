@@ -14,7 +14,7 @@
 /*
  * Wrench
  */
-/obj/item/weapon/wrench
+/obj/item/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/items.dmi'
@@ -29,13 +29,13 @@
 	center_of_mass = "x=17;y=16"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-/obj/item/weapon/wrench/iswrench()
+/obj/item/wrench/iswrench()
 	return 1
 
 /*
  * Screwdriver
  */
-/obj/item/weapon/screwdriver
+/obj/item/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/items.dmi'
@@ -52,10 +52,10 @@
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
 
-/obj/item/weapon/screwdriver/isscrewdriver()
+/obj/item/screwdriver/isscrewdriver()
 	return 1
 
-/obj/item/weapon/screwdriver/New()
+/obj/item/screwdriver/New()
 	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 		if ("red")
 			icon_state = "screwdriver2"
@@ -83,7 +83,7 @@
 		src.pixel_y = rand(0, 16)
 	..()
 
-/obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/screwdriver/attack(var/mob/living/carbon/M, var/mob/living/carbon/user)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.zone_sel.selecting != BP_EYES && user.zone_sel.selecting != BP_HEAD)
@@ -95,7 +95,7 @@
 /*
  * Wirecutters
  */
-/obj/item/weapon/wirecutters
+/obj/item/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
 	icon = 'icons/obj/items.dmi'
@@ -113,17 +113,17 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/wirecutters/iswirecutter()
+/obj/item/wirecutters/iswirecutter()
 	return TRUE
 
-/obj/item/weapon/wirecutters/New()
+/obj/item/wirecutters/New()
 	if(prob(50))
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
 	..()
 
-/obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+/obj/item/wirecutters/attack(var/mob/living/carbon/C, var/mob/user)
+	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
@@ -138,7 +138,7 @@
 /*
  * Welding Tool
  */
-/obj/item/weapon/weldingtool
+/obj/item/weldingtool
 	name = "welding tool"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
@@ -164,7 +164,7 @@
 	var/status = 1 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 
-/obj/item/weapon/weldingtool/New()
+/obj/item/weldingtool/New()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -172,17 +172,17 @@
 	R.add_reagent("fuel", max_fuel)
 	..()
 
-/obj/item/weapon/weldingtool/Destroy()
+/obj/item/weldingtool/Destroy()
 	if(welding)
 		processing_objects -= src
 	return ..()
 
-/obj/item/weapon/weldingtool/examine(mob/user)
+/obj/item/weldingtool/examine(mob/user)
 	if(..(user, 0))
 		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
 
 
-/obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weldingtool/attackby(obj/item/W as obj, var/mob/user)
 	if(W.isscrewdriver())
 		if(welding)
 			user << "<span class='danger'>Stop welding first!</span>"
@@ -198,7 +198,7 @@
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
 		src.loc = F
 		F.weldtool = src
 		if (user.client)
@@ -220,12 +220,12 @@
 	return
 
 
-/obj/item/weapon/weldingtool/process()
+/obj/item/weldingtool/process()
 	if(welding)
 		if(!remove_fuel(0.05))
 			setWelding(0)
 
-/obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/weldingtool/afterattack(obj/O as obj, var/mob/user, proximity)
 	if(!proximity) return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
 		O.reagents.trans_to_obj(src, max_fuel)
@@ -250,17 +250,17 @@
 	return
 
 
-/obj/item/weapon/weldingtool/attack_self(mob/user as mob)
+/obj/item/weldingtool/attack_self(var/mob/user)
 	setWelding(!welding, usr)
 	return
 
 //Returns the amount of fuel in the welder
-/obj/item/weapon/weldingtool/proc/get_fuel()
+/obj/item/weldingtool/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -273,7 +273,7 @@
 			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return 0
 
-/obj/item/weapon/weldingtool/proc/burn_fuel(var/amount)
+/obj/item/weldingtool/proc/burn_fuel(var/amount)
 	var/mob/living/in_mob = null
 
 	//consider ourselves in a mob if we are in the mob's contents and not in their hands
@@ -294,15 +294,15 @@
 			location.hotspot_expose(700, 5)
 
 //Returns whether or not the welding tool is currently on.
-/obj/item/weapon/weldingtool/proc/isOn()
+/obj/item/weldingtool/proc/isOn()
 	return src.welding
 
-/obj/item/weapon/weldingtool/get_storage_cost()
+/obj/item/weldingtool/get_storage_cost()
 	if(isOn())
 		return DO_NOT_STORE
 	return ..()
 
-/obj/item/weapon/weldingtool/update_icon()
+/obj/item/weldingtool/update_icon()
 	..()
 	icon_state = welding ? "welder1" : "welder"
 	var/mob/M = loc
@@ -312,7 +312,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weapon/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -346,7 +346,7 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weapon/weldingtool/proc/eyecheck(mob/user as mob)
+/obj/item/weldingtool/proc/eyecheck(var/mob/user)
 	if(!iscarbon(user))	return 1
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -384,20 +384,20 @@
 				spawn(100)
 					H.disabilities &= ~NEARSIGHTED
 
-/obj/item/weapon/weldingtool/largetank
+/obj/item/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
 
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
 
-/obj/item/weapon/weldingtool/hugetank
+/obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
 
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 
-/obj/item/weapon/weldingtool/experimental
+/obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
@@ -407,7 +407,7 @@
 
 
 
-/obj/item/weapon/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
+/obj/item/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
 	var/gen_amount = ((world.time-last_gen)/25)
 	reagents += (gen_amount)
 	if(reagents > max_fuel)
@@ -417,7 +417,7 @@
  * Crowbar
  */
 
-/obj/item/weapon/crowbar
+/obj/item/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/items.dmi'
@@ -433,15 +433,15 @@
 	center_of_mass = "x=16;y=20"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
-/obj/item/weapon/crowbar/iscrowbar()
+/obj/item/crowbar/iscrowbar()
 	return 1
 
-/obj/item/weapon/crowbar/red
+/obj/item/crowbar/red
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
-/obj/item/weapon/weldingtool/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, target_zone)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -460,10 +460,10 @@
 	else
 		return ..()
 
-/obj/item/weapon/weldingtool/iswelder()
+/obj/item/weldingtool/iswelder()
 	return 1
 
-/*/obj/item/weapon/combitool
+/*/obj/item/combitool
 	name = "combi-tool"
 	desc = "It even has one of those nubbins for doing the thingy."
 	icon = 'icons/obj/items.dmi'
@@ -471,29 +471,29 @@
 	w_class = 2
 
 	var/list/spawn_tools = list(
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
-		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/material/kitchen/utensil/knife,
-		/obj/item/weapon/material/kitchen/utensil/fork,
-		/obj/item/weapon/material/hatchet
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/wirecutters,
+		/obj/item/material/kitchen/utensil/knife,
+		/obj/item/material/kitchen/utensil/fork,
+		/obj/item/material/hatchet
 		)
 	var/list/tools = list()
 	var/current_tool = 1
 
-/obj/item/weapon/combitool/examine()
+/obj/item/combitool/examine()
 	..()
 	if(loc == usr && tools.len)
 		usr << "It has the following fittings:"
 		for(var/obj/item/tool in tools)
 			usr << "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]"
 
-/obj/item/weapon/combitool/New()
+/obj/item/combitool/New()
 	..()
 	for(var/type in spawn_tools)
 		tools |= new type(src)
 
-/obj/item/weapon/combitool/attack_self(mob/user as mob)
+/obj/item/combitool/attack_self(var/mob/user)
 	if(++current_tool > tools.len) current_tool = 1
 	var/obj/item/tool = tools[current_tool]
 	if(!tool)
@@ -502,14 +502,14 @@
 		user << "You switch \the [src] to the [tool.name] fitting."
 	return 1
 
-/obj/item/weapon/combitool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/combitool/attack(var/mob/living/carbon/M, var/mob/living/carbon/user)
 	if(!M.Adjacent(user))
 		return 0
 	var/obj/item/tool = tools[current_tool]
 	if(!tool) return 0
 	return (tool ? tool.attack(M,user) : 0)
 
-/obj/item/weapon/combitool/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/combitool/afterattack(var/atom/target, var/mob/living/user, proximity, params)
 	if(!proximity)
 		return 0
 	var/obj/item/tool = tools[current_tool]

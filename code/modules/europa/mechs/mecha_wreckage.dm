@@ -20,7 +20,7 @@
 
 /obj/structure/mech_wreckage/attackby(var/obj/item/W, var/mob/user)
 	if(W.iswelder())
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(WT.isOn())
 			if(!prepared)
 				prepared = 1

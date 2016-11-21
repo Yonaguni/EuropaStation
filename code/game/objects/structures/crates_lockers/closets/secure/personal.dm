@@ -8,9 +8,9 @@
 	..()
 	spawn(2)
 		if(prob(50))
-			new /obj/item/weapon/storage/backpack(src)
+			new /obj/item/storage/backpack(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_norm(src)
+			new /obj/item/storage/backpack/satchel_norm(src)
 		new /obj/item/device/radio/headset( src )
 	return
 
@@ -56,18 +56,18 @@
 		// Not really the best way to do this, but it's better than "contents = list()"!
 		for(var/atom/movable/AM in contents)
 			qdel(AM)
-		new /obj/item/weapon/storage/backpack/satchel/withwallet( src )
+		new /obj/item/storage/backpack/satchel/withwallet( src )
 		new /obj/item/device/radio/headset( src )
 	return
 
-/obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/personal/attackby(var/obj/item/W, var/mob/user)
 	if (src.opened)
-		if (istype(W, /obj/item/weapon/grab))
+		if (istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
 		user.drop_item()
 		if (W) W.forceMove(src.loc)
 	else if(W.GetID())
-		var/obj/item/weapon/card/id/I = W.GetID()
+		var/obj/item/card/id/I = W.GetID()
 
 		if(src.broken)
 			user << "<span class='warning'>It appears to be broken.</span>"
@@ -84,7 +84,7 @@
 				src.desc = "Owned by [I.registered_name]."
 		else
 			user << "<span class='warning'>Access Denied</span>"
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+	else if(istype(W, /obj/item/melee/energy/blade))
 		if(emag_act(INFINITY, user, "The locker has been sliced open by [user] with \an [W]!", "You hear metal being sliced and sparks flying."))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
@@ -94,7 +94,7 @@
 	else
 		user << "<span class='warning'>Access Denied</span>"
 	return
-	
+
 /obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
 	if(!broken)
 		broken = 1
@@ -102,7 +102,7 @@
 		desc = "It appears to be broken."
 		icon_state = src.icon_broken
 		if(visual_feedback)
-			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")	
+			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")
 		return 1
 
 /obj/structure/closet/secure_closet/personal/verb/reset()

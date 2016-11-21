@@ -9,7 +9,7 @@
 	density = 1
 	anchored = 1
 	use_power = 0
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null
@@ -26,7 +26,7 @@
 		desc = D
 
 /obj/machinery/constructable_frame/machine_frame
-	attackby(obj/item/P as obj, mob/user as mob)
+	attackby(obj/item/P as obj, var/mob/user)
 		switch(state)
 			if(1)
 				if(P.iscoil())
@@ -48,8 +48,8 @@
 						new /obj/item/stack/material/steel(src.loc, 5)
 						qdel(src)
 			if(2)
-				if(istype(P, /obj/item/weapon/circuitboard))
-					var/obj/item/weapon/circuitboard/B = P
+				if(istype(P, /obj/item/circuitboard))
+					var/obj/item/circuitboard/B = P
 					if(B.board_type == "machine")
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 						user << "<span class='notice'>You add the circuit board to the frame.</span>"
@@ -89,7 +89,7 @@
 						user << "<span class='notice'>You remove the circuit board.</span>"
 					else
 						user << "<span class='notice'>You remove the circuit board and other components.</span>"
-						for(var/obj/item/weapon/W in components)
+						for(var/obj/item/W in components)
 							W.loc = src.loc
 					desc = initial(desc)
 					req_components = null

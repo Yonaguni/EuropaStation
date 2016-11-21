@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/reagent_containers/pill
+/obj/item/reagent_containers/pill
 	name = "pill"
 	desc = "A pill."
 	icon = 'icons/obj/chemical.dmi'
@@ -18,7 +18,7 @@
 		if(!icon_state)
 			icon_state = "pill[rand(1, 20)]"
 
-	attack(mob/M as mob, mob/user as mob, def_zone)
+	attack(var/mob/M, var/mob/user, def_zone)
 		//TODO: replace with standard_feed_mob() call.
 
 		if(M == user)
@@ -83,7 +83,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
-/obj/item/weapon/reagent_containers/pill/antitox
+/obj/item/reagent_containers/pill/antitox
 	name = "Anti-toxins pill"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
@@ -91,7 +91,7 @@
 		..()
 		reagents.add_reagent("anti_toxin", 25)
 
-/obj/item/weapon/reagent_containers/pill/tox
+/obj/item/reagent_containers/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic."
 	icon_state = "pill5"
@@ -99,7 +99,7 @@
 		..()
 		reagents.add_reagent("toxin", 50)
 
-/obj/item/weapon/reagent_containers/pill/cyanide
+/obj/item/reagent_containers/pill/cyanide
 	name = "Cyanide pill"
 	desc = "Don't swallow this."
 	icon_state = "pill5"
@@ -107,7 +107,7 @@
 		..()
 		reagents.add_reagent("cyanide", 50)
 
-/obj/item/weapon/reagent_containers/pill/adminordrazine
+/obj/item/reagent_containers/pill/adminordrazine
 	name = "Adminordrazine pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pill16"
@@ -115,7 +115,7 @@
 		..()
 		reagents.add_reagent("adminordrazine", 50)
 
-/obj/item/weapon/reagent_containers/pill/stox
+/obj/item/reagent_containers/pill/stox
 	name = "Sleeping pill"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill8"
@@ -123,7 +123,7 @@
 		..()
 		reagents.add_reagent("stoxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/fotiazine
+/obj/item/reagent_containers/pill/fotiazine
 	name = "Fotiazine pill"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
@@ -131,7 +131,7 @@
 		..()
 		reagents.add_reagent("fotiazine", 15)
 
-/obj/item/weapon/reagent_containers/pill/paracetamol
+/obj/item/reagent_containers/pill/paracetamol
 	name = "Paracetamol pill"
 	desc = "Tylenol! A painkiller for the ages. Chewables!"
 	icon_state = "pill8"
@@ -139,7 +139,7 @@
 		..()
 		reagents.add_reagent("paracetamol", 15)
 
-/obj/item/weapon/reagent_containers/pill/morphine
+/obj/item/reagent_containers/pill/morphine
 	name = "Morphine pill"
 	desc = "A highly addictive painkiller."
 	icon_state = "pill8"
@@ -148,7 +148,7 @@
 		reagents.add_reagent("morphine", 15)
 
 
-/obj/item/weapon/reagent_containers/pill/methylphenidate
+/obj/item/reagent_containers/pill/methylphenidate
 	name = "Methylphenidate pill"
 	desc = "Improves the ability to concentrate."
 	icon_state = "pill8"
@@ -156,7 +156,7 @@
 		..()
 		reagents.add_reagent("methylphenidate", 15)
 
-/obj/item/weapon/reagent_containers/pill/citalopram
+/obj/item/reagent_containers/pill/citalopram
 	name = "Citalopram pill"
 	desc = "Mild anti-depressant."
 	icon_state = "pill8"
@@ -165,7 +165,7 @@
 		reagents.add_reagent("citalopram", 15)
 
 
-/obj/item/weapon/reagent_containers/pill/adrenaline
+/obj/item/reagent_containers/pill/adrenaline
 	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
@@ -173,7 +173,7 @@
 		..()
 		reagents.add_reagent("adrenaline", 30)
 
-/obj/item/weapon/reagent_containers/pill/dexalin
+/obj/item/reagent_containers/pill/dexalin
 	name = "Dexalin pill"
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill16"
@@ -181,7 +181,7 @@
 		..()
 		reagents.add_reagent("dexalin", 15)
 
-/obj/item/weapon/reagent_containers/pill/dylovene
+/obj/item/reagent_containers/pill/dylovene
 	name = "Dylovene pill"
 	desc = "A broad-spectrum anti-toxin."
 	icon_state = "pill13"
@@ -189,7 +189,7 @@
 		..()
 		reagents.add_reagent("anti_toxin", 15)
 
-/obj/item/weapon/reagent_containers/pill/adrenaline
+/obj/item/reagent_containers/pill/adrenaline
 	name = "Adrenaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
@@ -197,7 +197,7 @@
 		..()
 		reagents.add_reagent("adrenaline", 30)
 
-/obj/item/weapon/reagent_containers/pill/styptazine
+/obj/item/reagent_containers/pill/styptazine
 	name = "Styptazine pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill18"
@@ -205,7 +205,7 @@
 		..()
 		reagents.add_reagent("styptazine", 20)
 
-/obj/item/weapon/reagent_containers/pill/happy
+/obj/item/reagent_containers/pill/happy
 	name = "Happy pill"
 	desc = "Happy happy joy joy!"
 	icon_state = "pill18"
@@ -214,7 +214,7 @@
 		reagents.add_reagent("glint", 15)
 		reagents.add_reagent("sugar", 15)
 
-/obj/item/weapon/reagent_containers/pill/zoom
+/obj/item/reagent_containers/pill/zoom
 	name = "Zoom pill"
 	desc = "Zoooom!"
 	icon_state = "pill18"
@@ -224,7 +224,7 @@
 		reagents.add_reagent("synaptizine", 5)
 		reagents.add_reagent("jumpstart", 5)
 
-/obj/item/weapon/reagent_containers/pill/antibiotic
+/obj/item/reagent_containers/pill/antibiotic
 	name = "antibiotic pill"
 	desc = "Contains antiviral agents."
 	icon_state = "pill19"
@@ -232,7 +232,7 @@
 		..()
 		reagents.add_reagent("antibiotic", 15)
 
-/obj/item/weapon/reagent_containers/pill/diet
+/obj/item/reagent_containers/pill/diet
 	name = "diet pill"
 	desc = "Guaranteed to get you slim!"
 	icon_state = "pill9"
@@ -240,7 +240,7 @@
 		..()
 		reagents.add_reagent("lipozine", 2)
 
-/obj/item/weapon/reagent_containers/pill/pax
+/obj/item/reagent_containers/pill/pax
 	name = "Pax pill"
 	desc = "You're already feeling peaceful."
 	icon_state = "pill18"
@@ -248,7 +248,7 @@
 		..()
 		reagents.add_reagent("pax", 15)
 
-/obj/item/weapon/reagent_containers/pill/ladder
+/obj/item/reagent_containers/pill/ladder
 	name = "Ladder pill"
 	desc = "You won't like you when you're angry."
 	icon_state = "pill18"
@@ -256,7 +256,7 @@
 		..()
 		reagents.add_reagent("ladder", 15)
 
-/obj/item/weapon/reagent_containers/pill/threeeye
+/obj/item/reagent_containers/pill/threeeye
 	name = "Three Eye pill"
 	desc = "Whoa."
 	icon_state = "pill18"

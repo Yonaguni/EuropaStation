@@ -203,7 +203,7 @@
 	adjustBruteLoss(Proj.damage)
 	return 0
 
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	..()
 
 	switch(M.a_intent)
@@ -223,7 +223,7 @@
 			if (!(status_flags & CANPUSH))
 				return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 
 			M.put_in_active_hand(G)
 
@@ -277,7 +277,7 @@
 	var/damage = O.force
 	if (O.damtype == HALLOSS)
 		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
+	if(supernatural && istype(O,/obj/item/nullrod))
 		damage *= 2
 		purge = 3
 	adjustBruteLoss(damage)

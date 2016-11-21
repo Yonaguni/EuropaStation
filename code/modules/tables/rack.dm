@@ -25,6 +25,6 @@
 /obj/structure/table/rack/update_icon()
 	return
 
-/obj/structure/table/rack/holorack/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/rack/holorack/dismantle(/obj/item/wrench/W, mob/user)
 	user << "<span class='warning'>You cannot dismantle \the [src].</span>"
 	return

@@ -7,23 +7,23 @@
 /datum/uplink_item/item/tools/toolbox
 	name = "Fully Loaded Toolbox"
 	item_cost = 8
-	path = /obj/item/weapon/storage/toolbox/syndicate
+	path = /obj/item/storage/toolbox/syndicate
 
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
 	item_cost = 8
-	path = /obj/item/weapon/storage/secure/briefcase/money
+	path = /obj/item/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
 
 /datum/uplink_item/item/tools/clerical
 	name = "Morphic Clerical Kit"
 	item_cost = 16
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/clerical
+	path = /obj/item/storage/backpack/satchel/syndie_kit/clerical
 
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
 	item_cost = 16
-	path = /obj/item/weapon/plastique
+	path = /obj/item/plastique
 
 /datum/uplink_item/item/tools/heavy_vest
 	name = "Heavy Armor Vest"
@@ -54,7 +54,7 @@
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 24
-	path = /obj/item/weapon/card/emag
+	path = /obj/item/card/emag
 
 /datum/uplink_item/item/tools/hacking_tool
 	name = "Door Hacking Tool"
@@ -67,7 +67,7 @@
 /datum/uplink_item/item/tools/space_suit
 	name = "Space Suit"
 	item_cost = 28
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/space
+	path = /obj/item/storage/backpack/satchel/syndie_kit/space
 
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
@@ -82,7 +82,7 @@
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"
 	item_cost = 40
-	path = /obj/item/weapon/circuitboard/teleporter
+	path = /obj/item/circuitboard/teleporter
 
 /datum/uplink_item/item/tools/teleporter/New()
 	..()
@@ -91,7 +91,7 @@
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"
 	item_cost = 52
-	path = /obj/item/weapon/aiModule/syndicate
+	path = /obj/item/aiModule/syndicate
 
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"

@@ -3,7 +3,7 @@
 /mob/living/carbon/alien/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/alien/attack_hand(mob/living/carbon/M as mob)
+/mob/living/carbon/alien/attack_hand(var/mob/living/carbon/M)
 
 	..()
 
@@ -15,7 +15,7 @@
 		if (I_GRAB)
 			if (M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
+			var/obj/item/grab/G = new /obj/item/grab( M, M, src )
 
 			M.put_in_active_hand(G)
 

@@ -7,5 +7,5 @@
 	uniform = /obj/item/clothing/under/aeolus/supply/chief
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_hand = /obj/item/weapon/clipboard
-	id_type = /obj/item/weapon/card/id/cargo/head
+	l_hand = /obj/item/clipboard
+	id_type = /obj/item/card/id/cargo/head

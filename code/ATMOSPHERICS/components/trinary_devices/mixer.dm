@@ -97,7 +97,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/W, var/mob/user)
 	if (!W.iswrench())
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
@@ -116,7 +116,7 @@
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attack_hand(var/mob/user)
 	if(..())
 		return
 	src.add_fingerprint(usr)

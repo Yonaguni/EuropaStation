@@ -10,7 +10,7 @@
 
 	var/mob/living/silicon/ai/carded_ai
 
-/obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
+/obj/item/device/aicard/attack(var/mob/living/silicon/decoy/M, var/mob/user)
 	if (!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else
@@ -147,6 +147,6 @@
 /obj/item/device/aicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))
 		rig.forced_move(direction, user)

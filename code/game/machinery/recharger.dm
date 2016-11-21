@@ -9,13 +9,13 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton, /obj/item/weapon/cell)
+	var/list/allowed_devices = list(/obj/item/gun/composite, /obj/item/melee/baton, /obj/item/cell)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
 
-obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+obj/machinery/recharger/attackby(var/obj/item/G, var/mob/user)
 
 	var/allowed = 0
 	for (var/allowed_type in allowed_devices)
@@ -29,8 +29,8 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		if(!powered())
 			user << "<span class='warning'>The [name] blinks red as you try to insert the item!</span>"
 			return
-		if(istype(G, /obj/item/weapon/gun/composite))
-			var/obj/item/weapon/gun/composite/C = G
+		if(istype(G, /obj/item/gun/composite))
+			var/obj/item/gun/composite/C = G
 			if(!C.body.is_laser())
 				return
 			var/obj/item/gun_component/chamber/laser/L = C.chamber
@@ -49,7 +49,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		user << "You [anchored ? "attached" : "detached"] the recharger."
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
-obj/machinery/recharger/attack_hand(mob/user as mob)
+obj/machinery/recharger/attack_hand(var/mob/user)
 
 	add_fingerprint(user)
 
@@ -70,8 +70,8 @@ obj/machinery/recharger/process()
 		icon_state = icon_state_idle
 	else
 
-		if(istype(charging, /obj/item/weapon/melee/baton))
-			var/obj/item/weapon/melee/baton/B = charging
+		if(istype(charging, /obj/item/melee/baton))
+			var/obj/item/melee/baton/B = charging
 			if(B.bcell)
 				if(!B.bcell.fully_charged())
 					icon_state = icon_state_charging
@@ -85,8 +85,8 @@ obj/machinery/recharger/process()
 				update_use_power(1)
 			return
 
-		if(istype(charging, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = charging
+		if(istype(charging, /obj/item/cell))
+			var/obj/item/cell/C = charging
 			if(!C.fully_charged())
 				icon_state = icon_state_charging
 				C.give(active_power_usage*CELLRATE)
@@ -96,8 +96,8 @@ obj/machinery/recharger/process()
 				update_use_power(1)
 			return
 
-		if(istype(charging, /obj/item/weapon/gun/composite))
-			var/obj/item/weapon/gun/composite/C = charging
+		if(istype(charging, /obj/item/gun/composite))
+			var/obj/item/gun/composite/C = charging
 			if(istype(C.chamber, /obj/item/gun_component/chamber/laser))
 				var/obj/item/gun_component/chamber/laser/hcell = C.chamber
 				if(hcell && hcell.power_supply && !hcell.power_supply.fully_charged())
@@ -117,8 +117,8 @@ obj/machinery/recharger/emp_act(severity)
 		..(severity)
 		return
 
-	if(istype(charging, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = charging
+	if(istype(charging, /obj/item/melee/baton))
+		var/obj/item/melee/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
 	..(severity)
@@ -135,7 +135,7 @@ obj/machinery/recharger/wallcharger
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
 	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns and batons only) so make it more powerful
-	allowed_devices = list(/obj/item/weapon/gun/composite, /obj/item/weapon/melee/baton)
+	allowed_devices = list(/obj/item/gun/composite, /obj/item/melee/baton)
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"

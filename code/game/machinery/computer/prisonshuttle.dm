@@ -14,13 +14,13 @@ var/prison_shuttle_timeleft = 0
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"
 	req_access = list(access_security)
-	circuit = /obj/item/weapon/circuitboard/prison_shuttle
+	circuit = /obj/item/circuitboard/prison_shuttle
 	var/temp = null
 	var/hacked = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(var/mob/user)
 		return src.attack_hand(user)
 
 	attackby(var/obj/item/I, var/mob/user)
@@ -28,7 +28,7 @@ var/prison_shuttle_timeleft = 0
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20, src))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/prison_shuttle/M = new /obj/item/weapon/circuitboard/prison_shuttle( A )
+				var/obj/item/circuitboard/prison_shuttle/M = new /obj/item/circuitboard/prison_shuttle( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -36,7 +36,7 @@ var/prison_shuttle_timeleft = 0
 
 				if (src.stat & BROKEN)
 					user << "<span class='notice'>The broken glass falls out.</span>"
-					new /obj/item/weapon/material/shard( src.loc )
+					new /obj/item/material/shard( src.loc )
 					A.state = 3
 					A.icon_state = "3"
 				else
@@ -49,7 +49,7 @@ var/prison_shuttle_timeleft = 0
 			return src.attack_hand(user)
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if(!src.allowed(user) && (!hacked))
 			user << "<span class='warning'>Access Denied.</span>"
 			return
@@ -187,7 +187,7 @@ var/prison_shuttle_timeleft = 0
 								// find the turf to move things to
 					var/turf/D = locate(T.x, throwy - 1, 1)
 								//var/turf/E = get_step(D, SOUTH)
-					for(var/atom/movable/AM as mob|obj in T)
+					for(var/atom/movable/AM in T)
 						AM.Move(D)
 					if(istype(T, /turf/simulated))
 						qdel(T)
@@ -217,7 +217,7 @@ var/prison_shuttle_timeleft = 0
 								// find the turf to move things to
 					var/turf/D = locate(T.x, throwy - 1, 1)
 								//var/turf/E = get_step(D, SOUTH)
-					for(var/atom/movable/AM as mob|obj in T)
+					for(var/atom/movable/AM in T)
 						AM.Move(D)
 					if(istype(T, /turf/simulated))
 						qdel(T)

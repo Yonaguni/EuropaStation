@@ -192,7 +192,7 @@
 	service_label = "Crew Arrival Announcement and Records"
 
 /obj/item/device/uplink_service/fake_crew_announcement/enable(var/mob/user = usr)
-	var/obj/item/weapon/card/id/I = user.GetIdCard()
+	var/obj/item/card/id/I = user.GetIdCard()
 	var/datum/data/record/random_general_record
 	var/datum/data/record/random_medical_record
 	if(data_core.general.len)

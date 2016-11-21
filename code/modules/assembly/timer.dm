@@ -68,7 +68,7 @@
 		return
 
 
-	interact(mob/user as mob)//TODO: Have this use the wires
+	interact(var/mob/user)//TODO: Have this use the wires
 		if(!secured)
 			user.show_message("\red The [name] is unsecured!")
 			return 0

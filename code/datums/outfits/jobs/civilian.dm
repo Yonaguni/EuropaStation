@@ -10,15 +10,15 @@
 	name = OUTFIT_JOB_NAME("Cook")
 	suit = /obj/item/clothing/suit/chef
 	head = /obj/item/clothing/head/chefhat
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/card/id/civilian
 
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Sanitation Technician")
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/card/id/civilian
 
 /decl/hierarchy/outfit/job/cultural_attache
 	name = OUTFIT_JOB_NAME("Cultural Attache")
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/card/id/civilian
 
 /decl/hierarchy/outfit/job/cultural_attache/resomi
 	uniform = /obj/item/clothing/under/resomi/yellow

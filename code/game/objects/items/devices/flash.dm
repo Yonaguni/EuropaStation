@@ -115,7 +115,7 @@
 
 
 
-/obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/flash/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
 	if(broken)
@@ -193,7 +193,7 @@
 		user << "<span class='warning'>The bulb has burnt out!</span>"
 		icon_state = "flashburnt"
 
-/obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/flash/synthetic/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1

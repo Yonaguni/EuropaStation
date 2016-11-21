@@ -16,11 +16,11 @@ var/datum/antagonist/paramount/paramounts
 	hard_cap = 1
 	hard_cap_round = 3
 	min_player_age = 18
-	id_type = /obj/item/weapon/card/id/syndicate
+	id_type = /obj/item/card/id/syndicate
 	faction = "paramount"
 
 /datum/antagonist/paramount/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
-	var/obj/item/weapon/card/id/W = ..(assignment, player, equip = 0)
+	var/obj/item/card/id/W = ..(assignment, player, equip = 0)
 	if(!W) return
 	var/obj/item/device/radio/headset/pda/command/pda = new(get_turf(player))
 	pda.id = W
@@ -39,7 +39,7 @@ var/datum/antagonist/paramount/paramounts
 	player.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/psypurple(player), slot_wear_suit)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/black(player), slot_gloves)
-	player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(player), slot_back)
+	player.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(player), slot_back)
 
 	return 1
 

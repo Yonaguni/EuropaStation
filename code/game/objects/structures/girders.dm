@@ -53,7 +53,7 @@
 	if(reinf_material)
 		reinforce_girder()
 
-/obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/girder/attackby(obj/item/W as obj, var/mob/user)
 	if(W.iswrench() && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
@@ -69,14 +69,14 @@
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			if(!src) return
 			user << "<span class='notice'>You slice apart the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		user << "<span class='notice'>You drill through the girder!</span>"
 		dismantle()
 
@@ -196,7 +196,7 @@
 	new /obj/item/stack/material/steel(get_turf(src))
 	qdel(src)
 
-/obj/structure/girder/attack_hand(mob/user as mob)
+/obj/structure/girder/attack_hand(var/mob/user)
 	if (HULK in user.mutations)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		dismantle()
@@ -230,7 +230,7 @@
 	new /obj/item/remains/human(get_turf(src))
 	qdel(src)
 
-/obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/girder/cult/attackby(obj/item/W as obj, var/mob/user)
 	if(W.iswrench())
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		user << "<span class='notice'>Now disassembling the girder...</span>"
@@ -238,13 +238,13 @@
 			user << "<span class='notice'>You dissasembled the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			user << "<span class='notice'>You slice apart the girder!</span>"
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		user << "<span class='notice'>You drill through the girder!</span>"
 		new /obj/item/remains/human(get_turf(src))
 		dismantle()

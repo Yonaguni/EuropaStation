@@ -15,7 +15,7 @@
 	var/construct_op = 0
 
 
-/obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
+/obj/machinery/telecomms/attackby(obj/item/P as obj, var/mob/user)
 
 	// Using a multitool lets you access the receiver's interface
 	if(P.ismultitool())
@@ -84,7 +84,7 @@
 
 						// If the machine wasn't made during runtime, probably doesn't have components:
 						// manually find the components and drop them!
-						var/obj/item/weapon/circuitboard/C = new circuitboard
+						var/obj/item/circuitboard/C = new circuitboard
 						for(var/I in C.req_components)
 							for(var/i = 1, i <= C.req_components[I], i++)
 								var/obj/item/s = new I
@@ -102,10 +102,10 @@
 					qdel(src)
 
 
-/obj/machinery/telecomms/attack_ai(var/mob/user as mob)
+/obj/machinery/telecomms/attack_ai(var/mob/user)
 	attack_hand(user)
 
-/obj/machinery/telecomms/attack_hand(var/mob/user as mob)
+/obj/machinery/telecomms/attack_hand(var/mob/user)
 
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
@@ -195,7 +195,7 @@
 
 // Returns a multitool from a user depending on their mobtype.
 
-/obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
+/obj/machinery/telecomms/proc/get_multitool(var/mob/user)
 
 	var/obj/item/device/multitool/P = null
 	// Let's double check

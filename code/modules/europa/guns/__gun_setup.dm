@@ -77,7 +77,7 @@
 #define COLOR_GUNMETAL         "#6b6569"
 #define COLOR_WOODFINISH       "#8c6424"
 
-/obj/item/weapon/gun/proc/reset_name()
+/obj/item/gun/proc/reset_name()
 	return initial(name)
 
-/obj/item/weapon/gun/var/recoil = 0 //screen shake
+/obj/item/gun/var/recoil = 0 //screen shake

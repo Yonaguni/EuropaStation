@@ -94,7 +94,7 @@
 		return
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	HasProximity(var/atom/movable/AM)
 		if(a_left)
 			a_left.HasProximity(AM)
 		if(a_right)
@@ -103,7 +103,7 @@
 			special_assembly.HasProximity(AM)
 
 
-	Crossed(atom/movable/AM as mob|obj)
+	Crossed(var/atom/movable/AM)
 		if(a_left)
 			a_left.Crossed(AM)
 		if(a_right)
@@ -112,7 +112,7 @@
 			special_assembly.Crossed(AM)
 
 
-	on_found(mob/finder as mob)
+	on_found(var/mob/finder)
 		if(a_left)
 			a_left.on_found(finder)
 		if(a_right)
@@ -143,7 +143,7 @@
 		return
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(W.isscrewdriver())
 			if(!a_left || !a_right)
 				user << "\red BUG:Assembly part missing, please report this!"
@@ -164,7 +164,7 @@
 		return
 
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		src.add_fingerprint(user)
 		if(src.secured)
 			if(!a_left || !a_right)
@@ -220,7 +220,7 @@
 	return ..()
 
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
+/obj/item/device/assembly_holder/hear_talk(var/mob/living/M, msg, verb, datum/language/speaking)
 	if(a_right)
 		a_right.hear_talk(M,msg,verb,speaking)
 	if(a_left)
@@ -262,8 +262,8 @@
 
 		if ( !(usr.stat || usr.restrained()) )
 			var/obj/item/device/assembly_holder/holder
-			if(istype(src,/obj/item/weapon/grenade/chem_grenade))
-				var/obj/item/weapon/grenade/chem_grenade/gren = src
+			if(istype(src,/obj/item/grenade/chem_grenade))
+				var/obj/item/grenade/chem_grenade/gren = src
 				holder=gren.detonator
 			var/obj/item/device/assembly/timer/tmr = holder.a_left
 			if(!istype(tmr,/obj/item/device/assembly/timer))

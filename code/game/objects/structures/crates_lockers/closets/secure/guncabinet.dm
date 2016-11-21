@@ -28,7 +28,7 @@
 	else
 		var/lazors = 0
 		var/shottas = 0
-		for (var/obj/item/weapon/gun/composite/G in contents)
+		for (var/obj/item/gun/composite/G in contents)
 			if (G.body.is_laser())
 				lazors++
 			else

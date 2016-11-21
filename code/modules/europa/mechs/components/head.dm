@@ -59,7 +59,7 @@
 
 /obj/item/mech_component/control_module/attackby(var/obj/item/thing, var/mob/user)
 
-	if(istype(thing, /obj/item/weapon/circuitboard/exosystem))
+	if(istype(thing, /obj/item/circuitboard/exosystem))
 		install_software(thing, user)
 		return
 
@@ -70,7 +70,7 @@
 	else
 		return ..()
 
-/obj/item/mech_component/control_module/proc/install_software(var/obj/item/weapon/circuitboard/exosystem/software, var/mob/user)
+/obj/item/mech_component/control_module/proc/install_software(var/obj/item/circuitboard/exosystem/software, var/mob/user)
 	if(installed_software.len >= max_installed_software)
 		if(user) user << "<span class='warning'>\The [src] can only hold [max_installed_software] software modules.</span>"
 		return
@@ -82,5 +82,5 @@
 
 /obj/item/mech_component/control_module/proc/update_software()
 	installed_software = list()
-	for(var/obj/item/weapon/circuitboard/exosystem/program in contents)
+	for(var/obj/item/circuitboard/exosystem/program in contents)
 		installed_software |= program.contains_software

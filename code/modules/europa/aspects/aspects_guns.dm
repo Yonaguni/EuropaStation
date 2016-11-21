@@ -6,17 +6,17 @@
 	aspect_cost = 2
 	var/has_holster = TRUE
 	var/list/gun_types = list(
-		/obj/item/weapon/gun/composite/premade/pistol/a9/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a10/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
-		/obj/item/weapon/gun/composite/premade/pistol/a45/preloaded
+		/obj/item/gun/composite/premade/pistol/a9/preloaded,
+		/obj/item/gun/composite/premade/pistol/a10/preloaded,
+		/obj/item/gun/composite/premade/pistol/a38/preloaded,
+		/obj/item/gun/composite/premade/pistol/a45/preloaded
 		)
 
 /decl/aspect/ballistics/do_post_spawn(var/mob/living/carbon/human/holder)
 	if(!istype(holder))
 		return
 	// Already have a gun.
-	if(locate(/obj/item/weapon/gun) in holder.contents)
+	if(locate(/obj/item/gun) in holder.contents)
 		return
 	var/gun_type = pick(gun_types)
 	var/obj/item/gun = new gun_type(holder)
@@ -36,4 +36,4 @@
 	name = ASPECT_TASER
 	desc = "You have invested in a small taser."
 	has_holster = FALSE
-	gun_types = list(/obj/item/weapon/gun/composite/premade/taser_pistol)
+	gun_types = list(/obj/item/gun/composite/premade/taser_pistol)

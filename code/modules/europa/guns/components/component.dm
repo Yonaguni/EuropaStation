@@ -7,7 +7,7 @@
 	var/weapon_type = GUN_PISTOL             // What kind of weapon does this fit into?
 	var/component_type = COMPONENT_BARREL    // What part of the gun is this?
 	var/projectile_type = GUN_TYPE_BALLISTIC // What is this component designed to help fire?
-	var/obj/item/weapon/gun/composite/holder // Reference to composite gun that this is part of.
+	var/obj/item/gun/composite/holder // Reference to composite gun that this is part of.
 	var/decl/weapon_model/model              // Does this component have a particular model/manufacturer?
 	var/accepts_accessories                  // Can this component have accessories installed?
 
@@ -23,7 +23,7 @@
 /obj/item/gun_component/proc/get_extra_examine_info()
 	return
 
-/obj/item/gun_component/proc/apply_mod(var/obj/item/weapon/gun/composite/gun)
+/obj/item/gun_component/proc/apply_mod(var/obj/item/gun/composite/gun)
 	// Apply misc mods.
 	if(fire_rate_mod) gun.fire_delay += fire_rate_mod
 	if(accuracy_mod)  gun.accuracy   += accuracy_mod
@@ -31,7 +31,7 @@
 	if(two_handed)    gun.requires_two_hands++
 	if(weight_mod)    gun.w_class    += weight_mod
 
-/obj/item/gun_component/proc/remove_mod(var/obj/item/weapon/gun/composite/gun)
+/obj/item/gun_component/proc/remove_mod(var/obj/item/gun/composite/gun)
 	// Apply misc mods.
 	if(fire_rate_mod) gun.fire_delay -= fire_rate_mod
 	if(accuracy_mod)  gun.accuracy   -= accuracy_mod
@@ -73,8 +73,8 @@
 		desc = "[initial(desc)]"
 
 /obj/item/gun_component/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/gun_assembly))
-		var/obj/item/weapon/gun_assembly/GA = thing
+	if(istype(thing, /obj/item/gun_assembly))
+		var/obj/item/gun_assembly/GA = thing
 		GA.attackby(src, user)
 		return
 	return ..()

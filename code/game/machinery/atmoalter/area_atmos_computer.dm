@@ -3,7 +3,7 @@
 	desc = "A computer used to control the stationary scrubbers and pumps in the area."
 	icon_screen = "area_atmos"
 	light_color = "#e6ffff"
-	circuit = /obj/item/weapon/circuitboard/area_atmos
+	circuit = /obj/item/circuitboard/area_atmos
 
 	var/list/connectedscrubbers = new()
 	var/status = ""
@@ -19,10 +19,10 @@
 		spawn(10)
 			scanscrubbers()
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(var/mob/user)
 		return src.attack_hand(user)
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if(..(user))
 			return
 		src.add_fingerprint(usr)

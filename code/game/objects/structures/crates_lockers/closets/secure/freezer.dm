@@ -19,9 +19,9 @@
 	New()
 		..()
 		for(var/i = 1 to 7)
-			new /obj/item/weapon/reagent_containers/food/condiment/flour(src)
+			new /obj/item/reagent_containers/food/condiment/flour(src)
 		for(var/i = 1 to 2)
-			new /obj/item/weapon/reagent_containers/food/condiment/sugar(src)
+			new /obj/item/reagent_containers/food/condiment/sugar(src)
 		return
 
 
@@ -43,7 +43,7 @@
 	New()
 		..()
 		for(var/i = 1 to 10)
-			new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
+			new /obj/item/reagent_containers/food/snacks/meat/monkey(src)
 		return
 
 
@@ -61,11 +61,11 @@
 	New()
 		..()
 		for(var/i = 1 to 6)
-			new /obj/item/weapon/reagent_containers/food/drinks/milk(src)
+			new /obj/item/reagent_containers/food/drinks/milk(src)
 		for(var/i = 1 to 4)
-			new /obj/item/weapon/reagent_containers/food/drinks/soymilk(src)
+			new /obj/item/reagent_containers/food/drinks/soymilk(src)
 		for(var/i = 1 to 4)
-			new /obj/item/weapon/storage/fancy/egg_box(src)
+			new /obj/item/storage/fancy/egg_box(src)
 		return
 
 
@@ -85,7 +85,7 @@
 	//let's make hold a substantial amount.
 	var/created_size = 0
 	for(var/i = 1 to 200) //sanity loop limit
-		var/bundletype = pick(3; /obj/item/weapon/spacecash/bundle/c1000, 4; /obj/item/weapon/spacecash/bundle/c500, 5; /obj/item/weapon/spacecash/bundle/c200)
+		var/bundletype = pick(3; /obj/item/spacecash/bundle/c1000, 4; /obj/item/spacecash/bundle/c500, 5; /obj/item/spacecash/bundle/c200)
 		var/obj/item/cash = new bundletype(null)
 		var/bundle_size = content_size(cash)
 		if(created_size + bundle_size <= storage_capacity)

@@ -8,7 +8,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/points = 0
 	var/menustat = "menu"
 	var/build_eff = 1
@@ -20,12 +20,12 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
+	beaker = new /obj/item/reagent_containers/glass/bottle(src)
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/biogenerator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/circuitboard/biogenerator(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
 
 	RefreshParts()
 
@@ -41,14 +41,14 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/biogenerator/attackby(var/obj/item/O, var/mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
 		return
 	if(default_part_replacement(user, O))
 		return
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+	if(istype(O, /obj/item/reagent_containers/glass))
 		if(beaker)
 			user << "<span class='notice'>]The [src] is already loaded.</span>"
 		else
@@ -58,14 +58,14 @@
 			updateUsrDialog()
 	else if(processing)
 		user << "<span class='notice'>\The [src] is currently processing.</span>"
-	else if(istype(O, /obj/item/weapon/storage/plants))
+	else if(istype(O, /obj/item/storage/plants))
 		var/i = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			user << "<span class='notice'>\The [src] is already full! Activate it.</span>"
 		else
-			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
+			for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
@@ -75,11 +75,11 @@
 				user << "<span class='notice'>You empty \the [O] into \the [src].</span>"
 
 
-	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(!istype(O, /obj/item/reagent_containers/food/snacks/grown))
 		user << "<span class='notice'>You cannot put this in \the [src].</span>"
 	else
 		var/i = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			user << "<span class='notice'>\The [src] is full! Activate it.</span>"
@@ -90,7 +90,7 @@
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/interact(mob/user as mob)
+/obj/machinery/biogenerator/interact(var/mob/user)
 	if(stat & BROKEN)
 		return
 	user.set_machine(src)
@@ -134,7 +134,7 @@
 	onclose(user, "biogenerator")
 	return
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(var/mob/user)
 	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
@@ -146,7 +146,7 @@
 		usr << "<span class='notice'>The biogenerator is in the process of working.</span>"
 		return
 	var/S = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/grown/I in contents)
+	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
 		S += 5
 		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
 			points += 1
@@ -179,41 +179,41 @@
 		if("milk")
 			beaker.reagents.add_reagent("milk", 10)
 		if("meat")
-			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
 		if("ez")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
 		if("l4z")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
 		if("rh")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
 		if("ez5") //It's not an elegant method, but it's safe and easy. -Cheridan
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/ez(loc)
 		if("l4z5")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/l4z(loc)
 		if("rh5")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
+			new/obj/item/reagent_containers/glass/fertilizer/rh(loc)
 		if("wallet")
-			new/obj/item/weapon/storage/wallet/leather(loc)
+			new/obj/item/storage/wallet/leather(loc)
 		if("gloves")
 			new/obj/item/clothing/gloves/thick/botany(loc)
 		if("tbelt")
-			new/obj/item/weapon/storage/belt/utility(loc)
+			new/obj/item/storage/belt/utility(loc)
 		if("satchel")
-			new/obj/item/weapon/storage/backpack/satchel(loc)
+			new/obj/item/storage/backpack/satchel(loc)
 		if("cashbag")
-			new/obj/item/weapon/storage/bag/cash(loc)
+			new/obj/item/storage/bag/cash(loc)
 		if("monkey")
 			new/mob/living/carbon/human/monkey(loc)
 	processing = 0
@@ -247,10 +247,10 @@
 	var/man_rating = 0
 	var/bin_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			man_rating += P.rating
 
 	build_eff = man_rating

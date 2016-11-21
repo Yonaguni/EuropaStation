@@ -39,7 +39,7 @@
 		return secured
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	HasProximity(var/atom/movable/AM)
 		if(!istype(AM))
 			log_debug("DEBUG: HasProximity called with [AM] on [src] ([usr]).")
 			return
@@ -103,8 +103,8 @@
 			attached_overlays += "prox_scanning"
 		if(holder)
 			holder.update_icon()
-		if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
-			var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
+		if(holder && istype(holder.loc,/obj/item/grenade/chem_grenade))
+			var/obj/item/grenade/chem_grenade/grenade = holder.loc
 			grenade.primed(scanning)
 		return
 
@@ -115,7 +115,7 @@
 		return
 
 
-	interact(mob/user as mob)//TODO: Change this to the wires thingy
+	interact(var/mob/user)//TODO: Change this to the wires thingy
 		if(!secured)
 			user.show_message("\red The [name] is unsecured!")
 			return 0

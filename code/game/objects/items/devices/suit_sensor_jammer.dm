@@ -8,7 +8,7 @@
 	w_class = 2
 	var/active = FALSE
 	var/range = 2 // This is a radius, thus a range of 7 covers the entire visible screen
-	var/obj/item/weapon/cell/bcell = /obj/item/weapon/cell/high
+	var/obj/item/cell/bcell = /obj/item/cell/high
 	var/suit_sensor_jammer_method/jammer_method
 	var/list/suit_sensor_jammer_methods_by_type
 	var/list/suit_sensor_jammer_methods
@@ -40,7 +40,7 @@
 /obj/item/device/suit_sensor_jammer/attack_self(var/mob/user)
 	tg_ui_interact(user)
 
-/obj/item/device/suit_sensor_jammer/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/device/suit_sensor_jammer/attackby(obj/item/I as obj, var/mob/user)
 	if(I.iscrowbar())
 		if(bcell)
 			user << "<span class='notice'>You remove \the [bcell].</span>"
@@ -49,7 +49,7 @@
 			bcell = null
 		else
 			user << "<span class='warning'>There is no cell to remove.</span>"
-	else if(istype(I, /obj/item/weapon/cell))
+	else if(istype(I, /obj/item/cell))
 		if(bcell)
 			user << "<span class='warning'>There's already a cell in \the [src].</span>"
 		else if(user.unEquip(I))

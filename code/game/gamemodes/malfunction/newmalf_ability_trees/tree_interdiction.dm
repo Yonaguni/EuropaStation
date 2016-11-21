@@ -126,7 +126,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
+/datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target in get_unlinked_cyborgs(usr))
 	set name = "Hack Robot"
 	set desc = "350 CPU - Allows you to hack robots which are not slaved to you, bringing them under your control."
 	set category = "Software"
@@ -191,7 +191,7 @@
 			user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_ai(var/mob/living/silicon/ai/target as mob in get_other_ais(usr))
+/datum/game_mode/malfunction/verb/hack_ai(var/mob/living/silicon/ai/target in get_other_ais(usr))
 	set name = "Hack AI"
 	set desc = "600 CPU - Allows you to hack other AIs, slaving them under you."
 	set category = "Software"

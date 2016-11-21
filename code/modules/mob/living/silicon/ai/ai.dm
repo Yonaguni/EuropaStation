@@ -250,7 +250,7 @@ var/list/ai_verbs_default = list(
 			selected_sprite = default_ai_icon
 	updateicon()
 
-/mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
+/mob/living/silicon/ai/pointed(var/atom/A as obj|turf|mob in view())
 	set popup_menu = 0
 	set src = usr.contents
 	return 0
@@ -362,7 +362,7 @@ var/list/ai_verbs_default = list(
 		emergency_message_cooldown = 0
 
 
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
+/mob/living/silicon/ai/check_eye(var/mob/user)
 	if (!camera)
 		return -1
 	return 0
@@ -581,7 +581,7 @@ var/list/ai_verbs_default = list(
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 
 
-/mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/ai/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/device/aicard))
 
 		var/obj/item/device/aicard/card = W
@@ -683,7 +683,7 @@ var/list/ai_verbs_default = list(
 	set category = "IC"
 
 	resting = 0
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
 

@@ -34,7 +34,7 @@
 	brute_mod = 1.35
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
-	holder_type = /obj/item/weapon/holder/human
+	holder_type = /obj/item/holder/human
 	short_sighted = 1
 	gluttonous = GLUT_TINY
 	blood_volume = 280

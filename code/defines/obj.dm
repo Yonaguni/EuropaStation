@@ -4,10 +4,10 @@
 	anchored = 1
 	density = 1
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		return attack_hand(user)
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		switch(alert("Travel back to ss13?",,"Yes","No"))
 			if("Yes")
 				if(user.z != src.z)	return
@@ -197,7 +197,7 @@ var/global/list/PDA_Manifest = list()
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/item/weapon/beach_ball
+/obj/item/beach_ball
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "ball"
 	name = "beach ball"
@@ -211,7 +211,7 @@ var/global/list/PDA_Manifest = list()
 	throw_range = 20
 	flags = CONDUCT
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	afterattack(atom/target as mob|obj|turf|area, var/mob/user)
 		user.drop_item()
 		src.throw_at(target, throw_range, throw_speed, user)
 

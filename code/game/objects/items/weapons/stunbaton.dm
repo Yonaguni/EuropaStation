@@ -1,5 +1,5 @@
 //replaces our stun baton code with /tg/station's code
-/obj/item/weapon/melee/baton
+/obj/item/melee/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
@@ -15,26 +15,26 @@
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/bcell = null
+	var/obj/item/cell/bcell = null
 	var/hitcost = 100	//oh god why do power cells carry so much charge? We probably need to make a distinction between "industrial" sized power cells for APCs and power cells for everything else.
 
-/obj/item/weapon/melee/baton/New()
+/obj/item/melee/baton/New()
 	..()
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/Destroy()
+/obj/item/melee/baton/Destroy()
 	qdel(bcell)
 	bcell = null
 	return ..()
 
-/obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
+/obj/item/melee/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/high(src)
+	bcell = new/obj/item/cell/high(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
 	if(bcell)
 		if(bcell.checked_use(chrgdeductamt))
 			return 1
@@ -44,7 +44,7 @@
 			return 0
 	return null
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/melee/baton/update_icon()
 	if(status)
 		icon_state = "[initial(name)]_active"
 	else if(!bcell)
@@ -57,7 +57,7 @@
 	else
 		kill_light()
 
-/obj/item/weapon/melee/baton/examine(mob/user)
+/obj/item/melee/baton/examine(mob/user)
 	if(!..(user, 1))
 		return
 
@@ -66,8 +66,8 @@
 	if(!bcell)
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
-/obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/cell))
+/obj/item/melee/baton/attackby(var/obj/item/W, mob/user)
+	if(istype(W, /obj/item/cell))
 		if(!bcell)
 			user.drop_item()
 			W.loc = src
@@ -89,11 +89,11 @@
 		..()
 	return
 
-/obj/item/weapon/melee/baton/attack_self(mob/user)
+/obj/item/melee/baton/attack_self(mob/user)
 	set_status(!status, user)
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/baton/proc/set_status(var/newstatus, mob/user)
+/obj/item/melee/baton/proc/set_status(var/newstatus, mob/user)
 	if(bcell && bcell.charge > hitcost)
 		if(status != newstatus)
 			status = newstatus
@@ -107,7 +107,7 @@
 		else
 			user << "<span class='warning'>[src] is out of charge.</span>"
 
-/obj/item/weapon/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
 		user.Weaken(30)
@@ -115,7 +115,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -163,24 +163,24 @@
 
 	return 0
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/melee/baton/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
-/obj/item/weapon/melee/baton/robot/attack_self(mob/user)
+/obj/item/melee/baton/robot/attack_self(mob/user)
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc
 	if (istype(R))
 		bcell = R.cell
 	return ..()
 
-/obj/item/weapon/melee/baton/robot/attackby(obj/item/weapon/W, mob/user)
+/obj/item/melee/baton/robot/attackby(var/obj/item/W, mob/user)
 	return
 
 //Makeshift stun baton. Replacement for stun gloves.
-/obj/item/weapon/melee/baton/cattleprod
+/obj/item/melee/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"

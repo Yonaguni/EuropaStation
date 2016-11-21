@@ -11,7 +11,7 @@
 
 	var/ready = 1
 	var/malfunction = 0
-	var/list/obj/item/weapon/implant/loyalty/implant_list = list()
+	var/list/obj/item/implant/loyalty/implant_list = list()
 	var/max_implants = 5
 	var/injection_cooldown = 600
 	var/replenish_cooldown = 6000
@@ -21,7 +21,7 @@
 
 	proc
 		go_out()
-		put_mob(mob/living/carbon/M as mob)
+		put_mob(var/mob/living/carbon/M)
 		implant(var/mob/M)
 		add_implants()
 
@@ -31,7 +31,7 @@
 		add_implants()
 
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		user.set_machine(src)
 		var/health_text = ""
 		if(src.occupant)
@@ -74,8 +74,8 @@
 			return
 
 
-	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-		if(istype(G, /obj/item/weapon/grab))
+	attackby(var/obj/item/G, var/mob/user)
+		if(istype(G, /obj/item/grab))
 			if(!ismob(G:affecting))
 				return
 			for(var/mob/living/carbon/slime/M in range(1,G:affecting))
@@ -106,7 +106,7 @@
 		return
 
 
-	put_mob(mob/living/carbon/M as mob)
+	put_mob(var/mob/living/carbon/M)
 		if(!iscarbon(M))
 			usr << "<span class='warning'>\The [src] cannot hold this!</span>"
 			return
@@ -128,9 +128,9 @@
 		if (!istype(M, /mob/living/carbon))
 			return
 		if(!implant_list.len)	return
-		for(var/obj/item/weapon/implant/loyalty/imp in implant_list)
+		for(var/obj/item/implant/loyalty/imp in implant_list)
 			if(!imp)	continue
-			if(istype(imp, /obj/item/weapon/implant/loyalty))
+			if(istype(imp, /obj/item/implant/loyalty))
 				for (var/mob/O in viewers(M, null))
 					O.show_message("<span class='warning'>\The [M] has been implanted by \the [src].</span>", 1)
 
@@ -145,7 +145,7 @@
 
 	add_implants()
 		for(var/i=0, i<src.max_implants, i++)
-			var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
+			var/obj/item/implant/loyalty/I = new /obj/item/implant/loyalty(src)
 			implant_list += I
 		return
 

@@ -9,7 +9,7 @@
 	icon_screen = "request"
 	light_color = "#b88b2e"
 	req_access = list(access_cargo)
-	circuit = /obj/item/weapon/circuitboard/supplycomp
+	circuit = /obj/item/circuitboard/supplycomp
 	var/can_order_contraband = 0
 	var/activeterminal = 0
 
@@ -73,10 +73,10 @@
 	icon_screen = "request"
 	update_icon()
 
-/obj/machinery/computer/supply/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/supply/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/supply/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supply/attack_hand(var/mob/user)
 	tg_ui_interact(user)
 
 /obj/machinery/computer/supply/ui_data(mob/user)
@@ -309,11 +309,11 @@
 
 /obj/machinery/computer/supply/proc/printOrder(var/datum/supply_order/O, var/isreciept = 0, var/atom/printloc = src)
 	if(O)
-		var/obj/item/weapon/paper/reqform
+		var/obj/item/paper/reqform
 		if(printloc)
-			reqform = new /obj/item/weapon/paper(printloc.loc)
+			reqform = new /obj/item/paper(printloc.loc)
 		else
-			reqform = new /obj/item/weapon/paper(src.loc)
+			reqform = new /obj/item/paper(src.loc)
 
 		if(isreciept)
 			reqform.name = "Cargo Reciept - [O.object.name]"

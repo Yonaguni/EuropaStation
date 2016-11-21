@@ -103,7 +103,7 @@
 	. = ..()
 
 /datum/map/katydid/handle_captain_join(var/mob/living/carbon/human/captain)
-	var/obj/item/weapon/paper/charter = new(get_turf(captain))
+	var/obj/item/paper/charter = new(get_turf(captain))
 	charter.name = "document (ship charter)"
 	charter.desc = "An official-looking watermarked charter of hire for a spacecraft. Don't lose it."
 	charter.info = {"

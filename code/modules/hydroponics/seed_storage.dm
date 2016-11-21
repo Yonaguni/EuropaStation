@@ -126,11 +126,11 @@
 		/obj/item/seeds/lavenderseed = 3
 		)
 
-/obj/machinery/seed_storage/attack_hand(mob/user as mob)
+/obj/machinery/seed_storage/attack_hand(var/mob/user)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/seed_storage/interact(mob/user as mob)
+/obj/machinery/seed_storage/interact(var/mob/user)
 	if (..())
 		return
 
@@ -280,13 +280,13 @@
 			break
 	updateUsrDialog()
 
-/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_storage/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/seeds))
 		add(O)
 		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")
 		return
-	else if (istype(O, /obj/item/weapon/storage/plants))
-		var/obj/item/weapon/storage/P = O
+	else if (istype(O, /obj/item/storage/plants))
+		var/obj/item/storage/P = O
 		var/loaded = 0
 		for(var/obj/item/seeds/G in P.contents)
 			++loaded
@@ -305,8 +305,8 @@
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
 		user.remove_from_mob(O)
-	else if(istype(O.loc,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = O.loc
+	else if(istype(O.loc,/obj/item/storage))
+		var/obj/item/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
 	O.loc = src

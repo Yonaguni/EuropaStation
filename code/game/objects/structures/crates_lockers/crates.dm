@@ -67,10 +67,10 @@
 	src.opened = 0
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(var/obj/item/W, var/mob/user)
 	if(opened)
 		return ..()
-	else if(istype(W, /obj/item/weapon/packageWrap))
+	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(W.iscoil())
 		var/obj/item/stack/cable_coil/C = W
@@ -140,7 +140,7 @@
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
+/obj/structure/closet/crate/secure/proc/togglelock(var/mob/user)
 	if(src.opened)
 		user << "<span class='notice'>Close the crate first.</span>"
 		return
@@ -176,17 +176,17 @@
 	else
 		usr << "<span class='warning'>This mob type can't use this verb.</span>"
 
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
+/obj/structure/closet/crate/secure/attack_hand(var/mob/user)
 	src.add_fingerprint(user)
 	if(locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/wirecutters)))
+/obj/structure/closet/crate/secure/attackby(var/obj/item/W, var/mob/user)
+	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/wirecutters)))
 		return ..()
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
+	if(istype(W, /obj/item/melee/energy/blade))
 		emag_act(INFINITY, user)
 	if(!opened)
 		src.togglelock(user)
@@ -281,10 +281,10 @@
 
 /obj/structure/closet/crate/rcd/New()
 	..()
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
@@ -305,9 +305,9 @@
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
-	new /obj/item/weapon/circuitboard/solar_control(src)
-	new /obj/item/weapon/tracker_electronics(src)
-	new /obj/item/weapon/paper/solar(src)
+	new /obj/item/circuitboard/solar_control(src)
+	new /obj/item/tracker_electronics(src)
+	new /obj/item/paper/solar(src)
 
 /obj/structure/closet/crate/solar_assembly
 	name = "solar assembly crate"
@@ -360,10 +360,10 @@
 
 /obj/structure/closet/crate/freezer/rations/New()
 	..()
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
 
 /obj/structure/closet/crate/bin
 	name = "large bin"
@@ -502,20 +502,20 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/material/minihoe(src)
-		new /obj/item/weapon/material/minihoe(src)
-		new /obj/item/weapon/storage/plants(src)
-		new /obj/item/weapon/storage/plants(src)
-		new /obj/item/weapon/material/hatchet(src)
-		new /obj/item/weapon/material/hatchet(src)
-		new /obj/item/weapon/wirecutters/clippers(src)
-		new /obj/item/weapon/wirecutters/clippers(src)
+		new /obj/item/reagent_containers/spray/plantbgone(src)
+		new /obj/item/reagent_containers/spray/plantbgone(src)
+		new /obj/item/material/minihoe(src)
+		new /obj/item/material/minihoe(src)
+		new /obj/item/storage/plants(src)
+		new /obj/item/storage/plants(src)
+		new /obj/item/material/hatchet(src)
+		new /obj/item/material/hatchet(src)
+		new /obj/item/wirecutters/clippers(src)
+		new /obj/item/wirecutters/clippers(src)
 		new /obj/item/device/analyzer/plant_analyzer(src)
 		new /obj/item/device/analyzer/plant_analyzer(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
+//		new /obj/item/weedspray(src)
+//		new /obj/item/weedspray(src)
+//		new /obj/item/pestspray(src)
+//		new /obj/item/pestspray(src)
+//		new /obj/item/pestspray(src)

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
-	circuit = /obj/item/weapon/circuitboard/aifixer
+	circuit = /obj/item/circuitboard/aifixer
 	req_one_access = list(access_robotics, access_heads)
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
@@ -30,7 +30,7 @@
 
 	update_icon()
 
-/obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
+/obj/machinery/computer/aifixer/attackby(I as obj, var/mob/user)
 
 	if(istype(I, /obj/item/device/aicard))
 
@@ -57,10 +57,10 @@
 	..()
 	return
 
-/obj/machinery/computer/aifixer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/aifixer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_hand(var/mob/user)
 	if(..())
 		return
 

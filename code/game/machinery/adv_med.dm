@@ -1,6 +1,4 @@
 // Pretty much everything here is stolen from the dna scanner FYI
-
-
 /obj/machinery/bodyscanner
 	var/mob/living/carbon/occupant
 	var/locked
@@ -14,7 +12,7 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 
-/obj/machinery/bodyscanner/relaymove(mob/user as mob)
+/obj/machinery/bodyscanner/relaymove(var/mob/user)
 	if (user.stat)
 		return
 	src.go_out()
@@ -73,8 +71,8 @@
 	src.icon_state = "body_scanner_0"
 	return
 
-/obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
+/obj/machinery/bodyscanner/attackby(var/obj/item/grab/G as obj, var/mob/user)
+	if ((!( istype(G, /obj/item/grab) ) || !( ismob(G.affecting) )))
 		return
 	if (src.occupant)
 		user << "<span class='warning'>The scanner is already occupied!</span>"
@@ -101,7 +99,7 @@
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.loc = src.loc
 				ex_act(severity)
 				//Foreach goto(35)
@@ -110,7 +108,7 @@
 			return
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(108)
@@ -119,7 +117,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(181)
@@ -155,7 +153,7 @@
 
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 	var/delete
 	var/temphtml
 	name = "Body Scanner Console"
@@ -195,10 +193,10 @@
 
 */
 
-/obj/machinery/body_scanconsole/attack_ai(user as mob)
+/obj/machinery/body_scanconsole/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/body_scanconsole/attack_hand(user as mob)
+/obj/machinery/body_scanconsole/attack_hand(var/mob/user)
 	if(..())
 		return
 	if(stat & (NOPOWER|BROKEN))
@@ -242,7 +240,7 @@
 		if (!istype(occupant,/mob/living/carbon/human))
 			usr << "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>"
 			return
-		var/obj/item/weapon/paper/R = new(src.loc)
+		var/obj/item/paper/R = new(src.loc)
 		R.name = "Body scan report"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
 

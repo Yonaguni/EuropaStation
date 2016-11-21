@@ -11,7 +11,7 @@
 	harvest_message = "chops down"
 	harvest_ticks = 3
 	harvest_amount = 3
-	harvest_tool = /obj/item/weapon/material/hatchet
+	harvest_tool = /obj/item/material/hatchet
 	harvest_result = /obj/item/log
 
 /obj/structure/flora/tree/New()

@@ -43,7 +43,7 @@
 	icon_state = "cyborg_upgrade1"
 	var/heldname = "default name"
 
-/obj/item/borg/upgrade/rename/attack_self(mob/user as mob)
+/obj/item/borg/upgrade/rename/attack_self(var/mob/user)
 	heldname = sanitizeSafe(input(user, "Enter new robot name", "Robot Reclassification", heldname), MAX_NAME_LEN)
 
 /obj/item/borg/upgrade/rename/action(var/mob/living/silicon/robot/R)
@@ -124,8 +124,8 @@
 		usr << "There's no mounting point for the module!"
 		return 0
 	else
-		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide
-		for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
+		R.module.modules += new/obj/item/tank/jetpack/carbondioxide
+		for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
 			R.internals = src
 		//R.icon_state="Miner+j"
 		return 1
@@ -144,7 +144,7 @@
 		usr << "There's no mounting point for the module!"
 		return 0
 	else
-		R.module.modules += new/obj/item/weapon/rcd/borg(R.module)
+		R.module.modules += new/obj/item/rcd/borg(R.module)
 		return 1
 
 /obj/item/borg/upgrade/syndicate/

@@ -1,7 +1,7 @@
 
-//Not to be confused with /obj/item/weapon/reagent_containers/food/drinks/bottle
+//Not to be confused with /obj/item/reagent_containers/food/drinks/bottle
 
-/obj/item/weapon/reagent_containers/glass/bottle
+/obj/item/reagent_containers/glass/bottle
 	name = "bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
@@ -58,7 +58,7 @@
 			var/image/lid = image(icon, src, "lid_bottle")
 			overlays += lid
 
-/obj/item/weapon/reagent_containers/glass/bottle/adrenaline
+/obj/item/reagent_containers/glass/bottle/adrenaline
 	name = "adrenaline bottle"
 	desc = "A small bottle. Contains adrenaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
@@ -69,7 +69,7 @@
 		reagents.add_reagent("adrenaline", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/toxin
+/obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
 	icon = 'icons/obj/chemical.dmi'
@@ -80,7 +80,7 @@
 		reagents.add_reagent("toxin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/cyanide
+/obj/item/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
@@ -91,7 +91,7 @@
 		reagents.add_reagent("cyanide", 30) //volume changed to match chloral
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin
+/obj/item/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
@@ -102,7 +102,7 @@
 		reagents.add_reagent("stoxin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate
+/obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "Chloral Hydrate Bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
@@ -113,7 +113,7 @@
 		reagents.add_reagent("chloralhydrate", 30)		//Intentionally low since it is so strong. Still enough to knock someone out.
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin
+/obj/item/reagent_containers/glass/bottle/antitoxin
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
 	icon = 'icons/obj/chemical.dmi'
@@ -124,7 +124,7 @@
 		reagents.add_reagent("anti_toxin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/gc161
+/obj/item/reagent_containers/glass/bottle/gc161
 	name = "\improper GC-161 bottle"
 	desc = "A small bottle of a mutagenic compound. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
@@ -135,7 +135,7 @@
 		reagents.add_reagent("gc161", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/ammonia
+/obj/item/reagent_containers/glass/bottle/ammonia
 	name = "ammonia bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
@@ -146,7 +146,7 @@
 		reagents.add_reagent("ammonia", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/diethylamine
+/obj/item/reagent_containers/glass/bottle/diethylamine
 	name = "diethylamine bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
@@ -157,7 +157,7 @@
 		reagents.add_reagent("diethylamine", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/pacid
+/obj/item/reagent_containers/glass/bottle/pacid
 	name = "Polytrinic Acid Bottle"
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid."
 	icon = 'icons/obj/chemical.dmi'
@@ -167,7 +167,7 @@
 		reagents.add_reagent("pacid", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
+/obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "Adminordrazine Bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
 	icon = 'icons/obj/drinks.dmi'
@@ -177,7 +177,7 @@
 		reagents.add_reagent("adminordrazine", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/capsaicin
+/obj/item/reagent_containers/glass/bottle/capsaicin
 	name = "Capsaicin Bottle"
 	desc = "A small bottle. Contains hot sauce."
 	icon = 'icons/obj/chemical.dmi'
@@ -187,7 +187,7 @@
 		reagents.add_reagent("capsaicin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/frostoil
+/obj/item/reagent_containers/glass/bottle/frostoil
 	name = "Frost Oil Bottle"
 	desc = "A small bottle. Contains cold sauce."
 	icon = 'icons/obj/chemical.dmi'

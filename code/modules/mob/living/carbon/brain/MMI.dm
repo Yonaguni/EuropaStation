@@ -42,7 +42,7 @@
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 
-/obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/device/mmi/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 		var/obj/item/organ/internal/brain/B = O
@@ -75,7 +75,7 @@
 
 		return
 
-	if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/radio/headset/pda)) && brainmob)
+	if((istype(O,/obj/item/card/id)||istype(O,/obj/item/device/radio/headset/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
 			user << "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>"
@@ -88,7 +88,7 @@
 	..()
 
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
-/obj/item/device/mmi/attack_self(mob/user as mob)
+/obj/item/device/mmi/attack_self(var/mob/user)
 	if(!brainmob)
 		user << "<span class='warning'>You upend the MMI, but there's nothing in it.</span>"
 	else if(locked)
@@ -126,7 +126,7 @@
 /obj/item/device/mmi/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.forced_move(direction, user)
 

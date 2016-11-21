@@ -53,7 +53,7 @@
 	return 1
 
 // Free abilities.
-/mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview(1))
+/mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M in oview(1))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Abilities"
@@ -159,7 +159,7 @@
 
 	return
 
-/mob/living/carbon/human/proc/neurotoxin(mob/target as mob in oview())
+/mob/living/carbon/human/proc/neurotoxin(mob/target in oview())
 	set name = "Spit Neurotoxin (50)"
 	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
 	set category = "Abilities"
@@ -200,7 +200,7 @@
 			new /obj/structure/bed/nest(loc)
 	return
 
-mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in oview())
+/mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M in oview())
 	set name = "Infest (500)"
 	set desc = "Link a victim to the hivemind."
 	set category = "Abilities"

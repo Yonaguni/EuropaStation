@@ -428,7 +428,7 @@
 	M.overlays.Cut()
 	M.invisibility = 101
 	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/weapon/implant)) //TODO: Carn. give implants a dropped() or something
+		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
 			qdel(W)
 			continue
 		M.drop_from_inventory(W)
@@ -487,7 +487,7 @@
 					if(H.can_feel_pain())
 						H.emote("scream")
 					for(var/i = 1 to rand(3,5))
-						new /obj/item/weapon/material/shard(get_turf(E), "nullglass")
+						new /obj/item/material/shard(get_turf(E), "nullglass")
 					E.droplimb(0, DROPLIMB_BLUNT)
 					return
 	else if(isslime(M))
@@ -498,7 +498,7 @@
 	M << "<span class='danger'>Your flesh is being lacerated from within!</span>"
 	M.adjustBruteLoss(rand(3,6))
 	if(prob(10))
-		new /obj/item/weapon/material/shard(get_turf(M), "nullglass")
+		new /obj/item/material/shard(get_turf(M), "nullglass")
 
 /datum/reagent/nanites
 	name = "Nanomachines"

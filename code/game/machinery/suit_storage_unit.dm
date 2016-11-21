@@ -140,7 +140,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_hand(var/mob/user)
 	var/dat
 	if(..())
 		return
@@ -250,7 +250,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggleUV(var/mob/user)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!src.panelopen)
@@ -276,7 +276,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/togglesafeties(var/mob/user)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!src.panelopen) //Needed check due to bugs
@@ -297,7 +297,7 @@
 		src.safetieson = !src.safetieson
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_helmet(var/mob/user)
 	if(!src.HELMET)
 		return //Do I even need this sanity check? Nyoro~n
 	else
@@ -306,7 +306,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_suit(var/mob/user)
 	if(!src.SUIT)
 		return
 	else
@@ -315,7 +315,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_mask(var/mob/user)
 	if(!src.MASK)
 		return
 	else
@@ -340,7 +340,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggle_open(var/mob/user)
 	if(src.islocked || src.isUV)
 		user << "<font color='red'>Unable to open unit.</font>"
 		return
@@ -351,7 +351,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggle_lock(var/mob/user)
 	if(src.OCCUPANT && src.safetieson)
 		user << "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>"
 		return
@@ -361,7 +361,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/start_UV(var/mob/user)
 	if(src.isUV || src.isopen) //I'm bored of all these sanity checks
 		return
 	if(src.OCCUPANT && src.safetieson)
@@ -448,7 +448,7 @@
 	return src.cycletime_left
 
 
-/obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/eject_occupant(var/mob/user)
 	if (src.islocked)
 		return
 
@@ -525,7 +525,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, var/mob/user)
 	if(!src.ispowered)
 		return
 	if(I.isscrewdriver())
@@ -534,8 +534,8 @@
 		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(src.panelopen ? "open up" : "close") )
 		src.updateUsrDialog()
 		return
-	if ( istype(I, /obj/item/weapon/grab) )
-		var/obj/item/weapon/grab/G = I
+	if ( istype(I, /obj/item/grab) )
+		var/obj/item/grab/G = I
 		if( !(ismob(G.affecting)) )
 			return
 		if (!src.isopen)
@@ -613,7 +613,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
 //////////////////////////////REMINDER: Make it lock once you place some fucker inside.
@@ -712,10 +712,10 @@
 	species = list("Human","Skrell","Resomi")
 	can_repair = 1
 
-/obj/machinery/suit_cycler/attack_ai(mob/user as mob)
+/obj/machinery/suit_cycler/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_cycler/attackby(obj/item/I as obj, var/mob/user)
 
 	if(electrified != 0)
 		if(src.shock(user, 100))
@@ -727,8 +727,8 @@
 			attack_hand(user)
 		return
 	//Other interface stuff.
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(!(ismob(G.affecting)))
 			return
@@ -827,7 +827,7 @@
 	src.updateUsrDialog()
 	return 1
 
-/obj/machinery/suit_cycler/attack_hand(mob/user as mob)
+/obj/machinery/suit_cycler/attack_hand(var/mob/user)
 
 	add_fingerprint(user)
 
@@ -1007,7 +1007,7 @@
 
 	eject_occupant(usr)
 
-/obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
+/obj/machinery/suit_cycler/proc/eject_occupant(var/mob/user)
 
 	if(locked || active)
 		user << "<span class='warning'>The cycler is locked.</span>"

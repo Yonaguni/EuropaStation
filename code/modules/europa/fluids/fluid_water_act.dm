@@ -49,7 +49,7 @@ var/atom/movable/waterproof
 	else
 		return
 
-/obj/item/weapon/flame/match/water_act()
+/obj/item/flame/match/water_act()
 	if(!waterproof && lit)
 		burn_out()
 	return ..()

@@ -8,11 +8,11 @@
 	l_ear = /obj/item/device/radio/headset
 	glasses = /obj/item/clothing/glasses/thermal/plain/monocle
 	suit = /obj/item/clothing/suit/chaplain_hoodie
-	r_pocket = /obj/item/weapon/bikehorn
-	r_hand = /obj/item/weapon/material/twohanded/fireaxe
+	r_pocket = /obj/item/bikehorn
+	r_hand = /obj/item/material/twohanded/fireaxe
 
 	id_slot = slot_wear_id
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Tunnel Clown!"
 
 /decl/hierarchy/outfit/masked_killer
@@ -25,9 +25,9 @@
 	l_ear = /obj/item/device/radio/headset
 	glasses = /obj/item/clothing/glasses/thermal/plain/monocle
 	suit = /obj/item/clothing/suit/apron
-	l_pocket = /obj/item/weapon/material/hatchet/tacknife
-	r_pocket = /obj/item/weapon/scalpel
-	r_hand = /obj/item/weapon/material/twohanded/fireaxe
+	l_pocket = /obj/item/material/hatchet/tacknife
+	r_pocket = /obj/item/scalpel
+	r_hand = /obj/item/material/twohanded/fireaxe
 
 /decl/hierarchy/outfit/masked_killer/post_equip(var/mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)

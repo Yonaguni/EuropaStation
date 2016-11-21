@@ -36,7 +36,7 @@ var/list/ai_status_emotions = list(
 
 	return emotions
 
-/proc/set_ai_status_displays(mob/user as mob)
+/proc/set_ai_status_displays(var/mob/user)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	for (var/obj/machinery/M in machines) //change status
@@ -68,7 +68,7 @@ var/list/ai_status_emotions = list(
 
 	var/emotion = "Neutral"
 
-/obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
+/obj/machinery/ai_status_display/attack_ai/(var/mob/user)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	src.emotion = emote

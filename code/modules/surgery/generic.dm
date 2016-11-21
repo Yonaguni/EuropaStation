@@ -32,10 +32,10 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/cut_with_laser
 	allowed_tools = list(
-	/obj/item/weapon/scalpel/laser3 = 95, \
-	/obj/item/weapon/scalpel/laser2 = 85, \
-	/obj/item/weapon/scalpel/laser1 = 75, \
-	/obj/item/weapon/melee/energy/sword = 5
+	/obj/item/scalpel/laser3 = 95, \
+	/obj/item/scalpel/laser2 = 85, \
+	/obj/item/scalpel/laser1 = 75, \
+	/obj/item/melee/energy/sword = 5
 	)
 	priority = 2
 	min_duration = 90
@@ -77,7 +77,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/incision_manager
 	allowed_tools = list(
-	/obj/item/weapon/scalpel/manager = 100
+	/obj/item/scalpel/manager = 100
 	)
 	priority = 2
 	min_duration = 80
@@ -120,9 +120,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/cut_open
 	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 90
@@ -163,7 +163,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/clamp_bleeders
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
+	/obj/item/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
 	/obj/item/device/assembly/mousetrap = 20
 	)
@@ -202,9 +202,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/retract_skin
 	allowed_tools = list(
-	/obj/item/weapon/retractor = 100, 	\
-	/obj/item/weapon/crowbar = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 50
+	/obj/item/retractor = 100, 	\
+	/obj/item/crowbar = 75,	\
+	/obj/item/material/kitchen/utensil/fork = 50
 	)
 
 	min_duration = 30
@@ -260,10 +260,10 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/cauterize
 	allowed_tools = list(
-	/obj/item/weapon/cautery = 100,			\
+	/obj/item/cautery = 100,			\
 	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/weldingtool = 25
+	/obj/item/flame/lighter = 50,			\
+	/obj/item/weldingtool = 25
 	)
 
 	min_duration = 70
@@ -300,8 +300,8 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/amputate
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
-	/obj/item/weapon/material/hatchet = 75
+	/obj/item/circular_saw = 100, \
+	/obj/item/material/hatchet = 75
 	)
 
 	min_duration = 110

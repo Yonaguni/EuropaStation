@@ -85,12 +85,12 @@
 	processing_objects -= src
 	return ..()
 
-/obj/item/device/radio/intercom/attack_ai(mob/user as mob)
+/obj/item/device/radio/intercom/attack_ai(var/mob/user)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/device/radio/intercom/attack_hand(var/mob/user)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)

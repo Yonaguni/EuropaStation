@@ -11,7 +11,7 @@
 	var/list/network
 	var/mapping = 0//For the overview file, interesting bit of code.
 	var/cache_id = 0
-	circuit = /obj/item/weapon/circuitboard/security
+	circuit = /obj/item/circuitboard/security
 
 	New()
 		if(!network)
@@ -20,10 +20,10 @@
 		if(network.len)
 			current_network = network[1]
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(var/mob/user)
 		return attack_hand(user)
 
-	check_eye(var/mob/user as mob)
+	check_eye(var/mob/user)
 		if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
 			return -1
 		if(!current_camera)
@@ -87,7 +87,7 @@
 		else
 			. = ..()
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if (src.z > 6)
 			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the ship!"
 			return
@@ -231,14 +231,14 @@
 	desc = "Used to access the various cameras on the outpost."
 	icon_screen = "mining"
 	network = list("MINE")
-	circuit = /obj/item/weapon/circuitboard/security/mining
+	circuit = /obj/item/circuitboard/security/mining
 	light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
 	desc = "Used to monitor fires and breaches."
 	icon_screen = "engie_cams"
-	circuit = /obj/item/weapon/circuitboard/security/engineering
+	circuit = /obj/item/circuitboard/security/engineering
 	light_color = "#FAC54B"
 
 /obj/machinery/computer/security/engineering/New()
@@ -251,7 +251,7 @@
 	desc = "Used to access the various cameras in the Research Wing."
 	icon_screen = "mining"
 	network = list("POD","CALYPSO","EXPEDITION","RESEARCH")
-	circuit = /obj/item/weapon/circuitboard/security/research
+	circuit = /obj/item/circuitboard/security/research
 	light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/supply
@@ -259,7 +259,7 @@
 	desc = "Used to access the various cameras around the Hangar Deck."
 	icon_screen = "mining"
 	network = list("SUPPLY","POD","CALYPSO")
-	circuit = /obj/item/weapon/circuitboard/security/supply
+	circuit = /obj/item/circuitboard/security/supply
 	light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/nuclear

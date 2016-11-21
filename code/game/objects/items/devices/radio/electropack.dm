@@ -12,13 +12,13 @@
 
 	var/code = 2
 
-/obj/item/device/radio/electropack/attack_hand(mob/user as mob)
+/obj/item/device/radio/electropack/attack_hand(var/mob/user)
 	if(src == user.back)
 		user << "<span class='notice'>You need help taking this off!</span>"
 		return
 	..()
 
-/obj/item/device/radio/electropack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/electropack/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/clothing/head/helmet))
 		if(!b_stat)
@@ -103,7 +103,7 @@
 		master.receive_signal()
 	return
 
-/obj/item/device/radio/electropack/attack_self(mob/user as mob, flag1)
+/obj/item/device/radio/electropack/attack_self(var/mob/user, flag1)
 
 	if(!istype(user, /mob/living/carbon/human))
 		return

@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/composite/premade
+/obj/item/gun/composite/premade
 	icon = 'icons/obj/gun.dmi'
 	var/set_model
 	var/variant_chamber = /obj/item/gun_component/chamber
@@ -8,7 +8,7 @@
 	var/variant_grip =    /obj/item/gun_component/grip
 	var/ammo_type // Set to autoload the gun at spawn.
 
-/obj/item/weapon/gun/composite/premade/New()
+/obj/item/gun/composite/premade/New()
 	//icon_state = "" // READD AFTER FIXING GUN ICONS IN 510.
 
 	// Mandatory parts.

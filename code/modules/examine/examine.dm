@@ -62,7 +62,7 @@
 			stat(null,"<font color='#8A0808'><b>[description_holders["antag"]]</b></font>") //Red, malicious antag-related text
 
 //override examinate verb to update description holders when things are examined
-/mob/examinate(atom/A as mob|obj|turf in view())
+/mob/examinate(var/atom/A in view())
 	if(..())
 		return 1
 

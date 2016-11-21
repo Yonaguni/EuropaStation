@@ -4,17 +4,17 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_screen = "power"
 	req_access = list(access_engine_equip)
-	circuit = /obj/item/weapon/circuitboard/drone_control
+	circuit = /obj/item/circuitboard/drone_control
 
 	//Used when pinging drones.
 	var/drone_call_area = "Engineering"
 	//Used to enable or disable drone fabrication.
 	var/obj/machinery/drone_fabricator/dronefab
 
-/obj/machinery/computer/drone_control/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/drone_control/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/drone_control/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/drone_control/attack_hand(var/mob/user)
 	if(..())
 		return
 

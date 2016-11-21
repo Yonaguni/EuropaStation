@@ -1,4 +1,4 @@
-/obj/item/weapon/computer_hardware/
+/obj/item/computer_hardware/
 	name = "Hardware"
 	desc = "Unknown Hardware."
 	icon = 'icons/obj/modular_components.dmi'
@@ -13,7 +13,7 @@
 	var/damage_failure = 50			// "Failure" threshold. When damage exceeds this value the hardware piece will not work at all.
 	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
 
-/obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+/obj/item/computer_hardware/attackby(var/obj/item/W, var/mob/living/user)
 	// Multitool. Runs diagnostics
 	if(W.ismultitool())
 		user << "***** DIAGNOSTICS REPORT *****"
@@ -43,10 +43,10 @@
 
 
 // Called on multitool click, prints diagnostic information to the user.
-/obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/computer_hardware/proc/diagnostics(var/mob/user)
 	user << "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]"
 
-/obj/item/weapon/computer_hardware/New(var/obj/L)
+/obj/item/computer_hardware/New(var/obj/L)
 	w_class = hardware_size
 	if(istype(L, /obj/machinery/modular_computer))
 		var/obj/machinery/modular_computer/C = L
@@ -57,12 +57,12 @@
 		holder2 = L
 		return
 
-/obj/item/weapon/computer_hardware/Destroy()
+/obj/item/computer_hardware/Destroy()
 	holder2 = null
 	return ..()
 
 // Handles damage checks
-/obj/item/weapon/computer_hardware/proc/check_functionality()
+/obj/item/computer_hardware/proc/check_functionality()
 	// Too damaged to work at all.
 	if(damage > damage_failure)
 		return 0
@@ -73,7 +73,7 @@
 	// Good to go.
 	return 1
 
-/obj/item/weapon/computer_hardware/examine(var/mob/user)
+/obj/item/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
 		user << "<span class='danger'>It seems to be severely damaged!</span>"
@@ -83,7 +83,7 @@
 		user << "It seems to be slightly damaged."
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/weapon/computer_hardware/proc/take_damage(var/amount)
+/obj/item/computer_hardware/proc/take_damage(var/amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 

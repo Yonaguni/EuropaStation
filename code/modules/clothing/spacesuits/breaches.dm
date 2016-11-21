@@ -177,7 +177,7 @@ var/global/list/breach_burn_descriptors = list(
 
 //Handles repairs (and also upgrades).
 
-/obj/item/clothing/suit/space/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/attackby(obj/item/W as obj, var/mob/user)
 	if(istype(W,/obj/item/stack/material))
 		var/repair_power = 0
 		switch(W.get_material_name())
@@ -213,7 +213,7 @@ var/global/list/breach_burn_descriptors = list(
 			user << "There is no structural damage on \the [src] to repair."
 			return
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(5))
 			user << "\red You need more welding fuel to repair this suit."
 			return

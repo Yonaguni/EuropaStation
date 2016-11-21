@@ -24,12 +24,12 @@ var/datum/antagonist/renegade/renegades
 	initial_spawn_target = 6
 
 	var/list/spawn_guns = list(
-		/obj/item/weapon/gun/composite/premade/smg/a10,
-		/obj/item/weapon/gun/composite/premade/assault_rifle,
-		/obj/item/weapon/gun/composite/premade/smg/a9,
-		/obj/item/weapon/gun/composite/premade/assault_rifle,
-		/obj/item/weapon/gun/composite/premade/pistol/a38/preloaded,
-		/obj/item/weapon/gun/composite/premade/revolver/a45/preloaded
+		/obj/item/gun/composite/premade/smg/a10,
+		/obj/item/gun/composite/premade/assault_rifle,
+		/obj/item/gun/composite/premade/smg/a9,
+		/obj/item/gun/composite/premade/assault_rifle,
+		/obj/item/gun/composite/premade/pistol/a38/preloaded,
+		/obj/item/gun/composite/premade/revolver/a45/preloaded
 		)
 
 /datum/antagonist/renegade/New()

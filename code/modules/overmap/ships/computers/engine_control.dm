@@ -18,7 +18,7 @@
 		if (E.zlevel in zlevels)
 			engines |= E
 
-/obj/machinery/computer/engines/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/engines/attack_hand(var/mob/user)
 	if(..())
 		user.unset_machine()
 		return

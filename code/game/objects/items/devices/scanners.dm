@@ -68,7 +68,7 @@ REAGENT SCANNER
 
 	return atmosanalyzer_scan(src, air, user)
 
-/obj/item/device/analyzer/attack_self(mob/user as mob)
+/obj/item/device/analyzer/attack_self(var/mob/user)
 
 	if (user.stat)
 		return
@@ -109,7 +109,7 @@ REAGENT SCANNER
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
+/obj/item/device/mass_spectrometer/attack_self(var/mob/user)
 	if (user.stat)
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
@@ -158,7 +158,7 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/device/reagent_scanner/afterattack(obj/O, var/mob/user, proximity)
 	if(!proximity)
 		return
 	if (user.stat)
@@ -202,7 +202,7 @@ REAGENT SCANNER
 	throw_range = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
-/obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/slime_scanner/attack(var/mob/living/M, var/mob/living/user)
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
 		return
@@ -244,7 +244,7 @@ REAGENT SCANNER
 	throw_range = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 25, "glass" = 25)
 
-/obj/item/device/price_scanner/afterattack(atom/movable/target, mob/user as mob, proximity)
+/obj/item/device/price_scanner/afterattack(atom/movable/target, var/mob/user, proximity)
 	if(!proximity)
 		return
 

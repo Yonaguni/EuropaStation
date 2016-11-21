@@ -17,7 +17,7 @@
 		icon = initial(icon)
 	icon_state = "[installed_dam_type]_[installed_gun_type]_[initial(icon_state)]"
 
-/obj/item/gun_component/accessory/apply_mod(var/obj/item/weapon/gun/composite/gun)
+/obj/item/gun_component/accessory/apply_mod(var/obj/item/gun/composite/gun)
 	..()
 	// Apply sharpness.
 	if(melee_max)
@@ -30,7 +30,7 @@
 		gun.attack_verb = list("stabbed", "slashed", "pierced")
 
 
-/obj/item/gun_component/accessory/installed(var/obj/item/weapon/gun/composite/gun, var/mob/user)
+/obj/item/gun_component/accessory/installed(var/obj/item/gun/composite/gun, var/mob/user)
 	if(istype(user))
 		user.unEquip(src)
 		user << "<span class='notice'>You affix \the [src] to \the [installs_into] of \the [gun].</span>"

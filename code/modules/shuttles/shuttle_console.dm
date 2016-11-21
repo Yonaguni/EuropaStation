@@ -8,7 +8,7 @@
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
 
-/obj/machinery/computer/shuttle_control/attack_hand(user as mob)
+/obj/machinery/computer/shuttle_control/attack_hand(var/mob/user)
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.

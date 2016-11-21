@@ -32,11 +32,11 @@
 								/obj/item/toy/katana                  = TRADER_THIS_TYPE,
 								/obj/item/toy/sword                   = TRADER_THIS_TYPE,
 								/obj/item/toy/bosunwhistle            = TRADER_THIS_TYPE,
-								/obj/item/weapon/board                = TRADER_THIS_TYPE,
-								/obj/item/weapon/storage/box/checkers = TRADER_ALL,
-								/obj/item/weapon/deck                 = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/pack                 = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/dice                 = TRADER_ALL)
+								/obj/item/board                = TRADER_THIS_TYPE,
+								/obj/item/storage/box/checkers = TRADER_ALL,
+								/obj/item/deck                 = TRADER_SUBTYPES_ONLY,
+								/obj/item/pack                 = TRADER_SUBTYPES_ONLY,
+								/obj/item/dice                 = TRADER_ALL)
 
 /datum/trader/ship/electronics
 	name = "Electronic Shop Employee"
@@ -59,25 +59,25 @@
 				"insult_bad"        = "Sir, I am allowed to hang up the phone if you continue, sir.",
 				)
 
-	possible_trading_items = list(/obj/item/weapon/computer_hardware/battery_module      = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/circuitboard                            = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/circuitboard/telecomms                  = TRADER_BLACKLIST,
-								/obj/item/weapon/circuitboard/unary_atmos                = TRADER_BLACKLIST,
-								/obj/item/weapon/circuitboard/arcade                     = TRADER_BLACKLIST,
-								/obj/item/weapon/circuitboard/broken                     = TRADER_BLACKLIST,
+	possible_trading_items = list(/obj/item/computer_hardware/battery_module      = TRADER_SUBTYPES_ONLY,
+								/obj/item/circuitboard                            = TRADER_SUBTYPES_ONLY,
+								/obj/item/circuitboard/telecomms                  = TRADER_BLACKLIST,
+								/obj/item/circuitboard/unary_atmos                = TRADER_BLACKLIST,
+								/obj/item/circuitboard/arcade                     = TRADER_BLACKLIST,
+								/obj/item/circuitboard/broken                     = TRADER_BLACKLIST,
 								/obj/item/stack/cable_coil                               = TRADER_SUBTYPES_ONLY,
 								/obj/item/stack/cable_coil/cyborg                        = TRADER_BLACKLIST,
 								/obj/item/stack/cable_coil/random                        = TRADER_BLACKLIST,
 								/obj/item/stack/cable_coil/cut                           = TRADER_BLACKLIST,
-								/obj/item/weapon/airalarm_electronics                    = TRADER_THIS_TYPE,
-								/obj/item/weapon/airlock_electronics                     = TRADER_ALL,
-								/obj/item/weapon/cell                                    = TRADER_THIS_TYPE,
-								/obj/item/weapon/cell/crap                               = TRADER_THIS_TYPE,
-								/obj/item/weapon/cell/high                               = TRADER_THIS_TYPE,
-								/obj/item/weapon/cell/super                              = TRADER_THIS_TYPE,
-								/obj/item/weapon/cell/hyper                              = TRADER_THIS_TYPE,
-								/obj/item/weapon/module                                  = TRADER_SUBTYPES_ONLY,
-								/obj/item/weapon/tracker_electronics                     = TRADER_THIS_TYPE)
+								/obj/item/airalarm_electronics                    = TRADER_THIS_TYPE,
+								/obj/item/airlock_electronics                     = TRADER_ALL,
+								/obj/item/cell                                    = TRADER_THIS_TYPE,
+								/obj/item/cell/crap                               = TRADER_THIS_TYPE,
+								/obj/item/cell/high                               = TRADER_THIS_TYPE,
+								/obj/item/cell/super                              = TRADER_THIS_TYPE,
+								/obj/item/cell/hyper                              = TRADER_THIS_TYPE,
+								/obj/item/module                                  = TRADER_SUBTYPES_ONLY,
+								/obj/item/tracker_electronics                     = TRADER_THIS_TYPE)
 
 
 /* Clothing stores: each a different type. A hat/glove store, a shoe store, and a jumpsuit store. */
@@ -225,13 +225,13 @@ Sells devices, odds and ends, and medical stuff
 	name_language = TRADER_DEFAULT_NAME
 	origin = "Robot Store"
 	possible_origins = list("AI for the Straight Guy", "Mechanical Buddies", "Bot Chop Shop", "Omni Consumer Projects")
-	possible_trading_items = list(/obj/item/weapon/secbot_assembly/ed209_assembly = TRADER_THIS_TYPE,
-								/obj/item/weapon/toolbox_tiles                    = TRADER_THIS_TYPE,
-								/obj/item/weapon/toolbox_tiles_sensor             = TRADER_THIS_TYPE,
-								/obj/item/weapon/secbot_assembly                  = TRADER_ALL,
-								/obj/item/weapon/farmbot_arm_assembly             = TRADER_THIS_TYPE,
-								/obj/item/weapon/firstaid_arm_assembly            = TRADER_THIS_TYPE,
-								/obj/item/weapon/bucket_sensor                    = TRADER_THIS_TYPE,
+	possible_trading_items = list(/obj/item/secbot_assembly/ed209_assembly = TRADER_THIS_TYPE,
+								/obj/item/toolbox_tiles                    = TRADER_THIS_TYPE,
+								/obj/item/toolbox_tiles_sensor             = TRADER_THIS_TYPE,
+								/obj/item/secbot_assembly                  = TRADER_ALL,
+								/obj/item/farmbot_arm_assembly             = TRADER_THIS_TYPE,
+								/obj/item/firstaid_arm_assembly            = TRADER_THIS_TYPE,
+								/obj/item/bucket_sensor                    = TRADER_THIS_TYPE,
 								/obj/item/device/bot_kit                          = TRADER_THIS_TYPE,
 								/obj/item/device/paicard                          = TRADER_THIS_TYPE,
 								/obj/item/device/aicard                           = TRADER_THIS_TYPE,

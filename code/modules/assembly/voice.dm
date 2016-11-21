@@ -15,7 +15,7 @@
 	listening_objects -= src
 	return ..()
 
-/obj/item/device/assembly/voice/hear_talk(mob/living/M as mob, msg)
+/obj/item/device/assembly/voice/hear_talk(var/mob/living/M, msg)
 	if(listening)
 		recorded = msg
 		listening = 0

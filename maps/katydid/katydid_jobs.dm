@@ -129,7 +129,7 @@
 /decl/hierarchy/outfit/job/katydid/crew
 	name = "Crewman"
 	uniform = /obj/item/clothing/under/hireling
-	id_type = /obj/item/weapon/card/id
+	id_type = /obj/item/card/id
 	pda_type = /obj/item/device/radio/headset/pda
 
 /decl/hierarchy/outfit/job/katydid/crew/doctor
@@ -179,7 +179,7 @@
 
 /decl/hierarchy/outfit/job/katydid/crew/engineer
 	name = "Engineer"
-	belt = /obj/item/weapon/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/workboots
 	pda_type = /obj/item/device/radio/headset/pda/engineering
 

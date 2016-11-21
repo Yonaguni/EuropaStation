@@ -32,16 +32,16 @@
 
 
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, var/mob/user)
 		if (W.iswelder())
-			var/obj/item/weapon/weldingtool/WT = W
+			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				overlays.Cut()
 				usr << "You slice off [src]'s uneven chunks of aluminum and scorch marks."
 				return
 
 
-	attack_hand(mob/user as mob)
+	attack_hand(var/mob/user)
 		// taking pinned targets off!
 		var/obj/structure/target_stake/stake
 		for(var/obj/structure/target_stake/T in view(3,src))

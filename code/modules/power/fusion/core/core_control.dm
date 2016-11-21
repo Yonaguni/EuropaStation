@@ -9,7 +9,7 @@
 	var/list/connected_devices = list()
 	var/obj/machinery/power/fusion_core/cur_viewed_device
 
-/obj/machinery/computer/fusion_core_control/attackby(var/obj/item/weapon/thing, var/mob/user)
+/obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	if(thing.ismultitool())
 		var/new_ident = input("Enter a new ident tag.", "Core Control", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))

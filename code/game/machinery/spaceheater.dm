@@ -5,7 +5,7 @@
 	icon_state = "sheater-off"
 	name = "space heater"
 	desc = "Made using traditional space techniques, this heater is guaranteed not to set the atmosphere on fire."
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/on = 0
 	var/set_temperature = T0C + 20	//K
 	var/active = 0
@@ -14,7 +14,7 @@
 
 /obj/machinery/space_heater/New()
 	..()
-	cell = new/obj/item/weapon/cell/high(src)
+	cell = new/obj/item/cell/high(src)
 	update_icon()
 
 /obj/machinery/space_heater/update_icon(var/rebuild_overlay = 0)
@@ -56,14 +56,14 @@
 	..(severity)
 
 /obj/machinery/space_heater/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell))
+	if(istype(I, /obj/item/cell))
 		if(panel_open)
 			if(cell)
 				user << "There is already a power cell inside."
 				return
 			else
 				// insert cell
-				var/obj/item/weapon/cell/C = usr.get_active_hand()
+				var/obj/item/cell/C = usr.get_active_hand()
 				if(istype(C))
 					user.drop_item()
 					cell = C
@@ -86,11 +86,11 @@
 		..()
 	return
 
-/obj/machinery/space_heater/attack_hand(mob/user as mob)
+/obj/machinery/space_heater/attack_hand(var/mob/user)
 	src.add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/space_heater/interact(mob/user as mob)
+/obj/machinery/space_heater/interact(var/mob/user)
 
 	if(panel_open)
 
@@ -147,7 +147,7 @@
 
 			if("cellinstall")
 				if(panel_open && !cell)
-					var/obj/item/weapon/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
 						cell = C

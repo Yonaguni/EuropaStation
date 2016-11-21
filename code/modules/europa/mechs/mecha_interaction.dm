@@ -150,7 +150,7 @@
 /mob/living/heavy_vehicle/proc/sync_access()
 	access_card.access = saved_access.Copy()
 	if(!sync_access || !pilot) return
-	var/obj/item/weapon/card/id/pilot_id = pilot.GetIdCard()
+	var/obj/item/card/id/pilot_id = pilot.GetIdCard()
 	if(pilot_id && pilot_id.access) access_card.access |= pilot_id.access
 	pilot << "<span class='notice'>Security access permissions synchronized.</span>"
 

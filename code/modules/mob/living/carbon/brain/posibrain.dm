@@ -11,7 +11,7 @@
 	var/askDelay = 10 * 60 * 1
 
 
-/obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
+/obj/item/device/mmi/digital/posibrain/attack_self(var/mob/user)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		user << "<span class='notice'>You carefully locate the manual activation switch and start the positronic brain's boot process.</span>"

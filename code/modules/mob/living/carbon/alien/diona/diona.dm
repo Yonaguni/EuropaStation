@@ -13,7 +13,7 @@
 	can_pull_size = SMALL_ITEM
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	holder_type = /obj/item/weapon/holder/diona
+	holder_type = /obj/item/holder/diona
 	possession_candidate = 1
 	var/obj/item/hat
 

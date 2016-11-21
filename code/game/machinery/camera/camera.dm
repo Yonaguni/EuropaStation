@@ -15,7 +15,7 @@
 	anchored = 1.0
 	var/invuln = null
 	var/bugged = 0
-	var/obj/item/weapon/camera_assembly/assembly = null
+	var/obj/item/camera_assembly/assembly = null
 
 	var/toughness = 5 //sorta fragile
 
@@ -105,7 +105,7 @@ var/list/camera_tag_count = list()
 
 	..() //and give it the regular chance of being deleted outright
 
-/obj/machinery/camera/hitby(AM as mob|obj)
+/obj/machinery/camera/hitby(var/atom/movable/AM)
 	..()
 	if (istype(AM, /obj))
 		var/obj/O = AM
@@ -117,7 +117,7 @@ var/list/camera_tag_count = list()
 	src.view_range = num
 	cameranet.update_visibility(src, 0)
 
-/obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
+/obj/machinery/camera/attack_hand(var/mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 
@@ -129,7 +129,7 @@ var/list/camera_tag_count = list()
 		add_hiddenprint(user)
 		destroy()
 
-/obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/machinery/camera/attackby(obj/item/W as obj, var/mob/living/user)
 	update_coverage()
 	// DECONSTRUCTION
 	if(W.isscrewdriver())
@@ -164,14 +164,14 @@ var/list/camera_tag_count = list()
 			return
 
 	// OTHER
-	else if (can_use() && (istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/radio/headset/pda)) && isliving(user))
+	else if (can_use() && (istype(W, /obj/item/paper) || istype(W, /obj/item/device/radio/headset/pda)) && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/weapon/paper/X = null
+		var/obj/item/paper/X = null
 		var/obj/item/device/radio/headset/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
-		if(istype(W, /obj/item/weapon/paper))
+		if(istype(W, /obj/item/paper))
 			X = W
 			itemname = X.name
 			info = X.info
@@ -192,7 +192,7 @@ var/list/camera_tag_count = list()
 					O << "[U] holds \a [itemname] up to one of the cameras ..."
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 
-	else if (istype(W, /obj/item/weapon/camera_bug))
+	else if (istype(W, /obj/item/camera_bug))
 		if (!src.can_use())
 			user << "<span class='warning'>Camera non-functional.</span>"
 			return
@@ -217,7 +217,7 @@ var/list/camera_tag_count = list()
 	else
 		..()
 
-/obj/machinery/camera/proc/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/proc/deactivate(var/mob/user, var/choice = 1)
 	// The only way for AI to reactivate cameras are malf abilities, this gives them different messages.
 	if(istype(user, /mob/living/silicon/ai))
 		user = null
@@ -364,7 +364,7 @@ var/list/camera_tag_count = list()
 
 	return null
 
-/obj/machinery/camera/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+/obj/machinery/camera/proc/weld(var/obj/item/weldingtool/WT, var/mob/user)
 
 	if(busy)
 		return 0
@@ -384,7 +384,7 @@ var/list/camera_tag_count = list()
 	busy = 0
 	return 0
 
-/obj/machinery/camera/interact(mob/living/user as mob)
+/obj/machinery/camera/interact(var/mob/living/user)
 	if(!panel_open || istype(user, /mob/living/silicon/ai))
 		return
 

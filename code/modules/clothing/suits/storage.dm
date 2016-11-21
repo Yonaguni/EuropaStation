@@ -1,16 +1,16 @@
 /obj/item/clothing/suit/storage
-	var/obj/item/weapon/storage/internal/pockets/pockets
+	var/obj/item/storage/internal/pockets/pockets
 
 /obj/item/clothing/suit/storage/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal/pockets(src, slots = 2, slot_size = 2) //two slots, fit only pocket sized items
+	pockets = new/obj/item/storage/internal/pockets(src, slots = 2, slot_size = 2) //two slots, fit only pocket sized items
 
 /obj/item/clothing/suit/storage/Destroy()
 	qdel(pockets)
 	pockets = null
 	return ..()
 
-/obj/item/clothing/suit/storage/attack_hand(mob/user as mob)
+/obj/item/clothing/suit/storage/attack_hand(var/mob/user)
 	if (pockets.handle_attack_hand(user))
 		..(user)
 
@@ -18,7 +18,7 @@
 	if (pockets.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/suit/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/storage/attackby(obj/item/W as obj, var/mob/user)
 	..()
 	pockets.attackby(W, user)
 
@@ -51,11 +51,11 @@
 
 /obj/item/clothing/suit/storage/vest/merc/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal/pockets(src, slots = 4, slot_size = 2)
+	pockets = new/obj/item/storage/internal/pockets(src, slots = 4, slot_size = 2)
 
 
 /obj/item/clothing/suit/storage/vest/tactical/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal/pockets(src, slots = 4, slot_size = 2)
+	pockets = new/obj/item/storage/internal/pockets(src, slots = 4, slot_size = 2)
 
 

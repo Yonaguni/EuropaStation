@@ -89,19 +89,19 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			user << "This spell circle reads: <i>[word1] [word2] [word3]</i>."
 
 
-	attackby(I as obj, user as mob)
-		if(istype(I, /obj/item/weapon/book/tome) && iscultist(user))
+	attackby(I as obj, var/mob/user)
+		if(istype(I, /obj/item/book/tome) && iscultist(user))
 			user << "You retrace your steps, carefully undoing the lines of the rune."
 			qdel(src)
 			return
-		else if(istype(I, /obj/item/weapon/nullrod))
+		else if(istype(I, /obj/item/nullrod))
 			user << "<span class='notice'>You disrupt the vile magic with the deadening field of the null rod!</span>"
 			qdel(src)
 			return
 		return
 
 
-	attack_hand(mob/living/user as mob)
+	attack_hand(var/mob/living/user)
 		if(!iscultist(user))
 			user << "You can't mouth the arcane scratchings without fumbling over them."
 			return
@@ -177,7 +177,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		check_icon()
 			icon = get_uristrune_cult(word1, word2, word3)
 
-/obj/item/weapon/book/tome
+/obj/item/book/tome
 	name = "arcane tome"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state ="tome"
@@ -290,7 +290,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		for(var/V in cultwords)
 			words[cultwords[V]] = V
 
-	attack(mob/living/M as mob, mob/living/user as mob)
+	attack(var/mob/living/M, var/mob/living/user)
 
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had the [name] used on them by [user.name] ([user.ckey])</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [name] on [M.name] ([M.ckey])</font>")
@@ -321,7 +321,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		M << "<span class='danger'>You feel searing heat inside!</span>"
 
 
-	attack_self(mob/living/user as mob)
+	attack_self(var/mob/living/user)
 		usr = user
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return
@@ -438,13 +438,13 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		else
 			user << "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
-/obj/item/weapon/book/tome/cultify()
+/obj/item/book/tome/cultify()
 	return
 
-/obj/item/weapon/book/tome/imbued //admin tome, spawns working runes without waiting
+/obj/item/book/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = 2.0
 	var/cultistsonly = 1
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		if(src.cultistsonly && !iscultist(usr))
 			return
 		if(!cultwords["travel"])

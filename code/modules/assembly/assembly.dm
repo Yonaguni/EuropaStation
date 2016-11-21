@@ -44,7 +44,7 @@
 	proc/holder_movement()							//Called when the holder is moved
 		return
 
-	interact(mob/user as mob)					//Called when attack_self is called
+	interact(var/mob/user)					//Called when attack_self is called
 		return
 
 
@@ -96,7 +96,7 @@
 		return 0
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		if(isassembly(W))
 			var/obj/item/device/assembly/A = W
 			if((!A.secured) && (!secured))
@@ -127,14 +127,14 @@
 		return
 
 
-	attack_self(mob/user as mob)
+	attack_self(var/mob/user)
 		if(!user)	return 0
 		user.set_machine(src)
 		interact(user)
 		return 1
 
 
-	interact(mob/user as mob)
+	interact(var/mob/user)
 		return //HTML MENU FOR WIRES GOES HERE
 
 /obj/item/device/assembly/nano_host()

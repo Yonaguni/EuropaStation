@@ -11,7 +11,7 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = "10;25;50;100"
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(var/obj/item/W, var/mob/user)
 		return
 
 	New()
@@ -104,7 +104,7 @@
 			rig = null
 			overlays = new/list()
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/fueltank/attackby(var/obj/item/W, var/mob/user)
 	src.add_fingerprint(user)
 	if (W.iswrench())
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
@@ -205,7 +205,7 @@
 		..()
 		reagents.add_reagent("water",500)
 
-/obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/water_cooler/attackby(var/obj/item/W, var/mob/user)
 	if (W.iswrench())
 		src.add_fingerprint(user)
 		if(anchored)

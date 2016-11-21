@@ -79,7 +79,7 @@ field_generator power level display
 	return
 
 
-/obj/machinery/field_generator/attack_hand(mob/user as mob)
+/obj/machinery/field_generator/attack_hand(var/mob/user)
 	if(state == 2)
 		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
@@ -122,7 +122,7 @@ field_generator power level display
 				user << "\red The [src.name] needs to be unwelded from the floor."
 				return
 	else if(W.iswelder())
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		switch(state)
 			if(0)
 				user << "\red The [src.name] needs to be wrenched to the floor."

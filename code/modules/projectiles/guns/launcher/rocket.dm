@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/launcher/rocket
+/obj/item/gun/launcher/rocket
 	name = "rocket launcher"
 	desc = "MAGGOT."
 	icon_state = "rocket"
@@ -17,21 +17,21 @@
 	var/max_rockets = 1
 	var/list/rockets = new/list()
 
-/obj/item/weapon/gun/launcher/rocket/examine(mob/user)
+/obj/item/gun/launcher/rocket/examine(mob/user)
 	if(!..(user, 2))
 		return
 	user << "\blue [rockets.len] / [max_rockets] rockets."
 
-/obj/item/weapon/gun/launcher/rocket/mech
+/obj/item/gun/launcher/rocket/mech
 	name = "mounted missile pod"
 	max_rockets = 6
 
-/obj/item/weapon/gun/launcher/rocket/mech/New()
+/obj/item/gun/launcher/rocket/mech/New()
 	..()
 	while(rockets.len < max_rockets)
 		rockets += new /obj/item/ammo_casing/rocket(src)
 
-/obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/launcher/rocket/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)
 			user.drop_item()
@@ -56,7 +56,7 @@
 			..()
 		return
 
-/obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
+/obj/item/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new (src)
@@ -65,7 +65,7 @@
 		return M
 	return null
 
-/obj/item/weapon/gun/launcher/rocket/handle_post_fire(atom/movable/user, atom/target)
+/obj/item/gun/launcher/rocket/handle_post_fire(atom/movable/user, atom/target)
 	if(ismob(user))
 		var/mob/M = user
 		message_admins("[key_name_admin(M)] fired a rocket from a rocket launcher ([src.name]) at [target].")

@@ -16,7 +16,7 @@
 	icon_state = "ash"
 	anchored = 1
 
-/obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
+/obj/effect/decal/cleanable/ash/attack_hand(var/mob/user)
 	user << "<span class='notice'>[src] sifts through your fingers.</span>"
 	var/turf/simulated/floor/F = get_turf(src)
 	if (istype(F))

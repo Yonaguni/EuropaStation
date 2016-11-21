@@ -47,7 +47,7 @@
 	var/auto_return = 1	// true if auto return to home beacon after unload
 	var/auto_pickup = 1 // true if auto-pickup at beacon
 
-	var/obj/item/weapon/cell/cell	// the installed power cell
+	var/obj/item/cell/cell	// the installed power cell
 	var/movement_power_usage = 250	// Power usage in joules per tile
 
 	// constants for internal wiring bitflags
@@ -89,8 +89,8 @@
 // cell: insert it
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I,/obj/item/weapon/cell) && open && !cell)
-		var/obj/item/weapon/cell/C = I
+	if(istype(I,/obj/item/cell) && open && !cell)
+		var/obj/item/cell/C = I
 		user.drop_item()
 		C.loc = src
 		cell = C
@@ -281,7 +281,7 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/weapon/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
 						cell = C

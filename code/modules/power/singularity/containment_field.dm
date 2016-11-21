@@ -22,7 +22,7 @@
 		FG2.cleanup()
 	return ..()
 
-/obj/machinery/containment_field/attack_hand(mob/user as mob)
+/obj/machinery/containment_field/attack_hand(var/mob/user)
 	if(get_dist(src, user) > 1)
 		return 0
 	else
@@ -33,7 +33,7 @@
 /obj/machinery/containment_field/ex_act(severity)
 	return 0
 
-/obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
+/obj/machinery/containment_field/HasProximity(var/atom/movable/AM)
 	if(istype(AM,/mob/living/silicon) && prob(40))
 		shock(AM)
 		return 1
@@ -44,7 +44,7 @@
 
 
 
-/obj/machinery/containment_field/shock(mob/living/user as mob)
+/obj/machinery/containment_field/shock(var/mob/living/user)
 	if(hasShocked)
 		return 0
 	if(!FG1 || !FG2)

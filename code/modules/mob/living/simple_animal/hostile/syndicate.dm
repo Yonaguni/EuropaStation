@@ -53,12 +53,12 @@
 	melee_damage_upper = 25
 	icon_state = "syndicatemelee"
 	icon_living = "syndicatemelee"
-	weapon1 = /obj/item/weapon/melee/energy/sword/red
-	weapon2 = /obj/item/weapon/shield/energy
+	weapon1 = /obj/item/melee/energy/sword/red
+	weapon2 = /obj/item/shield/energy
 	attacktext = "slashed"
 	status_flags = 0
 
-/mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O, var/mob/user)
 	if(O.force)
 		if(prob(80))
 			var/damage = O.force
@@ -108,7 +108,7 @@
 	projectilesound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	projectiletype = /obj/item/projectile/bullet/pistol/medium
 
-	weapon1 = /obj/item/weapon/gun/composite/premade/smg/a10
+	weapon1 = /obj/item/gun/composite/premade/smg/a10
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space
 	icon_state = "syndicaterangedpsace"

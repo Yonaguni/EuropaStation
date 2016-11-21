@@ -39,30 +39,30 @@
 /obj/structure/morgue/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.forceMove(src.loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(src.loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(src.loc)
 					ex_act(severity)
 				qdel(src)
 				return
 	return
 
-/obj/structure/morgue/attack_hand(mob/user as mob)
+/obj/structure/morgue/attack_hand(var/mob/user)
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.connected.loc)
+		for(var/atom/movable/A in src.connected.loc)
 			if (!( A.anchored ))
 				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -77,7 +77,7 @@
 		if (T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "morgue0"
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.forceMove(src.connected.loc)
 			src.connected.icon_state = "morguet"
 			src.connected.set_dir(src.dir)
@@ -93,8 +93,8 @@
 		return attack_hand(user)
 	else return ..()
 
-/obj/structure/morgue/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/weapon/pen))
+/obj/structure/morgue/attackby(P as obj, var/mob/user)
+	if (istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != P)
 			return
@@ -108,7 +108,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/morgue/relaymove(mob/user as mob)
+/obj/structure/morgue/relaymove(var/mob/user)
 	if (user.stat)
 		return
 	src.connected = new /obj/structure/m_tray( src.loc )
@@ -118,7 +118,7 @@
 	if (T.contents.Find(src.connected))
 		src.connected.connected = src
 		src.icon_state = "morgue0"
-		for(var/atom/movable/A as mob|obj in src)
+		for(var/atom/movable/A in src)
 			A.forceMove(src.connected.loc)
 		src.connected.icon_state = "morguet"
 	else
@@ -147,9 +147,9 @@
 	connected = null
 	return ..()
 
-/obj/structure/m_tray/attack_hand(mob/user as mob)
+/obj/structure/m_tray/attack_hand(var/mob/user)
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.loc)
+		for(var/atom/movable/A in src.loc)
 			if (!( A.anchored ))
 				A.forceMove(src.connected)
 			//Foreach goto(26)
@@ -161,7 +161,7 @@
 		return
 	return
 
-/obj/structure/m_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/m_tray/MouseDrop_T(var/atom/movable/O, var/mob/user)
 	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
@@ -221,28 +221,28 @@
 /obj/structure/crematorium/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.forceMove(src.loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(src.loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.forceMove(src.loc)
 					ex_act(severity)
 				qdel(src)
 				return
 	return
 
-/obj/structure/crematorium/attack_hand(mob/user as mob)
+/obj/structure/crematorium/attack_hand(var/mob/user)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
 //		user.show_message("<span class='warning'>Uh-oh, that was a bad idea.</span>", 1)
 //		//usr << "Uh-oh, that was a bad idea."
@@ -253,7 +253,7 @@
 		usr << "<span class='warning'>It's locked.</span>"
 		return
 	if ((src.connected) && (src.locked == 0))
-		for(var/atom/movable/A as mob|obj in src.connected.loc)
+		for(var/atom/movable/A in src.connected.loc)
 			if (!( A.anchored ))
 				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -268,7 +268,7 @@
 		if (T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "crema0"
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.forceMove(src.connected.loc)
 			src.connected.icon_state = "cremat"
 		else
@@ -277,8 +277,8 @@
 	src.add_fingerprint(user)
 	update()
 
-/obj/structure/crematorium/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/weapon/pen))
+/obj/structure/crematorium/attackby(P as obj, var/mob/user)
+	if (istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != P)
 			return
@@ -292,7 +292,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/crematorium/relaymove(mob/user as mob)
+/obj/structure/crematorium/relaymove(var/mob/user)
 	if (user.stat || locked)
 		return
 	src.connected = new /obj/structure/c_tray( src.loc )
@@ -302,7 +302,7 @@
 	if (T.contents.Find(src.connected))
 		src.connected.connected = src
 		src.icon_state = "crema0"
-		for(var/atom/movable/A as mob|obj in src)
+		for(var/atom/movable/A in src)
 			A.forceMove(src.connected.loc)
 		src.connected.icon_state = "cremat"
 	else
@@ -310,7 +310,7 @@
 		src.connected = null
 	return
 
-/obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
+/obj/structure/crematorium/proc/cremate(atom/A, var/mob/user)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
 //		if(var/on == 1)
 //		return
@@ -323,7 +323,7 @@
 			return
 
 	else
-		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
+		if(!isemptylist(src.search_contents_for(/obj/item/disk/nuclear)))
 			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
 			return
 
@@ -381,9 +381,9 @@
 	connected = null
 	return ..()
 
-/obj/structure/c_tray/attack_hand(mob/user as mob)
+/obj/structure/c_tray/attack_hand(var/mob/user)
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.loc)
+		for(var/atom/movable/A in src.loc)
 			if (!( A.anchored ))
 				A.forceMove(src.connected)
 			//Foreach goto(26)
@@ -395,7 +395,7 @@
 		return
 	return
 
-/obj/structure/c_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/c_tray/MouseDrop_T(var/atom/movable/O, var/mob/user)
 	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
@@ -421,7 +421,7 @@
 /obj/machinery/button/crematorium/update_icon()
 	return
 
-/obj/machinery/button/crematorium/attack_hand(mob/user as mob)
+/obj/machinery/button/crematorium/attack_hand(var/mob/user)
 	if(..())
 		return
 	if(src.allowed(user))
