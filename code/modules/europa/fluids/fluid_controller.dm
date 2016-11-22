@@ -3,6 +3,8 @@ var/datum/controller/process/fluids/fluid_master
 /datum/controller/process/fluids
 	var/list/active_fluids = list()
 	var/list/water_sources = list()
+	var/next_water_act = 0
+	var/water_act_delay = 15 // A bit longer than machines.
 
 /datum/controller/process/fluids/setup()
 	name = "fluids"
@@ -35,7 +37,7 @@ var/datum/controller/process/fluids/fluid_master
 		SCHECK
 	spreading_fluids.Cut()
 
-	// Update icons!
+	// Update icons and update things in water.
 	for(var/thing in active_fluids)
 		var/obj/effect/fluid/F = thing
 		if(F)
@@ -48,6 +50,18 @@ var/datum/controller/process/fluids/fluid_master
 			else
 				F.update_icon()
 		SCHECK
+
+	// Sometimes, call water_act().
+	if(world.time >= next_water_act)
+		next_water_act = world.time + water_act_delay
+		for(var/thing in active_fluids)
+			for(var/other_thing in get_turf(thing))
+				var/atom/A = other_thing
+				if(A.simulated)
+					var/obj/effect/fluid/F = thing
+					A.water_act(F.fluid_amount)
+		SCHECK
+
 	return 1
 
 /datum/controller/process/fluids/proc/add_active_source(var/turf/T)

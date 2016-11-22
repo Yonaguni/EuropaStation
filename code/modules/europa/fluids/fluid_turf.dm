@@ -1,3 +1,23 @@
+/obj/effect/flood
+	name = ""
+	mouse_opacity = 0
+	layer = FLY_LAYER
+	color = "#66D1FF"
+	icon = 'icons/effects/liquids.dmi'
+	icon_state = "ocean"
+	alpha = FLUID_MAX_ALPHA
+	simulated = 0
+	density = 0
+	opacity = 0
+	anchored = 1
+
+/obj/effect/flood/ex_act()
+	return
+
+/obj/effect/flood/New()
+	..()
+	verbs.Cut()
+
 /turf/var/fluid_blocked_dirs = 0
 /turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
 
@@ -15,8 +35,7 @@
 	return
 
 /turf/return_fluid()
-	..()
-	return (locate(/obj/effect/fluid) in src)
+	return (locate(/obj/effect/fluid) in contents)
 
 /turf/Destroy()
 	fluid_update()
@@ -48,7 +67,7 @@
 /turf/get_fluid_depth()
 	..()
 	if(is_flooded(absolute=1))
-		return FLUID_OCEAN_DEPTH
+		return FLUID_MAX_DEPTH
 	var/obj/effect/fluid/F = return_fluid()
 	return (istype(F) ? F.fluid_amount : 0 )
 

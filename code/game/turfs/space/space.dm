@@ -19,6 +19,9 @@ var/image/exterior_light_overlay
 	light_color = COLOUR_LTEMP_FLURO_COOL
 	outside = 1
 
+/turf/space/return_air()
+	return null
+
 /turf/space/update_icon()
 	. = ..()
 	if(icon_state == "0")

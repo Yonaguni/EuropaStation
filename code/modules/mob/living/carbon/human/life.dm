@@ -389,9 +389,20 @@
 			var/temperature_gain = heat_gain/HUMAN_HEAT_CAPACITY
 			bodytemperature += temperature_gain //temperature_gain will often be negative
 
-	var/relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
+	var/relative_density
+	var/loc_temp
+	if(loc.is_flooded(lying))
+		var/obj/effect/fluid/F = locate() in loc // Should be able to hide underwater to avoid fires.
+		if(F)
+			loc_temp = F.temperature
+		else
+			loc_temp = environment.temperature
+		relative_density = 1
+	else
+		relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
+		loc_temp = environment.temperature
+
 	if(relative_density > 0.02) //don't bother if we are in vacuum or near-vacuum
-		var/loc_temp = environment.temperature
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0

@@ -16,6 +16,9 @@
 		var/obj/effect/fluid/F = locate() in T
 		if(!F && !dry_run)
 			F = PoolOrNew(/obj/effect/fluid, T)
+			var/datum/gas_mixture/GM = return_air()
+			if(GM)
+				F.temperature = GM.temperature
 		if(F)
 			if(F.fluid_amount >= FLUID_MAX_DEPTH)
 				continue
@@ -29,16 +32,9 @@
 
 	return flooded_a_neighbor
 
-/atom/is_flooded(var/lying_mob, var/absolute)
-	..()
+/atom/movable/is_flooded(var/lying_mob, var/absolute)
 	var/turf/T = get_turf(src)
 	return T.is_flooded(lying_mob)
 
 /turf/is_flooded(var/lying_mob, var/absolute)
-	if(flooded)
-		return 1
-	if(!absolute)
-		var/depth = get_fluid_depth()
-		if(depth && depth > (lying_mob ? FLUID_SHALLOW : FLUID_DEEP))
-			return 1
-	return 0
+	return (flooded || (!absolute && check_fluid_depth(lying_mob ? FLUID_SHALLOW : FLUID_DEEP)))

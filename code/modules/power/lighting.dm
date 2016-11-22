@@ -608,7 +608,7 @@ obj/machinery/light/proc/burn_out()
 	w_class = 2
 	name = "large light tube"
 	brightness_range = 5
-	brightness_power = 5
+	brightness_power = 9
 
 /obj/item/light/bulb
 	name = "light bulb"
@@ -619,11 +619,11 @@ obj/machinery/light/proc/burn_out()
 	broken_chance = 5
 	matter = list("glass" = 100)
 
-	brightness_range = 4
-	brightness_power = 5
+	brightness_range = 5
+	brightness_power = 6
 	brightness_color = COLOUR_LTEMP_100W_TUNGSTEN
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
+		"emergency_lighting" = list(l_range = 4, l_power = 5, l_color = "#da0205"),
 		)
 
 /obj/item/light/bulb/red

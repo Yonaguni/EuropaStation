@@ -1,27 +1,5 @@
-var/obj/effect/ocean/ocean_overlay_img = new()
-
-/obj/effect/ocean
-	name = ""
-	mouse_opacity = 0
-	layer = GAS_OVERLAY_LAYER+0.1
-	color = "#66D1FF"
-	icon = 'icons/effects/liquids.dmi'
-	icon_state = "ocean"
-	alpha = GAS_MAX_ALPHA+20
-	simulated = 0
-	density = 0
-	opacity = 0
-	anchored = 1
-
-/obj/effect/ocean/ex_act()
-	return
-
-/obj/effect/ocean/New()
-	..()
-	verbs.Cut()
-
 /turf/simulated/ocean
-	name = "seafloor"
+	name = "sea floor"
 	desc = "Silty."
 	density = 0
 	opacity = 0
@@ -31,7 +9,7 @@ var/obj/effect/ocean/ocean_overlay_img = new()
 	drop_state = "rockwall"
 	blend_with_neighbors = 1
 	flooded = 1
-
+	outside = 1
 	var/detail_decal
 
 /turf/simulated/ocean/is_plating()

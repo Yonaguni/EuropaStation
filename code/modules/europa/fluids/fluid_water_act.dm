@@ -15,13 +15,6 @@ var/atom/movable/waterproof
 /datum/species/proc/water_act(var/mob/living/carbon/human/H, var/depth)
 	return
 
-/obj/item/organ/internal/gills
-	name = "gills"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "gills"
-	parent_organ = "head"
-
 /datum/species/skrell/water_act(var/mob/living/carbon/human/H, var/depth)
 	..()
 	if(depth >= 40)
@@ -33,25 +26,17 @@ var/atom/movable/waterproof
 		if(prob(5)) // Might be too spammy.
 			H << "<span class='notice'>The water ripples gently over your skin in a soothing balm.</span>"
 
-/obj/effect/decal/cleanable/water_act()
+/obj/effect/decal/cleanable/water_act(var/depth)
 	..()
 	qdel(src)
 
-/obj/machinery/water_act()
-	..()
-	if(stat & NOPOWER)
-		return //don't explode if the machine isn't powered
-	if(waterproof > 0)
-		if(prob(2))
-			ex_act(3.0)
-	else if(waterproof < 0)
-		ex_act(3.0)
-	else
-		return
+// This is really pretty crap and should be overridden for specific machines.
+/obj/machinery/water_act(var/depth)
+	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (depth > FLUID_SHALLOW))
+		ex_act(3)
 
-/obj/item/flame/match/water_act()
+/obj/item/flame/match/water_act(var/depth)
 	if(!waterproof && lit)
 		burn_out()
-	return ..()
 
 // todo lighters

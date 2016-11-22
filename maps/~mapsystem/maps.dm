@@ -71,6 +71,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/evac_controller_type = /datum/evacuation_controller
 	var/overmap_z = 0		//If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 
+	var/ambient_exterior_temperature = T20C
+	var/ambient_exterior_light = TRUE
+
 	var/test_x = 20
 	var/test_y = 20
 	var/test_z = 1
@@ -105,3 +108,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 /datum/map/proc/handle_captain_join(var/mob/living/carbon/human/captain)
 	return
+
+/datum/map/proc/get_exterior_air()
+	var/datum/gas_mixture/GM = new
+	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
+	GM.temperature = ambient_exterior_temperature
+	return GM

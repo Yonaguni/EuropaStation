@@ -58,15 +58,15 @@ var/list/turf_edge_cache = list()
 				overlays_to_add += turf_edge_cache[cache_key]
 
 	if(is_flooded(absolute=1))
-		overlays_to_add += ocean_overlay_img
+		if(!(locate(/obj/effect/flood) in contents))
+			new /obj/effect/flood(src)
+	else
+		if(locate(/obj/effect/flood) in contents)
+			for(var/obj/effect/flood/F in contents)
+				qdel(F)
 
-	if(config.starlight && outside)
+	if(config.starlight && using_map.ambient_exterior_light && outside)
 		overlays_to_add += get_exterior_light_overlay()
-		/* Too expensive in init.
-		for(var/thing in trange(1,src))
-			var/turf/T = thing
-			if(!T.outside)
-				set_light(1) */
 
 	overlays = overlays_to_add
 	if(update_neighbors)
