@@ -11,6 +11,7 @@
 
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
+		all_chemical_reactions += D
 		if(D.required_reagents && D.required_reagents.len)
 			var/reagent_id = D.required_reagents[1]
 			if(!chemical_reactions_list[reagent_id])
@@ -37,6 +38,7 @@
 	var/list/catalysts = list()
 	var/list/inhibitors = list()
 	var/result_amount = 0
+	var/loaded_at_runtime = FALSE // TODO
 
 	//how far the reaction proceeds each time it is processed. Used with either REACTION_RATE or HALF_LIFE macros.
 	var/reaction_rate = HALF_LIFE(1)
@@ -359,7 +361,7 @@
 	result_amount = 2
 
 /datum/chemical_reaction/imidazoline
-	name = "imidazoline"
+	name = "Imidazoline"
 	id = "imidazoline"
 	result = "imidazoline"
 	required_reagents = list("carbon" = 1, "hydrazine" = 1, "anti_toxin" = 1)
@@ -443,10 +445,10 @@
 	required_reagents = list("ammonia" = 1, "water" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/plantbgone
-	name = "Plant-B-Gone"
-	id = "plantbgone"
-	result = "plantbgone"
+/datum/chemical_reaction/weedkiller
+	name = "Weed Killer"
+	id = "weedkiller"
+	result = "weedkiller"
 	required_reagents = list("toxin" = 1, "water" = 4)
 	result_amount = 5
 
@@ -1773,13 +1775,6 @@
 	required_reagents = list("tequilla" = 2, "limejuice" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/longislandicedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
 /datum/chemical_reaction/icedtea
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
@@ -1908,13 +1903,6 @@
 	result_amount = 2
 
 /datum/chemical_reaction/iced_beer
-	name = "Iced Beer"
-	id = "iced_beer"
-	result = "iced_beer"
-	required_reagents = list("beer" = 10, "frostoil" = 1)
-	result_amount = 10
-
-/datum/chemical_reaction/iced_beer2
 	name = "Iced Beer"
 	id = "iced_beer"
 	result = "iced_beer"

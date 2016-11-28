@@ -1913,6 +1913,7 @@
 #include "code\modules\random_map\structure\structure.dm"
 #include "code\modules\random_map\structure\structure_subtypes.dm"
 #include "code\modules\reagents\Chemistry-Colours.dm"
+#include "code\modules\reagents\Chemistry-Debug.dm"
 #include "code\modules\reagents\Chemistry-Holder.dm"
 #include "code\modules\reagents\Chemistry-Logging.dm"
 #include "code\modules\reagents\Chemistry-Machinery.dm"

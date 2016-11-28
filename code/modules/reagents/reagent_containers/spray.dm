@@ -195,7 +195,7 @@
 
 /obj/item/reagent_containers/spray/plantbgone/New()
 	..()
-	reagents.add_reagent("plantbgone", 100)
+	reagents.add_reagent("weedkiller", 100)
 
 /obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, var/mob/user, proximity)
 	if(!proximity) return
