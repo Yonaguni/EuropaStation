@@ -19,7 +19,7 @@ var/list/mob_hat_cache = list()
 	return mob_hat_cache[key]
 
 /mob/living/silicon/robot/drone
-	name = "drone"
+	name = "maintenance drone"
 	real_name = "drone"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "repairbot"
@@ -121,6 +121,7 @@ var/list/mob_hat_cache = list()
 	return 1
 
 /mob/living/silicon/robot/drone/construction
+	name = "construction drone"
 	icon_state = "constructiondrone"
 	module_type = /obj/item/robot_module/drone/construction
 	hat_x_offset = 1
@@ -163,16 +164,25 @@ var/list/mob_hat_cache = list()
 	name = real_name
 
 /mob/living/silicon/robot/drone/updatename()
-	real_name = "maintenance drone ([random_id(type,100,999)])"
+	if(controlling_ai)
+		real_name = "remote drone ([controlling_ai.name])"
+	else
+		real_name = "[initial(name)] ([random_id(type,100,999)])"
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
 
 	overlays.Cut()
 	if(stat == 0)
-		overlays += "eyes-[icon_state]"
+		if(controlling_ai)
+			overlays += "eyes-[icon_state]-ai"
+		else if(emagged)
+			overlays += "eyes-[icon_state]-emag"
+		else
+			overlays += "eyes-[icon_state]"
 	else
 		overlays -= "eyes"
+
 	if(hat) // Let the drones wear hats.
 		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
 
@@ -250,10 +260,13 @@ var/list/mob_hat_cache = list()
 		return
 
 	user << "<span class='danger'>You swipe the sequencer across [src]'s interface and watch its eyes flicker.</span>"
-	src << "<span class='danger'>You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script.</span>"
+	if(controlling_ai)
+		src << "<span class='danger'>\The [user] loads some kind of subversive software into the remote drone, corrupting its lawset but luckily sparing yours.</span>"
+	else
+		src << "<span class='danger'>You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script.</span>"
 
 	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
-	log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
+	log_game("[key_name(user)] emagged drone [key_name(src)][controlling_ai ? " but AI [key_name(controlling_ai)] is in remote control" : " Laws overridden"].")
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 
@@ -265,13 +278,13 @@ var/list/mob_hat_cache = list()
 	laws = new /datum/ai_laws/syndicate_override
 	set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
 
-	src << "<b>Obey these laws:</b>"
-	laws.show_laws(src)
-	src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.</span>"
+	if(!controlling_ai)
+		src << "<b>Obey these laws:</b>"
+		laws.show_laws(src)
+		src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.</span>"
 	return 1
 
 //DRONE LIFE/DEATH
-
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
@@ -304,18 +317,28 @@ var/list/mob_hat_cache = list()
 
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
+
+	if(controlling_ai)
+		src << "<span class='warning'>Someone issues a remote law reset order for this unit, but you disregard it.</span>"
+		return
+
 	if(stat != 2)
 		if(emagged)
-			src << "<span class='danger'>You feel something attempting to modify your programming, but your hacked subroutines are unaffected.</span>"
+			src << "<span class='warning'>You feel something attempting to modify your programming, but your hacked subroutines are unaffected.</span>"
 		else
 			src << "<span class='danger'>A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.</span>"
 			full_law_reset()
 			show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
+
+	if(controlling_ai)
+		src << "<span class='warning'>Someone issues a remote kill order for this unit, but you disregard it.</span>"
+		return
+
 	if(stat != 2)
 		if(emagged)
-			src << "<span class='danger'>You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.</span>"
+			src << "<span class='warning'>You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.</span>"
 		else
 			src << "<span class='danger'>You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.</span>"
 			death()
@@ -368,13 +391,24 @@ var/list/mob_hat_cache = list()
 	..()
 	flavor_text = "It's a bulky construction drone stamped with a Sol Central glyph."
 
-/mob/living/silicon/robot/drone/construction/updatename()
-	real_name = "construction drone ([random_id(type,100,999)])"
-	name = real_name
-
 /proc/too_many_active_drones()
 	var/drones = 0
 	for(var/mob/living/silicon/robot/drone/D in mob_list)
 		if(D.key && D.client)
 			drones++
 	return drones >= config.max_maint_drones
+
+/mob/living/silicon/robot/drone/show_laws(var/everyone = 0)
+	if(!controlling_ai)
+		return..()
+	src << "<b>Obey these laws:</b>"
+	controlling_ai.laws_sanity_check()
+	controlling_ai.laws.show_laws(src)
+
+/mob/living/silicon/robot/drone/robot_checklaws()
+	set category = "Silicon Commands"
+	set name = "State Laws"
+
+	if(!controlling_ai)
+		return ..()
+	controlling_ai.open_subsystem(/datum/nano_module/law_manager)
