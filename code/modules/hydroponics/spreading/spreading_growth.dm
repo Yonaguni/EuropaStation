@@ -50,7 +50,7 @@
 		return 0
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
-		if(smoke.reagents.has_reagent("plantbgone"))
+		if(smoke.reagents.has_reagent("weedkiller"))
 			die_off()
 			return
 
@@ -111,7 +111,7 @@
 	if(buckled_mob || neighbors.len)
 		plant_controller.add_plant(src)
 
-//spreading vines aren't created on their final turf. 
+//spreading vines aren't created on their final turf.
 //Instead, they are created at their parent and then move to their destination.
 /obj/effect/plant/proc/spread_to(turf/target_turf)
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)

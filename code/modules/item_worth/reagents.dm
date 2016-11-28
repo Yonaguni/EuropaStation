@@ -518,7 +518,7 @@ z
 /datum/reagent/toxin/fertilizer
 	value = 1.2
 
-/datum/reagent/toxin/plantbgone
+/datum/reagent/toxin/weedkiller
 	value = 1.1
 
 /datum/reagent/acid/polyacid

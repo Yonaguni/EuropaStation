@@ -154,6 +154,7 @@ var/list/debug_verbs = list (
         ,/client/proc/testZAScolors_remove
         ,/datum/admins/proc/setup_supermatter
         ,/datum/admins/proc/setup_fusion
+        ,/datum/admins/proc/print_chemistry_recipes_wiki
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 	)

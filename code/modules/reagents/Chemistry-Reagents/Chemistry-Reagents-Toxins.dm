@@ -173,16 +173,16 @@
 	name = "Robust Harvest"
 	id = "robustharvest"
 
-/datum/reagent/toxin/plantbgone
-	name = "Plant-B-Gone"
-	id = "plantbgone"
+/datum/reagent/toxin/weedkiller
+	name = "Weed Killer"
+	id = "weedkiller"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
 	strength = 4
 
-/datum/reagent/toxin/plantbgone/touch_turf(var/turf/T)
+/datum/reagent/toxin/weedkiller/touch_turf(var/turf/T)
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		if(locate(/obj/effect/overlay/wallrot) in W)
@@ -190,16 +190,16 @@
 				qdel(E)
 			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
 
-/datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
+/datum/reagent/toxin/weedkiller/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
 
-/datum/reagent/toxin/plantbgone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/toxin/weedkiller/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		M.adjustToxLoss(50 * removed)
 
-/datum/reagent/toxin/plantbgone/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/toxin/weedkiller/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		M.adjustToxLoss(50 * removed)

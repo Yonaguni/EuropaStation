@@ -52,7 +52,7 @@
 		"sacid" =           1.5,
 		"hclacid" =         1.5,
 		"pacid" =           3,
-		"plantbgone" =      3,
+		"weedkiller" =      3,
 		"cryoxadone" =     -3,
 		"radium" =          2
 		)
@@ -77,7 +77,7 @@
 		"sacid" =          -2,
 		"hclacid" =        -2,
 		"pacid" =          -4,
-		"plantbgone" =     -8,
+		"weedkiller" =     -8,
 		"adminordrazine" = -5
 		)
 	var/global/list/pestkiller_reagents = list(
@@ -105,7 +105,7 @@
 		"sacid" =          list( -1,    0,   0  ),
 		"hclacid" =        list( -1,    0,   0  ),
 		"pacid" =          list( -2,    0,   0  ),
-		"plantbgone" =     list( -2,    0,   0.2),
+		"weedkiller" =     list( -2,    0,   0.2),
 		"cryoxadone" =     list(  3,    0,   0  ),
 		"ammonia" =        list(  0.5,  0,   0  ),
 		"diethylamine" =   list(  1,    0,   0  ),
