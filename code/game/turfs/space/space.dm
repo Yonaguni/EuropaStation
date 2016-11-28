@@ -20,7 +20,7 @@ var/image/exterior_light_overlay
 	outside = 1
 
 /turf/space/return_air()
-	return null
+	return new /datum/gas_mixture()
 
 /turf/space/update_icon()
 	. = ..()
