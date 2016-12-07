@@ -7,6 +7,8 @@
 	var/assoc_rank = 0
 
 /decl/aspect/psi/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	if(assoc_faculty && assoc_rank && holder.mind)
 		var/datum/psychic_power_assay/assay = holder.mind.psychic_faculties[assoc_faculty]
 		if(!assay)

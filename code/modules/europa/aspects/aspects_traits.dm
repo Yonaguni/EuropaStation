@@ -9,6 +9,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/hardy/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	holder.maxHealth += (holder.species.total_health * 0.1)
 
 /decl/aspect/thickbones
@@ -19,6 +21,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/thickbones/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	for(var/obj/item/organ/external/E in holder.organs)
 		E.min_bruised_damage += initial(E.min_bruised_damage)*0.1
 		E.min_broken_damage +=  initial(E.min_broken_damage)*0.1
@@ -32,6 +36,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/scarred/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	for(var/obj/item/organ/external/E in holder.organs)
 		E.brute_mod -= initial(E.brute_mod)*0.1
 
@@ -43,6 +49,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/hotstuff/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	for(var/obj/item/organ/external/E in holder.organs)
 		E.burn_mod -= initial(E.burn_mod)*0.1
 
@@ -52,7 +60,9 @@
 	apply_post_species_change = 1
 
 /decl/aspect/sharpeyed/do_post_spawn(var/mob/living/carbon/human/holder)
-	holder.dark_plane.alpha = 80
+	if(!istype(holder))
+		return
+	holder.dark_plane.alpha = 40
 
 /*
 /decl/aspect/robuddy

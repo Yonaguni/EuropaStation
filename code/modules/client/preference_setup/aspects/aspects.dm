@@ -12,6 +12,8 @@
 	var/aspect_cost = 0
 	for(var/aspect_name in pref.aspects)
 		var/decl/aspect/A = aspects_by_name[aspect_name]
+		if(!A)
+			return null
 		aspect_cost += A.aspect_cost
 	return aspect_cost
 
@@ -23,7 +25,7 @@
 
 	var/aspect_cost = get_aspect_total()
 
-	if(aspect_cost > config.max_character_aspects)
+	if(isnull(aspect_cost) || aspect_cost > config.max_character_aspects)
 		pref.aspects = list()
 
 	for(var/aspect in pref.aspects)

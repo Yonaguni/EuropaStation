@@ -5,9 +5,25 @@
 	var/psychic_power = 30
 	var/max_psychic_power = 30
 
+/datum/mind/proc/clear_psychic_powers()
+	for(var/faculty in psychic_faculties)
+		var/datum/psychic_power_assay/power = psychic_faculties[faculty]
+		psychic_faculties[faculty] = null
+		psychic_faculties -= faculty
+		qdel(power)
+	for(var/datum/maintained_power/power in maintaining_powers)
+		power.fail()
+		qdel(power)
+	for(var/datum/psychic_power/power in psychic_powers)
+		qdel(power)
+	psychic_powers.Cut()
+	current.kill_light()
+	maintaining_powers.Cut()
+	psychic_faculties.Cut()
+
 /mob/Login()
 	. = ..()
-	if(mind && mind.psychic_powers)
+	if(!istype(src, /mob/living/silicon) && mind && mind.psychic_powers)
 		mind.update_psychic_powers()
 
 /datum/psychic_power_assay
@@ -18,7 +34,7 @@
 
 /datum/psychic_power_assay/proc/set_rank(var/newrank, var/silent)
 
-	if(!owner)
+	if(!owner || istype(owner, /mob/living/silicon))
 		return
 
 	if(rank == newrank)
@@ -47,7 +63,7 @@
 	owner = _owner
 
 /datum/mind/proc/check_psychic_faculty(var/faculty = PSYCHIC_CREATIVITY, var/min_rank = 1, var/opposing_rank, var/opposing_school = PSYCHIC_CREATIVITY)
-	if(!(faculty in psychic_faculties) || psychic_power <= 0)
+	if(istype(current, /mob/living/silicon) || !(faculty in psychic_faculties) || psychic_power <= 0)
 		return 0
 	var/prank = get_psychic_faculty_rank(faculty)
 	if(opposing_rank && prank <= opposing_rank)
@@ -55,7 +71,7 @@
 	return (prank >= min_rank)
 
 /datum/mind/proc/get_psychic_faculty_rank(var/faculty = PSYCHIC_CREATIVITY)
-	if(!(faculty in psychic_faculties) || psychic_power <= 0)
+	if(istype(current, /mob/living/silicon) || !(faculty in psychic_faculties) || psychic_power <= 0)
 		return 0
 	var/datum/psychic_power_assay/power = psychic_faculties[faculty]
 	return power.rank
@@ -108,6 +124,9 @@
 	if(current.client.psi_hud && current.client.psi_hud.len)
 		current.client.screen -= current.client.psi_hud
 	current.client.psi_hud.Cut()
+
+	if(istype(current, /mob/living/silicon))
+		return
 
 	if(psychic_powers && psychic_powers.len)
 		for(var/datum/psychic_power/power in psychic_powers)
