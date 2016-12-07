@@ -148,6 +148,13 @@
 		else if(!captain.r_store)
 			captain.equip_to_slot(charter, slot_r_store)
 
+/datum/map/katydid/show_map_info(var/user)
+	user << "<b>The Katydid</b> is a charter vessel belonging to the <b>Free Trade Union</b>, a loose interplanetary \
+		coalition of independant traders, merchants and politicians opposed to the strength and influence \
+		of the Luna megacorporations. The Katydid itself operates out of the Jovian Navy shipyard in orbit \
+		around Callisto, but carries freight all over Sol at the behest of whichever captain has decided to \
+		charter her this month."
+
 // Defined here so I can add it to the admin verbs.
 /datum/admins/proc/katydid_rename_ship()
 	set category = "Admin"
