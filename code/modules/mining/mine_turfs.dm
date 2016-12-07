@@ -1,3 +1,5 @@
+//TODO: readd mining for ore, take ASPECT_GROUNDBREAKER into account for delays/yields
+
 var/list/mining_overlays = list()
 
 proc/get_mining_overlay(var/overlay_key)

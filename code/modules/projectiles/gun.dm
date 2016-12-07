@@ -195,15 +195,20 @@
 	if(istype(user))
 		held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
 		if(requires_two_hands && !held_twohanded)
-			held_acc_mod = -3
-			held_disp_mod = 3
+			if(user.has_aspect(ASPECT_DUALWIELD))
+				held_acc_mod = -1
+				held_disp_mod = 1
+			else
+				held_acc_mod = -3
+				held_disp_mod = 3
 		if(recoil > 1 )
 			held_disp_mod++
 		if(recoil > 5)
 			held_disp_mod += 3
-		//actually attempt to shoot
 		if(issmall(user))	//it sucks to be short
 			recoil = 2*recoil
+		if(user.has_aspect(ASPECT_MARKSMAN))
+			held_acc_mod += 2
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.

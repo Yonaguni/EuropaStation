@@ -13,15 +13,16 @@
 /decl/aspect/negative/fragile/do_post_spawn(var/mob/living/carbon/human/holder)
 	holder.maxHealth -= (holder.species.total_health * 0.2)
 
+/* Uncomment this when there's actually a negative aspect to it.
 /decl/aspect/negative/uncanny
 	name = ASPECT_UNCANNY
 	desc = "There's something about you that makes people uneasy."
+*/
 
 /decl/aspect/negative/paper_skin
 	name = ASPECT_PAPER_SKIN
 	desc = "You could cut yourself on a plastic spork."
 	parent_name = ASPECT_FRAGILE
-	aspect_cost = -2
 	apply_post_species_change = 1
 
 /decl/aspect/negative/paper_skin/do_post_spawn(var/mob/living/carbon/human/holder)

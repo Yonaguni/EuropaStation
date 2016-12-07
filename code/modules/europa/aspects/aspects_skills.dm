@@ -18,3 +18,16 @@
 	name = ASPECT_DAREDEVIL
 	desc = "You always land on your feet."
 	category = "Skills"
+
+/decl/aspect/hackerman
+	name = ASPECT_HACKER
+	desc = "Using an RX modulator, you might be able to conduct a mainframe cell direct and hack the uplink to the download."
+	category = "Skills"
+
+/* We need a mullet hairstyle.
+/decl/aspect/hackerman/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	if(holder.species.name == "Human")
+		holder.h_style = "Mullet"
+*/

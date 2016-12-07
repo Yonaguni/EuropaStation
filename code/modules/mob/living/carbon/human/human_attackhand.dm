@@ -79,7 +79,7 @@
 
 				H.visible_message("<span class='danger'>\The [H] is trying perform CPR on \the [src]!</span>")
 
-				if(!do_after(H, 30, src))
+				if(!do_after(H, (H.has_aspect(ASPECT_FIRSTAID) ? 15 : 30), src))
 					return
 
 				adjustOxyLoss(-(min(getOxyLoss(), 5)))

@@ -101,7 +101,7 @@
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 				var/surgery_time = rand(S.min_duration, S.max_duration)
 				var/effective_quality = S.tool_quality(src)
-				if(user.has_aspect(ASPECT_SURGEON))
+				if(user.has_aspect(ASPECT_SAWBONES))
 					effective_quality = min(100, effective_quality * 1.5)
 					surgery_time *= 0.75
 				if(prob(effective_quality) &&  do_mob(user, M, surgery_time))
