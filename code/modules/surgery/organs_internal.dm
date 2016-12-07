@@ -6,6 +6,7 @@
 	priority = 2
 	can_infect = 1
 	blood_level = 1
+	priority = 10
 
 /datum/surgery_step/internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
@@ -13,12 +14,16 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.open == (affected.encased ? 3 : 2)
+	return affected && affected.is_open() && (!affected.encased || (affected.status & ORGAN_BROKEN))
 
 //////////////////////////////////////////////////////////////////
 //	Organ mending surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
+
+	name = "Repair internal organ."
+	desc = "Repair internal organ damage. Requires an incision and a split skull/ribcage."
+
 	allowed_tools = list(
 		/obj/item/suture = 100,
 		/obj/item/stack/cable_coil = 20
@@ -84,6 +89,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/detatch_organ
 
+	name = "Detach internal organ."
+	desc = "Detach an internal organ to prepare it for removal. Requires an incision and a split skull/ribcage."
+
 	allowed_tools = list(
 	/obj/item/scalpel = 100,		\
 	/obj/item/material/knife = 75,	\
@@ -143,6 +151,9 @@
 //	 Organ removal surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/remove_organ
+
+	name = "Remove internal organ."
+	desc = "Remove an internal organ. Requires a detached organ, an incision and a split skull/ribcage."
 
 	allowed_tools = list(
 	/obj/item/hemostat = 100,	\
@@ -214,6 +225,10 @@
 //	 Organ inserting surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/replace_organ
+
+	name = "Replace internal organ."
+	desc = "Replace an internal organ. Requires the organ to be missing, an incision and a split skull/ribcage."
+
 	allowed_tools = list(
 	/obj/item/organ = 100
 	)
@@ -302,6 +317,10 @@
 //	 Organ inserting surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/attach_organ
+
+	name = "Reattach internal organ."
+	desc = "Reattach an internal organ. Requires the organ to be present but not connected, an incision and a split skull/ribcage."
+
 	allowed_tools = list(
 	/obj/item/suture = 100, \
 	/obj/item/stack/cable_coil = 75
@@ -356,20 +375,3 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>")
 	affected.createwound(BRUISE, 20)
-
-//////////////////////////////////////////////////////////////////
-//						HEART SURGERY							//
-//////////////////////////////////////////////////////////////////
-// To be finished after some tests.
-// /datum/surgery_step/ribcage/heart/cut
-//	allowed_tools = list(
-//	/obj/item/scalpel = 100,		\
-//	/obj/item/material/knife = 75,	\
-//	/obj/item/material/shard = 50, 		\
-//	)
-
-//	min_duration = 30
-//	max_duration = 40
-
-//	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-//		return ..() && target.op_stage.ribcage == 2

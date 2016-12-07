@@ -44,7 +44,7 @@
 	var/damage_type = CUT
 	// whether this wound needs a bandage/salve to heal at all
 	// the maximum amount of damage that this wound can have and still autoheal
-	var/autoheal_cutoff = 15
+	var/autoheal_cutoff = WOUND_AUTOHEAL_POINT
 
 
 

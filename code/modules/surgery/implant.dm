@@ -13,7 +13,7 @@
 	if(!hasorgans(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
+	return affected && affected.is_open() && (!affected.encased || (affected.status & ORGAN_BROKEN))
 
 /datum/surgery_step/cavity/proc/get_max_wclass(var/obj/item/organ/external/affected)
 	switch (affected.organ_tag)
@@ -45,6 +45,10 @@
 //	 create implant space surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/cavity/make_space
+
+	name = "Make a cavity."
+	desc = "Make a space inside someone for implanting an item. Requires an incision and split skull/ribcage."
+
 	allowed_tools = list(
 	/obj/item/surgicaldrill = 100,	\
 	/obj/item/pen = 75,	\
@@ -76,6 +80,10 @@
 //	 implant cavity sealing surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/cavity/close_space
+
+	name = "Close a cavity."
+	desc = "Removes an implant cavity. Requires an incision, a split skull/ribcage, and a previously created cavity."
+
 	priority = 2
 	allowed_tools = list(
 	/obj/item/cautery = 100,			\
@@ -109,6 +117,9 @@
 //	 implanting surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/cavity/place_item
+	name = "Implant item."
+	desc = "Implants an item into an organ. Requires an incision, a split skull/ribcage, and a previously created cavity."
+
 	priority = 0
 	allowed_tools = list(/obj/item = 100)
 
@@ -155,6 +166,10 @@
 //	 implant removal surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/cavity/implant_removal
+
+	name = "Foreign object removal."
+	desc = "Removes an implant or shrapnel from a limb. Requires an incision and a split skull/ribcage."
+
 	allowed_tools = list(
 	/obj/item/hemostat = 100,	\
 	/obj/item/wirecutters = 75,	\

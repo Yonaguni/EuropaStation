@@ -7,6 +7,10 @@
 //	 IB fix surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/fix_vein
+
+	name = "Mend internal bleeding."
+	desc = "Repair an internal bleed. Requires an incision and split skull/ribcage."
+
 	priority = 2
 	allowed_tools = list(
 	/obj/item/suture = 100, \
@@ -14,6 +18,8 @@
 	)
 	can_infect = 1
 	blood_level = 1
+
+	priority = 20
 
 	min_duration = 70
 	max_duration = 90
@@ -29,7 +35,7 @@
 		internal_bleeding = 1
 		break
 
-	return affected.open == (affected.encased ? 3 : 2) && internal_bleeding
+	return affected.is_open() && (!affected.encased || (affected.status & ORGAN_BROKEN)) && internal_bleeding
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -58,7 +64,11 @@
 //	 Necrotic tissue removal surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/fix_dead_tissue		//Debridement
-	priority = 2
+
+	name = "Begin mending necrosis."
+	desc = "Repair a dead limb by removing dead material. Requires an incision and a split skull/ribcage."
+
+	priority = 15
 	allowed_tools = list(
 		/obj/item/scalpel = 100,		\
 		/obj/item/material/knife = 75,	\
@@ -80,7 +90,7 @@
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	return affected && affected.open >= 2 && (affected.status & ORGAN_DEAD)
+	return affected && affected.is_open() && (!affected.encased || (affected.status & ORGAN_BROKEN)) && (affected.status & ORGAN_DEAD)
 
 /datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -106,7 +116,11 @@
 //	 Peridaxon necrosis treatment surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/treat_necrosis
-	priority = 2
+
+	name = "Finish mending necrosis."
+	desc = "Complete repair of a dead limb by applying rejuvenant. Requires an incision, a split skull/ribcage, and a previously debrided dead limb."
+
+	priority = 15
 	allowed_tools = list(
 		/obj/item/reagent_containers/dropper = 100,
 		/obj/item/reagent_containers/glass/bottle = 75,
@@ -133,7 +147,7 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.open == 3 && (affected.status & ORGAN_DEAD)
+	return affected && affected.is_open() && (!affected.encased || (affected.status & ORGAN_BROKEN)) && (affected.status & ORGAN_DEAD)
 
 /datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -185,6 +199,12 @@
 //	 Hardsuit removal surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/hardsuit
+
+	priority = 20
+
+	name = "Remove hardsuit."
+	desc = "Cut through a hardsuit to remove it from someone. Requires them to be wearing a hardsuit."
+
 	allowed_tools = list(
 		/obj/item/weldingtool = 80,
 		/obj/item/circular_saw = 60,

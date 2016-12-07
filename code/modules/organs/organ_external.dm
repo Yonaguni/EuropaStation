@@ -72,6 +72,15 @@
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
 
+/obj/item/organ/external/proc/is_open()
+	if(status & ORGAN_ROBOT)
+		return open
+	if(wounds.len)
+		for(var/datum/wound/W in wounds)
+			if(W.damage_type == CUT && !W.internal && !W.bandaged)
+				return 1
+	return 0
+
 /obj/item/organ/external/Destroy()
 
 	if(parent && parent.children)

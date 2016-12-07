@@ -22,6 +22,10 @@
 //	facial tissue cutting surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/cut_face
+
+	name = "Begin vocal cord repair."
+	desc = "Begin an incision on a face for vocal cord repair."
+
 	allowed_tools = list(
 	/obj/item/scalpel = 100,		\
 	/obj/item/material/knife = 75,	\
@@ -55,6 +59,10 @@
 //	vocal cord mending surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/face/mend_vocal
+
+	name = "Mend vocal cords."
+	desc = "Repair damage to the vocal cords. Requires a facial incision."
+
 	allowed_tools = list(
 	/obj/item/hemostat = 100, 	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -86,6 +94,10 @@
 //	facial reconstruction surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/face/fix_face
+
+	name = "Mend cosmetic facial damage."
+	desc = "Mend disfigurement of a face. Requires a facial incision."
+
 	allowed_tools = list(
 	/obj/item/retractor = 100, 	\
 	/obj/item/crowbar = 55,	\
@@ -117,11 +129,15 @@
 //	facial skin cauterization surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/face/cauterize
+
+	name = "Cauterize facial incision."
+	desc = "Close a facial incision. Requires a facial incision."
+
 	allowed_tools = list(
-	/obj/item/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/flame/lighter = 50,			\
-	/obj/item/weldingtool = 25
+		/obj/item/cautery = 100,			\
+		/obj/item/clothing/mask/smokable/cigarette = 75,	\
+		/obj/item/flame/lighter = 50,			\
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 70

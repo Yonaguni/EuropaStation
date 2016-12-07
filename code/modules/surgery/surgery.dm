@@ -1,6 +1,11 @@
 /* SURGERY STEPS */
 
 /datum/surgery_step
+
+	// Used by the wiki info output button.
+	var/name
+	var/desc
+
 	var/priority = 0	//steps with higher priority would be attempted first
 
 	// type path referencing tools that can be used for this step, and how well are they suited for it
@@ -143,3 +148,21 @@
 	var/head_reattach = 0
 	var/current_organ = "organ"
 	var/list/in_progress = list()
+
+/datum/admins/proc/print_surgeries_wiki()
+	set name = "Print Surgery Info"
+	set category = "Debug"
+	set desc = "Outputs surgeries in Github Wiki markdown format."
+
+	usr << "<br>"
+	usr << "| Surgery | Tool | Description |"
+	usr << "| --- | --- | --- |"
+	for(var/datum/surgery_step/sstep in surgery_steps)
+		if(isnull(sstep.name))
+			continue
+		var/use_tools = ""
+		for(var/thing in sstep.allowed_tools)
+			var/obj/item/tmp_tool = thing
+			use_tools += "[initial(tmp_tool.name)] "
+		usr << "| [sstep.name] | [use_tools] | [sstep.desc ? sstep.desc : "No description given."] |<br>"
+	usr << "<br>"
