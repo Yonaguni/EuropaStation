@@ -161,11 +161,12 @@
 //////////////////////////////////////////////////////////////////
 //	 bleeder clamping surgery step
 //////////////////////////////////////////////////////////////////
-/datum/surgery_step/generic/clamp_bleeders
+/datum/surgery_step/generic/cauterize_bleeders
 	allowed_tools = list(
-	/obj/item/hemostat = 100,	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/assembly/mousetrap = 20
+		/obj/item/weapon/cautery = 100,
+		/obj/item/clothing/mask/smokable/cigarette = 75,
+		/obj/item/weapon/flame/lighter = 50,
+		/obj/item/weapon/weldingtool = 25
 	)
 
 	min_duration = 40
@@ -178,14 +179,14 @@
 
 /datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts clamping bleeders in [target]'s [affected.name] with \the [tool].", \
+	user.visible_message("[user] starts cauterizing bleeders in [target]'s [affected.name] with \the [tool].", \
 	"You start clamping bleeders in [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("The pain in your [affected.name] is maddening!",1)
 	..()
 
 /datum/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] clamps bleeders in [target]'s [affected.name] with \the [tool].</span>",	\
+	user.visible_message("<span class='notice'>[user] cauterizes bleeders in [target]'s [affected.name] with \the [tool].</span>",	\
 	"<span class='notice'>You clamp bleeders in [target]'s [affected.name] with \the [tool].</span>")
 	affected.clamp()
 	spread_germs_to_organ(affected, user)
@@ -193,9 +194,9 @@
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='warning'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.name] with \the [tool]!</span>",	\
-	"<span class='warning'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.name] with \the [tool]!</span>",)
-	affected.createwound(CUT, 10)
+	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a large burn on [target]'s [affected.name] with \the [tool]!</span>",	\
+	"<span class='warning'>Your hand slips, tleaving a large burn on [target]'s [affected.name] with \the [tool]!</span>",)
+	affected.createwound(BURN, 10)
 
 //////////////////////////////////////////////////////////////////
 //	 retractor surgery step
