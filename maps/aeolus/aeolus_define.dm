@@ -47,3 +47,9 @@
 	name = "FTV Aeolus"
 	desc = "A Free Trade Union freight vessel."
 	height = 1
+
+/datum/map/aeolus/show_map_info(var/user)
+	user << "<b>The Aeolus</b> is a charter vessel belonging to the <b>Free Trade Union</b>, a loose interplanetary \
+		coalition of independant traders, merchants and politicians opposed to the strength and influence \
+		of the Luna megacorporations. The Aeolus itself operates out of the Jovian Navy shipyard in orbit \
+		around Callisto, but carries passengers and cargo all over Sol in pursuit of scientific and exploratory goals."

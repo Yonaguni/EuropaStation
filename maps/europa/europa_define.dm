@@ -35,6 +35,12 @@
 	GM.temperature = ambient_exterior_temperature // Cold as fuck!
 	return GM
 
+/datum/map/europa/show_map_info(var/user)
+	user << "<b>Yonaguni Dome</b> was once a well-funded colony project intending to put a permanent human presence under the ice on Europa, one of Jupiter's \
+		moons. Ambitious as the project was, the Jovian Navy and the civilian corps who formed the majority of the colonists were unrepared for the strange \
+		and often horrifying experiences waiting for them under the ocean, and today only one dome remains functional - Dome Thirteen. Communication with the \
+		surface is difficult and sporadic, and it is far too easy to succumb to the horrors lurking out of sight in the inky darkness of the ocean."
+
 /*
 /obj/effect/landmark/map_data/europa
 	name = "europa"

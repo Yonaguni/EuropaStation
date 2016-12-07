@@ -2,6 +2,10 @@
 //	generic ribcage surgery step datum
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased
+
+	name = "Split bone"
+	desc = "Opens bones up, allowing access to internal organs. Requires an incision."
+
 	priority = 2
 	can_infect = 1
 	blood_level = 1

@@ -114,3 +114,15 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
 	GM.temperature = ambient_exterior_temperature
 	return GM
+
+/datum/map/proc/show_map_info(var/user)
+	return
+
+/client/verb/check_map_location()
+
+	set name = "Check Map Location"
+	set desc = "Get info on the current map."
+	set category = "IC"
+
+	usr << "The current map is: <b>[using_map.full_name]</b>"
+	using_map.show_map_info(usr)

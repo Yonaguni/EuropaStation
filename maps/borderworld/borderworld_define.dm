@@ -12,7 +12,15 @@
 	test_y = 50
 	test_z = 2
 
-	/*
+/datum/map/borderworld/show_map_info(var/user)
+	user << "<b>The borderworlds</b> is a term that describes a collection of haphazardly terraformed dwarf planets scattered between \
+		the Sun and the outer reaches of the Solar system, usually mixed in with the Kuiper Belt or hidden in the Oort. In the resource boom \
+		following human expansion from Mars, it was relatively easy for a rich, excitable industry mogul to crash a few ice asteroids into a \
+		Pluto-sized ball of shit and call it their home away from home. Due to long-term neglect and abuse, and the often horrible conditions on \
+		the borderworlds, almost all of the colonies established there have long since gone dark. Sometimes, though, a ship is unfortunate enough \
+		to crash on one of the desolate, abandoned planets, leaving the 'colonists' to eke out whatever existence they can manage."
+
+/*
 	title_state = "borderworld"
 	motd_override = {"<h1>Welcome to the borderworlds, stranger.</h1>
 	<i>This server is running the Europa Station 13 modification of <a href="http://baystation12.net/">Baystation 12's</a> SS13 code.</i><br>
