@@ -46,6 +46,9 @@
 	else
 		return null
 
+/atom/proc/return_environment()
+	return return_air()
+
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(var/mob/user)
