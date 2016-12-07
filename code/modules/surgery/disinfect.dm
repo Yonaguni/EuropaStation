@@ -25,7 +25,7 @@
 		"You begin disinfecting \the [target]'s [affected.name] with \the [tool].")
 
 	affected.germ_level = 0
-	if(affected.is_open())
+	if(affected.open)
 		tool.reagents.trans_to(target, rand(3,5), CHEM_BLOOD)
 		target.custom_pain("You feel a searing pain in your [affected.name]!",1)
 	else
@@ -42,7 +42,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>\The [user]'s hand slips, spilling \the [tool] over \the [target]'s [affected.name]!</span>", \
 		"<span class='danger'>Your hand slips, spilling \the [tool] over \the [target]'s [affected.name]!</span>")
-	if(affected.is_open())
+	if(affected.open)
 		tool.reagents.splash(target, ceil(tool.reagents.total_volume/3))
 		tool.reagents.trans_to(target, ceil(tool.reagents.total_volume/2), CHEM_BLOOD)
 		target.custom_pain("You feel a searing pain in your [affected.name]!",1)

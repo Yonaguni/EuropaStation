@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
-		/obj/item/weapon/suture = 100,
+		/obj/item/suture = 100,
 		/obj/item/stack/cable_coil = 20
 	)
 

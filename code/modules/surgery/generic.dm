@@ -163,10 +163,10 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/generic/cauterize_bleeders
 	allowed_tools = list(
-		/obj/item/weapon/cautery = 100,
+		/obj/item/cautery = 100,
 		/obj/item/clothing/mask/smokable/cigarette = 75,
-		/obj/item/weapon/flame/lighter = 50,
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/flame/lighter = 50,
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 40
@@ -255,46 +255,6 @@
 		self_msg = "<span class='warning'>Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
 	user.visible_message(msg, self_msg)
 	target.apply_damage(12, BRUTE, affected, sharp=1)
-
-//////////////////////////////////////////////////////////////////
-//	 skin cauterization surgery step
-//////////////////////////////////////////////////////////////////
-/datum/surgery_step/generic/cauterize
-	allowed_tools = list(
-	/obj/item/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/flame/lighter = 50,			\
-	/obj/item/weldingtool = 25
-	)
-
-	min_duration = 70
-	max_duration = 100
-
-/datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(..())
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open && target_zone != BP_MOUTH
-
-/datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] is beginning to cauterize the incision on [target]'s [affected.name] with \the [tool]." , \
-	"You are beginning to cauterize the incision on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("Your [affected.name] is being burned!",1)
-	..()
-
-/datum/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s [affected.name] with \the [tool].</span>", \
-	"<span class='notice'>You cauterize the incision on [target]'s [affected.name] with \the [tool].</span>")
-	affected.open = 0
-	affected.germ_level = 0
-	affected.status &= ~ORGAN_BLEEDING
-
-/datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!</span>", \
-	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!</span>")
-	target.apply_damage(3, BURN, affected)
 
 //////////////////////////////////////////////////////////////////
 //	 limb amputation surgery step
