@@ -50,7 +50,6 @@
 		return
 	for(var/t in organs)
 		qdel(t)
-
 	return ..(move)
 
 /mob/living/carbon/AIize()
@@ -72,6 +71,7 @@
 	O.aiRestorePowerRoutine = 0
 
 	if(mind)
+		mind.clear_psychic_powers()
 		mind.transfer_to(O)
 		O.mind.original = O
 	else
@@ -128,6 +128,7 @@
 	O.invisibility = 0
 
 	if(mind)		//TODO
+		mind.clear_psychic_powers()
 		mind.transfer_to(O)
 		if(O.mind.assigned_role == "Robot")
 			O.mind.original = O

@@ -11,6 +11,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/negative/fragile/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	holder.maxHealth -= (holder.species.total_health * 0.2)
 
 /* Uncomment this when there's actually a negative aspect to it.
@@ -26,6 +28,8 @@
 	apply_post_species_change = 1
 
 /decl/aspect/negative/paper_skin/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	for(var/obj/item/organ/external/E in holder.organs)
 		E.brute_mod += initial(E.brute_mod)*0.2
 		E.burn_mod  += initial(E.burn_mod)*0.2
@@ -37,6 +41,8 @@
 	parent_name = ASPECT_FRAGILE
 
 /decl/aspect/negative/glassbones/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
 	for(var/obj/item/organ/external/E in holder.organs)
 		E.min_bruised_damage -= initial(E.min_bruised_damage)*0.2
 		E.min_broken_damage -=  initial(E.min_broken_damage)*0.2

@@ -80,7 +80,8 @@
 	var/aspect_cost = 0
 	for(var/aspect_name in mind.aspects)
 		var/decl/aspect/A = aspects_by_name[aspect_name]
-		aspect_cost += A.aspect_cost
+		if(A)
+			aspect_cost += A.aspect_cost
 
 	var/dat = "<b>[aspect_cost]/[config.max_character_aspects] aspects chosen.</b><br>"
 
