@@ -185,10 +185,10 @@
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
-/datum/chemical_reaction/sterilizine
-	name = "Sterilizine"
-	id = "sterilizine"
-	result = "sterilizine"
+/datum/chemical_reaction/antiseptic
+	name = "Antiseptic"
+	id = "antiseptic"
+	result = "antiseptic"
 	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "hclacid" = 1)
 	result_amount = 3
 

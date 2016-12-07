@@ -31,7 +31,7 @@
 			/obj/item/reagent_containers/chem_disp_cartridge/paracetamol,
 			/obj/item/reagent_containers/chem_disp_cartridge/morphine,
 			/obj/item/reagent_containers/chem_disp_cartridge/oxycodone,
-			/obj/item/reagent_containers/chem_disp_cartridge/sterilizine,
+			/obj/item/reagent_containers/chem_disp_cartridge/antiseptic,
 			/obj/item/reagent_containers/chem_disp_cartridge/leporazine,
 			/obj/item/reagent_containers/chem_disp_cartridge/fotiazine,
 			/obj/item/reagent_containers/chem_disp_cartridge/dexalin,

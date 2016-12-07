@@ -100,7 +100,7 @@
 					/obj/item/surgicaldrill,
 					/obj/item/clothing/mask/breath/medical,
 					/obj/item/tank/anesthetic,
-					/obj/item/FixOVein,
+					/obj/item/suture,
 					/obj/item/hemostat,
 					/obj/item/scalpel,
 					/obj/item/bonegel,

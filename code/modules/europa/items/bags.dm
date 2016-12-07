@@ -13,5 +13,5 @@
 	new /obj/item/cautery(src)
 	new /obj/item/circular_saw(src)
 	new /obj/item/bonegel(src)
-	new /obj/item/FixOVein(src)
+	new /obj/item/suture(src)
 	make_exact_fit()

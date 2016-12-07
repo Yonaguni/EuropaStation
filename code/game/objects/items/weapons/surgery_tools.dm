@@ -145,14 +145,15 @@
 	w_class = 2.0
 	throwforce = 1.0
 
-/obj/item/FixOVein
-	name = "FixOVein"
+/obj/item/suture
+	name = "needle and sutures"
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "fixovein"
+	icon_state = "suture"
+	gender = PLURAL
+	slot_flags = SLOT_EARS
 	force = 0
-	throwforce = 1.0
-
-	w_class = 2.0
+	throwforce = 1
+	w_class = 2
 	var/usage_amount = 10
 
 /obj/item/bonesetter

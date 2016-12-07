@@ -420,7 +420,7 @@ z
 /datum/reagent/antibiotic
 	value = 2.5
 
-/datum/reagent/sterilizine
+/datum/reagent/antiseptic
 	value = 2.2
 
 /datum/reagent/leporazine
