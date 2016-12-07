@@ -53,3 +53,79 @@
 
 /decl/aspect/sharpeyed/do_post_spawn(var/mob/living/carbon/human/holder)
 	holder.dark_plane.alpha = 80
+
+/*
+/decl/aspect/robuddy
+	name = ASPECT_ROBUDDY
+	desc = "You've spent a lot of time and money on customizing a small helper drone. Open source!"
+
+/decl/aspect/robuddy/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	// Drone doesn't exist yet, rip.
+*/
+
+/decl/aspect/company_man
+	name = ASPECT_COMPANYMAN
+	desc = "The Company has your back, and ensures you have plenty of cash to throw around."
+	aspect_cost = 3
+
+/decl/aspect/company_man/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.put_in_hands(new /obj/item/storage/secure/briefcase/money(get_turf(holder)))
+
+/decl/aspect/junkie
+	name = ASPECT_JUNKIE
+	desc = "You've got the goods."
+	aspect_cost = 2
+
+/decl/aspect/junkie/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	var/pilltype = pick(list(
+		/obj/item/storage/pill_bottle/morphine,
+		/obj/item/storage/pill_bottle/happy,
+		/obj/item/storage/pill_bottle/zoom,
+		/obj/item/storage/pill_bottle/pax,
+		/obj/item/storage/pill_bottle/ladder,
+		/obj/item/storage/pill_bottle/jumpstart,
+		/obj/item/storage/pill_bottle/glint,
+		/obj/item/storage/pill_bottle/lsd,
+		/obj/item/storage/pill_bottle/threeeye
+		))
+	holder.put_in_hands(new pilltype(get_turf(holder)))
+
+/decl/aspect/green_thumb
+	name = ASPECT_GREENTHUMB
+	desc = "You love plants. Like, a lot. Someone needs to have an intervention."
+	aspect_cost = 2
+
+/decl/aspect/green_thumb/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.put_in_hands(new /obj/item/storage/box/colonist_seeds(get_turf(holder)))
+
+/decl/aspect/ninja
+	name = ASPECT_NINJA
+	desc = "You grew up as part of the Spider Clan, learning how to make good use of throwing weapons and stealth."
+	aspect_cost = 2
+
+/decl/aspect/ninja/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.put_in_hands(new /obj/item/material/star(get_turf(holder)))
+	holder.equip_to_slot_or_del(new /obj/item/material/star(get_turf(holder), slot_r_store))
+	holder.equip_to_slot_or_del(new /obj/item/material/star(get_turf(holder), slot_l_store))
+
+/decl/aspect/tribal
+	name = ASPECT_TRIBAL
+	desc = "You hail from a borderworld that hasn't really caught up to the rest of the pack just yet."
+	aspect_cost = 2
+
+/decl/aspect/tribal/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.put_in_hands(new /obj/item/material/twohanded/spear(get_turf(holder)))
+	var/obj/item/clothing/suit/hidemantle/mantle = new(get_turf(holder))
+	holder.equip_to_slot_if_possible(mantle, slot_wear_suit)

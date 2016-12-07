@@ -352,7 +352,7 @@
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-	item.throw_at(target, throw_range, item.throw_speed, src)
+	item.throw_at(target, throw_range, (has_aspect(ASPECT_NINJA) ? item.throw_speed*1.5 : item.throw_speed), src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()

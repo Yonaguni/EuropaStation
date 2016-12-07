@@ -11,6 +11,19 @@
 #define ASPECT_GLASS_BONES      "Glass Bones"
 #define ASPECT_PAPER_SKIN       "Paper Skin"
 #define ASPECT_HAEMOPHILE       "Haemophile"
+#define ASPECT_GROUNDBREAKER    "Groundbreaker"
+#define ASPECT_FIRSTAID         "First Responder"
+#define ASPECT_SAWBONES         "Sawbones"
+#define ASPECT_GUNSMITH         "Gunsmith"
+#define ASPECT_MARKSMAN         "Marksman"
+#define ASPECT_DUALWIELD        "Guns Akimbo"
+#define ASPECT_BASICGUNS        "Person of Caliber"
+#define ASPECT_HACKER           "Hackerman"
+#define ASPECT_COMPANYMAN       "Company Man"
+#define ASPECT_JUNKIE           "Junkie"
+#define ASPECT_GREENTHUMB       "Green Thumb"
+#define ASPECT_NINJA            "Ninja"
+#define ASPECT_TRIBAL           "Tribal"
 
 // Combat aspects
 #define ASPECT_WRESTLER         "Wrestler"
@@ -19,7 +32,6 @@
 #define ASPECT_TASER            "Pacifier"
 
 // Skill aspects.
-#define ASPECT_SURGEON          "Surgeon"
 #define ASPECT_DIAGNOSTICIAN    "Diagnostician"
 #define ASPECT_BUILDER          "Construction Worker"
 #define ASPECT_EXOSUIT_PILOT    "Exosuit Pilot"
@@ -49,3 +61,4 @@
 #define ASPECT_PSI_REDACTOR_O   "Operant Redactive Faculty"
 #define ASPECT_PSI_REDACTOR_MC  "Master Redactor"
 #define ASPECT_PSI_REDACTOR_GMC "Grandmaster Redactor"
+

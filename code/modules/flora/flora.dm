@@ -45,7 +45,9 @@
 /obj/structure/flora/proc/do_harvest(var/mob/user, var/obj/item/thing)
 	var/turf/T = get_turf(src)
 	var/list/results = list()
-	for(var/x = 1 to harvest_amount)
+
+	var/effective_harvest_amount = (user.has_aspect(ASPECT_GREENTHUMB) ? round(harvest_amount*1.5) : harvest_amount)
+	for(var/x = 1 to effective_harvest_amount)
 		results += new harvest_result(T)
 	user.visible_message("<span class='notice'>\The [user] [harvest_message] \the [src] with \the [thing].</span>")
 	qdel(src)

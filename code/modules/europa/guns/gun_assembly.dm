@@ -51,6 +51,12 @@
 	..()
 
 /obj/item/gun_assembly/proc/remove_component(var/mob/user)
+
+	if(!user.has_aspect(ASPECT_GUNSMITH))
+		user << "<span class='notice'>You begin clumsily modifying \the [src]...</span>"
+		if(!do_after(user, 20))
+			return
+
 	var/obj/item/gun_component/removed
 	if(barrel)
 		removed = barrel
