@@ -67,7 +67,7 @@
 	paracetamol	spawn_reagent = "paracetamol"
 	morphine	spawn_reagent = "morphine"
 	oxycodone	spawn_reagent = "oxycodone"
-	sterilizine	spawn_reagent = "sterilizine"
+	antiseptic	spawn_reagent = "antiseptic"
 	leporazine	spawn_reagent = "leporazine"
 	fotiazine	spawn_reagent = "fotiazine"
 	dexalin		spawn_reagent = "dexalin"

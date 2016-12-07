@@ -23,6 +23,10 @@
 //	 limb attachment surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/limb/attach
+
+	name = "Reattach limb."
+	desc = "Reattach a severed limb. Requires the previous limb to be removed and (if applicable) the resulting stump to be amputated."
+
 	allowed_tools = list(/obj/item/organ/external = 100)
 
 	min_duration = 50
@@ -53,6 +57,10 @@
 //	 limb connecting surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/limb/connect
+
+	name = "Reconnect limb."
+	desc = "Continue reattaching a severed limb. Requires a fresh limb to have been placed on the body."
+
 	allowed_tools = list(
 	/obj/item/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -94,6 +102,10 @@
 //	 robotic limb attachment surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/limb/mechanize
+
+	name = "Install prosthetic limb."
+	desc = "Install a prosthetic limb. Requires the previous limb to be removed and (if applicable) the resulting stump to be amputated."
+
 	allowed_tools = list(/obj/item/robot_parts = 100)
 
 	min_duration = 80

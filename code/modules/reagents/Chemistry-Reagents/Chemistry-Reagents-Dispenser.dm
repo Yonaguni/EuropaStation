@@ -94,6 +94,8 @@
 	reagent_state = LIQUID
 	color = "#404030"
 	touch_met = 5
+	disinfectant = TRUE
+
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/toxicity = 1
@@ -290,6 +292,8 @@
 	color = "#DB5008"
 	metabolism = REM * 2
 	touch_met = 50 // It's acid!
+	disinfectant = TRUE
+
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
 

@@ -72,6 +72,15 @@
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
 
+/obj/item/organ/external/proc/is_open()
+	if(status & ORGAN_ROBOT)
+		return open
+	if(wounds.len)
+		for(var/datum/wound/W in wounds)
+			if(W.damage_type == CUT && !W.internal && !W.bandaged)
+				return 1
+	return 0
+
 /obj/item/organ/external/Destroy()
 
 	if(parent && parent.children)
@@ -188,9 +197,9 @@
 
 	dislocated = 1
 	if(owner)
-		owner.verbs |= /mob/living/carbon/human/proc/undislocate
+		owner.verbs |= /mob/living/carbon/human/proc/relocate
 
-/obj/item/organ/external/proc/undislocate()
+/obj/item/organ/external/proc/relocate()
 	if(dislocated == -1)
 		return
 
@@ -202,7 +211,7 @@
 		for(var/obj/item/organ/external/limb in owner.organs)
 			if(limb.dislocated == 1)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/undislocate
+		owner.verbs -= /mob/living/carbon/human/proc/relocate
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))

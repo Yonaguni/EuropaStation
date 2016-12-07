@@ -28,6 +28,12 @@
 //	 unscrew robotic limb hatch surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/unscrew_hatch
+
+	name = "Unscrew Hatch."
+	desc = "Unscrew the maintenance hatch of a robotic limb."
+
+	priority = 15
+
 	allowed_tools = list(
 		/obj/item/screwdriver = 100,
 		/obj/item/coin = 50,
@@ -40,7 +46,7 @@
 /datum/surgery_step/robotics/unscrew_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 0 && target_zone != BP_MOUTH
+		return affected && affected.is_open() == 0 && target_zone != BP_MOUTH
 
 /datum/surgery_step/robotics/unscrew_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -63,6 +69,10 @@
 //	open robotic limb surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/open_hatch
+
+	name = "Open Hatch."
+	desc = "Open the maintenance hatch of a robotic limb. Requires it to be unscrewed."
+
 	allowed_tools = list(
 		/obj/item/retractor = 100,
 		/obj/item/crowbar = 100,
@@ -75,7 +85,7 @@
 /datum/surgery_step/robotics/open_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 1
+		return affected && affected.is_open() == 1
 
 /datum/surgery_step/robotics/open_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -98,6 +108,10 @@
 //	close robotic limb surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/close_hatch
+
+	name = "Close Hatch."
+	desc = "Close the maintenance hatch of a robotic limb. Requires it to be open."
+
 	allowed_tools = list(
 		/obj/item/retractor = 100,
 		/obj/item/crowbar = 100,
@@ -110,7 +124,7 @@
 /datum/surgery_step/robotics/close_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open && target_zone != BP_MOUTH
+		return affected && affected.is_open() && target_zone != BP_MOUTH
 
 /datum/surgery_step/robotics/close_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -134,6 +148,10 @@
 //	robotic limb brute damage repair surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/repair_brute
+
+	name = "Repair robolimb brute damage."
+	desc = "Fixes brute damage to a prosthetic limb. Requires it to be open."
+
 	allowed_tools = list(
 		/obj/item/weldingtool = 100,
 		/obj/item/pickaxe/plasmacutter = 50,
@@ -150,7 +168,7 @@
 			var/obj/item/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
-		return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != BP_MOUTH
+		return affected && affected.is_open() == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != BP_MOUTH
 
 /datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -175,6 +193,10 @@
 //	robotic limb burn damage repair surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/repair_burn
+
+	name = "Repair robolimb burn damage."
+	desc = "Fixes brute damage to a prosthetic limb. Requires it to be open."
+
 	allowed_tools = list(
 		/obj/item/stack/cable_coil = 100
 	)
@@ -186,7 +208,7 @@
 	if(..())
 		var/obj/item/stack/cable_coil/C = tool
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		var/limb_can_operate = ((affected && affected.open >= 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != BP_MOUTH)
+		var/limb_can_operate = ((affected && affected.is_open() == 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != BP_MOUTH)
 		if(limb_can_operate)
 			if(istype(C))
 				if(!C.get_amount() >= 3)
@@ -229,6 +251,10 @@
 //	 artificial organ repair surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
+
+	name = "Repair prosthetic internal organ."
+	desc = "Repairs damage to an internal prosthetic organ. Requires the limb to be open if prosthetic, and requires an incision and split skull/ribcage for organic limbs."
+
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/bonegel = 30, 		\
@@ -248,7 +274,7 @@
 		if(I.damage > 0 && (I.robotic >= ORGAN_ROBOT))
 			is_organ_damaged = 1
 			break
-	return affected.open == 3 && is_organ_damaged
+	return affected.is_open() == 3 && is_organ_damaged
 
 /datum/surgery_step/robotics/fix_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -295,6 +321,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/detatch_organ_robotic
 
+	name = "Detach prosthetic internal organ."
+	desc = "Prepares an internal prosthetic organ for removal. Requires the limb to be open if prosthetic, and requires an incision and split skull/ribcage for organic limbs."
+
 	allowed_tools = list(
 	/obj/item/multitool = 100
 	)
@@ -307,7 +336,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 		return 0
-	if(affected.open < 3)
+	if(affected.is_open() < 3)
 		return 0
 
 	target.op_stage.current_organ = null
@@ -347,6 +376,9 @@
 //	robotic organ removal surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/remove_organ_robotic
+
+	name = "Remove prosthetic internal organ."
+	desc = "Remove an internal prosthetic organ. Requires a prepared prosthetic organ, the limb to be open if prosthetic, and requires an incision and split skull/ribcage for organic limbs."
 
 	allowed_tools = list(
 	/obj/item/hemostat = 100,	\
@@ -414,6 +446,10 @@
 //	robotic organ transplant finalization surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/attach_organ_robotic
+
+	name = "Reattach prosthetic internal organ."
+	desc = "Reattaches an internal prosthetic organ. Requires a replaced but unconnected prosthetic organ, the limb to be open if prosthetic, and requires an incision and split skull/ribcage for organic limbs."
+
 	allowed_tools = list(
 		/obj/item/screwdriver = 100,
 	)
@@ -425,7 +461,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 		return 0
-	if(affected.open < 3)
+	if(affected.is_open() < 3)
 		return 0
 
 	target.op_stage.current_organ = null
@@ -464,6 +500,10 @@
 //	mmi installation surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/robotics/install_mmi
+
+	name = "Install MMI."
+	desc = "Installs an MMI as a brain. Requires a missing brain and an open prosthetic target limb."
+
 	allowed_tools = list(
 	/obj/item/mmi = 100
 	)
@@ -478,7 +518,7 @@
 
 	var/obj/item/mmi/M = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(!(affected && affected.open == 3))
+	if(!(affected && affected.is_open() == 3))
 		return 0
 
 	if(!istype(M))

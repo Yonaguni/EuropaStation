@@ -116,7 +116,7 @@
 		/obj/item/scalpel,
 		/obj/item/surgicaldrill,
 		/obj/item/bonegel,
-		/obj/item/FixOVein,
+		/obj/item/suture,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		)
 
