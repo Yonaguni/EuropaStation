@@ -12,6 +12,7 @@
 #define ASPECT_PAPER_SKIN       "Paper Skin"
 #define ASPECT_HAEMOPHILE       "Haemophile"
 #define ASPECT_GROUNDBREAKER    "Groundbreaker"
+#define ASPECT_HANDYMAN         "Handyman"
 #define ASPECT_FIRSTAID         "First Responder"
 #define ASPECT_SAWBONES         "Sawbones"
 #define ASPECT_GUNSMITH         "Gunsmith"
