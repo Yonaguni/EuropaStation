@@ -10,6 +10,16 @@
 	holder.put_in_hands(new /obj/item/pickaxe/drill(get_turf(holder)))
 	holder.equip_to_slot_if_possible(new /obj/item/clothing/head/hardhat(get_turf(holder)))
 
+/decl/aspect/handyman
+	name = ASPECT_HANDYMAN
+	desc = "You're handy with tools, and are rarely found without them."
+	category = "Background"
+	aspect_cost = 2
+
+/decl/aspect/handyman/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(istype(holder))
+		holder.put_in_hands(new /obj/item/storage/toolbox/mechanical/handyman(get_turf(holder)))
+
 /* Need to work out how ore deposits work before uncommenting this.
 /decl/aspect/prospector
 	name = ASPECT_PROSPECTOR

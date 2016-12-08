@@ -44,6 +44,14 @@
 	new /obj/item/analyzer(src)
 	new /obj/item/wirecutters(src)
 
+//Handyman includes all the stuff from /obj/item/storage/toolbox/mechanical as well.
+/obj/item/storage/toolbox/mechanical/handyman/New()
+	..()
+	new /obj/item/tape_roll(src)
+	new /obj/item/stack/cable_coil/random(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/clothing/head/welding(src)
+
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
