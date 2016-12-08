@@ -1,3 +1,4 @@
+/*
 /datum/job/ai
 	title = "Computer"
 	department_flag = MSC
@@ -15,6 +16,7 @@
 /datum/job/ai/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 	return 1
+*/
 
 /datum/job/ai/is_position_available()
 	return (empty_playable_ai_cores.len != 0)
