@@ -12,6 +12,12 @@
 	outside = 1
 	var/detail_decal
 
+/turf/simulated/ocean/return_environment()
+	var/datum/gas_mixture/GM = new
+	GM.adjust_multi("water", 10000)
+	GM.temperature = using_map.ambient_exterior_temperature
+	return GM
+
 /turf/simulated/ocean/is_plating()
 	return 1
 

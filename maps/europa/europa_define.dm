@@ -30,10 +30,7 @@
 	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
 
 /datum/map/europa/get_exterior_air()
-	var/datum/gas_mixture/GM = new
-	GM.adjust_multi("water", 10000)               // High pressure!
-	GM.temperature = ambient_exterior_temperature // Cold as fuck!
-	return GM
+	return new /datum/gas_mixture
 
 /datum/map/europa/show_map_info(var/user)
 	user << "<b>Yonaguni Dome</b> was once a well-funded colony project intending to put a permanent human presence under the ice on Europa, one of Jupiter's \
