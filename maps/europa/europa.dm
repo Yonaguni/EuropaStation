@@ -1,6 +1,7 @@
 #if !defined(USING_MAP_DATUM)
 
 	#include "europa-1.dmm"
+	#include "europa-2.dmm"
 
 	#include "europa_areas.dm"
 	#include "europa_jobs.dm"
