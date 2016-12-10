@@ -23,11 +23,13 @@
 	name = ASPECT_HACKER
 	desc = "Using an RX modulator, you might be able to conduct a mainframe cell direct and hack the uplink to the download."
 	category = "Skills"
+	aspect_cost = 2
 
-/* We need a mullet hairstyle.
+// Temporary mullet stand-in located.
 /decl/aspect/hackerman/do_post_spawn(var/mob/living/carbon/human/holder)
 	if(!istype(holder))
 		return
 	if(holder.species.name == "Human")
-		holder.h_style = "Mullet"
-*/
+		holder.h_style = "Long Hair Alt 2"
+	holder.equip_to_slot_if_possible(new /obj/item/clothing/gloves/insulated/hackerman(get_turf(holder)), slot_gloves)
+	holder.put_in_hands(new /obj/item/multitool(get_turf(holder)))

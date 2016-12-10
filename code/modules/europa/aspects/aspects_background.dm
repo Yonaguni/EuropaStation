@@ -8,7 +8,7 @@
 	if(!istype(holder))
 		return
 	holder.put_in_hands(new /obj/item/pickaxe/drill(get_turf(holder)))
-	holder.equip_to_slot_if_possible(new /obj/item/clothing/head/hardhat(get_turf(holder)))
+	holder.equip_to_slot_if_possible(new /obj/item/clothing/head/hardhat(get_turf(holder)), slot_head)
 
 /decl/aspect/handyman
 	name = ASPECT_HANDYMAN
