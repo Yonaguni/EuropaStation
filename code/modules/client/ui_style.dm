@@ -1,6 +1,7 @@
 
 
 /var/all_ui_styles = list(
+	"Europa"       = 'icons/mob/screen/europa.dmi',
 	"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
 	"old"          = 'icons/mob/screen/old.dmi',
