@@ -24,7 +24,7 @@
 	*/
 
 /datum/map/europa/perform_map_generation()
-
+	map_submerged = TRUE
 	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
 	sleep(-1)
 	new /datum/random_map/noise/seafloor(null,1,1,1,255,255)
