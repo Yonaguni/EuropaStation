@@ -4,7 +4,7 @@
 	desc = "95% Polyester, 5% Spandex!"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
-	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls")
+	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls", "waist")
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"

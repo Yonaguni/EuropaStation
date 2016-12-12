@@ -161,9 +161,7 @@
 		if(hatch_locked)
 			if(!silent) user << "<span class='warning'>The [body.hatch_descriptor] is locked.</span>"
 			return
-		hatch_closed = 0
-		hud_open.update_icon()
-		update_icon()
+		hud_open.toggled()
 		if(!silent)
 			user << "<span class='notice'>You open the hatch and climb out of \the [src].</span>"
 	else
@@ -207,6 +205,16 @@
 	if(maintenance_protocols)
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
 		return
+
+	if(!check_solid_ground())
+		var/allowmove = Allow_Spacemove(0)
+		if(!allowmove)
+			return 0
+		else if(allowmove == -1 && handle_spaceslipping())
+			return 0
+		else
+
+	inertia_dir = 0
 
 	if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
 		direction = pick(cardinal)

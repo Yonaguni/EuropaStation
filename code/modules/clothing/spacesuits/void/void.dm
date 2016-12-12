@@ -20,6 +20,8 @@
 		"Resomi" = 'icons/obj/clothing/species/resomi/hats.dmi'
 		)
 
+	light_power = 10
+	light_color = COLOUR_LTEMP_100W_TUNGSTEN
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void

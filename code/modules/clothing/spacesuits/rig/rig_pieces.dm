@@ -9,7 +9,6 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
-	brightness_on = 4
 	sprite_sheets = list(
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
 		)

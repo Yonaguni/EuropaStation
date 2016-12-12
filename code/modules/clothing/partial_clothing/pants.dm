@@ -3,7 +3,7 @@
 	desc = "A smooth and straight pair of comfortable slacks."
 	icon = 'icons/obj/clothing/pants.dmi'
 	icon_state = "slacks"
-	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls")
+	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls", "waist")
 
 /obj/item/clothing/under/partial/pants/dresspants
 	name = "dress pants"
@@ -45,7 +45,7 @@
 	desc = "A casual grey skirt for around the office."
 	icon = 'icons/obj/clothing/pants.dmi'
 	icon_state = "skirt-gray"
-	valid_accessory_slots = list("shirt")
+	valid_accessory_slots = list("shirt", "waist")
 
 /obj/item/clothing/under/partial/skirts/blue
 	name = "blue skirt"

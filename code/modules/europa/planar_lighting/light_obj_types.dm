@@ -14,4 +14,4 @@
 	light_type = LIGHT_SOFT
 
 /obj/item/clothing/head
-	light_type = LIGHT_DIRECTIONAL
+	light_type = LIGHT_SOFT

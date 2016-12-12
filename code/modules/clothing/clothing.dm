@@ -257,8 +257,11 @@ BLIND     // can't see anything
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
-	var/brightness_on
 	var/on = 0
+
+	light_power = 6
+	light_range = 5
+	light_color = COLOUR_LTEMP_40W_TUNGSTEN
 
 	sprite_sheets = list(
 		"Resomi" = 'icons/mob/species/resomi/head.dmi'
@@ -277,7 +280,7 @@ BLIND     // can't see anything
 	return ret
 
 /obj/item/clothing/head/attack_self(mob/user)
-	if(brightness_on)
+	if(light_power)
 		if(!isturf(user.loc))
 			user << "You cannot turn the light on while in this [user.loc]"
 			return
@@ -289,7 +292,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
-		set_light(brightness_on)
+		set_light()
 		light_applied = 1
 	else if(!on && light_applied)
 		kill_light()
@@ -539,8 +542,8 @@ BLIND     // can't see anything
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 	//Also used by rolling/unrolling.
 	var/worn_state = null
-	valid_accessory_slots = list("utility","armband","rank","decor")
-	restricted_accessory_slots = list("utility", "armband","rank")
+	valid_accessory_slots = list("utility","armband","rank","decor","waist")
+	restricted_accessory_slots = list("utility", "armband","rank","waist")
 
 /obj/item/clothing/under/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
