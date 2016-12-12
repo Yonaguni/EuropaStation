@@ -208,6 +208,16 @@
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
 		return
 
+	if(!check_solid_ground())
+		var/allowmove = Allow_Spacemove(0)
+		if(!allowmove)
+			return 0
+		else if(allowmove == -1 && handle_spaceslipping())
+			return 0
+		else
+
+	inertia_dir = 0
+
 	if(hallucination >= EMP_MOVE_DISRUPT && prob(30))
 		direction = pick(cardinal)
 

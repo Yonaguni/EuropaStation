@@ -177,6 +177,7 @@
 	icon_state = "hatch_status"
 
 /obj/screen/movable/mecha/toggle/hatch_open/update_icon()
+	world << "toggling hatch [owner]"
 	toggled = owner.hatch_closed
 	icon_state = "hatch_status[owner.hatch_closed ? "" : "_enabled"]"
 
