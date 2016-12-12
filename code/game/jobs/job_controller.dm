@@ -24,7 +24,8 @@ var/global/datum/controller/occupations/job_master
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
-			if(!job)	continue
+			if(!job || !job.title)
+				continue
 
 			var/found_spawn_point
 			for(var/obj/effect/landmark/start/S in world)

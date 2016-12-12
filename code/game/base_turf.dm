@@ -12,7 +12,7 @@ proc/get_base_turf(var/z)
 proc/get_base_turf_by_area(var/turf/T)
 	var/area/A = T.loc
 	if(A.base_turf)
-		return A.base_turf
+		return ((A.base_turf == /turf/space && map_submerged) ? /turf/simulated/ocean : A.base_turf)
 	return get_base_turf(T.z)
 
 /client/proc/set_base_turf()
