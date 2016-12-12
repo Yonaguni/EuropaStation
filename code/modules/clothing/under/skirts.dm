@@ -6,7 +6,7 @@
 	worn_state = "blackskirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	rolled_sleeves = -1
-	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls")
+	valid_accessory_slots = list("utility","armband","rank","decor","shirt", "vest", "overalls", "waist")
 
 /obj/item/clothing/under/skirt/khaki
 	name = "khaki skirt"

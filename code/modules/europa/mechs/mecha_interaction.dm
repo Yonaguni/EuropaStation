@@ -161,9 +161,7 @@
 		if(hatch_locked)
 			if(!silent) user << "<span class='warning'>The [body.hatch_descriptor] is locked.</span>"
 			return
-		hatch_closed = 0
-		hud_open.update_icon()
-		update_icon()
+		hud_open.toggled()
 		if(!silent)
 			user << "<span class='notice'>You open the hatch and climb out of \the [src].</span>"
 	else

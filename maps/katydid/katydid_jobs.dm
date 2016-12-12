@@ -53,8 +53,8 @@
 	title = "Engineer"
 	total_positions = 1
 	spawn_positions = 1
-	access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_kitchen, access_atmospherics, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
-	minimal_access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_kitchen, access_atmospherics, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
+	access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_kitchen, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
+	minimal_access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_engine_equip, access_kitchen, access_atmospherics, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
 	supervisors = "the ship's Captain and First Mate"
 	department = "Engineering"
 	department_flag = ENG

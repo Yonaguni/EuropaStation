@@ -3,7 +3,6 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	action_button_name = "Toggle Headlamp"
-	brightness_on = 4 //luminosity when on
 	light_overlay = "hardhat_light"
 	w_class = 3
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
