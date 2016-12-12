@@ -62,7 +62,7 @@
 /decl/aspect/sharpeyed/do_post_spawn(var/mob/living/carbon/human/holder)
 	if(!istype(holder))
 		return
-	holder.dark_plane.alpha = 40
+	holder.dark_plane.alpha = initial(holder.dark_plane.alpha) + 15
 
 /*
 /decl/aspect/robuddy
