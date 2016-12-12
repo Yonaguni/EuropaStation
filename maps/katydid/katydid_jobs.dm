@@ -46,15 +46,15 @@
 	supervisors = "the ship's Captain and First Mate"
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew
 	selection_color = "#601c1c"
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels)
+	access = list(access_maint_tunnels, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting)
+	minimal_access = list(access_maint_tunnels, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting)
 
 /datum/job/katydid/crew/engineer
 	title = "Engineer"
 	total_positions = 1
 	spawn_positions = 1
-	access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
-	minimal_access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_kitchen, access_atmospherics, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
+	minimal_access = list(access_heads, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_kitchen, access_atmospherics, access_tech_storage, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
 	supervisors = "the ship's Captain and First Mate"
 	department = "Engineering"
 	department_flag = ENG
@@ -74,8 +74,8 @@
 	minimal_player_age = 9
 	economic_modifier = 20
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/captain
-	access = list(access_keycard_auth, access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
-	minimal_access = list(access_keycard_auth, access_captain, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	access = list(access_keycard_auth, access_kitchen, access_captain, access_medical, access_security, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
+	minimal_access = list(access_keycard_auth, access_kitchen, access_captain, access_medical, access_security, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_cargo, access_cargo_bot, access_mailsorting, access_ai_upload)
 
 /datum/job/katydid/crew/mate
 	title = "First Mate"
@@ -88,8 +88,8 @@
 	spawn_positions = 1
 	minimal_player_age = 6
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/firstmate
-	access = list(access_keycard_auth, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
-	minimal_access = list(access_keycard_auth, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip)
+	access = list(access_keycard_auth, access_kitchen, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_cargo, access_cargo_bot, access_mailsorting)
+	minimal_access = list(access_keycard_auth, access_kitchen, access_medical, access_heads, access_armory, access_engine, access_maint_tunnels, access_rd, access_atmospherics, access_engine_equip, access_cargo, access_cargo_bot, access_mailsorting)
 
 /datum/job/katydid/crew/gunner
 	title = "Gunner"
@@ -100,8 +100,8 @@
 	department_flag = SEC
 	selection_color = "#8e2929"
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/gunner
-	access = list(access_heads, access_armory, access_maint_tunnels)
-	minimal_access = list(access_heads, access_armory, access_maint_tunnels)
+	access = list(access_heads, access_armory, access_kitchen, access_security, access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	minimal_access = list(access_heads, access_armory, access_kitchen, access_security, access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 
 /datum/job/katydid/crew/doctor
 	title = "Ship Doctor"
@@ -112,8 +112,8 @@
 	minimal_player_age = 6
 	selection_color = "#026865"
 	outfit_type = /decl/hierarchy/outfit/job/katydid/crew/doctor
-	access = list(access_medical)
-	minimal_access = list(access_medical)
+	access = list(access_medical, access_kitchen)
+	minimal_access = list(access_medical, access_kitchen)
 
 /decl/hierarchy/outfit/job/katydid
 	name = "Passenger"
