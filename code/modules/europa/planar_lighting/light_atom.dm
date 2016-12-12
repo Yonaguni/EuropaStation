@@ -25,3 +25,19 @@
 	light_power = other.light_power
 	light_color = other.light_color
 	set_light()
+
+/atom/proc/update_all_lights()
+	if(light_obj && !deleted(light_obj))
+		light_obj.follow_holder()
+
+/atom/set_dir()
+	. = ..()
+	update_all_lights()
+
+/atom/movable/Move()
+	. = ..()
+	update_all_lights()
+
+/atom/movable/forceMove()
+	. = ..()
+	update_all_lights()
