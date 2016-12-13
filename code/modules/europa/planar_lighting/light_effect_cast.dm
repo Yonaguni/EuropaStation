@@ -4,12 +4,10 @@
 #define OFFSET_MULTIPLIER_SIZE 32
 #define CORNER_OFFSET_MULTIPLIER_SIZE 16
 
-// Casts shadows from occluding objects for a given light. This is essentially just a big
-// chunky 'mask everything we can't see' proc which also casts rotated shadows from occluding
-// turf corners. See light_turf.dm for how corners are calculated.
+// Casts shadows from occluding objects for a given light.
 
 /obj/effect/light/proc/cast_light()
-	overlays = list()
+	temp_appearance = list()
 
 	if(!isturf(loc))
 		for(var/turf/T in affecting_turfs)
@@ -55,10 +53,12 @@
 				I.icon_state = "[I.icon_state]_[i]"
 				break
 			next_turf = get_step(next_turf, dir)
-	overlays += I
+	temp_appearance += I
 
 	//no shadows
 	if(light_range < 2 || is_directional_light())
+		overlays = temp_appearance
+		temp_appearance = null
 		return
 
 	var/list/visible_turfs = list()
@@ -70,7 +70,8 @@
 		if(CheckOcclusion(T))
 			CastShadow(T)
 
-
+	overlays = temp_appearance
+	temp_appearance = null
 
 /obj/effect/light/proc/CastShadow(var/turf/target_turf)
 	//get the x and y offsets for how far the target turf is from the light
@@ -118,7 +119,7 @@
 	I.layer = 2
 
 	//and add it to the lights overlays
-	overlays += I
+	temp_appearance += I
 
 
 	var/targ_dir = get_dir(target_turf, src)
@@ -135,7 +136,7 @@
 	I.pixel_y = (world.icon_size * light_range) + (y_offset * world.icon_size)
 	I.layer = 3
 
-	overlays += I
+	temp_appearance += I
 
 /obj/effect/light/proc/CheckOcclusion(var/turf/T)
 	if(!istype(T))
