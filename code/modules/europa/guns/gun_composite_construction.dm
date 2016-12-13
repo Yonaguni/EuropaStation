@@ -5,25 +5,29 @@ var/list/can_dismantle_guns = list(
 	)
 
 /obj/item/gun/composite/proc/dismantle(var/mob/user)
+
 	var/obj/item/gun_assembly/assembly = new(get_turf(src))
+
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))
+
 	assembly.barrel = barrel
 	assembly.body = body
 	assembly.grip = grip
 	assembly.stock = stock
 	assembly.chamber = chamber
 	assembly.accessories = accessories.Copy()
-	assembly.update_icon()
+
 	for(var/obj/item/gun_component/I in list(barrel,body,grip,stock,chamber)+accessories)
 		I.empty()
 		I.forceMove(assembly)
 
-	var/mob/M = src.loc
-	if(istype(M))
-		M.unEquip(src)
-		if(user)
-			user.put_in_hands(assembly)
+	assembly.update_components()
+
+	if(user && src.loc == user)
+		user.drop_from_inventory(src)
+		user.put_in_hands(assembly)
+
 	qdel(src)
 
 /obj/item/gun/composite/attackby(var/obj/item/thing, var/mob/user)
