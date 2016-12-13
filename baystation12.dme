@@ -1268,6 +1268,8 @@
 #include "code\modules\europa\loadout\loadout_shirts.dm"
 #include "code\modules\europa\loadout\loadout_suits.dm"
 #include "code\modules\europa\loadout\loadout_uniform.dm"
+#include "code\modules\europa\magazines\magazine.dm"
+#include "code\modules\europa\magazines\magazine_content.dm"
 #include "code\modules\europa\mechs\_mecha_setup.dm"
 #include "code\modules\europa\mechs\mecha.dm"
 #include "code\modules\europa\mechs\mecha_construction.dm"
