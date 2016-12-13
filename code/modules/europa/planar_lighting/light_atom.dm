@@ -46,7 +46,7 @@
 /atom/proc/update_contained_lights(var/list/specific_contents)
 	if(!specific_contents)
 		specific_contents = contents
-	for(var/thing in specific_contents)
+	for(var/thing in (specific_contents + src))
 		var/atom/A = thing
 		spawn()
 			if(A && !deleted(A))
