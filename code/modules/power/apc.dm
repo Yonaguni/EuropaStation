@@ -166,15 +166,11 @@
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	wires = new(src)
 
-	// offset 24 pixels in direction of dir
-	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
-		set_dir(ndir)
-	src.tdir = dir		// to fix Vars bug
-	set_dir(SOUTH)
+	set_dir(ndir)
+	src.tdir = dir
 
-	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 24 : -24)
-	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 24 : -24) : 0
+	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 32 : -32)
+	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 32 : -32) : 0
 
 	if (building==0)
 		init_round_start()
@@ -1265,18 +1261,18 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 
 /obj/machinery/power/apc/north
 	dir = NORTH
-	pixel_y = 24
+	pixel_y = 32
 
 /obj/machinery/power/apc/south
 	dir = SOUTH
-	pixel_y = -24
+	pixel_y = -32
 
 /obj/machinery/power/apc/east
 	dir = EAST
-	pixel_x = 24
+	pixel_x = 32
 
 /obj/machinery/power/apc/west
 	dir = WEST
-	pixel_x = -24
+	pixel_x = -32
 
 #undef APC_UPDATE_ICON_COOLDOWN

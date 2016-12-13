@@ -94,7 +94,7 @@
 			var/obj/item/I = hardpoints[hardpoint]
 			user << "- [hardpoint]: [istype(I) ? "\the [I]" : "nothing"]."
 	else
-		user << "It no visible hardpoints:"
+		user << "It has no visible hardpoints."
 
 	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
 		if(!thing)

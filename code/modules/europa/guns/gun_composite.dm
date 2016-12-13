@@ -193,7 +193,7 @@
 		if(istype(user) && (user.can_wield_item(src) && src.is_held_twohanded(user)))
 			if(body.wielded_state)
 				item_state = body.wielded_state
-		else
+		else if(body)
 			item_state = body.item_state
 
 /obj/item/gun/composite/AltClick()

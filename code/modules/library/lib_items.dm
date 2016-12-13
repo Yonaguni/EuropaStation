@@ -162,10 +162,13 @@
 			return
 	if(src.dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
-		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		do_read_message(user)
 		onclose(user, "book")
 	else
 		user << "This book is completely blank!"
+
+/obj/item/book/proc/do_read_message(var/mob/user)
+	user.visible_message("<span class='notice'>\The [user] opens a book titled \"[title]\" and begins reading intently.</span>")
 
 /obj/item/book/attackby(var/obj/item/W, var/mob/user)
 	if(carved)

@@ -93,6 +93,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/add_trader,
 	/client/proc/remove_trader,
 	/datum/admins/proc/katydid_rename_ship,
+	/datum/admins/proc/submerge_map,
 	/datum/admins/proc/sendFax
 )
 var/list/admin_verbs_ban = list(

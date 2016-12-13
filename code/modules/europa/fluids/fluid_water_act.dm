@@ -1,4 +1,4 @@
-var/atom/movable/waterproof
+/atom/movable/var/waterproof
 
 /mob/living/water_act(var/depth)
 	..()

@@ -73,7 +73,7 @@
 	var/image/hud_damage_image
 
 /obj/item/organ/external/proc/is_open()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return open
 	if(wounds.len)
 		for(var/datum/wound/W in wounds)

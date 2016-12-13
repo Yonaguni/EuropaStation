@@ -103,18 +103,30 @@
 /obj/machinery/alarm/New(var/loc, var/dir, atom/frame)
 	..(loc)
 
-	if(dir)
-		src.set_dir(dir)
+
+	set_dir(dir ? dir : src.dir)
 
 	if(istype(frame))
 		buildstage = 0
 		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
 		frame.transfer_fingerprints_to(src)
 	else
 		first_run()
+
+/obj/machinery/alarm/set_dir()
+	. = ..()
+	pixel_x = 0
+	pixel_y = 0
+	switch(dir)
+		if(NORTH)
+			pixel_y = -30
+		if(SOUTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = -30
+		if(WEST)
+			pixel_x = 30
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -1089,18 +1101,14 @@ FIRE ALARM
 	return
 
 
-
 /obj/machinery/firealarm/New(loc, dir, atom/frame)
 	..(loc)
 
-	if(dir)
-		src.set_dir(dir)
+	set_dir(dir ? dir : src.dir)
 
 	if(istype(frame))
 		buildstage = 0
 		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		frame.transfer_fingerprints_to(src)
 
 /obj/machinery/firealarm/proc/set_security_level(var/newlevel)
@@ -1221,3 +1229,17 @@ Just a object used in constructing fire alarms
 		usr << browse(null, "window=partyalarm")
 		return
 	return
+
+/obj/machinery/firealarm/set_dir()
+	. = ..()
+	pixel_x = 0
+	pixel_y = 0
+	switch(dir)
+		if(NORTH)
+			pixel_y = -30
+		if(SOUTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = -30
+		if(WEST)
+			pixel_x = 30

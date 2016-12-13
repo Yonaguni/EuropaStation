@@ -23,6 +23,7 @@
 	var/atom/movable/holder
 	var/point_angle
 	var/list/affecting_turfs = list()
+	var/list/temp_appearance
 
 /obj/effect/light/New(var/newholder)
 	holder = newholder
@@ -42,6 +43,7 @@
 	transform = null
 	appearance = null
 	overlays = null
+	temp_appearance = null
 
 	if(holder)
 		if(holder.light_obj == src)
@@ -53,45 +55,6 @@
 		T.affecting_lights -= src
 	affecting_turfs.Cut()
 	. = .. ()
-
-/atom/movable/Move()
-	. = ..()
-	spawn()
-		if(light_obj && !deleted(light_obj))
-			light_obj.follow_holder()
-
-/atom/movable/forceMove()
-	. = ..()
-	spawn()
-		if(light_obj && !deleted(light_obj))
-			light_obj.follow_holder()
-
-/atom/set_dir()
-	. = ..()
-	spawn()
-		if(light_obj && !deleted(light_obj))
-			light_obj.follow_holder()
-
-/mob/living/carbon/human/set_dir()
-	. = ..()
-	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		spawn()
-			if(I.light_obj && !deleted(I.light_obj))
-				I.light_obj.follow_holder()
-
-/mob/living/carbon/human/Move()
-	. = ..()
-	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		spawn()
-			if(I.light_obj && !deleted(I.light_obj))
-				I.light_obj.follow_holder()
-
-/mob/living/carbon/human/forceMove()
-	. = ..()
-	for(var/obj/item/I in (contents-(internal_organs+organs)))
-		spawn()
-			if(I.light_obj && !deleted(I.light_obj))
-				I.light_obj.follow_holder()
 
 /obj/effect/light/initialize()
 	..()

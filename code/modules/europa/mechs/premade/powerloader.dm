@@ -25,6 +25,7 @@
 	software = new(src)
 	software.installed_software |= MECH_SOFTWARE_UTILITY
 	software.installed_software |= MECH_SOFTWARE_ENGINEERING
+
 /obj/item/mech_component/chassis/ripley
 	name = "power loader chassis"
 	color = "#FFDC37"

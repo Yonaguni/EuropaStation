@@ -25,3 +25,29 @@
 	light_power = other.light_power
 	light_color = other.light_color
 	set_light()
+
+/atom/proc/update_all_lights()
+	spawn()
+		if(light_obj && !deleted(light_obj))
+			light_obj.follow_holder()
+
+/atom/set_dir()
+	. = ..()
+	update_contained_lights()
+
+/atom/movable/Move()
+	. = ..()
+	update_contained_lights()
+
+/atom/movable/forceMove()
+	. = ..()
+	update_contained_lights()
+
+/atom/proc/update_contained_lights(var/list/specific_contents)
+	if(!specific_contents)
+		specific_contents = contents
+	for(var/thing in (specific_contents + src))
+		var/atom/A = thing
+		spawn()
+			if(A && !deleted(A))
+				A.update_all_lights()
