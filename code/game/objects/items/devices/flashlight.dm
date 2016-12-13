@@ -45,6 +45,7 @@
 		if(istype(origin) && istype(target))
 			user.face_atom(A)
 			user.visible_message("<span class='notice'>\The [user] points \the [src] at \the [A].</span>")
+			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 			return
 	return ..()
 
