@@ -109,8 +109,8 @@
 	if(istype(frame))
 		buildstage = 0
 		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
+		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
 		update_icon()
 		frame.transfer_fingerprints_to(src)
 	else
@@ -1099,8 +1099,8 @@ FIRE ALARM
 	if(istype(frame))
 		buildstage = 0
 		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
+		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
 		frame.transfer_fingerprints_to(src)
 
 /obj/machinery/firealarm/proc/set_security_level(var/newlevel)
