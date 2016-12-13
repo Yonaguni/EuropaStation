@@ -23,6 +23,7 @@
 	var/atom/movable/holder
 	var/point_angle
 	var/list/affecting_turfs = list()
+	var/list/temp_appearance
 
 /obj/effect/light/New(var/newholder)
 	holder = newholder
@@ -42,6 +43,7 @@
 	transform = null
 	appearance = null
 	overlays = null
+	temp_appearance = null
 
 	if(holder)
 		if(holder.light_obj == src)
