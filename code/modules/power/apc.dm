@@ -166,12 +166,8 @@
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	wires = new(src)
 
-	// offset 24 pixels in direction of dir
-	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
-		set_dir(ndir)
-	src.tdir = dir		// to fix Vars bug
-	set_dir(SOUTH)
+	set_dir(ndir)
+	src.tdir = dir
 
 	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 32 : -32)
 	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 32 : -32) : 0
