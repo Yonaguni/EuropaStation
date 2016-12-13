@@ -167,6 +167,11 @@ var/global/list/light_bulb_type_cache = list()
 
 	var/current_mode = null
 
+/obj/machinery/light/set_dir(var/newdir)
+	. = ..(newdir)
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 3 : -3)
+	pixel_y = (dir & 3) ? (dir == 1 ? 3 : -3) : 0
+
 // the smaller bulb light fixture
 /obj/machinery/light/small
 	icon_state = "bulb1"
@@ -201,9 +206,12 @@ var/global/list/light_bulb_type_cache = list()
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
+		pixel_x = (dir & 3) ? 0 : (dir == 4 ? 3 : -3)
+		pixel_y = (dir & 3) ? (dir == 1 ? 3 : -3) : 0
 
 	on = powered()
 	update(0)
+
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -672,7 +680,6 @@ obj/machinery/light/proc/burn_out()
 		brightness_color = fixture.brightness_color
 		lighting_modes = fixture.lighting_modes.Copy()
 	update_icon()
-
 
 // attack bulb/tube with object
 // if a syringe, can inject fuel to make it explode

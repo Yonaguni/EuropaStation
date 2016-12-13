@@ -168,10 +168,6 @@
 
 	return ..()
 
-/obj/item/gun_assembly/New()
-	..()
-	update_components()
-
 /obj/item/gun_assembly/update_icon()
 
 	icon_state = "blank"
