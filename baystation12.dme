@@ -2130,7 +2130,6 @@
 #include "maps\europa\europa_define.dm"
 #include "maps\katydid\katydid.dm"
 #include "maps\katydid\katydid_define.dm"
-#include "maps\katydid\katydid-4.dmm"
 #include "maps\overmap_example\overmap_example_define.dm"
 #include "maps\~mapsystem\maps.dm"
 #include "~code\global_init.dm"
