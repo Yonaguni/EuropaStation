@@ -8,10 +8,10 @@
 	containername = "\improper Replacement lights"
 
 /decl/hierarchy/supply_pack/engineering/metal50
-	name = "50 metal sheets"
+	name = "50 steel sheets"
 	contains = list(/obj/item/stack/material/steel/fifty)
 	cost = 10
-	containername = "\improper Metal sheets crate"
+	containername = "\improper Steel sheets crate"
 
 /decl/hierarchy/supply_pack/engineering/glass50
 	name = "50 glass sheets"
@@ -183,3 +183,88 @@
 	cost = 10
 	containername = "\improper station painting supplies crate"
 	containertype = /obj/structure/closet/crate
+
+/* Remove these when mining is fixed. */
+/decl/hierarchy/supply_pack/engineering/plasteel
+	name = "20 plasteel crates "
+	contains = list(/obj/item/stack/material/plasteel/twenty)
+	cost = 100
+	containername = "\improper Plasteel crate"
+
+/decl/hierarchy/supply_pack/engineering/rglass
+	name = "50 reinforced glass sheets"
+	contains = list(/obj/item/stack/material/glass/reinforced)
+	cost = 50
+	containername = "\improper Reinforced glass crate"
+
+/decl/hierarchy/supply_pack/engineering/borosilicate
+	name = "50 borosilicate glass sheets"
+	contains = list(/obj/item/stack/material/glass/phoronrglass/fifty)
+	cost = 100
+	containername = "\improper Borosilicate glass crate"
+
+/decl/hierarchy/supply_pack/engineering/osmium
+	name = "50 osmium ingots"
+	contains = list(/obj/item/stack/material/osmium/fifty)
+	cost = 80
+	containername = "\improper Osmium crate"
+
+/decl/hierarchy/supply_pack/engineering/tritium
+	name = "50 tritium ingots"
+	contains = list(/obj/item/stack/material/tritium/fifty)
+	cost = 150
+	containername = "\improper Tritium crate"
+
+/decl/hierarchy/supply_pack/engineering/mhydrogen
+	name = "5 metallic hydrogen crystals "
+	contains = list(/obj/item/stack/material/mhydrogen/five)
+	cost = 300
+	containername = "\improper Metallic hydrogen crate"
+
+/decl/hierarchy/supply_pack/engineering/silver
+	name = "20 silver ingots"
+	contains = list(/obj/item/stack/material/silver/twenty)
+	cost = 180
+	containername = "\improper Silver ingot crate"
+
+/decl/hierarchy/supply_pack/engineering/gold
+	name = "20 gold ingots "
+	contains = list(/obj/item/stack/material/gold/twenty)
+	cost = 220
+	containername = "\improper Gold ingot crate"
+
+/decl/hierarchy/supply_pack/engineering/platnium
+	name = "20 platinum ingots"
+	contains = list(/obj/item/stack/material/platinum/twenty)
+	cost = 300
+	containername = "\improper Platinum ingot crate"
+
+/decl/hierarchy/supply_pack/engineering/uranium
+	name = "20 uranium ingots"
+	contains = list(/obj/item/stack/material/uranium/twenty)
+	cost = 200
+	containername = "\improper Uranium ingot crate"
+
+/decl/hierarchy/supply_pack/engineering/iron
+	name = "50 iron ingots"
+	contains = list(/obj/item/stack/material/iron/fifty)
+	cost = 50
+	containername = "\improper Iron ingot crate"
+
+/decl/hierarchy/supply_pack/engineering/sandstone
+	name = "50 sandstone blocks"
+	contains = list(/obj/item/stack/material/sandstone/fifty)
+	cost = 180
+	containername = "\improper Sandstone block crate"
+
+/decl/hierarchy/supply_pack/engineering/marble
+	name = "50 marble blocks"
+	contains = list(/obj/item/stack/material/marble/fifty)
+	cost = 180
+	containername = "\improper Marble block crate"
+
+/decl/hierarchy/supply_pack/engineering/diamond
+	name = "5 industrial diamonds"
+	contains = list(/obj/item/stack/material/diamond/five)
+	cost = 300
+	containername = "\improper Industrial diamond crate"
