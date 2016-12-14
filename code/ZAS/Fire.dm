@@ -115,7 +115,11 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
+
 	light_color = "#ED9200"
+	light_range = 1
+	light_power = 10
+
 	layer = TURF_LAYER
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
@@ -132,15 +136,13 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	var/datum/gas_mixture/air_contents = my_tile.return_air()
 
+	set_light()
 	if(firelevel > 6)
 		icon_state = "3"
-		set_light(7, 3)
 	else if(firelevel > 2.5)
 		icon_state = "2"
-		set_light(5, 2)
 	else
 		icon_state = "1"
-		set_light(3, 1)
 
 	for(var/mob/living/L in loc)
 		L.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure())  //Burn the mobs!
@@ -178,7 +180,8 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
-	set_light(l_color = color)
+	light_color = color
+	set_light()
 
 /obj/fire/New(newLoc,fl)
 	..()
@@ -191,7 +194,8 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	var/datum/gas_mixture/air_contents = loc.return_air()
 	color = fire_color(air_contents.temperature)
-	set_light(3, 1, color)
+	light_color = color
+	set_light()
 
 	firelevel = fl
 	air_master.active_hotspots.Add(src)

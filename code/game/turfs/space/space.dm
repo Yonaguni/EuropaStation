@@ -18,6 +18,7 @@ var/image/exterior_light_overlay
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	light_color = COLOUR_LTEMP_FLURO_COOL
 	outside = 1
+	var/fling_away
 
 /turf/space/return_air()
 	return new /datum/gas_mixture()
@@ -41,11 +42,14 @@ var/image/exterior_light_overlay
 /turf/space/Entered(var/atom/movable/A)
 	..()
 	if(A && A.loc == src && ticker && ticker.mode)
-
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "mercenary")	return
 		if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
 			A.touch_map_edge()
+		else if(fling_away)
+			var/turf/T = locate(rand(20,world.maxx-20), rand(20,world.maxy-20), fling_away)
+			if(istype(T))
+				A.forceMove(T)
 
 /turf/space/proc/Sandbox_Spacemove(var/atom/movable/A)
 	var/cur_x
