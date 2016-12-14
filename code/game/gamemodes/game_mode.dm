@@ -313,10 +313,12 @@ var/global/list/additional_antag_types = list()
 		if(M.client)
 			clients++
 			if(M.stat != DEAD)
-				surviving_humans++
-				if(using_map.check_escaped(M))
-					if(ishuman(M))
+				surviving_total++
+				if(ishuman(M))
+					surviving_humans++
+					if(using_map.check_escaped(M))
 						escaped_humans++
+				else if(using_map.check_escaped(M))
 					escaped_total++
 			else if(isghost(M))
 				ghosts++
