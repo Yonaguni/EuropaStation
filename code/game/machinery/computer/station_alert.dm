@@ -1,7 +1,7 @@
 
 /obj/machinery/computer/station_alert
 	name = "alert console"
-	desc = "Used to access the station's automated alert system."
+	desc = "Used to access the automated alert system."
 	icon_screen = "alert:0"
 	light_color = "#e6ffff"
 	circuit = /obj/item/circuitboard/stationalert

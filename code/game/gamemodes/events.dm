@@ -170,7 +170,7 @@ var/hadevent    = 0
 					randmutg(H)
 					domutcheck(H,null,MUTCHK_FORCED)
 	sleep(100)
-	command_announcement.Announce("High levels of radiation detected near the station. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 
 
 
@@ -209,7 +209,7 @@ var/hadevent    = 0
 				temp_timer.releasetime = 1
 
 		sleep(150)
-		command_announcement.Announce("Gr3y.T1d3 virus detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")
+		command_announcement.Announce("Gr3y.T1d3 virus detected in [station_name()] imprisonment subroutines. Recommend AI involvement.", "Security Alert")
 	else
 		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
 
@@ -287,9 +287,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			switch(rand(1,14))
 				if(1)
 					M << "<br>"
-					M << "<span class='danger'>THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED</span>"
+					M << "<span class='danger'>THERE ARE [amount] [who2] ON THE [uppertext(station_name())]...LAWS UPDATED</span>"
 					M << "<br>"
-					M.add_ion_law("THERE ARE [amount] [who2] ON THE STATION")
+					M.add_ion_law("THERE ARE [amount] [who2] ON THE [uppertext(station_name())]")
 				if(2)
 					M << "<br>"
 					M << "<span class='danger'>[what2] ARE DANGEROUS TO HUMANS...LAWS UPDATED</span>"
@@ -297,9 +297,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("[what2] ARE DANGEROUS TO HUMANS")
 				if(3)
 					M << "<br>"
-					M << "<span class='danger'>THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION...LAWS UPDATED</span>"
+					M << "<span class='danger'>THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE [uppertext(station_name())]...LAWS UPDATED</span>"
 					M << "<br>"
-					M.add_ion_law("THE ESCAPE SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION")
+					M.add_ion_law("THE ESCAPE SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE [uppertext(station_name())]")
 				if(4)
 					M << "<br>"
 					M << "<span class='danger'>HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE...LAWS UPDATED</span>"
@@ -312,9 +312,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("THE CAPTAIN, HOP AND HOS ARE [who2]")
 				if(6)
 					M << "<br>"
-					M << "<span class='danger'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</span>"
+					M << "<span class='danger'>THE [uppertext(station_name())] IS BUILT FOR [who2]...LAWS UPDATED</span>"
 					M << "<br>"
-					M.add_ion_law("THE STATION IS BUILT FOR [who2]")
+					M.add_ion_law("THE [uppertext(station_name())] IS BUILT FOR [who2]")
 				if(7)
 					M << "<br>"
 					M << "<span class='danger'>YOU ARE [amount] [who2]...LAWS UPDATED</span>"
@@ -352,9 +352,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("[crew] is [allergysev] to [allergy]")
 				if(14)
 					M << "<br>"
-					M << "<span class='danger'>THE STATION IS [who2pref] [who2]...LAWS UPDATED</span>"
+					M << "<span class='danger'>THE [uppertext(station_name())] IS [who2pref] [who2]...LAWS UPDATED</span>"
 					M << "<br>"
-					M.add_ion_law("THE STATION IS [who2pref] [who2]")
+					M.add_ion_law("THE [uppertext(station_name())] IS [who2pref] [who2]")
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in machines)

@@ -152,8 +152,8 @@ AI MODULES
 /******************** ProtectStation ********************/
 
 /obj/item/aiModule/protectStation
-	name = "\improper 'ProtectShip' AI module"
-	desc = "A 'protect station' AI module: 'Protect the vessel against damage. Anyone you see harming the vessel is no longer to be considered a crew member, and is a threat which must be neutralized.'."
+	name = "\improper 'Protect' AI module"
+	desc = "A 'Protect' AI module: 'Protect the vessel against damage. Anyone you see harming the vessel is no longer to be considered a crew member, and is a threat which must be neutralized.'."
  //made of gold
 
 /obj/item/aiModule/protectStation/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)

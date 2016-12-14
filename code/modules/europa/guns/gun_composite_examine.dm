@@ -84,7 +84,7 @@
 	if(dam_type == GUN_TYPE_LASER)
 		result += "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
 			an energy weapon by placing it in a wall-mounted or table-mounted charger, such as those found in Security or around the \
-			station. Additionally, most energy weapons can go straight through windows and hit whatever is on the other side, and are \
+			place. Additionally, most energy weapons can go straight through windows and hit whatever is on the other side, and are \
 			hitscan, making them accurate and useful against distant targets."
 	else
 		result += "This weapon is a ballistic weapon; it fires solid shots using a magazine or loaded rounds of ammunition. You can \

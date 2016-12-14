@@ -114,7 +114,7 @@ var/datum/evacuation_controller/evacuation_controller
 	else
 		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
 	if(config.announce_shuttle_dock_to_irc)
-		send2mainirc("The shuttle has docked with the station. It will depart in approximately [estimated_time] minute\s.")
+		send2mainirc("Evacuation has begun on [station_name()]. It will depart in approximately [estimated_time] minute\s.")
 
 /datum/evacuation_controller/proc/launch_evacuation()
 

@@ -5,7 +5,7 @@
 	filedesc = "Power Monitoring"
 	nanomodule_path = /datum/nano_module/power_monitor/
 	program_icon_state = "power_monitor"
-	extended_desc = "This program connects to sensors around the station to provide information about electrical systems"
+	extended_desc = "This program connects to sensors around the local area to provide information about electrical systems"
 	ui_header = "power_norm.gif"
 	required_access = access_engine
 	requires_ntnet = 1
@@ -35,7 +35,7 @@
 	nanomodule_path = /datum/nano_module/alarm_monitor/engineering
 	ui_header = "alarm_green.gif"
 	program_icon_state = "alert-green"
-	extended_desc = "This program provides visual interface for station's alarm system."
+	extended_desc = "This program provides visual interface for the alarm system."
 	requires_ntnet = 1
 	network_destination = "alarm monitoring network"
 	size = 5
@@ -63,7 +63,7 @@
 	filedesc = "Atmosphere Control"
 	nanomodule_path = /datum/nano_module/atmos_control
 	program_icon_state = "atmos_control"
-	extended_desc = "This program allows remote control of air alarms around the station. This program can not be run on tablet computers."
+	extended_desc = "This program allows remote control of air alarms around the local area. This program can not be run on tablet computers."
 	required_access = access_atmospherics
 	requires_ntnet = 1
 	network_destination = "atmospheric control system"
@@ -76,7 +76,7 @@
 	filedesc = "RCON Remote Control"
 	nanomodule_path = /datum/nano_module/rcon
 	program_icon_state = "generic"
-	extended_desc = "This program allows remote control of power distribution systems around the station. This program can not be run on tablet computers."
+	extended_desc = "This program allows remote control of power distribution systems around the local area. This program can not be run on tablet computers."
 	required_access = access_engine
 	requires_ntnet = 1
 	network_destination = "RCON remote control system"

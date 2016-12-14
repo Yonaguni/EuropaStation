@@ -56,7 +56,7 @@
 		if(ply.current.stat == DEAD)
 			text += "died"
 		else if(isNotStationLevel(ply.current.z))
-			text += "fled the station"
+			text += "fled \the [station_name()]"
 		else
 			text += "survived"
 		if(ply.current.real_name != ply.name)
