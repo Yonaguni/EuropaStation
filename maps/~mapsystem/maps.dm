@@ -118,6 +118,30 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map/proc/show_map_info(var/user)
 	return
 
+/datum/map/proc/check_escaped(var/mob/survivor)
+	var/turf/T = get_turf(survivor)
+	return (T && (T in using_map.admin_levels)) // Still not great but beats the previous hard coded list of safe escape locations
+
+/datum/map/proc/get_round_completion_text(var/mob/player)
+	if(player.stat != DEAD)
+		var/turf/playerTurf = get_turf(player)
+		if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
+			if(isNotAdminLevel(playerTurf.z))
+				return "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [player.real_name]...</b></font>"
+			else
+				return "<font color='green'><b>You managed to survive the events on [station_name()] as [player.real_name].</b></font>"
+		else if(isAdminLevel(playerTurf.z))
+			return "<font color='green'><b>You successfully left the system after events on [station_name()] as [player.real_name].</b></font>"
+		else if(issilicon(player))
+			return "<font color='green'><b>You remained operational after the events on [station_name()] as [player.real_name].</b></font>"
+		else
+			return "<font color='blue'><b>You were left behind after the events on [station_name()] as [player.real_name].</b></font>"
+	if(isghost(player))
+		var/mob/observer/ghost/O = player
+		if(!O.started_as_observer)
+			return  "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+	return "<font color='notice'><b>You kept an eye on the events on [station_name()].</b></font>"
+
 /client/verb/check_map_location()
 
 	set name = "Check Map Location"

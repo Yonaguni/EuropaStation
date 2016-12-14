@@ -13,10 +13,10 @@
 	shuttle_called_message = "Negotiations underway for jumpgate entry. Estimated approval time is %ETA%."
 	shuttle_recall_message = "The scheduled wave jump has been cancelled."
 	emergency_shuttle_docked_message = "Emergency jumpgate plotting complete. Escape pods prepared. Emergency jump will occur in approximately %ETD%. All hands, prepare for departure."
-	emergency_shuttle_leaving_dock = "Emergency wave jump prepared; pods launching. Estimate %ETA% until completion of jump and arrival at %dock_name%."
+	emergency_shuttle_leaving_dock = "Emergency wave jump initiated; pods launching. Estimate %ETA% until completion of jump and arrival at %dock_name%."
 	emergency_shuttle_called_message = "An emergency wave jump has been initiated and escape pods are being prepped. Preparations will be complete in approximately %ETA%"
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
-	evac_controller_type = /datum/evacuation_controller/pods
+	evac_controller_type = /datum/evacuation_controller/pods/ship
 	single_card_authentication = TRUE
 
 	var/ship_prefix = "ICV"
@@ -83,6 +83,8 @@
 	else
 		specific_location = stellar_location.name
 		initial_announcement = "Wave jump complete. The SHIPNAME has safely arrived at [specific_location]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
+	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel until the jump is complete. Estimate %ETA% until leaving orbit and departing for [destination_location.name]."
+	emergency_shuttle_leaving_dock = "Emergency wave jump initiated; pods launching. Please do not depart the vessel. Estimate %ETA% until leaving orbit and departing for [destination_location.name]."
 
 /datum/map/katydid/do_roundstart_intro()
 	. = ..()
@@ -178,3 +180,20 @@
 	katydid.ship_name = newname
 	katydid.full_name = "[katydid.ship_prefix] [katydid.ship_name]"
 	world << "<span class='notice'><b>Naval Command has registered this vessel as the [katydid.full_name]!</b></span>"
+
+/datum/map/katydid/get_round_completion_text(var/mob/player)
+	if(player.stat != DEAD)
+		if(!(player.z in station_levels))
+			if(!issilicon(player))
+				return "<font color='blue'><b>You managed to survive, but were marooned in [specific_location] as [player.real_name] when the [station_name()] departed...</b></font>"
+			return "<font color='blue'><b>You were left in [specific_location] after the events on [station_name()] as [player.real_name].</b></font>"
+
+		if(!issilicon(player))
+			return "<font color='green'><b>You managed to survive the events on [station_name()] as [player.real_name], and escaped with it to [destination_location.name].</b></font>"
+		return "<font color='green'><b>You remained operational as [player.real_name] after the events on [station_name()], and escaped with it to [destination_location.name].</b></font>"
+
+	if(isghost(player))
+		var/mob/observer/ghost/O = player
+		if(!O.started_as_observer)
+			return  "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+	return "<font color='notice'><b>You kept an eye on the events on [station_name()].</b></font>"

@@ -400,26 +400,7 @@ var/global/datum/controller/gameticker/ticker
 	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
-			if(Player.stat != DEAD)
-				var/turf/playerTurf = get_turf(Player)
-				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
-					if(isNotAdminLevel(playerTurf.z))
-						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
-					else
-						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
-				else if(isAdminLevel(playerTurf.z))
-					Player << "<font color='green'><b>You successfully left the system after events on [station_name()] as [Player.real_name].</b></font>"
-				else if(issilicon(Player))
-					Player << "<font color='green'><b>You remained operational after the events on [station_name()] as [Player.real_name].</b></font>"
-				else
-					Player << "<font color='blue'><b>You were left behind after the events on [station_name()] as [Player.real_name].</b></font>"
-			else
-				if(isghost(Player))
-					var/mob/observer/ghost/O = Player
-					if(!O.started_as_observer)
-						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-				else
-					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+			Player << using_map.get_round_completion_text(Player)
 	world << "<br>"
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
