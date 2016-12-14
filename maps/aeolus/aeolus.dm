@@ -3,6 +3,7 @@
 	#include "aeolus-1.dmm"
 	#include "aeolus-2.dmm"
 	#include "aeolus-3.dmm"
+	#include "aeolus-4.dmm"
 	#include "aeolus_lift.dm"
 	#include "aeolus_areas.dm"
 	#include "aeolus_shuttles.dm"

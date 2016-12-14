@@ -145,6 +145,7 @@
 #include "code\controllers\evacuation\evacuation_pods.dm"
 #include "code\controllers\evacuation\evacuation_pods_ship.dm"
 #include "code\controllers\evacuation\evacuation_predicate.dm"
+#include "code\controllers\evacuation\evacuation_ship.dm"
 #include "code\controllers\evacuation\evacuation_shuttle.dm"
 #include "code\controllers\evacuation\~evac.dm"
 #include "code\controllers\Processes\ai.dm"

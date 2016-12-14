@@ -344,8 +344,7 @@ datum/controller/vote
 				if("map")
 					if(!config.allow_map_switching)
 						return 0
-					for(var/name in all_maps)
-						choices.Add(name)
+					choices += votable_maps
 				if("custom")
 					question = sanitizeSafe(input(usr,"What is the vote for?") as text|null)
 					if(!question)	return 0
