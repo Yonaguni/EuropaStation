@@ -19,6 +19,8 @@
 	evac_controller_type = /datum/evacuation_controller/pods/ship
 	single_card_authentication = TRUE
 
+	votable = TRUE
+
 	var/ship_prefix = "ICV"
 	var/ship_name = "Katydid"
 	var/datum/trade_destination/destination_location

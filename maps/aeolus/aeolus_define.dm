@@ -2,6 +2,7 @@
 	name = "Aeolus"
 	full_name = "FTV Aeolus"
 	path = "aeolus"
+	votable = TRUE
 
 	station_levels = list(1)
 	admin_levels = list(1)
@@ -9,11 +10,9 @@
 	player_levels = list(1,3)
 
 	shuttle_docked_message = "Spooling complete. The scheduled wave jump will occur in approximately %ETD%. All hands, please return to the ship and prepare for departure."
-	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel. Estimate %ETA% until clearing the orbit of [stellar_location.name] and departing for [destination_location.name]."
 	shuttle_called_message = "Gravity drive spooling has begun for scheduled wave jump. Estimated completion time is %ETA%."
 	shuttle_recall_message = "The scheduled wave jump has been cancelled."
 	emergency_shuttle_docked_message = "Emergency gravity drive spooling complete. Emergency jump will occur in approximately %ETD%. All hands, prepare for departure."
-	emergency_shuttle_leaving_dock = "Emergency wave jump initiated. Please do not depart the vessel. Estimate %ETA% until clearing the orbit of [stellar_location.name] and departing for [destination_location.name]."
 	emergency_shuttle_called_message = "An emergency wave jump has been initiated. This is not a drill. Immediately return to the vessel and cancel all EVA. Drive spooling will be complete in approximately %ETA%."
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
 	evac_controller_type = /datum/evacuation_controller/ship
@@ -34,6 +33,8 @@
 	else
 		specific_location = stellar_location.name
 		initial_announcement = "Wave jump complete. The [station_name()] has safely arrived at [specific_location]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
+	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel. Estimate %ETA% until clearing the orbit of [stellar_location.name] and departing for [destination_location.name]."
+	emergency_shuttle_leaving_dock = "Emergency wave jump initiated. Please do not depart the vessel. Estimate %ETA% until clearing the orbit of [stellar_location.name] and departing for [destination_location.name]."
 
 /datum/map/aeolus/do_roundstart_intro()
 	. = ..()

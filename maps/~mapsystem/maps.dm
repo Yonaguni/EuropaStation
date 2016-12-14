@@ -1,5 +1,6 @@
 var/datum/map/using_map = new USING_MAP_DATUM
 var/list/all_maps = list()
+var/list/votable_maps = list()
 
 var/const/MAP_HAS_BRANCH = 1	//Branch system for occupations, togglable
 var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
@@ -17,6 +18,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			world.log << "Map '[M]' does not have a defined path, not adding to map list!"
 		else
 			all_maps[M.path] = M
+		if(M.votable)
+			votable_maps += M.path
+
 	return 1
 
 /datum/map
@@ -24,6 +28,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/full_name = "Unnamed Map"
 	proc/setup_map()
 	var/path
+	var/votable = FALSE
 
 	var/list/station_levels = list() // Z-levels the station exists on
 	var/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
