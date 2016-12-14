@@ -88,25 +88,40 @@
 	default_type = "iron"
 	apply_colour = 1
 
+/obj/item/stack/material/iron/fifty
+	amount = 50
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
 	default_type = "sandstone"
+
+/obj/item/stack/material/sandstone/fifty
+	amount = 50
 
 /obj/item/stack/material/marble
 	name = "marble brick"
 	icon_state = "sheet-marble"
 	default_type = "marble"
 
+/obj/item/stack/material/marble/fifty
+	amount = 50
+
 /obj/item/stack/material/diamond
 	name = "diamond"
 	icon_state = "sheet-diamond"
 	default_type = "diamond"
 
+/obj/item/stack/material/diamond/five
+	amount = 5
+
 /obj/item/stack/material/uranium
 	name = "uranium"
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
+
+/obj/item/stack/material/uranium/twenty
+	amount = 20
 
 /obj/item/stack/material/uranium/fifty
 	amount = 50
@@ -124,10 +139,16 @@
 	icon_state = "sheet-gold"
 	default_type = "gold"
 
+/obj/item/stack/material/gold/twenty
+	amount = 20
+
 /obj/item/stack/material/silver
 	name = "silver"
 	icon_state = "sheet-silver"
 	default_type = "silver"
+
+/obj/item/stack/material/silver/twenty
+	amount = 20
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -135,11 +156,17 @@
 	icon_state = "sheet-adamantine"
 	default_type = "platinum"
 
+/obj/item/stack/material/platinum/twenty
+	amount = 20
+
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
 	default_type = "mhydrogen"
+
+/obj/item/stack/material/mhydrogen/five
+	amount = 5
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -183,6 +210,9 @@
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	default_type = "plasteel"
+
+/obj/item/stack/material/plasteel/twenty
+	amount = 20
 
 /obj/item/stack/material/plasteel/fifty
 	amount = 50
@@ -233,6 +263,9 @@
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-phoronrglass"
 	default_type = "rphglass"
+
+/obj/item/stack/material/glass/phoronrglass/fifty
+	amount = 50
 
 /obj/item/stack/material/nullglass
 	name = "nullglass"
