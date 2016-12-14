@@ -80,7 +80,7 @@ var/list/sector_shuttles = list()
 			if (shuttle.in_use)
 				shuttle_status = "Busy."
 			else if (!shuttle.location)
-				shuttle_status = "Standing-by at station."
+				shuttle_status = "Standing-by at dock."
 			else
 				shuttle_status = "Standing-by at offsite location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)

@@ -119,7 +119,7 @@
 				src << "<span class='notice'>Now teleporting.</span>"
 				observer.loc = O.loc
 			else
-				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
+				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the map.</span>"
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
@@ -160,7 +160,7 @@
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
-			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
+			usr << "<span class='danger'>\The [station_name()] is currently exploding. Joining would go poorly.</span>"
 			return
 
 		var/datum/species/S = client.prefs.get_current_species()
@@ -362,7 +362,7 @@
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
-		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
+		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on \the [station_name()]"].", "Arrivals Announcement Computer")
 
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
@@ -372,7 +372,7 @@
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated())
-		dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
+		dat += "<font color='red'><b>\The [station_name()] has been evacuated.</b></font><br>"
 	else if(evacuation_controller.is_evacuating())
 		if(evacuation_controller.emergency_evacuation) // Emergency shuttle is past the point of no recall
 			dat += "<font color='red'>The ship is currently preparing for an emergency jump.</font><br>"
@@ -478,7 +478,7 @@
 /mob/new_player/proc/check_species_allowed(datum/species/S, var/show_alert=1)
 	if(!(S.spawn_flags & SPECIES_CAN_JOIN) && !has_admin_rights())
 		if(show_alert)
-			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
+			src << alert("Your current species, [client.prefs.species], is not available for play.")
 		return 0
 	if(!is_alien_whitelisted(src, S))
 		if(show_alert)

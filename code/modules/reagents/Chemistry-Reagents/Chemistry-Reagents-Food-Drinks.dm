@@ -1639,7 +1639,7 @@
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
 	id = "manhattan_proj"
-	description = "A scientist's drink of choice, for pondering ways to blow up the station."
+	description = "A scientist's drink of choice, for pondering ways to blow something up."
 	taste_description = "death, the destroyer of worlds"
 	color = "#C15D00"
 	strength = 10

@@ -750,7 +750,7 @@ datum
 
 			blueprints
 				steal_target = /obj/item/blueprints
-				explanation_text = "Steal the station's blueprints."
+				explanation_text = "Steal the blueprints."
 				weight = 20
 
 				get_points(var/job)
@@ -797,7 +797,7 @@ datum
 
 			nuke_disk
 				steal_target = /obj/item/disk/nuclear
-				explanation_text = "Steal the station's nuclear authentication disk."
+				explanation_text = "Steal the nuclear authentication disk."
 				weight = 20
 
 				get_points(var/job)
@@ -1218,7 +1218,7 @@ datum
 
 
 		nuclear
-			explanation_text = "Destroy the station with a nuclear device."
+			explanation_text = "Destroy the vessel with a nuclear device."
 
 
 		block
@@ -1450,7 +1450,7 @@ datum
 				return 1
 
 datum/objective/silence
-	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
+	explanation_text = "Do not allow anyone to escape.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 	check_completion()
 		if(!emergency_shuttle.returned())

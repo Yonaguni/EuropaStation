@@ -1,6 +1,6 @@
 /obj/machinery/keycard_auth
 	name = "Keycard Authentication Device"
-	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
+	desc = "This device is used to trigger emergency functions."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
@@ -21,7 +21,7 @@
 	power_channel = ENVIRON
 
 /obj/machinery/keycard_auth/attack_ai(var/mob/user)
-	user << "The station AI is not to interact with these devices."
+	user << "The AI is not to interact with these devices."
 	return
 
 /obj/machinery/keycard_auth/attackby(var/obj/item/W, var/mob/user)

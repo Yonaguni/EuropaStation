@@ -9,7 +9,7 @@ var/datum/antagonist/ert/ert
 	role_text_plural = "Emergency Responders"
 	welcome_text = "As member of the Emergency Response Team, you answer only to your leader and company officials."
 	antag_text = "You are an <b>anti</b> antagonist! Within the rules, \
-		try to save the station and its inhabitants from the ongoing crisis. \
+		try to save the target and its inhabitants from the ongoing crisis. \
 		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \

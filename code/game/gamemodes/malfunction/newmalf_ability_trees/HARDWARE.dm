@@ -65,8 +65,8 @@
 
 /datum/game_mode/malfunction/verb/ai_destroy_station()
 	set category = "Hardware"
-	set name = "Destroy Station"
-	set desc = "Activates or deactivates self destruct sequence of this station. Sequence takes two minutes, and if you are shut down before timer reaches zero it will be cancelled."
+	set name = "Activate Nuke"
+	set desc = "Activates or deactivates self destruct sequence. Sequence takes two minutes, and if you are shut down before timer reaches zero it will be cancelled."
 	var/mob/living/silicon/ai/user = usr
 	var/obj/item/radio/radio = new/obj/item/radio()
 
@@ -82,12 +82,12 @@
 		user.bombing_station = 0
 		return
 
-	var/choice = alert("Really destroy station?", "Station self-destruct", "YES", "NO")
+	var/choice = alert("Really set off the nuke?", "Self-destruct", "YES", "NO")
 	if(choice != "YES")
 		return
 	if(!ability_prechecks(user, 0, 0))
 		return
-	user << "***** STATION SELF-DESTRUCT SEQUENCE INITIATED *****"
+	user << "***** SELF-DESTRUCT SEQUENCE INITIATED *****"
 	user << "Self-destructing in 2 minutes. Use this command again to abort."
 	user.bombing_station = 1
 	set_security_level("delta")

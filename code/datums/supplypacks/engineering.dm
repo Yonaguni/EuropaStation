@@ -181,7 +181,7 @@
 					/obj/item/floor_painter = 2,
 					/obj/item/cable_painter = 2)
 	cost = 10
-	containername = "\improper station painting supplies crate"
+	containername = "painting supplies crate"
 	containertype = /obj/structure/closet/crate
 
 /* Remove these when mining is fixed. */

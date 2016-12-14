@@ -322,7 +322,7 @@
 	power_channel = ENVIRON
 
 /obj/machinery/readybutton/attack_ai(var/mob/user)
-	user << "The station AI is not to interact with these devices!"
+	user << "The AI is not to interact with these devices!"
 	return
 
 /obj/machinery/readybutton/New()
