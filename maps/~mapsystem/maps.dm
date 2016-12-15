@@ -172,7 +172,7 @@ var/map_submerged
 	if(alert("Are you sure you want to drop the map into the ocean?",,"No","Yes") == "No")
 		return
 
-	using_map.ambient_exterior_light = (alert("Do you want the ocean to be dark?",,"No","Yes") == "Yes")
+	using_map.ambient_exterior_light = (alert("Do you want the ocean to be dark?",,"No","Yes") == "No")
 	using_map.ambient_exterior_temperature = ((alert("Do you want the ocean to be freezing?",,"No","Yes") == "Yes") ? 110 : T20C)
 
 	map_submerged = TRUE
@@ -182,3 +182,9 @@ var/map_submerged
 		base_turf_by_z["[i]"] = /turf/simulated/ocean
 		new /datum/random_map/noise/seafloor/replace_space(null,1,1,i,255,255)
 		sleep(50)
+
+	// This list will be empty if this verb is run post-roundstart. This is
+	// used to clean up if it's run before roundstart but after turf init.
+	for(var/thing in init_turfs)
+		var/turf/T = thing
+		T.initialize()
