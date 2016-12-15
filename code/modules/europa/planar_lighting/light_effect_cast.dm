@@ -48,7 +48,7 @@
 	I.icon_state = "overlay"
 	if(is_directional_light())
 		var/turf/next_turf = get_step(src, dir)
-		for(var/i = 1 to 4)
+		for(var/i = 1 to 3)
 			if(CheckOcclusion(next_turf))
 				I.icon_state = "[I.icon_state]_[i]"
 				break
