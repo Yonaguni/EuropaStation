@@ -6,8 +6,7 @@
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
 	var/datum/browser/panel
-	var/datum/browser/agreement
-	var/agreement_closed = 0
+	var/infoClosed = 0 //Has the player closed the mandatory info popup?
 	universal_speak = 1
 
 	invisibility = 101
@@ -24,34 +23,9 @@
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
-	agreement_panel_proc()
+	new_player_panel_proc()
 
-/mob/new_player/proc/agreement_panel_proc()
-	var/output = join_motd
-	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
-	output += file2text("config/rules.html")
-	output += "<p><b>Map info:</b></p>"
-	output += using_map.motd
-	output += {"<br>
-	<br>
-	<div align='center'>
-	<strong>Useful links:</strong>
-	<br>
-	<b><a href='byond://?src=\ref[src];bugtracker_link=1'>Bugtracker</A></b>
-	<b><a href='byond://?src=\ref[src];wiki_link=1'>Wiki</A></b>
-	<b><a href='byond://?src=\ref[src];forum_link=1'>Forum</A></b>
-	<b><a href='byond://?src=\ref[src];changelog_link=1'>Changelog</A></b>
-	<br>
-	This server is running the Europa Station 13 modification of <a href='byond://?src=\ref[src];upstream_link=1'>[config.upstream]</A>'s SS13 code.
-	<p><b><a href='byond://?src=\ref[src];close_agreement=1'>[pick(close)]</A></b></p>
-	</div>"}
-	agreement = new(src, "Welcome to Europa","Welcome to Europa", 768, 768, src)
-	agreement.set_window_options("can_close=0")
-	agreement.set_content(output)
-	agreement.open()
-	return
-
-/mob/new_player/proc/new_player_panel_proc()
+/mob/new_player/verb/new_player_panel_proc()
 	var/output = "<div align='center'>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
@@ -115,26 +89,6 @@
 /mob/new_player/Topic(href, href_list[])
 	if(!client)	return 0
 
-	if(href_list["upstream_link"])
-		src << link(config.upstreamurl)
-
-	if(href_list["bugtracker_link"])
-		src << link(config.githuburl)
-
-	if(href_list["wiki_link"])
-		client.wiki()
-
-	if(href_list["forum_link"])
-		client.forum()
-
-	if(href_list["changelog_link"])
-		client.changes()
-
-	if(href_list["close_agreement"])
-		agreement.close()
-		agreement_closed = 1
-		new_player_panel_proc()
-
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
 		return 1
@@ -145,7 +99,7 @@
 		else
 			ready = 0
 
-	if(href_list["refresh"] && agreement_closed)
+	if(href_list["refresh"])
 		panel.close()
 		new_player_panel_proc()
 
@@ -257,8 +211,8 @@
 	if(!ready && href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
-	else if(!href_list["late_join"] && agreement_closed)
-		new_player_panel_proc()
+	else if(!href_list["late_join"] && client.closed_server_info)
+		new_player_panel()
 
 	if(href_list["showpoll"])
 

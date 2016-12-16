@@ -6,7 +6,6 @@
 	var/datum/admins/deadmin_holder = null
 	var/buildmode		= 0
 
-
 		/////////
 		//OTHER//
 		/////////
@@ -17,6 +16,9 @@
 	var/area			= null
 
 	var/adminhelped = 0
+
+	var/closed_server_info			//Has the client viewed and accepted the server info welcome screen thing? ("EULA")
+	var/datum/browser/infowindow
 
 		///////////////
 		//SOUND STUFF//
