@@ -1,6 +1,6 @@
 /atom/movable/var/waterproof
 
-/obj/machiner/atmospherics
+/obj/machinery/atmospherics
 	waterproof = TRUE
 
 /mob/living/water_act(var/depth)
