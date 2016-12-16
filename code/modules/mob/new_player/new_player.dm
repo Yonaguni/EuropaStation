@@ -30,15 +30,17 @@
 	var/output = join_motd
 	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
 	output += file2text("config/rules.html")
+	output += "<p><b>Map info:</b></p>"
+	output += using_map.motd
 	output += {"<br>
 	<br>
 	<div align='center'>
 	<strong>Useful links:</strong>
 	<br>
-	<strong><a href='byond://?src=\ref[src];bugtracker_link=1'>Bugtracker</A></strong>
-	<strong><a href='byond://?src=\ref[src];wiki_link=1'>Wiki</A></strong>
-	<strong><a href='byond://?src=\ref[src];forum_link=1'>Forum</A></strong>
-	<strong><a href='byond://?src=\ref[src];changelog_link=1'>Changelog</A></strong>
+	<b><a href='byond://?src=\ref[src];bugtracker_link=1'>Bugtracker</A></b>
+	<b><a href='byond://?src=\ref[src];wiki_link=1'>Wiki</A></b>
+	<b><a href='byond://?src=\ref[src];forum_link=1'>Forum</A></b>
+	<b><a href='byond://?src=\ref[src];changelog_link=1'>Changelog</A></b>
 	<br>
 	This server is running the Europa Station 13 modification of <a href='byond://?src=\ref[src];upstream_link=1'>[config.upstream]</A>'s SS13 code.
 	<p><b><a href='byond://?src=\ref[src];close_agreement=1'>[pick(close)]</A></b></p>
