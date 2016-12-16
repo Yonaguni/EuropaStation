@@ -43,6 +43,9 @@
 		update_cast = 1
 		light_obj.update_transform(l_range)
 
+	if(!light_obj.alpha)
+		update_cast = 1
+
 	// Makes sure the obj isn't somewhere weird (like inside the holder). Also calls bleed masking.
 	if(update_cast)
 		light_obj.follow_holder()
