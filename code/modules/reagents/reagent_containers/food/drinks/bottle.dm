@@ -379,6 +379,28 @@
 		..()
 		reagents.add_reagent("cream", 100)
 
+/obj/item/reagent_containers/food/drinks/bottle/eggnog // empty, do not use
+	name = "eggnog"
+	desc = "It's eggnog. Christmas is here already?"
+	icon_state = "nog1"
+	item_state = "carton"
+	center_of_mass = "x=16;y=8"
+	isGlass = 0
+
+/obj/item/reagent_containers/food/drinks/bottle/eggnog/nonalcoholic
+	desc = "It's eggnog. Christmas is here already? This one seems to be non-alcoholic."
+	New()
+		..()
+		reagents.add_reagent("eggnog", 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/eggnog/alcoholic
+	desc = "It's eggnog. Christmas is here already? This one seems to be alcoholic."
+	icon_state = "nog2"
+	New()
+		..()
+		reagents.add_reagent("eggnog", 80)
+		reagents.add_reagent("rum", 20)
+
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "tomato juice"
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."

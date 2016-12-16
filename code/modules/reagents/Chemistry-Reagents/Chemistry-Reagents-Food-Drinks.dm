@@ -593,6 +593,18 @@
 	glass_name = "soy milk"
 	glass_desc = "White and nutritious soy goodness!"
 
+/datum/reagent/drink/milk/eggnog
+	name = "Eggnog"
+	id = "eggnog"
+	description = "A rich, creamy milk punch traditionally made around Christmas."
+	taste_description = "sweet, creamy richness"
+	color = "#CEC6AE"
+	adj_drowsy = 1
+	adj_sleepy = 1
+
+	glass_name = "eggnog"
+	glass_desc = "Rich and warming."
+
 /datum/reagent/drink/tea
 	name = "Tea"
 	id = "tea"

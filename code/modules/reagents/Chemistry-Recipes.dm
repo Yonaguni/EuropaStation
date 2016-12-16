@@ -2102,3 +2102,10 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/soulstone(location)
 	return
+
+/datum/chemical_reaction/eggnog
+	name = "Eggnog"
+	id = "eggnog"
+	result = "eggnog"
+	required_reagents = list("milk" = 2, "cream" = 2, "egg" = 3, "sugar" = 1)
+	result_amount = 8
