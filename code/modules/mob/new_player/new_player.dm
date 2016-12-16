@@ -43,7 +43,6 @@
 	agreement = new(src, "Welcome to Europa","Welcome to Europa", 768, 768, src)
 	agreement.set_window_options("can_close=0")
 	agreement.set_content(output)
-	world.log << output
 	agreement.open()
 	return
 
@@ -111,7 +110,6 @@
 /mob/new_player/Topic(href, href_list[])
 	if(!client)	return 0
 
-	world.log << "Ohyeahbois"
 	world.log << "[href_list["upstream_link"]]"
 
 	if(href_list["upstream_link"])
