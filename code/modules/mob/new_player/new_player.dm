@@ -110,8 +110,6 @@
 /mob/new_player/Topic(href, href_list[])
 	if(!client)	return 0
 
-	world.log << "[href_list["upstream_link"]]"
-
 	if(href_list["upstream_link"])
 		src << link(config.upstreamurl)
 
