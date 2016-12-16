@@ -597,7 +597,7 @@
 	name = "Eggnog"
 	id = "eggnog"
 	description = "A rich, creamy milk punch traditionally made around Christmas."
-	taste_description = "creamy milk"
+	taste_description = "sweet, creamy richness"
 	color = "#CEC6AE"
 	adj_drowsy = 1
 	adj_sleepy = 1
