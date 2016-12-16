@@ -103,6 +103,8 @@ var/list/gamemode_cache = list()
 	var/wikiurl
 	var/forumurl
 	var/githuburl
+	var/upstreamurl
+	var/upstream
 
 	//Alert level description
 	var/alert_desc_green = "All threats have passed. Crew may not have weapons visible, privacy laws are once again fully enforced."
@@ -431,6 +433,12 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("upstreamurl")
+					config.upstreamurl = value
+
+				if ("upstream")
+					config.upstream = value
 
 				if ("ghosts_can_possess_animals")
 					config.ghosts_can_possess_animals = value
