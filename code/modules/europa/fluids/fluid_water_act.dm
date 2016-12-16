@@ -1,5 +1,8 @@
 /atom/movable/var/waterproof
 
+/obj/machiner/atmospherics
+	waterproof = TRUE
+
 /mob/living/water_act(var/depth)
 	..()
 	if(on_fire)
