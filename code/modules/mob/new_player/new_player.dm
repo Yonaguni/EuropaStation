@@ -29,17 +29,20 @@
 /mob/new_player/proc/agreement_panel_proc()
 	var/output = join_motd
 	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
-	output +="<div align='center'>"
-	output += "<strong>Useful links:</strong>"
-	output += "<br>"
-	output += "<strong><a href='byond://?src=\ref[src];bugtracker_link=1'>Bugtracker</A></strong>"
-	output += "<strong><a href='byond://?src=\ref[src];wiki_link=1'>Wiki</A></strong>"
-	output += "<strong><a href='byond://?src=\ref[src];forum_link=1'>Forum</A></strong>"
-	output += "<strong><a href='byond://?src=\ref[src];changelog_link=1'>Changelog</A></strong>"
-	output += "<br>"
-	output += "This server is running the Europa Station 13 modification of <a href='byond://?src=\ref[src];upstream_link=1'>[config.upstream]</A>'s SS13 code."
-	output += "<p><b><a href='byond://?src=\ref[src];close_agreement=1'>[pick(close)]</A></b></p>"
-	output += "</div>"
+	output += file2text("config/rules.html")
+	output += {"<br>
+	<br>
+	<div align='center'>
+	<strong>Useful links:</strong>
+	<br>
+	<strong><a href='byond://?src=\ref[src];bugtracker_link=1'>Bugtracker</A></strong>
+	<strong><a href='byond://?src=\ref[src];wiki_link=1'>Wiki</A></strong>
+	<strong><a href='byond://?src=\ref[src];forum_link=1'>Forum</A></strong>
+	<strong><a href='byond://?src=\ref[src];changelog_link=1'>Changelog</A></strong>
+	<br>
+	This server is running the Europa Station 13 modification of <a href='byond://?src=\ref[src];upstream_link=1'>[config.upstream]</A>'s SS13 code.
+	<p><b><a href='byond://?src=\ref[src];close_agreement=1'>[pick(close)]</A></b></p>
+	</div>"}
 	agreement = new(src, "Welcome to Europa","Welcome to Europa", 768, 768, src)
 	agreement.set_window_options("can_close=0")
 	agreement.set_content(output)
