@@ -277,7 +277,7 @@ var/list/name_to_material
 	is_fusion_fuel = 1
 
 /material/supermatter
-	name = "supermatter"
+	name = "exotic matter"
 	icon_colour = "#FFFF00"
 	radioactivity = 20
 	stack_type = null

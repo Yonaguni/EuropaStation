@@ -26,10 +26,6 @@
 	name = "tank control circuit"
 	path = /obj/item/circuitboard/air_management/tank_control
 
-/datum/autolathe/recipe/circuit/atmosphere/supermatter
-	name = "supermatter core circuit"
-	path = /obj/item/circuitboard/air_management/supermatter_core
-
 /datum/autolathe/recipe/circuit/atmosphere/injector
 	name = "injector control circuit"
 	path = /obj/item/circuitboard/air_management/injector_control

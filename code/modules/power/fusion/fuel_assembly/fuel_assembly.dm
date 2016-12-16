@@ -65,4 +65,4 @@
 	..(newloc, "phoron")
 
 /obj/item/fuel_assembly/supermatter/New(var/newloc)
-	..(newloc, "supermatter")
+	..(newloc, "exotic matter")

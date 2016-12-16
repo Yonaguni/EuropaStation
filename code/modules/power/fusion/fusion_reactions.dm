@@ -105,7 +105,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 
 // VERY UNIDEAL REACTIONS.
 /decl/fusion_reaction/phoron_supermatter
-	p_react = "supermatter"
+	p_react = "exotic matter"
 	s_react = "phoron"
 	energy_consumption = 0
 	energy_production = 5
@@ -130,7 +130,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 			mob.apply_effect(rand(100,200), IRRADIATE)
 
 	for(var/obj/machinery/fusion_fuel_injector/I in range(world.view, origin))
-		if(I.cur_assembly && I.cur_assembly.fuel_type == "supermatter")
+		if(I.cur_assembly && I.cur_assembly.fuel_type == "exotic matter")
 			explosion(get_turf(I), 1, 2, 3)
 			spawn(5)
 				if(I && I.loc)

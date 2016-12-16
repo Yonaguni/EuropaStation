@@ -67,15 +67,15 @@
 	path = /obj/item/storage/box/frags
 
 /datum/uplink_item/item/grenades/supermatter
-	name = "1xSupermatter Grenade"
-	desc = "This grenade contains a small supermatter shard which will delaminate upon activation and pull in nearby objects, irradiate lifeforms, and eventually explode."
+	name = "1xExotic Matter Grenade"
+	desc = "This grenade contains a small shard of poorly understood exotic matter which will delaminate upon activation and pull in nearby objects, irradiate lifeforms, and eventually explode."
 	item_cost = 25
 	antag_roles = list(MODE_MERCENARY = 15)
 	path = /obj/item/grenade/supermatter
 
 /datum/uplink_item/item/grenades/supermatters
-	name = "5xSupermatter Grenades"
-	desc = "These grenades contains a small supermatter shard which will delaminate upon activation and pull in nearby objects, irradiate lifeforms, and eventually explode."
+	name = "5xExotic MatterGrenades"
+	desc = "These grenades contains a small shard of poorly understood exotic matter which will delaminate upon activation and pull in nearby objects, irradiate lifeforms, and eventually explode."
 	item_cost = 60
 	antag_roles = list(MODE_MERCENARY)
 	path = /obj/item/storage/box/supermatters
