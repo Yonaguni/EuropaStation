@@ -36,9 +36,12 @@
 	..(get_turf(holder))
 
 /obj/effect/light/Destroy()
-	moved_event.unregister(holder, src)
-	dir_set_event.unregister(holder, src)
-	destroyed_event.unregister(holder, src)
+	if(moved_event)
+		moved_event.unregister(holder, src)
+	if(dir_set_event)
+		dir_set_event.unregister(holder, src)
+	if(destroyed_event)
+		destroyed_event.unregister(holder, src)
 
 	transform = null
 	appearance = null
@@ -54,7 +57,7 @@
 		T.lumcount = -1
 		T.affecting_lights -= src
 	affecting_turfs.Cut()
-	. = .. ()
+	. = ..()
 
 /obj/effect/light/initialize()
 	..()
@@ -107,3 +110,6 @@
 		if(WEST)
 			pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size
 			pixel_y = -(world.icon_size * light_range) + (world.icon_size / 2)
+
+/obj/effect/light/proc/light_off()
+	alpha = 0

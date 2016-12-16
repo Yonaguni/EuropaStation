@@ -255,9 +255,13 @@ var/global/list/light_bulb_type_cache = list()
 			switch_check()
 	else
 		use_power = 0
-		kill_light()
+		light_off()
 
 	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
+
+/obj/machinery/light/proc/light_off()
+	if(light_obj)
+		light_obj.light_off()
 
 /obj/machinery/light/proc/switch_check()
 	if(status != LIGHT_OK)
