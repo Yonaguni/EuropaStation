@@ -624,6 +624,7 @@
 					/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/limejuice = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/cream = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/eggnog/alcoholic = 5,
 					/obj/item/reagent_containers/food/drinks/cans/tonic = 15,
 					/obj/item/reagent_containers/food/drinks/bottle/cola = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/space_up = 5,

@@ -223,6 +223,18 @@
 	density = 0
 	wall_mounted = 1
 
+/obj/structure/closet/medical_wall/New()
+	..()
+	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/roller(src)
+	switch(rand(1,3))
+		if(1)
+			new /obj/item/storage/firstaid/toxin(src)
+		if(2)
+			new /obj/item/storage/firstaid/fire(src)
+		if(3)
+			new /obj/item/storage/firstaid/o2(src)
+
 /obj/structure/closet/medical_wall/update_icon()
 	if(!opened)
 		icon_state = icon_closed
