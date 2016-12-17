@@ -36,9 +36,10 @@
 	sight |= SEE_TURFS
 	player_list |= src
 
-	//If in the special list, just go
-	//new_player_panel()
-	client.check_server_info()
+	if (client.ckey in acceptedKeys) //Check if they've already clicked the I ACCEPT info window thing, each round once.
+		new_player_panel()
+	else
+		client.check_server_info()
 	spawn(40)
 		if(client)
 			handle_privacy_poll()

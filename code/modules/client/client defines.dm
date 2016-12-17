@@ -17,7 +17,6 @@
 
 	var/adminhelped = 0
 
-	var/closed_server_info			//Has the client viewed and accepted the server info welcome screen thing? ("EULA")
 	var/datum/browser/infowindow
 
 		///////////////

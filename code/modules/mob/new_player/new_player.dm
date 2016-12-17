@@ -6,7 +6,6 @@
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
 	var/datum/browser/panel
-	var/infoClosed = 0 //Has the player closed the mandatory info popup?
 	universal_speak = 1
 
 	invisibility = 101
@@ -211,7 +210,7 @@
 	if(!ready && href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
-	else if(!href_list["late_join"] && client.closed_server_info)
+	else if(!href_list["late_join"])
 		new_player_panel()
 
 	if(href_list["showpoll"])
