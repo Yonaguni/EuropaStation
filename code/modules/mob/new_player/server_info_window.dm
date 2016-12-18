@@ -2,12 +2,16 @@
 	set name = "Server Information"
 	set category = "OOC"
 
+	if (src.infowindow)  //If the user's already viewed the window before just load it again.
+		src.infowindow.open()
+		return
+
 	var/output = join_motd
 	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
-	output += file2text("config/rules.html")
-	output += "<p><b>Map info:</b></p>"
-	output += using_map.motd
-	output += {"<br>
+	output += {"[file2text("config/rules.html")]
+	<p><b>Map info:</b></p>
+	[using_map.motd]
+	<br>
 	<br>
 	<div align='center'>
 	<strong>Useful links:</strong>

@@ -24,6 +24,7 @@
 	set src = usr
 	new_player_panel_proc()
 
+
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
 	output +="<hr>"

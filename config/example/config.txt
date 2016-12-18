@@ -202,19 +202,19 @@ GUEST_BAN
 #SERVERURL server.net:port
 
 ## forum address
-FORUMURL http://example.com
+# FORUMURL http://example.com
 
 ## Wiki address
-WIKIURL http://example.com
+# WIKIURL http://example.com
 
 ## GitHub address
-GITHUBURL https://github.com/example-user/example-repository
+# GITHUBURL https://github.com/example-user/example-repository
 
 ## Upstream Github address - just for things like "This is a modified fork of [Baystation]"
-UPSTREAMURL https://github.com/example-user/example-repository
+# UPSTREAMURL https://github.com/example-user/example-repository
 
 ## Upstream name
-UPSTREAM Baystation12
+# UPSTREAM Baystation12
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://example.com
