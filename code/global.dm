@@ -95,6 +95,8 @@ var/list/IClog     = list()
 var/list/OOClog    = list()
 var/list/adminlog  = list()
 
+var/list/acceptedKeys = list() //A list of ckeys that have viewed the intro-screen this round and accepted joining.
+
 var/list/powernets = list()
 
 var/Debug2 = 0

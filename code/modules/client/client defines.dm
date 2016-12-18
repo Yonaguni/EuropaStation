@@ -18,6 +18,8 @@
 
 	var/adminhelped = 0
 
+	var/datum/browser/infowindow
+
 		///////////////
 		//SOUND STUFF//
 		///////////////
