@@ -6,9 +6,11 @@
 		src.infowindow.open()
 		return
 
-	var/output = join_motd
 	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
-	output += {"[file2text("config/rules.html")]
+	var/output = {"
+	[join_motd]
+	<br>
+	[file2text("config/rules.html")]
 	<p><b>Map info:</b></p>
 	[using_map.motd]
 	<br>
