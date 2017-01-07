@@ -210,6 +210,12 @@ GUEST_BAN
 ## GitHub address
 # GITHUBURL https://github.com/example-user/example-repository
 
+## Upstream Github address - just for things like "This is a modified fork of [Baystation]"
+# UPSTREAMURL https://github.com/example-user/example-repository
+
+## Upstream name
+# UPSTREAM Baystation12
+
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://example.com
 

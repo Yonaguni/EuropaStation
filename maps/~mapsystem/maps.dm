@@ -26,6 +26,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
+	var/motd
 	proc/setup_map()
 	var/path
 	var/votable = FALSE
@@ -89,6 +90,9 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 		map_levels = station_levels.Copy()
 	if(!allowed_jobs)
 		allowed_jobs = subtypesof(/datum/job)
+	motd = 	{"The current map is [full_name].
+			<br>
+			There is no specific information for this map."}
 
 // Used to apply various post-compile procedural effects to the map.
 /datum/map/proc/perform_map_generation()
