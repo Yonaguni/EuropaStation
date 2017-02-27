@@ -3,6 +3,9 @@
 /obj/machinery/atmospherics
 	waterproof = TRUE
 
+/obj/machinery/door
+	waterproof = TRUE
+
 /mob/living/water_act(var/depth)
 	..()
 	if(on_fire)
@@ -35,7 +38,7 @@
 
 // This is really pretty crap and should be overridden for specific machines.
 /obj/machinery/water_act(var/depth)
-	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (depth > FLUID_SHALLOW))
+	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (depth > FLUID_DEEP))
 		ex_act(3)
 
 /obj/item/flame/match/water_act(var/depth)
