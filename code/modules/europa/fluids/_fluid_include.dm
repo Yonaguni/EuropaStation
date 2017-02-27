@@ -12,5 +12,6 @@
 #include "fluid_update.dm"
 #include "fluid_verbs.dm"
 #include "fluid_water_act.dm"
+#include "fluid_structures.dm"
 #include "~fluid.dm"
 
