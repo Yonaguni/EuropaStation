@@ -53,7 +53,7 @@
 	if(key_data)
 		overlays += image('icons/obj/items.dmi', icon_state = "soap_key_overlay")
 
-/obj/item/soap/nanotrasen
+/obj/item/soap/corporate
 	desc = "A cheap bar of soap. Smells of industrial solvents."
 	icon_state = "soapnt"
 

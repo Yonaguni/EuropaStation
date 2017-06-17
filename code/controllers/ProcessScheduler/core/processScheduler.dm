@@ -2,6 +2,8 @@
 var/global/datum/controller/processScheduler/processScheduler
 
 /datum/controller/processScheduler
+
+	name = "Process Scheduler"
 	// Processes known by the scheduler
 	var/tmp/datum/controller/process/list/processes = new
 

@@ -31,7 +31,8 @@ var/list/delayed_garbage = list()
 	for(var/garbage in delayed_garbage)
 		qdel(garbage)
 	delayed_garbage.Cut()
-	delayed_garbage = null
+
+	..()
 
 #ifdef GC_FINDREF
 world/loop_checks = 0

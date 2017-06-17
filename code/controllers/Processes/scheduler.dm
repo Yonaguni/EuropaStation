@@ -11,6 +11,7 @@
 	schedule_interval = 3 SECONDS
 	scheduled_tasks = list()
 	scheduler = src
+	..()
 
 /datum/controller/process/scheduler/doWork()
 	for(last_object in scheduled_tasks)

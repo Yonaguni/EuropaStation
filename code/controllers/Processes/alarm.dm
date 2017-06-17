@@ -17,6 +17,7 @@ var/datum/controller/process/alarm/alarm_manager
 	schedule_interval = 20 // every 2 seconds
 	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
 	alarm_manager = src
+	..()
 
 /datum/controller/process/alarm/doWork()
 	for(last_object in all_handlers)

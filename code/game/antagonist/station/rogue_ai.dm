@@ -1,11 +1,14 @@
 var/datum/antagonist/rogue_ai/malf
 
+/obj/effect/landmark/start/malf
+	name = "malf"
+
 /datum/antagonist/rogue_ai
 	id = MODE_MALFUNCTION
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	mob_path = /mob/living/silicon/ai
-	landmark_id = "Computer"
+	landmark_id = "malf"
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
 	victory_text = "The AI has taken control of all systems."
 	loss_text = "The AI has been shut down!"
@@ -59,7 +62,7 @@ var/datum/antagonist/rogue_ai/malf
 			return 0
 
 		A.setup_for_malf()
-		A.laws = new /datum/ai_laws/nanotrasen/malfunction
+		A.laws = new /datum/ai_laws/corporate/malfunction
 
 
 		var/mob/living/silicon/ai/malf = player.current

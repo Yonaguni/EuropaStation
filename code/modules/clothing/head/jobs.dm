@@ -183,4 +183,3 @@
 	icon_state = "beret_red"
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
-

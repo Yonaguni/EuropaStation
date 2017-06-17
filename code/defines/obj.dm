@@ -88,7 +88,7 @@ var/global/list/PDA_Manifest = list()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Commanding Officer" && heads.len != 1)
+			if(rank == using_map.commanding_role && heads.len != 1)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in security_positions)

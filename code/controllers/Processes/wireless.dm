@@ -26,6 +26,7 @@ var/datum/controller/process/wireless/wirelessProcess
 	failed_connections = new()
 	receiver_list = new()
 	wirelessProcess = src
+	..()
 
 /datum/controller/process/wireless/proc/add_device(var/datum/wifi/receiver/R)
 	if(receiver_list)

@@ -121,8 +121,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		src.lit = 1
 		damtype = "fire"
 		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
-			var/datum/effect/effect/system/reagents_explosion/e = new()
-			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
+			var/datum/effect/system/reagents_explosion/e = new()
+			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), 0, get_turf(src), 0, 0)
 			e.start()
 			qdel(src)
 			return

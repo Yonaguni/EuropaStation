@@ -1,6 +1,7 @@
 var/datum/controller/vote/vote = new()
 
 datum/controller/vote
+	name = "Voting"
 	var/initiator = null
 	var/started_time = null
 	var/time_remaining = 0

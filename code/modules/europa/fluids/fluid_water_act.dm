@@ -6,6 +6,18 @@
 /obj/machinery/door
 	waterproof = TRUE
 
+/obj/machinery/embedded_controller
+	waterproof = TRUE
+
+/obj/machinery/airlock_sensor
+	waterproof = TRUE
+
+/obj/machinery/conveyor
+	waterproof = TRUE
+
+/obj/machinery/conveyor_switch
+	waterproof = TRUE
+
 /mob/living/water_act(var/depth)
 	..()
 	if(on_fire)

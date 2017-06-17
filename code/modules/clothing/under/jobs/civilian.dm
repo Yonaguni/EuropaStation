@@ -82,8 +82,8 @@
 
 
 /obj/item/clothing/under/rank/internalaffairs
-	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
-	name = "Internal Affairs uniform"
+	desc = "The plain, professional attire of a government agent. The collar is <i>immaculately</i> starched."
+	name = "agent uniform"
 	icon_state = "internalaffairs"
 	item_state = "ba_suit"
 	worn_state = "internalaffairs"

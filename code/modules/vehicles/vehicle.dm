@@ -43,9 +43,14 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/New()
+/obj/vehicle/initialize()
 	..()
-	//spawn the cell you want in each vehicle
+	update_icon()
+
+/obj/vehicle/unbuckle_mob()
+	if(buckled_mob && buckled_mob == load)
+		load = null
+	. = ..()
 
 /obj/vehicle/Move()
 	if(world.time > l_move_time + move_delay)

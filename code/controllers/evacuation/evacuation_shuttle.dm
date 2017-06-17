@@ -6,7 +6,7 @@
 
 	var/departed = 0
 	var/autopilot = 1
-	var/datum/shuttle/ferry/emergency/shuttle // Set in shuttle_emergency.dm
+	var/datum/shuttle/autodock/ferry/emergency/shuttle // Set in shuttle_emergency.dm
 	var/shuttle_launch_time
 
 /datum/evacuation_controller/pods/shuttle/has_evacuated()
@@ -20,7 +20,7 @@
 	if(waiting_to_leave())
 		return
 
-	for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+	for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods)
 		if (!pod.arming_controller || pod.arming_controller.armed)
 			pod.move_time = evac_transit_delay
 			pod.launch(src)
@@ -34,6 +34,11 @@
 	departed = 1
 	evac_launch_time = world.time + evac_launch_delay
 	. = ..()
+	// Arm the escape pods.
+	if (emergency_evacuation)
+		for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods)
+			if (pod.arming_controller)
+				pod.arming_controller.arm()
 
 /datum/evacuation_controller/pods/shuttle/call_evacuation(var/mob/user, var/_emergency_evac, var/forced)
 	if(..(user, _emergency_evac, forced, skip_announce=1))
@@ -43,7 +48,7 @@
 		if(emergency_evacuation)
 			evac_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[round(get_eta()/60)] minute\s."))
 		else
-			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
+			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
 
 /datum/evacuation_controller/pods/shuttle/cancel_evacuation()
 	if(..() && shuttle.moving_status != SHUTTLE_INTRANSIT)

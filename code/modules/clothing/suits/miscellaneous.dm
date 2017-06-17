@@ -345,7 +345,7 @@
 	item_state = "leather_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/storage/leather_jacket/nanotrasen
+/obj/item/clothing/suit/storage/leather_jacket/corporate
 	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
 	icon_state = "leather_jacket_nt"
 
@@ -359,7 +359,7 @@
 	icon_closed = "brown_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
+/obj/item/clothing/suit/storage/toggle/brown_jacket/corporate
 	desc = "A brown leather coat. A corporate logo is proudly displayed on the back."
 	icon_state = "brown_jacket_nt"
 	icon_open = "brown_jacket_nt_open"

@@ -81,16 +81,13 @@
 
 // Moves the light overlay to the holder's turf and updates bleeding values accordingly.
 /obj/effect/light/proc/follow_holder()
-	if(lights_master)
-		if(holder && holder.loc)
-			if(holder.loc.loc && ismob(holder.loc))
-				forceMove(holder.loc.loc)
-			else
-				forceMove(holder.loc)
-			follow_holder_dir()
-			cast_light() //lights_master.queue_light(src)
-	else
-		init_lights |= src
+	if(holder && holder.loc)
+		if(holder.loc.loc && ismob(holder.loc))
+			forceMove(holder.loc.loc)
+		else
+			forceMove(holder.loc)
+		follow_holder_dir()
+		cast_light()
 
 /obj/effect/light/proc/is_directional_light()
 	return (holder.light_type == LIGHT_DIRECTIONAL)

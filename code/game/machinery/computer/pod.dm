@@ -152,7 +152,7 @@
 
 /obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied</span>"
+		user << "<span class='warning'>Access denied</span>"
 		return
 	else
 		..()

@@ -189,6 +189,7 @@
 		O.screen_loc = "[cx]:16,[cy]:16"
 		O.maptext = ""
 		O.layer = SCREEN_LAYER+0.01
+		O.update_plane()
 		cx++
 		if (cx > (4+cols))
 			cx = 4
@@ -550,6 +551,7 @@
 				for(var/i in 1 to (isnull(data)? 1 : data))
 					new item_path(src)
 		update_icon()
+		make_exact_fit()
 
 /obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))

@@ -1,6 +1,7 @@
 var/datum/controller/process/turbolift/turbolift_controller
 
 /datum/controller/process/turbolift
+	name = "Turbolifts"
 	var/list/moving_lifts = list()
 
 /datum/controller/process/turbolift/New()

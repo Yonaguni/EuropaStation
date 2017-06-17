@@ -60,8 +60,9 @@
 
 /turf/simulated/New()
 	..()
-	if(istype(loc, /area/chapel))
-		holy = 1
+	var/area/A = get_area(src)
+	if(istype(A))
+		holy = A.holy
 	levelupdate()
 
 /turf/simulated/Destroy()

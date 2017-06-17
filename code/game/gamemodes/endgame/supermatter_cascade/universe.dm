@@ -69,14 +69,8 @@ You have five minutes before the universe collapses. Good l\[\[###!!!-
 
 AUTOMATED ALERT: Link to [command_name()] lost.
 
-The access requirements on the Asteroid Shuttles' consoles have now been revoked.
 "}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
-
-		for(var/obj/machinery/computer/shuttle_control/C in machines)
-			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))
-				C.req_access = list()
-				C.req_one_access = list()
 
 		spawn(5 MINUTES)
 			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
@@ -85,9 +79,8 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
 	for(var/area/A in all_areas)
-		if(!istype(A,/area) || istype(A, /area/space) || istype(A,/area/beach))
+		if(A.ignore_universe_changes)
 			continue
-
 		A.updateicon()
 
 /datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()

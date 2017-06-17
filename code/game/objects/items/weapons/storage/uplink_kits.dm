@@ -151,10 +151,10 @@
 	pack.desc += " 'S' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 1, "nitrogen" = 1, "silicon" = 1))
-	// LSD
-	fill_cigarre_package(pack, list("silicon" = 1.5, "hydrogen" = 1.5))
+	fill_cigarre_package(pack, list("potassium" = 1, "ammonia" = 1, "silicon" = 1))
 
+	// LSD
+	fill_cigarre_package(pack, list("silicon" = 1, "hydrazine" = 1, "anti_toxin" = 1))
 	pack.desc += " 'LSD' has been scribbled on it."
 
 	new /obj/item/flame/lighter/zippo(src)

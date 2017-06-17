@@ -53,9 +53,9 @@
 	icon_state = "ballistic_pistol"
 	variant_chamber = /obj/item/gun_component/chamber/ballistic/pistol
 	variant_grip =    /obj/item/gun_component/grip/pistol/small
-	variant_body =     /obj/item/gun_component/body/pistol/small
+	variant_body =    /obj/item/gun_component/body/pistol/small
 	variant_barrel =  /obj/item/gun_component/barrel/pistol
-	variant_stock = 	null
+	variant_stock = null
 
 /obj/item/gun/composite/premade/pistol/preloaded
 	ammo_type = /obj/item/ammo_magazine/pistol
@@ -93,6 +93,8 @@
 	ammo_type = /obj/item/ammo_magazine/pistol/a38
 
 /obj/item/gun/composite/premade/pistol/a9/silenced
+	desc = "A silenced 9mm holdout pistol. Stylish. Preloaded with one magazine."
+	variant_body = /obj/item/gun_component/body/pistol/small
 	ammo_type = /obj/item/ammo_magazine/pistol/medium
 
 /obj/item/gun/composite/premade/pistol/a9/silenced/New()

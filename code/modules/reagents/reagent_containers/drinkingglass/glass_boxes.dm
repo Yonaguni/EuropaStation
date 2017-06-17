@@ -67,6 +67,7 @@
 
 		for(var/i = 1 to 14)
 			new extra_type(src)
+		make_exact_fit()
 
 /obj/item/storage/box/glass_extras/straws
 	name = "box of straws"

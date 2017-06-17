@@ -2,6 +2,7 @@
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
+	..()
 
 /datum/controller/process/obj/started()
 	..()

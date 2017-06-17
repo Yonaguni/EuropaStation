@@ -3,7 +3,7 @@
 	default_job_type = /datum/job/katydid
 	allowed_jobs = list(
 		/datum/job/katydid/priest,
-		/datum/job/cultural_attache,
+		/datum/job/katydid/tourist,
 		/datum/job/katydid/crew,
 		/datum/job/katydid/crew/gunner,
 		/datum/job/katydid/crew/doctor,
@@ -26,6 +26,20 @@
 	supervisors = "the crew of the ship"
 	outfit_type = /decl/hierarchy/outfit/job/katydid
 	selection_color = "#515151"
+
+/datum/job/katydid/tourist
+	title = "Tourist"
+	outfit_type = /decl/hierarchy/outfit/job/katydid/tourist
+	department = "Civilian"
+	department_flag = CIV
+	faction = "Crew"
+	total_positions = 3
+	spawn_positions = 1
+	supervisors = "your home government"
+	access = list()
+	minimal_access = list()
+	selection_color = "#633d63"
+
 
 /datum/job/katydid/priest
 	title = "Preacher"
@@ -115,46 +129,6 @@
 	access = list(access_medical, access_kitchen)
 	minimal_access = list(access_medical, access_kitchen)
 
-/decl/hierarchy/outfit/job/katydid
-	name = "Passenger"
-	uniform = /obj/item/clothing/under/color/grey
-	id_type = null
-	pda_type = null
-
-/decl/hierarchy/outfit/job/katydid/priest
-	name = "Preacher"
-	uniform = /obj/item/clothing/under/rank/chaplain
-	shoes = /obj/item/clothing/shoes/black
-
-/decl/hierarchy/outfit/job/katydid/crew
-	name = "Crewman"
-	uniform = /obj/item/clothing/under/hireling
-	id_type = /obj/item/card/id
-	pda_type = /obj/item/radio/headset/pda
-
-/decl/hierarchy/outfit/job/katydid/crew/doctor
-	name = "Ship's Doctor"
-	uniform = 	/obj/item/clothing/under/fatigues
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	shoes = /obj/item/clothing/shoes/white
-	pda_type = /obj/item/radio/headset/pda/medical
-
-/decl/hierarchy/outfit/job/katydid/crew/gunner
-	name = "Gunner"
-	pda_type = /obj/item/radio/headset/pda/security
-
-/decl/hierarchy/outfit/job/katydid/crew/firstmate
-	name = "First Mate"
-	pda_type = /obj/item/radio/headset/pda/command
-
-/decl/hierarchy/outfit/job/katydid/crew/captain
-	name = "Captain"
-	pda_type = /obj/item/radio/headset/pda/command
-
-/decl/hierarchy/outfit/job/katydid/crew/captain/equip(mob/living/carbon/human/H, var/rank, var/assignment)
-	. = ..()
-	H.verbs += /mob/living/carbon/human/proc/katydid_captain_rename_ship
-
 /mob/living/carbon/human/proc/katydid_captain_rename_ship()
 
 	set name = "Rename Ship"
@@ -199,3 +173,5 @@
 	name = "Gunner"
 /obj/effect/landmark/start/katydid/doctor
 	name = "Ship Doctor"
+/obj/effect/landmark/start/katydid/tourist
+	name = "Tourist"

@@ -96,18 +96,12 @@
 
 	New()
 		..()
-		if(prob(50))
-			new /obj/item/storage/backpack/security(src)
-		else
-			new /obj/item/storage/backpack/satchel_sec(src)
-		new /obj/item/clothing/head/HoS(src)
-		new /obj/item/clothing/suit/armor/vest/nt(src)
-		new /obj/item/clothing/suit/storage/vest/nt/hos(src)
+		new /obj/item/storage/backpack/security(src)
+		new /obj/item/clothing/head/hos(src)
+		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/under/rank/head_of_security/jensen(src)
-		new /obj/item/clothing/under/rank/head_of_security/corp(src)
 		new /obj/item/clothing/suit/armor/hos/jensen(src)
 		new /obj/item/clothing/suit/armor/hos(src)
-		new /obj/item/clothing/head/HoS/dermal(src)
 		new /obj/item/cartridge/hos(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
@@ -118,7 +112,6 @@
 		new /obj/item/melee/baton/loaded(src)
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/melee/telebaton(src)
-		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		return
 
 
@@ -136,18 +129,9 @@
 
 	New()
 		..()
-		if(prob(50))
-			new /obj/item/storage/backpack/security(src)
-		else
-			new /obj/item/storage/backpack/satchel_sec(src)
-		if(prob(50))
-			new /obj/item/storage/backpack/dufflebag/sec(src)
-		new /obj/item/clothing/suit/armor/vest/nt(src)
-		new /obj/item/clothing/suit/storage/vest/nt/warden(src)
-		new /obj/item/clothing/under/rank/warden(src)
-		new /obj/item/clothing/under/rank/warden/corp(src)
+		new /obj/item/storage/backpack/dufflebag/sec(src)
+		new /obj/item/clothing/under/rank/warden/navyblue(src)
 		new /obj/item/clothing/suit/armor/vest/warden(src)
-		new /obj/item/clothing/head/warden(src)
 		new /obj/item/cartridge/security(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
@@ -157,13 +141,13 @@
 		new /obj/item/reagent_containers/spray/pepper(src)
 		new /obj/item/melee/baton/loaded(src)
 		new /obj/item/storage/box/holobadge(src)
-		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
+		new /obj/item/clothing/head/warden(src)
 		return
 
 
 
 /obj/structure/closet/secure_closet/security
-	name = "security officer's locker"
+	name = "officer's locker"
 	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -174,13 +158,8 @@
 
 	New()
 		..()
-		if(prob(50))
-			new /obj/item/storage/backpack/security(src)
-		else
-			new /obj/item/storage/backpack/satchel_sec(src)
-		if(prob(50))
-			new /obj/item/storage/backpack/dufflebag/sec(src)
-		new /obj/item/clothing/suit/armor/vest/nt(src)
+		new /obj/item/storage/backpack/dufflebag/sec(src)
+		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/head/helmet(src)
 		new /obj/item/storage/belt/security(src)
 		new /obj/item/flash(src)
@@ -190,9 +169,8 @@
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/hailer(src)
-		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/clothing/head/soft/sec/corp(src)
-		new /obj/item/clothing/under/rank/security/corp(src)
+		new /obj/item/clothing/head/soft/sec(src)
+		new /obj/item/clothing/under/rank/security/navyblue(src)
 		return
 
 
@@ -282,8 +260,6 @@
 		new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
 	req_access = list(access_brig)
@@ -296,8 +272,6 @@
 		new /obj/item/clothing/shoes/orange( src )
 		return
 
-
-
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(access_lawyer)
@@ -305,9 +279,6 @@
 	New()
 		..()
 		new /obj/item/clothing/shoes/brown(src)
-		new /obj/item/paper/Court (src)
-		new /obj/item/paper/Court (src)
-		new /obj/item/paper/Court (src)
 		new /obj/item/pen (src)
 		new /obj/item/clothing/suit/judgerobe (src)
 		new /obj/item/clothing/head/powdered_wig (src)
@@ -342,7 +313,7 @@
 
 
 /obj/structure/closet/secure_closet/lawyer
-	name = "internal affairs secure closet"
+	name = "secure legal closet"
 	req_access = list(access_lawyer)
 
 	New()

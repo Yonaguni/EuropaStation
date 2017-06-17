@@ -1,5 +1,6 @@
 // This system defines news that will be displayed in the course of a round.
 // Uses BYOND's type system to put everything into a nice format
+// TODO: complete rewrite.
 
 /datum/news_announcement
 	var

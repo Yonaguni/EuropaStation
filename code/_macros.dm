@@ -70,3 +70,10 @@
 #define map_image_file_name(z_level) "[using_map.path]-[z_level].png"
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+
+// Removes I from list L, and sets I to null if it is now empty
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!L.len) { L = null; } }
+// Adds I to L, initalizing I if necessary
+#define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+
+#define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)

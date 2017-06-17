@@ -22,7 +22,7 @@
 var/global/datum/controller/plants/plant_controller // Set in New().
 
 /datum/controller/plants
-
+	name = "Plants"
 	var/plants_per_tick = PLANTS_PER_TICK
 	var/plant_tick_time = PLANT_TICK_TIME
 	var/list/product_descs = list()         // Stores generated fruit descs.
@@ -35,6 +35,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 	var/processing = 0                      // Off/on.
 
 /datum/controller/plants/New()
+	..()
 	if(plant_controller && plant_controller != src)
 		log_debug("Rebuilding plant controller.")
 		qdel(plant_controller)

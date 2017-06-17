@@ -127,7 +127,7 @@ datum/objective/anti_revolution/demote
 	find_target()
 		..()
 		if(target && target.current)
-			explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [company_name]'s goals. Demote \him[target.current] to assistant."
+			explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote \him[target.current] to assistant."
 		else
 			explanation_text = "Free Objective"
 		return target
@@ -135,7 +135,7 @@ datum/objective/anti_revolution/demote
 	find_target_by_role(role, role_type=0)
 		..(role, role_type)
 		if(target && target.current)
-			explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [company_name]'s goals. Demote \him[target.current] to assistant."
+			explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote \him[target.current] to assistant."
 		else
 			explanation_text = "Free Objective"
 		return target
@@ -220,13 +220,15 @@ datum/objective/hijack
 	explanation_text = "Hijack the emergency shuttle by escaping alone."
 
 	check_completion()
+		if(!get_escape_shuttle_area())
+			return 0
 		if(!owner.current || owner.current.stat)
 			return 0
 		if(!evacuation_controller.has_evacuated())
 			return 0
 		if(issilicon(owner.current))
 			return 0
-		var/area/shuttle = locate(/area/shuttle/escape/centcom)
+		var/area/shuttle = locate(get_escape_shuttle_area())
 		var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
 		for(var/mob/living/player in player_list)
 			if(player.type in protected_mobs)	continue
@@ -248,14 +250,15 @@ datum/objective/block
 			return 0
 		if(!owner.current)
 			return 0
-		var/area/shuttle = locate(/area/shuttle/escape/centcom)
-		var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
-		for(var/mob/living/player in player_list)
-			if(player.type in protected_mobs)	continue
-			if (player.mind)
-				if (player.stat != 2)
-					if (get_turf(player) in shuttle)
-						return 0
+		if(get_escape_shuttle_area())
+			var/area/shuttle = locate(get_escape_shuttle_area())
+			var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
+			for(var/mob/living/player in player_list)
+				if(player.type in protected_mobs)	continue
+				if (player.mind)
+					if (player.stat != 2)
+						if (get_turf(player) in shuttle)
+							return 0
 		return 1
 
 datum/objective/silence
@@ -271,10 +274,8 @@ datum/objective/silence
 			if(player.mind)
 				if(player.stat != DEAD)
 					var/turf/T = get_turf(player)
-					if(!T)	continue
-					switch(T.loc.type)
-						if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
-							return 0
+					if(T && T.loc.type in get_escape_areas())
+						return 0
 		return 1
 
 
@@ -299,20 +300,9 @@ datum/objective/escape
 		if(owner.current.incapacitated(INCAPACITATION_KNOCKOUT|INCAPACITATION_RESTRAINED))
 			return 0
 
-		var/area/check_area = location.loc
-		if(istype(check_area, /area/shuttle/escape/centcom))
+		if(location.loc.type in get_escape_areas())
 			return 1
-		if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod5/centcom))
-			return 1
-		else
-			return 0
-
+		return 0
 
 
 datum/objective/survive
@@ -427,11 +417,10 @@ datum/objective/steal
 		"a functional AI" = /obj/item/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the blueprints" = /obj/item/blueprints,
-		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
+		"a nasa pressure suit" = /obj/item/clothing/suit/space/void,
 		"28 moles of fuel (full tank)" = /obj/item/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
-		"a command insignia" = /obj/item/clothing/accessory/medal/aeolus/captain,
 		"the hypospray" = /obj/item/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
@@ -515,15 +504,7 @@ datum/objective/steal
 					var/turf/T = get_turf(ai)
 					if(istype(T))
 						var/area/check_area = get_area(ai)
-						if(istype(check_area, /area/shuttle/escape/centcom))
-							return 1
-						if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-							return 1
-						if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-							return 1
-						if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-							return 1
-						if(istype(check_area, /area/shuttle/escape_pod5/centcom))
+						if(check_area.type in get_escape_areas())
 							return 1
 			else
 
@@ -593,7 +574,7 @@ datum/objective/heist
 
 datum/objective/heist/kidnap
 	choose_target()
-		var/list/roles = list("Chief of Engineering","Science Officer","Roboticist","Engineering Officer")
+		var/list/roles = list("Chief of Engineering","Scientist","Roboticist","Civil Engineer")
 		var/list/possible_targets = list()
 		var/list/priority_targets = list()
 
@@ -623,14 +604,15 @@ datum/objective/heist/kidnap
 			//if (!target.current.restrained())
 			//	return 0 // They're loose. Close but no cigar.
 
-			var/area/skipjack_station/start/A = locate()
-			for(var/mob/living/carbon/human/M in A)
-				if(target.current == M)
-					return 1 //They're restrained on the shuttle. Success.
+			if(get_heist_area())
+				var/area/A = locate(get_heist_area())
+				for(var/mob/living/carbon/human/M in A)
+					if(target.current == M)
+						return 1 //They're restrained on the shuttle. Success.
 		else
 			return 0
 
-datum/objective/heist/loot
+/datum/objective/heist/loot
 
 	choose_target()
 		var/loot = "an object"
@@ -662,11 +644,12 @@ datum/objective/heist/loot
 
 		var/total_amount = 0
 
-		for(var/obj/O in locate(/area/skipjack_station/start))
-			if(istype(O,target)) total_amount++
-			for(var/obj/I in O.contents)
-				if(istype(I,target)) total_amount++
-			if(total_amount >= target_amount) return 1
+		if(get_heist_area())
+			for(var/obj/O in locate(get_heist_area()))
+				if(istype(O,target)) total_amount++
+				for(var/obj/I in O.contents)
+					if(istype(I,target)) total_amount++
+				if(total_amount >= target_amount) return 1
 
 		for(var/datum/mind/raider in raiders.current_antagonists)
 			if(raider.current)
@@ -708,18 +691,19 @@ datum/objective/heist/salvage
 
 		var/total_amount = 0
 
-		for(var/obj/item/O in locate(/area/skipjack_station/start))
+		if(get_heist_area())
+			for(var/obj/item/O in locate(get_heist_area()))
 
-			var/obj/item/stack/material/S
-			if(istype(O,/obj/item/stack/material))
-				if(O.name == target)
-					S = O
-					total_amount += S.get_amount()
-			for(var/obj/I in O.contents)
-				if(istype(I,/obj/item/stack/material))
-					if(I.name == target)
-						S = I
+				var/obj/item/stack/material/S
+				if(istype(O,/obj/item/stack/material))
+					if(O.name == target)
+						S = O
 						total_amount += S.get_amount()
+				for(var/obj/I in O.contents)
+					if(istype(I,/obj/item/stack/material))
+						if(I.name == target)
+							S = I
+							total_amount += S.get_amount()
 
 		for(var/datum/mind/raider in raiders.current_antagonists)
 			if(raider.current)
@@ -785,7 +769,7 @@ datum/objective/heist/salvage
 	for(var/datum/mind/cult_mind in cult.current_antagonists)
 		if (cult_mind.current && cult_mind.current.stat!=2)
 			var/area/A = get_area(cult_mind.current )
-			if ( is_type_in_list(A, centcom_areas))
+			if (is_type_in_list(A, get_centcom_areas()))
 				acolytes_survived++
 	if(acolytes_survived >= target_amount)
 		return 0

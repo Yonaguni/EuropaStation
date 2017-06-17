@@ -1,3 +1,8 @@
+/obj/machinery/computer/shuttle_control/merc
+	name = "mercenary submarine control console"
+	req_access = list(access_syndicate)
+	shuttle_tag = "Mercenary"
+
 /obj/item/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/items.dmi'
@@ -182,7 +187,7 @@
 
 /obj/item/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
-	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
+	var/obj/machinery/computer/shuttle_control/merc/home = null
 
 /obj/item/pinpointer/nukeop/attack_self(var/mob/user)
 	if(!active)

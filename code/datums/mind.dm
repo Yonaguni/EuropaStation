@@ -433,7 +433,7 @@
 		brigged_since = -1
 		return 0
 	var/is_currently_brigged = 0
-	if(istype(T.loc,/area/security/brig))
+	if(get_brig_area() && istype(T.loc,get_brig_area()))
 		is_currently_brigged = 1
 		for(var/obj/item/card/id/card in current)
 			is_currently_brigged = 0

@@ -28,7 +28,7 @@
 	name = "electric engine"
 	desc = "A battery-powered engine used to power a small vehicle."
 	icon_state = "engine_electric"
-	trail_type = /datum/effect/effect/system/trail/ion
+	trail_type = /datum/effect/system/trail/ion
 	cost_per_move = 200	// W
 	var/obj/item/cell/cell
 
@@ -72,7 +72,7 @@
 	name = "thermal engine"
 	desc = "A fuel-powered engine used to power a small vehicle."
 	icon_state = "engine_fuel"
-	trail_type = /datum/effect/effect/system/trail/thermal
+	trail_type = /datum/effect/system/trail/thermal
 	flags = OPENCONTAINER
 	var/obj/temp_reagents_holder
 	var/fuel_points = 0

@@ -13,7 +13,7 @@
 	icon_state = "skrell_helmet_black"
 
 /obj/item/clothing/suit/space/skrell
-	name = "Skrellian voidsuit"
+	name = "Skrellian pressure suit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
 	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/storage/ore,/obj/item/t_scanner,/obj/item/pickaxe, /obj/item/rcd)

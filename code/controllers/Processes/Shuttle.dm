@@ -4,6 +4,7 @@
 
 	if(!shuttle_controller)
 		shuttle_controller = new
+	..()
 
 /datum/controller/process/Shuttle/doWork()
 	shuttle_controller.process()

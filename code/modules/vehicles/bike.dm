@@ -30,9 +30,13 @@ var/list/bike_cache = list()
 	var/bike_icon = "bike"
 	var/idle_sound = 'sound/misc/bike_idle.ogg'
 	var/start_sound = 'sound/misc/bike_start.ogg'
-	var/datum/effect/effect/system/ion_trail_follow/ion
+	var/datum/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
 	var/collision_cooldown
+
+/obj/vehicle/bike/initialize()
+	..()
+	update_icon()
 
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
@@ -73,7 +77,8 @@ var/list/bike_cache = list()
 
 /obj/vehicle/bike/load(var/atom/movable/C)
 	var/mob/living/M = C
-	if(!istype(C)) return 0
+	if(!istype(M))
+		return 0
 	if(M.buckled || M.restrained() || !Adjacent(M) || !M.Adjacent(src))
 		return 0
 	return ..(M)

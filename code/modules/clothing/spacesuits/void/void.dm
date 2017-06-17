@@ -25,7 +25,7 @@
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void
-	name = "voidsuit"
+	name = "pressure suit"
 	icon_state = "void"
 	item_state = "syndie_hardsuit"
 	w_class = 5//bulky item
@@ -160,7 +160,7 @@
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 
-	set name = "Eject Voidsuit Tank"
+	set name = "Eject Suit Tank"
 	set category = "Object"
 	set src in usr
 

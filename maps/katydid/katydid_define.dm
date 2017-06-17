@@ -7,6 +7,7 @@
 	admin_levels = list(2)
 	contact_levels = list(1,3)
 	player_levels = list(1,3)
+	use_overmap = TRUE
 
 	shuttle_docked_message = "Jumpgate control reports that departure can occur in approximately %ETD%. All hands, please prepare for departure."
 	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel until the jump is complete. Estimate %ETA% until jump completion and arrival at %dock_name%."
@@ -18,6 +19,8 @@
 	emergency_shuttle_recall_message = "The emergency wave jump has been cancelled."
 	evac_controller_type = /datum/evacuation_controller/pods/ship
 	single_card_authentication = TRUE
+
+	commanding_role = "Captain"
 
 	votable = TRUE
 
@@ -159,7 +162,23 @@
 		around Callisto, but carries freight all over Sol at the behest of whichever captain has decided to \
 		charter her this month."
 
-// Defined here so I can add it to the admin verbs.
+/datum/map/katydid/get_round_completion_text(var/mob/player)
+	if(player.stat != DEAD)
+		if(!(player.z in station_levels))
+			if(!issilicon(player))
+				return "<font color='blue'><b>You managed to survive, but were marooned in [specific_location] as [player.real_name] when the [station_name()] departed...</b></font>"
+			return "<font color='blue'><b>You were left in [specific_location] after the events on [station_name()] as [player.real_name].</b></font>"
+
+		if(!issilicon(player))
+			return "<font color='green'><b>You managed to survive the events on [station_name()] as [player.real_name], and escaped with it to [destination_location.name].</b></font>"
+		return "<font color='green'><b>You remained operational as [player.real_name] after the events on [station_name()], and escaped with it to [destination_location.name].</b></font>"
+
+	if(isghost(player))
+		var/mob/observer/ghost/O = player
+		if(!O.started_as_observer)
+			return  "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+	return "<font color='notice'><b>You kept an eye on the events on [station_name()].</b></font>"
+
 /datum/admins/proc/katydid_rename_ship()
 	set category = "Admin"
 	set desc = "Forcibly rename the ship."
@@ -183,19 +202,5 @@
 	katydid.full_name = "[katydid.ship_prefix] [katydid.ship_name]"
 	world << "<span class='notice'><b>Naval Command has registered this vessel as the [katydid.full_name]!</b></span>"
 
-/datum/map/katydid/get_round_completion_text(var/mob/player)
-	if(player.stat != DEAD)
-		if(!(player.z in station_levels))
-			if(!issilicon(player))
-				return "<font color='blue'><b>You managed to survive, but were marooned in [specific_location] as [player.real_name] when the [station_name()] departed...</b></font>"
-			return "<font color='blue'><b>You were left in [specific_location] after the events on [station_name()] as [player.real_name].</b></font>"
-
-		if(!issilicon(player))
-			return "<font color='green'><b>You managed to survive the events on [station_name()] as [player.real_name], and escaped with it to [destination_location.name].</b></font>"
-		return "<font color='green'><b>You remained operational as [player.real_name] after the events on [station_name()], and escaped with it to [destination_location.name].</b></font>"
-
-	if(isghost(player))
-		var/mob/observer/ghost/O = player
-		if(!O.started_as_observer)
-			return  "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-	return "<font color='notice'><b>You kept an eye on the events on [station_name()].</b></font>"
+/datum/map/katydid/update_locations()
+	stellar_location = pick(all_trade_destinations)

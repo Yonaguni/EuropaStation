@@ -224,12 +224,12 @@ var/const/NO_EMAG_ACT = -50
 	access = list(access_syndicate, access_external_airlocks)
 
 /obj/item/card/id/captains_spare
-	name = "captain's spare ID"
+	name = "director's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Commanding Officer"
-	assignment = "Commanding Officer"
+	registered_name = "Colony Director"
+	assignment = "Colony Director"
 /obj/item/card/id/captains_spare/New()
 	access = get_all_station_access()
 	..()

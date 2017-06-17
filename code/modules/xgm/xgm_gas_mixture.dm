@@ -477,3 +477,15 @@
 			gasmix.multiply(gasmix.volume)
 
 	return 1
+
+/datum/gas_mixture/proc/get_total_moles()
+	return total_moles * group_multiplier
+
+/datum/gas_mixture/proc/get_mass()
+	for(var/g in gas)
+		. += gas[g] * gas_data.molar_mass[g] * group_multiplier
+
+/datum/gas_mixture/proc/specific_mass()
+	var/M = get_total_moles()
+	if(M)
+		return get_mass()/M

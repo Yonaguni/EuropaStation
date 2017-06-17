@@ -221,12 +221,12 @@
 			return
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/radio/headset/pda))
 		if(!check_access(W))
-			user << "<span class='warning'>Access Denied.</span>"
+			user << "<span class='warning'>Access denied.</span>"
 			return
 		if((!locked) || (isnull(occupant)))
 			return
 		if((occupant.health < -20) && (occupant.stat != 2))
-			user << "<span class='warning'>Access Refused.</span>"
+			user << "<span class='warning'>Access refused.</span>"
 			return
 		else
 			locked = 0

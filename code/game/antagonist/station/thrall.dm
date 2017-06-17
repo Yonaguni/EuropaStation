@@ -33,4 +33,5 @@ var/datum/antagonist/thrall/thralls
 /datum/antagonist/thrall/greet(var/datum/mind/player)
 	. = ..()
 	var/mob/living/controller = thrall_controllers["\ref[player]"]
-	player << "<span class='danger'>Your will has been subjugated by that of [controller.real_name]. Obey them in all things.</span>"
+	if(controller)
+		player << "<span class='danger'>Your will has been subjugated by that of [controller.real_name]. Obey them in all things.</span>"

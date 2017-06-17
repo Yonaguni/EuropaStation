@@ -1,14 +1,14 @@
 var/datum/antagonist/raider/raiders
 
 /obj/effect/landmark/start/raider
-	name = "voxstart"
+	name = "raider"
 
 /datum/antagonist/raider
 	id = MODE_RAIDER
 	role_text = "Raider"
 	role_text_plural = "Raiders"
 	antag_indicator = "mutineer"
-	landmark_id = "voxstart"
+	landmark_id = "raider"
 	welcome_text = "Use :H to talk on your encrypted channel."
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_VOTABLE | ANTAG_SET_APPEARANCE | ANTAG_HAS_LEADER
 	antaghud_indicator = "hudmutineer"
@@ -176,7 +176,7 @@ var/datum/antagonist/raider/raiders
 		return 0
 
 	for(var/datum/mind/player in current_antagonists)
-		if(!player.current || get_area(player.current) != locate(/area/skipjack_station/start))
+		if(!get_heist_area() || !player.current || get_area(player.current) != locate(get_heist_area()))
 			return 0
 	return 1
 

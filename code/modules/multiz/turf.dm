@@ -23,7 +23,9 @@
 	..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
-	if(below) queue_open_turf_update(src)
+	if(below)
+		need_appearance_update = 1
+		queue_open_turf_update(src)
 
 /turf/simulated/open/flooded
 	name = "abyss"

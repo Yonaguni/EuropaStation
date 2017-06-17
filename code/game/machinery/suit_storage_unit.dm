@@ -37,7 +37,7 @@
 	req_access = list(access_eva)
 
 /obj/machinery/suit_storage_unit/atmos
-	name = "Atmospherics Voidsuit Storage Unit"
+	name = "Atmospherics Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/atmos
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -45,7 +45,7 @@
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/engineering
-	name = "Engineering Voidsuit Storage Unit"
+	name = "Engineering Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/engineering
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/engineering
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -53,7 +53,7 @@
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/medical
-	name = "Medical Voidsuit Storage Unit"
+	name = "Medical Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/medical
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/medical
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -61,7 +61,7 @@
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/mining
-	name = "Mining Voidsuit Storage Unit"
+	name = "Mining Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/mining
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/mining
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -69,7 +69,7 @@
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/security
-	name = "Security Voidsuit Storage Unit"
+	name = "Security Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/security
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/security
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -77,7 +77,7 @@
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/merc
-	name = "Nonstandard Voidsuit Storage Unit"
+	name = "Nonstandard Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/merc
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/merc
 	MASK_TYPE = /obj/item/clothing/mask/breath
@@ -624,7 +624,7 @@
 /obj/machinery/suit_cycler
 
 	name = "suit cycler"
-	desc = "An industrial machine for painting and refitting voidsuits."
+	desc = "An industrial machine for painting and refitting pressure suits."
 	anchored = 1
 	density = 1
 
@@ -639,7 +639,7 @@
 	var/radiation_level = 2 // 1 is removing germs, 2 is removing blood, 3 is removing phoron.
 	var/model_text = ""     // Some flavour text for the topic box.
 	var/locked = 1          // If locked, nothing can be taken from or added to the cycler.
-	var/can_repair          // If set, the cycler can repair voidsuits.
+	var/can_repair          // If set, the cycler can repair suits.
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
@@ -776,7 +776,7 @@
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
-			user << "You cannot refit a customised voidsuit."
+			user << "You cannot refit a customised suit."
 			return
 
 		user << "You fit \the [I] into the suit cycler."
@@ -795,11 +795,11 @@
 			return
 
 		if(suit)
-			user << "<span class='danger'>The cycler already contains a voidsuit.</span>"
+			user << "<span class='danger'>The cycler already contains a suit.</span>"
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
-			user << "You cannot refit a customised voidsuit."
+			user << "You cannot refit a customised suit."
 			return
 
 		user << "You fit \the [I] into the suit cycler."
@@ -1042,65 +1042,65 @@
 	switch(target_department)
 		if("Engineering")
 			if(helmet)
-				helmet.name = "engineering voidsuit helmet"
+				helmet.name = "engineering pressure suit helmet"
 				helmet.icon_state = "rig0-engineering"
 				helmet.item_state = "eng_helm"
 			if(suit)
-				suit.name = "engineering voidsuit"
+				suit.name = "engineering pressure suit"
 				suit.icon_state = "rig-engineering"
-				suit.item_state = "eng_voidsuit"
+				suit.item_state = "eng_pressure suit"
 		if("Mining")
 			if(helmet)
-				helmet.name = "mining voidsuit helmet"
+				helmet.name = "mining pressure suit helmet"
 				helmet.icon_state = "rig0-mining"
 				helmet.item_state = "mining_helm"
 			if(suit)
-				suit.name = "mining voidsuit"
+				suit.name = "mining pressure suit"
 				suit.icon_state = "rig-mining"
 				suit.item_state = "mining_voidsuit"
 		if("Science")
 			if(helmet)
-				helmet.name = "excavation voidsuit helmet"
+				helmet.name = "excavation pressure suit helmet"
 				helmet.icon_state = "rig0-excavation"
 				helmet.item_state = "excavation_helm"
 			if(suit)
-				suit.name = "excavation voidsuit"
+				suit.name = "excavation pressure suit"
 				suit.icon_state = "rig-excavation"
 				suit.item_state = "excavation_voidsuit"
 		if("Medical")
 			if(helmet)
-				helmet.name = "medical voidsuit helmet"
+				helmet.name = "medical pressure suit helmet"
 				helmet.icon_state = "rig0-medical"
 				helmet.item_state = "medical_helm"
 			if(suit)
-				suit.name = "medical voidsuit"
+				suit.name = "medical pressure suit"
 				suit.icon_state = "rig-medical"
 				suit.item_state = "medical_voidsuit"
 		if("Security")
 			if(helmet)
-				helmet.name = "security voidsuit helmet"
+				helmet.name = "security pressure suit helmet"
 				helmet.icon_state = "rig0-sec"
 				helmet.item_state = "sec_helm"
 			if(suit)
-				suit.name = "security voidsuit"
+				suit.name = "security pressure suit"
 				suit.icon_state = "rig-sec"
 				suit.item_state = "sec_voidsuit"
 		if("Atmos")
 			if(helmet)
-				helmet.name = "atmospherics voidsuit helmet"
+				helmet.name = "atmospherics pressure suit helmet"
 				helmet.icon_state = "rig0-atmos"
 				helmet.item_state = "atmos_helm"
 			if(suit)
-				suit.name = "atmospherics voidsuit"
+				suit.name = "atmospherics pressure suit"
 				suit.icon_state = "rig-atmos"
 				suit.item_state = "atmos_voidsuit"
 		if("^%###^%$" || "Mercenary")
 			if(helmet)
-				helmet.name = "blood-red voidsuit helmet"
+				helmet.name = "blood-red pressure suit helmet"
 				helmet.icon_state = "rig0-syndie"
 				helmet.item_state = "syndie_helm"
 			if(suit)
-				suit.name = "blood-red voidsuit"
+				suit.name = "blood-red pressure suit"
 				suit.item_state = "syndie_voidsuit"
 				suit.icon_state = "rig-syndie"
 

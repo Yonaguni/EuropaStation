@@ -16,6 +16,7 @@
 	variant_barrel = /obj/item/gun_component/barrel/smg/a10
 
 /obj/item/gun/composite/premade/smg/a10/preloaded
+	desc = "A vicious 10mm submachine gun. Preloaded with one magazine."
 	ammo_type = /obj/item/ammo_magazine/submachine/large
 
 /obj/item/gun/composite/premade/smg/a45

@@ -197,7 +197,7 @@
 /datum/poster/bay_41
 	icon_state="bsposter41"
 	name = "Professional work environment"
-	desc = "A safety poster featuring a green haired woman in a shimmering blue dress. \"As an Internal Affairs Agent, your job is to create a fair and agreeable work environment for the crewmembers, as discreetly and professionally as possible.\""
+	desc = "A safety poster featuring a green haired woman in a shimmering blue dress. \"As an agent of the Sol government, your job is to create a fair and agreeable work environment for the crewmembers, as discreetly and professionally as possible.\""
 
 /datum/poster/bay_42
 	icon_state="bsposter42"

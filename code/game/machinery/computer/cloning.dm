@@ -272,7 +272,7 @@
 					src.temp = "Record deleted."
 					src.menu = 2
 				else
-					src.temp = "Access Denied."
+					src.temp = "Access denied."
 
 	else if (href_list["disk"]) //Load or eject.
 		switch(href_list["disk"])

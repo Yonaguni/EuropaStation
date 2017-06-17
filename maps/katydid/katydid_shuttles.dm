@@ -1,87 +1,106 @@
-/datum/shuttle/ferry/escape_pod/escape_pod_one
-	name = "Escape Pod 1"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod1/station
-	area_offsite = /area/shuttle/escape_pod1/centcom
-	area_transition = /area/shuttle/escape_pod1/transit
-	docking_controller_tag = "escape_pod_1"
-	dock_target_station = "escape_pod_1_berth"
-	transit_direction = NORTH
-
-/datum/shuttle/ferry/escape_pod/escape_pod_two
-	name = "Escape Pod 2"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod2/station
-	area_offsite = /area/shuttle/escape_pod2/centcom
-	area_transition = /area/shuttle/escape_pod2/transit
-	docking_controller_tag = "escape_pod_2"
-	dock_target_station = "escape_pod_2_berth"
-	transit_direction = NORTH
-
-/datum/shuttle/ferry/escape_pod/escape_pod_three
-	name = "Escape Pod 3"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod3/station
-	area_offsite = /area/shuttle/escape_pod3/centcom
-	area_transition = /area/shuttle/escape_pod3/transit
-	docking_controller_tag = "escape_pod_3"
-	dock_target_station = "escape_pod_3_berth"
-	transit_direction = NORTH
-
-/datum/shuttle/ferry/escape_pod/escape_pod_four
-	name = "Escape Pod 4"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod4/station
-	area_offsite = /area/shuttle/escape_pod4/centcom
-	area_transition = /area/shuttle/escape_pod4/transit
-	docking_controller_tag = "escape_pod_4"
-	dock_target_station = "escape_pod_4_berth"
-	transit_direction = SOUTH
-
-/datum/shuttle/ferry/escape_pod/escape_pod_five
-	name = "Escape Pod 5"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod5/station
-	area_offsite = /area/shuttle/escape_pod5/centcom
-	area_transition = /area/shuttle/escape_pod5/transit
-	docking_controller_tag = "escape_pod_5"
-	dock_target_station = "escape_pod_5_berth"
-	transit_direction = SOUTH
-
-/datum/shuttle/ferry/escape_pod/escape_pod_six
-	name = "Escape Pod 6"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod6/station
-	area_offsite = /area/shuttle/escape_pod6/centcom
-	area_transition = /area/shuttle/escape_pod6/transit
-	docking_controller_tag = "escape_pod_6"
-	dock_target_station = "escape_pod_6_berth"
-	transit_direction = SOUTH
-
-/datum/shuttle/ferry/supply/cargo
-	name = "Supply"
+// Cargo.
+/datum/shuttle/autodock/ferry/supply/europa
+	name = "Supply Pod"
 	location = 1
 	warmup_time = 10
-	area_offsite = /area/supply/dock
-	area_station = /area/supply/station
-	docking_controller_tag = "supply_shuttle"
-	dock_target_station = "cargo_bay"
+	shuttle_area = /area/shuttle/katydid/cargo
+	waypoint_offsite = "nav_cargo_start"
+	waypoint_station = "nav_cargo_station"
+	dock_target = "cargo_bay"
 
-/datum/shuttle/ferry/expedition
-	name = "Expedition"
-	warmup_time = 10
-	area_offsite = /area/shuttle/mining/outpost
-	area_station = /area/shuttle/mining/station
-	docking_controller_tag = "mining_shuttle"
-	dock_target_station = "mining_shuttle_dock"
+/obj/effect/shuttle_landmark/supply/offsite
+	name = "Offsite Loading Bay"
+	landmark_tag = "nav_cargo_start"
+	base_area = /area/space
 
-/obj/machinery/computer/shuttle_control/expedition
+/obj/effect/shuttle_landmark/supply/onsite
+	name = "Cargo Bay"
+	landmark_tag = "nav_cargo_station"
+	base_area = /area/space
+	docking_controller = "supply_shuttle"
+
+/obj/effect/shuttle_landmark/escape_pod/start
+	base_area = /area/space
+
+/obj/effect/shuttle_landmark/escape_pod/out
+	base_area = /area/space
+
+/obj/effect/shuttle_landmark/escape_pod/transit
+	base_area = /area/space
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid
+	shuttle_area = /area/shuttle/katydid/pod/one
+	pod_number = 1
+
+/obj/effect/shuttle_landmark/escape_pod/start/one
+	pod_number = 1
+
+/obj/effect/shuttle_landmark/escape_pod/out/one
+	pod_number = 1
+/obj/effect/shuttle_landmark/escape_pod/transit/one
+	pod_number = 1
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid/pod_two
+	shuttle_area = /area/shuttle/katydid/pod/two
+	pod_number = 2
+/obj/effect/shuttle_landmark/escape_pod/start/two
+	pod_number = 2
+/obj/effect/shuttle_landmark/escape_pod/out/two
+	pod_number = 2
+/obj/effect/shuttle_landmark/escape_pod/transit/two
+	pod_number = 2
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid/pod_three
+	shuttle_area = /area/shuttle/katydid/pod/three
+	pod_number = 3
+/obj/effect/shuttle_landmark/escape_pod/start/three
+	pod_number = 3
+/obj/effect/shuttle_landmark/escape_pod/out/three
+	pod_number = 3
+/obj/effect/shuttle_landmark/escape_pod/transit/three
+	pod_number = 3
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid/pod_four
+	shuttle_area = /area/shuttle/katydid/pod/four
+	pod_number = 4
+/obj/effect/shuttle_landmark/escape_pod/start/four
+	pod_number = 4
+/obj/effect/shuttle_landmark/escape_pod/out/four
+	pod_number = 4
+/obj/effect/shuttle_landmark/escape_pod/transit/four
+	pod_number = 4
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid/pod_five
+	shuttle_area = /area/shuttle/katydid/pod/five
+	pod_number = 5
+/obj/effect/shuttle_landmark/escape_pod/start/five
+	pod_number = 5
+/obj/effect/shuttle_landmark/escape_pod/out/five
+	pod_number = 5
+/obj/effect/shuttle_landmark/escape_pod/transit/five
+	pod_number = 5
+
+/datum/shuttle/autodock/ferry/escape_pod/katydid/pod_six
+	shuttle_area = /area/shuttle/katydid/pod/six
+	pod_number = 6
+/obj/effect/shuttle_landmark/escape_pod/start/six
+	pod_number = 6
+/obj/effect/shuttle_landmark/escape_pod/out/six
+	pod_number = 6
+/obj/effect/shuttle_landmark/escape_pod/transit/six
+	pod_number = 6
+
+/obj/machinery/computer/shuttle_control/explore/katydid
 	name = "expedition shuttle control console"
-	shuttle_tag = "Expedition"
-	circuit = /obj/item/circuitboard/mining_shuttle
+	shuttle_tag = "Expedition Shuttle"
+
+/datum/shuttle/autodock/overmap/expedition
+	name = "Expedition Shuttle"
+	shuttle_area = /area/shuttle/katydid/expedition
+	current_location = "nav_expedition_start"
+	dock_target = "mining_shuttle_dock"
+
+/obj/effect/shuttle_landmark/katydid_explorer
+	name = "Expedition Shuttle"
+	landmark_tag = "nav_expedition_start"
+	docking_controller = "mining_shuttle"

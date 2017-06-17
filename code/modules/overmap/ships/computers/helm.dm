@@ -1,6 +1,8 @@
 /obj/machinery/computer/helm
 	name = "helm control console"
-	icon_screen = "id"
+	icon_keyboard = "teleport_key"
+	icon_screen = "helm"
+	circuit = /obj/item/circuitboard/helm
 	var/obj/effect/overmap/ship/linked			//connected overmap object
 	var/autopilot = 0
 	var/manual_control = 0
@@ -10,6 +12,7 @@
 
 /obj/machinery/computer/helm/initialize()
 	..()
+	linked = map_sectors["[z]"]
 	get_known_sectors()
 
 /obj/machinery/computer/helm/proc/get_known_sectors()
@@ -47,14 +50,14 @@
 		linked.relaymove(user,direction)
 		return 1
 
-/obj/machinery/computer/helm/check_eye(var/mob/user)
+/obj/machinery/computer/helm/check_eye(var/mob/user as mob)
 	if (!manual_control)
 		return -1
 	if (!get_dist(user, src) > 1 || user.blinded || !linked )
 		return -1
 	return 0
 
-/obj/machinery/computer/helm/attack_hand(var/mob/user)
+/obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
 	if(..())
 		user.unset_machine()
 		manual_control = 0
@@ -69,6 +72,7 @@
 
 /obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(!linked)
+		to_chat(user, "<span class='warning'>Unable to connect to ship control systems.</span>")
 		return
 
 	var/data[0]
@@ -122,7 +126,7 @@
 			sec_name = "Sector #[known_sectors.len]"
 		R.fields["name"] = sec_name
 		if(sec_name in known_sectors)
-			usr << "<span class='warning'>Sector with that name already exists, please input a different name.</span>"
+			to_chat(usr, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
 			return
 		switch(href_list["add"])
 			if("current")
@@ -137,8 +141,9 @@
 
 	if (href_list["remove"])
 		var/datum/data/record/R = locate(href_list["remove"])
-		known_sectors[R.fields["name"]] = null
-		qdel(R)
+		if(R)
+			known_sectors.Remove(R.fields["name"])
+			qdel(R)
 
 	if (href_list["setx"])
 		var/newx = input("Input new destiniation x coordinate", "Coordinate input", dx) as num|null
@@ -174,3 +179,65 @@
 	add_fingerprint(usr)
 	updateUsrDialog()
 
+
+/obj/machinery/computer/navigation
+	name = "navigation console"
+	circuit = /obj/item/circuitboard/nav
+	var/viewing = 0
+	var/obj/effect/overmap/ship/linked
+	icon_keyboard = "generic_key"
+	icon_screen = "helm"
+
+/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	if(!linked)
+		return
+
+	var/data[0]
+
+	data["viewing"] = viewing
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Helm Control", 380, 530)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+	if (!viewing)
+		return -1
+	if (!get_dist(user, src) > 1 || user.blinded || !linked )
+		viewing = 0
+		return -1
+	return 0
+
+/obj/machinery/computer/navigation/attack_hand(var/mob/user as mob)
+	if(..())
+		user.unset_machine()
+		viewing = 0
+		return
+
+	if(!isAI(user))
+		user.set_machine(src)
+		if(linked)
+			user.reset_view(linked)
+
+	ui_interact(user)
+
+
+/obj/machinery/computer/navigation/Topic(href, href_list)
+	if(..())
+		return 1
+
+	if (!linked)
+		return
+
+	if (href_list["move"])
+		var/mob/user = usr
+		user.unset_machine()
+		viewing = 0
+		return 1
+
+	if (href_list["viewing"])
+		viewing = !viewing
+		return 1

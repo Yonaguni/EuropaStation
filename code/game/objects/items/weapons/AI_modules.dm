@@ -35,7 +35,7 @@ AI MODULES
 			return
 
 		if(ticker && ticker.mode && ticker.mode.name == "blob")
-			usr << "Law uploads have been disabled by [company_name]!"
+			usr << "Law uploads have been disabled by [using_map.company_name]!"
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
@@ -282,13 +282,13 @@ AI MODULES
 
 	laws = new/datum/ai_laws/asimov
 
-/******************** NanoTrasen ********************/
+/******************** corporate ********************/
 
-/obj/item/aiModule/nanotrasen // -- TLE
+/obj/item/aiModule/corporate // -- TLE
 	name = "'Default' Core AI Module"
 	desc = "An 'Default' Core AI Module: 'Reconfigures the AI's core laws.'."
 
-	laws = new/datum/ai_laws/nanotrasen
+	laws = new/datum/ai_laws/corporate
 
 /******************** Corporate ********************/
 

@@ -98,7 +98,7 @@ Class Procs:
 	set background = 1
 	#endif
 
-	admin_notice("<span class='danger'>Processing Geometry...</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Processing ZAS geometry...</span>", R_DEBUG)
 	sleep(-1)
 
 	var/start_time = world.timeofday

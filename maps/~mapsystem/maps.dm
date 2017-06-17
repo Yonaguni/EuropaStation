@@ -38,9 +38,11 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 	var/list/shallow_levels = list()
+	var/list/empty_levels = null
+	var/base_area
 
 	var/default_role = "Crewman"
-	var/list/default_job_type = /datum/job/assistant
+	var/list/default_job_type = /datum/job/crewman
 	var/list/allowed_jobs          //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
 	                               //We don't have to C&P ones that are only common between two of them
@@ -53,14 +55,15 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/const/NO_VENT = 2
 	var/const/NO_SCRUBBER = 4
 
-	var/shuttle_docked_message
-	var/shuttle_leaving_dock
-	var/shuttle_called_message
-	var/shuttle_recall_message
-	var/emergency_shuttle_docked_message
-	var/emergency_shuttle_leaving_dock
-	var/emergency_shuttle_called_message
-	var/emergency_shuttle_recall_message
+	var/shuttle_docked_message =           "The transfer shuttle has docked."
+	var/shuttle_leaving_dock =             "The transfer shuttle is leaving the dock."
+	var/shuttle_called_message =           "The transfer shuttle has been called."
+	var/shuttle_recall_message =           "The transfer shuttle has been recalled."
+	var/emergency_shuttle_docked_message = "The emergency shuttle has docked."
+	var/emergency_shuttle_leaving_dock =   "The emergency shuttle is leaving the dock."
+	var/emergency_shuttle_called_message = "The emergency shuttle has been called."
+	var/emergency_shuttle_recall_message = "The emergency shuttle has been recalled."
+
 	var/single_card_authentication = FALSE
 
 	var/datum/trade_destination/stellar_location
@@ -83,16 +86,36 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/test_x = 20
 	var/test_y = 20
 	var/test_z = 1
+	var/map_info = "There is no specific information for this map."
+
+	var/station_short = "?"
+	var/dock_name     = "Callisto"
+	var/boss_name     = "Naval Administration"
+	var/boss_short    = "Headquarters"
+	var/company_name  = "Free Traders"
+	var/company_short = "FTU"
+	var/commanding_role = "Commanding Officer"
+
+	var/use_overmap
+	var/overmap_size = 40
+	var/overmap_event_areas = 12
+	var/list/area_coherency_test_exempt_areas = list()
+	var/default_arrival_message = "has arrived on the ship"
 
 /datum/map/New()
 	..()
+	if(!base_area)
+		base_area = world.area
 	if(!map_levels)
 		map_levels = station_levels.Copy()
 	if(!allowed_jobs)
 		allowed_jobs = subtypesof(/datum/job)
-	motd = 	{"The current map is [full_name].
+	motd = 	{"The current map is <b>[full_name]</b>.
 			<br>
-			There is no specific information for this map."}
+			[map_info]"}
+
+/datum/map/proc/meteors_detected_announcement()
+	command_announcement.Announce("Meteors detected.", "Sensor Array")
 
 // Used to apply various post-compile procedural effects to the map.
 /datum/map/proc/perform_map_generation()
@@ -107,7 +130,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	set background = 1
 
 /datum/map/proc/update_locations()
-	stellar_location = pick(all_trade_destinations)
+	stellar_location = default_stellar_location
 
 /datum/map/proc/get_specific_location()
 	return (specific_location ? specific_location : (stellar_location ? stellar_location.name : "Unknown"))
@@ -125,7 +148,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	return GM
 
 /datum/map/proc/show_map_info(var/user)
-	return
+	if(map_info)
+		user << map_info
 
 /datum/map/proc/check_escaped(var/mob/survivor)
 	var/turf/T = get_turf(survivor)
@@ -151,44 +175,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			return  "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
 	return "<font color='notice'><b>You kept an eye on the events on [station_name()].</b></font>"
 
-/client/verb/check_map_location()
-
-	set name = "Check Map Location"
-	set desc = "Get info on the current map."
-	set category = "IC"
-
-	usr << "The current map is: <b>[using_map.full_name]</b>"
-	using_map.show_map_info(usr)
-
-// Defined here so I can add it to the admin verbs.
-var/map_submerged
-/datum/admins/proc/submerge_map()
-	set category = "Admin"
-	set desc = "Submerge the map in an ocean."
-	set name = "Submerge Map"
-
-	if(!check_rights(R_ADMIN))	return
-
-	if(map_submerged)
-		usr << "<span class='warning'>The map has already been dropped into an ocean.</span>"
-		return
-
-	if(alert("Are you sure you want to drop the map into the ocean?",,"No","Yes") == "No")
-		return
-
-	using_map.ambient_exterior_light = (alert("Do you want the ocean to be dark?",,"No","Yes") == "No")
-	using_map.ambient_exterior_temperature = ((alert("Do you want the ocean to be freezing?",,"No","Yes") == "Yes") ? 110 : T20C)
-
-	map_submerged = TRUE
-	world << "<span class='notice'><b>[usr.key] fumbled and dropped the server into an ocean, please wait for the game to catch up.</b></span>"
-	sleep(10)
-	for(var/i in using_map.station_levels)
-		base_turf_by_z["[i]"] = /turf/simulated/ocean
-		new /datum/random_map/noise/seafloor/replace_space(null,1,1,i,255,255)
-		sleep(50)
-
-	// This list will be empty if this verb is run post-roundstart. This is
-	// used to clean up if it's run before roundstart but after turf init.
-	for(var/thing in init_turfs)
-		var/turf/T = thing
-		T.initialize()
+/datum/map/proc/get_empty_zlevel()
+	if(empty_levels == null)
+		world.maxz++
+		empty_levels = list(world.maxz)
+	return pick(empty_levels)

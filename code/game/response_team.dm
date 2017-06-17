@@ -21,7 +21,7 @@ var/can_call_ert
 		usr << "<span class='danger'>The round hasn't started yet!</span>"
 		return
 	if(send_emergency_team)
-		usr << "<span class='danger'>[boss_name] has already activated the distress beacon!</span>"
+		usr << "<span class='danger'>[using_map.boss_name] has already activated the distress beacon!</span>"
 		return
 	if(alert("Do you want to activate the distress beacon?",,"Yes","No") != "Yes")
 		return
@@ -68,7 +68,7 @@ client/verb/JoinResponseTeam()
 			else
 				sending = ert
 
-		if(jobban_isbanned(usr, sending.id) || jobban_isbanned(usr, "Security Officer"))
+		if(jobban_isbanned(usr, sending.id) || jobban_isbanned(usr, "Police Officer"))
 			usr << "<span class='danger'>You are jobbanned from this role!</span>"
 			return
 		if(sending.current_antagonists.len >= sending.hard_cap)
@@ -135,14 +135,14 @@ proc/trigger_armed_response_team(var/force = 0, var/force_type)
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		command_announcement.Announce("The distress beacon aboard [station_name()] has been activated. Unfortunately, no response has been received.", "[boss_name]")
+		command_announcement.Announce("The distress beacon aboard [station_name()] has been activated. Unfortunately, no response has been received.", "[using_map.boss_name]")
 		can_call_ert = 0 // Only one call per round, ladies.
 		return
 
-	command_announcement.Announce("The distress beacon aboard [station_name()] has been activated and an acknowledgement has been received. No further details available.", "[boss_name]")
+	command_announcement.Announce("The distress beacon aboard [station_name()] has been activated and an acknowledgement has been received. No further details available.", "[using_map.boss_name]")
 	evacuation_controller.add_can_call_predicate(new/datum/evacuation_predicate/ert())
 
-	can_call_ert = 0 // Only one call per round, gentleman.
+	can_call_ert = 0 // Only one call per round, gentlemen.
 	send_emergency_team = force_type ? force_type : pick(using_map.stellar_location.beacon_responders)
 
 	sleep(600 * 5)

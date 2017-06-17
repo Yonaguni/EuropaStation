@@ -185,7 +185,7 @@
 	icon_state = "duffle_med"
 
 /obj/item/storage/backpack/dufflebag/sec
-	name = "security dufflebag"
+	name = "dufflebag"
 	desc = "A large dufflebag for holding extra security supplies and ammunition."
 	icon_state = "duffle_sec"
 

@@ -216,6 +216,7 @@ var/global/datum/controller/radio/radio_controller
 
 //The global radio controller
 /datum/controller/radio
+	name = "Radio"
 	var/list/datum/radio_frequency/frequencies = list()
 
 /datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/filter = null as text|null)

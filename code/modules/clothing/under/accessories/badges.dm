@@ -141,8 +141,8 @@
 	slot_flags = SLOT_TIE
 	badge_string = "Sol Central Government"
 
-/obj/item/clothing/accessory/badge/nanotrasen
-	name = "\improper corporate  badge"
+/obj/item/clothing/accessory/badge/corporate
+	name = "\improper corporate badge"
 	desc = "A leather-backed plastic badge with a variety of information printed on it. Belongs to a corporate executive."
 	icon_state = "ntbadge"
 	slot_flags = SLOT_TIE

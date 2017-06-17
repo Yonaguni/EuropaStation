@@ -96,6 +96,16 @@
 	icon = 'icons/obj/doors/doorext.dmi'
 	req_access = list(access_external_airlocks)
 
+/obj/machinery/door/airlock/external/bolted
+	icon_state = "door_locked"
+	locked = 1
+
+/obj/machinery/door/airlock/external/bolted_open
+	locked = 1
+	density = 0
+	opacity = 0
+	icon_state = "door_open"
+
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
 	hitsound = 'sound/effects/Glasshit.ogg'
@@ -573,7 +583,7 @@ About the new airlock wires panel:
 		if (istype(mover, /obj/item))
 			var/obj/item/i = mover
 			if (i.matter && (DEFAULT_WALL_MATERIAL in i.matter) && i.matter[DEFAULT_WALL_MATERIAL] > 0)
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 	return ..()
@@ -799,7 +809,7 @@ About the new airlock wires panel:
 		if ((O.client && !( O.blinded )))
 			O.show_message("[src.name]'s control panel bursts open, sparks spewing out!")
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 

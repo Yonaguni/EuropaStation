@@ -16,7 +16,7 @@ var/datum/evacuation_controller/evacuation_controller
 	var/auto_recall_time
 	var/emergency_evacuation
 
-	var/evac_prep_delay =   10 MINUTES
+	var/evac_prep_delay =    10 MINUTES
 	var/evac_launch_delay =  3 MINUTES
 	var/evac_transit_delay = 2 MINUTES
 
@@ -32,6 +32,11 @@ var/datum/evacuation_controller/evacuation_controller
 	var/datum/announcement/priority/evac_waiting =  new(0)
 	var/datum/announcement/priority/evac_called =   new(0)
 	var/datum/announcement/priority/evac_recalled = new(0)
+
+/datum/evacuation_controller/New()
+	..()
+	controllers_by_name["Evacuation"] = src
+	controller_feedback_by_name["Evacuation"] = "DEvac"
 
 /datum/evacuation_controller/proc/auto_recall(var/_recall)
 	recall = _recall
@@ -75,7 +80,7 @@ var/datum/evacuation_controller/evacuation_controller
 			evac_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[round(get_eta()/60)] minute\s."))
 	else
 		if(!skip_announce)
-			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
+			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
 
 	return 1
 
@@ -112,7 +117,7 @@ var/datum/evacuation_controller/evacuation_controller
 	if (emergency_evacuation)
 		evac_waiting.Announce(replacetext(using_map.emergency_shuttle_docked_message, "%ETD%", "[estimated_time] minute\s"))
 	else
-		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
 	if(config.announce_shuttle_dock_to_irc)
 		send2mainirc("Evacuation has begun on [station_name()]. It will depart in approximately [estimated_time] minute\s.")
 
@@ -124,9 +129,9 @@ var/datum/evacuation_controller/evacuation_controller
 	state = EVAC_IN_TRANSIT
 
 	if (emergency_evacuation)
-		priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 	else
-		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 
 	return 1
 

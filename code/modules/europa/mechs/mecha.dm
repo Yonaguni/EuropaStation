@@ -44,7 +44,7 @@
 	var/decal
 
 	// Invisible components.
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect/system/spark_spread/sparks
 
 	// Equipment tracking vars.
 	var/obj/item/selected_system

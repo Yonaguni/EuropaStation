@@ -61,7 +61,7 @@
 	data["state"] = current_status
 	data["isAI"] = issilicon(usr)
 	data["authenticated"] = is_autenthicated(user)
-	data["boss_short"] = boss_short
+	data["boss_short"] = using_map.boss_short
 	data["current_security_level"] = security_level
 	data["current_security_level_title"] = num2seclevel(security_level)
 
@@ -160,12 +160,12 @@
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
 						usr <<"<span class='warning'>No comms maser detected. Unable to transmit message.</span>"
 						return 1
-					var/input = sanitize(input("Please choose a message to transmit to [boss_short] via comms maser.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
+					var/input = sanitize(input("Please choose a message to transmit to [using_map.boss_short] via comms maser.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
 					Centcomm_announce(input, usr)
 					usr << "<span class='notice'>Message transmitted.</span>"
-					log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
+					log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 					centcomm_message_cooldown = 1
 					spawn(300) //30 second cooldown
 						centcomm_message_cooldown = 0
@@ -332,10 +332,6 @@ var/last_message_id = 0
             return 1
     return 0
 
-/proc/enable_prison_shuttle(var/mob/user)
-	for(var/obj/machinery/computer/prison_shuttle/PS in machines)
-		PS.allowedtocall = !(PS.allowedtocall)
-
 /proc/call_shuttle_proc(var/mob/user, var/emergency)
 	if (!ticker || !evacuation_controller)
 		return
@@ -373,7 +369,7 @@ var/last_message_id = 0
 	if(!force)
 
 		if(evacuation_controller.deny)
-			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
+			user << "[using_map.boss_short] does not currently have a shuttle available in your sector. Please try again later."
 			return
 
 		if(world.time < 54000) // 30 minute grace period to let the game get going

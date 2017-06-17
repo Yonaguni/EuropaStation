@@ -126,7 +126,7 @@ dmm_suite{
 			if(!(flags & DMM_IGNORE_AREAS)){
 				var/area/m_area = model.loc
 				area_template = "[m_area.type][check_attributes(m_area)]"
-				} else{ area_template = "[world.area]"}
+				} else{ area_template = "[using_map.base_area]"}
 			template = "[obj_template][mob_template][turf_template][area_template]"
 			return template
 			}

@@ -14,8 +14,10 @@ var/global/list/med_hud_users            = list() // List of all entities using 
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
 var/global/list/hud_icon_reference       = list()
 var/global/list/traders                  = list() //List of all nearby traders
+
 var/list/init_turfs = list()
 var/list/init_lights = list()
+var/list/init_atoms = list()
 
 var/global/list/listening_objects         = list() // List of objects that need to be able to hear, used to avoid recursive searching through contents.
 
@@ -32,13 +34,6 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 var/diary               = null
 var/href_logfile        = null
-var/station_name        = "FTV Aeolus"
-var/station_short       = "Aeolus"
-var/const/dock_name     = "Callisto"
-var/const/boss_name     = "Naval Administration"
-var/const/boss_short    = "Headquarters"
-var/const/company_name  = "Free Trade Union"
-var/const/company_short = "FTU"
 var/game_version        = "ES13 <b><font color = '#FF0000'>r0-indev</font></b>"
 var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
@@ -64,9 +59,6 @@ var/list/newplayer_start = list()
 
 //Spawnpoints.
 var/list/latejoin         = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo    = list()
-var/list/latejoin_cyborg  = list()
 
 var/list/prisonwarp         = list() // Prisoners go to these
 var/list/xeno_spawn         = list() // Aliens spawn at at these.

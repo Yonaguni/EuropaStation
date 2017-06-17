@@ -5,6 +5,7 @@
 	name = "mob"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
+	..()
 
 /datum/controller/process/mob/started()
 	..()

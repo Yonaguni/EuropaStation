@@ -61,7 +61,7 @@
 				O << "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>"
 		update_icon()
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		user << "<span class='notice'>Access denied</span>"
 
 /obj/structure/closet/secure_closet/attackby(var/obj/item/W, var/mob/user)
 	if(src.opened && W.simulated && !W.abstract)
@@ -82,7 +82,7 @@
 			W.forceMove(src.loc)
 	else if(istype(W, /obj/item/melee/energy/blade))
 		if(emag_act(INFINITY, user, "<span class='danger'>The locker has been sliced open by [user] with \an [W]</span>!", "<span class='danger'>You hear metal being sliced and sparks flying.</span>"))
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)

@@ -41,7 +41,7 @@ var/list/turf_edge_cache = list()
 		if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
 			initialize()
 		else
-			init_turfs |= src
+			init_turfs += src
 
 /turf/proc/initialize()
 	update_icon(1)
@@ -61,9 +61,8 @@ var/list/turf_edge_cache = list()
 		if(!(locate(/obj/effect/flood) in contents))
 			new /obj/effect/flood(src)
 	else
-		if(locate(/obj/effect/flood) in contents)
-			for(var/obj/effect/flood/F in contents)
-				qdel(F)
+		for(var/obj/effect/flood/F in contents)
+			qdel(F)
 
 	if(config.starlight && using_map.ambient_exterior_light && outside)
 		overlays_to_add += get_exterior_light_overlay()

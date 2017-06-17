@@ -76,8 +76,8 @@
 	icon_state = "secsoft"
 
 /obj/item/clothing/head/soft/sec/corp
-	name = "corporate security cap"
-	desc = "It's field cap in corporate colors."
+	name = "officer's cap"
+	desc = "It's a field cap in dark colors."
 	icon_state = "corpsoft"
 
 /obj/item/clothing/head/soft/mbill

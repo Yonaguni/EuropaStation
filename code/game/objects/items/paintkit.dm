@@ -21,8 +21,8 @@
 // Root hardsuit kit defines.
 // Icons for modified hardsuits need to be in the proper .dmis because suit cyclers may cock them up.
 /obj/item/kit/suit
-	name = "voidsuit modification kit"
-	desc = "A kit for modifying a voidsuit."
+	name = "suit modification kit"
+	desc = "A kit for modifying a pressure suit."
 	uses = 2
 	var/new_light_overlay
 	var/new_mob_icon_file
@@ -51,7 +51,7 @@
 /obj/item/clothing/suit/space/void/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/kit/suit))
 		var/obj/item/kit/suit/kit = O
-		name = "[kit.new_name] voidsuit"
+		name = "[kit.new_name] pressure suit"
 		desc = kit.new_desc
 		icon_state = "[kit.new_icon]_suit"
 		item_state = "[kit.new_icon]_suit"

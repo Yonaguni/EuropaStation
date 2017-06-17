@@ -202,16 +202,16 @@ GUEST_BAN
 #SERVERURL server.net:port
 
 ## forum address
-# FORUMURL http://example.com
+FORUMURL http://wetskrell.org/water
 
 ## Wiki address
-# WIKIURL http://example.com
+WIKIURL https://github.com/Yonaguni/EuropaStation/wiki
 
 ## GitHub address
-# GITHUBURL https://github.com/example-user/example-repository
+GITHUBURL https://github.com/Yonaguni/EuropaStation
 
 ## Upstream Github address - just for things like "This is a modified fork of [Baystation]"
-# UPSTREAMURL https://github.com/example-user/example-repository
+UPSTREAMURL https://github.com/Baystation12/Baystation12
 
 ## Upstream name
 # UPSTREAM Baystation12

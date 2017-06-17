@@ -119,21 +119,6 @@
 	name = T_BOARD("disease splicer")
 	build_path = /obj/machinery/computer/diseasesplicer
 
-/obj/item/circuitboard/mining_shuttle
-	name = T_BOARD("mining shuttle console")
-	build_path = /obj/machinery/computer/shuttle_control/mining
-
-
-/obj/item/circuitboard/engineering_shuttle
-	name = T_BOARD("engineering shuttle console")
-	build_path = /obj/machinery/computer/shuttle_control/engineering
-
-
-/obj/item/circuitboard/research_shuttle
-	name = T_BOARD("research shuttle console")
-	build_path = /obj/machinery/computer/shuttle_control/research
-
-
 /obj/item/circuitboard/aifixer
 	name = T_BOARD("AI integrity restorer")
 	build_path = /obj/machinery/computer/aifixer
@@ -143,13 +128,22 @@
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos
 
-
-/obj/item/circuitboard/prison_shuttle
-	name = T_BOARD("prison shuttle control console")
-	build_path = /obj/machinery/computer/prison_shuttle
-
-
 /obj/item/circuitboard/rcon_console
 	name = T_BOARD("RCON remote control console")
 	build_path = /obj/machinery/computer/rcon
 
+/obj/item/circuitboard/helm
+	name = T_BOARD("helm control console")
+	build_path = /obj/machinery/computer/helm
+
+/obj/item/circuitboard/weapons
+	name = T_BOARD("fire control console")
+	build_path = /obj/machinery/computer/weapons
+
+/obj/item/circuitboard/engines
+	name = T_BOARD("engine control console")
+	build_path = /obj/machinery/computer/engines
+
+/obj/item/circuitboard/nav
+	name = T_BOARD("navigation console")
+	build_path = /obj/machinery/computer/navigation

@@ -10,8 +10,8 @@ var/datum/antagonist/cultist/cult
 	id = MODE_CULTIST
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
-	restricted_jobs = list("Computer", "Robot", "Chief of Security", "Commanding Officer")
-	protected_jobs = list("Security Officer", "Munitions Officer")
+	restricted_jobs = list("Computer", "Robot", "Chief of Police", "Colony Director")
+	protected_jobs = list("Police Officer", "Police Quartermaster")
 	feedback_tag = "cult_objective"
 	antag_indicator = "cult"
 	welcome_text = "You have a talisman in your possession; one that will help you start a cult. Use it well and remember - there are others."

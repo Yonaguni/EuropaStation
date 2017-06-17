@@ -75,7 +75,7 @@
 	new /obj/item/lightreplacer(src)
 	new /obj/item/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
-	new /obj/item/soap/nanotrasen(src)
+	new /obj/item/soap/corporate(src)
 
 /*
  * Lawyer

@@ -17,10 +17,10 @@ var/church_name = null
 
 var/command_name = null
 /proc/command_name()
-	if (command_name)
+	if(command_name)
 		return command_name
 
-	var/name = "[boss_name]"
+	var/name = "[using_map ? using_map.boss_name : "?"]"
 
 	command_name = name
 	return name
@@ -45,15 +45,16 @@ var/religion_name = null
 
 /proc/station_name()
 
-	if(using_map)
-		return using_map.full_name
+	if(!using_map)
+		return "?"
 
-	if (station_name)
-		return station_name
+	if(using_map.full_name)
+		return using_map.full_name
 
 	var/random = rand(1,5)
 	var/name = ""
 
+	var/station_name = ""
 	//Rare: Pre-Prefix
 	if (prob(10))
 		name = pick("Imperium", "Heretical", "Cuban", "Psychic", "Elegant", "Common", "Uncommon", "Rare", "Unique", "Houseruled", "Religious", "Atheist", "Traditional", "Houseruled", "Mad", "Super", "Ultra", "Secret", "Top Secret", "Deep", "Death", "Zybourne", "Central", "Main", "Government", "Uoi", "Fat", "Automated", "Experimental", "Augmented")
@@ -103,11 +104,13 @@ var/religion_name = null
 	else
 		world.name = station_name
 
-	return station_name
+	using_map.full_name = station_name
+	return using_map.full_name
 
 /proc/world_name(var/name)
 
-	station_name = name
+	if(using_map)
+		using_map.full_name = name
 
 	if (config && config.server_name)
 		world.name = "[config.server_name]: [name]"
@@ -178,7 +181,7 @@ var/syndicate_code_response//Code response for traitors.
 	var/safety[] = list(1,2,3)//Tells the proc which options to remove later on.
 	var/nouns[] = list("love","hate","anger","peace","pride","sympathy","bravery","loyalty","honesty","integrity","compassion","charity","success","courage","deceit","skill","beauty","brilliance","pain","misery","beliefs","dreams","justice","truth","faith","liberty","knowledge","thought","information","culture","trust","dedication","progress","education","hospitality","leisure","trouble","friendships", "relaxation")
 	var/drinks[] = list("vodka and tonic","gin fizz","bahama mama","manhattan","black Russian","whiskey soda","long island tea","margarita","Irish coffee"," manly dwarf","Irish cream","doctor's delight","Beepksy Smash","tequilla sunrise","brave bull","gargle blaster","bloody mary","whiskey cola","white Russian","vodka martini","martini","Cuba libre","kahlua","vodka","wine","moonshine")
-	var/locations[] = teleportlocs.len ? teleportlocs : drinks//if null, defaults to drinks instead.
+	var/locations[] = drinks//if null, defaults to drinks instead.
 
 	var/names[] = list()
 	for(var/datum/data/record/t in data_core.general)//Picks from crew manifest.

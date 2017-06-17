@@ -4,7 +4,7 @@
 	role_text_plural = "Changelings"
 	feedback_tag = "changeling_objective"
 	restricted_jobs = list("Computer", "Robot")
-	protected_jobs = list("Security Officer", "Munitions Officer", "Chief of Security", "Commanding Officer")
+	protected_jobs = list("Police Officer", "Quartermaster", "Chief of Police", "Colony Director")
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	antaghud_indicator = "hudchangeling"

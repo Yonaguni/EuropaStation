@@ -1,6 +1,7 @@
 /datum/random_map/noise/tundra
 	descriptor = "tundra"
 	smoothing_iterations = 1
+	target_turf_type = /turf/unsimulated/snow
 
 /datum/random_map/noise/tundra/replace_space
 	descriptor = "tundra (replacement)"
@@ -32,28 +33,16 @@
 			return "<font color='#00FF00'>[pick(list("T","t"))]</font>"
 
 /datum/random_map/noise/tundra/get_appropriate_path(var/value)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
-	switch(val)
-		if(0 to 4)
-			return /turf/simulated/floor/beach/water/ocean
-		else
-			return /turf/simulated/floor/snow
+	return /turf/unsimulated/snow
 
 /datum/random_map/noise/tundra/get_additional_spawns(var/value, var/turf/T)
 	var/val = min(9,max(0,round((value/cell_range)*10)))
 	if(isnull(val)) val = 0
 	switch(val)
-		if(2)
-			if(prob(5))
-				new /mob/living/simple_animal/crab(T)
 		if(6)
 			if(prob(60))
 				var/grass_path = pick(typesof(/obj/structure/flora/grass)-/obj/structure/flora/grass)
 				new grass_path(T)
-			if(prob(5))
-				var/mob_type = pick(list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse))
-				new mob_type(T)
 		if(7)
 			if(prob(60))
 				new /obj/structure/flora/bush(T)

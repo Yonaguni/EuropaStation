@@ -72,7 +72,7 @@ obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
 obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message("<span class='warning'>\The [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
-	var/datum/effect/effect/system/smoke_spread/smoke = new
+	var/datum/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
 	qdel(src) // NOT qdel.
@@ -222,3 +222,14 @@ obj/machinery/atmospherics/pipe/zpipe/down/supply
 	layer = 2.39
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+// Colored misc. pipes
+obj/machinery/atmospherics/pipe/zpipe/up/cyan
+	color = PIPE_COLOR_CYAN
+obj/machinery/atmospherics/pipe/zpipe/down/cyan
+	color = PIPE_COLOR_CYAN
+
+obj/machinery/atmospherics/pipe/zpipe/up/red
+	color = PIPE_COLOR_RED
+obj/machinery/atmospherics/pipe/zpipe/down/red
+	color = PIPE_COLOR_RED

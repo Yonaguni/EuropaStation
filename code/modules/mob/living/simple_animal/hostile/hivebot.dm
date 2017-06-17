@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/hivebot/death()
 	..(null, "blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/tele/New()
 	..()
-	var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
 	smoke.set_up(5, 0, src.loc)
 	smoke.start()
 	visible_message("\red <B>The [src] warps in!</B>")
