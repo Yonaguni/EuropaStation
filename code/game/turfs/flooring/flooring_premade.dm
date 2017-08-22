@@ -131,6 +131,11 @@
 	icon_state = "lino"
 	initial_flooring = /decl/flooring/linoleum
 
+/turf/simulated/floor/tiled/nullglass
+	name = "nullglass floor"
+	icon_state = "nullglass"
+	initial_flooring = /decl/flooring/tiling/nullglass
+
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
 	name = "vacuum floor"

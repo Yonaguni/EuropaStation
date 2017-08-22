@@ -121,6 +121,9 @@
 	*/
 	return
 
+/atom/movable
+	var/self_move = FALSE
+
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 /atom/movable/Move(newloc, direct)
 	if (direct & (direct - 1))
@@ -155,8 +158,13 @@
 								step(src, SOUTH)
 	else
 		var/atom/A = src.loc
-
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
+
+		if(self_move)
+			glide_size = world.icon_size / max(movement_delay(), world.tick_lag) * world.tick_lag
+		else
+			glide_size = 0
+
 		. = ..()
 		if(direct != olddir)
 			dir = olddir
@@ -270,16 +278,7 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		move_delay = world.time//set move delay
-
-		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += 1+config.run_speed
-			if("walk")
-				move_delay += 7+config.walk_speed
-		move_delay += mob.movement_delay()
+		move_delay = world.time + mob.movement_delay()
 
 		var/tickcomp = 0 //moved this out here so we can use it for vehicles
 		if(config.Tickcomp)
@@ -384,8 +383,9 @@
 	return
 
 /mob/proc/SelfMove(turf/n, direct)
-	return Move(n, direct)
-
+	self_move = TRUE
+	. = Move(n, direct)
+	self_move = FALSE
 
 ///Process_Incorpmove
 ///Called by client/Move()
@@ -427,7 +427,7 @@
 
 	if(!lastarea)
 		lastarea = get_area(loc)
-	if(!lastarea.has_gravity)
+	if(lastarea && !lastarea.has_gravity)
 		return 0
 
 	return 1

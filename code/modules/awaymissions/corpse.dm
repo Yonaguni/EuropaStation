@@ -154,8 +154,8 @@
 	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Engineering Officer"
-	corpseidaccess = "Engineering Officer"
+	corpseidjob = "Civil Engineer"
+	corpseidaccess = "Civil Engineer"
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
@@ -183,14 +183,14 @@
 /////////////////Officers//////////////////////
 
 /obj/effect/landmark/corpse/bridgeofficer
-	name = "Bridge Officer"
+	name = "Colony Administrator"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
-	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Commanding Officer"
+	corpseidjob = "Colony Administrator"
+	corpseidaccess = "Colony Director"
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"
@@ -204,4 +204,4 @@
 	corpsepocket1 = /obj/item/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Commanding Officer"
+	corpseidaccess = "Colony Director"

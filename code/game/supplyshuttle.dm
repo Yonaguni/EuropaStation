@@ -22,11 +22,6 @@ var/list/mechtoys = list(
 	name = "supply manifest"
 	var/is_copy = 1
 
-/area/supply/dock
-	name = "Supply Shuttle"
-	icon_state = "shuttle3"
-	requires_power = 0
-
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"
@@ -125,7 +120,7 @@ var/list/mechtoys = list(
 	var/list/master_supply_list = list()
 	//shuttle movement
 	var/movetime = 1200
-	var/datum/shuttle/ferry/supply/shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 	var/obj/machinery/computer/supply/primaryterminal //terminal hardcopy forms will be printed to.
 
@@ -145,6 +140,8 @@ var/list/mechtoys = list(
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
+		if(!istype(A))
+			return 0
 		if(istype(A,/mob/living))
 			return 1
 		if(istype(A,/obj/item/disk/nuclear))
@@ -161,38 +158,36 @@ var/list/mechtoys = list(
 
 	//Sellin
 	proc/sell()
-		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
-
 		var/phoron_count = 0
 		var/plat_count = 0
+		for(var/area/subarea in shuttle.shuttle_area)
+			for(var/atom/movable/MA in subarea)
+				if(MA.anchored)	continue
 
-		for(var/atom/movable/MA in area_shuttle)
-			if(MA.anchored)	continue
+				// Must be in a crate!
+				if(istype(MA,/obj/structure/closet/crate))
+					var/obj/structure/closet/crate/CR = MA
+					callHook("sell_crate", list(CR, shuttle.shuttle_area))
 
-			// Must be in a crate!
-			if(istype(MA,/obj/structure/closet/crate))
-				callHook("sell_crate", list(MA, area_shuttle))
+					points += points_per_crate
+					var/find_slip = 1
 
-				points += points_per_crate
-				var/find_slip = 1
+					for(var/atom in MA)
+						// Sell manifests
+						var/atom/A = atom
+						if(find_slip && istype(A,/obj/item/paper/manifest))
+							var/obj/item/paper/manifest/slip = A
+							if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
+								points += points_per_slip
+								find_slip = 0
+							continue
 
-				for(var/atom in MA)
-					// Sell manifests
-					var/atom/A = atom
-					if(find_slip && istype(A,/obj/item/paper/manifest))
-						var/obj/item/paper/manifest/slip = A
-						if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
-							points += points_per_slip
-							find_slip = 0
-						continue
-
-					// Sell phoron and platinum
-					if(istype(A, /obj/item/stack))
-						var/obj/item/stack/P = A
-						switch(P.get_material_name())
-							if("platinum") plat_count += P.get_amount()
-			qdel(MA)
+						// Sell phoron and platinum
+						if(istype(A, /obj/item/stack))
+							var/obj/item/stack/P = A
+							switch(P.get_material_name())
+								if("platinum") plat_count += P.get_amount()
+				qdel(MA)
 
 		if(phoron_count)
 			points += phoron_count * points_per_phoron
@@ -203,20 +198,19 @@ var/list/mechtoys = list(
 	//Buyin
 	proc/buy()
 		if(!shoppinglist.len) return
-		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
 		var/list/clear_turfs = list()
 
-		for(var/turf/T in area_shuttle)
-			if(T.density)	continue
-			var/contcount
-			for(var/atom/A in T.contents)
-				if(!A.simulated)
+		for(var/area/subarea in shuttle.shuttle_area)
+			for(var/turf/T in shuttle.shuttle_area)
+				if(T.density)	continue
+				var/contcount
+				for(var/atom/A in T.contents)
+					if(!A.simulated)
+						continue
+					contcount++
+				if(contcount)
 					continue
-				contcount++
-			if(contcount)
-				continue
-			clear_turfs += T
+				clear_turfs += T
 		for(var/S in shoppinglist)
 			if(!clear_turfs.len)	break
 			var/i = rand(1,clear_turfs.len)
@@ -236,7 +230,7 @@ var/list/mechtoys = list(
 				slip.is_copy = 0
 				slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 				slip.info +="Order #[SO.ordernum]<br>"
-				slip.info +="Destination: [station_name]<br>"
+				slip.info +="Destination: [station_name()]<br>"
 				slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 				slip.info +="CONTENTS:<br><ul>"
 

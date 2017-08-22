@@ -18,6 +18,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 	spawn(0)
 		if(ticker)
 			ticker.pregame()
+	..()
 
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday

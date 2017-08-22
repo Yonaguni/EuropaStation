@@ -6,7 +6,7 @@
 		src.infowindow.open()
 		return
 
-	var/list/close = list("Gotcha!","AFFIRMATIVE","EXCELSIOR!","I accept","The Pact Is Sealed","Continue","Take me to the fun!","Let us begin")
+	var/list/close = list("Gotcha!","AFFIRMATIVE.","EXCELSIOR!","I accept.","THE PACT IS SEALED.","ok","Continue.","Take it away!","Let us begin.")
 	var/output = {"
 	[join_motd]
 	<br>

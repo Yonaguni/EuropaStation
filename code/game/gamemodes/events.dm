@@ -172,15 +172,13 @@ var/hadevent    = 0
 	sleep(100)
 	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 
-
-
 //Changing this to affect the main station. Blame Urist. --Pete
 /proc/prison_break() // -- Callagan
 
 
 	var/list/area/areas = list()
 	for(var/area/A in world)
-		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
+		if(A.type in get_prison_areas())
 			areas += A
 
 	if(areas && areas.len > 0)

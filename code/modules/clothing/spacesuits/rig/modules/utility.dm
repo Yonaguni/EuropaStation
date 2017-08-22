@@ -406,7 +406,7 @@
 	device_type = /obj/item/pen/multi
 
 /obj/item/rig_module/device/stamp
-	name = "mounted internal affairs stamp"
+	name = "mounted legal stamp"
 	desc = "DENIED."
 	icon_state = "stamp"
 	interface_name = "mounted stamp"
@@ -432,5 +432,5 @@
 			holder.wearer << "<span class='notice'>Switched to denied stamp.</span>"
 		else if(device == deniedstamp)
 			device = iastamp
-			holder.wearer << "<span class='notice'>Switched to internal affairs stamp.</span>"
+			holder.wearer << "<span class='notice'>Switched to legal stamp.</span>"
 		return 1

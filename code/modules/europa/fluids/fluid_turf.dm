@@ -43,18 +43,6 @@
 		fluid_master.remove_active_source(src)
 	return ..()
 
-/turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	var/old_flooded = flooded
-	var/obj/effect/fluid/F = locate() in src
-	. = ..()
-	if(F)
-		F.forceMove(src)
-		F.start_loc = src
-		fluid_update()
-	if(old_flooded)
-		flooded = 1
-		update_icon()
-
 /turf/simulated/initialize()
 	if((ticker && ticker.current_state == GAME_STATE_PLAYING) && fluid_master)
 		fluid_update()
@@ -71,3 +59,30 @@
 	var/obj/effect/fluid/F = return_fluid()
 	return (istype(F) ? F.fluid_amount : 0 )
 
+/turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+
+	for(var/obj/effect/fluid/F in contents)
+		qdel(F)
+	for(var/obj/effect/flood/F in contents)
+		qdel(F)
+
+	. = ..()
+
+	var/turf/T = .
+
+	// Brute force until I can chase down the bugs.
+	if(istype(T))
+		spawn(1)
+			if(istype(T) && !deleted(T) && !T.flooded)
+				for(var/obj/effect/fluid/F in T.contents)
+					qdel(F)
+				for(var/obj/effect/flood/F in T.contents)
+					qdel(F)
+			T.fluid_update()
+
+	spawn(1)
+		if(!flooded)
+			for(var/obj/effect/fluid/F in contents)
+				qdel(F)
+			for(var/obj/effect/flood/F in contents)
+				qdel(F)

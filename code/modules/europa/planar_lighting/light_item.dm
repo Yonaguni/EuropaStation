@@ -5,6 +5,10 @@
 	. = ..()
 	update_plane()
 
+/obj/item/initialize()
+	. = ..()
+	update_plane()
+
 /obj/item/Move()
 	. = ..()
 	update_plane()
@@ -13,12 +17,14 @@
 	. = ..()
 	update_plane()
 
-/obj/item/proc/update_plane()
+/obj/proc/update_plane()
+	return
+
+/obj/item/update_plane()
 	if(istype(loc, /turf))
-		plane = MASTER_PLANE
+		plane = initial(plane)
 	else
 		plane = GUI_PLANE
-	return
 
 /obj/item/gun/composite/update_plane()
 	var/lastplane = plane

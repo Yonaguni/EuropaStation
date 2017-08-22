@@ -35,7 +35,7 @@
 		return
 	var/mob/user = usr
 	if(!src.allowed(user))
-		user << "Access Denied"
+		user << "Access denied"
 		return
 
 	// Destroys the cyborg
@@ -44,11 +44,11 @@
 		if(!target || !istype(target))
 			return
 		if(isAI(user) && (target.connected_ai != user))
-			user << "Access Denied. This robot is not linked to you."
+			user << "Access denied. This robot is not linked to you."
 			return
 		// Cyborgs may blow up themselves via the console
 		if(isrobot(user) && user != target)
-			user << "Access Denied."
+			user << "Access denied."
 			return
 		var/choice = input("Really detonate [target.name]?") in list ("Yes", "No")
 		if(choice != "Yes")
@@ -76,11 +76,11 @@
 			return
 
 		if(isAI(user) && (target.connected_ai != user))
-			user << "<span class='warning'>Access Denied. This robot is not linked to you.</span>"
+			user << "<span class='warning'>Access denied. This robot is not linked to you.</span>"
 			return
 
 		if(isrobot(user))
-			user << "<span class='warning'>Access Denied.</span>"
+			user << "<span class='warning'>Access denied.</span>"
 			return
 
 		var/choice = input("Really [target.lockcharge ? "unlock" : "lockdown"] [target.name] ?") in list ("Yes", "No")
@@ -108,7 +108,7 @@
 
 		// Antag AI checks
 		if(!istype(user, /mob/living/silicon/ai) || !(user.mind.special_role && user.mind.original == user))
-			user << "Access Denied"
+			user << "Access denied"
 			return
 
 		if(target.emagged)
@@ -130,7 +130,7 @@
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
 		if(istype(user, /mob/living/silicon))
-			user << "Access Denied"
+			user << "Access denied"
 			return
 
 		safety = !safety
@@ -139,7 +139,7 @@
 	// Destroys all accessible cyborgs if safety is disabled
 	else if(href_list["nuke"])
 		if(istype(user, /mob/living/silicon))
-			user << "Access Denied"
+			user << "Access denied"
 			return
 		if(safety)
 			user << "Self-destruct aborted - safety active"

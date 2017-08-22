@@ -127,9 +127,9 @@
 //Chief Engineer's rig. This is sort of a halfway point between the old hardsuits (voidsuits) and the rig class.
 /obj/item/rig/ce
 
-	name = "advanced voidsuit control module"
-	suit_type = "advanced voidsuit"
-	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
+	name = "advanced pressure suit control module"
+	suit_type = "advanced pressure suit"
+	desc = "An advanced suit that protects against hazardous environments. Shines with a high polish."
 	icon_state = "ce_rig"
 	armor = list(melee = 40, bullet = 10, laser = 30,energy = 25, bomb = 40, bio = 100, rad = 100)
 	online_slowdown = 0

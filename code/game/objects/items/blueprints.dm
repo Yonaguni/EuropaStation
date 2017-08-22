@@ -51,7 +51,7 @@
 	var/area/A = get_area()
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
-<small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+<small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
 		if (AREA_SPACE)
@@ -92,24 +92,8 @@ move an amendment</a> to the drawing, or <a href='?src=\ref[src];action=delete_a
 /obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
 	if(istype(A, /area/space))
 		return AREA_SPACE
-	var/list/SPECIALS = list(
-		/area/shuttle,
-		/area/admin,
-		/area/arrival,
-		/area/centcom,
-		/area/asteroid,
-		/area/tdome,
-		/area/acting,
-		/area/supply,
-		/area/syndicate_station,
-		/area/skipjack_station,
-		/area/syndicate_mothership,
-		/area/wizard_station,
-		/area/prison
-		// /area/derelict //commented out, all hail derelict-rebuilders!
-	)
-	for (var/type in SPECIALS)
-		if ( istype(A,type) )
+	for (var/type in get_blueprint_special_areas())
+		if (istype(A,type))
 			return AREA_SPECIAL
 	if(A.z in using_map.admin_levels)
 		return AREA_SPECIAL

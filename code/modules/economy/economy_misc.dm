@@ -57,15 +57,6 @@
 												/datum/species/resomi            = 5,
 											)
 
-//---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
-//Corporation NanoTrasen - Generalised / high tech research and phoron exploitation.
-//Corporation Vessel Contracting - Ship and station construction, materials research.
-//Corporation Osiris Atmospherics - Atmospherics machinery construction and chemical research.
-//Corporation Second Red Cross Society - 26th century Red Cross reborn as a dominating economic force in biomedical science (research and materials).
-//Corporation Blue Industries - High tech and high energy research, in particular into the mysteries of bluespace manipulation and power generation.
-//Corporation Kusanagi Robotics - Founded by robotics legend Kaito Kusanagi in the 2070s, they have been on the forefront of mechanical augmentation and robotics development ever since.
-//Corporation Free traders - Not so much a corporation as a loose coalition of spacers, Free Traders are a roving band of smugglers, traders and fringe elements following a rigid (if informal) code of loyalty and honour. Mistrusted by most corporations, they are tolerated because of their uncanny ability to smell out a profit.
-
 //---- Descriptions of destination types
 //Space stations can be purpose built for a number of different things, but generally require regular shipments of essential supplies.
 //Corvettes are small, fast warships generally assigned to border patrol or chasing down smugglers.
@@ -83,6 +74,7 @@ var/next_account_number = 0
 var/list/all_money_accounts = list()
 var/economy_init = 0
 var/list/all_trade_destinations = list()
+var/datum/trade_destination/default_stellar_location = new /datum/trade_destination/europa
 
 /proc/setup_economy()
 	if(economy_init)

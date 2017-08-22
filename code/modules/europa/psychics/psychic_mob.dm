@@ -148,7 +148,8 @@
 		current.client.screen |= current.client.psi_toggle
 		current.client.psi_toggle.update_state(current)
 		spawn(1)
-			current.client.psi_toggle.update_state(current)
+			if(current && current.client)
+				current.client.psi_toggle.update_state(current)
 
 /mob/living/Stat()
 	. = ..()

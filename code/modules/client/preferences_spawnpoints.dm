@@ -22,28 +22,17 @@ var/list/spawntypes = list()
 
 		return 1
 
+/datum/spawnpoint/proc/get_message()
+	return msg
+
 /datum/spawnpoint/arrivals
-	display_name = "Arrivals Shuttle"
+	display_name = "Arrivals"
 	msg = "has arrived on the ship"
 
 /datum/spawnpoint/arrivals/New()
 	..()
 	turfs = latejoin
 
-/datum/spawnpoint/cryo
-	display_name = "Cryogenic Storage"
-	msg = "has completed cryogenic revival"
-	disallow_job = list("Robot")
-
-/datum/spawnpoint/cryo/New()
-	..()
-	turfs = latejoin_cryo
-
-/datum/spawnpoint/cyborg
-	display_name = "Robot Storage"
-	msg = "has been activated from storage"
-	restrict_job = list("Robot")
-
-/datum/spawnpoint/cyborg/New()
-	..()
-	turfs = latejoin_cyborg
+/datum/spawnpoint/arrivals/get_message()
+	msg = using_map.default_arrival_message
+	. = ..()

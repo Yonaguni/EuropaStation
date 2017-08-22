@@ -40,9 +40,9 @@
 
 /datum/uplink_item/item/services/fake_update_annoncement/New()
 	..()
-	name = "[command_name()] Update Announcement"
+	name = "Fake Update Announcement"
 	item_cost = round(DEFAULT_TELECRYSTAL_AMOUNT / 2)
-	desc = "Causes a falsified [command_name()] Update."
+	desc = "Causes a falsified official update."
 
 /***************
 * Service Item *

@@ -1,5 +1,5 @@
 // While this is not a port of TheWelp's work for Bay, thanks are owed to him
-// for reminding me to make a start on a proper dungeon generator and showing
+// for reminding me to make a start on a proper dungeon generator and for showing
 // that it's feasible in BYOND. ~Z
 
 // Small holder for large region origin points, used for drawing passages.

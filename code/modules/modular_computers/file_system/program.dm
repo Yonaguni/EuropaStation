@@ -89,7 +89,7 @@
 	if(access_to_check in I.access)
 		return 1
 	else if(loud)
-		user << "<span class='danger'>\The [computer] flashes an \"Access Denied\" warning.</span>"
+		user << "<span class='danger'>\The [computer] flashes an \"Access denied\" warning.</span>"
 
 // This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
 // always include the device here in this proc. This proc basically relays the request to whatever is running the program.

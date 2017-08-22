@@ -19,7 +19,7 @@
 
 /datum/psychic_power/spark/do_ranged(var/mob/living/user, var/mob/living/target)
 	if(..())
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
 		sparks.start()
 		return TRUE
@@ -27,7 +27,7 @@
 
 /datum/psychic_power/spark/do_proximity(var/mob/living/user, var/mob/living/target)
 	if(..())
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(target))
 		sparks.start()
 		return TRUE

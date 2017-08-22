@@ -32,6 +32,13 @@
 	accepts_accessories = 1
 	accuracy_mod = 4
 
+/obj/item/gun_component/barrel/laser/rifle_practice
+	icon_state="las_rifle"
+	weapon_type = GUN_RIFLE
+	caliber = CALIBER_LASER_PRACTICE
+	accepts_accessories = 1
+	accuracy_mod = 4
+
 /obj/item/gun_component/barrel/laser/cannon
 	icon_state="las_cannon"
 	weapon_type = GUN_CANNON

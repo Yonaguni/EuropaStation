@@ -124,8 +124,19 @@
 			return M
 	return 0
 
-/mob/proc/movement_delay()
+/atom/movable/proc/movement_delay()
 	. = 0
+
+/mob/movement_delay()
+	. = ..()
+
+	if(m_intent == "run")
+		if(drowsyness > 0)
+			. += 6
+		.  += 1+config.run_speed
+	else if(m_intent == "walk")
+		.  += 7+config.walk_speed
+
 	if(pulling)
 		if(istype(pulling, /obj))
 			var/obj/O = pulling

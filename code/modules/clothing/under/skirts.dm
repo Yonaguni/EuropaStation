@@ -129,8 +129,8 @@
 	worn_state = "virologywhitef"
 
 /obj/item/clothing/under/rank/security/skirt
-	name = "security officer's jumpskirt"
-	desc = "Standard feminine fashion for Security Officers.  It's made of sturdier material than the standard jumpskirts."
+	name = "officer's jumpskirt"
+	desc = "Standard feminine fashion for officers.  It's made of sturdier material than the standard jumpskirts."
 	icon_state = "secredf"
 	item_state = "r_suit"
 	worn_state = "secredf"

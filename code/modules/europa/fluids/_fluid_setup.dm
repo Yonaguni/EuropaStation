@@ -43,5 +43,33 @@ var/list/fluid_images = list()
 	if(istype(user) && user.client)
 		user.client.spawn_fluid_proc()
 
-/client/proc/spawn_fluid_proc()
-	return
+/datum/admins/proc/jump_to_fluid_source()
+
+	set name = "Jump To Fluid Source"
+	set desc = "Jump to an active fluid source."
+	set category = "Debug"
+
+	if(!check_rights(R_SPAWN)) return
+	var/mob/user = usr
+	if(istype(user) && user.client)
+		user.client.jump_to_fluid_source_proc()
+
+/datum/admins/proc/jump_to_fluid_active()
+
+	set name = "Jump To Fluid Activity"
+	set desc = "Jump to an active fluid overlay."
+	set category = "Debug"
+
+	if(!check_rights(R_SPAWN)) return
+	var/mob/user = usr
+	if(istype(user) && user.client)
+		user.client.jump_to_active_fluid_proc()
+
+/client/proc/spawn_fluid_proc(override)
+	if(!override) to_chat(usr, "This proc is not enabled on the current build (the fluid module is probably not compiled).")
+
+/client/proc/jump_to_active_fluid_proc(override)
+	if(!override) to_chat(usr, "This proc is not enabled on the current build (the fluid module is probably not compiled).")
+
+/client/proc/jump_to_fluid_source_proc(override)
+	if(!override) to_chat(usr, "This proc is not enabled on the current build (the fluid module is probably not compiled).")

@@ -25,7 +25,7 @@
 
 
 /obj/structure/closet/syndicate/suit
-	desc = "It's a storage unit for voidsuits."
+	desc = "It's a storage unit for suits."
 
 /obj/structure/closet/syndicate/suit/New()
 	..()

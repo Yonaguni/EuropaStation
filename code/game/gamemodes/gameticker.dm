@@ -1,6 +1,7 @@
 var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker
+	name = "Ticker"
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
@@ -149,7 +150,7 @@ var/global/datum/controller/gameticker/ticker
 
 	callHook("roundstart")
 
-	shuttle_controller.setup_shuttle_docks()
+	shuttle_controller.initialize_shuttles()
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
@@ -312,7 +313,7 @@ var/global/datum/controller/gameticker/ticker
 		var/captainless=1
 		for(var/mob/living/carbon/human/player in player_list)
 			if(player && player.mind && player.mind.assigned_role)
-				if(player.mind.assigned_role == "Commanding Officer")
+				if(player.mind.assigned_role == using_map.commanding_role)
 					captainless=0
 				if(!player_is_antag(player.mind, only_offstation_roles = 1))
 					job_master.EquipRank(player, player.mind.assigned_role, 0)

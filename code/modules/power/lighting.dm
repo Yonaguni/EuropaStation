@@ -157,7 +157,7 @@ var/global/list/light_bulb_type_cache = list()
 								// this is used to calc the probability the light burns out
 
 	var/rigged = 0				// true if rigged to explode
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 
 	//default lighting - these are obtained from light_bulb_type
 	var/brightness_range = 5
@@ -185,6 +185,10 @@ var/global/list/light_bulb_type_cache = list()
 
 /obj/machinery/light/small/red
 	light_bulb_type = /obj/item/light/bulb/red
+
+/obj/machinery/light/small/red/airlock
+	name = "sealed light fixture"
+	waterproof = TRUE
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -238,6 +242,10 @@ var/global/list/light_bulb_type_cache = list()
 			icon_state = "[base_state]-broken"
 			on = 0
 	return
+
+/obj/machinery/light/initialize()
+	..()
+	power_change()
 
 // update lighting
 /obj/machinery/light/proc/update(var/trigger = 1)
@@ -415,7 +423,7 @@ var/global/list/light_bulb_type_cache = list()
 
 		user << "You stick \the [W] into the light socket!"
 		if(powered() && (W.flags & CONDUCT))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)

@@ -35,7 +35,6 @@
 	 * Config vars
 	 */
 	// Process name
-	var/name
 
 	// Process schedule interval
 	// This controls how often the process would run under ideal conditions.
@@ -127,6 +126,9 @@
 /datum/controller/process/proc/doWork()
 
 /datum/controller/process/proc/setup()
+	if(name)
+		controllers_by_name[name] = src
+		controller_feedback_by_name[name] = "D[capitalize(name)]"
 
 /datum/controller/process/proc/process()
 	started()

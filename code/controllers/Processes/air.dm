@@ -6,6 +6,7 @@
 	if(!air_master)
 		air_master = new
 		air_master.Setup()
+	..()
 
 /datum/controller/process/air/doWork()
 	if(!air_processing_killed)

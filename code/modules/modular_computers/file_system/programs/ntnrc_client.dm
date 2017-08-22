@@ -50,7 +50,7 @@
 
 		if(C.password)
 			var/mob/living/user = usr
-			var/password = sanitize(input(user,"Access Denied. Enter password:"))
+			var/password = sanitize(input(user,"Access denied. Enter password:"))
 			if(C && (password == C.password))
 				C.add_client(src)
 				channel = C

@@ -68,7 +68,7 @@
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
-	name = "security officer's jacket"
+	name = "officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
@@ -170,7 +170,7 @@
 
 //Internal Affairs
 /obj/item/clothing/suit/storage/toggle/internalaffairs
-	name = "Internal Affairs Jacket"
+	name = "suit jacket"
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
 	item_state = "ia_jacket"

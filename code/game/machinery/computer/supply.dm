@@ -81,7 +81,7 @@
 
 /obj/machinery/computer/supply/ui_data(mob/user)
 	var/list/data = list()
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 	var/shuttlestatus = ""
 	var/canlaunch = 0
 
@@ -89,8 +89,10 @@
 		shuttlestatus = "In transit ([shuttle.eta_minutes()] minute\s.)"
 	else
 		if (shuttle.at_station())
-			if (shuttle.docking_controller)
-				switch(shuttle.docking_controller.get_docking_status())
+			if (!shuttle.active_docking_controller)
+				shuttlestatus = "Undocked"
+			else
+				switch(shuttle.active_docking_controller.get_docking_status())
 					if ("docked")
 						shuttlestatus = "Docked."
 					if ("undocked") shuttlestatus = "Undocked."
@@ -143,7 +145,7 @@
 	if(..())
 		return
 
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 
 	switch(action)
 		if("send")
@@ -317,10 +319,10 @@
 
 		if(isreciept)
 			reqform.name = "Cargo Reciept - [O.object.name]"
-			reqform.info += "<h3>[station_name] Supply Requisition Reciept</h3><hr>"
+			reqform.info += "<h3>[station_name()] Supply Requisition Reciept</h3><hr>"
 		else
 			reqform.name = "Requisition Form - [O.object.name]"
-			reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+			reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 
 		reqform.info += "INDEX: #[O.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [O.orderedby]<br>"

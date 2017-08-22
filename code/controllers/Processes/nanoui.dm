@@ -1,6 +1,7 @@
 /datum/controller/process/nanoui/setup()
 	name = "nanoui"
 	schedule_interval = 20 // every 2 seconds
+	..()
 
 /datum/controller/process/nanoui/statProcess()
 	..()

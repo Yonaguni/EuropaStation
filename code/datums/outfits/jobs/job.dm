@@ -2,7 +2,7 @@
 	name = "Standard Gear"
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	uniform = /obj/item/clothing/under/aeolus/crewman
+	uniform = /obj/item/clothing/under/color/grey
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/black
 
@@ -28,3 +28,6 @@
 	if(C && H.mind && H.mind.initial_account)
 		C.associated_account_number = H.mind.initial_account.account_number
 	return C
+
+/decl/hierarchy/outfit/job/crewman
+	name = OUTFIT_JOB_NAME("Crewman")

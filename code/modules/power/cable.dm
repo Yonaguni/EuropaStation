@@ -70,6 +70,9 @@ var/list/possible_cable_coil_colours
 	color = COLOR_WHITE
 
 /obj/structure/cable/New()
+
+	tag = null
+
 	..()
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
@@ -201,7 +204,7 @@ var/list/possible_cable_coil_colours
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
 		if(usr.stunned)

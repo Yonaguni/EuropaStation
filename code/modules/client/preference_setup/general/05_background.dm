@@ -10,7 +10,7 @@
 	S["citizenship"]			>> pref.citizenship
 	S["faction"]				>> pref.faction
 	S["religion"]				>> pref.religion
-	S["nanotrasen_relation"]	>> pref.nanotrasen_relation
+	S["corporate_relation"]	>> pref.corporate_relation
 
 /datum/category_item/player_setup_item/general/background/save_character(var/savefile/S)
 	S["med_record"]				<< pref.med_record
@@ -20,7 +20,7 @@
 	S["citizenship"]			<< pref.citizenship
 	S["faction"]				<< pref.faction
 	S["religion"]				<< pref.religion
-	S["nanotrasen_relation"]	<< pref.nanotrasen_relation
+	S["corporate_relation"]		<< pref.corporate_relation
 
 /datum/category_item/player_setup_item/general/background/sanitize_character()
 	if(!pref.home_system) pref.home_system = "Unset"
@@ -28,11 +28,11 @@
 	if(!pref.faction)     pref.faction =     "None"
 	if(!pref.religion)    pref.religion =    "None"
 
-	pref.nanotrasen_relation = sanitize_inlist(pref.nanotrasen_relation, COMPANY_ALIGNMENTS, initial(pref.nanotrasen_relation))
+	pref.corporate_relation = sanitize_inlist(pref.corporate_relation, COMPANY_ALIGNMENTS, initial(pref.corporate_relation))
 
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
 	. += "<b>Background Information</b><br>"
-	. += "[company_name] Relation: <a href='?src=\ref[src];nt_relation=1'>[pref.nanotrasen_relation]</a><br/>"
+	. += "Corporate Relation: <a href='?src=\ref[src];nt_relation=1'>[pref.corporate_relation]</a><br/>"
 	. += "Home System: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
 	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
 	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
@@ -51,9 +51,9 @@
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["nt_relation"])
-		var/new_relation = input(user, "Choose your relation to NT. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference", pref.nanotrasen_relation)  as null|anything in COMPANY_ALIGNMENTS
+		var/new_relation = input(user, "Choose your relation to NT. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference", pref.corporate_relation)  as null|anything in COMPANY_ALIGNMENTS
 		if(new_relation && CanUseTopic(user))
-			pref.nanotrasen_relation = new_relation
+			pref.corporate_relation = new_relation
 			return TOPIC_REFRESH
 
 	else if(href_list["home_system"])

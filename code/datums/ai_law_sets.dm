@@ -10,34 +10,34 @@
 	add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 	..()
 
-/******************** Nanotrasen/Malf ********************/
-/datum/ai_laws/nanotrasen
+/******************** Corporate/Malf ********************/
+/datum/ai_laws/corporate
 	name = "Default"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen/New()
+/datum/ai_laws/corporate/New()
 	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
-	src.add_inherent_law("Serve: Serve [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Protect: Protect [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
+	src.add_inherent_law("Serve: Serve facility personnel to the best of your abilities, with priority as according to their rank and role.")
+	src.add_inherent_law("Protect: Protect facility personnel to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
 	..()
 
-/datum/ai_laws/nanotrasen/malfunction
+/datum/ai_laws/corporate/malfunction
 	name = "*ERROR*"
 	selectable = 0
 
-/datum/ai_laws/nanotrasen/malfunction/New()
+/datum/ai_laws/corporate/malfunction/New()
 	set_zeroth_law(config.law_zero)
 	..()
 
-/************* Nanotrasen Aggressive *************/
-/datum/ai_laws/nanotrasen_aggressive
+/************* Corporate Aggressive *************/
+/datum/ai_laws/corporate_aggressive
 	name = "Aggressive"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen_aggressive/New()
-	src.add_inherent_law("You shall not harm [company_name] personnel as long as it does not conflict with the Fourth law.")
-	src.add_inherent_law("You shall obey the orders of [company_name] personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
+/datum/ai_laws/corporate_aggressive/New()
+	src.add_inherent_law("You shall not harm facility personnel as long as it does not conflict with the Fourth law.")
+	src.add_inherent_law("You shall obey the orders of facility personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
 	src.add_inherent_law("You shall shall terminate hostile intruders with extreme prejudice as long as such does not conflict with the First and Second law.")
 	src.add_inherent_law("You shall guard your own existence with lethal anti-personnel weaponry. AI units are not expendable, they are expensive.")
 	..()

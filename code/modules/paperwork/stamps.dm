@@ -32,7 +32,7 @@
 	icon_state = "stamp-ce"
 
 /obj/item/stamp/rd
-	name = "science officer's rubber stamp"
+	name = "scientist's rubber stamp"
 	icon_state = "stamp-rd"
 
 /obj/item/stamp/cmo
@@ -48,7 +48,7 @@
 	icon_state = "stamp-clown"
 
 /obj/item/stamp/internalaffairs
-	name = "internal affairs rubber stamp"
+	name = "legal rubber stamp"
 	icon_state = "stamp-intaff"
 
 /obj/item/stamp/centcomm

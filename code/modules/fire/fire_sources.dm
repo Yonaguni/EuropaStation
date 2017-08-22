@@ -23,7 +23,7 @@ var/list/fire_sounds = list(
 	density = 0
 
 	var/open_flame = 1
-	var/datum/effect/effect/system/steam_spread/steam // Used when being quenched.
+	var/datum/effect/system/steam_spread/steam // Used when being quenched.
 
 	var/light_range_high = 8
 	var/light_range_mid = 6

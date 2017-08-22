@@ -7,6 +7,10 @@
 // Casts shadows from occluding objects for a given light.
 
 /obj/effect/light/proc/cast_light()
+
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+		init_lights |= src
+
 	temp_appearance = list()
 
 	if(!isturf(loc))

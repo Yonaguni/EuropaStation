@@ -5,6 +5,7 @@
 	if(!evacuation_controller)
 		evacuation_controller = new using_map.evac_controller_type ()
 		evacuation_controller.set_up()
+	..()
 
 /datum/controller/process/evac/doWork()
 	evacuation_controller.process()

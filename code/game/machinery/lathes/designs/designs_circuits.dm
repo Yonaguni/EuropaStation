@@ -64,37 +64,24 @@
 	name = "RCON control circuit"
 	path = /obj/item/circuitboard/rcon_console
 
-// SHUTTLES
-/datum/autolathe/recipe/circuit/shuttle
-	name = "mining shuttle control circuit"
-	path = /obj/item/circuitboard/mining_shuttle
-
-/datum/autolathe/recipe/circuit/shuttle/engineering
-	name = "engineering shuttle control circuit"
-	path = /obj/item/circuitboard/engineering_shuttle
-
-/datum/autolathe/recipe/circuit/shuttle/research
-	name = "research shuttle control circuit"
-	path = /obj/item/circuitboard/research_shuttle
-
 // CAMERAS
-/datum/autolathe/recipe/circuit/shuttle/camera
+/datum/autolathe/recipe/circuit/camera
 	name = "security camera circuit"
 	path = /obj/item/circuitboard/security
 	category = "Camera Systems"
-/datum/autolathe/recipe/circuit/shuttle/camera/engineering
+/datum/autolathe/recipe/circuit/camera/engineering
 	name = "engineering camera circuit"
 	path = /obj/item/circuitboard/security/engineering
 
-/datum/autolathe/recipe/circuit/shuttle/camera/mining
+/datum/autolathe/recipe/circuit/camera/mining
 	name = "mining camera circuit"
 	path = /obj/item/circuitboard/security/mining
 
-/datum/autolathe/recipe/circuit/shuttle/camera/research
+/datum/autolathe/recipe/circuit/camera/research
 	name = "research camera circuit"
 	path = /obj/item/circuitboard/security/research
 
-/datum/autolathe/recipe/circuit/shuttle/camera/supply
+/datum/autolathe/recipe/circuit/camera/supply
 	name = "supply camera circuit"
 	path = /obj/item/circuitboard/security/supply
 

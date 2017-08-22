@@ -6,12 +6,14 @@
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
+
 	var/delete_me = 0
 
 /obj/effect/landmark/New()
 	..()
 	tag = text("landmark*[]", name)
 
+	//TODO clean up this mess
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
 			monkeystart += loc
@@ -23,18 +25,6 @@
 			return
 		if("JoinLate")
 			latejoin += loc
-			delete_me = 1
-			return
-		if("JoinLateGateway")
-			latejoin_gateway += loc
-			delete_me = 1
-			return
-		if("JoinLateCryo")
-			latejoin_cryo += loc
-			delete_me = 1
-			return
-		if("JoinLateCyborg")
-			latejoin_cyborg += loc
 			delete_me = 1
 			return
 		if("prisonwarp")

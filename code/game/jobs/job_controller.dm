@@ -459,15 +459,14 @@ var/global/datum/controller/occupations/job_master
 			H.mind.assigned_role = rank
 			alt_title = H.mind.role_alt_title
 
-			switch(rank)
-				if("Robot")
-					return H.Robotize()
-				if("Computer")
-					return H
-				if("Commanding Officer", "Captain")
-					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-					captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
-					using_map.handle_captain_join(H)
+			if(rank == "Robot")
+				return H.Robotize()
+			if(rank == "Computer")
+				return H
+			if(rank == using_map.commanding_role)
+				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
+				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+				using_map.handle_captain_join(H)
 
 			//Deferred item spawning.
 			for(var/thing in spawn_in_storage)
@@ -600,7 +599,7 @@ var/global/datum/controller/occupations/job_master
 	if(C.prefs.spawnpoint)
 		spawnpos = spawntypes[C.prefs.spawnpoint]
 
-	if(spawnpos && istype(spawnpos))
+	if(spawnpos && istype(spawnpos) && spawnpos.turfs && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
 			if(return_location)
 				return pick(spawnpos.turfs)
@@ -615,14 +614,14 @@ var/global/datum/controller/occupations/job_master
 				if(H)
 					H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the default spawn point instead."
 					H.forceMove(pick(latejoin))
-				return "has arrived on the operations deck"
+				return using_map.default_arrival_message
 	else
 		if(return_location)
 			return pick(latejoin)
 		else
 			if(H)
 				H.forceMove(pick(latejoin))
-			return "has arrived on the operations deck"
+			return using_map.default_arrival_message
 
 /datum/controller/occupations/proc/GetJobByType(var/job_type)
 	return occupations_by_type[job_type]

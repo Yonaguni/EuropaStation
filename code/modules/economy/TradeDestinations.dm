@@ -11,6 +11,7 @@ var/list/weighted_mundaneevent_locations = list()
 
 	var/list/beacon_responders = list()
 	var/list/flavour_locations = list()
+	var/list/random_map_locations = list()
 	var/list/blacklisted_cargo
 	var/list/temp_price_change[BIOMEDICAL]
 	var/list/viable_random_events = list()
@@ -20,10 +21,25 @@ var/list/weighted_mundaneevent_locations = list()
 	return
 
 /datum/trade_destination/proc/build_level(var/tz)
-	return
+	if(!using_map.use_overmap)
+		return
+	new /obj/effect/overmap/sector/generated (locate(128,128,tz), pick(random_map_locations), "A sector falling within the umbrella of [name].")
+	var/sanity = 1000
+	for(var/i = 1 to 5)
+		var/turf/placing = locate(rand(20,230), rand(20, 230), tz)
+		while(placing.density || (locate(/obj/effect/shuttle_landmark) in placing))
+			if(sanity <= 0)
+				placing = null
+				break
+			placing = locate(rand(20,230), rand(20, 230), tz)
+			sanity--
+		if(!placing || sanity <= 0)
+			return
+		new /obj/effect/shuttle_landmark/automatic(placing)
 
 // These are all either real stellar objects or fictional facilities built on real stellar objects,
 // please refer to both Wikipedia and the Europa lore document before adding/removing them.
+
 // Energy and gas mining stations around the Sun.
 /datum/trade_destination/sol
 	name = "Sol"
@@ -41,9 +57,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"the Daystar Energy Chain",
 		"the Vulcanoids"
 		)
+	random_map_locations = list("the Vulcanoid asteroid field")
 
 /datum/trade_destination/sol/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/superheated(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/mercury
 	name = "Mercury"
@@ -58,9 +76,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"the public docks",
 		"the Caduceus listening post"
 		)
+	random_map_locations = list("the Mercurial asteroid field")
 
 /datum/trade_destination/mercury/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/superheated(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/venus
 	name = "Venus"
@@ -80,9 +100,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"the Sol Institute of Planetary Science",
 		"Neith"
 		)
+	random_map_locations = list("the Venusian halo")
 
 /datum/trade_destination/venus/build_level(var/tz)
 	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+	..()
 
 // Cradle of Humanity, warpgate coordination facility, corp central.
 /datum/trade_destination/earth
@@ -102,8 +124,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"the corporate docks"
 		)
 
+	random_map_locations = list("the O'Neil debris field")
+
 /datum/trade_destination/earth/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 // Capitol of Sol.
 /datum/trade_destination/mars
@@ -126,8 +151,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"the corporate docks"
 		)
 
+	random_map_locations = list("the Barsoom debris field")
+
 /datum/trade_destination/mars/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 // Asteroid belt.
 /datum/trade_destination/asteroids
@@ -145,14 +173,17 @@ var/list/weighted_mundaneevent_locations = list()
 		"Vesta",
 		"Pallas",
 		"Hygiea",
-		"the Gefion family",
 		"434 Hungaria",
+		)
+	random_map_locations = list(
+		"the Gefion family",
 		"the Phocaea family",
 		"the Karin cluster"
 		)
 
 /datum/trade_destination/asteroids/build_level(var/tz)
 	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/jupiter
 	name = "Jupiter"
@@ -171,9 +202,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"Io",
 		"Ganymede"
 		)
+	random_map_locations = list("the Jovian asteroid halo")
 
 /datum/trade_destination/jupiter/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/europa
 	name = "Europa"
@@ -186,8 +219,12 @@ var/list/weighted_mundaneevent_locations = list()
 	viable_random_events = list()
 	viable_mundane_events = list()
 
+	flavour_locations = list("the public docks")
+	random_map_locations = list("the ice belt")
+
 /datum/trade_destination/europa/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris/strange(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/saturn
 	name = "Saturn"
@@ -207,9 +244,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"Prometheus",
 		"Pandora"
 		)
+	random_map_locations = list("the rings of Saturn")
 
 /datum/trade_destination/saturn/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/uranus
 	name = "Uranus"
@@ -231,9 +270,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"Titania",
 		"Oberon"
 		)
+	random_map_locations = list("the Saturnine debris field")
 
 /datum/trade_destination/uranus/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/neptune
 	name = "Neptune"
@@ -248,9 +289,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"Triton",
 		"Phoebe"
 		)
+	random_map_locations = list("the Neptune debris field")
 
 /datum/trade_destination/neptune/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/debris(null, 1, 1, tz, 255, 255)
+	..()
 
 // Kuiper belt
 /datum/trade_destination/kuiperbelt
@@ -265,7 +308,6 @@ var/list/weighted_mundaneevent_locations = list()
 	viable_random_events = list(RIOTS, INDUSTRIAL_ACCIDENT, BIOHAZARD_OUTBREAK, WARSHIPS_ARRIVE, PIRATES, CORPORATE_ATTACK, ALIEN_RAIDERS, AI_LIBERATION, MOURNING, CULT_CELL_REVEALED, SECURITY_BREACH, FESTIVAL)
 	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, BARGAINS, SONG_DEBUT, MOVIE_RELEASE, ELECTION, GOSSIP, TOURISM, CELEBRITY_DEATH, RESIGNATION)
 	flavour_locations = list(
-		"the ruins of Pluto",
 		"Charon",
 		"2003 UB",
 		"1992 QB1",
@@ -274,9 +316,11 @@ var/list/weighted_mundaneevent_locations = list()
 		"Ixion",
 		"Varuna"
 		)
+	random_map_locations = list("the ruins of Pluto")
 
 /datum/trade_destination/kuiperbelt/build_level(var/tz)
 	new /datum/random_map/automata/asteroids(null, 1, 1, tz, 255, 255)
+	..()
 
 // Furthest extreme of the Solar System.
 /datum/trade_destination/oort
@@ -296,6 +340,8 @@ var/list/weighted_mundaneevent_locations = list()
 		"Hyakutake-2",
 		"Hale-Bopp-54",
 		"Sedna",
+		)
+	random_map_locations = list(
 		"2006 SQ372",
 		"2008 KV42",
 		"2000 CR105"
@@ -303,6 +349,7 @@ var/list/weighted_mundaneevent_locations = list()
 
 /datum/trade_destination/oort/build_level(var/tz)
 	new /datum/random_map/automata/asteroids/distant(null, 1, 1, tz, 255, 255)
+	..()
 
 /datum/trade_destination/oort/New()
 	..()

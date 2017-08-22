@@ -18,13 +18,13 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/warden
-	name = "warden's hat"
-	desc = "It's a special helmet issued to the Warden of a securiy force."
+	name = "police hat"
+	desc = "It's a special hat issued to the quartermater of a police force."
 	icon_state = "policehelm"
 	body_parts_covered = 0
 
 /obj/item/clothing/under/rank/security
-	name = "security officer's jumpsuit"
+	name = "officer's jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
 	item_state = "r_suit"
@@ -43,7 +43,7 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/security2
-	name = "security officer's uniform"
+	name = "officer's uniform"
 	desc = "It's made of a slightly sturdier material, to allow for robust protection."
 	icon_state = "redshirt2"
 	item_state = "r_suit"
@@ -131,18 +131,12 @@
 	//item_state = "hos_corporate"
 	worn_state = "hos_corporate"
 
-/obj/item/clothing/head/HoS
-	name = "Head of Security Hat"
-	desc = "The hat of the Head of Security. For showing the officers who's in charge."
+/obj/item/clothing/head/hos
+	name = "commander's hat"
+	desc = "The hat of the Chief of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
-
-/obj/item/clothing/head/HoS/dermal
-	name = "Dermal Armour Patch"
-	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
-	icon_state = "dermal"
-	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
@@ -176,22 +170,22 @@
  */
 
 /obj/item/clothing/under/rank/security/navyblue
-	name = "security officer's uniform"
+	name = "officer's uniform"
 	desc = "The latest in fashionable security outfits."
 	icon_state = "officerblueclothes"
 	item_state = "ba_suit"
 	worn_state = "officerblueclothes"
 
 /obj/item/clothing/under/rank/head_of_security/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's uniform"
+	desc = "The insignia on this uniform tells you that this uniform belongs to the Chief of Security."
+	name = "chief of security's uniform"
 	icon_state = "hosblueclothes"
 	item_state = "ba_suit"
 	worn_state = "hosblueclothes"
 
 /obj/item/clothing/under/rank/warden/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's uniform"
+	desc = "The insignia on this uniform tells you that this uniform belongs to the police quartermater."
+	name = "quartermaster's uniform"
 	icon_state = "wardenblueclothes"
 	item_state = "ba_suit"
 	worn_state = "wardenblueclothes"

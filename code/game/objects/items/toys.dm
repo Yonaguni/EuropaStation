@@ -298,7 +298,7 @@
 
 	throw_impact(atom/hit_atom)
 		..()
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 		new /obj/effect/decal/cleanable/ash(src.loc)
@@ -312,7 +312,7 @@
 		if(M.m_intent == "run")
 			M << "<span class='warning'>You step on the snap pop!</span>"
 
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 			s.set_up(2, 0, src)
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
@@ -606,8 +606,8 @@
 	icon_state = "janitor"
 
 /obj/item/toy/figure/agent
-	name = "Internal Affairs Agent action figure"
-	desc = "A \"Space Life\" brand Internal Affairs Agent action figure."
+	name = "Special Agent action figure"
+	desc = "A \"Space Life\" brand Special Agent action figure."
 	icon_state = "agent"
 
 /obj/item/toy/figure/librarian
@@ -641,8 +641,8 @@
 	icon_state = "wizard"
 
 /obj/item/toy/figure/rd
-	name = "Science Officer action figure"
-	desc = "A \"Space Life\" brand Science Officer action figure."
+	name = "Scientist action figure"
+	desc = "A \"Space Life\" brand Scientist action figure."
 	icon_state = "rd"
 
 /obj/item/toy/figure/roboticist
@@ -661,8 +661,8 @@
 	icon_state = "syndie"
 
 /obj/item/toy/figure/secofficer
-	name = "Security Officer action figure"
-	desc = "A \"Space Life\" brand Security Officer action figure."
+	name = "Police Officer action figure"
+	desc = "A \"Space Life\" brand Police Officer action figure."
 	icon_state = "secofficer"
 
 /obj/item/toy/figure/warden

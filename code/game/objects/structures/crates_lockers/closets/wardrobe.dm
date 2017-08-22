@@ -419,7 +419,7 @@
 
 
 /obj/structure/closet/wardrobe/lawyer_black
-	name = "internal affairs wardrobe"
+	name = "legal wardrobe"
 	icon_state = "black"
 	icon_closed = "black"
 

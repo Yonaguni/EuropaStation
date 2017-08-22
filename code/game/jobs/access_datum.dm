@@ -127,7 +127,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Commanding Officer"
+	desc = "Colony Director"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21
@@ -187,7 +187,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Science Officer"
+	desc = "Scientist"
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -235,7 +235,7 @@
 /var/const/access_lawyer = 38
 /datum/access/lawyer
 	id = access_lawyer
-	desc = "Internal Affairs"
+	desc = "Legal"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_virology = 39
@@ -253,7 +253,7 @@
 /var/const/access_qm = 41
 /datum/access/qm
 	id = access_qm
-	desc = "Quartermaster"
+	desc = "Chief of Logistics"
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -327,13 +327,13 @@
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "Operations Officer"
+	desc = "Colony Liaison"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Chief of Security"
+	desc = "Chief of Police"
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements

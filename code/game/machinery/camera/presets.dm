@@ -30,6 +30,12 @@ var/global/list/engineering_networks = list(
 										"Atmosphere Alarms",
 										"Fire Alarms",
 										"Power Alarms")
+
+var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
+
+/obj/machinery/camera/network/maintenance
+	network = list(NETWORK_MAINTENANCE)
+
 /obj/machinery/camera/network/calypso
 	network = list(NETWORK_CALYPSO)
 
@@ -193,22 +199,30 @@ var/global/list/engineering_networks = list(
 	return null
 
 /obj/machinery/camera/proc/isMotion()
+	if(!assembly)
+		return
 	var/O = locate(/obj/item/assembly/prox_sensor) in assembly.upgrades
 	return O
 
 // UPGRADE PROCS
 
 /obj/machinery/camera/proc/upgradeEmpProof()
+	if(!assembly)
+		return
 	assembly.upgrades.Add(new /obj/item/stack/material/osmium(assembly))
 	setPowerUsage()
 	update_coverage()
 
 /obj/machinery/camera/proc/upgradeXRay()
+	if(!assembly)
+		return
 	assembly.upgrades.Add(new /obj/item/stock_parts/scanning_module/adv(assembly))
 	setPowerUsage()
 	update_coverage()
 
 /obj/machinery/camera/proc/upgradeMotion()
+	if(!assembly)
+		return
 	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	if(!(src in machines))

@@ -208,8 +208,8 @@ swapmap
 		var/z
 		var/n
 		var/list/areas
-		var/area/defarea=locate(world.area)
-		if(!defarea) defarea=new world.area
+		var/area/defarea=locate(using_map.base_area)
+		if(!defarea) defarea=new using_map.base_area
 		areas=list()
 		for(var/turf/T in block(locate(x1,y1,z1),locate(x2,y2,z2)))
 			areas[T.loc]=null
@@ -249,14 +249,14 @@ swapmap
 		var/z
 		var/n
 		var/list/areas
-		var/area/defarea=locate(world.area)
+		var/area/defarea=locate(using_map.base_area)
 		id=_id
 		if(locorner)
 			ischunk=1
 			x1=locorner.x
 			y1=locorner.y
 			z1=locorner.z
-		if(!defarea) defarea=new world.area
+		if(!defarea) defarea=new using_map.base_area
 		if(!_id)
 			S["id"] >> id
 		else

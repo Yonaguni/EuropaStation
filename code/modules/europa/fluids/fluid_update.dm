@@ -50,6 +50,7 @@
 		if(flood_neighbors(dry_run=1))
 			fluid_master.add_active_source(src)
 	else
+		fluid_master.remove_active_source(src)
 		for(var/obj/effect/fluid/F in src)
 			fluid_master.add_active_fluid(F)
 

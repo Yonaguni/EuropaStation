@@ -346,7 +346,7 @@ What a mess.*/
 								return
 							active1.fields["age"] = t1
 					if("rank")
-						var/list/L = list( "Operations Officer", "Commanding Officer", "Computer")
+						var/list/L = list( "Colony Liaison", "Colony Director", "Computer")
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"

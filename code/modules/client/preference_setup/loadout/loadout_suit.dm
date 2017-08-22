@@ -20,7 +20,7 @@
 
 /datum/gear/suit/leather_jacket_nt
 	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
+	path = /obj/item/clothing/suit/storage/leather_jacket/corporate
 
 /datum/gear/suit/brown_jacket
 	display_name = "leather jacket, brown"
@@ -28,7 +28,7 @@
 
 /datum/gear/suit/brown_jacket_nt
 	display_name = "leather jacket, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
+	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/corporate
 
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"

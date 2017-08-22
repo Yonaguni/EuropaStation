@@ -12,6 +12,7 @@ var/global/datum/controller/process/tgui/tgui_process
 
 	basehtml = file2text('tgui/tgui.html') // Read the HTML from disk.
 	tgui_process = src
+	..()
 
 /datum/controller/process/tgui/doWork()
 	for(var/gui in processing_uis)

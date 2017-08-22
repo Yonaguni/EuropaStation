@@ -103,6 +103,7 @@
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
 /obj/effect/step_trigger/teleporter/random
+	opacity = 1
 	var/teleport_x_offset = 0
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
@@ -115,3 +116,10 @@
 				A.y = rand(teleport_y, teleport_y_offset)
 				A.z = rand(teleport_z, teleport_z_offset)
 
+/obj/effect/step_trigger/teleporter/random/admin
+	teleport_x = 25
+	teleport_y = 25
+	teleport_z = 3
+	teleport_x_offset = 245
+	teleport_y_offset = 245
+	teleport_z_offset = 7

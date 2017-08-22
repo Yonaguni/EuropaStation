@@ -3,6 +3,7 @@
 	schedule_interval = 600 //1 minute
 	for(var/i in 1 to rand(1,3))
 		generateTrader(1)
+	..()
 
 /datum/controller/process/trade/doWork()
 	for(var/a in traders)

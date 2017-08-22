@@ -32,16 +32,6 @@
 	display_name = "personal AI device"
 	path = /obj/item/paicard
 
-/datum/gear/utility/cheaptablet
-	display_name = "cheap tablet computer"
-	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
-	cost = 3
-
-/datum/gear/utility/normaltablet
-	display_name = "tablet computer"
-	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
-	cost = 4
-
 /datum/gear/utility/fanny_pack
 	display_name = "fanny pack, orange"
 	path = /obj/item/storage/belt/fanny_pack

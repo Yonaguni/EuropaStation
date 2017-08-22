@@ -21,7 +21,8 @@
 		/obj/item/camera_assembly,
 		/obj/item/tank,
 		/obj/item/circuitboard,
-		/obj/item/smes_coil
+		/obj/item/smes_coil,
+		/obj/item/fuel_assembly
 		)
 
 	var/obj/item/wrapped = null // Item currently being held.
@@ -125,7 +126,7 @@
 	if(!wrapped)
 		//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
 		for(var/obj/item/thing in src.contents)
-			thing.loc = get_turf(src)
+			thing.forceMove(get_turf(src))
 		return
 
 	if(wrapped.loc != src)

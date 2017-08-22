@@ -31,13 +31,13 @@
 	name = "Submachine Gun"
 	item_cost = 52
 	antag_costs = list(MODE_MERCENARY = 6)
-	path = /obj/item/gun/composite/premade/smg/a10
+	path = /obj/item/gun/composite/premade/smg/a10/preloaded
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
 	item_cost = 60
 	antag_costs = list(MODE_MERCENARY = 9)
-	path = /obj/item/gun/composite/premade/assault_rifle
+	path = /obj/item/gun/composite/premade/assault_rifle/a762/preloaded
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-materiel Rifle with ammunition"

@@ -615,8 +615,8 @@ obj/random/material //Random materials for building stuff
 					prob(3);/obj/item/radio/headset)
 
 /obj/random/voidhelmet
-	name = "Random Voidsuit Helmet"
-	desc = "This is a random voidsuit helmet."
+	name = "Random Pressure Suit Helmet"
+	desc = "This is a random suit helmet."
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "void"
 	item_to_spawn()
@@ -635,8 +635,8 @@ obj/random/material //Random materials for building stuff
 					/obj/item/clothing/head/helmet/space/void/medical/alt)
 
 /obj/random/voidsuit
-	name = "Random Voidsuit"
-	desc = "This is a random voidsuit."
+	name = "Random Pressure Suit"
+	desc = "This is a random suit."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "void"
 	item_to_spawn()

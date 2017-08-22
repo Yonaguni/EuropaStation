@@ -24,7 +24,7 @@
 		if(computer.battery_module && prob(25))
 			qdel(computer.battery_module)
 			computer.visible_message("<span class='notice'>\The [computer]'s battery explodes in rain of sparks.</span>")
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 			s.set_up(10, 1, computer.loc)
 			s.start()
 		if(istype(computer, /obj/item/modular_computer/processor))
@@ -32,7 +32,7 @@
 			if(P.machinery_computer.tesla_link && prob(50))
 				qdel(P.machinery_computer.tesla_link)
 				computer.visible_message("<span class='notice'>\The [computer]'s tesla link explodes in rain of sparks.</span>")
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(10, 1, computer.loc)
 				s.start()
 

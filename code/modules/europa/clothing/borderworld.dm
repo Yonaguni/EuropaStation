@@ -1,4 +1,3 @@
-
 /obj/item/clothing/under/governor
 	name = "governor's suit"
 	desc = "High roller."
@@ -68,8 +67,8 @@
 	armor = list(melee = 50, bullet = 65, laser = 5, energy = 5, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armour/makeshift
-	name = "makeshirt armour"
-	desc = "A poorly put together armour vest."
+	name = "makeshift armour"
+	desc = "A poorly put-together armour vest."
 	icon_state = "improvised_armour"
 	armor = list(melee = 10, bullet = 5, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
@@ -88,7 +87,7 @@
 	desc = "Whoever wears this is probably pretty villainous."
 
 /obj/item/clothing/under/merchant
-	name = "merchant's clothes"
+	name = "fine clothes"
 	desc = "Rich as butter."
 	icon_state = "callum_suit"
 	worn_state = "callum_suit"

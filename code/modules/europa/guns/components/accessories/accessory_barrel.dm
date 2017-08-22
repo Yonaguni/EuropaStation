@@ -21,7 +21,7 @@
 /obj/item/gun_component/accessory/barrel/silencer
 	name = "silencer"
 	desc = "A silencer."
-	weight_mod = 1
+	icon_state = "silencer"
 
 /obj/item/gun_component/accessory/barrel/silencer/apply_mod(var/obj/item/gun/composite/gun)
 	..()

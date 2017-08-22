@@ -6,6 +6,9 @@
 	icon = 'icons/misc/title.dmi'
 	screen_loc = "WEST,SOUTH"
 
+/obj/effect/lobby_image/update_plane()
+	return
+
 /obj/effect/lobby_image/initialize()
 	var/list/known_icon_states = icon_states(icon)
 	for(var/lobby_screen in config.lobby_screens)
