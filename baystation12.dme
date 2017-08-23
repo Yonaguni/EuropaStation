@@ -2126,6 +2126,7 @@
 #include "interface\skin.dmf"
 #include "maps\_map_include.dm"
 #include "maps\katydid\katydid_define.dm"
+#include "maps\testing\testing_define.dm"
 #include "maps\yonaguni\yonaguni.dm"
 #include "maps\yonaguni\yonaguni_define.dm"
 #include "maps\~mapsystem\maps.dm"

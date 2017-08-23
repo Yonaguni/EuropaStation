@@ -13,7 +13,7 @@ env:
   matrix:
     - MAP_PATH=yonaguni
     - MAP_PATH=katydid
-
+    - MAP_PATH=testing
 cache:
   directories:
     - tgui/node_modules
