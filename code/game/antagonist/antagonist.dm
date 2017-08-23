@@ -1,10 +1,10 @@
 /datum/antagonist
 
-	// Text shown when becoming this antagonist.
-	var/list/restricted_jobs =     list()   // Jobs that cannot be this antagonist (depending on config)
-	var/list/protected_jobs =      list()   // As above.
+	var/list/restricted_job_types =     list()   // Jobs that cannot be this antagonist (depending on config)
+	var/list/protected_job_types =      list()   // As above.
 
 	// Strings.
+	// Text shown when becoming this antagonist.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
 	var/leader_welcome_text                 // Text shown to the leader, if any.
 	var/victory_text                        // World output at roundend for victory.
@@ -88,7 +88,7 @@
 	if(!role_text_plural)
 		role_text_plural = role_text
 	if(config.protect_roles_from_antagonist)
-		restricted_jobs |= protected_jobs
+		restricted_job_types |= protected_job_types
 	if(antaghud_indicator)
 		if(!hud_icon_reference)
 			hud_icon_reference = list()

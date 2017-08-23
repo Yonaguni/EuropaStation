@@ -68,7 +68,7 @@ client/verb/JoinResponseTeam()
 			else
 				sending = ert
 
-		if(jobban_isbanned(usr, sending.id) || jobban_isbanned(usr, "Police Officer"))
+		if(jobban_isbanned(usr, sending.id))
 			usr << "<span class='danger'>You are jobbanned from this role!</span>"
 			return
 		if(sending.current_antagonists.len >= sending.hard_cap)

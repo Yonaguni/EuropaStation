@@ -8,10 +8,16 @@
 			// Limits antag status to clients above player age, if the age system is being used.
 			if(C && config.use_age_restriction_for_jobs && isnum(C.player_age) && isnum(min_player_age) && (C.player_age < min_player_age))
 				return 0
-		if(player.assigned_role in restricted_jobs)
+
+		if((restricted_job_types.len || protected_job_types.len) && !job_master)
 			return 0
-		if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
-			return 0
+
+		var/datum/job/job = job_master.GetJob(player.assigned_role)
+		if(istype(job))
+			if(job.type in restricted_job_types)
+				return 0
+			if(config.protect_roles_from_antagonist && (job.type in protected_job_types))
+				return 0
 		if(player.current && (player.current.status_flags & NO_ANTAG))
 			return 0
 	return 1
