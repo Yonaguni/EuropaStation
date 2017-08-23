@@ -5,9 +5,9 @@
 [[ -z $GIT ]] && GIT=true # true, false, or any valid command; return value decides whether git is called to update the code
 [[ -z $REPO ]] && REPO=upstream # Repo to fetch and pull from when updating
 [[ -z $BRANCH ]] && BRANCH=master # Branch to pull when updating
-[[ -z $GITDIR ]] && GITDIR=. # Directory of code or git repo, relative to $SERVERDIR
+[[ -z $GITDIR ]] && GITDIR=~/EuropaStation # Directory of code or git repo, relative to $SERVERDIR
 [[ -z $EXTRA_DM_SH_ARGS ]] && EXTRA_DM_SH_ARGS="" # Extra args to pass to dm.sh
-[[ -z $SERVERDIR ]] && SERVERDIR=../live # Location of the server, relative to the directory this script is called with a pwd of
+[[ -z $SERVERDIR ]] && SERVERDIR=~/live # Location of the server, relative to the directory this script is called with a pwd of
 [[ -z $GULP_PATH ]] && GULP_PATH=gulp # Location of gulp executable
 
 cd $SERVERDIR
@@ -28,7 +28,7 @@ exec 5>&1 # duplicate fd 5 to fd 1 (stdout); this allows us to echo the log duri
 
 [[ -e stopserver ]] && rm stopserver
 while [[ ! -e stopserver ]]; do
-	MAP="$(cat use_map || echo "exodus")"
+	MAP="$(cat use_map || echo "yonaguni")"
 
 	# Any part of the update process can set this to immediately halt all further updating and kill the script
 	# This is NOT for trivial errors; only set this if the error is such that the server should NOT be started
