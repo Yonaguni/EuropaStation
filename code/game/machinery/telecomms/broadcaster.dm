@@ -594,10 +594,13 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 /atom/proc/telecomms_process(var/do_sleep = 1)
 
+	var/turf/pos = get_turf(src)
+	if(!istype(pos))
+		return
+
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new
 	signal.transmission_method = 2 // 2 would be a subspace transmission.
-	var/turf/pos = get_turf(src)
 
 	// --- Finally, tag the actual signal with the appropriate values ---
 	signal.data = list(
