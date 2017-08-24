@@ -10,7 +10,6 @@
 	economic_modifier = 1
 	access = list()			//See /datum/job/crewman/get_access()
 	minimal_access = list()	//See /datum/job/crewman/get_access()
-	alt_titles = list("Ensign")
 	outfit_type = /decl/hierarchy/outfit/job/crewman
 
 /datum/job/crewman/get_access()

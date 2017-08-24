@@ -31,3 +31,55 @@
 
 /decl/hierarchy/outfit/job/crewman
 	name = OUTFIT_JOB_NAME("Crewman")
+
+	var/list/all_uniforms = list(
+		/obj/item/clothing/under/soviet,
+		/obj/item/clothing/under/redcoat,
+		/obj/item/clothing/under/serviceoveralls,
+		/obj/item/clothing/under/captain_fly,
+		/obj/item/clothing/under/det
+		)
+	var/list/all_shoes = list(
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/shoes/workboots,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/shoes/laceup
+		)
+	var/list/all_hats = list(
+		/obj/item/clothing/head/ushanka,
+		/obj/item/clothing/head/bandana,
+		/obj/item/clothing/head/cowboy_hat,
+		/obj/item/clothing/head/cowboy_hat/wide,
+		/obj/item/clothing/head/cowboy_hat/black
+		)
+	var/list/all_suits = list(
+		/obj/item/clothing/suit/storage/toggle/bomber,
+		/obj/item/clothing/suit/storage/leather_jacket,
+		/obj/item/clothing/suit/storage/toggle/brown_jacket,
+		/obj/item/clothing/suit/storage/toggle/hoodie,
+		/obj/item/clothing/suit/storage/toggle/hoodie/black,
+		/obj/item/clothing/suit/poncho
+		)
+
+	uniform = null
+	shoes = null
+	head = null
+	suit = null
+
+/decl/hierarchy/outfit/job/crewman/pre_equip(mob/living/carbon/human/H)
+	if(!uniform)
+		uniform = pick(all_uniforms)
+	if(!shoes)
+		shoes = pick(all_shoes)
+	if(!head && prob(50))
+		head = pick(all_hats)
+	if(!suit && prob(50))
+		suit = pick(all_suits)
+	. = ..()
+
+/decl/hierarchy/outfit/job/crewman/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	uniform = initial(uniform)
+	shoes = initial(shoes)
+	head = initial(head)
+	suit = initial(suit)
