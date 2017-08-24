@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+var/list/id_modifying_ranks = list("Computer")
 
 /obj/machinery/computer/secure_data//TODO:SANITY
 	name = "security records console"
@@ -498,9 +499,8 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 							temp += "</ul>"
 					if("rank")
-						var/list/L = list( "Colony Liaison", "Colony Director", "Computer" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
-						if ((istype(active1, /datum/data/record) && L.Find(rank)))
+						if (istype(active1, /datum/data/record) && (rank in id_modifying_ranks))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
 							for(var/rank in joblist)
