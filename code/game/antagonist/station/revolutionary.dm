@@ -1,6 +1,7 @@
 var/datum/antagonist/revolutionary/revs
 
 /datum/antagonist/revolutionary
+
 	id = MODE_REVOLUTIONARY
 	role_text = "Head Revolutionary"
 	role_text_plural = "Revolutionaries"
@@ -13,6 +14,8 @@ var/datum/antagonist/revolutionary/revs
 	loss_feedback_tag = "loss - rev heads killed"
 	flags = ANTAG_SUSPICIOUS | ANTAG_VOTABLE
 	antaghud_indicator = "hudrevolutionary"
+
+	restricted_job_types = list(/datum/job/ai, /datum/job/cyborg)
 
 	hard_cap = 2
 	hard_cap_round = 4
@@ -28,8 +31,7 @@ var/datum/antagonist/revolutionary/revs
 	faction_invisible = 1
 	faction = "revolutionary"
 
-	restricted_jobs = list("Computer", "Robot","Colony Director", "Colony Liaison", "Chief of Police", "Chief of Engineering", "Scientist", "Chief of Medicine")
-	protected_jobs = list("Police Officer", "Police Quartermaster")
+	restricted_job_types = list(/datum/job/ai, /datum/job/cyborg)
 
 
 /datum/antagonist/revolutionary/New()

@@ -1,0 +1,50 @@
+"a" = (/turf/space,/area/space)
+"b" = (/turf/simulated/wall,/area/hallway)
+"c" = (/turf/simulated/floor/tiled,/area/arrival/start)
+"d" = (/turf/simulated/floor/tiled,/area/hallway)
+"e" = (/obj/machinery/power/debug_items/infinite_generator,/turf/simulated/floor/tiled,/area/hallway)
+"f" = (/obj/effect/landmark/start,/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/arrival/start)
+"g" = (/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/hallway)
+"h" = (/obj/machinery/power/apc/east,/turf/simulated/floor/tiled,/area/hallway)
+"i" = (/obj/effect/landmark/start/ninja,/turf/simulated/floor/tiled,/area/hallway)
+"j" = (/obj/effect/landmark/start/merc,/turf/simulated/floor/tiled,/area/hallway)
+"k" = (/obj/effect/landmark/start/paramount,/turf/simulated/floor/tiled,/area/hallway)
+"l" = (/obj/effect/landmark/start/navy,/turf/simulated/floor/tiled,/area/hallway)
+"m" = (/obj/effect/landmark/start/ert,/turf/simulated/floor/tiled,/area/hallway)
+"n" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor/tiled,/area/hallway)
+"o" = (/obj/effect/landmark/start/crewman,/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/hallway)
+"p" = (/obj/effect/landmark/start/raider,/turf/simulated/floor/tiled,/area/hallway)
+"q" = (/obj/effect/landmark/start/malf,/turf/simulated/floor/tiled,/area/hallway)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaabbbbbbbbbbbbbbbbaaaaaaa
+aaaaaaabcccddddddddddebaaaaaaa
+aaaaaaabcfcddgddgdddgdbaaaaaaa
+aaaaaaabcccddddddddddhbaaaaaaa
+aaaaaaabddddddgdddddddbaaaaaaa
+aaaaaaabddddddddddddddbaaaaaaa
+aaaaaaabdgddddddddddgdbaaaaaaa
+aaaaaaabddddddgdddgdddbaaaaaaa
+aaaaaaabddddgddgddddddbaaaaaaa
+aaaaaaabdgddddddddddgdbaaaaaaa
+aaaaaaabddddddddddddddbaaaaaaa
+aaaaaaabdddddddgddddddbaaaaaaa
+aaaaaaabdidjddddddddddbaaaaaaa
+aaaaaaabkgldmgddgdndodbaaaaaaa
+aaaaaaabdpdqddddddddddbaaaaaaa
+aaaaaaabbbbbbbbbbbbbbbbaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

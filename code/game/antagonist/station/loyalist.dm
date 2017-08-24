@@ -26,7 +26,7 @@ var/datum/antagonist/loyalists/loyalists
 	faction_welcome = "Preserve loyalist interests against the traitorous recidivists amongst the crew. Protect the heads of staff with your life."
 	faction_indicator = "loyal"
 	faction_invisible = 1
-	restricted_jobs = list("Computer", "Robot")
+	restricted_job_types = list(/datum/job/ai, /datum/job/cyborg)
 
 	faction = "loyalist"
 

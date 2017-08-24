@@ -17,18 +17,17 @@
 	ambient_exterior_temperature = 110 // -160 degrees celcius (surface temperature of Europa)
 	ambient_exterior_light = FALSE
 
-	map_info = "<b>Yonaguni Dome</b> was a well-funded joint colony project intending to put a permanent human presence under the ice on Europa, one of Jupiter's \
-		moons. Ambitious as the project was, the Jovian Navy, industrial investor PicoMotion, and the various civilian corps who formed the majority of the population \
-		were unrepared for the strange and often horrifying experiences waiting for them under the ocean, and today only one dome remains functional - Dome Thirteen."
+	map_info = "<b>Yonaguni Dome 13</b> is a cloak-and-dagger project administrated by industrial giant PicoMotion. The facility is a privately owned, well-hidden reesarch base \
+		on the floor of the Europan ocean, dedicated to studying the strange and often horrifying experiences waiting for humanity under the ice."
 
 	full_name     = "Yonaguni Dome 13"
 	station_short = "Yonaguni"
 	dock_name     = "Rhadamanthus"
-	boss_name     = "Department of Planetary Exploitation"
-	boss_short    = "SDPE"
+	boss_name     = "Board of Directors"
+	boss_short    = "the Board"
 	company_name  = "PicoMotion©"
 	company_short = "PM"
-	commanding_role = "Colony Director"
+	commanding_role = "Director"
 	default_arrival_message = "has arrived at the facility"
 
 

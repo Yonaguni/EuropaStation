@@ -28,7 +28,6 @@
 /datum/gear/uniform/roboticist_skirt
 	display_name = "skirt, roboticist"
 	path = /obj/item/clothing/under/rank/roboticist/skirt
-	allowed_roles = list("Roboticist")
 
 /datum/gear/uniform/suit  //amish
 	display_name = "suit, amish"
@@ -105,7 +104,6 @@
 /datum/gear/uniform/scrubs
 	display_name = "scrubs, black"
 	path = /obj/item/clothing/under/rank/medical/black
-	allowed_roles = list("Doctor","Chief of Medicine")
 
 /datum/gear/uniform/scrubs/blue
 	display_name = "scrubs, blue"
@@ -138,7 +136,6 @@
 /datum/gear/uniform/uniform_captain
 	display_name = "uniform, captain's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Colony Director")
 
 /datum/gear/uniform/skirt
 	display_name = "skirt selection"

@@ -6,15 +6,15 @@
 	sort_category = "Glasses and Eyewear"
 
 /datum/gear/eyes/glasses
-	display_name = "hlasses, prescription"
+	display_name = "glasses, prescription"
 	path = /obj/item/clothing/glasses/regular
 
 /datum/gear/eyes/glasses/green
-	display_name = "hlasses, green"
+	display_name = "glasses, green"
 	path = /obj/item/clothing/glasses/gglasses
 
 /datum/gear/eyes/glasses/prescriptionhipster
-	display_name = "hlasses, hipster"
+	display_name = "glasses, hipster"
 	path = /obj/item/clothing/glasses/regular/hipster
 
 /datum/gear/eyes/glasses/monocle

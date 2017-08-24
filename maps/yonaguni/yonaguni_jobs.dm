@@ -1,8 +1,26 @@
+/datum/antagonist/changeling/New()
+	protected_job_types |= list(/datum/job/officer, /datum/job/warden, /datum/job/qm, /datum/job/captain, /datum/job/hos)
+	..()
+
+/datum/antagonist/cultist/New()
+	restricted_job_types |= list(/datum/job/hos, /datum/job/captain)
+	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
+	..()
+
+/datum/antagonist/revolutionary/New()
+	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/xo, /datum/job/hos, /datum/job/rd, /datum/job/cmo)
+	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
+	..()
+
+/datum/antagonist/traitor/New()
+	protected_job_types |= list(/datum/job/officer, /datum/job/warden, /datum/job/hos, /datum/job/captain)
+	..()
+
 /datum/map/yonaguni
-	default_role = "Colonist"
-	default_job_type = /datum/job/crewman/colonist
+	default_role = "Employee"
+	default_job_type = /datum/job/crewman/employee
 	allowed_jobs = list(
-		/datum/job/crewman/colonist,
+		/datum/job/crewman/employee,
 		/datum/job/captain,
 		/datum/job/xo,
 		/datum/job/administrator,
@@ -12,7 +30,7 @@
 		/datum/job/chef,
 		/datum/job/qm,
 		/datum/job/janitor,
-		/datum/job/tourist,
+		/datum/job/visitor,
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
@@ -23,18 +41,19 @@
 		/datum/job/xenobiologist
 		)
 
-/datum/job/crewman/colonist
-	title = "Colonist"
+/datum/job/crewman/employee
+	title = "Employee"
+	supervisors = "absolutely everyone"
 
 /datum/job/captain
-	title = "Colony Director"
+	title = "Director"
 	department = "Command"
 	head_position = 1
 	department_flag = COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Department of Planetary Exploitation and the Jovian Naval Authority"
+	supervisors = "the Board and the Jovian Naval Authority"
 	selection_color = "#1d1d4f"
 	req_admin_notify = 1
 	access = list() 			//See get_access()
@@ -45,18 +64,22 @@
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/colony_director
 
+/datum/job/captain/New()
+	id_modifying_ranks |= title
+	..()
+
 /datum/job/captain/get_access()
 	return get_all_station_access()
 
 /datum/job/xo
-	title = "Colony Liaison"
+	title = "Corporate Liaison"
 	department = "Command"
 	head_position = 1
 	department_flag = COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Colony Director"
+	supervisors = "the Director"
 	selection_color = "#2f2f7f"
 	req_admin_notify = 1
 	access = list() 			//See get_access()
@@ -67,17 +90,21 @@
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/colony_liaison
 
+/datum/job/xo/New()
+	id_modifying_ranks |= title
+	..()
+
 /datum/job/xo/get_access()
 	return get_all_station_access()
 
 /datum/job/administrator
-	title = "Colony Administrator"
+	title = "Administrator"
 	head_position = 1
 	department_flag = COM|CIV
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 1
-	supervisors = "the Colony Director and Colony Liaison"
+	supervisors = "the Director and Corporate Liaison"
 	selection_color = "#2f2f7f"
 	minimal_player_age = 14
 	economic_modifier = 10
@@ -107,7 +134,7 @@
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Colony Director"
+	supervisors = "the Director"
 	selection_color = "#7f6e2c"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -127,7 +154,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/europa_engineer/coe
 
 /datum/job/engineer
-	title = "Civil Engineer"
+	title = "Engineer"
 	department = "Engineering"
 	department_flag = ENG
 	faction = "Crew"
@@ -201,9 +228,9 @@
 	minimal_access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
 	outfit_type = /decl/hierarchy/outfit/job/europa_janitor
 
-/datum/job/tourist
-	title = "Tourist"
-	outfit_type = /decl/hierarchy/outfit/job/europa_tourist
+/datum/job/visitor
+	title = "Visitor"
+	outfit_type = /decl/hierarchy/outfit/job/cultural_attache
 	department = "Civilian"
 	department_flag = CIV
 	faction = "Crew"
@@ -214,15 +241,59 @@
 	minimal_access = list()
 	selection_color = "#633d63"
 
+	alt_titles = list(
+		"Resomi Imperial Ringwright" =    /decl/hierarchy/outfit/job/cultural_attache/resomi,
+		"Resomi Imperial Citizen" =       /decl/hierarchy/outfit/job/cultural_attache/resomi/civilian,
+		"Resomi Imperial Emissary" =      /decl/hierarchy/outfit/job/cultural_attache/resomi/fancy,
+		"Skrellian Cultural Attache" =    /decl/hierarchy/outfit/job/cultural_attache/skrell,
+		"Skrellian Scientific Dispatch" = /decl/hierarchy/outfit/job/cultural_attache/skrell/science,
+		"Skrellian Caste Executive" =     /decl/hierarchy/outfit/job/cultural_attache/skrell/fancy,
+		"Advancer Gestalt" =              /decl/hierarchy/outfit/job/cultural_attache/diona,
+		"Progenitor Gestalt" =            /decl/hierarchy/outfit/job/cultural_attache/diona,
+		"Venerated Gestalt" =             /decl/hierarchy/outfit/job/cultural_attache/diona
+		)
+
+	var/list/titles_to_species = list(
+		"Resomi Imperial Ringwright" =    "Resomi",
+		"Resomi Imperial Citizen" =       "Resomi",
+		"Resomi Imperial Emissary" =      "Resomi",
+		"Skrellian Scientific Dispatch" = "Skrell",
+		"Skrellian Cultural Attache" =    "Skrell",
+		"Skrellian Caste Executive" =     "Skrell",
+		"Advancer Gestalt" =              "Diona",
+		"Progenitor Gestalt" =            "Diona",
+		"Venerated Gestalt" =             "Diona"
+		)
+
+/datum/job/visitor/handle_misc_notifications(var/mob/living/carbon/human/H)
+	H << "You are a visiting <b>[H.species.name]</b>."
+	H << "[H.species.blurb]"
+	H << "<b>Represent your culture well to these strangers.</b>"
+
+/datum/job/visitor/equip_species(var/mob/living/carbon/human/H, var/alt_title)
+	var/use_title = alt_title
+	if(!titles_to_species[use_title] || use_title == null)
+		use_title = "Skrellian Scientific Dispatch"
+
+	if(H.species.name != titles_to_species[use_title])
+		H.set_species(titles_to_species[use_title], 1)
+		return 1
+	return 0
+
+/datum/job/visitor/equip(var/mob/living/carbon/human/H, var/alt_title)
+	. = ..()
+	spawn(15)
+		H.change_appearance((APPEARANCE_GENDER|APPEARANCE_SKIN|APPEARANCE_ALL_HAIR|APPEARANCE_EYE_COLOR), get_turf(H), H, 1, list(H.species.name), all_species-H.species.name)
+
 /datum/job/hos
-	title = "Chief of Police"
+	title = "Chief of Security"
 	head_position = 1
-	department = "Police"
+	department = "Security"
 	department_flag = SEC|COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Colony Director"
+	supervisors = "the Director"
 	selection_color = "#8e2929"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -243,8 +314,8 @@
 		H.implant_loyalty(H)
 
 /datum/job/warden
-	title = "Police Quartermaster"
-	department = "Police"
+	title = "Security Quartermaster"
+	department = "Security"
 	department_flag = SEC
 	faction = "Crew"
 	total_positions = 1
@@ -258,8 +329,8 @@
 	outfit_type = /decl/hierarchy/outfit/job/europa_police_quartermaster
 
 /datum/job/officer
-	title = "Police Officer"
-	department = "Police"
+	title = "Security Officer"
+	department = "Security"
 	department_flag = SEC
 	faction = "Crew"
 	total_positions = 4
@@ -281,7 +352,7 @@
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Colony Director"
+	supervisors = "the Director"
 	selection_color = "#ad6bad"
 	req_admin_notify = 1
 	economic_modifier = 15
@@ -305,7 +376,7 @@
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Director"
 	selection_color = "#026865"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -374,16 +445,16 @@
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
 
 /obj/effect/landmark/start/co
-	name = "Colony Director"
+	name = "Director"
 
 /obj/effect/landmark/start/xo
-	name = "Colony Liaison"
+	name = "Corporate Liaison"
 
 /obj/effect/landmark/start/flight_controller
-	name = "Colony Administrator"
+	name = "Administrator"
 
 /obj/effect/landmark/start/alien
-	name = "Tourist"
+	name = "Visitor"
 
 /obj/effect/landmark/start/qm
 	name = "Chief of Logistics"
@@ -398,7 +469,7 @@
 	name = "Chief of Engineering"
 
 /obj/effect/landmark/start/engineer
-	name = "Civil Engineer"
+	name = "Engineer"
 
 /obj/effect/landmark/start/roboticist
 	name = "Roboticist"
@@ -419,13 +490,13 @@
 	name = "Scientist"
 
 /obj/effect/landmark/start/cos
-	name = "Chief of Police"
+	name = "Chief of Security"
 
 /obj/effect/landmark/start/munitions_officer
-	name = "Police Quartermaster"
+	name = "Security Quartermaster"
 
 /obj/effect/landmark/start/security_officer
-	name = "Police Officer"
+	name = "Security Officer"
 
 /obj/effect/landmark/start/robot
 	name = "Robot"

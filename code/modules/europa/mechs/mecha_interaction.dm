@@ -179,6 +179,9 @@
 		update_pilot_overlay()
 	return 1
 
+/mob/living/heavy_vehicle/movement_delay()
+	return legs ? legs.move_delay : 3
+
 /mob/living/heavy_vehicle/relaymove(var/mob/living/user, var/direction)
 
 	if(world.time < next_move)
@@ -197,10 +200,11 @@
 		next_move = world.time + 15
 		return
 
-	next_move = world.time + legs.move_delay
+	glide_size = world.icon_size / max(movement_delay(), world.tick_lag) * world.tick_lag
+	next_move = world.time + legs.movement_delay()
 
 	if(!user.has_aspect(ASPECT_EXOSUIT_PILOT))
-		next_move += rand(10,20)
+		next_move += rand(5,10)
 
 	if(maintenance_protocols)
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
