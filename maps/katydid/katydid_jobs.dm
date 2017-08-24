@@ -1,19 +1,19 @@
 /datum/antagonist/changeling/New()
-	protected_jobs |= list(/datum/job/katydid/crew/captain)
+	protected_job_types |= list(/datum/job/katydid/crew/captain)
 	..()
 
 /datum/antagonist/cultist/New()
-	restricted_jobs |= list(/datum/job/katydid/crew/gunner, /datum/job/katydid/crew/captain)
-	protected_jobs |= list(/datum/job/katydid/crew/mate)
+	restricted_job_types |= list(/datum/job/katydid/crew/gunner, /datum/job/katydid/crew/captain)
+	protected_job_types |= list(/datum/job/katydid/crew/mate)
 	..()
 
 /datum/antagonist/revolutionary/New()
-	restricted_job_types |= list("Computer", "Robot","Colony Director", "Colony Liaison", "Chief of Police", "Chief of Engineering", "Scientist", "Chief of Medicine")
-	protected_job_types |= list("Police Officer", "Police Quartermaster")
+	restricted_job_types |= list(/datum/job/katydid/crew/captain)
+	protected_job_types |= list(/datum/job/katydid/crew/gunner)
 	..()
 
 /datum/antagonist/traitor/New()
-	protected_job_types |= list("Police Officer", "Police Quartermaster", "Chief of Police", "Colony Director")
+	protected_job_types |= list(/datum/job/katydid/crew/captain, /datum/job/katydid/crew/gunner)
 	..()
 
 /datum/map/katydid

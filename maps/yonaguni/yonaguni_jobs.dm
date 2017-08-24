@@ -63,6 +63,10 @@
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/colony_director
 
+/datum/job/captain/New()
+	id_modifying_ranks |= title
+	..()
+
 /datum/job/captain/get_access()
 	return get_all_station_access()
 
@@ -84,6 +88,10 @@
 
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/colony_liaison
+
+/datum/job/xo/New()
+	id_modifying_ranks |= title
+	..()
 
 /datum/job/xo/get_access()
 	return get_all_station_access()
