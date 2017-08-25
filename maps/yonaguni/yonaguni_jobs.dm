@@ -38,7 +38,9 @@
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/psychiatrist,
-		/datum/job/xenobiologist
+		/datum/job/xenobiologist,
+		//datum/job/ai,
+		/datum/job/cyborg
 		)
 
 /datum/job/crewman/employee

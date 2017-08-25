@@ -39,7 +39,6 @@
 
 				var/obj/effect/overmap/ship = hit
 				var/turf/target = ship.get_overmap_munition_target(src)
-				world << "hitting [target] with [src] ([proj_type])"
 				var/turf/arriving_from
 				switch(turn(ship.get_fore_dir(), dir2angle(ship.dir)-dir2angle(dir)))
 
@@ -91,15 +90,9 @@
 							tx = rand(min_edge_dist, round(world.maxx/2))
 						arriving_from = locate(tx, ty, target.z)
 
-					else
-						world << "???"
-
 				if(arriving_from)
-					world << "firing from [arriving_from] ([arriving_from.x], [arriving_from.y]. [arriving_from.z])"
 					var/obj/item/projectile/firing = new proj_type(arriving_from)
 					firing.launch(target)
-				else
-					world << "couldn't find target turf"
 
 				qdel(src)
 
