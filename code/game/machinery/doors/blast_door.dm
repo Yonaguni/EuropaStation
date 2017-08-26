@@ -102,28 +102,29 @@
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(var/obj/item/C, var/mob/user)
 	src.add_fingerprint(user)
-	if(C.iscrowbar() || (istype(C, /obj/item/material/twohanded/fireaxe) && C:wielded == 1))
-		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
-			force_toggle()
-		else
-			usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
-		return
-	if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
-		var/amt = Ceiling((maxhealth - health)/150)
-		if(!amt)
-			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
-			return
-		var/obj/item/stack/P = C
-		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
-			return
-		usr << "<span class='notice'>You begin repairing [src]...</span>"
-		if(do_after(usr, 30, src))
-			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \the [src]</span>"
-				src.repair()
+	if(istype(C))
+		if(C.iscrowbar() || (istype(C, /obj/item/material/twohanded/fireaxe) && C:wielded == 1))
+			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+				force_toggle()
 			else
+				usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
+			return
+		if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
+			var/amt = Ceiling((maxhealth - health)/150)
+			if(!amt)
+				usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
+				return
+			var/obj/item/stack/P = C
+			if(P.amount < amt)
 				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				return
+			usr << "<span class='notice'>You begin repairing [src]...</span>"
+			if(do_after(usr, 30, src))
+				if(P.use(amt))
+					usr << "<span class='notice'>You have repaired \the [src]</span>"
+					src.repair()
+				else
+					usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
 
 
 

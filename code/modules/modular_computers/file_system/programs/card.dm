@@ -43,6 +43,7 @@
 		data["id_name"] = id_card ? id_card.name : "-----"
 
 
+	data["command_jobs"] = format_jobs(command_positions)
 	data["engineering_jobs"] = format_jobs(engineering_positions)
 	data["medical_jobs"] = format_jobs(medical_positions)
 	data["science_jobs"] = format_jobs(science_positions)
@@ -190,11 +191,8 @@
 						access = get_centcom_access(t1)
 					else
 						var/datum/job/jobdatum
-						for(var/jobtype in typesof(/datum/job))
-							var/datum/job/J = new jobtype
-							if(ckey(J.title) == ckey(t1))
-								jobdatum = J
-								break
+						if(job_master)
+							jobdatum = job_master.GetJob(t1)
 						if(!jobdatum)
 							usr << "<span class='warning'>No log exists for this job: [t1]</span>"
 							return

@@ -70,7 +70,8 @@ var/global/datum/controller/occupations/job_master
 		if(!rank)	return null
 		for(var/datum/job/J in occupations)
 			if(!J)	continue
-			if(J.title == rank)	return J
+			if(lowertext(J.title) == lowertext(rank))
+				return J
 		return null
 
 	proc/ShouldCreateRecords(var/rank)

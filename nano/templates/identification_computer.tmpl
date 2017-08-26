@@ -75,14 +75,19 @@
 	  {{if data.assignments}}
 	  <div id="all-value.jobs">
 		<table>
-		  <tr>
-			<th></th><th>Command</th>
-		  </tr>
+
 		  <tr>
 			<th>Special</th>
 			<td>
-			  {{:helper.link("Captain", '', {'action' : 'assign', 'assign_target' : 'Captain'}, data.id_rank == 'Captain' ? 'disabled' : null)}}
 			  {{:helper.link("Custom", '', {'action' : 'assign', 'assign_target' : 'Custom'})}}
+			</td>
+		  </tr>
+		  <tr>
+			<th style="color: '#3B5F99';">Command</th>
+			<td>
+			  {{for data.command_jobs}}
+				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
