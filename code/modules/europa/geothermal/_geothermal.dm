@@ -1,4 +1,6 @@
-var/list/global/geothermal_cache = list()
+var/list/geothermal_cache = list()
+var/vent_min_power = solar_gen_rate * 2
+var/vent_max_power = solar_gen_rate * 8
 
 /obj/structure/underwater_vent
 	name = "vent"
@@ -12,13 +14,12 @@ var/list/global/geothermal_cache = list()
 
 	var/next_vent_time = 0
 	var/covered
-	var/vent_min_power = 3000
-	var/vent_max_power = 12000
 	var/destroyed
 	var/datum/effect/system/smoke_spread/steam
 
 /obj/structure/underwater_vent/New()
 	..()
+
 	update_icon(1)
 	processing_objects |= src
 	steam = new(name)
@@ -153,7 +154,7 @@ var/list/global/geothermal_cache = list()
 			geothermal_cache[cache_key] = image(icon_state = "geothermal-turbine", dir = src.dir)
 		overlays |= geothermal_cache[cache_key]
 		if(last_produced)
-			var/produced_alpha = min(255,max(0,round((last_produced / vent.vent_max_power)*255)))
+			var/produced_alpha = min(255,max(0,round((last_produced / vent_max_power)*255)))
 			cache_key = "geothermal-glow-[produced_alpha]-[src.dir]"
 			if(!geothermal_cache[cache_key])
 				var/image/I = image(icon_state = "geothermal-glow", dir = src.dir)
@@ -165,6 +166,6 @@ var/list/global/geothermal_cache = list()
 	last_produced = 0
 	if(!(stat & BROKEN))
 		if(vent && powernet)
-			last_produced = (rand(vent.vent_min_power, vent.vent_max_power) * efficiency)
+			last_produced = (rand(vent_min_power, vent_max_power) * efficiency)
 			add_avail(last_produced)
 	update_icon()

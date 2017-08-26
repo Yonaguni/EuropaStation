@@ -6,13 +6,7 @@
 
 /datum/event/electrical_storm/announce()
 	..()
-	switch(severity)
-		if(EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("A minor electrical storm has been detected near \the [station_name()]. Please watch out for possible electrical discharges.", "Electrical Storm Alert")
-		if(EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("\The [station_name()] is about to pass through an electrical storm. Please secure sensitive electrical equipment until the storm passes.", "Electrical Storm Alert")
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Alert. A strong electrical storm has been detected in proximity of \the [station_name()]. It is recommended to immediately secure sensitive electrical equipment until the storm passes.", "Electrical Storm Alert")
+	using_map.electrical_storm_starting_announce(severity)
 
 /datum/event/electrical_storm/start()
 	..()
@@ -59,4 +53,4 @@
 
 /datum/event/electrical_storm/end()
 	..()
-	command_announcement.Announce("\The [station_name()] has cleared the electrical storm. Please repair any electrical overloads.", "Electrical Storm Alert")
+	using_map.electrical_storm_ending_announce()

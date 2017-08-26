@@ -161,7 +161,7 @@
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("We started tracing the intruder. Whoever is doing this, they seem to be on \the [station_name()] itself. We suggest checking all network control terminals. We will keep you updated on the situation.", "Network Monitoring")
+			command_announcement.Announce("We started tracing the intruder. Whoever is doing this, they seem to be on [station_name()] itself. We suggest checking all network control terminals. We will keep you updated on the situation.", "Network Monitoring")
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
@@ -196,7 +196,7 @@
 
 
 	user << "## PRIMARY FIREWALL BYPASSED. YOU NOW HAVE FULL SYSTEM CONTROL."
-	command_announcement.Announce("Our system administrators just reported that we've been locked out from your control network. Whoever did this now has full access to \the [station_name()]'s systems.", "Network Administration Center")
+	command_announcement.Announce("Our system administrators just reported that we've been locked out from your control network. Whoever did this now has full access to [station_name()]'s systems.", "Network Administration Center")
 	user.hack_can_fail = 0
 	user.hacking = 0
 	user.system_override = 2

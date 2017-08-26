@@ -24,7 +24,7 @@
 /datum/event/rogue_drone/announce()
 	var/msg
 	if(prob(33))
-		msg = "A combat drone wing has failed to return from a sweep of this sector, if any are sighted approach with caution."
+		msg = "A combat drone wing has failed to return from a sweep of this volume, if any are sighted approach with caution."
 	else if(prob(50))
 		msg = "Contact has been lost with a combat drone wing operating in this volume. If any are sighted in the area, approach with caution."
 	else

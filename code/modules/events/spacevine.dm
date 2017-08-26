@@ -8,4 +8,4 @@
 	spacevines_spawned = 1
 
 /datum/event/spacevine/announce()
-	level_seven_announcement()
+	using_map.level_seven_announcement()

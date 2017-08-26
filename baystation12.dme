@@ -2130,6 +2130,7 @@
 #include "maps\testing\testing_define.dm"
 #include "maps\yonaguni\yonaguni_define.dm"
 #include "maps\~mapsystem\maps.dm"
+#include "maps\~mapsystem\maps_events.dm"
 #include "maps\~mapsystem\maps_verbs.dm"
 #include "~code\global_init.dm"
 // END_INCLUDE

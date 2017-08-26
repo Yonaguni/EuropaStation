@@ -170,7 +170,7 @@ var/hadevent    = 0
 					randmutg(H)
 					domutcheck(H,null,MUTCHK_FORCED)
 	sleep(100)
-	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	using_map.radiation_storm_starting_announce()
 
 //Changing this to affect the main station. Blame Urist. --Pete
 /proc/prison_break() // -- Callagan

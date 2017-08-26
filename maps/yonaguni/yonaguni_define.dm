@@ -23,8 +23,8 @@
 	full_name     = "Yonaguni Dome 13"
 	station_short = "Yonaguni"
 	dock_name     = "Rhadamanthus"
-	boss_name     = "Board of Directors"
-	boss_short    = "the Board"
+	boss_name     = "Administration"
+	boss_short    = "Admin"
 	company_name  = "PicoMotion©"
 	company_short = "PM"
 	commanding_role = "Director"
@@ -45,22 +45,6 @@
 
 /datum/map/yonaguni/get_exterior_air()
 	return new /datum/gas_mixture
-
-/datum/map/yonaguni/meteors_detected_announcement(var/event_severity = EVENT_LEVEL_MUNDANE)
-	switch(event_severity)
-		if(EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("Long-range sensors report a minor volcanic eruption nearby. All personnel are advised to prepare for incidental debris.", "Seismic Monitoring Array")
-		if(EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("Long-range sensors report a serious volcanic upheaval nearby. All personnel are advised to locate oxygen supplies and prepare for debris impact", "Seismic Monitoring Array")
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Alert. Catastrophic volcanic eruption chain detected by long-range scanners. Severe debris storm inbound. All personnel, prepare for impact.", "Seismic Monitoring Array")
-
-/datum/map/yonaguni/meteors_ending_announcement(var/event_severity = EVENT_LEVEL_MUNDANE)
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The [station_name()] has cleared the debris storm.", "[station_name()] Sensor Array")
-		else
-			command_announcement.Announce("The [station_name()] has cleared the debris shower", "[station_name()] Sensor Array")
 
 /obj/effect/landmark/map_data/yonaguni
 	name = "yonaguni"

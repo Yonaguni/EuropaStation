@@ -114,21 +114,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			<br>
 			[map_info]"}
 
-/datum/map/proc/meteors_detected_announcement(var/event_severity = EVENT_LEVEL_MUNDANE)
-	switch(event_severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Alert. The [station_name()] has entered a catastrophic meteor storm. All hands, brace for impact.", "[station_name()] Sensor Array")
-		else
-			command_announcement.Announce("The [station_name()] has entered a meteorite shower. Please check exterior hull for damage.", "[station_name()] Sensor Array")
-
-/datum/map/proc/meteors_ending_announcement(var/event_severity = EVENT_LEVEL_MUNDANE)
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The [station_name()] has cleared the meteor storm.", "[station_name()] Sensor Array")
-		else
-			command_announcement.Announce("The [station_name()] has cleared the meteor shower", "[station_name()] Sensor Array")
-
-
 // Used to apply various post-compile procedural effects to the map.
 /datum/map/proc/perform_map_generation()
 	return

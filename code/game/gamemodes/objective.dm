@@ -685,7 +685,7 @@ datum/objective/heist/salvage
 				target = "diamond"
 				target_amount = 20
 
-		explanation_text = "Ransack \the [station_name()] and escape with [target_amount] [target]."
+		explanation_text = "Ransack [station_name()] and escape with [target_amount] [target]."
 
 	check_completion()
 
