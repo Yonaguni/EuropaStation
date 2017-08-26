@@ -487,7 +487,7 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/miner
 	name = "miner robot module"
 	channels = list("Supply" = 1)
-	networks = list(NETWORK_MINE)
+	networks = list(NETWORK_EXPEDITION)
 	sprites = list(
 				"Default" = "miner"
 				)

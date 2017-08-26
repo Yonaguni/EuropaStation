@@ -1,46 +1,34 @@
 // PRESETS
 var/global/list/station_networks = list(
-										NETWORK_CALYPSO,
+										NETWORK_MAINTENANCE,
 										NETWORK_CIVILIAN_EAST,
 										NETWORK_CIVILIAN_WEST,
 										NETWORK_COMMAND,
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
-										NETWORK_EXODUS,
+										NETWORK_GENERAL,
 										NETWORK_EXPEDITION,
-										NETWORK_FIRST_DECK,
-										NETWORK_FOURTH_DECK,
 										NETWORK_MEDICAL,
-										NETWORK_MINE,
+										NETWORK_EXPEDITION,
 										NETWORK_RESEARCH,
-										NETWORK_RESEARCH_OUTPOST,
 										NETWORK_ROBOTS,
-										NETWORK_POD,
 										NETWORK_PRISON,
-										NETWORK_SECOND_DECK,
 										NETWORK_SECURITY,
-										NETWORK_SUPPLY,
-										NETWORK_THIRD_DECK
+										NETWORK_SUPPLY
 										)
+
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
 										"Atmosphere Alarms",
 										"Fire Alarms",
 										"Power Alarms")
 
-var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
+/obj/machinery/camera/network/crescent
+	network = list(NETWORK_ADMIN)
 
 /obj/machinery/camera/network/maintenance
 	network = list(NETWORK_MAINTENANCE)
-
-/obj/machinery/camera/network/calypso
-	network = list(NETWORK_CALYPSO)
-
-/obj/machinery/camera/network/crescent
-	network = list(NETWORK_CRESCENT)
 
 /obj/machinery/camera/network/civilian_east
 	network = list(NETWORK_CIVILIAN_EAST)
@@ -57,29 +45,17 @@ var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
 /obj/machinery/camera/network/engineering
 	network = list(NETWORK_ENGINEERING)
 
-/obj/machinery/camera/network/engineering_outpost
-	network = list(NETWORK_ENGINEERING_OUTPOST)
-
 /obj/machinery/camera/network/ert
 	network = list(NETWORK_ERT)
 
 /obj/machinery/camera/network/exodus
-	network = list(NETWORK_EXODUS)
+	network = list(NETWORK_GENERAL)
 
 /obj/machinery/camera/network/expedition
 	network = list(NETWORK_EXPEDITION)
 
-/obj/machinery/camera/network/first_deck
-	network = list(NETWORK_FIRST_DECK)
-
-/obj/machinery/camera/network/fourth_deck
-	network = list(NETWORK_FOURTH_DECK)
-
 /obj/machinery/camera/network/mining
-	network = list(NETWORK_MINE)
-
-/obj/machinery/camera/network/pod
-	network = list(NETWORK_POD)
+	network = list(NETWORK_EXPEDITION)
 
 /obj/machinery/camera/network/prison
 	network = list(NETWORK_PRISON)
@@ -90,12 +66,6 @@ var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
 /obj/machinery/camera/network/research
 	network = list(NETWORK_RESEARCH)
 
-/obj/machinery/camera/network/research_outpost
-	network = list(NETWORK_RESEARCH_OUTPOST)
-
-/obj/machinery/camera/network/second_deck
-	network = list(NETWORK_SECOND_DECK)
-
 /obj/machinery/camera/network/security
 	network = list(NETWORK_SECURITY)
 
@@ -105,11 +75,8 @@ var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
 /obj/machinery/camera/network/telecom
 	network = list(NETWORK_TELECOM)
 
-/obj/machinery/camera/network/third_deck
-	network = list(NETWORK_THIRD_DECK)
-
 /obj/machinery/camera/network/thunder
-	network = list(NETWORK_THUNDER)
+	network = list(NETWORK_ENTERTAINMENT)
 
 // EMP
 
@@ -143,9 +110,6 @@ var/const/NETWORK_MAINTENANCE         = "Maintenance Deck"
 /obj/machinery/camera/motion/New()
 	..()
 	upgradeMotion()
-
-/obj/machinery/camera/motion/engineering_outpost
-	network = list(NETWORK_ENGINEERING_OUTPOST)
 
 /obj/machinery/camera/motion/security
 	network = list(NETWORK_SECURITY)

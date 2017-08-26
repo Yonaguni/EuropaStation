@@ -59,7 +59,7 @@
 	req_one_access = list()
 
 /obj/item/clothing/head/helmet/space/rig/industrial
-	camera_networks = list(NETWORK_MINE)
+	camera_networks = list(NETWORK_EXPEDITION)
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/industrial
