@@ -38,7 +38,7 @@
 		qdel(src)
 		return 1
 
-	if(deleted(src))
+	if(QDELING(src))
 		return 1
 
 	if(power.next_psy > world.time)
