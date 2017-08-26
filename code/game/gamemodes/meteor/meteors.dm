@@ -237,7 +237,7 @@
 
 //Dust
 /obj/effect/meteor/dust
-	name = "space dust"
+	name = "debris cloud"
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
@@ -247,7 +247,7 @@
 
 //Medium-sized
 /obj/effect/meteor/medium
-	name = "meteor"
+	name = "debris"
 	dropamt = 2
 
 /obj/effect/meteor/medium/meteor_effect()
@@ -256,7 +256,7 @@
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "large meteor"
+	name = "large debris chunk"
 	icon_state = "large"
 	hits = 6
 	heavy = 1
@@ -268,7 +268,7 @@
 
 //Flaming meteor
 /obj/effect/meteor/flaming
-	name = "flaming meteor"
+	name = "red-hot debris"
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
@@ -280,7 +280,7 @@
 
 //Radiation meteor
 /obj/effect/meteor/irradiated
-	name = "glowing meteor"
+	name = "glowing debris"
 	icon_state = "glowing"
 	heavy = 1
 	meteordrop = /obj/item/ore/uranium
@@ -294,19 +294,19 @@
 
 
 /obj/effect/meteor/golden
-	name = "golden meteor"
+	name = "golden debris chunk"
 	icon_state = "glowing"
 	desc = "Shiny! But also deadly."
 	meteordrop = /obj/item/ore/gold
 
 /obj/effect/meteor/silver
-	name = "silver meteor"
+	name = "silver debris chunk"
 	icon_state = "glowing_blue"
 	desc = "Shiny! But also deadly."
 	meteordrop = /obj/item/ore/silver
 
 /obj/effect/meteor/emp
-	name = "conducting meteor"
+	name = "electrified debris chunk"
 	icon_state = "glowing_blue"
 	desc = "Hide your floppies!"
 	meteordrop = /obj/item/ore/osmium
@@ -323,7 +323,7 @@
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "colossal debris chunk"
 	icon_state = "flaming"
 	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
 	hits = 10
@@ -338,7 +338,7 @@
 // This is the final solution against shields - a single impact can bring down most shield generators.
 /obj/effect/meteor/supermatter
 	name = "supermatter shard"
-	desc = "Oh god, what will be next..?"
+	desc = "Oh god, what will be next...?"
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
 
