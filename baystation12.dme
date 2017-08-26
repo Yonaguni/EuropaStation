@@ -2104,6 +2104,7 @@
 #include "code\unit_tests\movement_tests.dm"
 #include "code\unit_tests\observation_tests.dm"
 #include "code\unit_tests\shuttle_tests.dm"
+#include "code\unit_tests\ss_test.dm"
 #include "code\unit_tests\test_obj.dm"
 #include "code\unit_tests\unique_tests.dm"
 #include "code\unit_tests\unit_test.dm"

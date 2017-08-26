@@ -104,12 +104,7 @@
 	. = ..()
 
 #ifndef UNIT_TEST
-
 	sleep_offline = 1
-
-#else
-	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
-	load_unit_test_changes()
 #endif
 
 	// Set up roundstart seed list.
@@ -131,10 +126,6 @@
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
-
-#ifdef UNIT_TEST
-	initialize_unit_tests()
-#endif
 
 	Master.Initialize(10, FALSE)
 

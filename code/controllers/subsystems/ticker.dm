@@ -15,9 +15,7 @@
 	set waitfor = 0
 	if (!ticker)
 		ticker = new
-
 	..()
-
 	ticker.pregame()
 
 /datum/controller/subsystem/ticker/fire()
