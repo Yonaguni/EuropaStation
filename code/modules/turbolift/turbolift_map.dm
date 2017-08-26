@@ -16,11 +16,11 @@
 	var/list/areas_to_use = list()
 
 /obj/turbolift_map_holder/Destroy()
-	turbolifts -= src
+	SSturbolift.turbolifts -= src
 	return ..()
 
 /obj/turbolift_map_holder/New()
-	turbolifts += src
+	SSturbolift.turbolifts += src
 	return ..()
 
 /obj/turbolift_map_holder/initialize()

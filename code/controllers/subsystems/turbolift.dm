@@ -3,13 +3,25 @@
 /datum/controller/subsystem/turbolift
 	name = "Turbolift"
 	wait = 1 SECOND
-	flags = SS_NO_INIT
+	init_order = SS_INIT_TURBOLIFT
+
+	var/list/turbolifts = list()
 
 	var/list/moving_lifts = list()
 	var/list/currentrun
 
 /datum/controller/subsystem/turbolift/New()
 	NEW_SS_GLOBAL(SSturbolift)
+
+/datum/controller/subsystem/turbolift/Initialize()
+	for (var/thing in turbolifts)
+		var/obj/turbolift_map_holder/TL = thing
+		if (!QDELETED(TL))
+			TL.initialize()
+
+		CHECK_TICK
+
+	..()
 
 /datum/controller/subsystem/turbolift/fire(resumed = 0)
 	if (!resumed)

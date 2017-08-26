@@ -49,13 +49,6 @@
 			AM.initialize()
 	shuttle_landmarks.Cut()
 
-	admin_notice("<span class='danger'>Initializing [turbolifts.len] turbolift\s.</span>", R_DEBUG)
-	for(var/thing in turbolifts)
-		var/datum/turbolift/TL = thing
-		if(!QDELETED(TL))
-			thing:initialize()
-			CHECK_TICK
-
 	admin_notice("<span class='danger'>Initializing [init_atoms.len] movable atom\s.</span>", R_DEBUG)
 	while(init_atoms.len) // Use a while loop so that in the event of new atoms being spawned, we will keep initializing them.
 		var/atom/movable/object = init_atoms[1]

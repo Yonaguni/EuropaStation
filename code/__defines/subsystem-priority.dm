@@ -1,8 +1,9 @@
-#define SS_INIT_MISC_FIRST         20
-#define SS_INIT_WIRELESS            9	// Wireless pair queue flush.
-#define SS_INIT_AIR                 8	// Air setup and pre-bake.
-#define SS_INIT_ICON_UPDATE         5	// Icon update queue flush. Should run before overlays.
-#define SS_INIT_MISC                3	// Subsystems without an explicitly set initialization order start here.
+#define SS_INIT_MISC_FIRST          6
+#define SS_INIT_TURBOLIFT           5
+#define SS_INIT_WIRELESS            4	// Wireless pair queue flush.
+#define SS_INIT_AIR                 3	// Air setup and pre-bake.
+#define SS_INIT_ICON_UPDATE         2	// Icon update queue flush. Should run before overlays.
+#define SS_INIT_MISC                1	// Subsystems without an explicitly set initialization order start here.
 #define SS_INIT_LOBBY              -1	// Lobby timer starts here.
 
 // Something to remember when setting priorities: SS_TICKER runs before Normal, which runs before SS_BACKGROUND.
