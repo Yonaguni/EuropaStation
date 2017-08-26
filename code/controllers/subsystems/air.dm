@@ -4,6 +4,8 @@
 	name = "Air"
 	wait = 2 SECONDS
 	flags = SS_NO_TICK_CHECK
+	init_order = SS_INIT_AIR
+	priority = SS_PRIORITY_AIR
 
 /datum/controller/subsystem/air/New()
 	NEW_SS_GLOBAL(SSair)

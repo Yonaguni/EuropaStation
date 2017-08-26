@@ -3,6 +3,7 @@
 /datum/controller/subsystem/tgui
 	name = "tgui"
 	wait = 1 SECOND
+	priority = SS_PRIORITY_TGUI
 
 	var/list/tg_open_uis = list() // A list of open UIs, grouped by src_object and ui_key.
 	var/list/processing_uis = list() // A list of processing UIs, ungrouped.

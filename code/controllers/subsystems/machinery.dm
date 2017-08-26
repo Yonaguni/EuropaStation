@@ -5,6 +5,7 @@ var/machinery_sort_required = 0
 	name = "Machinery"
 	wait = MACHINERY_TICKRATE SECONDS
 	flags = SS_NO_INIT
+	priority = SS_PRIORITY_MACHINERY
 
 	var/list/current_machinery
 	var/list/current_powernets

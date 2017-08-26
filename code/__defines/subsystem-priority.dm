@@ -1,6 +1,4 @@
 #define SS_INIT_MISC_FIRST         20
-#define SS_INIT_SHUTTLE            17	// Shuttle setup.
-#define SS_INIT_MACHINERY          10	// Machinery prune and powernet build.
 #define SS_INIT_WIRELESS            9	// Wireless pair queue flush.
 #define SS_INIT_AIR                 8	// Air setup and pre-bake.
 #define SS_INIT_ICON_UPDATE         5	// Icon update queue flush. Should run before overlays.
@@ -12,20 +10,20 @@
 // SS_BACKGROUND handles high server load differently than Normal and SS_TICKER do.
 
 // SS_TICKER
-#define SS_PRIORITY_ICON_UPDATE    20	// Queued icon updates. Mostly used by APCs and tables.
+// < none >
 
 // Normal
 #define SS_PRIORITY_TICKER         200	// Gameticker.
 #define SS_PRIORITY_MOB            150	// Mob Life().
 #define SS_PRIORITY_NANOUI         120	// UI updates.
+#define SS_PRIORITY_TGUI           120
 #define SS_PRIORITY_VOTE           110
 #define SS_PRIORITY_MACHINERY      95	// Machinery + powernet ticks.
 #define SS_PRIORITY_CHEMISTRY      90	// Multi-tick chemical reactions.
-#define SS_PRIORITY_SHUTTLE        85	// Shuttle movement.
 #define SS_PRIORITY_AIR            80	// ZAS processing.
 #define SS_PRIORITY_EVENT          70
 #define SS_PRIORITY_ALARMS         50
-#define SS_PRIORITY_PLANTS         40	// Spreading plant effects.
+#define SS_PRIORITY_ICON_UPDATE    20	// Queued icon updates. Mostly used by APCs and tables.
 
 
 // SS_BACKGROUND
