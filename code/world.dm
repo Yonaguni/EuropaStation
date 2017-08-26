@@ -133,7 +133,7 @@
 	populate_robolimb_list()
 
 #ifdef UNIT_TEST
-		initialize_unit_tests()
+	initialize_unit_tests()
 #endif
 
 	Master.Initialize(10, FALSE)
