@@ -183,3 +183,7 @@
 
 #define WORLD_ICON_SIZE 32
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32
+
+// Stoplag.
+#define TICK_CHECK ( world.tick_usage > CURRENT_TICKLIMIT ? stoplag() : 0 )
+#define CHECK_TICK if (world.tick_usage > CURRENT_TICKLIMIT)  stoplag()

@@ -77,12 +77,12 @@
 /obj/item/psychic_power/dropped()
 	. = ..()
 	loc = null
-	if(!deleted(src))
+	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/psychic_power/forceMove()
 	. = ..()
-	if(loc != owner && !deleted(src))
+	if(loc != owner && !QDELETED(src))
 		loc = null
 		qdel(src)
 

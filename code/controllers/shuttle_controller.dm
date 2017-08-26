@@ -5,7 +5,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 
-/datum/shuttle_controller/proc/process()
+/datum/shuttle_controller/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/autodock/shuttle in process_shuttles)
 		if (shuttle.process_state)

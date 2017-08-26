@@ -3,21 +3,6 @@
 var/list/controllers_by_name = list()
 var/list/controller_feedback_by_name = list()
 
-/client/proc/restart_controller(controller in list("Supply"))
-	set category = "Debug"
-	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
-
-	if(!holder)	return
-	usr = null
-	src = null
-	switch(controller)
-		if("Supply")
-			supply_controller.process()
-			feedback_add_details("admin_verb","RSupply")
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
-	return
-
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
 	set category = "Debug"
 	set name = "Debug Antagonist"

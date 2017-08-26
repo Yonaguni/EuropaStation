@@ -39,7 +39,7 @@
 
 /mob/living/silicon/Destroy()
 	silicon_mob_list -= src
-	for(var/datum/alarm_handler/AH in alarm_manager.all_handlers)
+	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
 	return ..()
 
@@ -339,7 +339,7 @@
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
-		if(C && !deleted(C))
+		if(C && !QDELETED(C))
 			cameratext += "[(cameratext == "")? "" : "|"]<a href=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag ? C.c_tag : "Unknown"]</a>"
 	src << "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])"
 

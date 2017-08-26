@@ -1,5 +1,5 @@
 /datum/ai
 	var/name
 
-/datum/ai/proc/process()
+/datum/ai/process()
 	return PROCESS_KILL

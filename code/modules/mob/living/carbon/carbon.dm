@@ -340,7 +340,7 @@
 
 	if(istype(item) && item.loc == src)
 		src.drop_from_inventory(item)
-	if(!isturf(item.loc) || deleted(item))
+	if(!isturf(item.loc) || QDELETED(item))
 		return
 
 	//actually throw it!

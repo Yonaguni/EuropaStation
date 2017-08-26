@@ -139,7 +139,7 @@
 		var/datum/computer_file/C = F.clone(0)
 		HDD.store_file(C)
 	if(.)
-		nanomanager.update_uis(NM)
+		SSnanoui.update_uis(NM)
 
 /datum/computer_file/program/filemanager/proc/parse_tags(var/t)
 	t = replacetext(t, "\[center\]", "<center>")
@@ -231,7 +231,7 @@
 					)))
 				data["usbfiles"] = usbfiles
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "file_manager.tmpl", "NTOS File Manager", 575, 700, state = state)
 		ui.auto_update_layout = 1

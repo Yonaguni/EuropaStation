@@ -26,7 +26,7 @@
 	else
 		for(var/thing in users)
 			var/mob/user = thing
-			if(!user || deleted(user))
+			if(!user || QDELETED(user))
 				users -= user
 			else if(user.is_physically_disabled() || (!isAI(user) && !user.Adjacent(owner)))
 				user << browse(null, "window=\ref[src]")

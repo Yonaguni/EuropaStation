@@ -92,6 +92,27 @@
 	world.log << "## UNIT_TEST ##: [text]"
 	log_debug(text)
 
+/proc/log_mc(text)
+	game_log("MASTER", text)
+
+/proc/log_gc(text, type, high_severity = FALSE)
+	game_log("GC", text)
+
+/proc/log_ss(subsystem, text, log_world = TRUE)
+	if (!subsystem)
+		subsystem = "UNKNOWN"
+	var/msg = "[subsystem]: [text]"
+	game_log("SS", msg)
+	if (log_world)
+		world.log << "SS[subsystem]: [text]"
+
+/proc/log_ss_init(text)
+	game_log("SS", "[text]")
+
+// Generally only used when something has gone very wrong.
+/proc/log_failsafe(text)
+	game_log("FAILSAFE", text)
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/dir_text(var/dir)
 	var/list/comps = list()

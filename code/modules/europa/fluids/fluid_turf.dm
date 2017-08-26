@@ -73,7 +73,7 @@
 	// Brute force until I can chase down the bugs.
 	if(istype(T))
 		spawn(1)
-			if(istype(T) && !deleted(T) && !T.flooded)
+			if(istype(T) && !QDELETED(T) && !T.flooded)
 				for(var/obj/effect/fluid/F in T.contents)
 					qdel(F)
 				for(var/obj/effect/flood/F in T.contents)
