@@ -38,6 +38,9 @@
 		qdel(src)
 		return 1
 
+	if(deleted(src))
+		return 1
+
 	if(power.next_psy > world.time)
 		user << "<span class='warning'>You cannot use this power again so soon.</span>"
 		return 1

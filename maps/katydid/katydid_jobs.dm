@@ -28,7 +28,7 @@
 		/datum/job/katydid/crew/engineer,
 		/datum/job/katydid/crew/mate,
 		/datum/job/katydid/crew/captain,
-		/datum/job/ai,
+		//datum/job/ai,
 		/datum/job/cyborg
 		)
 

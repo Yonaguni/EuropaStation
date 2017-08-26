@@ -47,7 +47,7 @@
 
 	var/turf/T = get_turf(user)
 
-	if(T.is_psi_null())
+	if(T && T.is_psi_null())
 		user << "<span class='warning'>You feel your psi-power bleeding away into \the [T]...</span>"
 		return
 

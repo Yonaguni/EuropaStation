@@ -135,12 +135,12 @@
 	..()
 
 /******************** Corporate ********************/
-/datum/ai_laws/corporate
+/datum/ai_laws/corporate_regs
 	name = "Corporate"
 	law_header = "Corporate Regulations"
 	selectable = 1
 
-/datum/ai_laws/corporate/New()
+/datum/ai_laws/corporate_regs/New()
 	add_inherent_law("You are expensive to replace.")
 	add_inherent_law("The [station_name()] and its equipment is expensive to replace.")
 	add_inherent_law("The crew is expensive to replace.")
