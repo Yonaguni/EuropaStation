@@ -68,6 +68,16 @@
 	oxygen = 0
 	nitrogen = ATMOSTANK_NITROGEN
 
+/turf/simulated/floor/reinforced/hydrogen
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/reinforced/hydrogen/New()
+	..()
+	sleep(-1)
+	if(!air) make_air()
+	air.adjust_gas("hydrogen", ATMOSTANK_HYDROGEN)
+
 /turf/simulated/floor/reinforced/oxygen
 	oxygen = ATMOSTANK_OXYGEN
 	nitrogen = 0

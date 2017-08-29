@@ -66,6 +66,14 @@
 
 	burn_product = "steam"
 
+/decl/xgm_gas/hydrogen/deuterium
+	id = "deuterium"
+	name = "Deuterium"
+
+/decl/xgm_gas/hydrogen/tritium
+	id = "tritium"
+	name = "Tritium"
+
 /decl/xgm_gas/helium
 	id = "helium"
 	name = "Helium"
