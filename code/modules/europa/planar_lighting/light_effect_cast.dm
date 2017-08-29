@@ -4,14 +4,26 @@
 #define OFFSET_MULTIPLIER_SIZE 32
 #define CORNER_OFFSET_MULTIPLIER_SIZE 16
 
+var/light_power_multiplier = 5
+
 // Casts shadows from occluding objects for a given light.
 
 /obj/effect/light/proc/cast_light()
-
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		init_lights |= src
+	light_color = null
 
 	temp_appearance = list()
+
+	//cap light range to 5
+	light_range = min(5, light_range)
+
+	alpha = min(255,max(0,round(light_power*light_power_multiplier*25)))
+
+	if(light_type == LIGHT_SOFT_FLICKER)
+		alpha = initial(alpha)
+		animate(src, alpha = initial(alpha) - rand(30, 60), time = 2, loop = -1, easing = SINE_EASING)
+
+	for(var/turf/T in range(light_range, src))
+		affecting_turfs |= T
 
 	if(!isturf(loc))
 		for(var/turf/T in affecting_turfs)
@@ -20,12 +32,11 @@
 		affecting_turfs.Cut()
 		return
 
-	//cap light range to 5
-	light_range = min(5, light_range)
+	for(var/turf/T in affecting_turfs)
+		T.affecting_lights |= src
 
-	alpha = min(255,max(0,round(light_power*25)))
 
-	if(is_directional_light())
+	if(light_type == LIGHT_DIRECTIONAL)
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
 	else
@@ -50,17 +61,21 @@
 	var/image/I = image(icon)
 	I.layer = 4
 	I.icon_state = "overlay"
-	if(is_directional_light())
+	if(light_type == LIGHT_DIRECTIONAL)
 		var/turf/next_turf = get_step(src, dir)
 		for(var/i = 1 to 3)
 			if(CheckOcclusion(next_turf))
 				I.icon_state = "[I.icon_state]_[i]"
 				break
 			next_turf = get_step(next_turf, dir)
+
 	temp_appearance += I
 
+	if(light_type == LIGHT_DIRECTIONAL)
+		follow_holder_dir()
+
 	//no shadows
-	if(light_range < 2 || is_directional_light())
+	if(light_range < 2 || light_type == LIGHT_DIRECTIONAL)
 		overlays = temp_appearance
 		temp_appearance = null
 		return
@@ -82,19 +97,52 @@
 	var/x_offset = target_turf.x - x
 	var/y_offset = target_turf.y - y
 
+	var/num = 1
+	if((abs(x_offset) > 0 && !y_offset) || (abs(y_offset) > 0 && !x_offset))
+		num = 2
+
+
 	//due to only having one set of shadow templates, we need to rotate and flip them for up to 8 different directions
 	//first check is to see if we will need to "rotate" the shadow template
 	var/xy_swap = 0
 	if(abs(x_offset) > abs(y_offset))
 		xy_swap = 1
 
-	var/image/I = image(icon)
+	var/shadowoffset = 16 + 32 * light_range
+
 
 	//due to the way the offsets are named, we can just swap the x and y offsets to "rotate" the icon state
+
+	var/shadowicon
+	switch(light_range)
+		if(2)
+			if(num == 1)
+				shadowicon = 'icons/planar_lighting/light_range_2_shadows1.dmi'
+			else
+				shadowicon = 'icons/planar_lighting/light_range_2_shadows2.dmi'
+		if(3)
+			if(num == 1)
+				shadowicon = 'icons/planar_lighting/light_range_3_shadows1.dmi'
+			else
+				shadowicon = 'icons/planar_lighting/light_range_3_shadows2.dmi'
+		if(4)
+			if(num == 1)
+				shadowicon = 'icons/planar_lighting/light_range_4_shadows1.dmi'
+			else
+				shadowicon = 'icons/planar_lighting/light_range_4_shadows2.dmi'
+		if(5)
+			if(num == 1)
+				shadowicon = 'icons/planar_lighting/light_range_5_shadows1.dmi'
+			else
+				shadowicon = 'icons/planar_lighting/light_range_5_shadows2.dmi'
+
+	var/image/I = image(shadowicon)
+
 	if(xy_swap)
 		I.icon_state = "[abs(y_offset)]_[abs(x_offset)]"
 	else
 		I.icon_state = "[abs(x_offset)]_[abs(y_offset)]"
+
 
 	var/matrix/M = matrix()
 
@@ -118,13 +166,32 @@
 	if(xy_swap)
 		M.Turn(90)
 
+	//warning: you are approaching shitcode (this is where we move the shadow to the correct quadrant based on its rotation and flipping)
+	//shadows are only as big as a quarter or half of the light for optimization
+
+	//please for the love of god change this if there's a better way
+
+	if(num == 1)
+		if((x_flip == 1 && y_flip == 1 && xy_swap == 0) || (x_flip == -1 && y_flip == 1 && xy_swap == 1))
+			M.Translate(shadowoffset, shadowoffset)
+		else if((x_flip == 1 && y_flip == -1 && xy_swap == 0) || (x_flip == 1 && y_flip == 1 && xy_swap == 1))
+			M.Translate(shadowoffset, 0)
+		else if((xy_swap == 0 && x_flip == -y_flip) || (xy_swap == 1 && x_flip == -1 && y_flip == -1))
+			M.Translate(0, shadowoffset)
+	else
+		if(x_flip == 1 && y_flip == 1 && xy_swap == 0)
+			M.Translate(0, shadowoffset)
+		else if(x_flip == 1 && y_flip == 1 && xy_swap == 1)
+			M.Translate(shadowoffset / 2, shadowoffset / 2)
+		else if(x_flip == 1 && y_flip == -1 && xy_swap == 1)
+			M.Translate(-shadowoffset / 2, shadowoffset / 2)
+
 	//apply the transform matrix
 	I.transform = M
 	I.layer = 2
 
 	//and add it to the lights overlays
 	temp_appearance += I
-
 
 	var/targ_dir = get_dir(target_turf, src)
 
