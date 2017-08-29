@@ -30,6 +30,8 @@
 			obfuscation_underlay.Blend(rgb(rand(0,255),rand(0,255),rand(0,255)))
 		obfuscation.underlays += obfuscation_underlay
 		obfuscation_images[T] = obfuscation
+		obfuscation.plane = GUI_PLANE
+		obfuscation.layer = 0
 	return obfuscation
 
 /datum/chunk

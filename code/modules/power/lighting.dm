@@ -158,11 +158,6 @@ var/global/list/light_bulb_type_cache = list()
 
 	var/rigged = 0				// true if rigged to explode
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-
-	//default lighting - these are obtained from light_bulb_type
-	var/brightness_range = 5
-	var/brightness_power = 4
-	var/brightness_color
 	var/list/lighting_modes
 
 	var/current_mode = null
@@ -257,7 +252,7 @@ var/global/list/light_bulb_type_cache = list()
 		if(current_mode && (current_mode in lighting_modes))
 			changed = set_light(arglist(lighting_modes[current_mode]))
 		else
-			changed = set_light(brightness_range, brightness_power, brightness_color)
+			changed = set_light(light_range, light_power, light_color)
 
 		if(trigger && changed)
 			switch_check()
@@ -339,9 +334,9 @@ var/global/list/light_bulb_type_cache = list()
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
-	brightness_range = L.brightness_range
-	brightness_power = L.brightness_power
-	brightness_color = L.brightness_color
+	light_range = L.brightness_range
+	light_power = L.brightness_power
+	light_color = L.brightness_color
 	lighting_modes = L.lighting_modes.Copy()
 
 // attack with item - insert light (if right type), otherwise try to break the light
@@ -687,9 +682,9 @@ obj/machinery/light/proc/burn_out()
 		fixture.transfer_fingerprints_to(src)
 
 		//shouldn't be necessary to copy these unless someone varedits stuff, but just in case
-		brightness_range = fixture.brightness_range
-		brightness_power = fixture.brightness_power
-		brightness_color = fixture.brightness_color
+		brightness_range = fixture.light_range
+		brightness_power = fixture.light_power
+		brightness_color = fixture.light_color
 		lighting_modes = fixture.lighting_modes.Copy()
 	update_icon()
 
