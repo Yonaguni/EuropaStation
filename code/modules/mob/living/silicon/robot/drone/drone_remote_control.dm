@@ -79,6 +79,7 @@
 	. = ..(gibbed)
 
 /mob/living/silicon/ai/Life()
+	. = ..()
 	if(controlling_drone && stat != CONSCIOUS)
 		controlling_drone.release_ai_control("<b>WARNING: Primary control loop failure.</b> Session terminated.")
 
