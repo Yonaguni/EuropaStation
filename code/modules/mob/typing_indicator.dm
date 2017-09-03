@@ -6,14 +6,25 @@ mob/var/last_typed
 mob/var/last_typed_time
 
 mob/var/obj/effect/decal/typing_indicator
+/mob/proc/create_typing_indicator()
+	if(typing_indicator)
+		qdel(typing_indicator)
+	typing_indicator = new
+	typing_indicator.icon = 'icons/mob/talk.dmi'
+	typing_indicator.icon_state = "typing"
+	typing_indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+/mob/living/carbon/human/create_typing_indicator()
+	..()
+	if(species.overlay_x_offset)
+		typing_indicator.pixel_x = species.overlay_x_offset
+	if(species.overlay_y_offset)
+		typing_indicator.pixel_y = species.overlay_x_offset
 
 /mob/proc/set_typing_indicator(var/state)
 
 	if(!typing_indicator)
-		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk.dmi'
-		typing_indicator.icon_state = "typing"
-		typing_indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		create_typing_indicator()
 
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility

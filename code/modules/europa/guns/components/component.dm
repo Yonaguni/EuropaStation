@@ -52,6 +52,15 @@
 	update_icon()
 	update_strings()
 
+/obj/item/gun_component/update_icon()
+	if(model && model.use_icon)
+		icon = model.use_icon
+		icon_state = component_type
+	else
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+	..()
+
 /obj/item/gun_component/proc/empty()
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))

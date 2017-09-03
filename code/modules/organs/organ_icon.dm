@@ -181,6 +181,10 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 	// Apply colour and return product.
 	var/list/hud_colours = (robotic < ORGAN_ROBOT) ? flesh_hud_colours : robot_hud_colours
 	hud_damage_image.color = hud_colours[max(1,min(ceil(dam_state*hud_colours.len),hud_colours.len))]
+	if(species.icon_x_offset)
+		hud_damage_image.pixel_x = species.icon_x_offset
+	if(species.icon_y_offset)
+		hud_damage_image.pixel_y = species.icon_y_offset
 	return hud_damage_image
 
 /obj/item/organ/external/proc/apply_colouration(var/icon/applying)

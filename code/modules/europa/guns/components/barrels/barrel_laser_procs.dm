@@ -25,6 +25,8 @@
 			return /obj/item/projectile/beam/sniper
 		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
 			return /obj/item/projectile/beam/stun
+		if(CALIBER_LASER_PARTICLE)
+			return /obj/item/projectile/beam/particle
 	return /obj/item/projectile/beam
 
 /proc/get_fire_sound_from_caliber(var/caliber)
@@ -37,7 +39,7 @@
 			return 'sound/weapons/laser3.ogg'
 		if(CALIBER_LASER_INDUSTRIAL, CALIBER_STAFF_ANIMATE, CALIBER_STAFF_CHANGE, CALIBER_STAFF_FORCE)
 			return 'sound/weapons/emitter.ogg'
-		if(CALIBER_LASER_PRECISION)
+		if(CALIBER_LASER_PRECISION, CALIBER_LASER_PARTICLE)
 			return 'sound/weapons/marauder.ogg'
 		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
 			return 'sound/weapons/Taser.ogg'
@@ -49,6 +51,6 @@
 			return 400
 		if(CALIBER_LASER_HEAVY, CALIBER_LASER_PRECISION)
 			return 300
-		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
+		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER, CALIBER_LASER_PARTICLE)
 			return 100
 	return 200

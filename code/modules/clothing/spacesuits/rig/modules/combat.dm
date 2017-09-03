@@ -100,7 +100,7 @@
 	activate_string = "Project Blade"
 	deactivate_string = "Cancel Blade"
 
-	interface_name = "spider fang blade"
+	interface_name = "energy blade"
 	interface_desc = "A lethal energy projector that can shape a blade projected from the hand of the wearer."
 
 	usable = 0

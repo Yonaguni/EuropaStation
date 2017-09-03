@@ -49,6 +49,7 @@
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
 #define MODE_THRALL "thrall"
+#define MODE_HUNTER "hunter"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 100
 

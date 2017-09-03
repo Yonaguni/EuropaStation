@@ -148,3 +148,7 @@ area/space/atmosalert()
 /area/hallway
 	name = "\improper Hallway"
 	sound_env = LARGE_ENCLOSED
+
+// Putting this here for objective compile.
+/area/europa/ocean
+	name = "Ocean"

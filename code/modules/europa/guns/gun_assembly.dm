@@ -208,7 +208,7 @@
 			name = "\improper [model.force_gun_name] assembly"
 		else
 			name = "\improper [model.produced_by.manufacturer_short] [get_gun_name(src)] assembly"
-		desc = "The casing is stamped with '[model.model_name]'. [initial(desc)] It's marked with the [model.produced_by.manufacturer_name] logo."
+		desc = "The casing is stamped with '[model.model_name]'. [initial(desc)] It's marked with [model.produced_by.manufacturer_name]."
 	else
 		name = "[get_gun_name(src, dam_type, gun_type)] assembly"
 		desc = "[initial(desc)] You can't work out who manufactured this one; it might be an aftermarket job."

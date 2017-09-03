@@ -47,7 +47,7 @@
 	name = "practice laser rifle"
 	variant_barrel =  /obj/item/gun_component/barrel/laser/rifle_practice
 
-/obj/item/gun/composite/premade/laser_rifle/New()
+/obj/item/gun/composite/premade/laser_rifle/scoped/New()
 	new /obj/item/gun_component/accessory/chamber/scope(src)
 	..()
 

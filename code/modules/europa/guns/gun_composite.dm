@@ -158,7 +158,7 @@
 				name = "\improper [get_gun_name(src, dam_type, gun_type)]"
 		desc = "The casing is stamped with '[model.model_name]'. [model.model_desc]"
 		if(model.produced_by.manufacturer_short != "unbranded")
-			desc += " It's stamped with the [model.produced_by.manufacturer_name] logo. [model.produced_by.casing_desc]"
+			desc += " It's stamped with [model.produced_by.manufacturer_name]. [model.produced_by.casing_desc]"
 
 	else
 		name = "[get_gun_name(src, dam_type, gun_type)]"

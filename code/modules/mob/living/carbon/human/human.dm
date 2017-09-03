@@ -1165,9 +1165,14 @@
 	species.create_organs(src)
 	species.handle_post_spawn(src)
 
+	default_pixel_x = species.icon_x_offset
+	default_pixel_y = species.icon_y_offset
+
 	maxHealth = species.total_health
 
 	regenerate_icons()
+	create_typing_indicator()
+
 	spawn(0)
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
