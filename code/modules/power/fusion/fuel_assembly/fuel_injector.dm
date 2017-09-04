@@ -82,6 +82,9 @@ var/list/fuel_injectors = list()
 
 /obj/machinery/fusion_fuel_injector/attack_hand(mob/user)
 
+	if(!user.Adjacent(src))
+		return
+
 	if(injecting)
 		user << "<span class='warning'>Shut \the [src] off before playing with the fuel rod!</span>"
 		return

@@ -14,6 +14,13 @@
 	outside = 1
 	var/detail_decal
 
+/turf/simulated/ocean/open
+	name = "open ocean"
+	icon_state = "still"
+
+/turf/simulated/ocean/open/add_decal()
+	return 0
+
 /turf/simulated/ocean/return_environment()
 	var/datum/gas_mixture/GM = new
 	GM.adjust_multi("water", 10000)
@@ -33,7 +40,7 @@
 	place_critter()
 
 /turf/simulated/ocean/proc/place_critter()
-	if(prob(0.05))
+	if((z in using_map.player_levels) && prob(0.05)) // please stop spawning carp on the overmap, thanks
 		var/critter = using_map.get_minor_critter(0)
 		new critter(src)
 
@@ -43,16 +50,16 @@
 	else
 		..(update_neighbors)
 
+/turf/simulated/ocean/moving
+	name = "open ocean"
+	desc = "No bottom in sight."
+	icon_state = "moving"
+
 /turf/simulated/ocean/moving/add_decal()
 	return 0
 
 /turf/simulated/ocean/moving/place_critter()
 	return 0
-
-/turf/simulated/ocean/moving
-	name = "open ocean"
-	desc = "No bottom in sight."
-	icon_state = "moving"
 
 /turf/simulated/ocean/moving/north
 	dir = NORTH

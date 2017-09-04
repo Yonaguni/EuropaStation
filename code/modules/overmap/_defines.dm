@@ -67,12 +67,29 @@ proc/toggle_move_stars(zlevel, direction)
 		moving_levels["[zlevel]"] = gen_dir
 		for(var/x = 1 to world.maxx)
 			for(var/y = 1 to world.maxy)
-				var/turf/space/T = locate(x,y,zlevel)
-				if (istype(T))
-					if(!gen_dir)
-						T.icon_state = "[((T.x + T.y) ^ ~(T.x * T.y)) % 25]"
-					else
-						T.icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
-						for(var/atom/movable/AM in T)
-							if (!AM.anchored)
-								AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
+				var/turf/T = locate(x,y,zlevel)
+				if(istype(T))
+					T.set_overmap_moving(gen_dir, direction)
+
+/turf/proc/set_overmap_moving(var/gen_dir, var/direction)
+	return
+
+/turf/proc/overmap_eject_contents(var/gen_dir, var/direction)
+	for(var/atom/movable/AM in contents)
+		if (!AM.anchored && !AM.simulated)
+			AM.throw_at(get_step(src,reverse_direction(direction)), 5, 1)
+
+/turf/space/set_overmap_moving(var/gen_dir, var/direction)
+	if(!gen_dir || !direction)
+		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
+	else
+		icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
+		overmap_eject_contents(gen_dir, direction)
+
+/turf/simulated/ocean/open/set_overmap_moving(var/gen_dir, var/direction)
+	if(!gen_dir || !direction)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "moving"
+		dir = gen_dir
+		overmap_eject_contents(gen_dir, direction)

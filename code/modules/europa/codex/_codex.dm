@@ -32,10 +32,13 @@ var/datum/controller/subsystem/codex/SScodex
 		var/datum/reagent/reagent = chemical_reagents_list[rid]
 		if(!istype(reagent) || reagent.hidden_from_codex)
 			continue
-		var/datum/codex_entry/entry = new(_display_name = lowertext(reagent.name))
-		entry.lore_text = "[reagent.lore_text] It apparently tastes of [reagent.taste_description]."
-		entry.antag_text = reagent.antag_text
-		entry.mechanics_text = reagent.mechanics_text
+		var/datum/codex_entry/entry = new( \
+		 _display_name = "[lowertext(reagent.name)] (chemical)", \
+		 _associated_strings = list("[lowertext(reagent.name)] pill"), \
+		 _lore_text = "[reagent.lore_text] It apparently tastes of [reagent.taste_description].", \
+		 _antag_text = reagent.antag_text, \
+		 _mechanics_text = reagent.mechanics_text
+		)
 
 		var/list/production_strings = list()
 		if(chemical_reactions_by_result[reagent.id])

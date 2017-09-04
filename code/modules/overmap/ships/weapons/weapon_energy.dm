@@ -45,4 +45,6 @@
 			sparks.start()
 
 /obj/machinery/power/ship_weapon/maser/get_status()
-	return "[..()] \[CHARGE: [stored_power]/[shot_power]\]"
+	var/list/data = ..()
+	data["status"] += " \[CHARGE: [stored_power]/[shot_power]\]"
+	return data

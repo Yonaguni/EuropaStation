@@ -6,7 +6,15 @@
 	density = 0
 	layer = 4
 
+	light_power = 10
+	light_range = 1
+	light_color = "#FFAA00"
+
 	var/datum/turbolift/lift
+
+/obj/structure/lift/initialize()
+	..()
+	set_light()
 
 /obj/structure/lift/set_dir(var/newdir)
 	. = ..()

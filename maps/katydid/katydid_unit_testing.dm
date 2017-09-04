@@ -1,6 +1,8 @@
+// why is ocean spawning on Katydid, wtf, it isn't in the map
 /datum/map/katydid
 	exempt_areas = list(
 		/area/space = NO_SCRUBBER|NO_VENT|NO_APC,
+		/area/europa/ocean = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/arrival = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/maintenance = NO_SCRUBBER|NO_VENT,
 		/area/shuttle = NO_SCRUBBER|NO_VENT|NO_APC,

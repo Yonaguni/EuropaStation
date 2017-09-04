@@ -61,3 +61,9 @@ var/list/nonhuman_positions = list(
 			titles = J.alt_titles
 
 	return titles
+
+/obj/effect/landmark/start/robot
+	name = "Robot"
+
+/obj/effect/landmark/start/computer
+	name = "Computer"
