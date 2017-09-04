@@ -902,14 +902,60 @@
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes"
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 18px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				h3 {font-size: 13px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				body {font-size: 13px; font-family: Verdana;}
+				</style>
+				</head>
+				<body>
+				<h1>Drinks for Dummies</h1>
+				Here's a guide for some basic drinks.
 
-/obj/item/weapon/book/manual/rust_engine
+				<h3>Black Russian:</h3>
+				Mix vodka and Kahlua into a glass.
+
+				<h3>Cafe Latte:</h3>
+				Mix milk and coffee into a glass.
+
+				<h3>Classic Martini:</h3>
+				Mix vermouth and gin into a glass.
+
+				<h3>Gin Tonic:</h3>
+				Mix gin and tonic into a glass.
+
+				<h3>Grog:</h3>
+				Mix rum and water into a glass.
+
+				<h3>Irish Cream:</h3>
+				Mix cream and whiskey into a glass.
+
+				<h3>The Manly Dorf:</h3>
+				Mix ale and beer into a glass.
+
+				<h3>Mead:</h3>
+				Mix enzyme, water, and sugar into a glass.
+
+				<h3>Screwdriver:</h3>
+				Mix vodka and orange juice into a glass.
+
+				</body>
+			</html>
+			"}
+
+/obj/item/book/manual/rust_engine
 	name = "R-UST Operating Manual"
-	icon_state = "bookMagazine"
 	author = "Cindy Crawfish"
+	icon = 'icons/obj/magazine.dmi'
 	title = "R-UST Operating Manual"
 
-/obj/item/weapon/book/manual/rust_engine/New()
+/obj/item/book/manual/rust_engine/New()
 	..()
 	name = "<s>WetSkrell Magazine, March 2553</s> [name]"
 	dat = {"<html>
@@ -960,40 +1006,6 @@
 				<ol>
 				</body>
 			</html>"}
-
-				<h1>Drinks for Dummies</h1>
-				Here's a guide for some basic drinks.
-
-				<h3>Black Russian:</h3>
-				Mix vodka and Kahlua into a glass.
-
-				<h3>Cafe Latte:</h3>
-				Mix milk and coffee into a glass.
-
-				<h3>Classic Martini:</h3>
-				Mix vermouth and gin into a glass.
-
-				<h3>Gin Tonic:</h3>
-				Mix gin and tonic into a glass.
-
-				<h3>Grog:</h3>
-				Mix rum and water into a glass.
-
-				<h3>Irish Cream:</h3>
-				Mix cream and whiskey into a glass.
-
-				<h3>The Manly Dorf:</h3>
-				Mix ale and beer into a glass.
-
-				<h3>Mead:</h3>
-				Mix enzyme, water, and sugar into a glass.
-
-				<h3>Screwdriver:</h3>
-				Mix vodka and orange juice into a glass.
-
-				</body>
-			</html>
-			"}
 
 
 /obj/item/book/manual/detective
