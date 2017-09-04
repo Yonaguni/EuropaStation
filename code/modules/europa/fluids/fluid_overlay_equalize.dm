@@ -19,7 +19,7 @@
 			continue
 		var/obj/effect/fluid/F = locate() in T.contents
 		if(F)
-			if(deleted(F) || F.fluid_amount <= FLUID_DELETING)
+			if(QDELETED(F) || F.fluid_amount <= FLUID_DELETING)
 				continue
 		if(!F)
 			F = new /obj/effect/fluid(T)
@@ -34,7 +34,7 @@
 	equalize_avg_depth = 0
 	equalize_avg_temp = 0
 	for(var/obj/effect/fluid/F in equalizing_fluids)
-		if(!istype(F) || deleted(F) || F.fluid_amount <= FLUID_DELETING)
+		if(!istype(F) || QDELETED(F) || F.fluid_amount <= FLUID_DELETING)
 			equalizing_fluids -= F
 			continue
 		equalize_avg_depth += F.fluid_amount
@@ -44,9 +44,9 @@
 		equalize_avg_depth = Floor(equalize_avg_depth/equalizing_fluids.len)
 		equalize_avg_temp = Floor(equalize_avg_temp/equalizing_fluids.len)
 		for(var/thing in equalizing_fluids)
-			if(deleted(thing))
-				continue
 			var/obj/effect/fluid/F = thing
+			if(QDELETED(F))
+				continue
 			F.set_depth(equalize_avg_depth)
 			F.temperature = equalize_avg_temp
 

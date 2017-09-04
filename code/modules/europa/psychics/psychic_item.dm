@@ -38,7 +38,7 @@
 		qdel(src)
 		return 1
 
-	if(deleted(src))
+	if(QDELING(src))
 		return 1
 
 	if(power.next_psy > world.time)
@@ -77,12 +77,12 @@
 /obj/item/psychic_power/dropped()
 	. = ..()
 	loc = null
-	if(!deleted(src))
+	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/psychic_power/forceMove()
 	. = ..()
-	if(loc != owner && !deleted(src))
+	if(loc != owner && !QDELETED(src))
 		loc = null
 		qdel(src)
 

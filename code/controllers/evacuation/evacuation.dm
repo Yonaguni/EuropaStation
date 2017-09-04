@@ -138,7 +138,7 @@ var/datum/evacuation_controller/evacuation_controller
 /datum/evacuation_controller/proc/finish_evacuation()
 	state = EVAC_COMPLETE
 
-/datum/evacuation_controller/proc/process()
+/datum/evacuation_controller/process()
 
 	if(state == EVAC_PREPPING && recall && world.time >= auto_recall_time)
 		cancel_evacuation()

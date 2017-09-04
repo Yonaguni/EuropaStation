@@ -69,7 +69,7 @@
 			discount_amount = 0
 
 		update_nano_data()
-		nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 
 /obj/item/uplink/proc/get_item_cost(var/item_type, var/item_cost)
 	return item_type == discount_item ? max(1, round(item_cost*discount_amount)) : item_cost
@@ -111,7 +111,7 @@
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
 		ui.set_initial_data(data)
@@ -138,7 +138,7 @@
 		UI.buy(src, usr)
 	else if(href_list["lock"])
 		toggle()
-		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+		var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
 		ui.close()
 	else if(href_list["return"])
 		nanoui_menu = round(nanoui_menu/10)

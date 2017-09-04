@@ -80,7 +80,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 
 var/datum/configuration/config      = null
-var/datum/sun/sun                   = null
 
 var/list/combatlog = list()
 var/list/IClog     = list()
@@ -97,9 +96,6 @@ var/datum/debug/debugobj
 var/gravity_is_on = 1
 
 var/join_motd = null
-
-var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 

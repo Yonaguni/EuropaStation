@@ -174,5 +174,5 @@
 			if(mind.psychic_power < mind.max_psychic_power)
 				mind.psychic_power = min(mind.max_psychic_power, mind.psychic_power + rand(1,3))
 			for(var/datum/maintained_power/mpower in mind.maintaining_powers)
-				if(mind.spend_psychic_power(mpower.power.passive_cost, mpower.power) && mpower && !deleted(mpower))
+				if(mind.spend_psychic_power(mpower.power.passive_cost, mpower.power) && mpower && !QDELETED(mpower))
 					mpower.power.tick(mpower.owner)

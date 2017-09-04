@@ -86,7 +86,7 @@ var/global/datum/controller/gameticker/ticker
 						for(var/i=0, i<10, i++)
 							sleep(1)
 							vote.process()
-			if(pregame_timeleft <= 0 || (initialization_stage == INITIALIZATION_NOW_AND_COMPLETE))
+			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
 	while (!setup())
 
@@ -179,7 +179,7 @@ var/global/datum/controller/gameticker/ticker
 	lighting_controller.process()	//Start processing DynamicAreaLighting updates
 	*/
 
-	processScheduler.start()
+	Master.RoundStart()
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
@@ -327,7 +327,7 @@ var/global/datum/controller/gameticker/ticker
 					M << "Captainship not forced on anyone."
 
 
-	proc/process()
+	process()
 		if(current_state != GAME_STATE_PLAYING)
 			return 0
 
@@ -440,7 +440,7 @@ var/global/datum/controller/gameticker/ticker
 	mode.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
-	event_manager.RoundEnd()
+	SSevents.RoundEnd()
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()

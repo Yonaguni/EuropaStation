@@ -46,7 +46,7 @@
 		if(current_network)
 			data["cameras"] = camera_repository.cameras_in_network(current_network)
 
-		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+		ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 		if (!ui)
 			ui = new(user, src, ui_key, "sec_camera.tmpl", "Camera Console", 900, 800)
 
@@ -149,7 +149,7 @@
 /obj/machinery/computer/security/process()
 	if(cache_id != camera_repository.camera_cache_id)
 		cache_id = camera_repository.camera_cache_id
-		nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 
 /obj/machinery/computer/security/proc/can_access_camera(var/obj/machinery/camera/C)
 	var/list/shared_networks = src.network & C.network

@@ -46,7 +46,7 @@ var/list/turf_edge_cache = list()
 /turf/proc/initialize()
 	update_icon(1)
 
-/turf/proc/update_icon(var/update_neighbors, var/list/previously_added = list())
+/turf/update_icon(var/update_neighbors, var/list/previously_added = list())
 	var/list/overlays_to_add = previously_added
 	if(blend_with_neighbors)
 		for(var/checkdir in cardinal)
@@ -263,7 +263,7 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/process()
+/turf/process()
 	return PROCESS_KILL
 
 /turf/proc/contains_dense_objects()

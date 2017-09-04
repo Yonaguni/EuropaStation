@@ -14,6 +14,6 @@
 		if(!istype(A))
 			continue
 		for(var/atom/movable/AM in T.contents)
-			if(deleted(AM) || !AM.simulated || isghost(AM))
+			if(QDELETED(AM) || !AM.simulated || isghost(AM))
 				continue
 			AM.forceMove(locate(AM.x, AM.y, dump_z))

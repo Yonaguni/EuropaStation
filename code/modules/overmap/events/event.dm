@@ -122,7 +122,7 @@
 	var/list/victims
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
-	if(!event_manager)
+	if(!SSevents)
 		log_debug("Event manager not setup.")
 		return
 	if(victim in victims)

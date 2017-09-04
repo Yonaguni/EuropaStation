@@ -28,7 +28,7 @@
 
 /atom/proc/update_all_lights()
 	spawn()
-		if(light_obj && !deleted(light_obj))
+		if(light_obj && !QDELETED(light_obj))
 			light_obj.follow_holder()
 
 /atom/set_dir()
@@ -49,5 +49,5 @@
 	for(var/thing in (specific_contents + src))
 		var/atom/A = thing
 		spawn()
-			if(A && !deleted(A))
+			if(A && !QDELETED(A))
 				A.update_all_lights()

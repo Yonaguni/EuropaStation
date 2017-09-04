@@ -86,7 +86,7 @@
 	else
 		data["have_shuttle"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "communication.tmpl", name, 550, 420, state = state)
 		ui.auto_update_layout = 1
@@ -140,7 +140,7 @@
 					if(is_autenthicated(user) && program.computer_emagged && !issilicon(usr) && ntn_comm)
 						if(centcomm_message_cooldown)
 							usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
-							nanomanager.update_uis(src)
+							SSnanoui.update_uis(src)
 							return
 						var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 						if(!input || !can_still_topic())
@@ -155,7 +155,7 @@
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 					if(centcomm_message_cooldown)
 						usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
-						nanomanager.update_uis(src)
+						SSnanoui.update_uis(src)
 						return
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
 						usr <<"<span class='warning'>No comms maser detected. Unable to transmit message.</span>"
@@ -382,7 +382,7 @@ var/last_message_id = 0
 
 	//delay events in case of an autotransfer
 	if (isnull(user))
-		event_manager.delay_events(EVENT_LEVEL_MODERATE, 10200) //17 minutes
-		event_manager.delay_events(EVENT_LEVEL_MAJOR, 10200)
+		SSevents.delay_events(EVENT_LEVEL_MODERATE, 10200) //17 minutes
+		SSevents.delay_events(EVENT_LEVEL_MAJOR, 10200)
 
 	return call_shuttle_proc(user, 0)
