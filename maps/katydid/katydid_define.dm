@@ -166,7 +166,7 @@
 	if(player.stat != DEAD)
 		if(!(player.z in station_levels))
 			if(!issilicon(player))
-				return "<font color='blue'><b>You managed to survive, but were marooned in [specific_location] as [player.real_name] when the [station_name()] departed...</b></font>"
+				return "<font color='blue'><b>You managed to survive, but were marooned in [specific_location] as [player.real_name] when [station_name()] departed...</b></font>"
 			return "<font color='blue'><b>You were left in [specific_location] after the events on [station_name()] as [player.real_name].</b></font>"
 
 		if(!issilicon(player))

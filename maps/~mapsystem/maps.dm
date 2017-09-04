@@ -114,9 +114,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			<br>
 			[map_info]"}
 
-/datum/map/proc/meteors_detected_announcement()
-	command_announcement.Announce("Meteors detected.", "Sensor Array")
-
 // Used to apply various post-compile procedural effects to the map.
 /datum/map/proc/perform_map_generation()
 	return

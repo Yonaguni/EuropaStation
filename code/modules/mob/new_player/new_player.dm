@@ -160,7 +160,7 @@
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
-			usr << "<span class='danger'>\The [station_name()] is currently exploding. Joining would go poorly.</span>"
+			usr << "<span class='danger'>[station_name()] is currently exploding. Joining would go poorly.</span>"
 			return
 
 		var/datum/species/S = client.prefs.get_current_species()
@@ -362,7 +362,7 @@
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
-		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on \the [station_name()]"].", "Arrivals Announcement Computer")
+		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on [station_name()]"].", "Arrivals Announcement Computer")
 
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
@@ -372,7 +372,7 @@
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated())
-		dat += "<font color='red'><b>\The [station_name()] has been evacuated.</b></font><br>"
+		dat += "<font color='red'><b>[station_name()] has been evacuated.</b></font><br>"
 	else if(evacuation_controller.is_evacuating())
 		if(evacuation_controller.emergency_evacuation) // Emergency shuttle is past the point of no recall
 			dat += "<font color='red'>The ship is currently preparing for an emergency jump.</font><br>"

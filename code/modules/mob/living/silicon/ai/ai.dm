@@ -50,7 +50,7 @@ var/list/ai_verbs_default = list(
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/obj/effect/rune)
-	var/list/network = list(NETWORK_EXODUS)
+	var/list/network = list(NETWORK_GENERAL)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -178,7 +178,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/on_mob_init()
 	src << "<B>You are playing the Computer. The Computer cannot move, but can interact with many objects while viewing them (through cameras).</B>"
-	src << "<B>To look at other parts of \the [station_name()], click on yourself to get a camera menu.</B>"
+	src << "<B>To look at other parts of [station_name()], click on yourself to get a camera menu.</B>"
 	src << "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>"
 	src << "To use something, simply click on it."
 	src << "Use say [get_language_prefix()]b to speak to your robots through binary. Use say :h to speak from an active holopad."

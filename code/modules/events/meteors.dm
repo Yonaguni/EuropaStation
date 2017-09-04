@@ -18,11 +18,7 @@
 	endWhen = worst_case_end()
 
 /datum/event/meteor_wave/announce()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			using_map.meteors_detected_announcement()
-		else
-			command_announcement.Announce("The [station_name()] is now in a meteor shower.", "[station_name()] Sensor Array")
+	using_map.meteors_detected_announcement(event_severity = severity)
 
 /datum/event/meteor_wave/tick()
 	if(waves && activeFor >= next_meteor)
@@ -42,11 +38,7 @@
 	return severity * rand(2,4)
 
 /datum/event/meteor_wave/end()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The [station_name()] has cleared the meteor storm.", "[station_name()] Sensor Array")
-		else
-			command_announcement.Announce("The [station_name()] has cleared the meteor shower", "[station_name()] Sensor Array")
+	using_map.meteors_ending_announcement(event_severity = severity)
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)

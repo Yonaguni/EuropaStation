@@ -1,6 +1,7 @@
 #if !defined(USING_MAP_DATUM)
 
 	#include "yonaguni_areas.dm"
+	#include "yonaguni_events.dm"
 	#include "yonaguni_unit_testing.dm"
 	#include "yonaguni_outfits.dm"
 	#include "yonaguni_jobs.dm"

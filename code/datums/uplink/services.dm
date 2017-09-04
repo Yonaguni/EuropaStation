@@ -152,7 +152,7 @@
 	service_label = "Ion Storm Announcement"
 
 /obj/item/uplink_service/fake_ion_storm/enable(var/mob/user = usr)
-	ion_storm_announcement()
+	using_map.ion_storm_announcement()
 	. = ..()
 
 /*****************

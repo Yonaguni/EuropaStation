@@ -11,4 +11,4 @@
 
 /datum/game_mode/intrigue/New()
 	..()
-	round_description = "Crewmembers are contacted by external elements while another infiltrates \the [station_name()]."
+	round_description = "Crewmembers are contacted by external elements while another infiltrates [station_name()]."

@@ -3,13 +3,13 @@
 	endWhen		= 30
 
 /datum/event/dust/announce()
-	command_announcement.Announce("\The [station_name()] is now passing through a belt of space dust.", "Dust Alert")
+	using_map.dust_detected_announcement(severity)
 
 /datum/event/dust/start()
 	dust_swarm(get_severity())
 
 /datum/event/dust/end()
-	command_announcement.Announce("\The [station_name()] has now passed through the belt of space dust.", "Dust Notice")
+	using_map.dust_ended_announcement(severity)
 
 /datum/event/dust/proc/get_severity()
 	switch(severity)

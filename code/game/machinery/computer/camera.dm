@@ -203,7 +203,7 @@
 	icon_keyboard = null
 	icon_screen = null
 	light_range_on = 0
-	network = list(NETWORK_THUNDER)
+	network = list(NETWORK_ENTERTAINMENT)
 	density = 0
 	circuit = null
 

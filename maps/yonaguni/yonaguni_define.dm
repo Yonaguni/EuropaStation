@@ -23,8 +23,8 @@
 	full_name     = "Yonaguni Dome 13"
 	station_short = "Yonaguni"
 	dock_name     = "Rhadamanthus"
-	boss_name     = "Board of Directors"
-	boss_short    = "the Board"
+	boss_name     = "Administration"
+	boss_short    = "Admin"
 	company_name  = "PicoMotion©"
 	company_short = "PM"
 	commanding_role = "Director"
@@ -62,4 +62,3 @@
 	if(!lobby_image)
 		lobby_image = new()
 	debug_variables(lobby_image)
-
