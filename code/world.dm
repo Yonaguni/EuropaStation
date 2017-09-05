@@ -103,10 +103,6 @@
 
 	. = ..()
 
-#ifndef UNIT_TEST
-	sleep_offline = 1
-#endif
-
 	// Set up roundstart seed list.
 	plant_controller = new()
 
