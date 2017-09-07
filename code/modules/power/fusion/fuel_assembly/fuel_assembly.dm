@@ -64,5 +64,8 @@
 /obj/item/fuel_assembly/phoron/New(var/newloc)
 	..(newloc, "phoron")
 
+/obj/item/fuel_assembly/hydrogen/New(var/newloc)
+	..(newloc, "hydrogen")
+
 /obj/item/fuel_assembly/supermatter/New(var/newloc)
 	..(newloc, "exotic matter")

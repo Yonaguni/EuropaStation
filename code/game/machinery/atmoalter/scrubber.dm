@@ -17,11 +17,19 @@
 	var/minrate = 0
 	var/maxrate = 10 * ONE_ATMOSPHERE
 
-	var/list/scrubbing_gas = list(GAS_FUEL, "carbon_dioxide", "sleeping_agent")
+	var/list/scrubbing_gas
 
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
 	cell = new/obj/item/cell/apc(src)
+
+/obj/machinery/portable_atmospherics/powered/scrubber/initialize()
+	. = ..()
+	if(!scrubbing_gas)
+		scrubbing_gas = list()
+		for(var/g in gas_data.gases)
+			if(g != "oxygen" && g != "nitrogen")
+				scrubbing_gas += g
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
