@@ -134,6 +134,8 @@ datum/preferences
 		close_load_dialog(user)
 		return
 
+	sanitize_preferences()
+
 	var/dat = "<html><body><center>"
 
 	if(path)
