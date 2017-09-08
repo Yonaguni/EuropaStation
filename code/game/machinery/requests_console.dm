@@ -28,6 +28,11 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	anchored = 1
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
+
+	light_power = 1
+	light_range = 2
+	light_color = COLOR_GREEN
+
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -50,7 +55,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	var/message = "";
 	var/recipient = ""; //the department which will be receiving the message
 	var/priority = -1 ; //Priority of the message being sent
-	light_range = 0
 	var/datum/announcement/announcement = new
 
 /obj/machinery/requests_console/update_icon()
@@ -76,7 +80,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if (departmentType & RC_INFO)
 		req_console_information |= department
 
-	set_light(1)
+	set_light()
 
 /obj/machinery/requests_console/Destroy()
 	allConsoles -= src
@@ -181,7 +185,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				if (Console.department == department)
 					Console.newmessagepriority = 0
 					Console.icon_state = "req_comp0"
-					Console.set_light(1)
+					Console.set_light()
 		if(tempScreen == RCS_MAINMENU)
 			reset_message()
 		screen = tempScreen
