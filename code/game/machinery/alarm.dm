@@ -42,6 +42,9 @@
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = ENVIRON
 	req_one_access = list(access_atmospherics, access_engine_equip)
+	light_power = 1
+	light_range = 2
+
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
 	var/frequency = 1439
@@ -329,8 +332,7 @@
 		if (2)
 			icon_state = "alarm1"
 			new_color = "#DA0205"
-
-	set_light(l_range = 1, l_power = 0.5, l_color = new_color)
+	set_light(l_color = new_color)
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -862,16 +864,19 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
-	var/lockdownbyai = 0
+	light_power = 1
+	light_range = 2
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
+
+	var/detecting = 1.0
+	var/working = 1.0
+	var/time = 10.0
+	var/timing = 0.0
+	var/lockdownbyai = 0
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
@@ -900,14 +905,14 @@ FIRE ALARM
 	else
 		if(!src.detecting)
 			icon_state = "fire1"
-			set_light(l_range = 3, l_power = 2, l_color = COLOR_RED)
+			set_light(l_color = COLOR_RED)
 		else
 			icon_state = "fire0"
 			switch(seclevel)
-				if("green")	set_light(l_range = 1, l_power = 0.5, l_color = COLOR_LIME)
-				if("blue")	set_light(l_range = 1, l_power = 0.5, l_color = "#1024A9")
-				if("red")	set_light(l_range = 3, l_power = 2, l_color = COLOR_RED)
-				if("delta")	set_light(l_range = 3, l_power = 2, l_color = "#FF6633")
+				if("green")	set_light(l_color = COLOR_LIME)
+				if("blue")	set_light(l_color = "#1024A9")
+				if("red")	set_light(l_color = COLOR_RED)
+				if("delta")	set_light(l_color = "#FF6633")
 
 		src.overlays += image('icons/obj/monitors.dmi', "overlay_[seclevel]")
 

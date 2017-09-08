@@ -11,7 +11,7 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 	item_state = "wc"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
-	light_color = "#00FF00"
+	light_color = COLOR_GREEN
 
 	sprite_sheets = list(
 		"Resomi" = 'icons/mob/species/resomi/id.dmi'
@@ -559,7 +559,7 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 				kill_light()
 			else
 				fon = 1
-				set_light(f_lum)
+				set_light(2, f_lum)
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0

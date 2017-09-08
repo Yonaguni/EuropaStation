@@ -78,6 +78,11 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_engine_equip)
+	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
+
+	light_range = 2
+	light_power = 1
+
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -105,7 +110,6 @@
 	var/main_status = 0
 	var/mob/living/silicon/ai/hacker = null // Malfunction var. If set AI hacked the APC and has full control.
 	var/wiresexposed = 0
-	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug= 0
 	var/autoflag= 0		// 0 = off, 1= eqp and lights off, 2 = eqp off, 3 = all on.
 	var/has_electronics = 0 // 0 - none, 1 - plugged in, 2 - secured by screwdriver
@@ -313,6 +317,13 @@
 	if(update & 1) // Updating the icon state
 		if(update_state & UPDATE_ALLGOOD)
 			icon_state = "apc0"
+			if(charging == 1)
+				set_light(l_color = "#A8B0F8")
+			else if(charging == 2)
+				set_light(l_color = "#82FF4C")
+			else
+				set_light(l_color = "#F86060")
+
 		else if(update_state & (UPDATE_OPENED1|UPDATE_OPENED2))
 			var/basestate = "apc[ cell ? "2" : "1" ]"
 			if(update_state & UPDATE_OPENED1)
@@ -320,14 +331,19 @@
 					icon_state = "apcmaint" //disabled APC cannot hold cell
 				else
 					icon_state = basestate
+				kill_light()
 			else if(update_state & UPDATE_OPENED2)
 				icon_state = "[basestate]-nocover"
+				kill_light()
 		else if(update_state & UPDATE_BROKE)
 			icon_state = "apc-b"
+			kill_light()
 		else if(update_state & UPDATE_BLUESCREEN)
 			icon_state = "apcemag"
+			set_light(l_color = "#0000FF")
 		else if(update_state & UPDATE_WIREEXP)
 			icon_state = "apcewires"
+			kill_light()
 
 	if(!(update_state & UPDATE_ALLGOOD))
 		if(overlays.len)
@@ -344,24 +360,6 @@
 				overlays += status_overlays_equipment[equipment+1]
 				overlays += status_overlays_lighting[lighting+1]
 				overlays += status_overlays_environ[environ+1]
-
-	if(update & 3)
-		if(update_state & (UPDATE_OPENED1|UPDATE_OPENED2|UPDATE_BROKE))
-			kill_light()
-		else if(update_state & UPDATE_BLUESCREEN)
-			set_light(l_range = 1, l_power = 0.5, l_color = "#0000FF")
-		else if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			var/color
-			switch(charging)
-				if(0)
-					color = "#F86060"
-				if(1)
-					color = "#A8B0F8"
-				if(2)
-					color = "#82FF4C"
-			set_light(l_range = 1, l_power = 0.5, l_color = color)
-		else
-			kill_light()
 
 /obj/machinery/power/apc/proc/check_updates()
 

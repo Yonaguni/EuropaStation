@@ -28,8 +28,3 @@
 	name = "Power Sink"
 	item_cost = 48
 	path = /obj/item/rig_module/power_sink
-
-/datum/uplink_item/item/hardsuit_modules/laser_canon
-	name = "Mounted Laser Cannon"
-	item_cost = 64
-	path = /obj/item/rig_module/mounted

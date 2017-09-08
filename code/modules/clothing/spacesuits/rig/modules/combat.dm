@@ -90,11 +90,12 @@
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
-/obj/item/rig_module/mounted/energy_blade
+/obj/item/rig_module/energy_blade
 
 	name = "energy blade projector"
 	desc = "A powerful cutting beam projector."
 	icon_state = "eblade"
+	selectable = 0
 
 	activate_string = "Project Blade"
 	deactivate_string = "Cancel Blade"

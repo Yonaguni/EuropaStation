@@ -7,13 +7,15 @@
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
+
+	light_color = COLOR_GREEN
+
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
-
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
-	var/light_range_on = 1
 	var/light_power_on = 1
+	var/light_range_on = 2
 	var/overlay_layer
 
 /obj/machinery/computer/New()
