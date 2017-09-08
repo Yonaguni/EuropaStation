@@ -22,6 +22,23 @@
 	var/is_reinforced = 0
 	var/set_name
 
+/obj/structure/heavy_vehicle_frame/Destroy()
+
+	if(arms)
+		qdel(arms)
+		arms = null
+	if(legs)
+		qdel(legs)
+		legs = null
+	if(head)
+		qdel(head)
+		head = null
+	if(body)
+		qdel(body)
+		body = null
+
+	. = ..()
+
 /obj/structure/heavy_vehicle_frame/examine()
 	. = ..()
 	if(.)
@@ -124,9 +141,16 @@
 
 		// We're all done. Finalize the mech and pass the frame to the new system.
 		var/mob/living/heavy_vehicle/M = new(get_turf(src), src)
+
 		visible_message("\The [user] finishes off \the [M].")
 		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+
+		arms = null
+		legs = null
+		head = null
+		body = null
 		qdel(src)
+
 		return
 
 	// Installing wiring.

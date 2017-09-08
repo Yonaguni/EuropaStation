@@ -68,6 +68,10 @@
 	return 1
 
 /obj/structure/closet/crate/attackby(var/obj/item/W, var/mob/user)
+
+	if(istype(W, /obj/item/mecha_equipment/clamp))
+		return 0
+
 	if(opened)
 		return ..()
 	else if(istype(W, /obj/item/packageWrap))
@@ -184,6 +188,10 @@
 		src.toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(var/obj/item/W, var/mob/user)
+
+	if(istype(W, /obj/item/mecha_equipment/clamp))
+		return 0
+
 	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/wirecutters)))
 		return ..()
 	if(istype(W, /obj/item/melee/energy/blade))

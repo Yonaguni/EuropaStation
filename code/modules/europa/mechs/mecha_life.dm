@@ -10,9 +10,7 @@
 		pixel_y = offset_y
 
 	if(pilot)
-		if(body.open_cabin)
-			update_pilot_overlay()
-			update_icon(1)
+
 		if(pilot.loc != src) // Admin jump or teleport/grab.
 			if(pilot.client)
 				pilot.client.screen -= hud_elements
@@ -22,6 +20,10 @@
 		else
 			a_intent = pilot.a_intent
 			zone_sel = pilot.zone_sel
+
+		if(body.open_cabin)
+			update_pilot_overlay()
+			update_icon(1)
 
 	body.update_air(hatch_closed)
 
@@ -34,6 +36,8 @@
 
 	..()
 
+	handle_hud_icons()
+
 	lying = 0 // Fuck off, carp.
 	handle_vision()
 
@@ -41,7 +45,7 @@
 	// TODO
 	// Count up hardpoints, charge them if necessary.
 	// Count up body components that are pulling power, multiply by ratings.
-	return 100
+	return 1
 
 /mob/living/heavy_vehicle/death(var/gibbed)
 

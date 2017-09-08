@@ -281,9 +281,6 @@ BLIND     // can't see anything
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(light_power)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]"
-			return
 		on = !on
 		user << "You [on ? "enable" : "disable"] the helmet light."
 		update_flashlight(user)

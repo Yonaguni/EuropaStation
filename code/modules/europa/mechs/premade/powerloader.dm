@@ -8,7 +8,7 @@
 	if(!head) head = new /obj/item/mech_component/sensors/ripley(src)
 	if(!body) body = new /obj/item/mech_component/chassis/ripley(src)
 	..()
-	install_system(new /obj/item/mecha_equipment/clamp(src), HARDPOINT_LEFT_HAND)
+	install_system(new /obj/item/mecha_equipment/mounted_system/rcd(src), HARDPOINT_LEFT_HAND)
 	install_system(new /obj/item/mecha_equipment/clamp(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/manipulators/ripley
@@ -19,7 +19,9 @@
 	color = "#FFBC37"
 /obj/item/mech_component/sensors/ripley
 	name = "power loader sensors"
+	gender = PLURAL
 	color = "#FFBC37"
+
 /obj/item/mech_component/sensors/ripley/prebuild()
 	..()
 	software = new(src)

@@ -61,6 +61,10 @@
 	return
 
 /obj/structure/closet/secure_closet/personal/attackby(var/obj/item/W, var/mob/user)
+
+	if(istype(W, /obj/item/mecha_equipment/clamp))
+		return
+
 	if (src.opened)
 		if (istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet

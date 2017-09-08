@@ -34,42 +34,23 @@
 			i = 0
 			pos--
 
+	hud_health = PoolOrNew(/obj/screen/movable/mecha/health,src)
+	hud_health.screen_loc = "13:28,7:15"
+	hud_elements |= hud_health
+
 	hud_open = locate(/obj/screen/movable/mecha/toggle/hatch_open) in hud_elements
 	refresh_hud()
 
 /mob/living/heavy_vehicle/handle_hud_icons()
-	if(client || (pilot && pilot.client))
-		for(var/hardpoint in hardpoint_hud_elements)
-			var/obj/screen/movable/mecha/hardpoint/H = hardpoint_hud_elements[hardpoint]
-			if(H)
-				H.update_system_info()
-		handle_hud_icons_health()
-		refresh_hud()
+	for(var/hardpoint in hardpoint_hud_elements)
+		var/obj/screen/movable/mecha/hardpoint/H = hardpoint_hud_elements[hardpoint]
+		if(H) H.update_system_info()
+	handle_hud_icons_health()
+	refresh_hud()
 
 /mob/living/heavy_vehicle/handle_hud_icons_health()
 
-	if(!hud_health)
-
-		hud_health = PoolOrNew(/obj/screen/movable/mecha/health,src)
-		hud_health.screen_loc = "13:28,7:15"
-		hud_elements |= hud_health
-
-		// Debugging/placeholder, test another time.
-		for(var/i=1;i<=5;i++)
-			var/obj/screen/movable/mecha/internal_system/IS = new(src)
-			hud_health.internal_components += IS
-			IS.screen_loc = "13:28,[7-i]:15"
-
 	hud_health.overlays.Cut()
-
-	if(hud_health.display_internals)
-		hud_elements |= hud_health.internal_components
-	else
-		if(client)
-			client.screen -= hud_health.internal_components
-		if(pilot && pilot.client)
-			pilot.client.screen -= hud_health.internal_components
-		hud_elements -= hud_health.internal_components
 
 	if(!body.cell || (body.cell.charge <= 0))
 		return

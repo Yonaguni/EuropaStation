@@ -29,10 +29,6 @@
 	path = /obj/item/mecha_equipment/mounted_system/rcd
 	category = "Utility Systems"
 
-/datum/autolathe/recipe/heavy/utility/sleeper
-	name = "mounted sleeper"
-	path = /obj/item/mecha_equipment/sleeper
-
 /datum/autolathe/recipe/heavy/utility/clamp
 	name = "mounted clamp"
 	path = /obj/item/mecha_equipment/clamp

@@ -4,8 +4,8 @@
 	gender = NEUTER
 
 	var/mech_health = 300
-	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
 	var/obj/item/cell/cell
+	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
 	var/obj/item/robot_parts/robot_component/armour/armour
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/datum/gas_mixture/cockpit
@@ -14,6 +14,22 @@
 	var/open_cabin = 0
 	var/hatch_descriptor = "cockpit"
 	var/pilot_coverage = 100
+
+
+/obj/item/mech_component/chassis/Destroy()
+	if(cell)
+		qdel(cell)
+		cell = null
+	if(diagnostics)
+		qdel(diagnostics)
+		diagnostics = null
+	if(armour)
+		qdel(armour)
+		armour = null
+	if(air_supply)
+		qdel(air_supply)
+		air_supply = null
+	. = ..()
 
 /obj/item/mech_component/chassis/update_components()
 	diagnostics = locate() in src
@@ -31,7 +47,10 @@
 
 /obj/item/mech_component/chassis/New()
 	..()
-	cockpit = new(200)
+	cockpit = new(20)
+
+/obj/item/mech_component/chassis/initialize()
+	..()
 	update_air()
 
 /obj/item/mech_component/chassis/proc/update_air(var/take_from_supply)
@@ -53,13 +72,12 @@
 			changed = 1
 	if(changed) cockpit.react()
 
-
 /obj/item/mech_component/chassis/ready_to_install()
 	return (cell && diagnostics && armour)
 
 /obj/item/mech_component/chassis/prebuild()
 	diagnostics = new(src)
-	cell = new /obj/item/cell(src)
+	cell = new /obj/item/cell/mecha(src)
 	cell.charge = cell.maxcharge
 	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 

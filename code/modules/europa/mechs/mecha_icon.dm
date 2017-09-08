@@ -1,7 +1,6 @@
-// WE REALLY NEED A UNIFIED CACHE SYSTEM.
-var/global/list/mecha_image_cache = list()
-var/global/list/mecha_icon_cache = list()
-var/global/list/mecha_weapon_overlays = icon_states('icons/mecha/mecha_weapon_overlays.dmi')
+var/list/mecha_image_cache = list()
+var/list/mecha_icon_cache = list()
+var/list/mecha_weapon_overlays = icon_states('icons/mecha/mecha_weapon_overlays.dmi')
 
 proc/get_mech_image(var/cache_key, var/cache_icon, var/image_colour)
 	var/use_key = "[cache_key]-[cache_icon]"
@@ -86,7 +85,7 @@ proc/get_mech_icon(var/obj/item/arms, var/obj/item/legs, var/obj/item/head, var/
 			mecha_icon_cache[decal_key] = decal_icon
 		body_overlays += mecha_icon_cache[decal_key]
 
-	overlays |= body_overlays
+	overlays += body_overlays
 	if(update_hardpoints) update_hardpoint_overlays()
 
 /mob/living/heavy_vehicle/proc/update_hardpoint_overlays()
@@ -98,18 +97,12 @@ proc/get_mech_icon(var/obj/item/arms, var/obj/item/legs, var/obj/item/head, var/
 		var/use_icon_state = "[hardpoint_object.icon_state]_[hardpoint]"
 		if(use_icon_state in mecha_weapon_overlays)
 			hardpoint_overlays += get_mech_image(use_icon_state, 'icons/mecha/mecha_weapon_overlays.dmi')
-	overlays |= hardpoint_overlays
+	overlays += hardpoint_overlays
 
 /mob/living/heavy_vehicle/proc/update_pilot_overlay()
 	overlays -= draw_pilot
-	qdel(draw_pilot)
-	if(!pilot) return
-	if(pilot.icon_state)
-		draw_pilot = image(pilot.icon, pilot.icon_state)
-	else
-		draw_pilot = image(icon)
-	draw_pilot.overlays.Cut()
+	draw_pilot = image(null)
+	draw_pilot.appearance = pilot
+	draw_pilot.layer = FLOAT_LAYER
 	draw_pilot.pixel_x = body.pilot_offset_x
 	draw_pilot.pixel_y = body.pilot_offset_y
-	if(!pilot.icon_state) draw_pilot.overlays += pilot.icon
-	draw_pilot.overlays += pilot.overlays
