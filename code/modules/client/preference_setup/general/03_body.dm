@@ -68,13 +68,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_skin			= sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
 	pref.g_skin			= sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
 	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
-	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
-	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
 	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
 	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
 	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 	pref.has_cortical_stack = sanitize_bool(pref.has_cortical_stack, initial(pref.has_cortical_stack))
+
+	if(pref.gender == MALE)
+		pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_male_list, initial(pref.h_style))
+		pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_male_list, initial(pref.f_style))
+	else if(pref.gender == FEMALE)
+		pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_female_list, initial(pref.h_style))
+		pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_female_list, initial(pref.f_style))
+	else
+		pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
+		pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
 
 	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
 	if(!pref.organ_data) pref.organ_data = list()

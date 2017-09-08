@@ -133,7 +133,7 @@
 			removable_objects |= I
 	if(removable_objects.len)
 		var/obj/item/I = pick(removable_objects)
-		I.loc = get_turf(user) //just in case something was embedded that is not an item
+		I.forceMove(get_turf(user)) //just in case something was embedded that is not an item
 		if(istype(I))
 			if(!(user.l_hand && user.r_hand))
 				user.put_in_hands(I)
@@ -166,7 +166,7 @@
 			if(istype(W,/obj/item/hemostat))
 				if(contents.len)
 					var/obj/item/removing = pick(contents)
-					removing.loc = get_turf(user.loc)
+					removing.forceMove(get_turf(user.loc))
 					if(!(user.l_hand && user.r_hand))
 						user.put_in_hands(removing)
 					user.visible_message("<span class='danger'><b>[user]</b> extracts [removing] from [src] with [W]!</span>")
@@ -450,7 +450,7 @@ This function completely restores a damaged organ to perfect condition.
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
 		if(!istype(implanted_object,/obj/item/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
-			implanted_object.loc = get_turf(src)
+			implanted_object.forceMove(get_turf(src))
 			implants -= implanted_object
 
 	if(owner && !ignore_prosthetic_prefs)
@@ -886,7 +886,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
 			for(var/obj/item/I in src)
 				if(I.w_class > SMALL_ITEM && !istype(I,/obj/item/organ))
-					I.loc = get_turf(src)
+					I.forceMove(get_turf(src))
 			qdel(src)
 		if(DROPLIMB_BLUNT)
 			var/obj/effect/decal/cleanable/blood/gibs/gore
@@ -907,7 +907,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
-				I.loc = get_turf(src)
+				I.forceMove(get_turf(src))
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			qdel(src)
@@ -1138,7 +1138,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
 		H.drop_from_inventory(W)
-	W.loc = owner
+	W.forceMove(owner)
 
 /obj/item/organ/external/removed(var/mob/living/user, var/ignore_children = 0)
 
@@ -1156,9 +1156,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
 		if(istype(I) && I.w_class < NORMAL_ITEM)
-			implant.loc = get_turf(victim.loc)
+			implant.forceMove(get_turf(victim.loc))
 		else
-			implant.loc = src
+			implant.forceMove(src)
 	implants.Cut()
 
 	// Attached organs also fly off.
@@ -1166,14 +1166,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 		for(var/obj/item/organ/external/O in children)
 			O.removed()
 			if(O)
-				O.loc = src
+				O.forceMove(src)
 				for(var/obj/item/I in O.contents)
-					I.loc = src
+					I.forceMove(src)
 
 	// Grab all the internal giblets too.
 	for(var/obj/item/organ/organ in internal_organs)
 		organ.removed()
-		organ.loc = src
+		organ.forceMove(src)
 
 	// Remove parent references
 	parent.children -= src
