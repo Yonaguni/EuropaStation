@@ -50,15 +50,3 @@
 	name = "yonaguni"
 	desc = "The main dome level, the mining level and the surface."
 	height = 2
-
-/client/verb/fix_title()
-	set name = "Fix Title"
-	if(!lobby_image)
-		lobby_image = new()
-	screen |= lobby_image
-
-/client/verb/edit_title()
-	set name = "Edit Title"
-	if(!lobby_image)
-		lobby_image = new()
-	debug_variables(lobby_image)
