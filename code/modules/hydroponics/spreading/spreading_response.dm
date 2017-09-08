@@ -99,4 +99,4 @@
 
 /obj/effect/plant/buckle_mob()
 	. = ..()
-	if(.) plant_controller.add_plant(src)
+	if(.) SSplants.add_plant(src)
