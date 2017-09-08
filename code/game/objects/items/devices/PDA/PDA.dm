@@ -1268,7 +1268,7 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 /obj/item/radio/headset/pda/Destroy()
 	PDAs -= src
 	if (src.id && prob(90)) //IDs are kept in 90% of the cases
-		src.id.loc = get_turf(src.loc)
+		src.id.forceMove(get_turf(src.loc))
 	return ..()
 
 /obj/item/radio/headset/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
