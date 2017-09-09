@@ -78,6 +78,25 @@ var/list/flooring_cache = list()
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			overlays_to_add += get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","[flooring.icon_base]_burned[burnt]")
 
+	var/list/shadow_edges = list()
+	for(var/thing in trange(1,src))
+		var/turf/neighbor = thing
+		if(neighbor && neighbor != src && !neighbor.density)
+			shadow_edges += get_dir(src, neighbor)
+
+	for(var/i = 1 to 4)
+		var/cdir = cornerdirs[i]
+		var/corner = 0
+		if(cdir in shadow_edges)
+			corner |= 2
+		if(turn(cdir,45) in shadow_edges)
+			corner |= 1
+		if(turn(cdir,-45) in shadow_edges)
+			corner |= 4
+		var/image/I = image('icons/turf/flooring/shadows.dmi', "[corner]", dir = 1<<(i-1))
+		I.alpha = 100
+		overlays_to_add += I
+
 	..(update_neighbors, overlays_to_add)
 
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
