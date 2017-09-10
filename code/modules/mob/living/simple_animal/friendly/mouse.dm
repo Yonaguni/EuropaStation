@@ -135,3 +135,11 @@
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
 	real_name = name
+
+/mob/living/simple_animal/mouse/fat
+	name = "fat mouse"
+	desc = "It's a... not so small rodent."
+	icon_state = "fatmouse"
+	item_state = "fatmouse"
+	icon_living = "fatmouse"
+	icon_dead = "fatmouse_dead"
