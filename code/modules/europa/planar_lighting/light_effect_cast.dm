@@ -18,9 +18,9 @@ var/light_power_multiplier = 5
 
 	alpha = min(255,max(0,round(light_power*light_power_multiplier*25)))
 
-	if(light_type == LIGHT_SOFT_FLICKER)
+	if(holder.light_type == LIGHT_SOFT_FLICKER)
 		alpha = initial(alpha)
-		animate(src, alpha = initial(alpha) - rand(30, 60), time = 2, loop = -1, easing = SINE_EASING)
+		animate(src, alpha = initial(alpha) - rand(10, 20), time = 5, loop = -1, easing = SINE_EASING)
 
 	for(var/turf/T in range(light_range, src))
 		affecting_turfs |= T
@@ -35,8 +35,7 @@ var/light_power_multiplier = 5
 	for(var/turf/T in affecting_turfs)
 		T.affecting_lights |= src
 
-
-	if(light_type == LIGHT_DIRECTIONAL)
+	if(holder.light_type == LIGHT_DIRECTIONAL)
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
 	else
