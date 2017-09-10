@@ -26,6 +26,7 @@
 		if(istype(below) && !istype(below,/turf/space))
 			N = /turf/simulated/open
 
+	var/old_ao_neighbors = ao_neighbors
 	var/obj/fire/old_fire = fire
 	var/list/old_affecting_lights = affecting_lights
 	for(var/thing in affecting_lights)
@@ -34,6 +35,7 @@
 			L.affecting_turfs -= src
 
 	//world << "Replacing [src.type] with [N]"
+
 
 	if(connections) connections.erase_all()
 
@@ -64,6 +66,8 @@
 
 	W.post_change()
 	. = W
+
+	W.ao_neighbors = old_ao_neighbors
 
 	affecting_lights = old_affecting_lights
 	for(var/thing in affecting_lights)

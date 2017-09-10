@@ -45,6 +45,7 @@ var/list/turf_edge_cache = list()
 
 /turf/proc/initialize()
 	update_icon(1)
+	regenerate_ao()
 
 /turf/update_icon(var/update_neighbors, var/list/previously_added = list())
 	var/list/overlays_to_add = previously_added

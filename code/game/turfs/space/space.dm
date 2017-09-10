@@ -18,6 +18,8 @@ var/image/exterior_light_overlay
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	light_color = COLOUR_LTEMP_FLURO_COOL
 	outside = 1
+	permit_ao = FALSE
+
 	var/fling_away
 
 /turf/space/return_air()
