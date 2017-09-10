@@ -43,6 +43,7 @@
 /obj/item/fuel_assembly/auto_init = 1
 /obj/item/reagent_containers/food/snacks/meat/auto_init = 1
 /obj/item/disk/nuclear/auto_init = 1
+/obj/item/combitool/auto_init = 1
 
 /obj/random/auto_init = 1
 
