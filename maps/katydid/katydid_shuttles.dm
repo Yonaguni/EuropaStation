@@ -1,24 +1,4 @@
 // Cargo.
-/datum/shuttle/autodock/ferry/supply/europa
-	name = "Supply Pod"
-	location = 1
-	warmup_time = 10
-	shuttle_area = /area/shuttle/katydid/cargo
-	waypoint_offsite = "nav_cargo_start"
-	waypoint_station = "nav_cargo_station"
-	dock_target = "cargo_bay"
-
-/obj/effect/shuttle_landmark/supply/offsite
-	name = "Offsite Loading Bay"
-	landmark_tag = "nav_cargo_start"
-	base_area = /area/space
-
-/obj/effect/shuttle_landmark/supply/onsite
-	name = "Cargo Bay"
-	landmark_tag = "nav_cargo_station"
-	base_area = /area/space
-	docking_controller = "supply_shuttle"
-
 /obj/effect/shuttle_landmark/escape_pod/start
 	base_area = /area/space
 

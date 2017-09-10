@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////
-//
 //SUPPLY COMPUTER
-//
 ////////////////////////////////////////////////////////////////////////
+
 /obj/machinery/computer/supply
 	name = "cargo supply console"
 	icon = 'icons/obj/computer.dmi'
@@ -26,11 +25,8 @@
 	..()
 	generateSupplyList()
 
-
 /obj/machinery/computer/supply/proc/generateSupplyList()
-
 	supplylist = list()
-
 	for(var/decl/hierarchy/supply_pack/sp in cargo_supply_pack_root.children)
 		if(sp.is_category())
 			supplylist[sp.name] = list(
@@ -81,25 +77,6 @@
 
 /obj/machinery/computer/supply/ui_data(mob/user)
 	var/list/data = list()
-	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
-	var/shuttlestatus = ""
-	var/canlaunch = 0
-
-	if (shuttle.has_arrive_time())
-		shuttlestatus = "In transit ([shuttle.eta_minutes()] minute\s.)"
-	else
-		if (shuttle.at_station())
-			if (!shuttle.active_docking_controller)
-				shuttlestatus = "Undocked"
-			else
-				switch(shuttle.active_docking_controller.get_docking_status())
-					if ("docked")
-						shuttlestatus = "Docked."
-					if ("undocked") shuttlestatus = "Undocked."
-					if ("docking") shuttlestatus = "Docking..."
-					if ("undocking") shuttlestatus = "Undocking..."
-		else
-			shuttlestatus = "Docked at [using_map.get_specific_location()]."
 
 	if(activeterminal)
 		data["cart"] = list()
@@ -122,16 +99,11 @@
 			"reason" = SO.reason
 			))
 
-	if(shuttle.can_launch())
-		canlaunch = 1
-	data["location"] = shuttlestatus
-	data["canlaunch"] = canlaunch
 	data["points"] = supply_controller.points
 	data["supplies"] = supplylist
 	data["active"] = isActiveTerminal() //merchant terminal
 	data["canorder"] = servicesActive()
 	return data
-
 
 /obj/machinery/computer/supply/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -139,24 +111,14 @@
 		ui = new(user, src, ui_key, "cargo", name , 1000, 800, master_ui, state)
 		ui.open()
 
-
-
 /obj/machinery/computer/supply/ui_act(action,params)
 	if(..())
 		return
 
-	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
-
 	switch(action)
 		if("send")
-			if(shuttle.at_station())
-				if (shuttle.forbidden_atoms_check())
-					usr << "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>"
-				else
-					shuttle.launch(src)
-			else
-				shuttle.launch(src)
-				post_signal("supply")
+			finalize_purchase()
+
 		if("add")
 			if(lastorder > world.time) return TRUE
 			lastorder = world.time + orderdelay
@@ -339,15 +301,20 @@
 		reqform.update_icon()	//Fix for appearing blank when printed.
 		playsound(printloc,'sound/machines/dotprinter.ogg', 40, 1)
 
-/obj/machinery/computer/supply/proc/post_signal(var/command)
+/obj/machinery/computer/supply/verb/cargo_buy()
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	set name = "Confirm Cargo Purchase"
+	set desc = "Confirm a cargo purchase on the console."
+	set src in view(1)
 
-	if(!frequency) return
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-	var/datum/signal/status_signal = new
-	status_signal.source = src
-	status_signal.transmission_method = 1
-	status_signal.data["command"] = command
+	if(check_access(usr.GetIdCard()))
+		finalize_purchase()
+	else
+		to_chat(usr, "<span class='warning'>Access denied.</span>")
 
-	frequency.post_signal(src, status_signal)
+/obj/machinery/computer/supply/proc/finalize_purchase()
+	supply_controller.buy(src)
+	playsound(src, 'sound/machines/buttonbeep.ogg', 10, 1, rand(40000, 50000))

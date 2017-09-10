@@ -2,9 +2,13 @@
 	descriptor = "supply drop"
 	limit_x = 5
 	limit_y = 5
-
 	placement_explosion_light = 7
 	placement_explosion_flash = 5
+	var/list/pre_spawned_atoms
+
+/datum/random_map/droppod/supply/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/supplied_drop, var/list/supplied_drops, var/automated, var/list/supplied_atoms = list())
+	pre_spawned_atoms = supplied_atoms
+	. = ..()
 
 // UNLIKE THE DROP POD, this map deals ENTIRELY with strings and types.
 // Drop type is a string representing a mode rather than an atom or path.
@@ -14,7 +18,11 @@
 	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
 
 	if(drop_type == "custom")
-		if(supplied_drop_types.len)
+		if(pre_spawned_atoms)
+			for(var/thing in pre_spawned_atoms)
+				var/atom/movable/A = thing
+				A.forceMove(T)
+		else if(supplied_drop_types.len)
 			var/obj/structure/largecrate/C = locate() in T
 			for(var/drop_type in supplied_drop_types)
 				var/atom/movable/A = new drop_type(T)

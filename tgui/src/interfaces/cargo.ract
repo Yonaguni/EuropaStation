@@ -17,10 +17,9 @@
     </ui-notice>
 {{/if}}
 <ui-display title='Cargo'>
-  <ui-section label='Shuttle'>
-    Location: {{data.location}}
+  <ui-section label='Status'>
     {{#if data.active}}
-      <ui-button action='send' state='{{data.canlaunch ? null : "disabled"}}'>Undock Shuttle</ui-button>
+      <ui-button action='send'>Confirm Order</ui-button>
     {{/if}}
   </ui-section>
   <ui-section label='Points'>
