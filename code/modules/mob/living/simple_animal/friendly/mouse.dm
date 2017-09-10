@@ -139,7 +139,7 @@
 /mob/living/simple_animal/mouse/fat
 	name = "fat mouse"
 	desc = "It's a... not so small rodent."
-	icon_state = "fatmouse"
+	icon_state = "fatmouse" // Sprites by ArgobargSoup.
 	item_state = "fatmouse"
 	icon_living = "fatmouse"
 	icon_dead = "fatmouse_dead"
