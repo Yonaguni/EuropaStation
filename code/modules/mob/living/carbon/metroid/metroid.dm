@@ -7,7 +7,7 @@
 	speak_emote = list("chirps")
 
 	can_buckle = 0
-	buckle_fail_message = "is far too squishy restrain."
+	buckle_fail_message = "is far too squishy to restrain."
 
 	layer = 5
 	maxHealth = 150
