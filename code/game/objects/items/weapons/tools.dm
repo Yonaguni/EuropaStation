@@ -1,3 +1,43 @@
+//Decides whether or not to damage a player's eyes based on what they're wearing as protection
+//Note: This should probably be moved to mob
+/proc/handle_welding_damage(var/mob/user)
+	if(!iscarbon(user))	return 1
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+		if(!E)
+			return
+		var/safety = H.eyecheck()
+		switch(safety)
+			if(FLASH_PROTECTION_MODERATE)
+				H << "<span class='warning'>Your eyes sting a little.</span>"
+				E.damage += rand(1, 2)
+				if(E.damage > 12)
+					H.eye_blurry += rand(3,6)
+			if(FLASH_PROTECTION_NONE)
+				H << "<span class='warning'>Your eyes burn.</span>"
+				E.damage += rand(2, 4)
+				if(E.damage > 10)
+					E.damage += rand(4,10)
+			if(FLASH_PROTECTION_REDUCED)
+				H << "<span class='danger'>Your equipment intensifies the welder's glow. Your eyes itch and burn severely.</span>"
+				H.eye_blurry += rand(12,20)
+				E.damage += rand(12, 16)
+		if(safety<FLASH_PROTECTION_MAJOR)
+			if(E.damage > 10)
+				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
+
+			if (E.damage >= E.min_broken_damage)
+				H << "<span class='danger'>You go blind!</span>"
+				H.sdisabilities |= BLIND
+			else if (E.damage >= E.min_bruised_damage)
+				H << "<span class='danger'>You go blind!</span>"
+				H.eye_blind = 5
+				H.eye_blurry = 5
+				H.disabilities |= NEARSIGHTED
+				spawn(100)
+					H.disabilities &= ~NEARSIGHTED
+
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /* Tools!
@@ -266,7 +306,7 @@
 	if(get_fuel() >= amount)
 		burn_fuel(amount)
 		if(M)
-			eyecheck(M)
+			handle_welding_damage(M)
 		return 1
 	else
 		if(M)
@@ -286,7 +326,6 @@
 		amount = max(amount, 2)
 		reagents.trans_id_to(in_mob, "fuel", amount)
 		in_mob.IgniteMob()
-
 	else
 		reagents.remove_reagent("fuel", amount)
 		var/turf/location = get_turf(src.loc)
@@ -343,46 +382,6 @@
 		src.damtype = "brute"
 		src.welding = 0
 		update_icon()
-
-//Decides whether or not to damage a player's eyes based on what they're wearing as protection
-//Note: This should probably be moved to mob
-/obj/item/weldingtool/proc/eyecheck(var/mob/user)
-	if(!iscarbon(user))	return 1
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
-		if(!E)
-			return
-		var/safety = H.eyecheck()
-		switch(safety)
-			if(FLASH_PROTECTION_MODERATE)
-				H << "<span class='warning'>Your eyes sting a little.</span>"
-				E.damage += rand(1, 2)
-				if(E.damage > 12)
-					H.eye_blurry += rand(3,6)
-			if(FLASH_PROTECTION_NONE)
-				H << "<span class='warning'>Your eyes burn.</span>"
-				E.damage += rand(2, 4)
-				if(E.damage > 10)
-					E.damage += rand(4,10)
-			if(FLASH_PROTECTION_REDUCED)
-				H << "<span class='danger'>Your equipment intensifies the welder's glow. Your eyes itch and burn severely.</span>"
-				H.eye_blurry += rand(12,20)
-				E.damage += rand(12, 16)
-		if(safety<FLASH_PROTECTION_MAJOR)
-			if(E.damage > 10)
-				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
-
-			if (E.damage >= E.min_broken_damage)
-				H << "<span class='danger'>You go blind!</span>"
-				H.sdisabilities |= BLIND
-			else if (E.damage >= E.min_bruised_damage)
-				H << "<span class='danger'>You go blind!</span>"
-				H.eye_blind = 5
-				H.eye_blurry = 5
-				H.disabilities |= NEARSIGHTED
-				spawn(100)
-					H.disabilities &= ~NEARSIGHTED
 
 /obj/item/weldingtool/largetank
 	name = "industrial welding tool"
@@ -463,60 +462,102 @@
 /obj/item/weldingtool/iswelder()
 	return 1
 
-/*/obj/item/combitool
+/obj/item/combitool
 	name = "combi-tool"
 	desc = "It even has one of those nubbins for doing the thingy."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/combitool.dmi'
 	icon_state = "combitool"
 	w_class = 2
 
-	var/list/spawn_tools = list(
-		/obj/item/screwdriver,
-		/obj/item/wrench,
-		/obj/item/wirecutters,
-		/obj/item/material/kitchen/utensil/knife,
-		/obj/item/material/kitchen/utensil/fork,
-		/obj/item/material/hatchet
+	var/list/tools = list(
+		"screwdriver",
+		"wrench",
+		"wirecutters"
 		)
-	var/list/tools = list()
 	var/current_tool = 1
 
-/obj/item/combitool/examine()
-	..()
-	if(loc == usr && tools.len)
-		usr << "It has the following fittings:"
-		for(var/obj/item/tool in tools)
-			usr << "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]"
+/obj/item/combitool/examine(var/mob/user)
+	. = ..()
+	if(. && tools.len)
+		to_chat(user, "It has the following fittings:")
+		for(var/tool in tools)
+			to_chat(user, "- [tool][tools[current_tool] == tool ? " (selected)" : ""]")
 
-/obj/item/combitool/New()
-	..()
-	for(var/type in spawn_tools)
-		tools |= new type(src)
+/obj/item/combitool/istool()
+	return TRUE
+
+/obj/item/combitool/iswrench()
+	return tools[current_tool] == "wrench"
+
+/obj/item/combitool/isscrewdriver()
+	return tools[current_tool] == "screwdriver"
+
+/obj/item/combitool/iswirecutter()
+	return tools[current_tool] == "wirecutters"
+
+/obj/item/combitool/iscrowbar()
+	return tools[current_tool] == "crowbar"
+
+/obj/item/combitool/proc/update_tool()
+	icon_state = "[initial(icon_state)]-[tools[current_tool]]"
 
 /obj/item/combitool/attack_self(var/mob/user)
 	if(++current_tool > tools.len) current_tool = 1
-	var/obj/item/tool = tools[current_tool]
+	var/tool = tools[current_tool]
 	if(!tool)
-		user << "You can't seem to find any fittings in \the [src]."
+		to_chat(user, "You can't seem to find any fittings in \the [src].")
 	else
-		user << "You switch \the [src] to the [tool.name] fitting."
+		to_chat(user, "You switch \the [src] to the [tool] fitting.")
+	update_tool()
 	return 1
 
-/obj/item/combitool/attack(var/mob/living/carbon/M, var/mob/living/carbon/user)
-	if(!M.Adjacent(user))
-		return 0
-	var/obj/item/tool = tools[current_tool]
-	if(!tool) return 0
-	return (tool ? tool.attack(M,user) : 0)
+/obj/item/combitool/omni
+	name = "digitool"
+	icon_state = "digitool"
+	desc = "An advanced alien design with countless possibilities."
+	tools = list(
+		"crowbar",
+		"screwdriver",
+		"wrench",
+		"wirecutters",
+		"welder",
+		"multitool"
+		)
 
-/obj/item/combitool/afterattack(var/atom/target, var/mob/living/user, proximity, params)
-	if(!proximity)
+	var/welding
+	var/max_fuel = 15
+
+/obj/item/combitool/omni/initialize()
+	..()
+	desc = "[initial(desc)] ([tools.len]. [tools.len] possibilit[tools.len == 1 ? "y" : "ies"])"
+	// I am sure there is a proc for this, but I can't find it now.
+	reagents = new(max_fuel)
+	reagents.my_atom = src
+	reagents.add_reagent("fuel", max_fuel)
+	..()
+
+/obj/item/combitool/omni/update_tool()
+	..()
+	welding = (tools[current_tool] == "welder")
+
+/obj/item/combitool/omni/iswelder()
+	return tools[current_tool] == "welder"
+
+/obj/item/combitool/omni/ismultitool()
+	return tools[current_tool] == "multitool"
+
+/obj/item/combitool/omni/proc/remove_fuel(var/amount = 1, var/mob/user)
+	if(!welding)
 		return 0
-	var/obj/item/tool = tools[current_tool]
-	if(!tool) return 0
-	tool.loc = user
-	var/resolved = target.attackby(tool,user)
-	if(!resolved && tool && target)
-		tool.afterattack(target,user,1)
-	if(tool)
-		tool.loc = src*/
+	if(reagents.get_reagent_amount("fuel") >= amount)
+		reagents.remove_reagent("fuel", amount)
+		var/turf/location = get_turf(src.loc)
+		if(location)
+			location.hotspot_expose(700, 5)
+		if(user)
+			handle_welding_damage(user)
+		return 1
+	else
+		if(user)
+			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+		return 0

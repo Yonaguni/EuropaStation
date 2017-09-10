@@ -162,7 +162,7 @@
 
 	user << "<span class='notice'>You start to weld \the [src]..</span>"
 	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-	WT.eyecheck(user)
+	handle_welding_damage(user)
 	busy = 1
 	if(do_after(user, 20, src))
 		busy = 0

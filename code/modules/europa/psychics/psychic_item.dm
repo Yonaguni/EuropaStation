@@ -121,19 +121,16 @@
 		return 0
 	return 1
 
-/obj/item/psychic_power/kinesis
-	use_like_weapon = TRUE
-	force = 5
-
-/obj/item/psychic_power/kinesis/tinker/iswirecutter()
-	return TRUE
-
 /obj/item/psychic_power/spark
 	use_like_weapon = TRUE
 	force = 1
 
 /obj/item/psychic_power/spark/ismultitool()
 	return 1
+
+/obj/item/psychic_power/kinesis
+	use_like_weapon = TRUE
+	force = 5
 
 /obj/item/psychic_power/kinesis/tinker
 	force = 1
