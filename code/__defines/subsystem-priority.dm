@@ -1,3 +1,4 @@
+#define SS_INIT_SEEDS               7
 #define SS_INIT_MISC_FIRST          6
 #define SS_INIT_TURBOLIFT           5
 #define SS_INIT_WIRELESS            4	// Wireless pair queue flush.
@@ -24,6 +25,7 @@
 #define SS_PRIORITY_AIR            80	// ZAS processing.
 #define SS_PRIORITY_EVENT          70
 #define SS_PRIORITY_ALARMS         50
+#define SS_PRIORITY_PLANTS         40	// Spreading plant effects.
 #define SS_PRIORITY_ICON_UPDATE    20	// Queued icon updates. Mostly used by APCs and tables.
 
 

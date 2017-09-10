@@ -34,7 +34,7 @@
 		neighbors |= floor
 
 	if(neighbors.len)
-		plant_controller.add_plant(src) //if we have neighbours again, start processing
+		SSplants.add_plant(src) //if we have neighbours again, start processing
 
 	// Update all of our friends.
 	var/turf/T = get_turf(src)
@@ -43,6 +43,7 @@
 			neighbor.neighbors -= T
 
 /obj/effect/plant/process()
+	set waitfor = FALSE	// We sleep, so don't make the SS wait for us.
 
 	// Something is very wrong, kill ourselves.
 	if(!seed)
@@ -109,47 +110,50 @@
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health()
 	if(buckled_mob || neighbors.len)
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 //spreading vines aren't created on their final turf.
 //Instead, they are created at their parent and then move to their destination.
 /obj/effect/plant/proc/spread_to(turf/target_turf)
+	set waitfor = FALSE
+
+	STOP_PROCESSING(SSplants, src)	// Yes.
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 
-	spawn(1) // This should do a little bit of animation.
-		if(QDELETED(child))
+	sleep(1)	// This should do a little bit of animation.
+
+	if(QDELETED(child))
+		return
+
+	//move out to the destination
+	child.anchored = 0
+	step_to(child, target_turf)
+	child.anchored = 1
+	child.update_icon()
+
+	//see if anything is there
+	for(var/thing in child.loc)
+		if(thing != child && istype(thing, /obj/effect/plant))
+			var/obj/effect/plant/other = thing
+			if(other.seed != child.seed)
+				other.vine_overrun(child.seed, src) //vine fight
+			qdel(child)
+			return
+		if(istype(thing, /obj/effect/dead_plant))
+			qdel(thing)
+			qdel(child)
+			return
+		if(isliving(thing) && (seed.get_trait(TRAIT_CARNIVOROUS) || (seed.get_trait(TRAIT_SPREAD) >= 2 && prob(round(seed.get_trait(TRAIT_POTENCY))))))
+			entangle(thing)
+			qdel(child)
 			return
 
-		//move out to the destination
-		child.anchored = 0
-		step_to(child, target_turf)
-		child.anchored = 1
-		child.update_icon()
+	// Update neighboring squares.
+	for(var/obj/effect/plant/neighbor in range(1, child.loc)) //can use the actual final child loc now
+		if(child.seed == neighbor.seed) //neighbors of different seeds will continue to try to overrun each other
+			neighbor.neighbors -= target_turf
 
-		//see if anything is there
-		for(var/thing in child.loc)
-			if(thing != child && istype(thing, /obj/effect/plant))
-				var/obj/effect/plant/other = thing
-				if(other.seed != child.seed)
-					other.vine_overrun(child.seed, src) //vine fight
-				qdel(child)
-				return
-			if(istype(thing, /obj/effect/dead_plant))
-				qdel(thing)
-				qdel(child)
-				return
-			if(isliving(thing) && (seed.get_trait(TRAIT_CARNIVOROUS) || (seed.get_trait(TRAIT_SPREAD) >= 2 && prob(round(seed.get_trait(TRAIT_POTENCY))))))
-				entangle(thing)
-				qdel(child)
-				return
-
-		// Update neighboring squares.
-		for(var/obj/effect/plant/neighbor in range(1, child.loc)) //can use the actual final child loc now
-			if(child.seed == neighbor.seed) //neighbors of different seeds will continue to try to overrun each other
-				neighbor.neighbors -= target_turf
-
-		child.finish_spreading()
-
+	child.finish_spreading()
 
 /obj/effect/plant/proc/die_off()
 	// Kill off our plant.
@@ -160,7 +164,8 @@
 			continue
 		for(var/obj/effect/plant/neighbor in check_turf.contents)
 			neighbor.neighbors |= check_turf
-			plant_controller.add_plant(neighbor)
-	spawn(1) if(src) qdel(src)
+			SSplants.add_plant(neighbor)
+	
+	qdel(src)
 
 #undef NEIGHBOR_REFRESH_TIME
