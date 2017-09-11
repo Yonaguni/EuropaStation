@@ -36,6 +36,15 @@
 	can_pull_size = TINY_ITEM
 	can_pull_mobs = MOB_PULL_NONE
 
+/mob/living/simple_animal/mouse/New()
+	if(prob(2))
+		name = "fat mouse"
+		desc = "It's a... not so small rodent."
+		icon_state = "fatmouse" // Sprites by ArgobargSoup.
+		item_state = "fatmouse"
+		icon_living = "fatmouse"
+		icon_dead = "fatmouse_dead"
+
 /mob/living/simple_animal/mouse/Life()
 	..()
 	if(!stat && prob(speak_chance))
