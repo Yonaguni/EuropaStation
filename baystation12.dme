@@ -1287,7 +1287,6 @@
 #include "code\modules\europa\mechs\components\software.dm"
 #include "code\modules\europa\mechs\equipment\_equipment.dm"
 #include "code\modules\europa\mechs\equipment\engineering.dm"
-#include "code\modules\europa\mechs\equipment\medical.dm"
 #include "code\modules\europa\mechs\equipment\utility.dm"
 #include "code\modules\europa\mechs\interface\_interface.dm"
 #include "code\modules\europa\mechs\interface\screen_objects.dm"

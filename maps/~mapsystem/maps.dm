@@ -39,6 +39,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 	var/list/shallow_levels = list()
 	var/list/empty_levels = null
+
+	var/list/base_turf_by_z = list()
 	var/base_area
 
 	var/default_role = "Crewman"

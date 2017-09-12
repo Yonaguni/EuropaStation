@@ -30,7 +30,7 @@ var/map_submerged
 	world << "<span class='notice'><b>[usr.key] fumbled and dropped the server into an ocean, please wait for the game to catch up.</b></span>"
 	sleep(10)
 	for(var/i in using_map.station_levels)
-		base_turf_by_z["[i]"] = /turf/simulated/ocean
+		using_map.base_turf_by_z["[i]"] = /turf/simulated/ocean
 		new /datum/random_map/noise/seafloor/replace_space(null,1,1,i,255,255)
 		sleep(50)
 

@@ -206,6 +206,10 @@
 	return
 
 /obj/structure/closet/attackby(var/obj/item/W, var/mob/user)
+
+	if(istype(W, /obj/item/mecha_equipment/clamp))
+		return 0
+
 	if(src.opened && W.simulated && !W.abstract)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -235,7 +239,7 @@
 								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
 								 "<span class='notice'>You hear rustling of clothes.</span>")
 			return
-		if(isrobot(user))
+		if(isrobot(user) || is_robot_module(W))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
 			return

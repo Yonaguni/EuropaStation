@@ -10,6 +10,18 @@
 	var/obj/item/mech_component/control_module/software
 	has_hardpoints = list(HARDPOINT_HEAD)
 
+/obj/item/mech_component/sensors/Destroy()
+	if(camera)
+		qdel(camera)
+		camera = null
+	if(radio)
+		qdel(radio)
+		radio = null
+	if(software)
+		qdel(software)
+		software = null
+	. = ..()
+
 /obj/item/mech_component/sensors/show_missing_parts(var/mob/user)
 	if(!radio)
 		user << "<span class='warning'>It is missing a radio.</span>"

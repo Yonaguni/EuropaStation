@@ -12,6 +12,7 @@
 
 
 /mob/living/heavy_vehicle/ClickOn(var/atom/A, var/params, var/mob/user)
+
 	if(!user || incapacitated() || user.incapacitated())
 		return
 
@@ -27,7 +28,7 @@
 		return
 
 	// Are we facing the target?
-	if(!(get_dir(src, A) & dir))
+	if(A.loc != src && !(get_dir(src, A) & dir))
 		return
 
 	if(!canClick())
@@ -201,10 +202,10 @@
 		return
 
 	glide_size = world.icon_size / max(movement_delay(), world.tick_lag) * world.tick_lag
-	next_move = world.time + legs.movement_delay()
+	next_move = world.time + movement_delay()
 
 	if(!user.has_aspect(ASPECT_EXOSUIT_PILOT))
-		next_move += rand(5,10)
+		next_move += rand(3,8)
 
 	if(maintenance_protocols)
 		user << "<span class='warning'>Maintenance protocols are in effect.</span>"
@@ -288,7 +289,6 @@
 	hud_open.update_icon()
 	update_icon()
 	return
-
 
 /mob/living/heavy_vehicle/proc/attack_self(var/mob/user)
 	return visible_message("\The [src] pokes itself.")

@@ -34,7 +34,7 @@
 
 	// Mob currently piloting the mech.
 	var/mob/living/pilot
-	var/obj/item/draw_pilot
+	var/image/draw_pilot
 
 	// Visible external components. Not strictly accurately named for non-humanoid machines (submarines) but w/e
 	var/obj/item/mech_component/manipulators/arms
@@ -64,52 +64,84 @@
 	var/obj/screen/movable/mecha/toggle/hatch_open/hud_open
 
 /mob/living/heavy_vehicle/Destroy()
-	if(pilot && pilot.client)
-		pilot.client.images -= hud_elements
-	hardpoints.Cut()
+
+	selected_system = null
+
+	if(pilot)
+		if(pilot.client)
+			pilot.client.screen -= hud_elements
+			pilot.client.images -= hud_elements
+		pilot.forceMove(get_turf(src))
+		pilot = null
+
+	for(var/thing in hud_elements)
+		qdel(thing)
 	hud_elements.Cut()
+
+	for(var/hardpoint in hardpoints)
+		qdel(hardpoints[hardpoint])
+	hardpoints.Cut()
+
+	if(access_card)
+		qdel(access_card)
+		access_card = null
+	if(arms)
+		qdel(arms)
+		arms = null
+	if(legs)
+		qdel(legs)
+		legs = null
+	if(head)
+		qdel(head)
+		head = null
+	if(body)
+		qdel(body)
+		body = null
+
 	body_overlays.Cut()
 	hardpoint_overlays.Cut()
+
 	for(var/hardpoint in hardpoint_hud_elements)
 		var/obj/screen/movable/mecha/hardpoint/H = hardpoint_hud_elements[hardpoint]
 		H.owner = null
 		H.holding = null
 		qdel(H)
 	hardpoint_hud_elements.Cut()
-	..()
+
+	. = ..()
 
 /mob/living/heavy_vehicle/IsAdvancedToolUser()
 	return 1
 
 /mob/living/heavy_vehicle/examine(var/mob/user)
-	if(!user || !user.client)
-		return
-	user << "That's \a [src]."
-	user << desc
-	if(pilot && (!hatch_closed || body.open_cabin))
-		user << "It is being piloted by \the [pilot]."
-	if(hardpoints.len)
-		user << "It has the following hardpoints:"
-		for(var/hardpoint in hardpoints)
-			var/obj/item/I = hardpoints[hardpoint]
-			user << "- [hardpoint]: [istype(I) ? "\the [I]" : "nothing"]."
-	else
-		user << "It has no visible hardpoints."
+	. = ..()
+	if(.)
+		to_chat(user, "That's \a [src].")
+		to_chat(user, desc)
+		if(pilot && (!hatch_closed || body.open_cabin))
+			to_chat(user, "It is being piloted by \the [pilot].")
+		if(hardpoints.len)
+			to_chat(user, "It has the following hardpoints:")
+			for(var/hardpoint in hardpoints)
+				var/obj/item/I = hardpoints[hardpoint]
+				to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
+		else
+			to_chat(user, "It has no visible hardpoints.")
 
-	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
-		if(!thing)
-			continue
-		var/damage_string = "destroyed"
-		switch(thing.damage_state)
-			if(1)
-				damage_string = "undamaged"
-			if(2)
-				damage_string = "damaged"
-			if(3)
-				damage_string = "badly damaged"
-			if(4)
-				damage_string = "almost destroyed"
-		user << "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string]."
+		for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
+			if(!thing)
+				continue
+			var/damage_string = "destroyed"
+			switch(thing.damage_state)
+				if(1)
+					damage_string = "undamaged"
+				if(2)
+					damage_string = "damaged"
+				if(3)
+					damage_string = "badly damaged"
+				if(4)
+					damage_string = "almost destroyed"
+			to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 /mob/living/heavy_vehicle/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
 
@@ -153,7 +185,7 @@
 	update_icon()
 
 /mob/living/heavy_vehicle/return_air()
-	return body.cockpit
+	return (body && !body.open_cabin) ? body.cockpit : loc.return_air()
 
 /mob/living/heavy_vehicle/GetIdCard()
 	return access_card

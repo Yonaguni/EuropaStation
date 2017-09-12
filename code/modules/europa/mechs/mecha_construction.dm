@@ -3,6 +3,11 @@
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	var/obj/structure/heavy_vehicle_frame/frame = new(get_turf(src))
 
+	for(var/hardpoint in hardpoints)
+		var/obj/item/I = hardpoints[hardpoint]
+		I.forceMove(get_turf(src))
+	hardpoints.Cut()
+
 	frame.arms = arms
 	frame.body = body
 	frame.head = head
@@ -13,13 +18,13 @@
 	body.forceMove(frame)
 	head.forceMove(frame)
 
-	frame.is_wired = 0
+	frame.is_wired = 2
 	frame.is_reinforced = 3
 	frame.set_name = name
 	frame.name = "frame of \the [frame.set_name]"
 	frame.update_icon()
 	qdel(src)
-	return
+
 
 /mob/living/heavy_vehicle/proc/install_system(var/obj/item/system, var/system_hardpoint, var/mob/user)
 
@@ -40,7 +45,7 @@
 					break
 			if(!found)
 				return 0
-		ME.owner = src
+		ME.installed(src)
 
 	if(user)
 		user.unEquip(system)
@@ -74,7 +79,8 @@
 		clear_selected_hardpoint()
 
 	var/obj/item/mecha_equipment/ME = system
-	if(istype(ME)) ME.owner = null
+	if(istype(ME))
+		ME.uninstalled()
 	system.forceMove(get_turf(src))
 	system.screen_loc = null
 	system.layer = initial(system.layer)

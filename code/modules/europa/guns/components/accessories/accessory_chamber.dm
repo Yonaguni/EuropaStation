@@ -22,9 +22,6 @@
 	var/brightness_on = 4
 
 /obj/item/gun_component/accessory/chamber/flashlight/do_user_alt_interaction(var/mob/user)
-	if(!isturf(user.loc))
-		user << "<span class='warning'>You cannot turn the light on while in \the [user.loc].</span>"
-		return 1
 	on = !on
 	update_gun_light()
 	return 1

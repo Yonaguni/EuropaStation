@@ -67,7 +67,8 @@
 	if(prob(20)) src.spark_system.start()
 
 /obj/item/rcd/afterattack(atom/A, mob/user, proximity)
-	if(!proximity) return
+	if(!A.Adjacent(get_turf(user)))
+		return 0
 	if(disabled && !isrobot(user))
 		return 0
 	if(istype(get_area(A),/area/shuttle)||istype(get_area(A),/turf/space/transit))
@@ -176,17 +177,22 @@
 	return
 
 /obj/item/rcd/borg/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && !user.stat)
-
+	return(user.Adjacent(T) && !user.stat)
 
 /obj/item/rcd/mounted/useResource(var/amount, var/mob/user)
-	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
+	var/cost = amount*10
+	var/obj/item/cell/cell
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
-			if(module.holder.cell.charge >= cost)
-				module.holder.cell.use(cost)
-				return 1
+			cell = module.holder.cell
+	else if(istype(user, /mob/living/heavy_vehicle))
+		var/mob/living/heavy_vehicle/mech = user
+		if(mech.body && mech.body)
+			cell = mech.body.cell
+	if(cell && cell.charge >= cost)
+		cell.use(cost)
+		return 1
 	return 0
 
 /obj/item/rcd/mounted/attackby()
