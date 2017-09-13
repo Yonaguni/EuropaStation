@@ -1,6 +1,6 @@
 /datum/console_program
 	var/name
-	var/html[22]
+	var/html[TERM_LINES]
 	var/html_template = 'html/templates/terminal_template.html'
 	var/obj/machinery/owner
 	var/list/users = list()
