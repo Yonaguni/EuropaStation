@@ -74,7 +74,7 @@
 		user << "<span class='warning'>That would probably break [src].</span>"
 		return 0
 	else if(istype(check, /obj/item/disk/nuclear))
-		user << "Central Command would kill you if you [cook_type] that."
+		user << "\The [using_map.boss_name] would kill you if you [cook_type] that."
 		return 0
 	else if(!istype(check) && !istype(check, /obj/item/holder))
 		user << "<span class='warning'>That's not edible.</span>"
@@ -100,7 +100,8 @@
 	sleep(cook_time)
 
 	// Sanity checks.
-	check_cooking_obj()
+	if(!check_cooking_obj())
+		return
 
 	// RIP slow-moving held mobs.
 	if(istype(cooking_obj, /obj/item/holder))
@@ -173,7 +174,8 @@
 		cooking_obj = null
 		icon_state = off_icon
 		cooking = 0
-		return
+		return 0
+	return 1
 
 /obj/machinery/cooker/attack_hand(var/mob/user)
 
