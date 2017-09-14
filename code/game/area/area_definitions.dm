@@ -152,3 +152,4 @@ area/space/atmosalert()
 // Putting this here for objective compile.
 /area/europa/ocean
 	name = "Ocean"
+	base_turf = /turf/simulated/ocean
