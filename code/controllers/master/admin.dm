@@ -35,12 +35,12 @@
 
 	var/list/paramlist = params2list(params)
 	if (paramlist["shift"] && permit_mark && target)
-		/*if (target in usr.client.holder.watched_processes)
-			usr << "notice", "<span class='notice'>[target] removed from watchlist.</span>"
+		if (target in usr.client.holder.watched_processes)
+			usr << "<span class='notice'>[target] removed from watchlist.</span>"
 			LAZYREMOVE(usr.client.holder.watched_processes, target)
 		else
 			usr << "<span class='notice'>[target] added to watchlist.</span>"
-			LAZYADD(usr.client.holder.watched_processes, target)*/
+			LAZYADD(usr.client.holder.watched_processes, target)
 	else
 		usr.client.debug_variables(target)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
