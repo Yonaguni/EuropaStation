@@ -3,9 +3,9 @@
 	colour = "#3399ff"
 	powers = list(
 		/datum/psychic_power/latent,
-		/datum/psychic_power/spasm,
-		/datum/psychic_power/agony,
 		/datum/psychic_power/blindstrike,
+		/datum/psychic_power/agony,
+		/datum/psychic_power/spasm,
 		/datum/psychic_power/mindream
 		)
 
@@ -78,8 +78,8 @@
 		target.emote("scream")
 	target << "<span class='danger'>Your sense are blasted into oblivion by a burst of mental static!</span>"
 	target.flash_eyes()
-	target.eye_blind = max(target.eye_blind,10)
-	target.ear_deaf = max(target.ear_deaf,10)
+	target.eye_blind = max(target.eye_blind,3)
+	target.ear_deaf = max(target.ear_deaf,6)
 
 /datum/psychic_power/agony
 	name = "Agony"
