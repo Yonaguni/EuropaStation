@@ -22,7 +22,7 @@
 				)
 
 	possible_wanted_items = list(/mob/living/simple_animal/adultslime = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/corgi       = TRADER_THIS_TYPE,
+								/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cat         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/crab        = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/lizard      = TRADER_THIS_TYPE,
@@ -44,7 +44,7 @@
 								/mob/living/simple_animal/hostile/carp = TRADER_THIS_TYPE)
 
 	possible_trading_items = list(/mob/living/simple_animal/adultslime = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/corgi       = TRADER_THIS_TYPE,
+								/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cat         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/crab        = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/lizard      = TRADER_THIS_TYPE,

@@ -446,6 +446,9 @@
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
 
+/obj/effect/landmark/start/employee
+	name = "Employee"
+
 /obj/effect/landmark/start/co
 	name = "Director"
 

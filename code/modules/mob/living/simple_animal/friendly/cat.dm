@@ -23,7 +23,7 @@
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
-	holder_type = /obj/item/holder/cat
+	holder_type = /obj/item/holder
 	mob_size = MOB_SMALL
 	possession_candidate = 1
 
@@ -139,6 +139,19 @@
 	else
 		return ..()
 
+/mob/living/simple_animal/cat/kitten
+	name = "kitten"
+	desc = "D'aaawwww"
+	icon_state = "kitten"
+	item_state = "kitten"
+	icon_living = "kitten"
+	icon_dead = "kitten_dead"
+	gender = NEUTER
+
+/mob/living/simple_animal/cat/kitten/New()
+	gender = pick(MALE, FEMALE)
+	..()
+
 //Basic friend AI
 /mob/living/simple_animal/cat/fluff
 	var/mob/living/carbon/human/friend
@@ -218,44 +231,3 @@
 	else
 		usr << "<span class='notice'>[src] ignores you.</span>"
 	return
-
-//RUNTIME IS ALIVE! SQUEEEEEEEE~
-/mob/living/simple_animal/cat/fluff/Runtime
-	name = "Runtime"
-	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
-	gender = FEMALE
-	icon_state = "cat"
-	item_state = "cat"
-	icon_living = "cat"
-	icon_dead = "cat_dead"
-
-/mob/living/simple_animal/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww"
-	icon_state = "kitten"
-	item_state = "kitten"
-	icon_living = "kitten"
-	icon_dead = "kitten_dead"
-	gender = NEUTER
-
-// Leaving this here for now.
-/obj/item/holder/cat/fluff/bones
-	name = "Bones"
-	desc = "It's Bones! Meow."
-	gender = MALE
-	icon_state = "cat3"
-
-/mob/living/simple_animal/cat/fluff/bones
-	name = "Bones"
-	desc = "That's Bones the cat. He's a laid back, black cat. Meow."
-	gender = MALE
-	icon_state = "cat3"
-	item_state = "cat3"
-	icon_living = "cat3"
-	icon_dead = "cat3_dead"
-	holder_type = /obj/item/holder/cat/fluff/bones
-	var/friend_name = "Erstatz Vryroxes"
-
-/mob/living/simple_animal/cat/kitten/New()
-	gender = pick(MALE, FEMALE)
-	..()

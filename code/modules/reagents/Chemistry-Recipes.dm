@@ -1044,8 +1044,8 @@
 	var/list/possible_mobs = list(
 							/mob/living/simple_animal/cat,
 							/mob/living/simple_animal/cat/kitten,
-							/mob/living/simple_animal/corgi,
-							/mob/living/simple_animal/corgi/puppy,
+							/mob/living/simple_animal/dog/corgi,
+							/mob/living/simple_animal/dog/corgi/puppy,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/chick,
 							/mob/living/simple_animal/chicken
