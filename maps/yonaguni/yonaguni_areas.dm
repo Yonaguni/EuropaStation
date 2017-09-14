@@ -1,11 +1,12 @@
 // Slum areas.
 /area/europa
 	icon = 'icons/areas_europa.dmi'
-	base_turf = /turf/simulated/ocean
+	base_turf = /turf/simulated
 
 /area/europa/ocean
 	name = "Ocean"
 	icon_state = "ocean"
+	base_turf = /turf/simulated/ocean
 
 /area/europa/ocean/abyss
 	name = "Abyss Floor"
