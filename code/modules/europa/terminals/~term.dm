@@ -1,0 +1,2 @@
+#undef TERM_STD_STYLE
+#undef TERM_LINES

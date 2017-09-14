@@ -47,18 +47,12 @@
 	shuttle_controller.shuttles[src.name] = src
 	if(flags & SHUTTLE_FLAGS_PROCESS)
 		shuttle_controller.process_shuttles += src
-	if(flags & SHUTTLE_FLAGS_SUPPLY)
-		if(supply_controller.shuttle)
-			CRASH("A supply shuttle is already defined.")
-		supply_controller.shuttle = src
 
 /datum/shuttle/Destroy()
 	current_location = null
 
 	shuttle_controller.shuttles -= src.name
 	shuttle_controller.process_shuttles -= src
-	if(supply_controller.shuttle == src)
-		supply_controller.shuttle = null
 
 	. = ..()
 

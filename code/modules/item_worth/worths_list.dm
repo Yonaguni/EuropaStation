@@ -470,7 +470,6 @@ var/list/worths = list(
 					/obj/item/ammo_magazine = 30,
 					/obj/item/conveyor_construct = 100,
 					/obj/item/conveyor_switch_construct = 30,
-					/obj/item/supply_beacon = 5000,
 					/obj/item/frame = 60,
 					/obj/item/pipe = 100,
 					/obj/item/pipe_meter = 300,
