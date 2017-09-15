@@ -697,6 +697,15 @@
 				stat("CPU:","[world.cpu]")
 				stat("Tick Usage:", world.tick_usage)
 				stat("Instances:","[world.contents.len]")
+
+				if (LAZYLEN(client.holder.watched_processes))
+					for (var/thing in client.holder.watched_processes)
+						if (!thing)
+							LAZYREMOVE(client.holder.watched_processes, thing)
+						else
+							var/datum/controller/subsystem/SS = thing
+							SS.stat_entry()
+
 			if(statpanel("MC"))
 				if(Master)
 					Master.stat_entry()
