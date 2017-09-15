@@ -882,6 +882,22 @@ FIRE ALARM
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 	var/seclevel
 
+/obj/machinery/firealarm/south
+	dir = SOUTH
+	pixel_y = 32
+
+/obj/machinery/firealarm/north
+	dir = NORTH
+	pixel_y = -32
+
+/obj/machinery/firealarm/west
+	dir = WEST
+	pixel_x = 32
+
+/obj/machinery/firealarm/east
+	dir = EAST
+	pixel_x = -32
+
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
 

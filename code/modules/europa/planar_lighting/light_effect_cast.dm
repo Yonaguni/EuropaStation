@@ -9,6 +9,11 @@ var/light_power_multiplier = 5
 // Casts shadows from occluding objects for a given light.
 
 /obj/effect/light/proc/cast_light()
+
+	if(!Master.initializing || !Master.round_started)
+		init_lights |= src
+		return
+
 	light_color = null
 
 	temp_appearance = list()
