@@ -1,5 +1,5 @@
 /obj/machinery/chemical_dispenser
-	name = "chemical dispenser"
+	name = "industrial chemical dispenser"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 

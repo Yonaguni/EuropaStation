@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/food/snacks/meat
 	name = "meat"
 	desc = "A slab of meat."
-	icon_state = "meat"
+	icon_state = "meat1"
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = "x=16;y=14"
@@ -15,6 +15,9 @@
 /obj/item/reagent_containers/food/snacks/meat/initialize()
 	..()
 	if(source_mob) set_source_mob(source_mob)
+	if(icon_state == "meat1")
+		icon_state = pick(list("meat1","meat2","meat3","meat4"))
+
 
 /obj/item/reagent_containers/food/snacks/meat/proc/set_source_mob(var/new_source_mob)
 	source_mob = new_source_mob

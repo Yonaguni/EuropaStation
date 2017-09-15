@@ -18,8 +18,8 @@
 	..()
 
 /obj/machinery/computer/atmoscontrol/laptop
-	name = "Atmospherics Laptop"
-	desc = "A cheap laptop."
+	name = "atmospherics console"
+	desc = "A cheap access terminal."
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "atmoslaptop"

@@ -1302,13 +1302,13 @@
 /obj/item/reagent_containers/food/snacks/meatsteak
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
-	icon_state = "meatstake"
-	trash = /obj/item/trash/plate
+	icon_state = "steak1"
 	filling_color = "#7A3D11"
 	center_of_mass = "x=16;y=13"
 
 	New()
 		..()
+		icon_state = pick(list("steak1","steak2","steak3","steak4"))
 		reagents.add_reagent("protein", 4)
 		reagents.add_reagent("sodiumchloride", 1)
 		reagents.add_reagent("blackpepper", 1)
