@@ -229,5 +229,3 @@
 		if(L.flags & except_flags)
 			continue
 		target.add_language(L.name)
-
-#undef SCRAMBLE_CACHE_LEN

@@ -15,3 +15,6 @@
 
 /obj/item/clothing/head
 	light_type = LIGHT_SOFT
+
+/obj/item/flame
+	light_type = LIGHT_SOFT_FLICKER

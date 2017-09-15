@@ -676,9 +676,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/get_mob_overlay(mob/user_mob, slot)
 	var/bodytype = "Default"
+	var/apply_x_offset = 0
+	var/apply_y_offset = 0
 	if(ishuman(user_mob))
 		var/mob/living/carbon/human/user_human = user_mob
 		bodytype = user_human.species.get_bodytype(user_human)
+		apply_x_offset = user_human.species.overlay_x_offset
+		apply_y_offset = user_human.species.overlay_y_offset
 
 	var/mob_state
 	if(item_state_slots && item_state_slots[slot])
@@ -706,4 +710,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		mob_icon = default_onmob_icons[slot]
 
-	return overlay_image(mob_icon,mob_state,color,RESET_COLOR)
+	var/image/I = overlay_image(mob_icon,mob_state,color,RESET_COLOR)
+	I.pixel_x = apply_x_offset
+	I.pixel_y = apply_y_offset
+
+	return I

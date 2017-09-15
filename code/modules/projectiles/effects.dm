@@ -8,7 +8,7 @@
 	if(istype(location))
 		loc = location
 	if(flash_colour)
-		set_light(2, 2, flash_colour, 3)
+		set_light(1, 10, flash_colour, 3)
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
@@ -152,3 +152,18 @@
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
 	flash_colour = "#FFFF88"
+
+//----------------------------
+// Omni laser beam
+//----------------------------
+/obj/effect/projectile/laser_particle
+	flash_colour = "#00FFFF"
+
+/obj/effect/projectile/laser_particle/tracer
+	icon_state = "beam_particle"
+
+/obj/effect/projectile/laser_particle/muzzle
+	icon_state = "muzzle_particle"
+
+/obj/effect/projectile/laser_particle/impact
+	icon_state = "impact_particle"

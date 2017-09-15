@@ -43,6 +43,7 @@
 #define CALIBER_STAFF_ANIMATE    "anima spellshot"
 #define CALIBER_STAFF_CHANGE     "polymorph spellshot"
 #define CALIBER_STAFF_FORCE      "kinetic spellshot"
+#define CALIBER_LASER_PARTICLE   "directed-particle"
 
 #define AMMO_6MM                 "FN 5.7x28"
 #define AMMO_9MM                 "9mm Parabellum"
