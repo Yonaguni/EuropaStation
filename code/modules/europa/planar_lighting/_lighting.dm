@@ -10,10 +10,8 @@
 
 #define DARK_PLANE   MASTER_PLANE - 1
 
-
 #define LIGHT_SOFT             "soft"
 #define LIGHT_SOFT_FLICKER     "soft-flicker"
 #define LIGHT_DIRECTIONAL      "directional"
 
-/turf/shadow_dummy
-	opacity = 0
+var/lights_initialized
