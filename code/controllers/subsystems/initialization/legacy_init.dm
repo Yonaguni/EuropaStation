@@ -95,8 +95,9 @@
 	for(var/thing in init_lights)
 		var/datum/D = thing
 		if(!QDELETED(D))
-			D:cast_light()
+			D:cast_light(force_cast = 1)
 			count++
 		CHECK_TICK
 	init_lights.Cut()
+	lights_initialized = TRUE
 	admin_notice("<span class='danger'>Cast [count] light\s</span>", R_DEBUG)
