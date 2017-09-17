@@ -36,8 +36,8 @@ var/list/lunchables_snacks_ = list(/obj/item/reagent_containers/food/snacks/donu
                                    /obj/item/reagent_containers/food/snacks/slice/birthdaycake/filled,
                                    /obj/item/reagent_containers/food/snacks/watermelonslice,
                                    /obj/item/reagent_containers/food/snacks/slice/applecake/filled,
-                                   /obj/item/reagent_containers/food/snacks/slice/pumpkinpie/filled,
-                                   /obj/item/reagent_containers/food/snacks/skrellsnacks)
+                                   /obj/item/reagent_containers/food/snacks/slice/pumpkinpie/filled
+                                   )
 
 var/list/lunchables_drinks_ = list(/obj/item/reagent_containers/food/drinks/cans/cola,
                                    /obj/item/reagent_containers/food/drinks/cans/waterbottle,

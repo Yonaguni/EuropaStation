@@ -17,11 +17,9 @@
 #define CHEM_SYNTH_ENERGY 500 // How much energy does it take to synthesize 1 unit of chemical, in Joules.
 
 // Some on_mob_life() procs check for alien races.
-#define IS_DIONA   1
-#define IS_SKRELL  3
-#define IS_XENOS   6
-#define IS_RESOMI  7
-#define IS_SLIME   8
+#define IS_XENOS   1
+#define IS_RESOMI  2
+#define IS_SLIME   3
 
 #define CE_STABLE           "stable" // Adrenaline
 #define CE_ANTIBIOTIC       "antibiotic" // Spaceacilin

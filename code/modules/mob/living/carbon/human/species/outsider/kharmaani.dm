@@ -29,7 +29,7 @@
 
 	language = "Mantid Nonvocal"
 	default_language = "Mantid Nonvocal"
-	secondary_langs = list("Worldnet", "Mantid Vocal", "Skrellian")
+	secondary_langs = list("Worldnet", "Mantid Vocal")
 	hud_type = /datum/hud_data/kharmaani
 
 	gluttonous = 2

@@ -23,8 +23,8 @@ var/global/list/robot_modules = list(
 	var/networks = list()
 	var/languages = list(
 		LANGUAGE_TRADEBAND = 1,
-		LANGUAGE_SKRELLIAN = 0,
-		LANGUAGE_RESOMI = 0,
+		LANGUAGE_CEPHLAPODA = 0,
+		LANGUAGE_CORVID = 0,
 		LANGUAGE_GUTTER = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
@@ -426,9 +426,8 @@ var/global/list/robot_modules = list(
 				)
 
 	languages = list(
-					LANGUAGE_SKRELLIAN	= 1,
-					LANGUAGE_RESOMI		= 1,
-					LANGUAGE_ROOTSPEAK	= 1,
+					LANGUAGE_CEPHLAPODA	= 1,
+					LANGUAGE_CORVID		= 1,
 					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_GUTTER		= 1
 					)
@@ -512,7 +511,7 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = 1
 	languages = list(
 					LANGUAGE_TRADEBAND = 1,
-					LANGUAGE_SKRELLIAN = 0,
+					LANGUAGE_CEPHLAPODA = 0,
 					LANGUAGE_GUTTER = 1
 					)
 	sprites = list(

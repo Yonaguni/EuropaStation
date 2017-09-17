@@ -1,11 +1,10 @@
 /datum/trader/ship/pet_shop
 	name = "Pet Shop Owner"
-	name_language = LANGUAGE_SKRELLIAN
+	name_language = LANGUAGE_CEPHLAPODA
 	origin = "Pet Shop"
 	trade_flags = TRADER_GOODS|TRADER_MONEY|TRADER_WANTED_ONLY
 	possible_origins = list("Paws-Out", "Pets-R-Smart", "Tentacle Companions", "Xeno-Pets and Assorted Goods", "Barks and Drools")
 	speech = list("hail_generic"    = "Welcome to my xeno-pet shop! Here you will find many wonderful companions. Some a bit more... aggressive than others. But companions none the less. I also buy pets, or trade them.",
-				"hail_Skrell"       = "Ah! A fellow Skrell. How wonderful, I may have a few pets imported from back home. Take a look.",
 				"hail_deny"         = "I no longer wish to speak to you.",
 
 				"trade_complete"    = "Remember to give them attention and food. They are living beings, and you should treat them like so.",
@@ -69,13 +68,12 @@
 
 /datum/trader/ship/prank_shop
 	name = "Prank Shop Owner"
-	name_language = LANGUAGE_ROOTSPEAK
+	name_language = LANGUAGE_EAL
 	origin = "Prank Shop"
 	compliment_increase = 0
 	insult_drop = 0
 	possible_origins = list("Yacks and Yucks Shop", "The Shop From Which I Sell Humorous Items", "The Prank Gestalt", "The Clown's Armory")
 	speech = list("hail_generic" = "We welcome you to our shop of humorous items, we invite you to partake in the experience of being pranked, and pranking someone else.",
-				"hail_Diona"     = "Welcome, other gestalt. We invite you to learn of our experiences, and teach us of your own.",
 				"hail_deny"      = "We cannot do business with you. We are sorry.",
 
 				"trade_complete" = "We thank you for purchasing something. We enjoyed the experience of you doing so and we hope to learn from it.",

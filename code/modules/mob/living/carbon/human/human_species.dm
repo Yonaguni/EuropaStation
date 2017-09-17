@@ -24,12 +24,5 @@
 	h_style = "Neo-Corvid Plumage"
 	..(new_loc, "Neo-Corvid")
 
-/mob/living/carbon/human/skrell/New(var/new_loc)
-	h_style = "Skrell Male Tentacles"
-	..(new_loc, "Skrell")
-
-/mob/living/carbon/human/diona/New(var/new_loc)
-	..(new_loc, "Diona")
-
 /mob/living/carbon/human/monkey/New(var/new_loc)
 	..(new_loc, "Monkey")

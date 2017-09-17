@@ -475,7 +475,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Skrell")
+		species_allowed = list("Human")
 
 	watson
 		name = "Watson Mustache"
@@ -554,20 +554,6 @@
 ///////////////////////////////////
 */
 
-/datum/sprite_accessory/hair
-
-	skr_tentacle_m
-		name = "Skrell Male Tentacles"
-		icon_state = "skrell_hair_m"
-		species_allowed = list("Skrell")
-		gender = MALE
-
-	skr_tentacle_f
-		name = "Skrell Female Tentacles"
-		icon_state = "skrell_hair_f"
-		species_allowed = list("Skrell")
-		gender = FEMALE
-
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now
@@ -583,9 +569,3 @@
 		name = "Tatt01 human skin"
 		icon_state = "tatt1"
 		species_allowed = list("Human")
-
-	skrell
-		name = "Default skrell skin"
-		icon_state = "default"
-		icon = 'icons/mob/human_races/r_skrell.dmi'
-		species_allowed = list("Skrell")

@@ -91,8 +91,8 @@
 
 /datum/poster/bay_20
 	icon_state="bsposter20"
-	name = "Skrell Twilight"
-	desc = "This poster depicts a mysteriously inscrutable, alien scene. Numerous Skrell can be seen conversing amidst great, crystalline towers rising above crashing waves"
+	name = "Alien Twilight"
+	desc = "This poster depicts a mysteriously inscrutable, alien scene. Numerous xenoforms can be seen conversing amidst great, crystalline towers rising above crashing waves"
 
 /datum/poster/bay_21
 	icon_state="bsposter21"
@@ -217,7 +217,7 @@
 /datum/poster/bay_46
 	icon_state="bsposter46"
 	name = "Inspirational lawyer"
-	desc = "An inspirational poster depicting a Skrellian lawyer. He seems to be shouting something, while pointing fiercely to the right."
+	desc = "An inspirational poster depicting an alien lawyer. He seems to be shouting something, while pointing fiercely to the right."
 
 /datum/poster/bay_47
 	icon_state="bsposter47"

@@ -52,8 +52,6 @@
 												/datum/species/human/gravworlder = 10,
 												/datum/species/human/spacer      = 10,
 												/datum/species/human/vatgrown    = 10,
-												/datum/species/skrell            = 10,
-												/datum/species/diona             = 5,
 												/datum/species/corvid            = 5,
 												/datum/species/octopus           = 5
 )

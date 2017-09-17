@@ -276,74 +276,7 @@ datum/unit_test/mob_damage/resomi/halloss
 	name = "MOB: Neo-Corvid Halloss Damage Check"
 	damagetype = HALLOSS
 
-// =================================================================
-// Skrell
-// =================================================================
-
-datum/unit_test/mob_damage/skrell
-	name = "MOB: Skrell damage check template"
-	mob_type = /mob/living/carbon/human/skrell
-
-datum/unit_test/mob_damage/skrell/brute
-	name = "MOB: Skrell Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/skrell/fire
-	name = "MOB: Skrell Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/skrell/tox
-	name = "MOB: Skrell Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/skrell/oxy
-	name = "MOB: Skrell Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/skrell/clone
-	name = "MOB: Skrell Clone Damage Check"
-	damagetype = CLONE
-
-datum/unit_test/mob_damage/skrell/halloss
-	name = "MOB: Skrell Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
-// Diona
-// =================================================================
-
-datum/unit_test/mob_damage/diona
-	name = "MOB: Diona damage check template"
-	mob_type = /mob/living/carbon/human/diona
-
-datum/unit_test/mob_damage/diona/brute
-	name = "MOB: Diona Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/diona/fire
-	name = "MOB: Diona Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/diona/tox
-	name = "MOB: Diona Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/diona/oxy
-	name = "MOB: Diona Oxygen Damage Check"
-	damagetype = OXY
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/diona/clone
-	name = "MOB: Diona Clone Damage Check"
-	damagetype = CLONE
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/diona/halloss
-	name = "MOB: Diona Halloss Damage Check"
-	damagetype = HALLOSS
-
 // ==============================================================================
-
 
 datum/unit_test/robot_module_icons
 	name = "MOB: Robot module icon check"

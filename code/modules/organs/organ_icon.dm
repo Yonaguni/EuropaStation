@@ -192,7 +192,7 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
 		if(species && species.get_bodytype(owner) != "Human")
-			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
+			applying.SetIntensity(1.5)
 		else
 			applying.SetIntensity(0.7)
 

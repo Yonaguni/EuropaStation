@@ -38,8 +38,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/lsd/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.hallucination = max(M.hallucination, 100)
 
 /datum/reagent/psilocybin
@@ -52,8 +50,6 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.druggy = max(M.druggy, 30)
 
 	if(dose < 1)
@@ -87,8 +83,6 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/jumpstart/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
@@ -106,8 +100,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/glint/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.druggy = max(M.druggy, 15)
 	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
@@ -127,8 +119,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/pax/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(M.a_intent != I_HELP && M.a_intent != I_DISARM)
 		M.a_intent_change(I_HELP)
 	M.add_chemical_effect(CE_PULSE, -1)
@@ -144,8 +134,6 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/ladder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(M.a_intent != I_HURT && M.a_intent != I_GRAB)
 		M.a_intent_change(I_HURT)
 	M.add_chemical_effect(CE_PULSE, 2)
@@ -161,8 +149,6 @@
 	metabolism = REM * 0.15
 
 /datum/reagent/threeeye/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.add_chemical_effect(CE_THIRDEYE, 1)
 
 /datum/reagent/short
@@ -175,6 +161,4 @@
 	metabolism = REM * 0.15
 
 /datum/reagent/short/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.add_chemical_effect(CE_DRUG_SUPPRESSANT, 1)

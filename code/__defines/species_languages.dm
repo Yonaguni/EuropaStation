@@ -24,13 +24,12 @@
 #define RADIATION_GLOWS   0x40   // Radiation causes this character to glow.
 
 // Languages.
-#define LANGUAGE_EAL       "Encoded Audio Language"
-#define LANGUAGE_SKRELLIAN "Cephalopoda"
-#define LANGUAGE_RESOMI    "Corvid"
-#define LANGUAGE_ROOTSPEAK "Rootspeak"
-#define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER    "Gutter"
-#define LANGUAGE_CULT      "Cult"
+#define LANGUAGE_EAL        "Encoded Audio Language"
+#define LANGUAGE_CEPHLAPODA "Cephalopoda"
+#define LANGUAGE_CORVID     "Corvid"
+#define LANGUAGE_TRADEBAND  "Tradeband"
+#define LANGUAGE_GUTTER     "Gutter"
+#define LANGUAGE_CULT       "Cult"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

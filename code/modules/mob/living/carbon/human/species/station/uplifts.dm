@@ -14,7 +14,7 @@
 	max_age = 45
 
 	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_SKRELLIAN)
+	secondary_langs = list(LANGUAGE_CEPHLAPODA)
 	name_language = null
 
 	icobase = 'icons/mob/human_races/r_octopus.dmi'
@@ -92,8 +92,8 @@
 	of Hyperion."
 
 	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_RESOMI)
-	name_language = LANGUAGE_RESOMI
+	secondary_langs = list(LANGUAGE_CORVID)
+	name_language = LANGUAGE_CORVID
 	min_age = 12
 	max_age = 45
 	health_hud_intensity = 3
