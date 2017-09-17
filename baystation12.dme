@@ -1592,7 +1592,6 @@
 #include "code\modules\mob\living\carbon\human\species\station\human_subspecies.dm"
 #include "code\modules\mob\living\carbon\human\species\station\monkey.dm"
 #include "code\modules\mob\living\carbon\human\species\station\prometheans.dm"
-#include "code\modules\mob\living\carbon\human\species\station\resomi.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\human\species\station\uplifts.dm"
 #include "code\modules\mob\living\carbon\human\species\xenomorphs\alien_powers.dm"

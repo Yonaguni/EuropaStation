@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
-	desc = "Introduced to the vending machines by Skrellian request, this water comes straight from the Oort."
+	desc = "Introduced to the vending machines by Octopus request, this water comes straight from the Oort."
 	icon_state = "waterbottle"
 	center_of_mass = "x=15;y=8"
 	New()

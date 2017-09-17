@@ -66,33 +66,33 @@
 	gear_tweaks = list(new/datum/gear_tweak/color(valid_colors))
 
 /datum/gear/uniform/resomi
-	display_name = "smock, grey (Resomi)"
+	display_name = "smock, grey (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi
 	sort_category = "Xenowear"
-	whitelisted = "Resomi"
+	whitelisted = "Neo-Corvid"
 
 /datum/gear/uniform/resomi/rainbow
-	display_name = "smock, rainbow (Resomi)"
+	display_name = "smock, rainbow (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/rainbow
 
 /datum/gear/uniform/resomi/white
-	display_name = "smock, white (Resomi)"
+	display_name = "smock, white (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/white
 
 /datum/gear/uniform/resomi/eng
-	display_name = "uniform, Engineering (Resomi)"
+	display_name = "uniform, Engineering (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/yellow
 
 /datum/gear/uniform/resomi/sec
-	display_name = "uniform, Security (Resomi)"
+	display_name = "uniform, Security (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/red
 
 /datum/gear/uniform/resomi/med
-	display_name = "uniform, Medical (Resomi)"
+	display_name = "uniform, Medical (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/medical
 
 /datum/gear/uniform/resomi/science
-	display_name = "uniform, Science (Resomi)"
+	display_name = "uniform, Science (Neo-Corvid)"
 	path = /obj/item/clothing/under/resomi/science
 
 /datum/gear/uniform/harness

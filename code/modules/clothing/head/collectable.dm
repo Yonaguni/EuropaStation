@@ -10,7 +10,7 @@
 	desc = "an ultra rare hat. It commands a certain respect."
 	icon_state = "petehat"
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/head.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/head.dmi'
 		)
 
 /obj/item/clothing/head/collectable/slime

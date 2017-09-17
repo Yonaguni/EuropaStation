@@ -19,7 +19,7 @@
 		)
 	sprite_sheets = list(
 		"Octopus" = 'icons/mob/species/octopus/back.dmi',
-		"Resomi" = 'icons/mob/species/resomi/back.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/back.dmi'
 		)
 	w_class = 5
 	slot_flags = SLOT_BACK

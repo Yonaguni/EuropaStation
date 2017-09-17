@@ -45,7 +45,7 @@
 
 /datum/reagent/nutriment/proc/adjust_nutrition(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
-		if(IS_RESOMI) removed *= 0.8 // Resomi get a bit more nutrition from meat, a bit less from other stuff to compensate
+		if(IS_RESOMI) removed *= 0.8 // Neo-Corvidae get a bit more nutrition from meat, a bit less from other stuff to compensate
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 
 /datum/reagent/nutriment/glucose

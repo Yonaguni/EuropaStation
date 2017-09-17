@@ -51,11 +51,12 @@
 												/datum/species/human             = 10,
 												/datum/species/human/gravworlder = 10,
 												/datum/species/human/spacer      = 10,
-												/datum/species/human/vatgrown    = 5, //if it weren't for the fact that they were humans I would have given them less,
-												/datum/species/skrell            = 12,
+												/datum/species/human/vatgrown    = 10,
+												/datum/species/skrell            = 10,
 												/datum/species/diona             = 5,
-												/datum/species/resomi            = 5,
-											)
+												/datum/species/corvid            = 5,
+												/datum/species/octopus           = 5
+)
 
 //---- Descriptions of destination types
 //Space stations can be purpose built for a number of different things, but generally require regular shipments of essential supplies.

@@ -62,19 +62,19 @@
 		icon_state = "hair_shorthair3"
 
 	resomi
-		name = "Resomi Plumage"
+		name = "Neo-Corvid Plumage"
 		icon_state = "resomi_default"
-		species_allowed = list("Resomi")
+		species_allowed = list("Neo-Corvid")
 
 	resomi_ears
-		name = "Resomi Ears"
+		name = "Neo-Corvid Curly"
 		icon_state = "resomi_ears"
-		species_allowed = list("Resomi")
+		species_allowed = list("Neo-Corvid")
 
 	resomi_excited
-		name = "Resomi Spiky"
+		name = "Neo-Corvid Spiky"
 		icon_state = "resomi_spiky"
-		species_allowed = list("Resomi")
+		species_allowed = list("Neo-Corvid")
 
 	cut
 		name = "Cut Hair"

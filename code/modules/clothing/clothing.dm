@@ -116,7 +116,7 @@
 	w_class = 1.0
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/ears.dmi')
+	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/resomi/ears.dmi')
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -177,7 +177,8 @@ BLIND     // can't see anything
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
+		"Octopus" = 'icons/mob/species/octopus/eyes.dmi',
+		"Neo-Corvid" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/get_mob_overlay(mob/user_mob, slot)
@@ -208,7 +209,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/gloves.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/gloves.dmi'
 		)
 	blood_overlay_type = "bloodyhands"
 
@@ -267,7 +268,7 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		"Octopus" = 'icons/mob/species/octopus/head.dmi',
-		"Resomi" = 'icons/mob/species/resomi/head.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/head.dmi'
 		)
 	blood_overlay_type = "helmetblood"
 
@@ -374,7 +375,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/masks.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/masks.dmi'
 		)
 
 	var/voicechange = 0
@@ -416,7 +417,7 @@ BLIND     // can't see anything
 	force = 2
 	var/overshoes = 0
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/shoes.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/shoes.dmi'
 		)
 	blood_overlay_type = "shoeblood"
 
@@ -492,7 +493,7 @@ BLIND     // can't see anything
 	w_class = 3
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -536,7 +537,7 @@ BLIND     // can't see anything
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/uniform.dmi'
+		"Neo-Corvid" = 'icons/mob/species/resomi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.

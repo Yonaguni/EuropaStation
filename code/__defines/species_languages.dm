@@ -12,7 +12,7 @@
 // Species spawn flags
 #define SPECIES_IS_WHITELISTED    0x1    // Must be whitelisted to play.
 #define SPECIES_IS_RESTRICTED     0x2    // Is not a core/normally playable species. (castes, mutantraces)
-#define SPECIES_CAN_JOIN                  0x4    // Species is selectable in chargen.
+#define SPECIES_CAN_JOIN          0x4    // Species is selectable in chargen.
 
 // Species appearance flags
 #define HAS_SKIN_TONE     0x1    // Skin tone selectable in chargen. (0-255)
@@ -24,13 +24,13 @@
 #define RADIATION_GLOWS   0x40   // Radiation causes this character to glow.
 
 // Languages.
-#define LANGUAGE_EAL "Encoded Audio Language"
-#define LANGUAGE_SKRELLIAN "Skrellian"
-#define LANGUAGE_RESOMI "Schechi"
+#define LANGUAGE_EAL       "Encoded Audio Language"
+#define LANGUAGE_SKRELLIAN "Cephalopoda"
+#define LANGUAGE_RESOMI    "Corvid"
 #define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER "Gutter"
-#define LANGUAGE_CULT "Cult"
+#define LANGUAGE_GUTTER    "Gutter"
+#define LANGUAGE_CULT      "Cult"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.
