@@ -28,7 +28,7 @@
 	eyes beneath a prominent brow in order to shield them from the glare of a dangerously \
 	bright, alien sun. This comes at the cost of mobility, flexibility, and increased \
 	oxygen requirements to support their robust metabolism."
-	icobase = 'icons/mob/human_races/subspecies/r_gravworlder.dmi'
+	icobase = 'icons/mob/human_races/r_gravworlder.dmi'
 	health_hud_intensity = 3
 
 	flash_mod =     0.9
@@ -43,7 +43,7 @@
 	blurb = "Lithe and frail, these sickly folk were engineered for work in environments that \
 	lack both light and atmosphere. As such, they're quite resistant to asphyxiation as well as \
 	toxins, but they suffer from weakened bone structure and a marked vulnerability to bright lights."
-	icobase = 'icons/mob/human_races/subspecies/r_spacer.dmi'
+	icobase = 'icons/mob/human_races/r_spacer.dmi'
 
 	oxy_mod =   0.8
 	toxins_mod =   0.9
@@ -57,7 +57,7 @@
 	blurb = "With cloning on the forefront of human scientific advancement, cheap mass production \
 	of bodies is a very real and rather ethically grey industry. Vat-grown humans tend to be paler than \
 	baseline, with no appendix and fewer inherited genetic disabilities, but a weakened metabolism."
-	icobase = 'icons/mob/human_races/subspecies/r_vatgrown.dmi'
+	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 
 	toxins_mod =   1.1
 	has_organ = list(

@@ -4,8 +4,8 @@
 	blurb = "When human scientists finally arrived on Europa, they hoped, at best, to find single-celled life, or traces of past life. They \
 	were largely not expecting to have expeditions lost amid reports of highly advanced, astonishingly violent mantid-cephlapodean sentients."
 
-	icobase = 'icons/mob/human_races/kharmaani/r_alate.dmi'
-	deform = 'icons/mob/human_races/kharmaani/r_alate.dmi'
+	icobase = 'icons/mob/human_races/r_alate.dmi'
+	deform = 'icons/mob/human_races/r_alate.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_kharmaani_alate.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_kharmaani_alate.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_kharmaani_alate.dmi'
@@ -56,9 +56,9 @@
 	num_alternate_languages = 2
 	rarity_value = 10
 
-	icobase = 'icons/mob/human_races/kharmaani/r_gyne.dmi'
-	deform = 'icons/mob/human_races/kharmaani/r_gyne.dmi'
-	icon_template = 'icons/mob/human_races/kharmaani/r_gyne.dmi'
+	icobase = 'icons/mob/human_races/r_gyne.dmi'
+	deform = 'icons/mob/human_races/r_gyne.dmi'
+	icon_template = 'icons/mob/human_races/r_gyne.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_kharmaani_gyne.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_kharmaani_gyne.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_kharmaani_gyne.dmi'
