@@ -482,7 +482,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetParalysis(0)
 	C.SetStunned(0)
 	C.SetWeakened(0)
-	C.lying = 0
+	C.set_lying(0)
 	C.update_canmove()
 
 	src.verbs -= /mob/proc/changeling_unstun

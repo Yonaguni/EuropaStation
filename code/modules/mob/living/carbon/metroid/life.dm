@@ -101,22 +101,22 @@
 		adjustBruteLoss(-1)
 
 	if (src.stat == DEAD)
-		src.lying = 1
+		src.set_lying(1)
 		src.blinded = 1
 	else
 		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
 				src.stat = 0
 			if (src.weakened > 0)
-				src.lying = 0
+				src.set_lying(0)
 				src.stat = 0
 			if (src.paralysis > 0)
 				src.blinded = 0
-				src.lying = 0
+				src.set_lying(0)
 				src.stat = 0
 
 		else
-			src.lying = 0
+			src.set_lying(0)
 			src.stat = 0
 
 	if (src.stuttering) src.stuttering = 0

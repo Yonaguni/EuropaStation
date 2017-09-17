@@ -674,7 +674,7 @@
 	model_text = "Engineering"
 	req_access = list(access_construction)
 	departments = list("Engineering","Atmos")
-	species = list("Human","Skrell","Resomi")
+	species = list("Human","Skrell","Resomi", "Octopus")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
@@ -709,7 +709,7 @@
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
 	departments = list("Mercenary")
-	species = list("Human","Skrell","Resomi")
+	species = list("Human","Skrell","Resomi", "Octopus")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(var/mob/user)

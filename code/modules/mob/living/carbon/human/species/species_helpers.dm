@@ -4,3 +4,6 @@ var/list/stored_shock_by_ref = list()
 	if(stored_shock_by_ref["\ref[src]"])
 		target.electrocute_act(stored_shock_by_ref["\ref[src]"]*0.9, src)
 		stored_shock_by_ref["\ref[src]"] = 0
+
+/datum/species/proc/can_prone()
+	return 1

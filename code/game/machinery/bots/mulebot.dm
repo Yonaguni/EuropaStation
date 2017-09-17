@@ -712,7 +712,7 @@
 				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
-				M.lying = 1
+				M.set_lying(1)
 	..()
 
 // called from mob/living/carbon/human/Crossed()

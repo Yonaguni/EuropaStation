@@ -8,7 +8,10 @@
 	max_w_class = 3
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/belt.dmi')
+	sprite_sheets = list(
+		"Octopus" = 'icons/mob/species/octopus/belt.dmi',
+		"Resomi" = 'icons/mob/species/resomi/belt.dmi'
+		)
 	var/show_above_suit = 0
 
 /obj/item/storage/belt/verb/toggle_layer()
@@ -29,9 +32,15 @@
 
 /obj/item/storage/belt/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
+	var/overlay_icon
+	if(ishuman(user_mob))
+		var/mob/living/carbon/human/H = user_mob
+		overlay_icon = sprite_sheets[H.species.get_bodytype(H)]
+	if(!overlay_icon)
+		overlay_icon = 'icons/mob/belt.dmi'
 	if(slot == slot_belt_str && contents.len)
 		for(var/obj/item/I in contents)
-			ret.overlays += image("icon" = 'icons/mob/belt.dmi', "icon_state" = "[I.item_state ? I.item_state : I.icon_state]")
+			ret.overlays += image("icon" = overlay_icon, "icon_state" = "[I.item_state ? I.item_state : I.icon_state]")
 	return ret
 
 /obj/item/storage/belt/utility

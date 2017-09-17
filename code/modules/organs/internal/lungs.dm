@@ -18,13 +18,6 @@
 	var/SA_sleep_min = 5
 	var/breathing = 0
 
-/obj/item/organ/internal/lungs/skrell
-	name = "respiration sac"
-	icon_state = "liver"
-	color = COLOR_CYAN
-	gender = NEUTER
-	has_gills = TRUE
-
 /obj/item/organ/internal/lungs/robotize()
 	. = ..()
 	icon_state = "lungs-prosthetic"

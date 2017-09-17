@@ -13,7 +13,8 @@
 	species_restricted = list("Human")
 	sprite_sheets = list(
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		"Resomi" = 'icons/mob/species/resomi/helmet.dmi'
+		"Resomi" = 'icons/mob/species/resomi/helmet.dmi',
+		"Octopus" = 'icons/mob/species/octopus/helmet.dmi'
 		)
 	sprite_sheets_obj = list(
 		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
@@ -39,7 +40,8 @@
 	species_restricted = list("Human", "Skrell")
 	sprite_sheets = list(
 		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
-		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi',
+		"Octopus" = 'icons/mob/species/octopus/suit.dmi'
 		)
 	sprite_sheets_obj = list(
 		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',

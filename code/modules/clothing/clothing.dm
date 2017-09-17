@@ -1,11 +1,13 @@
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
-	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
-	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
-	var/list/species_restricted = null 				//Only these species can wear this kit.
-	var/gunshot_residue //Used by forensics.
+	var/flash_protection = FLASH_PROTECTION_NONE	         // Sets the item's level of flash protection.
+	var/tint = TINT_NONE							         // Sets the item's level of visual impairment tint.
 
+	//Only these species can wear this kit.
+	var/list/species_restricted = list("exclude", "Kharmaani Gyne", "Kharmaani Alate", "Octopus")
+
+	var/gunshot_residue //Used by forensics.
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
@@ -264,6 +266,7 @@ BLIND     // can't see anything
 	light_color = COLOUR_LTEMP_40W_TUNGSTEN
 
 	sprite_sheets = list(
+		"Octopus" = 'icons/mob/species/octopus/head.dmi',
 		"Resomi" = 'icons/mob/species/resomi/head.dmi'
 		)
 	blood_overlay_type = "helmetblood"

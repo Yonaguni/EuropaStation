@@ -18,6 +18,7 @@
 		slot_r_hand_str = "backpack",
 		)
 	sprite_sheets = list(
+		"Octopus" = 'icons/mob/species/octopus/back.dmi',
 		"Resomi" = 'icons/mob/species/resomi/back.dmi'
 		)
 	w_class = 5
@@ -46,7 +47,7 @@
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of Blue Space."
+	desc = "A backpack that opens into a localized pocket of bluespace."
 
 	icon_state = "holdingpack"
 	max_w_class = 3

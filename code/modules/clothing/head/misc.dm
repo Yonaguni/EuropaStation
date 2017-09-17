@@ -32,6 +32,7 @@
 	desc = "A powdered wig."
 	icon_state = "pwig"
 	item_state = "pwig"
+	species_restricted = list("exclude", "Kharmaani Gyne")
 
 /obj/item/clothing/head/that
 	name = "top-hat"
@@ -40,6 +41,7 @@
 	item_state = "tophat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
+	species_restricted = list("exclude", "Kharmaani Gyne")
 
 /obj/item/clothing/head/redcoat
 	name = "redcoat's hat"

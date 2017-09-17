@@ -1526,3 +1526,9 @@
 			return 0
 		return check_organ.can_feel_pain()
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/human/set_lying(var/val)
+	if(species.can_prone())
+		lying = val
+	else
+		lying = 0

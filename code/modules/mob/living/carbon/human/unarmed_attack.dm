@@ -131,6 +131,12 @@ var/global/list/sparring_attack_cache = list()
 	eye_attack_text_victim = "digits"
 	damage = 0
 
+/datum/unarmed_attack/punch/tentacle
+	attack_verb = list("smacked", "slapped", "swiped")
+	attack_noun = list("tentacle")
+	eye_attack_text = "tentacle"
+	eye_attack_text_victim = "tentacles"
+
 /datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name

@@ -751,21 +751,21 @@
 /mob/proc/update_canmove()
 
 	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
+		set_lying(0)
 		canmove = 1
 	else if(buckled)
 		anchored = 1
 		canmove = 0
 		if(istype(buckled))
 			if(buckled.buckle_lying == -1)
-				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+				set_lying(incapacitated(INCAPACITATION_KNOCKDOWN))
 			else
-				lying = buckled.buckle_lying
+				set_lying(buckled.buckle_lying)
 			if(buckled.buckle_movable)
 				anchored = 0
 				canmove = 1
 	else
-		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		set_lying(incapacitated(INCAPACITATION_KNOCKDOWN))
 		canmove = !incapacitated(INCAPACITATION_DISABLED)
 
 	if(lying)
@@ -1120,3 +1120,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/is_pacified()
 	return FALSE
+
+/mob/proc/set_lying(var/val)
+	lying = val

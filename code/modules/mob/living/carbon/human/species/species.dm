@@ -368,3 +368,6 @@
 		H.client.screen |= overlay
 
 	return 1
+
+/datum/species/proc/get_slowdown(var/atom/loc)
+	return slowdown
