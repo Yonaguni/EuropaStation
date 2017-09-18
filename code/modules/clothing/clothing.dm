@@ -5,7 +5,7 @@
 	var/tint = TINT_NONE							         // Sets the item's level of visual impairment tint.
 
 	//Only these species can wear this kit.
-	var/list/species_restricted = list("exclude", "Kharmaani Gyne", "Kharmaani Alate", "Octopus")
+	var/list/species_restricted = list("exclude", "Kharmaani Gyne")
 
 	var/gunshot_residue //Used by forensics.
 	var/list/accessories = list()
@@ -491,6 +491,7 @@ BLIND     // can't see anything
 	w_class = 3
 
 	sprite_sheets = list(
+		"Octopus" = 'icons/mob/species/octopus/suit.dmi',
 		"Neo-Corvid" = 'icons/mob/species/corvid/suit.dmi'
 		)
 
@@ -535,6 +536,7 @@ BLIND     // can't see anything
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
+		"Octopus" = 'icons/mob/species/octopus/uniform.dmi',
 		"Neo-Corvid" = 'icons/mob/species/corvid/uniform.dmi'
 		)
 
