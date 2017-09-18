@@ -9,17 +9,17 @@
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
 	speech_sounds = list(
-		'sound/voice/skrellian/skrellian1.ogg',
-		'sound/voice/skrellian/skrellian2.ogg',
-		'sound/voice/skrellian/skrellian3.ogg',
-		'sound/voice/skrellian/skrellian4.ogg',
-		'sound/voice/skrellian/skrellian5.ogg',
-		'sound/voice/skrellian/skrellian6.ogg',
-		'sound/voice/skrellian/skrellian7.ogg',
-		'sound/voice/skrellian/skrellian8.ogg',
-		'sound/voice/skrellian/skrellian9.ogg',
-		'sound/voice/skrellian/skrellian10.ogg',
-		'sound/voice/skrellian/skrellian11.ogg'
+		'sound/voice/cephlapod/warble1.ogg',
+		'sound/voice/cephlapod/warble2.ogg',
+		'sound/voice/cephlapod/warble3.ogg',
+		'sound/voice/cephlapod/warble4.ogg',
+		'sound/voice/cephlapod/warble5.ogg',
+		'sound/voice/cephlapod/warble6.ogg',
+		'sound/voice/cephlapod/warble7.ogg',
+		'sound/voice/cephlapod/warble8.ogg',
+		'sound/voice/cephlapod/warble9.ogg',
+		'sound/voice/cephlapod/warble10.ogg',
+		'sound/voice/cephlapod/warble11.ogg'
 		)
 
 /datum/language/corvid
@@ -38,9 +38,9 @@
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
 		)
 	speech_sounds = list(
-		'sound/voice/resomi/owl1.ogg',
-		'sound/voice/resomi/owl2.ogg',
-		'sound/voice/resomi/owl3.ogg'
+		'sound/voice/corvid/owl1.ogg',
+		'sound/voice/corvid/owl2.ogg',
+		'sound/voice/corvid/owl3.ogg'
 		)
 
 /datum/language/corvid/get_random_name(gender)

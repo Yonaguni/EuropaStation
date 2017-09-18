@@ -246,33 +246,33 @@ datum/unit_test/mob_damage/halloss
 // Neo-Corvid
 // =================================================================
 
-datum/unit_test/mob_damage/resomi
+datum/unit_test/mob_damage/corvid
 	name = "MOB: Neo-Corvid damage check template"
-	mob_type = /mob/living/carbon/human/resomi
+	mob_type = /mob/living/carbon/human/corvid
 
-datum/unit_test/mob_damage/resomi/brute
+datum/unit_test/mob_damage/corvid/brute
 	name = "MOB: Neo-Corvid Brute Damage Check"
 	damagetype = BRUTE
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/resomi/fire
+datum/unit_test/mob_damage/corvid/fire
 	name = "MOB: Neo-Corvid Fire Damage Check"
 	damagetype = BURN
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/resomi/tox
+datum/unit_test/mob_damage/corvid/tox
 	name = "MOB: Neo-Corvid Toxins Damage Check"
 	damagetype = TOX
 
-datum/unit_test/mob_damage/resomi/oxy
+datum/unit_test/mob_damage/corvid/oxy
 	name = "MOB: Neo-Corvid Oxygen Damage Check"
 	damagetype = OXY
 
-datum/unit_test/mob_damage/resomi/clone
+datum/unit_test/mob_damage/corvid/clone
 	name = "MOB: Neo-Corvid Clone Damage Check"
 	damagetype = CLONE
 
-datum/unit_test/mob_damage/resomi/halloss
+datum/unit_test/mob_damage/corvid/halloss
 	name = "MOB: Neo-Corvid Halloss Damage Check"
 	damagetype = HALLOSS
 

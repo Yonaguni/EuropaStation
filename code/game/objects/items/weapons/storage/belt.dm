@@ -10,7 +10,7 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	sprite_sheets = list(
 		"Octopus" = 'icons/mob/species/octopus/belt.dmi',
-		"Neo-Corvid" = 'icons/mob/species/resomi/belt.dmi'
+		"Neo-Corvid" = 'icons/mob/species/corvid/belt.dmi'
 		)
 	var/show_above_suit = 0
 

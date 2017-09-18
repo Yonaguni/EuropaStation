@@ -102,15 +102,15 @@
 	base_hair_color = "#000a28"
 	has_default_hair = "Neo-Corvid Plumage"
 
-	tail = "resomitail"
+	tail = "corvidtail"
 	tail_hair = "feathers"
-	reagent_tag = IS_RESOMI
+	reagent_tag = IS_CORVID
 
-	icobase = 'icons/mob/human_races/r_resomi.dmi'
-	deform = 'icons/mob/human_races/r_resomi.dmi'
-	damage_overlays = 'icons/mob/human_races/masks/dam_resomi.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_resomi.dmi'
-	blood_mask = 'icons/mob/human_races/masks/blood_resomi.dmi'
+	icobase = 'icons/mob/human_races/r_corvid.dmi'
+	deform = 'icons/mob/human_races/r_corvid.dmi'
+	damage_overlays = 'icons/mob/human_races/masks/dam_corvid.dmi'
+	damage_mask = 'icons/mob/human_races/masks/dam_mask_corvid.dmi'
+	blood_mask = 'icons/mob/human_races/masks/blood_corvid.dmi'
 
 	slowdown = -1
 	total_health = 50
@@ -136,15 +136,15 @@
 	has_limbs = list(
 		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/resomi),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/corvid),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
 		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand/resomi),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/resomi),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/resomi),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/resomi)
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/corvid),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/corvid),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/corvid),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/corvid)
 		)
 
 	has_organ = list(

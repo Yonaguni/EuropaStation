@@ -250,7 +250,7 @@
 			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
-		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
+		var/obj/item/organ/internal/alien/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
 			radiation -= rads
@@ -607,7 +607,7 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
+	var/obj/item/organ/internal/alien/node/light_organ = locate() in internal_organs
 
 	if(!isSynthetic())
 		if(light_organ && !light_organ.is_broken())

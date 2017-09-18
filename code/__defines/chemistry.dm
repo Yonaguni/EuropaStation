@@ -18,7 +18,7 @@
 
 // Some on_mob_life() procs check for alien races.
 #define IS_XENOS   1
-#define IS_RESOMI  2
+#define IS_CORVID  2
 #define IS_SLIME   3
 
 #define CE_STABLE           "stable" // Adrenaline

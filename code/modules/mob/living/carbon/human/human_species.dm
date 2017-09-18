@@ -20,7 +20,7 @@
 /mob/living/carbon/human/dummy/mannequin/instantiate_hud()
 	return	// Mannequins don't get HUDs
 
-/mob/living/carbon/human/resomi/New(var/new_loc)
+/mob/living/carbon/human/corvid/New(var/new_loc)
 	h_style = "Neo-Corvid Plumage"
 	..(new_loc, "Neo-Corvid")
 

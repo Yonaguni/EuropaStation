@@ -173,34 +173,34 @@
 		shorts[initial(short_type.name)] = short_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(shorts))
 
-/datum/gear/uniform/resomi
+/datum/gear/uniform/corvid
 	display_name = "smock, grey (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi
+	path = /obj/item/clothing/under/corvid
 	whitelisted = "Neo-Corvid"
 
-/datum/gear/uniform/resomi/rainbow
+/datum/gear/uniform/corvid/rainbow
 	display_name = "smock, rainbow (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/rainbow
+	path = /obj/item/clothing/under/corvid/rainbow
 
-/datum/gear/uniform/resomi/white
+/datum/gear/uniform/corvid/white
 	display_name = "smock, white (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/white
+	path = /obj/item/clothing/under/corvid/white
 
-/datum/gear/uniform/resomi/eng
+/datum/gear/uniform/corvid/eng
 	display_name = "uniform, Engineering (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/yellow
+	path = /obj/item/clothing/under/corvid/yellow
 
-/datum/gear/uniform/resomi/sec
+/datum/gear/uniform/corvid/sec
 	display_name = "uniform, Security (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/red
+	path = /obj/item/clothing/under/corvid/red
 
-/datum/gear/uniform/resomi/med
+/datum/gear/uniform/corvid/med
 	display_name = "uniform, Medical (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/medical
+	path = /obj/item/clothing/under/corvid/medical
 
-/datum/gear/uniform/resomi/science
+/datum/gear/uniform/corvid/science
 	display_name = "uniform, Science (Neo-Corvid)"
-	path = /obj/item/clothing/under/resomi/science
+	path = /obj/item/clothing/under/corvid/science
 
 /datum/gear/uniform/harness
 	display_name = "gear harness (android)"

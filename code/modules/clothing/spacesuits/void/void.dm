@@ -12,11 +12,11 @@
 	//Species-specific stuff.
 	species_restricted = list("Human")
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/resomi/helmet.dmi',
+		"Neo-Corvid" = 'icons/mob/species/corvid/helmet.dmi',
 		"Octopus" = 'icons/mob/species/octopus/helmet.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Neo-Corvid" = 'icons/obj/clothing/species/resomi/hats.dmi'
+		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/hats.dmi'
 		)
 
 	light_power = 10
@@ -37,11 +37,11 @@
 
 	species_restricted = list("Human")
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/resomi/suit.dmi',
+		"Neo-Corvid" = 'icons/mob/species/corvid/suit.dmi',
 		"Octopus" = 'icons/mob/species/octopus/suit.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Neo-Corvid" = 'icons/obj/clothing/species/resomi/suits.dmi'
+		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/suits.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.

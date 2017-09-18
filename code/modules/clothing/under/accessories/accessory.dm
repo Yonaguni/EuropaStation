@@ -12,7 +12,7 @@
 	var/list/mob_overlay = list()
 	var/overlay_state = null
 	var/list/accessory_icons = list(slot_w_uniform_str = 'icons/mob/ties.dmi')
-	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/resomi/ties.dmi') // for species where human variants do not fit
+	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/corvid/ties.dmi') // for species where human variants do not fit
 
 /obj/item/clothing/accessory/Destroy()
 	on_removed()

@@ -23,7 +23,7 @@ var/list/global/tank_gauge_cache = list()
 
 	sprite_sheets = list(
 		"Octopus" = 'icons/mob/species/octopus/back.dmi',
-		"Neo-Corvid" = 'icons/mob/species/resomi/back.dmi'
+		"Neo-Corvid" = 'icons/mob/species/corvid/back.dmi'
 		)
 
 	var/datum/gas_mixture/air_contents = null

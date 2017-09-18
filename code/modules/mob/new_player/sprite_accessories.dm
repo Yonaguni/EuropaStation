@@ -61,19 +61,19 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
-	resomi
+	corvid
 		name = "Neo-Corvid Plumage"
-		icon_state = "resomi_default"
+		icon_state = "corvid_default"
 		species_allowed = list("Neo-Corvid")
 
-	resomi_ears
+	corvid_ears
 		name = "Neo-Corvid Curly"
-		icon_state = "resomi_ears"
+		icon_state = "corvid_ears"
 		species_allowed = list("Neo-Corvid")
 
-	resomi_excited
+	corvid_excited
 		name = "Neo-Corvid Spiky"
-		icon_state = "resomi_spiky"
+		icon_state = "corvid_spiky"
 		species_allowed = list("Neo-Corvid")
 
 	cut

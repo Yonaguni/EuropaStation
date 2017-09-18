@@ -15,7 +15,7 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 
 	sprite_sheets = list(
 		"Octopus" = 'icons/mob/species/octopus/id.dmi',
-		"Neo-Corvid" = 'icons/mob/species/resomi/id.dmi'
+		"Neo-Corvid" = 'icons/mob/species/corvid/id.dmi'
 		)
 
 	//Main variables
