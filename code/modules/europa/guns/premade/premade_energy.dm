@@ -25,6 +25,15 @@
 	variant_body =    /obj/item/gun_component/body/pistol/laser
 	variant_barrel =  /obj/item/gun_component/barrel/laser/variable
 
+/obj/item/gun/composite/premade/laser_pistol/antique
+	variant_chamber = /obj/item/gun_component/chamber/laser/pistol/antique
+
+// TODO: make this a model and give it the old antique laser icons.
+/obj/item/gun/composite/premade/laser_pistol/antique/update_strings()
+	..()
+	name = "antique laser pistol"
+	desc = "It looks ancient, but well-made."
+
 /obj/item/gun/composite/premade/taser_pistol
 	name = "taser pistol"
 	icon_state = "laser_pistol"

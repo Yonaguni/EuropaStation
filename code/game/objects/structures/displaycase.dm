@@ -15,7 +15,7 @@
 		if (1)
 			new /obj/item/material/shard( src.loc )
 			if (occupied)
-				new /obj/item/gun/composite/premade/laser_assault( src.loc )
+				new /obj/item/gun/composite/premade/laser_pistol/antique( src.loc )
 				occupied = 0
 			qdel(src)
 		if (2)
