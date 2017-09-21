@@ -128,7 +128,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	. = 1
 
 	var/turf/simulated/my_tile = loc
-	if(!istype(my_tile) || !my_tile.zone)
+	if(!istype(my_tile) || !my_tile.zone || my_tile.is_flooded())
 		if(my_tile.fire == src)
 			my_tile.fire = null
 		RemoveFire()
