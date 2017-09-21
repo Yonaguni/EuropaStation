@@ -9,7 +9,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
@@ -59,6 +58,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	density = 0
+	mouse_opacity = 0
 
 /datum/effect/system/steam_spread
 
@@ -96,6 +96,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	var/amount = 6.0
 	anchored = 1.0
+	mouse_opacity = 0
 	mouse_opacity = 0
 
 /obj/effect/sparks/New()
@@ -150,6 +151,7 @@ steam.start() -- spawns the effect
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 100
+	mouse_opacity = 0
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -384,6 +386,7 @@ steam.start() -- spawns the effect
 	name = "ion trails"
 	icon_state = "ion_trails"
 	anchored = 1.0
+	mouse_opacity = 0
 
 /datum/effect/system/trail/ion
 	trail_type = /obj/effect/ion_trails
