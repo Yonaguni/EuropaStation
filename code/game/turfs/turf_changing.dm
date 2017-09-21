@@ -61,8 +61,7 @@
 	if(tell_universe)
 		universe.OnTurfChange(W)
 
-	if(air_master)
-		air_master.mark_for_update(src) //handle the addition of the new turf.
+	SSair.mark_for_update(src) //handle the addition of the new turf.
 
 	W.post_change()
 	. = W

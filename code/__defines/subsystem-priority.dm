@@ -27,7 +27,7 @@
 #define SS_PRIORITY_ALARMS         50
 #define SS_PRIORITY_PLANTS         40	// Spreading plant effects.
 #define SS_PRIORITY_ICON_UPDATE    20	// Queued icon updates. Mostly used by APCs and tables.
-
+#define SS_PRIORITY_AIRFLOW        15	// Object movement from ZAS airflow.
 
 // SS_BACKGROUND
 #define SS_PRIORITY_PROCESSING    15	// Generic datum processor. Replaces objects processor.
