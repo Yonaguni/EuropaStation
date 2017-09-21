@@ -152,7 +152,7 @@ Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
 </span>"}, R_DEBUG)
 
-	admin_notice("<span class='danger'>Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!<span>", R_DEBUG)
+	admin_notice("<span class='danger'>Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>", R_DEBUG)
 	
 	if (simulate)
 		admin_notice("<span class='danger'>Settling air...</span>", R_DEBUG)
@@ -160,7 +160,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		starttime = REALTIMEOFDAY
 		fire(FALSE, TRUE)
 
-		admin_notice("<span class='danger'>Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!", R_DEBUG)
+		admin_notice("<span class='danger'>Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>", R_DEBUG)
 
 	..(timeofday)
 
