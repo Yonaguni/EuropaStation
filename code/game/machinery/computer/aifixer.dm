@@ -109,7 +109,7 @@
 			src.occupant.updatehealth()
 			if (src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = CONSCIOUS
-				src.occupant.lying = 0
+				src.occupant.set_lying(0)
 				src.occupant.switch_from_dead_to_living_mob_list()
 				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
 				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")

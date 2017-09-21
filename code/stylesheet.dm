@@ -85,7 +85,6 @@ h1.alert, h2.alert		{color: #000000;}
 /* Languages */
 
 .alien					{color: #543354;}
-.skrell					{color: #00CED1;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}

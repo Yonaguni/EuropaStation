@@ -50,7 +50,7 @@
 		BP_BRAIN =    /obj/item/organ/internal/brain/xeno,
 		BP_PLASMA =   /obj/item/organ/internal/xenos/plasmavessel,
 		BP_HIVE =     /obj/item/organ/internal/xenos/hivenode,
-		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients
+		BP_NUTRIENT = /obj/item/organ/internal/alien/nutrients
 		)
 
 	has_limbs = list(
@@ -164,8 +164,8 @@
 	tail = "xenos_drone_tail"
 	rarity_value = 5
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_drone.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
+	icobase = 'icons/mob/human_races/r_xenos_drone.dmi'
+	deform =  'icons/mob/human_races/r_xenos_drone.dmi'
 
 	has_organ = list(
 		BP_HEART =           /obj/item/organ/internal/heart,
@@ -174,7 +174,7 @@
 		BP_ACID =      /obj/item/organ/internal/xenos/acidgland,
 		BP_HIVE =       /obj/item/organ/internal/xenos/hivenode,
 		BP_RESIN =   /obj/item/organ/internal/xenos/resinspinner,
-		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients
+		BP_NUTRIENT = /obj/item/organ/internal/alien/nutrients
 		)
 
 	inherent_verbs = list(
@@ -203,15 +203,15 @@
 	total_health = 150
 	tail = "xenos_hunter_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
+	icobase = 'icons/mob/human_races/r_xenos_hunter.dmi'
+	deform =  'icons/mob/human_races/r_xenos_hunter.dmi'
 
 	has_organ = list(
 		BP_HEART =    /obj/item/organ/internal/heart,
 		BP_BRAIN =    /obj/item/organ/internal/brain/xeno,
 		BP_PLASMA =   /obj/item/organ/internal/xenos/plasmavessel/hunter,
 		BP_HIVE =     /obj/item/organ/internal/xenos/hivenode,
-		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients
+		BP_NUTRIENT = /obj/item/organ/internal/alien/nutrients
 		)
 
 	inherent_verbs = list(
@@ -232,8 +232,8 @@
 	total_health = 125
 	tail = "xenos_sentinel_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
+	icobase = 'icons/mob/human_races/r_xenos_sentinel.dmi'
+	deform =  'icons/mob/human_races/r_xenos_sentinel.dmi'
 
 	has_organ = list(
 		BP_HEART =    /obj/item/organ/internal/heart,
@@ -241,7 +241,7 @@
 		BP_PLASMA =   /obj/item/organ/internal/xenos/plasmavessel/sentinel,
 		BP_ACID =     /obj/item/organ/internal/xenos/acidgland,
 		BP_HIVE =     /obj/item/organ/internal/xenos/hivenode,
-		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients
+		BP_NUTRIENT = /obj/item/organ/internal/alien/nutrients
 		)
 
 	inherent_verbs = list(
@@ -264,8 +264,8 @@
 	tail = "xenos_queen_tail"
 	rarity_value = 10
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_queen.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'
+	icobase = 'icons/mob/human_races/r_xenos_queen.dmi'
+	deform =  'icons/mob/human_races/r_xenos_queen.dmi'
 
 	has_organ = list(
 		BP_HEART =    /obj/item/organ/internal/heart,
@@ -275,7 +275,7 @@
 		BP_ACID =     /obj/item/organ/internal/xenos/acidgland,
 		BP_HIVE =     /obj/item/organ/internal/xenos/hivenode,
 		BP_RESIN =    /obj/item/organ/internal/xenos/resinspinner,
-		BP_NUTRIENT = /obj/item/organ/internal/diona/nutrients
+		BP_NUTRIENT = /obj/item/organ/internal/alien/nutrients
 		)
 
 	inherent_verbs = list(

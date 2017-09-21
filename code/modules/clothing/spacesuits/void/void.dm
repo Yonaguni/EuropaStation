@@ -12,12 +12,11 @@
 	//Species-specific stuff.
 	species_restricted = list("Human")
 	sprite_sheets = list(
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		"Resomi" = 'icons/mob/species/resomi/helmet.dmi'
+		"Neo-Corvid" = 'icons/mob/species/corvid/helmet.dmi',
+		"Octopus" = 'icons/mob/species/octopus/helmet.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
-		"Resomi" = 'icons/obj/clothing/species/resomi/hats.dmi'
+		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/hats.dmi'
 		)
 
 	light_power = 10
@@ -36,14 +35,13 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.4
 
-	species_restricted = list("Human", "Skrell")
+	species_restricted = list("Human")
 	sprite_sheets = list(
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
-		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
+		"Neo-Corvid" = 'icons/mob/species/corvid/suit.dmi',
+		"Octopus" = 'icons/mob/species/octopus/suit.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',
-		"Resomi" = 'icons/obj/clothing/species/resomi/suits.dmi'
+		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/suits.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.

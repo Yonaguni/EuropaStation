@@ -7,11 +7,11 @@
 		if(istype(T))
 			light_amount = min(10,T.check_lumcount()) - 5 //hardcapped so it's not abused by having a ton of flashlights
 
-
 	nutrition += light_amount
 
 	if(nutrition > 500)
 		nutrition = 500
+
 	if(light_amount > 2) //if there's enough light, heal
 		adjustBruteLoss(-1)
 		adjustFireLoss(-1)

@@ -17,12 +17,6 @@
 	possession_candidate = 1
 	var/obj/item/hat
 
-/mob/living/carbon/alien/diona/New()
-
-	..()
-	species = all_species["Diona"]
-	verbs += /mob/living/carbon/alien/diona/proc/merge
-
 /mob/living/carbon/alien/diona/put_in_hands(var/obj/item/W) // No hands.
 	W.forceMove(get_turf(src))
 	return 1
@@ -31,5 +25,9 @@
 	if(hat)
 		return
 	hat = new_hat
-	new_hat.loc = src
+	new_hat.forceMove(src)
 	update_icons()
+
+// Dummied out since adult dionaea are removed.
+/mob/living/carbon/alien/diona/update_progression()
+	amount_grown = 0

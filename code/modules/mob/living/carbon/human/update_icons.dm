@@ -473,12 +473,12 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_wear_id(var/update_icons=1)
 	if(wear_id)
-		if(w_uniform && w_uniform:displays_id)
+		if(!w_uniform || w_uniform:displays_id)
 			overlays_standing[ID_LAYER] = wear_id.get_mob_overlay(src,slot_wear_id_str)
 		else
-			overlays_standing[ID_LAYER]	= null
+			overlays_standing[ID_LAYER] = null
 	else
-		overlays_standing[ID_LAYER]	= null
+		overlays_standing[ID_LAYER] = null
 
 	BITSET(hud_updateflag, ID_HUD)
 	BITSET(hud_updateflag, WANTED_HUD)

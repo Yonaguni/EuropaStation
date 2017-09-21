@@ -67,7 +67,7 @@
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
-		"Resomi" = 'icons/birds/go/chirp'
+		"Neo-Corvid" = 'icons/birds/go/chirp'
 		)
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
@@ -674,15 +674,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
-/obj/item/proc/get_mob_overlay(mob/user_mob, slot)
+/obj/item/proc/get_mob_overlay(var/mob/user_mob, var/slot)
+
 	var/bodytype = "Default"
 	var/apply_x_offset = 0
 	var/apply_y_offset = 0
 	if(ishuman(user_mob))
 		var/mob/living/carbon/human/user_human = user_mob
 		bodytype = user_human.species.get_bodytype(user_human)
-		apply_x_offset = user_human.species.overlay_x_offset
-		apply_y_offset = user_human.species.overlay_y_offset
+		if(!sprite_sheets[bodytype]) // Assume if they are using an explicit icon sheet, it's appropriately sized.
+			apply_x_offset = user_human.species.overlay_x_offset
+			apply_y_offset = user_human.species.overlay_y_offset
 
 	var/mob_state
 	if(item_state_slots && item_state_slots[slot])

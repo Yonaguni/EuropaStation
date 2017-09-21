@@ -290,7 +290,7 @@
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Only used for alien plasma weeds atm, but could be used for Dionaea later.
+// Only used for alien plasma weeds atm.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
@@ -306,7 +306,7 @@
 /datum/species/proc/build_hud(var/mob/living/carbon/human/H)
 	return
 
-//Used by xenos understanding larvae and dionaea understanding nymphs.
+//Used by xenos understanding larvae.
 /datum/species/proc/can_understand(var/mob/other)
 	return
 
@@ -368,3 +368,6 @@
 		H.client.screen |= overlay
 
 	return 1
+
+/datum/species/proc/get_slowdown(var/atom/loc)
+	return slowdown

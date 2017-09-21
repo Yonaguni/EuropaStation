@@ -466,7 +466,7 @@
 	name = "Universal Translator"
 	ram_cost = 35
 	id = "translator"
-	var/list/languages = list(LANGUAGE_SKRELLIAN, LANGUAGE_RESOMI)
+	var/list/languages = list(LANGUAGE_CEPHLAPODA, LANGUAGE_CORVID)
 
 	toggle(mob/living/silicon/pai/user)
 		// 	Sol Common, Tradeband and Gutter are added with New() and are therefore the current default, always active languages

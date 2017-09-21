@@ -10,7 +10,7 @@ var/list/dreams = list(
 	"the detective","the warden","a member of the internal affairs","an engineer","the janitor","atmospheric technician",
 	"the quartermaster","a cargo technician","the botanist","a shaft miner","the psychologist","the chemist","the geneticist",
 	"the virologist","the roboticist","the chef","the bartender","the chaplain","the librarian","a mouse","an ert member",
-	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain","a skrell",
+	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain",
 	"the ai core","the mining station","the research station","a beaker of strange liquid",
 	)
 

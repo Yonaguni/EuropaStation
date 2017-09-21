@@ -1537,7 +1537,7 @@
 "aDC" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/europa/civil/eva)
 "aDD" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/europa/civil/eva)
 "aDE" = (/obj/machinery/door/firedoor,/obj/effect/wingrille_spawn/reinforced,/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/structure/cable/green,/turf/simulated/floor/plating,/area/europa/civil/eva)
-"aDF" = (/obj/structure/table/rack{dir = 8},/obj/item/clothing/head/helmet/space/skrell/black,/obj/item/clothing/mask/breath,/obj/item/clothing/suit/space/skrell/black,/obj/item/clothing/head/helmet/space/skrell/white,/obj/item/clothing/mask/breath,/obj/item/clothing/suit/space/skrell/white,/turf/simulated/floor/tiled/dark,/area/europa/civil/eva)
+"aDF" = (/obj/structure/table/rack{dir = 8},/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/turf/simulated/floor/tiled/dark,/area/europa/civil/eva)
 "aDG" = (/obj/machinery/door/airlock/maintenance{req_access = list(12)},/obj/machinery/door/firedoor,/obj/effect/floor_decal/industrial/warning/corner{dir = 4},/turf/simulated/floor/plating,/area/maintenance/europa/civ_north)
 "aDH" = (/turf/simulated/wall,/area/maintenance/europa/substation/flophouse)
 "aDI" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Dormitory"},/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/turf/simulated/floor/tiled,/area/europa/civil/rec_area)

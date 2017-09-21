@@ -9,9 +9,6 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
-	sprite_sheets = list(
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
-		)
 	species_restricted = null
 
 /obj/item/clothing/gloves/rig

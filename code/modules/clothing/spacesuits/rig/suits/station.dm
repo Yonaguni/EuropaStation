@@ -63,13 +63,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/industrial
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/industrial
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/industrial
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/industrial/equipped
 
@@ -107,13 +107,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/eva
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/eva
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/eva
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/eva/equipped
 
@@ -191,13 +191,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/hazmat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/hazmat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/hazmat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/hazmat/equipped
 
@@ -233,13 +233,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/medical
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/medical
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/medical
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/medical/equipped
 
@@ -278,13 +278,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/hazard
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/hazard
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/hazard
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/hazard/equipped
 

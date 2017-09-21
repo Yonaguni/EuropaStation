@@ -22,13 +22,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/combat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/combat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/combat
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/combat/equipped
 	initial_modules = list(
@@ -66,13 +66,13 @@
 	species_restricted = list("Human")
 
 /obj/item/clothing/suit/space/rig/military
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/shoes/magboots/rig/military
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/clothing/gloves/rig/military
-	species_restricted = list("Human","Skrell")
+	species_restricted = list("Human")
 
 /obj/item/rig/military/equipped
 	initial_modules = list(

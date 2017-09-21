@@ -17,7 +17,7 @@
 		create_powersupply()
 
 	handle_stunned()	// Handle EMP-stun
-	lying = 0			// Handle lying down
+	set_lying(0)		// Handle lying down
 
 	malf_process()
 

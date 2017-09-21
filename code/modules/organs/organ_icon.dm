@@ -65,7 +65,7 @@ var/list/limb_icon_cache = list()
 	else if (!dna)
 		icon = 'icons/mob/human_races/r_human.dmi'
 	else if (robotic >= ORGAN_ROBOT)
-		icon = 'icons/mob/human_races/robotic.dmi'
+		icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
 	else if (status & ORGAN_MUTATED)
 		icon = species.get_icobase(owner,1)
 	else if (owner && (SKELETON in owner.mutations))
@@ -110,7 +110,7 @@ var/list/limb_icon_cache = list()
 
 	if(owner)
 		if(eye_icon)
-			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
+			var/icon/eyes_icon = new/icon(eye_icon_file, eye_icon)
 			var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[owner.species.vision_organ ? owner.species.vision_organ : BP_EYES]
 			if(eyes)
 				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
@@ -192,7 +192,7 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
 		if(species && species.get_bodytype(owner) != "Human")
-			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
+			applying.SetIntensity(1.5)
 		else
 			applying.SetIntensity(0.7)
 

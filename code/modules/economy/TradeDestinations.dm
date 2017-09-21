@@ -46,7 +46,7 @@ var/list/weighted_mundaneevent_locations = list()
 	description = "There is almost no human presence on this dense belt of Sun-blasted asteroids orbiting between \
 	Sol and Mercury. The handful of constructed settlements there are deep underground, dug out by automated systems \
 	and dedicated to the most top-secret and sensitive research, storage and disposal operations conducted by \
-	Sol Central. A perimeter is patrolled regularly by heavily shielded naval vessels and trespassing on the Vulcanoids \
+	the Solar government. A perimeter is patrolled regularly by heavily shielded naval vessels and trespassing on the Vulcanoids \
 	tends to be dealt with terminally. Rumours suggest that at least a handful of the facilities orbiting Sol are also dedicated \
 	computer processing stacks used by the solar government for decryption, file cracking and cryptocurrency mining."
 	distance = 0
@@ -134,7 +134,7 @@ var/list/weighted_mundaneevent_locations = list()
 /datum/trade_destination/mars
 	name = "Mars"
 	description = "During the initial phases of the expansion from Earth, Mars was earmarked as an agricultural food basket for the \
-	fledgeling Sol Central territory. The terraforming project was hugely expensive, financed both by Sol Central and the new-formed \
+	fledgeling SolFed territory. The terraforming project was hugely expensive, financed both by the Solar government and the new-formed \
 	Free Trade Union corporate conglomerate, and took over a century to change the desolate planet to a point that humans could survive \
 	outside of radiation-shielded domes. These days, Mars is the official capitol of Sol, boasting a population of six billion people \
 	living in the dome cities, and huge shipbuilding and administration facilities sailing above in orbit. The chief export is biomass; \
@@ -303,7 +303,7 @@ var/list/weighted_mundaneevent_locations = list()
 	independant industrialists, corporate facilities and those who wish to strike it rich on a frontier that is both less remote \
 	than the Oort cloud and less regimented and controlled than the inner-system Halo. Piracy and criminal enterprise are \
 	significant problems in the Belt, and most corporations maintain their own armed envoys rather than trusting to the scattered \
-	Sol Central naval presence."
+	SolFed naval presence."
 	distance = 43
 	viable_random_events = list(RIOTS, INDUSTRIAL_ACCIDENT, BIOHAZARD_OUTBREAK, WARSHIPS_ARRIVE, PIRATES, CORPORATE_ATTACK, ALIEN_RAIDERS, AI_LIBERATION, MOURNING, CULT_CELL_REVEALED, SECURITY_BREACH, FESTIVAL)
 	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, BARGAINS, SONG_DEBUT, MOVIE_RELEASE, ELECTION, GOSSIP, TOURISM, CELEBRITY_DEATH, RESIGNATION)

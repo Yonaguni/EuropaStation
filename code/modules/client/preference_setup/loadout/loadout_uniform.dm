@@ -172,3 +172,41 @@
 		var/obj/item/clothing/under/pants/short_type = short
 		shorts[initial(short_type.name)] = short_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(shorts))
+
+/datum/gear/uniform/corvid
+	display_name = "smock, grey (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid
+	whitelisted = "Neo-Corvid"
+
+/datum/gear/uniform/corvid/rainbow
+	display_name = "smock, rainbow (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/rainbow
+
+/datum/gear/uniform/corvid/white
+	display_name = "smock, white (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/white
+
+/datum/gear/uniform/corvid/eng
+	display_name = "uniform, Engineering (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/yellow
+
+/datum/gear/uniform/corvid/sec
+	display_name = "uniform, Security (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/red
+
+/datum/gear/uniform/corvid/med
+	display_name = "uniform, Medical (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/medical
+
+/datum/gear/uniform/corvid/science
+	display_name = "uniform, Science (Neo-Corvid)"
+	path = /obj/item/clothing/under/corvid/science
+
+/datum/gear/uniform/harness
+	display_name = "gear harness (android)"
+	path = /obj/item/clothing/under/harness
+
+/datum/gear/mask/monitor
+	display_name = "display monitor (android)"
+	path = /obj/item/clothing/mask/monitor
+	cost = 1

@@ -145,8 +145,8 @@ var/list/ai_verbs_default = list(
 	add_language("Robot Talk", 1)
 	add_language("Sol Common", 1)
 	add_language(LANGUAGE_EAL, 1)
-	add_language(LANGUAGE_SKRELLIAN, 0)
-	add_language(LANGUAGE_RESOMI, 0)
+	add_language(LANGUAGE_CEPHLAPODA, 0)
+	add_language(LANGUAGE_CORVID, 0)
 	add_language(LANGUAGE_TRADEBAND, 1)
 	add_language(LANGUAGE_GUTTER, 0)
 

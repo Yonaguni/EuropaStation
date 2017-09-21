@@ -848,7 +848,7 @@ var/list/sacrificed = list()
 					user << "<span class='warning'>You cannot summon \the [cultist], for \his shackles of blood are strong.</span>"
 					return fizzle()
 				cultist.loc = src.loc
-				cultist.lying = 1
+				cultist.set_lying(1)
 				cultist.regenerate_icons()
 
 				var/dam = round(25 / (users.len/2))	//More people around the rune less damage everyone takes. Minimum is 3 cultists

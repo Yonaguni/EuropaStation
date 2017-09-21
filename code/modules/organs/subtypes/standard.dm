@@ -151,6 +151,7 @@
 	encased = "skull"
 	var/can_intake_reagents = 1
 	var/eye_icon = "eyes_s"
+	var/eye_icon_file = 'icons/mob/human_face.dmi'
 	var/has_lips
 
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)

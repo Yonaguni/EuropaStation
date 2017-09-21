@@ -156,7 +156,7 @@ var/datum/antagonist/ninja/ninjas
 		if(13)
 			directive += "Some disgruntled [using_map.company_name] employees have been supportive of our operations. Be wary of any mistreatment by command staff."
 		if(14)
-			directive += "A group of Skrell radicals have been loyal supporters of the Spider Clan. Favor Skrell crew whenever possible."
+			directive += "A group of uplift radicals have been loyal supporters of the Spider Clan. Favor uplift crew whenever possible."
 		if(15)
 			directive += "The Spider Clan has recently been accused of religious insensitivity. Attempt to speak with the Chaplain and prove these accusations false."
 		if(16)

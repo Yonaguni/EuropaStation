@@ -243,107 +243,40 @@ datum/unit_test/mob_damage/halloss
 	damagetype = HALLOSS
 
 // =================================================================
-// Resomi
+// Neo-Corvid
 // =================================================================
 
-datum/unit_test/mob_damage/resomi
-	name = "MOB: Resomi damage check template"
-	mob_type = /mob/living/carbon/human/resomi
+datum/unit_test/mob_damage/corvid
+	name = "MOB: Neo-Corvid damage check template"
+	mob_type = /mob/living/carbon/human/corvid
 
-datum/unit_test/mob_damage/resomi/brute
-	name = "MOB: Resomi Brute Damage Check"
+datum/unit_test/mob_damage/corvid/brute
+	name = "MOB: Neo-Corvid Brute Damage Check"
 	damagetype = BRUTE
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/resomi/fire
-	name = "MOB: Resomi Fire Damage Check"
+datum/unit_test/mob_damage/corvid/fire
+	name = "MOB: Neo-Corvid Fire Damage Check"
 	damagetype = BURN
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/resomi/tox
-	name = "MOB: Resomi Toxins Damage Check"
+datum/unit_test/mob_damage/corvid/tox
+	name = "MOB: Neo-Corvid Toxins Damage Check"
 	damagetype = TOX
 
-datum/unit_test/mob_damage/resomi/oxy
-	name = "MOB: Resomi Oxygen Damage Check"
+datum/unit_test/mob_damage/corvid/oxy
+	name = "MOB: Neo-Corvid Oxygen Damage Check"
 	damagetype = OXY
 
-datum/unit_test/mob_damage/resomi/clone
-	name = "MOB: Resomi Clone Damage Check"
+datum/unit_test/mob_damage/corvid/clone
+	name = "MOB: Neo-Corvid Clone Damage Check"
 	damagetype = CLONE
 
-datum/unit_test/mob_damage/resomi/halloss
-	name = "MOB: Resomi Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
-// Skrell
-// =================================================================
-
-datum/unit_test/mob_damage/skrell
-	name = "MOB: Skrell damage check template"
-	mob_type = /mob/living/carbon/human/skrell
-
-datum/unit_test/mob_damage/skrell/brute
-	name = "MOB: Skrell Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/skrell/fire
-	name = "MOB: Skrell Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/skrell/tox
-	name = "MOB: Skrell Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/skrell/oxy
-	name = "MOB: Skrell Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/skrell/clone
-	name = "MOB: Skrell Clone Damage Check"
-	damagetype = CLONE
-
-datum/unit_test/mob_damage/skrell/halloss
-	name = "MOB: Skrell Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
-// Diona
-// =================================================================
-
-datum/unit_test/mob_damage/diona
-	name = "MOB: Diona damage check template"
-	mob_type = /mob/living/carbon/human/diona
-
-datum/unit_test/mob_damage/diona/brute
-	name = "MOB: Diona Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/diona/fire
-	name = "MOB: Diona Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/diona/tox
-	name = "MOB: Diona Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/diona/oxy
-	name = "MOB: Diona Oxygen Damage Check"
-	damagetype = OXY
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/diona/clone
-	name = "MOB: Diona Clone Damage Check"
-	damagetype = CLONE
-	expected_vulnerability = IMMUNE
-
-datum/unit_test/mob_damage/diona/halloss
-	name = "MOB: Diona Halloss Damage Check"
+datum/unit_test/mob_damage/corvid/halloss
+	name = "MOB: Neo-Corvid Halloss Damage Check"
 	damagetype = HALLOSS
 
 // ==============================================================================
-
 
 datum/unit_test/robot_module_icons
 	name = "MOB: Robot module icon check"

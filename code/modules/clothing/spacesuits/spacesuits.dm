@@ -21,7 +21,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude","Diona", "Xenomorph")
+	species_restricted = list("exclude", "Xenomorph")
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 	var/obj/machinery/camera/camera
@@ -60,7 +60,7 @@
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
-	desc = "A suit that protects against low pressure environments. \"NSS EXODUS\" is written in large block letters on the back."
+	desc = "A suit that protects against low pressure environments."
 	icon_state = "space"
 	item_state = "s_suit"
 	item_icons = list(
@@ -80,7 +80,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude","Diona", "Xenomorph")
+	species_restricted = list("exclude", "Xenomorph")
 
 /obj/item/clothing/suit/space/New()
 	..()
