@@ -35,7 +35,7 @@
 	flesh_color = "#dd7b68"
 
 	flags = NO_SCAN | NO_SLIP
-	spawn_flags = SPECIES_IS_WHITELISTED | SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	has_organ = list(

@@ -6,6 +6,8 @@
 	density = 1
 	anchored = 1
 	unacidable = 1//Dissolving the case would also delete the gun.
+
+	var/gun_type = /obj/item/gun/composite/premade/laser_pistol/antique
 	var/health = 30
 	var/occupied = 1
 	var/destroyed = 0
@@ -15,7 +17,7 @@
 		if (1)
 			new /obj/item/material/shard( src.loc )
 			if (occupied)
-				new /obj/item/gun/composite/premade/laser_assault( src.loc )
+				new gun_type( src.loc )
 				occupied = 0
 			qdel(src)
 		if (2)
@@ -63,7 +65,7 @@
 
 /obj/structure/displaycase/attack_hand(var/mob/user)
 	if (src.destroyed && src.occupied)
-		new /obj/item/gun/composite/premade/laser_assault( src.loc )
+		new gun_type( src.loc )
 		user << "<span class='notice'>You deactivate the hover field built into the case.</span>"
 		src.occupied = 0
 		src.add_fingerprint(user)

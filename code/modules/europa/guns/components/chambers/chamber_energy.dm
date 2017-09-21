@@ -141,6 +141,10 @@
 	fire_delay = 5
 	ammo_indicator_state = "laser_pistol_loaded"
 
+/obj/item/gun_component/chamber/laser/pistol/antique
+	name = "antique charging mechanism"
+	self_recharge_time = 4
+
 /obj/item/gun_component/chamber/laser/rifle
 	icon_state="las_rifle"
 	name = "precision lens"
