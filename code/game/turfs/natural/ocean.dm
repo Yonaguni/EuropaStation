@@ -1,3 +1,6 @@
+/turf/simulated/ocean/can_build_cable(var/mob/user)
+	return 1
+
 /turf/simulated/ocean
 	name = "sea floor"
 	desc = "Silty."
