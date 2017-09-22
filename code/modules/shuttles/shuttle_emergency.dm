@@ -1,6 +1,7 @@
 /datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
-	move_time = 10 MINUTES
+	move_time = 1 MINUTE
+
 	var/datum/evacuation_controller/pods/shuttle/emergency_controller
 
 /datum/shuttle/autodock/ferry/emergency/New()
@@ -13,6 +14,7 @@
 		CRASH("An emergency shuttle has already been created.")
 		return
 	emergency_controller.shuttle = src
+	move_time = emergency_controller.evac_prep_delay
 
 /datum/shuttle/autodock/ferry/emergency/arrived()
 	. = ..()

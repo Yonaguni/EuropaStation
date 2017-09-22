@@ -1,5 +1,7 @@
 /obj/effect/light
+
 	simulated = 0
+	anchored = 1 // It only moves via forceMove(), and this stops conveyors moving the entire light overlay as a blob.
 	mouse_opacity = 0
 	plane = DARK_PLANE
 

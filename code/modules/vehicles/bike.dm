@@ -61,13 +61,13 @@ var/list/bike_cache = list()
 	if(usr.incapacitated()) return
 
 	if(kickstand)
-		src.visible_message("You put up \the [src]'s kickstand.")
+		src.visible_message("<span class='notice'>\The [usr] kicks up \the [src]'s stand.</span>")
 		playsound(src.loc, 'sound/misc/bike_stand_up.ogg', 75,1)
 	else
 		if(istype(src.loc,/turf/space))
-			usr << "<span class='warning'> You don't think kickstands work in space...</span>"
+			to_chat(usr, "<span class='warning'> You don't think kickstands work in space...</span>")
 			return
-		src.visible_message("You put down \the [src]'s kickstand.")
+		src.visible_message("<span class='notice'>\The [usr] kicks down \the [src]'s stand.</span>")
 		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75,1)
 		if(pulledby)
 			pulledby.stop_pulling()
@@ -94,7 +94,7 @@ var/list/bike_cache = list()
 		user << "You unbuckle yourself from \the [src]"
 
 /obj/vehicle/bike/relaymove(mob/user, direction)
-	if(user != load || !on)
+	if(user != load || !on || !istype(user) || user.incapacitated())
 		return
 	return Move(get_step(src, direction))
 

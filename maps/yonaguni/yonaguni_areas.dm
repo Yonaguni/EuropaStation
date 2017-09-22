@@ -8,31 +8,35 @@
 	icon_state = "abyss"
 	sound_env = ASTEROID
 
-/area/europa/offstation
+/area/centcom/europa
+	icon = 'icons/areas_europa.dmi'
+	base_turf = /turf/simulated/floor
+
+/area/centcom/europa/offstation
 	name = "Rhadamanthus"
 	icon_state = "offstation"
 
-/area/europa/offstation/ert
+/area/centcom/europa/offstation/ert
 	name = "Asset Protection Base"
 	icon_state = "ert_base"
 
-/area/europa/offstation/navy
+/area/centcom/europa/offstation/navy
 	name = "Naval Base"
 	icon_state = "navy_base"
 
-/area/europa/offstation/pirate
+/area/centcom/europa/offstation/pirate
 	name = "Pirate Base"
 	icon_state = "pirate_base"
 
-/area/europa/offstation/merc
+/area/centcom/europa/offstation/merc
 	name = "Mercenary Base"
 	icon_state = "merc_base"
 
-/area/europa/offstation/surface
+/area/centcom/europa/offstation/surface
 	name = "Icy Wastes"
 	icon_state = "surface"
 
-/area/europa/offstation/recovery
+/area/centcom/europa/offstation/recovery
 	name = "Rhadamanthus - Recovery Vessel"
 	icon_state = "recovery"
 
@@ -794,6 +798,7 @@
 
 /get_escape_areas()
 	return list(
+		/area/centcom/europa/offstation,
 		/area/shuttle/europa/pod,
 		/area/shuttle/europa/pod/one,
 		/area/shuttle/europa/pod/two,
@@ -807,10 +812,10 @@
 	return /area/shuttle/europa/evac
 
 /get_centcom_areas()
-	return list(/area/europa/offstation)
+	return list(/area/centcom/europa/offstation)
 
 /get_blueprint_special_areas()
 	return list(
 		/area/shuttle,
-		/area/europa/offstation
+		/area/centcom/europa/offstation
 		)

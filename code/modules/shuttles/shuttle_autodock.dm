@@ -11,7 +11,7 @@
 	var/obj/effect/shuttle_landmark/next_location
 	var/datum/computer/file/embedded_program/docking/active_docking_controller
 
-	var/obj/effect/shuttle_landmark/landmark_transition
+	var/obj/effect/shuttle_landmark/waypoint_transition
 	var/move_time = 240		//the time spent in the transition area
 
 	category = /datum/shuttle/autodock
@@ -25,13 +25,13 @@
 	dock()
 
 	//Optional transition area
-	if(landmark_transition)
-		landmark_transition = locate(landmark_transition)
+	if(waypoint_transition)
+		waypoint_transition = locate(waypoint_transition)
 
 /datum/shuttle/autodock/Destroy()
 	next_location = null
 	active_docking_controller = null
-	landmark_transition = null
+	waypoint_transition = null
 
 	return ..()
 
@@ -112,8 +112,8 @@
 
 
 /datum/shuttle/autodock/proc/process_launch()
-	if (move_time && landmark_transition)
-		return long_jump(next_location, landmark_transition, move_time)
+	if (move_time && waypoint_transition)
+		return long_jump(next_location, waypoint_transition, move_time)
 	else
 		return short_jump(next_location)
 

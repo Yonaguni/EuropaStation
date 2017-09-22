@@ -4,7 +4,7 @@
 	category = "Exosuit Components"
 	lathe_type = LATHE_TYPE_HEAVY
 
-/datum/autolathe/recipe/heavy
+/datum/autolathe/recipe/heavy/beacon
 	name = "supply beacon"
 	path = /obj/item/supply_beacon
 	category = "General"

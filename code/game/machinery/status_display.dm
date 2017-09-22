@@ -22,6 +22,11 @@ var/list/status_icons_to_colour = list(
 	anchored = 1
 	density = 0
 	use_power = 1
+
+	light_power = 10
+	light_range = 1
+	light_color = COLOR_TEAL
+
 	idle_power_usage = 10
 	var/mode = 1	// 0 = Blank
 					// 1 = Shuttle timer
@@ -79,7 +84,14 @@ var/list/status_icons_to_colour = list(
 
 // set what is displayed
 /obj/machinery/status_display/proc/update()
+
 	remove_display()
+
+	if(mode == STATUS_DISPLAY_BLANK)
+		kill_light()
+	else
+		set_light()
+
 	if(friendc && !ignore_friendc)
 		set_picture("ai_friend")
 		return 1
