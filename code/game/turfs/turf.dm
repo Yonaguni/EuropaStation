@@ -291,3 +291,13 @@ var/const/enterloopsanity = 100
 
 /turf/proc/update_blood_overlays()
 	return
+
+/turf/attackby(var/obj/item/thing, var/mob/user)
+	if(thing.iscoil() && can_build_cable(user))
+		var/obj/item/stack/cable_coil/coil = thing
+		coil.turf_place(src, user)
+		return
+	return ..()
+
+/turf/proc/can_build_cable(var/mob/user)
+	return 0
