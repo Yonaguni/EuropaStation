@@ -151,6 +151,11 @@
 
 //Removes one stack's worth of material from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
+
+	if(!sheet_path)
+		sheets = 0
+		return
+
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
