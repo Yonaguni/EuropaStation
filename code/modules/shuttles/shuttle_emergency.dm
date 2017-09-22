@@ -1,12 +1,7 @@
-/obj/effect/shuttle_landmark/evac/transit
-	name = "In transit"
-	landmark_tag = "nav_evac_transit"
-	base_area = /area/europa/ocean
-
 /datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
 	move_time = 1 MINUTE
-	landmark_transition = /obj/effect/shuttle_landmark/evac/transit
+
 	var/datum/evacuation_controller/pods/shuttle/emergency_controller
 
 /datum/shuttle/autodock/ferry/emergency/New()

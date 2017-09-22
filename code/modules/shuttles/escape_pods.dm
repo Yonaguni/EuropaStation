@@ -17,7 +17,7 @@ var/list/escape_pods_by_name = list()
 	dock_target = "escape_pod_[pod_number]"
 	arming_controller = "escape_pod_[pod_number]_berth"
 	waypoint_station = "escape_pod_[pod_number]_start"
-	landmark_transition = "escape_pod_[pod_number]_interim"
+	waypoint_transition = "escape_pod_[pod_number]_interim"
 	waypoint_offsite = "escape_pod_[pod_number]_out"
 
 	move_time = evacuation_controller.evac_transit_delay + rand(-30, 60)

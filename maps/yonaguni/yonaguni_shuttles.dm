@@ -14,7 +14,13 @@ Notes to self about shuttle system:
 	shuttle_area = /area/shuttle/europa/evac
 	waypoint_offsite = "nav_evac_start"
 	waypoint_station = "nav_evac_station"
+	waypoint_transition = "nav_evac_transit"
 	dock_target = "escape_shuttle"
+
+/obj/effect/shuttle_landmark/evac/transit
+	name = "In transit"
+	base_area = /area/europa/ocean
+	landmark_tag = "nav_evac_transit"
 
 /obj/effect/shuttle_landmark/evac/offsite
 	name = "Evac - Rhadamanthus"
@@ -106,7 +112,7 @@ Notes to self about shuttle system:
 	shuttle_area = /area/shuttle/europa/navy
 	destinations = list("nav_navy_start","nav_navy_station")
 	current_location = "nav_navy_start"
-	landmark_transition = "nav_navy_transit"
+	waypoint_transition = "nav_navy_transit"
 
 /obj/effect/shuttle_landmark/navy/base
 	name = "Naval Base"
@@ -127,7 +133,7 @@ Notes to self about shuttle system:
 	shuttle_area = /area/shuttle/europa/merc
 	destinations = list("nav_merc_start","nav_merc_station")
 	current_location = "nav_merc_start"
-	landmark_transition = "nav_merc_transit"
+	waypoint_transition = "nav_merc_transit"
 
 /obj/effect/shuttle_landmark/merc/base
 	name = "Mercenary Base"
@@ -148,7 +154,7 @@ Notes to self about shuttle system:
 	shuttle_area = /area/shuttle/europa/pirate
 	destinations = list("nav_pirate_start","nav_pirate_station")
 	current_location = "nav_pirate_start"
-	landmark_transition = "nav_pirate_transit"
+	waypoint_transition = "nav_pirate_transit"
 
 /obj/effect/shuttle_landmark/pirate/base
 	name = "Pirate Base"
