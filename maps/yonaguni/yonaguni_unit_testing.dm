@@ -4,7 +4,7 @@
 		/area/arrival/start = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/turbolift = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/shuttle = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/europa/offstation = NO_SCRUBBER|NO_VENT|NO_APC,
+		/area/centcom/europa/offstation = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/europa/science/bombrange = NO_SCRUBBER|NO_VENT,
 		/area/europa/ocean = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/europa/civil/secure_storage = NO_SCRUBBER|NO_VENT,

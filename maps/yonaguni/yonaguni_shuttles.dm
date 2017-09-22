@@ -14,33 +14,29 @@ Notes to self about shuttle system:
 	shuttle_area = /area/shuttle/europa/evac
 	waypoint_offsite = "nav_evac_start"
 	waypoint_station = "nav_evac_station"
-	dock_target = "centcom_dock"
+	dock_target = "escape_shuttle"
 
 /obj/effect/shuttle_landmark/evac/offsite
 	name = "Evac - Rhadamanthus"
 	landmark_tag = "nav_evac_start"
-	base_area = /area/europa/offstation/surface
+	base_area = /area/centcom/europa/offstation/surface
+	docking_controller = "centcom_dock"
 
 /obj/effect/shuttle_landmark/evac/onsite
 	name = "Evac - Yonaguni"
 	landmark_tag = "nav_evac_station"
 	base_area = /area/europa/ocean
-	docking_controller = "escape_shuttle"
-
-/obj/effect/shuttle_landmark/evac/transit
-	name = "In transit"
-	landmark_tag = "nav_evac_transit"
-	base_area = /area/europa/ocean
+	docking_controller = "escape_dock"
 
 // Escape pods.
 /obj/effect/shuttle_landmark/escape_pod/start
 	base_area = /area/europa/ocean
 
 /obj/effect/shuttle_landmark/escape_pod/out
-	base_area = /area/europa/offstation/surface
+	base_area = /area/centcom/europa/offstation/surface
 
 /obj/effect/shuttle_landmark/escape_pod/transit
-	base_area = /area/europa/offstation/surface
+	base_area = /area/centcom/europa/offstation/surface
 
 /datum/shuttle/autodock/ferry/escape_pod/europa
 	shuttle_area = /area/shuttle/europa/pod/one
