@@ -56,133 +56,133 @@
 	name = "Vault"
 	icon_state = "vault"
 
-// Civil Sector.
+// Main dome.
 /area/europa/civil
-	name = "Civil Sector"
+	name = "Main Dome"
 	icon_state = "civil"
 
 /area/europa/civil/liaison_office
-	name = "Civil Sector - Colony Liaison's Office"
+	name = "Main Dome - Director's Office"
 	icon_state = "civil_clo"
 
 /area/europa/civil/liaison_quarters
-	name = "Civil Sector - Colony Liaison's Quarters"
+	name = "Main Dome - Director's Quarters"
 	icon_state = "civil_cl"
 
 /area/europa/civil/janitor
-	name = "Civil Sector - Custodial Office"
+	name = "Main Dome - Custodial Office"
 	icon_state = "janitor"
 
 /area/europa/civil/tech_storage
-	name = "Civil Sector - Technical Storage"
+	name = "Main Dome - Technical Storage"
 	icon_state = "tech_storage"
 
 /area/europa/civil/secure_storage
-	name = "Civil Sector - Secure Storage"
+	name = "Main Dome - Secure Storage"
 	icon_state = "secure_storage"
 
 /area/europa/civil/docks
-	name = "Civil Sector - Western Docks"
+	name = "Main Dome - Arrival Docks"
 	icon_state = "civil_docks"
 
 /area/europa/civil/escape
-	name = "Civil Sector - Eastern Docks"
+	name = "Main Dome - Escape Arm"
 	icon_state = "civil_docks"
 
 /area/europa/civil/chapel
-	name = "Civil Sector - Chapel"
+	name = "Main Dome - Chapel"
 	icon_state = "chapel"
 
 /area/europa/civil/crematorium
-	name = "Civil Sector - Crematorium"
+	name = "Main Dome - Crematorium"
 	icon_state = "crematorium"
 
 /area/europa/civil/chapel_office
-	name = "Civil Sector - Chapel Office"
+	name = "Main Dome - Chapel Office"
 	icon_state = "chapel_office"
 
 /area/europa/civil/library
-	name = "Civil Sector - Library"
+	name = "Main Dome - Library"
 	icon_state = "library"
 
 /area/europa/civil/hydroponics
-	name = "Civil Sector - Hydroponics"
+	name = "Main Dome - Hydroponics"
 	icon_state = "hydroponics"
 
 /area/europa/civil/garden
-	name = "Civil Sector - Garden"
+	name = "Main Dome - Garden"
 	icon_state = "garden"
 
 /area/europa/civil/bar
-	name = "Civil Sector - Bar"
+	name = "Main Dome - Bar"
 	icon_state = "bar"
 
 /area/europa/civil/bar_back
-	name = "Civil Sector - Bar Back Room"
+	name = "Main Dome - Bar Back Room"
 	icon_state = "bar_back"
 
 /area/europa/civil/kitchen
-	name = "Civil Sector - Kitchen"
+	name = "Main Dome - Kitchen"
 	icon_state = "kitchen"
 
 /area/europa/civil/kitchen_freezer
-	name = "Civil Sector - Kitchen Freezer"
+	name = "Main Dome - Kitchen Freezer"
 	icon_state = "kitchen_freeze"
 
 /area/europa/civil/customs
-	name = "Civil Sector - Customs Checkpoint"
+	name = "Main Dome - Customs Checkpoint"
 	icon_state = "customs"
 
 /area/europa/civil/arrivals_lounge
-	name = "Civil Sector - Arrival Lounge"
+	name = "Main Dome - Arrival Lounge"
 	icon_state = "civil_arrivals"
 
 /area/europa/civil/vacant_office
-	name = "Civil Sector - Vacant Office"
+	name = "Main Dome - Vacant Office"
 	icon_state = "vacant"
 
 /area/europa/civil/storage
-	name = "Civil Sector - Primary Storage"
+	name = "Main Dome - Primary Storage"
 	icon_state = "civil_storage"
 
 /area/europa/civil/dorm_one
-	name = "Civil Sector - Dormitory One"
+	name = "Main Dome - Dormitory One"
 	icon_state = "dorm1"
 
 /area/europa/civil/dorm_two
-	name = "Civil Sector - Dormitory Two"
+	name = "Main Dome - Dormitory Two"
 	icon_state = "dorm2"
 
 /area/europa/civil/rec_area
-	name = "Civil Sector - Recreation Area"
+	name = "Main Dome - Recreation Area"
 	icon_state = "dorm3"
 
 /area/europa/civil/dorm_toilet
-	name = "Civil Sector - Dormitory Toilets"
+	name = "Main Dome - Dormitory Toilets"
 	icon_state = "dorm3"
 
 /area/europa/civil/pool
-	name = "Civil Sector - Swimming Pool"
+	name = "Main Dome - Swimming Pool"
 	icon_state = "pool"
 
 /area/europa/civil/tool_storage
-	name = "Civil Sector - Tool Storage"
+	name = "Main Dome - Tool Storage"
 	icon_state = "civil_storage"
 
 /area/europa/civil/eva
-	name = "Civil Sector - Expedition Equipment"
+	name = "Main Dome - Expedition Equipment"
 	icon_state = "eva"
 
 /area/europa/civil/lockers
-	name = "Civil Sector - Locker Room"
+	name = "Main Dome - Locker Room"
 	icon_state = "lockers"
 
 /area/europa/civil/art_storage
-	name = "Civil Sector - Art Storage"
+	name = "Main Dome - Art Storage"
 	icon_state = "art_storage"
 
 /area/europa/civil/emergency_storage
-	name = "Civil Sector - Emergency Storage"
+	name = "Main Dome - Emergency Storage"
 	icon_state = "emergency_storage"
 
 /area/maintenance/europa/substation/arrivals
@@ -194,39 +194,39 @@
 	icon_state = "residential_substation"
 
 /area/hallway/europa/civ_north
-	name = "Civil Sector - Northern Hallway"
+	name = "Main Dome - Northern Hallway"
 	icon_state = "civil_hall_north"
 
 /area/hallway/europa/civ_south
-	name = "Civil Sector - Southern Hallway"
+	name = "Main Dome - Southern Hallway"
 	icon_state = "civil_hall_south"
 
 /area/hallway/europa/civ_east
-	name = "Civil Sector - Eastern Hallway"
+	name = "Main Dome - Eastern Hallway"
 	icon_state = "civil_hall_east"
 
 /area/hallway/europa/civ_west
-	name = "Civil Sector - Western Hallway"
+	name = "Main Dome - Western Hallway"
 	icon_state = "civil_hall_west"
 
 /area/maintenance/europa/civ_north
-	name = "Civil Sector - Northern Maintenance"
+	name = "Main Dome - Northern Maintenance"
 	icon_state = "civil_maint_north"
 
 /area/maintenance/europa/civ_south
-	name = "Civil Sector - Southern Maintenance"
+	name = "Main Dome - Southern Maintenance"
 	icon_state = "civil_maint_south"
 
 /area/maintenance/europa/civ_east
-	name = "Civil Sector - Eastern Maintenance"
+	name = "Main Dome - Eastern Maintenance"
 	icon_state = "civil_maint_east"
 
 /area/maintenance/europa/civ_west
-	name = "Civil Sector - Western Maintenance"
+	name = "Main Dome - Western Maintenance"
 	icon_state = "civil_maint_west"
 
 /area/maintenance/europa/speakeasy
-	name = "Civil Sector - Illicit Speakeasy"
+	name = "Main Dome - Illicit Speakeasy"
 	icon_state = "speakeasy"
 
 // Hospital
@@ -346,75 +346,75 @@
 
 // Police Sector.
 /area/europa/navy
-	name = "Precinct House"
+	name = "Security Precinct"
 	icon_state = "navy"
 
 /area/europa/navy/foyer
-	name = "Precinct House - Foyer"
+	name = "Security Precinct - Foyer"
 	icon_state = "navy_foyer"
 
 /area/europa/navy/armory
-	name = "Precinct House - Armory"
+	name = "Security Precinct - Armory"
 	icon_state = "armory"
 
 /area/europa/navy/interrogation
-	name = "Precinct House - Interrogation"
+	name = "Security Precinct - Interrogation"
 	icon_state = "interrogation"
 
 /area/europa/navy/evidence_storage
-	name = "Precinct House - Evidence Storage"
+	name = "Security Precinct - Evidence Storage"
 	icon_state = "evidence"
 
 /area/europa/navy/cells
-	name = "Precinct House - Cells"
+	name = "Security Precinct - Cells"
 	icon_state = "cells"
 
 /area/europa/navy/interview
-	name = "Precinct House - Interview Office"
+	name = "Security Precinct - Interview Office"
 	icon_state = "interview"
 
 /area/europa/navy/forensics
-	name = "Precinct House - Forensic Office"
+	name = "Security Precinct - Forensic Office"
 	icon_state = "forensics"
 
 /area/europa/navy/legal
-	name = "Precinct House - Legal Office"
+	name = "Security Precinct - Legal Office"
 	icon_state = "legal"
 
 /area/europa/navy/marshal
-	name = "Precinct House - Marshal's Office"
+	name = "Security Precinct - Chief of Security's Office"
 	icon_state = "marshal"
 
 /area/europa/navy/armory_secure
-	name = "Precinct House - Secure Armory"
+	name = "Security Precinct - Secure Armory"
 	icon_state = "armory_secure"
 
 /area/europa/navy/requisitions
-	name = "Precinct House - Requisitions"
+	name = "Security Precinct - Requisitions"
 	icon_state = "armory_office"
 
 /area/europa/navy/meeting
-	name = "Precinct House - Meeting Room"
+	name = "Security Precinct - Meeting Room"
 	icon_state = "navy1"
 
 /area/europa/navy/lockers
-	name = "Precinct House - Locker Room"
+	name = "Security Precinct - Locker Room"
 	icon_state = "navy2"
 
 /area/hallway/europa/navy
-	name = "Precinct House - Hallway"
+	name = "Security Precinct - Hallway"
 	icon_state = "navy_hallway"
 
 /area/maintenance/europa/navy_east
-	name = "Precinct House - Eastern Maintenance"
+	name = "Security Precinct - Eastern Maintenance"
 	icon_state = "navy_maint_east"
 
 /area/maintenance/europa/navy_west
-	name = "Precinct House - Western Maintenance"
+	name = "Security Precinct - Western Maintenance"
 	icon_state = "navy_maint_west"
 
 /area/maintenance/europa/substation/navy
-	name = "Precinct House - Power Station"
+	name = "Security Precinct - Power Station"
 	icon_state = "navy_substation"
 
 // Industrial Sector.
@@ -524,7 +524,7 @@
 
 // Engineering sector.
 /area/europa/engineering
-	name = "Civil Engineering"
+	name = "Engineering"
 	icon_state = "engineering"
 
 /area/europa/engineering/atmos
@@ -532,79 +532,79 @@
 	icon_state = "atmospherics"
 
 /area/europa/engineering/incinerator
-	name = "Civil Engineering - Incinerator"
+	name = "Engineering - Incinerator"
 	icon_state = "incinerator"
 
 /area/europa/engineering/tcomms
-	name = "Civil Engineering - Telecommunications"
+	name = "Engineering - Telecommunications"
 	icon_state = "tcomms"
 
 /area/europa/engineering/dock
-	name = "Civil Engineering - Dock"
+	name = "Engineering - Dock"
 	icon_state = "engineering_dock"
 
 /area/europa/engineering/dronefab
-	name = "Civil Engineering - Drone Fabrication"
+	name = "Engineering - Drone Fabrication"
 	icon_state = "drone"
 
 /area/europa/engineering/lockers
-	name = "Civil Engineering - Locker Room"
+	name = "Engineering - Locker Room"
 	icon_state = "engineering_lockers"
 
 /area/europa/engineering/suit_storage
-	name = "Civil Engineering - Suit Storage"
+	name = "Engineering - Suit Storage"
 	icon_state = "engineering_store"
 
 /area/europa/engineering/storage
-	name = "Civil Engineering - Storage"
+	name = "Engineering - Storage"
 	icon_state = "engineering_store"
 
 /area/europa/engineering/foyer
-	name = "Civil Engineering - Foyer"
+	name = "Engineering - Foyer"
 	icon_state = "engineering_foyer"
 
 /area/europa/engineering/monitoring
-	name = "Civil Engineering - Monitoring"
+	name = "Engineering - Monitoring"
 	icon_state = "engineering_monitor"
 
 /area/europa/engineering/admin
-	name = "Civil Engineering - Administration"
+	name = "Engineering - Administration"
 	icon_state = "engineering_admin"
 
 /area/europa/engineering/breakroom
-	name = "Civil Engineering - Break Room"
+	name = "Engineering - Break Room"
 	icon_state = "engineering_break"
 
 /area/europa/engineering/toilet
-	name = "Civil Engineering - Toilets"
+	name = "Engineering - Toilets"
 	icon_state = "engineering_toilet"
 
 /area/europa/engineering/hardstorage
-	name = "Civil Engineering - Hard Storage"
+	name = "Engineering - Hard Storage"
 	icon_state = "engineering_store_hard"
 
 /area/europa/engineering/engine
-	name = "Civil Engineering - Fusion Core"
+	name = "Engineering - Fusion Core"
 	icon_state = "fusion"
 
 /area/europa/engineering/engine_entrance
-	name = "Civil Engineering - Fusion Plant"
+	name = "Engineering - Fusion Plant"
 	icon_state = "fusion_enter"
 
 /area/europa/engineering/engine_control
-	name = "Civil Engineering - Fusion Core Control"
+	name = "Engineering - Fusion Core Control"
 	icon_state = "fusion_obs"
 
 /area/maintenance/europa/substation/engineering
-	name = "Civil Engineering - Power Station"
+	name = "Engineering - Power Station"
 	icon_state = "engineering"
 
 /area/maintenance/europa/eng_east
-	name = "Civil Engineering - Eastern Maintenance"
+	name = "Engineering - Eastern Maintenance"
 	icon_state = "maint_engineering_east"
 
 /area/maintenance/europa/eng_west
-	name = "Civil Engineering - Western Maintenance"
+	name = "Engineering - Western Maintenance"
 	icon_state = "maint_engineering_west"
 
 // Admin.
@@ -695,21 +695,21 @@
 //ELEVATORS//
 /////////////
 /area/turbolift/security_station
-	name = "Station - By Precinct House"
-	lift_announce_str = "Arriving at the station level, by the Precinct House."
+	name = "Station - By Security Precinct"
+	lift_announce_str = "Arriving at the station level, by the Security Precinct."
 
 /area/turbolift/security_maintenance
-	name = "Maintenance - Below Precinct House"
-	lift_announce_str = "Arriving at the maintenance level, below the Naval Sector."
+	name = "Maintenance - Below Security Precinct"
+	lift_announce_str = "Arriving at the maintenance level, below the Security Precinct."
 	base_turf = /turf/simulated/floor/plating
 
 /area/turbolift/research_station
 	name = "Station - By Science"
-	lift_announce_str = "Arriving at the station level, by the eastern civil docks."
+	lift_announce_str = "Arriving at the station level, by the escape arm."
 
 /area/turbolift/research_maintenance
 	name = "Maintenance - Below Science"
-	lift_announce_str = "Arriving at the maintenance level, below the eastern civil docks."
+	lift_announce_str = "Arriving at the maintenance level, below the escape arm."
 	base_turf = /turf/simulated/floor/plating
 
 /area/turbolift/engineering_station
@@ -741,7 +741,7 @@
 	name = "Rhadamanthus - Cargo Dock"
 
 /area/shuttle/europa/cargo_dock/onsite
-	name = "Civil Sector - Cargo Dock"
+	name = "Main Dome - Cargo Dock"
 
 /area/shuttle/europa/pod
 	name = "Escape Pod"
