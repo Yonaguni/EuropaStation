@@ -15,7 +15,8 @@ var/light_power_multiplier = 5
 		return
 
 	light_color = null
-
+	pixel_x = 0
+	pixel_y = 0
 	temp_appearance = list()
 
 	//cap light range to 5
@@ -80,6 +81,9 @@ var/light_power_multiplier = 5
 
 	//no shadows
 	if(light_range < 2 || light_type == LIGHT_DIRECTIONAL)
+		if(light_type != LIGHT_DIRECTIONAL)
+			pixel_x = holder.pixel_x
+			pixel_y = holder.pixel_y
 		overlays = temp_appearance
 		temp_appearance = null
 		return
