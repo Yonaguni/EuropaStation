@@ -41,6 +41,7 @@
 	..()
 	power = _power
 	name = power.name
+	desc = power.description
 	power.hud_element = src
 	screen_loc = "[16-power.owner.psychic_faculties.Find(power.associated_faculty.name)],[16-power.rank]"
 	update_from_power()
@@ -66,7 +67,11 @@
 	overlays = overlays_to_add
 
 /obj/screen/psi/power/Click(var/location, var/control, var/params)
-	if(power.active)
+
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"])
+		examine(usr)
+	else if(power.active)
 		power.cancelled(usr)
 	else
 		power.evoke(usr)

@@ -46,60 +46,31 @@
 	assoc_rank = 4
 	aspect_cost = 3
 
-// FARSENSE
-/decl/aspect/psi/farsensing
-	name = ASPECT_PSI_FARSENSE_L
-	desc = "You possess latent farsensing powers."
-	parent_name = ASPECT_PSI_ROOT
-	assoc_faculty = PSYCHIC_FARSENSE
-	assoc_rank = 1
-
-/decl/aspect/psi/farsensing/operant
-	name = ASPECT_PSI_FARSENSE_O
-	desc = "Your farsensing faculty is fully awakened."
-	parent_name = ASPECT_PSI_FARSENSE_L
-	assoc_rank = 2
-	aspect_cost = 2
-
-/decl/aspect/psi/farsensing/master
-	name = ASPECT_PSI_FARSENSE_MC
-	desc = "You have trained extensively in mastering your farsensing faculty."
-	parent_name = ASPECT_PSI_FARSENSE_O
-	assoc_rank = 3
-	aspect_cost = 2
-
-/decl/aspect/psi/farsensing/grandmaster
-	name = ASPECT_PSI_FARSENSE_GMC
-	desc = "You are a recognised and gifted grand master of the farsensing faculty."
-	parent_name = ASPECT_PSI_FARSENSE_MC
-	assoc_rank = 4
-	aspect_cost = 3
-
 // CREATIVE
 /decl/aspect/psi/creative
 	name = ASPECT_PSI_CREATIVE_L
-	desc = "You possess latent creative powers."
+	desc = "You possess latent energistic powers."
 	parent_name = ASPECT_PSI_ROOT
 	assoc_faculty = PSYCHIC_CREATIVITY
 	assoc_rank = 1
 
 /decl/aspect/psi/creative/operant
 	name = ASPECT_PSI_CREATIVE_O
-	desc = "Your creative faculty is fully awakened."
+	desc = "Your energistic faculty is fully awakened."
 	parent_name = ASPECT_PSI_CREATIVE_L
 	assoc_rank = 2
 	aspect_cost = 2
 
 /decl/aspect/psi/creative/master
 	name = ASPECT_PSI_CREATIVE_MC
-	desc = "You have trained extensively in mastering your creative faculty."
+	desc = "You have trained extensively in mastering your energistic faculty."
 	parent_name = ASPECT_PSI_CREATIVE_O
 	assoc_rank = 3
 	aspect_cost = 2
 
 /decl/aspect/psi/creative/grandmaster
 	name = ASPECT_PSI_CREATIVE_GMC
-	desc = "You are a recognised and gifted grand master of the creative faculty."
+	desc = "You are a recognised and gifted grand master of the energistic faculty."
 	parent_name = ASPECT_PSI_CREATIVE_MC
 	assoc_rank = 4
 	aspect_cost = 3
@@ -136,28 +107,28 @@
 // REDACTIVE
 /decl/aspect/psi/redaction
 	name = ASPECT_PSI_REDACTOR_L
-	desc = "You possess latent redactive powers."
+	desc = "You possess latent biokinetic powers."
 	parent_name = ASPECT_PSI_ROOT
 	assoc_faculty = PSYCHIC_REDACTION
 	assoc_rank = 1
 
 /decl/aspect/psi/redaction/operant
 	name = ASPECT_PSI_REDACTOR_O
-	desc = "Your redactive faculty is fully awakened."
+	desc = "Your biokinetic faculty is fully awakened."
 	parent_name = ASPECT_PSI_REDACTOR_L
 	assoc_rank = 2
 	aspect_cost = 2
 
 /decl/aspect/psi/redaction/master
 	name = ASPECT_PSI_REDACTOR_MC
-	desc = "You have trained extensively in mastering your redactive faculty."
+	desc = "You have trained extensively in mastering your biokinetic faculty."
 	parent_name = ASPECT_PSI_REDACTOR_O
 	assoc_rank = 3
 	aspect_cost = 2
 
 /decl/aspect/psi/redaction/grandmaster
 	name = ASPECT_PSI_REDACTOR_GMC
-	desc = "You are a recognised and gifted grand master of the redactive faculty."
+	desc = "You are a recognised and gifted grand master of the biokinetic faculty."
 	parent_name = ASPECT_PSI_REDACTOR_MC
 	assoc_rank = 4
 	aspect_cost = 3
