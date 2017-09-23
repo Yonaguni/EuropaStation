@@ -46,9 +46,9 @@
 		shuttle_launch_time = world.time + (evac_prep_delay/2)
 		evac_ready_time = world.time + evac_prep_delay + (shuttle.warmup_time*10)
 		if(emergency_evacuation)
-			evac_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[round(get_eta()/60)] minute\s."))
+			evac_called.Announce(format_evac_message(using_map.shuttle_called_message, raw_eta = get_eta()))
 		else
-			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
+			priority_announcement.Announce(format_evac_message(using_map.shuttle_called_message, raw_eta = get_eta()))
 
 /datum/evacuation_controller/pods/shuttle/cancel_evacuation()
 	if(..() && shuttle.moving_status != SHUTTLE_INTRANSIT)

@@ -20,7 +20,7 @@
 			pod.launch(src)
 
 	if(emergency_evacuation)
-		priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(format_evac_message(using_map.emergency_shuttle_leaving_dock, raw_eta = get_eta()))
 	else
-		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(format_evac_message(using_map.shuttle_leaving_dock, raw_eta = get_eta()))
 

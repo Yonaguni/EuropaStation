@@ -5,6 +5,12 @@
 #define EVAC_COOLDOWN   4
 #define EVAC_COMPLETE   5
 
+/proc/format_evac_message(var/msg, var/raw_etd, var/raw_eta)
+	msg = replacetext(msg, "%dock_name%", "[using_map.dock_name]")
+	msg = replacetext(msg, "%ETD%", "[round(raw_etd/60)] minute\s")
+	msg = replacetext(msg, "%ETA%", "[round(raw_eta/60)] minute\s")
+	return msg
+
 var/datum/evacuation_controller/evacuation_controller
 
 /datum/evacuation_controller
@@ -77,10 +83,10 @@ var/datum/evacuation_controller/evacuation_controller
 			if(istype(A, /area/hallway))
 				A.readyalert()
 		if(!skip_announce)
-			evac_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[round(get_eta()/60)] minute\s."))
+			evac_called.Announce(format_evac_message(using_map.emergency_shuttle_called_message, raw_eta = get_eta()))
 	else
 		if(!skip_announce)
-			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60)] minute\s"))
+			priority_announcement.Announce(format_evac_message(using_map.shuttle_called_message, raw_eta = get_eta()))
 
 	return 1
 
@@ -115,9 +121,9 @@ var/datum/evacuation_controller/evacuation_controller
 
 	var/estimated_time = round(get_eta()/60,1)
 	if (emergency_evacuation)
-		evac_waiting.Announce(replacetext(using_map.emergency_shuttle_docked_message, "%ETD%", "[estimated_time] minute\s"))
+		evac_waiting.Announce(format_evac_message(using_map.emergency_shuttle_docked_message, raw_etd = get_eta()))
 	else
-		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+		priority_announcement.Announce(format_evac_message(using_map.shuttle_docked_message, raw_etd = get_eta()))
 	if(config.announce_shuttle_dock_to_irc)
 		send2mainirc("Evacuation has begun on [station_name()]. It will depart in approximately [estimated_time] minute\s.")
 
@@ -129,9 +135,9 @@ var/datum/evacuation_controller/evacuation_controller
 	state = EVAC_IN_TRANSIT
 
 	if (emergency_evacuation)
-		priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(format_evac_message(using_map.emergency_shuttle_leaving_dock, raw_eta = get_eta()))
 	else
-		priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(format_evac_message(using_map.shuttle_leaving_dock, raw_eta = get_eta()))
 
 	return 1
 
