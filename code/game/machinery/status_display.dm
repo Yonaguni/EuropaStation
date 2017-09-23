@@ -25,7 +25,7 @@ var/list/status_icons_to_colour = list(
 
 	light_power = 10
 	light_range = 1
-	light_color = COLOR_TEAL
+	light_color = "#AAFFFF"
 
 	idle_power_usage = 10
 	var/mode = 1	// 0 = Blank
@@ -87,17 +87,14 @@ var/list/status_icons_to_colour = list(
 
 	remove_display()
 
-	if(mode == STATUS_DISPLAY_BLANK)
-		kill_light()
-	else
-		set_light()
-
 	if(friendc && !ignore_friendc)
+		set_light()
 		set_picture("ai_friend")
 		return 1
 
 	switch(mode)
 		if(STATUS_DISPLAY_BLANK)	//blank
+			kill_light()
 			return 1
 		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
 			if(evacuation_controller.is_prepared())
@@ -115,6 +112,8 @@ var/list/status_icons_to_colour = list(
 				if(length(message2) > CHARS_PER_LINE)
 					message2 = "Error"
 				update_display(message1, message2)
+			else
+				kill_light()
 			return 1
 		if(STATUS_DISPLAY_MESSAGE)	//custom messages
 			var/line1
@@ -182,6 +181,10 @@ var/list/status_icons_to_colour = list(
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
+	if(maptext)
+		set_light()
+	else
+		kill_light()
 
 /obj/machinery/status_display/proc/get_shuttle_timer()
 	var/timeleft = evacuation_controller.get_eta()

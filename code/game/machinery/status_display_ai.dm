@@ -60,6 +60,10 @@ var/list/ai_status_emotions = list(
 	anchored = 1
 	density = 0
 
+	light_power = 10
+	light_range = 1
+	light_color = "#AAFFFF"
+
 	var/mode = 0	// 0 = Blank
 					// 1 = AI emoticon
 					// 2 = Blue screen of death
@@ -83,6 +87,7 @@ var/list/ai_status_emotions = list(
 
 	switch(mode)
 		if(0) //Blank
+			kill_light()
 			overlays.Cut()
 		if(1) // AI emoticon
 			var/datum/ai_emotion/ai_emotion = ai_status_emotions[emotion]
@@ -95,3 +100,4 @@ var/list/ai_status_emotions = list(
 	if(overlays.len)
 		overlays.Cut()
 	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+	set_light()

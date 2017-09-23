@@ -4,6 +4,18 @@
 #define OFFSET_MULTIPLIER_SIZE 32
 #define CORNER_OFFSET_MULTIPLIER_SIZE 16
 
+/atom/proc/show_light_affected_turfs()
+	if(!light_obj)
+		usr << "No light."
+		return
+	for(var/thing in light_obj.affecting_turfs)
+		var/turf/T = thing
+		spawn()
+			var/last_col = T.color
+			T.color = "#FF0000"
+			sleep(20)
+			T.color = last_col
+
 var/light_power_multiplier = 5
 
 // Casts shadows from occluding objects for a given light.
@@ -15,8 +27,6 @@ var/light_power_multiplier = 5
 		return
 
 	light_color = null
-	pixel_x = 0
-	pixel_y = 0
 	temp_appearance = list()
 
 	//cap light range to 5
@@ -45,10 +55,14 @@ var/light_power_multiplier = 5
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
 	else
+
 		pixel_x = pixel_y = -(world.icon_size * light_range)
+
 		switch(light_range)
-			if(1)
+			if(1) // This would NOT work with shadow casting.
 				icon = 'icons/planar_lighting/light_range_1.dmi'
+				pixel_x += holder.pixel_x
+				pixel_y += holder.pixel_y
 			if(2)
 				icon = 'icons/planar_lighting/light_range_2.dmi'
 			if(3)
@@ -81,9 +95,6 @@ var/light_power_multiplier = 5
 
 	//no shadows
 	if(light_range < 2 || light_type == LIGHT_DIRECTIONAL)
-		if(light_type != LIGHT_DIRECTIONAL)
-			pixel_x = holder.pixel_x
-			pixel_y = holder.pixel_y
 		overlays = temp_appearance
 		temp_appearance = null
 		return
