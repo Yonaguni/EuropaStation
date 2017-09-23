@@ -38,6 +38,7 @@
 	company_short = "PM"
 	commanding_role = "Director"
 	default_arrival_message = "has arrived at the facility"
+	captain_arrival_sound = null
 
 /datum/map/yonaguni/perform_map_generation()
 	map_submerged = TRUE

@@ -465,8 +465,6 @@ var/global/datum/controller/occupations/job_master
 			if(rank == "Computer")
 				return H
 			if(rank == using_map.commanding_role)
-				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 				using_map.handle_captain_join(H)
 
 			//Deferred item spawning.
@@ -607,7 +605,7 @@ var/global/datum/controller/occupations/job_master
 			else
 				if(H)
 					H.forceMove(pick(spawnpos.turfs))
-				return spawnpos.msg
+				return spawnpos.get_message()
 		else
 			if(return_location)
 				return pick(latejoin)
