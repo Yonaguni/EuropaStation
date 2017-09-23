@@ -42,14 +42,14 @@
 
 /area/maintenance/europa
 	icon = 'icons/areas_europa.dmi'
-	base_turf = /turf/simulated
+	base_turf = /turf/simulated/floor
 
 /area/maintenance/europa/substation
 	name = "Power Station"
 
 /area/hallway/europa
 	icon = 'icons/areas_europa.dmi'
-	base_turf = /turf/simulated
+	base_turf = /turf/simulated/floor
 
 // Non-affiliated/temp.
 /area/europa/vault
