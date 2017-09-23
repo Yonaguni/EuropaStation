@@ -24,7 +24,8 @@
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)
-	if(!material)
+
+	if(!istype(material))
 		qdel(src)
 		return
 
