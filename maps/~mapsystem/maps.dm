@@ -97,6 +97,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/company_name  = "Free Traders"
 	var/company_short = "FTU"
 	var/commanding_role = "Commanding Officer"
+	var/captain_arrival_sound = 'sound/misc/boatswain.ogg'
 
 	var/use_overmap
 	var/overmap_size = 40
@@ -138,7 +139,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	return using_map && (layer in using_map.shallow_levels)
 
 /datum/map/proc/handle_captain_join(var/mob/living/carbon/human/captain)
-	return
+	var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP && captain_arrival_sound)? null : sound(captain_arrival_sound, volume=20)
+	captain_announcement.Announce("All hands, [commanding_role] [captain.real_name] on deck!", new_sound=announce_sound)
 
 /datum/map/proc/get_exterior_air()
 	var/datum/gas_mixture/GM = new
