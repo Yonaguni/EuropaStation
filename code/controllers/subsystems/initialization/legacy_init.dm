@@ -25,6 +25,8 @@
 
 	transfer_controller = new
 
+	..()
+
 /datum/controller/subsystem/legacy_init/proc/setup_objects()
 	// Do these first since character setup will rely on them
 	// Set up antagonists.
