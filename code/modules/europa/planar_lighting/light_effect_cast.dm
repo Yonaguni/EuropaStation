@@ -4,18 +4,6 @@
 #define OFFSET_MULTIPLIER_SIZE 32
 #define CORNER_OFFSET_MULTIPLIER_SIZE 16
 
-/atom/proc/show_light_affected_turfs()
-	if(!light_obj)
-		usr << "No light."
-		return
-	for(var/thing in light_obj.affecting_turfs)
-		var/turf/T = thing
-		spawn()
-			var/last_col = T.color
-			T.color = "#FF0000"
-			sleep(20)
-			T.color = last_col
-
 var/light_power_multiplier = 5
 
 // Casts shadows from occluding objects for a given light.
