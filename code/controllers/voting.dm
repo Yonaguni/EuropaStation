@@ -51,8 +51,8 @@ datum/controller/vote
 				voting.Cut()
 
 	proc/autotransfer()
-		initiate_vote("leave_system","the server", 1)
-		log_debug("The server has called a departure vote")
+		initiate_vote("end_round","the server", 1)
+		log_debug("The server has called a roundend vote")
 
 	proc/autogamemode()
 		initiate_vote("gamemode","the server", 1)
@@ -96,7 +96,7 @@ datum/controller/vote
 				else if(mode == "gamemode")
 					if(master_mode in choices)
 						choices[master_mode] += non_voters
-				else if(mode == "leave_system")
+				else if(mode == "end_round")
 					var/factor = 0.5
 					switch(world.time / (10 * 60)) // minutes
 						if(0 to 60)
@@ -205,7 +205,7 @@ datum/controller/vote
 							master_mode = .[1]
 					secondary_mode = .[2]
 					tertiary_mode = .[3]
-				if("leave_system")
+				if("end_round")
 					if(.[1] == "Depart System")
 						init_shift_change(null, 1)
 					else if(.[1] == "Add Antagonist")
@@ -310,7 +310,7 @@ datum/controller/vote
 						gamemode_names[M.config_tag] = capitalize(M.name) //It's ugly to put this here but it works
 						additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 					gamemode_names["secret"] = "Secret"
-				if("leave_system")
+				if("end_round")
 					if(check_rights(R_ADMIN|R_MOD, 0))
 						question = "End the shift?"
 						choices.Add("Depart System", "Continue The Round")
@@ -440,7 +440,7 @@ datum/controller/vote
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
 			if(trialmin || config.allow_vote_restart)
-				. += "<a href='?src=\ref[src];vote=leave_system'>Depart System</a>"
+				. += "<a href='?src=\ref[src];vote=end_round'>End Round</a>"
 			else
 				. += "<font color='grey'>Depart System (Disallowed)</font>"
 			if(trialmin)
@@ -497,9 +497,9 @@ datum/controller/vote
 				if("gamemode")
 					if(config.allow_vote_mode || usr.client.holder)
 						initiate_vote("gamemode",usr.key)
-				if("leave_system")
+				if("end_round")
 					if(config.allow_vote_restart || usr.client.holder)
-						initiate_vote("leave_system",usr.key)
+						initiate_vote("end_round",usr.key)
 				if("add_antagonist")
 					if(config.allow_extra_antags)
 						initiate_vote("add_antagonist",usr.key)
