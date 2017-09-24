@@ -110,10 +110,12 @@ var/list/bike_cache = list()
 			return 0
 		move_delay = land_speed
 
+	/*
 	glide_size = world.icon_size / max(move_delay, world.tick_lag) * world.tick_lag
 	var/mob/rider = load
 	if(istype(rider))
 		rider.glide_size = glide_size
+	*/
 	moved = ..()
 	return moved
 
