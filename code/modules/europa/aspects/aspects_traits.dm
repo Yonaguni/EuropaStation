@@ -118,7 +118,7 @@
 
 /decl/aspect/ninja
 	name = ASPECT_NINJA
-	desc = "You grew up as part of the Spider Clan, learning how to make good use of throwing weapons and stealth."
+	desc = "You grew up as part of a reclusive clan of ninja, learning how to make good use of throwing weapons."
 	aspect_cost = 2
 
 /decl/aspect/ninja/do_post_spawn(var/mob/living/carbon/human/holder)
