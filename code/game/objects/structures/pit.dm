@@ -166,10 +166,8 @@
 
 	var/datum/species/S = all_species["Human"]
 	var/nam = S.get_random_name(pick(MALE,FEMALE))
-	var/cur_year = text2num(time2text(world.timeofday, "YYYY"))+544
-	var/born = cur_year - rand(5,150)
-	var/died = max(cur_year - rand(0,70),born)
-
+	var/born = game_year - rand(5,150)
+	var/died = max(game_year - rand(0,70),born)
 	message = "Here lies [nam], [born] - [died]."
 
 /obj/structure/gravemarker/attackby(obj/item/W, mob/user)
