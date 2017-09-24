@@ -24,11 +24,13 @@
 
 /obj/item/mech_component/examine()
 	. = ..()
-	if(. && usr.has_aspect(ASPECT_EXOSUIT_TECH))
+	if(.)
 		if(ready_to_install())
 			usr << "<span class='notice'>It is ready for installation.</span>"
-		else
+		else if(usr.has_aspect(ASPECT_EXOSUIT_TECH))
 			show_missing_parts(usr)
+		else
+			usr << "<span class='notice'>You suspect it is missing an internal component or two.</span>"
 
 /obj/item/mech_component/set_dir()
 	..(SOUTH)
