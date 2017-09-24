@@ -4,8 +4,8 @@
 	var/obj/structure/heavy_vehicle_frame/frame = new(get_turf(src))
 
 	for(var/hardpoint in hardpoints)
-		var/obj/item/I = hardpoints[hardpoint]
-		I.forceMove(get_turf(src))
+		var/atom/movable/I = hardpoints[hardpoint]
+		if(istype(I)) I.forceMove(get_turf(src))
 	hardpoints.Cut()
 
 	frame.arms = arms
@@ -13,18 +13,18 @@
 	frame.head = head
 	frame.legs = legs
 
-	arms.forceMove(frame)
-	legs.forceMove(frame)
-	body.forceMove(frame)
-	head.forceMove(frame)
+	if(arms) arms.forceMove(frame)
+	if(legs) legs.forceMove(frame)
+	if(body) body.forceMove(frame)
+	if(head) head.forceMove(frame)
 
 	frame.is_wired = 2
 	frame.is_reinforced = 3
 	frame.set_name = name
 	frame.name = "frame of \the [frame.set_name]"
 	frame.update_icon()
-	qdel(src)
 
+	qdel(src)
 
 /mob/living/heavy_vehicle/proc/install_system(var/obj/item/system, var/system_hardpoint, var/mob/user)
 
