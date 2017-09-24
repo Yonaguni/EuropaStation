@@ -5,10 +5,10 @@ var/datum/antagonist/paramount/paramounts
 
 /datum/antagonist/paramount
 	id = MODE_WIZARD
-	role_text = "Paramount Grandmaster"
-	role_text_plural = "Paramount Grandmasters"
+	role_text = "Paramount"
+	role_text_plural = "Paramounts"
 	landmark_id = "paramountstart"
-	welcome_text = "<span class='info'>You are one of the finest minds of Sol, blessed with latent psychic faculties that defy understanding. Using your CE rig, advance your agenda in human space.</span>"
+	welcome_text = "<span class='info'>You are one of the finest minds of Sol, tainted by the Signal and blessed with psychic faculties that defy understanding. Using your CE rig and your twisted knowledge of the Dark Continua, advance your agenda in human space.</span>"
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_RANDSPAWN | ANTAG_VOTABLE | ANTAG_SET_APPEARANCE
 	antaghud_indicator = "hudwizard"
 	initial_spawn_req = 1

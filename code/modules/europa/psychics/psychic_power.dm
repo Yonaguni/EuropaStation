@@ -72,8 +72,8 @@
 			return
 
 	for(var/mob/living/M in viewers(world.view, user)-user)
-		if(M.stat == CONSCIOUS && M.mind && M.mind.check_psychic_faculty(PSYCHIC_FARSENSE, 1) && prob(M.mind.get_psychic_faculty_rank(PSYCHIC_FARSENSE)*20))
-			M << "<span class='warning'>You feel the psi-lattices sing as \the [user] evokes the power of [name]!</span>"
+		if(M.stat == CONSCIOUS && M.mind && M.has_aspect(ASPECT_PSI_ROOT))
+			M << "<span class='warning'>You feel the Bright Continua sing as \the [user] evokes the power of [name]!</span>"
 			M << 'sound/effects/psi/power_evoke.ogg'
 	user << 'sound/effects/psi/power_evoke.ogg'
 	hud_element.update_from_power()
@@ -84,8 +84,8 @@
 		return
 
 	for(var/mob/living/M in viewers(world.view, user)-user)
-		if(M.stat == CONSCIOUS && M.mind && M.mind.check_psychic_faculty(PSYCHIC_FARSENSE, 1) && prob(M.mind.get_psychic_faculty_rank(PSYCHIC_FARSENSE)*20))
-			M << "<span class='notice'>You feel the tension of the psi-lattices ease as \the [user] ceases manifesting the power of [name].</span>"
+		if(M.stat == CONSCIOUS && M.mind && M.has_aspect(ASPECT_PSI_ROOT))
+			M << "<span class='notice'>You feel the Bright Continua recede as \the [user] ceases manifesting the power of [name].</span>"
 			M << 'sound/effects/psi/power_fail.ogg'
 	user << 'sound/effects/psi/power_fail.ogg'
 	for(var/datum/maintained_power/mpower in user.mind.maintaining_powers)

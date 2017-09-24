@@ -1329,7 +1329,6 @@
 #include "code\modules\europa\psychics\psychic_power_maintained.dm"
 #include "code\modules\europa\psychics\faculties\coercion.dm"
 #include "code\modules\europa\psychics\faculties\creativity.dm"
-#include "code\modules\europa\psychics\faculties\farsensing.dm"
 #include "code\modules\europa\psychics\faculties\psychokinesis.dm"
 #include "code\modules\europa\psychics\faculties\redaction.dm"
 #include "code\modules\europa\terminals\_term_program.dm"

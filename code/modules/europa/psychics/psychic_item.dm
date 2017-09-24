@@ -4,6 +4,7 @@
 	icon = 'icons/obj/psychic_powers.dmi'
 	flags = 0
 
+	light_range = 1
 	abstract = 1
 	simulated = 0
 	anchored = 1
@@ -14,12 +15,20 @@
 	var/datum/psychic_power/power
 
 /obj/item/psychic_power/attack_hand(var/mob/user)
-	qdel(src)
+	if(power)
+		var/datum/psychic_power/temp_power = power
+		power = null
+		temp_power.cancelled(owner, src)
 
 /obj/item/psychic_power/attack_self(var/mob/user)
-	qdel(src)
+	if(power)
+		var/datum/psychic_power/temp_power = power
+		power = null
+		temp_power.cancelled(owner, src)
 
 /obj/item/psychic_power/attack(var/mob/living/target, var/mob/living/user)
+	if(!power)
+		return 0
 	if(user.mind)
 		if(user.Adjacent(target) && use_like_weapon)
 			if(power.next_psy > world.time)
@@ -35,10 +44,6 @@
 /obj/item/psychic_power/afterattack(var/atom/movable/target, var/mob/living/user, var/proximity)
 
 	if(!power)
-		qdel(src)
-		return 1
-
-	if(QDELING(src))
 		return 1
 
 	if(power.next_psy > world.time)
@@ -71,24 +76,25 @@
 			user << "<span class='warning'>You cannot use this power at a distance.</span>"
 			return 1
 
-	power.set_next_psy(world.time + power.time_cost)
+	if(power)
+		power.set_next_psy(world.time + power.time_cost)
 	return 1
 
 /obj/item/psychic_power/dropped()
-	. = ..()
-	loc = null
-	if(!QDELETED(src))
-		qdel(src)
+	if(power)
+		var/datum/psychic_power/temp_power = power
+		power = null
+		temp_power.cancelled(owner, src)
 
 /obj/item/psychic_power/forceMove()
 	. = ..()
-	if(loc != owner && !QDELETED(src))
-		loc = null
-		qdel(src)
+	if(loc != owner && power)
+		var/datum/psychic_power/temp_power = power
+		power = null
+		temp_power.cancelled(owner, src)
 
 /obj/item/psychic_power/throw_at()
-	loc = null
-	qdel(src)
+	return
 
 /obj/item/psychic_power/New(var/mob/living/_owner, var/datum/psychic_power/_power)
 	. = ..()
@@ -99,9 +105,7 @@
 	set_light()
 
 /obj/item/psychic_power/Destroy()
-	if(power)
-		power.cancelled(owner, src)
-		power = null
+	power = null
 	owner = null
 	processing_objects -= src
 	. = ..()
@@ -109,7 +113,6 @@
 /obj/item/psychic_power/proc/update_from_power()
 	name = "evoked power ([power.name])"
 	desc = power.description
-	light_range = power.rank+1
 	light_power = power.rank+1
 	light_color = power.associated_faculty.colour
 	color = light_color
@@ -117,12 +120,14 @@
 
 /obj/item/psychic_power/process()
 	if(loc != owner || (owner.r_hand != src && owner.l_hand != src))
-		qdel(src)
+		if(power)
+			var/datum/psychic_power/temp_power = power
+			power = null
+			temp_power.cancelled(owner, src)
 		return 0
 	return 1
 
 /obj/item/psychic_power/spark
-	use_like_weapon = TRUE
 	force = 1
 
 /obj/item/psychic_power/spark/ismultitool()
@@ -134,7 +139,7 @@
 
 /obj/item/psychic_power/kinesis/tinker
 	force = 1
-	var/emulating = "crowbar"
+	var/emulating = "Crowbar"
 
 /obj/item/psychic_power/kinesis/tinker/iscrowbar()
 	return emulating == "Crowbar"
@@ -155,7 +160,6 @@
 /obj/item/psychic_power/kinesis/tinker/attack_self()
 
 	if(!owner || loc != owner || !power)
-		qdel(src)
 		return
 
 	var/choice = input("Select a tool to emulate.","Power") as null|anything in list("Crowbar","Wrench","Screwdriver","Wirecutters","Dismiss Power")
@@ -163,7 +167,6 @@
 		return
 
 	if(!owner || loc != owner || !power)
-		qdel(src)
 		return
 
 	if(choice == "Dismiss Power")
@@ -216,10 +219,9 @@
 
 	var/list/boosted_faculties = list()
 	var/static/list/boostable_faculties = list(
-		"Farsensing" =    PSYCHIC_FARSENSE,
 		"Coercion" =      PSYCHIC_COERCION,
 		"Psychokinesis" = PSYCHIC_PSYCHOKINESIS,
-		"Redaction" =     PSYCHIC_REDACTION,
+		"Biokinesis" =    PSYCHIC_REDACTION,
 		"Creativity" =    PSYCHIC_CREATIVITY
 		)
 

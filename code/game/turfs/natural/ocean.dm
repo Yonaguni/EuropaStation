@@ -24,9 +24,12 @@
 /turf/simulated/ocean/is_plating()
 	return 1
 
+/turf/simulated/ocean/proc/add_decal()
+	return prob(20)
+
 /turf/simulated/ocean/New()
 	..()
-	if(isnull(detail_decal) && prob(20))
+	if(isnull(detail_decal) && add_decal())
 		detail_decal = "asteroid[rand(0,9)]"
 
 /turf/simulated/ocean/update_icon(var/update_neighbors)
@@ -34,3 +37,23 @@
 		..(update_neighbors, list(get_mining_overlay(detail_decal)))
 	else
 		..(update_neighbors)
+
+/turf/simulated/ocean/moving/add_decal()
+	return 0
+
+/turf/simulated/ocean/moving
+	name = "open ocean"
+	desc = "No bottom in sight."
+	icon_state = "moving"
+
+/turf/simulated/ocean/moving/north
+	dir = NORTH
+
+/turf/simulated/ocean/moving/south
+	dir = SOUTH
+
+/turf/simulated/ocean/moving/east
+	dir = EAST
+
+/turf/simulated/ocean/moving/west
+	dir = WEST

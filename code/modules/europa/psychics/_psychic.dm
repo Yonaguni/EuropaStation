@@ -18,5 +18,5 @@ var/list/psychic_ranks_to_strings = list(
 	"Operant",
 	"Masterclass",
 	"Grandmasterclass",
-	"Paramount Grandmasterclass"
+	"Paramount"
 	)
