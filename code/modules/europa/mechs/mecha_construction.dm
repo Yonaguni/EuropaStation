@@ -2,10 +2,8 @@
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	var/obj/structure/heavy_vehicle_frame/frame = new(get_turf(src))
-
 	for(var/hardpoint in hardpoints)
-		var/atom/movable/I = hardpoints[hardpoint]
-		if(istype(I)) I.forceMove(get_turf(src))
+		remove_system(hardpoint, force = 1)
 	hardpoints.Cut()
 
 	frame.arms = arms
@@ -67,9 +65,9 @@
 
 	return 1
 
-/mob/living/heavy_vehicle/proc/remove_system(var/system_hardpoint, var/mob/user)
+/mob/living/heavy_vehicle/proc/remove_system(var/system_hardpoint, var/mob/user, var/force)
 
-	if(hardpoints_locked || !hardpoints[system_hardpoint])
+	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint])
 		return 0
 
 	var/obj/item/system = hardpoints[system_hardpoint]
