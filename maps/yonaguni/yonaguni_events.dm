@@ -12,7 +12,7 @@
 		if(EVENT_LEVEL_MAJOR)
 			command_announcement.Announce("[station_name()] has cleared the debris storm.", "[station_name()] Sensor Array")
 		else
-			command_announcement.Announce("[station_name()] has cleared the debris shower", "[station_name()] Sensor Array")
+			command_announcement.Announce("[station_name()] has cleared the debris shower.", "[station_name()] Sensor Array")
 
 /datum/map/yonaguni/dust_detected_announcement(var/event_severity = EVENT_LEVEL_MUNDANE)
 	command_announcement.Announce("Heavy shower of high-velocity particulate detected en route to [station_name()]. Please secure or avoid unshielded windows.", "Radar Array")
