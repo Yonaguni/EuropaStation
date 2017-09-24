@@ -29,25 +29,23 @@
 
 	if(!wet)
 		wet = wet_val
+		if(wet_overlay)
+			overlays -= wet_overlay
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
 	if(unwet_task)
-		unwet_task.trigger_task_in(8 SECONDS)
+		unwet_task.trigger_task_in(15 SECONDS, /turf/simulated/proc/task_unwet_floor)
 	else
-		unwet_task = schedule_task_in(8 SECONDS)
-		task_triggered_event.register(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
+		unwet_task = schedule_task_with_source_in(15 SECONDS, src, /turf/simulated/proc/task_unwet_floor)
 
-/turf/simulated/proc/task_unwet_floor(var/triggered_task, var/check_very_wet = TRUE)
-	if(triggered_task == unwet_task)
-		task_triggered_event.unregister(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
-		unwet_task = null
-		unwet_floor(check_very_wet)
+/turf/simulated/proc/task_unwet_floor()
+	unwet_task = null
+	unwet_floor(TRUE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
 	if(check_very_wet && wet >= 2)
 		return
-
 	wet = 0
 	if(wet_overlay)
 		overlays -= wet_overlay

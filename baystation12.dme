@@ -235,7 +235,6 @@
 #include "code\datums\observation\logged_in.dm"
 #include "code\datums\observation\moved.dm"
 #include "code\datums\observation\observation.dm"
-#include "code\datums\observation\task_triggered.dm"
 #include "code\datums\observation\unequipped.dm"
 #include "code\datums\observation\~cleanup.dm"
 #include "code\datums\outfits\_defines.dm"
