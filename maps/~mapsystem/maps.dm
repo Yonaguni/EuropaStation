@@ -165,7 +165,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			else
 				return "<font color='green'><b>You managed to survive the events on [station_name()] as [player.real_name].</b></font>"
 		else if(isAdminLevel(playerTurf.z))
-			return "<font color='green'><b>You successfully left the system after events on [station_name()] as [player.real_name].</b></font>"
+			return "<font color='green'><b>You escaped alive from [station_name()] as [player.real_name].</b></font>"
 		else if(issilicon(player))
 			return "<font color='green'><b>You remained operational after the events on [station_name()] as [player.real_name].</b></font>"
 		else
