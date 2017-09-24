@@ -160,10 +160,12 @@
 		var/atom/A = src.loc
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 
+		/*
 		if(self_move)
 			glide_size = world.icon_size / max(movement_delay(), world.tick_lag) * world.tick_lag
 		else
 			glide_size = 0
+		*/
 
 		. = ..()
 		if(direct != olddir)

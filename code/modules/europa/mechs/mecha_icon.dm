@@ -104,5 +104,5 @@ proc/get_mech_icon(var/obj/item/arms, var/obj/item/legs, var/obj/item/head, var/
 	draw_pilot = image(null)
 	draw_pilot.appearance = pilot
 	draw_pilot.layer = FLOAT_LAYER
-	draw_pilot.pixel_x = body.pilot_offset_x
-	draw_pilot.pixel_y = body.pilot_offset_y
+	draw_pilot.pixel_x += body.pilot_offset_x
+	draw_pilot.pixel_y += body.pilot_offset_y

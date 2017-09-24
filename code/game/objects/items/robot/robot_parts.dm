@@ -6,13 +6,11 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	dir = SOUTH
-	matter = list("steel" = 15000, "glass" = 5000, "plastic" = 1500, "osmium" = 500)
+	matter = list("steel" = 5000, "glass" = 1000, "plastic" = 1000, "osmium" = 100)
 
 	var/list/part = null // Order of args is important for installing robolimbs.
 	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
 	var/model_info
-
-
 
 /obj/item/robot_parts/set_dir()
 	return
