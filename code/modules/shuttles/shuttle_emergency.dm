@@ -29,15 +29,14 @@
 /datum/shuttle/autodock/ferry/emergency/long_jump(var/destination, var/interim, var/travel_time, var/direction)
 	..(destination, interim, emergency_controller.get_long_jump_time(), direction)
 
-/datum/shuttle/autodock/ferry/emergency/shuttle_moved()
-	if(next_location != waypoint_station)
+/datum/shuttle/autodock/ferry/emergency/shuttle_moved(var/obj/effect/shuttle_landmark/destination, var/list/turf_translation)
+	if(current_location == waypoint_station && destination == waypoint_transition)
 		emergency_controller.shuttle_leaving()
 		if(emergency_controller.emergency_evacuation)
 			priority_announcement.Announce(format_evac_message(using_map.emergency_shuttle_leaving_dock, raw_eta = emergency_controller.get_eta()))
 		else
 			priority_announcement.Announce(format_evac_message(using_map.shuttle_leaving_dock, raw_eta = emergency_controller.get_eta()))
-
-	else if(next_location == waypoint_offsite && emergency_controller.has_evacuated())
+	else if(destination == waypoint_offsite && emergency_controller.has_evacuated())
 		emergency_controller.shuttle_evacuated()
 	..()
 
