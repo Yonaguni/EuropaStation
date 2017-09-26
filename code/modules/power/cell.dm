@@ -55,6 +55,9 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 		if(overlay_state)
 			overlays += image('icons/obj/power.dmi', overlay_state)
 
+/obj/item/cell/get_cell()
+	return src
+
 /obj/item/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
 

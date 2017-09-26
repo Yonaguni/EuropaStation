@@ -34,6 +34,9 @@
 	update_icon()
 	return
 
+/obj/item/melee/baton/get_cell()
+	return bcell
+
 /obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
 	if(bcell)
 		if(bcell.checked_use(chrgdeductamt))

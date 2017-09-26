@@ -11,6 +11,7 @@
 	alpha = 50
 	layer = 4
 	light_color = COLOR_BLUE
+	simulated = 0
 
 	var/size = 1
 	var/energy = 0

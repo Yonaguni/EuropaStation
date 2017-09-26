@@ -18,8 +18,10 @@ obj/machinery/recharger
 obj/machinery/recharger/attackby(var/obj/item/G, var/mob/user)
 
 	var/allowed = 0
-	for (var/allowed_type in allowed_devices)
-		if (istype(G, allowed_type)) allowed = 1
+	for(var/allowed_type in allowed_devices)
+		if(istype(G, allowed_type))
+			allowed = 1
+			break
 
 	if(allowed)
 		if(charging)
@@ -35,7 +37,7 @@ obj/machinery/recharger/attackby(var/obj/item/G, var/mob/user)
 				return
 			var/obj/item/gun_component/chamber/laser/L = C.chamber
 			if(istype(L) && L.self_recharge_time)
-				user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
+				user << "<span class='notice'>Your gun's recharge port was removed to make room for an integrated microreactor.</span>"
 				return
 		user.drop_item()
 		G.loc = src
@@ -69,48 +71,18 @@ obj/machinery/recharger/process()
 		update_use_power(1)
 		icon_state = icon_state_idle
 	else
-
-		if(istype(charging, /obj/item/melee/baton))
-			var/obj/item/melee/baton/B = charging
-			if(B.bcell)
-				if(!B.bcell.fully_charged())
-					icon_state = icon_state_charging
-					B.bcell.give(active_power_usage*CELLRATE)
-					update_use_power(2)
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_idle
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/cell))
-			var/obj/item/cell/C = charging
-			if(!C.fully_charged())
+		var/obj/item/cell/cell = charging.get_cell()
+		if(cell)
+			if(!cell.fully_charged())
 				icon_state = icon_state_charging
-				C.give(active_power_usage*CELLRATE)
+				cell.give(active_power_usage*CELLRATE)
 				update_use_power(2)
 			else
 				icon_state = icon_state_charged
 				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/gun/composite))
-			var/obj/item/gun/composite/C = charging
-			if(istype(C.chamber, /obj/item/gun_component/chamber/laser))
-				var/obj/item/gun_component/chamber/laser/hcell = C.chamber
-				if(hcell && hcell.power_supply && !hcell.power_supply.fully_charged())
-					hcell.power_supply.give(active_power_usage*CELLRATE)
-					icon_state = icon_state_charging
-					update_use_power(2)
-					hcell.update_ammo_overlay()
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
+		else
+			icon_state = icon_state_idle
+			update_use_power(1)
 
 obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)

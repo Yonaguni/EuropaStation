@@ -7,6 +7,10 @@
 	var/cell_type
 	var/obj/item/cell/power_supply
 
+
+/obj/item/gun_component/chamber/laser/get_cell()
+	return power_supply
+
 /obj/item/gun_component/chamber/laser/update_ammo_overlay()
 	if(ammo_indicator_state)
 		if(!power_supply)
