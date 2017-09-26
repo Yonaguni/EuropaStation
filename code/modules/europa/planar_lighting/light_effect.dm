@@ -109,6 +109,3 @@
 		if(WEST)
 			pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size
 			pixel_y = -(world.icon_size * light_range) + (world.icon_size / 2)
-
-/obj/effect/light/proc/light_off()
-	alpha = 0
