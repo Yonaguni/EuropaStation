@@ -27,7 +27,7 @@ var/const/tk_maxrange = 15
 
 /obj/attack_tk(mob/user)
 	if(user.stat) return
-	if(anchored)
+	if(anchored || !simulated)
 		..()
 		return
 
