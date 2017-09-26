@@ -6,15 +6,22 @@
 		remove_system(hardpoint, force = 1)
 	hardpoints.Cut()
 
-	frame.arms = arms
-	frame.body = body
-	frame.head = head
-	frame.legs = legs
-
-	if(arms) arms.forceMove(frame)
-	if(legs) legs.forceMove(frame)
-	if(body) body.forceMove(frame)
-	if(head) head.forceMove(frame)
+	if(arms)
+		frame.arms = arms
+		arms.forceMove(frame)
+		arms = null
+	if(legs)
+		frame.legs = legs
+		legs.forceMove(frame)
+		legs = null
+	if(body)
+		frame.body = body
+		body.forceMove(frame)
+		body = null
+	if(head)
+		frame.head = head
+		head.forceMove(frame)
+		head = null
 
 	frame.is_wired = 2
 	frame.is_reinforced = 3
