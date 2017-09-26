@@ -69,6 +69,9 @@
 		qdel(I)
 	return ..()
 
+/obj/item/gun/composite/get_cell()
+	return chamber ? chamber.get_cell() : ..()
+
 /obj/item/gun/composite/proc/update_from_components()
 
 	// Should we actually exist?

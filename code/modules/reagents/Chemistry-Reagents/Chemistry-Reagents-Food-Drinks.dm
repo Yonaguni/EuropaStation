@@ -27,9 +27,10 @@
 	var/totalFlavor = 0
 	for(var/taste in data)
 		totalFlavor += data[taste]
-	for(var/taste in data)
-		if(data[taste]/totalFlavor < 0.1)
-			data -= taste
+	if(totalFlavor)
+		for(var/taste in data)
+			if(data[taste]/totalFlavor < 0.1)
+				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!injectable)

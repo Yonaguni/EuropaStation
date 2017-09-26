@@ -103,8 +103,8 @@
 	..()
 	reagents.add_reagent("cleaner", volume)
 
-/obj/item/reagent_containers/spray/sterilizine
-	name = "antiseptic"
+/obj/item/reagent_containers/spray/antiseptic
+	name = "antiseptic bottle"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
 /obj/item/reagent_containers/spray/antiseptic/New()
