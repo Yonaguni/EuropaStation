@@ -7,7 +7,7 @@ obj/machinery/recharger
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 4
-	active_power_usage = 15000	//15 kW
+	active_power_usage = 10 KILOWATTS
 	var/obj/item/charging = null
 	var/list/allowed_devices = list(/obj/item/gun/composite, /obj/item/melee/baton, /obj/item/cell)
 	var/icon_state_charged = "recharger2"
@@ -75,7 +75,7 @@ obj/machinery/recharger/process()
 		if(cell)
 			if(!cell.fully_charged())
 				icon_state = icon_state_charging
-				cell.give(active_power_usage*CELLRATE)
+				cell.give(active_power_usage / 100)
 				update_use_power(2)
 			else
 				icon_state = icon_state_charged
