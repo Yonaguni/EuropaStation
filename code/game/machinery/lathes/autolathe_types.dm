@@ -42,3 +42,11 @@
 	..()
 	for(var/mat_type in storage_capacity)
 		storage_capacity[mat_type] = storage_capacity[mat_type] * 10
+
+/obj/machinery/autolathe/ammo
+	name = "ammunition press"
+	base_icon = "ammo"
+	icon_state = "ammo"
+	lathe_type = LATHE_TYPE_AMMUNITION
+	stored_material =  list("steel" = 0, "osmium" = 0, "plastic" = 0)
+	storage_capacity = list("steel" = 0, "osmium" = 0, "plastic" = 0)

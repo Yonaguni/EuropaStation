@@ -57,6 +57,8 @@
 			machine_recipes = autolathe_advanced
 		if(LATHE_TYPE_HEAVY)
 			machine_recipes = autolathe_heavy
+		if(LATHE_TYPE_AMMUNITION)
+			machine_recipes = autolathe_ammo
 		else
 			machine_recipes = autolathe_generic
 
@@ -234,7 +236,13 @@
 
 	if(href_list["change_category"])
 
-		var/choice = input("Which category do you wish to display?") as null|anything in autolathe_categories+"All"
+		var/list/selection_category = list("All" = 1)
+		for(var/datum/autolathe/recipe/R in machine_recipes)
+			if(R.hidden && !hacked)
+				continue
+			selection_category[R.category] = 1
+
+		var/choice = input("Which category do you wish to display?") as null|anything in selection_category
 		if(!choice) return
 		show_category = choice
 

@@ -6,7 +6,7 @@
 	icon = 'icons/obj/gun_components/ammo.dmi'
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list("steel" = 500, "plastic" = 100)
 	throwforce = 5
 	w_class = 2
 	throw_speed = 4
@@ -63,6 +63,18 @@
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
 	user << "<span class='notice'>There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left.</span>"
+
+// Empty mags.
+/obj/item/ammo_magazine/assault/empty
+	initial_ammo = 0
+/obj/item/ammo_magazine/pistol/empty
+	initial_ammo = 0
+/obj/item/ammo_magazine/submachine/empty
+	initial_ammo = 0
+/obj/item/ammo_magazine/autocannon/empty
+	initial_ammo = 0
+/obj/item/ammo_magazine/speedloader/empty
+	initial_ammo = 0
 
 // Predefined
 /obj/item/ammo_magazine/assault

@@ -111,11 +111,11 @@ mob/living/simple_animal/dog
 
 	if(prob(1))
 		if(gender == FEMALE) // I swear there was a gender datum in the code.
-			visible_emote(pick("dances around","chases her tail"))
+			visible_emote(pick("dances around.","chases her tail."))
 		else if(gender == MALE)
-			visible_emote(pick("dances around","chases his tail"))
+			visible_emote(pick("dances around.","chases his tail."))
 		else
-			visible_emote(pick("dances around","chases their tail"))
+			visible_emote(pick("dances around.","chases their tail."))
 		dance()
 
 /obj/item/reagent_containers/food/snacks/meat/dog

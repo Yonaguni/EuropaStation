@@ -6,6 +6,7 @@ var/list/autolathe_robotics = list()
 var/list/autolathe_circuits = list()
 var/list/autolathe_advanced = list()
 var/list/autolathe_heavy =    list()
+var/list/autolathe_ammo =     list()
 
 /proc/populate_lathe_recipes()
 
@@ -29,6 +30,8 @@ var/list/autolathe_heavy =    list()
 				autolathe_advanced += recipe
 			if(LATHE_TYPE_HEAVY)
 				autolathe_heavy += recipe
+			if(LATHE_TYPE_AMMUNITION)
+				autolathe_ammo += recipe
 			else
 				autolathe_generic += recipe
 
@@ -286,7 +289,7 @@ var/list/autolathe_heavy =    list()
 /datum/autolathe/recipe/syringegun_ammo
 	name = "syringe gun cartridge"
 	path = /obj/item/syringe_cartridge
-	category = "Arms and Ammunition"
+	category = "Arms"
 
 /datum/autolathe/recipe/consolescreen
 	name = "console screen"
@@ -347,19 +350,13 @@ var/list/autolathe_heavy =    list()
 	name = "flamethrower"
 	path = /obj/item/flamethrower/full
 	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/shotgun
-	name = "ammunition (slug, shotgun)"
-	path = /obj/item/ammo_casing/shotgun
-	hidden = 1
-	category = "Arms and Ammunition"
+	category = "Arms"
 
 /datum/autolathe/recipe/tacknife
 	name = "tactical knife"
 	path = /obj/item/material/hatchet/tacknife
 	hidden = 1
-	category = "Arms and Ammunition"
+	category = "Arms"
 
 /datum/autolathe/recipe/rcd
 	name = "rapid construction device"
@@ -390,3 +387,25 @@ var/list/autolathe_heavy =    list()
 	path = /obj/item/handcuffs
 	hidden = 1
 	category = "General"
+
+/datum/autolathe/recipe/magazine
+	name = "empty magazine (assault rifle)"
+	path = /obj/item/ammo_magazine/assault/empty
+	category = "Ammunition"
+
+/datum/autolathe/recipe/magazine/pistol
+	name = "empty magazine (pistol)"
+	path = /obj/item/ammo_magazine/pistol/empty
+
+/datum/autolathe/recipe/magazine/smg
+	name = "empty magazine (submachine gun)"
+	path = /obj/item/ammo_magazine/submachine/empty
+
+/datum/autolathe/recipe/magazine/speedloader
+	name = "empty speedloader (pistol)"
+	path = /obj/item/ammo_magazine/speedloader/empty
+
+/datum/autolathe/recipe/magazine/autocannon
+	name = "ammunition belt (autocannon)"
+	path = /obj/item/ammo_magazine/autocannon/empty
+	hidden = 1
