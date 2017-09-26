@@ -54,7 +54,7 @@
 	name = "ammunition (.305, rifle)"
 	path = /obj/item/ammo_casing/rifle_large
 
-/datum/autolathe/recipe/ammo/rifle/large
+/datum/autolathe/recipe/ammo/rifle/sniper
 	name = "ammunition (.50 BMG, rifle)"
 	path = /obj/item/ammo_casing/sniper
 	hidden = 1
