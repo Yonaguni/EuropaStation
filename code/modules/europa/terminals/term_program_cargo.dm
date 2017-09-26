@@ -6,7 +6,6 @@
 	name = "supply pod control module"
 	var/obj/machinery/computer/supply/owner_console
 	var/screen = SCREEN_MAIN
-	var/screen_index = 1
 	var/list/category_text
 	var/category_current
 	var/decl/hierarchy/supply_pack/show_pack_info
@@ -20,28 +19,6 @@
 	if(screen != _screen)
 		screen = _screen
 		screen_index = 1
-
-/datum/console_program/supply/proc/add_page_header(var/item_list_size, var/items_per_page)
-	var/last_page = ceil(item_list_size/items_per_page)
-	if(screen_index > last_page)
-		screen_index = last_page
-	else if(screen_index < 1)
-		screen_index = 1
-	var/page_header = " Page "
-	var/page_num_len = length(num2text(screen_index)) + length(num2text(last_page))
-	while(length(page_header) < 53 - page_num_len)
-		page_header = "=[page_header]"
-	if(screen_index == 1)
-		if(screen_index == last_page)
-			html += "[page_header] [screen_index]/[last_page] ==="
-		else
-			html += "[page_header] [screen_index]/<a href='?src=\ref[owner];nextpage=1]'>[last_page]</a> ==="
-	else if(screen_index == last_page)
-		html += "[page_header] <a href='?src=\ref[owner];lastpage=1]'>[screen_index]</a>/[last_page] ==="
-	else
-		html += "[page_header] <a href='?src=\ref[owner];lastpage=1]'>[screen_index]</a>/<a href='?src=\ref[owner];nextpage=1]'>[last_page]</a> ==="
-	html += " "
-
 
 /datum/console_program/supply/UpdateContents(var/silent = FALSE)
 	html.Cut()

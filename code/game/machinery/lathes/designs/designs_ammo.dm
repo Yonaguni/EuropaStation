@@ -4,6 +4,20 @@
 	category = "Shotgun Ammunition"
 	lathe_type = LATHE_TYPE_AMMUNITION
 
+/datum/autolathe/recipe/ammo/sheet
+	name = "steel sheets"
+	path = /obj/item/stack/material/steel
+	category = "General"
+	is_stack = 1
+
+/datum/autolathe/recipe/ammo/sheet/plastic
+	name = "plastic sheets"
+	path = /obj/item/stack/material/plastic
+
+/datum/autolathe/recipe/ammo/sheet/osmium
+	name = "osmium ingots"
+	path = /obj/item/stack/material/osmium
+
 /datum/autolathe/recipe/ammo/beanbag
 	name = "ammunition (beanbag, shotgun)"
 	path = /obj/item/ammo_casing/shotgun/beanbag

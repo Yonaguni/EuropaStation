@@ -1335,6 +1335,7 @@
 #include "code\modules\europa\terminals\term_console.dm"
 #include "code\modules\europa\terminals\term_program.dm"
 #include "code\modules\europa\terminals\term_program_cargo.dm"
+#include "code\modules\europa\terminals\term_program_lathe.dm"
 #include "code\modules\europa\terminals\term_program_shuttles.dm"
 #include "code\modules\europa\terminals\term_program_various.dm"
 #include "code\modules\europa\terminals\~term.dm"

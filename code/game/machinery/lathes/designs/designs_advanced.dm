@@ -5,7 +5,7 @@
 	lathe_type = LATHE_TYPE_ADVANCED
 
 /datum/autolathe/recipe/advanced/pai
-	name = "personal artificial intelligence card"
+	name = "personal AI card"
 	path = /obj/item/paicard
 
 /datum/autolathe/recipe/advanced/smartcard

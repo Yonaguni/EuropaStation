@@ -1,5 +1,5 @@
 /datum/autolathe/recipe/robotics
-	name = "robotic chassis"
+	name = "chassis"
 	path = /obj/item/robot_parts/robot_suit
 	category = "Robot Parts"
 	lathe_type = LATHE_TYPE_ROBOTICS
@@ -10,27 +10,27 @@
 	is_stack = 1
 
 /datum/autolathe/recipe/robotics/arm
-	name = "robotic left arm"
+	name = "left arm"
 	path = /obj/item/robot_parts/l_arm
 
 /datum/autolathe/recipe/robotics/arm/right
-	name = "robotic right arm"
+	name = "right arm"
 	path = /obj/item/robot_parts/r_arm
 
 /datum/autolathe/recipe/robotics/leg
-	name = "robotic left leg"
+	name = "left leg"
 	path = /obj/item/robot_parts/l_leg
 
 /datum/autolathe/recipe/robotics/leg/right
-	name = "robotic right leg"
+	name = "right leg"
 	path = /obj/item/robot_parts/r_leg
 
 /datum/autolathe/recipe/robotics/chest
-	name = "robotic chest"
+	name = "chest"
 	path = /obj/item/robot_parts/chest
 
 /datum/autolathe/recipe/robotics/head
-	name = "robotic head"
+	name = "head"
 	path = /obj/item/robot_parts/head
 
 /datum/autolathe/recipe/robotics/internal
@@ -47,7 +47,7 @@
 	path = /obj/item/robot_parts/robot_component/radio
 
 /datum/autolathe/recipe/robotics/internal/bcomms
-	name = "binary communication device"
+	name = "binary communicator"
 	path = /obj/item/robot_parts/robot_component/binary_communication_device
 
 /datum/autolathe/recipe/robotics/internal/camera
