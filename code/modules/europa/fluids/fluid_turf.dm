@@ -86,3 +86,14 @@
 				qdel(F)
 			for(var/obj/effect/flood/F in contents)
 				qdel(F)
+
+/turf/proc/show_bubbles()
+	set waitfor = 0
+	if(flooded)
+		var/obj/effect/flood/Fl = locate() in src
+		if(istype(Fl))
+			flick("ocean-bubbles", Fl)
+		return
+	var/obj/effect/fluid/F = locate() in src
+	if(istype(F))
+		flick("bubbles",F)
