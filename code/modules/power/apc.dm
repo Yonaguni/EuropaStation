@@ -180,10 +180,11 @@
 		init_round_start()
 	else
 		area = get_area(src)
+		if(area.apc) world.log << ("TESTING: multiple APCs in area [area.name] ([x],[y],[z]).")
 		area.apc = src
+		name = "\improper [area.name] APC"
 		opened = 1
 		operating = 0
-		name = "\improper [area.name] APC"
 		stat |= MAINT
 		src.update_icon()
 
@@ -195,11 +196,12 @@
 
 /obj/machinery/power/apc/Destroy()
 	src.update()
-	area.apc = null
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
+	if(area.apc == src)
+		area.apc = null
+		area.power_light = 0
+		area.power_equip = 0
+		area.power_environ = 0
+		area.power_change()
 	qdel(wires)
 	wires = null
 	qdel(terminal)

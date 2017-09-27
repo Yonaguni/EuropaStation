@@ -45,6 +45,8 @@
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 
+	matter = list("steel" = 100, "glass" = 600, "uranium" = 100)
+
 /obj/item/clothing/glasses/meson/New()
 	..()
 	overlay = global_hud.meson

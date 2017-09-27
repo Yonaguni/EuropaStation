@@ -2,6 +2,7 @@
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags = 0 //doesn't protect eyes because it's a monocle, duh
+	matter = list("steel" = 100, "glass" = 600, "gold" = 100)
 
 	var/list/icon/current = list() //the current hud icons
 

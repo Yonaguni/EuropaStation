@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = 1
-	matter = list("steel" = 1000)
+	matter = list("steel" = 100)
 
 	var/leaves_residue = 1
 	var/caliber	                        // Which kind of guns it can be loaded into
@@ -40,13 +40,16 @@
 	icon_state = "rocket"
 	spent_icon = "rocket-spent"
 	projectile_type = /obj/item/projectile/bullet/gyro
+	matter = list("steel" = 500)
 
 /obj/item/ammo_casing/grenade
 	caliber = CALIBER_GRENADE
 	icon_state = "rocket"
 	projectile_type = /obj/item/projectile/bullet/gyro
+	matter = list("steel" = 500)
 
 /obj/item/ammo_casing/rocket
 	caliber = CALIBER_ROCKET
 	icon_state = "rocket"
 	projectile_type = /obj/item/projectile/bullet/gyro
+	matter = list("steel" = 500)

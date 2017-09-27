@@ -9,6 +9,8 @@
 	active_power_usage = 2000
 	icon = 'icons/obj/machines/autolathes.dmi'
 
+	var/datum/console_program/lathe/control_system = /datum/console_program/lathe
+
 	var/base_icon = "autolathe"
 	var/lathe_type = LATHE_TYPE_GENERIC
 	var/list/machine_recipes
@@ -31,6 +33,9 @@
 
 	..()
 	wires = new(src)
+	if(ispath(control_system))
+		control_system = new control_system(src)
+
 	//Create parts for lathe.
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/autolathe(src)
@@ -57,80 +62,32 @@
 			machine_recipes = autolathe_advanced
 		if(LATHE_TYPE_HEAVY)
 			machine_recipes = autolathe_heavy
+		if(LATHE_TYPE_AMMUNITION)
+			machine_recipes = autolathe_ammo
 		else
 			machine_recipes = autolathe_generic
 
-/obj/machinery/autolathe/interact(var/mob/user)
+/obj/machinery/autolathe/attack_ai(var/mob/user)
+	return attack_hand(user)
 
-	update_recipe_list()
+/obj/machinery/autolathe/attack_hand(var/mob/user)
+	interact(user)
 
-	if(..() || (disabled && !panel_open))
-		user << "<span class='danger'>\The [src] is disabled!</span>"
-		return
+/obj/machinery/autolathe/interact(user)
 
 	if(shocked)
 		shock(user, 50)
+		return
 
-	var/dat = "<center><h1>[capitalize(src.name)] Control Panel</h1><hr/>"
+	if(!istype(user, /mob/living/silicon))
+		playsound(loc, 'sound/effects/keyboard.ogg', 50)
 
-	if(!disabled)
-		dat += "<table width = '100%'>"
-		var/material_top = "<tr>"
-		var/material_bottom = "<tr>"
+	update_recipe_list()
+	control_system.Run(user)
 
-		for(var/material in stored_material)
-			material_top += "<td width = '25%' align = center><b>[material]</b></td>"
-			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
-
-		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
-		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a>.</h3></center><table width = '100%'>"
-
-		var/index = 0
-		for(var/datum/autolathe/recipe/R in machine_recipes)
-			index++
-			if(R.hidden && !hacked || (show_category != "All" && show_category != R.category))
-				continue
-			var/can_make = 1
-			var/material_string = ""
-			var/multiplier_string = ""
-			var/max_sheets
-			var/comma
-			if(!R.resources || !R.resources.len)
-				material_string = "No resources required.</td>"
-			else
-				//Make sure it's buildable and list requires resources.
-				for(var/material in R.resources)
-					var/sheets = round(stored_material[material]/round(R.resources[material]*mat_efficiency))
-					if(isnull(max_sheets) || max_sheets > sheets)
-						max_sheets = sheets
-					if(!isnull(stored_material[material]) && stored_material[material] < round(R.resources[material]*mat_efficiency))
-						can_make = 0
-					if(!comma)
-						comma = 1
-					else
-						material_string += ", "
-					material_string += "[round(R.resources[material] * mat_efficiency)] [material]"
-				material_string += ".<br></td>"
-				//Build list of multipliers for sheets.
-				if(R.is_stack)
-					if(max_sheets && max_sheets > 0)
-						multiplier_string  += "<br>"
-						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
-							multiplier_string  += "<a href='?src=\ref[src];make=[index];multiplier=[i]'>\[x[i]\]</a>"
-						multiplier_string += "<a href='?src=\ref[src];make=[index];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
-
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=[index];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string]</td><td align = right>[material_string]</tr>"
-
-		dat += "</table><hr>"
 	//Hacking.
 	if(panel_open)
-		dat += "<h2>Maintenance Panel</h2>"
-		dat += wires.GetInteractWindow()
-
-		dat += "<hr>"
-
-	user << browse(dat, "window=[base_icon]")
-	onclose(user, "[base_icon]")
+		user << browse("<h2>Maintenance Panel</h2> [wires.GetInteractWindow()]", "window=[base_icon]")
 
 /obj/machinery/autolathe/attackby(var/obj/item/O, var/mob/user)
 
@@ -216,10 +173,6 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/autolathe/attack_hand(var/mob/user)
-	user.set_machine(src)
-	interact(user)
-
 /obj/machinery/autolathe/Topic(href, href_list)
 
 	if(..())
@@ -234,7 +187,13 @@
 
 	if(href_list["change_category"])
 
-		var/choice = input("Which category do you wish to display?") as null|anything in autolathe_categories+"All"
+		var/list/selection_category = list("All" = 1)
+		for(var/datum/autolathe/recipe/R in machine_recipes)
+			if(R.hidden && !hacked)
+				continue
+			selection_category[R.category] = 1
+
+		var/choice = input("Which category do you wish to display?") as null|anything in selection_category
 		if(!choice) return
 		show_category = choice
 

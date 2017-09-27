@@ -1,5 +1,5 @@
 /datum/autolathe/recipe/heavy
-	name = "exosuit frame"
+	name = "frame"
 	path = /obj/item/frame_holder
 	category = "Exosuit Components"
 	lathe_type = LATHE_TYPE_HEAVY
@@ -10,23 +10,23 @@
 	category = "General"
 
 /datum/autolathe/recipe/heavy/control
-	name = "exosuit software control module"
+	name = "control module"
 	path = /obj/item/mech_component/control_module
 
 /datum/autolathe/recipe/heavy/ripleyarms
-	name = "power loader arms"
+	name = "APLU arms"
 	path = /obj/item/mech_component/manipulators/ripley
 
 /datum/autolathe/recipe/heavy/ripleylegs
-	name = "power loader legs"
+	name = "APLU legs"
 	path = /obj/item/mech_component/propulsion/ripley
 
 /datum/autolathe/recipe/heavy/ripleyhead
-	name = "power loader head"
+	name = "APLU head"
 	path = /obj/item/mech_component/sensors/ripley
 
 /datum/autolathe/recipe/heavy/ripleychassis
-	name = "power loader chassis"
+	name = "APLU chassis"
 	path = /obj/item/mech_component/chassis/ripley
 
 /datum/autolathe/recipe/heavy/utility
@@ -35,11 +35,11 @@
 	category = "Utility Systems"
 
 /datum/autolathe/recipe/heavy/utility/clamp
-	name = "mounted clamp"
+	name = "clamp"
 	path = /obj/item/mecha_equipment/clamp
 
 /datum/autolathe/recipe/heavy/utility/floodlight
-	name = "mounted floodlight"
+	name = "floodlight"
 	path = /obj/item/mecha_equipment/light
 
 /datum/autolathe/recipe/heavy/sheet

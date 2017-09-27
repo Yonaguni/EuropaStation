@@ -4,6 +4,7 @@
 	var/html_template = 'html/templates/terminal_template.html'
 	var/obj/machinery/owner
 	var/list/users = list()
+	var/screen_index = 1
 
 /datum/console_program/New(var/obj/machinery/new_owner)
 	if(!istype(new_owner))
@@ -96,9 +97,41 @@
 
 /datum/console_program/Topic(href, href_list)
 	. = ..()
-	if(!. && usr && href_list["close_window"])
-		playsound(owner.loc, 'sound/effects/switch.ogg', 15, 0)
-		usr << browse(null, "window=\ref[src]")
-		if(usr.machine == owner)
-			usr.unset_machine()
-		users -= usr
+	if(!. && usr)
+
+		if(href_list["close_window"])
+			playsound(owner.loc, 'sound/effects/switch.ogg', 15, 0)
+			usr << browse(null, "window=\ref[src]")
+			if(usr.machine == owner)
+				usr.unset_machine()
+			users -= usr
+			. = TRUE
+
+		if(href_list["lastpage"] || href_list["nextpage"])
+			if(href_list["lastpage"])
+				screen_index--
+			if(href_list["nextpage"])
+				screen_index++
+			owner.interact(usr)
+			. = TRUE
+
+/datum/console_program/proc/add_page_header(var/item_list_size, var/items_per_page)
+	var/last_page = ceil(item_list_size/items_per_page)
+	if(screen_index > last_page)
+		screen_index = last_page
+	else if(screen_index < 1)
+		screen_index = 1
+	var/page_header = " Page "
+	var/page_num_len = length(num2text(screen_index)) + length(num2text(last_page))
+	while(length(page_header) < 53 - page_num_len)
+		page_header = "=[page_header]"
+	if(screen_index == 1)
+		if(screen_index == last_page)
+			html += "[page_header] [screen_index]/[last_page] ==="
+		else
+			html += "[page_header] [screen_index]/<a href='?src=\ref[src];nextpage=1]'>[last_page]</a> ==="
+	else if(screen_index == last_page)
+		html += "[page_header] <a href='?src=\ref[src];lastpage=1]'>[screen_index]</a>/[last_page] ==="
+	else
+		html += "[page_header] <a href='?src=\ref[src];lastpage=1]'>[screen_index]</a>/<a href='?src=\ref[src];nextpage=1]'>[last_page]</a> ==="
+	html += " "

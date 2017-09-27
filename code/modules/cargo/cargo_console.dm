@@ -92,12 +92,6 @@
 		else
 			control_system.show_pack_info = null
 
-	if(href_list["lastpage"])
-		control_system.screen_index--
-
-	if(href_list["nextpage"])
-		control_system.screen_index++
-
 	if(href_list["setcategory"])
 		control_system.category_current = href_list["setcategory"]
 
