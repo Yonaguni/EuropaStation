@@ -89,7 +89,7 @@
 	name_plural = "Neo-Corvidae"
 	blurb = "Corvid uplifts were among the first sophonts produced by human science to aid in colonizing Mars. These days they \
 	are more commonly found pursuing their own careers and goals on the fringes of human space or around their adopted homeworld \
-	of Hyperion."
+	of Hyperion. Corvid naming conventions are a chosen name followed by the species of the person, followed by the location they were hatched."
 
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_CORVID)

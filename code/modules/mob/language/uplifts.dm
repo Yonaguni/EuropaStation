@@ -24,24 +24,28 @@
 
 /datum/language/corvid
 	name = LANGUAGE_CORVID
-	desc = "A trilling language spoken by Neo-Corvidae."
+	desc = "A rough, loud language spoken by Neo-Corvidae."
 	speech_verb = "chirps"
-	ask_verb = "chirrups"
-	exclaim_verb = "trills"
+	ask_verb = "rattles"
+	exclaim_verb = "calls"
 	colour = "alien"
 	key = "v"
 	flags = WHITELISTED
 	space_chance = 50
 	syllables = list(
-			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
-			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
-			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
+			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha",
+			"ti","hi","ki","ya","ta","ha","ka","ya","chi","cha","kah",
+			"skre","ahk","ek","rawk","kraa","ii","kri","ka"
 		)
 	speech_sounds = list(
-		'sound/voice/corvid/owl1.ogg',
-		'sound/voice/corvid/owl2.ogg',
-		'sound/voice/corvid/owl3.ogg'
+		'sound/voice/corvid/crow1.ogg',
+		'sound/voice/corvid/crow2.ogg',
+		'sound/voice/corvid/crow3.ogg',
+		'sound/voice/corvid/crow4.ogg'
 		)
 
 /datum/language/corvid/get_random_name(gender)
-	return ..(gender, 1, 4, 1.5)
+	var/new_name = gender==FEMALE ? capitalize(pick(first_names_female)) : capitalize(pick(first_names_male))
+	new_name += " [pick(list("Albus","Corax","Corone","Meeki","Insularis","Orru","Sinaloae", "Enca", "Edithae", "Kubaryi"))]"
+	new_name += " [pick(list("Hyperion","Earth","Mars","Venus","Neith","Luna","Halo","Pandora","Neptune","Triton", "Haumea", "Eris", "Makemake"))]"
+	return new_name
