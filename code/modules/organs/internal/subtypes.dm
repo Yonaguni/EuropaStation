@@ -6,3 +6,6 @@
 	name = "funnel"
 	gender = NEUTER
 	has_gills = TRUE
+
+/obj/item/organ/internal/lungs/octopus/can_drown()
+	return FALSE

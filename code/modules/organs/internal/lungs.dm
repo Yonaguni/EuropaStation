@@ -18,6 +18,9 @@
 	var/SA_sleep_min = 5
 	var/breathing = 0
 
+/obj/item/organ/internal/lungs/proc/can_drown()
+	return TRUE
+
 /obj/item/organ/internal/lungs/robotize()
 	. = ..()
 	icon_state = "lungs-prosthetic"
