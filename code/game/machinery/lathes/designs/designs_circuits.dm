@@ -173,10 +173,10 @@
 	name = "glass sheets"
 	path = /obj/item/stack/material/glass
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/circuit/gold
 	name = "gold ingots"
 	path = /obj/item/stack/material/gold
 	category = "General"
-	is_stack = 1
+	multiple_product = 1

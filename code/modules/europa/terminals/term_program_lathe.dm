@@ -1,3 +1,5 @@
+#define MAX_ITEMS_PER_PRINT 20
+
 /datum/console_program/lathe
 	name = "lathe module"
 	var/obj/machinery/autolathe/lathe
@@ -94,11 +96,14 @@
 					if(!isnull(lathe.stored_material[material]) && lathe.stored_material[material] < round(R.resources[material]*lathe.mat_efficiency))
 						can_make = 0
 					material_string += "[round(R.resources[material] * lathe.mat_efficiency)][copytext(material,1,3)] "
+					max_sheets = min(max_sheets, MAX_ITEMS_PER_PRINT)
 
 				//Build list of multipliers for sheets.
-				if(R.is_stack)
+				if(R.multiple_product)
 					if(max_sheets && max_sheets > 0)
 						for(var/scount = 5;scount<max_sheets;scount*=2) //5,10,20,40...
+							if(scount >= MAX_ITEMS_PER_PRINT)
+								break
 							multiplier_string  += "<a href='?src=\ref[lathe];make=[recipes_to_display[R]];multiplier=[scount]'>\[x[scount]\]</a>"
 							pad_count -= length("[scount]")+3
 						multiplier_string += "<a href='?src=\ref[lathe];make=[recipes_to_display[R]];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
@@ -126,3 +131,5 @@
 			html += "[adding] [material_string]"
 
 	..(silent)
+
+#undef MAX_ITEMS_PER_PRINT
