@@ -340,7 +340,7 @@
 				broadcast_security_hud_message("[src] detected a level [threat] suspect <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", src)
 			target = M
 			say("Level [threat] infraction alert!")
-			custom_emote(1, "points at [M.name]!")
+			custom_emote(1, "points at \the [M]!")
 
 			playsound(src.loc, pick(threat_found_sounds), 50)
 

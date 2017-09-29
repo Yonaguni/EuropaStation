@@ -50,3 +50,12 @@
 
 /datum/map/yonaguni/solar_storm_ending_announce()
 	command_announcement.Announce("The geothermal plume has passed [station_name()]. It is now safe to resume exterior activities. Please report to medbay if you experience any unusual symptoms. ", "Geothermal Plume")
+
+/datum/map/yonaguni/get_minor_critter(var/hostile)
+	if(hostile)
+		return /mob/living/simple_animal/hostile/aquatic/shark
+	else
+		return pick(typesof(/mob/living/simple_animal/aquatic/fish)+/mob/living/simple_animal/hostile/retaliate/aquatic/carp)
+
+/datum/map/yonaguni/get_major_critter(var/hostile)
+	return /mob/living/simple_animal/hostile/aquatic/shark/huge

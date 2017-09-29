@@ -31,6 +31,12 @@
 	..()
 	if(isnull(detail_decal) && add_decal())
 		detail_decal = "asteroid[rand(0,9)]"
+	place_critter()
+
+/turf/simulated/ocean/proc/place_critter()
+	if(prob(0.01))
+		var/critter = using_map.get_minor_critter(0)
+		new critter(src)
 
 /turf/simulated/ocean/update_icon(var/update_neighbors)
 	if(detail_decal)
@@ -39,6 +45,9 @@
 		..(update_neighbors)
 
 /turf/simulated/ocean/moving/add_decal()
+	return 0
+
+/turf/simulated/ocean/moving/place_critter()
 	return 0
 
 /turf/simulated/ocean/moving

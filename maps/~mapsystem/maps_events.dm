@@ -53,3 +53,9 @@
 
 /datum/map/proc/solar_storm_ending_announce()
 	command_announcement.Announce("The solar storm has passed [station_name()]. It is now safe to resume EVA activities. Please report to medbay if you experience any unusual symptoms. ", "Anomaly Alert")
+
+/datum/map/proc/get_minor_critter(var/hostile)
+	return /mob/living/simple_animal/hostile/carp
+
+/datum/map/proc/get_major_critter(var/hostile)
+	return /mob/living/simple_animal/hostile/carp/pike
