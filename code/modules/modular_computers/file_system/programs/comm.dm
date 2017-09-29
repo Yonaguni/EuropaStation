@@ -340,7 +340,7 @@ var/last_message_id = 0
 		emergency = 1
 
 	if(!universe.OnShuttleCall(usr))
-		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
+		user << "<span class='notice'>Cannot establish a comms connection.</span>"
 		return
 
 	if(evacuation_controller.deny)

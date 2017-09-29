@@ -47,7 +47,7 @@
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of bluespace."
+	desc = "A backpack that opens into a localized pocket of n-dimensional phase-space."
 
 	icon_state = "holdingpack"
 	max_w_class = 3
@@ -59,7 +59,7 @@
 
 	attackby(var/obj/item/W, var/mob/user)
 		if(istype(W, /obj/item/storage/backpack/holding))
-			user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
+			user << "<span class='warning'>The experimental interfaces of the two devices conflict and malfunction.</span>"
 			qdel(W)
 			return
 		..()

@@ -46,7 +46,7 @@ var/global/universe_has_ended = 0
 		M.flash_eyes()
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
+		priority_announcement.Announce("The evacuation has been aborted due to extreme spatial distortion.")
 
 	AreaSet()
 	MiscSet()
@@ -61,9 +61,9 @@ var/global/universe_has_ended = 0
 	new /obj/singularity/narsie/large/exit(pick(endgame_exits))
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
+There's been a system-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
 
-[station_name()], you are the only facility nearby a bluespace rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
+[station_name()], you are the only facility nearby a mysterious rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
 
 You have five minutes before the universe collapses. Good l\[\[###!!!-
 
