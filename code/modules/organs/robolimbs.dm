@@ -22,3 +22,8 @@ var/datum/robolimb/basic_robolimb
 	var/list/species_cannot_use = list("Neo-Corvid", "Octopus")
 	var/list/restricted_to = list()
 	var/list/applies_to_part = list() //TODO.
+
+/datum/robolimb/morgan
+	company = "Morgan Black"                                 // Shown when selecting the limb.
+	desc = "Most authenic faux-wood on the market. The actuators underneath are still metal though."      // Seen when examining a limb.
+	icon = 'icons/mob/human_races/cyberlimbs/morgan/morgan_main.dmi' // Icon base to draw from.
