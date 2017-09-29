@@ -7,7 +7,7 @@
 	mouse_opacity = 0
 	layer = FLY_LAYER
 	alpha = 0
-	color = "#66D1FF"
+	color = COLOR_OCEAN
 
 	var/temperature = T20C
 	var/fluid_amount = 0     // Declared in stubs/fluid.dm

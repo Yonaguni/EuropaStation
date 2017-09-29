@@ -15,7 +15,8 @@
 		if(start_loc.get_fluid_blocking_dirs() & spread_dir)
 			continue
 		var/turf/T = get_step(start_loc, spread_dir)
-		if(!istype(T) || T.flooded || (T.get_fluid_blocking_dirs() & reverse_dir[spread_dir]) || !T.CanFluidPass(spread_dir))
+		var/coming_from = reverse_dir[spread_dir]
+		if(!istype(T) || T.flooded || (T.get_fluid_blocking_dirs() & coming_from) || !T.CanFluidPass(coming_from))
 			continue
 		var/obj/effect/fluid/F = locate() in T.contents
 		if(F)

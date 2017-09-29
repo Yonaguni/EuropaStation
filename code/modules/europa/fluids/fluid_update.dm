@@ -3,8 +3,10 @@
 	fluid_update()
 
 /obj/structure/Destroy()
-	fluid_update()
-	return ..()
+	var/turf/T = get_turf(src)
+	. = ..()
+	if(istype(T))
+		T.fluid_update()
 
 /obj/structure/Move()
 	. = ..()
@@ -19,8 +21,10 @@
 	fluid_update()
 
 /obj/effect/Destroy()
+	var/turf/T = get_turf(src)
 	. = ..()
-	fluid_update()
+	if(istype(T))
+		T.fluid_update()
 
 /obj/effect/New()
 	. = ..()
