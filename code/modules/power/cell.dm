@@ -227,7 +227,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 
 /obj/item/cell/infinite
 	name = "experimental power cell"
-	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from contained bluespace pocket."
+	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from zero-point energy."
 	icon_state = "icell"
 	maxcharge = 3000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)

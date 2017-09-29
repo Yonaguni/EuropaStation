@@ -183,8 +183,8 @@
 	flags = OPENCONTAINER | NOREACT
 
 /obj/item/reagent_containers/glass/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology."
+	name = "n-dimensional beaker"
+	desc = "A strange beaker, powered by experimental space-folding technology."
 	icon_state = "beakerbluespace"
 	center_of_mass = "x=16;y=10"
 	matter = list("glass" = 5000)

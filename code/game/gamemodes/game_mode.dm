@@ -252,7 +252,7 @@ var/global/list/additional_antag_types = list()
 		"antimatter dust",
 		"leaks into a negative reality",
 		"antiparticle clouds",
-		"residual bluespace energy",
+		"residual gravitational disturbances",
 		"suspected criminal operatives",
 		"malfunctioning von Neumann probe swarms",
 		"shadowy interlopers",

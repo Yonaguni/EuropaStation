@@ -4,7 +4,7 @@
 	icon_state = "Floor3"
 
 /turf/unsimulated/floor/bluespace //non-doomsday version of bluespace for transit and wizden
-	name = "\improper bluespace"
+	name = "oblivion"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespace"
 	desc = "Looks like infinity."

@@ -7,7 +7,7 @@ HEIST ROUNDTYPE
 	config_tag = "heist"
 	required_players = 15
 	required_enemies = 4
-	round_description = "An unidentified bluespace signature has slipped past the perimeter defences and is approaching the ship!"
+	round_description = "An unidentified LADAR signature has slipped past the perimeter defences and is approaching the ship!"
 	extended_round_description = "Many competing organizations and individuals covet the resources represented by the ship. Being a \
 		vessel of sizable population and considerable wealth causes it to often be the target of various attempts at robbery, fraud and \
 		other malicious actions."

@@ -69,6 +69,7 @@
 	name = "security camera circuit"
 	path = /obj/item/circuitboard/security
 	category = "Camera Systems"
+
 /datum/autolathe/recipe/circuit/camera/engineering
 	name = "engineering camera circuit"
 	path = /obj/item/circuitboard/security/engineering

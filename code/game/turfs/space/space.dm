@@ -167,5 +167,5 @@ var/image/exterior_light_overlay
 
 //Bluespace turfs for shuttles and possible future transit use
 /turf/space/bluespace
-	name = "bluespace"
+	name = "oblivion"
 	icon_state = "bluespace"
