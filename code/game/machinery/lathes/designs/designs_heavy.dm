@@ -46,7 +46,7 @@
 	name = "steel sheets"
 	path = /obj/item/stack/material/steel
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/heavy/sheet/plastic
 	name = "plastic sheets"

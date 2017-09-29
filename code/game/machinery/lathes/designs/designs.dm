@@ -49,7 +49,7 @@ var/list/autolathe_ammo =     list()
 	var/hidden
 	var/category
 	var/power_use = 0
-	var/is_stack
+	var/multiple_product
 	var/lathe_type = LATHE_TYPE_GENERIC
 
 /datum/autolathe/recipe/bucket
@@ -176,25 +176,25 @@ var/list/autolathe_ammo =     list()
 	name = "steel sheets"
 	path = /obj/item/stack/material/steel
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/glass
 	name = "glass sheets"
 	path = /obj/item/stack/material/glass
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/rglass
 	name = "reinforced glass sheets"
 	path = /obj/item/stack/material/glass/reinforced
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/rods
 	name = "metal rods"
 	path = /obj/item/stack/rods
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/knife
 	name = "kitchen knife"
@@ -389,21 +389,73 @@ var/list/autolathe_ammo =     list()
 	category = "General"
 
 /datum/autolathe/recipe/magazine
-	name = "empty magazine (assault rifle)"
+	name = "empty magazine (assault rifle, .223)"
 	path = /obj/item/ammo_magazine/assault/empty
 	category = "Ammunition"
 
+/datum/autolathe/recipe/magazine/large_rifle
+	name = "empty magazine (assault rifle, .308)"
+	path = /obj/item/ammo_magazine/assault/large/empty
+
 /datum/autolathe/recipe/magazine/pistol
-	name = "empty magazine (pistol)"
+	name = "empty magazine (pistol, 5.7mm)"
 	path = /obj/item/ammo_magazine/pistol/empty
 
+/datum/autolathe/recipe/magazine/pistol/medium
+	name = "empty magazine (pistol, 9mm)"
+	path = /obj/item/ammo_magazine/pistol/medium/empty
+
+/datum/autolathe/recipe/magazine/pistol/large
+	name = "empty magazine (pistol, 10mm)"
+	path = /obj/item/ammo_magazine/pistol/large/empty
+
+/datum/autolathe/recipe/magazine/pistol/a38
+	name = "empty magazine (pistol, .38)"
+	path = /obj/item/ammo_magazine/pistol/a38/empty
+
+/datum/autolathe/recipe/magazine/pistol/a45
+	name = "empty magazine (pistol, .45)"
+	path = /obj/item/ammo_magazine/pistol/a45/empty
+
 /datum/autolathe/recipe/magazine/smg
-	name = "empty magazine (submachine gun)"
+	name = "empty magazine (submachine gun, 5.7mm)"
 	path = /obj/item/ammo_magazine/submachine/empty
 
+/datum/autolathe/recipe/magazine/smg/medium
+	name = "empty magazine (submachine gun, 9mm)"
+	path = /obj/item/ammo_magazine/submachine/medium/empty
+
+/datum/autolathe/recipe/magazine/smg/large
+	name = "empty magazine (submachine gun, 10mm)"
+	path = /obj/item/ammo_magazine/submachine/large/empty
+
+/datum/autolathe/recipe/magazine/smg/a38
+	name = "empty magazine (submachine gun, .38)"
+	path = /obj/item/ammo_magazine/submachine/a38/empty
+
+/datum/autolathe/recipe/magazine/smg/a45
+	name = "empty magazine (submachine gun, .45)"
+	path = /obj/item/ammo_magazine/submachine/a45/empty
+
 /datum/autolathe/recipe/magazine/speedloader
-	name = "empty speedloader (pistol)"
+	name = "empty speedloader (.357)"
 	path = /obj/item/ammo_magazine/speedloader/empty
+
+/datum/autolathe/recipe/magazine/speedloader/a38
+	name = "empty speedloader (.38)"
+	path = /obj/item/ammo_magazine/speedloader/a38/empty
+
+/datum/autolathe/recipe/magazine/speedloader/a45
+	name = "empty speedloader (.45)"
+	path = /obj/item/ammo_magazine/speedloader/a45/empty
+
+/datum/autolathe/recipe/magazine/speedloader/a50
+	name = "empty speedloader (.50 AE)"
+	path = /obj/item/ammo_magazine/speedloader/a50/empty
+
+/datum/autolathe/recipe/magazine/speedloader/caps
+	name = "empty speedloader (caps)"
+	path = /obj/item/ammo_magazine/speedloader/caps/empty
 
 /datum/autolathe/recipe/magazine/autocannon
 	name = "ammunition belt (autocannon)"

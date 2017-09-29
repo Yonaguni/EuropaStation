@@ -7,7 +7,7 @@
 /datum/autolathe/recipe/robotics/nanopaste
 	name = "nanopaste"
 	path = /obj/item/stack/nanopaste
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/robotics/arm
 	name = "left arm"
@@ -62,7 +62,7 @@
 	name = "steel sheets"
 	path = /obj/item/stack/material/steel
 	category = "General"
-	is_stack = 1
+	multiple_product = 1
 
 /datum/autolathe/recipe/robotics/sheet/plastic
 	name = "plastic sheets"

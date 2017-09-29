@@ -14,8 +14,8 @@
 	var/base_icon = "autolathe"
 	var/lathe_type = LATHE_TYPE_GENERIC
 	var/list/machine_recipes
-	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
-	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
+	var/list/stored_material =  list("steel" = 0, "glass" = 0, "plastic" = 0)
+	var/list/storage_capacity = list("steel" = 0, "glass" = 0, "plastic" = 0)
 	var/show_category = "All"
 
 	var/hacked = 0
@@ -240,9 +240,14 @@
 
 		//Create the desired item.
 		var/obj/item/I = new making.path(loc)
-		if(multiplier > 1 && istype(I, /obj/item/stack))
+		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			S.amount = multiplier
+		else
+			multiplier--
+			while(multiplier > 0)
+				new making.path(loc)
+				multiplier--
 
 	updateUsrDialog()
 

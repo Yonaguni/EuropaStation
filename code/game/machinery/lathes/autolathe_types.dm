@@ -5,6 +5,7 @@
 	lathe_type = LATHE_TYPE_ROBOTICS
 	stored_material =  list("steel" = 0, "glass" = 0, "gold" = 0, "plastic" = 0, "osmium" = 0)
 	storage_capacity = list("steel" = 0, "glass" = 0, "gold" = 0, "plastic" = 0, "osmium" = 0)
+	build_time = 60
 
 /obj/machinery/autolathe/robotics/RefreshParts()
 	..()
@@ -18,6 +19,7 @@
 	lathe_type = LATHE_TYPE_CIRCUIT
 	stored_material =  list("glass" = 0, "gold" = 0)
 	storage_capacity = list("glass" = 0, "gold" = 0)
+	build_time = 45
 
 /obj/machinery/autolathe/advanced
 	name = "device fabricator"
@@ -26,6 +28,7 @@
 	lathe_type = LATHE_TYPE_ADVANCED
 	stored_material =  list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
 	storage_capacity = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
+	build_time = 35
 
 /obj/machinery/autolathe/heavy
 	name = "heavy fabricator"
@@ -36,6 +39,7 @@
 	lathe_type = LATHE_TYPE_HEAVY
 	stored_material =  list("steel" = 0, "plastic" = 0, "osmium" = 0)
 	storage_capacity = list("steel" = 0, "plastic" = 0, "osmium" = 0)
+	build_time = 75
 
 // Heavy fabs need a LOT of materials.
 /obj/machinery/autolathe/heavy/RefreshParts()
@@ -50,3 +54,4 @@
 	lathe_type = LATHE_TYPE_AMMUNITION
 	stored_material =  list("steel" = 0, "osmium" = 0, "plastic" = 0)
 	storage_capacity = list("steel" = 0, "osmium" = 0, "plastic" = 0)
+	build_time = 30
