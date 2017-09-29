@@ -34,7 +34,7 @@
 	place_critter()
 
 /turf/simulated/ocean/proc/place_critter()
-	if(prob(0.01))
+	if(prob(0.05))
 		var/critter = using_map.get_minor_critter(0)
 		new critter(src)
 
