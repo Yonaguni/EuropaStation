@@ -76,10 +76,13 @@
 			var/list/aspects_to_remove = list()
 			if(A.children)
 				aspects_to_remove = A.children.Copy()
+
 			while(aspects_to_remove.len)
 				A = aspects_to_remove[1]
-				total_aspect_cost += A.aspect_cost
 				aspects_to_remove -= A
+				if(!(A.name in pref.aspects))
+					continue
+				total_aspect_cost += A.aspect_cost
 				remove_aspects += A.name
 
 				if(A.children)

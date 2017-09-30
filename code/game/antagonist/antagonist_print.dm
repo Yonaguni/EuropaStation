@@ -14,6 +14,7 @@
 		if(!global_objectives.len && P.objectives && P.objectives.len)
 			var/failed
 			var/num = 1
+
 			for(var/datum/objective/O in P.objectives)
 				text += print_objective(O, num)
 				if(O.check_completion())
@@ -24,10 +25,11 @@
 					feedback_add_details(feedback_tag,"[O.type]|FAIL")
 					failed = 1
 				num++
-				if(failed)
-					text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
-				else
-					text += "<br><font color='green'><B>The [role_text] was successful!</B></font>"
+
+			if(failed)
+				text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
+			else
+				text += "<br><font color='green'><B>The [role_text] was successful!</B></font>"
 
 	if(global_objectives && global_objectives.len)
 		text += "<BR><FONT size = 2>Their objectives were:</FONT>"
