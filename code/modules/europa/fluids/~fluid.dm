@@ -5,3 +5,4 @@
 #undef FLUID_MAX_ALPHA
 #undef FLUID_MAX_DEPTH
 #undef FLUID_MIN_ALPHA
+#undef COLOR_OCEAN

@@ -1,4 +1,3 @@
-
 /atom/proc/CanFluidPass(var/coming_from)
 	return 1
 
@@ -18,14 +17,10 @@
 	return !density
 
 /obj/structure/window/CanFluidPass(var/coming_from)
-	if(coming_from == dir)
-		return !density
-	return 1
+	return (!is_full_window() && coming_from != dir)
 
 /obj/machinery/door/CanFluidPass(var/coming_from)
 	return !density
 
 /obj/machinery/door/window/CanFluidPass(var/coming_from)
-	if(coming_from == dir || dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-		return !density
-	return 1
+	return ((dir in cardinal) && coming_from != dir)

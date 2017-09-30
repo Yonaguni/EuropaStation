@@ -53,7 +53,9 @@
 /obj/effect/wingrille_spawn/auto_init = 1
 /obj/effect/overmap/auto_init = 1
 /obj/effect/fluid/auto_init = 1
+/obj/effect/fluid_mapped/auto_init = 1
 /obj/effect/lobby_image/auto_init = 1
+
 /obj/machinery/auto_init = 1
 
 //obj/machinery/atmospherics/auto_init = 0

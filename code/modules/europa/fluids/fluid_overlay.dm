@@ -7,7 +7,7 @@
 	mouse_opacity = 0
 	layer = FLY_LAYER
 	alpha = 0
-	color = "#66D1FF"
+	color = COLOR_OCEAN
 
 	var/temperature = T20C
 	var/fluid_amount = 0     // Declared in stubs/fluid.dm
@@ -37,7 +37,6 @@
 
 /obj/effect/fluid/initialize()
 	. = ..()
-	create_reagents(FLUID_MAX_DEPTH)
 	start_loc = get_turf(src)
 	if(!istype(start_loc))
 		qdel(src)
@@ -56,13 +55,17 @@
 /obj/effect/fluid/airlock_crush()
 	qdel(src)
 
-/obj/effect/fluid/mapped
+/obj/effect/fluid_mapped
+	name = "mapped flooded area"
 	alpha = 125
-	color = "#66D1FF"
 	icon_state = "shallow_still"
+	color = "#66D1FF"
+	var/fluid_amount = FLUID_MAX_DEPTH
 
-/obj/effect/fluid/mapped/New()
-	..()
-	alpha = 0
-	color = null
-	icon_state = null
+/obj/effect/fluid_mapped/initialize()
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		var/obj/effect/fluid/F = locate() in T
+		if(!F) F = new(T)
+		F.set_depth(fluid_amount)
+		qdel(src)

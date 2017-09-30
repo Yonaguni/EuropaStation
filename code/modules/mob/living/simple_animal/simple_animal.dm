@@ -97,7 +97,7 @@
 	handle_supernatural()
 
 	//Movement
-	if(!client && !stop_automated_movement && wander && !anchored)
+	if(!client && stat == CONSCIOUS && !stop_automated_movement && wander && !anchored)
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
@@ -125,45 +125,38 @@
 				if("emote_see")
 					visible_emote("[pick(emote_see)].")
 
+	handle_atmos()
+	return 1
+
+/mob/living/simple_animal/proc/handle_atmos(var/atmos_suitable = 1)
 	//Atmos
-	var/atmos_suitable = 1
 
-	var/atom/A = src.loc
+	if(!loc)
+		return
 
-	if(istype(A,/turf))
-		var/turf/T = A
+	var/datum/gas_mixture/environment = loc.return_air()
+	if(environment)
 
-		var/datum/gas_mixture/Environment = T.return_air()
+		if(abs(environment.temperature - bodytemperature) > 40 )
+			bodytemperature += ((environment.temperature - bodytemperature) / 5)
 
-		if(Environment)
-
-			if( abs(Environment.temperature - bodytemperature) > 40 )
-				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
-
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas[GAS_FUEL] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas[GAS_FUEL] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+		if(atmos_suitable) // don't bother checking it twice if we got a supplied 0 val.
+			if(min_oxy && environment.gas["oxygen"] < min_oxy)
+				atmos_suitable = 0
+			else if(max_oxy && environment.gas["oxygen"] > max_oxy)
+				atmos_suitable = 0
+			else if(min_tox && environment.gas[GAS_FUEL] < min_tox)
+				atmos_suitable = 0
+			else if(max_tox && environment.gas[GAS_FUEL] > max_tox)
+				atmos_suitable = 0
+			else if(min_n2 && environment.gas["nitrogen"] < min_n2)
+				atmos_suitable = 0
+			else if(max_n2 && environment.gas["nitrogen"] > max_n2)
+				atmos_suitable = 0
+			else if(min_co2 && environment.gas["carbon_dioxide"] < min_co2)
+				atmos_suitable = 0
+			else if(max_co2 && environment.gas["carbon_dioxide"] > max_co2)
+				atmos_suitable = 0
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
@@ -177,7 +170,6 @@
 
 	if(!atmos_suitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
-	return 1
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
@@ -365,3 +357,8 @@
 	return
 /mob/living/simple_animal/ExtinguishMob()
 	return
+
+/mob/living/simple_animal/SetStunned()
+	. = ..()
+	if(stunned)
+		walk(src, 0)
