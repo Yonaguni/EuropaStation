@@ -171,6 +171,8 @@
 		new /obj/item/hailer(src)
 		new /obj/item/clothing/head/soft/sec(src)
 		new /obj/item/clothing/under/rank/security/navyblue(src)
+		new /obj/item/gun/composite/premade/taser_pistol(src)
+		new /obj/item/clothing/accessory/holster/armpit(src)
 		return
 
 
