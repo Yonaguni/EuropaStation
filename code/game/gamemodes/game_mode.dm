@@ -356,6 +356,9 @@ var/global/list/additional_antag_types = list()
 	if(using_map)
 		using_map.do_roundstart_intro()
 
+	if(!using_map.print_antag_summary)
+		return
+
 	sleep(100)
 
 	var/intercepttext = "<FONT size = 3><B>CISREP(A):</B> crew status update.</FONT><HR>"
