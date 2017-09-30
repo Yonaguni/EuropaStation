@@ -104,6 +104,7 @@ var/list/limb_icon_cache = list()
 	dir = EAST
 	icon = mob_icon
 
+
 /obj/item/organ/external/head/update_icon()
 
 	..()

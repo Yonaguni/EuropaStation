@@ -279,6 +279,7 @@ var/global/list/damage_icon_parts = list()
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
+		icon_key += "[part.alpha]"
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
@@ -307,8 +308,12 @@ var/global/list/damage_icon_parts = list()
 					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
 				if(part.icon_position & RIGHT)
 					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				if(part.alpha < 255)
+					temp2 += rgb(,,,part.alpha)
 				base_icon.Blend(temp2, ICON_UNDERLAY)
 			else
+				if(part.alpha < 255)
+					temp += rgb(,,,part.alpha)
 				base_icon.Blend(temp, ICON_OVERLAY)
 
 		if(!skeleton)

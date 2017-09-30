@@ -65,11 +65,47 @@
 
 	hud_type = /datum/hud_data/octopus
 
+	var/list/camo_last_move_by_mob = list()
+	var/list/camo_last_alpha_by_mob = list()
+	var/const/camo_delay = 15 SECONDS
+	var/const/camo_alpha_step = 5
+	var/const/camo_min_alpha = 50
+
 /datum/species/octopus/can_prone()
 	return 0
 
-/datum/species/octopus/get_slowdown(var/atom/loc)
-	return (loc.is_flooded() ? -1 : slowdown)
+/datum/species/octopus/get_slowdown(var/mob/living/carbon/human/H)
+	if(camo_last_move_by_mob[H] && world.time >= camo_last_move_by_mob[H]+camo_delay)
+		var/need_update
+		for(var/thing in H.organs)
+			var/obj/item/organ/external/limb = thing
+			if(limb.species != src)
+				continue
+			if(limb.alpha != initial(limb.alpha))
+				limb.alpha = initial(limb.alpha)
+				need_update = 1
+		if(need_update)
+			H.update_body()
+	camo_last_move_by_mob[H] = world.time
+	camo_last_alpha_by_mob[H] = 255
+	return (H && H.loc && H.loc.is_flooded() ? -1 : slowdown)
+
+/datum/species/octopus/handle_environment_special(var/mob/living/carbon/human/H)
+	if(world.time >= camo_last_move_by_mob[H]+camo_delay)
+		if(!camo_last_alpha_by_mob[H])
+			camo_last_alpha_by_mob[H] = 255
+		if(camo_last_alpha_by_mob[H] > camo_min_alpha)
+			camo_last_alpha_by_mob[H] = max(camo_min_alpha, camo_last_alpha_by_mob[H]-camo_alpha_step)
+		var/need_update
+		for(var/thing in H.organs)
+			var/obj/item/organ/external/limb = thing
+			if(limb.species != src)
+				continue
+			if(limb.alpha != camo_last_alpha_by_mob[H])
+				limb.alpha = camo_last_alpha_by_mob[H]
+				need_update = 1
+		if(need_update)
+			H.update_body()
 
 //todo
 /datum/hud_data/octopus

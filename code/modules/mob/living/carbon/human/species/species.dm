@@ -290,7 +290,6 @@
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Only used for alien plasma weeds atm.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
@@ -369,5 +368,5 @@
 
 	return 1
 
-/datum/species/proc/get_slowdown(var/atom/loc)
+/datum/species/proc/get_slowdown(var/mob/living/carbon/human/H)
 	return slowdown
