@@ -26,7 +26,7 @@
 	ambient_exterior_temperature = 110 // -160 degrees celcius (surface temperature of Europa)
 	ambient_exterior_light = FALSE
 
-	map_info = "<b>Yonaguni Dome 13</b> is a cloak-and-dagger project administrated by industrial giant PicoMotion. The facility is a privately owned, well-hidden reesarch base \
+	map_info = "<b>Yonaguni Dome 13</b> is a cloak-and-dagger project administrated by industrial giant PicoMotion. The facility is a privately owned, well-hidden research base \
 		on the floor of the Europan ocean, dedicated to studying the strange and often horrifying experiences waiting for humanity under the ice."
 
 	full_name     = "Yonaguni Dome 13"
@@ -34,7 +34,7 @@
 	dock_name     = "Rhadamanthus Starport"
 	boss_name     = "Administration"
 	boss_short    = "Admin"
-	company_name  = "PicoMotion©"
+	company_name  = "PicoMotionÂ©"
 	company_short = "PM"
 	commanding_role = "Director"
 	default_arrival_message = "has arrived at the facility"
