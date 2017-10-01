@@ -63,6 +63,12 @@
 		usr.update_action_buttons()
 
 
+/obj/item/clothing/head/welding/update_clothing_icon()
+	. = ..()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_mask()
+
 /*
  * Cakehat
  */
