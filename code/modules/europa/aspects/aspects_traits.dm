@@ -118,19 +118,12 @@
 
 /decl/aspect/ninja
 	name = ASPECT_NINJA
-	desc = "You grew up as part of a reclusive clan of ninja, learning how to make good use of throwing weapons."
+	desc = "You grew up as part of a performing troupe, and have a pretty good arm as a result."
 	aspect_cost = 2
-
-/decl/aspect/ninja/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(!istype(holder))
-		return
-	holder.put_in_hands(new /obj/item/material/star(get_turf(holder)))
-	holder.equip_to_slot_or_del(new /obj/item/material/star(get_turf(holder), slot_r_store))
-	holder.equip_to_slot_or_del(new /obj/item/material/star(get_turf(holder), slot_l_store))
 
 /decl/aspect/tribal
 	name = ASPECT_TRIBAL
-	desc = "You hail from a borderworld that hasn't really caught up to the rest of the pack just yet."
+	desc = "You hail from an agrarian colony that hasn't really caught up to the rest of the pack just yet."
 	aspect_cost = 2
 
 /decl/aspect/tribal/do_post_spawn(var/mob/living/carbon/human/holder)
