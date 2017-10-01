@@ -601,22 +601,6 @@
 		..()
 		bitesize = 1
 
-/obj/item/reagent_containers/food/snacks/carpmeat
-	name = "fillet"
-	desc = "A fillet of fish."
-	icon_state = "fishfillet"
-	filling_color = "#FFDEFE"
-	center_of_mass = "x=17;y=13"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 3)
-		src.bitesize = 6
-
-/obj/item/reagent_containers/food/snacks/carpmeat/poison/New()
-	..()
-	reagents.add_reagent("carpotoxin", 6)
-
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
 	desc = "A finger of fish."
@@ -1872,7 +1856,7 @@
 	filling_color = "#FFFBDB"
 	center_of_mass = "x=17;y=11"
 	nutriment_desc = list("rice" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 3
 	New()
 		..()
 		bitesize = 2

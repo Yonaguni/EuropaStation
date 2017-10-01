@@ -76,7 +76,7 @@
 					center_of_mass = "x=16;y=6"
 				if("soysauce")
 					name = "Soy Sauce"
-					desc = "A salty soy-based flavoring."
+					desc = "A dark, salty, savoury flavoring."
 					icon_state = "soysauce"
 					center_of_mass = "x=16;y=6"
 				if("frostoil")
@@ -163,3 +163,13 @@
 	New()
 		..()
 		reagents.add_reagent("flour", 30)
+
+/obj/item/reagent_containers/food/condiment/soysauce
+	name = "Soy-Sauce"
+	desc = "A dark, salty, savoury flavoring."
+	icon_state = "soysauce"
+	amount_per_transfer_from_this = 1
+	volume = 20
+	New()
+		..()
+		reagents.add_reagent("soysauce", 20)

@@ -179,22 +179,22 @@
 		var/list/items_measures_p = new
 		for (var/obj/O in InsertedContents())
 			var/display_name = O.name
-			if (istype(O,/obj/item/reagent_containers/food/snacks/egg))
+			if (istype(O,/obj/item/reagent_containers/food/snacks/meat/fish))
+				items_measures[display_name] = "fillet of fish"
+				items_measures_p[display_name] = "fillets of fish"
+			else if (istype(O,/obj/item/reagent_containers/food/snacks/egg))
 				items_measures[display_name] = "egg"
 				items_measures_p[display_name] = "eggs"
-			if (istype(O,/obj/item/reagent_containers/food/snacks/tofu))
+			else if (istype(O,/obj/item/reagent_containers/food/snacks/tofu))
 				items_measures[display_name] = "tofu chunk"
 				items_measures_p[display_name] = "tofu chunks"
-			if (istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
+			else if (istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
 				items_measures[display_name] = "slab of meat"
 				items_measures_p[display_name] = "slabs of meat"
-			if (istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
+			else if (istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
 				display_name = "Turnovers"
 				items_measures[display_name] = "turnover"
 				items_measures_p[display_name] = "turnovers"
-			if (istype(O,/obj/item/reagent_containers/food/snacks/carpmeat))
-				items_measures[display_name] = "fillet of meat"
-				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++
 		for (var/O in items_counts)
 			var/N = items_counts[O]

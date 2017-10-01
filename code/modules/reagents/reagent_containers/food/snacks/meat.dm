@@ -18,7 +18,6 @@
 	if(icon_state == "meat1")
 		icon_state = pick(list("meat1","meat2","meat3","meat4"))
 
-
 /obj/item/reagent_containers/food/snacks/meat/proc/set_source_mob(var/new_source_mob)
 	source_mob = new_source_mob
 	if(source_mob)
@@ -27,12 +26,15 @@
 		name = "[initial(name)]"
 	return
 
+/obj/item/reagent_containers/food/snacks/meat/proc/produce_sliced_product()
+	new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
+	new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
+	new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
+
 /obj/item/reagent_containers/food/snacks/meat/attackby(var/obj/item/W, var/mob/user)
-	if(istype(W,/obj/item/material/knife))
-		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-		user << "You cut the meat into thin strips."
+	if(is_sharp(W) && (locate(/obj/structure/table) in loc))
+		user.visible_message("<span class='notice'>\The [user] slices \the [src] into thin strips.</span>")
+		produce_sliced_product()
 		qdel(src)
 	else
 		..()
