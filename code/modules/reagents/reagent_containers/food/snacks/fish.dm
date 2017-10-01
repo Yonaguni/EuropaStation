@@ -16,6 +16,11 @@
 /obj/item/reagent_containers/food/snacks/meat/fish/octopus
 	fish_type = "tako"
 
+/obj/item/reagent_containers/food/snacks/meat/fish/chicken
+	fish_type = "chicken" // ¯\_(:))_/¯
+
+// End subtypes.
+
 /obj/item/reagent_containers/food/snacks/meat/fish/produce_sliced_product()
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
@@ -38,7 +43,11 @@
 /obj/item/reagent_containers/food/snacks/sushi/New(var/newloc, var/obj/item/reagent_containers/food/snacks/rice, var/obj/item/reagent_containers/food/snacks/topping)
 	..(newloc)
 
-	if(topping)
+	if(istype(topping))
+
+		for(var/taste_thing in topping.nutriment_desc)
+			if(!nutriment_desc[taste_thing]) nutriment_desc[taste_thing] = 0
+			nutriment_desc[taste_thing] += topping.nutriment_desc[taste_thing]
 
 		if(istype(topping, /obj/item/reagent_containers/food/snacks/sashimi))
 			var/obj/item/reagent_containers/food/snacks/sashimi/sashimi = topping
@@ -50,13 +59,12 @@
 		else if(istype(topping, /obj/item/reagent_containers/food/snacks/rawcutlet) || istype(topping, /obj/item/reagent_containers/food/snacks/cutlet))
 			fish_type = "meat"
 
-		if(topping.reagents)
-			topping.reagents.trans_to(src, topping.reagents.total_volume)
-			var/mob/M = topping.loc
-			if(istype(M)) M.drop_from_inventory(topping)
-			qdel(topping)
+		if(topping.reagents) topping.reagents.trans_to(src, topping.reagents.total_volume)
+		var/mob/M = topping.loc
+		if(istype(M)) M.drop_from_inventory(topping)
+		qdel(topping)
 
-	if(rice)
+	if(istype(rice))
 		if(rice.reagents)
 			rice.reagents.trans_to(src, 1)
 		if(!rice.reagents || !rice.reagents.total_volume)
@@ -78,6 +86,7 @@
 	icon = 'icons/obj/food/sushi.dmi'
 	desc = "Thinly sliced raw fish. Tasty."
 	icon_state = "sashimi"
+	gender = PLURAL
 	var/fish_type = "fish"
 	var/slices = 1
 
@@ -90,10 +99,10 @@
 /obj/item/reagent_containers/food/snacks/sashimi/update_icon()
 	icon_state = "sashimi_base"
 	var/list/adding = list()
-	var/slice_offset = -((slices-1)*3)
+	var/slice_offset = (slices-1)*2
 	for(var/slice = 1 to slices)
-		var/image/I = image(icon = 'icons/obj/food.dmi', icon_state = "sashimi")
-		I.pixel_x = slice_offset + ((slice-1)*3)
+		var/image/I = image(icon = 'icons/obj/food/sushi.dmi', icon_state = "sashimi")
+		I.pixel_x = slice_offset-((slice-1)*4)
 		I.pixel_y = I.pixel_x
 		adding += I
 	overlays = adding
@@ -104,20 +113,21 @@
 
 		// Add more slices.
 		if(istype(I, /obj/item/reagent_containers/food/snacks/sashimi))
-			if(slices >= 5)
-				to_chat(user, "<span class='warning'>Show some restraint, would you?<span>")
+			var/obj/item/reagent_containers/food/snacks/sashimi/other_sashimi = I
+			if(slices + other_sashimi.slices > 5)
+				to_chat(user, "<span class='warning'>Show some restraint, would you?</span>")
 				return
+			slices += other_sashimi.slices
+			update_icon()
 			user.drop_from_inventory(I)
 			if(I.reagents) I.reagents.trans_to(src, I.reagents.total_volume)
 			qdel(I)
-			slices++
-			update_icon()
 			return
 
 		// Make sushi.
 		if(istype(I, /obj/item/reagent_containers/food/snacks/boiledrice))
 			if(slices > 1)
-				to_chat(user, "<span class='warning'>Putting more than one slice of fish on your sushi is just greedy.<span>")
+				to_chat(user, "<span class='warning'>Putting more than one slice of fish on your sushi is just greedy.</span>")
 			else
 				new /obj/item/reagent_containers/food/snacks/sushi(get_turf(src), I, src)
 			return
@@ -130,7 +140,7 @@
 		if(istype(I, /obj/item/reagent_containers/food/snacks/sashimi))
 			var/obj/item/reagent_containers/food/snacks/sashimi/sashimi = I
 			if(sashimi.slices > 1)
-				to_chat(user, "<span class='warning'>Putting more than one slice of fish on your sushi is just greedy.<span>")
+				to_chat(user, "<span class='warning'>Putting more than one slice of fish on your sushi is just greedy.</span>")
 			else
 				new /obj/item/reagent_containers/food/snacks/sushi(get_turf(src), src, I)
 			return
