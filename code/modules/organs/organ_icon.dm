@@ -1,4 +1,5 @@
 var/list/limb_icon_cache = list()
+/obj/item/organ/external/var/render_alpha = 255
 
 /obj/item/organ/external/set_dir()
 	return
@@ -58,7 +59,7 @@ var/list/limb_icon_cache = list()
 		gender = "_f"
 
 	icon_state = "[icon_name][gender]"
-	icon_cache_key = "[icon_state]_[species ? species.name : "Human"]"
+	icon_cache_key = "[icon_state]_[species ? species.name : "Human"][render_alpha]"
 
 	if(force_icon)
 		icon = force_icon
@@ -102,6 +103,10 @@ var/list/limb_icon_cache = list()
 		icon_cache_key += "_model_[model]"
 
 	dir = EAST
+
+	if(render_alpha < 255)
+		mob_icon += rgb(,,,render_alpha)
+
 	icon = mob_icon
 
 
@@ -208,9 +213,6 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 	else if(s_col && s_col.len >= 3)
 		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-
-	// Translucency.
-	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
 
 	return applying
 

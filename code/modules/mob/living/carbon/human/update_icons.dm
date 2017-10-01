@@ -270,16 +270,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			icon_key += "1"
 		if(part)
-			icon_key += "[part.species.get_race_key(part.owner)]"
-			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
-			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
+			icon_key += "[part.species.get_race_key(part.owner)][part.dna.GetUIState(DNA_UI_GENDER)][part.dna.GetUIValue(DNA_UI_SKIN_TONE)][part.render_alpha]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
-		icon_key += "[part.alpha]"
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
@@ -308,12 +305,8 @@ var/global/list/damage_icon_parts = list()
 					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
 				if(part.icon_position & RIGHT)
 					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				if(part.alpha < 255)
-					temp2 += rgb(,,,part.alpha)
 				base_icon.Blend(temp2, ICON_UNDERLAY)
 			else
-				if(part.alpha < 255)
-					temp += rgb(,,,part.alpha)
 				base_icon.Blend(temp, ICON_OVERLAY)
 
 		if(!skeleton)

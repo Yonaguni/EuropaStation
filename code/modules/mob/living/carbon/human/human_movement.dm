@@ -1,3 +1,10 @@
+/mob/living/carbon/human/Move()
+	if(!species.handle_pre_move(src))
+		return 0
+	. = ..()
+	if(.)
+		species.handle_post_move(src)
+
 /mob/living/carbon/human/movement_delay()
 	var/tally = ..()
 
