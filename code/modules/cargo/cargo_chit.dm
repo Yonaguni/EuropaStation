@@ -3,6 +3,8 @@
 	desc = "It's a cargo chit. Load it into a supply beacon to recieve a cargo order."
 	icon = 'icons/obj/chit.dmi'
 	icon_state = "chit"
+	w_class = 1
+
 	var/order_id
 	var/list/purchased_atoms = list()
 
