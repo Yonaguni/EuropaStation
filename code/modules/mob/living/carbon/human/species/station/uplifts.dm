@@ -151,15 +151,14 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_corvid.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_corvid.dmi'
 
-	slowdown = -1
-	total_health = 50
+	total_health = 80
 	brute_mod = 1.35
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
 	holder_type = /obj/item/holder/human
 	gluttonous = GLUT_TINY
-	blood_volume = 280
-	hunger_factor = 0.2
+	blood_volume = 320
+	hunger_factor = 0.1
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
