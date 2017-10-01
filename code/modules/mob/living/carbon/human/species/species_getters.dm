@@ -19,9 +19,6 @@
 /datum/species/proc/get_damage_overlays(var/mob/living/carbon/human/H)
 	return damage_overlays
 
-/datum/species/proc/get_damage_mask(var/mob/living/carbon/human/H)
-	return damage_mask
-
 /datum/species/proc/get_examine_name(var/mob/living/carbon/human/H)
 	return name
 

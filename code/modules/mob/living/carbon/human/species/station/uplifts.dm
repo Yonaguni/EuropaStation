@@ -24,7 +24,6 @@
 	icon_template = 'icons/mob/human_races/r_octopus.dmi'
 
 	damage_overlays = 'icons/mob/human_races/masks/dam_octopus.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_octopus.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_octopus.dmi'
 
 	overlay_x_offset = 8
@@ -66,10 +65,13 @@
 	var/list/camo_last_alpha_by_mob = list()
 	var/const/camo_delay = 10 SECONDS
 	var/const/camo_alpha_step = 10
-	var/const/camo_min_alpha = 35
+	var/const/camo_min_alpha = 40
 
 /datum/species/octopus/can_prone()
 	return 0
+
+/datum/species/octopus/handle_death(var/mob/living/carbon/human/H)
+	update_mob_alpha(H, 255)
 
 /datum/species/octopus/proc/update_mob_alpha(var/mob/living/carbon/human/H, var/newval = 255)
 	if(camo_last_alpha_by_mob[H] == newval)
@@ -142,7 +144,6 @@
 	icobase = 'icons/mob/human_races/r_corvid.dmi'
 	deform = 'icons/mob/human_races/r_corvid.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_corvid.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_corvid.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_corvid.dmi'
 
 	total_health = 80

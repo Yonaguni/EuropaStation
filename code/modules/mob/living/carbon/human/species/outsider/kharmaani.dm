@@ -7,7 +7,6 @@
 	icobase = 'icons/mob/human_races/r_alate.dmi'
 	deform = 'icons/mob/human_races/r_alate.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_kharmaani_alate.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_kharmaani_alate.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_kharmaani_alate.dmi'
 
 	has_limbs = list(
@@ -60,7 +59,6 @@
 	deform = 'icons/mob/human_races/r_gyne.dmi'
 	icon_template = 'icons/mob/human_races/r_gyne.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_kharmaani_gyne.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_kharmaani_gyne.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_kharmaani_gyne.dmi'
 
 	overlay_x_offset = 22
