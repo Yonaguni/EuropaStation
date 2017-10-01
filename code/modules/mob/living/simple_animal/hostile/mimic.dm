@@ -11,7 +11,6 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	icon_state = "crate"
 	icon_living = "crate"
 
-	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat
 	response_help = "touches"
 	response_disarm = "pushes"
 	response_harm = "hits"

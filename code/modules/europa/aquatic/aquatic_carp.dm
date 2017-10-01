@@ -12,6 +12,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 12
 	melee_damage_upper = 12
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/carp
 
 /mob/living/simple_animal/hostile/retaliate/aquatic/carp/New()
 	..()

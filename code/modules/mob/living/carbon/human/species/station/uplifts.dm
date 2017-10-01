@@ -4,6 +4,8 @@
 	blurb = "Octopus uplifts have been a relatively common sight in aquatic environments since the early days of \
 	Sol expansion. The are renowned as excellent engineers, bartenders, and massage therapists."
 
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/octopus
+
 	slowdown = 2
 	rarity_value = 2
 	gluttonous = GLUT_SMALLER
@@ -91,6 +93,7 @@
 	are more commonly found pursuing their own careers and goals on the fringes of human space or around their adopted homeworld \
 	of Hyperion. Corvid naming conventions are a chosen name followed by the species of the person, followed by the location they were hatched."
 
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/chicken
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_CORVID)
 	name_language = LANGUAGE_CORVID

@@ -91,8 +91,10 @@ var/list/butchery_icons = list() // Icon cache.
 		return
 
 /obj/structure/kitchenspike/MouseDrop_T(var/mob/target, var/mob/user)
+	try_spike(target, user)
 
-	if(!istype(target) || !Adjacent(user) || !Adjacent(target))
+/obj/structure/kitchenspike/proc/try_spike(var/mob/target, var/mob/user)
+	if(!istype(target) || !Adjacent(user))
 		return ..()
 
 	if(user.stat || user.restrained() || user.incapacitated())
@@ -156,6 +158,17 @@ var/list/butchery_icons = list() // Icon cache.
 			overlays += butchery_icons[cache_key]
 
 /obj/structure/kitchenspike/attackby(var/obj/item/thing, var/mob/user)
+
+	if(istype(thing, /obj/item/grab))
+		var/obj/item/grab/G = thing
+		if(G.affecting)
+			if(G.state < GRAB_AGGRESSIVE)
+				to_chat(user, "<span class='warning'>You need a better grip!</span>")
+				return
+			try_spike(G.affecting, user)
+			user.drop_from_inventory(G)
+			qdel(G)
+			return
 
 	if(!thing.sharp)
 		return ..()

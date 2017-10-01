@@ -12,6 +12,7 @@
 	melee_damage_upper = 15
 	break_stuff_probability = 15
 	faction = "sharks"
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/shark
 
 /mob/living/simple_animal/hostile/aquatic/shark/huge
 	name = "gigacretoxyrhina"
