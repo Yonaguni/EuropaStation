@@ -983,9 +983,9 @@ proc/is_hot(obj/item/W as obj)
 
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
+	return ((M.stat || M.resting || M.lying) && \
 	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
+	(locate(/obj/structure/bed, M.loc) && prob(75)) || \
 	(locate(/obj/structure/table/, M.loc) && prob(66)))
 
 /proc/reverse_direction(var/dir)
@@ -1115,7 +1115,7 @@ var/mob/dview/dview_mob = new
 /proc/stoplag()
 	// If we're initializing, our tick limit might be over 100 (testing config), but stoplag() penalizes procs that go over.
 	// 	Unfortunately, this penalty slows down init a *lot*. So, we disable it during boot and lobby, when relatively few things should be calling this.
-	if (!Master || Master.initializing || !Master.round_started)	
+	if (!Master || Master.initializing || !Master.round_started)
 		sleep(world.tick_lag)
 		return 1
 

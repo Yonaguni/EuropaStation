@@ -1,7 +1,14 @@
+/mob/living/carbon/human/Move()
+	if(!species.handle_pre_move(src))
+		return 0
+	. = ..()
+	if(.)
+		species.handle_post_move(src)
+
 /mob/living/carbon/human/movement_delay()
 	var/tally = ..()
 
-	tally += species.get_slowdown(loc)
+	tally += species.get_slowdown(src)
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 

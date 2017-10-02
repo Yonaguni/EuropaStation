@@ -1,7 +1,6 @@
 /mob/living/simple_animal/aquatic
 	icon = 'icons/mob/aquatic.dmi'
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish
-	speak_chance = 1
 	turns_per_move = 5
 	attacktext = "bitten"
 	attack_sound = 'sound/weapons/bite.ogg'

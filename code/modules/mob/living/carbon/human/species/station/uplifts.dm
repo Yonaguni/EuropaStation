@@ -23,12 +23,8 @@
 	deform = 'icons/mob/human_races/r_octopus.dmi'
 	icon_template = 'icons/mob/human_races/r_octopus.dmi'
 
-	/* todo
-	icon_template = 'icons/mob/human_races/r_octopus.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_octopus.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_octopus.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_octopus.dmi'
-	*/
 
 	overlay_x_offset = 8
 	icon_x_offset = -8
@@ -65,11 +61,47 @@
 
 	hud_type = /datum/hud_data/octopus
 
+	var/list/camo_last_move_by_mob = list()
+	var/list/camo_last_alpha_by_mob = list()
+	var/const/camo_delay = 10 SECONDS
+	var/const/camo_alpha_step = 10
+	var/const/camo_min_alpha = 40
+
 /datum/species/octopus/can_prone()
 	return 0
 
-/datum/species/octopus/get_slowdown(var/atom/loc)
-	return (loc.is_flooded() ? -1 : slowdown)
+/datum/species/octopus/handle_death(var/mob/living/carbon/human/H)
+	update_mob_alpha(H, 255)
+
+/datum/species/octopus/proc/update_mob_alpha(var/mob/living/carbon/human/H, var/newval = 255)
+	if(camo_last_alpha_by_mob[H] == newval)
+		return
+	camo_last_alpha_by_mob[H] = newval
+	var/need_update
+	for(var/thing in H.organs)
+		var/obj/item/organ/external/limb = thing
+		if(limb.species == src && limb.render_alpha != newval)
+			limb.render_alpha = newval
+			need_update = 1
+	if(need_update)
+		H.update_body()
+
+/datum/species/octopus/handle_post_spawn(var/mob/living/carbon/H)
+	. = ..()
+	camo_last_alpha_by_mob[H] = 255
+	camo_last_move_by_mob[H] = world.time
+
+/datum/species/octopus/get_slowdown(var/mob/living/carbon/human/H)
+	return (H && H.loc && H.loc.is_flooded() ? -1 : slowdown)
+
+/datum/species/octopus/handle_post_move(var/mob/living/carbon/human/H)
+	camo_last_move_by_mob[H] = world.time
+	update_mob_alpha(H, min(camo_last_alpha_by_mob[H] + camo_min_alpha, 255))
+
+/datum/species/octopus/handle_environment_special(var/mob/living/carbon/human/H)
+	var/last_alpha = camo_last_alpha_by_mob[H]
+	if(world.time >= camo_last_move_by_mob[H]+camo_delay && last_alpha > camo_min_alpha)
+		update_mob_alpha(H, max(camo_min_alpha, last_alpha-camo_alpha_step))
 
 //todo
 /datum/hud_data/octopus
@@ -112,18 +144,16 @@
 	icobase = 'icons/mob/human_races/r_corvid.dmi'
 	deform = 'icons/mob/human_races/r_corvid.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_corvid.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_corvid.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_corvid.dmi'
 
-	slowdown = -1
-	total_health = 50
+	total_health = 80
 	brute_mod = 1.35
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
 	holder_type = /obj/item/holder/human
 	gluttonous = GLUT_TINY
-	blood_volume = 280
-	hunger_factor = 0.2
+	blood_volume = 320
+	hunger_factor = 0.1
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR

@@ -23,7 +23,7 @@
 #define ASPECT_COMPANYMAN       "Company Man"
 #define ASPECT_JUNKIE           "Junkie"
 #define ASPECT_GREENTHUMB       "Green Thumb"
-#define ASPECT_NINJA            "Ninja"
+#define ASPECT_NINJA            "Knife Thrower"
 #define ASPECT_TRIBAL           "Tribal"
 
 // Combat aspects

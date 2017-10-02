@@ -75,18 +75,26 @@
 						var/category_string = ""
 						var/category_string_length
 						for(var/thing in owner_console.supplylist)
-							if(category_string_length >= 60)
+
+							var/list/category_data = owner_console.supplylist[thing]
+							var/namestr = category_data["name"]
+							var/namelen = length(namestr)
+
+							if((category_string_length + namelen) > 58)
 								category_text += category_string
 								category_string = ""
 								category_string_length = 0
+
 							else if(category_string != "")
 								category_string += " | "
 								category_string_length += 3
-							var/list/category_data = owner_console.supplylist[thing]
-							category_string += "<a href='?src=\ref[owner];setcategory=[thing]'>[category_data["name"]]</a>"
-							category_string_length += length(category_data["name"])
+
+							category_string += "<a href='?src=\ref[owner];setcategory=[thing]'>[namestr]</a>"
+							category_string_length += namelen
+
 						if(category_string != "")
 							category_text += category_string
+
 						category_current = owner_console.supplylist[1]
 
 					html += "=== Current category: [category_current]."
