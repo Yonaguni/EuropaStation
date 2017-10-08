@@ -252,7 +252,7 @@
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
+				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.lore_text];name=[G.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
@@ -263,7 +263,7 @@
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "
+				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.lore_text];name=[N.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "

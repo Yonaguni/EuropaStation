@@ -193,6 +193,7 @@ var/list/name_to_material
 // Used by walls when qdel()ing to avoid neighbor merging.
 /material/placeholder
 	name = "placeholder"
+	hidden_from_codex = TRUE
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
 /material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
@@ -227,6 +228,7 @@ var/list/name_to_material
 // Datum definitions follow.
 /material/uranium
 	name = "uranium"
+	lore_text = "A highly radioactive metal. Commonly used as fuel in fission reactors."
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
 	icon_base = "stone"
@@ -238,6 +240,7 @@ var/list/name_to_material
 
 /material/diamond
 	name = "diamond"
+	lore_text = "An extremely hard allotrope of carbon. Valued for use in industrial tools."
 	stack_type = /obj/item/stack/material/diamond
 	flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
@@ -251,6 +254,7 @@ var/list/name_to_material
 
 /material/gold
 	name = "gold"
+	lore_text = "A heavy, soft, ductile metal. Once considered valuable enough to back entire currencies, now predominantly used in corrosion-resistant electronics."
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
 	weight = 25
@@ -263,10 +267,12 @@ var/list/name_to_material
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
+	lore_text = "An alloy of copper and tin."
 	icon_colour = "#EDD12F"
 
 /material/silver
 	name = "silver"
+	lore_text = "A soft, white, lustrous transition metal. Has many and varied industrial uses in electronics, solar panels and mirrors."
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
 	weight = 22
@@ -278,6 +284,7 @@ var/list/name_to_material
 
 /material/supermatter
 	name = "exotic matter"
+	lore_text = "Non-baryonic 'exotic' matter features heavily in theoretical artificial wormholes, and underpins the workings of the commonly-used gravity drive."
 	icon_colour = "#FFFF00"
 	radioactivity = 20
 	stack_type = null
@@ -293,6 +300,7 @@ var/list/name_to_material
 
 /material/stone
 	name = "sandstone"
+	lore_text = "A clastic sedimentary rock. The cost of boosting it to orbit is almost universally much higher than the actual value of the material."
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
 	icon_reinf = "reinf_stone"
@@ -307,6 +315,7 @@ var/list/name_to_material
 
 /material/stone/marble
 	name = "marble"
+	lore_text = "A metamorphic rock largely sourced from Earth. Prized for use in extremely expensive decorative surfaces."
 	icon_colour = "#AAAAAA"
 	weight = 26
 	hardness = 100
@@ -315,6 +324,7 @@ var/list/name_to_material
 
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
+	lore_text = "A strong, flexible alloy of iron and carbon. Probably the single most fundamentally useful and ubiquitous substance in human space."
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	icon_base = "solid"
@@ -331,6 +341,7 @@ var/list/name_to_material
 	icon_reinf = "noreinf"
 	hitsound = 'sound/effects/attackblob.ogg'
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/diona/place_dismantled_product()
 	return
@@ -344,9 +355,11 @@ var/list/name_to_material
 	stack_type = null
 	shard_type = SHARD_NONE
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/plasteel
 	name = "plasteel"
+	lore_text = "When regular high-tensile steel isn't tough enough to get the job done, the smart consumer turns to frankly absurd alloys of steel and an extremely hard platinum metal, osmium."
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
 	melting_point = 6000
@@ -362,6 +375,7 @@ var/list/name_to_material
 
 /material/plasteel/titanium
 	name = "titanium"
+	lore_text = "A light, strong, corrosion-resistant metal. Perfect for cladding high-velocity ballistic supply pods."
 	stack_type = null
 	icon_base = "metal"
 	door_icon_base = "metal"
@@ -370,6 +384,7 @@ var/list/name_to_material
 
 /material/glass
 	name = "glass"
+	lore_text = "A brittle, transparent material made from molten silicates. It is generally not a liquid."
 	stack_type = /obj/item/stack/material/glass
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#00E1FF"
@@ -457,6 +472,7 @@ var/list/name_to_material
 
 /material/nullglass
 	name = "nullglass"
+	lore_text = "A poorly understood, brittle, glasslike substance whose production is something of a mystery. Inimical to psi-operant abilities; even touching it is enough to cause physical illness in operants."
 	icon_colour = "#ff6088"
 	conductive = 1
 	stack_type = /obj/item/stack/material/nullglass
@@ -498,6 +514,7 @@ var/list/name_to_material
 /material/glass/phoron_reinforced
 	name = "rphglass"
 	flags = MATERIAL_BRITTLE
+	lore_text = "An extremely heat-resistant form of glass."
 	icon_colour = "#FC2BC5"
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronrglass
@@ -511,6 +528,7 @@ var/list/name_to_material
 
 /material/plastic
 	name = "plastic"
+	lore_text = "A generic polymeric material. Probably the most flexible and useful substance ever created by human science; mostly used to make disposable cutlery."
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
@@ -527,9 +545,11 @@ var/list/name_to_material
 	display_name = "plastic"
 	stack_type = null
 	shard_type = SHARD_NONE
+	hidden_from_codex = TRUE
 
 /material/osmium
 	name = "osmium"
+	lore_text = ""
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	stack_
@@ -538,6 +558,8 @@ var/list/name_to_material
 
 /material/tritium
 	name = "tritium"
+	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
+	mechanics_text = "Tritium can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
 	stack_
@@ -547,7 +569,9 @@ var/list/name_to_material
 
 /material/deuterium
 	name = "deuterium"
+	lore_text = "One of the two stable isotopes of hydrogen; also known as heavy hydrogen. Useful as a chemically synthesised fusion reactor fuel material."
 	stack_type = /obj/item/stack/material/deuterium
+	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It is the most 'basic' fusion fuel."
 	icon_colour = "#999999"
 	stack_
 	sheet_singular_name = "ingot"
@@ -556,6 +580,8 @@ var/list/name_to_material
 
 /material/mhydrogen
 	name = "mhydrogen"
+	display_name = "metallic hydrogen"
+	lore_text = "When hydrogen is exposed to extremely high pressures and temperatures, such as at the core of gas giants like Jupiter, it can take on metallic properties and - more importantly - acts as a room temperature superconductor. Achieving solid metallic hydrogen at room temperature, though, has proven to be rather tricky."
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_
@@ -563,6 +589,7 @@ var/list/name_to_material
 
 /material/platinum
 	name = "platinum"
+	lore_text = "A very dense, unreactive, precious metal. Has many industrial uses, particularly as a catalyst."
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
@@ -573,6 +600,7 @@ var/list/name_to_material
 
 /material/iron
 	name = "iron"
+	lore_text = "A ubiquitous, very common metal. The epitaph of stars and the primary ingredient in Earth's core."
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -592,6 +620,7 @@ var/list/name_to_material
 	explosion_resistance = 200
 	hardness = 500
 	weight = 500
+	hidden_from_codex = TRUE
 
 /material/elevatorium/kharmaani
 	name = "composite"
@@ -607,6 +636,7 @@ var/list/name_to_material
 
 /material/wood
 	name = "wood"
+	lore_text = "A fibrous structural material harvested from trees. Don't get a splinter."
 	adjective_name = "wooden"
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
@@ -633,9 +663,11 @@ var/list/name_to_material
 	display_name = "wood"
 	stack_type = null
 	shard_type = SHARD_NONE
+	hidden_from_codex = TRUE
 
 /material/cardboard
 	name = "cardboard"
+	lore_text = "What with the difficulties presented by growing plants in orbit, a stock of cardboard in space is probably more valuable than gold."
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
 	integrity = 10
@@ -659,6 +691,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cult
 	name = "cult"
@@ -670,6 +703,7 @@ var/list/name_to_material
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cult/place_dismantled_girder(var/turf/target)
 	new /obj/structure/girder/cult(target)
@@ -693,6 +727,7 @@ var/list/name_to_material
 	sheet_singular_name = "blob"
 	sheet_plural_name = "blobs"
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user
@@ -709,6 +744,7 @@ var/list/name_to_material
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/carpet
 	name = "carpet"
@@ -721,6 +757,7 @@ var/list/name_to_material
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cotton
 	name = "cotton"
@@ -730,6 +767,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_teal
 	name = "teal"
@@ -740,6 +778,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_black
 	name = "black"
@@ -750,6 +789,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_green
 	name = "green"
@@ -760,6 +800,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_puple
 	name = "purple"
@@ -770,6 +811,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_blue
 	name = "blue"
@@ -780,6 +822,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_beige
 	name = "beige"
@@ -790,6 +833,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE
 
 /material/cloth_lime
 	name = "lime"
@@ -800,3 +844,4 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	conductive = 0
+	hidden_from_codex = TRUE

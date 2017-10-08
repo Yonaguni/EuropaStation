@@ -30,7 +30,6 @@
 /datum/reagent/lsd
 	name = "LSD"
 	id = "lsd"
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#B31008"
@@ -43,7 +42,6 @@
 /datum/reagent/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
-	description = "A strong psychotropic derived from certain species of mushroom."
 	taste_description = "mushroom"
 	color = "#E700E7"
 	overdose = REAGENTS_OVERDOSE
@@ -75,7 +73,6 @@
 /datum/reagent/jumpstart
 	name = "Jumpstart"
 	id = "jumpstart"
-	description = "Jumpstart is a highly effective, highly -illegal-, long-lasting muscle stimulant."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
@@ -91,7 +88,6 @@
 /datum/reagent/glint
 	name = "Glint"
 	id = "glint"
-	description = "An illegal chemical compound used as drug."
 	taste_description = "bitterness"
 	taste_mult = 0.4
 	reagent_state = LIQUID
@@ -110,7 +106,6 @@
 /datum/reagent/pax
 	name = "Pax"
 	id = "pax"
-	description = "A powerful aggression supressant that may cause permanent neurological damage."
 	taste_description = "nothing at all"
 	taste_mult = 0.4
 	reagent_state = LIQUID
@@ -127,7 +122,6 @@
 /datum/reagent/ladder
 	name = "Ladder"
 	id = "ladder"
-	description = "A highly dangerous and powerful aggression enhancer originally developed for military use. Very illegal."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FFCC00"
@@ -142,7 +136,6 @@
 /datum/reagent/threeeye
 	name = "Three Eye"
 	id = "threeeye"
-	description = "A dangerously addictive neurotoxin-neurostimulator, rumoured to be capable of opening the third eye of the mind - perhaps permanently."
 	taste_description = "starlight"
 	reagent_state = LIQUID
 	color = "#CCCCFF"
@@ -154,7 +147,6 @@
 /datum/reagent/short
 	name = "Short"
 	id = "short"
-	description = "A broad-spectrum antichemical agent which suppresses many other drugs."
 	taste_description = "wax"
 	reagent_state = LIQUID
 	color = "#FFCCCC"

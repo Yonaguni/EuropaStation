@@ -84,7 +84,6 @@
 /datum/reagent/water
 	name = "Water"
 	id = "water"
-	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
@@ -147,7 +146,6 @@
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
-	description = "Required for welders. Flamable."
 	taste_description = "gross metal"
 	reagent_state = LIQUID
 	color = "#660000"
