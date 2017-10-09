@@ -35,6 +35,11 @@
 	//Set up spawn points.
 	populate_spawn_points()
 
+	admin_notice("<span class='danger'>Initializing [all_areas.len] area\s.</span>", R_DEBUG)
+	for(var/thing in all_areas)
+		thing:initialize()
+		CHECK_TICK
+
 	admin_notice("<span class='danger'>Initializing [init_turfs.len] turf\s.</span>", R_DEBUG)
 	for(var/thing in init_turfs)
 		var/turf/T = thing
@@ -72,11 +77,6 @@
 		count++
 		CHECK_TICK
 	admin_notice("<span class='danger'>Built [count] pipe network\s</span>", R_DEBUG)
-
-	admin_notice("<span class='danger'>Initializing [all_areas.len] area\s.</span>", R_DEBUG)
-	for(var/thing in all_areas)
-		thing:initialize()
-		CHECK_TICK
 
 	count = 0
 	admin_notice("<span class='danger'>Updating atmospherics machinery broadcasting.</span>", R_DEBUG)

@@ -1,12 +1,15 @@
-/datum/turf_initializer/proc/initialize(var/turf/T)
+/datum/area_initializer/proc/initialize(var/turf/T)
+	return
+
+/datum/area_initializer/proc/post_init()
 	return
 
 /area
-	var/datum/turf_initializer/turf_initializer = null
+	var/datum/area_initializer/turf_initializer = null
 
 /area/initialize()
 	..()
-	for(var/turf/simulated/T in src)
-		T.initialize()
-		if(turf_initializer)
+	if(turf_initializer)
+		for(var/turf/simulated/T in src)
 			turf_initializer.initialize(T)
+		turf_initializer.post_init()

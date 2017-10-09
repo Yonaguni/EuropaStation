@@ -1,20 +1,18 @@
-"a" = (/turf/space,/area/space)
-"b" = (/turf/simulated/wall,/area/hallway)
-"c" = (/turf/simulated/floor/tiled,/area/arrival/start)
-"d" = (/turf/simulated/floor/tiled,/area/hallway)
-"e" = (/obj/machinery/power/debug_items/infinite_generator,/turf/simulated/floor/tiled,/area/hallway)
-"f" = (/obj/effect/landmark/start,/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/arrival/start)
-"g" = (/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/hallway)
-"h" = (/obj/machinery/power/apc/east,/turf/simulated/floor/tiled,/area/hallway)
-"i" = (/obj/effect/landmark/start/ninja,/turf/simulated/floor/tiled,/area/hallway)
-"j" = (/obj/effect/landmark/start/merc,/turf/simulated/floor/tiled,/area/hallway)
-"k" = (/obj/effect/landmark/start/paramount,/turf/simulated/floor/tiled,/area/hallway)
-"l" = (/obj/effect/landmark/start/navy,/turf/simulated/floor/tiled,/area/hallway)
-"m" = (/obj/effect/landmark/start/ert,/turf/simulated/floor/tiled,/area/hallway)
-"n" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor/tiled,/area/hallway)
-"o" = (/obj/effect/landmark/start/crewman,/obj/machinery/floor_light/prebuilt,/turf/simulated/floor/tiled,/area/hallway)
-"p" = (/obj/effect/landmark/start/raider,/turf/simulated/floor/tiled,/area/hallway)
-"q" = (/obj/effect/landmark/start/malf,/turf/simulated/floor/tiled,/area/hallway)
+"a" = (/turf/simulated/ocean,/area/europa/ocean)
+"b" = (/turf/simulated/wall,/area/centcom)
+"c" = (/obj/effect/wingrille_spawn/reinforced,/turf/simulated/floor,/area/centcom)
+"d" = (/turf/simulated/floor/tiled,/area/centcom)
+"e" = (/turf/simulated/floor/tiled,/area/arrival)
+"f" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled,/area/centcom)
+"g" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled,/area/centcom)
+"h" = (/obj/machinery/power/debug_items/infinite_generator,/turf/simulated/floor/tiled,/area/centcom)
+"i" = (/obj/effect/landmark{name = "Observer-Start"},/turf/simulated/floor/tiled,/area/arrival)
+"j" = (/obj/effect/landmark/start,/turf/simulated/floor/tiled,/area/arrival)
+"k" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/centcom)
+"l" = (/obj/machinery/power/apc/east,/turf/simulated/floor/tiled,/area/centcom)
+"m" = (/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/centcom)
+"n" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor/tiled,/area/centcom)
+"o" = (/obj/effect/landmark/start/crewman,/turf/simulated/floor/tiled,/area/centcom)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -24,22 +22,22 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaabbbbbbbbbbbbbbbbaaaaaaa
-aaaaaaabcccddddddddddebaaaaaaa
-aaaaaaabcfcddgddgdddgdbaaaaaaa
-aaaaaaabcccddddddddddhbaaaaaaa
-aaaaaaabddddddgdddddddbaaaaaaa
-aaaaaaabddddddddddddddbaaaaaaa
-aaaaaaabdgddddddddddgdbaaaaaaa
-aaaaaaabddddddgdddgdddbaaaaaaa
-aaaaaaabddddgddgddddddbaaaaaaa
-aaaaaaabdgddddddddddgdbaaaaaaa
-aaaaaaabddddddddddddddbaaaaaaa
-aaaaaaabdddddddgddddddbaaaaaaa
-aaaaaaabdidjddddddddddbaaaaaaa
-aaaaaaabkgldmgddgdndodbaaaaaaa
-aaaaaaabdpdqddddddddddbaaaaaaa
-aaaaaaabbbbbbbbbbbbbbbbaaaaaaa
+aaaaaaabbccbbaaaabbccbbaaaaaaa
+aaaaaaabeeedbaaaabdddhbaaaaaaa
+aaaaaaacejifbbccbbgdddcaaaaaaa
+aaaaaaaceeeddddddddddlcaaaaaaa
+aaaaaaabdddddmddmdddddbaaaaaaa
+aaaaaaabbbddbbccbbddbbbaaaaaaa
+aaaaaaaaabdfbaaaabgdbaaaaaaaaa
+aaaaaaaaacddcaaaacddcaaaaaaaaa
+aaaaaaaaacddcaaaacddcaaaaaaaaa
+aaaaaaaaabdfbaaaabgdbaaaaaaaaa
+aaaaaaabbbddbbccbbddbbbaaaaaaa
+aaaaaaabdddddkddkdddddbaaaaaaa
+aaaaaaacddddddddddddddcaaaaaaa
+aaaaaaacdonfbbccbbgdddcaaaaaaa
+aaaaaaabddddbaaaabddddbaaaaaaa
+aaaaaaabbccbbaaaabbccbbaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -48,3 +46,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

@@ -49,6 +49,7 @@
 
 /obj/random_multi/auto_init = 1
 
+/obj/effect/cleanable/decay/auto_init = 1
 /obj/effect/floor_decal/auto_init = 1
 /obj/effect/wingrille_spawn/auto_init = 1
 /obj/effect/overmap/auto_init = 1
