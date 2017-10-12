@@ -2,6 +2,7 @@
 /area/europa
 	icon = 'icons/areas_europa.dmi'
 	base_turf = /turf/simulated/floor
+	turf_initializer = new /datum/area_initializer/ocean()
 
 /area/europa/ocean/abyss
 	name = "Abyss Floor"
@@ -43,6 +44,7 @@
 /area/maintenance/europa
 	icon = 'icons/areas_europa.dmi'
 	base_turf = /turf/simulated/floor
+	turf_initializer = new /datum/area_initializer/maintenance/ocean()
 
 /area/maintenance/europa/substation
 	name = "Power Station"
@@ -50,6 +52,7 @@
 /area/hallway/europa
 	icon = 'icons/areas_europa.dmi'
 	base_turf = /turf/simulated/floor
+	turf_initializer = new /datum/area_initializer/ocean()
 
 // Non-affiliated/temp.
 /area/europa/vault

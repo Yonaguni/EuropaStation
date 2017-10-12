@@ -67,6 +67,7 @@ var/list/dir2bdir = list(
 				var/image/I = ao_cache[cache_key]
 				if (!I)
 					I = image('icons/turf/flooring/shadows.dmi', "[corner]", dir = 1 << (i-1))
+					I.layer = TURF_LAYER + 0.05
 					I.alpha = WALL_AO_ALPHA
 					ao_cache[cache_key] = I
 
