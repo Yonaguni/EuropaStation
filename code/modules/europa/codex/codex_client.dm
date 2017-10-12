@@ -6,7 +6,6 @@
 		for(var/line in codex_data)
 			stat(null, "[line]")
 
-
 /client/verb/search_codex(searching as text)
 
 	set name = "Search Codex"
@@ -22,9 +21,8 @@
 
 	if(!searching)
 		searching = input("Enter a search string.", "Codex Search") as text|null
-
-	if(!searching)
-		return
+		if(!searching)
+			return
 
 	var/list/all_entries = SScodex.retrieve_entries_for_string(searching)
 	if(all_entries.len == 1)
@@ -33,7 +31,7 @@
 		to_chat(src, "<span class='notice'>Your codex implant reports <b>[all_entries.len] matches</b> for '[searching]':</span>")
 		for(var/i = 1 to min(all_entries.len, 5))
 			var/datum/codex_entry/entry = all_entries[i]
-			to_chat(src, "- <a href='?src=\ref[SScodex];show_examined_info=\ref[entry.associated_strings[1]];show_to=\ref[mob]'>[entry.display_name]</a></b></ul>")
+			to_chat(src, "- <b><a href='?src=\ref[SScodex];show_examined_info=\ref[entry.associated_strings[1]];show_to=\ref[mob]'>[entry.display_name]</a></b></ul>")
 		if(all_entries.len > 5)
 			to_chat(src, "<span class='notice'><b>[all_entries.len - 5] result\s</b> omitted. Please supply a more specific search term.</span>")
 	else
@@ -44,7 +42,6 @@
 	set name = "List Codex Entries"
 	set category = "IC"
 	set src = usr
-
 
 	if(!mob || !SScodex)
 		return
