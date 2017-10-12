@@ -12,6 +12,11 @@
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
 		all_chemical_reactions += D
+
+		if(!chemical_reactions_by_result[D.result])
+			chemical_reactions_by_result[D.result] = list()
+		chemical_reactions_by_result[D.result] += D
+
 		if(D.required_reagents && D.required_reagents.len)
 			var/reagent_id = D.required_reagents[1]
 			if(!chemical_reactions_list[reagent_id])

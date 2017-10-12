@@ -368,7 +368,6 @@ obj/random/obstruction //Large objects to block things off in maintenance
 		return pick(/obj/structure/barricade,\
 					/obj/structure/girder,\
 					/obj/structure/girder/displaced,\
-					/obj/structure/girder/reinforced,\
 					/obj/structure/grille,\
 					/obj/structure/grille/broken,\
 					/obj/structure/inflatable/wall,\

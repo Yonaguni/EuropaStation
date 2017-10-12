@@ -29,7 +29,7 @@
 			for(var/rid in react.inhibitors)
 				recipe_string += "[react.inhibitors[rid]] [rid] "
 
-		usr <<  "| [react.name] | [recipe_string] | [react.result_amount]u | [reagent.description] |"
+		usr <<  "| [react.name] | [recipe_string] | [react.result_amount]u | [reagent.lore_text] |"
 
 	usr << "<br>"
 	usr << "| Chemical | Effects |"
@@ -39,6 +39,6 @@
 		if(rid in checked)
 			continue
 		var/datum/reagent/reagent = chemical_reagents_list[rid]
-		usr <<  "| [reagent.name] | [reagent.description] |"
+		usr <<  "| [reagent.name] | [reagent.lore_text] |"
 
 	usr << "<br>"

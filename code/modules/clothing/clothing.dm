@@ -751,3 +751,75 @@ BLIND     // can't see anything
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)
 	..()
+
+/obj/item/clothing
+	var/global/list/armour_to_descriptive_term = list(
+		"melee" = "blunt force",
+		"bullet" = "ballistics",
+		"melee" = "blunt force",
+		"laser" = "lasers",
+		"energy" = "energy",
+		"bomb" = "explosions",
+		"bio" = "biohazards",
+		"rad" = "radiation"
+		)
+
+// Clothing examine stuff.
+/obj/item/clothing/examine(var/mob/user)
+	. = ..()
+	if(. && user)
+		var/list/armor_strings = list()
+		for(var/armor_type in armour_to_descriptive_term)
+			var/descriptive_attack_type = armour_to_descriptive_term[armor_type]
+			if(armor[armor_type])
+				switch(armor[armor_type])
+					if(1 to 20)
+						armor_strings += "It barely protects against [descriptive_attack_type]."
+					if(21 to 30)
+						armor_strings += "It provides a very small defense against [descriptive_attack_type]."
+					if(31 to 40)
+						armor_strings += "It offers a small amount of protection against [descriptive_attack_type]."
+					if(41 to 50)
+						armor_strings += "It offers a moderate defense against [descriptive_attack_type]."
+					if(51 to 60)
+						armor_strings += "It provides a strong defense against [descriptive_attack_type]."
+					if(61 to 70)
+						armor_strings += "It is very strong against [descriptive_attack_type]."
+					if(71 to 80)
+						armor_strings += "This gives a very robust defense against [descriptive_attack_type]."
+					if(81 to 99)
+						armor_strings += "Wearing this would make you nigh-invulerable against [descriptive_attack_type]."
+					if(100)
+						armor_strings += "You would be immune to [descriptive_attack_type] if you wore this."
+
+		if(flags & AIRTIGHT)
+			armor_strings += "It is airtight."
+
+		if(flags & STOPPRESSUREDAMAGE)
+			armor_strings += "Wearing this will protect you from dangerous pressure gradients."
+
+		if(flags & THICKMATERIAL)
+			armor_strings += "The material is exceptionally thick."
+
+		if(max_heat_protection_temperature == FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
+			armor_strings += "It provides very good protection against fire and heat."
+
+		if(min_cold_protection_temperature == SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE)
+			armor_strings += "It provides very good protection against very cold temperatures."
+
+		var/list/covers = list()
+		var/list/slots = list()
+		for(var/name in string_part_flags)
+			if(body_parts_covered & string_part_flags[name])
+				covers += name
+		for(var/name in string_slot_flags)
+			if(slot_flags & string_slot_flags[name])
+				slots += name
+
+		if(covers.len)
+			armor_strings += "It covers the [english_list(covers)]."
+
+		if(slots.len)
+			armor_strings += "It can be worn on your [english_list(slots)]."
+
+		to_chat(user, jointext(armor_strings, "<br>"))

@@ -3,7 +3,6 @@
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	id = "adrenaline"
-	description = "Adrenaline is a hormone that can be used as a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
@@ -20,7 +19,6 @@
 /datum/reagent/styptazine
 	name = "Styptazine"
 	id = "styptazine"
-	description = "An advanced form of styptic medication used for treating open wounds and bleeding."
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -35,7 +33,6 @@
 /datum/reagent/fotiazine
 	name = "Fotiazine"
 	id = "fotiazine"
-	description = "Fotiazine is a drug derived from the TLR3 protein. It is used to treat burns."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFA800"
@@ -49,7 +46,6 @@
 /datum/reagent/dylovene
 	name = "Dylovene"
 	id = "anti_toxin"
-	description = "Dylovene is a broad-spectrum antitoxin."
 	taste_description = "a roll of gauze"
 	reagent_state = LIQUID
 	color = "#00A000"
@@ -64,7 +60,6 @@
 /datum/reagent/dexalin
 	name = "Dexalin"
 	id = "dexalin"
-	description = "Dexalin is used in the treatment of oxygen deprivation."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0080FF"
@@ -80,7 +75,6 @@
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
 	id = "cryoxadone"
-	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the targets body temperature must be under 170K for it to metabolise correctly."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#8080FF"
@@ -99,7 +93,6 @@
 /datum/reagent/clonexadone
 	name = "Clonexadone"
 	id = "clonexadone"
-	description = "A liquid compound similar to that used in the cloning process. Can be used to 'finish' the cloning process when used in conjunction with a cryo tube."
 	taste_description = "slime"
 	reagent_state = LIQUID
 	color = "#80BFFF"
@@ -120,7 +113,6 @@
 /datum/reagent/paracetamol
 	name = "Paracetamol"
 	id = "paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
 	taste_description = "sickness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -139,7 +131,6 @@
 /datum/reagent/morphine
 	name = "Morphine"
 	id = "morphine"
-	description = "An opiod painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
@@ -158,7 +149,6 @@
 /datum/reagent/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
-	description = "An effective and very addictive painkiller."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#800080"
@@ -179,7 +169,6 @@
 /datum/reagent/synaptizine
 	name = "Synaptizine"
 	id = "synaptizine"
-	description = "Synaptizine is used to treat various diseases."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#99CCFF"
@@ -200,7 +189,6 @@
 /datum/reagent/alkysine
 	name = "Alkysine"
 	id = "alkysine"
-	description = "Alkysine is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFFF66"
@@ -216,7 +204,6 @@
 /datum/reagent/imidazoline
 	name = "Imidazoline"
 	id = "imidazoline"
-	description = "Heals eye damage"
 	taste_description = "dull toxin"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -238,7 +225,6 @@
 /datum/reagent/peridaxon
 	name = "Peridaxon"
 	id = "peridaxon"
-	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#561EC3"
@@ -257,7 +243,6 @@
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
 	id = "ryetalyn"
-	description = "Ryetalyn can cure all genetic abnomalities via a catalytic process."
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#004000"
@@ -278,7 +263,6 @@
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
-	description = "A powerful oxidizer that reacts with ethanol."
 	reagent_state = SOLID
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
@@ -296,7 +280,6 @@
 /datum/reagent/entolimod
 	name = "Entolimod"
 	id = "entolimod"
-	description = "An artificial recombinant protein used to counter the effects of radiation poisoning."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#408000"
@@ -311,7 +294,6 @@
 /datum/reagent/arithrazine
 	name = "Arithrazine"
 	id = "arithrazine"
-	description = "Arithrazine is an unstable medication used for the most extreme cases of radiation poisoning."
 	reagent_state = LIQUID
 	color = "#008000"
 	metabolism = REM * 0.25
@@ -328,7 +310,6 @@
 /datum/reagent/antibiotic
 	name = "Antibiotic"
 	id = "antibiotic"
-	description = "An all-purpose antibiotic."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
@@ -339,7 +320,6 @@
 /datum/reagent/antiseptic
 	name = "Antiseptic"
 	id = "antiseptic"
-	description = "Sterilizes wounds in preparation for surgery and thoroughly removes blood."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -365,7 +345,6 @@
 /datum/reagent/leporazine
 	name = "Leporazine"
 	id = "leporazine"
-	description = "Leporazine can be use to stabilize an individuals body temperature."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -385,7 +364,6 @@
 /datum/reagent/methylphenidate
 	name = "Methylphenidate"
 	id = "methylphenidate"
-	description = "Improves the ability to concentrate."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#BF80BF"
@@ -404,7 +382,6 @@
 /datum/reagent/citalopram
 	name = "Citalopram"
 	id = "citalopram"
-	description = "Stabilizes the mind a little."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FF80FF"
@@ -423,7 +400,6 @@
 /datum/reagent/paroxetine
 	name = "Paroxetine"
 	id = "paroxetine"
-	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
@@ -445,7 +421,6 @@
 /datum/reagent/nicotine
 	name = "Nicotine"
 	id = "nicotine"
-	description = "Stimulates and relaxes the mind and body."
 	taste_description = "smoke"
 	reagent_state = LIQUID
 	color = "#181818"
@@ -467,7 +442,6 @@
 /datum/reagent/menthol
 	name = "Menthol"
 	id = "menthol"
-	description = "Tastes naturally minty, and imparts a very mild numbing sensation."
 	taste_description = "mint"
 	reagent_state = LIQUID
 	color = "#80AF9C"
@@ -484,7 +458,6 @@
 /datum/reagent/rezadone
 	name = "Rezadone"
 	id = "rezadone"
-	description = "A powder with almost magical properties, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
 	taste_description = "sickness"
 	reagent_state = SOLID
 	color = "#669900"

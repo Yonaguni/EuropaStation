@@ -3,7 +3,6 @@
 /datum/reagent/toxin
 	name = "toxin"
 	id = "toxin"
-	description = "A toxic chemical."
 	taste_description = "bitterness"
 	taste_mult = 1.2
 	reagent_state = LIQUID
@@ -18,7 +17,6 @@
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
-	description = "Liquid plastic, do not eat."
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -27,7 +25,6 @@
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	id = "amatoxin"
-	description = "A powerful poison derived from certain species of mushroom."
 	taste_description = "mushroom"
 	reagent_state = LIQUID
 	color = "#792300"
@@ -36,7 +33,6 @@
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
-	description = "A deadly neurotoxin produced by the dreaded space carp."
 	taste_description = "fish"
 	reagent_state = LIQUID
 	color = "#003333"
@@ -46,7 +42,6 @@
 /datum/reagent/toxin/phoroxygen
 	name = "Oxyphoron"
 	id = "oxyphoron"
-	description = "An exceptionally flammable molecule formed from deuterium synthesis."
 	strength = 80
 	var/fire_mult = 30
 
@@ -69,7 +64,6 @@
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
 	id = "cyanide"
-	description = "A highly toxic chemical."
 	taste_mult = 0.6
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -84,7 +78,6 @@
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
-	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -106,7 +99,6 @@
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
-	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -127,7 +119,6 @@
 /datum/reagent/toxin/byphodine
 	name = "Byphodine"
 	id = "byphodine"
-	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "death"
 	reagent_state = SOLID
 	color = "#669900"
@@ -152,7 +143,6 @@
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
 	name = "fertilizer"
 	id = "fertilizer"
-	description = "A chemical mix good for growing plants with."
 	taste_description = "plant food"
 	taste_mult = 0.5
 	reagent_state = LIQUID
@@ -174,7 +164,6 @@
 /datum/reagent/toxin/weedkiller
 	name = "Weed Killer"
 	id = "weedkiller"
-	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
@@ -195,7 +184,6 @@
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"
-	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#8E18A9"
@@ -205,7 +193,6 @@
 /datum/reagent/lexorin
 	name = "Lexorin"
 	id = "lexorin"
-	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -219,7 +206,6 @@
 /datum/reagent/gc161
 	name = "GC-161"
 	id = "gc161"
-	description = "An extremely dangerous mutagenic compound. Keep away from children."
 	taste_description = "slime"
 	taste_mult = 0.9
 	reagent_state = LIQUID
@@ -256,7 +242,6 @@
 /datum/reagent/slimejelly
 	name = "Slime Jelly"
 	id = "slimejelly"
-	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
 	taste_description = "slime"
 	taste_mult = 1.3
 	reagent_state = LIQUID
@@ -272,7 +257,6 @@
 /datum/reagent/soporific
 	name = "Soporific"
 	id = "stoxin"
-	description = "An effective hypnotic used to treat insomnia."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#009CA8"
@@ -298,7 +282,6 @@
 /datum/reagent/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
-	description = "A powerful sedative."
 	taste_description = "bitterness"
 	reagent_state = SOLID
 	color = "#000067"
@@ -322,7 +305,6 @@
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	id = "beer2"
-	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	taste_description = "shitty piss water"
 	reagent_state = LIQUID
 	color = "#FFD300"
@@ -333,7 +315,6 @@
 /datum/reagent/serotrotium
 	name = "Serotrotium"
 	id = "serotrotium"
-	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#202040"
@@ -348,7 +329,6 @@
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
 	id = "cryptobiolin"
-	description = "Cryptobiolin causes confusion and dizzyness."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#000055"
@@ -362,7 +342,6 @@
 /datum/reagent/impedrezene
 	name = "Impedrezene"
 	id = "impedrezene"
-	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	taste_description = "numbness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -382,7 +361,6 @@
 /datum/reagent/slimetoxin
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
-	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
@@ -419,7 +397,6 @@
 /datum/reagent/prometheanserum
 	name = "Promethean Serum"
 	id = "prometheanserum"
-	description = "A dangerously unstable mutagen produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
@@ -437,7 +414,6 @@
 /datum/reagent/slimecrystal
 	name = "Crystallizing Agent"
 	id = "slimecrystal"
-	description = "A strange, glasslike substance that crystallizes matter."
 	taste_description = "sharpness"
 	reagent_state = LIQUID
 	color = "#13BC5E"
@@ -477,7 +453,6 @@
 /datum/reagent/nanites
 	name = "Nanomachines"
 	id = "nanites"
-	description = "Microscopic construction robots."
 	taste_description = "slimy metal"
 	reagent_state = LIQUID
 	color = "#535E66"
@@ -485,7 +460,6 @@
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
 	id = "xenomicrobes"
-	description = "Microbes with an entirely alien cellular structure."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#535E66"

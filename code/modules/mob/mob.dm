@@ -981,6 +981,10 @@ mob/proc/yank_out_object()
 			for(var/obj/item/O in organ.implants)
 				if(O == selection)
 					affected = organ
+					break
+
+		if(!istype(affected))
+			return
 
 		affected.implants -= selection
 		H.shock_stage+=20
@@ -1123,3 +1127,10 @@ mob/proc/yank_out_object()
 
 /mob/proc/set_lying(var/val)
 	lying = val
+
+/mob/proc/has_implant(var/implant_type, var/functioning)
+	for(var/obj/item/implant/implant in contents)
+		if(istype(implant, implant_type))
+			if(functioning && implant.malfunction)
+				continue
+			return implant
