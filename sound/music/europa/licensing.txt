@@ -6,6 +6,7 @@ Chronox - Juno
 
 CC-BY 3.0 - http://creativecommons.org/licenses/by/3.0/legalcode
 Kevin MacLeod - Martian Cowboy
+Chris Zabriskie - Cylinder Nine
 
 CC-BY-NC-SA - http://creativecommons.org/licenses/by-nc-sa/3.0/us/legalcode
 Macamoto - Torn
@@ -17,3 +18,4 @@ Six Umbrellas - Monument
 A Drop A Day - 80s All Over Again
 A Drop A Day - As Far as It Gets
 A Drop A Day - Hot Tub
+A Drop A Day - Wild Encounters

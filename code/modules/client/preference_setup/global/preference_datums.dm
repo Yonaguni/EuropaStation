@@ -55,17 +55,6 @@ var/list/_client_preferences_by_type
 	description ="Play admin midis"
 	key = "SOUND_MIDI"
 
-/datum/client_preference/play_lobby_music
-	description ="Play lobby music"
-	key = "SOUND_LOBBY"
-
-/datum/client_preference/play_lobby_music/toggled(var/mob/preference_mob, var/enabled)
-	if(enabled)
-		if(ticker && ticker.login_music)
-			preference_mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
-	else
-		preference_mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
-
 /datum/client_preference/play_ambiance
 	description ="Play ambience"
 	key = "SOUND_AMBIENCE"

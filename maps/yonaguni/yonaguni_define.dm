@@ -40,6 +40,12 @@
 	default_arrival_message = "has arrived at the facility"
 	captain_arrival_sound = null
 
+	lobby_music_choices = list(
+		/datum/music_track/torn,
+		/datum/music_track/nebula,
+		/datum/music_track/monument
+		)
+
 /datum/map/yonaguni/perform_map_generation()
 	map_submerged = TRUE
 	//admin_notice("<span class='warning'>Generating abyssal plain...</span>", R_DEBUG)

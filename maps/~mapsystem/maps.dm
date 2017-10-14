@@ -106,18 +106,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/area_coherency_test_exempt_areas = list()
 	var/default_arrival_message = "has arrived on the ship"
 
-	var/list/login_music_choices = list(
-		'sound/music/europa/Chronox_-_03_-_In_Orbit.ogg',
-		'sound/music/europa/Chronox_-_04_-_Juno.ogg',
-		'sound/music/europa/Macamoto_-_05_-_Torn.ogg',
-		'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg',
-		'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg',
-		'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg',
-		'sound/music/europa/Martian Cowboy.ogg',
-		'sound/music/europa/HotTub.ogg',
-		'sound/music/europa/80salloveragain.ogg',
-		'sound/music/europa/asfarasitgets.ogg'
-		)
+	var/list/lobby_music_choices = list(/datum/music_track/nebula)
 
 /datum/map/New()
 	..()
