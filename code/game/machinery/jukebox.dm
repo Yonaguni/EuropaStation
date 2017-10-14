@@ -30,7 +30,10 @@ datum/track/New(var/title_name, var/audio)
 		new/datum/track("Nebula", 'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg'),
 		new/datum/track("Monument", 'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg'),
 		new/datum/track("The And Of The World", 'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg'),
-		new/datum/track("Martian Cowboy", 'sound/music/europa/Martian Cowboy.ogg')
+		new/datum/track("Martian Cowboy", 'sound/music/europa/Martian Cowboy.ogg'),
+		new/datum/track("Hot Tub", 'sound/music/europa/HotTub.ogg'),
+		new/datum/track("80s All Over Again", 'sound/music/europa/80salloveragain.ogg'),
+		new/datum/track("As Far As It Gets", 'sound/music/europa/asfarasitgets.ogg')
 	)
 
 /obj/machinery/media/jukebox/New()

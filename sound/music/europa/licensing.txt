@@ -1,4 +1,4 @@
-The following tracks were downloaded from the Free Music Archive at http://freemusicarchive.org/ and then converted to low-quality .ogg to minimize file size. They are grouped under their respective license.
+All music files have been converted to low-quality .ogg to minimize file size. They are grouped under their respective license.
 
 CC-BY 4.0 - http://creativecommons.org/licenses/by/4.0/legalcode
 Chronox - In Orbit
@@ -14,3 +14,6 @@ Pulse Emitter - Nebula
 CC-BY-SA - http://creativecommons.org/licenses/by-sa/4.0/legalcode
 Six Umbrellas - The And Of The World
 Six Umbrellas - Monument
+A Drop A Day - 80s All Over Again
+A Drop A Day - As Far as It Gets
+A Drop A Day - Hot Tub
