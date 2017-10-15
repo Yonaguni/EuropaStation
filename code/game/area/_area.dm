@@ -252,6 +252,7 @@ var/list/mob/living/forced_ambiance_list = new
 	// If we previously were in an area with force-played ambiance, stop it.
 	if(L in forced_ambiance_list)
 		L << sound(null, channel = 1)
+		L << sound(null, channel = 2)
 		forced_ambiance_list -= L
 
 	var/turf/T = get_turf(L)

@@ -106,6 +106,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/area_coherency_test_exempt_areas = list()
 	var/default_arrival_message = "has arrived on the ship"
 
+	var/list/lobby_music_choices = list(/datum/music_track/nebula)
+
 /datum/map/New()
 	..()
 	if(!base_area)

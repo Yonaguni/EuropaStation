@@ -11,8 +11,6 @@ var/global/datum/controller/gameticker/ticker
 	var/event_time = null
 	var/event = 0
 
-	var/login_music			// music played in pregame lobby
-
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
 	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
@@ -39,17 +37,6 @@ var/global/datum/controller/gameticker/ticker
 	var/looking_for_antags = 0
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick(list(
-		'sound/music/europa/Chronox_-_03_-_In_Orbit.ogg',
-		'sound/music/europa/Chronox_-_04_-_Juno.ogg',
-		'sound/music/europa/Macamoto_-_05_-_Torn.ogg',
-		'sound/music/europa/Pulse_Emitter_-_04_-_Nebula.ogg',
-		'sound/music/europa/Six_Umbrellas_-_05_-_Monument.ogg',
-		'sound/music/europa/Six_Umbrellas_-_07_-_The_And_Of_The_World.ogg',
-		'sound/music/europa/Martian Cowboy.ogg',
-		))
-
- //Ground Control to Major Tom, this song is cool, what's going on?
 	do
 		if(!gamemode_voted)
 			pregame_timeleft = 180

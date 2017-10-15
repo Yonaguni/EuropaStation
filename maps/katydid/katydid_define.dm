@@ -24,6 +24,12 @@
 
 	votable = TRUE
 
+	lobby_music_choices = list(
+		/datum/music_track/inorbit,
+		/datum/music_track/juno,
+		/datum/music_track/andoftheworld
+		)
+
 	var/ship_prefix = "ICV"
 	var/ship_name = "Katydid"
 	var/datum/trade_destination/destination_location
