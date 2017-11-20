@@ -17,7 +17,7 @@ var/global/list/map_count = list()
 	var/limit_y = 128               // Default y size.
 	var/auto_apply = 1
 	var/preserve_map = 1
-
+	var/minimize_lag = TRUE         // Whether or not we sleep.
 	// Turf paths.
 	var/wall_type =  /turf/simulated/wall
 	var/floor_type = /turf/simulated/floor
@@ -49,7 +49,7 @@ var/global/list/map_count = list()
 
 	var/start_time = world.timeofday
 	if(!do_not_announce) admin_notice("<span class='danger'>Generating [name].</span>", R_DEBUG)
-	CHECK_TICK
+	if(minimize_lag) CHECK_TICK
 
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
 	if(seed)
@@ -106,7 +106,7 @@ var/global/list/map_count = list()
 				map[current_cell] = WALL_CHAR
 			else
 				map[current_cell] = FLOOR_CHAR
-			CHECK_TICK
+			if(minimize_lag) CHECK_TICK
 
 /datum/random_map/proc/clear_map()
 	for(var/x = 1 to limit_x)
@@ -155,7 +155,7 @@ var/global/list/map_count = list()
 	if(newpath && T.type != newpath)
 		T.ChangeTurf(newpath)
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
-	CHECK_TICK
+	if(minimize_lag) CHECK_TICK
 	return T
 
 /datum/random_map/proc/get_spawn_dir()

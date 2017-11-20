@@ -60,32 +60,11 @@
 	return (istype(F) ? F.fluid_amount : 0 )
 
 /turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-
-	for(var/obj/effect/fluid/F in contents)
-		qdel(F)
-	for(var/obj/effect/flood/F in contents)
-		qdel(F)
-
 	. = ..()
-
-	var/turf/T = .
-
-	// Brute force until I can chase down the bugs.
-	if(istype(T))
-		spawn(1)
-			if(istype(T) && !QDELETED(T) && !T.flooded)
-				for(var/obj/effect/fluid/F in T.contents)
-					qdel(F)
-				for(var/obj/effect/flood/F in T.contents)
-					qdel(F)
-			T.fluid_update()
-
-	spawn(1)
-		if(!flooded)
-			for(var/obj/effect/fluid/F in contents)
-				qdel(F)
-			for(var/obj/effect/flood/F in contents)
-				qdel(F)
+	var/turf/T = ..()
+	if(istype(T) && !T.flooded && (locate(/obj/effect/flood) in T.contents))
+		for(var/obj/effect/flood/F in T.contents)
+			qdel(F)
 
 /turf/proc/show_bubbles()
 	set waitfor = 0
