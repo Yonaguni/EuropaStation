@@ -950,6 +950,30 @@ proc/admin_notice(var/message, var/rights)
 
 	return 0
 
+/datum/admins/proc/cull_overlapping_lights()
+	set name = "Cull Overlapping Light Fixtures"
+	set desc = "Remove unnecessary overlapping lights."
+	set category = "Debug"
+
+	if(!check_rights(R_SPAWN))	return
+
+	var/cull_divisor = input("Enter a divisor for range checks (0.1 for a larger radius than the light's range).", "Divisor") as num|null
+	if(cull_divisor > 0)
+		var/kill_count = 0
+		var/list/all_lights = list()
+		for(var/obj/machinery/light/L in machines)
+			all_lights += L
+		var/light_count = all_lights.len
+		while(all_lights.len)
+			var/obj/machinery/light/L = pick(all_lights)
+			all_lights -= L
+			for(var/obj/machinery/light/other in view(L.light_range/cull_divisor, L))
+				if(other != L)
+					qdel(L)
+					kill_count++
+					break
+		log_debug("[key_name(usr)] culled lights with severity [cull_divisor], removing [kill_count] of [light_count] fixtures.")
+
 /datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
