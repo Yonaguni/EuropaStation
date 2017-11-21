@@ -13,11 +13,13 @@
 
 	wall_type = /turf/simulated/wall/titanium
 	floor_type = /turf/simulated/floor/reinforced
+
+	minimize_lag = FALSE // Generate them in a blob so flooding and air don't interrupt the process.
+
 	var/list/supplied_drop_types = list()
 	var/door_type = /obj/structure/droppod_door
 	var/drop_type = /mob/living/simple_animal/parrot
 	var/auto_open_doors
-
 	var/placement_explosion_dev =   1
 	var/placement_explosion_heavy = 2
 	var/placement_explosion_light = 6
