@@ -38,16 +38,6 @@
 			return "X"
 	return ..(value)
 
-/datum/random_map/automata/asteroids/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs |= target_cell
-
-/datum/random_map/automata/asteroids/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs -= target_cell
-
 /datum/random_map/automata/asteroids/cleanup()
 	var/ore_count = round(map.len/ore_divisor)
 	while((ore_count>0) && (ore_turfs.len>0))
