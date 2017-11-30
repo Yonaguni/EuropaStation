@@ -34,7 +34,10 @@ proc/GetBelow(var/atom/atom)
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
 
-proc/GetConnectedZlevels(z)
+#define GET_BELOW_OR_NULL(atom, z) \
+	(!(z > world.maxz || z > 17 || z < 2) && z_levels & (1 << (z - 2))) ? get_step(atom, DOWN) : null
+
+/proc/GetConnectedZlevels(z)
 	. = list(z)
 	for(var/level = z, HasBelow(level), level--)
 		. |= level-1
