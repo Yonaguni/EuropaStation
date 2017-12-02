@@ -1,25 +1,11 @@
 #define WALL_AO_ALPHA 100
+#define AO_ALL_NEIGHBORS 1910
 
-// This converts a regular dir into a icon_smoothing dir (which can represent all dirs in a single bitfield)
-// Index is dir, the order of these matters.
-// Ported to Europa, thanks Lohikar.
 var/list/ao_cache = list()
-var/list/dir2bdir = list(
-	N_NORTH,     // NORTH
-	N_SOUTH,     // SOUTH
-	0,           // not a dir
-	N_EAST,	     // EAST
-	N_NORTHEAST, // NORTHEAST
-	N_SOUTHEAST, // SOUTHEAST
-	0,           // not a dir
-	N_WEST,      // WEST
-	N_NORTHWEST, // NORTHWEST
-	N_SOUTHWEST  // SOUTHWEST
-)
 
 /turf
 	var/permit_ao
-	var/tmp/list/ao_overlays // Current ambient occlusion overlays. Tracked so we can reverse them without dropping all priority overlays.
+	var/tmp/list/ao_overlays // Current ambient occlusion overlays. Tracked so we can reverse them without dropping all overlays.
 	var/tmp/ao_neighbors = 0
 
 /turf/proc/regenerate_ao()
@@ -34,32 +20,30 @@ var/list/dir2bdir = list(
 		update_ao()
 
 /turf/proc/calculate_ao_neighbours()
+	ao_neighbors = 0
 	var/turf/T
-	for (var/tdir in alldirs)
-		T = get_step(src, tdir)
-		if(T && T.density && T.opacity)
-			ao_neighbors &= ~dir2bdir[tdir]
-		else
-			ao_neighbors |= dir2bdir[tdir]
+	CALCULATE_NEIGHBORS(src, ao_neighbors, T, !T || !T.opacity || !T.density)
 
 /turf/proc/update_ao()
-
 	if (ao_overlays)
 		overlays -= ao_overlays
 		ao_overlays.Cut()
 
 	calculate_ao_neighbours()
 
+	if (ao_neighbors == AO_ALL_NEIGHBORS)	// If all our neighbors are not solid, why bother with the rest of the checks?
+		return
+
 	if(!density && !opacity)
 		for(var/i = 1 to 4)
 			var/cdir = cornerdirs[i]
 			var/corner = 0
 
-			if (ao_neighbors & dir2bdir[cdir])
+			if (ao_neighbors & (1 << cdir))
 				corner |= 2
-			if (ao_neighbors & dir2bdir[turn(cdir, 45)])
+			if (ao_neighbors & (1 << turn(cdir, 45)))
 				corner |= 1
-			if (ao_neighbors & dir2bdir[turn(cdir, -45)])
+			if (ao_neighbors & (1 << turn(cdir, -45)))
 				corner |= 4
 
 			if (corner != 7)	// 7 is the 'no shadows' state, no reason to add overlays for it.
@@ -69,9 +53,19 @@ var/list/dir2bdir = list(
 					I = image('icons/turf/flooring/shadows.dmi', "[corner]", dir = 1 << (i-1))
 					I.layer = TURF_LAYER + 0.05
 					I.alpha = WALL_AO_ALPHA
+					I.appearance_flags = RESET_ALPHA|RESET_COLOR|TILE_BOUND
 					ao_cache[cache_key] = I
 
-				LAZYADD(ao_overlays, I)
+				if (!pixel_x && !pixel_y)
+					LAZYADD(ao_overlays, I)
+				else
+					// Turf is pixel-shifted, so we need to counteract the shift on the AO overlays.
+					var/image/shifted = new()
+					shifted.appearance = I
+					shifted.pixel_x = -(pixel_x)
+					shifted.pixel_y = -(pixel_y)
+
+					LAZYADD(ao_overlays, shifted)
 
 	UNSETEMPTY(ao_overlays)
 	if (ao_overlays)
