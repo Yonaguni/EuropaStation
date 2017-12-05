@@ -22,29 +22,25 @@
 /turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
 
 /turf/proc/add_fluid(var/fluidtype = "water", var/amount)
-
 	var/obj/effect/fluid/F = locate() in src
 	if(!F) F = new(src)
-	F.set_depth(F.fluid_amount + amount)
-	return
+	SET_FLUID_DEPTH(F, F.fluid_amount + amount)
 
 /turf/proc/remove_fluid(var/amount = 0)
 	var/obj/effect/fluid/F = locate() in src
-	if(!F) return
-	F.lose_fluid(amount)
-	return
+	if(F) LOSE_FLUID(F, amount)
 
 /turf/return_fluid()
 	return (locate(/obj/effect/fluid) in contents)
 
 /turf/Destroy()
 	fluid_update()
-	if(fluid_master)
-		fluid_master.remove_active_source(src)
+	if(SSfluids)
+		REMOVE_ACTIVE_FLUID_SOURCE(src)
 	return ..()
 
 /turf/simulated/initialize()
-	if((ticker && ticker.current_state == GAME_STATE_PLAYING) && fluid_master)
+	if((ticker && ticker.current_state == GAME_STATE_PLAYING) && SSfluids)
 		fluid_update()
 	. = ..()
 

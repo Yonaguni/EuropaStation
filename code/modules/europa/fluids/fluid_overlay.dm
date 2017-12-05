@@ -20,21 +20,6 @@
 /obj/effect/fluid/airlock_crush()
 	qdel(src)
 
-/obj/effect/fluid/proc/lose_fluid(var/amt = 0, var/fluidtype)
-	if(amt)
-		fluid_amount = max(-1, fluid_amount - amt)
-		if(fluid_master)
-			fluid_master.add_active_fluid(src)
-
-/obj/effect/fluid/proc/add_fluid(var/amt=-1, var/fluidtype)
-	if(fluid_master)
-		fluid_master.add_active_fluid(src)
-
-/obj/effect/fluid/proc/set_depth(var/amt=-1)
-	fluid_amount = min(FLUID_MAX_DEPTH, amt)
-	if(fluid_master)
-		fluid_master.add_active_fluid(src)
-
 /obj/effect/fluid/initialize()
 	. = ..()
 	start_loc = get_turf(src)
@@ -48,8 +33,7 @@
 	start_loc = null
 	if(islist(equalizing_fluids))
 		equalizing_fluids.Cut()
-	if(fluid_master)
-		fluid_master.remove_active_fluid(src)
+	REMOVE_ACTIVE_FLUID(src)
 	return ..()
 
 /obj/effect/fluid/airlock_crush()
@@ -67,5 +51,5 @@
 	if(istype(T))
 		var/obj/effect/fluid/F = locate() in T
 		if(!F) F = new(T)
-		F.set_depth(fluid_amount)
+		SET_FLUID_DEPTH(F, fluid_amount)
 		qdel(src)
