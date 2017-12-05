@@ -142,6 +142,7 @@ var/global/list/map_count = list()
 
 	for(var/x = 1 to limit_x)
 		for(var/y = 1 to limit_y)
+			if(minimize_lag) CHECK_TICK
 			apply_to_turf(x,y)
 
 /datum/random_map/proc/apply_to_turf(var/x,var/y)
