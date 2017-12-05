@@ -166,7 +166,7 @@
 	return ..()
 
 /turf/simulated/open/attackby(var/obj/item/O, var/mob/user)
-	if(below && below.is_flooded())
+	if(!O.iscoil() && below && below.is_flooded())
 		var/obj/item/reagent_containers/RG = O
 		if(istype(RG) && RG.is_open_container())
 			RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
