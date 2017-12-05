@@ -40,9 +40,6 @@
 	fluid_blocked_dirs = null
 	fluid_can_pass = null
 
-	if(!SSfluids)
-		return
-
 	// Wake up our neighbors.
 	if(!ignore_neighbors)
 		for(var/checkdir in cardinal)

@@ -5,12 +5,12 @@
 #define FLUID_MAX_DEPTH FLUID_DEEP*4       // Arbitrary max value for flooding.
 
 // Expects /turf for T.
-#define ADD_ACTIVE_FLUID_SOURCE(T)    if(SSfluids) SSfluids.water_sources |= T
-#define REMOVE_ACTIVE_FLUID_SOURCE(T) if(SSfluids) SSfluids.water_sources -= T
+#define ADD_ACTIVE_FLUID_SOURCE(T)    SSfluids.water_sources[T] = TRUE
+#define REMOVE_ACTIVE_FLUID_SOURCE(T) SSfluids.water_sources -= T
 
 // Expects /obj/effect/fluid for F.
-#define ADD_ACTIVE_FLUID(F)           if(SSfluids) SSfluids.active_fluids |= F
-#define REMOVE_ACTIVE_FLUID(F)        if(SSfluids) SSfluids.active_fluids -= F
+#define ADD_ACTIVE_FLUID(F)           SSfluids.active_fluids[F] = TRUE
+#define REMOVE_ACTIVE_FLUID(F)        SSfluids.active_fluids -= F
 
 // Expects /obj/effect/fluid for F, int for amt.
 #define LOSE_FLUID(F, amt) \
@@ -54,3 +54,9 @@
 		} \
 	} \
 	if(!flooded_a_neighbor) REMOVE_ACTIVE_FLUID_SOURCE(T);
+
+// We share overlays for all fluid turfs to sync icon animation.
+var/list/fluid_images = list()
+#define APPLY_FLUID_OVERLAY(img_state) \
+	if(!fluid_images[img_state]) fluid_images[img_state] = image('icons/effects/liquids.dmi',img_state); \
+	overlays += fluid_images[img_state];

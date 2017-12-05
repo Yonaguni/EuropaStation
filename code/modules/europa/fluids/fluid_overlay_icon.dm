@@ -10,10 +10,10 @@
 		layer = TURF_LAYER+0.1
 
 	if(fluid_amount > FLUID_DELETING && fluid_amount <= FLUID_EVAPORATION_POINT)
-		overlays += get_fluid_icon("shallow_still")
+		APPLY_FLUID_OVERLAY("shallow_still")
 	else if(fluid_amount > FLUID_EVAPORATION_POINT && fluid_amount < FLUID_SHALLOW)
-		overlays += get_fluid_icon("mid_still")
+		APPLY_FLUID_OVERLAY("mid_still")
 	else if(fluid_amount >= FLUID_SHALLOW && fluid_amount < (FLUID_DEEP*2))
-		overlays += get_fluid_icon("deep_still")
+		APPLY_FLUID_OVERLAY("deep_still")
 	else if(fluid_amount >= (FLUID_DEEP*2))
-		overlays += get_fluid_icon("ocean")
+		APPLY_FLUID_OVERLAY("ocean")

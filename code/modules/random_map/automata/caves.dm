@@ -61,7 +61,7 @@
 	var/tmp_cell
 	var/new_path
 	var/num_applied = 0
-	for (var/thing in block(locate(origin_x, origin_y, origin_z), locate(limit_x, limit_y, origin_z)))
+	for (var/thing in block(locate(origin_x, origin_y, origin_z), locate(origin_x + limit_x, origin_y + limit_y, origin_z)))
 		var/turf/T = thing
 		new_path = null
 		if (!T || (target_turf_type && !istype(T, target_turf_type)))
@@ -94,3 +94,5 @@
 	target_turf_type = /turf/simulated/mineral
 	wall_type =  /turf/simulated/mineral/flooded
 	floor_type = /turf/simulated/mineral/floor/flooded
+	mineral_sparse =  /turf/simulated/mineral/flooded
+	mineral_rich = /turf/simulated/mineral/flooded

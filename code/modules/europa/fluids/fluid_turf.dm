@@ -35,12 +35,11 @@
 
 /turf/Destroy()
 	fluid_update()
-	if(SSfluids)
-		REMOVE_ACTIVE_FLUID_SOURCE(src)
+	REMOVE_ACTIVE_FLUID_SOURCE(src)
 	return ..()
 
 /turf/simulated/initialize()
-	if((ticker && ticker.current_state == GAME_STATE_PLAYING) && SSfluids)
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		fluid_update()
 	. = ..()
 
