@@ -59,15 +59,3 @@
 		REMOVE_ACTIVE_FLUID_SOURCE(src)
 		for(var/obj/effect/fluid/F in src)
 			ADD_ACTIVE_FLUID(F)
-
-/turf/proc/get_fluid_blocking_dirs()
-	// Update valid spread directions and flow data.
-	if(isnull(fluid_blocked_dirs))
-		fluid_blocked_dirs = 0
-		for(var/obj/structure/window/W in src)
-			if(W.density)
-				fluid_blocked_dirs |= W.dir
-		for(var/obj/machinery/door/window/D in src)
-			if(D.density)
-				fluid_blocked_dirs |= D.dir
-	return fluid_blocked_dirs

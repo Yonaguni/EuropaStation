@@ -74,12 +74,16 @@ var/datum/controller/subsystem/fluids/SSfluids
 							other = new /obj/effect/fluid(T)
 						F.equalizing_fluids += other
 						downward_fluid_overlay_position = F.equalizing_fluids.len
+			UPDATE_FLUID_BLOCKED_DIRS(F.start_loc)
 			for(var/spread_dir in cardinal)
-				if(F.start_loc.get_fluid_blocking_dirs() & spread_dir)
+				if(F.start_loc.fluid_blocked_dirs & spread_dir)
 					continue
 				var/turf/T = get_step(F.start_loc, spread_dir)
 				var/coming_from = reverse_dir[spread_dir]
-				if(!istype(T) || T.flooded || (T.get_fluid_blocking_dirs() & coming_from) || !T.CanFluidPass(coming_from))
+				if(!istype(T) || T.flooded)
+					continue
+				UPDATE_FLUID_BLOCKED_DIRS(T)
+				if((T.fluid_blocked_dirs & coming_from) || !T.CanFluidPass(coming_from))
 					continue
 				var/obj/effect/fluid/other = locate() in T.contents
 				if(other && (QDELETED(other) || other.fluid_amount <= FLUID_DELETING))
