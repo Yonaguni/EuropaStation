@@ -2,7 +2,6 @@
 #include "fluid_canpass.dm"
 #include "fluid_drowning.dm"
 #include "fluid_flooding.dm"
-#include "fluid_mob.dm"
 #include "fluid_overlay.dm"
 #include "fluid_overlay_equalize.dm"
 #include "fluid_overlay_icon.dm"

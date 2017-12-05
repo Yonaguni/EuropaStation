@@ -163,3 +163,17 @@ var/datum/controller/subsystem/fluids/SSfluids
 
 		if (MC_TICK_CHECK)
 			return
+
+	// Sometimes, call water_act().
+	if(world.time >= next_water_act)
+		next_water_act = world.time + water_act_delay
+		af_index = 1
+		while (af_index <= processing_fluids.len)
+			var/obj/effect/fluid/F = processing_fluids[af_index++]
+			for(var/other_thing in get_turf(F))
+				if(isnull(other_thing)) continue
+				var/atom/movable/A = other_thing
+				if(A.simulated && !A.waterproof)
+					A.water_act(F.fluid_amount)
+			if (MC_TICK_CHECK)
+				return
