@@ -24,8 +24,9 @@
 #define FLOOD_TURF_NEIGHBORS(T, dry_run) \
 	for(var/spread_dir in cardinal) {\
 		if(T:get_fluid_blocking_dirs() & spread_dir) continue; \
-		var/turf/next = get_step(src, spread_dir); \
+		var/turf/next = get_step(T, spread_dir); \
 		if(!istype(next) || next.flooded || (next.get_fluid_blocking_dirs() & reverse_dir[spread_dir]) || !next.CanFluidPass(spread_dir)) continue; \
+		flooded_a_neighbor = TRUE; \
 		var/obj/effect/fluid/F = locate() in next; \
 		if(!F && !dry_run) {\
 			F = PoolOrNew(/obj/effect/fluid, next); \
@@ -36,6 +37,5 @@
 			if(F.fluid_amount >= FLUID_MAX_DEPTH) continue; \
 			if(!dry_run) SET_FLUID_DEPTH(F, FLUID_MAX_DEPTH); \
 		} \
-		flooded_a_neighbor = 1; \
 	} \
-	if(!flooded_a_neighbor) REMOVE_ACTIVE_FLUID_SOURCE(src);
+	if(!flooded_a_neighbor) REMOVE_ACTIVE_FLUID_SOURCE(T);

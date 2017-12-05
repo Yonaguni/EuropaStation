@@ -2,7 +2,7 @@ var/datum/controller/subsystem/fluids/SSfluids
 
 /datum/controller/subsystem/fluids
 	name = "Fluids"
-	wait = 8
+	wait = 6
 	flags = SS_NO_INIT
 
 	var/next_water_act = 0
