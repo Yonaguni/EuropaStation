@@ -76,6 +76,12 @@ var/list/turf_edge_cache = list()
 				T.update_icon()
 
 /turf/attackby(var/obj/item/C, var/mob/user)
+
+	if(C.iscoil() && can_build_cable(user))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
+
 	if(!accept_lattice)
 		return
 
@@ -101,6 +107,8 @@ var/list/turf_edge_cache = list()
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
 		return
+
+	. = ..()
 
 /turf/Destroy()
 	turfs -= src
@@ -213,7 +221,7 @@ var/const/enterloopsanity = 100
 	return
 
 /turf/proc/is_plating()
-	return 0
+	return open_space
 
 /turf/proc/inertial_drift(atom/movable/A)
 	if(!(A.last_move))	return
@@ -292,12 +300,5 @@ var/const/enterloopsanity = 100
 /turf/proc/update_blood_overlays()
 	return
 
-/turf/attackby(var/obj/item/thing, var/mob/user)
-	if(thing.iscoil() && can_build_cable(user))
-		var/obj/item/stack/cable_coil/coil = thing
-		coil.turf_place(src, user)
-		return
-	return ..()
-
 /turf/proc/can_build_cable(var/mob/user)
-	return 0
+	return open_space

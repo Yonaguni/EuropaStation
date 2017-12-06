@@ -54,6 +54,6 @@
 	display_name = "overalls, emergency"
 	path = /obj/item/clothing/accessory/overalls/emergency
 
-/datum/gear/shirt/overalls
+/datum/gear/shirt/overalls/electrician
 	display_name = "overalls, electrician"
 	path = /obj/item/clothing/accessory/overalls/electrician

@@ -25,6 +25,11 @@
 		ExtinguishMob()
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-round(depth/2))
+	for(var/thing in get_equipped_items(TRUE))
+		if(isnull(thing)) continue
+		var/atom/movable/A = thing
+		if(A.simulated && !A.waterproof)
+			A.water_act(depth)
 
 /mob/living/carbon/human/water_act(var/depth)
 	species.water_act(src, depth)

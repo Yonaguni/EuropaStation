@@ -22,6 +22,15 @@
 #define ARTIFACT_CHAR 7
 #define CORRIDOR_TURF_CHAR 8
 
-#define GET_MAP_CELL(X, Y) min(map.len, max(0,(((Y-1)*limit_x)+X)))
+#define TRANSLATE_COORD(X,Y) ((((Y) - 1) * limit_x) + (X))
+#define TRANSLATE_AND_VERIFY_COORD(X,Y) TRANSLATE_AND_VERIFY_COORD_MLEN(X,Y,map.len)
+
+#define TRANSLATE_AND_VERIFY_COORD_MLEN(X,Y,LEN) \
+	tmp_cell = TRANSLATE_COORD(X,Y);\
+	if (tmp_cell < 1 || tmp_cell > LEN) {\
+		tmp_cell = null;\
+	}
+
 #define IS_P_TWO(VAL) ((VAL & (VAL-1)) == 0)
 #define ROUND_TO_P_TWO(VAL) (2 ** -round(-log(2,VAL)))
+#define GET_MAP_CELL(X, Y) min(map.len, max(0,(((Y-1)*limit_x)+X)))
