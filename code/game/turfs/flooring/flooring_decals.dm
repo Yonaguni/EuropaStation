@@ -6,7 +6,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals.dmi'
-	layer = TURF_LAYER + 0.01
+	layer = FLOAT_LAYER
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
@@ -21,7 +21,7 @@ var/list/floor_decals = list()
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
 		if(!floor_decals[cache_key])
 			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
-			I.layer = T.layer
+			I.layer = FLOAT_LAYER
 			I.color = src.color
 			I.alpha = src.alpha
 			floor_decals[cache_key] = I
