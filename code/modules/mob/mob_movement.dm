@@ -168,6 +168,7 @@
 		*/
 
 		. = ..()
+
 		if(direct != olddir)
 			dir = olddir
 			set_dir(direct)
@@ -177,6 +178,13 @@
 		src.m_flag = 1
 		if ((A != src.loc && A && A.z == src.z))
 			src.last_move = get_dir(A, src.loc)
+
+		if(. && bound_overlay)
+			// The overlay will handle cleaning itself up on non-openspace turfs.
+			bound_overlay.forceMove(get_step(src, UP))
+			if (bound_overlay.dir != dir)
+				bound_overlay.set_dir(dir)
+
 	return
 
 /client/proc/Move_object(direct)
