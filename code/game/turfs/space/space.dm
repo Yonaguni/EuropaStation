@@ -5,7 +5,7 @@ var/image/exterior_light_overlay
 		exterior_light_overlay = image(icon = 'icons/planar_lighting/space.dmi')
 		exterior_light_overlay.blend_mode = BLEND_ADD
 		exterior_light_overlay.mouse_opacity = 0
-		exterior_light_overlay.plane = -10
+		exterior_light_overlay.plane = DARK_PLANE
 	return exterior_light_overlay
 
 /turf/space

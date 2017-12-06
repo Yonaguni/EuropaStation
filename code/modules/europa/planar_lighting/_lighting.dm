@@ -4,12 +4,6 @@
 // BordListian on Reddit for more advice and discussion, and whoever else was involved that I have forgotten.
 // Also thanks to Lummox for BYOND 510's awesome new features.
 
-#define MASTER_PLANE 0
-
-#define GUI_PLANE    MASTER_PLANE + 1
-
-#define DARK_PLANE   MASTER_PLANE - 1
-
 #define LIGHT_SOFT             "soft"
 #define LIGHT_SOFT_FLICKER     "soft-flicker"
 #define LIGHT_DIRECTIONAL      "directional"

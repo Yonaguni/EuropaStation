@@ -14,7 +14,6 @@ proc/get_mining_overlay(var/overlay_key)
 	icon_state = "rock-dark"
 	density = 1
 	opacity = 1
-	drop_state = "rockwall"
 	blend_with_neighbors = 20 // Blend over EVERYTHING.
 
 /turf/simulated/mineral //wall piece
@@ -24,7 +23,6 @@ proc/get_mining_overlay(var/overlay_key)
 	opacity = 1
 	density = 1
 	has_resources = 1
-	drop_state = "rockwall"
 	blend_with_neighbors = 15 // Blend over MOST THINGS.
 
 	var/ore/mineral

@@ -5,7 +5,7 @@
 	wait = 1	// ds
 	priority = SS_PRIORITY_ICON_UPDATE
 	init_order = SS_INIT_ICON_UPDATE
-	
+
 	var/list/queue = list()
 
 /datum/controller/subsystem/icon/New()
@@ -31,6 +31,7 @@
 
 		A.icon_update_queued = FALSE
 		A.update_icon()
+		A.update_above()
 
 		if (no_mc_tick)
 			CHECK_TICK
@@ -49,12 +50,3 @@
 		SSicon_update.queue += src
 		if (SSicon_update.suspended)
 			SSicon_update.wake()
-
-
-// OT-specific stuff
-/proc/queue_open_turf_update(var/turf/simulated/open/newturf)
-	if(!istype(newturf))
-		log_debug("Non-open turf supplied to queue.")
-		return
-
-	newturf.queue_icon_update()
