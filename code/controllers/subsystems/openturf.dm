@@ -1,5 +1,3 @@
-#define OPENTURF_MAX_PLANE -71
-#define OPENTURF_CAP_PLANE -70      // The multiplier goes here so it'll be on top of every other overlay.
 #define OPENTURF_MAX_DEPTH 10		// The maxiumum number of planes deep we'll go before we just dump everything on the same plane.
 #define SHADOWER_DARKENING_FACTOR 0.4	// The multiplication factor for openturf shadower darkness. Lighting will be multiplied by this.
 
@@ -96,6 +94,9 @@
 				break
 			continue
 
+		if (!T.shadower)	// If we don't have our shadower yet, create it.
+			T.shadower = new(T)
+
 		// Figure out how many z-levels down we are.
 		var/depth = 0
 		var/turf/simulated/open/Td = T
@@ -105,9 +106,8 @@
 		if (depth > OPENTURF_MAX_DEPTH)
 			depth = OPENTURF_MAX_DEPTH
 
-		var/target_plane
-
-		target_plane = OPENTURF_MAX_PLANE - depth
+		var/target_depth = (depth * 0.1)
+		var/target_layer = min(OPENTURF_MAX_LAYER, OPENTURF_BASE_LAYER + target_depth)
 		if (starlight_enabled && T.light_range)
 			T.set_light(0)
 
@@ -119,7 +119,7 @@
 			TO.appearance = T.below
 			TO.name = T.name
 			T.desc = TO.desc = "Below seems to be \a [T.below]."
-			TO.plane = target_plane
+			TO.layer = target_layer
 		else
 			// This openturf doesn't care about its icon, so we can just overwrite it.
 			if (T.below.bound_overlay)
@@ -127,7 +127,7 @@
 			T.appearance = T.below
 			T.name = initial(T.name)
 			T.opacity = FALSE
-			T.plane = target_plane
+			T.layer = target_layer
 
 		T.desc = "Below seems to be \a [T.below]."
 
@@ -145,7 +145,7 @@
 			var/atom/movable/openspace/overlay/OO = object.bound_overlay
 
 			// Cache our already-calculated depth so we don't need to re-calculate it a bunch of times.
-			OO.depth = target_plane
+			OO.depth = target_depth
 
 			queued_overlays += OO
 
@@ -187,7 +187,7 @@
 		// Actually update the overlay.
 		OO.dir = OO.associated_atom.dir
 		OO.appearance = OO.associated_atom
-		OO.plane = OO.depth
+		OO.layer = OPENTURF_BASE_LAYER + OO.depth
 		OO.opacity = FALSE
 		OO.queued = FALSE
 

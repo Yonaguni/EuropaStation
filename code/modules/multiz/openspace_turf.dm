@@ -8,13 +8,14 @@
 	name = "open space"
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "openspace"
-	layer = 1.9
+	layer = LAYER_SPACE_BACKGROUND
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	accept_lattice = 1
 	open_space = 1
 	blend_with_neighbors = -10 // Will accept overlays but shouldn't generate its own.
 
+	var/tmp/atom/movable/openspace/multiplier/shadower
 	var/tmp/turf/below
 	var/tmp/updating = FALSE								// If this turf is queued for openturf update.
 	var/tmp/depth
@@ -23,6 +24,7 @@
 /turf/simulated/open/Destroy()
 	SSopenturf.openspace_turfs -= src
 	SSopenturf.queued_turfs -= src
+	QDEL_NULL(shadower)
 
 	if (below)
 		below.above = null
@@ -34,9 +36,10 @@
 	. = ..()
 	icon_state = "" // Clear out the debug icon.
 	SSopenturf.openspace_turfs += src
-	if (no_mutate && plane == PLANE_SPACE_BACKGROUND)
-		// If the plane is default and we're a no_mutate turf, force it to 0 so the icon works properly.
-		plane = 0
+	shadower = new(src)
+	if (no_mutate && layer == LAYER_SPACE_BACKGROUND)
+		// If the layer is default and we're a no_mutate turf, force it to default so the icon works properly.
+		layer = TURF_LAYER
 	update()
 
 /turf/simulated/open/proc/update()
@@ -45,9 +48,6 @@
 	if(below)
 		below.above = src
 	levelupdate()
-	if (is_hole)
-		for (var/atom/movable/A in src)
-			ADD_FALLING_ATOM(A)
 	update_icon()
 
 /turf/simulated/open/levelupdate()

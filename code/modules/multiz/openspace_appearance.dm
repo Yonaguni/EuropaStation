@@ -97,7 +97,7 @@ Most openspace appearance code is in code/controllers/subsystems/openturf.dm.
 
 // Object used to hold a mimiced atom's appearance.
 /atom/movable/openspace/overlay
-	plane = OPENTURF_MAX_PLANE
+	layer = OPENTURF_BASE_LAYER
 	var/atom/movable/associated_atom
 	var/depth
 	var/queued = FALSE
@@ -147,7 +147,7 @@ Most openspace appearance code is in code/controllers/subsystems/openturf.dm.
 
 // This one's a little different because it's mimicing a turf.
 /atom/movable/openspace/turf_overlay
-	plane = OPENTURF_MAX_PLANE
+	layer = OPENTURF_BASE_LAYER
 
 /atom/movable/openspace/turf_overlay/attackby(obj/item/W, mob/user)
 	loc.attackby(W, user)
@@ -160,3 +160,23 @@ Most openspace appearance code is in code/controllers/subsystems/openturf.dm.
 
 /atom/movable/openspace/turf_overlay/examine(mob/examiner)
 	loc.examine(examiner)
+
+// Holder object used for dimming openspaces & copying lighting of below turf.
+/atom/movable/openspace/multiplier
+	name = "openspace multiplier"
+	desc = "You shouldn't see this."
+	icon = 'icons/effects/lighting_overlay.dmi'
+	icon_state = "light1"
+	layer = OPENTURF_MAX_LAYER+0.01
+	blend_mode = BLEND_MULTIPLY
+	color = list(
+		SHADOWER_DARKENING_FACTOR, 0, 0,
+		0, SHADOWER_DARKENING_FACTOR, 0,
+		0, 0, SHADOWER_DARKENING_FACTOR
+	)
+
+/atom/movable/openspace/multiplier/Destroy()
+	var/turf/simulated/open/myturf = loc
+	if (istype(myturf))
+		myturf.shadower = null
+	return ..()
