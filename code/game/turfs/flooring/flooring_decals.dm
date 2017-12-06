@@ -6,7 +6,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals.dmi'
-	layer = FLOAT_LAYER
+	layer = TURF_LAYER+0.1
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
