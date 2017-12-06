@@ -1,9 +1,10 @@
-#define SS_INIT_SEEDS               7
-#define SS_INIT_MISC_FIRST          6
-#define SS_INIT_TURBOLIFT           5
-#define SS_INIT_WIRELESS            4	// Wireless pair queue flush.
-#define SS_INIT_AIR                 3	// Air setup and pre-bake.
-#define SS_INIT_ICON_UPDATE         2	// Icon update queue flush. Should run before overlays.
+#define SS_INIT_SEEDS               8
+#define SS_INIT_MISC_FIRST          7
+#define SS_INIT_TURBOLIFT           6
+#define SS_INIT_WIRELESS            5	// Wireless pair queue flush.
+#define SS_INIT_AIR                 4	// Air setup and pre-bake.
+#define SS_INIT_ICON_UPDATE         3	// Icon update queue flush. Should run before overlays.
+#define SS_INIT_OVERLAY             2	// Overlay flush.
 #define SS_INIT_MISC                1	// Subsystems without an explicitly set initialization order start here.
 #define SS_INIT_LOBBY              -1	// Lobby timer starts here.
 
@@ -12,7 +13,7 @@
 // SS_BACKGROUND handles high server load differently than Normal and SS_TICKER do.
 
 // SS_TICKER
-// < none >
+#define SS_PRIORITY_OVERLAY        500	// Applies overlays. May cause overlay pop-in if it gets behind.
 
 // Normal
 #define SS_PRIORITY_TICKER         200	// Gameticker.

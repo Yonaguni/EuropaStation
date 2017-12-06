@@ -169,6 +169,7 @@
 #include "code\controllers\subsystems\machinery.dm"
 #include "code\controllers\subsystems\mob.dm"
 #include "code\controllers\subsystems\object.dm"
+#include "code\controllers\subsystems\overlays.dm"
 #include "code\controllers\subsystems\plants.dm"
 #include "code\controllers\subsystems\scheduler.dm"
 #include "code\controllers\subsystems\shuttle.dm"
