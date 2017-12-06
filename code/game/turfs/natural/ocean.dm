@@ -9,7 +9,6 @@
 	icon = 'icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
 	accept_lattice = 1
-	drop_state = "rockwall"
 	blend_with_neighbors = 1
 	flooded = 1
 	outside = 1

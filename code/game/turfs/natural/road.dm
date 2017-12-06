@@ -6,7 +6,6 @@
 	icon = 'icons/turf/road.dmi'
 	icon_state = "asphalt"
 	accept_lattice = 1
-	drop_state = "rockwall"
 	blend_with_neighbors = -1
 	outside = 1
 

@@ -1,5 +1,8 @@
-/turf/var/drop_state = "metalwall"
 /turf/var/open_space
+
+/proc/isopenturf(var/atom/A)
+	var/turf/T = get_turf(A)
+	return (istype(T) && T.open_space)
 
 /turf/simulated/open
 	name = "open space"
@@ -9,27 +12,62 @@
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	accept_lattice = 1
-	drop_state = null
 	open_space = 1
 	blend_with_neighbors = -10 // Will accept overlays but shouldn't generate its own.
 
-	var/turf/below
-	var/need_appearance_update
+	var/tmp/turf/below
+	var/tmp/updating = FALSE								// If this turf is queued for openturf update.
+	var/tmp/depth
+	var/no_mutate = FALSE	// If TRUE, SSopenturf will not modify the appearance of this turf.
+
+/turf/simulated/open/Destroy()
+	SSopenturf.openspace_turfs -= src
+	SSopenturf.queued_turfs -= src
+
+	if (below)
+		below.above = null
+		below = null
+
+	. = ..()
+
+/turf/simulated/open/initialize()
+	. = ..()
+	icon_state = "" // Clear out the debug icon.
+	SSopenturf.openspace_turfs += src
+	if (no_mutate && plane == PLANE_SPACE_BACKGROUND)
+		// If the plane is default and we're a no_mutate turf, force it to 0 so the icon works properly.
+		plane = 0
+	update()
+
+/turf/simulated/open/proc/update()
+	below = GetBelow(src)
+	// Edge case for when an open turf is above space on the lowest level.
+	if(below)
+		below.above = src
+	levelupdate()
+	if (is_hole)
+		for (var/atom/movable/A in src)
+			ADD_FALLING_ATOM(A)
+	update_icon()
+
+/turf/simulated/open/levelupdate()
+	for(var/obj/O in src)
+		O.hide(0)
+
+/turf/simulated/open/update_icon()
+	if(!updating && below)
+		updating = TRUE
+		SSopenturf.queued_turfs += src
+
+	if (above)	// Even if we're already updating, the turf above us might not be.
+		// Cascade updates until we hit the top openturf.
+		above.update_icon()
 
 /turf/simulated/open/ex_act()
 	return
 
-/turf/simulated/open/initialize()
-	..()
-	below = GetBelow(src)
-	ASSERT(HasBelow(z))
-	if(below)
-		need_appearance_update = 1
-		queue_open_turf_update(src)
-
 /turf/simulated/open/flooded
 	name = "abyss"
-	drop_state = "rockwall"
 
 /mob/var/fall_counter = 0
 

@@ -6,6 +6,7 @@
 #define SS_INIT_ICON_UPDATE         3	// Icon update queue flush. Should run before overlays.
 #define SS_INIT_OVERLAY             2	// Overlay flush.
 #define SS_INIT_MISC                1	// Subsystems without an explicitly set initialization order start here.
+#define SS_INIT_OPENTURF            0	// Openturf flush. Should run after SSoverlay & SSicon_smooth so it copies the smoothed sprites.
 #define SS_INIT_LOBBY              -1	// Lobby timer starts here.
 
 // Something to remember when setting priorities: SS_TICKER runs before Normal, which runs before SS_BACKGROUND.
@@ -29,6 +30,7 @@
 #define SS_PRIORITY_PLANTS         40	// Spreading plant effects.
 #define SS_PRIORITY_ICON_UPDATE    20	// Queued icon updates. Mostly used by APCs and tables.
 #define SS_PRIORITY_AIRFLOW        15	// Object movement from ZAS airflow.
+#define SS_PRIORITY_OPENTURF       10	// Open turf icon generation/updates.
 
 // SS_BACKGROUND
 #define SS_PRIORITY_PROCESSING    15	// Generic datum processor. Replaces objects processor.
