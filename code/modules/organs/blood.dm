@@ -91,8 +91,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(var/obj/item/reagent_containers/container, var/amount)
 
+
 	var/datum/reagent/B = get_blood(container.reagents)
-	if(!B) B = new /datum/reagent/blood
+	if(!B)
+		B = new /datum/reagent/blood
 	B.holder = container
 	B.volume += amount
 
@@ -119,8 +121,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(/obj/item/reagent_containers/container, var/amount)
-
+/mob/living/carbon/human/take_blood(var/obj/item/reagent_containers/container, var/amount)
 	if(!should_have_organ(BP_HEART))
 		return null
 

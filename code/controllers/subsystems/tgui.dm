@@ -1,7 +1,7 @@
 /var/datum/controller/subsystem/tgui/SStgui
 
 /datum/controller/subsystem/tgui
-	name = "tgui"
+	name = "Tgui"
 	wait = 1 SECOND
 	priority = SS_PRIORITY_TGUI
 
