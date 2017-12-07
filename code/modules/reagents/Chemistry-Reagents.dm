@@ -39,7 +39,7 @@
 	var/disinfectant
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
-	holder.remove_reagent(id, amount)
+	if(!QDELETED(src)) holder.remove_reagent(id, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
 /datum/reagent/proc/touch_mob(var/mob/M, var/amount)
