@@ -119,10 +119,11 @@
 						if(!do_mob(user, target, injtime))
 							return
 
-						src.take_blood_sample(T, amount)
-						user << "<span class='notice'>You take a blood sample from [target].</span>"
-						for(var/mob/O in viewers(4, user))
-							O.show_message("<span class='notice'>[user] takes a blood sample from [target].</span>", 1)
+						if(take_blood_sample(T, amount))
+							user.visible_message("<span class='notice'>\The [user] takes a blood sample from \the [target].</span>")
+						else
+							to_chat(user, "<span class='warning'>You cannot find any blood.</span>")
+							user.visible_message("<span class='notice'>\The [user] withdraws the empty syringe.</span>")
 
 				else //if not mob
 					if(!target.reagents.total_volume)
@@ -274,7 +275,7 @@
 			add_fingerprint(user)
 		update_icon()
 
-	proc/take_blood_sample(mob/living/carbon/T, var/amount)
+	proc/take_blood_sample(var/mob/living/carbon/T, var/amount)
 		var/datum/reagent/B
 		if(istype(T, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = T
@@ -290,6 +291,7 @@
 			reagents.update_total()
 			on_reagent_change()
 			reagents.handle_reactions()
+		return B
 
 /obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
