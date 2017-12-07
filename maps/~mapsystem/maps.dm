@@ -65,7 +65,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/emergency_shuttle_leaving_dock =   "The emergency shuttle is leaving the dock."
 	var/emergency_shuttle_called_message = "The emergency shuttle has been called."
 	var/emergency_shuttle_recall_message = "The emergency shuttle has been recalled."
-
+	var/has_gravity = TRUE
 	var/print_antag_summary = FALSE
 	var/single_card_authentication = FALSE
 

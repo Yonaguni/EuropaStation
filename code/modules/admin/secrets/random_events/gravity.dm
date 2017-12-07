@@ -7,7 +7,8 @@
 /datum/admin_secret_item/random_event/gravity/can_execute(var/mob/user)
 	if(!(ticker && ticker.mode))
 		return 0
-
+	if(using_map.has_gravity)
+		return 0
 	return ..()
 
 /datum/admin_secret_item/random_event/gravity/execute(var/mob/user)

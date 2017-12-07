@@ -9,6 +9,8 @@
 	player_levels = list(1,3)
 	use_overmap = TRUE
 
+	has_gravity = FALSE
+
 	shuttle_docked_message = "Jumpgate control reports that departure can occur in approximately %ETD%. All hands, please prepare for departure."
 	shuttle_leaving_dock = "Wave jump initiated. Please do not depart the vessel until the jump is complete. Estimate %ETA% until jump completion and arrival at %dock_name%."
 	shuttle_called_message = "Negotiations underway for jumpgate entry. Estimated approval time is %ETA%."
