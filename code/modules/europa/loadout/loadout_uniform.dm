@@ -35,7 +35,7 @@
 
 /datum/gear/clothing/doctor
 	display_name = "doctor's fatigues"
-	path = /obj/item/clothing/under/fatigues
+	path = /obj/item/clothing/under/lower/leather/fatigues
 
 /datum/gear/clothing/redpjs
 	display_name = "pajamas, red"

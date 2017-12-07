@@ -45,7 +45,7 @@ var/datum/antagonist/ert/ert
 
 	//Special radio setup
 	player.equip_to_slot_or_del(new /obj/item/radio/headset/pda/command(src), slot_l_ear)
-	player.equip_to_slot_or_del(new /obj/item/clothing/under/ert(src), slot_w_uniform)
+	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/pants/black/response_team(src), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/thick/swat(src), slot_gloves)
 	player.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), slot_glasses)

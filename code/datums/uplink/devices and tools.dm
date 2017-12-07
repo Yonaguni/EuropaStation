@@ -25,10 +25,10 @@
 	item_cost = 16
 	path = /obj/item/plastique
 
-/datum/uplink_item/item/tools/heavy_vest
-	name = "Heavy Armor Vest"
+/datum/uplink_item/item/tools/armor_vest
+	name = "Armor Vest"
 	item_cost = 16
-	path = /obj/item/clothing/suit/storage/vest/merc
+	path = /obj/item/clothing/suit/armour
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"

@@ -1,10 +1,10 @@
 /decl/hierarchy/outfit/spec_op_officer
 	name = "Special ops - Officer"
-	uniform = /obj/item/clothing/under/syndicate/combat
-	suit = /obj/item/clothing/suit/armor/swat/officer
+	uniform = /obj/item/clothing/under/jumpsuit/black
+	suit = /obj/item/clothing/suit/armour
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
 	mask = /obj/item/clothing/mask/smokable/cigarette/cigar/havana
-	head = /obj/item/clothing/head/beret/deathsquad
+	head = /obj/item/clothing/head/beret
 	belt = /obj/item/gun/composite/premade/assault_rifle
 	back = /obj/item/storage/backpack/satchel
 	shoes = /obj/item/clothing/shoes/combat
@@ -17,7 +17,6 @@
 
 /decl/hierarchy/outfit/spec_op_officer/space
 	name = "Special ops - Officer in space"
-	suit = /obj/item/clothing/suit/space/void/swat
 	back = /obj/item/tank/jetpack/oxygen
 	mask = /obj/item/clothing/mask/gas/swat
 
@@ -25,7 +24,7 @@
 
 /decl/hierarchy/outfit/ert
 	name = "Spec ops - Emergency response team"
-	uniform = /obj/item/clothing/under/ert
+	uniform = /obj/item/clothing/under/jumpsuit/black
 	shoes = /obj/item/clothing/shoes/swat
 	gloves = /obj/item/clothing/gloves/thick/swat
 	glasses = /obj/item/clothing/glasses/sunglasses

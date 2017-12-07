@@ -65,9 +65,6 @@
 	flags_inv = HIDEFACE | BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
-/obj/item/clothing/head/culthood/alt
-	icon_state = "cult_hoodalt"
-
 /obj/item/clothing/suit/cultrobes
 	name = "cult robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
@@ -81,10 +78,6 @@
 
 /obj/item/clothing/suit/cultrobes/cultify()
 	return
-
-/obj/item/clothing/suit/cultrobes/alt
-	icon_state = "cultrobesalt"
-	item_state = "cultrobesalt"
 
 /obj/item/clothing/suit/cultrobes/magusred
 	name = "magus robes"

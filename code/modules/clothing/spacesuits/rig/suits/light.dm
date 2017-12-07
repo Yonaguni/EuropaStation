@@ -110,16 +110,3 @@
 
 /obj/item/clothing/suit/space/rig/light/ninja
 	breach_threshold = 38 //comparable to regular hardsuits
-
-/obj/item/rig/light/stealth
-	name = "stealth suit control module"
-	suit_type = "stealth"
-	desc = "A highly advanced and expensive suit designed for covert operations."
-	icon_state = "stealth_rig"
-
-	req_access = list(access_syndicate)
-
-	initial_modules = list(
-		/obj/item/rig_module/stealth_field,
-		/obj/item/rig_module/vision
-		)

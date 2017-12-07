@@ -70,7 +70,7 @@
 /obj/structure/closet/firecloset/New()
 	..()
 
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/tank/oxygen/red(src)
 	new /obj/item/extinguisher(src)
@@ -81,7 +81,7 @@
 	sleep(4)
 	contents = list()
 
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire/(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/oxygen/red(src)
@@ -169,7 +169,7 @@
 /obj/structure/closet/bombcloset/New()
 	..()
 	new /obj/item/clothing/suit/bomb_suit( src )
-	new /obj/item/clothing/under/color/black( src )
+	new /obj/item/clothing/under/jumpsuit/black( src )
 	new /obj/item/clothing/shoes/black( src )
 	new /obj/item/clothing/head/bomb_hood( src )
 
@@ -183,10 +183,10 @@
 
 /obj/structure/closet/bombclosetsecurity/New()
 	..()
-	new /obj/item/clothing/suit/bomb_suit/security( src )
-	new /obj/item/clothing/under/rank/security( src )
+	new /obj/item/clothing/suit/bomb_suit( src )
+	new /obj/item/clothing/under/jumpsuit/red( src )
 	new /obj/item/clothing/shoes/brown( src )
-	new /obj/item/clothing/head/bomb_hood/security( src )
+	new /obj/item/clothing/head/bomb_hood( src )
 
 /*
  * Hydrant
@@ -203,7 +203,7 @@
 
 /obj/structure/closet/hydrant/New()
 	..()
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/oxygen/red(src)

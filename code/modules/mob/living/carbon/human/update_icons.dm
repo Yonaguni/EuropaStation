@@ -117,17 +117,17 @@ Please contact me on #coderbus IRC. ~Carn x
 #define SURGERY_LEVEL			3		//bs12 specific.
 #define UNDERWEAR_LAYER         4
 #define UNIFORM_LAYER			5
-#define ID_LAYER				6
-#define SHOES_LAYER				7
-#define GLOVES_LAYER			8
-#define BELT_LAYER				9
-#define SUIT_LAYER				10
+#define SHOES_LAYER				6
+#define GLOVES_LAYER			7
+#define BELT_LAYER				8
+#define SUIT_LAYER				9
+#define ID_LAYER				10
 #define TAIL_LAYER				11		//bs12 specific. this hack is probably gonna come back to haunt me
 #define GLASSES_LAYER			12
 #define BELT_LAYER_ALT			13
 #define SUIT_STORE_LAYER		14
 #define BACK_LAYER				15
-#define HAIR_LAYER				16		//TODO: make part of head layer?
+#define HAIR_LAYER				16		//TODO: make part o	f head layer?
 #define EARS_LAYER				17
 #define FACEMASK_LAYER			18
 #define HEAD_LAYER				19

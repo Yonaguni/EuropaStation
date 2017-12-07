@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/katydid
 	name = "Passenger"
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/lower/pants/black/passenger_clothing
 	id_type = null
 	pda_type = null
 
@@ -9,18 +9,16 @@
 
 /decl/hierarchy/outfit/job/katydid/priest
 	name = "Preacher"
-	uniform = /obj/item/clothing/under/rank/chaplain
 	shoes = /obj/item/clothing/shoes/black
 
 /decl/hierarchy/outfit/job/katydid/crew
 	name = "Crewman"
-	uniform = /obj/item/clothing/under/hireling
+	uniform = /obj/item/clothing/under/lower/pants/beige/navy_uniform
 	id_type = /obj/item/card/id
 	pda_type = /obj/item/radio/headset/pda
 
 /decl/hierarchy/outfit/job/katydid/crew/doctor
 	name = "Ship's Doctor"
-	uniform = 	/obj/item/clothing/under/fatigues
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/white
 	pda_type = /obj/item/radio/headset/pda/medical

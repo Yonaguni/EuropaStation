@@ -6,11 +6,9 @@
 	icon_screen = "invaders"
 	var/list/prizes = list(	/obj/item/storage/box/snappops			= 2,
 							/obj/item/toy/blink								= 2,
-							/obj/item/clothing/under/syndicate/tacticool	= 2,
 							/obj/item/toy/sword								= 2,
 							/obj/item/gun/composite/premade/revolver/toy	= 2,
 							/obj/item/toy/crossbow							= 2,
-							/obj/item/clothing/suit/syndicatefake			= 2,
 							/obj/item/storage/fancy/crayons			= 2,
 							/obj/item/toy/spinningtoy						= 2,
 							/obj/item/toy/prize/ripley						= 1,
@@ -44,9 +42,6 @@
 	if(!contents.len)
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
-
-		if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
-			new	/obj/item/clothing/head/syndicatefake(src.loc)
 
 	else
 		var/atom/movable/prize = pick(contents)
@@ -205,7 +200,6 @@
 			if(emagged)
 				feedback_inc("arcade_win_emagged")
 				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
-				new /obj/item/clothing/head/collectable/petehat(src.loc)
 				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				src.New()

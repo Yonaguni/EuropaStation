@@ -116,8 +116,8 @@
 
 // Modify the current target sensor level.
 /mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
-	if(!suit)
+	var/obj/item/clothing/under/jumpsuit/suit = w_uniform
+	if(!istype(suit))
 		user << "<span class='warning'>\The [src] is not wearing a suit with sensors.</span>"
 		return
 	if (suit.has_sensor >= 2)

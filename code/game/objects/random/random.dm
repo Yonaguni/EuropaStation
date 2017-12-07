@@ -509,7 +509,7 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/clothing/gloves/latex,\
 					prob(1);/obj/item/clothing/gloves/thick/swat,\
 					prob(1);/obj/item/clothing/gloves/thick/combat,\
-					prob(5);/obj/item/clothing/gloves/white,\
+					prob(5);/obj/item/clothing/gloves,\
 					prob(5);/obj/item/clothing/gloves/rainbow,\
 					prob(1);/obj/item/clothing/glasses/sunglasses,\
 					prob(3);/obj/item/clothing/glasses/meson,\
@@ -520,13 +520,12 @@ obj/random/material //Random materials for building stuff
 					prob(2);/obj/item/weldingtool/largetank,\
 					prob(2);/obj/item/clothing/head/helmet,\
 					prob(4);/obj/item/clothing/head/hardhat,\
-					prob(4);/obj/item/clothing/head/hardhat/orange,\
+					prob(4);/obj/item/clothing/head/hardhat,\
 					prob(4);/obj/item/clothing/head/hardhat/red,\
-					prob(4);/obj/item/clothing/head/hardhat/dblue,\
-					prob(3);/obj/item/clothing/head/ushanka,\
+					prob(4);/obj/item/clothing/head/hardhat,\
 					prob(2);/obj/item/clothing/head/welding,\
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,\
-					prob(2);/obj/item/clothing/suit/armor/vest,\
+					prob(2);/obj/item/clothing/suit/armour,\
 					prob(4);/obj/item/clothing/suit/storage/toggle/labcoat,\
 					prob(1);/obj/item/beartrap,\
 					prob(2);/obj/item/handcuffs,\
@@ -590,12 +589,9 @@ obj/random/material //Random materials for building stuff
 					prob(1);/obj/item/clothing/glasses/thermal,\
 					prob(3);/obj/item/weldingtool/largetank,\
 					prob(4);/obj/item/clothing/head/helmet,\
-					prob(4);/obj/item/clothing/head/collectable/petehat,\
-					prob(3);/obj/item/clothing/head/ushanka,\
 					prob(2);/obj/item/clothing/head/welding,\
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,\
-					prob(4);/obj/item/clothing/suit/armor/vest,\
-					prob(2);/obj/item/clothing/suit/storage/vest/merc,\
+					prob(4);/obj/item/clothing/suit/armour,\
 					prob(4);/obj/item/clothing/suit/storage/toggle/labcoat,\
 					prob(2);/obj/item/handcuffs,\
 					prob(2);/obj/item/circular_saw,\
@@ -620,18 +616,11 @@ obj/random/material //Random materials for building stuff
 	icon_state = "void"
 	item_to_spawn()
 		return pick(/obj/item/clothing/head/helmet/space/void,\
-					/obj/item/clothing/head/helmet/space/void/engineering,\
-					/obj/item/clothing/head/helmet/space/void/engineering/alt,\
-					/obj/item/clothing/head/helmet/space/void/engineering/salvage,\
-					/obj/item/clothing/head/helmet/space/void/mining,\
-					/obj/item/clothing/head/helmet/space/void/mining/alt,\
-					/obj/item/clothing/head/helmet/space/void/security,\
-					/obj/item/clothing/head/helmet/space/void/security/alt,\
-					/obj/item/clothing/head/helmet/space/void/atmos,\
-					/obj/item/clothing/head/helmet/space/void/atmos/alt,\
+					/obj/item/clothing/head/helmet/space/void,\
+					/obj/item/clothing/head/helmet/space/void/industrial,\
 					/obj/item/clothing/head/helmet/space/void/merc,\
-					/obj/item/clothing/head/helmet/space/void/medical,\
-					/obj/item/clothing/head/helmet/space/void/medical/alt)
+					/obj/item/clothing/head/helmet/space/void/armoured \
+					)
 
 /obj/random/voidsuit
 	name = "Random Pressure Suit"
@@ -640,18 +629,9 @@ obj/random/material //Random materials for building stuff
 	icon_state = "void"
 	item_to_spawn()
 		return pick(/obj/item/clothing/suit/space/void,\
-					/obj/item/clothing/suit/space/void/engineering,\
-					/obj/item/clothing/suit/space/void/engineering/alt,\
-					/obj/item/clothing/suit/space/void/engineering/salvage,\
-					/obj/item/clothing/suit/space/void/mining,\
-					/obj/item/clothing/suit/space/void/mining/alt,\
-					/obj/item/clothing/suit/space/void/security,\
-					/obj/item/clothing/suit/space/void/security/alt,\
-					/obj/item/clothing/suit/space/void/atmos,\
-					/obj/item/clothing/suit/space/void/atmos/alt,\
-					/obj/item/clothing/suit/space/void/merc,\
-					/obj/item/clothing/suit/space/void/medical,\
-					/obj/item/clothing/suit/space/void/medical/alt)
+					/obj/item/clothing/suit/space/void/industrial,\
+					/obj/item/clothing/suit/space/void/armoured,\
+					/obj/item/clothing/suit/space/void/merc)
 
 /obj/random/hardsuit
 	name = "Random Hardsuit"
@@ -662,8 +642,7 @@ obj/random/material //Random materials for building stuff
 		return pick(/obj/item/rig/industrial,\
 					/obj/item/rig/eva,\
 					/obj/item/rig/light/hacker,\
-					/obj/item/rig/light/stealth,\
-					/obj/item/rig/light)
+					)
 
 /*
 	Selects one spawn point out of a group of points with the same ID and asks it to generate its items

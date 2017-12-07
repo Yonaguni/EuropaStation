@@ -129,8 +129,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 			drop_from_inventory(r_store)
 		if (l_store)
 			drop_from_inventory(l_store)
-		if (wear_id)
-			drop_from_inventory(wear_id)
 		if (belt)
 			drop_from_inventory(belt)
 		w_uniform = null
@@ -300,8 +298,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-			if(istype(W,/obj/item/clothing/head/kitty))
-				W.update_icon(src)
 			W.equipped(src, slot)
 			update_inv_head(redraw_mob)
 		if(slot_shoes)

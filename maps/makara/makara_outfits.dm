@@ -1,18 +1,17 @@
 /decl/hierarchy/outfit/job/makara
 	name = "Passenger"
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/lower/pants/black/passenger_clothing
 	id_type = null
 	pda_type = null
 
 /decl/hierarchy/outfit/job/makara/crew
 	name = "Crewman"
-	uniform = /obj/item/clothing/under/hireling
+	uniform = /obj/item/clothing/under/lower/pants/beige/navy_uniform
 	id_type = /obj/item/card/id
 	pda_type = /obj/item/radio/headset/pda
 
 /decl/hierarchy/outfit/job/makara/crew/doctor
 	name = "Ship's Doctor"
-	uniform = 	/obj/item/clothing/under/fatigues
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/white
 	pda_type = /obj/item/radio/headset/pda/medical
@@ -36,7 +35,7 @@
 /decl/hierarchy/outfit/job/makara/scientist
 	name = OUTFIT_JOB_NAME("Scientist")
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	uniform = /obj/item/clothing/under/color/white
+	uniform = /obj/item/clothing/under/lower/pants/white/scientist_uniform
 	shoes = /obj/item/clothing/shoes/brown
 	l_hand = /obj/item/clipboard
 	id_type = /obj/item/card/id/science

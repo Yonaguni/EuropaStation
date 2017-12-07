@@ -130,5 +130,5 @@
 	if(!istype(holder))
 		return
 	holder.put_in_hands(new /obj/item/material/twohanded/spear(get_turf(holder)))
-	var/obj/item/clothing/suit/hidemantle/mantle = new(get_turf(holder))
+	var/obj/item/clothing/suit/mantle/mantle = new(get_turf(holder))
 	holder.equip_to_slot_if_possible(mantle, slot_wear_suit)

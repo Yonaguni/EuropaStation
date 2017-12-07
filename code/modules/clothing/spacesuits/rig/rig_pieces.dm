@@ -11,6 +11,12 @@
 	cold_protection =    HEAD|FACE|EYES
 	species_restricted = null
 
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/head_rigs.dmi',
+		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi'
+		)
+
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
@@ -42,6 +48,13 @@
 	breach_threshold = 38
 	resilience = 0.2
 	can_breach = 1
+
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits_rigs.dmi',
+		slot_l_hand_str = 'icons/mob/items/lefthand_spacesuits.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_spacesuits.dmi'
+		)
+
 	var/list/supporting_limbs = list() //If not-null, automatically splints breaks. Checked when removing the suit.
 
 /obj/item/clothing/suit/space/rig/equipped(mob/M)

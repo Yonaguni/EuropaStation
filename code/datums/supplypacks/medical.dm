@@ -41,14 +41,10 @@
 /decl/hierarchy/supply_pack/medical/medicalscrubs
 	name = "Medical scrubs"
 	contains = list(/obj/item/clothing/shoes/white = 3,
-					/obj/item/clothing/under/rank/medical/blue = 3,
-					/obj/item/clothing/under/rank/medical/green = 3,
-					/obj/item/clothing/under/rank/medical/purple = 3,
-					/obj/item/clothing/under/rank/medical/black = 3,
+					/obj/item/clothing/under/jumpsuit/white = 3,
 					/obj/item/clothing/head/surgery = 3,
 					/obj/item/clothing/head/surgery/purple = 3,
 					/obj/item/clothing/head/surgery/blue = 3,
-					/obj/item/clothing/head/surgery/green = 3,
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves)
 	cost = 15
@@ -73,10 +69,8 @@
 
 /decl/hierarchy/supply_pack/medical/medicalbiosuits
 	name = "Medical biohazard gear"
-	contains = list(/obj/item/clothing/head/bio_hood = 3,
-					/obj/item/clothing/suit/bio_suit = 3,
-					/obj/item/clothing/head/bio_hood/virology = 2,
-					/obj/item/clothing/suit/bio_suit/cmo = 2,
+	contains = list(/obj/item/clothing/head/bio_hood = 5,
+					/obj/item/clothing/suit/bio_suit = 5,
 					/obj/item/clothing/mask/gas = 5,
 					/obj/item/tank/oxygen = 5,
 					/obj/item/storage/box/masks,
@@ -114,8 +108,8 @@
 
 /decl/hierarchy/supply_pack/medical/sterile
 	name = "Sterile equipment crate"
-	contains = list(/obj/item/clothing/under/rank/medical/green = 2,
-					/obj/item/clothing/head/surgery/green = 2,
+	contains = list(/obj/item/clothing/under/jumpsuit/white = 2,
+					/obj/item/clothing/head/surgery = 2,
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves,
 					/obj/item/storage/belt/medical = 3)

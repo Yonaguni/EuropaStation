@@ -808,7 +808,7 @@
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
-	products = list(/obj/item/clothing/under/rank/scientist = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
+	products = list(/obj/item/clothing/under/jumpsuit/white = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
 					/obj/item/transfer_valve = 6,/obj/item/assembly/timer = 6,/obj/item/assembly/signaler = 6,
 					/obj/item/assembly/prox_sensor = 6,/obj/item/assembly/igniter = 6)
 
@@ -911,7 +911,7 @@
 	/obj/item/material/knife = 3,
 	/obj/item/material/kitchen/rollingpin = 2,
 	/obj/item/reagent_containers/food/drinks/glass2/square = 8,
-	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/clothing/suit/chef = 2,
 	/obj/item/storage/lunchbox = 3,
 	/obj/item/storage/lunchbox/heart = 3,
 	/obj/item/storage/lunchbox/cat = 3,

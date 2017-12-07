@@ -31,7 +31,7 @@
 				H.drop_from_inventory(W)
 			//teleport person to cell
 			H.loc = pick(prisonwarp)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/jumpsuit/orange(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), slot_shoes)
 		else
 			//teleport security person

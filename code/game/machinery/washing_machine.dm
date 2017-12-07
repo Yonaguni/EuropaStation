@@ -116,31 +116,16 @@
 		if ( istype(W,/obj/item/clothing/suit/space ) )
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			user << "This item does not fit."
-			return
 		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
+		if ( istype(W,/obj/item/clothing/suit/armour ) )
 			user << "This item does not fit."
 			return
 		if ( istype(W,/obj/item/clothing/mask/gas ) )
 			user << "This item does not fit."
 			return
 		if ( istype(W,/obj/item/clothing/mask/smokable/cigarette ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
 			user << "This item does not fit."
 			return
 //		if ( istype(W,/obj/item/clothing/head/powered ) )
