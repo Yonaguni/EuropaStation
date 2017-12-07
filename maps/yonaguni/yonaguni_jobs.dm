@@ -445,12 +445,6 @@
 /obj/effect/landmark/start/security_officer
 	name = "Security Officer"
 
-/obj/effect/landmark/start/robot
-	name = "Robot"
-
-/obj/effect/landmark/start/computer
-	name = "Computer"
-
 /obj/effect/landmark/start/colonist
 	name = "Colonist"
 

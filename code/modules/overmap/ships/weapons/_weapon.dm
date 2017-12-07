@@ -8,21 +8,29 @@
 	anchored = 1
 	density = 1
 
+	var/global/weapon_number = 0
 	var/projectile_type = /obj/item/projectile/ship_munition
 	var/obj/effect/overmap/ship/linked
 
 /obj/machinery/power/ship_weapon/proc/get_status()
+	var/list/data = list()
+	data["name"] = name
+	var/area/area = get_area(src)
+	data["location"] = area.name
 	if(!powered())
-		return "[name]: <span class='danger'>OFFLINE</span>"
-	if(!can_fire())
-		return "[name]: <b><font color='#FF9900'>NOT READY</font></b>"
-	return "[name]: <b><font color='#00FF00'>READY</font></b>"
+		data["status"] = "<span class='danger'>OFFLINE</span>"
+	else if(!can_fire())
+		data["status"] = "<b><font color='#FF9900'>NOT READY</font></b>"
+	else
+		data["status"] = "<b><font color='#00FF00'>READY</font></b>"
+	return data
 
 /obj/machinery/power/ship_weapon/initialize()
 	..()
 	linked = map_sectors["[z]"]
-	if(linked)
-		linked.weapons |= src
+	weapon_number++
+	name = "[initial(name)] #[weapon_number]"
+	if(linked) linked.weapons |= src
 
 /obj/machinery/power/ship_weapon/update_icon()
 	overlays.Cut()
@@ -38,15 +46,17 @@
 /obj/machinery/power/ship_weapon/proc/handle_post_fire()
 	return TRUE
 
+/obj/machinery/power/ship_weapon/proc/get_projectile()
+	return new projectile_type(get_turf(src))
+
 /obj/machinery/power/ship_weapon/proc/fire()
 
 	if(!can_fire() || !handle_pre_fire())
 		return FALSE
 
-	var/obj/item/projectile/ship_munition/fired = new projectile_type(get_turf(src))
+	var/obj/item/projectile/ship_munition/fired = get_projectile()
 	if(!fired)
 		return FALSE
-
 	fired.fired_by = linked
 	fired.fired_at = linked.last_weapon_target
 	if(fired.fire_sound)

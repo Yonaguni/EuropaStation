@@ -12,6 +12,9 @@
 	var/wall_type =  /turf/simulated/wall/elevator
 	var/floor_type = /turf/simulated/floor/tiled/dark
 	var/door_type =  /obj/machinery/door/airlock/lift
+	var/list/panel_offsets = list()
+	var/place_exterior_doors = TRUE
+	var/place_interior_doors = TRUE
 
 	var/list/areas_to_use = list()
 
@@ -37,10 +40,10 @@
 
 	// These modifiers are used in relation to the origin
 	// to place the system control panels and doors.
-	var/int_panel_x
-	var/int_panel_y
-	var/ext_panel_x
-	var/ext_panel_y
+	var/int_panel_x = panel_offsets["int-[dir]-x"] ? panel_offsets["int-[dir]-x"] : 0
+	var/int_panel_y = panel_offsets["int-[dir]-y"] ? panel_offsets["int-[dir]-y"] : 0
+	var/ext_panel_x = panel_offsets["ext-[dir]-x"] ? panel_offsets["ext-[dir]-x"] : 0
+	var/ext_panel_y = panel_offsets["ext-[dir]-y"] ? panel_offsets["ext-[dir]-y"] : 0
 	var/door_x1
 	var/door_y1
 	var/door_x2
@@ -51,14 +54,15 @@
 	var/ey = (uy+lift_size_y)
 	var/ez = (uz+(depth-1))
 
+
 	switch(dir)
 
 		if(NORTH)
 
-			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = uy + 1
-			ext_panel_x = ux
-			ext_panel_y = ey + 2
+			int_panel_x += ux + Floor(lift_size_x/2)
+			int_panel_y += uy + 1
+			ext_panel_x += ux
+			ext_panel_y += ey + 2
 
 			door_x1 = ux + 1
 			door_y1 = ey
@@ -67,10 +71,10 @@
 
 		if(SOUTH)
 
-			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = ey - 1
-			ext_panel_x = ex
-			ext_panel_y = uy - 2
+			int_panel_x += ux + Floor(lift_size_x/2)
+			int_panel_y += ey - 1
+			ext_panel_x += ex
+			ext_panel_y += uy - 2
 
 			door_x1 = ux + 1
 			door_y1 = uy - 1
@@ -79,10 +83,10 @@
 
 		if(EAST)
 
-			int_panel_x = ux+1
-			int_panel_y = uy + Floor(lift_size_y/2)
-			ext_panel_x = ex+2
-			ext_panel_y = ey
+			int_panel_x += ux+1
+			int_panel_y += uy + Floor(lift_size_y/2)
+			ext_panel_x += ex+2
+			ext_panel_y += ey
 
 			door_x1 = ex
 			door_y1 = uy + 1
@@ -91,10 +95,10 @@
 
 		if(WEST)
 
-			int_panel_x = ex-1
-			int_panel_y = uy + Floor(lift_size_y/2)
-			ext_panel_x = ux-2
-			ext_panel_y = uy
+			int_panel_x += ex-1
+			int_panel_y += uy + Floor(lift_size_y/2)
+			ext_panel_x += ux-2
+			ext_panel_y += uy
 
 			door_x1 = ux - 1
 			door_y1 = uy + 1
@@ -146,11 +150,17 @@
 				var/internal = 1
 				if(!(checking in floor_turfs))
 					internal = 0
+					if(!place_exterior_doors)
+						continue
 					if(checking.type != floor_type)
 						checking.ChangeTurf(floor_type)
 						checking = locate(tx,ty,cz)
 					for(var/atom/movable/thing in checking.contents)
 						qdel(thing)
+
+				if(internal && !place_interior_doors)
+					continue
+
 				if(checking.type == floor_type) // Don't build over empty space on lower levels.
 					var/obj/machinery/door/airlock/lift/newdoor = new door_type(checking)
 					if(internal)

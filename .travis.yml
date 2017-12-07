@@ -13,6 +13,7 @@ env:
   matrix:
     - MAP_PATH=yonaguni
     - MAP_PATH=katydid
+    - MAP_PATH=makara
     - MAP_PATH=testing
 cache:
   directories:

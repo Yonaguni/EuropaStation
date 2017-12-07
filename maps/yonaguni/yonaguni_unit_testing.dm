@@ -1,7 +1,6 @@
 /datum/map/yonaguni
 	exempt_areas = list(
 		/area/space = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/arrival/start = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/turbolift = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/shuttle = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/centcom/europa/offstation = NO_SCRUBBER|NO_VENT|NO_APC,

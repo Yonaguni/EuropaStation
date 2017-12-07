@@ -113,10 +113,6 @@ area/space/atmosalert()
 /area/arrival
 	requires_power = 0
 
-/area/arrival/start
-	name = "\improper Arrival Area"
-	icon_state = "start"
-
 ////////////
 //SHUTTLES//
 ////////////
