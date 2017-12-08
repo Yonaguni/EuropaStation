@@ -14,7 +14,7 @@
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
-	var/datum/scheduled_task/unwet_task
+	var/unwet_timer
 
 /turf/simulated/post_change()
 	..()
@@ -34,13 +34,10 @@
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
-	if(unwet_task)
-		unwet_task.trigger_task_in(15 SECONDS, /turf/simulated/proc/task_unwet_floor)
-	else
-		unwet_task = schedule_task_with_source_in(15 SECONDS, src, /turf/simulated/proc/task_unwet_floor)
+	unwet_timer = addtimer(CALLBACK(src, .proc/task_unwet_floor), 15 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 
 /turf/simulated/proc/task_unwet_floor()
-	unwet_task = null
+	deltimer(unwet_timer)
 	unwet_floor(TRUE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
@@ -64,7 +61,9 @@
 	levelupdate()
 
 /turf/simulated/Destroy()
-	task_unwet_floor(unwet_task, FALSE)
+	if (unwet_timer)
+		deltimer(unwet_timer)
+		unwet_floor(FALSE)
 	return ..()
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
