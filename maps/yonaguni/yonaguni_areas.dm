@@ -534,6 +534,10 @@
 	name = "Sublevel - Atmospherics"
 	icon_state = "atmospherics"
 
+/area/europa/engineering/cracking
+	name = "Engineering - Fluid Cracking"
+	icon_state = "atmospherics"
+
 /area/europa/engineering/incinerator
 	name = "Engineering - Incinerator"
 	icon_state = "incinerator"

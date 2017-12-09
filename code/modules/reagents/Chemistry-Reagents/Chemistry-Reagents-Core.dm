@@ -91,6 +91,12 @@
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 
+/datum/reagent/water/deuterium
+	name = "Deuterium"
+	id = "deuterium"
+	glass_name = "heavy water" // I know this isn't accurate, but it's kinda funny.
+	glass_desc = "Perfect for refreshing a heavy thirst, or performing fusion."
+
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
