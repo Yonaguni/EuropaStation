@@ -10,6 +10,7 @@
 #define ATM_CO2		5
 #define ATM_P		6	//Phoron
 #define ATM_N2O		7
+#define ATM_H2      8
 
 //--------------------------------------------
 // Omni port datum
@@ -98,6 +99,8 @@
 			return "oxygen"
 		if(ATM_N2)
 			return "nitrogen"
+		if(ATM_H2)
+			return "hydrogen"
 		if(ATM_CO2)
 			return "carbon_dioxide"
 		if(ATM_P)

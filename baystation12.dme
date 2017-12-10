@@ -1209,6 +1209,7 @@
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\error_handler\~defines.dm"
+#include "code\modules\europa\cracker.dm"
 #include "code\modules\europa\aquatic\_aquatic.dm"
 #include "code\modules\europa\aquatic\_aquatic_hostile.dm"
 #include "code\modules\europa\aquatic\_aquatic_retaliate.dm"
