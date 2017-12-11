@@ -92,7 +92,7 @@
 		cast_light()
 
 /obj/effect/light/proc/is_directional_light()
-	return (holder.light_type == LIGHT_DIRECTIONAL)
+	return FALSE //(holder.light_type == LIGHT_DIRECTIONAL)
 
 /obj/effect/light/set_dir()
 	..()

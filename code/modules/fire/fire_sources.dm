@@ -18,7 +18,7 @@ var/list/fire_sounds = list(
 	desc = "Did anyone bring any marshmallows?"
 	icon = 'icons/obj/structures/fire.dmi'
 	icon_state = "campfire"
-	light_type = LIGHT_SOFT_FLICKER
+	//light_type = LIGHT_SOFT_FLICKER
 	anchored = 1
 	density = 0
 

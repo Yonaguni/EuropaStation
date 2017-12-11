@@ -2,12 +2,15 @@
 
 	overlays.Cut()
 
-	if(fluid_amount > FLUID_DEEP)
-		alpha = FLUID_MAX_ALPHA
+	if(fluid_amount > FLUID_OVER_MOB_HEAD)
 		layer = FLY_LAYER
 	else
-		alpha = min(FLUID_MAX_ALPHA,max(FLUID_MIN_ALPHA,ceil(255*(fluid_amount/FLUID_DEEP))))
 		layer = TURF_LAYER+0.1
+
+	if(fluid_amount > FLUID_DEEP)
+		alpha = FLUID_MAX_ALPHA
+	else
+		alpha = min(FLUID_MAX_ALPHA,max(FLUID_MIN_ALPHA,ceil(255*(fluid_amount/FLUID_DEEP))))
 
 	if(fluid_amount > FLUID_DELETING && fluid_amount <= FLUID_EVAPORATION_POINT)
 		APPLY_FLUID_OVERLAY("shallow_still")

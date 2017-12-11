@@ -16,7 +16,7 @@ var/list/bike_cache = list()
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
 	debris_path = /obj/structure/scrap/vehicle
-	light_type = LIGHT_DIRECTIONAL
+//	light_type = LIGHT_DIRECTIONAL
 	light_power = 5
 	light_range = 6
 

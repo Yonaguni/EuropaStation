@@ -1,8 +1,10 @@
 #define FLUID_EVAPORATION_POINT 3          // Depth a fluid begins self-deleting
 #define FLUID_DELETING -1                  // Depth a fluid counts as qdel'd
 #define FLUID_SHALLOW 200                  // Depth shallow icon is used
+#define FLUID_OVER_MOB_HEAD 300
 #define FLUID_DEEP 800                     // Depth deep icon is used
 #define FLUID_MAX_DEPTH FLUID_DEEP*4       // Arbitrary max value for flooding.
+#define FLUID_PUSH_THRESHOLD 20            // Amount of water flow needed to push items.
 
 // Expects /turf for T.
 #define ADD_ACTIVE_FLUID_SOURCE(T)    SSfluids.water_sources[T] = TRUE

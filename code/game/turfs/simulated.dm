@@ -125,7 +125,7 @@
 
 				bloodDNA = null
 
-		if(src.wet)
+		if(wet && !check_fluid_depth(3))
 
 			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
 				return

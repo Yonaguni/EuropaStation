@@ -22,9 +22,11 @@ var/light_power_multiplier = 5
 
 	alpha = min(255,max(0,round(light_power*light_power_multiplier*25)))
 
+	/*
 	if(holder.light_type == LIGHT_SOFT_FLICKER)
 		alpha = initial(alpha)
 		animate(src, alpha = initial(alpha) - rand(10, 20), time = 5, loop = -1, easing = SINE_EASING)
+	*/
 
 	for(var/turf/T in range(light_range, src))
 		affecting_turfs |= T
@@ -39,35 +41,36 @@ var/light_power_multiplier = 5
 	for(var/turf/T in affecting_turfs)
 		T.affecting_lights |= src
 
-	if(holder.light_type == LIGHT_DIRECTIONAL)
+	/*if(holder.light_type == LIGHT_DIRECTIONAL)
 		icon = 'icons/planar_lighting/directional_overlays.dmi'
 		light_range = 2.5
 	else
+	*/
+	pixel_x = pixel_y = -(world.icon_size * light_range)
 
-		pixel_x = pixel_y = -(world.icon_size * light_range)
-
-		switch(light_range)
-			if(1) // This would NOT work with shadow casting.
-				icon = 'icons/planar_lighting/light_range_1.dmi'
-				pixel_x += holder.pixel_x
-				pixel_y += holder.pixel_y
-			if(2)
-				icon = 'icons/planar_lighting/light_range_2.dmi'
-			if(3)
-				icon = 'icons/planar_lighting/light_range_3.dmi'
-			if(4)
-				icon = 'icons/planar_lighting/light_range_4.dmi'
-			if(5)
-				icon = 'icons/planar_lighting/light_range_5.dmi'
-			else
-				qdel(src)
-				return
+	switch(light_range)
+		if(1) // This would NOT work with shadow casting.
+			icon = 'icons/planar_lighting/light_range_1.dmi'
+			pixel_x += holder.pixel_x
+			pixel_y += holder.pixel_y
+		if(2)
+			icon = 'icons/planar_lighting/light_range_2.dmi'
+		if(3)
+			icon = 'icons/planar_lighting/light_range_3.dmi'
+		if(4)
+			icon = 'icons/planar_lighting/light_range_4.dmi'
+		if(5)
+			icon = 'icons/planar_lighting/light_range_5.dmi'
+		else
+			qdel(src)
+			return
 
 	icon_state = "white"
 
 	var/image/I = image(icon)
 	I.layer = 4
 	I.icon_state = "overlay"
+	/*
 	if(light_type == LIGHT_DIRECTIONAL)
 		var/turf/next_turf = get_step(src, dir)
 		for(var/i = 1 to 3)
@@ -75,14 +78,17 @@ var/light_power_multiplier = 5
 				I.icon_state = "[I.icon_state]_[i]"
 				break
 			next_turf = get_step(next_turf, dir)
+	*/
 
 	temp_appearance += I
 
+	/*
 	if(light_type == LIGHT_DIRECTIONAL)
 		follow_holder_dir()
+	*/
 
 	//no shadows
-	if(light_range < 2 || light_type == LIGHT_DIRECTIONAL)
+	if(light_range < 2) // || light_type == LIGHT_DIRECTIONAL)
 		overlays = temp_appearance
 		temp_appearance = null
 		return

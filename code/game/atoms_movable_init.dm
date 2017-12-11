@@ -29,6 +29,7 @@
 /obj/structure/lift/auto_init = 1
 /obj/structure/torpedo_loader/auto_init = 1
 
+/obj/item/flame/auto_init = 1
 /obj/item/flashlight/auto_init = 1
 /obj/item/cartridge/auto_init = 1
 /obj/item/radio/auto_init = 1

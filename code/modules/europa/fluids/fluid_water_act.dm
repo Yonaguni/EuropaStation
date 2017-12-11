@@ -20,11 +20,7 @@
 
 /mob/living/water_act(var/depth)
 	..()
-	if(on_fire)
-		visible_message("<span class='danger'>A cloud of steam rises up as the water hits \the [src]!</span>")
-		ExtinguishMob()
-	if(fire_stacks > 0)
-		adjust_fire_stacks(-round(depth/2))
+	wash_mob(src)
 	for(var/thing in get_equipped_items(TRUE))
 		if(isnull(thing)) continue
 		var/atom/movable/A = thing
@@ -55,11 +51,14 @@
 
 // This is really pretty crap and should be overridden for specific machines.
 /obj/machinery/water_act(var/depth)
+	..()
 	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (depth > FLUID_DEEP))
 		ex_act(3)
 
-/obj/item/flame/match/water_act(var/depth)
+/obj/item/flame/water_act(var/depth)
+	..()
 	if(!waterproof && lit)
-		burn_out()
-
-// todo lighters
+		if((istype(loc, /mob) && depth >= FLUID_SHALLOW) || \
+		 (istype(loc, /turf) && depth >= 3) || \
+		 depth >= FLUID_OVER_MOB_HEAD)
+			extinguish()

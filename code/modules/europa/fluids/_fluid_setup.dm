@@ -1,5 +1,5 @@
-#define FLUID_MAX_ALPHA 125
-#define FLUID_MIN_ALPHA 30
+#define FLUID_MAX_ALPHA 160
+#define FLUID_MIN_ALPHA 90
 #define COLOR_OCEAN "#99F5FF"
 
 /atom/proc/is_flooded(var/lying_mob, var/absolute) // code/modules/fluid/fluid_flooding.dm
@@ -12,7 +12,7 @@
 	return 0
 
 /atom/proc/water_act(var/depth) // code/modules/fluid/fluid_water_act.dm
-	return
+	clean_blood()
 
 /atom/proc/return_fluid()       // code/modules/fluid/fluid_turf.dm
 	return null
