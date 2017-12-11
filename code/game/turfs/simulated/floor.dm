@@ -41,6 +41,7 @@
 	if(flooring)
 		make_plating(defer_icon_update = 1)
 	flooring = newflooring
+	footstep_type = flooring ? flooring.footstep_type : initial(footstep_type)
 	update_icon(1)
 	levelupdate()
 

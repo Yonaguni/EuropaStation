@@ -895,6 +895,7 @@
 #include "code\game\turfs\turf_ao.dm"
 #include "code\game\turfs\turf_changing.dm"
 #include "code\game\turfs\turf_flick_animations.dm"
+#include "code\game\turfs\turf_footsteps.dm"
 #include "code\game\turfs\turf_mantid.dm"
 #include "code\game\turfs\unsimulated.dm"
 #include "code\game\turfs\flooring\flooring.dm"
