@@ -23,7 +23,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T) && T.is_flooded(lying) && should_have_organ(BP_LUNGS))
 
-		var/can_breathe_water = wear_mask.filters_water()
+		var/can_breathe_water = (wear_mask && wear_mask.filters_water()) ? TRUE : FALSE
 		if(!can_breathe_water)
 			var/obj/item/organ/internal/lungs/lungs = internal_organs_by_name[BP_LUNGS]
 			if(lungs && lungs.has_gills)
