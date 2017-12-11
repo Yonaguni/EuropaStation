@@ -10,8 +10,7 @@
 	color = COLOR_OCEAN
 
 	var/temperature = T20C
-	var/fluid_amount = 0     // Declared in stubs/fluid.dm
-	var/fluid_type = "water" // Declared in stubs/fluid.dm
+	var/fluid_amount = 0
 	var/turf/start_loc
 
 /obj/effect/fluid/ex_act()
@@ -26,11 +25,18 @@
 	if(!istype(start_loc))
 		qdel(src)
 		return
+	var/turf/simulated/T = start_loc
+	if(istype(T))
+		T.unwet_floor(FALSE)
 	forceMove(start_loc)
 	update_icon()
 
 /obj/effect/fluid/Destroy()
-	start_loc = null
+	if(start_loc)
+		var/turf/simulated/T = start_loc
+		if(istype(T))
+			T.wet_floor()
+		start_loc = null
 	if(islist(equalizing_fluids))
 		equalizing_fluids.Cut()
 	REMOVE_ACTIVE_FLUID(src)

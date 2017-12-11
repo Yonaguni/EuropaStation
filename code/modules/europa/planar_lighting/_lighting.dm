@@ -5,7 +5,7 @@
 // Also thanks to Lummox for BYOND 510's awesome new features.
 
 #define LIGHT_SOFT             "soft"
-#define LIGHT_SOFT_FLICKER     "soft-flicker"
-#define LIGHT_DIRECTIONAL      "directional"
+//#define LIGHT_DIRECTIONAL      "directional"
+//#define LIGHT_SOFT_FLICKER     "soft-flicker"
 
 var/lights_initialized

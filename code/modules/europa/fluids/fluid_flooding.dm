@@ -10,4 +10,4 @@
 	return T.is_flooded(lying_mob)
 
 /turf/is_flooded(var/lying_mob, var/absolute)
-	return (flooded || (!absolute && check_fluid_depth(lying_mob ? FLUID_SHALLOW : FLUID_DEEP)))
+	return (flooded || (!absolute && check_fluid_depth(lying_mob ? FLUID_OVER_MOB_HEAD : FLUID_DEEP)))

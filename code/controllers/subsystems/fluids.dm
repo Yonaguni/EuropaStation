@@ -10,7 +10,7 @@ var/datum/controller/subsystem/fluids/SSfluids
 
 	var/list/active_fluids = list()
 	var/list/water_sources = list()
-
+	var/list/pushing_atoms = list()
 	var/tmp/list/processing_sources
 	var/tmp/list/processing_fluids
 
@@ -46,8 +46,8 @@ var/datum/controller/subsystem/fluids/SSfluids
 	if (!active_fluids_copied_yet)
 		active_fluids_copied_yet = TRUE
 		processing_fluids = active_fluids.Copy()
-	// We need to iterate through this list a few times, so we're using indexes instead of a while-truncate loop.
 
+	// We need to iterate through this list a few times, so we're using indexes instead of a while-truncate loop.
 	while (af_index <= processing_fluids.len)
 		var/obj/effect/fluid/F = processing_fluids[af_index++]
 		if (QDELETED(F))
@@ -109,6 +109,7 @@ var/datum/controller/subsystem/fluids/SSfluids
 
 			F.equalize_avg_depth = 0
 			F.equalize_avg_temp = 0
+			F.flow_amount = 0
 
 			// Flow downward first, since gravity. TODO: add check for gravity.
 			if(F.equalizing_fluids.len >= downward_fluid_overlay_position)
@@ -122,12 +123,22 @@ var/datum/controller/subsystem/fluids/SSfluids
 						if(F.fluid_amount <= FLUID_EVAPORATION_POINT)
 							continue
 
+			var/setting_dir = 0
+
 			for(var/obj/effect/fluid/other in F.equalizing_fluids)
 				if(!istype(other) || QDELETED(other) || other.fluid_amount <= FLUID_DELETING)
 					F.equalizing_fluids -= other
 					continue
 				F.equalize_avg_depth += other.fluid_amount
 				F.equalize_avg_temp += other.temperature
+
+				var/flow_amount = F.fluid_amount - other.fluid_amount
+				if(F.flow_amount < flow_amount && flow_amount >= FLUID_PUSH_THRESHOLD)
+					F.flow_amount = flow_amount
+					setting_dir = get_dir(F, other)
+
+			F.set_dir(setting_dir)
+
 			if(islist(F.equalizing_fluids) && F.equalizing_fluids.len > 1)
 				F.equalize_avg_depth = Floor(F.equalize_avg_depth/F.equalizing_fluids.len)
 				F.equalize_avg_temp = Floor(F.equalize_avg_temp/F.equalizing_fluids.len)
@@ -153,6 +164,12 @@ var/datum/controller/subsystem/fluids/SSfluids
 			if (!F.loc || F.loc != F.start_loc)
 				qdel(F)
 
+			if(F.flow_amount >= 10)
+				for(var/atom/movable/AM in F.loc.contents)
+					if(isnull(pushing_atoms[AM]) && AM.is_fluid_pushable(F.flow_amount))
+						pushing_atoms[AM] = TRUE
+						step(AM, F.dir)
+
 			if (F.fluid_amount <= FLUID_EVAPORATION_POINT & prob(10))
 				LOSE_FLUID(F, rand(1, 3))
 
@@ -164,16 +181,18 @@ var/datum/controller/subsystem/fluids/SSfluids
 		if (MC_TICK_CHECK)
 			return
 
+	pushing_atoms.Cut()
+
 	// Sometimes, call water_act().
 	if(world.time >= next_water_act)
 		next_water_act = world.time + water_act_delay
 		af_index = 1
 		while (af_index <= processing_fluids.len)
 			var/obj/effect/fluid/F = processing_fluids[af_index++]
-			for(var/other_thing in get_turf(F))
-				if(isnull(other_thing)) continue
-				var/atom/movable/A = other_thing
-				if(A.simulated && !A.waterproof)
-					A.water_act(F.fluid_amount)
+			var/turf/T = get_turf(F)
+			if(istype(T) && !QDELETED(F))
+				for(var/atom/movable/A in T.contents)
+					if(A.simulated && !A.waterproof)
+						A.water_act(F.fluid_amount)
 			if (MC_TICK_CHECK)
 				return
