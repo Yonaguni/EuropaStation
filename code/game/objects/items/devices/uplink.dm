@@ -63,7 +63,7 @@
 			var/datum/uplink_random_selection/uplink_selection = get_uplink_random_selection_by_type(/datum/uplink_random_selection/blacklist)
 			discount_item = uplink_selection.get_random_item(INFINITY, src)
 		// Ensures we only only get items for which we get an actual discount and that this particular uplink can actually view (can buy would risk near-infinite loops).
-		while(discount_item && (discount_item.cost(uses) == discount_item.cost(uses) * discount_amount) || !discount_item.can_view(src))
+		while(discount_item && ((discount_item.cost(uses) == discount_item.cost(uses) * discount_amount) || !discount_item.can_view(src)))
 
 		if(!discount_item)
 			discount_amount = 0

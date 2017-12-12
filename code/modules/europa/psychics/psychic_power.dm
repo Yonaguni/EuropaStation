@@ -118,7 +118,13 @@
 		return 0
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.setMoveCooldown(DEFAULT_QUICK_COOLDOWN)
-	return user.mind.spend_psychic_power(melee_power_cost, src)
+	. = user.mind.spend_psychic_power(melee_power_cost, src)
+	if(.)
+		log_and_message_admins("[key_name_admin(user)] used [name] on [key_name_admin(target)].")
+		if(ismob(target))
+			var/mob/M = target
+			user.attack_log += "\[[time_stamp()]\] <font color='red'> used [name] on [M.name] ([M.ckey]).</font>"
+			M.attack_log += "\[[time_stamp()]\] <font color='red'> had [name] used on them by [user.name] ([user.ckey]).</font>"
 
 /datum/psychic_power/proc/do_ranged(var/mob/living/user, var/atom/target)
 	if(!user.mind)
@@ -129,9 +135,16 @@
 	if(target_mob_only && !istype(target, /mob/living))
 		user << "<span class='warning'>This power only influences living creatures.</span>"
 		return 0
+
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.setMoveCooldown(DEFAULT_ATTACK_COOLDOWN)
-	return user.mind.spend_psychic_power(ranged_power_cost, src)
+	. = user.mind.spend_psychic_power(ranged_power_cost, src)
+	if(.)
+		log_and_message_admins("[key_name_admin(user)] used [name] on [key_name_admin(target)].")
+		if(ismob(target))
+			var/mob/M = target
+			user.attack_log += "\[[time_stamp()]\] <font color='red'> used [name] on [M.name] ([M.ckey]).</font>"
+			M.attack_log += "\[[time_stamp()]\] <font color='red'> had [name] used on them by [user.name] ([user.ckey]).</font>"
 
 /datum/psychic_power/latent
 	name = "Latency"
