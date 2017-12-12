@@ -2,7 +2,7 @@
 	name = OUTFIT_JOB_NAME("Colony Director")
 	uniform = /obj/item/clothing/under/merchant
 	id_type = /obj/item/card/id/civilian/head
-	pda_type = /obj/item/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command/cap
 
 /decl/hierarchy/outfit/job/colony_liaison
 	name = OUTFIT_JOB_NAME("Colony Liaison")
@@ -31,7 +31,7 @@
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/thick
 	id_type = /obj/item/card/id/engineering/head
-	pda_type = /obj/item/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command/eng
 
 /decl/hierarchy/outfit/job/europa_engineer/roboticist
 	name = OUTFIT_JOB_NAME("Roboticist")
@@ -62,7 +62,7 @@
 	gloves =   /obj/item/clothing/gloves/color/gray
 	uniform =  /obj/item/clothing/under/rank/head_of_security/navyblue
 	id_type =  /obj/item/card/id/security/head
-	pda_type = /obj/item/radio/headset/pda/command
+	pda_type = /obj/item/radio/headset/pda/command/sec
 	backpack_contents = list(/obj/item/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/europa_police_quartermaster
@@ -105,6 +105,7 @@
 	name = OUTFIT_JOB_NAME("Chief of Medicine")
 	uniform = /obj/item/clothing/under/farmer
 	id_type = /obj/item/card/id/medical/head
+	pda_type = /obj/item/radio/headset/pda/command/med
 
 /decl/hierarchy/outfit/job/europa_doctor/surgeon
 	name = OUTFIT_JOB_NAME("Surgeon")

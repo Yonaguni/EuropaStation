@@ -120,7 +120,19 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 	default_cartridge = /obj/item/cartridge/head
 	icon_state = "wc-command"
 	item_state = "wc-command"
-	ks2type = /obj/item/encryptionkey/headset_com
+	ks1type = /obj/item/encryptionkey/headset_com
+
+/obj/item/radio/headset/pda/command/eng
+	ks2type = /obj/item/encryptionkey/headset_eng
+
+/obj/item/radio/headset/pda/command/med
+	ks2type = /obj/item/encryptionkey/headset_med
+
+/obj/item/radio/headset/pda/command/sec
+	ks2type = /obj/item/encryptionkey/headset_sec
+
+/obj/item/radio/headset/pda/command/cap
+	ks2type = /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/pda/supply
 	default_cartridge = /obj/item/cartridge/quartermaster
