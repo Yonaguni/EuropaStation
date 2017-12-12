@@ -53,3 +53,25 @@
 	icon_state = "rocket"
 	projectile_type = /obj/item/projectile/bullet/gyro
 	matter = list("steel" = 500)
+
+// Quickload.
+/obj/item/ammo_casing/attackby(var/obj/item/thing, var/mob/user)
+	if(!loc || !istype(loc, /turf) || !istype(thing, /obj/item/ammo_magazine))
+		return ..()
+	var/obj/item/ammo_magazine/mag = thing
+	if(caliber != mag.caliber)
+		return
+	var/turf/T = loc
+	var/load_amt = 0
+	for(var/obj/item/ammo_casing/bullet in T.contents)
+		if(mag.stored_ammo.len >= mag.max_ammo)
+			break
+		if(bullet.caliber == mag.caliber && bullet.simulated && !bullet.anchored)
+			bullet.forceMove(mag)
+			mag.stored_ammo += bullet
+			load_amt++
+	if(load_amt)
+		user.visible_message("<span class='notice'>\The [user] pushes [load_amt] round\s into \the [mag].</span>")
+	else
+		user.visible_message("<span class='notice'>\The [mag] is full!</span>")
+
