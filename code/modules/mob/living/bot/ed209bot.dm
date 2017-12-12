@@ -25,21 +25,6 @@
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/secbot_assembly/ed209_assembly(Tsec)
-
-	/*
-	var/obj/item/gun/energy/taser/G = new /obj/item/gun/energy/taser(Tsec)
-	G.power_supply.charge = 0
-	if(prob(50))
-		new /obj/item/robot_parts/l_leg(Tsec)
-	if(prob(50))
-		new /obj/item/robot_parts/r_leg(Tsec)
-	if(prob(50))
-		if(prob(50))
-			new /obj/item/clothing/head/helmet(Tsec)
-		else
-			new /obj/item/clothing/suit/armor/vest(Tsec)
-	*/
-
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
@@ -100,7 +85,7 @@
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(W, /obj/item/clothing/suit/storage/vest))
+			if(istype(W, /obj/item/clothing/suit/armour))
 				user.drop_item()
 				qdel(W)
 				build_step++

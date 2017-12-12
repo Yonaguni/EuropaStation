@@ -24,7 +24,7 @@
 					/obj/item/material/minihoe,
 					/obj/item/analyzer/plant_analyzer,
 					/obj/item/clothing/gloves/thick/botany,
-					/obj/item/clothing/suit/apron,
+					/obj/item/clothing/suit/overalls,
 					/obj/item/material/minihoe,
 					/obj/item/storage/box/botanydisk
 					)

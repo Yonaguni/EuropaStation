@@ -56,8 +56,8 @@
 	//name = "\improper EVA gear pack"
 
 	startswith = list(
-		/obj/item/clothing/suit/space/syndicate,
-		/obj/item/clothing/head/helmet/space/syndicate,
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/head/helmet/space,
 		/obj/item/clothing/mask/gas/syndicate,
 		/obj/item/tank/emergency/oxygen/double,
 		)

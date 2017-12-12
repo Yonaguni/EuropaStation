@@ -36,55 +36,6 @@
 	MASK_TYPE = /obj/item/clothing/mask/breath
 	req_access = list(access_eva)
 
-/obj/machinery/suit_storage_unit/atmos
-	name = "Atmospherics Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/atmos
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_atmospherics)
-	islocked = 1
-
-/obj/machinery/suit_storage_unit/engineering
-	name = "Engineering Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/engineering
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/engineering
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_engine)
-	islocked = 1
-
-/obj/machinery/suit_storage_unit/medical
-	name = "Medical Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/medical
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/medical
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_medical)
-	islocked = 1
-
-/obj/machinery/suit_storage_unit/mining
-	name = "Mining Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/mining
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/mining
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_mining)
-	islocked = 1
-
-/obj/machinery/suit_storage_unit/security
-	name = "Security Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/security
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/security
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_security)
-	islocked = 1
-
-/obj/machinery/suit_storage_unit/merc
-	name = "Nonstandard Suit Storage Unit"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/merc
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/merc
-	MASK_TYPE = /obj/item/clothing/mask/breath
-	req_access = list(access_syndicate)
-	islocked = 1
-
-
 
 /obj/machinery/suit_storage_unit/New()
 	src.update_icon()

@@ -345,7 +345,7 @@ var/list/non_fakeattack_weapons = \
 	/obj/item/powersink, /obj/item/storage/box/syndie_kit,\
 	/obj/item/toy/syndicateballoon, \
 	/obj/item/hand_tele, /obj/item/rcd, /obj/item/tank/jetpack,\
-	/obj/item/clothing/under/rank/captain, /obj/item/aicard,\
+	/obj/item/aicard,\
 	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/void, /obj/item/tank)
 

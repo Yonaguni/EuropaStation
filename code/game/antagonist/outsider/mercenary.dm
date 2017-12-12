@@ -38,7 +38,7 @@ var/datum/antagonist/mercenary/mercs
 	if(!..())
 		return 0
 
-	player.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(player), slot_w_uniform)
+	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/camo/tacticool(player), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/thick/swat(player), slot_gloves)
 	if(player.backbag == 2) player.equip_to_slot_or_del(new /obj/item/storage/backpack(player), slot_back)

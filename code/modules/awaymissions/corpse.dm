@@ -79,32 +79,9 @@
 	qdel(src)
 
 
-
-// I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
-
-
-
-
-
-/obj/effect/landmark/corpse/syndicatesoldier
-	name = "Syndicate Operative"
-	corpseuniform = /obj/item/clothing/under/syndicate
-	corpsesuit = /obj/item/clothing/suit/armor/vest
-	corpseshoes = /obj/item/clothing/shoes/swat
-	corpsegloves = /obj/item/clothing/gloves/thick/swat
-	corpseradio = /obj/item/radio/headset
-	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/storage/backpack
-	corpseid = 1
-	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
-
-
-
 /obj/effect/landmark/corpse/syndicatecommando
 	name = "Syndicate Commando"
-	corpseuniform = /obj/item/clothing/under/syndicate
+	corpseuniform = /obj/item/clothing/under/jumpsuit/black
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsegloves = /obj/item/clothing/gloves/thick/swat
@@ -123,8 +100,8 @@
 
 /obj/effect/landmark/corpse/chef
 	name = "Cook"
-	corpseuniform = /obj/item/clothing/under/rank/chef
-	corpsesuit = /obj/item/clothing/suit/chef/classic
+	corpseuniform = /obj/item/clothing/under/jumpsuit/white
+	corpsesuit = /obj/item/clothing/suit/chef
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseback = /obj/item/storage/backpack
@@ -136,7 +113,7 @@
 
 /obj/effect/landmark/corpse/doctor
 	name = "Doctor"
-	corpseuniform = /obj/item/clothing/under/rank/medical
+	corpseuniform = /obj/item/clothing/under/jumpsuit/white
 	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat
 	corpseback = /obj/item/storage/backpack/medic
 	corpsepocket1 = /obj/item/flashlight/pen
@@ -147,7 +124,7 @@
 
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
-	corpseuniform = /obj/item/clothing/under/rank/engineer
+	corpseuniform = /obj/item/clothing/under/jumpsuit/hazard
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/storage/belt/utility/full
@@ -157,14 +134,9 @@
 	corpseidjob = "Civil Engineer"
 	corpseidaccess = "Civil Engineer"
 
-/obj/effect/landmark/corpse/engineer/rig
-	corpsesuit = /obj/item/clothing/suit/space/void/engineering
-	corpsemask = /obj/item/clothing/mask/breath
-	corpsehelmet = /obj/item/clothing/head/helmet/space/void/engineering
-
 /obj/effect/landmark/corpse/clown
 	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
+	corpseuniform = /obj/item/clothing/under/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
 	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
@@ -175,33 +147,6 @@
 	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpse/miner/rig
-	corpsesuit = /obj/item/clothing/suit/space/void/mining
+	corpsesuit = /obj/item/clothing/suit/space/void/industrial
 	corpsemask = /obj/item/clothing/mask/breath
-	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
-
-
-/////////////////Officers//////////////////////
-
-/obj/effect/landmark/corpse/bridgeofficer
-	name = "Colony Administrator"
-	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
-	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseshoes = /obj/item/clothing/shoes/black
-	corpseglasses = /obj/item/clothing/glasses/sunglasses
-	corpseid = 1
-	corpseidjob = "Colony Administrator"
-	corpseidaccess = "Colony Director"
-
-/obj/effect/landmark/corpse/commander
-	name = "Commander"
-	corpseuniform = /obj/item/clothing/under/rank/centcom_captain
-	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseglasses = /obj/item/clothing/glasses/eyepatch
-	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
-	corpsehelmet = /obj/item/clothing/head/centhat
-	corpsegloves = /obj/item/clothing/gloves/thick/swat
-	corpseshoes = /obj/item/clothing/shoes/swat
-	corpsepocket1 = /obj/item/flame/lighter/zippo
-	corpseid = 1
-	corpseidjob = "Commander"
-	corpseidaccess = "Colony Director"
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/industrial

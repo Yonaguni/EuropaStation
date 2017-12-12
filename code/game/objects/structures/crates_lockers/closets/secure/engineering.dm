@@ -22,8 +22,8 @@
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/blueprints(src)
-		new /obj/item/clothing/under/rank/chief_engineer(src)
-		new /obj/item/clothing/head/hardhat/white(src)
+		new /obj/item/clothing/under/jumpsuit/hazard(src)
+		new /obj/item/clothing/head/hardhat(src)
 		new /obj/item/clothing/head/welding(src)
 		new /obj/item/clothing/gloves/insulated(src)
 		new /obj/item/clothing/shoes/brown(src)
@@ -146,7 +146,7 @@
 			new /obj/item/clothing/accessory/storage/brown_vest(src)
 		else
 			new /obj/item/clothing/accessory/storage/webbing(src)
-		new /obj/item/clothing/suit/fire/firefighter(src)
+		new /obj/item/clothing/suit/fire(src)
 		new /obj/item/flashlight(src)
 		new /obj/item/extinguisher(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)

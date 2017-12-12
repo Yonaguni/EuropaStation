@@ -35,8 +35,8 @@ var/datum/antagonist/paramount/paramounts
 		return 0
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/paramount(player), slot_head)
-	player.equip_to_slot_or_del(new /obj/item/clothing/under/psysuit(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/psypurple(player), slot_wear_suit)
+	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/psy/full_suit(player), slot_w_uniform)
+	player.equip_to_slot_or_del(new /obj/item/clothing/suit/psypurple(player), slot_wear_suit)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/black(player), slot_gloves)
 	player.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(player), slot_back)

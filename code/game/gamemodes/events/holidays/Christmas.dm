@@ -59,3 +59,11 @@
 	body_parts_covered = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/head/festive
+	name = "\improper Santa hat"
+	icon_state = "santahat"
+	desc = "Ho ho ho!"
+	flags_inv = 0
+	body_parts_covered = 0
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+

@@ -1,13 +1,11 @@
 /decl/hierarchy/outfit/tunnel_clown
 	name = "Tunnel clown"
-	uniform = /obj/item/clothing/under/rank/clown
+	uniform = /obj/item/clothing/under/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	gloves = /obj/item/clothing/gloves/thick
 	mask = /obj/item/clothing/mask/gas/clown_hat
-	head = /obj/item/clothing/head/chaplain_hood
 	l_ear = /obj/item/radio/headset
 	glasses = /obj/item/clothing/glasses/thermal/plain/monocle
-	suit = /obj/item/clothing/suit/chaplain_hoodie
 	r_pocket = /obj/item/bikehorn
 	r_hand = /obj/item/material/twohanded/fireaxe
 
@@ -17,14 +15,14 @@
 
 /decl/hierarchy/outfit/masked_killer
 	name = "Masked killer"
-	uniform = /obj/item/clothing/under/overalls
+	uniform = /obj/item/clothing/under/jumpsuit/blue
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/welding
 	l_ear = /obj/item/radio/headset
 	glasses = /obj/item/clothing/glasses/thermal/plain/monocle
-	suit = /obj/item/clothing/suit/apron
+	suit = /obj/item/clothing/suit/overalls
 	l_pocket = /obj/item/material/hatchet/tacknife
 	r_pocket = /obj/item/scalpel
 	r_hand = /obj/item/material/twohanded/fireaxe

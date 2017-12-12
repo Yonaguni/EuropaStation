@@ -13,7 +13,7 @@
 	..()
 	new /obj/item/tank/jetpack/oxygen(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
-	new /obj/item/clothing/under/syndicate(src)
+	new /obj/item/clothing/under/jumpsuit/black(src)
 	new /obj/item/clothing/head/helmet/space/void/merc(src)
 	new /obj/item/clothing/suit/space/void/merc(src)
 	new /obj/item/crowbar/red(src)

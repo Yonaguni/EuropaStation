@@ -1,11 +1,11 @@
-/obj/item/clothing/under/New()
+/obj/item/clothing/under/jumpsuit/New()
 	set_extension(src, /datum/extension/interactive/multitool, /datum/extension/interactive/multitool/items/clothing)
 	..()
 
 /datum/extension/interactive/multitool/items/clothing/interact(var/obj/item/multitool/M, var/mob/user)
 	if(extension_status(user) != STATUS_INTERACTIVE)
 		return
-	var/obj/item/clothing/under/u = holder
+	var/obj/item/clothing/under/jumpsuit/u = holder
 	if(u.has_sensor == SUIT_NO_SENSORS)
 		user << "<span class='warning'>\The [u] doesn't have suit sensors.</span>"
 		return

@@ -17,7 +17,7 @@
 		new /obj/item/storage/backpack/industrial(src)
 	else
 		new /obj/item/storage/backpack/satchel_eng(src)
-	new /obj/item/clothing/under/rank/miner(src)
+	new /obj/item/clothing/under/jumpsuit/yellow(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/analyzer(src)

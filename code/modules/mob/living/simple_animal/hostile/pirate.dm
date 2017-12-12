@@ -29,22 +29,10 @@
 	min_n2 = 0
 	max_n2 = 0
 	unsuitable_atoms_damage = 15
-	var/corpse = /obj/effect/landmark/mobcorpse/pirate
+	var/corpse = /obj/effect/landmark/mobcorpse
 	var/weapon1 = /obj/item/melee/energy/sword/pirate
 
 	faction = "pirate"
-
-/mob/living/simple_animal/hostile/pirate/ranged
-	name = "Pirate Gunner"
-	icon_state = "pirateranged"
-	icon_living = "pirateranged"
-	icon_dead = "piratemelee_dead"
-	projectilesound = 'sound/weapons/laser.ogg'
-	ranged = 1
-	rapid = 1
-	projectiletype = /obj/item/projectile/beam
-	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
-	//weapon1 = /obj/item/gun/energy/laser
 
 /mob/living/simple_animal/hostile/pirate/death()
 	..()

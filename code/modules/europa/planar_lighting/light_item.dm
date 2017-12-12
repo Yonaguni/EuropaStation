@@ -36,3 +36,9 @@
 			I.plane = plane
 	if(f_update_icon || plane != lastplane)
 		update_icon()
+
+/obj/item/clothing/under/update_plane()
+	. = ..()
+	for(var/atom/movable/thing in contents)
+		thing.plane = plane
+	update_icon()

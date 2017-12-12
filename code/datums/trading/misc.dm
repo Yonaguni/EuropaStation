@@ -90,7 +90,7 @@
 	possible_trading_items = list(/obj/item/clothing/mask/gas/clown_hat = TRADER_THIS_TYPE,
 								/obj/item/clothing/mask/gas/mime        = TRADER_THIS_TYPE,
 								/obj/item/clothing/shoes/clown_shoes    = TRADER_THIS_TYPE,
-								/obj/item/clothing/under/rank/clown     = TRADER_THIS_TYPE,
+								/obj/item/clothing/under/clown     = TRADER_THIS_TYPE,
 								/obj/item/radio/headset/pda/clown              = TRADER_THIS_TYPE,
 								/obj/item/cartridge/clown        = TRADER_THIS_TYPE,
 								/obj/item/stamp/clown            = TRADER_THIS_TYPE,
@@ -103,47 +103,3 @@
 								/obj/item/gun/composite/premade/revolver/toy = TRADER_THIS_TYPE,
 								/obj/item/clothing/mask/fakemoustache   = TRADER_THIS_TYPE,
 								/obj/item/grenade/spawnergrenade/fake_carp = TRADER_THIS_TYPE)
-
-/datum/trader/ship/replica_shop
-	name = "Replica Store Owner"
-	name_language = TRADER_DEFAULT_NAME
-	origin = "Replica Store"
-	possible_origins = list("Ye-Old Armory", "Knights and Knaves", "The Blacksmith", "Historical Human Apparel and Items", "The Pointy End")
-	speech = list("hail_generic" = "Welcome, welcome! You look like a man who appreciates human history. Come in, and learn! Maybe even.... buy?",
-				"hail_deny"      = "A man who does not appreciate history does not appreciate me. Goodbye.",
-
-				"trade_complete" = "Now remember, these may be replicas, but they are still a bit sharp!",
-				"trade_blacklist"= "No, I don't deal in that.",
-				"trade_not_enough"="Hm. Well, I need more money than that.",
-				"how_much"       = "This fine piece of craftsmanship costs about",
-				"what_want"      = "I want",
-
-				"compliment_deny"= "Oh ho ho! Aren't you quite the jester.",
-				"compliment_accept"="Hard to tell, isn't it? I make them all myself.",
-				"insult_good"    = "They aren't JUST replicas!",
-				"insult_bad"     = "Well, I'll never!"
-				)
-	possible_trading_items = list(/obj/item/clothing/head/wizard/magus = TRADER_THIS_TYPE,
-								/obj/item/shield/buckler        = TRADER_THIS_TYPE,
-								/obj/item/clothing/head/redcoat        = TRADER_THIS_TYPE,
-								/obj/item/clothing/head/powdered_wig   = TRADER_THIS_TYPE,
-								/obj/item/clothing/head/hasturhood     = TRADER_THIS_TYPE,
-								/obj/item/clothing/head/helmet/gladiator=TRADER_THIS_TYPE,
-								/obj/item/clothing/head/plaguedoctorhat= TRADER_THIS_TYPE,
-								/obj/item/clothing/glasses/monocle     = TRADER_THIS_TYPE,
-								/obj/item/clothing/mask/smokable/pipe  = TRADER_THIS_TYPE,
-								/obj/item/clothing/mask/gas/plaguedoctor=TRADER_THIS_TYPE,
-								/obj/item/clothing/suit/hastur         = TRADER_THIS_TYPE,
-								/obj/item/clothing/suit/imperium_monk  = TRADER_THIS_TYPE,
-								/obj/item/clothing/suit/judgerobe      = TRADER_THIS_TYPE,
-								/obj/item/clothing/suit/wizrobe/magusred=TRADER_THIS_TYPE,
-								/obj/item/clothing/suit/wizrobe/magusblue=TRADER_THIS_TYPE,
-								/obj/item/clothing/under/gladiator     = TRADER_THIS_TYPE,
-								/obj/item/clothing/under/kilt          = TRADER_THIS_TYPE,
-								/obj/item/clothing/under/redcoat       = TRADER_THIS_TYPE,
-								/obj/item/clothing/under/soviet        = TRADER_THIS_TYPE,
-								/obj/item/material/harpoon      = TRADER_THIS_TYPE,
-								/obj/item/material/sword        = TRADER_ALL,
-								/obj/item/material/scythe       = TRADER_THIS_TYPE,
-								/obj/item/material/star         = TRADER_THIS_TYPE,
-								/obj/item/material/twohanded/baseballbat = TRADER_THIS_TYPE)

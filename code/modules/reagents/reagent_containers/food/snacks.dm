@@ -1572,42 +1572,6 @@
 	flags = 0
 	wrapped = 1
 
-/obj/item/reagent_containers/food/snacks/monkeycube/farwacube
-	name = "farwa cube"
-	monkey_type = "Farwa"
-
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
-	name = "farwa cube"
-	monkey_type = "Farwa"
-
-/obj/item/reagent_containers/food/snacks/monkeycube/stokcube
-	name = "stok cube"
-	monkey_type = "Stok"
-
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
-	name = "stok cube"
-	monkey_type = "Stok"
-
-/obj/item/reagent_containers/food/snacks/monkeycube/neaeracube
-	name = "neaera cube"
-	monkey_type = "Neaera"
-
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
-	name = "neaera cube"
-	monkey_type = "Neaera"
-
-
-/obj/item/reagent_containers/food/snacks/spellburger
-	name = "Spell Burger"
-	desc = "This is absolutely Ei Nath."
-	icon_state = "spellburger"
-	filling_color = "#D505FF"
-	nutriment_desc = list("magic" = 3, "buns" = 3)
-	nutriment_amt = 6
-	New()
-		..()
-		bitesize = 2
-
 /obj/item/reagent_containers/food/snacks/bigbiteburger
 	name = "Big Bite Burger"
 	desc = "Forget the Big Mac. THIS is the future!"

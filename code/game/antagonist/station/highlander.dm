@@ -37,7 +37,7 @@ var/datum/antagonist/highlander/highlanders
 			continue
 		qdel(I)
 
-	player.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(player), slot_w_uniform)
+	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/kilt(player), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/beret(player), slot_head)
 	player.equip_to_slot_or_del(new /obj/item/material/sword(player), slot_l_hand)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(player), slot_shoes)

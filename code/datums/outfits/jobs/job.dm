@@ -2,7 +2,7 @@
 	name = "Standard Gear"
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/lower/pants/beige/navy_uniform
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/black
 
@@ -33,12 +33,9 @@
 	name = OUTFIT_JOB_NAME("Crewman")
 
 	var/list/all_uniforms = list(
-		/obj/item/clothing/under/soviet,
-		/obj/item/clothing/under/redcoat,
-		/obj/item/clothing/under/serviceoveralls,
-		/obj/item/clothing/under/captain_fly,
-		/obj/item/clothing/under/det
+		/obj/item/clothing/under/lower/jeans/blue_collar,
 		)
+
 	var/list/all_shoes = list(
 		/obj/item/clothing/shoes/jackboots,
 		/obj/item/clothing/shoes/workboots,
@@ -46,10 +43,8 @@
 		/obj/item/clothing/shoes/laceup
 		)
 	var/list/all_hats = list(
-		/obj/item/clothing/head/ushanka,
 		/obj/item/clothing/head/bandana,
 		/obj/item/clothing/head/cowboy_hat,
-		/obj/item/clothing/head/cowboy_hat/wide,
 		/obj/item/clothing/head/cowboy_hat/black
 		)
 	var/list/all_suits = list(
