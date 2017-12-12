@@ -94,17 +94,9 @@
 		return 0
 	var/datum/mind/clonemind
 
-	if(!config.use_cortical_stacks)
-		clonemind = locate(R.mind)
-		if(!istype(clonemind, /datum/mind))	//not a mind
-			return 0
-	else
-		for(var/mob/observer/ghost/G in player_list)
-			if(G.ckey == R.ckey)
-				if(G.can_reenter_corpse)
-					break
-				else
-					return 0
+	clonemind = locate(R.mind)
+	if(!istype(clonemind, /datum/mind))	//not a mind
+		return 0
 
 	attempting = 1 //One at a time!!
 	locked = 1

@@ -151,17 +151,16 @@
 	src.icon_state = "scanner_1"
 
 	// search for ghosts, if the corpse is empty and the scanner is connected to a cloner
-	if(!config.use_cortical_stacks)
-		if(locate(/obj/machinery/computer/cloning, get_step(src, NORTH)) \
-			|| locate(/obj/machinery/computer/cloning, get_step(src, SOUTH)) \
-			|| locate(/obj/machinery/computer/cloning, get_step(src, EAST)) \
-			|| locate(/obj/machinery/computer/cloning, get_step(src, WEST)))
+	if(locate(/obj/machinery/computer/cloning, get_step(src, NORTH)) \
+		|| locate(/obj/machinery/computer/cloning, get_step(src, SOUTH)) \
+		|| locate(/obj/machinery/computer/cloning, get_step(src, EAST)) \
+		|| locate(/obj/machinery/computer/cloning, get_step(src, WEST)))
 
-			if(!M.client && M.mind)
-				for(var/mob/observer/ghost/ghost in player_list)
-					if(ghost.mind == M.mind)
-						ghost << "<b><font color = #330033><font size = 3>Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>"
-						break
+		if(!M.client && M.mind)
+			for(var/mob/observer/ghost/ghost in player_list)
+				if(ghost.mind == M.mind)
+					ghost << "<b><font color = #330033><font size = 3>Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>"
+					break
 	return
 
 /obj/machinery/dna_scannernew/proc/go_out()

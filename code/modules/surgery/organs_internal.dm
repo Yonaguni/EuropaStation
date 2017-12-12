@@ -272,12 +272,6 @@
 	if(O && affected.organ_tag == O.parent_organ)
 		organ_compatible = 1
 
-	else if(istype(O, /obj/item/organ/internal/stack))
-		if(!target.internal_organs_by_name[O.organ_tag])
-			organ_missing = 1
-		else
-			user << "<span class='warning'>\The [target] already has [o_a][O.organ_tag].</span>"
-			return SURGERY_FAILURE
 	else
 		user << "<span class='warning'>\The [O.organ_tag] [o_do] normally go in \the [affected.name].</span>"
 		return SURGERY_FAILURE

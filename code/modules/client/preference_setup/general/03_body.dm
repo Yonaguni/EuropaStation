@@ -104,11 +104,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
 
-	if(config.use_cortical_stacks)
-		. += "Neural lace: "
-		. += pref.has_cortical_stack ? "present." : "<b>not present. <font color='#FF0000'>Character is unclonable.</font></b>"
-		. += " \[<a href='byond://?src=\ref[src];toggle_stack=1'>toggle</a>\]<br>"
-
 	. += "Genotype: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
 

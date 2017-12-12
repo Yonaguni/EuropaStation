@@ -419,9 +419,6 @@ Proc for attack log creation, because really why not
 			if(e.has_infected_wound())
 				user << "<span class='warning'>Infected wound detected in subject [limb]. Disinfection recommended.</span>"
 
-		if (H.internal_organs_by_name[BP_STACK])
-			user.show_message("<span class='notice'>Subject has a neural lace implant.</span>")
-
 		for(var/name in H.organs_by_name)
 			var/obj/item/organ/external/e = H.organs_by_name[name]
 			if(e && e.status & ORGAN_BROKEN)
