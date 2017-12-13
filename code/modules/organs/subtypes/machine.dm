@@ -85,8 +85,8 @@
 
 
 /obj/item/organ/internal/mmi_holder/posibrain
-	name = "positronic brain interface"
-	parent_organ = BP_CHEST
+	name = "computer intelligence core"
+	parent_organ = BP_HEAD
 
 /obj/item/organ/internal/mmi_holder/posibrain/New()
 	stored_mmi = new /obj/item/mmi/digital/posibrain(src)

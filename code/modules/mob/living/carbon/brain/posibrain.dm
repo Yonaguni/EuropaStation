@@ -1,7 +1,7 @@
 /obj/item/mmi/digital/posibrain
-	name = "positronic brain"
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
-	icon = 'icons/obj/assemblies.dmi'
+	name = "computer intelligence core"
+	desc = "A compact cube of circuitry."
+	icon = 'icons/obj/computer_brain.dmi'
 	icon_state = "posibrain"
 	w_class = 3
 
@@ -14,11 +14,11 @@
 /obj/item/mmi/digital/posibrain/attack_self(var/mob/user)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		user << "<span class='notice'>You carefully locate the manual activation switch and start the positronic brain's boot process.</span>"
+		user << "<span class='notice'>You depress a button and start \the [src]'s boot process.</span>"
 		icon_state = "posibrain-searching"
 		src.searching = 1
-		var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
-		G.request_player(brainmob, "Someone is requesting a personality for a positronic brain.", 60 SECONDS)
+		var/datum/ghosttrap/G = get_ghost_trap("computer intelligence core")
+		G.request_player(brainmob, "Someone is requesting a personality for a computer brain.", 60 SECONDS)
 		spawn(600) reset_search()
 
 /obj/item/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
@@ -29,13 +29,13 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<span class='notice'>The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?</span>")
+		M.show_message("<span class='notice'>\The [src] bleeps and flashes a red light. Perhaps you could try again?</span>")
 
 /obj/item/mmi/digital/posibrain/attack_ghost(var/mob/observer/ghost/user)
 	if(!searching || (src.brainmob && src.brainmob.key))
 		return
 
-	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
+	var/datum/ghosttrap/G = get_ghost_trap("computer intelligence core")
 	if(!G.assess_candidate(user))
 		return
 	var/response = alert(user, "Are you sure you wish to possess this [src]?", "Possess [src]", "Yes", "No")

@@ -20,12 +20,12 @@ var/list/ghost_traps
 		ghost_traps[G.object] = G
 
 /datum/ghosttrap
-	var/object = "positronic brain"
+	var/object = "computer intelligence core"
 	var/minutes_since_death = 0     // If non-zero the ghost must have been dead for this many minutes to be allowed to spawn
 	var/list/ban_checks = list("Computer","Robot")
 	var/pref_check = BE_SYNTH
-	var/ghost_trap_message = "They are occupying a positronic brain now."
-	var/ghost_trap_role = "Positronic Brain"
+	var/ghost_trap_message = "They are occupying a computer intelligence core now."
+	var/ghost_trap_role = "Artificial Intelligence"
 	var/can_set_own_name = TRUE
 	var/list_as_special_role = TRUE	// If true, this entry will be listed as a special role in the character setup
 
@@ -104,8 +104,8 @@ var/list/ghost_traps
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	target << "<b>You are a positronic brain, brought into existence on [station_name()].</b>"
-	target << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
+	target << "<b>You are an artifical intelligence, brought into existence on [station_name()].</b>"
+	target << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the Computer.</b>"
 	target << "<b>Remember, the purpose of your existence is to serve the crew and [station_name()]. Above all else, do no harm.</b>"
 	target << "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>"
 	var/turf/T = get_turf(target)
@@ -114,7 +114,7 @@ var/list/ghost_traps
 	if(!istype(P)) //wat
 		return
 	P.searching = 0
-	P.name = "positronic brain ([P.brainmob.name])"
+	P.name = "computer intelligence core ([P.brainmob.name])"
 	P.icon_state = "posibrain-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.

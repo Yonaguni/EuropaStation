@@ -100,13 +100,13 @@
 /mob/living/silicon/robot/verb/unlock_case()
 	set name = "Unlock Access Panel"
 	set category = "Silicon Commands"
-	set src == usr
+	set src = usr
 	if(incapacitated())
 		return
 	if(emagged)
 		to_chat(usr, "<span class='warning'>Your panel control is damaged and is not responding.</span>")
 		return
-	if(open)
+	if(opened)
 		to_chat(usr, "<span class='warning'>You cannot lock your panel while it is open.</span>")
 		return
 	locked = !locked
