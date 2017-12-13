@@ -98,3 +98,8 @@
 	item_cost = 60
 	antag_costs = list(MODE_MERCENARY = 30)
 	path = /obj/item/clothing/mask/ai
+
+/datum/uplink_item/item/tools/setae
+	name = "Climbing Equipment"
+	item_cost = 10
+	path = /obj/item/storage/box/climbing_gear
