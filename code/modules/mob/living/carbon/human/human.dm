@@ -1193,8 +1193,6 @@
 		client.screen |= master_plane
 		client.screen |= dark_plane
 
-	if(config && config.use_cortical_stacks && client && client.prefs.has_cortical_stack)
-		create_stack()
 	full_prosthetic = null
 	if(species)
 		if(mind)

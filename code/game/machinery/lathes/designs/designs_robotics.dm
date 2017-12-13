@@ -4,6 +4,31 @@
 	category = "Robot Parts"
 	lathe_type = LATHE_TYPE_ROBOTICS
 
+/datum/autolathe/recipe/robotics/upgrade
+	name = "Reset Module"
+	path = /obj/item/borg/upgrade/reset
+	category = "System Modules"
+
+/datum/autolathe/recipe/robotics/upgrade/rename
+	name = "Rename Module"
+	path = /obj/item/borg/upgrade/rename
+
+/datum/autolathe/recipe/robotics/upgrade/floodlight
+	name = "Floodlight Module"
+	path = /obj/item/borg/upgrade/floodlight
+
+/datum/autolathe/recipe/robotics/upgrade/restart
+	name = "Restart Module"
+	path = /obj/item/borg/upgrade/restart
+
+/datum/autolathe/recipe/robotics/upgrade/vtec
+	name = "VTEC Module"
+	path = /obj/item/borg/upgrade/vtec
+
+/datum/autolathe/recipe/robotics/upgrade/jetpack
+	name = "Jetpack Module"
+	path = /obj/item/borg/upgrade/jetpack
+
 /datum/autolathe/recipe/robotics/nanopaste
 	name = "nanopaste"
 	path = /obj/item/stack/nanopaste

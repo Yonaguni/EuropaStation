@@ -25,16 +25,6 @@
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stack/cable_coil = 2)
 
-/obj/item/circuitboard/resleever
-	name = T_BOARD("neural lace resleever")
-	build_path = /obj/machinery/resleever
-	board_type = "machine"
-
-	req_components = list(
-							/obj/item/stack/cable_coil = 2,
-							/obj/item/stock_parts/scanning_module = 1,
-							/obj/item/stock_parts/manipulator = 3,
-							/obj/item/stock_parts/console_screen = 1)
 /obj/item/circuitboard/bioprinter
 	name = T_BOARD("bioprinter")
 	build_path = /obj/machinery/organ_printer/flesh
