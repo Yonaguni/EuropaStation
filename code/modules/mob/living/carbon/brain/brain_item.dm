@@ -16,7 +16,7 @@
 	var/mob/living/carbon/brain/brainmob = null
 
 /obj/item/organ/internal/brain/robotize()
-	replace_self_with(/obj/item/organ/internal/mmi_holder/posibrain)
+	replace_self_with(/obj/item/organ/internal/mmi_holder/digital)
 
 /obj/item/organ/internal/brain/mechassist()
 	replace_self_with(/obj/item/organ/internal/mmi_holder)
