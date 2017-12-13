@@ -581,8 +581,8 @@
 
 		if(!isSynthetic())
 
+			// Ingested reagents are handled by the stomach in /obj/item/organ/internal/stomach/process()
 			if(touching) touching.metabolize()
-			if(ingested) ingested.metabolize()
 			if(bloodstr) bloodstr.metabolize()
 
 			// Handle chemical effect flags.

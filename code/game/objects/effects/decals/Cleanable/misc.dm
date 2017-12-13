@@ -102,8 +102,14 @@
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/viruses = list()
 
-	Destroy()
-		return ..()
+/obj/effect/decal/cleanable/vomit/New()
+	..()
+	flags |= OPENCONTAINER
+	create_reagents(20, src)
+
+/obj/effect/decal/cleanable/vomit/Destroy()
+	qdel(reagents)
+	. = ..()
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"

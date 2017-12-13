@@ -167,6 +167,13 @@
 	power = 10
 	meltdose = 4
 
+/datum/reagent/acid/stomach
+	name = "stomach acid"
+	id = "stomach_acid"
+	taste_description = "foulness"
+	power = 1
+	color = "#d8ff00"
+
 /datum/reagent/lexorin
 	name = "Lexorin"
 	id = "lexorin"

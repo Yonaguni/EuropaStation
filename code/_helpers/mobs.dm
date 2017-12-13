@@ -378,9 +378,11 @@ Proc for attack log creation, because really why not
 					user.show_message(reagentdata[d])
 			if(unknown)
 				user.show_message("<span class='warning'>Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.</span>")
-		if(C.ingested && C.ingested.total_volume)
+
+		var/datum/reagents/ingested = C.get_ingested_reagents()
+		if(ingested && ingested.total_volume)
 			var/unknown = 0
-			for(var/datum/reagent/R in C.ingested.reagent_list)
+			for(var/datum/reagent/R in ingested.reagent_list)
 				if(R.scannable)
 					user << "<span class='notice'>[R.name] found in subject's stomach.</span>"
 				else
