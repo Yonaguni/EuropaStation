@@ -71,7 +71,7 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(access_engine_equip, access_robotics)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -96,6 +96,21 @@
 		/mob/living/silicon/robot/proc/sensor_mode,
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
+
+/mob/living/silicon/robot/verb/unlock_case()
+	set name = "Unlock Access Panel"
+	set category = "Silicon Commands"
+	set src == usr
+	if(incapacitated())
+		return
+	if(emagged)
+		to_chat(usr, "<span class='warning'>Your panel control is damaged and is not responding.</span>")
+		return
+	if(open)
+		to_chat(usr, "<span class='warning'>You cannot lock your panel while it is open.</span>")
+		return
+	locked = !locked
+	to_chat(usr, "<span class='notice'>You have [locked ? "locked" : "unlocked"] your access port.</span>")
 
 /mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	spark_system = new /datum/effect/system/spark_spread()
