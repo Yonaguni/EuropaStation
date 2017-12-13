@@ -205,7 +205,7 @@
 /mob/proc/restrained()
 	return
 
-/mob/proc/reset_view(atom/A)
+/mob/proc/reset_view(var/atom/A)
 	if (client)
 		A = A ? A : eyeobj
 		if (istype(A, /atom/movable))
