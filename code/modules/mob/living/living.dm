@@ -72,7 +72,9 @@ default behaviour is:
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
+				if((islist(tmob.pinned) && tmob.pinned.len) || \
+				 ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || \
+				 (islist(tmob.grabbed_by) && locate(/obj/item/grab, tmob.grabbed_by.len))) )
 					if ( !(world.time % 5) )
 						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
 					now_pushing = 0

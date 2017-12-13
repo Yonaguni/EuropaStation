@@ -59,6 +59,7 @@
 /obj/effect/fluid/auto_init = 1
 /obj/effect/fluid_mapped/auto_init = 1
 /obj/effect/lobby_image/auto_init = 1
+/obj/effect/blob/auto_init = 1
 
 /obj/machinery/auto_init = 1
 

@@ -366,9 +366,17 @@
 		state = GRAB_NECK
 
 /obj/item/grab/proc/handle_resist()
+
+	if(!affecting)
+		var/mob/M = loc
+		if(istype(M))
+			M.drop_from_inventory(src)
+			return
+
 	var/grab_name = "grip"
 	var/break_strength = 1
 	var/list/break_chance_table = list(100)
+
 	switch(state)
 		if(GRAB_PASSIVE)
 			//Being knocked down makes it harder to break a grab, so it is easier to cuff someone who is down without forcing them into unconsciousness.
