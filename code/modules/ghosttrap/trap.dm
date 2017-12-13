@@ -20,7 +20,7 @@ var/list/ghost_traps
 		ghost_traps[G.object] = G
 
 /datum/ghosttrap
-	var/object = "computer intelligence core"
+	var/object = "artificial intelligence"
 	var/minutes_since_death = 0     // If non-zero the ghost must have been dead for this many minutes to be allowed to spawn
 	var/list/ban_checks = list("Computer","Robot")
 	var/pref_check = BE_SYNTH
@@ -109,13 +109,13 @@ var/list/ghost_traps
 	target << "<b>Remember, the purpose of your existence is to serve the crew and [station_name()]. Above all else, do no harm.</b>"
 	target << "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>"
 	var/turf/T = get_turf(target)
-	var/obj/item/mmi/digital/posibrain/P = target.loc
+	var/obj/item/mmi/digital/robot/P = target.loc
 	T.visible_message("<span class='notice'>\The [P] chimes quietly.</span>")
 	if(!istype(P)) //wat
 		return
 	P.searching = 0
 	P.name = "computer intelligence core ([P.brainmob.name])"
-	P.icon_state = "posibrain-occupied"
+	P.icon_state = "[initial(P.icon_state)]-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)

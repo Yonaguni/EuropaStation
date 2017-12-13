@@ -84,16 +84,16 @@
 	qdel(src)
 
 
-/obj/item/organ/internal/mmi_holder/posibrain
+/obj/item/organ/internal/mmi_holder/digital
 	name = "computer intelligence core"
 	parent_organ = BP_HEAD
 
-/obj/item/organ/internal/mmi_holder/posibrain/New()
-	stored_mmi = new /obj/item/mmi/digital/posibrain(src)
+/obj/item/organ/internal/mmi_holder/digital/New()
+	stored_mmi = new /obj/item/mmi/digital/robot(src)
 	..()
 
-/obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
+/obj/item/organ/internal/mmi_holder/digital/update_from_mmi()
 	..()
-	stored_mmi.icon_state = "posibrain-occupied"
+	stored_mmi.icon_state = "[initial(stored_mmi.icon_state)]-occupied"
 	icon_state = stored_mmi.icon_state
 
