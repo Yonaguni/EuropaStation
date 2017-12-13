@@ -68,11 +68,15 @@
 
 /obj/item/storage/box/survival/
 	startswith = list(/obj/item/clothing/mask/breath = 1,
-					/obj/item/tank/emergency/oxygen = 1)
+					/obj/item/tank/emergency/oxygen = 1,
+					/obj/item/clothing/mask/gas/aquabreather = 1
+					)
 
 /obj/item/storage/box/engineer/
 	startswith = list(/obj/item/clothing/mask/breath = 1,
-					/obj/item/tank/emergency/oxygen/engi = 1)
+					/obj/item/tank/emergency/oxygen/engi = 1,
+					/obj/item/clothing/mask/gas/aquabreather = 1
+					)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
