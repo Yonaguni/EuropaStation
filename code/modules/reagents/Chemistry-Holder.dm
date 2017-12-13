@@ -221,6 +221,14 @@
 			return current.volume
 	return 0
 
+
+/datum/reagents/proc/get_reagent_amount_by_type(var/rtype)
+	var/amt = 0
+	for(var/datum/reagent/current in reagent_list)
+		if(istype(current, rtype))
+			amt += current.volume
+	return amt
+
 /datum/reagents/proc/get_data(var/id)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
@@ -376,8 +384,7 @@
 			var/datum/reagents/R = C.reagents
 			return trans_to_holder(R, amount, multiplier, copy)
 		if(type == CHEM_INGEST)
-			var/datum/reagents/R = C.ingested
-			return C.ingest(src,R, amount, multiplier, copy) //perhaps this is a bit of a hack, but currently there's no common proc for eating reagents
+			return C.ingest(src, C.get_ingested_reagents(), amount, multiplier, copy) //perhaps this is a bit of a hack, but currently there's no common proc for eating reagents
 		if(type == CHEM_TOUCH)
 			var/datum/reagents/R = C.touching
 			return trans_to_holder(R, amount, multiplier, copy)

@@ -272,8 +272,10 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
-	if(M.ingested)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+
+	var/datum/reagents/ingested = M.get_ingested_reagents()
+	if(istype(ingested))
+		for(var/datum/reagent/R in ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - removed * 5, 0)
 

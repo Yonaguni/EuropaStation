@@ -9,6 +9,21 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
+/mob/living/carbon/human/get_ingested_reagents()
+	if(should_have_organ(BP_STOMACH))
+		var/obj/item/organ/internal/stomach/stomach = internal_organs_by_name[BP_STOMACH]
+		if(stomach)
+			return stomach.ingested
+	return touching // Kind of a shitty hack, but makes more sense to me than digesting them.
+
+/mob/living/carbon/human/get_fullness()
+	if(!should_have_organ(BP_STOMACH))
+		return ..()
+	var/obj/item/organ/internal/stomach/stomach = internal_organs_by_name[BP_STOMACH]
+	if(stomach)
+		return nutrition + (stomach.ingested.total_volume * 10)
+	return 0 //Always hungry, but you can't actually eat. :(
+
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
 	if(!dna)
@@ -738,7 +753,8 @@
 			src << "<span class='warning'>You feel like you are about to throw up!</span>"
 			spawn(100)	//and you have 10 more for mad dash to the bucket
 				Stun(5)
-				if(nutrition < 40)
+				var/obj/item/organ/internal/stomach/stomach = internal_organs_by_name[BP_STOMACH]
+				if(!istype(stomach) || stomach.ingested.total_volume <= 5)
 					custom_emote(1,"dry heaves.")
 				else
 					for(var/a in stomach_contents)
@@ -748,15 +764,16 @@
 						if(src.species.gluttonous & GLUT_PROJECTILE_VOMIT)
 							A.throw_at(get_edge_target_turf(src,src.dir),7,7,src)
 
-					src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
+					src.visible_message("<span class='warning'>[src] throws up!</span>")
 					playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
 					var/turf/location = loc
 					if (istype(location, /turf/simulated))
-						location.add_vomit_floor(src, 1)
+						location.add_vomit_floor(src, 1, stomach.ingested)
 
 					nutrition -= 40
 					adjustToxLoss(-3)
+
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
 

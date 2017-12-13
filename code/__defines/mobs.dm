@@ -156,6 +156,7 @@
 #define BP_LUNGS    "lungs"
 #define BP_BRAIN    "brain"
 #define BP_LIVER    "liver"
+#define BP_STOMACH  "stomach"
 #define BP_KIDNEYS  "kidneys"
 #define BP_PLASMA   "plasma vessel"
 #define BP_APPENDIX "appendix"

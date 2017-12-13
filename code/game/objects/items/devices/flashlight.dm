@@ -103,9 +103,10 @@
 
 		var/list/pinpoint = list("oxycodone"=1,"morphine"=5)
 		var/list/dilating = list("glint"=5,"lsd"=1)
-		if(H.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
+		var/datum/reagents/R = H.get_ingested_reagents()
+		if(H.reagents.has_any_reagent(pinpoint) || (istype(R) && R.has_any_reagent(pinpoint)))
 			user << "<span class='notice'>\The [H]'s pupils are already pinpoint and cannot narrow any more.</span>"
-		else if(H.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
+		else if(H.reagents.has_any_reagent(dilating) || (istype(R) && R.has_any_reagent(dilating)))
 			user << "<span class='notice'>\The [H]'s pupils narrow slightly, but are still very dilated.</span>"
 		else
 			user << "<span class='notice'>\The [H]'s pupils narrow.</span>"

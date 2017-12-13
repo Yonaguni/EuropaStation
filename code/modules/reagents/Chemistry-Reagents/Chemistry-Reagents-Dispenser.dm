@@ -56,12 +56,13 @@
 	ingest_met = REM * 5
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
-		var/effect = 1 / (M.ingested.reagent_list.len - 1)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
-			if(R == src)
+	var/datum/reagents/R = M.get_ingested_reagents()
+	if(istype(R) && R.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
+		var/effect = 1 / (R.reagent_list.len - 1)
+		for(var/datum/reagent/react in R.reagent_list)
+			if(react == src)
 				continue
-			M.ingested.remove_reagent(R.id, removed * effect)
+			R.remove_reagent(react.id, removed * effect)
 
 /datum/reagent/carbon/touch_turf(var/turf/T)
 	if(!istype(T, /turf/space) && !T.open_space)
