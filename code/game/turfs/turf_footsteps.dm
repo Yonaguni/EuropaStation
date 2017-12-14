@@ -146,7 +146,7 @@
 			'sound/effects/footsteps/armor/gear4.ogg'  \
 		)
 
-/obj/item/clothing/plunger/get_footstep_sound(var/turf_type)
+/obj/item/clothing/mask/plunger/get_footstep_sound(var/turf_type)
 	if(turf_type != FOOTSTEPS_WATER)
 		return 'sound/effects/plunger.ogg'
 

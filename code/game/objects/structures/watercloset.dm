@@ -27,13 +27,26 @@ var/list/hygiene_props = list()
 	processing_objects -= src
 
 /obj/structure/hygiene/attackby(var/obj/item/thing, var/mob/user)
-	if(!isnull(clogged) && clogged > 0 && istype(thing, /obj/item/clothing/plunger))
+	if(!isnull(clogged) && clogged > 0 && istype(thing, /obj/item/clothing/mask/plunger))
 		user.visible_message("<span class='notice'>\The [user] strives valiantly to unclog \the [src] with \the [thing]!</span>")
-		if(do_after(user, 30, src))
+		spawn
+			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
+			sleep(5)
+			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
+			sleep(5)
+			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
+			sleep(5)
+			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
+			sleep(5)
+			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
+		if(do_after(user, 45, src))
 			visible_message("<span class='notice'>With a loud gurgle, \the [src] begins flowing more freely.</span>")
+			playsound(loc, pick(gurgles), 100, 1)
 			clogged--
 			if(clogged <= 0)
 				unclog()
+		return
+	. = ..()
 
 /obj/structure/hygiene/process()
 	if(isnull(clogged))
@@ -55,7 +68,7 @@ var/list/hygiene_props = list()
 			if(world.time > next_gurgle)
 				next_gurgle = world.time + 80
 				playsound(T, pick(gurgles), 50, 1)
-			SET_FLUID_DEPTH(F, min(F.fluid_amount + rand(30,50), flood_amt))
+			SET_FLUID_DEPTH(F, min(F.fluid_amount + (rand(30,50)*clogged), flood_amt))
 
 /obj/structure/hygiene/toilet
 	name = "toilet"
@@ -145,6 +158,8 @@ var/list/hygiene_props = list()
 		user << "You carefully place \the [I] into the cistern."
 		return
 
+	. = ..()
+
 /obj/structure/hygiene/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."
@@ -166,6 +181,7 @@ var/list/hygiene_props = list()
 				GM.adjustBruteLoss(8)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
+	. = ..()
 
 /obj/structure/hygiene/shower
 	name = "shower"
@@ -214,6 +230,8 @@ var/list/hygiene_props = list()
 /obj/structure/hygiene/shower/attackby(obj/item/I as obj, var/mob/user)
 	if(I.type == /obj/item/analyzer)
 		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
+		return
+
 	if(I.iswrench())
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
@@ -222,6 +240,8 @@ var/list/hygiene_props = list()
 			watertemp = newtemp
 			user.visible_message("<span class='notice'>\The [user] adjusts \the [src] with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
 			add_fingerprint(user)
+			return
+	. = ..()
 
 /obj/structure/hygiene/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
@@ -365,6 +385,10 @@ var/list/hygiene_props = list()
 
 
 /obj/structure/hygiene/sink/attackby(obj/item/O as obj, var/mob/living/user)
+
+	if(istype(O, /obj/item/clothing/mask/plunger) && !isnull(clogged))
+		return ..()
+
 	if(busy)
 		user << "<span class='warning'>Someone's already washing here.</span>"
 		return
@@ -427,6 +451,7 @@ var/list/hygiene_props = list()
 /obj/structure/hygiene/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
 	icon_state = "puddle"
+	clogged = -1 // how do you clog a puddle
 
 /obj/structure/hygiene/sink/puddle/attack_hand(var/mob/M)
 	icon_state = "puddle-splash"
