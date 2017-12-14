@@ -57,6 +57,11 @@ var/list/autolathe_ammo =     list()
 	path = /obj/item/reagent_containers/glass/bucket
 	category = "General"
 
+/datum/autolathe/recipe/plunger
+	name = "plunger"
+	path = /obj/item/clothing/mask/plunger
+	category = "General"
+
 /datum/autolathe/recipe/drinkingglass
 	name = "drinking glass"
 	path = /obj/item/reagent_containers/food/drinks/glass2/square

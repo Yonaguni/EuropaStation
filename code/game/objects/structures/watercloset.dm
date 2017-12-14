@@ -10,7 +10,7 @@ var/list/hygiene_props = list()
 	hygiene_props[src] = TRUE
 
 /obj/structure/hygiene/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSprocessing, src)
 	hygiene_props[src] = null
 	hygiene_props -= src
 	. = ..()
@@ -19,12 +19,12 @@ var/list/hygiene_props = list()
 	if(!isnull(clogged))
 		return FALSE
 	clogged = severity
-	processing_objects |= src
+	START_PROCESSING(SSprocessing, src)
 	return TRUE
 
 /obj/structure/hygiene/proc/unclog()
 	clogged = null
-	processing_objects -= src
+	STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/hygiene/attackby(var/obj/item/thing, var/mob/user)
 	if(!isnull(clogged) && clogged > 0 && istype(thing, /obj/item/clothing/mask/plunger))
@@ -202,10 +202,7 @@ var/list/hygiene_props = list()
 /obj/structure/hygiene/shower/New()
 	..()
 	create_reagents(50)
-	processing_objects |= src
-
-/obj/structure/hygiene/shower/Destroy()
-	. = ..()
+	START_PROCESSING(SSprocessing, src)
 
 //add heat controls? when emagged, you can freeze to death in it?
 

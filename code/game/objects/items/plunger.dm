@@ -11,6 +11,7 @@
 	flags = NOSLIP
 	climbing_effectiveness = 1 //TODO: work out a more subtle system so this can be lowered.
 	hitsound = 'sound/effects/plunger.ogg'
+	matter = list("steel" = 5000) // This is so that they are buildable in the autolathe. TODO: plastic and rubber.
 
 	var/taped = FALSE
 	var/doubled = FALSE
@@ -44,12 +45,12 @@
 		. = ..()
 
 /obj/item/clothing/mask/plunger/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = initial(icon_state)
 	if(doubled)
 		icon_state += "_doubled"
 	else if(taped)
-		overlays += "tape"
+		add_overlay("tape")
 
 /obj/item/clothing/mask/plunger/proc/update_state()
 	name = initial(name)
