@@ -1112,6 +1112,31 @@
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
+/mob/living/carbon/human/verb/look_upwards()
+	set name = "Look Up"
+	set desc = "If you want to know what's above."
+	set category = "IC"
+
+	if(!is_physically_disabled())
+		var/turf/above = GetAbove(src)
+		if(istype(above))
+			if(bound_overlay)
+				if(client.eye == bound_overlay)
+					reset_view(0)
+					return
+				if(above.open_space)
+					to_chat(src, "<span class='notice'>You look up.</span>")
+					if(client)
+						reset_view(bound_overlay)
+					return
+			to_chat(src, "<span class='notice'>You can see \the [above].</span>")
+		else
+			var/turf/T = get_turf(src)
+			if(istype(T) && T.outside)
+				to_chat(src, "<span class='notice'>You can see the sky.</span>")
+			else
+				to_chat(src, "<span class='notice'>You can see the ceiling.</span>")
+
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
 	if(!dna)

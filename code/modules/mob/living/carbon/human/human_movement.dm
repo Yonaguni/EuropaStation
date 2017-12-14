@@ -3,6 +3,10 @@
 		return 0
 	. = ..()
 	if(.)
+		if(bound_overlay && client && client.eye == bound_overlay)
+			var/turf/T = GetAbove(src)
+			if(!istype(T) || !T.open_space)
+				reset_view(src)
 		species.handle_post_move(src)
 
 /mob/living/carbon/human/movement_delay()
