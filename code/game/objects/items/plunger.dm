@@ -48,7 +48,6 @@
 		icon_state += "_doubled"
 	else if(taped)
 		icon_state += "_taped"
-	var/mob/living/carbon/human/H = loc
 
 /obj/item/clothing/plunger/proc/update_state()
 	name = initial(name)
