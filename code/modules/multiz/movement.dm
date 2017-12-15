@@ -101,6 +101,7 @@
 						break
 				if(!climb_failed)
 					usr.forceMove(above)
+					do_climb_sound()
 					to_chat(usr, "<span class='notice'>You climb upwards.</span>")
 					return
 	to_chat(usr, "<span class='warning'>You cannot scale any of the nearby walls.</span>")
@@ -127,15 +128,27 @@
 							break
 					if(!climb_failed)
 						usr.forceMove(below)
+						do_climb_sound()
 						to_chat(usr, "<span class='notice'>You climb downwards.</span>")
 						return
 	to_chat(usr, "<span class='warning'>You cannot descend from this position.</span>")
 
+/mob/living/proc/do_climb_sound()
+	return
+
 /mob/living/proc/can_climb(var/climb_degree)
 	return (climb_degree == CLIMBABLE_EASY)
 
-/obj/item/clothing/shoes/var/climbing_effectiveness = 0
-/obj/item/clothing/gloves/var/climbing_effectiveness = 0
+/mob/living/carbon/human/do_climb_sound()
+	var/climb_sound
+	if(shoes)
+		climb_sound = shoes.hitsound
+	if(gloves && gloves.hitsound && (!climb_sound || prob(50)))
+		climb_sound = gloves.hitsound
+	if(climb_sound)
+		playsound(src.loc, climb_sound, 50, 1)
+
+/obj/item/clothing/var/climbing_effectiveness = 0
 
 /datum/species/proc/can_climb_unaided(climb_degree)
 	return FALSE
@@ -149,8 +162,8 @@
 		return FALSE
 
 	var/climb_score = 0
-	var/obj/item/clothing/shoes/S = shoes
-	var/obj/item/clothing/gloves/G = gloves
+	var/obj/item/clothing/S = shoes
+	var/obj/item/clothing/G = gloves
 
 	if(istype(G)) climb_score += G.climbing_effectiveness
 	if(istype(S)) climb_score += S.climbing_effectiveness

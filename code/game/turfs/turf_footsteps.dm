@@ -117,8 +117,8 @@
 // Species code.
 /datum/species/proc/get_footstep_sound(var/mob/living/carbon/human/H, var/turf_type)
 	var/obj/item/clothing/shoes/shoes = H.shoes
-	if(turf_type == FOOTSTEPS_HARD && istype(shoes))
-		return shoes.get_footstep_sound()
+	if(shoes)
+		return shoes.get_footstep_sound(turf_type)
 
 /datum/species/octopus/get_footstep_sound(var/mob/living/carbon/human/H, var/turf_type)
 	if(turf_type != FOOTSTEPS_WATER)
@@ -134,16 +134,21 @@
 			)
 
 // Object code.
-/obj/item/clothing/shoes/proc/get_footstep_sound()
+/obj/item/clothing/proc/get_footstep_sound(var/turf_type)
 	return
 
-/obj/item/clothing/shoes/jackboots/get_footstep_sound()
-	return pick( \
-		'sound/effects/footsteps/armor/gear1.ogg', \
-		'sound/effects/footsteps/armor/gear2.ogg', \
-		'sound/effects/footsteps/armor/gear3.ogg', \
-		'sound/effects/footsteps/armor/gear4.ogg'  \
-	)
+/obj/item/clothing/shoes/jackboots/get_footstep_sound(var/turf_type)
+	if(turf_type != FOOTSTEPS_WATER)
+		return pick( \
+			'sound/effects/footsteps/armor/gear1.ogg', \
+			'sound/effects/footsteps/armor/gear2.ogg', \
+			'sound/effects/footsteps/armor/gear3.ogg', \
+			'sound/effects/footsteps/armor/gear4.ogg'  \
+		)
+
+/obj/item/clothing/mask/plunger/get_footstep_sound(var/turf_type)
+	if(turf_type != FOOTSTEPS_WATER)
+		return 'sound/effects/plunger.ogg'
 
 // Flooring code.
 /decl/flooring/var/footstep_type = FOOTSTEPS_HARD
