@@ -20,7 +20,7 @@
 
 /obj/effect/spawner/newbomb
 	name = "TTV bomb"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/effects/markers.dmi'
 	icon_state = "x"
 
 	var/assembly_type = /obj/item/assembly/signaler

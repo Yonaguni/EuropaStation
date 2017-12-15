@@ -280,7 +280,7 @@ datum/unit_test/mob_damage/corvid/halloss
 
 datum/unit_test/robot_module_icons
 	name = "MOB: Robot module icon check"
-	var/icon_file = 'icons/mob/screen1_robot.dmi'
+	var/icon_file = 'icons/screen/hud_robot.dmi'
 
 datum/unit_test/robot_module_icons/start_test()
 	var/failed = 0

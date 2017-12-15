@@ -1,13 +1,6 @@
-
-
 /var/all_ui_styles = list(
-	"Europa"       = 'icons/mob/screen/europa.dmi',
-	"Midnight"     = 'icons/mob/screen/midnight.dmi',
-	"Orange"       = 'icons/mob/screen/orange.dmi',
-	"old"          = 'icons/mob/screen/old.dmi',
-	"White"        = 'icons/mob/screen/white.dmi',
-	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
-	"minimalist"   = 'icons/mob/screen/minimalist.dmi'
+	"White" = 'icons/screen/styles/white.dmi',
+	"Europa" = 'icons/screen/styles/europa.dmi'
 	)
 
 /proc/ui_style2icon(ui_style)

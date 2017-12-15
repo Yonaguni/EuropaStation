@@ -841,17 +841,17 @@
 
 						// Apply a fire overlay if we're burning.
 						if(on_fire)
-							health_images += image('icons/mob/screen1_health.dmi',"burning")
+							health_images += image(healths.icon,"burning")
 
 						// Show a general pain/crit indicator if needed.
 						if(trauma_val)
 							if(can_feel_pain())
 								if(trauma_val > 0.7)
-									health_images += image('icons/mob/screen1_health.dmi',"softcrit")
+									health_images += image(healths.icon,"softcrit")
 								if(trauma_val >= 1)
-									health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
+									health_images += image(healths.icon,"hardcrit")
 						else if(no_damage)
-							health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
+							health_images += image(healths.icon,"fullhealth")
 
 						healths.overlays += health_images
 

@@ -64,7 +64,7 @@
 			client.screen |= screens[category]
 
 /obj/screen/fullscreen
-	icon = 'icons/mob/screen_full.dmi'
+	icon = 'icons/screen/fullscreen_overlays.dmi'
 	icon_state = "default"
 	screen_loc = "CENTER-7,CENTER-7"
 	layer = FULLSCREEN_LAYER
@@ -95,12 +95,12 @@
 	icon_state = "impairedoverlay"
 
 /obj/screen/fullscreen/blurry
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/overlay_effects.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "blurry"
 
 /obj/screen/fullscreen/flash
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/screen/overlay_effects.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 
