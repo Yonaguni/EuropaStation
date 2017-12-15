@@ -244,7 +244,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.handcuffed = W
 			drop_r_hand()
 			drop_l_hand()
-			stop_pulling()
 			update_inv_handcuffed(redraw_mob)
 		if(slot_legcuffed)
 			src.legcuffed = W

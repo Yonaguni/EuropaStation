@@ -92,30 +92,6 @@
 				help_shake_act(M)
 			return 1
 
-		if(I_GRAB)
-			if(M == src || anchored)
-				return 0
-			for(var/obj/item/grab/G in src.grabbed_by)
-				if(G.assailant == M)
-					M << "<span class='notice'>You already grabbed [src].</span>"
-					return
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
-
-			var/obj/item/grab/G = new /obj/item/grab(M, src)
-			if(buckled)
-				M << "<span class='notice'>You cannot grab [src], \he is buckled in!</span>"
-			if(!G)	//the grab will delete itself in New if affecting is anchored
-				return
-			M.put_in_active_hand(G)
-			G.synch()
-			LAssailant = M
-
-			H.do_attack_animation(src)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-			return 1
-
 		if(I_HURT)
 
 			if(!istype(H))
@@ -142,11 +118,11 @@
 					if(src.canmove && src!=H && prob(20))
 						block = 1
 
-			if (M.grabbed_by.len)
+			if (LAZYLEN(M.grabbed_by))
 				// Someone got a good grip on them, they won't be able to do much damage
 				rand_damage = max(1, rand_damage - 2)
 
-			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
+			if(LAZYLEN(grabbed_by) || src.buckled || !src.canmove || src==H)
 				accurate = 1 // certain circumstances make it impossible for us to evade punches
 				rand_damage = 5
 
@@ -303,7 +279,7 @@
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
-	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
+	for(var/obj/item/grab/G in get_grabs())
 		if(G.affecting == src && G.state == GRAB_NECK)
 			has_grab = 1
 			break
@@ -329,25 +305,12 @@
 //Breaks all grips and pulls that the mob currently has.
 /mob/living/carbon/human/proc/break_all_grabs(mob/living/carbon/user)
 	var/success = 0
-	if(pulling)
-		visible_message("<span class='danger'>[user] has broken [src]'s grip on [pulling]!</span>")
-		success = 1
-		stop_pulling()
-
-	if(istype(l_hand, /obj/item/grab))
-		var/obj/item/grab/lgrab = l_hand
-		if(lgrab.affecting)
-			visible_message("<span class='danger'>[user] has broken [src]'s grip on [lgrab.affecting]!</span>")
+	for(var/obj/item/grab/G in get_grabs())
+		if(G.affecting)
+			visible_message("<span class='danger'>\The [user] has broken \the [src]'s grip on [G.affecting]!</span>")
 			success = 1
 		spawn(1)
-			qdel(lgrab)
-	if(istype(r_hand, /obj/item/grab))
-		var/obj/item/grab/rgrab = r_hand
-		if(rgrab.affecting)
-			visible_message("<span class='danger'>[user] has broken [src]'s grip on [rgrab.affecting]!</span>")
-			success = 1
-		spawn(1)
-			qdel(rgrab)
+			user.drop_from_inventory(G)
 	return success
 
 /*

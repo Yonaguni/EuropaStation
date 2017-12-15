@@ -322,7 +322,7 @@
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
 		var/mob/M = target
-		if(M.grabbed_by.len)
+		if(LAZYLEN(M.grabbed_by))
 			var/grabstate = 0
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)

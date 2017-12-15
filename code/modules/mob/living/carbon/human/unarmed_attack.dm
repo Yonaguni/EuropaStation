@@ -229,8 +229,6 @@ var/global/list/sparring_attack_cache = list()
 		return 0
 
 	if (!user.lying && (target.lying || (zone in list(BP_L_FOOT, BP_R_FOOT))))
-		if(target.grabbed_by == user && target.lying)
-			return 0
 		var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]
 		if(E && !E.is_stump())
 			return 1

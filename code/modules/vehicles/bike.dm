@@ -69,8 +69,6 @@ var/list/bike_cache = list()
 			return
 		src.visible_message("<span class='notice'>\The [usr] kicks down \the [src]'s stand.</span>")
 		playsound(src.loc, 'sound/misc/bike_stand_down.ogg', 75,1)
-		if(pulledby)
-			pulledby.stop_pulling()
 
 	kickstand = !kickstand
 	anchored = (kickstand || on)
@@ -101,7 +99,7 @@ var/list/bike_cache = list()
 /obj/vehicle/bike/Move(var/turf/destination)
 	if(kickstand) return
 	//these things like space, not turf. Dragging shouldn't weigh you down.
-	if(istype(destination,/turf/space) || pulledby)
+	if(istype(destination,/turf/space))
 		if(!space_speed)
 			return 0
 		move_delay = space_speed
@@ -123,8 +121,6 @@ var/list/bike_cache = list()
 	anchored = 1
 	update_icon()
 	processing_objects |= src
-	if(pulledby)
-		pulledby.stop_pulling()
 	..()
 
 /obj/vehicle/bike/turn_off()

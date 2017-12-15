@@ -15,7 +15,6 @@
 
 /mob/proc/remove_screen_obj_references()
 	hands = null
-	pullin = null
 	purged = null
 	internals = null
 	oxygen = null
@@ -137,16 +136,6 @@
 	else if(m_intent == "walk")
 		.  += 7+config.walk_speed
 
-	if(pulling)
-		if(istype(pulling, /obj))
-			var/obj/O = pulling
-			. += O.w_class / 5
-		else if(istype(pulling, /mob))
-			var/mob/M = pulling
-			. += M.mob_size / MOB_MEDIUM
-		else
-			. += 1
-
 /mob/proc/Life()
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
@@ -257,41 +246,6 @@
 
 	face_atom(A)
 	return 1
-
-
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/grab) ) && !( istype(r_hand, /obj/item/grab) )))
-		if (!( L ))
-			return null
-		else
-			return L.container
-	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
-			L.container += src
-			L.master = src
-		if (istype(l_hand, /obj/item/grab))
-			var/obj/item/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/grab))
-			var/obj/item/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
-			if (L.master == src)
-				var/list/temp = list(  )
-				temp += L.container
-				//L = null
-				qdel(L)
-				return temp
-			else
-				return L.container
-	return
 
 /mob/verb/mode()
 	set name = "Activate Held Object"
@@ -559,19 +513,6 @@
 //	..()
 	return
 
-
-/mob/proc/pull_damage()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
-			for(var/name in H.organs_by_name)
-				var/obj/item/organ/external/e = H.organs_by_name[name]
-				if(e && H.lying)
-					if((((e.status & ORGAN_BROKEN) && !e.splinted) || e.status & ORGAN_BLEEDING ) && (H.getBruteLoss() + H.getFireLoss() >= 100))
-						return 1
-						break
-		return 0
-
 /mob/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
@@ -579,80 +520,6 @@
 	if(!Adjacent(usr)) return
 	if(istype(M,/mob/living/silicon/ai)) return
 	show_inv(usr)
-
-
-/mob/verb/stop_pulling()
-
-	set name = "Stop Pulling"
-	set category = "IC"
-
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-		if(pullin)
-			pullin.icon_state = "pull0"
-
-/mob/proc/start_pulling(var/atom/movable/AM)
-
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
-		return
-
-	if (AM.anchored)
-		src << "<span class='warning'>It won't budge!</span>"
-		return
-
-	var/mob/M = AM
-	if(ismob(AM))
-
-		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
-			return
-
-		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
-			return
-
-		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
-			return
-
-		// If your size is larger than theirs and you have some
-		// kind of mob pull value AT ALL, you will be able to pull
-		// them, so don't bother checking that explicitly.
-
-		if(!iscarbon(src))
-			M.LAssailant = null
-		else
-			M.LAssailant = usr
-
-	else if(isobj(AM))
-		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
-			src << "<span class='warning'>It won't budge!</span>"
-			return
-
-	if(pulling)
-		var/pulling_old = pulling
-		stop_pulling()
-		// Are we pulling the same thing twice? Just stop pulling.
-		if(pulling_old == AM)
-			return
-
-	src.pulling = AM
-	AM.pulledby = src
-
-	if(pullin)
-		pullin.icon_state = "pull1"
-
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
-
-	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
-		var/mob/pulled = AM
-		pulled.inertia_dir = 0
 
 /mob/proc/can_use_hands()
 	return

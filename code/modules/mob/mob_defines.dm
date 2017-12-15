@@ -12,7 +12,6 @@
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 
 	var/obj/screen/hands = null
-	var/obj/screen/pullin = null
 	var/obj/screen/purged = null
 	var/obj/screen/internals = null
 	var/obj/screen/oxygen = null
@@ -50,7 +49,6 @@
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
-	var/atom/movable/pulling = null
 	var/other_mobs = null
 	var/next_move = null
 	var/transforming = null	//Carbon
@@ -98,8 +96,6 @@
 
 
 	var/datum/hud/hud_used = null
-
-	var/list/grabbed_by = list(  )
 
 	var/in_throw_mode = 0
 

@@ -1,11 +1,9 @@
 /atom/movable
 	layer = 3
 	appearance_flags = TILE_BOUND
-	//glide_size = 8
 
 	var/last_move = null
 	var/anchored = 0
-	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/m_flag = 1
@@ -15,8 +13,9 @@
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
-	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
+
+	var/list/grabbed_by
 
 /atom/movable/Del()
 	if(isnull(gcDestroyed) && loc)
@@ -33,10 +32,6 @@
 	for(var/atom/movable/AM in src)
 		qdel(AM)
 	forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
 
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))

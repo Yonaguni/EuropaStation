@@ -90,7 +90,7 @@
 			playsound(loc, W.hitsound, 50, 1, -1)
 
 	G.last_action = world.time
-	flick(G.hud.icon_state, G.hud)
+	G.do_interaction_animation()
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"

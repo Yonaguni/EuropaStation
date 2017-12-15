@@ -77,6 +77,11 @@ var/list/turf_edge_cache = list()
 
 /turf/attackby(var/obj/item/C, var/mob/user)
 
+	if(istype(C, /obj/item/grab) && C.loc != src)
+		var/obj/item/grab/G = C
+		step_towards(G.affecting, src)
+		return
+
 	if(C.iscoil() && can_build_cable(user))
 		var/obj/item/stack/cable_coil/coil = C
 		coil.turf_place(src, user)
@@ -122,25 +127,6 @@ var/list/turf_edge_cache = list()
 	return 0
 
 /turf/proc/is_solid_structure()
-	return 1
-
-/turf/attack_hand(mob/user)
-	if(!(user.canmove) || user.restrained() || !(user.pulling))
-		return 0
-	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return 0
-	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
-		return 0
-
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	if(ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/atom/movable/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
 /turf/Enter(var/atom/movable/mover, atom/forget as mob|obj|turf|area)
@@ -230,12 +216,15 @@ var/const/enterloopsanity = 100
 		if(M.Allow_Spacemove(1)) //if this mob can control their own movement in space then they shouldn't be drifting
 			M.inertia_dir  = 0
 			return
-		spawn(5)
-			if(M && !(M.anchored) && !(M.pulledby) && (M.loc == src))
-				if(!M.inertia_dir)
-					M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
+		addtimer(CALLBACK(src, .proc/check_inertial_drift, M), 5)
 	return
+
+/turf/proc/check_inertial_drift(var/mob/M)
+	if(!M || LAZYLEN(M.grabbed_by) || M.anchored || M.loc != src)
+		return
+	if(!M.inertia_dir)
+		M.inertia_dir = M.last_move
+	step(M, M.inertia_dir)
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)

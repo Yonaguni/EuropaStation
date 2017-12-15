@@ -108,7 +108,6 @@
 	if (usr.abiotic())
 		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
 		return
-	usr.stop_pulling()
 	usr.reset_view(src)
 	usr.loc = src
 	src.occupant = usr
@@ -129,15 +128,15 @@
 	else if (!istype(item, /obj/item/grab))
 		return
 	var/obj/item/grab/G = item
-	if (!ismob(G.affecting))
+	if (!ismob(G.affecting_mob))
 		return
 	if (src.occupant)
 		user << "<span class='warning'>The scanner is already occupied!</span>"
 		return
-	if (G.affecting.abiotic())
+	if (G.affecting_mob.abiotic())
 		user << "<span class='warning'>The subject cannot have abiotic items on.</span>"
 		return
-	put_in(G.affecting)
+	put_in(G.affecting_mob)
 	src.add_fingerprint(user)
 	qdel(G)
 	return

@@ -55,15 +55,12 @@ var/obj/screen/robot_inventory
 //End of module select
 
 //Intent
-	using = new /obj/screen()
-	using.name = "act_intent"
-	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/screen/hud_robot.dmi'
-	using.icon_state = mymob.a_intent
-	using.screen_loc = ui_acti
-	using.layer = SCREEN_LAYER
-	src.adding += using
-	action_intent = using
+	build_intent_selector(src, "#DDDDDD")
+	action_intent.screen_loc = ui_acti
+	help_intent.screen_loc =   ui_acti
+	disarm_intent.screen_loc = ui_acti
+	grab_intent.screen_loc =   ui_acti
+	hurt_intent.screen_loc =   ui_acti
 
 //Cell
 	mymob:cells = new /obj/screen()
@@ -128,12 +125,6 @@ var/obj/screen/robot_inventory
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_fire
 
-	mymob.pullin = new /obj/screen()
-	mymob.pullin.icon = 'icons/screen/hud_robot.dmi'
-	mymob.pullin.icon_state = "pull0"
-	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_borg_pull
-
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = 'icons/screen/hud_robot.dmi'
 	mymob.zone_sel.overlays.Cut()
@@ -146,7 +137,7 @@ var/obj/screen/robot_inventory
 	mymob.radio_use_icon = new /obj/screen/gun/radio(null)
 
 	mymob.client.screen = list()
-	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.fire, mymob.hands, mymob.healths, mymob:cells, mymob.pullin, robot_inventory, mymob.gun_setting_icon)
+	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.fire, mymob.hands, mymob.healths, mymob:cells, robot_inventory, mymob.gun_setting_icon)
 	mymob.client.screen += src.adding + src.other
 	common_hud()
 

@@ -292,7 +292,6 @@
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	layer = SCREEN_LAYER+0.01
 	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
 
 	//Update two-handing status
 	var/mob/M = loc

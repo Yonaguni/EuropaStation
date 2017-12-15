@@ -70,12 +70,7 @@
 
 //This gets called when you press the delete button.
 /client/verb/delete_key_pressed()
-	set hidden = 1
-
-	if(!usr.pulling)
-		usr << "\blue You are not pulling anything."
-		return
-	usr.stop_pulling()
+	return // TODO REMOVE FROM SKIN
 
 /client/verb/swap_hand()
 	set hidden = 1
@@ -238,24 +233,11 @@
 					if(item.zoom)
 						item.zoom(mob)
 						break
-				/*
-				if(locate(/obj/item/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-				if(locate(/obj/item/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/binoculars/b = locate() in mob
-					if(b.zoom)
-						b.zoom()
-				*/
 
 	if(Process_Grab())	return
 
 	if(!mob.canmove)
 		return
-
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Allow_Spacemove(0))	return 0
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
@@ -275,14 +257,9 @@
 
 	if(isturf(mob.loc))
 
-		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(mob, 1))
-				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
-						src << "\blue You're restrained! You can't move!"
-						return 0
-					else
-						M.stop_pulling()
+		if(mob.restrained() && LAZYLEN(mob.grabbed_by)) //Why being pulled while cuffed prevents you from moving
+			to_chat(src, "<span class='notice'>You're restrained! You can't move!</span>")
+			return 0
 
 		if(mob.pinned.len)
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
@@ -303,12 +280,10 @@
 			if(mob.machine.relaymove(mob,direct))
 				return
 
-		if(mob.pulledby || mob.buckled) // Wheelchair driving!
+		if(mob.buckled) // Wheelchair driving!
 			if(istype(mob.loc, /turf/space))
 				return // No wheelchair driving in space
-			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-				return mob.pulledby.relaymove(mob, direct)
-			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
+			if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
 				if(ishuman(mob))
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ(BP_L_HAND)
@@ -327,64 +302,41 @@
 
 		//We are now going to move
 		moving = 1
-		//Something with pulling things
-		if(locate(/obj/item/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
-			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
-				if(L.len == 2)
-					L -= mob
-					var/mob/M = L[1]
-					if(M)
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
-							var/turf/T = mob.loc
-							. = ..()
-							if (isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
-								else
-									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
-				else
-					for(var/mob/M in L)
-						M.other_mobs = 1
-						if(mob != M)
-							M.animate_movement = 3
-					for(var/mob/M in L)
-						spawn( 0 )
-							step(M, direct)
-							return
-						spawn( 1 )
-							M.other_mobs = null
-							M.animate_movement = 2
-							return
 
-		else
-			if(mob.confused)
-				switch(mob.m_intent)
-					if("run")
-						if(prob(75))
-							direct = turn(direct, pick(90, -90))
-							n = get_step(mob, direct)
-					if("walk")
-						if(prob(25))
-							direct = turn(direct, pick(90, -90))
-							n = get_step(mob, direct)
-			. = mob.SelfMove(n, direct)
+		if(mob.confused)
+			switch(mob.m_intent)
+				if("run")
+					if(prob(75))
+						direct = turn(direct, pick(90, -90))
+						n = get_step(mob, direct)
+				if("walk")
+					if(prob(25))
+						direct = turn(direct, pick(90, -90))
+						n = get_step(mob, direct)
 
-		for (var/obj/item/grab/G in mob)
-			if (G.state == GRAB_NECK)
-				mob.set_dir(reverse_dir[direct])
-			G.adjust_position()
-		for (var/obj/item/grab/G in mob.grabbed_by)
-			G.adjust_position()
+		var/lastloc = mob.loc
+		. = mob.SelfMove(n, direct)
+
+		// Grabbing and dragging things.
+		if(. && lastloc != mob.loc)
+			var/list/grabs = mob.get_grabs()
+			if(LAZYLEN(grabs))
+				move_delay = max(move_delay, world.time + 4)
+				for(var/obj/item/grab/G in grabs)
+					if(get_dist(G.affecting.loc, lastloc) == 1)
+						step_towards(G.affecting, lastloc)
+					if(G && G.affecting)
+						if(get_dist(G.affecting.loc, mob.loc) > 1)
+							mob.drop_from_inventory(G)
+							continue
+						if (G.state == GRAB_NECK)
+							mob.set_dir(reverse_dir[direct])
+						G.adjust_position()
+
+			for (var/obj/item/grab/G in mob.grabbed_by)
+				G.adjust_position()
 
 		moving = 0
-
-		return .
-
-	return
 
 /mob/proc/SelfMove(turf/n, direct)
 	self_move = TRUE

@@ -9,8 +9,11 @@
 	min_duration = 80
 	max_duration = 120
 
-/datum/surgery_step/disinfect/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+/datum/surgery_step/disinfect/can_use(mob/living/user, var/mob/living/carbon/target, target_zone, obj/item/tool)
+	var/mob/living/carbon/human/H = target
+	if(!istype(H))
+		return 0
+	var/obj/item/organ/external/affected = H.get_organ(target_zone)
 	if(!affected)
 		return 0
 	// Check if they're using something that can disinfect wounds.

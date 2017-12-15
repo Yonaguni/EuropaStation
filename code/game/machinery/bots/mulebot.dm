@@ -709,7 +709,6 @@
 				src.visible_message("<span class='warning'>[src] bumps into [M]!</span>")
 			else
 				src.visible_message("<span class='warning'>[src] knocks over [M]!</span>")
-				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
 				M.set_lying(1)

@@ -165,14 +165,6 @@
 		src.hotkeybuttons += mymob.throw_icon
 		hud_elements |= mymob.throw_icon
 
-		mymob.pullin = new /obj/screen()
-		mymob.pullin.icon = ui_style
-		mymob.pullin.icon_state = "pull0"
-		mymob.pullin.name = "pull"
-		mymob.pullin.screen_loc = ui_pull_resist
-		src.hotkeybuttons += mymob.pullin
-		hud_elements |= mymob.pullin
-
 	if(hud_data.has_internals)
 		mymob.internals = new /obj/screen()
 		mymob.internals.icon = 'icons/screen/internals.dmi'

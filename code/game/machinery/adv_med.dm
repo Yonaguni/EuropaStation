@@ -42,7 +42,6 @@
 	if (usr.abiotic())
 		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
 		return
-	usr.pulling = null
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
 	usr.loc = src
@@ -72,29 +71,25 @@
 	return
 
 /obj/machinery/bodyscanner/attackby(var/obj/item/grab/G as obj, var/mob/user)
-	if ((!( istype(G, /obj/item/grab) ) || !( ismob(G.affecting) )))
+	if (!istype(G) || !G.affecting_mob)
 		return
 	if (src.occupant)
 		user << "<span class='warning'>The scanner is already occupied!</span>"
 		return
-	if (G.affecting.abiotic())
+	if (G.affecting_mob.abiotic())
 		user << "<span class='warning'>Subject cannot have abiotic items on.</span>"
 		return
-	var/mob/M = G.affecting
-	if (M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
-	src.occupant = M
+	if(G.affecting_mob.client)
+		G.affecting_mob.client.perspective = EYE_PERSPECTIVE
+		G.affecting_mob.client.eye = src
+	G.affecting_mob.forceMove(src)
+	src.occupant = G.affecting_mob
+	for(var/obj/O in src)
+		O.forceMove(get_turf(src))
 	update_use_power(2)
 	src.icon_state = "body_scanner_1"
-	for(var/obj/O in src)
-		O.loc = src.loc
-		//Foreach goto(154)
 	src.add_fingerprint(user)
-	//G = null
-	qdel(G)
-	return
+	user.drop_from_inventory(G)
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)

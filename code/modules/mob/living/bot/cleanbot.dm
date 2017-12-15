@@ -99,7 +99,7 @@
 
 		// Find a target
 
-	if(pulledby) // Don't wiggle if someone pulls you
+	if(LAZYLEN(grabbed_by)) // Don't wiggle if someone pulls you
 		patrol_path = list()
 		return
 
@@ -150,7 +150,7 @@
 						patrol_path = AStar(loc, next_dest_loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = null)
 						signal_sent = 0
 		else
-			if(pulledby) // Don't wiggle if someone pulls you
+			if(LAZYLEN(grabbed_by)) // Don't wiggle if someone pulls you
 				patrol_path = list()
 				return
 			if(patrol_path[1] == loc)

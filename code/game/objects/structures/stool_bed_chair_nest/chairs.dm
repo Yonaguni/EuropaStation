@@ -6,7 +6,6 @@
 	base_icon = "chair"
 	buckle_dir = 0
 	buckle_lying = 0 //force people to sit up in chairs when buckled
-	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/attackby(var/obj/item/W, var/mob/user)
 	..()
@@ -126,6 +125,7 @@
 	anchored = 0
 	buckle_movable = 1
 	material_alteration = MATERIAL_ALTERATION_NONE
+	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/office/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack) || W.iswirecutter())
@@ -133,19 +133,12 @@
 	..()
 
 /obj/structure/bed/chair/office/Move()
-	..()
-	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		occupant.buckled = null
-		occupant.Move(src.loc)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
-			if (propelled)
-				for (var/mob/O in src.loc)
-					if (O != occupant)
-						Bump(O)
-			else
-				unbuckle_mob()
+	. = ..()
+	if(. && buckled_mob)
+		buckled_mob.forceMove(get_turf(src))
+		if(propelled)
+			for(var/mob/M in loc.contents - buckled_mob)
+				Bump(M)
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
