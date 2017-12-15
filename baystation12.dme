@@ -97,6 +97,7 @@
 #include "code\_onclick\rig.dm"
 #include "code\_onclick\telekinesis.dm"
 #include "code\_onclick\hud\_defines.dm"
+#include "code\_onclick\hud\_hud.dm"
 #include "code\_onclick\hud\action.dm"
 #include "code\_onclick\hud\alien_larva.dm"
 #include "code\_onclick\hud\fullscreen.dm"

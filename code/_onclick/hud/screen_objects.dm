@@ -8,7 +8,6 @@
 */
 /obj/screen
 	name = ""
-	icon = 'icons/mob/screen1.dmi'
 	layer = SCREEN_LAYER
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
@@ -32,6 +31,7 @@
 
 /obj/screen/close
 	name = "close"
+	icon = 'icons/screen/storage.dmi'
 
 /obj/screen/close/Click()
 	if(master)
@@ -65,6 +65,7 @@
 
 /obj/screen/grab
 	name = "grab"
+	icon = 'icons/screen/grab.dmi'
 
 /obj/screen/grab/Click()
 	var/obj/item/grab/G = master
@@ -80,6 +81,7 @@
 
 /obj/screen/storage
 	name = "storage"
+	icon = 'icons/screen/storage.dmi'
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())

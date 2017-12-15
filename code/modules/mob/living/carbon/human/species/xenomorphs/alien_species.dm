@@ -305,7 +305,7 @@
 
 /datum/hud_data/alien
 
-	icon = 'icons/mob/screen1_alien.dmi'
+	icon = 'icons/screen/hud_alien.dmi'
 	has_a_intent =  1
 	has_m_intent =  1
 	has_warnings =  1

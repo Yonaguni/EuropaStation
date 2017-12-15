@@ -1,7 +1,7 @@
 /mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
 
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
+/datum/hud/proc/human_hud(var/ui_style='icons/screen/styles/white.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -57,71 +57,7 @@
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
-
-		using = new /obj/screen()
-		using.name = "act_intent"
-		using.icon = ui_style
-		using.icon_state = "intent_"+mymob.a_intent
-		using.screen_loc = ui_acti
-		using.color = ui_color
-		using.alpha = ui_alpha
-		using.layer = SCREEN_LAYER
-		src.adding += using
-		action_intent = using
-
-		hud_elements |= using
-
-		//intent small hud objects
-		var/icon/ico
-
-		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-		using = new /obj/screen( src )
-		using.name = I_HELP
-		using.icon = ico
-		using.screen_loc = ui_acti
-		using.alpha = ui_alpha
-		using.layer = SCREEN_LAYER + 0.1
-		src.adding += using
-		help_intent = using
-
-		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-		using = new /obj/screen( src )
-		using.name = I_DISARM
-		using.icon = ico
-		using.screen_loc = ui_acti
-		using.alpha = ui_alpha
-		using.layer = SCREEN_LAYER + 0.1
-		src.adding += using
-		disarm_intent = using
-
-		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-		using = new /obj/screen( src )
-		using.name = I_GRAB
-		using.icon = ico
-		using.screen_loc = ui_acti
-		using.alpha = ui_alpha
-		using.layer = SCREEN_LAYER + 0.1
-		src.adding += using
-		grab_intent = using
-
-		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-		using = new /obj/screen( src )
-		using.name = I_HURT
-		using.icon = ico
-		using.screen_loc = ui_acti
-		using.alpha = ui_alpha
-		using.layer = SCREEN_LAYER + 0.1
-		src.adding += using
-		hurt_intent = using
-		//end intent small hud objects
+		hud_elements += build_intent_selector(src, ui_color, ui_alpha)
 
 	if(hud_data.has_m_intent)
 		using = new /obj/screen()
@@ -239,7 +175,7 @@
 
 	if(hud_data.has_internals)
 		mymob.internals = new /obj/screen()
-		mymob.internals.icon = ui_style
+		mymob.internals.icon = 'icons/screen/internals.dmi'
 		mymob.internals.icon_state = "internal0"
 		mymob.internals.name = "internal"
 		mymob.internals.screen_loc = ui_internal
@@ -247,28 +183,28 @@
 
 	if(hud_data.has_warnings)
 		mymob.oxygen = new /obj/screen()
-		mymob.oxygen.icon = ui_style
+		mymob.oxygen.icon = 'icons/screen/warning_oxygen.dmi'
 		mymob.oxygen.icon_state = "oxy0"
 		mymob.oxygen.name = "oxygen"
 		mymob.oxygen.screen_loc = ui_oxygen
 		hud_elements |= mymob.oxygen
 
 		mymob.toxin = new /obj/screen()
-		mymob.toxin.icon = ui_style
+		mymob.toxin.icon = 'icons/screen/warning_toxins.dmi'
 		mymob.toxin.icon_state = "tox0"
 		mymob.toxin.name = "toxin"
 		mymob.toxin.screen_loc = ui_toxin
 		hud_elements |= mymob.toxin
 
 		mymob.fire = new /obj/screen()
-		mymob.fire.icon = ui_style
+		mymob.fire.icon = 'icons/screen/warning_fire.dmi'
 		mymob.fire.icon_state = "fire0"
 		mymob.fire.name = "fire"
 		mymob.fire.screen_loc = ui_fire
 		hud_elements |= mymob.fire
 
 		mymob.healths = new /obj/screen()
-		mymob.healths.icon = ui_style
+		mymob.healths.icon = 'icons/screen/health.dmi'
 		mymob.healths.icon_state = (mymob.stat != DEAD ? "health0" : "health7")
 		mymob.healths.name = "health"
 		mymob.healths.screen_loc = ui_health
@@ -276,7 +212,7 @@
 
 	if(hud_data.has_pressure)
 		mymob.pressure = new /obj/screen()
-		mymob.pressure.icon = ui_style
+		mymob.pressure.icon = 'icons/screen/warning_pressure.dmi'
 		mymob.pressure.icon_state = "pressure0"
 		mymob.pressure.name = "pressure"
 		mymob.pressure.screen_loc = ui_pressure
@@ -284,7 +220,7 @@
 
 	if(hud_data.has_bodytemp)
 		mymob.bodytemp = new /obj/screen()
-		mymob.bodytemp.icon = ui_style
+		mymob.bodytemp.icon = 'icons/screen/warning_temperature.dmi'
 		mymob.bodytemp.icon_state = "temp1"
 		mymob.bodytemp.name = "body temperature"
 		mymob.bodytemp.screen_loc = ui_temp
@@ -292,7 +228,7 @@
 
 	if(hud_data.has_nutrition)
 		mymob.nutrition_icon = new /obj/screen()
-		mymob.nutrition_icon.icon = ui_style
+		mymob.nutrition_icon.icon = 'icons/screen/warning_food.dmi'
 		mymob.nutrition_icon.icon_state = "nutrition0"
 		mymob.nutrition_icon.name = "nutrition"
 		mymob.nutrition_icon.screen_loc = ui_nutrition
