@@ -134,7 +134,8 @@
 		if(target.status != LIGHT_EMPTY)
 			target.remove_bulb()
 
-		var/obj/item/light/L = new target.light_bulb_type()
+		var/bulbpath = initial(target.bulb)
+		var/obj/item/light/L = new bulbpath()
 		target.insert_bulb(L)
 
 

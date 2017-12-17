@@ -821,7 +821,6 @@
 		var/new_power_light = (lighting >= POWERCHAN_ON)
 		if(area.power_light != new_power_light)
 			area.power_light = new_power_light
-			area.set_emergency_lighting(lighting == POWERCHAN_OFF_AUTO) //if lights go auto-off, emergency lights go on
 
 		area.power_equip = (equipment >= POWERCHAN_ON)
 		area.power_environ = (environ >= POWERCHAN_ON)
@@ -1227,8 +1226,8 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 		spawn(0)
 			for(var/obj/machinery/light/L in area)
 				if(prob(chance))
-					L.on = 1
-					L.broken()
+					L.use_power = 1
+					L.break_bulb()
 				sleep(1)
 
 /obj/machinery/power/apc/proc/setsubsystem(val)

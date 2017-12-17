@@ -219,11 +219,6 @@
 		updateicon()
 		power_change()
 
-/area/proc/set_emergency_lighting(var/enable)
-	for(var/obj/machinery/light/M in src)
-		M.set_emergency_lighting(enable)
-
-
 var/list/mob/living/forced_ambiance_list = new
 
 /area/Entered(A)
