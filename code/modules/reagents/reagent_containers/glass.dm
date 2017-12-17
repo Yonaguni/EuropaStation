@@ -55,7 +55,7 @@
 		else
 			user << "<span class='notice'>It is empty.</span>"
 		if(!is_open_container())
-			user << "<span class='notice'>Airtight lid seals it completely.</span>"
+			user << "<span class='notice'>An airtight lid seals it completely.</span>"
 
 	attack_self()
 		..()
