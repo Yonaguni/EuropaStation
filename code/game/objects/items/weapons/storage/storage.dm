@@ -476,7 +476,7 @@
 		remove_from_storage(I, T)
 
 /obj/item/storage/New()
-	..()
+
 	if(allow_quick_empty)
 		verbs += /obj/item/storage/verb/quick_empty
 	else
@@ -552,6 +552,8 @@
 					new item_path(src)
 		update_icon()
 		make_exact_fit()
+
+	..()
 
 /obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))

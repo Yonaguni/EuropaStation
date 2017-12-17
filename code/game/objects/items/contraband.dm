@@ -1,34 +1,5 @@
 //Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no fun.
-
 //Illicit drugs~
-/obj/item/storage/pill_bottle/happy
-	name = "bottle of Happy pills"
-	desc = "Highly illegal drug. When you want to see the rainbow."
-
-/obj/item/storage/pill_bottle/happy/New()
-	..()
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-	new /obj/item/reagent_containers/pill/happy( src )
-
-/obj/item/storage/pill_bottle/zoom
-	name = "bottle of Zoom pills"
-	desc = "Highly illegal drug. Trade brain for speed."
-
-/obj/item/storage/pill_bottle/zoom/New()
-	..()
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-	new /obj/item/reagent_containers/pill/zoom( src )
-
 /obj/item/reagent_containers/glass/beaker/vial/random
 	flags = 0
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)

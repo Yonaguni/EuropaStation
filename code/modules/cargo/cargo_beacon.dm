@@ -2,7 +2,6 @@
 /obj/item/supply_beacon
 	name = "supply beacon"
 	matter = list("steel" = 8000)
-	auto_init = 1
 
 /obj/item/supply_beacon/initialize()
 	. = ..()

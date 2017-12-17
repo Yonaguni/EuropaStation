@@ -1,4 +1,4 @@
-/obj/item/stack/material/get_default_codex_value()
+/obj/item/stack/material/get_default_codex_value(var/mob/user)
 	return (material && !material.hidden_from_codex) ? "[lowertext(material.display_name)] (material)" : ..()
 
 /material

@@ -1,3 +1,8 @@
+/decl/aspect/pharmacist
+	name = ASPECT_PHARMACIST
+	desc = "You know you way around a medication store."
+	category = "Skills"
+
 /decl/aspect/appraiser
 	name = ASPECT_APPRAISER
 	desc = "You know what things are worth."

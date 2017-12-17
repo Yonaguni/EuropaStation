@@ -48,6 +48,7 @@
 /obj/item/reagent_containers/food/snacks/meat/auto_init = 1
 /obj/item/disk/nuclear/auto_init = 1
 /obj/item/combitool/auto_init = 1
+/obj/item/supply_beacon/auto_init = 1
 
 /obj/random/auto_init = 1
 
@@ -61,9 +62,15 @@
 /obj/effect/fluid_mapped/auto_init = 1
 /obj/effect/lobby_image/auto_init = 1
 /obj/effect/blob/auto_init = 1
+/obj/effect/shuttle_landmark/auto_init = 0
 
 /obj/machinery/auto_init = 1
 
 //obj/machinery/atmospherics/auto_init = 0
 
 /obj/vehicle/auto_init = 1
+
+/obj/item/storage/pill_bottle/auto_init = 1
+/obj/item/reagent_containers/pill/auto_init = 1
+/obj/item/reagent_containers/glass/bottle/auto_init = 1
+/obj/item/reagent_containers/syringe/auto_init = 1
