@@ -270,7 +270,7 @@
 
 /mob/living/heavy_vehicle/attack_hand(var/mob/user)
 	// Drag the pilot out if possible.
-	if(user.a_intent == I_HURT || user.a_intent == I_GRAB)
+	if(user.a_intent == I_HURT)
 		if(!pilot)
 			user << "<span class='warning'>There is nobody inside \the [src].</span>"
 		else if(!hatch_closed)

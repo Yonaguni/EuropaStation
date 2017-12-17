@@ -134,11 +134,11 @@
 
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		var/mob/living/affecting = G.affecting
-		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
-		if(do_after(user, 20, src))
-			if(user_buckle_mob(affecting, user))
-				qdel(W)
+		if(G.affecting_mob)
+			user.visible_message("<span class='notice'>\The [user] attempts to buckle \the [G.affecting_mob] into \the [src]!</span>")
+			if(do_after(user, 20, src))
+				if(G.affecting_mob && user_buckle_mob(G.affecting_mob, user))
+					qdel(W)
 	else
 		..()
 

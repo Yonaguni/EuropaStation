@@ -264,20 +264,6 @@
 		if (I_HELP)
 			help_shake_act(M)
 
-		if (I_GRAB)
-			if (M == src || anchored)
-				return
-			var/obj/item/grab/G = new /obj/item/grab(M, src)
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-
 		else
 
 			var/damage = rand(1, 9)

@@ -373,7 +373,6 @@
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
-	src.stop_pulling()
 	src.client.perspective = EYE_PERSPECTIVE
 	src.client.eye = card
 
@@ -411,15 +410,6 @@
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H
-
-/mob/living/silicon/pai/MouseDrop(atom/over_object)
-	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
-	if(H.a_intent == I_HELP)
-		get_scooped(H)
-		return
-	else
-		return ..()
 
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Wipe Software"

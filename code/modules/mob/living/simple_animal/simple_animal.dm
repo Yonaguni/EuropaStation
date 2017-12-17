@@ -101,7 +101,7 @@
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+				if(!(stop_automated_movement_when_pulled && LAZYLEN(grabbed_by))) //Soma animals don't move when pulled
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 					moving_to = pick(cardinal)
 					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
@@ -208,23 +208,6 @@
 			M.visible_message("\blue [M] [response_disarm] \the [src]")
 			M.do_attack_animation(src)
 			//TODO: Push the mob away or something
-
-		if(I_GRAB)
-			if (M == src)
-				return
-			if (!(status_flags & CANPUSH))
-				return
-
-			var/obj/item/grab/G = new /obj/item/grab(M, src)
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-			G.affecting = src
-			LAssailant = M
-
-			M.visible_message("\red [M] has grabbed [src] passively!")
-			M.do_attack_animation(src)
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)

@@ -36,9 +36,7 @@
 	//Check if we're on fire
 	handle_fire()
 
-	update_pulling()
-
-	for(var/obj/item/grab/G in src)
+	for(var/obj/item/grab/G in get_grabs())
 		G.process()
 
 	blinded = 0 // Placing this here just show how out of place it is.
@@ -73,11 +71,6 @@
 
 /mob/living/proc/handle_stomach()
 	return
-
-/mob/living/proc/update_pulling()
-	if(pulling)
-		if(incapacitated())
-			stop_pulling()
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()

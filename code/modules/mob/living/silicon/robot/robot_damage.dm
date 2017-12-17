@@ -6,6 +6,17 @@
 	health = maxHealth - (getBruteLoss() + getFireLoss())
 	return
 
+/mob/living/silicon/robot/adjustOxyLoss()
+	oxyloss = 0
+	return 0
+
+/mob/living/silicon/robot/setOxyLoss()
+	oxyloss = 0
+	return 0
+
+/mob/living/silicon/robot/getOxyLoss()
+	return 0
+
 /mob/living/silicon/robot/getBruteLoss()
 	var/amount = 0
 	for(var/V in components)

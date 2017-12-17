@@ -81,8 +81,7 @@
 	// Handle harm intent grabbing/tabling.
 	if(istype(W, /obj/item/grab) && get_dist(src,user)<2)
 		var/obj/item/grab/G = W
-		if (istype(G.affecting, /mob/living))
-			var/mob/living/M = G.affecting
+		if (G.affecting_mob)
 			var/obj/occupied = turf_is_crowded()
 			if(occupied)
 				user << "<span class='danger'>There's \a [occupied] in the way.</span>"
@@ -91,26 +90,23 @@
 				user << "<span class='danger'>You need a better grip to do that!</span>"
 			else
 				if(user.a_intent == I_HURT)
-					var/blocked = M.run_armor_check(BP_HEAD, "melee")
-					if (prob(30 * blocked_mult(blocked)))
-						M.Weaken(5)
-					M.apply_damage(8, BRUTE, BP_HEAD, blocked)
-					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")
-					if(material)
-						playsound(loc, material.tableslam_noise, 50, 1)
-					else
-						playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
+					visible_message("<span class='danger'>\The [G.assailant] slams \the [G.affecting_mob]'s face into \the [src]!</span>")
 					var/list/L = take_damage(rand(1,5))
+					var/blocked = G.affecting_mob.run_armor_check(BP_HEAD, "melee")
+					if (prob(30 * blocked_mult(blocked)))
+						G.affecting_mob.Weaken(5)
+					G.affecting_mob.apply_damage(8, BRUTE, BP_HEAD, blocked)
 					// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
 					for(var/obj/item/material/shard/S in L)
 						if(S.sharp && prob(50))
-							M.visible_message("<span class='danger'>\The [S] slices into [M]'s face!</span>",
-							                  "<span class='danger'>\The [S] slices into your face!</span>")
-							M.standard_weapon_hit_effects(S, G.assailant, S.force*2, blocked, BP_HEAD) //standard weapon hit effects include damage and embedding
+							G.affecting_mob.visible_message("<span class='danger'>\The [S] slices into \the [G.affecting_mob]'s face!</span>",
+					                  "<span class='danger'>\The [S] slices into your face!</span>")
+							G.affecting_mob.standard_weapon_hit_effects(S, G.assailant, S.force*2, blocked, BP_HEAD) //standard weapon hit effects include damage and embedding
+					playsound(loc, material ? material.tableslam_noise : 'sound/weapons/tablehit1.ogg', 50, 1)
 				else
-					G.affecting.forceMove(src.loc)
-					G.affecting.Weaken(5)
-					visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
+					G.affecting_mob.forceMove(src.loc)
+					G.affecting_mob.Weaken(5)
+					visible_message("<span class='danger'>[G.assailant] heaves \the [G.affecting_mob] onto \the [src].</span>")
 				qdel(W)
 			return
 

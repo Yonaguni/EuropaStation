@@ -5,12 +5,15 @@
 /*
 	Humans:
 	Adds an exception for gloves, to allow special glove types like the ninja ones.
-
+	Likewise with a general grab ability.
 	Otherwise pretty standard.
 */
 /mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
+		return
+
+	if(proximity && try_grab(A))
 		return
 
 	// Special glove functions:
@@ -65,6 +68,9 @@
 
 /mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
 	return
+
+/mob/living/carbon/slime/try_grab()
+	return FALSE //Slimes override I_GRAB anyway.
 
 /mob/living/carbon/slime/UnarmedAttack(var/atom/A, var/proximity)
 

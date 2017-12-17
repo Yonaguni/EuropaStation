@@ -15,6 +15,7 @@
 	light_power = 6
 	light_range = 5
 	light_color = COLOUR_LTEMP_HALOGEN
+	can_pull_mobs = MOB_PULL_SAME
 
 	var/lights_on = 0 // Is our integrated light on?
 	var/used_power_this_tick = 0
@@ -49,6 +50,7 @@
 	var/module_state_1 = null
 	var/module_state_2 = null
 	var/module_state_3 = null
+	var/obj/item/grab/current_grab
 
 	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
@@ -1110,3 +1112,6 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+/mob/living/silicon/robot/get_grabs()
+	return list(current_grab)

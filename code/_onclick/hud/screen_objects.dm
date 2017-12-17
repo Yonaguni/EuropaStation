@@ -63,22 +63,6 @@
 	owner.ui_action_click()
 	return 1
 
-/obj/screen/grab
-	name = "grab"
-	icon = 'icons/screen/grab.dmi'
-
-/obj/screen/grab/Click()
-	var/obj/item/grab/G = master
-	G.s_click(src)
-	return 1
-
-/obj/screen/grab/attack_hand()
-	return
-
-/obj/screen/grab/attackby()
-	return
-
-
 /obj/screen/storage
 	name = "storage"
 	icon = 'icons/screen/storage.dmi'
@@ -327,8 +311,6 @@
 				usr.a_intent = I_DISARM
 				usr.hud_used.action_intent.icon_state = "intent_disarm"
 
-		if("pull")
-			usr.stop_pulling()
 		if("throw")
 			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
 				usr:toggle_throw_mode()
@@ -363,7 +345,10 @@
 		if("store")
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
-				if(R.module)
+				if(R.current_grab)
+					to_chat(R, "<span class='notice'>You release \the [R.current_grab.affecting].</span>")
+					R.drop_from_inventory(R.current_grab)
+				else if(R.module)
 					R.uneq_active()
 					R.hud_used.update_robot_modules_display()
 				else

@@ -177,7 +177,6 @@
 		if(occupant)
 			user << "<span class='warning'>\The [src] is already occupied.</span>"
 			return
-		M.stop_pulling()
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src

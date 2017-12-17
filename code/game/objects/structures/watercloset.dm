@@ -94,7 +94,7 @@ var/list/hygiene_props = list()
 
 	if(cistern && !open)
 		if(!contents.len)
-			user << "<span class='notice'>The cistern is empty.</span>"
+			to_chat(user, "<span class='notice'>The cistern is empty.</span>")
 			return
 		else
 			var/obj/item/I = pick(contents)
@@ -102,7 +102,7 @@ var/list/hygiene_props = list()
 				user.put_in_hands(I)
 			else
 				I.loc = get_turf(src)
-			user << "<span class='notice'>You find \an [I] in the cistern.</span>"
+			to_chat(user, "<span class='notice'>You find \an [I] in the cistern.</span>")
 			w_items -= I.w_class
 			return
 
@@ -114,7 +114,7 @@ var/list/hygiene_props = list()
 
 /obj/structure/hygiene/toilet/attackby(obj/item/I as obj, var/mob/living/user)
 	if(I.iscrowbar())
-		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
+		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30, src))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
@@ -130,32 +130,32 @@ var/list/hygiene_props = list()
 
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
-					user << "<span class='notice'>[GM.name] needs to be on the toilet.</span>"
+					to_chat(user, "<span class='warning'>\The [GM] needs to be on the toilet.</span>")
 					return
 				if(open && !swirlie)
-					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+					user.visible_message("<span class='danger'>\The [user] starts jamming \the [GM]'s face into \the [src]!</span>")
 					swirlie = GM
 					if(do_after(user, 30, src))
-						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						user.visible_message("<span class='danger'>\The [user] gives [GM.name] a swirlie!</span>")
 						GM.adjustOxyLoss(5)
 					swirlie = null
 				else
-					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					user.visible_message("<span class='danger'>\The [user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
 					GM.adjustBruteLoss(8)
 			else
-				user << "<span class='notice'>You need a tighter grip.</span>"
+				to_chat(user, "<span class='warning'>You need a tighter grip.</span>")
 
 	if(cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > NORMAL_ITEM)
-			user << "<span class='notice'>\The [I] does not fit.</span>"
+			to_chat(user, "<span class='warning'>\The [I] does not fit.</span>")
 			return
 		if(w_items + I.w_class > 5)
-			user << "<span class='notice'>The cistern is full.</span>"
+			to_chat(user, "<span class='warning'>The cistern is full.</span>")
 			return
 		user.drop_item()
 		I.loc = src
 		w_items += I.w_class
-		user << "You carefully place \the [I] into the cistern."
+		to_chat(user, "<span class='notice'>You carefully place \the [I] into the cistern.</span>")
 		return
 
 	. = ..()
@@ -175,12 +175,12 @@ var/list/hygiene_props = list()
 			var/mob/living/GM = G.affecting
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
-					user << "<span class='notice'>[GM.name] needs to be on the urinal.</span>"
+					to_chat(user, "<span class='warning'>[GM.name] needs to be on the urinal.</span>")
 					return
-				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>")
 				GM.adjustBruteLoss(8)
 			else
-				user << "<span class='notice'>You need a tighter grip.</span>"
+				to_chat(user,"<span class='warning'>You need a tighter grip.</span>")
 	. = ..()
 
 /obj/structure/hygiene/shower
@@ -226,12 +226,12 @@ var/list/hygiene_props = list()
 
 /obj/structure/hygiene/shower/attackby(obj/item/I as obj, var/mob/user)
 	if(I.type == /obj/item/analyzer)
-		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
+		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 		return
 
 	if(I.iswrench())
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
-		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
+		to_chat(user,"<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 50, src))
 			watertemp = newtemp
@@ -353,7 +353,7 @@ var/list/hygiene_props = list()
 		if (user.hand)
 			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
+			to_chat(user,"<span class='notice'>You try to move your [temp.name], but cannot!</span>")
 			return
 
 	if(isrobot(user) || isAI(user))

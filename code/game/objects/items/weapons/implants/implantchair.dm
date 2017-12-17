@@ -116,7 +116,6 @@
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
-		M.stop_pulling()
 		M.loc = src
 		src.occupant = M
 		src.add_fingerprint(usr)

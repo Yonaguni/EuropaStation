@@ -117,17 +117,19 @@
 	G.synch()
 
 /mob/living/carbon/human/proc/get_aggressive_grab()
-
-	var/obj/item/grab/G = locate() in src
-	if(!G || !istype(G))
-		src << "<span class='warning'>You are not grabbing anyone.</span>"
-		return
-
-	if(G.state < GRAB_AGGRESSIVE)
-		src << "<span class='warning'>You must have an aggressive grab to do this!</span>"
-		return
-
-	return G
+	var/found_grab
+	for(var/obj/item/grab/check_grab in contents)
+		if(istype(check_grab))
+			found_grab = TRUE
+			if(check_grab.state >= GRAB_AGGRESSIVE)
+				. = check_grab
+				break
+	if(!found_grab)
+		to_chat(src, "<span class='warning'>You are not grabbing anyone.</span>")
+		return null
+	if(!istype(., /obj/item/grab))
+		to_chat(src, "<span class='warning'>You must have an aggressive grab to do this!</span>")
+		return null
 
 /mob/living/carbon/human/proc/devour_head()
 	set category = "Abilities"

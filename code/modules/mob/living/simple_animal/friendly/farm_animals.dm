@@ -53,7 +53,7 @@
 			var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/SP = locate() in loc
 			qdel(SP)
 
-		if(!pulledby)
+		if(!LAZYLEN(grabbed_by))
 			var/obj/effect/plant/food
 			food = locate(/obj/effect/plant) in oview(5,loc)
 			if(food)

@@ -48,19 +48,13 @@
 			src << "<span class='userdanger'>Your camera isn't functional.</span>"
 		return
 
-	/*
-	cyborg restrained() currently does nothing
-	if(restrained())
-		RestrainedClickOn(A)
-		return
-	*/
-
 	var/obj/item/W = get_active_hand()
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)
-		A.add_hiddenprint(src)
-		A.attack_robot(src)
+		if(!try_grab(A))
+			A.add_hiddenprint(src)
+			A.attack_robot(src)
 		return
 
 	// buckled cannot prevent machine interlinking but stops arm movement
@@ -159,9 +153,10 @@
 	clicks, you can do so here, but you will have to
 	change attack_robot() above to the proper function
 */
-/mob/living/silicon/robot/UnarmedAttack(atom/A)
+/mob/living/silicon/robot/UnarmedAttack(var/atom/A)
 	A.attack_robot(src)
-/mob/living/silicon/robot/RangedAttack(atom/A)
+
+/mob/living/silicon/robot/RangedAttack(var/atom/A)
 	A.attack_robot(src)
 
 /atom/proc/attack_robot(var/mob/user)

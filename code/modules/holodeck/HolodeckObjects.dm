@@ -282,7 +282,7 @@
 			user << "<span class='warning'>You need a better grip to do that!</span>"
 			return
 		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
+		if(G.affecting_mob) G.affecting_mob.Weaken(5)
 		visible_message("<span class='warning'>[G.assailant] dunks [G.affecting] into the [src]!</span>", 3)
 		qdel(W)
 		return

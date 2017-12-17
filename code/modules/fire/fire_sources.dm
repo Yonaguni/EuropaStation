@@ -144,10 +144,10 @@ var/list/fire_sounds = list(
 		if(G.state < GRAB_AGGRESSIVE)
 			user << "<span class='warning'>You need a better grip!</span>"
 			return
-		if(G.affecting)
-			G.affecting.forceMove(get_turf(src))
-			G.affecting.Weaken(5)
-			visible_message("<span class='danger'>\The [user] hurls \the [G.affecting] onto \the [src]!</span>")
+		if(G.affecting_mob)
+			G.affecting_mob.forceMove(get_turf(src))
+			G.affecting_mob.Weaken(5)
+			visible_message("<span class='danger'>\The [user] hurls \the [G.affecting_mob] onto \the [src]!</span>")
 			burn(G.affecting)
 			user.unEquip(G)
 			qdel(G)
