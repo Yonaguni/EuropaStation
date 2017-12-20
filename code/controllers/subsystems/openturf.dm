@@ -118,6 +118,8 @@
 			var/atom/movable/openspace/turf_overlay/TO = T.below.bound_overlay
 			TO.appearance = T.below
 			TO.name = T.name
+			TO.opacity = FALSE
+			TO.mouse_opacity = FALSE
 			T.desc = TO.desc = "Below seems to be \a [T.below]."
 			TO.layer = target_layer
 		else
