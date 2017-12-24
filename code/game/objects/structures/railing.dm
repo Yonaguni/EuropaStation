@@ -1,51 +1,74 @@
 /obj/structure/railing
 	name = "railing"
-	desc = "A standart steel railing. Prevents from human stupidity."
+	desc = "A standard steel railing. Guards against human stupidity."
 	icon = 'icons/obj/railing.dmi'
 	density = 1
 	throwpass = 1
-	climbable = 1
-	layer = 3.2//Just above doors
-	//pressure_resistance = 4*ONE_ATMOSPHERE
-	anchored = 1
+	climbable = TRUE
+	layer = 3.2
+	anchored = FALSE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	var/broken = 0
-	var/health=70
-	var/maxhealth=70
-	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
-	//var/RightSide = list(0,0,0)
-	var/check = 0
 
-/obj/structure/railing/New(loc, constructed=0)
-	..()
-	if (constructed)	//player-constructed railings
-		anchored = 0
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
-	if(src.anchored)
-		spawn(5)
-			update_icon(0)
+	var/material/material
+	var/broken =    FALSE
+	var/health =    70
+	var/maxhealth = 70
+	var/neighbor_status = 0
+
+/obj/structure/railing/mapped
+	color = "#C96A00"
+	anchored = TRUE
+
+/obj/structure/railing/mapped/initialize()
+	. = ..()
+	color = "#C96A00" // They're painted!
+
+/obj/structure/railing/New(var/newloc, var/material_key = "steel")
+	material = material_key // Converted to datum in initialize().
+	..(newloc)
+
+/obj/structure/railing/process()
+	if(!material || !material.radioactivity)
+		return
+	for(var/mob/living/L in range(1,src))
+		L.apply_effect(round(material.radioactivity/20),IRRADIATE, blocked = L.getarmor(null, "rad"))
+
+/obj/structure/railing/initialize()
+	if(!isnull(material) && !istype(material))
+		material = get_material_by_name(material)
+	if(!istype(material))
+		qdel(src)
+	name = "[material.display_name] [initial(name)]"
+	desc = "An unremarkable [material.display_name] railing. Guards against human stupidity."
+	maxhealth = round(material.integrity/5)
+	health = maxhealth
+	color = material.icon_colour
+	if(material.products_need_process())
+		processing_objects |= src
+	if(material.conductive)
+		flags |= CONDUCT
+	else
+		flags &= (~CONDUCT)
+	if(anchored)
+		update_icon(FALSE)
 
 /obj/structure/railing/Destroy()
-	anchored = null
-	flags = null
-	broken = 1
-	for(var/obj/structure/railing/R in oview(src, 1))
-		R.update_icon()
-	..()
+	anchored = FALSE
+	flags = 0
+	broken = TRUE
+	for(var/thing in trange(1, src))
+		var/turf/T = thing
+		for(var/obj/structure/railing/R in T.contents)
+			R.update_icon()
+	. = ..()
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
-
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+	if(!istype(mover) || mover.checkpass(PASSTABLE))
+		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
-	else
-		return 1
-//32 и 4 - в той же клетке
+	return TRUE
 
 /obj/structure/railing/examine(mob/user)
 	. = ..()
@@ -61,94 +84,72 @@
 /obj/structure/railing/proc/take_damage(amount)
 	health -= amount
 	if(health <= 0)
-		visible_message("<span class='warning'>\The [src] breaks down!</span>")
+		visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-		new /obj/item/stack/rods(get_turf(usr))
+		material.place_shard(get_turf(usr))
 		qdel(src)
 
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
-	check = 0
-	//if (!anchored) return
+	neighbor_status = 0
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
 
-	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			//src.LeftSide[1] = 1
-			check |= 32
-			if (UpdateNeighbors)
-				R.update_icon(0)
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			//src.RightSide[1] = 1
-			check |= 2
-			if (UpdateNeighbors)
-				R.update_icon(0)
-
-	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
-		if ((R.dir == src.dir) && R.anchored)
-			//src.LeftSide[2] = 1
-			check |= 16
-			if (UpdateNeighbors)
-				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
-		if ((R.dir == src.dir) && R.anchored)
-			//src.RightSide[2] = 1
-			check |= 1
-			if (UpdateNeighbors)
-				R.update_icon(0)
-
-	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//Анализ передней-левой диагонали относительно направления объекта.
-		if ((R.dir == Rturn) && R.anchored)
-			check |= 64
-			if (UpdateNeighbors)
-				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//Анализ передней-правой диагонали относительно направления объекта.
+	for(var/obj/structure/railing/R in src.loc)
 		if ((R.dir == Lturn) && R.anchored)
-			check |= 4
+			neighbor_status |= 32
+			if (UpdateNeighbors)
+				R.update_icon(0)
+		if ((R.dir == Rturn) && R.anchored)
+			neighbor_status |= 2
+			if (UpdateNeighbors)
+				R.update_icon(0)
+	for (var/obj/structure/railing/R in get_step(src, Lturn))
+		if ((R.dir == src.dir) && R.anchored)
+			neighbor_status |= 16
+			if (UpdateNeighbors)
+				R.update_icon(0)
+	for (var/obj/structure/railing/R in get_step(src, Rturn))
+		if ((R.dir == src.dir) && R.anchored)
+			neighbor_status |= 1
+			if (UpdateNeighbors)
+				R.update_icon(0)
+	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))
+		if ((R.dir == Rturn) && R.anchored)
+			neighbor_status |= 64
+			if (UpdateNeighbors)
+				R.update_icon(0)
+	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir))).
+		if ((R.dir == Lturn) && R.anchored)
+			neighbor_status |= 4
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-
-/*	for(var/obj/structure/railing/R in get_step(src, src.dir))
-		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			src.LeftSide[3] = 1
-		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			src.RightSide[3] = 1*/
-	//check <<"check: [check]"
-	//world << "dir = [src.dir]"
-	//world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
-
-/obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
-	NeighborsCheck(UpdateNeighgors)
-	//icon_state = "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
-	overlays.Cut()
-	if (!check || !anchored)//|| !anchored
+/obj/structure/railing/update_icon(var/update_neighbors = TRUE)
+	NeighborsCheck(update_neighbors)
+	cut_overlays()
+	if (!neighbor_status || !anchored)
 		icon_state = "railing0"
 	else
 		icon_state = "railing1"
-		//левая сторона
-		if (check & 32)
-			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay")
-			//world << "32 check"
-		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
-			//world << "16 check"
-		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
-			//world << "no 4 or 2 check"
-			if(check & 4)
-				switch (src.dir)
-					if (NORTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
-					if (SOUTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
-					if (EAST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
-					if (WEST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
-
-
-//obj/structure/railing/proc/NeighborsCheck2()
+		if (neighbor_status & 32)
+			add_overlay("corneroverlay")
+		if ((neighbor_status & 16) || !(neighbor_status & 32) || (neighbor_status & 64))
+			add_overlay("frontoverlay_l")
+		if (!(neighbor_status & 2) || (neighbor_status & 1) || (neighbor_status & 4))
+			add_overlay("frontoverlay_r")
+			if(neighbor_status & 4)
+				var/pix_offset_x = 0
+				var/pix_offset_y = 0
+				switch(dir)
+					if(NORTH)
+						pix_offset_x = 32
+					if(SOUTH)
+						pix_offset_x = -32
+					if(EAST)
+						pix_offset_y = -32
+					if(WEST)
+						pix_offset_y = 32
+				add_overlay(image(icon, "mcorneroverlay", pixel_x = pix_offset_x, pixel_y = pix_offset_y))
 
 /obj/structure/railing/verb/rotate()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -159,7 +160,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "<span class='warning'>It is fastened to the floor and cannot be rotated.</span>")
 		return 0
 
 	set_dir(turn(dir, 90))
@@ -175,7 +176,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "<span class='warning'>It is fastened to the floor and cannot be rotated.</span>")
 		return 0
 
 	set_dir(turn(dir, -90))
@@ -191,11 +192,11 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't flip it!"
+		to_chat(usr, "<span class='warning'>It is fastened to the floor and cannot be flipped.</span>")
 		return 0
 
 	if(!turf_is_crowded())
-		usr << "You can't flip the [src] because something blocking it."
+		to_chat(usr, "<span class='warning'>You can't flip \the [src] - something is in the way.</span>")
 		return 0
 
 	src.loc = get_step(src, src.dir)
@@ -203,15 +204,14 @@
 	update_icon()
 	return
 
-/obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
+/obj/structure/railing/CheckExit(var/atom/movable/O, var/turf/target)
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
 
-/obj/structure/railing/attackby(obj/item/W, mob/user, var/click_params)
-	if (!W) return
+/obj/structure/railing/attackby(var/obj/item/W, var/mob/user)
 
 	// Handle harm intent grabbing/tabling.
 	if(istype(W, /obj/item/grab) && get_dist(src,user)<2)
@@ -240,63 +240,54 @@
 					visible_message("<span class='danger'>[G.assailant] throws \the [G.affecting_mob] over \the [src].</span>")
 			return
 
-
-
-/obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
-	if(istype(W, /obj/item/wrench) && !anchored)
+	if(W.iswrench() && !anchored)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
-			new /obj/item/stack/material/steel(get_turf(usr))
-			new /obj/item/stack/material/steel(get_turf(usr))
+			material.place_sheet(loc)
+			material.place_sheet(loc)
 			qdel(src)
-			return
+		return
 
 	// Repair
-	if(health < maxhealth && istype(W, /obj/item/weldingtool))
+	if(W.iswelder())
 		var/obj/item/weldingtool/F = W
 		if(F.isOn())
+			if(health >= maxhealth)
+				to_chat(user, "<span class='warning'>\The [src] does not need repairs.</span>")
+				return
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 			if(do_after(user, 20, src))
 				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
-				health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
-				return
+				health = min(health+(maxhealth/5), maxhealth)
+			return
 
 	// Install
-	if(istype(W, /obj/item/screwdriver))
+	if(W.isscrewdriver())
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrew \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 		if(do_after(user, 10, src))
 			user << (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>")
 			anchored = !anchored
 			update_icon()
-			return
+		return
 
-	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-	take_damage(W.force)
-
-	return ..()
+	if(W.force && (W.damtype == "fire" || W.damtype == "brute"))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		visible_message("<span class='danger'>\The [src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with \the [W] by \the [user]!</span>")
+		take_damage(W.force)
+		return
+	. = ..()
 
 /obj/structure/railing/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			qdel(src)
-			return
-		if(3.0)
-			qdel(src)
-			return
-		else
-	return
+	qdel(src)
 
 /obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message("<span class='warning'>\The [user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -308,7 +299,7 @@
 		return
 
 	if(!turf_is_crowded())
-		user << "<span class='danger'>You can't climb there, the way is blocked.</span>"
+		user << "<span class='warning'>You can't climb there, the way is blocked.</span>"
 		climbers -= user
 		return
 
@@ -317,6 +308,7 @@
 	else
 		usr.forceMove(get_turf(src))
 
-	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
-	if(!anchored)	take_damage(maxhealth) // Fatboy
+	usr.visible_message("<span class='danger'>\The [user] climbed over \the [src]!</span>")
+	if(!anchored || material.is_brittle())
+		take_damage(maxhealth) // Fatboy
 	climbers -= user
