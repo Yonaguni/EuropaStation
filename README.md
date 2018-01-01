@@ -1,11 +1,11 @@
-# baystation12
+# europa
 
-[Website](http://baystation12.net/) - [Code](http://github.com/Baystation12/Baystation12/) - [IRC](irc://irc.sorcery.net/#codershuttle)
+[Website](http://europa.gn32.uk/) - [Code](https://github.com/Yonaguni/EuropaStation/) - [IRC](irc://irc.sorcery.net/#yonaguni)
 
 ---
 
 ### LICENSE
-Baystation12 is licensed under the GNU Affero General Public License version 3, which can be found in full in LICENSE-AGPL3.txt.
+Europa is licensed under the GNU Affero General Public License version 3, which can be found in full in LICENSE-AGPL3.txt.
 
 Commits with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00) are licensed under the GNU General Public License version 3, which can be found in full in LICENSE-GPL3.txt.
 
@@ -18,11 +18,11 @@ See [here](https://www.gnu.org/licenses/why-affero-gpl.html) for more informatio
 ### GETTING THE CODE
 The simplest way to obtain the code is using the github .zip feature.
 
-Click [here](https://github.com/Baystation12/Baystation12/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
+Click [here](https://github.com/Yonaguni/EuropaStation/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
 
 The more complicated and easier to update method is using git.  You'll need to download git or some client from [here](http://git-scm.com/).  When that's installed, right click in any folder and click on "Git Bash".  When that opens, type in:
 
-    git clone https://github.com/Baystation12/Baystation12.git
+    git clone https://github.com/Yonaguni/EuropaStation.git
 
 (hint: hold down ctrl and press insert to paste into git bash)
 
@@ -30,7 +30,7 @@ This will take a while to download, but it provides an easier method for updatin
 
 Once the repository is in place, run this command:
 ```bash
-cd Baystation12
+cd EuropaStation
 git update-index --assume-unchanged baystation12.int
 ```
 Now git will ignore changes to the file baystation12.int.
