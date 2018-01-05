@@ -110,17 +110,9 @@
 	path = /obj/item/circuitboard/crew
 	category = "Medical Systems"
 
-/datum/autolathe/recipe/circuit/medical/cloning
-	name = "cloning control circuit"
-	path = /obj/item/circuitboard/cloning
-
 /datum/autolathe/recipe/circuit/medical/data
 	name = "medical data circuit"
 	path = /obj/item/circuitboard/med_data
-
-/datum/autolathe/recipe/circuit/medical/scanconsole
-	name = "scanning console circuit"
-	path = /obj/item/circuitboard/scan_consolenew
 
 /datum/autolathe/recipe/circuit/medical/operating
 	name = "operating computer circuit"

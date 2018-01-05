@@ -14,17 +14,17 @@
 		return
 
 	set_species(new_species)
+	reset_dna()
 	reset_hair()
 	return 1
 
 /mob/living/carbon/human/proc/change_gender(var/gender)
 	if(src.gender == gender)
 		return
-
 	src.gender = gender
+	reset_dna()
 	reset_hair()
 	update_body()
-	update_dna()
 	return 1
 
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
@@ -78,10 +78,10 @@
 /mob/living/carbon/human/proc/change_eye_color(var/red, var/green, var/blue)
 	if(red == r_eyes && green == g_eyes && blue == b_eyes)
 		return
-
 	r_eyes = red
 	g_eyes = green
 	b_eyes = blue
+	reset_dna()
 
 	update_eyes()
 	update_body()
@@ -90,10 +90,10 @@
 /mob/living/carbon/human/proc/change_hair_color(var/red, var/green, var/blue)
 	if(red == r_eyes && green == g_eyes && blue == b_eyes)
 		return
-
 	r_hair = red
 	g_hair = green
 	b_hair = blue
+	reset_dna()
 
 	force_update_limbs()
 	update_body()
@@ -103,21 +103,20 @@
 /mob/living/carbon/human/proc/change_facial_hair_color(var/red, var/green, var/blue)
 	if(red == r_facial && green == g_facial && blue == b_facial)
 		return
-
 	r_facial = red
 	g_facial = green
 	b_facial = blue
-
+	reset_dna()
 	update_hair()
 	return 1
 
 /mob/living/carbon/human/proc/change_skin_color(var/red, var/green, var/blue)
 	if(red == r_skin && green == g_skin && blue == b_skin || !(species.appearance_flags & HAS_SKIN_COLOR))
 		return
-
 	r_skin = red
 	g_skin = green
 	b_skin = blue
+	reset_dna()
 
 	force_update_limbs()
 	update_body()
@@ -126,16 +125,11 @@
 /mob/living/carbon/human/proc/change_skin_tone(var/tone)
 	if(s_tone == tone || !(species.appearance_flags & HAS_SKIN_TONE))
 		return
-
 	s_tone = tone
-
+	reset_dna()
 	force_update_limbs()
 	update_body()
 	return 1
-
-/mob/living/carbon/human/proc/update_dna()
-	check_dna()
-	dna.ready_dna(src)
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()

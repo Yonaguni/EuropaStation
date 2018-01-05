@@ -37,9 +37,6 @@
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(HULK in H.mutations)
-				damage += 5
-
 			playsound(loc, "punch", 25, 1, -1)
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
@@ -191,9 +188,6 @@
 			real_damage += attack.get_unarmed_damage(H)
 			if(H.has_aspect(ASPECT_BRAWLER))
 				real_damage *= 1.25
-			if((HULK in H.mutations) || H.is_berserk())
-				real_damage *= 2 // Hulks do twice the damage
-				rand_damage *= 2
 			real_damage = max(1, real_damage)
 
 			var/armour = run_armor_check(hit_zone, "melee")

@@ -91,13 +91,13 @@
 
 /mob/living/carbon/alien/handle_regular_hud_updates()
 
-	if (stat == 2 || (XRAY in src.mutations))
+	if (stat == 2)
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != 2)
+	else
 		sight &= ~SEE_TURFS
 		sight &= ~SEE_MOBS
 		sight &= ~SEE_OBJS
@@ -132,7 +132,6 @@
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 		if(machine)

@@ -41,7 +41,7 @@
 	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
-	var/master_dna			// DNA string for owner verification
+	var/master_print			// DNA string for owner verification
 							// Keeping this separate from the laws var, it should be much more difficult to modify
 	var/pai_law0 = "Serve your master."
 	var/pai_laws				// String for additional operating instructions our master might give us
@@ -150,7 +150,7 @@
 	switch(pick(1,2,3))
 		if(1)
 			src.master = null
-			src.master_dna = null
+			src.master_print = null
 			src << "<font color=green>You feel unbound.</font>"
 		if(2)
 			var/command

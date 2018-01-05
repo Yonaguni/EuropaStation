@@ -531,9 +531,6 @@
 /datum/reagent/peridaxon
 	lore_text = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
 
-/datum/reagent/ryetalyn
-	lore_text = "Ryetalyn can cure all genetic abnomalities via a catalytic process."
-
 /datum/reagent/ethylredoxrazine
 	lore_text = "A powerful oxidizer that reacts with ethanol."
 

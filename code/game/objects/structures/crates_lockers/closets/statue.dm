@@ -21,7 +21,6 @@
 			L.client.perspective = EYE_PERSPECTIVE
 			L.client.eye = src
 		L.loc = src
-		L.sdisabilities |= MUTE
 		health = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
 		intialTox = L.getToxLoss()
 		intialFire = L.getFireLoss()
@@ -68,7 +67,6 @@
 
 	for(var/mob/living/M in src)
 		M.loc = src.loc
-		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
 		if(M.client)
 			M.client.eye = M.client.mob

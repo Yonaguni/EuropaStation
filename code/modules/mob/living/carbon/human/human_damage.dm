@@ -15,11 +15,6 @@
 
 	health = maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
-	//TODO: fix husking
-	if(((maxHealth - total_burn) < config.health_threshold_dead) && stat == DEAD)
-		ChangeToHusk()
-	return
-
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
 
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -121,16 +116,7 @@
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
-/mob/living/carbon/human/Stun(amount)
-	if(HULK in mutations)	return
-	..()
-
-/mob/living/carbon/human/Weaken(amount)
-	if(HULK in mutations)	return
-	..()
-
 /mob/living/carbon/human/Paralyse(amount)
-	if(HULK in mutations)	return
 	// Notify our AI if they can now control the suit.
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.
 		wearing_rig.notify_ai("<span class='danger'>Warning: user consciousness failure. Mobility control passed to integrated intelligence system.</span>")

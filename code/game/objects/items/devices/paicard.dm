@@ -154,11 +154,11 @@
 				</td>
 			</table>
 		"}
-		if(pai && (!pai.master_dna || !pai.master))
+		if(pai && (!pai.master_print || !pai.master))
 			dat += {"
 				<table>
 					<td class="button">
-						<a href='byond://?src=\ref[src];setdna=1' class='button'>Imprint Master DNA</a>
+						<a href='byond://?src=\ref[src];setdna=1' class='button'>Record Master Fingerprint</a>
 					</td>
 				</table>
 			"}
@@ -230,15 +230,14 @@
 		return
 
 	if(href_list["setdna"])
-		if(pai.master_dna)
+		if(pai.master_print)
 			return
 		var/mob/M = usr
 		if(!istype(M, /mob/living/carbon))
-			usr << "<font color=blue>You don't have any DNA, or your DNA is incompatible with this device.</font>"
+			usr << "<font color=blue>You don't have a fingerprint, or your fingerprint is incompatible with this device.</font>"
 		else
-			var/datum/dna/dna = usr.dna
 			pai.master = M.real_name
-			pai.master_dna = dna.unique_enzymes
+			pai.master_print = M.get_full_print()
 			pai << "<font color = red><h3>You have been bound to a new master.</h3></font>"
 	if(href_list["request"])
 		src.looking_for_personality = 1

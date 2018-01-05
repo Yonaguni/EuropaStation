@@ -402,9 +402,6 @@
 /datum/reagent/peridaxon
 	value = 6
 
-/datum/reagent/ryetalyn
-	value = 3.6
-
 /datum/reagent/jumpstart
 	value = 3.9
 

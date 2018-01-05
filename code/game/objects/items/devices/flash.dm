@@ -14,13 +14,6 @@
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
 
-/obj/item/flash/proc/clown_check(var/mob/user)
-	if(user && (CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>\The [src] slips out of your hand.</span>"
-		user.drop_item()
-		return 0
-	return 1
-
 /obj/item/flash/proc/flash_recharge()
 	//capacitor recharges over time
 	for(var/i=0, i<3, i++)
@@ -39,7 +32,6 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	if(!clown_check(user))	return
 	if(broken)
 		user << "<span class='warning'>\The [src] is broken.</span>"
 		return
@@ -112,11 +104,9 @@
 
 	return
 
-
-
-
 /obj/item/flash/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
-	if(!user || !clown_check(user)) 	return
+	if(!user)
+		return
 
 	if(broken)
 		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)

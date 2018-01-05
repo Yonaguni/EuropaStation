@@ -426,7 +426,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				R.word3 = english[required[3]]
 				R.check_icon()
 				R.blood_DNA = list()
-				R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+				R.blood_DNA[H.get_dna_hash()] = H.b_type
 			return
 		else
 			user << "The book seems full of illegible scribbles. Is this a joke?"
@@ -463,7 +463,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			if(istype(user, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = user
 				R.blood_DNA = list()
-				R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+				R.blood_DNA[H.get_dna_hash()] = H.b_type
 			var/area/A = get_area(user)
 			log_and_message_admins("created \an [r] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].")
 			switch(r)

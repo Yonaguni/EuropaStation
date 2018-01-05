@@ -104,8 +104,7 @@
 		update_inv_legcuffed()
 
 /mob/living/carbon/proc/can_break_cuffs()
-	if(HULK in mutations)
-		return 1
+	return FALSE
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(

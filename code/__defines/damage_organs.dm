@@ -31,6 +31,7 @@
 #define ORGAN_DESTROYED  (1<<3)
 #define ORGAN_DEAD       (1<<4)
 #define ORGAN_MUTATED    (1<<5)
+#define ORGAN_SKELETAL   (1<<6)
 
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1

@@ -297,17 +297,7 @@ Proc for attack log creation, because really why not
 	if(!visible_msg)
 		visible_msg = "\The [user] has analyzed \the [M]'s vitals."
 
-	if (!ignore_clumsiness && (CLUMSY in user.mutations) && prob(50))
-		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
-		for(var/mob/O in viewers(M, null))
-			O.show_message("<span class='warning'>\The [user] has analyzed the floor's vitals!</span>", 1)
-		user.show_message("<span class='notice'>Analyzing Results for The floor:</span>", 1)
-		user.show_message("<span class='notice'>Overall Status: Healthy</span>", 1)
-		user.show_message("<span class='notice'>    Damage Specifics: 0-0-0-0</span>", 1)
-		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
-		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
-		return
-	if (!ignore_clumsiness && !(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 	user.visible_message("<span class='notice'>[visible_msg]</span>")
@@ -435,7 +425,7 @@ Proc for attack log creation, because really why not
 		if(M:vessel)
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
-			var/blood_type = H.dna.b_type
+			var/blood_type = H.b_type
 			if((blood_percent <= BLOOD_VOLUME_SAFE) && (blood_percent > BLOOD_VOLUME_BAD))
 				user.show_message("<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='notice'>Type: [blood_type]</span>")
 			else if(blood_percent <= BLOOD_VOLUME_BAD)
@@ -443,3 +433,32 @@ Proc for attack log creation, because really why not
 			else
 				user.show_message("<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span>")
 		user.show_message("<span class='notice'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>")
+
+//Find a dead mob with a brain and client.
+/proc/find_dead_player(var/find_key, var/include_observers = 0)
+	if(isnull(find_key))
+		return
+
+	var/mob/selected = null
+
+	if(include_observers)
+		for(var/mob/M in player_list)
+			if((M.stat != DEAD) || (!M.client))
+				continue
+			if(M.ckey == find_key)
+				selected = M
+				break
+	else
+		for(var/mob/living/M in player_list)
+			//Dead people only thanks!
+			if((M.stat != DEAD) || (!M.client))
+				continue
+			//They need a brain!
+			if(istype(M, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = M
+				if(H.should_have_organ(BP_BRAIN) && !H.has_brain())
+					continue
+			if(M.ckey == find_key)
+				selected = M
+				break
+	return selected

@@ -802,9 +802,8 @@ var/list/sacrificed = list()
 					cultist.handcuffed || \
 					istype(cultist.wear_mask, /obj/item/clothing/mask/muzzle) || \
 					(istype(cultist.loc, /obj/structure/closet)&&cultist.loc:welded) || \
-					(istype(cultist.loc, /obj/structure/closet/secure_closet)&&cultist.loc:locked) || \
-					(istype(cultist.loc, /obj/machinery/dna_scannernew)&&cultist.loc:locked) \
-				))
+					(istype(cultist.loc, /obj/structure/closet/secure_closet)&&cultist.loc:locked) \
+					))
 					user << "<span class='warning'>The [cultist] is already free.</span>"
 					return
 				cultist.buckled = null
@@ -817,8 +816,6 @@ var/list/sacrificed = list()
 				if(istype(cultist.loc, /obj/structure/closet)&&cultist.loc:welded)
 					cultist.loc:welded = 0
 				if(istype(cultist.loc, /obj/structure/closet/secure_closet)&&cultist.loc:locked)
-					cultist.loc:locked = 0
-				if(istype(cultist.loc, /obj/machinery/dna_scannernew)&&cultist.loc:locked)
 					cultist.loc:locked = 0
 				for(var/mob/living/carbon/C in users)
 					user.take_overall_damage(dam, 0)
@@ -880,8 +877,6 @@ var/list/sacrificed = list()
 					C.ear_deaf += 50
 					C.show_message("<span class='warning'>The world around you suddenly becomes quiet.</span>", 3)
 					affected += C
-					if(prob(1))
-						C.sdisabilities |= DEAF
 				if(affected.len)
 					usr.say("Sti[pick("'","`")] kaliedir!")
 					usr << "<span class='warning'>The world becomes quiet as the deafening rune dissipates into fine dust.</span>"
@@ -921,10 +916,6 @@ var/list/sacrificed = list()
 						continue
 					C.eye_blurry += 50
 					C.eye_blind += 20
-					if(prob(5))
-						C.disabilities |= NEARSIGHTED
-						if(prob(10))
-							C.sdisabilities |= BLIND
 					C.show_message("<span class='warning'>Suddenly you see a red flash that blinds you.</span>", 3)
 					affected += C
 				if(affected.len)
@@ -1031,7 +1022,7 @@ var/list/sacrificed = list()
 					if(iscarbon(L))
 						var/mob/living/carbon/C = L
 						C.flash_eyes()
-						if(C.stuttering < 1 && (!(HULK in C.mutations)))
+						if(C.stuttering < 1)
 							C.stuttering = 1
 						C.Weaken(1)
 						C.Stun(1)
@@ -1060,8 +1051,7 @@ var/list/sacrificed = list()
 					else if(iscarbon(T))
 						var/mob/living/carbon/C = T
 						C.flash_eyes()
-						if (!(HULK in C.mutations))
-							C.silent += 15
+						C.silent += 15
 						C.Weaken(25)
 						C.Stun(25)
 						admin_attack_log(usr, C, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")

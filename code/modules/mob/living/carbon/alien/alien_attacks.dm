@@ -11,8 +11,6 @@
 		else
 			var/damage = rand(1, 9)
 			if(prob(90))
-				if(HULK in M.mutations)
-					damage += 5
 				playsound(loc, "punch", 25, 1, -1)
 				visible_message("<span class='danger'>\The [M] punches \the [src]!</span>")
 				if(damage > 5)
@@ -20,9 +18,6 @@
 					Weaken(rand(10,15))
 				adjustBruteLoss(damage)
 				updatehealth()
-				if(HULK in M.mutations)
-					Paralyse(1)
-					throw_at(get_edge_target_turf(src,M.dir),3,50)
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				visible_message("<span class='danger'>\The [M] misses \the [src]!</span>")

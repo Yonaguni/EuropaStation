@@ -103,16 +103,10 @@
 	icon_state = "syringe"
 	startswith = list(/obj/item/syringe_cartridge = 7)
 
-
 /obj/item/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
 	startswith = list(/obj/item/reagent_containers/glass/beaker = 7)
-
-/obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-	startswith = list(/obj/item/dnainjector/h2m = 6)
 
 /obj/item/storage/box/shotgunammo
 	name = "box of shotgun slugs"

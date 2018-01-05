@@ -21,11 +21,6 @@
 	name = T_BOARD("medical records console")
 	build_path = /obj/machinery/computer/med_data
 
-/obj/item/circuitboard/scan_consolenew
-	name = T_BOARD("DNA machine")
-	build_path = /obj/machinery/computer/scan_consolenew
-
-
 /obj/item/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
 	build_path = /obj/machinery/computer/teleporter
@@ -55,12 +50,6 @@
 /obj/item/circuitboard/drone_control
 	name = T_BOARD("drone control console")
 	build_path = /obj/machinery/computer/drone_control
-
-
-/obj/item/circuitboard/cloning
-	name = T_BOARD("cloning control console")
-	build_path = /obj/machinery/computer/cloning
-
 
 /obj/item/circuitboard/arcade/battle
 	name = T_BOARD("battle arcade machine")

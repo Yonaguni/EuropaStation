@@ -182,14 +182,8 @@
 /obj/machinery/organ_printer/flesh/print_organ(var/choice)
 	var/obj/item/organ/O = ..()
 	if(loaded_dna)
-		var/mob/living/carbon/C = loaded_dna["donor"]
-
-		O.set_dna(C.dna)
-
 		if(O.species)
-			// This is a very hacky way of doing of what organ/New() does if it has an owner
 			O.w_class = max(O.w_class + mob_size_difference(O.species.mob_size, MOB_MEDIUM), 1)
-
 		visible_message("<span class='info'>\The [src] churns for a moment, injects its stored DNA into the biomass, then spits out \a [O].</span>")
 	else
 		visible_message("<span class='info'>\The [src] churns for a moment, then spits out \a [O].</span>")

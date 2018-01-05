@@ -190,11 +190,6 @@
 /obj/machinery/door/attack_hand(var/mob/user)
 	return src.attackby(user, user)
 
-/obj/machinery/door/attack_tk(var/mob/user)
-	if(requiresID() && !allowed(null))
-		return
-	..()
-
 /obj/machinery/door/attackby(var/obj/item/I, var/mob/user)
 
 	src.add_fingerprint(user)

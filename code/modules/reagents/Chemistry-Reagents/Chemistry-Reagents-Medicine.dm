@@ -240,26 +240,6 @@
 			if((I.damage > 0) && !(I.robotic >= ORGAN_ROBOT)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
 
-/datum/reagent/ryetalyn
-	name = "Ryetalyn"
-	id = "ryetalyn"
-	taste_description = "acid"
-	reagent_state = SOLID
-	color = "#004000"
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/needs_update = M.mutations.len > 0
-
-	M.mutations = list()
-	M.disabilities = 0
-	M.sdisabilities = 0
-
-	// Might need to update appearance for hulk etc.
-	if(needs_update && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.update_mutations()
-
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"

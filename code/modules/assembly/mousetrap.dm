@@ -54,31 +54,10 @@
 		if(!armed)
 			user << "<span class='notice'>You arm [src].</span>"
 		else
-			if((CLUMSY in user.mutations) && prob(50))
-				var/which_hand = BP_L_HAND
-				if(!user.hand)
-					which_hand = BP_R_HAND
-				triggered(user, which_hand)
-				user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-									 "<span class='warning'>You accidentally trigger [src]!</span>")
-				return
 			user << "<span class='notice'>You disarm [src].</span>"
 		armed = !armed
 		update_icon()
 		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
-
-
-	attack_hand(var/mob/living/user)
-		if(armed)
-			if((CLUMSY in user.mutations) && prob(50))
-				var/which_hand = BP_L_HAND
-				if(!user.hand)
-					which_hand = BP_R_HAND
-				triggered(user, which_hand)
-				user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-									 "<span class='warning'>You accidentally trigger [src]!</span>")
-				return
-		..()
 
 
 	Crossed(AM as mob|obj)

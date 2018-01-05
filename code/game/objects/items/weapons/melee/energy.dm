@@ -33,10 +33,6 @@
 
 /obj/item/melee/energy/attack_self(var/mob/living/user)
 	if (active)
-		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
-			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
-			user.take_organ_damage(5,5)
 		deactivate(user)
 	else
 		activate(user)

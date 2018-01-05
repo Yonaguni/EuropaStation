@@ -120,6 +120,14 @@
 	joint = "left wrist"
 	amputation_point = "left wrist"
 	can_grasp = 1
+	var/fingerprint
+
+/obj/item/organ/external/hand/New()
+	..()
+	if(owner)
+		fingerprint = md5("\ref[owner]")
+	else
+		fingerprint = md5("\ref[src]")
 
 /obj/item/organ/external/hand/removed()
 	owner.drop_from_inventory(owner.gloves)

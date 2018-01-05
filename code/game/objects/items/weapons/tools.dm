@@ -27,16 +27,10 @@
 			if(E.damage > 10)
 				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
 
-			if (E.damage >= E.min_broken_damage)
-				H << "<span class='danger'>You go blind!</span>"
-				H.sdisabilities |= BLIND
-			else if (E.damage >= E.min_bruised_damage)
+			if (E.damage >= E.min_bruised_damage)
 				H << "<span class='danger'>You go blind!</span>"
 				H.eye_blind = 5
 				H.eye_blurry = 5
-				H.disabilities |= NEARSIGHTED
-				spawn(100)
-					H.disabilities &= ~NEARSIGHTED
 
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
@@ -128,8 +122,6 @@
 		return ..()
 	if(user.zone_sel.selecting != BP_EYES && user.zone_sel.selecting != BP_HEAD)
 		return ..()
-	if((CLUMSY in user.mutations) && prob(50))
-		M = user
 	return eyestab(M,user)
 
 /*

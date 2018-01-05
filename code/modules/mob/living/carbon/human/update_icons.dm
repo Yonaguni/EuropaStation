@@ -74,7 +74,6 @@ There are several things that need to be remembered:
 
 
 >	There are also these special cases:
-		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
@@ -112,33 +111,32 @@ Please contact me on #coderbus IRC. ~Carn x
 */
 
 //Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			1
-#define DAMAGE_LAYER			2
-#define SURGERY_LEVEL			3		//bs12 specific.
-#define UNDERWEAR_LAYER         4
-#define UNIFORM_LAYER			5
-#define SHOES_LAYER				6
-#define GLOVES_LAYER			7
-#define BELT_LAYER				8
-#define SUIT_LAYER				9
-#define ID_LAYER				10
-#define TAIL_LAYER				11		//bs12 specific. this hack is probably gonna come back to haunt me
-#define GLASSES_LAYER			12
-#define BELT_LAYER_ALT			13
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				15
-#define HAIR_LAYER				16		//TODO: make part o	f head layer?
-#define EARS_LAYER				17
-#define FACEMASK_LAYER			18
-#define HEAD_LAYER				19
-#define COLLAR_LAYER			20
-#define HANDCUFF_LAYER			21
-#define LEGCUFF_LAYER			22
-#define L_HAND_LAYER			23
-#define R_HAND_LAYER			24
-#define FIRE_LAYER				25		//If you're on fire
-#define TARGETED_LAYER			26		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			26
+#define DAMAGE_LAYER			1
+#define SURGERY_LEVEL			2		//bs12 specific.
+#define UNDERWEAR_LAYER         3
+#define UNIFORM_LAYER			4
+#define SHOES_LAYER				5
+#define GLOVES_LAYER			6
+#define BELT_LAYER				7
+#define SUIT_LAYER				8
+#define ID_LAYER				9
+#define TAIL_LAYER				10		//bs12 specific. this hack is probably gonna come back to haunt me
+#define GLASSES_LAYER			11
+#define BELT_LAYER_ALT			12
+#define SUIT_STORE_LAYER		13
+#define BACK_LAYER				14
+#define HAIR_LAYER				15		//TODO: make part o	f head layer?
+#define EARS_LAYER				16
+#define FACEMASK_LAYER			17
+#define HEAD_LAYER				18
+#define COLLAR_LAYER			19
+#define HANDCUFF_LAYER			20
+#define LEGCUFF_LAYER			21
+#define L_HAND_LAYER			22
+#define R_HAND_LAYER			23
+#define FIRE_LAYER				24		//If you're on fire
+#define TARGETED_LAYER			25		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			25
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -225,14 +223,6 @@ var/global/list/damage_icon_parts = list()
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
 
-	var/husk_color_mod = rgb(96,88,80)
-	var/hulk_color_mod = rgb(48,224,40)
-
-	var/husk = (HUSK in src.mutations)
-	var/fat = (FAT in src.mutations)
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
-
 	pixel_x = default_pixel_x
 	pixel_y = default_pixel_y
 
@@ -270,15 +260,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			icon_key += "1"
 		if(part)
-			icon_key += "[part.species.get_race_key(part.owner)][part.dna.GetUIState(DNA_UI_GENDER)][part.dna.GetUIValue(DNA_UI_SKIN_TONE)][part.render_alpha]"
+			icon_key += "[part.species.get_race_key(part.owner)][part.initial_gender][part.render_alpha]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
-
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -308,21 +296,6 @@ var/global/list/damage_icon_parts = list()
 				base_icon.Blend(temp2, ICON_UNDERLAY)
 			else
 				base_icon.Blend(temp, ICON_OVERLAY)
-
-		if(!skeleton)
-			if(husk)
-				base_icon.ColorTone(husk_color_mod)
-			else if(hulk)
-				var/list/tone = ReadRGB(hulk_color_mod)
-				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
-
-		//Handle husk overlay.
-		if(husk && ("overlay_husk" in icon_states(species.get_icobase(src))))
-			var/icon/mask = new(base_icon)
-			var/icon/husk_over = new(species.get_icobase(src),"overlay_husk")
-			mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-			husk_over.Blend(mask, ICON_ADD)
-			base_icon.Blend(husk_over, ICON_OVERLAY)
 
 		human_icon_cache[icon_key] = base_icon
 
@@ -394,42 +367,12 @@ var/global/list/damage_icon_parts = list()
 
 	if(update_icons)   update_icons()
 
-/mob/living/carbon/human/update_mutations(var/update_icons=1)
-	var/fat
-	if(FAT in mutations)
-		fat = "fat"
-
-	var/image/standing	= overlay_image('icons/effects/genetics.dmi', flags=RESET_COLOR)
-	var/add_image = 0
-	var/g = "m"
-	if(gender == FEMALE)	g = "f"
-	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			var/underlay=gene.OnDrawUnderlays(src,g,fat)
-			if(underlay)
-				standing.underlays += underlay
-				add_image = 1
-	for(var/mut in mutations)
-		switch(mut)
-			if(LASER)
-				standing.overlays	+= "lasereyes_s"
-				add_image = 1
-	if(add_image)
-		overlays_standing[MUTATIONS_LAYER]	= standing
-	else
-		overlays_standing[MUTATIONS_LAYER]	= null
-	if(update_icons)   update_icons()
-
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
 	..()
 	if(transforming)		return
 
-	update_mutations(0)
 	update_body(0)
 	update_underwear(0)
 	update_hair(0)
@@ -770,7 +713,6 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 //Human Overlays Indexes/////////
-#undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef SURGERY_LEVEL
 #undef UNIFORM_LAYER

@@ -548,12 +548,6 @@
 			check_health()
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_tk(var/mob/user)
-	if(dead)
-		remove_dead(user)
-	else if(harvest)
-		harvest(user)
-
 /obj/machinery/portable_atmospherics/hydroponics/attack_hand(var/mob/user)
 
 	if(istype(usr,/mob/living/silicon))

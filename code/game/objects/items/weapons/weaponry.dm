@@ -25,12 +25,6 @@
 		user << "<span class='danger'>You don't have the dexterity to do this!</span>"
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='danger'>The rod slips out of your hand and hits your head.</span>"
-		user.take_organ_damage(10)
-		user.Paralyse(20)
-		return
-
 	if (M.stat !=2)
 		if(cult && (M.mind in cult.current_antagonists) && prob(33))
 			M << "<span class='danger'>The power of [src] clears your mind of the cult's influence!</span>"
@@ -141,9 +135,6 @@
 			health -= rand(10, 20)
 		else
 			health -= rand(1,3)
-
-	else if (HULK in user.mutations)
-		health = 0
 	else
 		health -= rand(5,8)
 

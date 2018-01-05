@@ -126,8 +126,6 @@
 	M.adjustToxLoss(-5)
 	M.hallucination = 0
 	M.setBrainLoss(0)
-	M.disabilities = 0
-	M.sdisabilities = 0
 	M.eye_blurry = 0
 	M.eye_blind = 0
 	M.SetWeakened(0)

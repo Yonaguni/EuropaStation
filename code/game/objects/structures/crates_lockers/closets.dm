@@ -195,15 +195,12 @@
 	if(proj_damage)
 		..()
 		damage(proj_damage)
-
 	if(Proj.penetrating)
 		var/distance = get_dist(Proj.starting, get_turf(loc))
 		for(var/mob/living/L in contents)
 			Proj.attack_mob(L, distance)
 			if(!(--Proj.penetrating))
 				break
-
-	return
 
 /obj/structure/closet/attackby(var/obj/item/W, var/mob/user)
 
@@ -214,8 +211,6 @@
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
 			src.MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
-			return 0
-		if(istype(W,/obj/item/tk_grab))
 			return 0
 		if(W.iswelder())
 			var/obj/item/weldingtool/WT = W
@@ -302,12 +297,6 @@
 /obj/structure/closet/attack_hand(var/mob/user)
 	src.add_fingerprint(user)
 	src.toggle(user)
-
-// tk grab then use on self
-/obj/structure/closet/attack_self_tk(var/mob/user)
-	src.add_fingerprint(user)
-	if(!src.toggle())
-		usr << "<span class='notice'>It won't budge!</span>"
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)

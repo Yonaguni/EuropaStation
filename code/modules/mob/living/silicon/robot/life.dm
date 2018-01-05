@@ -115,11 +115,6 @@
 
 	src.density = !( src.lying )
 
-	if ((src.sdisabilities & BLIND))
-		src.blinded = 1
-	if ((src.sdisabilities & DEAF))
-		src.ear_deaf = 1
-
 	if (src.eye_blurry > 0)
 		src.eye_blurry--
 		src.eye_blurry = max(0, src.eye_blurry)
@@ -247,7 +242,6 @@
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 
@@ -263,7 +257,7 @@
 /mob/living/silicon/robot/handle_vision()
 	..()
 
-	if (src.stat == 2 || (XRAY in mutations) || (src.sight_mode & BORGXRAY))
+	if (src.stat == 2 || (src.sight_mode & BORGXRAY))
 		src.sight |= SEE_TURFS
 		src.sight |= SEE_MOBS
 		src.sight |= SEE_OBJS

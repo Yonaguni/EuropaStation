@@ -46,8 +46,6 @@
 	var/damageoverlaytemp = 0
 	var/obj/machinery/machine = null
 	var/poll_answer = 0.0
-	var/sdisabilities = 0	//Carbon
-	var/disabilities = 0	//Carbon
 
 	var/other_mobs = null
 	var/next_move = null
@@ -106,11 +104,6 @@
 	var/can_pull_size = 10              // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER // Whether or not the mob can pull other mobs.
 
-	var/datum/dna/dna = null//Carbon
-	var/list/active_genes=list()
-	var/list/mutations = list() //Carbon -- Doohl
-	//see: setup.dm for list of mutations
-
 	var/radiation = 0.0//Carbon
 
 	var/voice_name = "unidentifiable voice"
@@ -118,6 +111,8 @@
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 	var/blinded = null
 	var/ear_deaf = null		//Carbon
+
+	var/b_type = "A+"	//Player's bloodtype. God I hope moving it here is temporary.
 
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant = null

@@ -97,11 +97,6 @@ proc/get_radio_key_from_channel(var/channel)
 
 	. = 0
 
-	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
-		message_data[3] = 0
-		. = 1
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers","slurs")

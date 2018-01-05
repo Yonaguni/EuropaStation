@@ -67,9 +67,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
-
 		//Organs and blood
 		handle_organs()
 		handle_blood()
@@ -163,43 +160,11 @@
 		eye_blurry = 1
 	else
 		//blindness
-		if(!(sdisabilities & BLIND))
-			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
-				eye_blurry = max(eye_blurry-2, 0)
+		if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
+			eye_blurry = max(eye_blurry-2, 0)
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
-
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		if ((prob(10) && paralysis <= 1))
-			Stun(10)
-			spawn( 0 )
-				switch(rand(1, 3))
-					if(1)
-						emote("twitch")
-					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-				make_jittery(100)
-				return
-	if (disabilities & NERVOUS)
-		if (prob(10))
-			stuttering = max(10, stuttering)
-
 	if(stat != DEAD)
 		var/rn = rand(0, 200)
 		if(getBrainLoss() >= 5)
@@ -227,18 +192,6 @@
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(in_stasis)
 		return
-
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			gene.OnMobLife(src)
 
 	radiation = Clamp(radiation,0,100)
 
@@ -536,9 +489,6 @@
 	return get_thermal_protection(thermal_protection_flags)
 
 /mob/living/carbon/human/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
-		return 1 //Fully protected from the cold.
-
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 	return get_thermal_protection(thermal_protection_flags)
@@ -961,10 +911,6 @@
 						M.adjustBruteLoss(5)
 					nutrition += 10
 
-/mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
-
 /mob/living/carbon/human/handle_shock()
 	..()
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -1193,9 +1139,6 @@
 		var/isRemoteObserve = 0
 		if(bound_overlay && client.eye == bound_overlay && !is_physically_disabled())
 			isRemoteObserve = 1
-		else if((mRemote in mutations) && remoteview_target)
-			if(remoteview_target.stat==CONSCIOUS)
-				isRemoteObserve = 1
 		if(!isRemoteObserve && client && !client.adminobs)
 			remoteview_target = null
 			reset_view(null, 0)
@@ -1207,5 +1150,5 @@
 	..()
 	if(stat == DEAD)
 		return
-	if((XRAY in mutations) || (CE_THIRDEYE in chem_effects))
+	if(CE_THIRDEYE in chem_effects)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS

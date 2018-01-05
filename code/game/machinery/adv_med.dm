@@ -265,7 +265,6 @@
 		"styptazine_amount" = H.reagents.get_reagent_amount("styptazine"),
 		"fotiazine_amount" = H.reagents.get_reagent_amount("fotiazine"),
 		"blood_amount" = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100),
-		"disabilities" = H.sdisabilities,
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -417,9 +416,4 @@
 	for(var/organ_name in species_organs)
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
 			dat += text("<font color='red'>No [organ_name] detected.</font><BR>")
-
-	if(occ["sdisabilities"] & BLIND)
-		dat += text("<font color='red'>Cataracts detected.</font><BR>")
-	if(occ["sdisabilities"] & NEARSIGHTED)
-		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat

@@ -355,7 +355,7 @@
 	if(config.welder_vision)
 		if(short_sighted || (H.equipment_tint_total >= TINT_HEAVY))
 			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 2)
-		else if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
+		else if(H.equipment_tint_total == TINT_MODERATE)
 			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 1)
 		else
 			H.clear_fullscreen("impaired")

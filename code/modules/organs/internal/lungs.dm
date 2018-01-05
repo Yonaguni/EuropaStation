@@ -25,12 +25,12 @@
 	. = ..()
 	icon_state = "lungs-prosthetic"
 
-/obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
-	..()
+/obj/item/organ/internal/lungs/set_dna(var/mob/living/carbon/donor)
+	. = ..()
 	sync_breath_types()
 
 /obj/item/organ/internal/lungs/replaced()
-	..()
+	. = ..()
 	sync_breath_types()
 
 /**
@@ -184,7 +184,7 @@
 
 /obj/item/organ/internal/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	// Hot air hurts :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1))
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))

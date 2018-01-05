@@ -88,9 +88,4 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
-
-	var/power = force
-	if(HULK in user.mutations)
-		power *= 2
-	return target.hit_with_weapon(src, user, power, hit_zone)
-
+	return target.hit_with_weapon(src, user, force, hit_zone)

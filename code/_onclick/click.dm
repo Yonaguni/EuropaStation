@@ -185,23 +185,14 @@
 /*
 	Ranged unarmed attack:
 
-	This currently is just a default for all mobs, involving
-	laser eyes and telekinesis.  You could easily add exceptions
-	for things like ranged glove touches, spitting alien acid/neurotoxin,
-	animals lunging, etc.
+	This currently is just a default for all mobs.  You could easily add
+	exceptions for things like ranged glove touches, spitting alien acid/
+	neurotoxin, animals lunging, etc.
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 
-	if(!mutations.len) return
 
-	if((LASER in mutations) && a_intent == I_HURT)
-		LaserEyes(A) // moved into a proc below
-		return TRUE
-
-	else if(TK in mutations)
-		setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		A.attack_tk(src)
-		return TRUE
+	return
 
 /*
 	Restrained ClickOn

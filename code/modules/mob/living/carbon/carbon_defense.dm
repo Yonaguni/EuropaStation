@@ -9,10 +9,6 @@
 	if(!effective_force || blocked >= 100)
 		return 0
 
-	//Hulk modifier
-	if(HULK in user.mutations)
-		effective_force *= 2
-
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)

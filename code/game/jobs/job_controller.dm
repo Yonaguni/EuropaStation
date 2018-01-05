@@ -509,13 +509,6 @@ var/global/datum/controller/occupations/job_master
 
 		job.handle_misc_notifications(H)
 
-		//Gives glasses to the vision impaired
-		if(H.disabilities & NEARSIGHTED)
-			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
-			if(equipped != 1)
-				var/obj/item/clothing/glasses/G = H.glasses
-				G.prescription = 1
-
 		BITSET(H.hud_updateflag, ID_HUD)
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
