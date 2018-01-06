@@ -63,11 +63,6 @@
 // Helpers.
 /datum/mind/var/list/aspects = list()
 
-/mob/proc/has_aspect(var/skillname)
-	if(!mind || !mind.aspects.len)
-		return 0
-	return (skillname in mind.aspects)
-
 /mob/proc/get_aspect_data(var/mob/show_to)
 
 	if(!mind)

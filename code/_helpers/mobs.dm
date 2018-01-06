@@ -301,7 +301,7 @@ Proc for attack log creation, because really why not
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 
-	if (!ignore_clumsiness && user.has_aspect(ASPECT_CLUMSY) && prob(20))
+	if (!ignore_clumsiness && HAS_ASPECT(user, ASPECT_CLUMSY) && prob(20))
 		user.visible_message("<span class='notice'>\The [user] has analyzed the floor's vitals!</span>")
 		user.show_message("<span class='notice'>Analyzing Results for The floor:</span>", 1)
 		user.show_message("<span class='notice'>Overall Status: Healthy</span>", 1)

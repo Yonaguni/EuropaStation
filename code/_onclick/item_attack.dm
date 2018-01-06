@@ -67,7 +67,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(M == user && user.a_intent != I_HURT)
 		return 0
 
-	if(user.has_aspect(ASPECT_CLUMSY) && prob(5))
+	if(HAS_ASPECT(user, ASPECT_CLUMSY) && prob(5))
 		to_chat(user, "<span class='danger'>You clumsily fumble \the [src]!</span>")
 		M = user
 

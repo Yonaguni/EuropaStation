@@ -76,7 +76,7 @@
 
 				H.visible_message("<span class='danger'>\The [H] is trying perform CPR on \the [src]!</span>")
 
-				if(!do_after(H, (H.has_aspect(ASPECT_FIRSTAID) ? 15 : 30), src))
+				if(!do_after(H, (HAS_ASPECT(H, ASPECT_FIRSTAID) ? 15 : 30), src))
 					return
 
 				adjustOxyLoss(-(min(getOxyLoss(), 5)))
@@ -186,7 +186,7 @@
 
 			var/real_damage = rand_damage
 			real_damage += attack.get_unarmed_damage(H)
-			if(H.has_aspect(ASPECT_BRAWLER))
+			if(HAS_ASPECT(H, ASPECT_BRAWLER))
 				real_damage *= 1.25
 			real_damage = max(1, real_damage)
 

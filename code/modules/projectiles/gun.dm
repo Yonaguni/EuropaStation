@@ -119,10 +119,10 @@
 		return 0
 	if(!user.IsAdvancedToolUser())
 		return 0
-	if(user.has_aspect(ASPECT_MEATY))
+	if(HAS_ASPECT(user, ASPECT_MEATY))
 		to_chat(user, "<span class='danger'>Your fingers are much too large for the trigger guard!</span>")
 		return 0
-	if(user.has_aspect(ASPECT_CLUMSY) && prob(25)) //Clumsy handling
+	if(HAS_ASPECT(user, ASPECT_CLUMSY) && prob(25)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
@@ -189,7 +189,7 @@
 	if(istype(user))
 		held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
 		if(requires_two_hands && !held_twohanded)
-			if(user.has_aspect(ASPECT_DUALWIELD))
+			if(HAS_ASPECT(user, ASPECT_DUALWIELD))
 				held_acc_mod = -1
 				held_disp_mod = 1
 			else
@@ -201,7 +201,7 @@
 			held_disp_mod += 3
 		if(issmall(user))	//it sucks to be short
 			recoil = 2*recoil
-		if(user.has_aspect(ASPECT_MARKSMAN))
+		if(HAS_ASPECT(user, ASPECT_MARKSMAN))
 			held_acc_mod += 2
 
 	//actually attempt to shoot

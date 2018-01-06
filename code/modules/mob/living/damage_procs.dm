@@ -52,7 +52,7 @@
 		if(AGONY)
 			halloss += effect * blocked_mult(blocked) // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
-			if(has_aspect(ASPECT_RADHARDENED))
+			if(HAS_ASPECT(src, ASPECT_RADHARDENED))
 				effect *= 0.5
 			radiation += effect * blocked_mult(blocked)
 		if(STUTTER)

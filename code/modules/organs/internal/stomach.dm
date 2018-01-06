@@ -33,7 +33,7 @@
 
 		var/alcohol_threshold_met = (ingested.get_reagent_amount_by_type(/datum/reagent/ethanol) > 60)
 
-		if(alcohol_threshold_met && owner.has_aspect(ASPECT_EPILEPTIC) && prob(20))
+		if(alcohol_threshold_met && HAS_ASPECT(owner, ASPECT_EPILEPTIC) && prob(20))
 			owner.seizure()
 
 		if((owner.get_fullness() > 550 && prob(5)) || (alcohol_threshold_met && prob(15)))

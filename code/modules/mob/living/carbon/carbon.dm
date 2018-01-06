@@ -323,7 +323,7 @@
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-	item.throw_at(target, throw_range, (has_aspect(ASPECT_NINJA) ? item.throw_speed*1.15 : item.throw_speed), src)
+	item.throw_at(target, throw_range, (HAS_ASPECT(src, ASPECT_NINJA) ? item.throw_speed*1.15 : item.throw_speed), src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
@@ -444,7 +444,7 @@
 	if(effect && blocked < 100 && effecttype == IRRADIATE)
 		if(chem_effects[CE_ANTIRAD] == 2)
 			return 1
-		else if(chem_effects[CE_ANTIRAD] == 1 || has_aspect(ASPECT_RADHARDENED))
+		else if(chem_effects[CE_ANTIRAD] == 1 || HAS_ASPECT(src, ASPECT_RADHARDENED))
 			radiation += round((effect * blocked_mult(blocked))/2)
 		else
 			radiation += effect * blocked_mult(blocked)

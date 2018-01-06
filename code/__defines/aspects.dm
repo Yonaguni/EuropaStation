@@ -1,3 +1,5 @@
+#define HAS_ASPECT(holder, aspect) ismob(holder) && holder:mind && LAZYLEN(holder:mind.aspects) && holder:mind.aspects[aspect]
+
 // General aspects.
 #define ASPECT_HOTSTUFF         "Hot Stuff"
 #define ASPECT_HARDY            "Hardy"

@@ -402,7 +402,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
-		if(C.has_aspect(ASPECT_BLIND) || C.blinded)
+		if(HAS_ASPECT(C, ASPECT_BLIND) || C.blinded)
 			return 1
 	return 0
 

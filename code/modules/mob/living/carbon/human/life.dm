@@ -191,23 +191,23 @@
 	if(stat == DEAD)
 		return
 
-	if(has_aspect(ASPECT_BLIND))
+	if(HAS_ASPECT(src, ASPECT_BLIND))
 		blinded = 1
 
-	if(has_aspect(ASPECT_DEAF))
+	if(HAS_ASPECT(src, ASPECT_DEAF))
 		ear_deaf = 1
 
 	if(stat == UNCONSCIOUS)
 		return
 
-	if(!paralysis && has_aspect(ASPECT_ASTHMATIC) && prob(0.1))
+	if(!paralysis && HAS_ASPECT(src, ASPECT_ASTHMATIC) && prob(0.1))
 		asthma_attack()
 
-	if(has_aspect(ASPECT_NERVOUS) && prob(40))
+	if(HAS_ASPECT(src, ASPECT_NERVOUS) && prob(40))
 		stuttering = max(10, stuttering)
 
 	var/rn = rand(0, 200)
-	if(!paralysis && getBrainLoss() > 0 && has_aspect(ASPECT_EPILEPTIC) && prob(getBrainLoss()/10))
+	if(!paralysis && getBrainLoss() > 0 && HAS_ASPECT(src, ASPECT_EPILEPTIC) && prob(getBrainLoss()/10))
 		seizure()
 	if(getBrainLoss() >= 5)
 		if(0 <= rn && rn <= 3)
@@ -306,7 +306,7 @@
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	. = ..()
-	if(. > 0 && has_aspect(ASPECT_ASTHMATIC) && prob(10 * .))
+	if(. > 0 && HAS_ASPECT(src, ASPECT_ASTHMATIC) && prob(10 * .))
 		asthma_attack()
 
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)

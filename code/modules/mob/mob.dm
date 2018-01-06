@@ -153,10 +153,10 @@
 	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
 
 /mob/proc/is_blind()
-	return (has_aspect(ASPECT_BLIND) || blinded || incapacitated(INCAPACITATION_KNOCKOUT))
+	return (HAS_ASPECT(src, ASPECT_BLIND) || blinded || incapacitated(INCAPACITATION_KNOCKOUT))
 
 /mob/proc/is_deaf()
-	return (has_aspect(ASPECT_DEAF) || ear_deaf || incapacitated(INCAPACITATION_KNOCKOUT))
+	return (HAS_ASPECT(src, ASPECT_DEAF) || ear_deaf || incapacitated(INCAPACITATION_KNOCKOUT))
 
 /mob/proc/is_physically_disabled()
 	return incapacitated(INCAPACITATION_DISABLED)

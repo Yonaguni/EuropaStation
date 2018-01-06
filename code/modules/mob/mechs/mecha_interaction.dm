@@ -204,7 +204,7 @@
 	//glide_size = world.icon_size / max(movement_delay(), world.tick_lag) * world.tick_lag
 	next_move = world.time + movement_delay()
 
-	if(!user.has_aspect(ASPECT_EXOSUIT_PILOT))
+	if(!HAS_ASPECT(user, ASPECT_EXOSUIT_PILOT))
 		next_move += rand(3,8)
 
 	if(maintenance_protocols)

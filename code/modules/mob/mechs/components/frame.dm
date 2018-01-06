@@ -262,7 +262,7 @@
 	if(istype(MC) && !MC.ready_to_install())
 		if(user) user << "<span class='warning'>\The [MC] [MC.gender == PLURAL ? "are" : "is"] not ready to install.</span>"
 		return 0
-	if(!user.has_aspect(ASPECT_EXOSUIT_TECH) && !do_after(user, 30))
+	if(!HAS_ASPECT(user, ASPECT_EXOSUIT_TECH) && !do_after(user, 30))
 		return 0
 	user.drop_from_inventory(thing)
 	thing.forceMove(src)

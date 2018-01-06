@@ -140,7 +140,7 @@
 
 /mob/living/proc/handle_impaired_vision()
 	//Eyes
-	if(stat || has_aspect(ASPECT_BLIND)) // blindness from unconsciousness doesn't get better on its own
+	if(stat || HAS_ASPECT(src, ASPECT_BLIND)) // blindness from unconsciousness doesn't get better on its own
 		eye_blind = max(eye_blind, 1)
 	else if(eye_blind)			//blindness, heals slowly over time
 		eye_blind = max(eye_blind-1,0)
@@ -149,7 +149,7 @@
 
 /mob/living/proc/handle_impaired_hearing()
 	//Ears
-	if(has_aspect(ASPECT_DEAF))
+	if(HAS_ASPECT(src, ASPECT_DEAF))
 		setEarDamage(null, max(ear_deaf, 1))
 	else if(ear_damage < 25)
 		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
@@ -175,7 +175,7 @@
 		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 	else
 		clear_fullscreen("blind")
-		set_fullscreen(has_aspect(ASPECT_NEARSIGHTED), "impaired", /obj/screen/fullscreen/impaired, 1)
+		set_fullscreen(HAS_ASPECT(src, ASPECT_NEARSIGHTED), "impaired", /obj/screen/fullscreen/impaired, 1)
 		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 		set_fullscreen(druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 
