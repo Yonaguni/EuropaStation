@@ -6,6 +6,7 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 /datum/aspect_category
 	var/category = ""
 	var/list/aspects = list()
+	var/hide_from_chargen = TRUE
 
 /datum/aspect_category/New(var/newcategory)
 	..()
@@ -31,7 +32,10 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 
 	// Create them all.
 	for(var/aspect_type in (typesof(/decl/aspect)-/decl/aspect))
-		var/decl/aspect/A = new aspect_type
+		var/decl/aspect/A = aspect_type
+		if(!initial(A.name))
+			continue
+		A = new A
 		aspect_datums += A
 		aspects_by_name[A.name] = A
 		var/datum/aspect_category/AC = aspect_categories[A.category]
@@ -40,6 +44,14 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 			aspect_categories[A.category] = AC
 		AC.aspects += A
 		//aspect_icons += A.use_icon
+
+	// Hide any categories with no visible chargen aspects.
+	for(var/aspect_category in aspect_categories)
+		var/datum/aspect_category/AC = aspect_categories[aspect_category]
+		for(var/decl/aspect/A in AC.aspects)
+			if(A.available_at_chargen)
+				AC.hide_from_chargen = FALSE
+				break
 
 	// Update their parent/children variables.
 	for(var/decl/aspect/A in aspect_datums)

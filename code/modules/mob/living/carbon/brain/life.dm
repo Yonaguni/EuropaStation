@@ -159,7 +159,8 @@
 	return 1
 
 /mob/living/carbon/brain/handle_regular_hud_updates()
-	if (stat == 2)
+
+	if (stat == DEAD || HAS_ASPECT(src, ASPECT_XRAY))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
@@ -192,18 +193,6 @@
 		else
 			healths.icon_state = "health7"
 
-		if (stat == 2)
-			sight |= SEE_TURFS
-			sight |= SEE_MOBS
-			sight |= SEE_OBJS
-			see_in_dark = 8
-			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else
-			sight &= ~SEE_TURFS
-			sight &= ~SEE_MOBS
-			sight &= ~SEE_OBJS
-			see_in_dark = 2
-			see_invisible = SEE_INVISIBLE_LIVING
 	if (client)
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 

@@ -1023,6 +1023,7 @@
 #include "code\modules\aspects\aspects_melee.dm"
 #include "code\modules\aspects\aspects_negative.dm"
 #include "code\modules\aspects\aspects_psychic.dm"
+#include "code\modules\aspects\aspects_restricted.dm"
 #include "code\modules\aspects\aspects_skills.dm"
 #include "code\modules\aspects\aspects_traits.dm"
 #include "code\modules\assembly\assembly.dm"

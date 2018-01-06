@@ -258,7 +258,7 @@
 /mob/living/silicon/robot/handle_vision()
 	..()
 
-	if (src.stat == 2 || (src.sight_mode & BORGXRAY))
+	if (src.stat == DEAD || HAS_ASPECT(src, ASPECT_XRAY) || (src.sight_mode & BORGXRAY))
 		src.sight |= SEE_TURFS
 		src.sight |= SEE_MOBS
 		src.sight |= SEE_OBJS

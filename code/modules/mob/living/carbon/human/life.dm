@@ -1191,5 +1191,5 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(CE_THIRDEYE in chem_effects)
+	if((CE_THIRDEYE in chem_effects) || HAS_ASPECT(src, ASPECT_XRAY))
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS

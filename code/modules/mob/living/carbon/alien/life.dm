@@ -91,7 +91,7 @@
 
 /mob/living/carbon/alien/handle_regular_hud_updates()
 
-	if (stat == 2)
+	if (stat == 2 || HAS_ASPECT(src, ASPECT_XRAY))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS

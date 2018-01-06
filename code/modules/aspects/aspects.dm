@@ -12,6 +12,7 @@
 	var/decl/aspect/parent
 	var/list/children = list()
 	var/apply_post_species_change
+	var/available_at_chargen = TRUE
 
 /*
 /decl/aspect/New()
@@ -61,14 +62,14 @@
 	return result
 
 // Helpers.
-/datum/mind/var/list/aspects = list()
+/datum/mind/var/list/aspects
 
 /mob/proc/get_aspect_data(var/mob/show_to)
 
 	if(!mind)
 		show_to << "That mob has no mind."
 		return
-	if(!mind.aspects || !mind.aspects.len)
+	if(!LAZYLEN(mind.aspects))
 		show_to << "That mob has no aspects."
 		return
 
@@ -123,7 +124,7 @@
 	return
 
 /mob/living/carbon/human/apply_aspects()
-	if(!mind || !mind.aspects || !mind.aspects.len)
+	if(!mind || !LAZYLEN(mind.aspects))
 		return
 	for(var/aspect in mind.aspects)
 		var/decl/aspect/A = aspects_by_name[aspect]

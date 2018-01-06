@@ -89,6 +89,8 @@
 		if(vision.owner.stat == DEAD || H.blinded)	//mob is dead or fully blind
 			user << "<span class='warning'>\The [H]'s pupils do not react to the light!</span>"
 			return
+		if(HAS_ASPECT(H, ASPECT_XRAY))
+			user << "<span class='notice'>\The [H]'s pupils have an eerie glow!</span>"
 		if(vision.damage)
 			user << "<span class='warning'>There's visible damage to [H]'s [vision.name]!</span>"
 		else if(H.eye_blurry)

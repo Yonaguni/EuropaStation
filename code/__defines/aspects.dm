@@ -70,3 +70,5 @@
 #define ASPECT_PSI_REDACTOR_MC  "Master Biokinetic"
 #define ASPECT_PSI_REDACTOR_GMC "Grandmaster Biokinetic"
 
+// Restricted aspects.
+#define ASPECT_XRAY             "X-Ray Vision"
