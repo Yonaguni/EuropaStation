@@ -31,5 +31,10 @@
 			ingested.parent = owner
 			ingested.metabolize()
 
-		if((owner.get_fullness() > 550 && prob(5)) || (ingested.get_reagent_amount_by_type(/datum/reagent/ethanol) > 60 && prob(15)))
+		var/alcohol_threshold_met = (ingested.get_reagent_amount_by_type(/datum/reagent/ethanol) > 60)
+
+		if(alcohol_threshold_met && owner.has_aspect(ASPECT_EPILEPTIC) && prob(20))
+			owner.seizure()
+
+		if((owner.get_fullness() > 550 && prob(5)) || (alcohol_threshold_met && prob(15)))
 			owner.vomit()

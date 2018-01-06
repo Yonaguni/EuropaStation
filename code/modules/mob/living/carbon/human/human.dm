@@ -1350,3 +1350,8 @@
 		lying = val
 	else
 		lying = 0
+
+/mob/living/carbon/human/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+	. = ..()
+	if(. && !paralysis && has_aspect(ASPECT_EPILEPTIC))
+		seizure()

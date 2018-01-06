@@ -25,6 +25,14 @@
 #define ASPECT_GREENTHUMB       "Green Thumb"
 #define ASPECT_NINJA            "Knife Thrower"
 #define ASPECT_TRIBAL           "Tribal"
+#define ASPECT_MEATY            "Big Hands"
+#define ASPECT_CLUMSY           "Clumsy"
+#define ASPECT_EPILEPTIC        "Epileptic"
+#define ASPECT_ASTHMATIC        "Asthmatic"
+#define ASPECT_NEARSIGHTED      "Nearsighted"
+#define ASPECT_NERVOUS          "Nervous"
+#define ASPECT_DEAF             "Deaf"
+#define ASPECT_BLIND            "Blind"
 
 // Combat aspects
 #define ASPECT_WRESTLER         "Wrestler"

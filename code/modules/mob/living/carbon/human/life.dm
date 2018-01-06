@@ -163,31 +163,71 @@
 		if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
 			eye_blurry = max(eye_blurry-2, 0)
 
+/mob/living/carbon/human/proc/seizure()
+	set waitfor = 0
+	sleep(rand(5,10))
+	if(!paralysis && stat == CONSCIOUS)
+		visible_message("<span class='danger'>\The [src] starts having a seizure!</span>")
+		Paralyse(rand(8,16))
+		make_jittery(rand(150,200))
+		adjustHalLoss(rand(50,60))
+
+/mob/living/carbon/human/proc/asthma_attack()
+	set waitfor = 0
+	var/coughs = rand(3,5)
+	sleep(rand(5,10))
+	while(coughs)
+		if(paralysis || stat != CONSCIOUS)
+			return
+		coughs--
+		drop_item()
+		emote("cough")
+		setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		sleep(rand(8,12))
+
 /mob/living/carbon/human/handle_disabilities()
 	..()
-	if(stat != DEAD)
-		var/rn = rand(0, 200)
-		if(getBrainLoss() >= 5)
-			if(0 <= rn && rn <= 3)
-				custom_pain("Your head feels numb and painful.")
-		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
-				eye_blurry = 10
-		if(getBrainLoss() >= 35)
-			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
-				drop_item()
-		if(getBrainLoss() >= 45)
-			if(10 <= rn && rn <= 12)
-				if(prob(50))
-					src << "<span class='danger'>You suddenly black out!</span>"
-					Paralyse(10)
-				else if(!lying)
-					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
-					Weaken(10)
 
+	if(stat == DEAD)
+		return
 
+	if(has_aspect(ASPECT_BLIND))
+		blinded = 1
+
+	if(has_aspect(ASPECT_DEAF))
+		ear_deaf = 1
+
+	if(stat == UNCONSCIOUS)
+		return
+
+	if(!paralysis && has_aspect(ASPECT_ASTHMATIC) && prob(0.1))
+		asthma_attack()
+
+	if(has_aspect(ASPECT_NERVOUS) && prob(40))
+		stuttering = max(10, stuttering)
+
+	var/rn = rand(0, 200)
+	if(!paralysis && getBrainLoss() > 0 && has_aspect(ASPECT_EPILEPTIC) && prob(getBrainLoss()/10))
+		seizure()
+	if(getBrainLoss() >= 5)
+		if(0 <= rn && rn <= 3)
+			custom_pain("Your head feels numb and painful.")
+	if(getBrainLoss() >= 15)
+		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
+			src << "<span class='warning'>It becomes hard to see for some reason.</span>"
+			eye_blurry = 10
+	if(getBrainLoss() >= 35)
+		if(7 <= rn && rn <= 9) if(get_active_hand())
+			src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
+			drop_item()
+	if(getBrainLoss() >= 45)
+		if(10 <= rn && rn <= 12)
+			if(prob(50))
+				src << "<span class='danger'>You suddenly black out!</span>"
+				Paralyse(10)
+			else if(!lying)
+				src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
+				Weaken(10)
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(in_stasis)
@@ -265,7 +305,9 @@
 		return
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
-	..()
+	. = ..()
+	if(. > 0 && has_aspect(ASPECT_ASTHMATIC) && prob(10 * .))
+		asthma_attack()
 
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
@@ -273,7 +315,6 @@
 	if(breath && virus2.len > 0 && prob(10))
 		for(var/mob/living/carbon/M in view(1,src))
 			src.spread_disease_to(M)
-
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)

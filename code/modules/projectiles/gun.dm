@@ -119,6 +119,19 @@
 		return 0
 	if(!user.IsAdvancedToolUser())
 		return 0
+	if(user.has_aspect(ASPECT_MEATY))
+		to_chat(user, "<span class='danger'>Your fingers are much too large for the trigger guard!</span>")
+		return 0
+	if(user.has_aspect(ASPECT_CLUMSY) && prob(25)) //Clumsy handling
+		var/obj/P = consume_next_projectile()
+		if(P)
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
+				handle_post_fire(user, user)
+				user.visible_message("<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>")
+				user.drop_item()
+		else
+			handle_click_empty(user)
+		return 0
 	return 1
 
 /obj/item/gun/emp_act(severity)

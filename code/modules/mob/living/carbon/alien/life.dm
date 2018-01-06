@@ -132,6 +132,7 @@
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
+			set_fullscreen(has_aspect(ASPECT_NEARSIGHTED), "impaired", /obj/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "cloud", /obj/screen/plane/drugs/rainbow)
 		if(machine)

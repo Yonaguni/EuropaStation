@@ -350,12 +350,12 @@
 	if(!H.client)//no client, no screen to update
 		return 1
 
-	H.set_fullscreen(H.eye_blind && !H.equipment_prescription, "blind", /obj/screen/fullscreen/blind)
+	H.set_fullscreen(H.eye_blind, "blind", /obj/screen/fullscreen/blind)
 
 	if(config.welder_vision)
 		if(short_sighted || (H.equipment_tint_total >= TINT_HEAVY))
 			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 2)
-		else if(H.equipment_tint_total == TINT_MODERATE)
+		else if((!H.equipment_prescription && H.has_aspect(ASPECT_NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
 			H.overlay_fullscreen("impaired", /obj/screen/fullscreen/impaired, 1)
 		else
 			H.clear_fullscreen("impaired")
