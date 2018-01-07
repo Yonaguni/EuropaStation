@@ -38,7 +38,50 @@
 	disable()
 
 /obj/item/suit_sensor_jammer/attack_self(var/mob/user)
-	tg_ui_interact(user)
+	ui_interact(user)
+
+/obj/item/suit_sensor_jammer/ui_interact(var/mob/user)
+
+	var/dat = list()
+	dat += "<a href='?src=\ref[src];toggle_active=1'>[active ? "Active" : "Inactive"]</a>"
+	if(bcell)
+		dat += "Current charge: [round(bcell.charge)]/[bcell.maxcharge]"
+	else
+		dat += "No cell installed!"
+	dat += "Range: [range] \[<a href='?src=\ref[src];increase_range=1'>Increase</a> | <a href='?src=\ref[src];decrease_range=1'>Decrease</a>\]"
+	dat += "Power consumption: [JAMMER_POWER_CONSUMPTION]"
+	dat += "Current mode: [jammer_method.name], cost: [jammer_method.energy_cost]"
+	dat += "<hr>"
+	for(var/suit_sensor_jammer_method/ssjm in suit_sensor_jammer_methods - jammer_method)
+		dat += "[ssjm.name], cost: [ssjm.energy_cost] <a href='?src=\ref[src];select_mode=\ref[ssjm]'>\[Select\]</a>"
+
+	var/datum/browser/popup = new(user, "suitjammer", "Suit Sensor Jammer", 600, 250)
+	popup.set_content(jointext(dat, "<br>"))
+	popup.open()
+
+/obj/item/suit_sensor_jammer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	if(href_list["toggle_active"])
+		. = TRUE
+		if(active)
+			disable()
+		else
+			enable()
+	if(href_list["increase_range"])
+		set_range(range+1)
+		. = TRUE
+	if(href_list["decrease_range"])
+		set_range(range-1)
+		. = TRUE
+	if(href_list["select_mode"])
+		var/suit_sensor_jammer_method/ssjm = locate(href_list["select_mode"])
+		if(istype(ssjm) && (ssjm in suit_sensor_jammer_methods))
+			. = TRUE
+			jammer_method = ssjm
+	if(.)
+		ui_interact(usr)
 
 /obj/item/suit_sensor_jammer/attackby(obj/item/I as obj, var/mob/user)
 	if(I.iscrowbar())
@@ -108,58 +151,6 @@ obj/item/suit_sensor_jammer/examine(var/user)
 		else
 			message += "is lacking a cell."
 		user << jointext(message,.)
-
-obj/item/suit_sensor_jammer/ui_status(mob/user, datum/ui_state/state)
-	if(!bcell || bcell.charge <= 0)
-		return UI_CLOSE
-	return ..()
-
-obj/item/suit_sensor_jammer/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "suit_sensor_jammer", "Sensor Jammer", 350, 610, master_ui, state)
-		ui.open()
-
-obj/item/suit_sensor_jammer/ui_data()
-	var/list/methods = new
-	for(var/suit_sensor_jammer_method/ssjm in suit_sensor_jammer_methods)
-		methods[++methods.len] = list("name" = ssjm.name, "cost" = ssjm.energy_cost, "ref" = "\ref[ssjm]")
-
-	var/list/data = list(
-		"active" = active,
-		"current_charge" = bcell ? round(bcell.charge, 1) : 0,
-		"max_charge" = bcell ? bcell.maxcharge : 0,
-		"range" = range,
-		"max_range" = JAMMER_MAX_RANGE,
-		"methods" = methods,
-		"current_method" = "\ref[jammer_method]",
-		"current_cost" = jammer_method.energy_cost,
-		"total_cost" = "[ceil(JAMMER_POWER_CONSUMPTION)]"
-	)
-
-	return data
-
-obj/item/suit_sensor_jammer/ui_act(action, params)
-	if(..())
-		return TRUE
-	switch(action)
-		if("enable_jammer")
-			enable()
-			. TRUE
-		if("disable_jammer")
-			disable()
-			. FALSE
-		if("increase_range")
-			set_range(range + 1)
-			. = 1
-		if("decrease_range")
-			set_range(range - 1)
-			. = 1
-		if("select_method")
-			var/method = locate(params["method"]) in suit_sensor_jammer_methods
-			if(method)
-				set_method(method)
-				. = TRUE
 
 /obj/item/suit_sensor_jammer/process()
 	if(bcell)

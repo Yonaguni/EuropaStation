@@ -71,54 +71,27 @@ datum/track/New(var/title_name, var/audio)
 		usr << "\The [src] doesn't appear to function."
 		return
 
-	tg_ui_interact(user)
+	ui_interact(user)
 
-/obj/machinery/media/jukebox/ui_status(mob/user, datum/ui_state/state)
-	if(!anchored || inoperable())
-		return UI_CLOSE
-	return ..()
+/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/title = "RetroBox - Space Style"
+	var/data[0]
 
-/obj/machinery/media/jukebox/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "jukebox", "RetroBox - Space Style", 340, 440, master_ui, state)
+	if(!(stat & (NOPOWER|BROKEN)))
+		data["current_track"] = current_track != null ? current_track.title : ""
+		data["playing"] = playing
+
+		var/list/nano_tracks = new
+		for(var/datum/track/T in tracks)
+			nano_tracks[++nano_tracks.len] = list("track" = T.title)
+
+		data["tracks"] = nano_tracks
+
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
+		ui.set_initial_data(data)
 		ui.open()
-
-/obj/machinery/media/jukebox/ui_data()
-	var/list/juke_tracks = new
-	for(var/datum/track/T in tracks)
-		juke_tracks.Add(T.title)
-
-	var/list/data = list(
-		"current_track" = current_track != null ? current_track.title : "No track selected",
-		"playing" = playing,
-		"tracks" = juke_tracks
-	)
-
-	return data
-
-/obj/machinery/media/jukebox/ui_act(action, params)
-	if(..())
-		return TRUE
-	switch(action)
-		if("change_track")
-			for(var/datum/track/T in tracks)
-				if(T.title == params["title"])
-					current_track = T
-					StartPlaying()
-					break
-			. = TRUE
-		if("stop")
-			StopPlaying()
-			. = TRUE
-		if("play")
-			if(emagged)
-				emag_play()
-			else if(!current_track)
-				usr << "No track selected."
-			else
-				StartPlaying()
-			. = TRUE
 
 /obj/machinery/media/jukebox/proc/emag_play()
 	playsound(loc, 'sound/items/AirHorn.ogg', 100, 1)
@@ -182,14 +155,12 @@ datum/track/New(var/title_name, var/audio)
 
 /obj/machinery/media/jukebox/proc/StopPlaying()
 	var/area/main_area = get_area(src)
-	// Always kill the current sound
 	for(var/mob/living/M in mobs_in_area(main_area))
 		M << sound(null, channel = 1)
 		main_area.forced_ambience = null
 	playing = 0
 	update_use_power(1)
 	update_icon()
-
 
 /obj/machinery/media/jukebox/proc/StartPlaying()
 	StopPlaying()
@@ -205,3 +176,33 @@ datum/track/New(var/title_name, var/audio)
 	playing = 1
 	update_use_power(2)
 	update_icon()
+
+/obj/machinery/media/jukebox/Topic(href, href_list)
+	if(..() || !(Adjacent(usr) || istype(usr, /mob/living/silicon)))
+		return
+
+	if(!anchored)
+		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		return
+
+	if(stat & (NOPOWER|BROKEN))
+		usr << "\The [src] doesn't appear to function."
+		return
+
+	if(href_list["change_track"])
+		for(var/datum/track/T in tracks)
+			if(T.title == href_list["title"])
+				current_track = T
+				StartPlaying()
+				break
+	else if(href_list["stop"])
+		StopPlaying()
+	else if(href_list["play"])
+		if(emagged)
+			emag_play()
+		else if(current_track == null)
+			usr << "No track selected."
+		else
+			StartPlaying()
+
+	return 1

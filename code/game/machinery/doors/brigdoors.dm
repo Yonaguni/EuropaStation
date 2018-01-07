@@ -72,8 +72,8 @@
 		if(world.timeofday > src.releasetime)
 			src.timer_end() // open doors, reset timer, clear status screen
 			src.timing = 0
-
-		src.update_icon()
+		updateUsrDialog()
+		update_icon()
 
 	else
 		timer_end()
@@ -152,61 +152,89 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door_timer/attack_hand(var/mob/user)
-	tg_ui_interact(user)
-
-/obj/machinery/door_timer/ui_data(mob/user)
-	var/list/data = list()
-
-	data["timing"] = timing
-	data["releasetime"] = releasetime
-	data["timetoset"] = timetoset
-	data["timeleft"] = timeleft()
-
-	var/list/flashes = list()
-
-	for(var/obj/machinery/flasher/flash  in targets)
-		var/list/flashdata = list()
-		if(flash.last_flash && (flash.last_flash + 150) > world.time)
-			flashdata["status"] = 0
-		else
-			flashdata["status"] = 1
-		flashes[++flashes.len] = flashdata
-
-	data["flashes"] = flashes
-	return data
-
-
-/obj/machinery/door_timer/ui_act(action, params)
 	if(..())
-		return TRUE
+		return
 
+	// Used for the 'time left' display
+	var/second = round(timeleft() % 60)
+	var/minute = round((timeleft() - second) / 60)
+	// Used for 'set timer'
+	var/setsecond = round((timetoset / 10) % 60)
+	var/setminute = round(((timetoset / 10) - setsecond) / 60)
+	user.set_machine(src)
+
+	var/dat = "<HTML><BODY><TT>"
+	dat += "<HR>Timer System:</hr>"
+	dat += " <b>Door [src.id] controls</b><br/>"
+
+	// Start/Stop timer
+	if (src.timing)
+		dat += "<a href='?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
+	else
+		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
+
+	// Time Left display (uses releasetime)
+	dat += "Time Left: [(minute ? text("[minute]:") : null)][second] <br/>"
+	dat += "<br/>"
+
+	// Set Timer display (uses timetoset)
+	if(src.timing)
+		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='?src=\ref[src];change=1'>Set</a><br/>"
+	else
+		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]<br/>"
+
+	// Controls
+	dat += "<a href='?src=\ref[src];tp=-60'>-</a> <a href='?src=\ref[src];tp=-1'>-</a> <a href='?src=\ref[src];tp=1'>+</a> <A href='?src=\ref[src];tp=60'>+</a><br/>"
+
+	// Mounted flash controls
+	for(var/obj/machinery/flasher/F in targets)
+		if(F.last_flash && (F.last_flash + 150) > world.time)
+			dat += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
+		else
+			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
+
+	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
+	dat += "</TT></BODY></HTML>"
+
+	var/datum/browser/popup = new(user, "doortimer","Door Timer", 700, 500, src)
+	popup.set_content(dat)
+	popup.open()
+
+/obj/machinery/door_timer/Topic(href, href_list)
+	if(..())
+		return
 	if(!src.allowed(usr))
-		return TRUE
+		return
 
-	switch (action)
-		if("start")
-			if(timetoset > 18000)
-				log_admin("[key_name(usr)] has started a brig timer over 30 minutes in length!")
-				message_admins("[key_name_admin(usr)] has started a brig timer over 30 minutes in length!")
-			timer_start()
-		if("stop")
-			timer_end()
-		if("flash")
+	usr.set_machine(src)
+
+	if(href_list["timing"])
+		src.timing = text2num(href_list["timing"])
+
+		if(src.timing)
+			src.timer_start()
+		else
+			src.timer_end()
+
+	else
+		if(href_list["tp"])  //adjust timer, close door if not already closed
+			var/tp = text2num(href_list["tp"])
+			var/addtime = (timetoset / 10)
+			addtime += tp
+			addtime = min(max(round(addtime), 0), 3600)
+
+			timeset(addtime)
+		if(href_list["fc"])
 			for(var/obj/machinery/flasher/F in targets)
 				F.flash()
-		if("time")
-			timetoset += text2num(params["adjust"])
-			timetoset = Clamp(timetoset, 0, 36000)
 
-	src.update_icon()
-	return TRUE
+		if(href_list["change"])
+			src.timer_start()
 
+	add_fingerprint(usr)
+	updateUsrDialog()
+	update_icon()
 
-/obj/machinery/door_timer/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "brig_timer", name , 300, 150, master_ui, state)
-		ui.open()
 
 //icon update function
 // if NOPOWER, display blank

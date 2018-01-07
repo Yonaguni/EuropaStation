@@ -279,94 +279,91 @@ update_flag
 	return src.attack_hand(user)
 
 /obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user)
-	return src.tg_ui_interact(user)
+	return ui_interact(user)
 
-
-/obj/machinery/portable_atmospherics/canister/ui_data(mob/user)
-	var/list/data = list()
+/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	if (src.destroyed)
+		return
+	// this is the data which will be sent to the ui
+	var/data[0]
 	data["name"] = name
 	data["canLabel"] = can_label ? 1 : 0
 	data["portConnected"] = connected_port ? 1 : 0
 	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
 	data["minReleasePressure"] = round(ONE_ATMOSPHERE/10)
-	data["defaultReleasePressure"] = ONE_ATMOSPHERE
 	data["maxReleasePressure"] = round(10*ONE_ATMOSPHERE)
 	data["valveOpen"] = valve_open ? 1 : 0
-
 	data["hasHoldingTank"] = holding ? 1 : 0
 	if (holding)
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
-
-	return data
-
-
-/obj/machinery/portable_atmospherics/canister/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_physical_state)
-	if (src.destroyed)
-		return
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "canister", name, 400, 400, master_ui, state)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
+		ui.set_initial_data(data)
 		ui.open()
+		ui.set_auto_update(1)
 
-
-
-/obj/machinery/portable_atmospherics/canister/ui_status(mob/user, datum/ui_state/state)
+/obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!istype(src.loc, /turf))
-		return UI_CLOSE
-	return ..()
-
-
-/obj/machinery/portable_atmospherics/canister/ui_act(action, params)
-	switch(action)
-		if("relabel")
-			if (can_label)
-				var/list/colors = list(\
-					"\[N2O\]" = "redws", \
-					"\[N2\]" = "red", \
-					"\[O2\]" = "blue", \
-					"\[Fuel\]" = "orange", \
-					"\[CO2\]" = "black", \
-					"\[Air\]" = "grey", \
-					"\[CAUTION\]" = "yellow", \
-				)
-				var/label = input("Choose canister label", "Gas canister") as null|anything in colors
-				if (label)
-					src.canister_color = colors[label]
-					src.icon_state = colors[label]
-					src.name = "\improper Canister: [label]"
-		if("pressure")
-			var/diff = text2num(params["adjust"])
-			if(diff > 0)
-				release_pressure = min(10*ONE_ATMOSPHERE, release_pressure+diff)
+		return 0
+	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
+		usr << browse(null, "window=canister")
+		onclose(usr, "canister")
+		return
+	if(href_list["toggle"])
+		if (valve_open)
+			if (holding)
+				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
 			else
-				release_pressure = max(ONE_ATMOSPHERE/10, release_pressure+diff)
-
-		if("valve")
+				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
+		else
+			if (holding)
+				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+			else
+				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+				log_open()
+		valve_open = !valve_open
+	if (href_list["remove_tank"])
+		if(holding)
 			if (valve_open)
-				if (holding)
-					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
-				else
-					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
-			else
-				if (holding)
-					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
-				else
-					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
-					log_open()
-			valve_open = !valve_open
+				valve_open = 0
+				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+			if(istype(holding, /obj/item/tank))
+				holding.manipulated_by = usr.real_name
+			holding.loc = loc
+			holding = null
 
-		if("eject")
-			if(holding)
-				if (valve_open)
-					valve_open = 0
-					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
-				if(istype(holding, /obj/item/tank))
-					holding.manipulated_by = usr.real_name
-				holding.forceMove(get_turf(src))
-				holding = null
-				update_icon()
-	return TRUE
+	if (href_list["pressure_adj"])
+		var/diff = text2num(href_list["pressure_adj"])
+		if(diff > 0)
+			release_pressure = min(10*ONE_ATMOSPHERE, release_pressure+diff)
+		else
+			release_pressure = max(ONE_ATMOSPHERE/10, release_pressure+diff)
+
+	if (href_list["relabel"])
+		if (can_label)
+			var/list/colors = list(\
+				"\[N2O\]" = "redws", \
+				"\[N2\]" = "red", \
+				"\[O2\]" = "blue", \
+				"\[Phoron\]" = "orange", \
+				"\[CO2\]" = "black", \
+				"\[Air\]" = "grey", \
+				"\[CAUTION\]" = "yellow", \
+			)
+			var/label = input("Choose canister label", "Gas canister") as null|anything in colors
+			if (label)
+				src.canister_color = colors[label]
+				src.icon_state = colors[label]
+				src.name = "\improper Canister: [label]"
+
+	src.add_fingerprint(usr)
+	update_icon()
+	return 1
 
 /obj/machinery/portable_atmospherics/canister/phoron/New()
 	..()
