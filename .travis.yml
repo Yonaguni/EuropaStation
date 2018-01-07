@@ -17,7 +17,6 @@ env:
     - MAP_PATH=testing
 cache:
   directories:
-    - tgui/node_modules
     - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
 
 addons:
@@ -28,8 +27,6 @@ addons:
       - libstdc++6:i386
 
 install:
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_VERSION
-  - npm install -g gulp-cli
   - pip install --user PyYaml -q
   - pip install --user beautifulsoup4 -q
 
