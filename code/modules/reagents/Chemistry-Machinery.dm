@@ -167,14 +167,15 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 60) amount_per_pill = 60
 
-			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
+			var/pill_label = sanitizeSafe(input(usr,"Label (leave blank for no label)","Label your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
+			if(pill_label == "") pill_label = null
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 			while (count--)
 				var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(src.loc)
-				if(!name) name = reagents.get_master_reagent_name()
-				P.name = "[name] pill"
+				if(pill_label)
+					P.desc = "A pill. It is labelled with '[pill_label]' in tiny text."
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to_obj(P,amount_per_pill)
 				if(src.loaded_pill_bottle)

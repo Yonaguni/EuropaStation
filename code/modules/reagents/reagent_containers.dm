@@ -17,10 +17,10 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/reagent_containers/New()
-	..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
+	..()
 
 /obj/item/reagent_containers/attack_self(var/mob/user)
 	return
@@ -82,6 +82,10 @@
 /obj/item/reagent_containers/proc/feed_sound(var/mob/user)
 	return
 
+/obj/item/reagent_containers/proc/feed_self_to(var/mob/user)
+	if(istype(user) && istype(reagents))
+		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
+
 /obj/item/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target) // This goes into attack
 	if(!istype(target))
 		return 0
@@ -103,7 +107,7 @@
 
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 		self_feed_message(user)
-		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
+		feed_self_to(user)
 		feed_sound(user)
 		return 1
 	else
@@ -130,7 +134,7 @@
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [name] by [target.name] ([target.ckey]). Reagents: [contained]</font>")
 		msg_admin_attack("[key_name(user)] fed [key_name(target)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
+		feed_self_to(target)
 		feed_sound(user)
 		return 1
 
