@@ -167,10 +167,6 @@ var/global/datum/controller/gameticker/ticker
 	*/
 
 	Master.RoundStart()
-
-	if(config.sql_enabled)
-		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-
 	return 1
 
 /datum/controller/gameticker
@@ -356,10 +352,6 @@ var/global/datum/controller/gameticker/ticker
 					feedback_set_details("end_proper","proper completion")
 					if(!delay_end)
 						world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
-
-
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
 
 				if(!delay_end)
 					sleep(restart_timeout)

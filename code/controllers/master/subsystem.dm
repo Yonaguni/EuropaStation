@@ -172,7 +172,7 @@
 	init_time = time
 	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
 	admin_notice("<span class='danger'>[msg]</span>", R_DEBUG)
-	world.log << "SS Init: [msg]"
+	world.log << "<b>SS Init:</b> [msg]"
 	log_ss_init(msg)
 	return time
 

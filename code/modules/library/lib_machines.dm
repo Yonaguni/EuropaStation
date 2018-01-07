@@ -42,6 +42,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];setcategory=1'>Filter by Category: [category]</A><BR>
 			<A href='?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
 			<A href='?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
+		/*
 		if(1)
 			establish_old_db_connection()
 			if(!dbcon_old.IsConnected())
@@ -63,6 +64,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
 				dat += "</table><BR>"
 			dat += "<A href='?src=\ref[src];back=1'>\[Go Back\]</A><BR>"
+		*/
 	user << browse(dat, "window=publiclibrary")
 	onclose(user, "publiclibrary")
 
@@ -78,21 +80,21 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			title = sanitize(newtitle)
 		else
 			title = null
-		title = sanitizeSQL(title)
+		//title = sanitizeSQL(title)
 	if(href_list["setcategory"])
 		var/newcategory = input("Choose a category to search for:") in list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
 			category = "Any"
-		category = sanitizeSQL(category)
+		//category = sanitizeSQL(category)
 	if(href_list["setauthor"])
 		var/newauthor = input("Enter an author to search for:") as text|null
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
 			author = null
-		author = sanitizeSQL(author)
+		//author = sanitizeSQL(author)
 	if(href_list["search"])
 		SQLquery = "SELECT author, title, category, id FROM library WHERE "
 		if(category == "Any")
@@ -134,6 +136,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
 /obj/machinery/librarycomp/attack_hand(var/mob/user)
+/*
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -232,9 +235,9 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
 			<A href='?src=\ref[src];arccheckout=1'>Yes.</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
-
 	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
+*/
 	onclose(user, "library")
 
 /obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
@@ -258,6 +261,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		onclose(usr, "library")
 		return
 
+/*
 	if(href_list["switchscreen"])
 		switch(href_list["switchscreen"])
 			if("0")
@@ -392,9 +396,11 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				spawn() src.Topic(nhref, params2list(nhref), src)
 	if(href_list["sort"] in list("author", "title", "category"))
 		sortby = href_list["sort"]
+	return
+*/
+
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
-	return
 
 /*
  * Library Scanner
