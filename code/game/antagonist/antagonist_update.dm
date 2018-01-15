@@ -49,7 +49,6 @@
 	if(!antag_indicator || !player.current)
 		return
 	spawn(0)
-
 		var/give_to_player = (!faction_invisible || !(player in faction_members))
 		for(var/datum/mind/antag in current_antagonists)
 			if(!antag.current)
