@@ -1996,7 +1996,7 @@
 "aMt" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/wood,/area/europa/civil/library)
 "aMu" = (/obj/machinery/light/small,/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/effect/floor_decal/corner/yellow/full,/turf/simulated/floor/tiled,/area/europa/civil/library)
 "aMv" = (/obj/structure/bed/chair/comfy/brown{dir = 1},/obj/effect/floor_decal/corner/yellow/full,/turf/simulated/floor/tiled,/area/europa/civil/library)
-"aMw" = (/obj/structure/cult/tome,/obj/item/radio/intercom{dir = 8; pixel_x = 32},/obj/effect/floor_decal/corner/yellow/full,/turf/simulated/floor/tiled,/area/europa/civil/library)
+"aMw" = (/obj/item/radio/intercom{dir = 8; pixel_x = 32},/obj/effect/floor_decal/corner/yellow/full,/turf/simulated/floor/tiled,/area/europa/civil/library)
 "aMx" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/chapel{tag = "icon-chapel (NORTH)"; icon_state = "chapel"; dir = 1},/turf/simulated/floor/tiled/dark,/area/europa/civil/chapel)
 "aMy" = (/obj/effect/floor_decal/chapel{tag = "icon-chapel (EAST)"; icon_state = "chapel"; dir = 4},/turf/simulated/floor/tiled/dark,/area/europa/civil/chapel)
 "aMz" = (/turf/simulated/floor/carpet,/area/europa/civil/chapel)

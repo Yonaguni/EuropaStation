@@ -35,9 +35,6 @@
 	mob_swap_flags = HUMAN|SIMPLE_ANIMAL|MONKEY
 	mob_push_flags = ALLMOBS
 
-/mob/living/simple_animal/construct/cultify()
-	return
-
 /mob/living/simple_animal/construct/New()
 	..()
 	name = text("[initial(name)] ([rand(1, 1000)])")

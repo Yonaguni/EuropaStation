@@ -18,9 +18,6 @@
 	if(istype(O, /obj/item/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
@@ -148,9 +145,6 @@
 		return
 	if(istype(O, /obj/item/book))
 		if(volume < 5)
-			return
-		if(istype(O, /obj/item/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null

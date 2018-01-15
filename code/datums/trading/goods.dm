@@ -140,7 +140,6 @@
 								/obj/item/clothing/head/bio_hood          = TRADER_BLACKLIST_ALL,
 								/obj/item/clothing/head/bomb_hood         = TRADER_BLACKLIST_ALL,
 								/obj/item/clothing/head/chameleon         = TRADER_BLACKLIST,
-								/obj/item/clothing/head/culthood          = TRADER_BLACKLIST_ALL,
 								/obj/item/clothing/head/helmet            = TRADER_BLACKLIST_ALL,
 								/obj/item/clothing/head/lightrig          = TRADER_BLACKLIST_ALL,
 								/obj/item/clothing/head/radiation         = TRADER_BLACKLIST,
