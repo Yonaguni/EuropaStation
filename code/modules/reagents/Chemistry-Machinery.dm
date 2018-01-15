@@ -172,7 +172,7 @@
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
-			while (count--)
+			while (count-- && count >= 0)
 				var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(src.loc)
 				if(pill_label)
 					P.desc = "A pill. It is labelled with '[pill_label]' in tiny text."
