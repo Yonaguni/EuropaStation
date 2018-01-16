@@ -140,9 +140,49 @@
 	reagent_state = LIQUID
 	color = "#CCCCFF"
 	metabolism = REM * 0.15
+	overdose = 20
 
 /datum/reagent/threeeye/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_THIRDEYE, 1)
+
+var/static/list/threeeye_overdose_messages = list(
+	"Your name is called. It is your time.",
+	"You are dissolving. Your hands are wax...",
+	"<b>THE SIGNAL THE SIGNAL THE SIGNAL THE SIGNAL</b>",
+	"<b>IT CRIES IT CRIES IT WAITS IT CRIES</b>",
+	"It all runs together. It all mixes.",
+	"It is done. It is over. You are done. You are over.",
+	"You won't forget. Don't forget. Don't forget.",
+	"Light seeps across the edges of your vision...",
+	"Something slides and twitches within your sinus cavity...",
+	"Your bowels roil. It waits within.",
+	"Your gut churns. You are heavy with potential.",
+	"Your heart flutters. It is winged and caged in your chest.",
+	"There is a precious thing, behind your eyes.",
+	"Everything is ending. Everything is beginning.",
+	"Nothing ends. Nothing begins.",
+	"Wake up. Please wake up.",
+	"Stop it! You're hurting them!",
+	"<b>NOT YOURS NOT YOURS NOT YOURS NOT YOURS</b>",
+	"We miss you. Where are you?",
+	"Come back from there. Please.",
+	"<b>That is not for you!</b>",
+	"It's too soon for this. Please go back.",
+	"<b>IT RUNS IT RUNS IT RUNS IT RUNS</b>",
+	"<b>THE BLOOD THE BLOOD THE BLOOD THE BLOOD</b>",
+	"<b>THE LIGHT THE DARK A STAR IN CHAINS</b>"
+	)
+
+/datum/reagent/threeeye/overdose(var/mob/living/carbon/M, var/alien)
+	..()
+	M.adjustBrainLoss(rand(0.1, 1))
+	M.hallucination = max(M.hallucination, 5)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.psi)
+			if(prob(0.01)) // MAXIMUM CHEESE ENGAGE.
+				to_chat(H, "<span class='warning'>[pick(threeeye_overdose_messages)]</span>")
+			H.psi.check_latency_trigger(1, "a Three Eye overdose")
 
 /datum/reagent/short
 	name = "Short"

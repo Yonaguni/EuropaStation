@@ -19,6 +19,10 @@ var/datum/antagonist/paramount/paramounts
 	id_type = /obj/item/card/id/syndicate
 	faction = "paramount"
 
+/datum/antagonist/paramount/New()
+	..()
+	paramounts = src
+
 /datum/antagonist/paramount/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
 	var/obj/item/card/id/W = ..(assignment, player, equip = 0)
 	if(!W) return

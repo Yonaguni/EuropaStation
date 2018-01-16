@@ -32,14 +32,16 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len) return
+
+	. = ..()
+	if(. || (!gloves && !mutations.len))
+		return
+
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
-
 	else if(istype(G) && G.Touch(A,0)) // for magic gloves
 		return
-
 	else if(TK in mutations)
 		A.attack_tk(src)
 
@@ -154,3 +156,6 @@
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
 	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
 		playsound(loc, attack_sound, 50, 1, 1)
+
+/mob/proc/attack_empty_hand(var/bp_hand)
+	return

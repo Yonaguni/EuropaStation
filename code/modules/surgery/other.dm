@@ -208,9 +208,9 @@
 	allowed_tools = list(
 		/obj/item/weldingtool = 80,
 		/obj/item/circular_saw = 60,
-		/obj/item/pickaxe/plasmacutter = 100,
-		/obj/item/psychic_power/kinesis/lesser = 80,
-		/obj/item/psychic_power/kinesis/paramount = 100
+		/obj/item/psychic_power/psiblade/master/grand/paramount = 100,
+		/obj/item/psychic_power/psiblade = 75,
+		/obj/item/pickaxe/plasmacutter = 100
 		)
 
 	can_infect = 0

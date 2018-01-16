@@ -1,181 +1,165 @@
-/proc/do_redactive_living_check(var/mob/living/user, var/atom/target)
-	if(!isliving(target) || isrobot(target))
-		user << "You cannot use this power on unliving matter."
+/decl/psipower/redaction
+	faculty = PSI_REDACTION
+	admin_log = FALSE
+
+/decl/psipower/redaction/proc/check_dead(var/mob/living/target)
+	if(!istype(target))
 		return FALSE
-	var/mob/living/M = target
-	if(M.isSynthetic())
-		user << "You cannot use this power on unliving matter."
-		return FALSE
-	return TRUE
-
-/decl/psychic_faculty/redaction
-	name = PSYCHIC_REDACTION
-	colour = "#ff3300"
-	powers = list(
-		/datum/psychic_power/latent,
-		/datum/psychic_power/skinsight,
-		/datum/psychic_power/mend,
-		/datum/psychic_power/cleanse,
-		/datum/psychic_power/revive
-		)
-
-/datum/psychic_power/skinsight
-	name = "Skinsight"
-	description = "See the damage beneath."
-	target_self = 1
-	target_melee = 1
-	target_mob_only = 1
-	time_cost = 30
-	melee_power_cost = 3
-
-/datum/psychic_power/skinsight/do_proximity(var/mob/living/user, var/atom/target)
-	if(do_redactive_living_check(user, target) && ..())
-		health_scan_mob(target, user, "\The [user] rests a hand on \the [target].", ignore_clumsiness = TRUE)
+	if(target.stat == DEAD || (target.status_flags & FAKEDEATH))
 		return TRUE
 	return FALSE
 
-/datum/psychic_power/mend
-	name = "Mend"
-	description = "Mend broken bones and ruptured organs."
-	target_self = 1
-	target_melee = 1
-	target_mob_only = 1
-	time_cost = 100
-	melee_power_cost = 10
+/decl/psipower/redaction/invoke(var/mob/living/user, var/mob/living/target)
+	if(check_dead(target))
+		return FALSE
+	. = ..()
 
-/datum/psychic_power/mend/do_proximity(var/mob/living/user, var/atom/target)
-	if(do_redactive_living_check(user, target))
-		if(!ishuman(target))
-			user << "<span class='warning'>\The [target]'s body is not complex enough to require healing of this kind.</span>"
-			return
+/decl/psipower/redaction/skinsight
+	name =            "Skinsight"
+	cost =            3
+	cooldown =        30
+	use_grab =        TRUE
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a check for wounds and damage."
 
-		var/mob/living/carbon/human/H = target
-		var/obj/item/organ/external/E = H.get_organ(user.zone_sel.selecting)
+/decl/psipower/redaction/skinsight/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.zone_sel.selecting != BP_CHEST)
+		return FALSE
+	. = ..()
+	if(.)
+		health_scan_mob(target, user, "\The [user] rests a hand on \the [target].", ignore_clumsiness = TRUE)
+		return TRUE
+
+/decl/psipower/redaction/mend
+	name =            "Mend"
+	cost =            7
+	cooldown =        50
+	use_melee =       TRUE
+	min_rank =        PSI_RANK_MASTER
+	use_description = "Target a patient while on help intent at melee range to mend internal bleeding and broken bones."
+
+/decl/psipower/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
+	if(!istype(user) || !istype(target))
+		return FALSE
+	. = ..()
+	if(.)
+		var/obj/item/organ/external/E = target.get_organ(user.zone_sel.selecting)
 
 		if(!E || E.is_stump())
-			user << "<span class='warning'>They are missing that limb.</span>"
-			return
+			to_chat(user, "<span class='warning'>They are missing that limb.</span>")
+			return TRUE
 
 		if(E.robotic >= ORGAN_ROBOT)
-			user << "<span class='warning'>That limb is prosthetic.</span>"
-			return
+			to_chat(user, "<span class='warning'>That limb is prosthetic.</span>")
+			return TRUE
 
-		if(..())
+		user.visible_message("<span class='notice'><i>\The [user] rests a hand on \the [target]'s [E.name]...</i></span>")
+		to_chat(target, "<span class='notice'>A healing warmth suffuses you.</span>")
 
-			user.visible_message("<span class='notice'><i>\The [user] rests a hand on \the [target]'s [E.name]...</i></span>")
-			target << "<span class='notice'>A healing warmth suffuses you.</span>"
-
-			for(var/datum/wound/W in E.wounds)
-				if(W.internal)
-					user << "<span class='notice'>You painstakingly mend the torn veins in \the [E], stemming the internal bleeding.</span>"
-					E.wounds -= W
-					E.update_damages()
-					return TRUE
-				if(W.bleeding() && W.wound_damage() <= W.bleed_threshold)
-					user << "<span class='notice'>You knit together severed veins and broken flesh, stemming the bleeding.</span>"
-					W.bleed_timer = 0
-					E.status &= ~ORGAN_BLEEDING
-					return TRUE
-
+		for(var/datum/wound/W in E.wounds)
+			if(W.internal)
+				to_chat(user, "<span class='notice'>You painstakingly mend the torn veins in \the [E], stemming the internal bleeding.</span>")
+				E.wounds -= W
+				E.update_damages()
+				return TRUE
+			if(W.bleeding() && W.wound_damage() <= W.bleed_threshold)
+				to_chat(user, "<span class='notice'>You knit together severed veins and broken flesh, stemming the bleeding.</span>")
+				W.bleed_timer = 0
+				E.status &= ~ORGAN_BLEEDING
+				return TRUE
 			if(E.status & ORGAN_BROKEN)
-				user << "<span class='notice'>You coax shattered bones to come together and fuse, mending the break.</span>"
+				to_chat(user, "<span class='notice'>You coax shattered bones to come together and fuse, mending the break.</span>")
 				E.status &= ~ORGAN_BROKEN
 				E.stage = 0
 				return TRUE
+		for(var/obj/item/organ/internal/I in E.internal_organs)
+			if(I.robotic < ORGAN_ROBOT && I.damage > 0)
+				to_chat(user, "<span class='notice'>You encourage the damaged tissue of \the [I] to repair itself.</span>")
+				I.damage = max(0, I.damage - rand(3,5))
+				return TRUE
+		to_chat(user, "<span class='notice'>You can find nothing within \the [target]'s [E.name] to mend.</span>")
+		return FALSE
 
-			for(var/obj/item/organ/internal/I in E.internal_organs)
-				if(I.robotic < ORGAN_ROBOT && I.damage > 0)
-					user << "<span class='notice'>You encourage the damaged tissue of \the [I] to repair itself.</span>"
-					I.damage = max(0, I.damage - rand(3,5))
-					return
+/decl/psipower/redaction/cleanse
+	name =            "Cleanse"
+	cost =            9
+	cooldown =        60
+	use_melee =       TRUE
+	min_rank =        PSI_RANK_GRANDMASTER
+	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
-			user << "<span class='notice'>You can find nothing within \the [target]'s [E.name] to mend.</span>"
-			return TRUE
-
-	return FALSE
-
-/datum/psychic_power/cleanse
-	name = "Cleanse"
-	description = "Purge the body of toxins and radiation."
-	target_self = 1
-	target_melee = 1
-	target_mob_only = 1
-	time_cost = 50
-	melee_power_cost = 10
-
-/datum/psychic_power/cleanse/do_proximity(var/mob/living/user, var/atom/target)
-	if(do_redactive_living_check(user, target) && ..())
-
-		user.visible_message("<span class='notice'><i>\The [user] rests a hand on \the [target]...</i></span>")
-		target << "<span class='notice'>A healing warmth suffuses you.</span>"
-
+/decl/psipower/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
+	to_chat(world, "CLEANSE 1")
+	if(!istype(user) || !istype(target))
+		to_chat(world, "CLEANSE 2")
+		return FALSE
+	. = ..()
+	if(.)
+		to_chat(world, "CLEANSE 3")
+		// No messages, as Mend procs them even if it fails to heal anything, and Cleanse is always checked after Mend.
 		var/removing = rand(20,25)
-		var/mob/living/M = target
-
-		if(M.radiation)
-			user << "<span class='notice'>You repair some of the radiation-damaged tissue within \the [target]...</span>"
-			if(M.radiation > removing)
-				M.radiation -= removing
+		if(target.radiation)
+			to_chat(user, "<span class='notice'>You repair some of the radiation-damaged tissue within \the [target]...</span>")
+			if(target.radiation > removing)
+				target.radiation -= removing
 			else
-				M.radiation = 0
-			return
-
-		if(removing && M.getCloneLoss())
-			user << "<span class='notice'>You stitch together some of the mangled DNA within \the [target]...</span>"
-			if(M.getCloneLoss() >= removing)
-				M.adjustCloneLoss(-removing)
-			else
-				M.adjustCloneLoss(-(M.getCloneLoss()))
-			return
-
-		if(removing && M.getToxLoss())
-			user << "<span class='notice'>You purge some of the toxins infusing \the [target]...</span>"
-			if(M.getToxLoss() >= removing)
-				M.adjustToxLoss(-removing)
-			else
-				M.adjustToxLoss(-(M.getToxLoss()))
-			return
-
-		user << "<span class='warning'>You can find no genetic, radiation or toxin damage to heal within \the [target].</span>"
-		return TRUE
-	return FALSE
-
-/datum/psychic_power/revive
-	name = "Revive"
-	description = "Back from the gates of death."
-	target_melee = 1
-	target_mob_only = 1
-	time_cost = 150
-	melee_power_cost = 25
-
-/datum/psychic_power/revive/do_proximity(var/mob/living/user, var/atom/target)
-	if(do_redactive_living_check(user, target))
-		var/mob/living/M = target
-		if(M.stat != DEAD && !(M.status_flags & FAKEDEATH))
-			user << "<span class='warning'>\The [target] is still alive!</span>"
-			return
-
-		if((world.time - M.timeofdeath) > 6000)
-			user << "<span class='warning'>\The [target] has been dead for too long to revive.</span>"
-			return
-
-		if(..())
-			user.visible_message("<span class='notice'><i>\The [user] splays out their hands over \the [target]'s body...</i></span>")
-			if(!do_after(user, 30, target, 0, 1))
-				user.backblast(rand(10,25))
-				return
-
-			for(var/mob/observer/G in dead_mob_list_)
-				if(G.mind && G.mind.current == target && G.client)
-					G << "<span class='notice'>Your body has been revived, <b>Re-Enter Corpse</b> to return to it.</span>"
-					break
-
-			M << "<span class='notice'>Life floods back into your body!</span>"
-			M.visible_message("<span class='notice'>\The [target] shudders violently!</span>")
-			if(M.status_flags & FAKEDEATH)
-				M.changeling_revive()
-			else
-				M.adjustOxyLoss(-rand(15,20))
-				M.basic_revival()
+				target.radiation = 0
 			return TRUE
-	return FALSE
+		if(removing && target.getCloneLoss())
+			to_chat(user, "<span class='notice'>You stitch together some of the mangled DNA within \the [target]...</span>")
+			if(target.getCloneLoss() >= removing)
+				target.adjustCloneLoss(-removing)
+			else
+				target.adjustCloneLoss(-(target.getCloneLoss()))
+			return TRUE
+		if(removing && target.getToxLoss())
+			to_chat(user, "<span class='notice'>You purge some of the toxins infusing \the [target]...</span>")
+			if(target.getToxLoss() >= removing)
+				target.adjustToxLoss(-removing)
+			else
+				target.adjustToxLoss(-(target.getToxLoss()))
+			return TRUE
+		to_chat(user, "<span class='warning'>You can find no genetic, radiation or toxin damage to heal within \the [target].</span>")
+		to_chat(world, "CLEANSE 4")
+		return FALSE
+
+/decl/psipower/revive
+	name =            "Revive"
+	cost =            25
+	cooldown =        80
+	use_grab =        TRUE
+	min_rank =        PSI_RANK_PARAMOUNT
+	faculty =         PSI_REDACTION
+	use_description = "Obtain a grab on a dead target, target the head, then select help intent and use the grab against them to attempt to bring them back to life. The process is lengthy and failure is punished harshly."
+	admin_log = FALSE
+
+/decl/psipower/revive/invoke(var/mob/living/user, var/mob/living/target)
+	if(!isliving(target) || !istype(target) || user.zone_sel.selecting != BP_HEAD)
+		return FALSE
+	. = ..()
+	if(.)
+		if(target.stat != DEAD && !(target.status_flags & FAKEDEATH))
+			to_chat(user, "<span class='warning'>This person is aleady alive!</span>")
+			return TRUE
+
+		if((world.time - target.timeofdeath) > 6000)
+			to_chat(user, "<span class='warning'>\The [target] has been dead for too long to revive.</span>")
+			return TRUE
+
+		user.visible_message("<span class='notice'><i>\The [user] splays out their hands over \the [target]'s body...</i></span>")
+		if(!do_after(user, 30, target, 0, 1))
+			user.psi.backblast(rand(10,25))
+			return TRUE
+
+		for(var/mob/observer/G in dead_mob_list_)
+			if(G.mind && G.mind.current == target && G.client)
+				G << "<span class='notice'>Your body has been revived, <b>Re-Enter Corpse</b> to return to it.</span>"
+				break
+		to_chat(target, "<span class='notice'>Life floods back into your body!</span>")
+		target.visible_message("<span class='notice'>\The [target] shudders violently!</span>")
+		if(target.status_flags & FAKEDEATH)
+			target.changeling_revive()
+		else
+			target.adjustOxyLoss(-rand(15,20))
+			target.basic_revival()
+		return TRUE

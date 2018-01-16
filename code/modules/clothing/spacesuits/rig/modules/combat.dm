@@ -130,8 +130,7 @@
 		deactivate()
 		return
 
-	var/obj/item/melee/energy/blade/blade = new(M)
-	blade.creator = M
+	var/obj/item/melee/energy/blade/blade = new(M, M)
 	M.put_in_hands(blade)
 
 /obj/item/rig_module/energy_blade/deactivate()
