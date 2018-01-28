@@ -467,28 +467,31 @@ var/global/list/light_bulb_type_cache = list()
 			return
 
 	// make it burn hands if not wearing fire-insulated gloves
-	if(on)
-		var/prot = 0
-		var/mob/living/carbon/human/H = user
+	if(user.Adjacent(src))
+		if(on)
+			var/prot = 0
+			var/mob/living/carbon/human/H = user
 
-		if(istype(H))
-			if(H.getSpeciesOrSynthTemp(HEAT_LEVEL_1) > LIGHT_BULB_TEMPERATURE)
+			if(istype(H))
+				if(H.getSpeciesOrSynthTemp(HEAT_LEVEL_1) > LIGHT_BULB_TEMPERATURE)
+					prot = 1
+				else if(H.gloves)
+					var/obj/item/clothing/gloves/G = H.gloves
+					if(G.max_heat_protection_temperature)
+						if(G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
+							prot = 1
+			else
 				prot = 1
-			else if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.max_heat_protection_temperature)
-					if(G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
-						prot = 1
-		else
-			prot = 1
 
-		if(prot > 0)
-			user << "You remove the light [get_fitting_name()]"
+			if(prot > 0)
+				to_chat(user, "<span class='notice'>You remove the light [get_fitting_name()].</span>")
+			else
+				to_chat(user, "<span class='warning'>You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand.")
+				return				// if burned, don't remove the light
 		else
-			user << "You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand."
-			return				// if burned, don't remove the light
-	else
-		user << "You remove the light [get_fitting_name()]."
+			to_chat(user, "<span class='notice'>You remove the light [get_fitting_name()].")
+	else // TK
+		to_chat(user, "<span class='notice'>You telekinetically remove the light [get_fitting_name()].")
 
 	// create a light tube/bulb item and put it in the user's hand
 	user.put_in_active_hand(remove_bulb())	//puts it in our active hand

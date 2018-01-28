@@ -1931,6 +1931,7 @@
 #include "code\modules\psychics\equipment\psipower.dm"
 #include "code\modules\psychics\equipment\psipower_blade.dm"
 #include "code\modules\psychics\equipment\psipower_tinker.dm"
+#include "code\modules\psychics\equipment\psipower_tk.dm"
 #include "code\modules\psychics\events\_psi.dm"
 #include "code\modules\psychics\events\mini_spasm.dm"
 #include "code\modules\psychics\events\psi_balm.dm"

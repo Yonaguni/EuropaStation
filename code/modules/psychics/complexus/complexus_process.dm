@@ -36,24 +36,11 @@
 /datum/psi_complexus/process()
 
 	var/update_hud
-
-	/*
-	if(!suppressed && owner.stat == CONSCIOUS && !telekinesis_suppressed && get_rank(PSI_PSYCHOKINESIS) >= PSI_RANK_GRANDMASTER && spend_power(3))
-		if(!(TK in owner.mutations))
-			owner.mutations |= TK
-			update_hud = TRUE
-	else
-		if(TK in owner.mutations)
-			owner.mutations &= ~TK
-			update_hud = TRUE
-	*/
-
 	if(stun)
 		stun--
 		if(stun)
-			if(!suppressed || !telekinesis_suppressed)
+			if(!suppressed)
 				suppressed = TRUE
-				telekinesis_suppressed = TRUE
 				update_hud = TRUE
 		else
 			to_chat(owner, "<span class='notice'>You have recovered your mental composure.</span>")
