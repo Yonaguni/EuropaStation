@@ -17,19 +17,21 @@
 		return
 
 	owner.psi.telekinesis_suppressed = !owner.psi.telekinesis_suppressed
+	/*
 	if(owner.psi.telekinesis_suppressed)
 		to_chat(owner, "<span class='notice'>You have <b>suppressed your telekinesis</b>.</span>")
 		owner.mutations &= ~TK
 	else
 		to_chat(owner, "<span class='notice'>You are <b>no longer suppressing</b> your telekinesis.</span>")
 		owner.mutations |= TK
+	*/
 	update_icon()
 
 /obj/screen/psi/tk/update_icon()
 	if(owner.psi.get_rank(PSI_PSYCHOKINESIS) < PSI_RANK_GRANDMASTER)
 		invisibility = 101
 		owner.psi.telekinesis_suppressed = TRUE
-		owner.mutations &= ~TK
+		//owner.mutations &= ~TK
 	else
 		if(owner.psi.telekinesis_suppressed)
 			icon_state = "tk_disabled"

@@ -17,11 +17,11 @@
 	var/medication_name
 
 /obj/item/reagent_containers/pill/get_default_codex_value(var/mob/user)
-	return (user.has_aspect(ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
+	return (HAS_ASPECT(user, ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
 
 /obj/item/reagent_containers/pill/examine(var/mob/user)
 	..(user, 1)
-	if(!isnull(actual_reagent_name) && !isnull(medication_name) && user.has_aspect(ASPECT_PHARMACIST))
+	if(!isnull(actual_reagent_name) && !isnull(medication_name) && HAS_ASPECT(user, ASPECT_PHARMACIST))
 		to_chat(user, "<span class='notice'>As far as you know, the brandname is <b>[medication_name]</b> and the active ingredient is <b>[actual_reagent_name]</b>.</span>")
 
 /obj/item/reagent_containers/pill/attack(var/mob/M, var/mob/user, var/def_zone)

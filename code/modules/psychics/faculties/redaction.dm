@@ -157,9 +157,6 @@
 				break
 		to_chat(target, "<span class='notice'>Life floods back into your body!</span>")
 		target.visible_message("<span class='notice'>\The [target] shudders violently!</span>")
-		if(target.status_flags & FAKEDEATH)
-			target.changeling_revive()
-		else
-			target.adjustOxyLoss(-rand(15,20))
-			target.basic_revival()
+		target.adjustOxyLoss(-rand(15,20))
+		target.basic_revival()
 		return TRUE

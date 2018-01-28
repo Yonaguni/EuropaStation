@@ -36,6 +36,8 @@
 /datum/psi_complexus/process()
 
 	var/update_hud
+
+	/*
 	if(!suppressed && owner.stat == CONSCIOUS && !telekinesis_suppressed && get_rank(PSI_PSYCHOKINESIS) >= PSI_RANK_GRANDMASTER && spend_power(3))
 		if(!(TK in owner.mutations))
 			owner.mutations |= TK
@@ -44,6 +46,7 @@
 		if(TK in owner.mutations)
 			owner.mutations &= ~TK
 			update_hud = TRUE
+	*/
 
 	if(stun)
 		stun--

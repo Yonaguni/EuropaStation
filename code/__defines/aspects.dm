@@ -1,4 +1,16 @@
-#define HAS_ASPECT(holder, aspect) ismob(holder) && holder:mind && LAZYLEN(holder:mind.aspects) && holder:mind.aspects[aspect]
+#define HAS_ASPECT(holder, check_aspect) (ismob(holder) && holder.mind && LAZYLEN(holder.mind.aspects) && holder.mind.aspects[check_aspect])
+
+#define ADD_ASPECT(holder, add_aspect) \
+	if(!HAS_ASPECT(holder, add_aspect)) { \
+		var/decl/aspect/A = aspects_by_name[add_aspect]; \
+		if(holder && holder.mind && istype(A)) { \
+			if(!holder.mind.aspects) { \
+				holder.mind.aspects = list(); \
+			} \
+			holder.mind.aspects[add_aspect] = TRUE; \
+			A.do_post_spawn(holder); \
+		} \
+	}
 
 // General aspects.
 #define ASPECT_HOTSTUFF         "Hot Stuff"
