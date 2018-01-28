@@ -134,3 +134,4 @@
 		var/decl/aspect/A = aspects_by_name[aspect]
 		if(istype(A))
 			A.do_post_spawn(src)
+	if(psi) psi.update() // In case of psi aspects, which defer the update to avoid spamming it 20 times in a row.

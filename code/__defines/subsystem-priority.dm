@@ -33,6 +33,7 @@
 #define SS_PRIORITY_OPENTURF       10	// Open turf icon generation/updates.
 
 // SS_BACKGROUND
+#define SS_PRIORITY_PSYCHICS      15	// Psychic complexus processing.
 #define SS_PRIORITY_PROCESSING    15	// Generic datum processor. Replaces objects processor.
 #define SS_PRIORITY_OBJECTS       15	// processing_objects processing.
 #define SS_PRIORITY_WIRELESS      12	// Handles pairing of wireless devices. Usually will be asleep.

@@ -185,16 +185,15 @@
 	var/mob/living/creator
 	var/datum/effect/system/spark_spread/spark_system
 
-/obj/item/melee/energy/blade/New()
-
+/obj/item/melee/energy/blade/New(var/newloc, var/mob/_creator)
+	creator = _creator
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-
-	processing_objects |= src
+	START_PROCESSING(SSprocessing, src)
 
 /obj/item/melee/energy/blade/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/melee/energy/blade/get_storage_cost()

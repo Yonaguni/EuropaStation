@@ -1,41 +1,46 @@
-/decl/psychic_faculty/psychokinesis
-	name = PSYCHIC_PSYCHOKINESIS
-	colour = "#ff9900"
-	powers = list(
-		/datum/psychic_power/latent,
-		/datum/psychic_power/rend,
-		/datum/psychic_power/tinker,
-		/datum/psychic_power/telekinesis,
-		/datum/psychic_power/sunder
-		)
+var/list/psychokinetic_faculty = list(
+	new /decl/psipower/psychokinesis/psiblade(),
+	new /decl/psipower/psychokinesis/tinker()
+	)
 
-/datum/psychic_power/rend
-	name = "Rend"
-	description = "Your bare hands, cloaked in power, are enough to tear through metal."
-	target_self = 1
-	item_path = /obj/item/psychic_power/kinesis/lesser
+/decl/psipower/psychokinesis
+	faculty = PSI_PSYCHOKINESIS
+	use_manifest = TRUE
 
-/datum/psychic_power/tinker
-	name = "Tinker"
-	description = "You no longer require tools to modify or alter machinery."
-	target_melee = 1
-	item_path = /obj/item/psychic_power/kinesis/tinker
+/decl/psipower/psychokinesis/psiblade
+	name =            "Psiblade"
+	cost =            20
+	cooldown =        200
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
+	admin_log = FALSE
 
-/datum/psychic_power/telekinesis
-	name = "Telekinesis"
-	description = "Manipulate objects at a distance."
-	passive = 1
-	passive_cost = 3
-
-/datum/psychic_power/telekinesis/tick(var/mob/living/user)
+/decl/psipower/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target)
+	if((target && user != target) || user.a_intent != I_HURT)
+		return FALSE
 	. = ..()
-	user.mutations |= TK
+	if(.)
+		switch(user.psi.get_rank(faculty))
+			if(PSI_RANK_PARAMOUNT)
+				return new /obj/item/psychic_power/psiblade/master/grand/paramount(user, user)
+			if(PSI_RANK_GRANDMASTER)
+				return new /obj/item/psychic_power/psiblade/master/grand(user, user)
+			if(PSI_RANK_MASTER)
+				return new /obj/item/psychic_power/psiblade/master(user, user)
+			else
+				return new /obj/item/psychic_power/psiblade(user, user)
 
-/datum/psychic_power/telekinesis/cancelled(var/mob/living/user, var/obj/item/psychic_power/caller)
+/decl/psipower/psychokinesis/tinker
+	name =            "Tinker"
+	cost =            5
+	cooldown =        50
+	min_rank =        PSI_RANK_MASTER
+	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
+	admin_log = FALSE
+
+/decl/psipower/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target)
+	if((target && user != target) || user.a_intent != I_HELP)
+		return FALSE
 	. = ..()
-	user.mutations -= TK
-
-/datum/psychic_power/sunder
-	name = "Sunder"
-	description = "Rip through walls and doors like butter."
-	item_path = /obj/item/psychic_power/kinesis/paramount
+	if(.)
+		return new /obj/item/psychic_power/tinker(user)

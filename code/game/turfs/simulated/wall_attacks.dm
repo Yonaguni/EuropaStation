@@ -180,7 +180,7 @@
 			dismantle_verb = "cutting"
 			dismantle_sound = 'sound/items/Welder.ogg'
 			cut_delay *= 0.7
-		else if(istype(W,/obj/item/melee/energy/blade) || istype(W,/obj/item/psychic_power/kinesis))
+		else if(istype(W,/obj/item/melee/energy/blade) || istype(W,/obj/item/psychic_power/psiblade/master))
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
 			cut_delay *= 0.5
@@ -211,10 +211,9 @@
 	else
 		switch(construction_stage)
 			if(6)
+				if(istype(W, /obj/item/psychic_power/psiblade/master/grand/paramount))
 
-				if(istype(W, /obj/item/psychic_power/kinesis/paramount))
-
-					user << "<span class='notice'>You sink your hands into the wall and begin trying to rip out the support frame...</span>"
+					user << "<span class='notice'>You sink \the [W] into the wall and begin trying to rip out the support frame...</span>"
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 					if(!do_after(user, 60, src))
@@ -225,7 +224,7 @@
 					user.visible_message("<span class='warning'>The wall was torn open by [user]!</span>")
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
-				else if (W.iswirecutter() || istype(W, /obj/item/psychic_power/kinesis))
+				else if (W.iswirecutter() || istype(W, /obj/item/psychic_power/psiblade/master))
 					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 					construction_stage = 5
 					new /obj/item/stack/rods( src )
@@ -261,7 +260,7 @@
 					else
 						user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 						return
-				else if (istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis))
+				else if (istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/psiblade/master))
 					cut_cover = 1
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the metal cover.</span>"
@@ -301,7 +300,7 @@
 					else
 						user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 						return
-				else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis))
+				else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W,/obj/item/psychic_power/psiblade/master))
 					cut_cover = 1
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the support rods.</span>"

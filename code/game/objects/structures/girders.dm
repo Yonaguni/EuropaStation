@@ -69,7 +69,7 @@
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
 
-	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/psiblade/master/grand/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			if(!src) return
@@ -93,7 +93,7 @@
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
-	else if((W.iswirecutter() || istype(W, /obj/item/psychic_power/kinesis)) && state == 1)
+	else if((W.iswirecutter() || istype(W,/obj/item/psychic_power/psiblade/master)) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << "<span class='notice'>Now removing support struts...</span>"
 		if(do_after(user, 40,src))
@@ -238,7 +238,7 @@
 			user << "<span class='notice'>You dissasembled the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/kinesis/paramount))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/psiblade/master/grand/paramount))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			user << "<span class='notice'>You slice apart the girder!</span>"

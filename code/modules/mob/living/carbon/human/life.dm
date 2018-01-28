@@ -680,8 +680,12 @@
 			silent = 0
 			return 1
 
+		//Hardcrit.
+		if(health <= config.health_threshold_crit)
+			Paralyse(3)
+			if(psi) psi.check_latency_trigger(1, "extreme trauma")
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
+		else if((getOxyLoss() > (species.total_health/2)))
 			Paralyse(3)
 
 		if(hallucination)
@@ -850,6 +854,7 @@
 									health_images += image(healths.icon,"softcrit")
 								if(trauma_val >= 1)
 									health_images += image(healths.icon,"hardcrit")
+
 						else if(no_damage)
 							health_images += image(healths.icon,"fullhealth")
 

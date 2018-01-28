@@ -155,7 +155,7 @@
 	allowed_tools = list(
 		/obj/item/weldingtool = 100,
 		/obj/item/pickaxe/plasmacutter = 50,
-		/obj/item/psychic_power/kinesis = 100
+		/obj/item/psychic_power/psiblade/master = 100
 	)
 
 	min_duration = 50
