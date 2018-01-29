@@ -67,10 +67,12 @@ var/list/psychokinetic_faculty = list(
 		var/distance = get_dist(user, target)
 		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS))
 			to_chat(user, "<span class='warning'>Your telekinetic power won't reach that far.</span>")
+			return FALSE
 
 		if(istype(target, /mob) || istype(target, /obj))
 			var/obj/item/psychic_power/telekinesis/tk = new(user)
 			if(tk.set_focus(target))
+				tk.sparkle()
 				user.visible_message("<span class='notice'>\The [user] reaches out.</span>")
 				return tk
 		else if(istype(target, /obj/structure))

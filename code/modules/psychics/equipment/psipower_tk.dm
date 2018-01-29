@@ -65,7 +65,7 @@
 	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
 	if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS))
 		to_chat(user, "<span class='warning'>Your telekinetic power won't reach that far.</span>")
-		return
+		return FALSE
 
 	if(target == focus)
 		attack_self(user)
