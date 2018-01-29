@@ -434,17 +434,14 @@
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
 		mind.original = new_character
-		mind.aspects = client.prefs.aspects.Copy()
+		mind.aspects = list()
+		for(var/aspect in client.prefs.aspects)
+			mind.aspects[aspect] = TRUE
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
-	new_character.dna.ready_dna(new_character)
-	new_character.dna.b_type = client.prefs.b_type
+	new_character.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
-	if(client.prefs.disabilities)
-		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
-		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
-		new_character.disabilities |= NEARSIGHTED
 
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()

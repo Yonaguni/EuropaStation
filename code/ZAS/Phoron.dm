@@ -107,14 +107,6 @@ obj/var/contaminated = 0
 					if(!(wear_mask.body_parts_covered & EYES))
 						burn_eyes()
 
-	//Genetic Corruption
-	if(vsc.plc.GENETIC_CORRUPTION)
-		if(rand(1,10000) < vsc.plc.GENETIC_CORRUPTION)
-			randmutb(src)
-			src << "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>"
-			domutcheck(src,null)
-
-
 /mob/living/carbon/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[BP_EYES]
 	if(E)

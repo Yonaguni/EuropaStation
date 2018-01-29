@@ -30,7 +30,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
-			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
+			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=get_dna_hash(),"blood_colour"= species.get_blood_colour(src),"blood_type"= b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
 			B.color = B.data["blood_colour"]
 
@@ -71,7 +71,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt)
-	if(has_aspect(ASPECT_HAEMOPHILE))
+	if(HAS_ASPECT(src, ASPECT_HAEMOPHILE))
 		amt *= 1.5
 
 	if(remove_blood(amt))
@@ -91,7 +91,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(var/obj/item/reagent_containers/container, var/amount)
 
-
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
 		B = new /datum/reagent/blood
@@ -104,8 +103,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		B.data["virus2"] = list()
 	B.data["virus2"] |= virus_copylist(src.virus2)
 	B.data["antibodies"] = src.antibodies
-	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
-	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["blood_DNA"] = get_dna_hash()
+	B.data["blood_type"] = b_type
 
 	// Putting this here due to return shenanigans.
 	if(istype(src,/mob/living/carbon/human))

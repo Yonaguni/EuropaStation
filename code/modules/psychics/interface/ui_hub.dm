@@ -11,7 +11,6 @@
 /obj/screen/psi/hub/New(var/mob/living/_owner)
 	on_cooldown = image(icon, "cooldown")
 	components = list(
-		new /obj/screen/psi/tk(_owner),
 		new /obj/screen/psi/telepathy(_owner),
 		new /obj/screen/psi/toggle_psi_menu(_owner, src)
 		)
@@ -65,7 +64,4 @@
 	to_chat(owner, "<span class='notice'>You are <b>[owner.psi.suppressed ? "now suppressing" : "no longer suppressing"]</b> your psi-power.</span>")
 	if(owner.psi.suppressed)
 		owner.psi.cancel()
-		if(!owner.psi.telekinesis_suppressed)
-			owner.psi.telekinesis_suppressed = TRUE
-
 	update_icon()

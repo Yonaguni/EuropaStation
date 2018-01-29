@@ -188,6 +188,3 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		I.pixel_x = max(3-i*3, -3) + 1 // There's a sprite layering bug for 0/0 pixelshift, so we avoid it.
 		I.pixel_y = max(4-i*4, -4) + 1
 		I.pixel_z = 0
-
-/obj/structure/table/attack_tk() // no telehulk sorry
-	return

@@ -1020,7 +1020,7 @@
 "tF" = (/obj/structure/sign{pixel_y = -32},/turf/unsimulated/floor{icon_state = "vault"; dir = 8},/area/centcom/europa/offstation/ert)
 "tG" = (/obj/structure/bed/chair,/obj/effect/landmark/start/ert,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/europa/offstation/ert)
 "tH" = (/obj/structure/table/reinforced,/obj/item/megaphone,/obj/item/megaphone,/obj/item/megaphone,/obj/item/megaphone,/turf/unsimulated/floor{icon_state = "vault"; dir = 1},/area/centcom/europa/offstation/ert)
-"tI" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/clothing/under/lower/psy/full_suit,/obj/item/clothing/head/helmet/space/paramount/lesser,/turf/unsimulated/floor{icon_state = "lino"},/area/centcom/europa/offstation/surface)
+"tI" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/clothing/under/lower/psy/full_suit,/obj/item/clothing/head/helmet/space/psi_amp/lesser,/turf/unsimulated/floor{icon_state = "lino"},/area/centcom/europa/offstation/surface)
 "tJ" = (/obj/structure/bed/chair/office/light,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/europa/offstation/ert)
 "tK" = (/obj/machinery/computer/arcade,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/europa/offstation/ert)
 "tL" = (/obj/structure/undies_wardrobe,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/europa/offstation/ert)

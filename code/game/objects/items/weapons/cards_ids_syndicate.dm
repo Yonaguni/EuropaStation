@@ -88,7 +88,7 @@
 	if(..())
 		return 1
 
-	var/user = usr
+	var/mob/user = usr
 	if(href_list["electronic_warfare"])
 		electronic_warfare = text2num(href_list["electronic_warfare"])
 		user << "<span class='notice'>Electronic warfare [electronic_warfare ? "enabled" : "disabled"].</span>"
@@ -121,8 +121,7 @@
 				var/default = blood_type
 				if(default == initial(blood_type) && ishuman(user))
 					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = H.dna.b_type
+					default = H.b_type
 				var/new_blood_type = sanitize(input(user,"What blood type would you like to be written on this card?","Agent Card Blood Type",default) as null|text)
 				if(!isnull(new_blood_type) && CanUseTopic(user, state))
 					src.blood_type = new_blood_type
@@ -131,9 +130,7 @@
 			if("DNA Hash")
 				var/default = dna_hash
 				if(default == initial(dna_hash) && ishuman(user))
-					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = H.dna.unique_enzymes
+					default = user.get_dna_hash()
 				var/new_dna_hash = sanitize(input(user,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default) as null|text)
 				if(!isnull(new_dna_hash) && CanUseTopic(user, state))
 					src.dna_hash = new_dna_hash
@@ -142,9 +139,7 @@
 			if("Fingerprint Hash")
 				var/default = fingerprint_hash
 				if(default == initial(fingerprint_hash) && ishuman(user))
-					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = md5(H.dna.uni_identity)
+					default = user.get_full_print()
 				var/new_fingerprint_hash = sanitize(input(user,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default) as null|text)
 				if(!isnull(new_fingerprint_hash) && CanUseTopic(user, state))
 					src.fingerprint_hash = new_fingerprint_hash

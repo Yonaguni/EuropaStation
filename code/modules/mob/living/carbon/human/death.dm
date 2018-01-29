@@ -15,7 +15,7 @@
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	..(species.gibbed_anim)
-	gibs(loc, dna, null, species.get_flesh_colour(src), species.get_blood_colour(src))
+	gibs(loc, null, species.get_flesh_colour(src), species.get_blood_colour(src))
 
 /mob/living/carbon/human/dust()
 	if(species)
@@ -70,38 +70,3 @@
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
-
-/mob/living/carbon/human/proc/ChangeToHusk()
-	if(HUSK in mutations)	return
-
-	if(f_style)
-		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE
-	if(h_style)
-		h_style = "Bald"
-	update_hair(0)
-
-	mutations.Add(HUSK)
-	for(var/obj/item/organ/external/E in organs)
-		E.disfigured = 1
-	update_body(1)
-	return
-
-/mob/living/carbon/human/proc/Drain()
-	ChangeToHusk()
-	mutations |= HUSK
-	return
-
-/mob/living/carbon/human/proc/ChangeToSkeleton()
-	if(SKELETON in src.mutations)	return
-
-	if(f_style)
-		f_style = "Shaved"
-	if(h_style)
-		h_style = "Bald"
-	update_hair(0)
-
-	mutations.Add(SKELETON)
-	for(var/obj/item/organ/external/E in organs)
-		E.disfigured = 1
-	update_body(1)
-	return

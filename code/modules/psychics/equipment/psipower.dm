@@ -27,17 +27,15 @@
 
 /obj/item/psychic_power/attack_self(var/mob/user)
 	user.drop_from_inventory(src)
-	spawn(1) if(src) qdel(src)
+	spawn if(src) qdel(src)
 
 /obj/item/psychic_power/dropped()
 	..()
-	spawn(1) if(src) qdel(src)
+	spawn if(src) qdel(src)
 
 /obj/item/psychic_power/process()
-
 	if(istype(owner))
 		owner.psi.spend_power(maintain_cost)
-
 	if(!owner || loc != owner || (owner.l_hand != src && owner.r_hand != src))
 		if(istype(loc,/mob/living))
 			var/mob/living/carbon/human/host = loc
@@ -49,4 +47,4 @@
 			host.pinned -= src
 			host.embedded -= src
 			host.drop_from_inventory(src)
-		spawn(1) if(src) qdel(src)
+		spawn if(src) qdel(src)

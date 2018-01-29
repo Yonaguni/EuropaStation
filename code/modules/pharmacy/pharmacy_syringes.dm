@@ -42,11 +42,11 @@
 	update_icon()
 
 /obj/item/reagent_containers/syringe/get_default_codex_value(var/mob/user)
-	return (user.has_aspect(ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
+	return (HAS_ASPECT(user, ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
 
 /obj/item/reagent_containers/syringe/examine(var/mob/user)
 	. = ..(user, 1)
-	if(!isnull(actual_reagent_name) && user.has_aspect(ASPECT_PHARMACIST))
+	if(!isnull(actual_reagent_name) && HAS_ASPECT(user, ASPECT_PHARMACIST))
 		to_chat(user, "<span class='notice'>As far as you know, the active ingredient is <b>[actual_reagent_name]</b>.</span>")
 
 /obj/item/reagent_containers/syringe/on_reagent_change()
@@ -87,7 +87,7 @@
 		return
 
 	if(user.a_intent == I_HURT && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
+		if(HAS_ASPECT(user, ASPECT_CLUMSY) && prob(50))
 			target = user
 		syringestab(target, user)
 		return
@@ -112,14 +112,6 @@
 						return
 					var/amount = reagents.get_free_space()
 					var/mob/living/carbon/T = target
-					if(!T.dna)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						CRASH("[T] \[[T.type]\] was missing their dna datum!")
-						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-
 					var/injtime = time //Taking a blood sample through a hardsuit takes longer due to needing to find a port.
 					var/allow = T.can_inject(user, target_zone)
 					if(!allow)

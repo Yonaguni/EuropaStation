@@ -179,8 +179,6 @@
 		src.mind.special_role = "Borer Husk"
 		src.mind.transfer_to(host)
 
-	H.ChangeToHusk()
-
 	var/obj/item/organ/internal/borer/B = new(H)
 	H.internal_organs_by_name[BP_BRAIN] = B
 	H.internal_organs |= B

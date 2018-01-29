@@ -52,13 +52,13 @@
 
 	for(var/aspect_category in aspect_categories)
 		var/datum/aspect_category/AC = aspect_categories[aspect_category]
-		if(!istype(AC))
+		if(!istype(AC) || AC.hide_from_chargen)
 			continue
 		. += "<tr><td colspan=2><hr></td></tr>"
 		. += "<tr><td colspan=2><b><center>[AC.category]</center></b></td></tr>"
 		. += "<tr><td colspan=2><hr></td></tr>"
 		for(var/decl/aspect/A in AC.aspects)
-			if(A.parent)
+			if(A.parent || !A.available_at_chargen)
 				continue
 			. += A.get_aspect_selection_data(src, pref.aspects)
 	. += "</table>"

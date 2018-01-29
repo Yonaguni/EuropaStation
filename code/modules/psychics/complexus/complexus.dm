@@ -1,6 +1,5 @@
 /datum/psi_complexus
 	var/suppressed = TRUE             // Whether or not we are suppressing our psi powers.
-	var/telekinesis_suppressed = TRUE // Whether or not we are suppressing TK.
 	var/use_intimate_mode = FALSE     // Whether or not we are using the intimate telepathic mode.
 	var/rebuild_power_cache = TRUE    // Whether or not we need to rebuild our cache of psi powers.
 
@@ -13,6 +12,7 @@
 
 	var/list/latencies                // List of all currently latent faculties.
 	var/list/ranks                    // Assoc list of psi faculties to current rank.
+	var/list/base_ranks               // Assoc list of psi faculties to base rank, in case reset is needed
 	var/list/manifested_items         // List of atoms manifested/maintained by psychic power.
 	var/next_latency_trigger = 0      // world.time minimum before a trigger can be attempted again.
 

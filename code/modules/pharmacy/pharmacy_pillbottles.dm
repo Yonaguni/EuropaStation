@@ -16,7 +16,7 @@ obj/item/storage/pill_bottle
 	var/obfuscate_contents = TRUE
 
 /obj/item/storage/pill_bottle/get_default_codex_value(var/mob/user)
-	return (user.has_aspect(ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
+	return (HAS_ASPECT(user, ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
 
 /obj/item/storage/pill_bottle/initialize()
 
@@ -46,5 +46,5 @@ obj/item/storage/pill_bottle
 
 /obj/item/storage/pill_bottle/examine(var/mob/user)
 	..(user, 1)
-	if(!isnull(actual_reagent_name) && user.has_aspect(ASPECT_PHARMACIST))
+	if(!isnull(actual_reagent_name) && HAS_ASPECT(user, ASPECT_PHARMACIST))
 		to_chat(user, "<span class='notice'>As far as you know, the active ingredient is <b>[actual_reagent_name]</b>.</span>")

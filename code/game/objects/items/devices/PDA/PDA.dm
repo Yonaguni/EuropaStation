@@ -1174,10 +1174,7 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 						user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
 
 			if(2)
-				if (!istype(C:dna, /datum/dna))
-					user << "<span class='notice'>No fingerprints found on [C]</span>"
-				else
-					user << text("<span class='notice'>\The [C]'s Fingerprints: [md5(C:dna.uni_identity)]</span>")
+				user << text("<span class='notice'>\The [C]'s Fingerprints: [C.get_full_print()]</span>")
 				if ( !(C:blood_DNA) )
 					user << "<span class='notice'>No blood found on [C]</span>"
 					if(C:blood_DNA)

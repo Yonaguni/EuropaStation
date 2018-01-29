@@ -17,7 +17,6 @@
 	return
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
-	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.stat = 0
 	if(H.mind)

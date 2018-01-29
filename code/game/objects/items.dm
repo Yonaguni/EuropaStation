@@ -490,16 +490,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
-
 	src.add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
-	//	M = user
-		/*
-		M << "<span class='warning'>You stab yourself in the eye.</span>"
-		M.sdisabilities |= BLIND
-		M.weakened += 4
-		M.adjustBruteLoss(10)
-		*/
 
 	if(istype(H))
 
@@ -572,9 +563,10 @@ var/list/global/slot_flags_enumeration = list(
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+		var/checkdna = M.get_dna_hash()
+		if(blood_DNA[checkdna])
 			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		blood_DNA[checkdna] = M.b_type
 	return 1 //we applied blood to the item
 
 /obj/item/proc/generate_blood_overlay()

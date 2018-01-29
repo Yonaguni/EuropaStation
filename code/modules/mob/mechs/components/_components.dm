@@ -27,7 +27,7 @@
 	if(.)
 		if(ready_to_install())
 			usr << "<span class='notice'>It is ready for installation.</span>"
-		else if(usr.has_aspect(ASPECT_EXOSUIT_TECH))
+		else if(HAS_ASPECT(usr, ASPECT_EXOSUIT_TECH))
 			show_missing_parts(usr)
 		else
 			usr << "<span class='notice'>You suspect it is missing an internal component or two.</span>"
@@ -42,7 +42,7 @@
 	return
 
 /obj/item/mech_component/proc/install_component(var/obj/item/thing, var/mob/user)
-	if(!user.has_aspect(ASPECT_EXOSUIT_TECH) && !do_after(user, 50))
+	if(!HAS_ASPECT(user, ASPECT_EXOSUIT_TECH) && !do_after(user, 50))
 		return 0
 	user.drop_from_inventory(thing)
 	thing.forceMove(src)

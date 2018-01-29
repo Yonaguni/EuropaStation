@@ -38,8 +38,6 @@
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 			if(src.m_intent == "run")
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -188,8 +186,6 @@
 				else
 					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
 
-			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
-				H.play_xylophone()
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
@@ -260,17 +256,6 @@
 	if(eyecheck() < intensity || override_blindness_check)
 		return ..()
 
-// ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
-// Stop! ... Hammertime! ~Carn
-
-/mob/living/carbon/proc/getDNA()
-	return dna
-
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
-	dna = newDNA
-
-// ++++ROCKDTBEN++++ MOB PROCS //END
-
 /mob/living/carbon/clean_blood()
 	. = ..()
 	if(ishuman(src))
@@ -338,7 +323,7 @@
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-	item.throw_at(target, throw_range, (has_aspect(ASPECT_NINJA) ? item.throw_speed*1.15 : item.throw_speed), src)
+	item.throw_at(target, throw_range, (HAS_ASPECT(src, ASPECT_NINJA) ? item.throw_speed*1.15 : item.throw_speed), src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
@@ -434,9 +419,6 @@
  *  Return FALSE if victim can't be devoured, DEVOUR_FAST if they can be devoured quickly, DEVOUR_SLOW for slow devour
  */
 /mob/living/carbon/proc/can_devour(atom/movable/victim)
-	if((FAT in mutations) && issmall(victim))
-		return DEVOUR_FAST
-
 	return FALSE
 
 /mob/living/carbon/onDropInto(var/atom/movable/AM)
@@ -462,7 +444,7 @@
 	if(effect && blocked < 100 && effecttype == IRRADIATE)
 		if(chem_effects[CE_ANTIRAD] == 2)
 			return 1
-		else if(chem_effects[CE_ANTIRAD] == 1 || has_aspect(ASPECT_RADHARDENED))
+		else if(chem_effects[CE_ANTIRAD] == 1 || HAS_ASPECT(src, ASPECT_RADHARDENED))
 			radiation += round((effect * blocked_mult(blocked))/2)
 		else
 			radiation += effect * blocked_mult(blocked)

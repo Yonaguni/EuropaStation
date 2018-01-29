@@ -16,10 +16,13 @@
 /datum/psi_complexus/proc/get_rank(var/faculty)
 	return (LAZYLEN(ranks) && ranks[faculty] ? ranks[faculty] : 0)
 
-/datum/psi_complexus/proc/set_rank(var/faculty, var/rank, var/defer_update)
+/datum/psi_complexus/proc/set_rank(var/faculty, var/rank, var/defer_update, var/temporary)
 	if(get_rank(faculty) != rank)
 		if(!ranks) ranks = list()
 		ranks[faculty] = rank
+		if(!temporary)
+			if(!base_ranks) base_ranks = list()
+			base_ranks[faculty] = rank
 		if(!defer_update)
 			update()
 
@@ -68,3 +71,10 @@
 				if(affecting && !affecting.is_stump())
 					affecting.droplimb(0, DROPLIMB_BLUNT)
 					if(sponge) qdel(sponge)
+
+/datum/psi_complexus/proc/reset()
+	ranks = base_ranks.Copy()
+	max_stamina = initial(max_stamina)
+	stamina = min(stamina, max_stamina)
+	cancel()
+	update()

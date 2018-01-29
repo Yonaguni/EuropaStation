@@ -24,10 +24,6 @@
 		user << "<span class='warning'>\The [H] is wearing a mask.</span>"
 		return
 
-	if(!H.dna || !H.dna.unique_enzymes)
-		user << "<span class='warning'>They don't seem to have DNA!</span>"
-		return
-
 	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message("<span class='danger'>\The [user] tries to take a swab sample from \the [H], but they move away.</span>")
 		return
@@ -40,7 +36,7 @@
 			user << "<span class='warning'>They don't have a mouth.</span>"
 			return
 		user.visible_message("[user] swabs \the [H]'s mouth for a saliva sample.")
-		dna = list(H.dna.unique_enzymes)
+		dna = list(H.get_dna_hash())
 		sample_type = "DNA"
 
 	else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)

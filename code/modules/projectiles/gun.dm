@@ -115,26 +115,20 @@
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
 /obj/item/gun/proc/special_check(var/mob/user)
-
 	if(!istype(user, /mob/living))
 		return 0
 	if(!user.IsAdvancedToolUser())
 		return 0
-
-	var/mob/living/M = user
-	if(HULK in M.mutations)
-		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
+	if(HAS_ASPECT(user, ASPECT_MEATY))
+		to_chat(user, "<span class='danger'>Your fingers are much too large for the trigger guard!</span>")
 		return 0
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+	if(HAS_ASPECT(user, ASPECT_CLUMSY) && prob(25)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
-				user.visible_message(
-					"<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>",
-					"<span class='danger'>You shoot yourself in the foot with \the [src]!</span>"
-					)
-				M.drop_item()
+				user.visible_message("<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>")
+				user.drop_item()
 		else
 			handle_click_empty(user)
 		return 0
@@ -195,7 +189,7 @@
 	if(istype(user))
 		held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
 		if(requires_two_hands && !held_twohanded)
-			if(user.has_aspect(ASPECT_DUALWIELD))
+			if(HAS_ASPECT(user, ASPECT_DUALWIELD))
 				held_acc_mod = -1
 				held_disp_mod = 1
 			else
@@ -207,7 +201,7 @@
 			held_disp_mod += 3
 		if(issmall(user))	//it sucks to be short
 			recoil = 2*recoil
-		if(user.has_aspect(ASPECT_MARKSMAN))
+		if(HAS_ASPECT(user, ASPECT_MARKSMAN))
 			held_acc_mod += 2
 
 	//actually attempt to shoot

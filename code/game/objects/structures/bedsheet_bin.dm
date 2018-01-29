@@ -167,28 +167,4 @@ LINEN BINS
 			user << "<span class='notice'>[hidden] falls out of [B]!</span>"
 			hidden = null
 
-
-	add_fingerprint(user)
-
-/obj/structure/bedsheetbin/attack_tk(var/mob/user)
-	if(amount >= 1)
-		amount--
-
-		var/obj/item/bedsheet/B
-		if(sheets.len > 0)
-			B = sheets[sheets.len]
-			sheets.Remove(B)
-
-		else
-			B = new /obj/item/bedsheet(loc)
-
-		B.loc = loc
-		user << "<span class='notice'>You telekinetically remove [B] from [src].</span>"
-		update_icon()
-
-		if(hidden)
-			hidden.loc = loc
-			hidden = null
-
-
 	add_fingerprint(user)

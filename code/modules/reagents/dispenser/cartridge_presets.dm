@@ -63,7 +63,6 @@
 
 	// ERT
 	inaprov		spawn_reagent = "adrenaline"
-	ryetalyn	spawn_reagent = "ryetalyn"
 	paracetamol	spawn_reagent = "paracetamol"
 	morphine	spawn_reagent = "morphine"
 	oxycodone	spawn_reagent = "oxycodone"

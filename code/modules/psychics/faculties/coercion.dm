@@ -60,18 +60,12 @@ var/static/list/coercion_spasm_limbs = list(
 	use_description = "Target the arms or hands on disarm intent to use a ranged attack that may rip the weapons away from target."
 
 /decl/psipower/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
-	to_chat(world, "SPASM 1")
 	if(!istype(target))
-		to_chat(world, "SPASM 2")
 		return FALSE
-	to_chat(world, "SPASM 3 [user.zone_sel.selecting]")
 	if(!coercion_spasm_limbs[user.zone_sel.selecting])
-		to_chat(world, "SPASM 4")
 		return FALSE
-	to_chat(world, "SPASM 5")
 	. = ..()
 	if(.)
-		to_chat(world, "SPASM 6")
 		to_chat(user, "<span class='danger'>You lash out, stabbing into \the [target] with a lance of psi-power.</span>")
 		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
 		if(prob(75))

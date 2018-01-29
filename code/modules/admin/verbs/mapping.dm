@@ -136,7 +136,6 @@ var/list/debug_verbs = list (
         ,/client/proc/ticklag
         ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/cmd_admin_areatest
-        ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel
         ,/client/proc/print_jobban_old
         ,/client/proc/print_jobban_old_filter

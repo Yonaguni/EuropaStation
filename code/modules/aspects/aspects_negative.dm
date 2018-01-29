@@ -47,3 +47,59 @@
 		E.min_bruised_damage -= initial(E.min_bruised_damage)*0.2
 		E.min_broken_damage -=  initial(E.min_broken_damage)*0.2
 		E.max_damage -=         initial(E.max_damage)*0.2
+
+/decl/aspect/negative/meaty_hands
+	name = ASPECT_MEATY
+	desc = "Your hands are freakishly large, and your fingers can't fit through the trigger guard of most guns."
+
+/decl/aspect/negative/epilepsy
+	name = ASPECT_EPILEPTIC
+	desc = "You are vulnerable to sudden seizures caused by strong stimuli or abuse of alcohol."
+
+/decl/aspect/negative/clumsiness
+	name = ASPECT_CLUMSY
+	desc = "You are a complete fumble fingers. The simplest actions have a way of smacking you in the face."
+	aspect_cost = -2
+
+/decl/aspect/negative/nervous
+	name = ASPECT_NERVOUS
+	desc = "You stammer. A lot."
+
+/decl/aspect/negative/nearsighted
+	name = ASPECT_NEARSIGHTED
+	desc = "Jinkies! You just can't see without your glasses."
+
+/decl/aspect/negative/nearsighted/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(holder), slot_glasses)
+	if(istype(holder.glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/G = holder.glasses
+		G.prescription = 1
+
+/decl/aspect/negative/asthmatic
+	name = ASPECT_ASTHMATIC
+	desc = "You have sensitive lungs and often suffer from coughing fits."
+
+/decl/aspect/negative/deaf
+	name = ASPECT_DEAF
+	desc = "You are extremely hard of hearing due to a neurological disorder."
+	aspect_cost = -2
+	apply_post_species_change = 1
+
+/decl/aspect/negative/deaf/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.ear_deaf = 1
+
+/decl/aspect/negative/blind
+	name = ASPECT_BLIND
+	desc = "You are visually impaired due to a neurological disorder."
+	aspect_cost = -2
+	parent_name = ASPECT_NEARSIGHTED
+	apply_post_species_change = 1
+
+/decl/aspect/negative/blind/do_post_spawn(var/mob/living/carbon/human/holder)
+	if(!istype(holder))
+		return
+	holder.blinded = 1

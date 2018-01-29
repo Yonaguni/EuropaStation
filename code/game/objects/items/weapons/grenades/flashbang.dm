@@ -39,8 +39,6 @@
 			if(ishuman(M))
 				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 					ear_safety += 2
-				if(HULK in M.mutations)
-					ear_safety += 1
 				if(istype(M:head, /obj/item/clothing/head/helmet))
 					ear_safety += 1
 
@@ -88,10 +86,7 @@
 						M << "<span class='danger'>You can't see anything!</span>"
 		if (M.ear_damage >= 15)
 			M << "<span class='danger'>Your ears start to ring badly!</span>"
-			if(!banglet && !(istype(src , /obj/item/grenade/flashbang/clusterbang)))
-				if (prob(M.ear_damage - 10 + 5))
-					M << "<span class='danger'>You can't hear anything!</span>"
-					M.sdisabilities |= DEAF
+
 		else
 			if (M.ear_damage >= 5)
 				M << "<span class='danger'>Your ears start to ring!</span>"

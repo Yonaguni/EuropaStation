@@ -2,12 +2,10 @@
 
 	if(!viewer) viewer = usr
 
-	var/use_his =    "your"
 	var/use_He_is =  "You are"
 	var/use_He_has = "You have"
 	if(istype(machine) || viewer != src)
 		var/datum/gender/G = gender_datums[gender]
-		use_his =    "[G.his]"
 		use_He_is =  "[G.He] [G.is]"
 		use_He_has = "[G.He] [G.has]"
 
@@ -62,8 +60,6 @@
 			dat += "[use_He_is] currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> your psychic operancy.<br>"
 			dat += "[use_He_is] speaking on the <b>[psi.use_intimate_mode ? "intimate" : "declamatory"] telepathic mode</b>.<br>"
 			dat += "[use_He_has] <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
-			if(psi.get_rank(PSI_PSYCHOKINESIS) >= PSI_RANK_GRANDMASTER)
-				dat += "[use_He_is] <b>[psi.telekinesis_suppressed ? "suppressing" : "not suppressing"] [use_his] telekinesis</b>.<br>"
 			dat += "<hr>"
 
 			for(var/faculty in psi.ranks)

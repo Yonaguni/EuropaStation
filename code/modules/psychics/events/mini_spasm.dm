@@ -32,7 +32,14 @@
 
 /datum/event/minispasm/proc/do_spasm(var/mob/living/victim, var/obj/item/radio/source)
 	set waitfor = 0
-	victim.disabilities |= EPILEPSY
+
+	var/list/disabilities = list(ASPECT_CLUMSY, ASPECT_EPILEPTIC, ASPECT_ASTHMATIC, ASPECT_NEARSIGHTED, ASPECT_NERVOUS, ASPECT_DEAF, ASPECT_BLIND)
+	for(var/disability in disabilities)
+		if(HAS_ASPECT(victim, disability))
+			disabilities -= disability
+	if(disabilities.len)
+		ADD_ASPECT(victim, pick(disabilities))
+
 	if(victim.psi)
 		to_chat(victim, "<span class='danger'>A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!</span>")
 		victim.psi.backblast(rand(5,15))

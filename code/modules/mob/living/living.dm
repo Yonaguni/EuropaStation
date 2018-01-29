@@ -91,11 +91,6 @@ default behaviour is:
 			if(a_intent == I_HELP || src.restrained())
 				now_pushing = 0
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in src.mutations))
-					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
-					now_pushing = 0
-					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
 				if(prob(99))
 					now_pushing = 0
@@ -188,11 +183,6 @@ default behaviour is:
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
 	if(istype(src, /mob/living/carbon/human))
-		//world << "DEBUG: burn_skin(), mutations=[mutations]"
-		if(mShock in src.mutations) //shockproof
-			return 0
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return 0
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
@@ -452,8 +442,6 @@ default behaviour is:
 	// shut down ongoing problems
 	radiation = 0
 	bodytemperature = T20C
-	sdisabilities = 0
-	disabilities = 0
 
 	// fix blindness and deafness
 	blinded = 0
@@ -619,7 +607,7 @@ default behaviour is:
 
 //called when the mob receives a bright flash
 /mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
-	if(override_blindness_check || !(disabilities & BLIND))
+	if(override_blindness_check || !HAS_ASPECT(src, ASPECT_BLIND))
 		overlay_fullscreen("flash", type)
 		spawn(25)
 			if(src)

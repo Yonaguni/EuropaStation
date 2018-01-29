@@ -31,13 +31,13 @@ var/list/limb_icon_cache = list()
 	s_tone = null
 	s_col = null
 	h_col = null
-	if(robotic >= ORGAN_ROBOT)
+	if(!owner || robotic >= ORGAN_ROBOT)
 		return
-	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
-		s_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
+	if(owner.s_tone)
+		s_tone = owner.s_tone
 	if(species.appearance_flags & HAS_SKIN_COLOR)
-		s_col = list(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
-	h_col = list(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
+		s_col = list(owner.r_skin, owner.g_skin, owner.b_skin)
+	h_col = list(owner.r_hair, owner.g_hair, owner.b_hair)
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
@@ -53,8 +53,9 @@ var/list/limb_icon_cache = list()
 	var/gender = "_m"
 	if(!gendered_icon)
 		gender = null
-	else if (dna && dna.GetUIState(DNA_UI_GENDER))
-		gender = "_f"
+	else if(initial_gender)
+		if(initial_gender == FEMALE)
+			gender = "_f"
 	else if(owner && owner.gender == FEMALE)
 		gender = "_f"
 
@@ -63,14 +64,12 @@ var/list/limb_icon_cache = list()
 
 	if(force_icon)
 		icon = force_icon
-	else if (!dna)
-		icon = 'icons/mob/human_races/r_human.dmi'
 	else if (robotic >= ORGAN_ROBOT)
 		icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
+	else if (status & ORGAN_SKELETAL)
+		icon = 'icons/mob/human_races/r_skeleton.dmi'
 	else if (status & ORGAN_MUTATED)
 		icon = species.get_icobase(owner,1)
-	else if (owner && (SKELETON in owner.mutations))
-		icon = 'icons/mob/human_races/r_skeleton.dmi'
 	else
 		icon = species.get_icobase(owner)
 

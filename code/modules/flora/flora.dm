@@ -46,7 +46,7 @@
 	var/turf/T = get_turf(src)
 	var/list/results = list()
 
-	var/effective_harvest_amount = (user.has_aspect(ASPECT_GREENTHUMB) ? round(harvest_amount*1.5) : harvest_amount)
+	var/effective_harvest_amount = (HAS_ASPECT(user, ASPECT_GREENTHUMB) ? round(harvest_amount*1.5) : harvest_amount)
 	for(var/x = 1 to effective_harvest_amount)
 		results += new harvest_result(T)
 	user.visible_message("<span class='notice'>\The [user] [harvest_message] \the [src] with \the [thing].</span>")

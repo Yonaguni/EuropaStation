@@ -162,13 +162,7 @@ var/hadevent    = 0
 			H.apply_effect((rand(15,75)),IRRADIATE, blocked = H.getarmor(null, "rad"))
 			if (prob(5))
 				H.apply_effect((rand(90,150)),IRRADIATE, blocked = H.getarmor(null, "rad"))
-			if (prob(25))
-				if (prob(75))
-					randmutb(H)
-					domutcheck(H,null,MUTCHK_FORCED)
-				else
-					randmutg(H)
-					domutcheck(H,null,MUTCHK_FORCED)
+
 	sleep(100)
 	using_map.radiation_storm_starting_announce()
 

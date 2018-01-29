@@ -24,11 +24,7 @@
 		report("Scan Complete: No antibodies detected.", user)
 		return
 
-	if (CLUMSY in user.mutations && prob(50))
-		// I was tempted to be really evil and rot13 the output.
-		report("Antibodies detected: [reverse_text(antigens2string(C.antibodies))]", user)
-	else
-		report("Antibodies detected: [antigens2string(C.antibodies)]", user)
+	report("Antibodies detected: [antigens2string(C.antibodies)]", user)
 
 /obj/item/antibody_scanner/proc/report(var/text, var/mob/user)
 	user << "\blue \icon[src] \The [src] beeps, \"[text]\""

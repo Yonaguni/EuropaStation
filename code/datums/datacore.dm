@@ -188,7 +188,7 @@
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
-		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
+		G.fields["fingerprint"]	= H.get_full_print()
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= gender2text(H.gender)
@@ -203,7 +203,8 @@
 		//Medical Record
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
 		M.fields["b_type"]		= H.b_type
-		M.fields["b_dna"]		= H.dna.unique_enzymes
+		M.fields["b_dna"]		= H.get_dna_hash()
+
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 
@@ -218,12 +219,11 @@
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
-		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
+		L.fields["fingerprint"]	= H.get_full_print()
 		L.fields["sex"]			= gender2text(H.gender)
 		L.fields["b_type"]		= H.b_type
-		L.fields["b_dna"]		= H.dna.unique_enzymes
-		L.fields["enzymes"]		= H.dna.SE // Used in respawning
-		L.fields["identity"]	= H.dna.UI // "
+		L.fields["b_dna"]		= H.get_dna_hash()
+
 		L.fields["species"]		= H.get_species()
 		L.fields["home_system"]	= H.home_system
 		L.fields["citizenship"]	= H.citizenship

@@ -17,15 +17,6 @@
 	var/mode = 1;
 
 /obj/item/robotanalyzer/attack(var/mob/living/M, var/mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
-		user << text("\red You try to analyze the floor's vitals!")
-		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
-		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
-		user.show_message("\blue Body Temperature: ???", 1)
-		return
 
 	var/scan_type
 	if(istype(M, /mob/living/silicon/robot))

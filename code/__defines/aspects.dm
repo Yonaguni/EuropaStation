@@ -1,3 +1,17 @@
+#define HAS_ASPECT(holder, check_aspect) (ismob(holder) && holder.mind && LAZYLEN(holder.mind.aspects) && holder.mind.aspects[check_aspect])
+
+#define ADD_ASPECT(holder, add_aspect) \
+	if(!HAS_ASPECT(holder, add_aspect)) { \
+		var/decl/aspect/A = aspects_by_name[add_aspect]; \
+		if(holder && holder.mind && istype(A)) { \
+			if(!holder.mind.aspects) { \
+				holder.mind.aspects = list(); \
+			} \
+			holder.mind.aspects[add_aspect] = TRUE; \
+			A.do_post_spawn(holder); \
+		} \
+	}
+
 // General aspects.
 #define ASPECT_HOTSTUFF         "Hot Stuff"
 #define ASPECT_HARDY            "Hardy"
@@ -25,6 +39,14 @@
 #define ASPECT_GREENTHUMB       "Green Thumb"
 #define ASPECT_NINJA            "Knife Thrower"
 #define ASPECT_TRIBAL           "Tribal"
+#define ASPECT_MEATY            "Big Hands"
+#define ASPECT_CLUMSY           "Clumsy"
+#define ASPECT_EPILEPTIC        "Epileptic"
+#define ASPECT_ASTHMATIC        "Asthmatic"
+#define ASPECT_NEARSIGHTED      "Nearsighted"
+#define ASPECT_NERVOUS          "Nervous"
+#define ASPECT_DEAF             "Deaf"
+#define ASPECT_BLIND            "Blind"
 
 // Combat aspects
 #define ASPECT_WRESTLER         "Wrestler"
@@ -60,3 +82,5 @@
 #define ASPECT_PSI_REDACTOR_MC  "Master Biokinetic"
 #define ASPECT_PSI_REDACTOR_GMC "Grandmaster Biokinetic"
 
+// Restricted aspects.
+#define ASPECT_XRAY             "X-Ray Vision"

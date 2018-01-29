@@ -197,9 +197,6 @@
 		if(o && o.splinted && o.splinted.loc == o)
 			msg += "<span class='warning'>[T.He] [T.has] \a [o.splinted] on [T.his] [o.name]!</span>\n"
 
-	if(mSmallsize in mutations)
-		msg += "[T.He] [T.is] small halfling!\n"
-
 	var/distance = get_dist(usr,src)
 	if(isghost(usr) || usr.stat == DEAD) // ghosts can see anything
 		distance = 1
@@ -288,7 +285,7 @@
 		msg += is_bleeding[limb]
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='danger'>[src] [T.has] \a [implant] sticking out of [T.his] flesh!</span>\n"
-	if(digitalcamo || has_aspect(ASPECT_UNCANNY))
+	if(digitalcamo || HAS_ASPECT(src, ASPECT_UNCANNY))
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
 	if(hasHUD(usr,"security"))

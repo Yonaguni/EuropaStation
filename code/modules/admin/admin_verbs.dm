@@ -136,7 +136,6 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
-	/client/proc/respawn_character,
 	/client/proc/virus2_editor,
 	/client/proc/spawn_chemdisp_cartridge
 	)
@@ -217,7 +216,7 @@ var/list/admin_verbs_permissions = list(
 	/client/proc/edit_admin_permissions
 	)
 var/list/admin_verbs_rejuv = list(
-	/client/proc/respawn_character
+	/client/proc/cmd_admin_rejuvenate
 	)
 
 //verbs which can be hidden - needs work
@@ -885,7 +884,6 @@ var/list/admin_verbs_mentor = list(
 
 	M.update_hair()
 	M.update_body()
-	M.check_dna(M)
 
 /client/proc/playernotes()
 	set name = "Show Player Info"

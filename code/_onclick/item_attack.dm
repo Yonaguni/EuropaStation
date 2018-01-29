@@ -60,10 +60,16 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone)
+
 	if(!force || (flags & NOBLUDGEON))
 		return 0
+
 	if(M == user && user.a_intent != I_HURT)
 		return 0
+
+	if(HAS_ASPECT(user, ASPECT_CLUMSY) && prob(5))
+		to_chat(user, "<span class='danger'>You clumsily fumble \the [src]!</span>")
+		M = user
 
 	/////////////////////////
 	user.lastattacked = M
@@ -88,9 +94,4 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
-
-	var/power = force
-	if(HULK in user.mutations)
-		power *= 2
-	return target.hit_with_weapon(src, user, power, hit_zone)
-
+	return target.hit_with_weapon(src, user, force, hit_zone)

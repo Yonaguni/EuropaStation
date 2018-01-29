@@ -16,18 +16,6 @@
 	slot_flags = SLOT_BELT
 	force = 10
 
-/obj/item/melee/classic_baton/attack(var/mob/M, var/mob/living/user)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You club yourself over the head.</span>"
-		user.Weaken(3 * force)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, BP_HEAD)
-		else
-			user.take_organ_damage(2*force)
-		return
-	return ..()
-
 //Telescopic baton
 /obj/item/melee/telebaton
 	name = "telescopic baton"
@@ -78,20 +66,3 @@
 		overlays += blood_overlay
 
 	return
-
-/obj/item/melee/telebaton/attack(var/mob/target, var/mob/living/user)
-	if(on)
-		if ((CLUMSY in user.mutations) && prob(50))
-			user << "<span class='warning'>You club yourself over the head.</span>"
-			user.Weaken(3 * force)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				H.apply_damage(2*force, BRUTE, BP_HEAD)
-			else
-				user.take_organ_damage(2*force)
-			return
-		if(..())
-			//playsound(src.loc, "swing_hit", 50, 1, -1)
-			return
-	else
-		return ..()

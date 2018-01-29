@@ -303,7 +303,6 @@ datum/preferences
 	character.backbag = backbag
 
 	character.force_update_limbs()
-	character.update_mutations(0)
 	character.update_body(0)
 	character.update_underwear(0)
 	character.update_hair(0)

@@ -165,34 +165,27 @@
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
 
-/obj/structure/window/attack_tk(var/mob/user)
-	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
-	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
-
 /obj/structure/window/attack_hand(var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-		user.do_attack_animation(src)
-		shatter()
 
-	else if (usr.a_intent == I_HURT)
+	var/banger = "Something"
+	if(user.Adjacent(src))
+		banger = "\The [user]"
 
-		if (istype(usr,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			if(H.species.can_shred(H))
-				attack_generic(H,25)
-				return
+	if (usr.a_intent == I_HURT && istype(usr,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		if(H.species.can_shred(H))
+			attack_generic(H,25)
+			return
 
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
 		user.do_attack_animation(src)
-		usr.visible_message("<span class='danger'>\The [usr] bangs against \the [src]!</span>",
+		usr.visible_message("<span class='danger'>[banger] bangs against \the [src]!</span>",
 							"<span class='danger'>You bang against \the [src]!</span>",
 							"You hear a banging sound.")
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
-		usr.visible_message("[usr.name] knocks on the [src.name].",
+		usr.visible_message("[banger] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
 	return

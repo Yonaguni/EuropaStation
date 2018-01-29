@@ -29,8 +29,6 @@
 
 	if(user.a_intent != I_HELP)
 		if(user.zone_sel.selecting == BP_HEAD || user.zone_sel.selecting == BP_EYES)
-			if((CLUMSY in user.mutations) && prob(50))
-				M = user
 			return eyestab(M,user)
 		else
 			return ..()
@@ -94,13 +92,6 @@
 	applies_material_colour = 0
 	unbreakable = 1
 
-/obj/item/material/kitchen/utensil/knife/attack(target as mob, var/mob/living/user)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
-		user.take_organ_damage(20)
-		return
-	return ..()
-
 /obj/item/material/kitchen/utensil/knife/plastic
 	default_material = "plastic"
 
@@ -116,12 +107,3 @@
 	default_material = "wood"
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
 	thrown_force_divisor = 1 // as above
-
-/obj/item/material/kitchen/rollingpin/attack(var/mob/living/M, var/mob/living/user)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>"
-		user.drop_from_inventory(src)
-		user.take_organ_damage(10)
-		user.Paralyse(2)
-		return
-	return ..()

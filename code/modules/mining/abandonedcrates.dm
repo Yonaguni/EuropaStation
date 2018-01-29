@@ -106,9 +106,7 @@
 			new/obj/item/soulstone(src)
 		if(92)
 			new/obj/item/material/sword/katana(src)
-		if(93)
-			new/obj/item/dnainjector/xraymut(src) // Probably the least OP
-		if(94) // Why the hell not
+		if(93, 94) // Why the hell not
 			new/obj/item/storage/backpack/clown(src)
 			new/obj/item/clothing/under/clown(src)
 			new/obj/item/clothing/shoes/clown_shoes(src)

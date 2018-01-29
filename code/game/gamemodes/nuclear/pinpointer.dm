@@ -171,9 +171,7 @@
 					if(!DNAstring)
 						return
 					for(var/mob/living/carbon/M in mob_list)
-						if(!M.dna)
-							continue
-						if(M.dna.unique_enzymes == DNAstring)
+						if(M.get_dna_hash() == DNAstring)
 							target = M
 							break
 

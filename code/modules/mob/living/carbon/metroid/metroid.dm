@@ -270,19 +270,6 @@
 
 			attacked += 10
 			if (prob(90))
-				if (HULK in M.mutations)
-					damage += 5
-					if(Victim || Target)
-						Victim = null
-						Target = null
-						anchored = 0
-						if(prob(80) && !client)
-							Discipline++
-					spawn(0)
-						step_away(src,M,15)
-						sleep(3)
-						step_away(src,M,15)
-
 				playsound(loc, "punch", 25, 1, -1)
 				visible_message("<span class='danger'>[M] has punched [src]!</span>", \
 						"<span class='danger'>[M] has punched [src]!</span>")

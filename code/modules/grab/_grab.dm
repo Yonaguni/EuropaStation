@@ -160,7 +160,7 @@
 		return
 
 	var/checktime = UPGRADE_COOLDOWN
-	if(assailant.has_aspect(ASPECT_WRESTLER))
+	if(HAS_ASPECT(assailant, ASPECT_WRESTLER))
 		checktime *= 0.75
 
 	if(world.time < (last_action + checktime))
@@ -310,7 +310,7 @@
 	// End workaround
 
 	var/checktime = 20
-	if(assailant.has_aspect(ASPECT_WRESTLER))
+	if(HAS_ASPECT(assailant, ASPECT_WRESTLER))
 		checktime *= 0.75
 	if(world.time < (last_action + checktime))
 		return

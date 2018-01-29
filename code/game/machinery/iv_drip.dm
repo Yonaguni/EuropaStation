@@ -102,10 +102,6 @@
 			var/mob/living/carbon/human/T = attached
 
 			if(!istype(T)) return
-			if(!T.dna)
-				return
-			if(NOCLONE in T.mutations)
-				return
 
 			if(!T.should_have_organ(BP_HEART))
 				return

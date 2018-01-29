@@ -44,12 +44,6 @@
 			H.apply_effect((rand(15,35)),IRRADIATE,blocked = H.getarmor(null, "rad"))
 			if(prob(5))
 				H.apply_effect((rand(40,70)),IRRADIATE,blocked = H.getarmor(null, "rad"))
-				if (prob(75))
-					randmutb(H) // Applies bad mutation
-					domutcheck(H,null,MUTCHK_FORCED)
-				else
-					randmutg(H) // Applies good mutation
-					domutcheck(H,null,MUTCHK_FORCED)
 
 /datum/event/radiation_storm/end()
 	revoke_maint_all_access()

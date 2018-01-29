@@ -6,8 +6,10 @@ var/list/organ_cache = list()
 	germ_level = 0
 
 	// Strings.
+	var/b_type
 	var/organ_tag = "organ"           // Unique identifier.
 	var/parent_organ = BP_CHEST       // Organ holding this object.
+	var/initial_gender = NEUTER
 
 	// Status tracking.
 	var/status = 0                    // Various status flags (such as robotic)
@@ -19,7 +21,6 @@ var/list/organ_cache = list()
 	var/mob/living/carbon/human/owner // Current mob owning the organ.
 	var/list/autopsy_data = list()    // Trauma data for forensics.
 	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
-	var/datum/dna/dna                 // Original DNA.
 	var/datum/species/species         // Original species.
 
 	// Damage vars.
@@ -29,14 +30,11 @@ var/list/organ_cache = list()
 	var/rejecting                     // Is this organ already being rejected?
 
 /obj/item/organ/Destroy()
-
 	if(owner)           owner = null
 	if(autopsy_data)    autopsy_data.Cut()
 	if(trace_chemicals) trace_chemicals.Cut()
-	dna = null
 	species = null
-
-	return ..()
+	. = ..()
 
 /obj/item/organ/proc/update_health()
 	return
@@ -47,38 +45,31 @@ var/list/organ_cache = list()
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
+		b_type = holder.b_type
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		species = all_species["Human"]
-		if(holder.dna)
-			dna = holder.dna.Clone()
-			species = all_species[dna.species]
-		else
-			log_debug("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = holder
-		if(istype(H))
+		if(istype(owner))
+			species = owner.species
+			initial_gender = owner.gender
 			if(internal)
-				var/obj/item/organ/external/E = H.get_organ(parent_organ)
+				var/obj/item/organ/external/E = owner.get_organ(parent_organ)
 				if(E)
 					if(E.internal_organs == null)
 						E.internal_organs = list()
 					E.internal_organs |= src
-			if(dna)
-				if(!blood_DNA)
-					blood_DNA = list()
-				blood_DNA[dna.unique_enzymes] = dna.b_type
+			if(!blood_DNA)
+				blood_DNA = list()
+			blood_DNA[owner.get_dna_hash()] = owner.b_type
 		if(internal)
 			holder.internal_organs |= src
 	update_icon()
 
-/obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
-	if(new_dna)
-		dna = new_dna.Clone()
-		if(!blood_DNA)
-			blood_DNA = list()
-		blood_DNA.Cut()
-		blood_DNA[dna.unique_enzymes] = dna.b_type
-		species = all_species[new_dna.species]
+/obj/item/organ/proc/set_dna(var/mob/living/carbon/donor)
+	if(istype(donor))
+		blood_DNA = list()
+		blood_DNA[donor.get_dna_hash()] = donor.b_type
+		species = all_species[donor.get_species()]
 
 /obj/item/organ/proc/die()
 	if(robotic >= ORGAN_ROBOT)
@@ -164,23 +155,22 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
-	if(dna)
-		if(!rejecting)
-			if(blood_incompatible(dna.b_type, owner.dna.b_type, species, owner.species))
-				rejecting = 1
-		else
-			rejecting++ //Rejection severity increases over time.
-			if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
-				switch(rejecting)
-					if(1 to 50)
-						germ_level++
-					if(51 to 200)
-						germ_level += rand(1,2)
-					if(201 to 500)
-						germ_level += rand(2,3)
-					if(501 to INFINITY)
-						germ_level += rand(3,5)
-						owner.reagents.add_reagent("toxin", rand(1,2))
+	if(!rejecting)
+		if(blood_incompatible(b_type, owner.b_type, species, owner.species))
+			rejecting = 1
+	else
+		rejecting++ //Rejection severity increases over time.
+		if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
+			switch(rejecting)
+				if(1 to 50)
+					germ_level++
+				if(51 to 200)
+					germ_level += rand(1,2)
+				if(201 to 500)
+					germ_level += rand(2,3)
+				if(501 to INFINITY)
+					germ_level += rand(3,5)
+					owner.reagents.add_reagent("toxin", rand(1,2))
 
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0

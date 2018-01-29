@@ -45,7 +45,7 @@
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
+		return M.ear_deaf
 	return 0
 
 proc/hasorgans(A) // Fucking really??
@@ -402,7 +402,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
-		if(C.sdisabilities & BLIND || C.blinded)
+		if(HAS_ASPECT(C, ASPECT_BLIND) || C.blinded)
 			return 1
 	return 0
 
@@ -649,6 +649,4 @@ proc/is_blind(A)
 	name = new_name
 	if(mind)
 		mind.name = new_name
-	if(dna)
-		dna.real_name = real_name
 	return 1

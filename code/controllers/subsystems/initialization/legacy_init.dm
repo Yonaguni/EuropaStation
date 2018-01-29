@@ -21,7 +21,6 @@
 		createRandomZlevel()
 
 	setup_objects()
-	setupgenetics()
 
 	transfer_controller = new
 

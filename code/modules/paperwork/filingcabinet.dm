@@ -64,23 +64,6 @@
 
 	return
 
-/obj/structure/filingcabinet/attack_tk(mob/user)
-	if(anchored)
-		attack_self_tk(user)
-	else
-		..()
-
-/obj/structure/filingcabinet/attack_self_tk(mob/user)
-	if(contents.len)
-		if(prob(40 + contents.len * 5))
-			var/obj/item/I = pick(contents)
-			I.loc = loc
-			if(prob(25))
-				step_rand(I)
-			user << "<span class='notice'>You pull \a [I] out of [src] at random.</span>"
-			return
-	user << "<span class='notice'>You find nothing in [src].</span>"
-
 /obj/structure/filingcabinet/Topic(href, href_list)
 	if(href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
@@ -129,10 +112,6 @@
 	populate()
 	..()
 
-/obj/structure/filingcabinet/security/attack_tk()
-	populate()
-	..()
-
 /*
  * Medical Record Cabinets
  */
@@ -164,9 +143,5 @@
 	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
-	populate()
-	..()
-
-/obj/structure/filingcabinet/medical/attack_tk()
 	populate()
 	..()
