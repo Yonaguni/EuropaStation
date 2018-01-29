@@ -486,12 +486,12 @@ var/global/list/light_bulb_type_cache = list()
 			if(prot > 0)
 				to_chat(user, "<span class='notice'>You remove the light [get_fitting_name()].</span>")
 			else
-				to_chat(user, "<span class='warning'>You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand.")
+				to_chat(user, "<span class='warning'>You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand.</span>")
 				return				// if burned, don't remove the light
 		else
-			to_chat(user, "<span class='notice'>You remove the light [get_fitting_name()].")
+			to_chat(user, "<span class='notice'>You remove the light [get_fitting_name()].</span>")
 	else // TK
-		to_chat(user, "<span class='notice'>You telekinetically remove the light [get_fitting_name()].")
+		to_chat(user, "<span class='notice'>You telekinetically remove the light [get_fitting_name()].</span>")
 
 	// create a light tube/bulb item and put it in the user's hand
 	user.put_in_active_hand(remove_bulb())	//puts it in our active hand

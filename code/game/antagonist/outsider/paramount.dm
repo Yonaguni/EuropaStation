@@ -38,12 +38,19 @@ var/datum/antagonist/paramount/paramounts
 	if(!..())
 		return 0
 
-	player.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/paramount(player), slot_head)
+	player.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/psi_amp(player), slot_head)
+	player.set_psi_rank(PSI_REDACTION, 3)
+	player.set_psi_rank(PSI_COERCION, 3)
+	player.set_psi_rank(PSI_PSYCHOKINESIS, 3)
+	player.set_psi_rank(PSI_ENERGISTICS, 3)
+
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/psy/full_suit(player), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/suit/psypurple(player), slot_wear_suit)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/black(player), slot_gloves)
 	player.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(player), slot_back)
+
+	//player.internal_organs_by_name["frontal lobe"] = new /obj/item/organ/internal/corona_pollentia(player) //TODO
 
 	return 1
 
