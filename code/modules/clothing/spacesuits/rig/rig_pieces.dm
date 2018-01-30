@@ -12,7 +12,7 @@
 	species_restricted = null
 
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/clothing/head_rigs.dmi',
+		slot_head_str = 'icons/mob/clothing/head_rigs.dmi',
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi'
 		)
