@@ -70,7 +70,7 @@
 	if (istype(loc, /turf))
 		loc = loc:loc
 	if (!istype(loc, /area))
-		user << text("Turret badly positioned - loc.loc is [].", loc)
+		user << text("Dispenser badly positioned - loc.loc is [].", loc)
 		return
 	var/area/area = loc
 	var/t = "<TT><B>AI Liquid Dispenser</B> ([area.name])<HR>"
