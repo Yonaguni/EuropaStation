@@ -13,6 +13,9 @@
 				break
 	return fluid_can_pass
 
+/obj/structure/girder/CanFluidPass(var/coming_from)
+	return TRUE
+
 /obj/structure/inflatable/CanFluidPass(var/coming_from)
 	return !density
 
@@ -38,9 +41,9 @@
 
 	. = ..()
 
-	if(!lying && (amt >= mob_size*2) && slip_chance(amt/100))
+	if(!lying && (amt >= mob_size*4) && slip_chance(amt/200))
 		to_chat(src, "<span class='danger'>You are pushed down by the flood!</span>")
 		Weaken(1)
 		return TRUE
 
-	return ..() && amt >= (lying ? mob_size : mob_size*2)
+	return ..() && amt >= (lying ? mob_size : mob_size*4)

@@ -460,6 +460,7 @@
 	icon = 'icons/obj/combitool.dmi'
 	icon_state = "combitool"
 	w_class = 2
+	auto_init = TRUE
 
 	var/list/tools = list(
 		"screwdriver",
@@ -467,6 +468,10 @@
 		"wirecutters"
 		)
 	var/current_tool = 1
+
+/obj/item/combitool/initialize()
+	desc = "[initial(desc)] ([tools.len]. [tools.len] possibilit[tools.len == 1 ? "y" : "ies"])"
+	..()
 
 /obj/item/combitool/examine(var/mob/user)
 	. = ..()
@@ -520,8 +525,6 @@
 	var/max_fuel = 15
 
 /obj/item/combitool/omni/initialize()
-	..()
-	desc = "[initial(desc)] ([tools.len]. [tools.len] possibilit[tools.len == 1 ? "y" : "ies"])"
 	// I am sure there is a proc for this, but I can't find it now.
 	reagents = new(max_fuel)
 	reagents.my_atom = src

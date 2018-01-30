@@ -16,7 +16,7 @@
 	icon_state = "filingcabinet"
 	density = 1
 	anchored = 1
-
+	auto_init = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"

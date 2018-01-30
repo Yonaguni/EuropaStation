@@ -15,6 +15,7 @@
 	desc = "It shines with an eerie bioluminescent light."
 	icon_state = "glowweed1"
 	light_color = "#00FFF4"
+	auto_init = TRUE
 
 /obj/structure/flora/seaweed/glow/initialize()
 	..()

@@ -3,6 +3,7 @@
 	desc = "This item type is used to spawn random objects at round-start."
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
+	auto_init = TRUE
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
 
@@ -655,6 +656,7 @@ var/list/multi_point_spawns
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "x3"
 	invisibility = INVISIBILITY_MAXIMUM
+	auto_init = TRUE
 	var/id     // Group id
 	var/weight // Probability weight for this spawn point
 

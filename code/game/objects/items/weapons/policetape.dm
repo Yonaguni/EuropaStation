@@ -4,6 +4,8 @@
 	icon = 'icons/policetape.dmi'
 	icon_state = "tape"
 	w_class = 2.0
+	auto_init = TRUE
+
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape

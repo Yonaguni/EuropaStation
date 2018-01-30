@@ -11,6 +11,7 @@
 	w_class = 2
 	flags = 0
 	volume = 60
+	auto_init = TRUE
 	var/draw_contents
 	var/obfuscate_contents = FALSE
 	var/actual_reagent_name

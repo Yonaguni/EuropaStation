@@ -5,6 +5,7 @@
 	desc = "This shouldn't be read."
 	icon = 'icons/misc/title.dmi'
 	screen_loc = "WEST,SOUTH"
+	auto_init = TRUE
 
 /obj/effect/lobby_image/update_plane()
 	return

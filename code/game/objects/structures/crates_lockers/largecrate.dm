@@ -4,6 +4,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
 	density = 1
+	auto_init = TRUE
 
 /obj/structure/largecrate/initialize()
 	..()

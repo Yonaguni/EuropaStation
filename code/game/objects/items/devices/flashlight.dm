@@ -7,6 +7,7 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	auto_init = TRUE
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 

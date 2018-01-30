@@ -27,6 +27,7 @@ var/global/list/default_medbay_channels = list(
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
+	auto_init = TRUE
 
 	var/on = 1 // 0 for off
 	var/last_transmission

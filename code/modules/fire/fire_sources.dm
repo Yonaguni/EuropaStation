@@ -21,6 +21,7 @@ var/list/fire_sounds = list(
 	//light_type = LIGHT_SOFT_FLICKER
 	anchored = 1
 	density = 0
+	auto_init = TRUE
 
 	var/open_flame = 1
 	var/datum/effect/system/steam_spread/steam // Used when being quenched.

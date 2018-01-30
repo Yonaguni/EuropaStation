@@ -1,7 +1,6 @@
 /datum/psi_complexus/proc/update()
 
-	rebuild_power_cache = TRUE
-
+	var/last_rating = rating
 	var/combined_rank = 0
 	for(var/faculty in ranks)
 		var/check_rank = get_rank(faculty)
@@ -15,23 +14,26 @@
 		combined_rank += check_rank
 	UNSETEMPTY(latencies)
 
-	if(combined_rank > 0)
-		rating = ceil(combined_rank/ranks.len)
-		cost_modifier = 1
-		if(rating > 1) cost_modifier -= min(1, max(0.1, (rating-1) / 10))
-		if(!ui)
-			ui = new(owner)
-			if(owner.client)
-				owner.client.screen += ui.components
-				owner.client.screen += ui
+	if(last_rating != ceil(combined_rank/ranks.len))
+		rebuild_power_cache = TRUE
+		if(combined_rank > 0)
+			owner << 'sound/effects/psi/power_unlock.ogg'
+			rating = ceil(combined_rank/ranks.len)
+			cost_modifier = 1
+			if(rating > 1) cost_modifier -= min(1, max(0.1, (rating-1) / 10))
+			if(!ui)
+				ui = new(owner)
+				if(owner.client)
+					owner.client.screen += ui.components
+					owner.client.screen += ui
+			else
+				if(owner.client)
+					owner.client.screen |= ui.components
+					owner.client.screen |= ui
+			owner.verbs |= /mob/living/proc/say_telepathy
 		else
-			if(owner.client)
-				owner.client.screen |= ui.components
-				owner.client.screen |= ui
-		owner.verbs |= /mob/living/proc/say_telepathy
-	else
-		owner.verbs -= /mob/living/proc/say_telepathy
-		qdel(src)
+			owner.verbs -= /mob/living/proc/say_telepathy
+			qdel(src)
 
 /datum/psi_complexus/process()
 

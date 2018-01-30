@@ -9,6 +9,7 @@
 	anchored = FALSE
 	flags = ON_BORDER
 	icon_state = "railing0"
+	auto_init = TRUE
 
 	var/material/material
 	var/broken =    FALSE

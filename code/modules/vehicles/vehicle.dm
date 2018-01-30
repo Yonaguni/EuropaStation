@@ -12,6 +12,7 @@
 	anchored = 1
 	animate_movement=1
 	light_range = 3
+	auto_init = TRUE
 
 	can_buckle = 1
 	buckle_movable = 1

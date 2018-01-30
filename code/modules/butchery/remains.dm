@@ -6,6 +6,7 @@
 	name = "bone"
 	desc = "Looks like someone went out on a limb."
 	icon_state = "bone"
+	auto_init = TRUE
 
 /obj/item/bone/single/initialize()
 	..()

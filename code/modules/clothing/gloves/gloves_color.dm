@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/color
 	desc = "A pair of gloves, they don't look special in any way."
-	item_state = "lgloves"
+	item_state = "gloves"
 	icon_state = "white"
 
 POPULATE_COLOURED_VARIANTS_OF(/obj/item/clothing/gloves/color, "gloves")

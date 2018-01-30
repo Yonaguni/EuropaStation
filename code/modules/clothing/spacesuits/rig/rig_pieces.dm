@@ -12,19 +12,26 @@
 	species_restricted = null
 
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/clothing/head_rigs.dmi',
+		slot_head_str = 'icons/mob/clothing/head_rigs.dmi',
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi'
 		)
 
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
+	item_state = null
 	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
 	species_restricted = null
 	gender = PLURAL
+
+	item_icons = list(
+		slot_gloves_str = 'icons/mob/clothing/gloves_rigs.dmi',
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi'
+		)
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"

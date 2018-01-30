@@ -10,6 +10,10 @@
 	var/material/reinf_material
 	var/reinforcing = 0
 
+/obj/structure/girder/New()
+	..()
+	update_nearby_tiles()
+
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0

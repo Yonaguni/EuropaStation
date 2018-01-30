@@ -12,6 +12,7 @@
 	w_class = 1
 	slot_flags = SLOT_EARS
 	volume = 60
+	auto_init = TRUE
 	var/obfuscate_contents = TRUE
 	var/actual_reagent_name
 	var/medication_name

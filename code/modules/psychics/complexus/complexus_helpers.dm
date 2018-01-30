@@ -1,4 +1,5 @@
 /datum/psi_complexus/proc/cancel()
+	owner << 'sound/effects/psi/power_fail.ogg'
 	if(LAZYLEN(manifested_items))
 		for(var/thing in manifested_items)
 			owner.drop_from_inventory(thing)

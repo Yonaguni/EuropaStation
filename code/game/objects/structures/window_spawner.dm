@@ -9,6 +9,8 @@
 	icon_state = "wingrille"
 	density = 1
 	anchored = 1.0
+	auto_init = TRUE
+
 	var/win_path = /obj/structure/window/basic
 	var/activated = FALSE
 	var/fulltile = FALSE

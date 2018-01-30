@@ -5,6 +5,8 @@
 	icon_state = "closed"
 	density = 1
 	w_class = 7
+	auto_init = TRUE
+
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0

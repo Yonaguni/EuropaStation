@@ -8,6 +8,7 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_OCEAN
+	auto_init = TRUE
 
 	var/temperature = T20C
 	var/fluid_amount = 0
@@ -50,6 +51,8 @@
 	alpha = 125
 	icon_state = "shallow_still"
 	color = "#66D1FF"
+	auto_init = TRUE
+
 	var/fluid_amount = FLUID_MAX_DEPTH
 
 /obj/effect/fluid_mapped/initialize()

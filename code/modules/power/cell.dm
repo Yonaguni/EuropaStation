@@ -7,6 +7,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
+	auto_init = TRUE
 
 	force = 5.0
 	throwforce = 5.0

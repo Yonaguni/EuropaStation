@@ -8,6 +8,7 @@
 	opacity = 1
 	anchored = 1
 	waterproof = TRUE
+	auto_init = TRUE
 
 	var/open = FALSE
 	var/obj/machinery/power/ship_weapon/torpedo/launcher

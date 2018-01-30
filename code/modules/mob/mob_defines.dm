@@ -3,6 +3,8 @@
 	layer = 4.0
 	animate_movement = 2
 	flags = PROXMOVE
+	auto_init = TRUE
+
 	var/list/client_images = list() // List of images applied to/removed from the client on login/logout
 	var/datum/mind/mind
 

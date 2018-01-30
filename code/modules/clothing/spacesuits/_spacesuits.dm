@@ -23,6 +23,7 @@
 	randpixel = 0
 	species_restricted = list("exclude", "Xenomorph")
 	flash_protection = FLASH_PROTECTION_MAJOR
+	auto_init = TRUE
 
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/head_space.dmi',

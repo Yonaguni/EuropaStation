@@ -2,6 +2,7 @@
 	name = "magazine"
 	desc = "It's one of those trashy tabloid magazines. It looks pretty out of date."
 	icon = 'icons/obj/magazine.dmi'
+	auto_init = TRUE
 
 /obj/item/book/magazine/New()
 	..()

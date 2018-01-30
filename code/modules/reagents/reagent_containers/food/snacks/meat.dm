@@ -5,12 +5,14 @@
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = "x=16;y=14"
+	auto_init = TRUE
+
 	var/source_mob
 
-	New()
-		..()
-		reagents.add_reagent("protein", 9)
-		src.bitesize = 3
+/obj/item/reagent_containers/food/snacks/meat/New()
+	..()
+	reagents.add_reagent("protein", 9)
+	src.bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/meat/initialize()
 	..()

@@ -29,6 +29,7 @@
 		return
 
 	if(choice == "Dismiss")
+		owner << 'sound/effects/psi/power_fail.ogg'
 		owner.drop_from_inventory(src)
 		return
 

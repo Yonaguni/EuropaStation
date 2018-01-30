@@ -11,6 +11,7 @@
 	mouse_opacity = 2
 	light_range = 2
 	light_color = "#103300"
+	auto_init = TRUE
 
 	var/maxHealth = 30
 	var/health

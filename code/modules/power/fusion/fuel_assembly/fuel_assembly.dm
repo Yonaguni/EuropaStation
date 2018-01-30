@@ -3,6 +3,7 @@
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel_assembly"
 	layer = 4
+	auto_init = TRUE
 
 	var/material_name
 

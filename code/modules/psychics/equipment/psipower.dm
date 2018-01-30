@@ -26,6 +26,7 @@
 	return DO_NOT_STORE
 
 /obj/item/psychic_power/attack_self(var/mob/user)
+	owner << 'sound/effects/psi/power_fail.ogg'
 	user.drop_from_inventory(src)
 	spawn if(src) qdel(src)
 

@@ -5,6 +5,7 @@
 	mouse_opacity = 0
 	icon = 'icons/effects/environment.dmi'
 	layer = TURF_LAYER + 0.03
+	auto_init = TRUE
 
 /obj/effect/cleanable/decay/initialize()
 	..()

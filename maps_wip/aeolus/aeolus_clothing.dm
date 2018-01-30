@@ -19,6 +19,7 @@
 	icon_state = "aeolus_insignia_captain"
 
 /obj/item/clothing/under/aeolus
+	auto_init = TRUE
 	var/pips
 
 /obj/item/clothing/under/aeolus/initialize()

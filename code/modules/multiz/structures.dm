@@ -10,6 +10,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
+	auto_init = TRUE
 
 	var/allowed_directions = DOWN
 	var/obj/structure/ladder/target_up
