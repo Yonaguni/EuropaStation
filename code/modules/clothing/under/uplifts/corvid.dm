@@ -1,21 +1,9 @@
 /obj/item/clothing/under/corvid
-	name = "small grey smock"
+	name = "smock"
 	desc = "It looks fitted to nonhuman proportions."
 	icon = 'icons/obj/clothing/species/corvid/uniform.dmi'
-	icon_state = "corvid_grey"
-	species_restricted = list("Neo-Corvid")
-
-/obj/item/clothing/under/corvid/white
-	name = "small white smock"
 	icon_state = "corvid_white"
-
-/obj/item/clothing/under/corvid/red
-	name = "small red smock"
-	icon_state = "corvid_red"
-
-/obj/item/clothing/under/corvid/yellow
-	name = "small yellow smock"
-	icon_state = "corvid_yellow"
+	species_restricted = list("Neo-Corvid")
 
 /obj/item/clothing/under/corvid/medical
 	name = "small medical uniform"
