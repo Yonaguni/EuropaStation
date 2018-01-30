@@ -156,13 +156,8 @@
 
 /turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
-	if(!no_product)
-		if(reinf_material)
-			reinf_material.place_dismantled_girder(src, reinf_material)
-		else
-			material.place_dismantled_girder(src)
-		material.place_dismantled_product(src,devastated)
+	var/material/last_mat = material
+	var/material/last_reinf_mat = reinf_material
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/structure/sign/poster))
@@ -177,6 +172,14 @@
 	update_connections(1)
 
 	ChangeTurf(/turf/simulated/floor/plating)
+
+	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	if(!no_product)
+		if(last_reinf_mat)
+			last_reinf_mat.place_dismantled_girder(src, last_reinf_mat)
+		else
+			last_mat.place_dismantled_girder(src)
+		last_mat.place_dismantled_product(src,devastated)
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
