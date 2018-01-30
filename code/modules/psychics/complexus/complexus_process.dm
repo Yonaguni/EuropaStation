@@ -56,4 +56,4 @@
 	if(update_hud)
 		ui.update_icon()
 
-	if(aura) aura.update_icon(TRUE)
+	//if(aura) aura.update_icon(TRUE)

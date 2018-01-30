@@ -24,19 +24,21 @@
 	var/list/powers_by_faculty        // All powers within a given faculty.
 
 	var/obj/screen/psi/hub/ui	      // Reference to the master psi UI object.
-	var/mob/living/owner // Reference to our owner.
-	var/obj/effect/psi_aura/aura
+	var/mob/living/owner              // Reference to our owner.
+	//var/obj/effect/psi_aura/aura
 
 /datum/psi_complexus/New(var/mob/_owner)
 	owner = _owner
-	aura = new(owner, src)
+	//aura = new(owner, src)
 	START_PROCESSING(SSpsi, src)
 
 /datum/psi_complexus/Destroy()
 	STOP_PROCESSING(SSpsi, src)
+	/*
 	if(aura)
 		qdel(aura)
 		aura = null
+	*/
 	if(owner)
 		cancel()
 		if(owner.client)
@@ -45,5 +47,6 @@
 		ui = null
 		owner.psi = null
 		owner = null
-	manifested_items.Cut()
+	if(manifested_items)
+		manifested_items.Cut()
 	. = ..()
