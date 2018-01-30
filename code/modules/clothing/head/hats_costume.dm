@@ -30,6 +30,7 @@
 	item_state = "cardborg"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = HEAD|FACE|EYES
+	auto_init = TRUE
 
 /obj/item/clothing/head/cardborg/initialize()
 	..()

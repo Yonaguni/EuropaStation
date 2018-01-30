@@ -7,14 +7,13 @@ var/list/points_of_interest = list()
 	name = "map object"
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "object"
-	var/map_z = list()
+	auto_init = TRUE
 
+	var/map_z = list()
 	var/list/generic_waypoints = list()    //waypoints that any shuttle can use
 	var/list/restricted_waypoints = list() //waypoints for specific shuttles
-
 	var/start_x			//coordinates on the
 	var/start_y			//overmap zlevel
-
 	var/base = 0		//starting sector, counts as station_levels
 	var/known = 1		//shows up on nav computers automatically
 	var/in_space = 1	//can be accessed via lucky EVA

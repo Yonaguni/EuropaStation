@@ -18,6 +18,8 @@
 	icon_state = "flashlight"
 	weight_mod = 1
 	has_alt_interaction = 1
+	auto_init = TRUE
+
 	var/on
 	var/brightness_on = 4
 

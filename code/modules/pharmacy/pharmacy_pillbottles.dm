@@ -11,6 +11,8 @@ obj/item/storage/pill_bottle
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	use_sound = null
+	auto_init = TRUE
+
 	var/medication_name
 	var/actual_reagent_name
 	var/obfuscate_contents = TRUE

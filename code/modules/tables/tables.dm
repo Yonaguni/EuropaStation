@@ -8,6 +8,8 @@
 	climbable = 1
 	layer = 2.8
 	throwpass = 1
+	auto_init = TRUE
+
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10

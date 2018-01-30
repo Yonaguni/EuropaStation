@@ -18,6 +18,7 @@
 	anchored = 1
 	density = 1
 	opacity = 1
+	auto_init = TRUE
 
 /obj/structure/bookcase/initialize()
 	for(var/obj/item/I in loc)

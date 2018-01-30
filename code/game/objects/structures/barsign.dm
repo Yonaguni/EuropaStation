@@ -5,6 +5,7 @@
 	anchored = 1
 	pixel_x = -32
 	pixel_y = -32
+	auto_init = TRUE
 
 	light_power = 6
 	light_range = 5

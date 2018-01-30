@@ -97,6 +97,7 @@
 	name = "mound"
 	desc = "Some things are better left buried."
 	open = 0
+	auto_init = TRUE
 
 /obj/structure/pit/closed/initialize()
 	..()
@@ -156,6 +157,9 @@
 /obj/structure/gravemarker/examine()
 	..()
 	usr << message
+
+/obj/structure/gravemarker/random
+	auto_init = TRUE
 
 /obj/structure/gravemarker/random/initialize()
 	generate()

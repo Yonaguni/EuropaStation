@@ -5,6 +5,7 @@
 	anchored = 1
 	density = 0
 	layer = 4
+	auto_init = TRUE
 
 	light_power = 10
 	light_range = 1

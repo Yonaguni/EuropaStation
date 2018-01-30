@@ -5,6 +5,7 @@
 	item_state = "cardborg"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags_inv = HIDEJUMPSUIT
+	auto_init = TRUE
 
 /obj/item/clothing/suit/cardborg/initialize()
 	..()

@@ -365,6 +365,7 @@ var/bomb_set
 	icon_state = "nucleardisk"
 	item_state = "card-id"
 	w_class = 1.0
+	auto_init = TRUE
 
 /obj/item/disk/nuclear/New()
 	..()
