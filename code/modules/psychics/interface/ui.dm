@@ -9,7 +9,7 @@
 	update_icon()
 
 /obj/screen/psi/Destroy()
-	if(owner.client)
+	if(owner && owner.client)
 		owner.client.screen -= src
 	. = ..()
 
