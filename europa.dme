@@ -1180,6 +1180,7 @@
 #include "code\modules\clothing\under\jumpsuits\jumpsuits_misc.dm"
 #include "code\modules\clothing\under\jumpsuits\jumpsuits_special.dm"
 #include "code\modules\clothing\under\uplifts\corvid.dm"
+#include "code\modules\clothing\under\uplifts\corvid_colour.dm"
 #include "code\modules\codex\_codex.dm"
 #include "code\modules\codex\codex_atom.dm"
 #include "code\modules\codex\codex_client.dm"

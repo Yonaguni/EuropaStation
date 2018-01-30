@@ -44,33 +44,25 @@
 	path = /obj/item/clothing/under/dress/dress_fire
 
 /datum/gear/uniform/corvid
-	display_name = "smock, grey (Neo-Corvid)"
+	display_name = "smock (Neo-Corvid)"
 	path = /obj/item/clothing/under/corvid
+	flags = GEAR_HAS_COLOR_SELECTION
 	whitelisted = "Neo-Corvid"
 
-/datum/gear/uniform/corvid/rainbow
+/datum/gear/uniform/corvid_rainbow
 	display_name = "smock, rainbow (Neo-Corvid)"
 	path = /obj/item/clothing/under/corvid/rainbow
+	whitelisted = "Neo-Corvid"
 
-/datum/gear/uniform/corvid/white
-	display_name = "smock, white (Neo-Corvid)"
-	path = /obj/item/clothing/under/corvid/white
-
-/datum/gear/uniform/corvid/eng
-	display_name = "uniform, Engineering (Neo-Corvid)"
-	path = /obj/item/clothing/under/corvid/yellow
-
-/datum/gear/uniform/corvid/sec
-	display_name = "uniform, Security (Neo-Corvid)"
-	path = /obj/item/clothing/under/corvid/red
-
-/datum/gear/uniform/corvid/med
+/datum/gear/uniform/corvid_med
 	display_name = "uniform, Medical (Neo-Corvid)"
 	path = /obj/item/clothing/under/corvid/medical
+	whitelisted = "Neo-Corvid"
 
-/datum/gear/uniform/corvid/science
+/datum/gear/uniform/corvid_science
 	display_name = "uniform, Science (Neo-Corvid)"
 	path = /obj/item/clothing/under/corvid/science
+	whitelisted = "Neo-Corvid"
 
 /datum/gear/uniform/harness
 	display_name = "gear harness (android)"
