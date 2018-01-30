@@ -5,6 +5,7 @@
 			var/obj/item/result = power.invoke(holder, target); \
 			if(result) { \
 				if(istype(result)) { \
+					holder << 'sound/effects/psi/power_evoke.ogg'; \
 					LAZYADD(holder.psi.manifested_items, result); \
 					holder.put_in_hands(result); \
 				} \
