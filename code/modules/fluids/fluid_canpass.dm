@@ -13,6 +13,9 @@
 				break
 	return fluid_can_pass
 
+/obj/structure/girder/CanFluidPass(var/coming_from)
+	return TRUE
+
 /obj/structure/inflatable/CanFluidPass(var/coming_from)
 	return !density
 
