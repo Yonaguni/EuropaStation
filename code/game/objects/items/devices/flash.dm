@@ -124,14 +124,3 @@
 		for(var/mob/living/carbon/M in oviewers(3, loc))
 			try_flash(M, user, silent = TRUE)
 		try_flash(user, silent = TRUE)
-
-/obj/item/flash/synthetic
-	name = "synthetic flash"
-	desc = "When a problem arises, SCIENCE is the solution."
-	icon_state = "sflash"
-
-/obj/item/flash/synthetic/expend_charge(var/mob/user)
-	if(!broken)
-		break_flash(user)
-		return TRUE
-	return FALSE
