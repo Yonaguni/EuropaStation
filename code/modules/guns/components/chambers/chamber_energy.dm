@@ -77,12 +77,12 @@
 	else
 		power_supply = new /obj/item/cell/device/variable(src, max_shots*charge_cost)
 	if(self_recharge_time)
-		processing_objects.Add(src)
+		START_PROCESSING(SSprocessing, src)
 	update_icon()
 
 /obj/item/gun_component/chamber/laser/Destroy()
 	if(!self_recharge_time)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/gun_component/chamber/laser/process()
@@ -140,7 +140,7 @@
 /obj/item/gun_component/chamber/laser/pistol
 	icon_state="las_pistol"
 	weapon_type = GUN_PISTOL
-	charge_cost = 100
+	charge_cost = 500
 	max_shots = 10
 	fire_delay = 5
 	ammo_indicator_state = "laser_pistol_loaded"
@@ -153,7 +153,7 @@
 	icon_state="las_rifle"
 	name = "precision lens"
 	weapon_type = GUN_RIFLE
-	charge_cost = 400
+	charge_cost = 1000
 	max_shots = 4
 	fire_delay = 35
 	ammo_indicator_state = "laser_rifle_loaded"
@@ -163,7 +163,7 @@
 	icon_state="las_cannon"
 	name = "three-phase industrial lens"
 	weapon_type = GUN_CANNON
-	charge_cost = 400
+	charge_cost = 1200
 	max_shots = 5
 	fire_delay = 20
 	ammo_indicator_state = "laser_cannon_loaded"
@@ -172,7 +172,7 @@
 	icon_state="las_assault"
 	name = "multiphase lens"
 	weapon_type = GUN_ASSAULT
-	charge_cost = 200
+	charge_cost = 750
 	max_shots = 30
 	fire_delay = 2
 	ammo_indicator_state = "laser_assault_loaded"
