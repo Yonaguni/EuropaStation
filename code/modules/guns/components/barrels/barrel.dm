@@ -1,29 +1,31 @@
 /obj/item/gun_component/barrel
+
 	name = "barrel"
 	component_type = COMPONENT_BARREL
 	projectile_type = GUN_TYPE_BALLISTIC
 	weapon_type = null
 	icon = 'icons/obj/gun_components/barrel.dmi'
 
-	var/caliber
-	var/fire_sound = 'sound/weapons/Gunshot.ogg'
+	var/decl/weapon_caliber/design_caliber
 	var/variable_projectile = 1
 	var/override_name
-	var/list/firemodes
 	var/shortened_icon = null
 	recoil_mod = 1
+
+/obj/item/gun_component/barrel/New(var/newloc, var/weapontype, var/componenttype, var/use_model, var/supplied_caliber)
+	if(supplied_caliber)
+		design_caliber = supplied_caliber
+	design_caliber = get_caliber_from_path(design_caliber)
+	..(newloc, weapontype, componenttype, use_model)
 
 /obj/item/gun_component/barrel/update_strings()
 	..()
 	if(model && model.produced_by.manufacturer_short != "unbranded")
-		name = "[model.produced_by.manufacturer_short] [override_name ? override_name : caliber] [weapon_type] [initial(name)]"
+		name = "[model.produced_by.manufacturer_short] [override_name ? override_name : design_caliber.name] [weapon_type] [initial(name)]"
 	else
-		name = "[override_name ? override_name : caliber] [weapon_type] [initial(name)]"
+		name = "[override_name ? override_name : design_caliber.name] [weapon_type] [initial(name)]"
 
 /obj/item/gun_component/barrel/proc/get_projectile_type()
-	return
-
-/obj/item/gun_component/barrel/proc/update_from_caliber()
 	return
 
 /obj/item/gun_component/barrel/attackby(var/obj/item/thing, var/mob/user)
@@ -41,7 +43,7 @@
 				if(initial(override_name))
 					override_name = "shortened [initial(override_name)]"
 				else
-					override_name = "shortened [caliber]"
+					override_name = "shortened [design_caliber.name]"
 				update_strings()
 				return
 		else

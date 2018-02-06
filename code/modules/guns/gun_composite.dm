@@ -3,7 +3,6 @@
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
 
-	var/caliber = ""                           // Barrel size/type of projectile.
 	var/decl/weapon_model/model                // Model and manufacturer info, if any.
 	var/list/accessories = list()              // Installed accessories, if any.
 	var/force_icon                             // File to override component icons with.
@@ -14,7 +13,7 @@
 	var/installed_in_turret = FALSE            // Are we installed in a turret?
 
 	// Component helpers.
-	var/obj/item/gun_component/barrel/barrel   // Caliber, projectile type.
+	var/obj/item/gun_component/barrel/barrel   // Max caliber size/velocity, projectile type.
 	var/obj/item/gun_component/body/body       // Class of weapon, weapon size.
 	var/obj/item/gun_component/grip/grip       // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
@@ -68,6 +67,9 @@
 		qdel(I)
 	return ..()
 
+/obj/item/gun/composite/get_fire_sound()
+	return chamber.design_caliber.fire_sound // Projectiles will almost always override this.
+
 /obj/item/gun/composite/get_cell()
 	return chamber ? chamber.get_cell() : ..()
 
@@ -81,16 +83,8 @@
 			qdel(src)
 		return
 
-	// Grab fire data from our components.
-	if(barrel.caliber) caliber = barrel.caliber
-
 	// To avoid writing over/mixing up.
 	firemodes = chamber.firemodes.Copy()
-
-	// Nested lists in DM are horrible.
-	if(barrel.firemodes && barrel.firemodes.len)
-		for(var/list/L in barrel.firemodes)
-			firemodes += list(L.Copy())
 
 	// Update physical variables.
 	slot_flags = body.slot_flags
@@ -99,7 +93,6 @@
 		if(GC && GC.w_class > w_class)
 			w_class = GC.w_class
 
-	fire_sound = barrel.fire_sound
 	fire_delay = chamber.fire_delay
 	silenced = 0
 	verbs -= /obj/item/gun/composite/proc/scope
@@ -275,9 +268,7 @@
 	return
 
 /obj/item/gun/composite/switch_firemodes(var/mob/user)
-	var/datum/firemode/new_mode = ..()
-	barrel.caliber = caliber
-	barrel.update_from_caliber()
-	if(new_mode)
-		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
-	return new_mode
+	. = ..()
+	var/datum/firemode/new_mode = .
+	if(istype(new_mode) && ispath(new_mode.settings["caliber"]))
+		chamber.design_caliber = get_caliber_from_path(new_mode.settings["caliber"])

@@ -14,7 +14,7 @@
 	variant_stock =   /obj/item/gun_component/stock/smg/laser
 	variant_grip =    /obj/item/gun_component/grip/smg/laser
 	variant_body =    /obj/item/gun_component/body/smg/laser
-	variant_barrel =  /obj/item/gun_component/barrel/laser/variable/smg
+	variant_barrel =  /obj/item/gun_component/barrel/laser/xray
 
 /obj/item/gun/composite/premade/laser_pistol
 	name = "laser pistol"
@@ -23,7 +23,7 @@
 	variant_stock =   /obj/item/gun_component/stock/pistol/laser
 	variant_grip =    /obj/item/gun_component/grip/pistol/laser
 	variant_body =    /obj/item/gun_component/body/pistol/laser
-	variant_barrel =  /obj/item/gun_component/barrel/laser/variable
+	variant_barrel =  /obj/item/gun_component/barrel/laser/pistol
 
 /obj/item/gun/composite/premade/laser_pistol/antique
 	variant_chamber = /obj/item/gun_component/chamber/laser/pistol/antique
@@ -37,11 +37,12 @@
 /obj/item/gun/composite/premade/taser_pistol
 	name = "taser pistol"
 	icon_state = "laser_pistol"
-	variant_chamber = /obj/item/gun_component/chamber/laser/pistol
+	variant_chamber = /obj/item/gun_component/chamber/laser/pistol/taser
 	variant_stock =   /obj/item/gun_component/stock/pistol/laser
 	variant_grip =    /obj/item/gun_component/grip/pistol/laser
 	variant_body =    /obj/item/gun_component/body/pistol/laser
-	variant_barrel =  /obj/item/gun_component/barrel/laser/taser
+	variant_barrel =  /obj/item/gun_component/barrel/laser
+	set_caliber = /decl/weapon_caliber/laser/shock
 
 /obj/item/gun/composite/premade/laser_rifle
 	name = "laser rifle"
@@ -54,7 +55,7 @@
 
 /obj/item/gun/composite/premade/laser_rifle/practice
 	name = "practice laser rifle"
-	variant_barrel =  /obj/item/gun_component/barrel/laser/rifle_practice
+	set_caliber = /decl/weapon_caliber/laser/practice
 
 /obj/item/gun/composite/premade/laser_rifle/scoped/New()
 	new /obj/item/gun_component/accessory/chamber/scope(src)
@@ -76,8 +77,8 @@
 	variant_stock =   /obj/item/gun_component/stock/assault/laser
 	variant_grip =    /obj/item/gun_component/grip/assault/laser
 	variant_body =    /obj/item/gun_component/body/assault/laser
-	variant_barrel =  /obj/item/gun_component/barrel/laser/variable/assault
+	variant_barrel =  /obj/item/gun_component/barrel/laser/assault
 
 /obj/item/gun/composite/premade/laser_assault/practice
 	name = "practice laser assault rifle"
-	variant_barrel =  /obj/item/gun_component/barrel/laser/assault_practice
+	set_caliber = /decl/weapon_caliber/laser/practice

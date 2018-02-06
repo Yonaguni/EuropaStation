@@ -1,13 +1,3 @@
-var/static/list/energy_projectile_costs = list(
-	"[CALIBER_LASER_PULSE]" =      1750,
-	"[CALIBER_LASER_INDUSTRIAL]" = 1750,
-	"[CALIBER_LASER_HEAVY]" =      1500,
-	"[CALIBER_LASER_PRECISION]" =  1500,
-	"[CALIBER_LASER_SHOCK]" =      1000,
-	"[CALIBER_LASER_TASER]" =      1000,
-	"[CALIBER_LASER_PARTICLE]" =   1000
-	)
-
 /obj/item/gun_component/chamber/laser
 	projectile_type = GUN_TYPE_LASER
 	var/initial_charge = 5000
@@ -21,7 +11,7 @@ var/static/list/energy_projectile_costs = list(
 	return power_supply
 
 /obj/item/gun_component/chamber/laser/proc/get_fire_cost()
-	return max(500, energy_projectile_costs[holder.caliber])
+	return max(holder.barrel.design_caliber.fire_cost, design_caliber.fire_cost)
 
 /obj/item/gun_component/chamber/laser/get_max_shots(var/val)
 	if(!power_supply)
@@ -80,12 +70,14 @@ var/static/list/energy_projectile_costs = list(
 	update_ammo_overlay()
 	return 1
 
-/obj/item/gun_component/chamber/laser/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
-	..(newloc, weapontype, componenttype, use_model)
+/obj/item/gun_component/chamber/laser/New(var/newloc, var/weapontype, var/componenttype, var/use_model, var/supplied_caliber)
+
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
 		power_supply = new /obj/item/cell/device/variable(src, initial_charge)
+
+	..(newloc, weapontype, componenttype, use_model, supplied_caliber)
 
 	if(holder && holder.model && !isnull(holder.model.produced_by.capacity))
 		power_supply.maxcharge = round(power_supply.maxcharge * holder.model.produced_by.capacity)
@@ -161,6 +153,14 @@ var/static/list/energy_projectile_costs = list(
 	max_shots = 10
 	fire_delay = 5
 	ammo_indicator_state = "laser_pistol_loaded"
+	design_caliber = /decl/weapon_caliber/laser
+	firemodes = list(
+		list(mode_name="stun",   caliber = /decl/weapon_caliber/laser/shock),
+		list(mode_name="lethal", caliber = /decl/weapon_caliber/laser),
+		)
+
+/obj/item/gun_component/chamber/laser/pistol/taser
+	design_caliber = /decl/weapon_caliber/laser/shock
 
 /obj/item/gun_component/chamber/laser/pistol/antique
 	name = "antique charging mechanism"
@@ -175,6 +175,7 @@ var/static/list/energy_projectile_costs = list(
 	fire_delay = 35
 	ammo_indicator_state = "laser_rifle_loaded"
 	accuracy_mod = 1
+	design_caliber = /decl/weapon_caliber/laser/precision
 
 /obj/item/gun_component/chamber/laser/cannon
 	icon_state="las_cannon"
@@ -184,13 +185,4 @@ var/static/list/energy_projectile_costs = list(
 	max_shots = 5
 	fire_delay = 20
 	ammo_indicator_state = "laser_cannon_loaded"
-
-/obj/item/gun_component/chamber/laser/assault
-	icon_state="las_assault"
-	name = "multiphase lens"
-	weapon_type = GUN_ASSAULT
-	initial_charge = 12000
-	max_shots = 30
-	fire_delay = 2
-	ammo_indicator_state = "laser_assault_loaded"
-	self_recharge_time = 4
+	design_caliber = /decl/weapon_caliber/laser/heavy

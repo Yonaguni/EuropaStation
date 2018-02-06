@@ -51,7 +51,7 @@
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
-	else if(istype(Proj,/obj/item/projectile/ion))
+	else if(istype(Proj,/obj/item/projectile/energy))
 		burn(500)
 
 	var/proj_damage = Proj.get_structure_damage()

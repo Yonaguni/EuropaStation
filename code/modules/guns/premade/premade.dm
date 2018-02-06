@@ -1,6 +1,8 @@
 /obj/item/gun/composite/premade
 	icon = 'icons/obj/gun.dmi'
+
 	var/set_model
+	var/set_caliber
 	var/variant_chamber = /obj/item/gun_component/chamber
 	var/variant_body =    /obj/item/gun_component/body
 	var/variant_barrel =  /obj/item/gun_component/barrel
@@ -12,9 +14,9 @@
 	//icon_state = "" // READD AFTER FIXING GUN ICONS IN 510.
 
 	// Mandatory parts.
-	barrel =  new variant_barrel  (src, use_model = set_model)
+	barrel =  new variant_barrel  (src, use_model = set_model, supplied_caliber = set_caliber)
+	chamber = new variant_chamber (src, use_model = set_model, supplied_caliber = set_caliber)
 	body =    new variant_body    (src, use_model = set_model)
-	chamber = new variant_chamber (src, use_model = set_model)
 	grip =    new variant_grip    (src, use_model = set_model)
 
 	// Optional parts.

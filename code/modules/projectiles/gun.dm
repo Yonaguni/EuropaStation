@@ -23,11 +23,11 @@
 		else
 			settings[propname] = propvalue
 
+var/static/list/skip_firemode_property_names = list("name" = TRUE, "caliber" = TRUE)
 /datum/firemode/proc/apply_to(var/obj/item/gun/gun)
 	for(var/propname in settings)
-		if(propname == "name")
-			continue
-		gun.vars[propname] = settings[propname]
+		if(!skip_firemode_property_names[propname])
+			gun.vars[propname] = settings[propname]
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/gun
@@ -56,7 +56,6 @@
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
-	var/fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
 	var/fire_sound_text = "gunshot"
 	var/screen_shake = 0 //shouldn't be greater than 2 unless zoomed
 	var/silenced = 0
@@ -350,6 +349,9 @@
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
 
+/obj/item/gun/proc/get_fire_sound()
+	return
+
 //does the actual launching of the projectile
 /obj/item/gun/proc/process_projectile(obj/projectile, atom/movable/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
@@ -374,11 +376,12 @@
 	var/launched = !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
 	if(launched)
-		var/shot_sound = P.fire_sound? P.fire_sound : fire_sound
-		if(silenced)
-			playsound(user, shot_sound, 10, 1)
-		else
-			playsound(user, shot_sound, 50, 1)
+		var/shot_sound = get_fire_sound()
+		if(shot_sound)
+			if(silenced)
+				playsound(user, shot_sound, 10, 1)
+			else
+				playsound(user, shot_sound, 50, 1)
 
 	return launched
 
@@ -398,7 +401,7 @@
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
 		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
-		var/shot_sound = in_chamber.fire_sound? in_chamber.fire_sound : fire_sound
+		var/shot_sound = get_fire_sound()
 		if(silenced)
 			playsound(user, shot_sound, 10, 1)
 		else

@@ -5,6 +5,7 @@
 	projectile_type = GUN_TYPE_BALLISTIC
 	weapon_type = GUN_PISTOL
 
+	var/decl/weapon_caliber/design_caliber
 	var/max_shots = 1
 	var/list/firemodes = list()
 	var/fire_delay = 5
@@ -14,18 +15,22 @@
 	var/automatic
 	var/revolver
 
-/obj/item/gun_component/chamber/proc/get_max_shots(var/val)
-	return max_shots * val
+/obj/item/gun_component/chamber/proc/get_max_shots(var/val = 1)
+	return Floor(max_shots * val)
 
-/obj/item/gun_component/chamber/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
+/obj/item/gun_component/chamber/New(var/newloc, var/weapontype, var/componenttype, var/use_model, var/supplied_caliber)
+	if(supplied_caliber)
+		design_caliber = supplied_caliber
+	design_caliber = get_caliber_from_path(design_caliber)
 	..(newloc, weapontype, componenttype, use_model)
-	update_ammo_overlay()
+	spawn
+		update_ammo_overlay()
 
 /obj/item/gun_component/chamber/proc/modify_shot(var/obj/item/projectile/proj)
 	return proj
 
 /obj/item/gun_component/chamber/proc/update_ammo_overlay()
-	if(ammo_indicator_state)
+	if(holder && ammo_indicator_state)
 		overlays.Cut()
 		var/shots_left = get_shots_remaining()
 		var/use_state = ammo_indicator_state
@@ -49,6 +54,7 @@
 				ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
 		ammo_overlay.icon_state = use_state
 		overlays |= ammo_overlay
+
 /obj/item/gun_component/chamber/proc/recieve_charge(var/amt)
 	return
 

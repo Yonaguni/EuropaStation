@@ -1,8 +1,7 @@
 /proc/get_gun_name(var/obj/item/assembly, var/dam_type, var/gun_type)
-
 	var/auto
 	var/revolver
-	var/caliber
+	var/decl/weapon_caliber/caliber
 	var/sniper
 	var/override_type_name
 
@@ -16,12 +15,12 @@
 				if(GA.chamber.revolver)
 					revolver = 1
 			if(GA.barrel)
-				caliber = GA.barrel
+				caliber = GA.barrel.design_caliber
 				if(GA.barrel.override_name)
 					override_type_name = GA.barrel.override_name
 		else if(istype(assembly, /obj/item/gun/composite))
 			var/obj/item/gun/composite/CG = assembly
-			caliber = CG.caliber
+			caliber = CG.barrel.design_caliber
 			dam_type = CG.dam_type
 			gun_type = CG.gun_type
 			if(CG.chamber.automatic)
@@ -35,25 +34,7 @@
 	if(override_type_name)
 		type_name = override_type_name
 	else if(caliber)
-		switch(caliber)
-			if(CALIBER_RIFLE_SNIPER)
-				type_name = "anti-materiel"
-			if(CALIBER_LASER_INDUSTRIAL)
-				type_name = "industrial"
-			if(CALIBER_LASER_LASERTAG)
-				type_name = "laser tag"
-			if(CALIBER_LASER_PRECISION)
-				type_name = "precision laser"
-			if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
-				type_name = "taser"
-			if(CALIBER_ALIEN)
-				type_name = "alien"
-			if(CALIBER_TOY)
-				type_name = "cap"
-			if(CALIBER_DART)
-				type_name = "dart"
-			else
-				type_name = caliber
+		type_name = caliber.name
 	else
 		switch(dam_type)
 			if(GUN_TYPE_ELECTROSHOCK)

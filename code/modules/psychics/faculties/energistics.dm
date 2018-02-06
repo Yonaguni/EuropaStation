@@ -65,20 +65,24 @@
 
 		var/user_rank = user.psi.get_rank(faculty)
 		var/obj/item/projectile/pew
+		var/pew_sound
 
 		switch(user_rank)
 			if(PSI_RANK_PARAMOUNT)
 				pew = new /obj/item/projectile/beam/heavylaser(get_turf(user))
 				pew.name = "gigawatt mental laser"
+				pew_sound = 'sound/weapons/lasercannonfire.ogg'
 			if(PSI_RANK_GRANDMASTER)
 				pew = new /obj/item/projectile/beam/midlaser(get_turf(user))
 				pew.name = "megawatt mental laser"
+				pew_sound = 'sound/weapons/Laser.ogg'
 			if(PSI_RANK_MASTER)
 				pew = new /obj/item/projectile/beam/stun(get_turf(user))
 				pew.name = "mental laser"
+				pew_sound = 'sound/weapons/Taser.ogg'
 
 		if(istype(pew))
-			playsound(pew.loc, pew.fire_sound, 25, 1)
+			playsound(pew.loc, pew_sound, 25, 1)
 			pew.original = target
 			pew.current = target
 			pew.starting = get_turf(user)

@@ -1,7 +1,7 @@
 /obj/item/gun_component/barrel/rifle
 	icon_state="rifle"
 	weapon_type = GUN_RIFLE
-	caliber = CALIBER_RIFLE_SMALL
+	design_caliber = /decl/weapon_caliber/rifle_small
 	accepts_accessories = 1
 	shortened_icon="rifle_short"
 	weight_mod = 2
@@ -9,7 +9,7 @@
 	recoil_mod = 2
 
 /obj/item/gun_component/barrel/rifle/large
-	caliber = CALIBER_RIFLE_LARGE
+	design_caliber = /decl/weapon_caliber/rifle_large
 	recoil_mod = 3
 	accuracy_mod = 2
 
@@ -23,13 +23,13 @@
 	override_name = "sawn-off"
 
 /obj/item/gun_component/barrel/rifle/short/large
-	caliber = CALIBER_RIFLE_LARGE
+	design_caliber = /decl/weapon_caliber/rifle_large
 	recoil_mod = 4
 
 /obj/item/gun_component/barrel/rifle/am
 	icon_state="sniper"
 	w_class = 3
-	caliber = CALIBER_RIFLE_SNIPER
+	design_caliber = /decl/weapon_caliber/rifle_sniper
 	weight_mod = 2
 	accuracy_mod = 3
 	recoil_mod = 5
@@ -38,8 +38,7 @@
 /obj/item/gun_component/barrel/cannon
 	icon_state="cannon"
 	weapon_type = GUN_CANNON
-	caliber = CALIBER_CANNON
-	fire_sound = 'sound/effects/bang.ogg'
+	design_caliber = /decl/weapon_caliber/gyrojet
 	weight_mod = 2
 	recoil_mod = 6
 	two_handed = 1
@@ -47,7 +46,7 @@
 /obj/item/gun_component/barrel/shotgun
 	icon_state="shotgun"
 	weapon_type = GUN_SHOTGUN
-	caliber = CALIBER_SHOTGUN
+	design_caliber = /decl/weapon_caliber/shotgun
 	accepts_accessories = 1
 	shortened_icon = "shotgun_short"
 	weight_mod = 2

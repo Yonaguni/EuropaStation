@@ -6,7 +6,6 @@
 	spread_step = 20
 
 	silenced = 1
-	fire_sound = null
 	no_attack_log = 1
 	muzzle_type = null
 

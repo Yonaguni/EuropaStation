@@ -13,11 +13,12 @@
 	throw_range = 10
 
 	var/list/stored_ammo = list()
-	var/caliber = CALIBER_357
+	var/decl/weapon_caliber/caliber = /decl/weapon_caliber/pistol_357
 	var/max_ammo = 7
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
 	var/mag_type = MAGAZINE
+	var/weapon_type
 
 /obj/item/ammo_magazine/New()
 	..()
@@ -32,13 +33,18 @@
 			for(var/i = 1 to initial_ammo)
 				stored_ammo += new ammo_type(src)
 
-	name = "[initial(name)] ([caliber])"
+	caliber = get_caliber_from_path(caliber)
+	name = "[initial(name)] ([caliber.name])"
 	update_icon()
+
+/obj/item/ammo_casing/Destroy()
+	caliber = null
+	. = ..()
 
 /obj/item/ammo_magazine/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
-		if(C.caliber != caliber)
+		if(C.caliber.projectile_size != caliber.projectile_size)
 			user << "<span class='warning'>[C] does not fit into [src].</span>"
 			return
 		if(stored_ammo.len >= max_ammo)
@@ -70,12 +76,16 @@
 	icon_state = "assault_mag"
 	ammo_type = /obj/item/ammo_casing/rifle_small
 	max_ammo = 30
+	weapon_type = GUN_ASSAULT
+
 /obj/item/ammo_magazine/assault/large
 	ammo_type = /obj/item/ammo_casing/rifle_large
 
 /obj/item/ammo_magazine/pistol
 	name = "pistol magazine"
 	ammo_type = /obj/item/ammo_casing/pistol_small
+	weapon_type = GUN_PISTOL
+
 /obj/item/ammo_magazine/pistol/medium
 	ammo_type = /obj/item/ammo_casing/pistol_medium
 /obj/item/ammo_magazine/pistol/large
@@ -91,6 +101,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol_small
 	max_ammo = 30
 	color = COLOR_GUNMETAL
+	weapon_type = GUN_SMG
 
 /obj/item/ammo_magazine/submachine/medium
 	ammo_type = /obj/item/ammo_casing/pistol_medium
@@ -105,6 +116,8 @@
 	name = "ammunition belt"
 	icon_state = "cannon_belt"
 	ammo_type = /obj/item/ammo_casing/gyrojet
+	weapon_type = GUN_CANNON
+	max_ammo = 30
 
 // Empty mags.
 /obj/item/ammo_magazine/assault/empty

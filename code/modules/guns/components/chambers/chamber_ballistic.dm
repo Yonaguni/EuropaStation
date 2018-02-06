@@ -84,10 +84,10 @@
 		var/mob/living/carbon/human/H = holder.loc
 		if(istype(H))
 			if(!H.gloves)
-				H.gunshot_residue = chambered.caliber
+				H.gunshot_residue = chambered.caliber.name
 			else
 				var/obj/item/clothing/G = H.gloves
-				G.gunshot_residue = chambered.caliber
+				G.gunshot_residue = chambered.caliber.name
 
 	// Eject or contain casings.
 	switch(handle_casings)
@@ -143,7 +143,8 @@
 
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
-		if(!preloading && (!(load_method & AM.mag_type) || holder.caliber != AM.caliber))
+		//TODO: allow loading of mismatched design_caliber.projectile_size/AM.caliber.projectile_size and punish with jams/backfiring for doing so.
+		if(!preloading && (!(load_method & AM.mag_type) || design_caliber.projectile_size != AM.caliber.projectile_size || AM.weapon_type != weapon_type))
 			return //incompatible
 
 		switch(AM.mag_type)
@@ -184,7 +185,7 @@
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 					if(loaded.len >= get_max_shots())
 						break
-					if(C.caliber == holder.caliber)
+					if(C.caliber.projectile_size <= design_caliber.projectile_size)
 						C.forceMove(src)
 						loaded += C
 						AM.stored_ammo -= C
@@ -204,7 +205,7 @@
 		var/obj/item/ammo_casing/C = A
 
 		if(!preloading)
-			if(!(load_method & SINGLE_CASING) || holder.caliber != C.caliber)
+			if(!(load_method & SINGLE_CASING) || design_caliber.projectile_size > C.caliber.projectile_size)
 				return //incompatible
 			if(loaded.len >= get_max_shots())
 				if(user) user << "<span class='warning'>\The [holder] is full.</span>"
@@ -252,6 +253,8 @@
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
 	color = COLOR_GUNMETAL
+	design_caliber = /decl/weapon_caliber/pistol_small
 
-/obj/item/gun_component/chamber/ballistic/pistol/alt
+/obj/item/gun_component/chamber/ballistic/pistol/a45
 	icon_state="pistol2"
+	design_caliber = /decl/weapon_caliber/pistol_45

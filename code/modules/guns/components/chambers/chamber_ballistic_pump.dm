@@ -6,6 +6,7 @@
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
 	has_user_interaction = 1
+	design_caliber = /decl/weapon_caliber/shotgun
 
 /obj/item/gun_component/chamber/ballistic/pump/consume_next_projectile()
 	if(chambered)

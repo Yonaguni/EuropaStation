@@ -10,6 +10,7 @@
 /obj/item/gun/composite/premade/assault_rifle/a762
 	name = "7.62 assault rifle"
 	variant_barrel =  /obj/item/gun_component/barrel/assault/a762
+	set_caliber = /decl/weapon_caliber/rifle_large
 
 /obj/item/gun/composite/premade/assault_rifle/a762/preloaded
 	desc = "A 7.62 caliber assault rifle: for when you absolutely need the other guy to be full of bullet holes. Preloaded with one magazine."

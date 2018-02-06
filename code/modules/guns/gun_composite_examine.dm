@@ -3,9 +3,9 @@
 
 	if(usr && usr.Adjacent(get_turf(src)))
 		if(dam_type == GUN_TYPE_LASER)
-			usr << "This one is \a [caliber] projector."
+			usr << "This one is designed to be \a [barrel.design_caliber.name] projector."
 		else
-			usr << "This one fires [caliber] rounds."
+			usr << "This one is designed to fire [barrel.design_caliber.name] rounds."
 		usr << "It has [chamber.get_shots_remaining()] shots remaining."
 
 		for(var/obj/item/gun_component/GC in src)

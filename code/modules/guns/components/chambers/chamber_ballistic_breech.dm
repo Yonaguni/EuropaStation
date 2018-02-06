@@ -6,6 +6,7 @@
 	handle_casings = EJECT_CASINGS
 	has_user_interaction = 1
 	accuracy_mod = 1
+	design_caliber = /decl/weapon_caliber/rifle_sniper
 	var/breech_open
 
 /obj/item/gun_component/chamber/ballistic/breech/get_extra_examine_info()
@@ -47,3 +48,4 @@
 	max_shots = 1
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
+	design_caliber = /decl/weapon_caliber/shotgun

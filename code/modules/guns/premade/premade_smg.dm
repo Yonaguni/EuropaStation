@@ -9,11 +9,11 @@
 
 /obj/item/gun/composite/premade/smg/a9
 	name = "9mm submachine gun"
-	variant_barrel = /obj/item/gun_component/barrel/smg/a9
+	set_caliber = /decl/weapon_caliber/pistol_medium
 
 /obj/item/gun/composite/premade/smg/a10
 	name = "10mm submachine gun"
-	variant_barrel = /obj/item/gun_component/barrel/smg/a10
+	set_caliber = /decl/weapon_caliber/pistol_large
 
 /obj/item/gun/composite/premade/smg/a10/preloaded
 	desc = "A vicious 10mm submachine gun. Preloaded with one magazine."
@@ -21,5 +21,5 @@
 
 /obj/item/gun/composite/premade/smg/a45
 	name = "a45 submachine gun"
-	variant_barrel = /obj/item/gun_component/barrel/smg/a45
 	variant_stock =  null
+	set_caliber = /decl/weapon_caliber/pistol_45

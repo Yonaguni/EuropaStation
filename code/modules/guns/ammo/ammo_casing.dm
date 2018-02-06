@@ -11,20 +11,30 @@
 	auto_init = TRUE
 
 	var/leaves_residue = 1
-	var/caliber	                        // Which kind of guns it can be loaded into
-	var/projectile_type                 // The bullet type to create when New() is called
+	var/decl/weapon_caliber/caliber     // Which kind of guns it can be loaded into
 	var/obj/item/projectile/projectile  // The loaded bullet - make it so that the projectiles are created only when needed?
 	var/spent_icon = null
-
-/obj/item/ammo_casing/initialize()
-	name = "[initial(name)] ([caliber])"
+	var/special_projectile_type
 
 /obj/item/ammo_casing/New()
 	..()
-	if(ispath(projectile_type))
-		projectile = new projectile_type(src)
+	caliber = get_caliber_from_path(caliber)
+	if(special_projectile_type)
+		projectile = new special_projectile_type(src)
+		name = "[initial(name)] ([projectile.name])"
+	else
+		projectile = new caliber.projectile_type(src)
+		name = "[initial(name)] ([caliber.name])"
+
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
+
+/obj/item/ammo_casing/Destroy()
+	if(projectile)
+		qdel(projectile)
+		projectile = null
+	caliber = null
+	. = ..()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
@@ -37,22 +47,19 @@
 
 // Predefines.
 /obj/item/ammo_casing/gyrojet
-	caliber = CALIBER_CANNON
+	caliber = /decl/weapon_caliber/gyrojet
 	icon_state = "rocket"
 	spent_icon = "rocket-spent"
-	projectile_type = /obj/item/projectile/bullet/gyro
 	matter = list("steel" = 500)
 
 /obj/item/ammo_casing/grenade
-	caliber = CALIBER_GRENADE
+	caliber = /decl/weapon_caliber/grenade
 	icon_state = "rocket"
-	projectile_type = /obj/item/projectile/bullet/gyro
 	matter = list("steel" = 500)
 
 /obj/item/ammo_casing/rocket
-	caliber = CALIBER_ROCKET
+	caliber = /decl/weapon_caliber/rocket
 	icon_state = "rocket"
-	projectile_type = /obj/item/projectile/bullet/gyro
 	matter = list("steel" = 500)
 
 // Quickload.
@@ -67,7 +74,7 @@
 	for(var/obj/item/ammo_casing/bullet in T.contents)
 		if(mag.stored_ammo.len >= mag.max_ammo)
 			break
-		if(bullet.caliber == mag.caliber && bullet.simulated && !bullet.anchored)
+		if(bullet.caliber.projectile_size <= mag.caliber.projectile_size && bullet.simulated && !bullet.anchored)
 			bullet.forceMove(mag)
 			mag.stored_ammo += bullet
 			load_amt++
