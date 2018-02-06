@@ -1,6 +1,6 @@
 /obj/item/flash
-	name = "flash"
-	desc = "Used for blinding and being an asshole."
+	name = "neural disruptor"
+	desc = "A handheld emitter that uses encoded light to stun and disorient a target. Useful for blinding people and generally being an asshole."
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5
@@ -88,19 +88,29 @@
 				flash_strength = 10
 				if(ishuman(C))
 					var/mob/living/carbon/human/H = C
-					flash_strength *= H.species.flash_mod
+					flash_strength = round(flash_strength * H.species.flash_mod)
 		else if(issilicon(victim))
 			flash_strength = rand(5,10)
 
-	var/use_message = "\The [user] fails to blind \the [victim] with \the [src]!"
+	var/use_message = "\The [user] flashes \the [victim] with \the [src], to no effect!"
 	if(flash_strength > 0)
-		victim.Weaken(flash_strength)
+
 		victim.flash_eyes()
-		flick("flash2", src)
+		victim.eye_blurry += flash_strength
+
+		if(flash_strength > 2)
+			victim.Stun(flash_strength / 2)
+			victim.confused += (flash_strength + 2)
+			victim.eye_blind = max(victim.eye_blind, flash_strength)
+
+		if(flash_strength > 4)
+			victim.drop_l_hand()
+			victim.drop_r_hand()
+
 		if(issilicon(victim))
 			use_message = "\The [user] overloads \the [victim]'s sensors with \the [src]!"
 		else
-			use_message = "\The [user] blinds \the [victim] with \the [src]!"
+			use_message = "\The [user] flashes \the [victim] with \the [src]!"
 
 	if(!silent)
 		loc.visible_message("<span class='danger'>[use_message]</span>")
