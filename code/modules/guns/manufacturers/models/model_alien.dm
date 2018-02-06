@@ -25,8 +25,7 @@
 /obj/item/gun_component/chamber/laser/rifle/kharmaani
 	name = "alien focusing lens"
 	desc = "A layered, nearly opaque focusing lens."
-	charge_cost = 100
-	max_shots = 10
+	initial_charge = 25000
 	fire_delay = 5
 	ammo_indicator_state = "particle_rifle_loaded"
 

@@ -44,13 +44,3 @@
 		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER)
 			return 'sound/weapons/Taser.ogg'
 	return 'sound/weapons/Laser.ogg'
-
-/proc/get_laser_cost_from_caliber(var/caliber)
-	switch(caliber)
-		if(CALIBER_LASER_PULSE, CALIBER_LASER_INDUSTRIAL)
-			return 400
-		if(CALIBER_LASER_HEAVY, CALIBER_LASER_PRECISION)
-			return 300
-		if(CALIBER_LASER_SHOCK, CALIBER_LASER_TASER, CALIBER_LASER_PARTICLE)
-			return 100
-	return 200

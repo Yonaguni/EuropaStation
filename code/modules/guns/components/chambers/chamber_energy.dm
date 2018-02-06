@@ -1,15 +1,33 @@
+var/static/list/energy_projectile_costs = list(
+	"[CALIBER_LASER_PULSE]" =      1750,
+	"[CALIBER_LASER_INDUSTRIAL]" = 1750,
+	"[CALIBER_LASER_HEAVY]" =      1500,
+	"[CALIBER_LASER_PRECISION]" =  1500,
+	"[CALIBER_LASER_SHOCK]" =      1000,
+	"[CALIBER_LASER_TASER]" =      1000,
+	"[CALIBER_LASER_PARTICLE]" =   1000
+	)
+
 /obj/item/gun_component/chamber/laser
 	projectile_type = GUN_TYPE_LASER
+	var/initial_charge = 5000
 	var/can_remove_cell
-	var/charge_cost = 200
 	var/self_recharge_time // Default is 4; null or 0 means the gun does not recharge itself without a charger.
 	var/self_recharge_tick = 0
 	var/cell_type
 	var/obj/item/cell/power_supply
 
-
 /obj/item/gun_component/chamber/laser/get_cell()
 	return power_supply
+
+/obj/item/gun_component/chamber/laser/proc/get_fire_cost()
+	return max(500, energy_projectile_costs[holder.caliber])
+
+/obj/item/gun_component/chamber/laser/get_max_shots(var/val)
+	if(!power_supply)
+		return 0
+	max_shots = power_supply.maxcharge / get_fire_cost()
+	return max_shots
 
 /obj/item/gun_component/chamber/laser/update_ammo_overlay()
 	if(ammo_indicator_state)
@@ -33,14 +51,6 @@
 	if(power_supply && can_remove_cell)
 		power_supply.forceMove(get_turf(src))
 		power_supply = null
-
-/obj/item/gun_component/chamber/laser/reset_max_shots()
-	..()
-	charge_cost = initial(charge_cost)
-
-/obj/item/gun_component/chamber/laser/apply_shot_mod(var/val)
-	..()
-	charge_cost = round(charge_cost*val)
 
 /obj/item/gun_component/chamber/laser/unload_ammo(var/mob/user)
 	if(!can_remove_cell)
@@ -75,9 +85,15 @@
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
-		power_supply = new /obj/item/cell/device/variable(src, max_shots*charge_cost)
+		power_supply = new /obj/item/cell/device/variable(src, initial_charge)
+
+	if(holder && holder.model && !isnull(holder.model.produced_by.capacity))
+		power_supply.maxcharge = round(power_supply.maxcharge * holder.model.produced_by.capacity)
+		power_supply.charge = power_supply.maxcharge
+
 	if(self_recharge_time)
 		START_PROCESSING(SSprocessing, src)
+
 	update_icon()
 
 /obj/item/gun_component/chamber/laser/Destroy()
@@ -96,22 +112,23 @@
 	if(!power_supply || power_supply.charge >= power_supply.maxcharge)
 		return 0 // check if we actually need to recharge
 
-	power_supply.give(charge_cost) //... to recharge the shot
+	power_supply.give(round(initial_charge/25)) //... to recharge the shot
 	update_ammo_overlay()
 	return 1
 
 /obj/item/gun_component/chamber/laser/get_shots_remaining()
-	return round(power_supply ? (power_supply.charge / charge_cost) : 0)
+	return round(power_supply ? (power_supply.charge / get_fire_cost()) : 0)
 
 /obj/item/gun_component/chamber/laser/consume_next_projectile()
 
+	var/fire_cost = get_fire_cost()
 	if(holder.installed_in_turret)
 		var/obj/machinery/porta_turret/turret = loc.loc
 		if(turret.stat & (BROKEN|NOPOWER))
 			return null
-		turret.use_power(charge_cost)
+		turret.use_power(fire_cost)
 	else
-		if(!power_supply || !power_supply.checked_use(charge_cost))
+		if(!power_supply || !power_supply.checked_use(fire_cost))
 			return null
 
 	var/projtype
@@ -140,7 +157,7 @@
 /obj/item/gun_component/chamber/laser/pistol
 	icon_state="las_pistol"
 	weapon_type = GUN_PISTOL
-	charge_cost = 500
+	initial_charge = 5000
 	max_shots = 10
 	fire_delay = 5
 	ammo_indicator_state = "laser_pistol_loaded"
@@ -153,7 +170,7 @@
 	icon_state="las_rifle"
 	name = "precision lens"
 	weapon_type = GUN_RIFLE
-	charge_cost = 1000
+	initial_charge = 9000
 	max_shots = 4
 	fire_delay = 35
 	ammo_indicator_state = "laser_rifle_loaded"
@@ -163,7 +180,7 @@
 	icon_state="las_cannon"
 	name = "three-phase industrial lens"
 	weapon_type = GUN_CANNON
-	charge_cost = 1200
+	initial_charge = 16000
 	max_shots = 5
 	fire_delay = 20
 	ammo_indicator_state = "laser_cannon_loaded"
@@ -172,7 +189,7 @@
 	icon_state="las_assault"
 	name = "multiphase lens"
 	weapon_type = GUN_ASSAULT
-	charge_cost = 750
+	initial_charge = 12000
 	max_shots = 30
 	fire_delay = 2
 	ammo_indicator_state = "laser_assault_loaded"

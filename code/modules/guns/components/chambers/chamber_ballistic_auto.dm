@@ -4,7 +4,6 @@
 	automatic = 1
 	weapon_type = GUN_SMG
 	load_method = MAGAZINE
-	max_shots = 22
 	ammo_indicator_state = "ballistic_smg_loaded"
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),

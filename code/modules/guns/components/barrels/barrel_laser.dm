@@ -21,9 +21,6 @@
 	..()
 	assume_projectile = get_laser_type_from_caliber(caliber)
 	fire_sound = get_fire_sound_from_caliber(caliber)
-	if(holder && istype(holder.chamber, /obj/item/gun_component/chamber/laser))
-		var/obj/item/gun_component/chamber/laser/echamber = holder.chamber
-		echamber.charge_cost = get_laser_cost_from_caliber(caliber)
 
 /obj/item/gun_component/barrel/laser/rifle
 	icon_state="las_rifle"

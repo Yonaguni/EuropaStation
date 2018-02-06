@@ -3,7 +3,6 @@
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
 
-	var/max_shots = 0                          // Weapon capacity.
 	var/caliber = ""                           // Barrel size/type of projectile.
 	var/decl/weapon_model/model                // Model and manufacturer info, if any.
 	var/list/accessories = list()              // Installed accessories, if any.
@@ -84,8 +83,6 @@
 
 	// Grab fire data from our components.
 	if(barrel.caliber) caliber = barrel.caliber
-	chamber.reset_max_shots()
-	max_shots = chamber.max_shots
 
 	// To avoid writing over/mixing up.
 	firemodes = chamber.firemodes.Copy()
@@ -132,9 +129,6 @@
 	if(model && model.produced_by)
 		if(!isnull(model.produced_by.accuracy))
 			accuracy = round(accuracy * model.produced_by.accuracy)
-		if(!isnull(model.produced_by.capacity))
-			chamber.apply_shot_mod(model.produced_by.capacity)
-			max_shots = chamber.max_shots
 		if(!isnull(model.produced_by.recoil))
 			recoil = round(recoil * model.produced_by.recoil)
 		if(!isnull(model.produced_by.fire_rate))

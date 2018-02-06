@@ -9,6 +9,11 @@
 	var/auto_eject_sound // If null, will not autoeject.
 	var/preloading
 
+/obj/item/gun_component/chamber/ballistic/get_max_shots(var/val)
+	if(load_method == MAGAZINE)
+		return magazine ? magazine.max_ammo : 0
+	return ..()
+
 /obj/item/gun_component/chamber/ballistic/update_ammo_overlay()
 	if(ammo_indicator_state)
 		if(!loaded.len && !magazine)
@@ -171,13 +176,13 @@
 				if(!preloading)
 					if(!can_load(user))
 						return
-					if(loaded.len >= max_shots)
+					if(loaded.len >= get_max_shots())
 						if(user) user << "<span class='warning'>\The [holder] is full!</span>"
 						return
 
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
-					if(loaded.len >= max_shots)
+					if(loaded.len >= get_max_shots())
 						break
 					if(C.caliber == holder.caliber)
 						C.forceMove(src)
@@ -201,7 +206,7 @@
 		if(!preloading)
 			if(!(load_method & SINGLE_CASING) || holder.caliber != C.caliber)
 				return //incompatible
-			if(loaded.len >= max_shots)
+			if(loaded.len >= get_max_shots())
 				if(user) user << "<span class='warning'>\The [holder] is full.</span>"
 				return
 			if(!can_load(user))
@@ -246,7 +251,6 @@
 	icon_state="pistol"
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
-	max_shots = 8
 	color = COLOR_GUNMETAL
 
 /obj/item/gun_component/chamber/ballistic/pistol/alt

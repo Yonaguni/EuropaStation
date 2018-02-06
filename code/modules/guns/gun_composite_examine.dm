@@ -21,6 +21,8 @@
 
 		var/list/result = list()
 
+		var/max_shots = chamber.get_max_shots(model ? model.produced_by.capacity : 1)
+
 		var/fdelay = fire_delay/10
 		result += "It has a fire delay of [fdelay] second[fdelay==1 ? "" : "s"]."
 		result += "It can hold a maximum of [max_shots] shot[max_shots==1 ? "" : "s"]."

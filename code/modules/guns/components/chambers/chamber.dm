@@ -5,14 +5,17 @@
 	projectile_type = GUN_TYPE_BALLISTIC
 	weapon_type = GUN_PISTOL
 
+	var/max_shots = 1
 	var/list/firemodes = list()
-	var/max_shots = 0
 	var/fire_delay = 5
 	var/ammo_indicator_states        // Range of variant states.
 	var/ammo_indicator_state         // Base ammo overlay state.
 	var/image/ammo_overlay           // Holder for the ammo overlay image.
 	var/automatic
 	var/revolver
+
+/obj/item/gun_component/chamber/proc/get_max_shots(var/val)
+	return max_shots * val
 
 /obj/item/gun_component/chamber/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
 	..(newloc, weapontype, componenttype, use_model)
@@ -29,15 +32,15 @@
 		if(model && model.ammo_use_state)
 			use_state = model.ammo_use_state
 			if(model.ammo_indicator_states)
-				if(shots_left == max_shots)
+				if(shots_left == get_max_shots())
 					use_state += "[model.ammo_indicator_states]"
 				else if(shots_left <= 0)
 					use_state += "0"
 				else
-					use_state += "[n_ceil((shots_left/max_shots)*model.ammo_indicator_states)]"
+					use_state += "[n_ceil((shots_left/get_max_shots())*model.ammo_indicator_states)]"
 		else
 			if(ammo_indicator_states)
-				use_state += "[round((shots_left/max_shots)*ammo_indicator_states)]"
+				use_state += "[round((shots_left/get_max_shots())*ammo_indicator_states)]"
 
 		if(!ammo_overlay)
 			if(model && model.ammo_indicator_icon)
@@ -61,12 +64,6 @@
 
 /obj/item/gun_component/chamber/proc/unload_ammo(var/mob/user)
 	return
-
-/obj/item/gun_component/chamber/proc/reset_max_shots()
-	max_shots = initial(max_shots)
-
-/obj/item/gun_component/chamber/proc/apply_shot_mod(var/val)
-	max_shots = round(max_shots * val)
 
 /obj/item/gun_component/chamber/proc/get_shots_remaining()
 	return 0

@@ -2,7 +2,6 @@
 	icon_state="rifle"
 	name = "breech loader"
 	weapon_type = GUN_RIFLE
-	max_shots = 1
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = EJECT_CASINGS
 	has_user_interaction = 1
