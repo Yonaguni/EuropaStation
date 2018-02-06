@@ -976,7 +976,7 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	req_access = list(access_robotics)
-	products = list(/obj/item/stack/cable_coil = 4,/obj/item/flash/synthetic = 4,/obj/item/cell = 4,/obj/item/healthanalyzer = 2,
+	products = list(/obj/item/stack/cable_coil = 4,/obj/item/cell = 4,/obj/item/healthanalyzer = 2,
 					/obj/item/scalpel = 1,/obj/item/circular_saw = 1,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/screwdriver = 2,/obj/item/crowbar = 2)
 	contraband = list(/obj/item/flash = 2)

@@ -96,12 +96,10 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
 	var/obj/item/flash/F = locate() in src.modules
 	if(F)
+		F.times_used_this_minute = 0
 		if(F.broken)
-			F.broken = 0
-			F.times_used = 0
+			F.broken = FALSE
 			F.icon_state = "flash"
-		else if(F.times_used)
-			F.times_used--
 
 	if(!synths || !synths.len)
 		return
