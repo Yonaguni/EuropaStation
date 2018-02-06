@@ -9,183 +9,119 @@
 	throw_range = 10
 	flags = CONDUCT
 
+	var/max_uses_per_minute = 5    // Number of times used per minute before burnout is possible.
+	var/broken                     // Whether or not it has burned out.
+	var/recharge_period            // ds between uses.
+	var/next_recharge = 0          // Next time uses will decrease.
+	var/times_used_this_minute = 0 // Number of times used this minute.
+	var/last_flash_noise = 0       // Last time we went BWEE, to prevent spamming.
 
-	var/times_used = 0 //Number of times it's been used.
-	var/broken = 0     //Is the flash burnt out?
-	var/last_used = 0 //last world.time it was used.
+/obj/item/flash/New()
+	..()
+	recharge_period = Floor((1 MINUTE) / max_uses_per_minute)
 
-/obj/item/flash/proc/flash_recharge()
-	//capacitor recharges over time
-	for(var/i=0, i<3, i++)
-		if(last_used+600 > world.time)
-			break
-		last_used += 600
-		times_used -= 2
-	last_used = world.time
-	times_used = max(0,round(times_used)) //sanity
+/obj/item/flash/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	. = ..()
 
-//attack_as_weapon
-/obj/item/flash/attack(mob/living/M, mob/living/user, var/target_zone)
-	if(!user || !M)	return	//sanity
+/obj/item/flash/process()
+	if(broken || times_used_this_minute <= 0)
+		STOP_PROCESSING(SSprocessing, src)
+	else if(world.time > next_recharge)
+		next_recharge = world.time + recharge_period
+		times_used_this_minute--
 
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
-	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
+/obj/item/flash/proc/expend_charge(var/mob/user)
+	times_used_this_minute++
+	START_PROCESSING_NO_DUPLICATES(SSprocessing, src)
 	if(broken)
-		user << "<span class='warning'>\The [src] is broken.</span>"
-		return
+		return FALSE
+	if(times_used_this_minute > max_uses_per_minute)
+		if(prob(times_used_this_minute))
+			break_flash(user)
+		else if(user)
+			to_chat(user, "<span class='warning'>*click* *click*</span>")
+			return FALSE
+	return TRUE
 
-	flash_recharge()
+/obj/item/flash/proc/break_flash(var/mob/user)
+	if(!broken)
+		icon_state = "flashburnt"
+		broken = TRUE
+		STOP_PROCESSING(SSprocessing, src)
+		if(user) to_chat(user, "<span class='danger'>The bulb has burnt out!</span>")
 
-	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
-	//It will never break on the first use.
-	switch(times_used)
-		if(0 to 5)
-			last_used = world.time
-			if(prob(times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
-				broken = 1
-				user << "<span class='warning'>The bulb has burnt out!</span>"
-				icon_state = "flashburnt"
-				return
-			times_used++
-		else	//can only use it  5 times a minute
-			user << "<span class='warning'>*click* *click*</span>"
-			return
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.do_attack_animation(M)
-
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	var/flashfail = 0
-
-	if(iscarbon(M))
-		if(M.stat!=DEAD)
-			var/mob/living/carbon/C = M
-			var/safety = C.eyecheck()
-			if(safety < FLASH_PROTECTION_MODERATE)
-				var/flash_strength = 10
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					flash_strength *= H.species.flash_mod
-				if(flash_strength > 0)
-					M.Weaken(flash_strength)
-					M.flash_eyes()
-			else
-				flashfail = 1
-
-	else if(issilicon(M))
-		M.Weaken(rand(5,10))
-	else
-		flashfail = 1
-
-	if(isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
-
-	if(!flashfail)
-		flick("flash2", src)
-		if(!issilicon(M))
-
-			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
-		else
-
-			user.visible_message("<span class='notice'>[user] overloads [M]'s sensors with the flash!</span>")
-	else
-
-		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
-
-	return
-
-/obj/item/flash/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
-	if(!user)
-		return
-
-	if(broken)
-		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)
-		return
-
-	flash_recharge()
-
-	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
-	//It will never break on the first use.
-	switch(times_used)
-		if(0 to 5)
-			if(prob(2*times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
-				broken = 1
-				user << "<span class='warning'>The bulb has burnt out!</span>"
-				icon_state = "flashburnt"
-				return
-			times_used++
-		else	//can only use it  5 times a minute
-			user.show_message("<span class='warning'>*click* *click*</span>", 2)
-			return
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	flick("flash2", src)
-	if(user && isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
-
-	for(var/mob/living/carbon/M in oviewers(3, null))
-		var/safety = M.eyecheck()
-		if(safety < FLASH_PROTECTION_MODERATE)
-			if(!M.blinded)
-				M.flash_eyes()
-
-	return
+/obj/item/flash/proc/attempt_use_flash(var/mob/user)
+	if(user)
+		if(broken)
+			to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
+			return FALSE
+		if(expend_charge(user))
+			return TRUE
+	return FALSE
 
 /obj/item/flash/emp_act(severity)
-	if(broken)	return
-	flash_recharge()
-	switch(times_used)
-		if(0 to 5)
-			if(prob(2*times_used))
-				broken = 1
-				icon_state = "flashburnt"
-				return
-			times_used++
-			if(istype(loc, /mob/living/carbon))
-				var/mob/living/carbon/M = loc
-				var/safety = M.eyecheck()
-				if(safety < FLASH_PROTECTION_MODERATE)
-					M.Weaken(10)
-					M.flash_eyes()
-					for(var/mob/O in viewers(M, null))
-						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
-	..()
+	if(!broken)
+		if(expend_charge() && istype(loc, /mob/living))
+			try_flash(loc, silent = TRUE)
+	. = ..()
+
+/obj/item/flash/proc/try_flash(var/mob/living/victim, var/mob/living/user, var/silent)
+
+	if(!istype(victim))
+		return
+
+	if(world.time > last_flash_noise + 20)
+		last_flash_noise = world.time + 20
+		playsound(victim.loc, 'sound/weapons/flash.ogg', 100, 1)
+
+	if(user)
+		admin_attack_log(user, victim, "flashed", "was flashed by", "flashed")
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.do_attack_animation(victim)
+
+	var/flash_strength = 0
+	if(victim.stat != DEAD)
+		if(iscarbon(victim))
+			var/mob/living/carbon/C = victim
+			if(C.eyecheck() < FLASH_PROTECTION_MODERATE)
+				flash_strength = 10
+				if(ishuman(C))
+					var/mob/living/carbon/human/H = C
+					flash_strength *= H.species.flash_mod
+		else if(issilicon(victim))
+			flash_strength = rand(5,10)
+
+	var/use_message = "\The [user] fails to blind \the [victim] with \the [src]!"
+	if(flash_strength > 0)
+		victim.Weaken(flash_strength)
+		victim.flash_eyes()
+		flick("flash2", src)
+		if(issilicon(victim))
+			use_message = "\The [user] overloads \the [victim]'s sensors with \the [src]!"
+		else
+			use_message = "\The [user] blinds \the [victim] with \the [src]!"
+
+	if(!silent)
+		loc.visible_message("<span class='danger'>[use_message]</span>")
+
+/obj/item/flash/attack(var/mob/living/M, var/mob/living/user, var/target_zone)
+	if(istype(M) && attempt_use_flash(user))
+		try_flash(M, user)
+
+/obj/item/flash/attack_self(var/mob/living/carbon/user, var/flag)
+	if(attempt_use_flash(user))
+		for(var/mob/living/carbon/M in oviewers(3, loc))
+			try_flash(M, user, silent = TRUE)
+		try_flash(user, silent = TRUE)
 
 /obj/item/flash/synthetic
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
 
-
-//attack_as_weapon
-/obj/item/flash/synthetic/attack(mob/living/M, mob/living/user, var/target_zone)
-	..()
+/obj/item/flash/synthetic/expend_charge(var/mob/user)
 	if(!broken)
-		broken = 1
-		user << "<span class='warning'>The bulb has burnt out!</span>"
-		icon_state = "flashburnt"
-
-/obj/item/flash/synthetic/attack_self(var/mob/living/carbon/user, flag = 0, emp = 0)
-	..()
-	if(!broken)
-		broken = 1
-		user << "<span class='warning'>The bulb has burnt out!</span>"
-		icon_state = "flashburnt"
+		break_flash(user)
+		return TRUE
+	return FALSE
