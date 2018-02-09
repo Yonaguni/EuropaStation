@@ -8,4 +8,4 @@
 	variant_stock =   null
 
 /obj/item/gun/composite/premade/rocket_launcher/preloaded
-	ammo_type = /obj/item/ammo_casing/rocket
+	ammo_type = /obj/item/ammo_casing/gyrojet/rocket
