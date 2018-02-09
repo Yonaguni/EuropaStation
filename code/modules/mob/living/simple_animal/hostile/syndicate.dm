@@ -80,7 +80,7 @@
 		src.health -= Proj.damage
 	else
 		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
-	return 0
+	Proj.on_hit(src, 0)
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/space

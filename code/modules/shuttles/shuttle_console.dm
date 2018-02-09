@@ -48,6 +48,7 @@
 
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
+	Proj.on_hit(src, 0)
 
 /obj/machinery/computer/shuttle_control/ex_act()
 	return

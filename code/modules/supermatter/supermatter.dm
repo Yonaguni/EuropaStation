@@ -276,13 +276,12 @@
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
-
 	var/proj_damage = Proj.get_structure_damage()
 	if(istype(Proj, /obj/item/projectile/beam))
 		power += proj_damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
 	else
 		damage += proj_damage * config_bullet_energy
-	return 0
+	Proj.on_hit(src, 0)
 
 /obj/machinery/power/supermatter/attack_robot(var/mob/user)
 	if(Adjacent(user))

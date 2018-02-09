@@ -216,8 +216,7 @@
 
 /obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
-	..()
-	return
+	. = ..()
 
 
 //////////////Containment Field START
@@ -287,8 +286,7 @@
 		else
 			G = gen_secondary
 		G.storedpower -= 400 * Proj.get_structure_damage()
-	..()
-	return
+	. = ..()
 
 
 /obj/machinery/shieldwall/ex_act(severity)

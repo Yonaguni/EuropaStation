@@ -80,6 +80,7 @@ var/list/fusion_cores = list()
 /obj/machinery/power/fusion_core/bullet_act(var/obj/item/projectile/Proj)
 	if(owned_field)
 		. = owned_field.bullet_act(Proj)
+	Proj.on_hit(src, 0)
 
 /obj/machinery/power/fusion_core/proc/set_strength(var/value)
 	value = Clamp(value, MIN_FIELD_STR, MAX_FIELD_STR)

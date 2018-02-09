@@ -55,38 +55,39 @@
 			return !density
 
 /obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
 	var/passthrough = 0
 
-	if(!damage) return
-
-	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
-	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	switch(Proj.damage_type)
-		if(BRUTE)
-			//bullets
-			if(Proj.original == src || prob(20))
-				Proj.damage *= between(0, Proj.damage/60, 0.5)
-				if(prob(max((damage-10)/25, 0))*100)
+	if(damage)
+		//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
+		//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
+		switch(Proj.damage_type)
+			if(BRUTE)
+				//bullets
+				if(Proj.original == src || prob(20))
+					Proj.damage *= between(0, Proj.damage/60, 0.5)
+					if(prob(max((damage-10)/25, 0))*100)
+						passthrough = 1
+				else
+					Proj.damage *= between(0, Proj.damage/60, 1)
 					passthrough = 1
-			else
-				Proj.damage *= between(0, Proj.damage/60, 1)
-				passthrough = 1
-		if(BURN)
-			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
-			if(!(Proj.original == src || prob(20)))
-				Proj.damage *= 0.5
-				passthrough = 1
+			if(BURN)
+				//beams and other projectiles are either blocked completely by grilles or stop half the damage.
+				if(!(Proj.original == src || prob(20)))
+					Proj.damage *= 0.5
+					passthrough = 1
+
+		damage = between(0, (damage - Proj.damage)*(Proj.damage_type == BRUTE? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
+		src.health -= damage*0.2
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.damage)*(Proj.damage_type == BRUTE? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
-
-	src.health -= damage*0.2
+	else
+		Proj.on_hit(src, 0)
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
+
 
 /obj/structure/grille/attackby(var/obj/item/W, var/mob/user)
 	if(W.iswirecutter())

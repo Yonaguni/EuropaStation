@@ -495,7 +495,7 @@
 /obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)
 	AddEnergy(Proj.damage)
 	update_icon()
-	return 0
+	Proj.on_hit(src, 0)
 
 #undef FUSION_HEAT_CAP
 #undef FUSION_INSTABILITY_DIVISOR

@@ -941,8 +941,9 @@ FIRE ALARM
 /obj/machinery/firealarm/attack_ai(var/mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/firealarm/bullet_act()
-	return src.alarm()
+/obj/machinery/firealarm/bullet_act(var/obj/item/projectile/Proj)
+	Proj.on_hit(src, 0)
+	alarm()
 
 /obj/machinery/firealarm/emp_act(severity)
 	if(prob(50/severity))
