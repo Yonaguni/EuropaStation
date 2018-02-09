@@ -123,7 +123,7 @@
 	var/check_firemode
 	if(istype(control_area))
 		for (var/obj/machinery/porta_turret/aTurret in control_area)
-			if(aTurret.installed_gun.firemodes.len)
+			if(LAZYLEN(aTurret.installed_gun.firemodes))
 				var/datum/firemode/current_mode = aTurret.installed_gun.firemodes[aTurret.installed_gun.sel_mode]
 				if(!check_firemode)
 					check_firemode = current_mode.name

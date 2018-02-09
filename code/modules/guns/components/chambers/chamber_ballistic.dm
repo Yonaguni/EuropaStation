@@ -15,19 +15,13 @@
 	return ..()
 
 /obj/item/gun_component/chamber/ballistic/update_ammo_overlay()
-	if(ammo_indicator_state)
-		if(!loaded.len && !magazine)
-			if(!ammo_overlay)
-				if(model)
-					ammo_overlay = image(icon = model.ammo_indicator_icon)
-				else
-					ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
-			ammo_overlay.icon_state = ""
-			return
-		if(magazine)
+	if(!magazine)
+		overlays.Cut()
+	else
+		. = ..()
+		var/image/ammo_overlay = .
+		if(istype(ammo_overlay))
 			ammo_overlay.color = magazine.color
-		..()
-
 
 /obj/item/gun_component/chamber/ballistic/empty()
 	loaded.Cut()

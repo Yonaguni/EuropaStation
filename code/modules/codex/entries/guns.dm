@@ -33,21 +33,21 @@
 		an energy weapon by placing it in a wall-mounted or table-mounted charger, such as those found in Security or around the \
 		place. Additionally, most energy weapons can go straight through windows and hit whatever is on the other side, and are \
 		hitscan, making them accurate and useful against distant targets. \
-		<br> \
+		<br><br> \
 		This weapon can have accessories removed, or be field-stripped into its component parts, by using a pen, screwdriver, \
 		or other small, edged object on it (such as forks)."
 	lore_text = "A <b>C</b>oherent <b>R</b>adiation <b>E</b>mission <b>W</b>eapon, or C.R.E.W, uses pulses of \
 		'hard light' to burn, damage or disrupt the target, or simply mark them for the purposes of laser tag \
-		or practice. They are extremely popular amongst spacebound peacekeepers, security officers and bounty \
+		or practice. While low-power electroshock weapons are popular amongst peacekeepers, security officers and bounty \
 		hunters due to the lack of risk from ricochets or penetrating shots destroying the hull or injuring \
-		bystanders."
+		bystanders, more powerful devices are exceedingly rare and expensive."
 
 /datum/codex_entry/ballistic_weapons
 	display_name = "ballistic weapons"
 	mechanics_text = "This weapon is a ballistic weapon; it fires solid shots using a magazine or loaded rounds of ammunition. You can \
 		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a magazine, or in the case of \
 		shotguns or some rifles, by opening the breech and clicking it with individual rounds. \
-		<br> \
+		<br><br> \
 		This weapon can have accessories removed, or be field-stripped into its component parts, by using a pen, screwdriver, \
 		or other small, edged object on it (such as forks)."
 	lore_text = "Ballistic weapons are very popular even in the 2200's due to the relative expense of decent laser \

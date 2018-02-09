@@ -7,11 +7,10 @@
 
 	var/decl/weapon_caliber/design_caliber
 	var/max_shots = 1
-	var/list/firemodes = list()
+	var/list/firemodes
 	var/fire_delay = 5
 	var/ammo_indicator_states        // Range of variant states.
 	var/ammo_indicator_state         // Base ammo overlay state.
-	var/image/ammo_overlay           // Holder for the ammo overlay image.
 	var/automatic
 	var/revolver
 
@@ -47,13 +46,14 @@
 			if(ammo_indicator_states)
 				use_state += "[round((shots_left/get_max_shots())*ammo_indicator_states)]"
 
-		if(!ammo_overlay)
-			if(model && model.ammo_indicator_icon)
-				ammo_overlay = image(icon = model.ammo_indicator_icon)
-			else
-				ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
+		var/image/ammo_overlay
+		if(model && model.ammo_indicator_icon)
+			ammo_overlay = image(icon = model.ammo_indicator_icon)
+		else
+			ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
 		ammo_overlay.icon_state = use_state
-		overlays |= ammo_overlay
+		overlays += ammo_overlay
+		. = ammo_overlay
 
 /obj/item/gun_component/chamber/proc/recieve_charge(var/amt)
 	return

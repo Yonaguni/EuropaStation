@@ -3,21 +3,21 @@
 
 	if(usr && usr.Adjacent(get_turf(src)))
 		if(dam_type == GUN_TYPE_LASER)
-			usr << "This one is designed to be \a [barrel.design_caliber.name] projector."
+			to_chat(usr, "This one currently \a [barrel.design_caliber.name] projector.")
 		else
-			usr << "This one is designed to fire [barrel.design_caliber.name] rounds."
-		usr << "It has [chamber.get_shots_remaining()] shots remaining."
+			to_chat(usr, "This one is designed to fire [barrel.design_caliber.name] rounds.")
+		to_chat(usr, "It has [chamber.get_shots_remaining()] shots remaining.")
 
 		for(var/obj/item/gun_component/GC in src)
 			var/extra = GC.get_extra_examine_info()
 			if(extra)
-				usr << "<span class='notice'>[extra]</span>"
+				to_chat(usr, "<span class='notice'>[extra]</span>")
 
 		if(accessories.len)
 			var/accessory_list = list()
 			for(var/obj/item/acc in accessories)
 				accessory_list += "\a [acc.name]"
-			usr << "[english_list(accessories)] [accessories.len == 1 ? "is" : "are"] installed."
+			to_chat(usr, "[english_list(accessories)] [accessories.len == 1 ? "is" : "are"] installed.")
 
 		var/list/result = list()
 
@@ -60,7 +60,7 @@
 		for (var/obj/item/gun_component/GC in src)
 			result += GC.get_examine_text()
 
-		if(firemodes.len)
+		if(LAZYLEN(firemodes))
 			result += "This weapon has multiple fire modes, which can be changed by clicking the gun in-hand."
 
 		to_chat(usr, jointext(result, "<br>"))

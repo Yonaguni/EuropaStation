@@ -84,7 +84,8 @@
 		return
 
 	// To avoid writing over/mixing up.
-	firemodes = chamber.firemodes.Copy()
+	if(LAZYLEN(chamber.firemodes))
+		firemodes = chamber.firemodes.Copy()
 
 	// Update physical variables.
 	slot_flags = body.slot_flags
@@ -251,7 +252,7 @@
 		return
 
 	var/list/possible_interactions = list()
-	if(firemodes.len)
+	if(LAZYLEN(firemodes))
 		possible_interactions += "change fire mode"
 	for(var/obj/item/gun_component/GC in contents)
 		if(GC.has_user_interaction)
@@ -272,3 +273,4 @@
 	var/datum/firemode/new_mode = .
 	if(istype(new_mode) && ispath(new_mode.settings["caliber"]))
 		chamber.design_caliber = get_caliber_from_path(new_mode.settings["caliber"])
+		barrel.design_caliber = chamber.design_caliber

@@ -8,7 +8,6 @@
 	var/fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
 	var/release_force = 0
 	var/throw_distance = 10
-	fire_sound_text = "a launcher firing"
 
 /obj/item/gun/launcher/get_fire_sound()
 	return fire_sound

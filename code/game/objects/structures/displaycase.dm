@@ -7,7 +7,7 @@
 	anchored = 1
 	unacidable = 1//Dissolving the case would also delete the gun.
 
-	var/gun_type = /obj/item/gun/composite/premade/laser_pistol/antique
+	var/gun_type = /obj/item/gun/composite/premade/laser_pistol/prototype
 	var/health = 30
 	var/occupied = 1
 	var/destroyed = 0

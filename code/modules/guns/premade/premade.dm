@@ -39,3 +39,4 @@
 		spawn(0)
 			if(B)
 				B.update_ammo_from_contents()
+				update_icon()

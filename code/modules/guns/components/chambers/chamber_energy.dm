@@ -20,16 +20,10 @@
 	return max_shots
 
 /obj/item/gun_component/chamber/laser/update_ammo_overlay()
-	if(ammo_indicator_state)
-		if(!power_supply)
-			if(!ammo_overlay)
-				if(model)
-					ammo_overlay = image(icon = model.ammo_indicator_icon)
-				else
-					ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
-			ammo_overlay.icon_state = null
-			return
-		..()
+	if(!power_supply)
+		overlays.Cut()
+	else
+		. = ..()
 
 /obj/item/gun_component/chamber/laser/Destroy()
 	if(power_supply)
@@ -104,7 +98,7 @@
 	if(!power_supply || power_supply.charge >= power_supply.maxcharge)
 		return 0 // check if we actually need to recharge
 
-	power_supply.give(round(initial_charge/25)) //... to recharge the shot
+	power_supply.give(round(initial_charge/10)) //... to recharge the shot
 	update_ammo_overlay()
 	return 1
 
@@ -161,16 +155,13 @@
 
 /obj/item/gun_component/chamber/laser/pistol/taser
 	design_caliber = /decl/weapon_caliber/laser/shock
-
-/obj/item/gun_component/chamber/laser/pistol/antique
-	name = "antique charging mechanism"
-	self_recharge_time = 4
+	firemodes = null
 
 /obj/item/gun_component/chamber/laser/rifle
 	icon_state="las_rifle"
 	name = "precision lens"
 	weapon_type = GUN_RIFLE
-	initial_charge = 9000
+	initial_charge = 10000
 	max_shots = 4
 	fire_delay = 35
 	ammo_indicator_state = "laser_rifle_loaded"
