@@ -415,7 +415,6 @@ var/list/worths = list(
 					/obj/item/frame = 60,
 					/obj/item/pipe = 100,
 					/obj/item/pipe_meter = 300,
-					/obj/item/missile = 1200,
 					/obj/item/blueprints = 4000, //Information is valuable,
 					/obj/item/bodybag/cryobag = 600,
 					/obj/item/bodybag = 20,
