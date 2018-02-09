@@ -517,7 +517,7 @@ default behaviour is:
 		var/turf/location = loc
 		if(istype(location) && !location.open_space && lying)
 			var/area/A = get_area(src)
-			if(istype(A) && A.has_gravity && prob(Clamp(25, 100, round(getBruteLoss()/6))))
+			if(lying && LAZYLEN(grabbed_by) && istype(A) && A.has_gravity && prob(Clamp(25, 100, round(getBruteLoss()/6))))
 				do_pull_damage()
 
 		if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
