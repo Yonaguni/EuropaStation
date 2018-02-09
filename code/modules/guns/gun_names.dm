@@ -1,4 +1,5 @@
 /proc/get_gun_name(var/obj/item/assembly, var/dam_type, var/gun_type)
+
 	var/auto
 	var/revolver
 	var/decl/weapon_caliber/caliber
@@ -55,7 +56,7 @@
 		if(GUN_RIFLE)
 			gun_name = (sniper ? "sniper rifle" : "rifle")
 		if(GUN_CANNON)
-			gun_name = (auto ? "autocannon" : "cannon")
+			gun_name = (auto ? "autocannon" : "launcher")
 		if(GUN_ASSAULT)
 			gun_name = "assault rifle"
 		if(GUN_SHOTGUN)

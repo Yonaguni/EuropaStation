@@ -92,6 +92,19 @@
 	recoil_mod = -2
 	wielded_state = "cannon-wielded"
 
+/obj/item/gun_component/body/rocket
+	icon_state = "rocket"
+	item_state = "rocket"
+	wielded_state = "cannon-wielded"
+	weapon_type = GUN_CANNON
+	w_class = 4
+	force = 10
+	slot_flags = 0
+	accepts_accessories = 1
+	base_desc = "It's a rocket launcher."
+	two_handed = 1
+	recoil_mod = -2
+
 /obj/item/gun_component/body/assault
 	icon_state = "assault"
 	weapon_type = GUN_ASSAULT

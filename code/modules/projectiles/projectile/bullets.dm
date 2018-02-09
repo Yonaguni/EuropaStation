@@ -141,7 +141,7 @@
 /* shotgun projectiles */
 
 /obj/item/projectile/bullet/shotgun
-	name = "slug"
+	name = "shell"
 	damage = 50
 	armor_penetration = 15
 
@@ -156,7 +156,7 @@
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
-	name = "shrapnel"
+	name = "pellet"
 	damage = 13
 	pellets = 6
 	range_step = 1
@@ -230,15 +230,3 @@
 /obj/item/projectile/bullet/pistol/cap/process()
 	loc = null
 	qdel(src)
-
-/obj/item/projectile/bullet/gyro
-	name ="explosive bolt"
-	icon_state= "bolter"
-	damage = 50
-	check_armour = "bullet"
-	sharp = 1
-	edge = 1
-
-/obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
-	explosion(target, -1, 0, 2)
-	return 1

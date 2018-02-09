@@ -110,7 +110,6 @@
 			if(handle_casings != HOLD_CASINGS)
 				magazine.stored_ammo -= chambered
 
-
 /obj/item/gun_component/chamber/ballistic/consume_next_projectile()
 	if(!chambered)
 		if(loaded.len)
@@ -258,3 +257,9 @@
 /obj/item/gun_component/chamber/ballistic/pistol/a45
 	icon_state="pistol2"
 	design_caliber = /decl/weapon_caliber/pistol_45
+
+/obj/item/gun_component/chamber/ballistic/rocket
+	icon_state = "rocket"
+	weapon_type = GUN_CANNON
+	design_caliber = /decl/weapon_caliber/rocket
+	load_method = SINGLE_CASING

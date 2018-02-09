@@ -45,23 +45,6 @@
 		icon_state = spent_icon
 	name = "spent [name]"
 
-// Predefines.
-/obj/item/ammo_casing/gyrojet
-	caliber = /decl/weapon_caliber/gyrojet
-	icon_state = "rocket"
-	spent_icon = "rocket-spent"
-	matter = list("steel" = 500)
-
-/obj/item/ammo_casing/grenade
-	caliber = /decl/weapon_caliber/grenade
-	icon_state = "rocket"
-	matter = list("steel" = 500)
-
-/obj/item/ammo_casing/rocket
-	caliber = /decl/weapon_caliber/rocket
-	icon_state = "rocket"
-	matter = list("steel" = 500)
-
 // Quickload.
 /obj/item/ammo_casing/attackby(var/obj/item/thing, var/mob/user)
 	if(!loc || !istype(loc, /turf) || !istype(thing, /obj/item/ammo_magazine))
