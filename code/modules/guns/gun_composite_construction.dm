@@ -62,6 +62,7 @@ var/list/can_dismantle_guns = list(
 		installing.installed(src, user)
 		accessories |= installing
 		update_from_components()
+		update_icon(regenerate = TRUE)
 		return
 	else
 
@@ -81,6 +82,7 @@ var/list/can_dismantle_guns = list(
 				removing.removed_from(src, user)
 				accessories -= removing
 				update_from_components()
+				update_icon(regenerate = TRUE)
 				return
 
 			user.visible_message("<span class='notice'>\The [user] begins field-stripping \the [src] with \the [thing].</span>")
@@ -92,7 +94,7 @@ var/list/can_dismantle_guns = list(
 			if(user.incapacitated() || user.restrained() || !user.Adjacent(src))
 				return
 
-			usr << "<span class='noticed'>\The [user] has field-stripped \the [src].</span>"
+			to_chat(usr, "<span class='noticed'>\The [user] has field-stripped \the [src].</span>")
 			dismantle(user)
 			return
 

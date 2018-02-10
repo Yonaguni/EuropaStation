@@ -34,6 +34,7 @@
 	if(istype(newloc, /obj/machinery/porta_turret))
 		installed_in_turret = TRUE
 	..(newloc)
+	update_icon(regenerate = TRUE)
 
 /obj/item/gun/composite/forceMove()
 	. = ..()
@@ -45,12 +46,10 @@
 /obj/item/gun/composite/pickup()
 	. = ..()
 	update_strings()
-	update_icon()
 
 /obj/item/gun/composite/dropped()
 	. = ..()
 	update_strings()
-	update_icon()
 
 /obj/item/gun/composite/reset_name()
 	update_strings()
@@ -135,7 +134,6 @@
 	if(dam_type == GUN_TYPE_LASER)
 		recoil = 0
 
-	update_icon(regenerate=1)
 	update_strings()
 
 /obj/item/gun/composite/proc/update_strings()
@@ -156,8 +154,6 @@
 		desc = "[body.base_desc] You can't work out who manufactured this one; it might be an aftermarket job."
 
 /obj/item/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
-
-	to_chat(world, "\ref[src] update icon")
 
 	if(force_icon && force_icon_state)
 		icon = force_icon

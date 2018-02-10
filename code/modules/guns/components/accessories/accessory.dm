@@ -39,7 +39,6 @@
 	installed_dam_type = gun.dam_type
 	installed_gun_type = gun.gun_type
 	update_icon()
-	return
 
 /obj/item/gun_component/accessory/proc/removed_from(var/obj/item/gun, var/mob/user)
 	installed_dam_type = initial(installed_dam_type)

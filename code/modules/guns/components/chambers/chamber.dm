@@ -29,7 +29,11 @@
 	return proj
 
 /obj/item/gun_component/chamber/proc/update_ammo_overlay()
-	if(holder && ammo_indicator_state)
+
+	if(!holder) return
+
+	holder.overlays -= src
+	if(ammo_indicator_state)
 		overlays.Cut()
 		var/shots_left = get_shots_remaining()
 		var/use_state = ammo_indicator_state
@@ -54,6 +58,9 @@
 		ammo_overlay.icon_state = use_state
 		overlays += ammo_overlay
 		. = ammo_overlay
+
+	spawn
+		if(holder) holder.overlays |= src
 
 /obj/item/gun_component/chamber/proc/recieve_charge(var/amt)
 	return

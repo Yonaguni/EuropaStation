@@ -28,15 +28,12 @@
 		accessories += acc
 	update_from_components()
 
-	..()
-
 	if(ammo_type) // Assumes that it's a ballistic weapon. Don't specify ammo_type for lasers.
 		var/obj/item/gun_component/chamber/ballistic/B = chamber
 		new ammo_type (B)
 		if(B.load_method != MAGAZINE)
 			for(var/i in 2 to B.get_max_shots())
 				new ammo_type (B)
-		spawn(0)
-			if(B)
-				B.update_ammo_from_contents()
-				update_icon()
+		B.update_ammo_from_contents()
+
+	..()

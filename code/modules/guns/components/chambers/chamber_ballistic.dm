@@ -213,7 +213,6 @@
 		C.forceMove(src)
 		loaded.Insert(1, C) //add to the head of the list
 
-	holder.update_icon()
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/unload_ammo(var/mob/user)
@@ -238,7 +237,6 @@
 	else
 		to_chat(user, "<span class='warning'>\The [holder] is empty.</span>")
 
-	holder.update_icon()
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/pistol

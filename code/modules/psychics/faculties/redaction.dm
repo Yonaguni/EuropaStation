@@ -89,13 +89,10 @@
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
 /decl/psipower/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
-	to_chat(world, "CLEANSE 1")
 	if(!istype(user) || !istype(target))
-		to_chat(world, "CLEANSE 2")
 		return FALSE
 	. = ..()
 	if(.)
-		to_chat(world, "CLEANSE 3")
 		// No messages, as Mend procs them even if it fails to heal anything, and Cleanse is always checked after Mend.
 		var/removing = rand(20,25)
 		if(target.radiation)
@@ -120,7 +117,6 @@
 				target.adjustToxLoss(-(target.getToxLoss()))
 			return TRUE
 		to_chat(user, "<span class='warning'>You can find no genetic, radiation or toxin damage to heal within \the [target].</span>")
-		to_chat(world, "CLEANSE 4")
 		return FALSE
 
 /decl/psipower/revive
