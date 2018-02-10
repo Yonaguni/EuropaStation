@@ -10,7 +10,7 @@ var/area/map_base_area
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
-	auto_init = TRUE
+	auto_init = FALSE
 
 	var/landmark_tag
 	//ID of the controller on the dock side
