@@ -235,7 +235,7 @@
 	if(jammed) return
 	var/mob/M = loc
 	if(istype(M))
-		M << "<span class='danger'>\The [src] jams!</span>"
+		to_chat(M, "<span class='danger'>\The [src] jams!</span>")
 	jammed = 1
 
 /obj/item/gun/composite/attack_self(var/mob/user)
