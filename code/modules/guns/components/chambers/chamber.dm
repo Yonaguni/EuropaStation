@@ -7,7 +7,6 @@
 
 	var/decl/weapon_caliber/design_caliber
 	var/max_shots = 1
-	var/list/firemodes
 	var/fire_delay = 5
 	var/ammo_indicator_states        // Range of variant states.
 	var/ammo_indicator_state         // Base ammo overlay state.
