@@ -170,6 +170,9 @@
 				if(!preloading)
 					if(!can_load(user))
 						return
+					if(!LAZYLEN(AM.stored_ammo))
+						if(user) to_chat(user, "<span class='warning'>\The [AM] is empty!</span>")
+						return
 					if(loaded.len >= get_max_shots())
 						if(user) to_chat(user, "<span class='warning'>\The [holder] is full!</span>")
 						return
