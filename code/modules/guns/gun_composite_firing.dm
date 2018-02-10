@@ -14,12 +14,14 @@
 		if(model && !isnull(model.produced_by.damage_mod))
 			proj.damage = round(proj.damage * model.produced_by.damage_mod)
 		chamber.modify_shot(proj)
+		if(proj) barrel.modify_shot(proj)
 
-	if(jammed)
-		proj.on_hit(get_turf(src), 0)
-		qdel(proj)
-	else
-		return proj
+	if(proj)
+		if(jammed)
+			proj.on_hit(get_turf(src), 0)
+			qdel(proj)
+		else
+			return proj
 
 /obj/item/gun/composite/handle_post_fire()
 	..()

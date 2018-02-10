@@ -27,20 +27,20 @@
 
 /obj/item/gun_component/chamber/ballistic/breech/can_load(var/mob/user)
 	if(!breech_open)
-		user << "<span class='warning'>The breech is closed.</span>"
+		to_chat(user, "<span class='warning'>The breech is closed.</span>")
 		return 0
 	return 1
 
 /obj/item/gun_component/chamber/ballistic/breech/can_unload(var/mob/user)
 	if(!breech_open)
-		user << "<span class='warning'>The breech is closed.</span>"
+		to_chat(user, "<span class='warning'>The breech is closed.</span>")
 		return 0
 	return 1
 
 /obj/item/gun_component/chamber/ballistic/breech/do_user_interaction(var/mob/user)
 	playsound(user, 'sound/weapons/empty.ogg', 50, 1)
 	breech_open = !breech_open
-	user << "<span class='notice'>You [breech_open ? "work open" : "snap shut"] \the [holder].</span>"
+	to_chat(user, "<span class='notice'>You [breech_open ? "work open" : "snap shut"] \the [holder].</span>")
 
 /obj/item/gun_component/chamber/ballistic/breech/shotgun
 	icon_state="shotgun_hunting"

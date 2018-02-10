@@ -27,9 +27,9 @@
 		chambered = AC
 		result = 1
 	if(result)
-		user << "<span class='notice'>You pump \the [holder].</span>"
+		to_chat(user, "<span class='notice'>You pump \the [holder].</span>")
 	else
-		user << "<span class='warning'>You pump \the [holder] and it clicks empty!</span>"
+		to_chat(user, "<span class='warning'>You pump \the [holder] and it clicks empty!</span>")
 
 	update_ammo_overlay()
 	return 1

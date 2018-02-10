@@ -38,13 +38,13 @@
 
 /obj/item/gun_component/chamber/laser/unload_ammo(var/mob/user)
 	if(!can_remove_cell)
-		user << "<span class='warning'>\The cell cannot be removed from \the [holder].</span>"
+		to_chat(user, "<span class='warning'>\The cell cannot be removed from \the [holder].</span>")
 		return 0
 
 	if(!power_supply)
-		user << "<span class='warning'>\The [holder] does not have a cell.</span>"
+		to_chat(user, "<span class='warning'>\The [holder] does not have a cell.</span>")
 		return 0
-	user << "<span class='notice'>You remove \the [power_supply] from \the [holder].</span>"
+	to_chat(user, "<span class='notice'>You remove \the [power_supply] from \the [holder].</span>")
 	power_supply.forceMove(get_turf(src))
 	user.put_in_hands(power_supply)
 	power_supply = null
@@ -55,7 +55,7 @@
 	if(!istype(thing, /obj/item/cell))
 		return
 	if(power_supply)
-		user << "<span class='warning'>\The [holder] already has a cell.</span>"
+		to_chat(user, "<span class='warning'>\The [holder] already has a cell.</span>")
 		return
 	user.visible_message("<span class='danger'>\The [user] jacks \the [thing] into \the [holder].</span>")
 	power_supply = thing

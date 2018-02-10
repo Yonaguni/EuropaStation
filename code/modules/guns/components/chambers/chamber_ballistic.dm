@@ -146,7 +146,7 @@
 
 				if(!preloading)
 					if(magazine)
-						if(user) user << "<span class='warning'>\The [holder] already has a magazine loaded.</span>" //already a magazine here
+						if(user) to_chat(user, "<span class='warning'>\The [holder] already has a magazine loaded.</span>") //already a magazine here
 						return
 					if(!can_load(user))
 						return
@@ -171,7 +171,7 @@
 					if(!can_load(user))
 						return
 					if(loaded.len >= get_max_shots())
-						if(user) user << "<span class='warning'>\The [holder] is full!</span>"
+						if(user) to_chat(user, "<span class='warning'>\The [holder] is full!</span>")
 						return
 
 				var/count = 0
@@ -186,11 +186,11 @@
 
 				if(count)
 					if(user)
-						user << "<span class='notice'>You load [count] round\s into \the [holder].</span>"
+						to_chat(user, "<span class='notice'>You load [count] round\s into \the [holder].</span>")
 						user.visible_message("<span class='danger'>\The [user] reloads \the [holder].</span>")
 						playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 				else
-					if(user) user << "<span class='warning'>\The [holder] is full!</span>"
+					if(user) to_chat(user, "<span class='warning'>\The [holder] is full!</span>")
 					return
 
 	else if(istype(A, /obj/item/ammo_casing))
@@ -201,7 +201,7 @@
 			if(!(load_method & SINGLE_CASING) || design_caliber.projectile_size > C.caliber.projectile_size)
 				return //incompatible
 			if(loaded.len >= get_max_shots())
-				if(user) user << "<span class='warning'>\The [holder] is full.</span>"
+				if(user) to_chat(user, "<span class='warning'>\The [holder] is full.</span>")
 				return
 			if(!can_load(user))
 				return
@@ -236,7 +236,7 @@
 		user.put_in_hands(C)
 		user.visible_message("<span class='notice'>[user] removes \a [C] from \the [holder].</span>")
 	else
-		user << "<span class='warning'>\The [holder] is empty.</span>"
+		to_chat(user, "<span class='warning'>\The [holder] is empty.</span>")
 
 	holder.update_icon()
 	update_ammo_overlay()
