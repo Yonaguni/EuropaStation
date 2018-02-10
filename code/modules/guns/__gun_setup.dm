@@ -8,15 +8,6 @@
 #define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
 #define DESTROY_CASINGS 3
 
-#define AMMO_6MM                 "FN 5.7x28"
-#define AMMO_9MM                 "9mm Parabellum"
-#define AMMO_10MM                ".45 ACP"
-#define AMMO_556                 "5.56 NATO"
-#define AMMO_762                 "7.62 NATO"
-#define AMMO_MAGNUM              ".50 AE"
-#define AMMO_SNIPER              ".50 BMG"
-#define AMMO_SHOTGUN             "12 gauge shot"
-
 #define GUN_PISTOL  "pistol"
 #define GUN_SMG     "smg"
 #define GUN_RIFLE   "rifle"

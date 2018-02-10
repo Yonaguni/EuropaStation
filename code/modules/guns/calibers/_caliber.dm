@@ -13,3 +13,4 @@ var/list/caliber_data
 	var/fire_cost = 0                             // Charge cost to fire this caliber from an energy weapon.
 	var/projectile_type                           // Type of projectile spawned.
 	var/projectile_size                           // Relative 'size' of projectile, used for caliber mismatches between chamber and barrel.
+	var/magazine_name                             // Name applied to magazines produced for this caliber.

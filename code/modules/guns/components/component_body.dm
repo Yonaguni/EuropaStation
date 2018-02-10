@@ -10,10 +10,10 @@
 	if(istype(thing, /obj/item/gun_component))
 		var/obj/item/gun_component/GC = thing
 		if(GC.component_type == COMPONENT_ACCESSORY)
-			user << "<span class='warning'>Accessories can only be installed into gun assemblies or firearms, not into individual components.</span>"
+			to_chat(user, "<span class='warning'>Accessories can only be installed into gun assemblies or firearms, not into individual components.</span>")
 			return
 		if(GC.component_type == component_type)
-			user << "<span class='warning'>Why are you trying to install one [component_type] into another?</span>"
+			to_chat(user, "<span class='warning'>Why are you trying to install one [component_type] into another?</span>")
 			return
 		var/obj/item/gun_assembly/GA = new(get_turf(src))
 		GA.attackby(src, user)

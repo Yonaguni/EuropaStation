@@ -157,6 +157,8 @@
 
 /obj/item/gun/composite/update_icon(var/ignore_inhands, var/regenerate = 0)
 
+	to_chat(world, "\ref[src] update icon")
+
 	if(force_icon && force_icon_state)
 		icon = force_icon
 		icon_state = force_icon_state

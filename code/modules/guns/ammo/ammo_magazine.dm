@@ -1,7 +1,7 @@
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
-	name = "magazine"
-	desc = "A magazine for some kind of gun."
+	name = "cartridge"
+	desc = "An ammunition cartridge for some kind of gun. Presumably contains some kind of bullet, and probably does not contain any kind of candy."
 	icon_state = "pistol_mag"
 	icon = 'icons/obj/gun_components/ammo.dmi'
 	slot_flags = SLOT_BELT
@@ -34,7 +34,10 @@
 				stored_ammo += new ammo_type(src)
 
 	caliber = get_caliber_from_path(caliber)
-	name = "[initial(name)] ([caliber.name])"
+	if(caliber.magazine_name)
+		name = "[caliber.magazine_name] ([caliber.name])"
+	else
+		name = "[initial(name)] ([caliber.name])"
 	update_icon()
 
 /obj/item/ammo_casing/Destroy()
@@ -45,10 +48,10 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber.projectile_size != caliber.projectile_size)
-			user << "<span class='warning'>[C] does not fit into [src].</span>"
+			to_chat(user, "<span class='warning'>[C] does not fit into [src].</span>")
 			return
 		if(stored_ammo.len >= max_ammo)
-			user << "<span class='warning'>[src] is full!</span>"
+			to_chat(user, "<span class='warning'>[src] is full!</span>")
 			return
 		user.unEquip(C)
 		C.forceMove(src)
@@ -57,9 +60,9 @@
 
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(!stored_ammo.len)
-		user << "<span class='notice'>[src] is already empty!</span>"
+		to_chat(user, "<span class='notice'>[src] is already empty!</span>")
 		return
-	user << "<span class='notice'>You empty [src].</span>"
+	to_chat(user, "<span class='notice'>You empty [src].</span>")
 	for(var/obj/item/ammo_casing/C in stored_ammo)
 		C.forceMove(user.loc)
 		C.set_dir(pick(cardinal))
@@ -68,7 +71,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
-	user << "<span class='notice'>There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left.</span>"
+	to_chat(user, "<span class='notice'>There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left.</span>")
 
 // Predefined
 /obj/item/ammo_magazine/assault

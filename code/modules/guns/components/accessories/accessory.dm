@@ -29,11 +29,10 @@
 	if(sharp || edge)
 		gun.attack_verb = list("stabbed", "slashed", "pierced")
 
-
 /obj/item/gun_component/accessory/installed(var/obj/item/gun/composite/gun, var/mob/user)
 	if(istype(user))
 		user.unEquip(src)
-		user << "<span class='notice'>You affix \the [src] to \the [installs_into] of \the [gun].</span>"
+		to_chat(user, "<span class='notice'>You affix \the [src] to \the [installs_into] of \the [gun].</span>")
 	if(loc != gun)
 		src.forceMove(gun)
 	holder = gun
@@ -50,5 +49,5 @@
 	src.forceMove(get_turf(src))
 	if(user)
 		user.put_in_hands(src)
-		user << "<span class='notice'>You remove \the [src] from \the [installs_into] of \the [gun].</span>"
-	return
+		to_chat(user, "<span class='notice'>You remove \the [src] from \the [installs_into] of \the [gun].</span>")
+

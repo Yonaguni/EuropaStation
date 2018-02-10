@@ -19,9 +19,9 @@
 	if(!holder)
 		return
 	if(!(holder in user))
-		user << "<span class='warning'>You need to hold \the [holder] in your hands to do this.</span>"
+		to_chat(user, "<span class='warning'>You need to hold \the [holder] in your hands to do this.</span>")
 		return
-	user << "<span class='notice'>You [folded ? "un" : "" ]fold \the [holder]'s stock.</span>"
+	to_chat(user, "<span class='notice'>You [folded ? "un" : "" ]fold \the [holder]'s stock.</span>")
 	folded = !folded
 	if(folded)
 		icon_state = "[icon_state]_folded"
