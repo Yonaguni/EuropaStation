@@ -1,5 +1,8 @@
 /obj/item/gun_component/chamber/laser
 	projectile_type = GUN_TYPE_LASER
+	can_jam = FALSE
+	accepts_accessories = TRUE
+
 	var/initial_charge = 5000
 	var/can_remove_cell
 	var/self_recharge_time // Default is 4; null or 0 means the gun does not recharge itself without a charger.

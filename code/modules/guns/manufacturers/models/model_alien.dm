@@ -20,7 +20,7 @@
 /obj/item/gun_component/barrel/laser/rifle/kharmaani
 	desc = "A long, heavy projection apparatus of some kind."
 	design_caliber = /decl/weapon_caliber/laser/particle
-	accepts_accessories = 0
+	accepts_accessories = FALSE
 
 /obj/item/gun_component/chamber/laser/rifle/kharmaani
 	name = "alien focusing lens"

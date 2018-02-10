@@ -6,7 +6,7 @@
 			to_chat(M, "<span class='warning'>\The [src] has jammed!</span>")
 		return
 
-	if(chamber.design_caliber.projectile_size > barrel.design_caliber.projectile_size && prob(abs(chamber.design_caliber.projectile_size - barrel.design_caliber.projectile_size)*10))
+	if(chamber.can_jam && chamber.design_caliber.projectile_size > barrel.design_caliber.projectile_size && prob(abs(chamber.design_caliber.projectile_size - barrel.design_caliber.projectile_size)*10))
 		jam()
 
 	var/obj/item/projectile/proj = chamber.consume_next_projectile()

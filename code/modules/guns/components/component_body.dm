@@ -3,6 +3,8 @@
 	component_type = COMPONENT_BODY
 	projectile_type = GUN_TYPE_BALLISTIC
 	icon = 'icons/obj/gun_components/body.dmi'
+	accepts_accessories = TRUE
+
 	var/base_desc = "It is an ambiguous firearm of some sort."
 	var/wielded_state = "assault-wielded"
 

@@ -83,7 +83,8 @@ var/static/list/skip_firemode_property_names = list("name" = TRUE, "caliber" = T
 	..()
 	if(LAZYLEN(firemodes))
 		for(var/i in 1 to LAZYLEN(firemodes))
-			firemodes[i] = new /datum/firemode(src, firemodes[i])
+			if(islist(firemodes[i]))
+				firemodes[i] = new /datum/firemode(src, firemodes[i])
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy

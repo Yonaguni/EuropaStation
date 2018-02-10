@@ -33,6 +33,7 @@
 	for(var/obj/item/I in src)
 		if(I.plane != plane)
 			I.plane = plane
+	update_icon(regenerate = TRUE)
 
 /obj/item/clothing/under/update_plane()
 	. = ..()

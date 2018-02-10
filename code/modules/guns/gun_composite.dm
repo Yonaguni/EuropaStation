@@ -159,9 +159,9 @@
 			icon_state = ""
 			if(model && model.force_item_state)
 				item_state = model.force_item_state
-			else
+			else if(body)
 				item_state = body.item_state
-			if(body.slot_flags & SLOT_BACK)
+			if(body && (body.slot_flags & SLOT_BACK))
 				item_state_slots[slot_back_str] = body.item_state
 
 	overlays.Cut()

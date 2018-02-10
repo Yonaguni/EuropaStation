@@ -1,5 +1,6 @@
 /obj/item/gun_component/chamber/ballistic
 	projectile_type = GUN_TYPE_BALLISTIC
+	accepts_accessories = TRUE
 
 	var/load_method = SINGLE_CASING|SPEEDLOADER
 	var/handle_casings = EJECT_CASINGS

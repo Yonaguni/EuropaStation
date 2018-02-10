@@ -1,6 +1,9 @@
 /obj/item/gun_component/accessory/barrel/lens
 	name = "multiphase lens"
 	has_alt_interaction = TRUE
+	icon_state = "lens"
+	installed_dam_type = GUN_TYPE_LASER
+	installed_gun_type = GUN_PISTOL
 
 	var/selected_type = 0
 	var/list/additional_types

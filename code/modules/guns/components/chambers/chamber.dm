@@ -12,6 +12,7 @@
 	var/ammo_indicator_state         // Base ammo overlay state.
 	var/automatic
 	var/revolver
+	var/can_jam = TRUE
 
 /obj/item/gun_component/chamber/proc/get_max_shots(var/val = 1)
 	return Floor(max_shots * val)

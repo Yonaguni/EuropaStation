@@ -1,6 +1,6 @@
 /obj/item/gun_component/accessory/chamber/sear
 	name = "sear assembly"
-	icon_state = "sear "
+	icon_state = "sear"
 	weight_mod = 1
 	var/list/firemodes
 
@@ -10,16 +10,26 @@
 			gun.firemodes = firemodes.Copy()
 		else
 			gun.firemodes |= firemodes
+		for(var/i in 1 to LAZYLEN(gun.firemodes))
+			if(islist(gun.firemodes[i]))
+				gun.firemodes[i] = new /datum/firemode(gun, gun.firemodes[i])
 	..()
 
 /obj/item/gun_component/accessory/chamber/sear/removed_from(var/obj/item/gun, var/mob/user)
 	var/obj/item/gun/composite/removed_from_weapon = holder
 	. = ..()
 	if(istype(removed_from_weapon))
+
+		removed_from_weapon.sel_mode = 1
+		removed_from_weapon.burst = 1
+		removed_from_weapon.fire_delay = removed_from_weapon.chamber.fire_delay
+		removed_from_weapon.move_delay = null
+		removed_from_weapon.burst_accuracy = null
+		removed_from_weapon.dispersion = null
+
 		removed_from_weapon.firemodes.Cut()
 		for(var/obj/item/gun_component/accessory/chamber/sear/S in removed_from_weapon.contents)
 			S.apply_mod(removed_from_weapon)
-		removed_from_weapon.sel_mode = 1
 
 /obj/item/gun_component/accessory/chamber/sear/burst_ballistic
 	name = "burst-fire sear assembly"

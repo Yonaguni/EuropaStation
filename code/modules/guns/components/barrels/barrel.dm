@@ -39,7 +39,7 @@
 				to_chat(user, "<span class='warning'>You shorten \the [src]!</span>")
 				icon_state = shortened_icon
 				w_class = max(1,w_class-1)
-				accepts_accessories = 0
+				accepts_accessories = FALSE
 				recoil_mod++
 				accuracy_mod--
 				weight_mod--
