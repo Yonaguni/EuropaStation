@@ -82,10 +82,6 @@
 			qdel(src)
 		return
 
-	// To avoid writing over/mixing up.
-	if(LAZYLEN(chamber.firemodes))
-		firemodes = chamber.firemodes.Copy()
-
 	// Update physical variables.
 	slot_flags = body.slot_flags
 	w_class = 1

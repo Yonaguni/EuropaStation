@@ -7,6 +7,10 @@
 	variant_body =    /obj/item/gun_component/body/smg
 	variant_barrel =  /obj/item/gun_component/barrel/smg
 
+/obj/item/gun/composite/premade/smg/New()
+	new /obj/item/gun_component/accessory/chamber/sear/burst_ballistic(src)
+	..()
+
 /obj/item/gun/composite/premade/smg/a9
 	name = "9mm submachine gun"
 	set_caliber = /decl/weapon_caliber/pistol_medium

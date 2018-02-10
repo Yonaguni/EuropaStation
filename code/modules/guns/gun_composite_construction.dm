@@ -48,7 +48,7 @@ var/list/can_dismantle_guns = list(
 		// Check if we have a component fit for that accessory.
 		var/acceptable
 		for(var/obj/item/gun_component/temp_comp in list(barrel, body, grip, stock, chamber))
-			if(istype(temp_comp) && temp_comp.accepts_accessories && installing.installs_into == temp_comp.component_type)
+			if(istype(temp_comp) && temp_comp.accepts_accessories && installing.installs_into == temp_comp.component_type && (isnull(installing.restricted_to_type) || installing.restricted_to_type == installing.projectile_type))
 				acceptable = 1
 				break
 

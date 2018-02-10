@@ -4,6 +4,8 @@
 	fire_cost = 1000
 	projectile_type = /obj/item/projectile/beam
 	projectile_size = 2
+	specific_gun_name = "laser"
+	mode_name = "lethal"
 
 /decl/weapon_caliber/laser/mid
 	name = "mid-power laser"
@@ -56,6 +58,8 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	projectile_type = /obj/item/projectile/beam/stun
 	projectile_size = 1
+	specific_gun_name = "taser"
+	mode_name = "shock"
 
 /decl/weapon_caliber/laser/burst
 	name = "burst laser"

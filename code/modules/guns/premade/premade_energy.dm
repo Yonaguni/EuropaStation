@@ -16,6 +16,10 @@
 	variant_body =    /obj/item/gun_component/body/smg/laser
 	variant_barrel =  /obj/item/gun_component/barrel/laser/xray
 
+/obj/item/gun/composite/premade/laser_smg/New()
+	new /obj/item/gun_component/accessory/chamber/sear/burst_energy(src)
+	..()
+
 /obj/item/gun/composite/premade/laser_pistol
 	name = "laser pistol"
 	icon_state = "laser_pistol"
@@ -24,6 +28,10 @@
 	variant_grip =    /obj/item/gun_component/grip/pistol/laser
 	variant_body =    /obj/item/gun_component/body/pistol/laser
 	variant_barrel =  /obj/item/gun_component/barrel/laser/pistol
+
+/obj/item/gun/composite/premade/laser_pistol/New()
+	new /obj/item/gun_component/accessory/barrel/lens/stun_lethal(src)
+	..()
 
 /obj/item/gun/composite/premade/taser_pistol
 	name = "taser pistol"
@@ -49,7 +57,7 @@
 	set_caliber = /decl/weapon_caliber/laser/practice
 
 /obj/item/gun/composite/premade/laser_rifle/scoped/New()
-	new /obj/item/gun_component/accessory/chamber/scope(src)
+	new /obj/item/gun_component/accessory/body/scope(src)
 	..()
 
 /obj/item/gun/composite/premade/laser_shotgun
@@ -69,6 +77,10 @@
 	variant_grip =    /obj/item/gun_component/grip/assault/laser
 	variant_body =    /obj/item/gun_component/body/assault/laser
 	variant_barrel =  /obj/item/gun_component/barrel/laser/assault
+
+/obj/item/gun/composite/premade/laser_assault/New()
+	new /obj/item/gun_component/accessory/chamber/sear/burst_energy(src)
+	..()
 
 /obj/item/gun/composite/premade/laser_assault/practice
 	name = "practice laser assault rifle"

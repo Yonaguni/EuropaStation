@@ -15,11 +15,8 @@
 #define GUN_ASSAULT "assault"
 #define GUN_SHOTGUN "shotgun"
 
-#define GUN_TYPE_ELECTROSHOCK "shock"
 #define GUN_TYPE_LASER        "laser"
 #define GUN_TYPE_BALLISTIC    "ballistic"
-#define GUN_TYPE_INCENDIARY   "incendiary"
-#define GUN_TYPE_MAGNETIC     "railgun"
 
 #define COMPONENT_BARREL    "barrel"
 #define COMPONENT_BODY      "body"

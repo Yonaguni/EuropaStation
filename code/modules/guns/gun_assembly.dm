@@ -133,7 +133,7 @@
 			// Check if we have a component fit for that accessory.
 			var/acceptable
 			for(var/obj/item/gun_component/temp_comp in list(barrel, body, grip, stock, chamber))
-				if(istype(temp_comp) && temp_comp.accepts_accessories && accessory.installs_into == temp_comp.component_type)
+				if(istype(temp_comp) && temp_comp.accepts_accessories && accessory.installs_into == temp_comp.component_type && (isnull(accessory.restricted_to_type) || accessory.restricted_to_type == temp_comp.projectile_type))
 					acceptable = 1
 					break
 

@@ -148,14 +148,9 @@
 	fire_delay = 5
 	ammo_indicator_state = "laser_pistol_loaded"
 	design_caliber = /decl/weapon_caliber/laser
-	firemodes = list(
-		list(mode_name="stun",   caliber = /decl/weapon_caliber/laser/shock),
-		list(mode_name="lethal", caliber = /decl/weapon_caliber/laser),
-		)
 
 /obj/item/gun_component/chamber/laser/pistol/taser
 	design_caliber = /decl/weapon_caliber/laser/shock
-	firemodes = null
 
 /obj/item/gun_component/chamber/laser/rifle
 	icon_state="las_rifle"

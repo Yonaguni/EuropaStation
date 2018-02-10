@@ -7,7 +7,7 @@
 	var/override_type_name
 
 	if(assembly)
-		sniper = (locate(/obj/item/gun_component/accessory/chamber/scope) in assembly)
+		sniper = (locate(/obj/item/gun_component/accessory/body/scope) in assembly)
 		if(istype(assembly, /obj/item/gun_assembly))
 			var/obj/item/gun_assembly/GA = assembly
 			if(istype(GA.chamber))
@@ -19,6 +19,8 @@
 				caliber = GA.barrel.design_caliber
 				if(GA.barrel.override_name)
 					override_type_name = GA.barrel.override_name
+				else if(GA.barrel.design_caliber.specific_gun_name)
+					override_type_name  = GA.barrel.design_caliber.specific_gun_name
 		else if(istype(assembly, /obj/item/gun/composite))
 			var/obj/item/gun/composite/CG = assembly
 			caliber = CG.barrel.design_caliber
@@ -30,22 +32,14 @@
 				revolver = 1
 			if(CG.barrel.override_name)
 				override_type_name = CG.barrel.override_name
+			else if(CG.barrel.design_caliber.specific_gun_name)
+				override_type_name  = CG.barrel.design_caliber.specific_gun_name
 
 	var/type_name
 	if(override_type_name)
 		type_name = override_type_name
 	else if(caliber)
 		type_name = caliber.name
-	else
-		switch(dam_type)
-			if(GUN_TYPE_ELECTROSHOCK)
-				type_name = "taser"
-			if(GUN_TYPE_LASER)
-				type_name = "laser"
-			if(GUN_TYPE_INCENDIARY)
-				type_name = "incendiary"
-			if(GUN_TYPE_MAGNETIC)
-				type_name = "railed"
 
 	var/gun_name = "gun"
 	switch(gun_type)

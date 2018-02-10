@@ -58,9 +58,14 @@
 				result += "This weapon is wildly inaccurate."
 
 		for (var/obj/item/gun_component/GC in src)
-			result += GC.get_examine_text()
+			var/list/examine_text = GC.get_examine_text()
+			if(LAZYLEN(examine_text))
+				result += examine_text
 
 		if(LAZYLEN(firemodes))
 			result += "This weapon has multiple fire modes, which can be changed by clicking the gun in-hand."
+
+		if(locate(/obj/item/gun_component/accessory/barrel/lens) in accessories)
+			result += "This weapon has multiple output types, which can be changed by alt-clicking the gun in-hand."
 
 		to_chat(usr, jointext(result, "<br>"))

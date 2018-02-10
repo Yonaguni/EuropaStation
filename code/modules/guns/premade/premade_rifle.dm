@@ -32,5 +32,5 @@
 	variant_grip =    /obj/item/gun_component/grip/rifle/am
 
 /obj/item/gun/composite/premade/rifle/antimaterial/New()
-	new /obj/item/gun_component/accessory/chamber/scope(src)
+	new /obj/item/gun_component/accessory/body/scope(src)
 	..()

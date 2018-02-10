@@ -111,4 +111,4 @@
 		..()
 
 /obj/item/gun_component/proc/get_examine_text()
-	return ""
+	return

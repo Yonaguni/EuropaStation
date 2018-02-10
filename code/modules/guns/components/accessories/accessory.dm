@@ -5,6 +5,7 @@
 	projectile_type = null
 	icon = 'icons/obj/gun_components/accessories.dmi'
 
+	var/restricted_to_type
 	var/installs_into
 	var/installed_dam_type = GUN_TYPE_BALLISTIC
 	var/installed_gun_type = GUN_PISTOL
