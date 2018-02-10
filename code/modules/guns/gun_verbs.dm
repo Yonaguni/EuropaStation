@@ -4,4 +4,4 @@
 	set popup_menu = 1
 	set src in usr
 
-	toggle_scope(2.0)
+	toggle_scope(usr, 2)

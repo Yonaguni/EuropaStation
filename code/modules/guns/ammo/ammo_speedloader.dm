@@ -4,6 +4,7 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	mag_type = SPEEDLOADER
 	max_ammo = 6
+	weapon_type = GUN_PISTOL
 
 /obj/item/ammo_magazine/speedloader/a38
 	ammo_type = /obj/item/ammo_casing/a38

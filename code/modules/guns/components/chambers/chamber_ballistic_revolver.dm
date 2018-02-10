@@ -9,6 +9,7 @@
 	revolver = 1
 	accuracy_mod = 0
 	color = COLOR_GUNMETAL
+	design_caliber = /decl/weapon_caliber/pistol_357
 	var/chamber_offset = 0
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/consume_next_projectile()
@@ -42,5 +43,5 @@
 		return 1
 
 /obj/item/gun_component/chamber/ballistic/breech/revolver/get_examine_text()
-	. += "When cylinder is closed, you can spin it with alt-clicking the gun in hand to play Russian Roulette.<br>"
-	. += "When cylinder is open, you can empty all casings out of it with alt-click.<br>"
+	. += "When the cylinder is closed, you can spin it with alt-clicking the gun in hand to play Russian Roulette.<br>"
+	. += "When the cylinder is open, you can empty all casings out of it with alt-click.<br>"

@@ -147,7 +147,8 @@
 /obj/structure/foamedmetal/ex_act(severity)
 	qdel(src)
 
-/obj/structure/foamedmetal/bullet_act()
+/obj/structure/foamedmetal/bullet_act(var/obj/item/projectile/Proj)
+	Proj.on_hit(src, 0)
 	if(metal == 1 || prob(50))
 		qdel(src)
 

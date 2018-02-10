@@ -191,6 +191,3 @@ var/list/global_modular_computers = list()
 /obj/machinery/modular_computer/bullet_act(var/obj/item/projectile/Proj)
 	if(cpu)
 		cpu.bullet_act(Proj)
-
-
-

@@ -3,6 +3,8 @@
 	component_type = COMPONENT_BODY
 	projectile_type = GUN_TYPE_BALLISTIC
 	icon = 'icons/obj/gun_components/body.dmi'
+	accepts_accessories = TRUE
+
 	var/base_desc = "It is an ambiguous firearm of some sort."
 	var/wielded_state = "assault-wielded"
 
@@ -10,10 +12,10 @@
 	if(istype(thing, /obj/item/gun_component))
 		var/obj/item/gun_component/GC = thing
 		if(GC.component_type == COMPONENT_ACCESSORY)
-			user << "<span class='warning'>Accessories can only be installed into gun assemblies or firearms, not into individual components.</span>"
+			to_chat(user, "<span class='warning'>Accessories can only be installed into gun assemblies or firearms, not into individual components.</span>")
 			return
 		if(GC.component_type == component_type)
-			user << "<span class='warning'>Why are you trying to install one [component_type] into another?</span>"
+			to_chat(user, "<span class='warning'>Why are you trying to install one [component_type] into another?</span>")
 			return
 		var/obj/item/gun_assembly/GA = new(get_turf(src))
 		GA.attackby(src, user)
@@ -91,6 +93,19 @@
 	two_handed = 1
 	recoil_mod = -2
 	wielded_state = "cannon-wielded"
+
+/obj/item/gun_component/body/rocket
+	icon_state = "rocket"
+	item_state = "rocket"
+	wielded_state = "cannon-wielded"
+	weapon_type = GUN_CANNON
+	w_class = 4
+	force = 10
+	slot_flags = 0
+	accepts_accessories = 1
+	base_desc = "It's a rocket launcher."
+	two_handed = 1
+	recoil_mod = -2
 
 /obj/item/gun_component/body/assault
 	icon_state = "assault"

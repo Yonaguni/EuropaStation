@@ -146,7 +146,7 @@ var/list/turret_icons
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
 	data["enabled"] = enabled
-	if(installed_gun.firemodes.len)
+	if(LAZYLEN(installed_gun.firemodes))
 		var/datum/firemode/current_mode = installed_gun.firemodes[installed_gun.sel_mode]
 		data["current_firemode"] = current_mode.name
 

@@ -3,15 +3,25 @@
 	if(jammed)
 		var/mob/M = loc
 		if(istype(M))
-			M << "<span class='warning'>\The [src] has jammed!</span>"
+			to_chat(M, "<span class='warning'>\The [src] has jammed!</span>")
 		return
+
+	if(chamber.can_jam && chamber.design_caliber.projectile_size > barrel.design_caliber.projectile_size && prob(abs(chamber.design_caliber.projectile_size - barrel.design_caliber.projectile_size)*10))
+		jam()
 
 	var/obj/item/projectile/proj = chamber.consume_next_projectile()
 	if(proj)
 		if(model && !isnull(model.produced_by.damage_mod))
 			proj.damage = round(proj.damage * model.produced_by.damage_mod)
 		chamber.modify_shot(proj)
-	return proj
+		if(proj) barrel.modify_shot(proj)
+
+	if(proj)
+		if(jammed)
+			proj.on_hit(get_turf(src), 0)
+			qdel(proj)
+		else
+			return proj
 
 /obj/item/gun/composite/handle_post_fire()
 	..()

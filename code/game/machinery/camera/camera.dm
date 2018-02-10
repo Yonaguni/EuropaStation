@@ -94,6 +94,7 @@ var/list/camera_tag_count = list()
 
 /obj/machinery/camera/bullet_act(var/obj/item/projectile/P)
 	take_damage(P.get_structure_damage())
+	P.on_hit(src, 0)
 
 /obj/machinery/camera/ex_act(severity)
 	if(src.invuln)

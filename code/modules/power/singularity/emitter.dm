@@ -143,7 +143,7 @@
 			s.start()
 
 		var/obj/item/projectile/beam/emitter/A = get_emitter_beam()
-		playsound(src.loc, A.fire_sound, 25, 1)
+		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 		A.launch( get_step(src.loc, src.dir) )
 

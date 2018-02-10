@@ -173,22 +173,6 @@
 		connect()
 	update_icon()
 
-/obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
-
-	//Don't act on seeds like dionaea that shouldn't change.
-	if(seed && seed.get_trait(TRAIT_IMMUTABLE) > 0)
-		return
-
-	//Override for somatoray projectiles.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut) && prob(20))
-		mutate(1)
-		return
-	else if(istype(Proj ,/obj/item/projectile/energy/florayield) && prob(20))
-		yield_mod = min(10,yield_mod+rand(1,2))
-		return
-
-	..()
-
 /obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 

@@ -48,7 +48,7 @@ var/list/can_dismantle_guns = list(
 		// Check if we have a component fit for that accessory.
 		var/acceptable
 		for(var/obj/item/gun_component/temp_comp in list(barrel, body, grip, stock, chamber))
-			if(istype(temp_comp) && temp_comp.accepts_accessories && installing.installs_into == temp_comp.component_type)
+			if(istype(temp_comp) && temp_comp.accepts_accessories && installing.installs_into == temp_comp.component_type && (isnull(installing.restricted_to_type) || installing.restricted_to_type == temp_comp.projectile_type))
 				acceptable = 1
 				break
 
@@ -62,6 +62,7 @@ var/list/can_dismantle_guns = list(
 		installing.installed(src, user)
 		accessories |= installing
 		update_from_components()
+		update_icon(regenerate = TRUE)
 		return
 	else
 
@@ -81,6 +82,7 @@ var/list/can_dismantle_guns = list(
 				removing.removed_from(src, user)
 				accessories -= removing
 				update_from_components()
+				update_icon(regenerate = TRUE)
 				return
 
 			user.visible_message("<span class='notice'>\The [user] begins field-stripping \the [src] with \the [thing].</span>")
@@ -92,7 +94,7 @@ var/list/can_dismantle_guns = list(
 			if(user.incapacitated() || user.restrained() || !user.Adjacent(src))
 				return
 
-			usr << "<span class='noticed'>\The [user] has field-stripped \the [src].</span>"
+			to_chat(usr, "<span class='noticed'>\The [user] has field-stripped \the [src].</span>")
 			dismantle(user)
 			return
 

@@ -34,18 +34,15 @@
 		return PROJECTILE_CONTINUE //pass through
 
 	var/damage = Proj.get_structure_damage()
-	if(!damage)
-		return
+	if(damage)
+		if(!istype(Proj, /obj/item/projectile/beam))
+			damage *= 0.4 //non beams do reduced damage
+		health -= damage
 
-	if(!istype(Proj, /obj/item/projectile/beam))
-		damage *= 0.4 //non beams do reduced damage
-
-	health -= damage
 	..()
+
 	if(health <= 0)
 		dismantle()
-
-	return
 
 /obj/structure/girder/proc/reset_girder()
 	anchored = 1

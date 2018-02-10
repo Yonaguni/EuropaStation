@@ -3,8 +3,6 @@
 	desc = "This really shouldn't exist yet."
 	appearance_flags = KEEP_TOGETHER
 
-	var/max_shots = 0                          // Weapon capacity.
-	var/caliber = ""                           // Barrel size/type of projectile.
 	var/decl/weapon_model/model                // Model and manufacturer info, if any.
 	var/list/accessories = list()              // Installed accessories, if any.
 	var/force_icon                             // File to override component icons with.
@@ -15,7 +13,7 @@
 	var/installed_in_turret = FALSE            // Are we installed in a turret?
 
 	// Component helpers.
-	var/obj/item/gun_component/barrel/barrel   // Caliber, projectile type.
+	var/obj/item/gun_component/barrel/barrel   // Max caliber size/velocity, projectile type.
 	var/obj/item/gun_component/body/body       // Class of weapon, weapon size.
 	var/obj/item/gun_component/grip/grip       // Size/accuracy/recoil modifier.
 	var/obj/item/gun_component/stock/stock     // Size/accuracy/recoil modifier.
@@ -36,6 +34,7 @@
 	if(istype(newloc, /obj/machinery/porta_turret))
 		installed_in_turret = TRUE
 	..(newloc)
+	update_icon(regenerate = TRUE)
 
 /obj/item/gun/composite/forceMove()
 	. = ..()
@@ -47,12 +46,10 @@
 /obj/item/gun/composite/pickup()
 	. = ..()
 	update_strings()
-	update_icon()
 
 /obj/item/gun/composite/dropped()
 	. = ..()
 	update_strings()
-	update_icon()
 
 /obj/item/gun/composite/reset_name()
 	update_strings()
@@ -69,6 +66,9 @@
 		qdel(I)
 	return ..()
 
+/obj/item/gun/composite/get_fire_sound()
+	return chamber.design_caliber.fire_sound // Projectiles will almost always override this.
+
 /obj/item/gun/composite/get_cell()
 	return chamber ? chamber.get_cell() : ..()
 
@@ -82,19 +82,6 @@
 			qdel(src)
 		return
 
-	// Grab fire data from our components.
-	if(barrel.caliber) caliber = barrel.caliber
-	chamber.reset_max_shots()
-	max_shots = chamber.max_shots
-
-	// To avoid writing over/mixing up.
-	firemodes = chamber.firemodes.Copy()
-
-	// Nested lists in DM are horrible.
-	if(barrel.firemodes && barrel.firemodes.len)
-		for(var/list/L in barrel.firemodes)
-			firemodes += list(L.Copy())
-
 	// Update physical variables.
 	slot_flags = body.slot_flags
 	w_class = 1
@@ -102,7 +89,6 @@
 		if(GC && GC.w_class > w_class)
 			w_class = GC.w_class
 
-	fire_sound = barrel.fire_sound
 	fire_delay = chamber.fire_delay
 	silenced = 0
 	verbs -= /obj/item/gun/composite/proc/scope
@@ -132,9 +118,6 @@
 	if(model && model.produced_by)
 		if(!isnull(model.produced_by.accuracy))
 			accuracy = round(accuracy * model.produced_by.accuracy)
-		if(!isnull(model.produced_by.capacity))
-			chamber.apply_shot_mod(model.produced_by.capacity)
-			max_shots = chamber.max_shots
 		if(!isnull(model.produced_by.recoil))
 			recoil = round(recoil * model.produced_by.recoil)
 		if(!isnull(model.produced_by.fire_rate))
@@ -147,7 +130,6 @@
 	if(dam_type == GUN_TYPE_LASER)
 		recoil = 0
 
-	update_icon(regenerate=1)
 	update_strings()
 
 /obj/item/gun/composite/proc/update_strings()
@@ -177,9 +159,9 @@
 			icon_state = ""
 			if(model && model.force_item_state)
 				item_state = model.force_item_state
-			else
+			else if(body)
 				item_state = body.item_state
-			if(body.slot_flags & SLOT_BACK)
+			if(body && (body.slot_flags & SLOT_BACK))
 				item_state_slots[slot_back_str] = body.item_state
 
 	overlays.Cut()
@@ -247,7 +229,7 @@
 	if(jammed) return
 	var/mob/M = loc
 	if(istype(M))
-		M << "<span class='danger'>\The [src] jams!</span>"
+		to_chat(M, "<span class='danger'>\The [src] jams!</span>")
 	jammed = 1
 
 /obj/item/gun/composite/attack_self(var/mob/user)
@@ -264,7 +246,7 @@
 		return
 
 	var/list/possible_interactions = list()
-	if(firemodes.len)
+	if(LAZYLEN(firemodes))
 		possible_interactions += "change fire mode"
 	for(var/obj/item/gun_component/GC in contents)
 		if(GC.has_user_interaction)
@@ -281,9 +263,8 @@
 	return
 
 /obj/item/gun/composite/switch_firemodes(var/mob/user)
-	var/datum/firemode/new_mode = ..()
-	barrel.caliber = caliber
-	barrel.update_from_caliber()
-	if(new_mode)
-		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
-	return new_mode
+	. = ..()
+	var/datum/firemode/new_mode = .
+	if(istype(new_mode) && ispath(new_mode.settings["caliber"]))
+		chamber.design_caliber = get_caliber_from_path(new_mode.settings["caliber"])
+		barrel.design_caliber = chamber.design_caliber

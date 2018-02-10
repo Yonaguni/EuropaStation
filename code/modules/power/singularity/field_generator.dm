@@ -163,7 +163,7 @@ field_generator power level display
 	if(istype(Proj, /obj/item/projectile/beam))
 		power += Proj.damage * EMITTER_DAMAGE_POWER_TRANSFER
 		update_icon()
-	return 0
+	Proj.on_hit(src, 0)
 
 
 /obj/machinery/field_generator/Destroy()

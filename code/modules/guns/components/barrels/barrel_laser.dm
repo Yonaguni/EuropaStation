@@ -1,50 +1,45 @@
 /obj/item/gun_component/barrel/laser
 	projectile_type = GUN_TYPE_LASER
 	name = "projector"
-	caliber = CALIBER_LASER
-	var/assume_projectile
+	design_caliber = /decl/weapon_caliber/laser
 	weight_mod = 1
 	recoil_mod = 0
 	accuracy_mod = 1
 
-/obj/item/gun_component/barrel/laser/taser
-	caliber = CALIBER_LASER_TASER
-
 /obj/item/gun_component/barrel/laser/get_projectile_type()
-	return assume_projectile
-
-/obj/item/gun_component/barrel/laser/New(var/newloc, var/weapontype, var/componenttype, var/use_model)
-	..(newloc, weapontype, componenttype, use_model)
-	update_from_caliber()
-
-/obj/item/gun_component/barrel/laser/update_from_caliber()
-	..()
-	assume_projectile = get_laser_type_from_caliber(caliber)
-	fire_sound = get_fire_sound_from_caliber(caliber)
-	if(holder && istype(holder.chamber, /obj/item/gun_component/chamber/laser))
-		var/obj/item/gun_component/chamber/laser/echamber = holder.chamber
-		echamber.charge_cost = get_laser_cost_from_caliber(caliber)
+	return design_caliber.projectile_type
 
 /obj/item/gun_component/barrel/laser/rifle
 	icon_state="las_rifle"
 	weapon_type = GUN_RIFLE
-	caliber = CALIBER_LASER_PRECISION
-	accepts_accessories = 1
-	accuracy_mod = 4
-
-/obj/item/gun_component/barrel/laser/rifle_practice
-	icon_state="las_rifle"
-	weapon_type = GUN_RIFLE
-	caliber = CALIBER_LASER_PRACTICE
+	design_caliber = /decl/weapon_caliber/laser/precision
 	accepts_accessories = 1
 	accuracy_mod = 4
 
 /obj/item/gun_component/barrel/laser/cannon
 	icon_state="las_cannon"
-	weapon_type = GUN_CANNON
-	caliber = CALIBER_LASER_HEAVY
+	weapon_type = /decl/weapon_caliber/laser/heavy
+	design_caliber = /decl/weapon_caliber/laser/heavy
 
-/obj/item/gun_component/barrel/laser/assault_practice
+/obj/item/gun_component/barrel/laser/shotgun/burst
+	icon_state="las_shotgun"
+	name = "beam splitter"
+	weapon_type = GUN_SHOTGUN
+	design_caliber = /decl/weapon_caliber/laser/burst
+
+/obj/item/gun_component/barrel/laser/pistol
+	icon_state="las_pistol"
+	design_caliber = /decl/weapon_caliber/laser
+	weapon_type = GUN_PISTOL
+	weight_mod = 0
+
+/obj/item/gun_component/barrel/laser/assault
 	icon_state="las_assault"
 	weapon_type = GUN_ASSAULT
-	caliber = CALIBER_LASER_PRACTICE
+	weight_mod = 1
+
+/obj/item/gun_component/barrel/laser/xray
+	icon_state="las_smg"
+	weapon_type = GUN_SMG
+	weight_mod = 1
+	design_caliber = /decl/weapon_caliber/laser/xray

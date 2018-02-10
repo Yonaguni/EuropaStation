@@ -30,7 +30,6 @@
 
 
 /obj/structure/mirror/bullet_act(var/obj/item/projectile/Proj)
-
 	if(prob(Proj.get_structure_damage() * 2))
 		if(!shattered)
 			shatter()

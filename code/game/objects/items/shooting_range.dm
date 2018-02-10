@@ -87,7 +87,6 @@
 	if(istype(/obj/item/projectile/bullet, Proj))
 		decaltype = 2
 
-
 	virtualIcon = new(icon, icon_state)
 
 	if( virtualIcon.GetPixel(p_x, p_y) ) // if the located pixel isn't blank (null)
@@ -143,6 +142,8 @@
 		overlays += bmark // add the decal
 
 		icon = virtualIcon // apply bulletholes over decals
+
+		Proj.on_hit(src, 0)
 
 		return
 

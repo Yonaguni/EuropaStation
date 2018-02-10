@@ -35,7 +35,7 @@
 /obj/effect/fusion_particle_catcher/bullet_act(var/obj/item/projectile/Proj)
 	parent.AddEnergy(Proj.damage)
 	update_icon()
-	return 0
+	Proj.on_hit(src, 0)
 
 /obj/effect/fusion_particle_catcher/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
 	return ismob(mover)

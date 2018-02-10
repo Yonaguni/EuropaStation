@@ -271,11 +271,10 @@
 
 
 /obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob)
-		if(prob(85))
-			return buckled_mob.bullet_act(Proj)
+	if(buckled_mob && prob(85))
+		return buckled_mob.bullet_act(Proj)
 	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
-
+	Proj.on_hit(src, 0)
 
 /obj/item/key
 	name = "key"

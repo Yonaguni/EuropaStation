@@ -3,23 +3,25 @@
 
 	if(usr && usr.Adjacent(get_turf(src)))
 		if(dam_type == GUN_TYPE_LASER)
-			usr << "This one is \a [caliber] projector."
+			to_chat(usr, "This one currently \a [barrel.design_caliber.name] projector.")
 		else
-			usr << "This one fires [caliber] rounds."
-		usr << "It has [chamber.get_shots_remaining()] shots remaining."
+			to_chat(usr, "This one is designed to fire [barrel.design_caliber.name] rounds.")
+		to_chat(usr, "It has [chamber.get_shots_remaining()] shots remaining.")
 
 		for(var/obj/item/gun_component/GC in src)
 			var/extra = GC.get_extra_examine_info()
 			if(extra)
-				usr << "<span class='notice'>[extra]</span>"
+				to_chat(usr, "<span class='notice'>[extra]</span>")
 
 		if(accessories.len)
 			var/accessory_list = list()
 			for(var/obj/item/acc in accessories)
 				accessory_list += "\a [acc.name]"
-			usr << "[english_list(accessories)] [accessories.len == 1 ? "is" : "are"] installed."
+			to_chat(usr, "[english_list(accessories)] [accessories.len == 1 ? "is" : "are"] installed.")
 
 		var/list/result = list()
+
+		var/max_shots = chamber.get_max_shots(model ? model.produced_by.capacity : 1)
 
 		var/fdelay = fire_delay/10
 		result += "It has a fire delay of [fdelay] second[fdelay==1 ? "" : "s"]."
@@ -56,9 +58,14 @@
 				result += "This weapon is wildly inaccurate."
 
 		for (var/obj/item/gun_component/GC in src)
-			result += GC.get_examine_text()
+			var/list/examine_text = GC.get_examine_text()
+			if(LAZYLEN(examine_text))
+				result += examine_text
 
-		if(firemodes.len)
+		if(LAZYLEN(firemodes))
 			result += "This weapon has multiple fire modes, which can be changed by clicking the gun in-hand."
+
+		if(locate(/obj/item/gun_component/accessory/barrel/lens) in accessories)
+			result += "This weapon has multiple output types, which can be changed by alt-clicking the gun in-hand."
 
 		to_chat(usr, jointext(result, "<br>"))

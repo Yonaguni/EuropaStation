@@ -63,8 +63,6 @@
 	var/tracer_type
 	var/impact_type
 
-	var/fire_sound
-
 	var/datum/plot_vector/trajectory	// used to plot the path of the projectile
 	var/datum/vector_loc/location		// current location of the projectile in pixel space
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
@@ -77,11 +75,9 @@
 	if(isanimal(target))	return 0
 
 	var/mob/living/L = target
-
 	L.apply_effects(stun, weaken, paralyze, 0, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	//radiation protection is handled separately from other armour types.
 	L.apply_effect(irradiate, IRRADIATE, L.getarmor(null, "rad"))
-
 	return 1
 
 //called when the projectile stops flying because it collided with something
@@ -375,7 +371,7 @@
 				P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
-	if(ispath(tracer_type))
+	if(ispath(impact_type))
 		var/obj/effect/projectile/P = new impact_type(location.loc)
 
 		if(istype(P))

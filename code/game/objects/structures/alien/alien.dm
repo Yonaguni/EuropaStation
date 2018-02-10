@@ -14,7 +14,6 @@
 	health -= Proj.damage
 	..()
 	healthcheck()
-	return
 
 /obj/structure/alien/ex_act(severity)
 	switch(severity)

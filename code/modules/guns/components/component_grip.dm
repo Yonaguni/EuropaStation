@@ -50,6 +50,10 @@
 	icon_state = "cannon"
 	weapon_type = GUN_CANNON
 
+/obj/item/gun_component/grip/rocket
+	icon_state = "rocket"
+	weapon_type = GUN_CANNON
+
 /obj/item/gun_component/grip/assault
 	icon_state = "assault"
 	weapon_type = GUN_ASSAULT

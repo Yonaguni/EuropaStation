@@ -23,11 +23,11 @@
 		else
 			settings[propname] = propvalue
 
+var/static/list/skip_firemode_property_names = list("name" = TRUE, "caliber" = TRUE)
 /datum/firemode/proc/apply_to(var/obj/item/gun/gun)
 	for(var/propname in settings)
-		if(propname == "name")
-			continue
-		gun.vars[propname] = settings[propname]
+		if(!skip_firemode_property_names[propname])
+			gun.vars[propname] = settings[propname]
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/gun
@@ -56,8 +56,6 @@
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
-	var/fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
-	var/fire_sound_text = "gunshot"
 	var/screen_shake = 0 //shouldn't be greater than 2 unless zoomed
 	var/silenced = 0
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
@@ -70,7 +68,7 @@
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
-	var/list/firemodes = list()
+	var/list/firemodes
 
 	//aiming system stuff
 	var/keep_aim = 1 	//1 for keep shooting until aim is lowered
@@ -83,8 +81,10 @@
 
 /obj/item/gun/New()
 	..()
-	for(var/i in 1 to firemodes.len)
-		firemodes[i] = new /datum/firemode(src, firemodes[i])
+	if(LAZYLEN(firemodes))
+		for(var/i in 1 to LAZYLEN(firemodes))
+			if(islist(firemodes[i]))
+				firemodes[i] = new /datum/firemode(src, firemodes[i])
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
@@ -207,6 +207,7 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	var/target_def_zone = (istype(user) ? user.zone_sel.selecting : get_exposed_defense_zone(target))
+
 	for(var/i in 1 to burst)
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
@@ -219,7 +220,7 @@
 			process_point_blank(projectile, user, target)
 
 		if(process_projectile(projectile, user, target, target_def_zone, clickparams))
-			handle_post_fire(user, target, pointblank, reflex)
+			handle_post_fire(user, target, pointblank, reflex, i == 1)
 			update_icon()
 
 		recoil++
@@ -260,48 +261,44 @@
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 //called after successfully firing
-/obj/item/gun/proc/handle_post_fire(atom/movable/user, atom/target, var/pointblank=0, var/reflex=0)
-	if(!silenced)
-		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"You hear a [fire_sound_text]!"
-			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"You hear a [fire_sound_text]!"
-				)
+/obj/item/gun/proc/handle_post_fire(atom/movable/user, atom/target, var/pointblank=0, var/reflex=0, var/first_shot)
 
-	if(ismob(user))
-		var/mob/M = user
-		if(requires_two_hands)
-			if(!src.is_held_twohanded(user))
-				switch(requires_two_hands)
-					if(1)
-						if(prob(50)) //don't need to tell them every single time
-							user << "<span class='warning'>Your aim wavers slightly.</span>"
-					if(2)
-						user << "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>"
-					if(3)
-						user << "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>"
-					if(4 to INFINITY)
-						user << "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>"
-			else if(!M.can_wield_item(src))
-				switch(requires_two_hands)
-					if(1)
-						if(prob(50)) //don't need to tell them every single time
-							user << "<span class='warning'>Your aim wavers slightly.</span>"
-					if(2)
-						user << "<span class='warning'>Your aim wavers as you try to hold \the [src] steady.</span>"
-					if(3)
-						user << "<span class='warning'>You have trouble holding \the [src] steady.</span>"
-					if(4 to INFINITY)
-						user << "<span class='warning'>You struggle to hold \the [src] steady!</span>"
+	if(first_shot) // Only show the message once.
+		if(!silenced)
+			if(reflex)
+				user.visible_message("<span class='reflex_shoot'><b>\The [user] fires[burst > 1 ? " a burst from" : ""] \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>")
+			else
+				user.visible_message("<span class='danger'>\The [user] fires[burst > 1 ? " a burst from" : ""] \the [src][pointblank ? " point blank at \the [target]":""]!</span>")
 
-		if(screen_shake)
-			spawn()
-				shake_camera(user, screen_shake+1, screen_shake)
+		if(ismob(user))
+			var/mob/M = user
+			if(requires_two_hands)
+				if(!src.is_held_twohanded(user))
+					switch(requires_two_hands)
+						if(1)
+							if(prob(50)) //don't need to tell them every single time
+								user << "<span class='warning'>Your aim wavers slightly.</span>"
+						if(2)
+							user << "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>"
+						if(3)
+							user << "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>"
+						if(4 to INFINITY)
+							user << "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>"
+				else if(!M.can_wield_item(src))
+					switch(requires_two_hands)
+						if(1)
+							if(prob(50)) //don't need to tell them every single time
+								user << "<span class='warning'>Your aim wavers slightly.</span>"
+						if(2)
+							user << "<span class='warning'>Your aim wavers as you try to hold \the [src] steady.</span>"
+						if(3)
+							user << "<span class='warning'>You have trouble holding \the [src] steady.</span>"
+						if(4 to INFINITY)
+							user << "<span class='warning'>You struggle to hold \the [src] steady!</span>"
+
+	if(screen_shake)
+		spawn()
+			shake_camera(user, screen_shake+1, screen_shake)
 	update_icon()
 
 
@@ -350,6 +347,9 @@
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
 
+/obj/item/gun/proc/get_fire_sound()
+	return
+
 //does the actual launching of the projectile
 /obj/item/gun/proc/process_projectile(obj/projectile, atom/movable/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
@@ -374,15 +374,17 @@
 	var/launched = !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
 	if(launched)
-		var/shot_sound = P.fire_sound? P.fire_sound : fire_sound
-		if(silenced)
-			playsound(user, shot_sound, 10, 1)
-		else
-			playsound(user, shot_sound, 50, 1)
+		var/shot_sound = get_fire_sound()
+		if(shot_sound)
+			if(silenced)
+				playsound(user, shot_sound, 10, 1)
+			else
+				playsound(user, shot_sound, 50, 1)
 
 	return launched
 
 //Suicide handling.
+// TODO refuse to let people stick anything with a caliber larger than 50-55mm into their mouth
 /obj/item/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
@@ -390,26 +392,28 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("<span class='danger'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
+	M.visible_message("<span class='warning'>\The [user] sticks \the [src] into their mouth, preparing to pull the trigger...</span>")
 	if(!do_after(user, 40, progress=0))
-		M.visible_message("<span class='notice'>[user] decided life was worth living</span>")
+		M.visible_message("<span class='notice'>\The [user] decided that life was worth living</span>")
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
-		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
-		var/shot_sound = in_chamber.fire_sound? in_chamber.fire_sound : fire_sound
+		user.visible_message("<span class = 'danger'>\The [user] pulls the trigger.</span>")
+		var/shot_sound = get_fire_sound()
 		if(silenced)
 			playsound(user, shot_sound, 10, 1)
 		else
 			playsound(user, shot_sound, 50, 1)
 		in_chamber.on_hit(M)
-		if (in_chamber.damage_type != HALLOSS)
+		if(!in_chamber.damage)
+			to_chat(user, "<span class='notice'>You feel a bit foolish for trying to commit suicide with \the [src].</span>")
+		else if(in_chamber.damage_type != HALLOSS)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			user << "<span class = 'notice'>Ow...</span>"
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
 		mouthshoot = 0
@@ -441,16 +445,16 @@
 
 /obj/item/gun/examine(mob/user)
 	..()
-	if(firemodes.len > 1)
+	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		user << "The fire selector is set to [current_mode.name]."
+		to_chat(user, "The fire selector is set to [current_mode.name].")
 
 /obj/item/gun/proc/switch_firemodes(var/atom/movable/user)
-	if(firemodes.len <= 1)
+	if(LAZYLEN(firemodes) <= 1)
 		return null
 
 	sel_mode++
-	if(sel_mode > firemodes.len)
+	if(sel_mode > LAZYLEN(firemodes))
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)

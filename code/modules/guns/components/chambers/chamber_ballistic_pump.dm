@@ -6,6 +6,7 @@
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
 	has_user_interaction = 1
+	design_caliber = /decl/weapon_caliber/shotgun
 
 /obj/item/gun_component/chamber/ballistic/pump/consume_next_projectile()
 	if(chambered)
@@ -26,9 +27,9 @@
 		chambered = AC
 		result = 1
 	if(result)
-		user << "<span class='notice'>You pump \the [holder].</span>"
+		to_chat(user, "<span class='notice'>You pump \the [holder].</span>")
 	else
-		user << "<span class='warning'>You pump \the [holder] and it clicks empty!</span>"
+		to_chat(user, "<span class='warning'>You pump \the [holder] and it clicks empty!</span>")
 
 	update_ammo_overlay()
 	return 1

@@ -2,6 +2,7 @@
 	name = "mass driver round"
 	var/obj/effect/overmap/ship/fired_by
 	var/fired_at
+	var/fire_sound
 
 /obj/item/projectile/ship_munition/touch_map_edge()
 	var/obj/effect/overmap/linked = map_sectors["[z]"]

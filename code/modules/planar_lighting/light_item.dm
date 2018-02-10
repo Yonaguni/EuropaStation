@@ -11,11 +11,13 @@
 
 /obj/item/Move()
 	. = ..()
-	update_plane()
+	if(.) update_plane()
 
 /obj/item/forceMove()
+	var/lastloc = loc
 	. = ..()
-	update_plane()
+	if(loc != lastloc)
+		update_plane()
 
 /obj/proc/update_plane()
 	return
@@ -27,18 +29,13 @@
 		plane = GUI_PLANE
 
 /obj/item/gun/composite/update_plane()
-	var/lastplane = plane
 	. = ..()
-	var/f_update_icon
 	for(var/obj/item/I in src)
 		if(I.plane != plane)
-			f_update_icon = 1
 			I.plane = plane
-	if(f_update_icon || plane != lastplane)
-		update_icon()
+	update_icon(regenerate = TRUE)
 
 /obj/item/clothing/under/update_plane()
 	. = ..()
 	for(var/atom/movable/thing in contents)
 		thing.plane = plane
-	update_icon()

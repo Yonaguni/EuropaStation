@@ -56,6 +56,7 @@
 	if(damage)
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
 		take_damage(min(damage, 100))
+	Proj.on_hit(src, 0)
 
 /obj/machinery/door/unpowered/simple/update_icon()
 	if(density)

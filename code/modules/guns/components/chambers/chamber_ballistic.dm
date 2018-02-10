@@ -1,5 +1,6 @@
 /obj/item/gun_component/chamber/ballistic
 	projectile_type = GUN_TYPE_BALLISTIC
+	accepts_accessories = TRUE
 
 	var/load_method = SINGLE_CASING|SPEEDLOADER
 	var/handle_casings = EJECT_CASINGS
@@ -9,20 +10,19 @@
 	var/auto_eject_sound // If null, will not autoeject.
 	var/preloading
 
-/obj/item/gun_component/chamber/ballistic/update_ammo_overlay()
-	if(ammo_indicator_state)
-		if(!loaded.len && !magazine)
-			if(!ammo_overlay)
-				if(model)
-					ammo_overlay = image(icon = model.ammo_indicator_icon)
-				else
-					ammo_overlay = image(icon = 'icons/obj/gun_components/unbranded_load_overlays.dmi')
-			ammo_overlay.icon_state = ""
-			return
-		if(magazine)
-			ammo_overlay.color = magazine.color
-		..()
+/obj/item/gun_component/chamber/ballistic/get_max_shots(var/val)
+	if(load_method == MAGAZINE)
+		return magazine ? magazine.max_ammo : 0
+	return ..()
 
+/obj/item/gun_component/chamber/ballistic/update_ammo_overlay()
+	if(!magazine)
+		overlays.Cut()
+	else
+		. = ..()
+		var/image/ammo_overlay = .
+		if(istype(ammo_overlay))
+			ammo_overlay.color = magazine.color
 
 /obj/item/gun_component/chamber/ballistic/empty()
 	loaded.Cut()
@@ -79,10 +79,10 @@
 		var/mob/living/carbon/human/H = holder.loc
 		if(istype(H))
 			if(!H.gloves)
-				H.gunshot_residue = chambered.caliber
+				H.gunshot_residue = chambered.caliber.name
 			else
 				var/obj/item/clothing/G = H.gloves
-				G.gunshot_residue = chambered.caliber
+				G.gunshot_residue = chambered.caliber.name
 
 	// Eject or contain casings.
 	switch(handle_casings)
@@ -104,7 +104,6 @@
 			chambered = magazine.stored_ammo[1]
 			if(handle_casings != HOLD_CASINGS)
 				magazine.stored_ammo -= chambered
-
 
 /obj/item/gun_component/chamber/ballistic/consume_next_projectile()
 	if(!chambered)
@@ -138,7 +137,8 @@
 
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
-		if(!preloading && (!(load_method & AM.mag_type) || holder.caliber != AM.caliber))
+		//TODO: allow loading of mismatched design_caliber.projectile_size/AM.caliber.projectile_size and punish with jams/backfiring for doing so.
+		if(!preloading && (!(load_method & AM.mag_type) || design_caliber.projectile_size != AM.caliber.projectile_size || AM.weapon_type != weapon_type))
 			return //incompatible
 
 		switch(AM.mag_type)
@@ -147,7 +147,7 @@
 
 				if(!preloading)
 					if(magazine)
-						if(user) user << "<span class='warning'>\The [holder] already has a magazine loaded.</span>" //already a magazine here
+						if(user) to_chat(user, "<span class='warning'>\The [holder] already has a magazine loaded.</span>") //already a magazine here
 						return
 					if(!can_load(user))
 						return
@@ -171,15 +171,18 @@
 				if(!preloading)
 					if(!can_load(user))
 						return
-					if(loaded.len >= max_shots)
-						if(user) user << "<span class='warning'>\The [holder] is full!</span>"
+					if(!LAZYLEN(AM.stored_ammo))
+						if(user) to_chat(user, "<span class='warning'>\The [AM] is empty!</span>")
+						return
+					if(loaded.len >= get_max_shots())
+						if(user) to_chat(user, "<span class='warning'>\The [holder] is full!</span>")
 						return
 
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
-					if(loaded.len >= max_shots)
+					if(loaded.len >= get_max_shots())
 						break
-					if(C.caliber == holder.caliber)
+					if(C.caliber.projectile_size <= design_caliber.projectile_size)
 						C.forceMove(src)
 						loaded += C
 						AM.stored_ammo -= C
@@ -187,11 +190,11 @@
 
 				if(count)
 					if(user)
-						user << "<span class='notice'>You load [count] round\s into \the [holder].</span>"
+						to_chat(user, "<span class='notice'>You load [count] round\s into \the [holder].</span>")
 						user.visible_message("<span class='danger'>\The [user] reloads \the [holder].</span>")
 						playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 				else
-					if(user) user << "<span class='warning'>\The [holder] is full!</span>"
+					if(user) to_chat(user, "<span class='warning'>\The [holder] is full!</span>")
 					return
 
 	else if(istype(A, /obj/item/ammo_casing))
@@ -199,10 +202,10 @@
 		var/obj/item/ammo_casing/C = A
 
 		if(!preloading)
-			if(!(load_method & SINGLE_CASING) || holder.caliber != C.caliber)
+			if(!(load_method & SINGLE_CASING) || design_caliber.projectile_size > C.caliber.projectile_size)
 				return //incompatible
-			if(loaded.len >= max_shots)
-				if(user) user << "<span class='warning'>\The [holder] is full.</span>"
+			if(loaded.len >= get_max_shots())
+				if(user) to_chat(user, "<span class='warning'>\The [holder] is full.</span>")
 				return
 			if(!can_load(user))
 				return
@@ -214,7 +217,6 @@
 		C.forceMove(src)
 		loaded.Insert(1, C) //add to the head of the list
 
-	holder.update_icon()
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/unload_ammo(var/mob/user)
@@ -237,17 +239,23 @@
 		user.put_in_hands(C)
 		user.visible_message("<span class='notice'>[user] removes \a [C] from \the [holder].</span>")
 	else
-		user << "<span class='warning'>\The [holder] is empty.</span>"
+		to_chat(user, "<span class='warning'>\The [holder] is empty.</span>")
 
-	holder.update_icon()
 	update_ammo_overlay()
 
 /obj/item/gun_component/chamber/ballistic/pistol
 	icon_state="pistol"
 	weapon_type = GUN_PISTOL
 	load_method = MAGAZINE
-	max_shots = 8
 	color = COLOR_GUNMETAL
+	design_caliber = /decl/weapon_caliber/pistol_small
 
-/obj/item/gun_component/chamber/ballistic/pistol/alt
+/obj/item/gun_component/chamber/ballistic/pistol/a45
 	icon_state="pistol2"
+	design_caliber = /decl/weapon_caliber/pistol_45
+
+/obj/item/gun_component/chamber/ballistic/rocket
+	icon_state = "rocket"
+	weapon_type = GUN_CANNON
+	design_caliber = /decl/weapon_caliber/rocket
+	load_method = SINGLE_CASING
