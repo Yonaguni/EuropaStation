@@ -1,4 +1,8 @@
-// baystation12 posters
+/datum/poster
+	var/name
+	var/desc
+	var/icon_state
+
 /datum/poster/bay_1
 	icon_state="bsposter1"
 	name = "Unlucky Space Explorer"

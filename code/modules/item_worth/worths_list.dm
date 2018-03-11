@@ -257,7 +257,7 @@ var/list/worths = list(
 					/obj/item/melee/telebaton = 90,
 					/obj/item/tank/jetpack = 390,
 					/obj/item/tank = 40,
-					/obj/item/contraband/poster = 25,
+					/obj/item/sign/poster = 25,
 //MATERIAL,
 					/obj/item/material/sword/katana/replica = -120,
 					/obj/item/material/sword/katana = -150,

@@ -29,7 +29,7 @@
 	/obj/item/reagent_containers/glass/paint/purple,
 	/obj/item/reagent_containers/glass/paint/black,
 	/obj/item/reagent_containers/glass/paint/white,
-	/obj/item/contraband/poster,
+	/obj/item/sign/poster,
 	/obj/item/wrapping_paper = 3)
 	cost = 10
 	containername = "\improper Arts and Crafts crate"

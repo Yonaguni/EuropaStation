@@ -171,7 +171,7 @@
 					prob(4);/obj/item/haircomb,\
 					prob(2);/obj/item/storage/pill_bottle/happy,\
 					prob(2);/obj/item/storage/pill_bottle/zoom,\
-					prob(5);/obj/item/contraband/poster,\
+					prob(5);/obj/item/sign/poster,\
 					prob(2);/obj/item/material/butterfly,\
 					prob(3);/obj/item/material/butterflyblade,\
 					prob(3);/obj/item/material/butterflyhandle,\
