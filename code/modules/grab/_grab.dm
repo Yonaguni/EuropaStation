@@ -226,6 +226,7 @@
 //Updating pixelshift, position and direction
 //Gets called on process, when the grab gets upgraded or the assailant moves
 /obj/item/grab/proc/adjust_position()
+
 	update_icon()
 	if(affecting_mob && affecting_mob.buckled)
 		return

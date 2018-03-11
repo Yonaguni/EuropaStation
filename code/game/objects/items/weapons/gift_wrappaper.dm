@@ -63,7 +63,7 @@
 		/obj/item/lipstick/random,
 		/obj/item/grenade/smokebomb,
 		/obj/item/corncob,
-		/obj/item/contraband/poster,
+		/obj/item/sign/poster,
 		/obj/item/bikehorn,
 		/obj/item/beach_ball,
 		/obj/item/beach_ball/holoball,

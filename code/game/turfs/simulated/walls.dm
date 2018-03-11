@@ -157,9 +157,9 @@
 	var/material/last_reinf_mat = reinf_material
 
 	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
+		if(istype(O,/obj/structure/sign))
+			var/obj/structure/sign/P = O
+			P.dismount()
 		else
 			O.loc = src
 
