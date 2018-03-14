@@ -229,7 +229,8 @@
 			Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 			Z.cancel_camera()
 			qdel(src)
-/obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U).
+
+/obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U)
 	switch(choice)
 		if("VICTIM")
 			transfer_human(target,U)
