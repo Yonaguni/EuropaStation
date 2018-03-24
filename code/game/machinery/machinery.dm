@@ -97,7 +97,6 @@ Class Procs:
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 	w_class = 10
-	auto_init = TRUE
 
 	var/stat = 0
 	var/emagged = 0

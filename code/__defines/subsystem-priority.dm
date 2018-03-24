@@ -1,5 +1,6 @@
-#define SS_INIT_SEEDS               8
-#define SS_INIT_MISC_FIRST          7
+#define SS_INIT_SEEDS               9
+#define SS_INIT_MISC_FIRST          8
+#define SS_INIT_ATOMS               7
 #define SS_INIT_WIRELESS            6	// Wireless pair queue flush.
 #define SS_INIT_AIR                 5	// Air setup and pre-bake.
 #define SS_INIT_ICON_UPDATE         4	// Icon update queue flush. Should run before overlays.
@@ -41,6 +42,6 @@
 #define SS_PRIORITY_GARBAGE        2	// Garbage collection.
 
 
-// Subsystem wait values. The ones defined here are only here because they are also used elsewhere.
+// Subsystem wait values. The ones defined here are only here because they are also used elsewhere. These should be considered legacy; don't add more of these unless you REALLY need to.
 #define SS_OBJECT_TR 2 SECONDS
 #define SS_MOB_TR 2 SECONDS

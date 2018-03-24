@@ -21,7 +21,6 @@ var/list/fire_sounds = list(
 	//light_type = LIGHT_SOFT_FLICKER
 	anchored = 1
 	density = 0
-	auto_init = TRUE
 
 	var/open_flame = 1
 	var/datum/effect/system/steam_spread/steam // Used when being quenched.
@@ -44,8 +43,8 @@ var/list/fire_sounds = list(
 	var/fuel = 0                     // How much fuel is left?
 	var/lit = 0
 
-/obj/structure/fire_source/initialize()
-	..()
+/obj/structure/fire_source/Initialize()
+	. = ..()
 	if(lit == FIRE_LIT && fuel > 0)
 		light()
 	update_icon()

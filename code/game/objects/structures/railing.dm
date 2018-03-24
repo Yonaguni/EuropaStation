@@ -9,7 +9,6 @@
 	anchored = FALSE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	auto_init = TRUE
 
 	var/material/material
 	var/broken =    FALSE
@@ -21,13 +20,9 @@
 	color = "#C96A00"
 	anchored = TRUE
 
-/obj/structure/railing/mapped/initialize()
+/obj/structure/railing/mapped/Initialize()
 	. = ..()
 	color = "#C96A00" // They're painted!
-
-/obj/structure/railing/New(var/newloc, var/material_key = "steel")
-	material = material_key // Converted to datum in initialize().
-	..(newloc)
 
 /obj/structure/railing/process()
 	if(!material || !material.radioactivity)
@@ -35,7 +30,10 @@
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/20),IRRADIATE, blocked = L.getarmor(null, "rad"))
 
-/obj/structure/railing/initialize()
+/obj/structure/railing/Initialize(mapload, material_key = "steel")
+	. = ..(mapload)
+	material = material_key
+
 	if(!isnull(material) && !istype(material))
 		material = get_material_by_name(material)
 	if(!istype(material))

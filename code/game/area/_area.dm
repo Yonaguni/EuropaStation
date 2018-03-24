@@ -4,27 +4,29 @@
 	var/uid
 
 /area/New()
-	icon_state = ""
-	layer = 10
 	uid = ++global_uid
 	all_areas += src
-
-	if(!requires_power)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
-
-	luminosity = 1
-
 	..()
 
-/area/proc/initialize()
-	if(!requires_power || !apc)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
-	power_change() // all machines set to current power level, also updates lighting icon
+/area/Initialize()
+	if(initialized)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	initialized = TRUE
 
+	icon_state = ""
+	layer = 10
+	luminosity = 1
+
+	if(!requires_power || !apc)
+		power_light = FALSE
+		power_equip = FALSE
+		power_environ = FALSE
+
+	power_change() // all machines set to current power level
+
+	return INITIALIZE_HINT_LATELOAD	// see code/game/turfs/initialization/init.dm
+
+// but why?
 /area/proc/get_contents()
 	return contents
 

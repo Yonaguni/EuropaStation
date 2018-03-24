@@ -38,7 +38,7 @@
 	REMOVE_ACTIVE_FLUID_SOURCE(src)
 	return ..()
 
-/turf/simulated/initialize()
+/turf/simulated/Initialize()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		fluid_update()
 	. = ..()

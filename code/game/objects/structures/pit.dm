@@ -97,10 +97,9 @@
 	name = "mound"
 	desc = "Some things are better left buried."
 	open = 0
-	auto_init = TRUE
 
-/obj/structure/pit/closed/initialize()
-	..()
+/obj/structure/pit/closed/Initialize()
+	. = ..()
 	close()
 
 //invisible until unearthed first
@@ -116,7 +115,7 @@
 	name = "grave"
 	icon_state = "pit0"
 
-/obj/structure/pit/closed/grave/initialize()
+/obj/structure/pit/closed/grave/Initialize()
 	var/obj/structure/closet/coffin/C = new(src.loc)
 	var/obj/item/remains/human/bones = new(C)
 	bones.layer = MOB_LAYER
@@ -139,7 +138,7 @@
 
 	var/obj/structure/gravemarker/random/R = new(src.loc)
 	R.generate()
-	..()
+	. = ..()
 
 /obj/structure/gravemarker
 	name = "grave marker"
@@ -158,12 +157,9 @@
 	..()
 	usr << message
 
-/obj/structure/gravemarker/random
-	auto_init = TRUE
-
-/obj/structure/gravemarker/random/initialize()
+/obj/structure/gravemarker/random/Initialize()
 	generate()
-	..()
+	. = ..()
 
 /obj/structure/gravemarker/random/proc/generate()
 	icon_state = pick("wood","cross")

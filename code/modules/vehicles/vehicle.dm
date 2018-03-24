@@ -12,7 +12,7 @@
 	anchored = 1
 	animate_movement=1
 	light_range = 3
-	auto_init = TRUE
+	update_icon_on_init = TRUE
 
 	can_buckle = 1
 	buckle_movable = 1
@@ -44,10 +44,6 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/initialize()
-	..()
-	update_icon()
-
 /obj/vehicle/unbuckle_mob()
 	if(buckled_mob && buckled_mob == load)
 		load = null

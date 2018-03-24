@@ -8,7 +8,6 @@
 	throwforce = 1
 	w_class = 1
 	matter = list("steel" = 100)
-	auto_init = TRUE
 
 	var/leaves_residue = 1
 	var/decl/weapon_caliber/caliber     // Which kind of guns it can be loaded into

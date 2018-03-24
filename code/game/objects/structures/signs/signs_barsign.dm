@@ -26,8 +26,8 @@
 		else
 			to_chat(user, "It says '[icon_state]'")
 
-/obj/structure/sign/barsign/initialize()
-	..()
+/obj/structure/sign/barsign/Initialize()
+	. = ..()
 	icon_state = pick(valid_states - "Off")
 	set_light()
 

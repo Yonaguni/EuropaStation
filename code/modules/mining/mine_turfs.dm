@@ -74,7 +74,7 @@ proc/get_mining_overlay(var/overlay_key)
 	accept_lattice = 1
 
 /*
-/turf/simulated/mineral/floor/ignore_mapgen/flooded/initialize()
+/turf/simulated/mineral/floor/ignore_mapgen/flooded/Initialize()
 	if(prob(1) && !(locate(/obj/landmark/animal_spawn) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
 		switch(rand(1,3))
 			if(1)
@@ -113,7 +113,8 @@ proc/get_mining_overlay(var/overlay_key)
 	accept_lattice = null
 	update_icon(1)
 
-/turf/simulated/mineral/initialize()
+/turf/simulated/mineral/Initialize()
+	. = ..()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	update_icon(1)

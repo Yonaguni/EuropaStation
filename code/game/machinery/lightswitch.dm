@@ -15,7 +15,8 @@
 	var/other_area = null
 	var/image/overlay
 
-/obj/machinery/light_switch/initialize()
+/obj/machinery/light_switch/Initialize()
+	. = ..()
 	if(other_area)
 		src.connected_area = locate(other_area)
 	else
@@ -30,14 +31,14 @@
 	if(!overlay)
 		overlay = image(icon, "light1-overlay", LIGHTING_LAYER+0.1)
 
-	overlays.Cut()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "light-p"
 		kill_light()
 	else
 		icon_state = "light[on]"
 		overlay.icon_state = "light[on]-overlay"
-		overlays += overlay
+		add_overlay(overlay)
 		set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
 
 /obj/machinery/light_switch/examine(mob/user)

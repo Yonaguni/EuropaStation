@@ -2,13 +2,11 @@
 /obj/item/supply_beacon
 	name = "supply beacon"
 	matter = list("steel" = 8000)
-	auto_init = TRUE
 
-/obj/item/supply_beacon/initialize()
-	. = ..()
+/obj/item/supply_beacon/Initialize()
+	..()
 	new /obj/structure/supply_beacon(get_turf(src))
-	spawn()
-		qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 // Actual beacon.
 /obj/structure/supply_beacon

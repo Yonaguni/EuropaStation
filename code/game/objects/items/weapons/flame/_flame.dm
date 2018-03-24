@@ -16,7 +16,6 @@
 	light_range = 3
 	light_power = CANDLE_LUM
 	light_color = "#E09D37"
-	auto_init = TRUE
 
 	var/lit = 0
 	var/fuel = 5

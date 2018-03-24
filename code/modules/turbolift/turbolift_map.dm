@@ -26,7 +26,7 @@
 	SSturbolift.turbolifts += src
 	return ..()
 
-/obj/turbolift_map_holder/initialize()
+/obj/turbolift_map_holder/Initialize()
 
 	// Create our system controller.
 	var/datum/turbolift/lift = new()

@@ -365,14 +365,10 @@ var/bomb_set
 	icon_state = "nucleardisk"
 	item_state = "card-id"
 	w_class = 1.0
-	auto_init = TRUE
 
-/obj/item/disk/nuclear/New()
-	..()
-	nuke_disks |= src
-
-/obj/item/disk/nuclear/initialize()
-	..()
+/obj/item/disk/nuclear/Initialize()
+	. = ..()
+	nuke_disks += src
 	// Can never be quite sure that a game mode has been properly initiated or not at this point, so always register
 	moved_event.register(src, src, /obj/item/disk/nuclear/proc/check_z_level)
 
@@ -407,8 +403,8 @@ var/bomb_set
 	var/list/flash_tiles = list()
 	var/last_turf_state
 
-/obj/machinery/nuclearbomb/station/initialize()
-	..()
+/obj/machinery/nuclearbomb/station/Initialize()
+	. = ..()
 	verbs -= /obj/machinery/nuclearbomb/verb/toggle_deployable
 	for(var/turf/simulated/floor/T in trange(1, src))
 		T.set_flooring(get_flooring_data(/decl/flooring/reinforced/circuit/red))

@@ -7,7 +7,7 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	auto_init = TRUE
+	update_icon_on_init = TRUE
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
@@ -17,10 +17,6 @@
 
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
-
-/obj/item/flashlight/initialize()
-	..()
-	update_icon()
 
 /obj/item/flashlight/update_icon()
 	if(on)

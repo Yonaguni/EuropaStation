@@ -28,7 +28,7 @@ var/list/tree_types = list(
 /turf/simulated/floor/natural/is_plating()
 	return 1
 
-/turf/simulated/floor/natural/initialize()
+/turf/simulated/floor/natural/Initialize()
 	if(grass_prob && prob(grass_prob))
 		var/grass_type = pick(grass_types)
 		new grass_type(src)

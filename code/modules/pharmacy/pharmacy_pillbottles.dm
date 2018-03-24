@@ -11,7 +11,6 @@ obj/item/storage/pill_bottle
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	use_sound = null
-	auto_init = TRUE
 
 	var/medication_name
 	var/actual_reagent_name
@@ -20,8 +19,7 @@ obj/item/storage/pill_bottle
 /obj/item/storage/pill_bottle/get_default_codex_value(var/mob/user)
 	return (HAS_ASPECT(user, ASPECT_PHARMACIST) && !isnull(actual_reagent_name)) ? "[actual_reagent_name] (chemical)" : ..()
 
-/obj/item/storage/pill_bottle/initialize()
-
+/obj/item/storage/pill_bottle/Initialize()
 	. = ..()
 
 	if(obfuscate_contents)

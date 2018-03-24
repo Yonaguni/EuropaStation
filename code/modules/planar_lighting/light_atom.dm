@@ -5,12 +5,6 @@
 	var/light_range = 1
 	var/light_color = "#FFFFFF"
 
-/atom/Destroy()
-	if(light_obj)
-		qdel(light_obj)
-		light_obj = null
-	return ..()
-
 // Used to change hard BYOND opacity; this means a lot of updates are needed.
 /atom/proc/set_opacity(var/newopacity)
 	opacity = newopacity ? 1 : 0

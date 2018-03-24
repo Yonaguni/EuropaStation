@@ -5,7 +5,6 @@
 	icon_state = "closed"
 	density = 1
 	w_class = 7
-	auto_init = TRUE
 
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
@@ -23,8 +22,8 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
-/obj/structure/closet/initialize()
-	..()
+/obj/structure/closet/Initialize()
+	. = ..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)

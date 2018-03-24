@@ -62,8 +62,8 @@
 /obj/effect/landmark/proc/delete()
 	delete_me = 1
 
-/obj/effect/landmark/initialize()
-	..()
+/obj/effect/landmark/Initialize()
+	. = ..()
 	if(delete_me)
 		qdel(src)
 
@@ -81,7 +81,6 @@
 /obj/effect/landmark/start/New()
 	..()
 	tag = "start*[name]"
-	return 1
 
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears

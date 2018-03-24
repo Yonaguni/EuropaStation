@@ -2,15 +2,11 @@
 	name = "magazine"
 	desc = "It's one of those trashy tabloid magazines. It looks pretty out of date."
 	icon = 'icons/obj/magazine.dmi'
-	auto_init = TRUE
 
-/obj/item/book/magazine/New()
-	..()
-	pixel_x = 5-rand(10)
-	pixel_x = 5-rand(10)
-
-/obj/item/book/magazine/initialize()
+/obj/item/book/magazine/Initialize()
 	. = ..()
+	pixel_x = 5-rand(10)
+	pixel_x = 5-rand(10)
 	var/magtype = pick(magazine_types)
 	magazine_types -= magtype
 	if(!magazine_types.len)

@@ -42,6 +42,15 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 	..()
 
+/obj/machinery/atmospherics/Initialize(mapload)
+	. = ..()
+	if (mapload)	// If mapload, chain to atmos_init() as well to emulate the old init system.
+		atmos_init()
+
+// Optimally this wouldn't be needed, but it would take a crazier man than I to refactor atmos machinery code. This is NOT equivalent to Initialize()!
+// 	Unlike Initialize(), this may be called multiple times or in weird spots.
+/obj/machinery/atmospherics/proc/atmos_init()
+
 /obj/machinery/atmospherics/attackby(atom/A, var/mob/user)
 	if(istype(A, /obj/item/pipe_painter))
 		return

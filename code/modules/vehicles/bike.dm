@@ -34,10 +34,6 @@ var/list/bike_cache = list()
 	var/kickstand = 1
 	var/collision_cooldown
 
-/obj/vehicle/bike/initialize()
-	..()
-	update_icon()
-
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
 	set category = "Vehicle"

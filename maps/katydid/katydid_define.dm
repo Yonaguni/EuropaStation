@@ -112,7 +112,7 @@
 	desc = "A Free Trade Union freight vessel."
 	height = 1
 
-/obj/effect/landmark/map_data/katydid/initialize()
+/obj/effect/landmark/map_data/katydid/Initialize()
 	if(using_map)
 		name = using_map.full_name
 	. = ..()

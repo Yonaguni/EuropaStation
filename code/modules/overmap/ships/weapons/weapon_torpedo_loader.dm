@@ -8,14 +8,13 @@
 	opacity = 1
 	anchored = 1
 	waterproof = TRUE
-	auto_init = TRUE
 
 	var/open = FALSE
 	var/obj/machinery/power/ship_weapon/torpedo/launcher
 
-/obj/structure/torpedo_loader/initialize()
+/obj/structure/torpedo_loader/Initialize()
 	find_launcher()
-	..()
+	. = ..()
 
 /obj/structure/torpedo_loader/MouseDrop_T(var/atom/movable/target, var/mob/user)
 	if(!user.incapacitated() && user.Adjacent(src))

@@ -3,7 +3,6 @@
 	icon_state = "flashlight"
 	weight_mod = 1
 	has_alt_interaction = 1
-	auto_init = TRUE
 
 	var/on
 	var/brightness_on = 4
@@ -13,8 +12,8 @@
 	update_gun_light()
 	return 1
 
-/obj/item/gun_component/accessory/chamber/flashlight/initialize()
-	..()
+/obj/item/gun_component/accessory/chamber/flashlight/Initialize()
+	. = ..()
 	update_gun_light()
 
 /obj/item/gun_component/accessory/chamber/flashlight/proc/update_gun_light()

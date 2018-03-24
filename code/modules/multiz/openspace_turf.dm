@@ -32,7 +32,7 @@
 
 	. = ..()
 
-/turf/simulated/open/initialize()
+/turf/simulated/open/Initialize()
 	. = ..()
 	icon_state = "" // Clear out the debug icon.
 	SSopenturf.openspace_turfs += src

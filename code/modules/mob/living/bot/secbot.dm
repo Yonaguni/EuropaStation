@@ -74,7 +74,8 @@
 	handcuffs = null
 	return ..()
 
-/mob/living/bot/secbot/initialize()
+/mob/living/bot/secbot/Initialize()
+	. = ..()
 	if(radio_controller)
 		radio_controller.add_object(listener, control_freq, filter = RADIO_SECBOT)
 		radio_controller.add_object(listener, beacon_freq, filter = RADIO_NAVBEACONS)

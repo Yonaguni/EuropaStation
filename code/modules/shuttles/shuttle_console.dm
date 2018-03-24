@@ -9,7 +9,7 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-/obj/machinery/computer/shuttle_control/initialize()
+/obj/machinery/computer/shuttle_control/Initialize()
 	if(ispath(control_system))
 		control_system = new control_system(src, shuttle_tag)
 	. = ..()

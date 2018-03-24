@@ -25,7 +25,7 @@ var/list/fusion_cores = list()
 /obj/machinery/power/fusion_core/mapped
 	anchored = 1
 
-/obj/machinery/power/fusion_core/initialize()
+/obj/machinery/power/fusion_core/Initialize()
 	. = ..()
 	connect_to_network()
 	fusion_cores += src

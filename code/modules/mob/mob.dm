@@ -589,8 +589,10 @@
 				if (Master)
 					stat(null, "- Subsystems -")
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
-						SS.stat_entry()
+						if (!Master.initializing && SS.flags & SS_NO_DISPLAY)
+							continue
 
+						SS.stat_entry()
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null

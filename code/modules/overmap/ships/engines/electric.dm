@@ -65,8 +65,8 @@
 			draw_amount = surplus()
 		stored_power += draw_power(draw_amount)
 
-/obj/machinery/power/engine/initialize()
-	..()
+/obj/machinery/power/engine/Initialize()
+	. = ..()
 	controller = new(src)
 	connect_to_network()
 

@@ -5,7 +5,6 @@
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = "x=16;y=14"
-	auto_init = TRUE
 
 	var/source_mob
 
@@ -14,8 +13,8 @@
 	reagents.add_reagent("protein", 9)
 	src.bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/meat/initialize()
-	..()
+/obj/item/reagent_containers/food/snacks/meat/Initialize()
+	. = ..()
 	if(source_mob) set_source_mob(source_mob)
 	if(icon_state == "meat1")
 		icon_state = pick(list("meat1","meat2","meat3","meat4"))

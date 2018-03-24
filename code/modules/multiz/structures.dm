@@ -10,13 +10,13 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	auto_init = TRUE
 
 	var/allowed_directions = DOWN
 	var/obj/structure/ladder/target_up
 	var/obj/structure/ladder/target_down
 
-/obj/structure/ladder/initialize()
+/obj/structure/ladder/Initialize()
+	. = ..()
 	// the upper will connect to the lower
 	if(allowed_directions & DOWN) //we only want to do the top one, as it will initialize the ones before it.
 		for(var/obj/structure/ladder/L in GetBelow(src))
@@ -96,7 +96,8 @@
 	opacity = 0
 	anchored = 1
 
-	initialize()
+	Initialize()
+		. = ..()
 		for(var/turf/turf in locs)
 			var/turf/simulated/open/above = GetAbove(turf)
 			if(!above)

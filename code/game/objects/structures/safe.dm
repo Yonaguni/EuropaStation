@@ -12,7 +12,6 @@ FLOOR SAFES
 	icon_state = "safe"
 	anchored = 1
 	density = 1
-	auto_init = TRUE
 
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
@@ -32,14 +31,14 @@ FLOOR SAFES
 	tumbler_2_open = rand(0, 72)
 
 
-/obj/structure/safe/initialize()
+/obj/structure/safe/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
 		if(I.w_class + space <= maxspace) //todo replace with internal storage or something
 			space += I.w_class
-			I.loc = src
-
+			I.forceMove(src)
 
 /obj/structure/safe/proc/check_unlocked(var/mob/user, canhear)
 	if(user && canhear)
@@ -173,8 +172,8 @@ obj/structure/safe/ex_act(severity)
 	level = 1	//underfloor
 	layer = 2.5
 
-/obj/structure/safe/floor/initialize()
-	..()
+/obj/structure/safe/floor/Initialize()
+	. = ..()
 	var/turf/T = loc
 	if(istype(T) && !T.is_plating())
 		hide(1)

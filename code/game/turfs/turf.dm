@@ -30,21 +30,22 @@ var/list/turf_edge_cache = list()
 
 	var/list/decals
 
-/turf/New()
-	..()
-	for(var/atom/movable/AM in src)
-		spawn( 0 )
-			src.Entered(AM)
-			return
-	turfs |= src
-	if(blend_with_neighbors || flooded || outside)
-		if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
-			initialize()
-		else
-			init_turfs += src
+// Parent code is duplicated in here instead of ..() for performance reasons.
+/turf/Initialize(mapload)
+	if(initialized)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	initialized = TRUE
 
-/turf/proc/initialize()
-	update_icon(1)
+	if (mapload && (blend_with_neighbors || flooded || outside))
+		queue_icon_update(TRUE)
+	else if (update_icon_on_init)
+		queue_icon_update()
+
+	for (var/atom/movable/AM in src)
+		src.Entered(AM)
+
+	turfs += src
+
 	regenerate_ao()
 
 /turf/update_icon(var/update_neighbors, var/list/previously_added = list())
@@ -68,12 +69,13 @@ var/list/turf_edge_cache = list()
 	if(config.starlight && using_map.ambient_exterior_light && outside)
 		overlays_to_add += get_exterior_light_overlay()
 
-	overlays = overlays_to_add
+	add_overlay(overlays_to_add)
+
 	if(update_neighbors)
 		for(var/check_dir in alldirs)
 			var/turf/T = get_step(src, check_dir)
 			if(istype(T))
-				T.update_icon()
+				T.queue_icon_update()
 
 /turf/attackby(var/obj/item/C, var/mob/user)
 

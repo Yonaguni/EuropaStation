@@ -4,7 +4,6 @@
 	icon = 'icons/policetape.dmi'
 	icon_state = "tape"
 	w_class = 2.0
-	auto_init = TRUE
 
 	var/turf/start
 	var/turf/end
@@ -13,8 +12,8 @@
 
 	var/apply_tape = FALSE
 
-/obj/item/taperoll/initialize()
-	..()
+/obj/item/taperoll/Initialize()
+	. = ..()
 	if(apply_tape)
 		var/turf/T = get_turf(src)
 		if(!T)

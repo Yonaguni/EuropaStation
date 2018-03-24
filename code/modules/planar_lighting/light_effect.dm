@@ -61,8 +61,8 @@
 	affecting_turfs.Cut()
 	. = ..()
 
-/obj/effect/light/initialize()
-	..()
+/obj/effect/light/Initialize()
+	. = ..()
 	if(holder)
 		follow_holder()
 

@@ -14,7 +14,7 @@
 	var/light_prob = 95
 	var/base_state
 
-/obj/item/flame/lighter/initialize()
+/obj/item/flame/lighter/Initialize()
 	set_base_state()
 	icon_state = base_state
 	item_state = base_state

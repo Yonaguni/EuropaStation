@@ -6,7 +6,6 @@
 	density = 0
 	w_class = 3
 	layer = MOB_LAYER - 0.1
-	auto_init = TRUE
 
 	var/default_pixel_x = 0
 	var/default_pixel_y = 0

@@ -238,8 +238,8 @@ var/global/list/light_bulb_type_cache = list()
 			on = 0
 	return
 
-/obj/machinery/light/initialize()
-	..()
+/obj/machinery/light/Initialize()
+	. = ..()
 	power_change()
 
 // update lighting

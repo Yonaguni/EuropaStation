@@ -21,8 +21,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/initialize()
-	..()
+/obj/machinery/photocopier/faxmachine/Initialize()
+	. = ..()
 	admin_departments |= using_map.boss_name
 	admin_departments |= "[using_map.boss_short] Supply"
 	allfaxes += src

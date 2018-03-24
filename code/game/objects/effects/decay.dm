@@ -5,10 +5,9 @@
 	mouse_opacity = 0
 	icon = 'icons/effects/environment.dmi'
 	layer = TURF_LAYER + 0.03
-	auto_init = TRUE
 
-/obj/effect/cleanable/decay/initialize()
-	..()
+/obj/effect/cleanable/decay/Initialize()
+	. = ..()
 	if(prob(75))
 		var/matrix/M = matrix()
 		M.Turn(pick(list(90,180,270)))
@@ -33,8 +32,8 @@
 	icon_state = "rust"
 	alpha = 100
 
-/obj/effect/cleanable/decay/rust/initialize()
-	..()
+/obj/effect/cleanable/decay/rust/Initialize()
+	. = ..()
 	alpha = rand(60,100)
 
 /obj/effect/cleanable/decay/moss
@@ -42,6 +41,6 @@
 	icon_state = "moss"
 	alpha = 140
 
-/obj/effect/cleanable/decay/moss/initialize()
-	..()
+/obj/effect/cleanable/decay/moss/Initialize()
+	. = ..()
 	alpha = rand(80,140)

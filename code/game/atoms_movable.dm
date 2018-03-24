@@ -33,10 +33,6 @@
 		qdel(AM)
 	forceMove(null)
 
-/atom/movable/proc/initialize()
-	if(!isnull(gcDestroyed))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
-
 /atom/movable/proc/get_cell()
 	return
 

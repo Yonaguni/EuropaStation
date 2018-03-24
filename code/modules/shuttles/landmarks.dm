@@ -10,7 +10,6 @@ var/area/map_base_area
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
-	auto_init = FALSE
 
 	var/landmark_tag
 	//ID of the controller on the dock side
@@ -47,7 +46,7 @@ var/area/map_base_area
 /obj/effect/shuttle_landmark/Destroy()
 	shuttle_landmarks -= src
 	. = ..()
-/obj/effect/shuttle_landmark/initialize()
+/obj/effect/shuttle_landmark/Initialize()
 	if(docking_controller)
 		var/docking_tag = docking_controller
 		docking_controller = locate(docking_tag)
@@ -82,8 +81,8 @@ var/area/map_base_area
 	tag = landmark_tag+"-[x]-[y]"
 	..()
 
-/obj/effect/shuttle_landmark/automatic/initialize()
-	..()
+/obj/effect/shuttle_landmark/automatic/Initialize()
+	. = ..()
 	if(!using_map.use_overmap)
 		return
 	var/obj/effect/overmap/O = map_sectors["[z]"]

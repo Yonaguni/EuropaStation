@@ -19,12 +19,9 @@
 
 	var/list/scrubbing_gas
 
-/obj/machinery/portable_atmospherics/powered/scrubber/New()
-	..()
-	cell = new/obj/item/cell/apc(src)
-
-/obj/machinery/portable_atmospherics/powered/scrubber/initialize()
+/obj/machinery/portable_atmospherics/powered/scrubber/Initialize()
 	. = ..()
+	cell = new/obj/item/cell/apc(src)
 	if(!scrubbing_gas)
 		scrubbing_gas = list()
 		for(var/g in gas_data.gases)
