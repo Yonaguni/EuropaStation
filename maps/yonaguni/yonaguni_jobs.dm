@@ -8,7 +8,7 @@
 	..()
 
 /datum/antagonist/revolutionary/New()
-	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/xo, /datum/job/hos, /datum/job/rd, /datum/job/cmo)
+	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/hos, /datum/job/rd, /datum/job/cmo)
 	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
 	..()
 
@@ -22,7 +22,6 @@
 	allowed_jobs = list(
 		/datum/job/crewman/employee,
 		/datum/job/captain,
-		/datum/job/xo,
 		/datum/job/administrator,
 		/datum/job/chief_engineer,
 		/datum/job/engineer,
@@ -47,14 +46,14 @@
 	supervisors = "absolutely everyone"
 
 /datum/job/captain
-	title = "Director"
+	title = "Site Director"
 	department = "Command"
 	head_position = 1
 	department_flag = COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Board and the Jovian Naval Authority"
+	supervisors = "the PicoMotion board of investors and the Jovian Naval Authority"
 	selection_color = "#1d1d4f"
 	req_admin_notify = 1
 	access = list() 			//See get_access()
@@ -72,40 +71,14 @@
 /datum/job/captain/get_access()
 	return get_all_station_access()
 
-/datum/job/xo
-	title = "Corporate Liaison"
-	department = "Command"
-	head_position = 1
-	department_flag = COM
-	faction = "Crew"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the Director"
-	selection_color = "#2f2f7f"
-	req_admin_notify = 1
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
-	minimal_player_age = 14
-	economic_modifier = 20
-
-	ideal_character_age = 70 // Old geezer captains ftw
-	outfit_type = /decl/hierarchy/outfit/job/colony_liaison
-
-/datum/job/xo/New()
-	id_modifying_ranks |= title
-	..()
-
-/datum/job/xo/get_access()
-	return get_all_station_access()
-
 /datum/job/administrator
-	title = "Administrator"
+	title = "Deputy Director"
 	head_position = 1
 	department_flag = COM|CIV
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 1
-	supervisors = "the Director and Corporate Liaison"
+	supervisors = "the Site Director"
 	selection_color = "#2f2f7f"
 	minimal_player_age = 14
 	economic_modifier = 10
@@ -391,14 +364,11 @@
 /obj/effect/landmark/start/employee
 	name = "Employee"
 
-/obj/effect/landmark/start/co
-	name = "Director"
+/obj/effect/landmark/start/site_director
+	name = "Site Director"
 
-/obj/effect/landmark/start/xo
-	name = "Corporate Liaison"
-
-/obj/effect/landmark/start/flight_controller
-	name = "Administrator"
+/obj/effect/landmark/start/deputy_director
+	name = "Deputy Director"
 
 /obj/effect/landmark/start/alien
 	name = "Visitor"
