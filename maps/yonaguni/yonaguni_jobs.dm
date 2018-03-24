@@ -8,7 +8,7 @@
 	..()
 
 /datum/antagonist/revolutionary/New()
-	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/hos, /datum/job/rd, /datum/job/cmo)
+	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/hos, /datum/job/scientist, /datum/job/cmo)
 	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
 	..()
 
@@ -32,7 +32,7 @@
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
-		/datum/job/rd,
+		/datum/job/scientist,
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/psychiatrist,
@@ -274,12 +274,11 @@
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/europa_police_officer
 
-/datum/job/rd
+/datum/job/scientist
 	title = "Scientist"
 	welcome_blurb = "You have a PhD, a laboratory full of gizmos, and nothing but free time. Make the most of it."
-	head_position = 1
 	department = "Science"
-	department_flag = COM|SCI
+	department_flag = SCI
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 3
@@ -298,6 +297,25 @@
 	minimal_player_age = 14
 	ideal_character_age = 50
 	outfit_type = /decl/hierarchy/outfit/job/europa_scientist
+
+/datum/job/xenobiologist
+	title = "Xenobiologist"
+	welcome_blurb = "Feed and crossbreed slimes to extract their cores, or grow and splice together exotic plants in the Xenoflora laboratory."
+	department = "Science"
+	department_flag = SCI
+	faction = "Crew"
+	total_positions = 3
+	spawn_positions = 2
+	supervisors = "the Site Director"
+	selection_color = "#ad6bad"
+	economic_modifier = 7
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
+	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
+	alt_titles = list(
+		"Xenobotanist"
+		)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
 
 /datum/job/cmo
 	title = "Chief of Medicine"
@@ -358,25 +376,6 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/counsellor
-
-/datum/job/xenobiologist
-	title = "Xenobiologist"
-	welcome_blurb = "Feed and crossbreed slimes to extract their cores, or grow and splice together exotic plants in the Xenoflora laboratory."
-	department = "Science"
-	department_flag = SCI
-	faction = "Crew"
-	total_positions = 3
-	spawn_positions = 2
-	supervisors = "the Site Director"
-	selection_color = "#ad6bad"
-	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
-	alt_titles = list(
-		"Xenobotanist"
-		)
-	minimal_player_age = 7
-	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
 
 /obj/effect/landmark/start/employee
 	name = "Employee"
