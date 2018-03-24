@@ -498,7 +498,7 @@ var/global/datum/controller/occupations/job_master
 				W.add_fingerprint(H)
 
 		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
-
+		if(job.welcome_blurb) to_chat(H, job.welcome_blurb)
 		if(job.supervisors)
 			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
 

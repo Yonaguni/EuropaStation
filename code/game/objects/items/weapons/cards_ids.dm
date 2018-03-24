@@ -271,6 +271,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	registered_name = "Administrator"
 	assignment = "Administrator"
+
 /obj/item/card/id/all_access/New()
 	access = get_access_ids()
 	..()

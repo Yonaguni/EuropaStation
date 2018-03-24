@@ -26,8 +26,9 @@
 	ambient_exterior_temperature = 110 // -160 degrees celcius (surface temperature of Europa)
 	ambient_exterior_light = FALSE
 
-	map_info = "<b>Yonaguni Dome 13</b> is a cloak-and-dagger project administrated by industrial giant PicoMotion. The facility is a privately owned, well-hidden research base \
-		on the floor of the Europan ocean, dedicated to studying the strange and often horrifying experiences waiting for humanity under the ice."
+	map_info = "<b>Yonaguni Dome 13</b> is a research facility administrated by industrial giant PicoMotion. The sprawling complex is a privately owned, \
+	well-hidden research base on the floor of the Europan ocean, dedicated to studying the strange and often horrifying experiences waiting for humanity \
+	under the ice."
 
 	full_name     = "Yonaguni Dome 13"
 	station_short = "Yonaguni"
@@ -36,7 +37,7 @@
 	boss_short    = "Admin"
 	company_name  = "PicoMotion©"
 	company_short = "PM"
-	commanding_role = "Director"
+	commanding_role = "Site Director"
 	default_arrival_message = "has arrived at the facility"
 	captain_arrival_sound = null
 
@@ -54,6 +55,10 @@
 	admin_notice("<span class='warning'>Generating sea floor...</span>", R_DEBUG)
 	sleep(-1)
 	new /datum/random_map/noise/seafloor(null,1,1,2,255,255)
+
+	// Temp workaround until lights can be removed from the map by hand.
+	cull_overlapping_lights(1.6)
+	// End temp.
 
 /datum/map/yonaguni/get_exterior_air()
 	return new /datum/gas_mixture
