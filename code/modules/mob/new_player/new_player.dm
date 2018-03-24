@@ -367,9 +367,10 @@
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
-	var/dat = "<html><body><center>"
+	var/dat = list()
+	dat += "<html><body><center>"
 	dat += "<b>Welcome, [name].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
+	dat += "Round Duration: [roundduration2text()]<br><br>"
 
 	if(evacuation_controller.has_evacuated())
 		dat += "<font color='red'><b>[station_name()] has been evacuated.</b></font><br>"
@@ -379,7 +380,8 @@
 		else                                           // transfer initiated
 			dat += "<font color='red'>The ship is currently preparing for departure.</font><br>"
 
-	dat += "Choose from the following open/valid positions:<br>"
+	dat += "Choose from the following open/valid positions:<br><br>"
+	dat += "</center><table width = '100%' cellpadding = '1'><tr><td><b>Title</b></td><td><b>Info</b></td><td><b>Crew</b></td><td><b>Active</b></td><tr>"
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
@@ -388,11 +390,13 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			dat += "<tr><td><a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title]</a></td><td><small><a href='?src=\ref[job];show_details=\ref[src]'>?</a></small></td><td>[job.current_positions]</td><td>[active]</td><tr>"
 
-	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
+	dat += "</table>"
 
+	var/datum/browser/popup = new(src, "latechoices", "Available Roles", 400, 700, src)
+	popup.set_content(jointext(dat, null))
+	popup.open()
 
 /mob/new_player/proc/create_character()
 	spawning = 1
