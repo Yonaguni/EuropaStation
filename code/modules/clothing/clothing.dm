@@ -5,7 +5,7 @@
 	var/tint = TINT_NONE							         // Sets the item's level of visual impairment tint.
 
 	//Only these species can wear this kit.
-	var/list/species_restricted = list("exclude", "Kharmaani Gyne")
+	var/list/species_restricted = list("exclude")
 
 	var/gunshot_residue //Used by forensics.
 	var/list/accessories = list()

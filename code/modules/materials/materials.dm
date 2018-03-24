@@ -622,18 +622,6 @@ var/list/name_to_material
 	weight = 500
 	hidden_from_codex = TRUE
 
-/material/elevatorium/kharmaani
-	name = "composite"
-	display_name = "composite"
-	icon_base = "composite"
-	icon_reinf = "econ"
-	icon_colour = "#9c73dd"
-
-/material/elevatorium/kharmaani/reinf
-	name = "energy conduit"
-	display_name = "energy conduits"
-	icon_colour = "#00c3ff"
-
 /material/wood
 	name = "wood"
 	lore_text = "A fibrous structural material harvested from trees. Don't get a splinter."

@@ -154,7 +154,7 @@
 	flash_colour = "#FFFF88"
 
 //----------------------------
-// Omni laser beam
+// Particle beam
 //----------------------------
 /obj/effect/projectile/laser_particle
 	flash_colour = "#00FFFF"
