@@ -89,30 +89,31 @@
 
 		. += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		var/rank = job.title
+		var/helplink = "<small><a href='?src=\ref[job];show_details=\ref[user]'>?</a></small>"
 		lastJob = job
 		if(job.total_positions == 0 && job.spawn_positions == 0)
-			. += "<del>[rank]</del></td><td><b> \[UNAVAILABLE]</b></td></tr>"
+			. += "<del>[rank] [helplink]</del></td><td><b> \[UNAVAILABLE]</b></td></tr>"
 			continue
 		if(jobban_isbanned(user, rank))
-			. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+			. += "<del>[rank] [helplink]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			. += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			. += "<del>[rank] [helplink]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
-			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
+			. += "<del>[rank] [helplink]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
 		if((job.allowed_branches && !(pref.char_branch in job.allowed_branches)) || (job.allowed_ranks && !(pref.char_rank in job.allowed_ranks)))
-			. += "<del>[rank]</del></td><td><b> \[NOT AVAILABLE]</b></td></tr>"
+			. += "<del>[rank] [helplink]</del></td><td><b> \[NOT AVAILABLE]</b></td></tr>"
 			continue
 		if(("Assistant" in pref.job_low) && (rank != using_map.default_role))
-			. += "<font color=grey>[rank]</font></td><td></td></tr>"
+			. += "<font color=grey>[rank] [helplink]</font></td><td></td></tr>"
 			continue
 		if((rank in command_positions) || (rank == "Computer"))//Bold head jobs
-			. += "<b>[rank]</b>"
+			. += "<b>[rank]</b> [helplink]"
 		else
-			. += "[rank]"
+			. += "[rank] [helplink]"
 
 		. += "</td><td width='40%'>"
 

@@ -2,8 +2,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job
 
-	//The name of the job
-	var/title
+	var/title                             //The name of the job
+	var/welcome_blurb                     // A brief summary of what the job entails, shown on join.
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
 	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
 	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
@@ -30,6 +30,26 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	var/list/allowed_branches			  // For Torch, also expandable for other purposes
 	var/list/allowed_ranks				  // Ditto
+
+/datum/job/Topic(href, href_list)
+	. = ..()
+	if(!. && href_list["show_details"])
+		var/mob/user = locate(href_list["show_details"])
+		if(istype(user))
+			var/list/dat = list()
+			if(welcome_blurb)
+				dat += "[welcome_blurb]<br><br>"
+			if(supervisors)
+				dat += "As the [title], you answer directly to [supervisors]. Special circumstances may change this.<br><br>"
+			if(head_position)
+				dat += "This is a <b>head role</b>, meaning that you will be leading a department. This is not recommended for new players.<br><br>"
+			if(req_admin_notify)
+				dat += "This is an <b>important position</b>, and if you go AFK or leave during the round you will be expected to Adminhelp to let the staff know.<br><br>"
+			dat += "At the beginning of the round, up to [spawn_positions] slot\s will be filled, with a round maximum of [total_positions] slot\s."
+			var/datum/browser/popup = new(user, "Job Details - [title]", "Job Details - [title]")
+			popup.set_content(jointext(dat,null))
+			popup.open()
+			return 1
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	equip_species(H, alt_title)
