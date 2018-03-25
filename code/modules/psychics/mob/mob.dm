@@ -4,7 +4,7 @@
 /mob/living/Login()
 	. = ..()
 	if(psi)
-		psi.update()
+		psi.update(TRUE)
 
 /mob/living/Destroy()
 	if(psi) qdel(psi)

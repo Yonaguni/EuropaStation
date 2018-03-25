@@ -177,6 +177,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	return res
 
 proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
+	// Seeing if this fixes the randomly rejecting organ issue.
+	/*
 	if(!donor || !receiver) return 0
 
 	if(donor_species && receiver_species)
@@ -197,6 +199,7 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 		if("O")
 			if(donor_antigen != "O") return 1
 		//AB is a universal receiver.
+	*/
 	return 0
 
 proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)

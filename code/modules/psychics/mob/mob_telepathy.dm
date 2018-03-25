@@ -59,5 +59,5 @@
 				to_chat(C.mob, "[message]")
 		else if(ishuman(C.mob) && get_dist(src, C.mob) <= broadcast_range)
 			var/mob/living/H = C.mob
-			if(H.stat == CONSCIOUS && !H.psi.suppressed && H.psi && H.psi.rating)
+			if(H.stat == CONSCIOUS && H.psi && !H.psi.suppressed && H.psi.rating)
 				to_chat(H, message)
