@@ -39,7 +39,7 @@ var/list/hygiene_props = list()
 			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
 			sleep(5)
 			playsound(loc, 'sound/effects/plunger.ogg', 75, 1)
-		if(do_after(user, 45, src))
+		if(do_after(user, 45, src) && clogged)
 			visible_message("<span class='notice'>With a loud gurgle, \the [src] begins flowing more freely.</span>")
 			playsound(loc, pick(gurgles), 100, 1)
 			clogged--
@@ -47,6 +47,10 @@ var/list/hygiene_props = list()
 				unclog()
 		return
 	. = ..()
+
+/obj/structure/hygiene/examine()
+	. = ..()
+	if(clogged) to_chat(usr, "<span class='warning'>It seems to be badly clogged.</span>")
 
 /obj/structure/hygiene/process()
 	if(isnull(clogged))
@@ -66,6 +70,7 @@ var/list/hygiene_props = list()
 			if(!F) F = new(loc)
 			T.show_bubbles()
 			if(world.time > next_gurgle)
+				visible_message("\The [src] gurgles and overflows!")
 				next_gurgle = world.time + 80
 				playsound(T, pick(gurgles), 50, 1)
 			SET_FLUID_DEPTH(F, min(F.fluid_amount + (rand(30,50)*clogged), flood_amt))
