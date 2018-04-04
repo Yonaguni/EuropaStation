@@ -426,7 +426,6 @@ var/list/worths = list(
 //STRUCTURES,
 					/obj/structure/dogbed = 15,
 					/obj/structure/ore_box = 12,
-					/obj/structure/constructshell = 100,
 					/obj/structure/cable = 1,
 					/obj/structure/particle_accelerator = 2000,
 					/obj/structure/droppod_door = 65,

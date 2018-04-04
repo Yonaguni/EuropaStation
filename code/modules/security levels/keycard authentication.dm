@@ -160,10 +160,8 @@
 			revoke_maint_all_access()
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
 		if("Distress Beacon")
-			if(is_ert_blocked())
+			if(!activate_distress_beacon())
 				usr << "<span class='warning'>Long-range scanning indicates there is nobody out here to help you.</span>"
-				return
-			trigger_armed_response_team(1)
 			feedback_inc("alert_keycard_auth_ert",1)
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()

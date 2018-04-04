@@ -243,11 +243,6 @@
 			if("corgi")				M.change_mob_type( /mob/living/simple_animal/dog/corgi , null, null, delmob )
 			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
 			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
-
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
