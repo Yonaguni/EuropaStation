@@ -169,13 +169,6 @@
 /obj/structure/bed/padded/New(var/newloc)
 	..(newloc,"plastic","cotton")
 
-/obj/structure/bed/alien
-	name = "resting contraption"
-	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
-
-/obj/structure/bed/alien/New(var/newloc)
-	..(newloc,"resin")
-
 /*
  * Roller beds
  */

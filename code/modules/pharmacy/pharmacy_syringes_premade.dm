@@ -24,11 +24,3 @@
 /obj/item/reagent_containers/syringe/mutationtoxin/initialize()
 	reagents.add_reagent("mutationtoxin",15)
 	. = ..()
-
-/obj/item/reagent_containers/syringe/promethean/initialize()
-	reagents.add_reagent("prometheanserum",15)
-	. = ..()
-
-/obj/item/reagent_containers/syringe/slimecrystal/initialize()
-	reagents.add_reagent("slimecrystal",15)
-	. = ..()

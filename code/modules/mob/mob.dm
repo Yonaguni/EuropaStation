@@ -887,15 +887,6 @@ mob/proc/yank_out_object()
 			anchored = 0
 	return 1
 
-//Check for brain worms in head.
-/mob/proc/has_brain_worms()
-
-	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
-			return I
-
-	return 0
-
 /mob/proc/updateicon()
 	return
 

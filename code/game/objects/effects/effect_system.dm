@@ -9,7 +9,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	unacidable = 1//So effect are not targeted by alien acid.
+	unacidable = 1//So effect are not targeted by acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
 /obj/effect/Destroy()

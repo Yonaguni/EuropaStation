@@ -56,13 +56,13 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/head/xenos
-	name = "xenos helmet"
+	name = "alien helmet"
 	icon_state = "xenos"
 	item_state_slots = list(
 		slot_l_hand_str = "xenos_helm",
 		slot_r_hand_str = "xenos_helm",
 		)
-	desc = "A helmet made out of chitinous alien hide."
+	desc = "A helmet made out of chitinous hide."
 	w_class = 3
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2.0

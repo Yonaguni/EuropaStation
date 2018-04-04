@@ -546,14 +546,6 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-/*
-///////////////////////////////////
-/  =---------------------------=  /
-/  == Alien Style Definitions ==  /
-/  =---------------------------=  /
-///////////////////////////////////
-*/
-
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now

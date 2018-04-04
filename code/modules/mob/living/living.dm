@@ -80,9 +80,6 @@ default behaviour is:
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
-						slime.UpdateFeed()
 				return
 
 			if(!can_move_mob(tmob, 0, 0))
@@ -523,10 +520,6 @@ default behaviour is:
 		if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 			s_active.close(src)
 
-		if(update_slimes)
-			for(var/mob/living/carbon/slime/M in view(1,src))
-				M.UpdateFeed(src)
-
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
@@ -566,7 +559,7 @@ default behaviour is:
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/holder))
+			if(istype(A,/obj/item/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
 	else if(istype(H.loc,/obj/item/clothing/accessory/holster))

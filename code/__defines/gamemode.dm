@@ -27,8 +27,6 @@
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
 // Mode/antag template macros.
-#define MODE_BORER "borer"
-#define MODE_XENOMORPH "xeno"
 #define MODE_LOYALIST "loyalist"
 #define MODE_MUTINEER "mutineer"
 #define MODE_COMMANDO "commando"
@@ -49,7 +47,6 @@
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
 #define MODE_THRALL "thrall"
-#define MODE_HUNTER "hunter"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 100
 

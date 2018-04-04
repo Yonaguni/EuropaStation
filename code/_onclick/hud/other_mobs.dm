@@ -36,16 +36,6 @@
 	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
 	common_hud()
 
-/mob/living/carbon/slime/instantiate_hud(var/datum/hud/HUD)
-	HUD.slime_hud()
-
-/datum/hud/proc/slime_hud(ui_style = 'icons/screen/styles/white.dmi')
-	src.adding = list()
-	build_intent_selector(src)
-	mymob.client.screen = list()
-	mymob.client.screen += src.adding
-	common_hud()
-
 /mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
 	HUD.construct_hud()
 

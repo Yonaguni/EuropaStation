@@ -40,10 +40,8 @@
 	possible_trading_items = list(/obj/item/reagent_containers/food/snacks/monkeykabob          = TRADER_THIS_TYPE,
 							/obj/item/reagent_containers/food/snacks/monkeysdelight             = TRADER_THIS_TYPE,
 							/obj/item/reagent_containers/food/snacks/ricepudding                = TRADER_THIS_TYPE,
-							/obj/item/reagent_containers/food/snacks/slice/xenomeatbread/filled = TRADER_THIS_TYPE,
 							/obj/item/reagent_containers/food/snacks/soydope                    = TRADER_THIS_TYPE,
 							/obj/item/reagent_containers/food/snacks/stewedsoymeat              = TRADER_THIS_TYPE,
-							/obj/item/reagent_containers/food/snacks/wingfangchu                = TRADER_THIS_TYPE,
 							/obj/item/reagent_containers/food/drinks/dry_ramen                  = TRADER_THIS_TYPE
 							)
 
@@ -92,7 +90,6 @@
 							/obj/item/reagent_containers/food/drinks/cans                       = TRADER_SUBTYPES_ONLY,
 							/obj/item/reagent_containers/food/drinks/bottle                     = TRADER_SUBTYPES_ONLY,
 							/obj/item/reagent_containers/food/drinks/bottle/small               = TRADER_BLACKLIST,
-							/obj/item/reagent_containers/food/snacks/boiledslimecore            = TRADER_BLACKLIST,
 							/obj/item/reagent_containers/food/snacks/checker                    = TRADER_BLACKLIST_ALL,
 							/obj/item/reagent_containers/food/snacks/fruit_slice                = TRADER_BLACKLIST,
 							/obj/item/reagent_containers/food/snacks/slice                      = TRADER_BLACKLIST_ALL,
@@ -150,7 +147,6 @@
 								/obj/item/reagent_containers/food/snacks/slice/bananabread/filled        = TRADER_THIS_TYPE,
 								/obj/item/reagent_containers/food/snacks/sliceable                       = TRADER_SUBTYPES_ONLY,
 								/obj/item/reagent_containers/food/snacks/sliceable/pizza                 = TRADER_BLACKLIST_ALL,
-								/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread         = TRADER_BLACKLIST,
 								/obj/item/reagent_containers/food/snacks/sliceable/flatdough             = TRADER_BLACKLIST,
 								/obj/item/reagent_containers/food/snacks/sliceable/braincake             = TRADER_BLACKLIST,
 								/obj/item/reagent_containers/food/snacks/pie                             = TRADER_THIS_TYPE,

@@ -212,24 +212,3 @@
 	processing_objects += src
 	update_icon()
 	return 1
-
-/obj/item/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A glowing ball of what appears to be amber."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	w_class = 1
-	light_range = 5
-	on = 1 //Bio-luminesence has one setting, on.
-
-/obj/item/flashlight/slime/New()
-	..()
-	set_light()
-
-/obj/item/flashlight/slime/update_icon()
-	return
-
-/obj/item/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.

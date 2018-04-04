@@ -256,7 +256,6 @@ datum/objective/steal
 		"the blueprints" = /obj/item/blueprints,
 		"a nasa pressure suit" = /obj/item/clothing/suit/space/void,
 		"28 moles of fuel (full tank)" = /obj/item/tank,
-		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
 		"the hypospray" = /obj/item/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/pinpointer,

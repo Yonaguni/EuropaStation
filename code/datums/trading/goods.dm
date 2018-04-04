@@ -172,7 +172,6 @@ Sells devices, odds and ends, and medical stuff
 								/obj/item/analyzer                  = TRADER_ALL,
 								/obj/item/mass_spectrometer         = TRADER_ALL,
 								/obj/item/reagent_scanner           = TRADER_ALL,
-								/obj/item/slime_scanner             = TRADER_THIS_TYPE,
 								/obj/item/suit_cooling_unit         = TRADER_THIS_TYPE,
 								/obj/item/t_scanner                 = TRADER_THIS_TYPE,
 								/obj/item/taperecorder              = TRADER_THIS_TYPE,

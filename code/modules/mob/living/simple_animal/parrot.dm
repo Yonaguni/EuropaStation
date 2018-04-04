@@ -198,7 +198,7 @@
 /*
  * Attack responces
  */
-//Humans, monkeys, aliens
+//Humans, monkeys
 /mob/living/simple_animal/parrot/attack_hand(var/mob/living/carbon/M)
 	..()
 	if(client) return

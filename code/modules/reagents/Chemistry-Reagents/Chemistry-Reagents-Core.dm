@@ -28,10 +28,6 @@
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
 		blood_splatter(T, src, 1)
-	else if(istype(data["donor"], /mob/living/carbon/alien))
-		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
-		if(B)
-			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -137,17 +133,6 @@
 		else
 			L.adjust_fire_stacks(-(amount / 10))
 			remove_self(amount)
-
-/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(istype(M, /mob/living/carbon/slime))
-		var/mob/living/carbon/slime/S = M
-		S.adjustToxLoss(5 * removed) // Babies have 150 health, adults have 200; So, 30 units and 40
-		if(!S.client)
-			if(S.Target) // Like cats
-				S.Target = null
-				++S.Discipline
-		if(dose == removed)
-			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
 
 /datum/reagent/fuel
 	name = "Welding fuel"

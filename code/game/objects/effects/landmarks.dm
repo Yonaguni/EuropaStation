@@ -43,10 +43,6 @@
 			prisonsecuritywarp += loc
 			delete_me = 1
 			return
-		if("xeno_spawn")
-			xeno_spawn += loc
-			delete_me = 1
-			return
 		if("endgame_exit")
 			endgame_safespawns += loc
 			delete_me = 1

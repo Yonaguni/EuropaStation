@@ -69,16 +69,3 @@
 		reagents.add_reagent("protein", 12)
 		reagents.add_reagent("jumpstart", 5)
 		src.bitesize = 3
-
-/obj/item/reagent_containers/food/snacks/meat/xenomeat
-	name = "meat"
-	desc = "A slab of green meat. Smells like acid."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	center_of_mass = "x=16;y=10"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		reagents.add_reagent("pacid",6)
-		src.bitesize = 6

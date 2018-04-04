@@ -483,15 +483,6 @@
 	..()
 	if(!mind.assigned_role)	mind.assigned_role = using_map.default_role
 
-//slime
-/mob/living/carbon/slime/mind_initialize()
-	..()
-	mind.assigned_role = "slime"
-
-/mob/living/carbon/alien/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
-
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()

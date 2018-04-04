@@ -3,8 +3,8 @@
 	name_language = LANGUAGE_CEPHLAPODA
 	origin = "Pet Shop"
 	trade_flags = TRADER_GOODS|TRADER_MONEY|TRADER_WANTED_ONLY
-	possible_origins = list("Paws-Out", "Pets-R-Smart", "Tentacle Companions", "Xeno-Pets and Assorted Goods", "Barks and Drools")
-	speech = list("hail_generic"    = "Welcome to my xeno-pet shop! Here you will find many wonderful companions. Some a bit more... aggressive than others. But companions none the less. I also buy pets, or trade them.",
+	possible_origins = list("Paws-Out", "Pets-R-Smart", "Tentacle Companions", "Pets and Assorted Goods", "Barks and Drools")
+	speech = list("hail_generic"    = "Welcome to my pet shop! Here you will find many wonderful companions. Some a bit more... aggressive than others. But companions none the less. I also buy pets, or trade them.",
 				"hail_deny"         = "I no longer wish to speak to you.",
 
 				"trade_complete"    = "Remember to give them attention and food. They are living beings, and you should treat them like so.",
@@ -20,47 +20,33 @@
 				"insult_bad"        = "My interactions with you are becoming less than fruitful.",
 				)
 
-	possible_wanted_items = list(/mob/living/simple_animal/adultslime = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
+	possible_wanted_items = list(/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cat         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/crab        = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/lizard      = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/mouse       = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/mushroom    = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/parrot      = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/slime       = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/tindalos    = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/tomato      = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cow         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/chick       = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/chicken     = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/yithian     = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/diyaab = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/bear= TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/shantak= TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/samak= TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/retaliate/goat = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/carp = TRADER_THIS_TYPE)
 
-	possible_trading_items = list(/mob/living/simple_animal/adultslime = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
+	possible_trading_items = list(/mob/living/simple_animal/dog         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cat         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/crab        = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/lizard      = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/mouse       = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/mushroom    = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/parrot      = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/slime       = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/tindalos    = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/tomato      = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/cow         = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/chick       = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/chicken     = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/yithian     = TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/diyaab = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/bear= TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/shantak= TRADER_THIS_TYPE,
-								/mob/living/simple_animal/hostile/samak= TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/retaliate/goat = TRADER_THIS_TYPE,
 								/mob/living/simple_animal/hostile/carp= TRADER_THIS_TYPE,
 								/obj/item/dociler              = TRADER_THIS_TYPE,

@@ -247,13 +247,3 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"
 	maxcharge = 20
-
-
-/obj/item/cell/slime
-	name = "charged slime core"
-	desc = "A yellow slime core infused with power."
-
-	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
-	icon_state = "yellow slime extract" //"potato_battery"
-	maxcharge = 200
-	matter = null

@@ -9,11 +9,10 @@
 #define CANPARALYSE 0x4
 #define CANPUSH     0x8
 #define LEAPING     0x10
-#define PASSEMOTES  0x32    // Mob has a cortical borer or holders inside of it that need to see emotes.
+#define PASSEMOTES  0x32    // Mob has a holders inside of it that need to see emotes.
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
 #define NO_ANTAG    0x4000  // Players are restricted from gaining antag roles when occupying this mob
-#define XENO_HOST   0x8000  // Tracks whether we're gonna be a baby alien's mummy.
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -53,14 +52,12 @@
 #define I_HURT		"harm"
 
 //These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
-#define HUMAN 1
-#define MONKEY 2
-#define ALIEN 4
-#define ROBOT 8
-#define SLIME 16
-#define SIMPLE_ANIMAL 32
-#define HEAVY 64
-#define ALLMOBS (HUMAN|MONKEY|ALIEN|ROBOT|SLIME|SIMPLE_ANIMAL|HEAVY)
+#define HUMAN         1
+#define MONKEY        2
+#define ROBOT         4
+#define SIMPLE_ANIMAL 8
+#define HEAVY         16
+#define ALLMOBS (HUMAN|MONKEY|ROBOT|SIMPLE_ANIMAL|HEAVY)
 
 // Robot AI notifications
 #define ROBOT_NOTIFICATION_NEW_UNIT 1
@@ -162,16 +159,6 @@
 #define BP_APPENDIX "appendix"
 #define BP_CELL     "cell"
 #define BP_OPTICS   "optics"
-#define BP_HIVE     "hive node"
-#define BP_NUTRIENT "nutrient vessel"
-#define BP_ACID     "acid gland"
-#define BP_EGG      "egg sac"
-#define BP_RESIN    "resin spinner"
-#define BP_STRATA   "neural strata"
-#define BP_RESPONSE "response node"
-#define BP_GBLADDER "gas bladder"
-#define BP_POLYP    "polyp segment"
-#define BP_ANCHOR   "anchoring ligament"
 
 // Limbs.
 #define BP_L_FOOT "l_foot"

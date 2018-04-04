@@ -10,7 +10,6 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 
 // Doors!
 #define DOOR_CRUSH_DAMAGE 40
-#define ALIEN_SELECT_AFK_BUFFER  1    // How many minutes that a person can be AFK before not being allowed to be an alien.
 
 // Channel numbers for power.
 #define EQUIP   1
