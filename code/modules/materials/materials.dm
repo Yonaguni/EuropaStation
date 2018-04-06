@@ -332,6 +332,23 @@ var/list/name_to_material
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
 
+/material/diona
+	name = "biomass"
+	icon_colour = null
+	stack_type = null
+	integrity = 600
+	icon_base = "diona"
+	icon_reinf = "noreinf"
+	hitsound = 'sound/effects/attackblob.ogg'
+	conductive = 0
+	hidden_from_codex = TRUE
+
+/material/diona/place_dismantled_product()
+	return
+
+/material/diona/place_dismantled_girder(var/turf/target)
+	spawn_diona_nymph(target)
+
 /material/steel/holographic
 	name = "holo" + DEFAULT_WALL_MATERIAL
 	display_name = DEFAULT_WALL_MATERIAL
@@ -605,6 +622,18 @@ var/list/name_to_material
 	weight = 500
 	hidden_from_codex = TRUE
 
+/material/elevatorium/kharmaani
+	name = "composite"
+	display_name = "composite"
+	icon_base = "composite"
+	icon_reinf = "econ"
+	icon_colour = "#9c73dd"
+
+/material/elevatorium/kharmaani/reinf
+	name = "energy conduit"
+	display_name = "energy conduits"
+	icon_colour = "#00c3ff"
+
 /material/wood
 	name = "wood"
 	lore_text = "A fibrous structural material harvested from trees. Don't get a splinter."
@@ -664,30 +693,6 @@ var/list/name_to_material
 	conductive = 0
 	hidden_from_codex = TRUE
 
-/material/cult
-	name = "cult"
-	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
-	shard_type = SHARD_STONE_PIECE
-	sheet_singular_name = "brick"
-	sheet_plural_name = "bricks"
-	conductive = 0
-	hidden_from_codex = TRUE
-
-/material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target)
-
-/material/cult/place_dismantled_product(var/turf/target)
-	new /obj/effect/decal/cleanable/blood(target)
-
-/material/cult/reinf
-	name = "cult2"
-	display_name = "human remains"
-
-/material/cult/reinf/place_dismantled_product(var/turf/target)
-	new /obj/item/remains/human(target)
 
 //TODO PLACEHOLDERS:
 /material/leather

@@ -38,9 +38,7 @@
 
 	callHook("death", list(src, gibbed))
 
-	if(ticker && ticker.mode)
-		sql_report_death(src)
-		ticker.mode.check_win()
+	sql_report_death(src)
 
 	if(wearing_rig)
 		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")

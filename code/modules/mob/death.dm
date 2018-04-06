@@ -92,5 +92,10 @@
 	if(ticker && ticker.mode)
 		ticker.mode.check_win()
 
+	if(mind)
+		for(var/cur_antag_type in all_antag_types)
+			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
+			antag.report_single_death(mind)
+
 
 	return 1

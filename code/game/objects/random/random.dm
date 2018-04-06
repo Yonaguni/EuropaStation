@@ -363,8 +363,8 @@ obj/random/closet //A couple of random closets to spice up maint
 obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"
 	desc = "This is a random obstruction."
-	icon = 'icons/obj/cult.dmi'
-	icon_state = "cultgirder"
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "girder"
 	item_to_spawn()
 		return pick(/obj/structure/barricade,\
 					/obj/structure/girder,\
