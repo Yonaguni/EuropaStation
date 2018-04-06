@@ -186,8 +186,8 @@
 	Ranged unarmed attack:
 
 	This currently is just a default for all mobs.  You could easily add
-	exceptions for things like ranged glove touches, spitting alien acid/
-	neurotoxin, animals lunging, etc.
+	exceptions for things like ranged glove touches, spitting acid/neurotoxin,
+	animals lunging, etc.
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 

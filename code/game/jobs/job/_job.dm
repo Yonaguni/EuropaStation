@@ -82,7 +82,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	//give them an account in the station database
 	if(!(H.species && (H.species.type in economic_species_modifier)))
-		return //some bizarre species like shadow, slime, or monkey? You don't get an account.
+		return //some bizarre species like monkey? You don't get an account.
 
 	var/species_modifier = economic_species_modifier[H.species.type]
 

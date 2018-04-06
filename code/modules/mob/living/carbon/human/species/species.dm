@@ -76,7 +76,7 @@
 
 	// Death vars.
 	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/human
-	var/remains_type = /obj/item/remains/xeno
+	var/remains_type = /obj/item/remains
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
 	var/death_sound
@@ -293,7 +293,6 @@
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
-// Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return
 
@@ -305,7 +304,6 @@
 /datum/species/proc/build_hud(var/mob/living/carbon/human/H)
 	return
 
-//Used by xenos understanding larvae.
 /datum/species/proc/can_understand(var/mob/other)
 	return
 
@@ -337,10 +335,6 @@
 
 	if(!H.druggy)
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
-		if(H.seer)
-			var/obj/effect/rune/R = locate() in H.loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
-				H.see_invisible = SEE_INVISIBLE_CULT
 		if(H.see_invisible != SEE_INVISIBLE_CULT && H.equipment_see_invis)
 			H.see_invisible = min(H.see_invisible, H.equipment_see_invis)
 

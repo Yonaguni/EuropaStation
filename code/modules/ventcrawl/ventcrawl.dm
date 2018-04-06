@@ -8,8 +8,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/implant,
 	/obj/item/radio/borg,
 	/obj/item/holder,
-	/obj/machinery/camera,
-	/mob/living/simple_animal/borer
+	/obj/machinery/camera
 	)
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -26,12 +25,6 @@ var/list/ventcrawl_machinery = list(
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
 		remove_ventcrawl()
 		add_ventcrawl(loc)
-
-/mob/living/carbon/slime/can_ventcrawl()
-	if(Victim)
-		src << "<span class='warning'>You cannot ventcrawl while feeding.</span>"
-		return 0
-	return 1
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	for(var/type in can_enter_vent_with)
@@ -86,25 +79,10 @@ var/list/ventcrawl_machinery = list(
 	if(canmove && pipe)
 		return pipe
 
-/mob/living/carbon/slime/can_ventcrawl()
-	return 1
-
-/mob/living/simple_animal/borer/can_ventcrawl()
-	return 1
-
-/mob/living/simple_animal/borer/ventcrawl_carry()
-	return 1
-
 /mob/living/simple_animal/mouse/can_ventcrawl()
 	return 1
 
 /mob/living/simple_animal/spiderbot/can_ventcrawl()
-	return 1
-
-/mob/living/carbon/alien/can_ventcrawl()
-	return 1
-
-/mob/living/carbon/alien/ventcrawl_carry()
 	return 1
 
 /mob/living/var/ventcrawl_layer = 3

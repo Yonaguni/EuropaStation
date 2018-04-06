@@ -211,21 +211,6 @@
 		return
 	M.apply_effect(10 * removed, IRRADIATE, blocked = 0)
 
-/datum/reagent/slimejelly
-	name = "Slime Jelly"
-	id = "slimejelly"
-	taste_description = "slime"
-	taste_mult = 1.3
-	reagent_state = LIQUID
-	color = "#801E28"
-
-/datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(10))
-		M << "<span class='danger'>Your insides are burning!</span>"
-		M.adjustToxLoss(rand(100, 300) * removed)
-	else if(prob(40))
-		M.heal_organ_damage(25 * removed, 0)
-
 /datum/reagent/soporific
 	name = "Soporific"
 	id = "stoxin"
@@ -328,95 +313,26 @@
 	if(prob(10))
 		M.emote("drool")
 
-/* Transformations */
-
-/datum/reagent/slimetoxin
-	name = "Mutation Toxin"
-	id = "mutationtoxin"
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
-	if(M.transforming || isslime(M))
-		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.name == "Promethean")
-			return
-
-	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-	M.transforming = 1
-	M.canmove = 0
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue
-		M.drop_from_inventory(W)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
-	if(M.mind)
-		M.mind.transfer_to(new_mob)
-	else
-		new_mob.key = M.key
-	new_mob.request_player()
-	qdel(M)
-
-/datum/reagent/prometheanserum
-	name = "Promethean Serum"
-	id = "prometheanserum"
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-
-/datum/reagent/prometheanserum/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.transforming)
-		return
-	if(ishuman(M))
-		M.reagents.add_reagent("mutationtoxin", removed)
-	else if(isslime(M))
-		var/mob/living/carbon/slime/S = M
-		S.start_promethean_evolution()
-
-/datum/reagent/slimecrystal
+/datum/reagent/crystal
 	name = "Crystallizing Agent"
-	id = "slimecrystal"
+	id = "crystalagent"
 	taste_description = "sharpness"
 	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/slimecrystal/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.transforming || istype(M.loc, /obj/structure/closet/statue))
-		return
+/datum/reagent/crystal/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == "Golem")
-			return
-		if(H.species.name == "Promethean")
-			H.visible_message("<span class='notice'>\The [H]'s flesh begins to crystallize!</span>")
-			H.set_species("Golem")
-			return
-		else // It is VERY BAD for humans.
-			if(prob(5))
-				var/obj/item/organ/external/E = pick(H.organs)
-				if(E && !E.is_stump() && !E.robotic && E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN)
-					H << "<span class='danger'>Your [E.name] is being lacerated from within!</span>"
-					if(H.can_feel_pain())
-						H.emote("scream")
-					for(var/i = 1 to rand(3,5))
-						new /obj/item/material/shard(get_turf(E), "nullglass")
-					E.droplimb(0, DROPLIMB_BLUNT)
-					return
-	else if(isslime(M))
-		M.visible_message("<span class='danger'>\The [M] rapidly crystallizes!</span>")
-		new /obj/structure/closet/statue(get_turf(M), M)
-		return
-
+		if(prob(5))
+			var/obj/item/organ/external/E = pick(H.organs)
+			if(E && !E.is_stump() && !E.robotic && E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN)
+				H << "<span class='danger'>Your [E.name] is being lacerated from within!</span>"
+				if(H.can_feel_pain())
+					H.emote("scream")
+				for(var/i = 1 to rand(3,5))
+					new /obj/item/material/shard(get_turf(E), "nullglass")
+				E.droplimb(0, DROPLIMB_BLUNT)
+				return
 	M << "<span class='danger'>Your flesh is being lacerated from within!</span>"
 	M.adjustBruteLoss(rand(3,6))
 	if(prob(10))

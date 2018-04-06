@@ -243,17 +243,15 @@
 			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
-		var/obj/item/organ/internal/alien/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= rads
-			nutrition += rads
-			adjustBruteLoss(-(rads))
-			adjustFireLoss(-(rads))
-			adjustOxyLoss(-(rads))
-			adjustToxLoss(-(rads))
-			updatehealth()
-			return
+		var/rads = radiation/25
+		radiation -= rads
+		nutrition += rads
+		adjustBruteLoss(-(rads))
+		adjustFireLoss(-(rads))
+		adjustOxyLoss(-(rads))
+		adjustToxLoss(-(rads))
+		updatehealth()
+		return
 
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
@@ -360,7 +358,6 @@
 	if(!environment)
 		return
 
-	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.
@@ -598,27 +595,6 @@
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
-	var/obj/item/organ/internal/alien/node/light_organ = locate() in internal_organs
-
-	if(!isSynthetic())
-		if(light_organ && !light_organ.is_broken())
-			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
-			if(isturf(loc)) //else, there's considered to be no light
-				var/turf/T = loc
-				light_amount = T.check_lumcount()
-			nutrition += light_amount
-			traumatic_shock -= light_amount
-			if(species.flags & IS_PLANT)
-				if(nutrition > 450)
-					nutrition = 450
-
-				if(light_amount >= 3) //if there's enough light, heal
-					adjustBruteLoss(-(round(light_amount/2)))
-					adjustFireLoss(-(round(light_amount/2)))
-					adjustToxLoss(-(light_amount))
-					adjustOxyLoss(-(light_amount))
-					//TODO: heal wounds, heal broken limbs.
-
 	if(species.light_dam)
 		var/light_amount = 0
 		if(isturf(loc))
@@ -632,14 +608,6 @@
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)
-
-	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
-		if(nutrition < 200)
-			take_overall_damage(2,0)
-
-			//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
-			//Not that it matters much for diona, who have NO_PAIN.
-			shock_stage++
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())
@@ -1039,26 +1007,14 @@
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
-		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
-			if(B.controlling)
-				holder.icon_state = "hudbrainworm"
-			else
-				holder.icon_state = "hudhealthy"
 		else
 			holder.icon_state = "hudhealthy"
 
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
 		if(stat == DEAD)
 			holder2.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder2.icon_state = "hudxeno"
-		else if(has_brain_worms())
-			holder2.icon_state = "hudbrainworm"
 		else if(virus2.len)
 			holder2.icon_state = "hudill"
 		else

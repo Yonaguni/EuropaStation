@@ -152,15 +152,11 @@ mob/living/carbon/proc/handle_hallucinations()
 						possible_points += F
 					if(possible_points.len)
 						var/turf/simulated/floor/target = pick(possible_points)
-						switch(rand(1,4))
+						switch(rand(1,3))
 							if(1)
 								halbody = image('icons/mob/human.dmi',target,"husk_l",TURF_LAYER)
 							if(2,3)
 								halbody = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
-							if(4)
-								halbody = image('icons/mob/alien.dmi',target,"alienother",TURF_LAYER)
-	//						if(5)
-	//							halbody = image('xcomalien.dmi',target,"chryssalid",TURF_LAYER)
 
 						if(client) client.images += halbody
 						spawn(rand(50,80)) //Only seen for a brief moment.

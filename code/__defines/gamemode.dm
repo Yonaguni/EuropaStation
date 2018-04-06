@@ -27,29 +27,16 @@
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
 // Mode/antag template macros.
-#define MODE_BORER "borer"
-#define MODE_XENOMORPH "xeno"
-#define MODE_LOYALIST "loyalist"
-#define MODE_MUTINEER "mutineer"
 #define MODE_COMMANDO "commando"
-#define MODE_DEATHSQUAD "deathsquad"
-#define MODE_ERT "ert"
-#define MODE_ACTOR "actor"
 #define MODE_MERCENARY "mercenary"
 #define MODE_NINJA "ninja"
-#define MODE_RAIDER "raider"
 #define MODE_WIZARD "paramount"
-#define MODE_CHANGELING "changeling"
-#define MODE_CULTIST "cultist"
-#define MODE_HIGHLANDER "highlander"
-#define MODE_MONKEY "monkey"
 #define MODE_RENEGADE "renegade"
 #define MODE_REVOLUTIONARY "revolutionary"
 #define MODE_LOYALIST "loyalist"
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
 #define MODE_THRALL "thrall"
-#define MODE_HUNTER "hunter"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 100
 

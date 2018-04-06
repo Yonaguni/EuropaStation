@@ -26,7 +26,7 @@
 	blurb = "Heavier and stronger than a baseline human, gravity-adapted people have \
 	thick radiation-resistant skin with a high lead content, denser bones, and recessed \
 	eyes beneath a prominent brow in order to shield them from the glare of a dangerously \
-	bright, alien sun. This comes at the cost of mobility, flexibility, and increased \
+	bright sun. This comes at the cost of mobility, flexibility, and increased \
 	oxygen requirements to support their robust metabolism."
 	icobase = 'icons/mob/human_races/r_gravworlder.dmi'
 	health_hud_intensity = 3

@@ -92,6 +92,5 @@
 	descriptor = "strange debris field"
 	ruin_types = list(
 		/datum/random_map/structure/ruin/monolith,
-		/datum/random_map/structure/ruin/alien,
 		/datum/random_map/structure/ruin/spacecraft
 		)

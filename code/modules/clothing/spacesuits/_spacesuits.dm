@@ -21,7 +21,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude", "Xenomorph")
+	species_restricted = list()
 	flash_protection = FLASH_PROTECTION_MAJOR
 	auto_init = TRUE
 
@@ -87,7 +87,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude", "Xenomorph")
+	species_restricted = list("exclude")
 
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits_space.dmi',

@@ -10,9 +10,6 @@
 /datum/random_map/structure/ruin/monolith
 	descriptor = "ruined monolith"
 
-/datum/random_map/structure/ruin/alien
-	descriptor = "ruined alien structure"
-
 /datum/random_map/structure/ruin/spacecraft
 	descriptor = "ruined spacecraft"
 

@@ -32,7 +32,7 @@ That in itself uses a tiny bit more memory (no more than all the ridiculous list
 
 On the other-hand, it should be very CPU cheap in comparison to the old system.
 In the old system, we updated all our overlays every life() call, even if we were standing still inside a crate!
-or dead!. 25ish overlays, all generated from scratch every second for every xeno/human/monkey and then applied.
+or dead!. 25ish overlays, all generated from scratch every second for every human/monkey and then applied.
 More often than not update_clothing was being called a few times in addition to that! CPU was not the only issue,
 all those icons had to be sent to every client. So really the cost was extremely cumulative. To the point where
 update_clothing would frequently appear in the top 10 most CPU intensive procs during profiling.

@@ -26,7 +26,7 @@
 	var/last_dam = -1                  // used in healing/processing calculations.
 
 	// Appearance vars.
-	var/nonsolid                       // Snowflake warning, reee. Used for slime limbs.
+	var/nonsolid                       // Snowflake warning, reee. Makes limbs translucent.
 	var/icon_name = null               // Icon state base.
 	var/body_part = null               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.

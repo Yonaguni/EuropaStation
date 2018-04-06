@@ -140,27 +140,6 @@ var/list/ghost_traps
 /datum/ghosttrap/plant/welcome_candidate(var/mob/target)
 	target << "<span class='alium'><B>You awaken slowly, stirring into sluggish motion as the air caresses you.</B></span>"
 	// This is a hack, replace with some kind of species blurb proc.
-	if(istype(target,/mob/living/carbon/alien/diona))
-		target << "<B>You are \a [target], one of a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>"
-		target << "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>"
-
-/*****************
-* Cortical Borer *
-*****************/
-/datum/ghosttrap/borer
-	object = "cortical borer"
-	ban_checks = list(MODE_BORER)
-	pref_check = MODE_BORER
-	ghost_trap_message = "They are occupying a borer now."
-	ghost_trap_role = "Cortical Borer"
-	can_set_own_name = FALSE
-	list_as_special_role = FALSE
-
-/datum/ghosttrap/borer/welcome_candidate(var/mob/target)
-	target << "<span class='notice'>You are a cortical borer!</span> You are a brain slug that worms its way \
-	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
-	your host and your eventual spawn safe and warm."
-	target << "You can speak to your victim with <b>say</b>, to other borers with <b>say [target.get_language_prefix()]x</b>, and use your Abilities tab to access powers."
 
 /********************
 * Maintenance Drone *
@@ -213,18 +192,4 @@ datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silic
 	ban_checks = list(MODE_WIZARD)
 
 /datum/ghosttrap/familiar/welcome_candidate(var/mob/target)
-	return 0
-
-/******************
-* Slime *
-******************/
-/datum/ghosttrap/slime
-	object = "slime"
-	pref_check = MODE_XENOMORPH
-	ghost_trap_message = "They are occupying a slime now."
-	ghost_trap_role = "Slime"
-	ban_checks = list(MODE_XENOMORPH)
-
-/datum/ghosttrap/slime/welcome_candidate(var/mob/target)
-	target << "You are a <b>Slime</b>. You have limited sentience, limited affection for the people that feed you, and no bones."
 	return 0

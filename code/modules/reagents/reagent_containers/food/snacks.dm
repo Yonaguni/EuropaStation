@@ -197,7 +197,7 @@
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
-	if(!isanimal(user) && !isalien(user))
+	if(!isanimal(user))
 		return
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
 	bitecount++
@@ -378,8 +378,7 @@
 		..()
 		reagents.add_reagent("sprinkles", 1)
 		bitesize = 10
-		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,)
-		switch(chaosselect)
+		switch(rand(1,8))
 			if(1)
 				reagents.add_reagent("nutriment", 3)
 			if(2)
@@ -393,10 +392,8 @@
 			if(6)
 				reagents.add_reagent("coco", 3)
 			if(7)
-				reagents.add_reagent("slimejelly", 3)
-			if(8)
 				reagents.add_reagent("banana", 3)
-			if(9)
+			if(8)
 				reagents.add_reagent("berryjuice", 3)
 		if(prob(30))
 			src.icon_state = "donut2"
@@ -416,24 +413,6 @@
 		..()
 		reagents.add_reagent("sprinkles", 1)
 		reagents.add_reagent("berryjuice", 5)
-		bitesize = 5
-		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Jelly Donut"
-			reagents.add_reagent("sprinkles", 2)
-
-/obj/item/reagent_containers/food/snacks/donut/slimejelly
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
-	filling_color = "#ED1169"
-	center_of_mass = "x=16;y=11"
-	nutriment_amt = 3
-	New()
-		..()
-		reagents.add_reagent("sprinkles", 1)
-		reagents.add_reagent("slimejelly", 5)
 		bitesize = 5
 		if(prob(30))
 			src.icon_state = "jdonut2"
@@ -826,18 +805,6 @@
 		reagents.add_reagent("nanites", 100)
 		bitesize = 0.1
 
-/obj/item/reagent_containers/food/snacks/xenoburger
-	name = "xenoburger"
-	desc = "Smells caustic. Tastes like heresy."
-	icon_state = "xburger"
-	filling_color = "#43DE18"
-	center_of_mass = "x=16;y=11"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 8)
-		bitesize = 2
-
 /obj/item/reagent_containers/food/snacks/clownburger
 	name = "Clown Burger"
 	desc = "This tastes funny..."
@@ -1031,33 +998,6 @@
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
 			reagents.add_reagent("morphine", 5)
 			bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/xemeatpie
-	name = "Xeno-pie"
-	icon_state = "xenomeatpie"
-	desc = "A delicious meatpie. Probably heretical."
-	trash = /obj/item/trash/plate
-	filling_color = "#43DE18"
-	center_of_mass = "x=16;y=13"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 10)
-		bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/wingfangchu
-	name = "Wing Fang Chu"
-	desc = "A savory dish of alien wing wang in soy."
-	icon_state = "wingfangchu"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#43DE18"
-	center_of_mass = "x=17;y=9"
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		bitesize = 2
-
 
 /obj/item/reagent_containers/food/snacks/human/kabob
 	name = "-kabob"
@@ -1358,18 +1298,6 @@
 		reagents.add_reagent("water", 5)
 		bitesize = 5
 
-/obj/item/reagent_containers/food/snacks/slimesoup
-	name = "slime soup"
-	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
-	filling_color = "#C4DBA0"
-
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-		reagents.add_reagent("water", 10)
-		bitesize = 5
-
 /obj/item/reagent_containers/food/snacks/bloodsoup
 	name = "Tomato soup"
 	desc = "Smells like copper."
@@ -1462,7 +1390,6 @@
 				reagents.add_reagent("nutriment", 6)
 				reagents.add_reagent("blood", 10)
 			if(7)
-				reagents.add_reagent("slimejelly", 10)
 				reagents.add_reagent("water", 10)
 			if(8)
 				reagents.add_reagent("carbon", 10)
@@ -1747,11 +1674,6 @@
 		..()
 		reagents.add_reagent("cherryjelly", 5)
 
-/obj/item/reagent_containers/food/snacks/jelliedtoast/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-
 /obj/item/reagent_containers/food/snacks/jellyburger
 	name = "Jelly Burger"
 	desc = "Culinary delight..?"
@@ -1763,11 +1685,6 @@
 	New()
 		..()
 		bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/jellyburger/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
 
 /obj/item/reagent_containers/food/snacks/jellyburger/cherry
 	New()
@@ -1968,24 +1885,11 @@
 		..()
 		bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/jellysandwich/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-
 /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
 	New()
 		..()
 		reagents.add_reagent("cherryjelly", 5)
 
-/obj/item/reagent_containers/food/snacks/boiledslimecore
-	name = "Boiled slime Core"
-	desc = "A boiled red thing."
-	icon_state = "boiledslimecore" //nonexistant?
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-		bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/mint
 	name = "mint"
@@ -2160,35 +2064,6 @@
 	whole_path = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
 
 /obj/item/reagent_containers/food/snacks/slice/meatbread/filled
-	filled = TRUE
-
-/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
-	name = "xenomeatbread loaf"
-	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
-	icon_state = "xenomeatbread"
-	slice_path = /obj/item/reagent_containers/food/snacks/slice/xenomeatbread
-	slices_num = 5
-	filling_color = "#8AFF75"
-	center_of_mass = "x=16;y=9"
-	nutriment_desc = list("bread" = 10)
-	nutriment_amt = 10
-	New()
-		..()
-		reagents.add_reagent("protein", 20)
-		bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/slice/xenomeatbread
-	name = "xenomeatbread slice"
-	desc = "A slice of delicious meatbread. Extra Heretical."
-	icon_state = "xenobreadslice"
-	trash = /obj/item/trash/plate
-	filling_color = "#8AFF75"
-	bitesize = 2
-	center_of_mass = "x=16;y=13"
-	whole_path = /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
-
-
-/obj/item/reagent_containers/food/snacks/slice/xenomeatbread/filled
 	filled = TRUE
 
 /obj/item/reagent_containers/food/snacks/sliceable/bananabread

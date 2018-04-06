@@ -116,9 +116,6 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/mouse
 	w_class = 1
 
-/obj/item/holder/borer
-
-
 /obj/item/holder/attackby(var/obj/item/W, var/mob/user)
 	for(var/mob/M in src.contents)
 		M.attackby(W,user)

@@ -511,7 +511,7 @@
 /obj/item/combitool/omni
 	name = "digitool"
 	icon_state = "digitool"
-	desc = "An advanced alien design with countless possibilities."
+	desc = "An advanced design with countless possibilities."
 	tools = list(
 		"crowbar",
 		"screwdriver",

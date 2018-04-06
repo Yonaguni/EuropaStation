@@ -106,7 +106,7 @@
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
 
-	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
+	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of zombies! Or, you know, mine stuff."
 	drill_verb = "cutting"
 	drill_sound = 'sound/items/Welder.ogg'
 	sharp = 1

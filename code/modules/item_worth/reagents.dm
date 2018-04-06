@@ -527,9 +527,6 @@ z
 /datum/reagent/gc161
 	value = 3.1
 
-/datum/reagent/slimejelly
-	value = 1.2
-
 /datum/reagent/soporific
 	value = 2.5
 
@@ -556,12 +553,6 @@ z
 
 /datum/reagent/psilocybin
 	value = 0.7
-
-/datum/reagent/slimetoxin
-	value = 2
-
-/datum/reagent/aslimetoxin
-	value = 3
 
 /datum/reagent/nanites
 	value = 9

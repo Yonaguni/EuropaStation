@@ -694,9 +694,6 @@
 /datum/reagent/gc161
 	lore_text = "An extremely dangerous mutagenic compound. Keep away from children."
 
-/datum/reagent/slimejelly
-	lore_text = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
-
 /datum/reagent/soporific
 	lore_text = "An effective hypnotic used to treat insomnia."
 
@@ -716,15 +713,7 @@
 /datum/reagent/impedrezene
 	lore_text = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 
-/datum/reagent/slimetoxin
-	lore_text = "A corruptive toxin produced by slimes."
-	hidden_from_codex = TRUE
-
-/datum/reagent/prometheanserum
-	lore_text = "A dangerously unstable mutagen produced by slimes."
-	hidden_from_codex = TRUE
-
-/datum/reagent/slimecrystal
+/datum/reagent/crystal
 	lore_text = "A strange, glasslike substance that crystallizes matter."
 	hidden_from_codex = TRUE
 
@@ -733,5 +722,5 @@
 	hidden_from_codex = TRUE
 
 /datum/reagent/xenomicrobes
-	lore_text = "Microbes with an entirely alien cellular structure."
+	lore_text = "Microbes with an entirely unique cellular structure."
 	hidden_from_codex = TRUE

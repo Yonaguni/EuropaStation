@@ -1,6 +1,3 @@
-/obj/item/slime_extract/Value(var/base)
-	return base * Uses
-
 /obj/item/reagent_containers/Value()
 	. = ..()
 	if(reagents)
