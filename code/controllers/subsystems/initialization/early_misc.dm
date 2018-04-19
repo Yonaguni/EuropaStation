@@ -4,7 +4,22 @@
 	flags = SS_NO_FIRE | SS_NO_DISPLAY
 
 /datum/controller/subsystem/misc_early/Initialize()
+	dview_mob = new
+
 	lobby_image.setup()
+
+	// Setup the global HUD.
+	global_hud = new
+	global_huds = list(
+		global_hud.druggy,
+		global_hud.blurry,
+		global_hud.vimpaired,
+		global_hud.darkMask,
+		global_hud.nvg,
+		global_hud.thermal,
+		global_hud.meson,
+		global_hud.science
+	)
 
 	if (!job_master)
 		job_master = new /datum/controller/occupations()
