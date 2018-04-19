@@ -14,7 +14,7 @@
 		combined_rank += check_rank
 	UNSETEMPTY(latencies)
 
-	if(force || 	last_rating != ceil(combined_rank/ranks.len))
+	if(force || last_rating != ceil(combined_rank/ranks.len))
 		rebuild_power_cache = TRUE
 		if(combined_rank > 0)
 			owner << 'sound/effects/psi/power_unlock.ogg'
@@ -31,8 +31,14 @@
 					owner.client.screen |= ui.components
 					owner.client.screen |= ui
 			owner.verbs |= /mob/living/proc/say_telepathy
+			if(owner.client)
+				for(var/thing in all_aura_images)
+					owner.client.images |= thing
 		else
 			owner.verbs -= /mob/living/proc/say_telepathy
+			if(owner.client)
+				for(var/thing in all_aura_images)
+					owner.client.images -= thing
 			qdel(src)
 
 /datum/psi_complexus/process()
@@ -50,12 +56,22 @@
 	else if(stamina < max_stamina)
 		if(owner.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))
-			//if(stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT && owner.health < owner.maxHealth)
-			//	attempt_autoredaction()
+			if(stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT && owner.health < owner.maxHealth)
+				attempt_regeneration()
 		else if(owner.stat == UNCONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(3,5))
 
+	var/next_aura_size = max(1,(stamina/max_stamina)*rating)
+	var/next_aura_alpha = round(((suppressed ? max(0,rating - 2) : rating)/5)*255)
+
+	if(next_aura_alpha != last_aura_alpha || next_aura_size != last_aura_size || aura_color != last_aura_color)
+		last_aura_size =  next_aura_size
+		last_aura_alpha = next_aura_alpha
+		last_aura_color = aura_color
+		var/matrix/M = matrix()
+		if(next_aura_size != 1)
+			M.Scale(next_aura_size)
+		animate(aura_image, alpha = next_aura_alpha, transform = M, color = aura_color, time = 3)
+
 	if(update_hud)
 		ui.update_icon()
-
-	//if(aura) aura.update_icon(TRUE)

@@ -62,6 +62,7 @@
 			return
 		boosted_faculties += psychic_strings_to_ids[choice]
 
+	slots_left = max_boosted_faculties-boosted_faculties.len
 	to_chat(user, "<span class='notice'>You [removed ? "remove" : "install"] the [choice] brainboard [removed ? "from" : "in"] \the [src]. There [slots_left!=1 ? "are" : "is"] [slots_left] slot\s left.</span>")
 
 /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate()
@@ -143,12 +144,12 @@
 	if(H.psi)
 		H.psi.max_stamina = boosted_psipower
 		H.psi.stamina = H.psi.max_stamina
+		H.psi.aura_color = "#FFAAFF"
 		H.psi.update()
 
 	to_chat(H, "<span class='notice'>\The [src] chimes quietly as it finishes boosting your brain.</span>")
 	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate
 	verbs -= /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
-
 	operating = FALSE
 	action_button_name = "Remove Boosters"
 	H.update_action_buttons()

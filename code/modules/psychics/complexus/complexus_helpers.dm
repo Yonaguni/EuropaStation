@@ -14,23 +14,13 @@
 		ui.update_icon()
 	cancel()
 
-var/list/armour_faculty_by_type = list(
-	melee =  "[PSI_PSYCHOKINESIS]",
-	bullet = "[PSI_PSYCHOKINESIS]",
-	bomb =   "[PSI_ENERGISTICS]",
-	laser =  "[PSI_ENERGISTICS]",
-	energy = "[PSI_ENERGISTICS]",
-	bio =    "[PSI_REDACTION]",
-	rad =    "[PSI_REDACTION]",
-	psi =    "[PSI_COERCION]"
-)
-
 /datum/psi_complexus/proc/get_armour(var/armourtype)
-	if(!can_use())
+	if(can_use_passive())
+		last_armor_check = world.time
+		return round(Clamp(Clamp(4 * rating, 0, 20) * get_rank(armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
+	else
 		last_armor_check = 0
 		return 0
-	last_armor_check = world.time
-	return Clamp(Clamp(5 * rating, 0, 20) * get_rank(armour_faculty_by_type[armourtype]), 0, 100)
 
 /datum/psi_complexus/proc/get_rank(var/faculty)
 	return (LAZYLEN(ranks) && ranks[faculty] ? ranks[faculty] : 0)
@@ -48,6 +38,9 @@ var/list/armour_faculty_by_type = list(
 /datum/psi_complexus/proc/set_cooldown(var/value)
 	next_power_use = world.time + value
 	ui.update_icon()
+
+/datum/psi_complexus/proc/can_use_passive()
+	return (owner.stat == CONSCIOUS && !suppressed && !stun)
 
 /datum/psi_complexus/proc/can_use()
 	return (owner.stat == CONSCIOUS && !owner.incapacitated() && !suppressed && !stun && world.time >= next_power_use)
@@ -92,8 +85,12 @@ var/list/armour_faculty_by_type = list(
 					if(sponge) qdel(sponge)
 
 /datum/psi_complexus/proc/reset()
+	aura_color = initial(aura_color)
 	ranks = base_ranks.Copy()
 	max_stamina = initial(max_stamina)
 	stamina = min(stamina, max_stamina)
 	cancel()
 	update()
+
+/datum/psi_complexus/proc/attempt_regeneration()
+	return
