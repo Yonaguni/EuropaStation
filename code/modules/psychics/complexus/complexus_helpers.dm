@@ -48,7 +48,7 @@
 /datum/psi_complexus/proc/spend_power(var/value = 0)
 	. = FALSE
 	if(can_use())
-		value = min(1, ceil(value * cost_modifier))
+		value = max(1, ceil(value * cost_modifier))
 		if(value <= stamina)
 			stamina -= value
 			ui.update_icon()
