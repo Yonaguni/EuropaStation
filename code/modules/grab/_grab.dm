@@ -187,7 +187,7 @@
 		state = GRAB_AGGRESSIVE
 
 	else if(state < GRAB_NECK)
-		if(isslime(affecting_mob) || istype(affecting_mob, /mob/living/silicon))
+		if(istype(affecting_mob, /mob/living/silicon))
 			assailant << "<span class='notice'>You squeeze [affecting_mob], but nothing interesting happens.</span>"
 			return
 

@@ -113,9 +113,7 @@ proc/admin_notice(var/message, var/rights)
 				body += "<B>Is an AI</B> "
 			else if(ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
-					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
-					<A href='?src=\ref[src];makeslime=\ref[M]'>Make slime</A>
+					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A>
 				"}
 
 			//Simple Animals
@@ -127,15 +125,7 @@ proc/admin_notice(var/message, var/rights)
 			body += {"<br><br>
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
 				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
-				\[ Xenos: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
 				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
-				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
-				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
 				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
 				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Robot</A> |
 				<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
@@ -791,31 +781,6 @@ proc/admin_notice(var/message, var/rights)
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggle_aliens()
-	set category = "Server"
-	set desc="Toggle alien mobs"
-	set name="Toggle Aliens"
-	if(!check_rights(R_ADMIN))
-		return
-
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
-	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/toggle_alien_eggs()
-	set category = "Server"
-	set desc="Toggle xenomorph egg laying"
-	set name="Toggle Alien Eggs"
-
-	if(!check_rights(R_ADMIN))
-		return
-	config.alien_eggs_allowed = !config.alien_eggs_allowed
-	log_admin("[key_name(usr)] toggled Alien Egg Laying to [config.alien_eggs_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Alien Egg Laying [config.alien_eggs_allowed ? "on" : "off"].", 1)
-	feedback_add_details("admin_verb","AEA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 /datum/admins/proc/toggle_space_ninja()
 	set category = "Server"
 	set desc="Toggle space ninjas spawning."
@@ -931,29 +896,30 @@ proc/admin_notice(var/message, var/rights)
 
 	return 0
 
-/datum/admins/proc/cull_overlapping_lights()
+/proc/cull_overlapping_lights(var/cull_divisor = 0)
+	if(cull_divisor <= 0 || !cull_divisor)
+		return
+	var/kill_count = 0
+	var/list/all_lights = list()
+	for(var/obj/machinery/light/L in machines)
+		all_lights += L
+	var/light_count = all_lights.len
+	while(all_lights.len)
+		var/obj/machinery/light/L = pick(all_lights)
+		all_lights -= L
+		for(var/obj/machinery/light/other in view(L.light_range/cull_divisor, L))
+			if(other != L)
+				qdel(L)
+				kill_count++
+				break
+	log_debug("[usr ? key_name(usr) : "Server"] culled lights with severity [cull_divisor], removing [kill_count] of [light_count] fixtures.")
+
+/datum/admins/proc/admin_cull_overlapping_lights()
 	set name = "Cull Overlapping Light Fixtures"
 	set desc = "Remove unnecessary overlapping lights."
 	set category = "Debug"
-
 	if(!check_rights(R_SPAWN))	return
-
-	var/cull_divisor = input("Enter a divisor for range checks (0.1 for a larger radius than the light's range).", "Divisor") as num|null
-	if(cull_divisor > 0)
-		var/kill_count = 0
-		var/list/all_lights = list()
-		for(var/obj/machinery/light/L in machines)
-			all_lights += L
-		var/light_count = all_lights.len
-		while(all_lights.len)
-			var/obj/machinery/light/L = pick(all_lights)
-			all_lights -= L
-			for(var/obj/machinery/light/other in view(L.light_range/cull_divisor, L))
-				if(other != L)
-					qdel(L)
-					kill_count++
-					break
-		log_debug("[key_name(usr)] culled lights with severity [cull_divisor], removing [kill_count] of [light_count] fixtures.")
+	cull_overlapping_lights(input("Enter a divisor for range checks (0.1 for a larger radius than the light's range).", "Divisor") as num|null)
 
 /datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
 	set category = "Debug"
@@ -1053,7 +1019,6 @@ proc/admin_notice(var/message, var/rights)
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
 	set category = "Admin"

@@ -53,9 +53,6 @@ var/global/universe_has_ended = 0
 	APCSet()
 	OverlayAndAmbientSet()
 
-	// Disable Nar-Sie.
-	cult.allow_narsie = 0
-
 	PlayerSet()
 
 	new /obj/singularity/narsie/large/exit(pick(endgame_exits))

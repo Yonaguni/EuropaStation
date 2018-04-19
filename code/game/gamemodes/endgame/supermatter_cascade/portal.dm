@@ -5,13 +5,8 @@
 	desc = "NO TIME TO EXPLAIN, JUMP IN!"
 	icon = 'icons/obj/rift.dmi'
 	icon_state = "rift"
-
 	move_self = 0
-	announce=0
-	cause_hell=0
-
 	layer=LIGHTING_LAYER+2 // ITS SO BRIGHT
-
 	consume_range = 6
 
 /obj/singularity/narsie/large/exit/New()
@@ -26,9 +21,6 @@
 		if(M.client)
 			M.see_rift(src)
 	eat()
-
-/obj/singularity/narsie/large/exit/acquire(var/mob/food)
-	return
 
 /obj/singularity/narsie/large/exit/consume(const/atom/A)
 	if(!(A.singuloCanEat()))

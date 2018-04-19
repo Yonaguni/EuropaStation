@@ -61,7 +61,6 @@ var/list/newplayer_start = list()
 var/list/latejoin         = list()
 
 var/list/prisonwarp         = list() // Prisoners go to these
-var/list/xeno_spawn         = list() // Aliens spawn at at these.
 var/list/tdome1             = list()
 var/list/tdome2             = list()
 var/list/tdomeobserve       = list()
@@ -134,10 +133,6 @@ var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
-
-// Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-
 
 // Used by robots and robot preferences.
 var/list/robot_module_types = list(

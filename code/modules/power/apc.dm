@@ -113,7 +113,7 @@
 	var/debug= 0
 	var/autoflag= 0		// 0 = off, 1= eqp and lights off, 2 = eqp off, 3 = all on.
 	var/has_electronics = 0 // 0 - none, 1 - plugged in, 2 - secured by screwdriver
-	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
+	var/beenhit = 0 // used for counting how many times it has been hit
 	var/longtermpower = 10
 	var/datum/wires/apc/wires = null
 	var/update_state = -1

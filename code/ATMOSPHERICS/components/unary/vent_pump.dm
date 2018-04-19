@@ -40,7 +40,7 @@
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
 
-	var/welded = 0 // Added for aliens -- TLE
+	var/welded = 0
 
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection

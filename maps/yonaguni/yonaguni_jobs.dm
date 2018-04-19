@@ -8,7 +8,7 @@
 	..()
 
 /datum/antagonist/revolutionary/New()
-	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/xo, /datum/job/hos, /datum/job/rd, /datum/job/cmo)
+	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/hos, /datum/job/scientist, /datum/job/cmo)
 	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
 	..()
 
@@ -22,7 +22,6 @@
 	allowed_jobs = list(
 		/datum/job/crewman/employee,
 		/datum/job/captain,
-		/datum/job/xo,
 		/datum/job/administrator,
 		/datum/job/chief_engineer,
 		/datum/job/engineer,
@@ -33,7 +32,7 @@
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
-		/datum/job/rd,
+		/datum/job/scientist,
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/psychiatrist,
@@ -45,16 +44,18 @@
 /datum/job/crewman/employee
 	title = "Employee"
 	supervisors = "absolutely everyone"
+	welcome_blurb = "Research facilities often need people to do odd jobs. Today, that would be you."
 
 /datum/job/captain
-	title = "Director"
+	title = "Site Director"
+	welcome_blurb = "You are in charge of the entire facility and everyone on it. Keep it running smoothly. The buck stops with you."
 	department = "Command"
 	head_position = 1
 	department_flag = COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Board and the Jovian Naval Authority"
+	supervisors = "the PicoMotion board of investors and the Jovian Naval Authority"
 	selection_color = "#1d1d4f"
 	req_admin_notify = 1
 	access = list() 			//See get_access()
@@ -72,40 +73,15 @@
 /datum/job/captain/get_access()
 	return get_all_station_access()
 
-/datum/job/xo
-	title = "Corporate Liaison"
-	department = "Command"
-	head_position = 1
-	department_flag = COM
-	faction = "Crew"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the Director"
-	selection_color = "#2f2f7f"
-	req_admin_notify = 1
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
-	minimal_player_age = 14
-	economic_modifier = 20
-
-	ideal_character_age = 70 // Old geezer captains ftw
-	outfit_type = /decl/hierarchy/outfit/job/colony_liaison
-
-/datum/job/xo/New()
-	id_modifying_ranks |= title
-	..()
-
-/datum/job/xo/get_access()
-	return get_all_station_access()
-
 /datum/job/administrator
-	title = "Administrator"
+	title = "Deputy Director"
+	welcome_blurb = "Assist the Site Director in managing the crew and keeping the station running. Hand out access to those who need it, or terminate access for those who have been fired."
 	head_position = 1
 	department_flag = COM|CIV
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 1
-	supervisors = "the Director and Corporate Liaison"
+	supervisors = "the Site Director"
 	selection_color = "#2f2f7f"
 	minimal_player_age = 14
 	economic_modifier = 10
@@ -129,13 +105,14 @@
 
 /datum/job/chief_engineer
 	title = "Chief of Engineering"
+	welcome_blurb = "Coordinate and direct the Engineering department in keeping the facility in one piece. Try not to go mad."
 	head_position = 1
 	department = "Engineering"
 	department_flag = ENG|COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Director"
+	supervisors = "the Site Director"
 	selection_color = "#7f6e2c"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -156,6 +133,7 @@
 
 /datum/job/engineer
 	title = "Engineer"
+	welcome_blurb = "Keep the lights on, the water out, and the power flowing. Easier said than done."
 	department = "Engineering"
 	department_flag = ENG
 	faction = "Crew"
@@ -172,13 +150,14 @@
 
 /datum/job/roboticist
 	title = "Roboticist"
+	welcome_blurb = "Build and maintain station robots, install and repair prosthetic limbs, and flaunt your doctorate over the rest of Engineering."
 	department = "Engineering"
-	department_flag = SCI
+	department_flag = ENG
 	faction = "Crew"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Chief of Engineering"
-	selection_color = "#7f6e2c"
+	selection_color = "#5b4d20"
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
@@ -188,6 +167,7 @@
 //Food
 /datum/job/chef
 	title = "Cook"
+	welcome_blurb = "Grow food and stock the cafeteria with meals and drinks to keep the crew moving. Avoid letting them find out you're serving them monkey steak."
 	department = "Civilian"
 	department_flag = CIV
 	faction = "Crew"
@@ -202,13 +182,15 @@
 //Cargo
 /datum/job/qm
 	title = "Chief of Logistics"
+	welcome_blurb = "Direct and coordinate the Supply department. Make orders, deploy supply beacons, and draft Employees to drag crates around when you can't be bothered."
+	head_position = 1
 	department = "Civilian"
 	department_flag = CIV|CRG
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Colonial Administration"
-	selection_color = "#515151"
+	supervisors = "the Site Director"
+	selection_color = "#737373"
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
@@ -218,6 +200,7 @@
 
 /datum/job/janitor
 	title = "Sanitation Technician"
+	welcome_blurb = "Keep the station clean and tidy. Put out wet floor signs while mopping and watch people slip over anyway."
 	department = "Civilian"
 	department_flag = CIV
 	faction = "Crew"
@@ -231,13 +214,14 @@
 
 /datum/job/hos
 	title = "Chief of Security"
+	welcome_blurb = "Direct and coordinate the Security forces on the station."
 	head_position = 1
 	department = "Security"
 	department_flag = SEC|COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Director"
+	supervisors = "the Site Director"
 	selection_color = "#8e2929"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -259,6 +243,7 @@
 
 /datum/job/warden
 	title = "Security Quartermaster"
+	welcome_blurb = "Look after the armory, hand out weapons as directed, and keep an eye on any prisoners in the brig."
 	department = "Security"
 	department_flag = SEC
 	faction = "Crew"
@@ -274,6 +259,7 @@
 
 /datum/job/officer
 	title = "Security Officer"
+	welcome_blurb = "Keep the peace amongst the crew. Sort out small disturbances and fights, and coordinate with your team to respond to larger crises."
 	department = "Security"
 	department_flag = SEC
 	faction = "Crew"
@@ -288,15 +274,15 @@
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/europa_police_officer
 
-/datum/job/rd
+/datum/job/scientist
 	title = "Scientist"
-	head_position = 1
+	welcome_blurb = "You have a PhD, a laboratory full of gizmos, and nothing but free time. Make the most of it."
 	department = "Science"
-	department_flag = COM|SCI
+	department_flag = SCI
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Director"
+	supervisors = "the Site Director"
 	selection_color = "#ad6bad"
 	req_admin_notify = 1
 	economic_modifier = 15
@@ -312,15 +298,35 @@
 	ideal_character_age = 50
 	outfit_type = /decl/hierarchy/outfit/job/europa_scientist
 
+/datum/job/xenobiologist
+	title = "Xenobiologist"
+	welcome_blurb = "Feed and crossbreed slimes to extract their cores, or grow and splice together exotic plants in the Xenoflora laboratory."
+	department = "Science"
+	department_flag = SCI
+	faction = "Crew"
+	total_positions = 3
+	spawn_positions = 2
+	supervisors = "the Site Director"
+	selection_color = "#ad6bad"
+	economic_modifier = 7
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
+	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
+	alt_titles = list(
+		"Xenobotanist"
+		)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
+
 /datum/job/cmo
 	title = "Chief of Medicine"
+	welcome_blurb = "Direct and coordinate the Medical crew. Don't forget to feed Ganymede."
 	head_position = 1
 	department = "Medical"
 	department_flag = MED|COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Director"
+	supervisors = "the Site Director"
 	selection_color = "#026865"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -337,6 +343,7 @@
 
 /datum/job/doctor
 	title = "Doctor"
+	welcome_blurb = "Treat wounds, mix medicines, administer pills, and conduct surgery. Try to keep at least some of the crew alive."
 	department = "Medical"
 	department_flag = MED
 	faction = "Crew"
@@ -351,6 +358,7 @@
 	alt_titles = list(
 		"Surgeon" = /decl/hierarchy/outfit/job/europa_doctor/surgeon,
 		"Emergency Physician" = /decl/hierarchy/outfit/job/europa_doctor/emt,
+		"Virologist" = /decl/hierarchy/outfit/job/europa_doctor/virologist
 		)
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor
 
@@ -369,36 +377,14 @@
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/counsellor
 
-/datum/job/xenobiologist
-	title = "Xenobiologist"
-	department = "Medical"
-	department_flag = MED
-	faction = "Crew"
-	total_positions = 3
-	spawn_positions = 2
-	supervisors = "the Chief of Medicine"
-	selection_color = "#013d3b"
-	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
-	alt_titles = list(
-		"Xenobotanist",
-		"Virologist" = /decl/hierarchy/outfit/job/europa_doctor/virologist
-		)
-	minimal_player_age = 7
-	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
-
 /obj/effect/landmark/start/employee
 	name = "Employee"
 
-/obj/effect/landmark/start/co
-	name = "Director"
+/obj/effect/landmark/start/site_director
+	name = "Site Director"
 
-/obj/effect/landmark/start/xo
-	name = "Corporate Liaison"
-
-/obj/effect/landmark/start/flight_controller
-	name = "Administrator"
+/obj/effect/landmark/start/deputy_director
+	name = "Deputy Director"
 
 /obj/effect/landmark/start/alien
 	name = "Visitor"

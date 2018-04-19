@@ -102,11 +102,6 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 			if(istype(target))
 				ManualFollow(target)
 
-/mob/observer/ghost/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/book/tome))
-		var/mob/observer/ghost/M = src
-		M.manifest()
-
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.
@@ -212,17 +207,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
 		return
-	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
-		var/found_rune
-		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune
-			if(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]) // Found an astral journey rune.
-				found_rune = 1
-				break
-		if(!found_rune)
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
-			return
 	stop_following()
-	mind.current.ajourn=0
 	mind.current.key = key
 	mind.current.teleop = null
 	if(!admin_ghosted)
@@ -286,7 +271,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/L = list()
 	var/holyblock = 0
 
-	if(usr.invisibility <= SEE_INVISIBLE_LIVING || (usr.mind in cult.current_antagonists))
+	if(usr.invisibility <= SEE_INVISIBLE_LIVING)
 		for(var/turf/T in get_area_turfs(thearea))
 			if(!T.holy)
 				L+=T

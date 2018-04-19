@@ -1,4 +1,3 @@
-//generic procs copied from obj/effect/alien
 /obj/effect/spider
 	name = "web"
 	desc = "It's stringy and sticky."

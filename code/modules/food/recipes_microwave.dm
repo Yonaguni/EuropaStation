@@ -28,13 +28,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly
 
-/datum/recipe/jellydonut/slime
-	reagents = list("slimejelly" = 5, "sugar" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
-	)
-	result = /obj/item/reagent_containers/food/snacks/donut/slimejelly
-
 /datum/recipe/jellydonut/cherry
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	items = list(
@@ -83,13 +76,6 @@
 		/obj/item/robot_parts/head
 	)
 	result = /obj/item/reagent_containers/food/snacks/roburger
-
-/datum/recipe/xenoburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat
-	)
-	result = /obj/item/reagent_containers/food/snacks/xenoburger
 
 /datum/recipe/fishburger
 	items = list(
@@ -201,20 +187,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
 
-/datum/recipe/xenomeatbread
-	items = list(
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
-
 /datum/recipe/bananabread
 	fruit = list("banana" = 1)
 	reagents = list("milk" = 5, "sugar" = 15)
@@ -276,13 +248,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/tofupie
 
-/datum/recipe/xemeatpie
-	items = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-	)
-	result = /obj/item/reagent_containers/food/snacks/xemeatpie
-
 /datum/recipe/pie
 	fruit = list("banana" = 1)
 	reagents = list("sugar" = 5)
@@ -303,13 +268,6 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/berryclafoutis
-
-/datum/recipe/wingfangchu
-	reagents = list("soysauce" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-	)
-	result = /obj/item/reagent_containers/food/snacks/wingfangchu
 
 /datum/recipe/chaosdonut
 	reagents = list("frostoil" = 5, "capsaicin" = 5, "sugar" = 5)
@@ -628,13 +586,6 @@
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/stew
 
-/datum/recipe/slimetoast
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/slice/bread,
-	)
-	result = /obj/item/reagent_containers/food/snacks/jelliedtoast/slime
-
 /datum/recipe/jelliedtoast
 	reagents = list("cherryjelly" = 5)
 	items = list(
@@ -734,13 +685,6 @@
 	items = list(/obj/item/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/reagent_containers/food/snacks/applepie
 
-/datum/recipe/slimeburger
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/jellyburger/slime
-
 /datum/recipe/jellyburger
 	reagents = list("cherryjelly" = 5)
 	items = list(
@@ -756,14 +700,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/twobread
 
-/datum/recipe/slimesandwich
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/slice/bread,
-		/obj/item/reagent_containers/food/snacks/slice/bread,
-	)
-	result = /obj/item/reagent_containers/food/snacks/jellysandwich/slime
-
 /datum/recipe/cherrysandwich
 	reagents = list("cherryjelly" = 5)
 	items = list(
@@ -775,18 +711,6 @@
 /datum/recipe/bloodsoup
 	reagents = list("blood" = 30)
 	result = /obj/item/reagent_containers/food/snacks/bloodsoup
-
-/datum/recipe/slimesoup
-	reagents = list("water" = 10, "slimejelly" = 5)
-	items = list()
-	result = /obj/item/reagent_containers/food/snacks/slimesoup
-
-/datum/recipe/boiledslimeextract
-	reagents = list("water" = 5)
-	items = list(
-		/obj/item/slime_extract,
-	)
-	result = /obj/item/reagent_containers/food/snacks/boiledslimecore
 
 /datum/recipe/chocolateegg
 	items = list(

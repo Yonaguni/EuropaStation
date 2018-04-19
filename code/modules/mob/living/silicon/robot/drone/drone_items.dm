@@ -76,7 +76,6 @@
 		/obj/item/organ/internal/brain,
 		/obj/item/stack/cable_coil,
 		/obj/item/circuitboard,
-		/obj/item/slime_extract,
 		/obj/item/reagent_containers/glass,
 		/obj/item/reagent_containers/food/snacks/monkeycube
 		)

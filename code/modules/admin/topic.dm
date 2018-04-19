@@ -236,21 +236,13 @@
 
 		switch(href_list["simplemake"])
 			if("observer")			M.change_mob_type( /mob/observer/ghost , null, null, delmob )
-			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("slime")				M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
 			if("corgi")				M.change_mob_type( /mob/living/simple_animal/dog/corgi , null, null, delmob )
 			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
 			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
-
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
@@ -1087,16 +1079,6 @@
 		message_admins("\red Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!", 1)
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
-
-	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		usr.client.cmd_admin_slimeize(H)
 
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return

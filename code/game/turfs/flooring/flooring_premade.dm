@@ -34,11 +34,6 @@
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass
 
-/turf/simulated/floor/diona
-	name = "biomass"
-	icon = 'icons/turf/floors.dmi'
-	initial_flooring = /decl/flooring/diona
-
 /turf/simulated/floor/carpet/blue
 	name = "blue carpet"
 	icon_state = "bcarpet"
@@ -107,9 +102,6 @@
 	icon = 'icons/turf/flooring/cult.dmi'
 	icon_state = "cult"
 	initial_flooring = /decl/flooring/reinforced/cult
-
-/turf/simulated/floor/cult/cultify()
-	return
 
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"

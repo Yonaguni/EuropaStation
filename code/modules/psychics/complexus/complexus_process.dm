@@ -1,4 +1,4 @@
-/datum/psi_complexus/proc/update()
+/datum/psi_complexus/proc/update(var/force)
 
 	var/last_rating = rating
 	var/combined_rank = 0
@@ -14,7 +14,7 @@
 		combined_rank += check_rank
 	UNSETEMPTY(latencies)
 
-	if(last_rating != ceil(combined_rank/ranks.len))
+	if(force || 	last_rating != ceil(combined_rank/ranks.len))
 		rebuild_power_cache = TRUE
 		if(combined_rank > 0)
 			owner << 'sound/effects/psi/power_unlock.ogg'

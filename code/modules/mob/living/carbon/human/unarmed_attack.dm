@@ -7,7 +7,7 @@ var/global/list/sparring_attack_cache = list()
 	var/damage = 0						// Extra empty hand attack damage.
 	var/attack_sound = "punch"
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
-	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
+	var/shredding = 0
 	var/sharp = 0
 	var/edge = 0
 

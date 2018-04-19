@@ -18,9 +18,6 @@
 	if(istype(O, /obj/item/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
@@ -149,9 +146,6 @@
 	if(istype(O, /obj/item/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
@@ -245,12 +239,7 @@
 				M.antibodies |= V.antigen
 				if(prob(50))
 					M.apply_effect(50, IRRADIATE, blocked = 0) // curing it that way may kill you instead
-					var/absorbed = 0
-					var/obj/item/organ/internal/alien/nutrients/rad_organ = locate() in M.internal_organs
-					if(rad_organ && !rad_organ.is_broken())
-						absorbed = 1
-					if(!absorbed)
-						M.adjustToxLoss(100)
+					M.adjustToxLoss(100)
 
 /datum/reagent/radium/touch_turf(var/turf/T)
 	if(volume >= 3)

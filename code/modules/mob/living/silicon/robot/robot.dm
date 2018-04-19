@@ -9,7 +9,7 @@
 	health = 200
 
 	mob_bump_flag = ROBOT
-	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
+	mob_swap_flags = ROBOT|MONKEY|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
 
 	light_power = 6
@@ -884,7 +884,7 @@
 					S.dirt = 0
 				for(var/A in tile)
 					if(istype(A, /obj/effect))
-						if(istype(A, /obj/effect/rune) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
+						if(istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 							qdel(A)
 					else if(istype(A, /obj/item))
 						var/obj/item/cleaned_item = A

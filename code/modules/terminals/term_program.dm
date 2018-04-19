@@ -60,21 +60,12 @@
 
 /datum/console_program/proc/ShowContents(var/silent = FALSE)
 	if(!silent)
-		PlayUpdateSounds()
+		playsound(owner.loc, 'sound/effects/screen.ogg', 5, 0)
 	if(owner.in_use)
 		for(var/thing in (viewers(1, owner) + ai_list))
 			var/mob/M = thing
 			if(M.client && M.machine == owner)
 				UpdateViewer(thing)
-
-/datum/console_program/proc/PlayUpdateSounds()
-	set waitfor = 0
-	set background = 1
-
-	for(var/i = 1 to html.len)
-		if(html[i] && html[i] != " " && html[i] != "")
-			playsound(owner.loc, 'sound/effects/screen.ogg', 5, 0)
-		sleep(1)
 
 /datum/console_program/proc/UpdateViewer(var/mob/viewer)
 	set waitfor = 0
@@ -82,7 +73,6 @@
 	users |= viewer
 	for(var/i = 1 to html.len)
 		viewer << output(list2params(list("[i]", html[i])), "\ref[src].browser:replaceRow")
-		sleep(1)
 
 /datum/console_program/proc/OpenTerminal(var/mob/user)
 	PushCommonAssets(user)

@@ -242,7 +242,7 @@ var/global/list/additional_antag_types = list()
 		"hostile raiders",
 		"derelict station debris",
 		"REDACTED",
-		"ancient alien artillery",
+		"misfired kinetic artillery",
 		"solar magnetic storms",
 		"sentient time-travelling killbots",
 		"gravitational anomalies",
@@ -259,8 +259,8 @@ var/global/list/additional_antag_types = list()
 		"artifacts of eldritch horror",
 		"a brain slug infestation",
 		"killer bugs that lay eggs in the husks of the living",
-		"a deserted transport carrying xenomorph specimens",
-		"an emissary for the gestalt requesting a security detail",
+		"a deserted transport carrying mutant specimens",
+		"an emissary for uplift rights requesting a security detail",
 		"radical uplift transevolutionaries",
 		"classified security operations"
 		)

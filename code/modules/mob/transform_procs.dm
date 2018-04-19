@@ -145,40 +145,6 @@
 		qdel(src)
 	return O
 
-/mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
-	if (transforming)
-		return
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-	regenerate_icons()
-	transforming = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	for(var/t in organs)
-		qdel(t)
-
-	var/mob/living/carbon/slime/new_slime
-	if(reproduce)
-		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
-		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
-			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
-			M.nutrition = round(nutrition/number)
-			step_away(M,src)
-			babies += M
-		new_slime = pick(babies)
-	else
-		new_slime = new /mob/living/carbon/slime(loc)
-		if(adult)
-			new_slime.is_adult = 1
-		else
-	new_slime.key = key
-
-	new_slime << "<B>You are now a slime. Skreee!</B>"
-	qdel(src)
-	return
-
 /mob/living/carbon/human/proc/corgize()
 	if (transforming)
 		return
@@ -261,22 +227,6 @@
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
 		return 0	//Sanity, this should never happen.
-
-	if(ispath(MP, /mob/living/simple_animal/space_worm))
-		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
-
-	if(ispath(MP, /mob/living/simple_animal/construct/behemoth))
-		return 0 //I think this may have been an unfinished WiP or something. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if(ispath(MP, /mob/living/simple_animal/construct/builder))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_animal/cat))
 		return 1
@@ -287,8 +237,6 @@
 	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/mushroom))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/shade))
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/tomato))
 		return 1

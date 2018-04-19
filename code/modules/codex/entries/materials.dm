@@ -100,9 +100,6 @@
 /material/cult
 	hidden_from_codex = TRUE
 
-/material/resin
-	hidden_from_codex = TRUE
-
 /material/leather
 	hidden_from_codex = TRUE
 
