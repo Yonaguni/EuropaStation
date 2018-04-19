@@ -14,6 +14,24 @@
 		ui.update_icon()
 	cancel()
 
+var/list/armour_faculty_by_type = list(
+	melee =  "[PSI_PSYCHOKINESIS]",
+	bullet = "[PSI_PSYCHOKINESIS]",
+	bomb =   "[PSI_ENERGISTICS]",
+	laser =  "[PSI_ENERGISTICS]",
+	energy = "[PSI_ENERGISTICS]",
+	bio =    "[PSI_REDACTION]",
+	rad =    "[PSI_REDACTION]",
+	psi =    "[PSI_COERCION]"
+)
+
+/datum/psi_complexus/proc/get_armour(var/armourtype)
+	if(!can_use())
+		last_armor_check = 0
+		return 0
+	last_armor_check = world.time
+	return Clamp(Clamp(5 * rating, 0, 20) * get_rank(armour_faculty_by_type[armourtype]), 0, 100)
+
 /datum/psi_complexus/proc/get_rank(var/faculty)
 	return (LAZYLEN(ranks) && ranks[faculty] ? ranks[faculty] : 0)
 
@@ -32,7 +50,7 @@
 	ui.update_icon()
 
 /datum/psi_complexus/proc/can_use()
-	return (owner.stat == CONSCIOUS && !owner.incapacitated() && !suppressed && world.time >= next_power_use)
+	return (owner.stat == CONSCIOUS && !owner.incapacitated() && !suppressed && !stun && world.time >= next_power_use)
 
 /datum/psi_complexus/proc/spend_power(var/value = 0)
 	. = FALSE

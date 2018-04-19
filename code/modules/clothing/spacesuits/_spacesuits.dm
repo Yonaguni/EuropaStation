@@ -21,7 +21,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list()
+	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR
 	auto_init = TRUE
 

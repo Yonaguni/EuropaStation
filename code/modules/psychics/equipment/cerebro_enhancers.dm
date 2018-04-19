@@ -52,13 +52,16 @@
 		return
 
 	var/removed
+	var/slots_left = max_boosted_faculties-boosted_faculties.len
 	if(psychic_strings_to_ids[choice] in boosted_faculties)
 		boosted_faculties -= psychic_strings_to_ids[choice]
 		removed = TRUE
 	else
+		if(slots_left <= 0)
+			to_chat(user, "<span class='warning'>There are no slots left to install brainboards into.</span>")
+			return
 		boosted_faculties += psychic_strings_to_ids[choice]
 
-	var/slots_left = max_boosted_faculties-boosted_faculties.len
 	to_chat(user, "<span class='notice'>You [removed ? "remove" : "install"] the [choice] brainboard [removed ? "from" : "in"] \the [src]. There [slots_left!=1 ? "are" : "is"] [slots_left] slot\s left.</span>")
 
 /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate()

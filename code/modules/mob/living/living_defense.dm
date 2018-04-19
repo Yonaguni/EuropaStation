@@ -11,6 +11,7 @@
 	a blocked amount between 0 - 100, representing the success of the armor check.
 */
 /mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
 
@@ -23,7 +24,10 @@
 	var/fullblock = (effective_armor*effective_armor) * ARMOR_BLOCK_CHANCE_MULT
 
 	if(fullblock >= 1 || prob(fullblock*100))
-		if(absorb_text)
+		if(psi && psi.last_armor_check == world.time)
+			show_message("<span class='warning'>You block the blow with your mind!</span>")
+			psi.spend_power(10)
+		else if(absorb_text)
 			show_message("<span class='warning'>[absorb_text]</span>")
 		else
 			show_message("<span class='warning'>Your armor absorbs the blow!</span>")
@@ -38,11 +42,15 @@
 
 	if(blocked > 20)
 		//Should we show this every single time?
-		if(soften_text)
+		if(psi && psi.last_armor_check == world.time)
+			show_message("<span class='warning'>You soften the blow with your mind!</span>")
+		else if(soften_text)
 			show_message("<span class='warning'>[soften_text]</span>")
 		else
 			show_message("<span class='warning'>Your armor softens the blow!</span>")
 
+	if(psi && psi.last_armor_check == world.time)
+		psi.spend_power(round(blocked/10))
 	return round(blocked, 1)
 
 //Adds two armor values together.
@@ -57,8 +65,7 @@
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
-	return 0
-
+	return (psi ? psi.get_armour(type) : 0)
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
