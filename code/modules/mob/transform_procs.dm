@@ -94,7 +94,8 @@
 				if (sloc.name == "Computer")
 					loc_landmark = sloc
 
-		O.loc = loc_landmark.loc
+		if(loc_landmark)
+			O.forceMove(get_turf(loc_landmark))
 
 	O.on_mob_init()
 

@@ -3,21 +3,24 @@
 	desc = "Strike the earth! You're a miner by trade."
 	category = "Background"
 	aspect_cost = 2
+	aspect_flags = ASPECTS_EQUIPMENT
 
-/decl/aspect/groundbreaker/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(!istype(holder))
-		return
-	holder.put_in_hands(new /obj/item/pickaxe/drill(get_turf(holder)))
-	holder.equip_to_slot_if_possible(new /obj/item/clothing/head/hardhat(get_turf(holder)), slot_head)
+/decl/aspect/groundbreaker/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
+		holder.put_in_hands(new /obj/item/pickaxe/drill(get_turf(holder)))
+		holder.equip_to_slot_if_possible(new /obj/item/clothing/head/hardhat(get_turf(holder)), slot_head)
 
 /decl/aspect/handyman
 	name = ASPECT_HANDYMAN
 	desc = "You're handy with tools, and are rarely found without them."
 	category = "Background"
 	aspect_cost = 2
+	aspect_flags = ASPECTS_EQUIPMENT
 
-/decl/aspect/handyman/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(istype(holder))
+/decl/aspect/handyman/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
 		holder.put_in_hands(new /obj/item/storage/toolbox/mechanical/handyman(get_turf(holder)))
 
 /* Need to work out how ore deposits work before uncommenting this.
@@ -27,7 +30,7 @@
 	category = "Skills"
 	aspect_cost = 2
 
-/decl/aspect/prospector/do_post_spawn(var/mob/living/carbon/human/holder)
+/decl/aspect/prospector/apply(var/mob/living/carbon/human/holder)
 	if(!istype(holder))
 		return
 	holder.put_in_hands(new /obj/item/mining_scanner(get_turf(holder)))
@@ -39,9 +42,11 @@
 	desc = "You have basic first aid training."
 	category = "Background"
 	aspect_cost = 2
+	aspect_flags = ASPECTS_EQUIPMENT
 
-/decl/aspect/first_responder/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(istype(holder))
+/decl/aspect/first_responder/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
 		holder.put_in_hands(new /obj/item/storage/firstaid/regular(get_turf(holder)))
 
 /decl/aspect/sawbones
@@ -50,7 +55,9 @@
 	category = "Background"
 	parent_name = ASPECT_FIRSTAID
 	aspect_cost = 2
+	aspect_flags = ASPECTS_EQUIPMENT
 
-/decl/aspect/sawbones/do_post_spawn(var/mob/living/carbon/human/holder)
-	if(istype(holder))
+/decl/aspect/sawbones/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
 		holder.put_in_hands(new /obj/item/storage/briefcase/doctor/full(get_turf(holder)))

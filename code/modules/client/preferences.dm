@@ -73,10 +73,6 @@ datum/preferences
 
 	var/list/aspects = list()
 
-	// maps each organ to either null(intact), "cyborg" or "amputated"
-	// will probably not be able to do this for head and torso ;)
-	var/list/organ_data = list()
-	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Officer"
 
 	var/list/flavor_texts = list()
@@ -86,7 +82,6 @@ datum/preferences
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
-	var/disabilities = 0
 
 	var/corporate_relation = "Neutral"
 
@@ -240,53 +235,6 @@ datum/preferences
 	character.h_style = h_style
 	character.f_style = f_style
 
-	// Replace any missing limbs.
-	for(var/name in BP_ALL_LIMBS)
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(!O && organ_data[name] != "amputated")
-			var/list/organ_data = character.species.has_limbs[name]
-			if(!islist(organ_data)) continue
-			var/limb_path = organ_data["path"]
-			O = new limb_path(character)
-
-	// Destroy/cyborgize organs and limbs. The order is important for preserving low-level choices for robolimb sprites being overridden.
-	for(var/name in BP_BY_DEPTH)
-		var/status = organ_data[name]
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(!O)
-			continue
-		O.status = 0
-		O.robotic = 0
-		O.model = null
-		if(status == "amputated")
-			character.organs_by_name[O.organ_tag] = null
-			character.organs -= O
-			if(O.children) // This might need to become recursive.
-				for(var/obj/item/organ/external/child in O.children)
-					character.organs_by_name[child.organ_tag] = null
-					character.organs -= child
-		else if(status == "cyborg")
-			if(rlimb_data[name])
-				O.robotize(rlimb_data[name])
-			else
-				O.robotize()
-		else //normal organ
-			O.force_icon = null
-			O.name = initial(O.name)
-			O.desc = initial(O.desc)
-
-	if(!is_preview_copy)
-		for(var/name in list(BP_HEART,BP_EYES,BP_BRAIN))
-			var/status = organ_data[name]
-			if(!status)
-				continue
-			var/obj/item/organ/I = character.internal_organs_by_name[name]
-			if(I)
-				if(status == "assisted")
-					I.mechassist()
-				else if(status == "mechanical")
-					I.robotize()
-
 	character.all_underwear.Cut()
 	character.all_underwear_metadata.Cut()
 	for(var/underwear_category_name in all_underwear)
@@ -301,6 +249,16 @@ datum/preferences
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
+
+	character.personal_aspects = list()
+	character.personal_aspects_by_name = list()
+
+	for(var/aspect in aspects)
+		var/decl/aspect/A = aspects_by_name[aspect]
+		if(istype(A))
+			character.personal_aspects += A
+			character.personal_aspects_by_name[aspect] = TRUE
+	character.apply_aspects(ASPECTS_MENTAL|ASPECTS_PHYSICAL)
 
 	character.force_update_limbs()
 	character.update_body(0)

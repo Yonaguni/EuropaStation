@@ -1,16 +1,21 @@
-#define HAS_ASPECT(holder, check_aspect) (ismob(holder) && holder.mind && LAZYLEN(holder.mind.aspects) && holder.mind.aspects[check_aspect])
+#define HAS_ASPECT(holder, check_aspect) (ismob(holder) && LAZYLEN(holder.personal_aspects_by_name) && holder.personal_aspects_by_name[check_aspect])
 
 #define ADD_ASPECT(holder, add_aspect) \
 	if(!HAS_ASPECT(holder, add_aspect)) { \
 		var/decl/aspect/A = aspects_by_name[add_aspect]; \
-		if(holder && holder.mind && istype(A)) { \
-			if(!holder.mind.aspects) { \
-				holder.mind.aspects = list(); \
-			} \
-			holder.mind.aspects[add_aspect] = TRUE; \
-			A.do_post_spawn(holder); \
+		if(holder && istype(A)) { \
+			if(!holder.personal_aspects_by_name) holder.personal_aspects_by_name = list(); \
+			if(!holder.personal_aspects)         holder.personal_aspects = list(); \
+			holder.personal_aspects += A; \
+			holder.personal_aspects_by_name[add_aspect] = TRUE; \
+			holder.need_aspect_sort = TRUE; \
+			A.apply(holder); \
 		} \
 	}
+
+#define ASPECTS_PHYSICAL  1
+#define ASPECTS_MENTAL    2
+#define ASPECTS_EQUIPMENT 4
 
 // General aspects.
 #define ASPECT_HOTSTUFF         "Hot Stuff"
@@ -80,7 +85,20 @@
 #define ASPECT_PSI_REDACTOR_L   "Latent Biokinetic Faculty"
 #define ASPECT_PSI_REDACTOR_O   "Operant Biokinetic Faculty"
 #define ASPECT_PSI_REDACTOR_MC  "Master Biokinetic"
-#define ASPECT_PSI_REDACTOR_GMC "Grandmaster Biokinetic"
+#define ASPECT_PSI_REDACTOR_GMC      "Grandmaster Biokinetic"
 
 // Restricted aspects.
-#define ASPECT_XRAY             "X-Ray Vision"
+#define ASPECT_XRAY                  "X-Ray Vision"
+
+// Body aspects.
+#define ASPECT_AMPUTATED_LEFT_HAND   "Amputated Left Hand"
+#define ASPECT_AMPUTATED_LEFT_ARM    "Amputated Left Arm"
+#define ASPECT_AMPUTATED_LEFT_FOOT   "Amputated Left Foot"
+#define ASPECT_AMPUTATED_LEFT_LEG    "Amputated Left Leg"
+#define ASPECT_AMPUTATED_RIGHT_HAND  "Amputated Right Hand"
+#define ASPECT_AMPUTATED_RIGHT_ARM   "Amputated Right Arm"
+#define ASPECT_AMPUTATED_RIGHT_FOOT  "Amputated Right Foot"
+#define ASPECT_AMPUTATED_RIGHT_LEG   "Amputated Right Leg"
+
+#define ASPECT_NEURAL_INTERFACE      "Neural Interface"
+#define ASPECT_IMPROVED_PROSTHETICS  "Improved Prosthetics"

@@ -247,6 +247,8 @@ datum/preferences
 		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
 		update_icon = TRUE
 
+	mannequin.apply_aspects(ASPECTS_EQUIPMENT)
+
 	if(update_icon)
 		mannequin.update_icons()
 

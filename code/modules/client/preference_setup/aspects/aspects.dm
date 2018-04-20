@@ -64,36 +64,32 @@
 	. += "</table>"
 
 /datum/category_item/player_setup_item/aspects/OnTopic(href, href_list, user)
-	if(href_list["toggle_aspect"])
-		var/aspect_text = href_list["toggle_aspect"]
-		var/decl/aspect/A = aspects_by_name[aspect_text]
-		if(!A)
-			return ..()
-		if(aspect_text in pref.aspects)
-
-			var/total_aspect_cost = A.aspect_cost
-			var/list/remove_aspects = list(aspect_text)
-			var/list/aspects_to_remove = list()
-			if(A.children)
-				aspects_to_remove = A.children.Copy()
-
-			while(aspects_to_remove.len)
-				A = aspects_to_remove[1]
-				aspects_to_remove -= A
-				if(!(A.name in pref.aspects))
-					continue
-				total_aspect_cost += A.aspect_cost
-				remove_aspects += A.name
-
-				if(A.children)
-					aspects_to_remove |= A.children.Copy()
-
-			if(get_aspect_total() - total_aspect_cost <= config.max_character_aspects)
-				pref.aspects -= remove_aspects
-				return TOPIC_REFRESH
-		else
-			if(get_aspect_total() + A.aspect_cost <= config.max_character_aspects)
-				pref.aspects |= aspect_text
-				return TOPIC_REFRESH
-
+	. = ..()
+	if(!.)
+		if(href_list["toggle_aspect"])
+			var/aspect_text = href_list["toggle_aspect"]
+			var/decl/aspect/A = aspects_by_name[aspect_text]
+			if(A)
+				if(aspect_text in pref.aspects)
+					var/total_aspect_cost = A.aspect_cost
+					var/list/remove_aspects = list(aspect_text)
+					var/list/aspects_to_remove = list()
+					if(A.children)
+						aspects_to_remove = A.children.Copy()
+					while(aspects_to_remove.len)
+						A = aspects_to_remove[1]
+						aspects_to_remove -= A
+						if(!(A.name in pref.aspects))
+							continue
+						total_aspect_cost += A.aspect_cost
+						remove_aspects += A.name
+						if(A.children)
+							aspects_to_remove |= A.children.Copy()
+					if(get_aspect_total() - total_aspect_cost <= config.max_character_aspects)
+						pref.aspects -= remove_aspects
+						return (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
+				else
+					if(get_aspect_total() + A.aspect_cost <= config.max_character_aspects)
+						pref.aspects |= aspect_text
+						return (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 	return ..()
