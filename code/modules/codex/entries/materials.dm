@@ -50,9 +50,6 @@
 /material/glass
 	lore_text = "A brittle, transparent material made from molten silicates. It is generally not a liquid."
 
-/material/nullglass
-	lore_text = "A poorly understood, brittle, glasslike substance whose production is something of a mystery. Inimical to psi-operant abilities; even touching it is enough to cause physical illness in operants."
-
 /material/glass/phoron_reinforced
 	lore_text = "An extremely heat-resistant form of glass."
 

@@ -67,6 +67,15 @@
 		else
 			to_chat(owner, "<span class='notice'>You have recovered your mental composure.</span>")
 			update_hud = TRUE
+		return
+
+	var/turf/T = get_turf(owner)
+	if(owner.is_psi_null() || (istype(T) && T.is_psi_null()))
+		if(stamina > 0)
+			stamina = max(0, stamina - rand(3,5))
+			if(prob(5)) to_chat(owner, "<span class='danger'>You feel your psi-power leeched away into the void...</span>")
+		return
+
 	else if(stamina < max_stamina)
 		if(owner.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))

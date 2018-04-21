@@ -7,9 +7,10 @@
 	check_armour = "bullet"
 	embed = 1
 	sharp = 1
-	var/mob_passthrough_check = 0
-
+	remains_type = /obj/item/material/shard/shrapnel
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
+
+	var/mob_passthrough_check = 0
 
 /obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
 	if (..(target, blocked))

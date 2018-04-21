@@ -24,9 +24,6 @@
 	heat_capacity = 10000
 	var/lava = 0
 
-/turf/simulated/floor/is_psi_null()
-	return flooring ? flooring.is_psi_null() : ..()
-
 /turf/simulated/floor/is_plating()
 	return !flooring
 

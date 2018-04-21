@@ -35,6 +35,7 @@
 
 	var/accuracy = 0
 	var/dispersion = 0.0
+	var/remains_type
 
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
@@ -88,7 +89,7 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_type != BRUTE)
+	if(!remains_type || !embed || damage_type != BRUTE)
 		return 0
 	return 1
 

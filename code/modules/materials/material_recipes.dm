@@ -136,7 +136,3 @@
 		new/datum/stack_recipe("white folder", /obj/item/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/folder/yellow), \
 		))
-
-/material/nullglass/generate_recipes()
-	. = ..()
-	recipes += new/datum/stack_recipe("nullglass floor tile", /obj/item/stack/tile/floor_nullglass, 1, 1, 20)

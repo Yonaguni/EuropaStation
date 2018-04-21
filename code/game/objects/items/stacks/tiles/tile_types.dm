@@ -123,13 +123,6 @@
 /obj/item/stack/tile/floor_freezer/fifty
 	amount = 50
 
-/obj/item/stack/tile/floor_nullglass
-	name = "nullglass floor tile"
-	singular_name = "nullglass floor tile"
-	icon_state = "tile_nullglass"
-	matter = list("nullglass" = 937.5)
-	builds_flooring = /decl/flooring/tiling/nullglass
-
 /obj/item/stack/tile/floor/cyborg
 	name = "floor tile synthesizer"
 	desc = "A device that makes floor tiles."

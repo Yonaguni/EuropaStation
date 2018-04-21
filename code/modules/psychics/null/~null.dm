@@ -1,0 +1,2 @@
+#undef ADD_PSI_NULL_ATOM
+#undef REMOVE_PSI_NULL_ATOM

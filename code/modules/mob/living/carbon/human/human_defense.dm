@@ -26,10 +26,10 @@ meteor_act
 	if(!(species.flags & NO_EMBED) && P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")
 		if(prob(20 + max(P.damage - armor, -10)))
-			var/obj/item/material/shard/shrapnel/SP = new()
+			var/obj/item/material/shard/shrapnel/SP = new P.remains_type()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
-			SP.loc = organ
+			SP.forceMove(organ)
 			organ.embed(SP)
 
 	var/blocked = ..(P , def_zone)

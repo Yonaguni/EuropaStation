@@ -35,10 +35,3 @@
 	..(newloc,"sandstone","diamond")
 /turf/simulated/wall/titanium/New(var/newloc)
 	..(newloc,"titanium")
-
-/turf/simulated/wall/nullglass
-	color = "#FF00FF"
-
-/turf/simulated/wall/nullglass/New(var/newloc)
-	color = null
-	..(newloc,"nullglass")
