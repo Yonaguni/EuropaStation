@@ -7,8 +7,8 @@
 	var/cost_modifier = 1             // Multiplier for power use stamina costs.
 	var/stun = 0                      // Number of process ticks we are stunned for.
 	var/next_power_use = 0            // world.time minimum before next power use.
-	var/stamina = 30                  // Current psi pool.
-	var/max_stamina = 30              // Max psi pool.
+	var/stamina = 50                  // Current psi pool.
+	var/max_stamina = 50              // Max psi pool.
 
 	var/list/latencies                // List of all currently latent faculties.
 	var/list/ranks                    // Assoc list of psi faculties to current rank.
