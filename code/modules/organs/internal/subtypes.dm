@@ -9,3 +9,9 @@
 
 /obj/item/organ/internal/lungs/octopus/can_drown()
 	return FALSE
+
+/obj/item/organ/internal/lungs/aquatic
+	has_gills = TRUE
+
+/obj/item/organ/internal/lungs/aquatic/can_drown()
+	return FALSE

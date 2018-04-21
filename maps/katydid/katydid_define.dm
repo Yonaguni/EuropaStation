@@ -34,7 +34,7 @@
 
 	var/ship_prefix = "ICV"
 	var/ship_name = "Katydid"
-	var/datum/trade_destination/destination_location
+	var/datum/stellar_location/destination_location
 	var/initial_announcement
 
 	var/list/possible_ship_names = list(
@@ -89,7 +89,7 @@
 
 /datum/map/katydid/update_locations()
 	. = ..()
-	destination_location = pick(all_trade_destinations - stellar_location)
+	destination_location = pick(all_stellar_locations - stellar_location)
 	if(stellar_location.flavour_locations && stellar_location.flavour_locations.len)
 		specific_location = pick(stellar_location.flavour_locations)
 		initial_announcement = "Wave jump complete. The SHIPNAME has safely arrived in the vicinity of [specific_location], [stellar_location.is_a_planet ? "orbiting" : "within"] [stellar_location.name]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
@@ -109,7 +109,7 @@
 
 /obj/effect/landmark/map_data/katydid
 	name = "ICV Katydid"
-	desc = "A Free Trade Union freight vessel."
+	desc = "An independant freight vessel."
 	height = 1
 
 /obj/effect/landmark/map_data/katydid/initialize()
@@ -118,6 +118,8 @@
 	. = ..()
 
 /datum/map/katydid/handle_captain_join(var/mob/living/carbon/human/captain)
+
+	var/datum/faction/F = get_faction(default_faction)
 	var/obj/item/paper/charter = new(get_turf(captain))
 	charter.name = "document (ship charter)"
 	charter.desc = "An official-looking watermarked charter of hire for a spacecraft. Don't lose it."
@@ -154,7 +156,7 @@
 		<br>
 		<br>
 		<i>[captain.real_name]</i>, Captain<br>
-		<i>[random_name(pick(list(MALE,FEMALE)))]</i>, Speaker for the Callisto Free Traders
+		<i>[F.get_random_name(pick(list(MALE,FEMALE)))]</i>, Speaker for the Callisto Free Traders
 	"}
 
 	if(!captain.put_in_hands(charter))
@@ -164,11 +166,11 @@
 			captain.equip_to_slot(charter, slot_r_store)
 
 /datum/map/katydid/show_map_info(var/user)
-	user << "<b>The Katydid</b> is a charter vessel belonging to the <b>Free Trade Union</b>, a loose interplanetary \
-		coalition of independant traders, merchants and politicians opposed to the strength and influence \
-		of the Luna megacorporations. The Katydid itself operates out of the Jovian Navy shipyard in orbit \
-		around Callisto, but carries freight all over Sol at the behest of whichever captain has decided to \
-		charter her this month."
+	user << "<b>The Katydid</b> is a charter vessel belonging to the <b>Callisto Free Traders</b>, a loose \
+		interplanetary coalition of independant traders, merchants and politicians opposed to the strength \
+		and influence of the Luna megacorporations. The Katydid itself operates out of the Jovian Navy \
+		shipyard in orbit around Callisto, but carries freight all over Sol at the behest of whichever \
+		captain has decided to charter her this month."
 
 /datum/map/katydid/get_round_completion_text(var/mob/player)
 	if(player.stat != DEAD)
@@ -211,4 +213,4 @@
 	world << "<span class='notice'><b>Naval Command has registered this vessel as the [katydid.full_name]!</b></span>"
 
 /datum/map/katydid/update_locations()
-	stellar_location = pick(all_trade_destinations)
+	stellar_location = pick(all_stellar_locations)

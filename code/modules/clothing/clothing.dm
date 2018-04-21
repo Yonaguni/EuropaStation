@@ -79,12 +79,7 @@
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
 
-	//Set species_restricted list
-	switch(target_species)
-		if("Human")	//humanoid bodytypes
-			species_restricted = list("Human") //humans/machines can wear each other's suits
-		else
-			species_restricted = list(target_species)
+	species_restricted = list(target_species)
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -96,11 +91,7 @@
 		return //this item doesn't use the species_restricted system
 
 	//Set species_restricted list
-	switch(target_species)
-		if("Human")
-			species_restricted = list("Human")
-		else
-			species_restricted = list(target_species)
+	species_restricted = list(target_species)
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -114,7 +105,7 @@
 	w_class = 1.0
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/corvid/ears.dmi')
+	sprite_sheets = list(BODYTYPE_CORVID = 'icons/mob/species/corvid/ears.dmi')
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -175,8 +166,8 @@ BLIND     // can't see anything
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/eyes.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/eyes.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/eyes.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/get_mob_overlay(mob/user_mob, slot)
@@ -207,7 +198,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/gloves.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/gloves.dmi'
 		)
 	blood_overlay_type = "bloodyhands"
 
@@ -265,8 +256,8 @@ BLIND     // can't see anything
 	light_color = COLOUR_LTEMP_40W_TUNGSTEN
 
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/head.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/head.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/head.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/head.dmi'
 		)
 	blood_overlay_type = "helmetblood"
 
@@ -366,7 +357,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/masks.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/masks.dmi'
 		)
 
 	var/voicechange = 0
@@ -405,8 +396,8 @@ BLIND     // can't see anything
 	w_class = 3
 
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/suit.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/suit.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/suit.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/suit.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()

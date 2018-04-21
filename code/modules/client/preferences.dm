@@ -45,20 +45,15 @@ datum/preferences
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
-	var/species = "Human"               //Species datum to use.
-	var/species_preview                 //Used for the species selection window.
+	var/species = DEFAULT_SPECIES         //Species datum to use.
 	var/list/alternate_languages = list() //Secondary language(s)
-	var/list/language_prefixes = list() //Kanguage prefix keys
-	var/list/gear						//Custom/fluff item loadout.
+	var/list/language_prefixes = list()   //Kanguage prefix keys
+	var/list/gear						  //Custom/fluff item loadout.
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
-	var/religion = "None"               //Religious association.
 
-	var/char_branch						//branch system
-	var/char_rank						//rank system
 		//Mob preview
 	var/icon/preview_icon = null
 
@@ -83,8 +78,6 @@ datum/preferences
 	var/gen_record = ""
 	var/exploit_record = ""
 
-	var/corporate_relation = "Neutral"
-
 	var/uplinklocation = "PDA"
 
 	// OOC Metadata:
@@ -102,7 +95,9 @@ datum/preferences
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
-	real_name = random_name(gender,species)
+
+	var/datum/faction/F = get_faction(using_map.default_faction)
+	real_name = F.get_random_name(gender,species)
 	b_type = RANDOM_BLOOD_TYPE
 
 	gear = list()
@@ -195,8 +190,11 @@ datum/preferences
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	character.set_species(species)
+
+	character.set_home_system(get_stellar_location(home_system))
+	character.set_personal_faction(get_faction(faction))
 	if(be_random_name)
-		real_name = random_name(gender,species)
+		real_name = character.personal_faction.get_random_name(gender,species)
 
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")
@@ -283,11 +281,6 @@ datum/preferences
 	character.sec_record = sec_record
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
-
-	character.home_system = home_system
-	character.citizenship = citizenship
-	character.personal_faction = faction
-	character.religion = religion
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat  = list()

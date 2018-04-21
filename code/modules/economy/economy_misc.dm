@@ -49,9 +49,9 @@
 //Note that you have to specify each subspecies individually. Shouldn't be a big deal.
 /var/list/economic_species_modifier = list(
 												/datum/species/human             = 10,
-												/datum/species/human/gravworlder = 10,
-												/datum/species/human/spacer      = 10,
-												/datum/species/human/vatgrown    = 10,
+												/datum/species/human/mercurial   = 10,
+												/datum/species/human/orbital     = 10,
+												/datum/species/human/nonborn     = 10,
 												/datum/species/corvid            = 5,
 												/datum/species/octopus           = 5
 )
@@ -73,7 +73,6 @@ var/next_account_number = 0
 var/list/all_money_accounts = list()
 var/economy_init = 0
 var/list/all_trade_destinations = list()
-var/datum/trade_destination/default_stellar_location = new /datum/trade_destination/europa
 
 /proc/setup_economy()
 	if(economy_init)
@@ -81,12 +80,6 @@ var/datum/trade_destination/default_stellar_location = new /datum/trade_destinat
 
 	news_network.CreateFeedChannel("The Copernican", "SolGov Minister of Information", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
-
-	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)
-		var/datum/trade_destination/D = new loc_type
-		all_trade_destinations += D
-		weighted_randomevent_locations[D] = D.viable_random_events.len
-		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
 
 	create_station_account()
 

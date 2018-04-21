@@ -19,16 +19,16 @@
 
 /obj/item/clothing/head/helmet/space/rig/combat
 	light_overlay = "helmet_light_dual_green"
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/suit/space/rig/combat
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/shoes/magboots/rig/combat
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/gloves/rig/combat
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/rig/combat/equipped
 	initial_modules = list(

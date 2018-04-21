@@ -134,7 +134,8 @@
 			qdel(mannequin)
 
 			if(client.prefs.be_random_name)
-				client.prefs.real_name = random_name(client.prefs.gender)
+				var/datum/faction/F = get_faction(using_map.default_faction)
+				client.prefs.real_name = F.get_random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -314,7 +315,6 @@
 		return 0
 
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	UpdateFactionList(character)
 	equip_custom_items(character)
 
 	character.apply_aspects(ASPECTS_EQUIPMENT)
@@ -424,13 +424,14 @@
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]
 		if(chosen_language)
-			var/is_species_lang = (chosen_language.name in new_character.species.secondary_langs)
+			var/is_species_lang = (chosen_language.name in new_character.personal_faction.secondary_langs)
 			if(is_species_lang || ((!(chosen_language.flags & RESTRICTED) || has_admin_rights()) && is_alien_whitelisted(src, chosen_language)))
 				new_character.add_language(lang)
 
 	if(ticker.random_players)
+		var/datum/faction/F = get_faction(using_map.default_faction)
 		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.real_name = F.get_random_name(new_character.gender)
 		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character)
@@ -488,7 +489,7 @@
 	if(client.prefs.species)
 		chosen_species = client.prefs.get_current_species()
 	if(!chosen_species || !check_species_allowed(chosen_species, 0))
-		return "Human"
+		return DEFAULT_SPECIES
 	return chosen_species.name
 
 /mob/new_player/get_gender()

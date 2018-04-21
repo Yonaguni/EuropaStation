@@ -8,7 +8,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/head.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/head.dmi'
 		)
 
 	item_icons = list(

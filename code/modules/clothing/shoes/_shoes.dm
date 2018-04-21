@@ -16,7 +16,7 @@
 	force = 2
 	var/overshoes = 0
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/shoes.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/shoes.dmi'
 		)
 	blood_overlay_type = "shoeblood"
 

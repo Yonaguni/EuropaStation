@@ -49,7 +49,7 @@ var/list/organ_cache = list()
 		b_type = holder.b_type
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species["Human"]
+		species = all_species[DEFAULT_SPECIES]
 		if(istype(owner))
 			species = owner.species
 			initial_gender = owner.gender

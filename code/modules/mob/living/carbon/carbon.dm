@@ -390,12 +390,7 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language)
-		return default_language
-
-	if(!species)
-		return null
-	return species.default_language ? all_languages[species.default_language] : null
+	return default_language
 
 /mob/living/carbon/show_inv(var/mob/user)
 	user.set_machine(src)

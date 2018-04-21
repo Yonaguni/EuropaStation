@@ -31,3 +31,24 @@
 	if(. > 0)
 		. = max(0, . - rand(2,5))
 		shatter()
+
+
+/obj/item/storage/belt/soulstone
+	name = "soul stone belt"
+	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away."
+	icon_state = "soulstonebelt"
+	item_state = "soulstonebelt"
+	storage_slots = 6
+	can_hold = list(
+		/obj/item/soulstone
+		)
+
+/obj/item/storage/belt/soulstone/full/New()
+	..()
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	new /obj/item/soulstone(src)
+	make_exact_fit()

@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species
-	var/list/species_allowed = list("Human")
+	var/list/species_allowed = list(DEFAULT_SPECIES)
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
@@ -51,7 +51,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -62,19 +62,19 @@
 		icon_state = "hair_shorthair3"
 
 	corvid
-		name = "Neo-Corvid Plumage"
+		name = "Corvid Plumage"
 		icon_state = "corvid_default"
-		species_allowed = list("Neo-Corvid")
+		species_allowed = list(BODYTYPE_CORVID)
 
 	corvid_ears
-		name = "Neo-Corvid Curly"
+		name = "Corvid Curly"
 		icon_state = "corvid_ears"
-		species_allowed = list("Neo-Corvid")
+		species_allowed = list(BODYTYPE_CORVID)
 
 	corvid_excited
-		name = "Neo-Corvid Spiky"
+		name = "Corvid Spiky"
 		icon_state = "corvid_spiky"
-		species_allowed = list("Neo-Corvid")
+		species_allowed = list(BODYTYPE_CORVID)
 
 	cut
 		name = "Cut Hair"
@@ -188,13 +188,13 @@
 		name = "Bobcurl"
 		icon_state = "hair_bobcurl"
 		gender = FEMALE
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	bob
 		name = "Bob"
 		icon_state = "hair_bobcut"
 		gender = FEMALE
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	bowl
 		name = "Bowl"
@@ -205,7 +205,7 @@
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
 		gender = MALE
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	crew
 		name = "Crewcut"
@@ -298,7 +298,7 @@
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 	jensen
 		name = "Adam Jensen Hair"
 		icon_state = "hair_jensen"
@@ -317,7 +317,7 @@
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 	kusangi
 		name = "Kusanagi Hair"
 		icon_state = "hair_kusanagi"
@@ -475,7 +475,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	watson
 		name = "Watson Mustache"
@@ -516,7 +516,7 @@
 	elvis
 		name = "Elvis Sideburns"
 		icon_state = "facial_elvis"
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	abe
 		name = "Abraham Lincoln Beard"
@@ -555,9 +555,9 @@
 	human
 		name = "Default human skin"
 		icon_state = "default"
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)
 
 	human_tatt01
 		name = "Tatt01 human skin"
 		icon_state = "tatt1"
-		species_allowed = list("Human")
+		species_allowed = list(DEFAULT_SPECIES)

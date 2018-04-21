@@ -1,5 +1,5 @@
 /datum/language/monkey
-	name = "Chimpanzee"
+	name = LANGUAGE_MONKEY
 	desc = "Ook ook ook."
 	speech_verb = "chimpers"
 	ask_verb = "chimpers"

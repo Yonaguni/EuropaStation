@@ -22,14 +22,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
 	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
+	var/base_pay = 100
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
-
-	var/list/allowed_branches			  // For Torch, also expandable for other purposes
-	var/list/allowed_ranks				  // Ditto
 
 /datum/job/Topic(href, href_list)
 	. = ..()
@@ -71,23 +69,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
-	var/loyalty = 1
-	if(H.client)
-		switch(H.client.prefs.corporate_relation)
-			if(COMPANY_LOYAL)		loyalty = 1.30
-			if(COMPANY_SUPPORTATIVE)loyalty = 1.15
-			if(COMPANY_NEUTRAL)		loyalty = 1
-			if(COMPANY_SKEPTICAL)	loyalty = 0.85
-			if(COMPANY_OPPOSED)		loyalty = 0.70
-
-	//give them an account in the station database
-	if(!(H.species && (H.species.type in economic_species_modifier)))
-		return //some bizarre species like monkey? You don't get an account.
-
-	var/species_modifier = economic_species_modifier[H.species.type]
-
-	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * species_modifier
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	var/datum/money_account/M = create_account(H.real_name, max(0, base_pay * (rand() + H.personal_faction.financial_influence +  H.home_system.economic_power + H.species.economic_modifier)), null)
 	if(H.mind)
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"

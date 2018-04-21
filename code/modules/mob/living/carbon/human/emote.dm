@@ -228,7 +228,7 @@
 		if ("deathgasp")
 			m_type = VISIBLE_MESSAGE
 
-			if(species.name == "Neo-Corvid")
+			if(species.get_bodytype(src) == BODYTYPE_CORVID)
 				message = "swoons dramatically, letting out a long, fading gasp before dropping to the floor in a heap!"
 			else
 				message = "[species.get_death_message()]"
@@ -534,7 +534,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, vomit"}
 		custom_emote(m_type,message)
 
 	// Woop woop snowflake snowflake
-	if(act == "deathgasp" && species.name == "Neo-Corvid" && stat != DEAD)
+	if(act == "deathgasp" && species.get_bodytype(src) == BODYTYPE_CORVID && stat != DEAD)
 		death()
 
 /mob/living/carbon/human/verb/pose()

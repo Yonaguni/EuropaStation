@@ -417,7 +417,6 @@ obj/random/material //Random materials for building stuff
 					/obj/item/toy/therapy_yellow,\
 					/obj/item/toy/therapy_orange,\
 					/obj/item/toy/therapy_green,\
-					/obj/item/toy/cultsword,\
 					/obj/item/toy/katana,\
 					/obj/item/toy/snappop,\
 					/obj/item/toy/sword,\

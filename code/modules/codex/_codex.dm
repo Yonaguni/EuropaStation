@@ -93,6 +93,25 @@ var/datum/controller/subsystem/codex/SScodex
 
 		entries_by_string[entry.display_name] = entry
 
+	// Create entries for locations.
+	get_stellar_location()
+	for(var/sloc in all_stellar_locations)
+		var/datum/stellar_location/stellar_loc = all_stellar_locations[sloc]
+		var/datum/codex_entry/entry = new(_display_name = "[stellar_loc.name] (location)")
+		entry.lore_text = "[stellar_loc.name]<br><b>Distance from Sol</b>: [stellar_loc.distance]AU"
+		if(LAZYLEN(stellar_loc.flavour_locations))
+			entry.associated_strings = list()
+			entry.lore_text += "<br><br><b>Areas of interest:</b>"
+			for(var/specific_loc in stellar_loc.flavour_locations)
+				entry.associated_strings += lowertext(specific_loc)
+				entry.lore_text += "<br>- <b>[specific_loc]</b>"
+				if(stellar_loc.flavour_locations[specific_loc])
+					entry.lore_text += " - [stellar_loc.flavour_locations[specific_loc]]"
+
+	// Create entries for factions.
+
+	// Create entries for species.
+
 	// Load additional entries from config.
 	// TODO
 
