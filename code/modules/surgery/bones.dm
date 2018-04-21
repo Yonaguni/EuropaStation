@@ -73,7 +73,7 @@
 	if (!hasorgans(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.organ_tag != BP_HEAD && !(affected.robotic >= ORGAN_ROBOT) && affected.is_open() && (affected.status & ORGAN_BROKEN) && affected.stage < 2
+	return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.is_open() && (affected.status & ORGAN_BROKEN) && affected.stage < 2
 
 /datum/surgery_step/set_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

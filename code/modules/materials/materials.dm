@@ -453,23 +453,6 @@ var/list/name_to_material
 	new build_path(T, build_dir, 1)
 	return 1
 
-/material/nullglass
-	name = "nullglass"
-	lore_text = "A poorly understood, brittle, glasslike substance whose production is something of a mystery. Inimical to psi-operant abilities; even touching it is enough to cause physical illness in operants."
-	icon_colour = "#ff6088"
-	conductive = 1
-	stack_type = /obj/item/stack/material/nullglass
-	flags = MATERIAL_BRITTLE
-	opacity = 0.5
-	integrity = 30
-	shard_type = SHARD_SHARD
-	tableslam_noise = 'sound/effects/Glasshit.ogg'
-	hardness = 80
-	weight = 25
-	door_icon_base = "stone"
-	destruction_desc = "shatters"
-	hitsound = 'sound/effects/Glasshit.ogg'
-
 /material/glass/proc/is_reinforced()
 	return (integrity > 75) //todo
 

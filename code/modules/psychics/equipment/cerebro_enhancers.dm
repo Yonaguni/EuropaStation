@@ -144,8 +144,7 @@
 	if(H.psi)
 		H.psi.max_stamina = boosted_psipower
 		H.psi.stamina = H.psi.max_stamina
-		H.psi.aura_color = "#FFAAFF"
-		H.psi.update()
+		H.psi.update(force = TRUE)
 
 	to_chat(H, "<span class='notice'>\The [src] chimes quietly as it finishes boosting your brain.</span>")
 	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate

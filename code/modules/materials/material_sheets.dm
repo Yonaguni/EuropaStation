@@ -22,7 +22,7 @@
 	material = get_material_by_name("[default_type]")
 	if(!material)
 		qdel(src)
-		return 0
+		return
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
@@ -37,7 +37,6 @@
 
 	matter = material.get_matter()
 	update_strings()
-	return 1
 
 /obj/item/stack/material/get_material()
 	return material
@@ -265,12 +264,4 @@
 	default_type = "rphglass"
 
 /obj/item/stack/material/glass/phoronrglass/fifty
-	amount = 50
-
-/obj/item/stack/material/nullglass
-	name = "nullglass"
-	icon_state = "sheet-nullglass"
-	default_type = "nullglass"
-
-/obj/item/stack/material/nullglass/fifty
 	amount = 50
