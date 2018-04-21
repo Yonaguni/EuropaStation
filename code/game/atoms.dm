@@ -212,8 +212,15 @@ its easier to just keep the beam vertical.
 		else
 			f_name += "oil-stained [name][infix]."
 
-	user << "\icon[src] That's [f_name] [suffix]"
-	user << desc
+	to_chat(user, "\icon[src] That's [f_name] [suffix]")
+	to_chat(user, desc)
+
+	if(HAS_ASPECT(user, ASPECT_APPRAISER))
+		var/value = round(get_value(src) * rand(0.75, 1.25))
+		if(value > 0)
+			to_chat(user, "<span class='notice'>You estimate \the [src] to be worth [value] credit\s.</span>")
+		else
+			to_chat(user, "<span class='notice'>You estimate \the [src] to be worthless.</span>")
 
 	return distance == -1 || (get_dist(src, user) <= distance)
 
