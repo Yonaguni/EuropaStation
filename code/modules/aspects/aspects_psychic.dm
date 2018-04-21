@@ -9,11 +9,8 @@
 
 /decl/aspect/psi/apply(var/mob/living/carbon/human/holder)
 	. = ..()
-	if(.)
-		if(assoc_faculty && assoc_rank)
-			world << "setting [assoc_faculty] psi rank to [assoc_rank]."
-			holder.set_psi_rank(assoc_faculty, assoc_rank, take_larger = TRUE, defer_update = TRUE)
-			world << "[assoc_faculty] psi rank is now [holder.psi.get_rank(assoc_faculty)]."
+	if(. && assoc_faculty && assoc_rank)
+		holder.set_psi_rank(assoc_faculty, assoc_rank, take_larger = TRUE, defer_update = TRUE)
 
 // COERCIVE
 /decl/aspect/psi/coercion

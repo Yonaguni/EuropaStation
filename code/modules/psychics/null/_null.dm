@@ -42,9 +42,9 @@
 /atom/proc/withstand_psi_stress(var/stress)
 	if(stress <= 0)
 		return 0
-	for(var/thing in (psi_null_atoms-src))
+	for(var/thing in psi_null_atoms)
 		var/atom/movable/AM = thing
-		if(istype(AM))
+		if(istype(AM) && AM != src)
 			stress = AM.withstand_psi_stress(stress)
 			if(stress <= 0)
 				break
