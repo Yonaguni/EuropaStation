@@ -122,7 +122,7 @@
 			need_aspect_sort = FALSE
 		for(var/thing in personal_aspects)
 			var/decl/aspect/A = thing
-			if(aspect_types && (aspect_types & A.aspect_flags))
+			if(!aspect_types || (aspect_types & A.aspect_flags))
 				A.apply(src)
 				do_update = TRUE
 	return do_update

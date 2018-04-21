@@ -59,6 +59,16 @@
 			. = FALSE
 		ui.update_icon()
 
+/datum/psi_complexus/proc/hide_auras()
+	if(owner.client)
+		for(var/thing in all_aura_images)
+			owner.client.images -= thing
+
+/datum/psi_complexus/proc/show_auras()
+	if(owner.client)
+		for(var/thing in all_aura_images)
+			owner.client.images |= thing
+
 /datum/psi_complexus/proc/backblast(var/value)
 
 	// Can't backblast if you're controlling your power.
@@ -91,6 +101,3 @@
 	stamina = min(stamina, max_stamina)
 	cancel()
 	update()
-
-/datum/psi_complexus/proc/attempt_regeneration()
-	return

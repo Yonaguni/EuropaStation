@@ -31,14 +31,10 @@
 					owner.client.screen |= ui.components
 					owner.client.screen |= ui
 			owner.verbs |= /mob/living/proc/say_telepathy
-			if(owner.client)
+			if(!suppressed && owner.client)
 				for(var/thing in all_aura_images)
 					owner.client.images |= thing
 		else
-			owner.verbs -= /mob/living/proc/say_telepathy
-			if(owner.client)
-				for(var/thing in all_aura_images)
-					owner.client.images -= thing
 			qdel(src)
 
 /datum/psi_complexus/process()
@@ -56,12 +52,13 @@
 	else if(stamina < max_stamina)
 		if(owner.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))
-			if(stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT && owner.health < owner.maxHealth)
-				attempt_regeneration()
 		else if(owner.stat == UNCONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(3,5))
 
-	var/next_aura_size = max(1,(stamina/max_stamina)*rating)
+	if(owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
+		attempt_regeneration()
+
+	var/next_aura_size = max(1,(stamina/max_stamina)*min(3,rating))
 	var/next_aura_alpha = round(((suppressed ? max(0,rating - 2) : rating)/5)*255)
 
 	if(next_aura_alpha != last_aura_alpha || next_aura_size != last_aura_size || aura_color != last_aura_color)
@@ -75,3 +72,109 @@
 
 	if(update_hud)
 		ui.update_icon()
+
+/datum/psi_complexus/proc/attempt_regeneration()
+
+	var/heal_general =  FALSE
+	var/heal_poison =   FALSE
+	var/heal_bleeding = FALSE
+	var/heal_rate =     0
+	var/mend_prob =     0
+
+	var/use_rank = get_rank(PSI_REDACTION)
+	if(use_rank >= PSI_RANK_PARAMOUNT)
+		heal_general = TRUE
+		heal_poison = TRUE
+		heal_bleeding = TRUE
+		mend_prob = 50
+		heal_rate = 7
+	else if(use_rank == PSI_RANK_GRANDMASTER)
+		heal_bleeding = TRUE
+		heal_poison = TRUE
+		mend_prob = 20
+		heal_rate = 5
+	else if(use_rank == PSI_RANK_MASTER)
+		heal_bleeding = TRUE
+		mend_prob = 10
+		heal_rate = 3
+	else if(use_rank == PSI_RANK_OPERANT)
+		heal_bleeding = TRUE
+		heal_rate = 1
+	else
+		return
+
+	if(!heal_rate || stamina < heal_rate)
+		return // Don't backblast from trying to heal ourselves thanks.
+
+	if(ishuman(owner))
+
+		var/mob/living/carbon/human/H = owner
+
+		// Mend internal damage.
+		if(prob(mend_prob))
+
+			// Heal organ damage.
+			for(var/obj/item/organ/I in H.internal_organs)
+
+				if(I.robotic >= ORGAN_ROBOT)
+					continue
+
+				if(I.damage > 0 && spend_power(heal_rate))
+					I.damage = max(I.damage - heal_rate, 0)
+					if(prob(5))
+						to_chat(H, "<span class='notice'>Your innards itch as your autoredactive faculty mends your [I.parent_organ].</span>")
+					return
+
+			// Heal broken bones.
+			if(H.bad_external_organs.len)
+				for(var/obj/item/organ/external/E in H.bad_external_organs)
+
+					if(E.robotic >= ORGAN_ROBOT)
+						continue
+
+					if ((E.status & ORGAN_BROKEN) && E.damage < (E.min_broken_damage * config.organ_health_multiplier)) // So we don't mend and autobreak.
+						if(spend_power(heal_rate))
+							if(E.mend_fracture())
+								to_chat(H, "<span class='notice'>Your autoredactive faculty coaxes together the shattered bones in your [E.name].</span>")
+								return
+
+					if(heal_bleeding)
+
+						for(var/datum/wound/W in E.wounds)
+
+							if(W.internal && spend_power(heal_rate))
+								to_chat(H, "<span class='notice'>Your autoredactive faculty mends the torn veins in your [E.name], stemming the internal bleeding.</span>")
+								E.wounds -= W
+								E.update_damages()
+								return
+
+							if(W.bleeding() && spend_power(heal_rate))
+								to_chat(H, "<span class='notice'>Your autoredactive faculty knits together severed veins, stemming the bleeding from your [E.name].</span>")
+								W.bleed_timer = 0
+								E.status &= ~ORGAN_BLEEDING
+								return
+
+	// Heal radiation, cloneloss and poisoning.
+	if(heal_poison)
+		if(owner.radiation && spend_power(heal_rate))
+			if(prob(5)) to_chat(owner, "<span class='notice'>Your autoredactive faculty repairs some of the radiation damage to your body.</span>")
+			owner.radiation = max(0, owner.radiation - heal_rate)
+			return
+
+		if(owner.getCloneLoss() && spend_power(heal_rate))
+			if(prob(5)) to_chat(owner, "<span class='notice'>Your autoredactive faculty stitches together some of your mangled DNA.</span>")
+			owner.adjustCloneLoss(-heal_rate)
+			return
+
+		if(owner.getToxLoss() && spend_power(heal_rate))
+			if(prob(5)) to_chat(owner, "<span class='notice'>Your autoredactive faculty purges some of the toxins infusing your body.</span>")
+			owner.adjustToxLoss(-heal_rate)
+			return
+
+	// Heal everything left.
+	if(heal_general && owner.health < owner.maxHealth && spend_power(heal_rate))
+		owner.adjustBruteLoss(-(heal_rate))
+		owner.adjustFireLoss(-(heal_rate))
+		owner.adjustOxyLoss(-(heal_rate))
+		if(prob(5)) to_chat(owner, "<span class='notice'>Your skin crawls as your autoredactive faculty heals your body.</span>")
+		return

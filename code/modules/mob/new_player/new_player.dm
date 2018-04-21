@@ -318,6 +318,7 @@
 	equip_custom_items(character)
 
 	character.apply_aspects(ASPECTS_EQUIPMENT)
+	character.announce_psionics()
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "Computer")

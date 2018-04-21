@@ -307,6 +307,7 @@ var/global/datum/controller/gameticker/ticker
 					UpdateFactionList(player)
 					equip_custom_items(player)
 					player.apply_aspects(ASPECTS_EQUIPMENT)
+					player.announce_psionics()
 
 		if(captainless)
 			for(var/mob/M in player_list)

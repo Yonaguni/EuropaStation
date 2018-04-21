@@ -67,7 +67,7 @@
 /decl/aspect/prosthesis_base
 	name = ASPECT_NEURAL_INTERFACE
 	desc = "You have a neural interface for controlling prosthetic limbs. Any amputated limbs will be replaced by basic prosthetics by this aspect."
-	aspect_cost = 4
+	aspect_cost = 5
 	category = "Amputations and Prosthetics"
 	sort_value = 2
 	aspect_flags = ASPECTS_EQUIPMENT
@@ -110,6 +110,7 @@
 
 /decl/aspect/prosthesis_emp
 	name = ASPECT_EMP_HARDENING
+	desc = "Your prosthetics are hardened against EMP."
 	parent_name = ASPECT_NEURAL_INTERFACE
 	category = "Amputations and Prosthetics"
 	sort_value = 3
@@ -125,6 +126,7 @@
 // Exactly as above, just applies it for a second time.
 /decl/aspect/prosthesis_emp/adv
 	name = ASPECT_EMP_HARDENING_PLUS
+	desc = "Your prosthetics are lined with a Faraday mesh and are almost completely impervious to EMP."
 	parent_name = ASPECT_EMP_HARDENING
 
 /decl/aspect/prosthetic_organ
@@ -168,3 +170,13 @@
 	name = ASPECT_PROSTHETIC_STOMACH
 	desc = "You have a literal iron stomach."
 	apply_to_organ = BP_STOMACH
+
+/*
+TODO
+	Autodiagnostic Module -          health scan your prosthetics
+	Self-Repair System -             gradual repair over time (autoredaction equivalent)
+	Derringer Mk6 Skull-Gun -        single-shot concealed gun, reloadable via surgery
+	XV88 Wolverine Arm Blade -       toggle verb, melee attacks become sharp
+	SK-12 Electrocyte Palm Emitter - toggle verb, melee attacks electrocute
+	Retinal Overlay -                vision modes, better night vision
+*/

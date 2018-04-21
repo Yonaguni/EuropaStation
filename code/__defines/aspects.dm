@@ -82,10 +82,10 @@
 #define ASPECT_PSI_PKINESIS_O   "Operant Psychokinetic Faculty"
 #define ASPECT_PSI_PKINESIS_MC  "Master Psychokinetic"
 #define ASPECT_PSI_PKINESIS_GMC "Grandmaster Psychokinetic"
-#define ASPECT_PSI_REDACTOR_L   "Latent Biokinetic Faculty"
-#define ASPECT_PSI_REDACTOR_O   "Operant Biokinetic Faculty"
-#define ASPECT_PSI_REDACTOR_MC  "Master Biokinetic"
-#define ASPECT_PSI_REDACTOR_GMC "Grandmaster Biokinetic"
+#define ASPECT_PSI_REDACTOR_L   "Latent Redactive Faculty"
+#define ASPECT_PSI_REDACTOR_O   "Operant Redactive Faculty"
+#define ASPECT_PSI_REDACTOR_MC  "Master Redactor"
+#define ASPECT_PSI_REDACTOR_GMC "Grandmaster Redactor"
 
 // Restricted aspects.
 #define ASPECT_XRAY                  "X-Ray Vision"
