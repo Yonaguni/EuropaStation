@@ -44,3 +44,17 @@ var/static/list/psychic_ids_to_strings = list(
 //	"[PSI_INTERROGATIVE]" = "Interrogative",
 //	"[PSI_PROCATALEPTIC]" = "Procataleptic"
 	)
+
+var/static/list/armour_faculty_by_type = list(
+	melee =  "[PSI_PSYCHOKINESIS]",
+	bullet = "[PSI_PSYCHOKINESIS]",
+	bomb =   "[PSI_ENERGISTICS]",
+	laser =  "[PSI_ENERGISTICS]",
+	energy = "[PSI_ENERGISTICS]",
+	bio =    "[PSI_REDACTION]",
+	rad =    "[PSI_REDACTION]",
+	psi =    "[PSI_COERCION]"
+	)
+
+var/list/all_aura_images = list()
+var/list/all_psi_complexes = list()

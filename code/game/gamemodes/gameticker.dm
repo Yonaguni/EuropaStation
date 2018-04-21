@@ -306,7 +306,8 @@ var/global/datum/controller/gameticker/ticker
 					job_master.EquipRank(player, player.mind.assigned_role, 0)
 					UpdateFactionList(player)
 					equip_custom_items(player)
-					player.apply_aspects()
+					player.apply_aspects(ASPECTS_EQUIPMENT)
+					player.announce_psionics()
 
 		if(captainless)
 			for(var/mob/M in player_list)

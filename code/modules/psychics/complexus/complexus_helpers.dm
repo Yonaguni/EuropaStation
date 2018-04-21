@@ -14,6 +14,14 @@
 		ui.update_icon()
 	cancel()
 
+/datum/psi_complexus/proc/get_armour(var/armourtype)
+	if(can_use_passive())
+		last_armor_check = world.time
+		return round(Clamp(Clamp(4 * rating, 0, 20) * get_rank(armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
+	else
+		last_armor_check = 0
+		return 0
+
 /datum/psi_complexus/proc/get_rank(var/faculty)
 	return (LAZYLEN(ranks) && ranks[faculty] ? ranks[faculty] : 0)
 
@@ -31,13 +39,16 @@
 	next_power_use = world.time + value
 	ui.update_icon()
 
+/datum/psi_complexus/proc/can_use_passive()
+	return (owner.stat == CONSCIOUS && !suppressed && !stun)
+
 /datum/psi_complexus/proc/can_use()
-	return (owner.stat == CONSCIOUS && !owner.incapacitated() && !suppressed && world.time >= next_power_use)
+	return (owner.stat == CONSCIOUS && !owner.incapacitated() && !suppressed && !stun && world.time >= next_power_use)
 
 /datum/psi_complexus/proc/spend_power(var/value = 0)
 	. = FALSE
 	if(can_use())
-		value = min(1, ceil(value * cost_modifier))
+		value = max(1, ceil(value * cost_modifier))
 		if(value <= stamina)
 			stamina -= value
 			ui.update_icon()
@@ -47,6 +58,16 @@
 			stamina = 0
 			. = FALSE
 		ui.update_icon()
+
+/datum/psi_complexus/proc/hide_auras()
+	if(owner.client)
+		for(var/thing in all_aura_images)
+			owner.client.images -= thing
+
+/datum/psi_complexus/proc/show_auras()
+	if(owner.client)
+		for(var/thing in all_aura_images)
+			owner.client.images |= thing
 
 /datum/psi_complexus/proc/backblast(var/value)
 
@@ -74,6 +95,7 @@
 					if(sponge) qdel(sponge)
 
 /datum/psi_complexus/proc/reset()
+	aura_color = initial(aura_color)
 	ranks = base_ranks.Copy()
 	max_stamina = initial(max_stamina)
 	stamina = min(stamina, max_stamina)

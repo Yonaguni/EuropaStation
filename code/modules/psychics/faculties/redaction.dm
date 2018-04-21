@@ -67,16 +67,19 @@
 				W.bleed_timer = 0
 				E.status &= ~ORGAN_BLEEDING
 				return TRUE
-			if(E.status & ORGAN_BROKEN)
-				to_chat(user, "<span class='notice'>You coax shattered bones to come together and fuse, mending the break.</span>")
-				E.status &= ~ORGAN_BROKEN
-				E.stage = 0
-				return TRUE
+
+		if(E.status & ORGAN_BROKEN)
+			to_chat(user, "<span class='notice'>You coax shattered bones to come together and fuse, mending the break.</span>")
+			E.status &= ~ORGAN_BROKEN
+			E.stage = 0
+			return TRUE
+
 		for(var/obj/item/organ/internal/I in E.internal_organs)
 			if(I.robotic < ORGAN_ROBOT && I.damage > 0)
 				to_chat(user, "<span class='notice'>You encourage the damaged tissue of \the [I] to repair itself.</span>")
 				I.damage = max(0, I.damage - rand(3,5))
 				return TRUE
+
 		to_chat(user, "<span class='notice'>You can find nothing within \the [target]'s [E.name] to mend.</span>")
 		return FALSE
 
@@ -102,14 +105,14 @@
 			else
 				target.radiation = 0
 			return TRUE
-		if(removing && target.getCloneLoss())
+		if(target.getCloneLoss())
 			to_chat(user, "<span class='notice'>You stitch together some of the mangled DNA within \the [target]...</span>")
 			if(target.getCloneLoss() >= removing)
 				target.adjustCloneLoss(-removing)
 			else
 				target.adjustCloneLoss(-(target.getCloneLoss()))
 			return TRUE
-		if(removing && target.getToxLoss())
+		if(target.getToxLoss())
 			to_chat(user, "<span class='notice'>You purge some of the toxins infusing \the [target]...</span>")
 			if(target.getToxLoss() >= removing)
 				target.adjustToxLoss(-removing)

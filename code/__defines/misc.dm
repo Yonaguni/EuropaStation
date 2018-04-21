@@ -188,7 +188,7 @@
 #define TICK_CHECK ( world.tick_usage > CURRENT_TICKLIMIT ? stoplag() : 0 )
 #define CHECK_TICK if (world.tick_usage > CURRENT_TICKLIMIT)  stoplag()
 
-/* 
+/*
 Define for getting a bitfield of adjacent turfs that meet a condition.
  ORIGIN is the object to step from, VAR is the var to write the bitfield to
  TVAR is the temporary turf variable to use, FUNC is the condition to check.

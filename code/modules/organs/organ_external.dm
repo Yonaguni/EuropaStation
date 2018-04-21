@@ -453,18 +453,6 @@ This function completely restores a damaged organ to perfect condition.
 			implanted_object.forceMove(get_turf(src))
 			implants -= implanted_object
 
-	if(owner && !ignore_prosthetic_prefs)
-		if(owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
-			var/status = owner.client.prefs.organ_data[organ_tag]
-			if(status == "amputated")
-				remove_rejuv()
-			else if(status == "cyborg")
-				var/robodata = owner.client.prefs.rlimb_data[organ_tag]
-				if(robodata)
-					robotize(robodata)
-				else
-					robotize()
-		owner.updatehealth()
 
 /obj/item/organ/external/remove_rejuv()
 	if(owner)

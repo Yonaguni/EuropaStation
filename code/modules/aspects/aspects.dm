@@ -7,26 +7,30 @@
 	//var/icon/use_icon                               // I REALLY HATE \icon A LOT. Causes a lot of lag.
 	var/aspect_cost = 1
 	var/category = "Traits"                           // Header for root aspects in char prefs.
-
 	var/parent_name
 	var/decl/aspect/parent
 	var/list/children = list()
-	var/apply_post_species_change
 	var/available_at_chargen = TRUE
+
+	var/aspect_flags = 0
+	var/transfer_with_mind = TRUE
+	var/sort_value = 0
 
 /*
 /decl/aspect/New()
 	..()
 	use_icon = icon(icon = 'icons/obj/aspects.dmi', icon_state = use_icon_state)
 */
+/decl/aspect/dd_SortValue()
+	return sort_value
 
 /decl/aspect/Destroy()
 	children.Cut()
 	parent = null
 	return ..()
 
-/decl/aspect/proc/do_post_spawn(var/mob/living/carbon/human/holder)
-	return
+/decl/aspect/proc/apply(var/mob/living/carbon/human/holder)
+	return (istype(holder))
 
 // Called by preferences selection for HTML display.
 /decl/aspect/proc/get_aspect_selection_data(var/caller, var/list/ticked_aspects = list(), var/recurse_level = 0, var/ignore_children_if_unticked = 1, var/ignore_unticked)
@@ -61,20 +65,14 @@
 			result += A.get_aspect_selection_data(caller, ticked_aspects, (recurse_level+1), ignore_children_if_unticked)
 	return result
 
-// Helpers.
-/datum/mind/var/list/aspects
-
 /mob/proc/get_aspect_data(var/mob/show_to)
 
-	if(!mind)
-		show_to << "That mob has no mind."
-		return
-	if(!LAZYLEN(mind.aspects))
+	if(!LAZYLEN(personal_aspects_by_name))
 		show_to << "That mob has no aspects."
 		return
 
 	var/aspect_cost = 0
-	for(var/aspect_name in mind.aspects)
+	for(var/aspect_name in personal_aspects_by_name)
 		var/decl/aspect/A = aspects_by_name[aspect_name]
 		if(A)
 			aspect_cost += A.aspect_cost
@@ -87,7 +85,7 @@
 			continue
 		var/printed_cat
 		for(var/decl/aspect/A in AC.aspects)
-			if(A.name in mind.aspects)
+			if(personal_aspects_by_name[A.name])
 				if(!printed_cat)
 					printed_cat = 1
 					dat += "<b>[AC.category]:</b><br>"
@@ -96,7 +94,7 @@
 			dat += "<br><hr><br>"
 
 	if(dat)
-		show_to << browse(dat, "window=aspect_list_[mind.name];size=600x800")
+		show_to << browse(dat, "window=aspect_list_[name];size=600x800")
 
 /mob/verb/show_own_aspects()
 	set category = "IC"
@@ -111,23 +109,32 @@
 	if (!istype(src,/datum/admins))
 		usr << "Error: you are not an admin!"
 		return
-	var/list/valid_mobs = list()
-	for(var/mob/M in world) // I swear there used to be a mob_list.
-		if(M.mind)
-			valid_mobs += M
-	var/mob/M = input("Select mob.", "Select mob.") as null|anything in valid_mobs
+	var/mob/M = input("Select mob.", "Select mob.") as null|anything in mob_list
 	if(!M) return
 	M.get_aspect_data(usr)
 	return
 
-/mob/living/proc/apply_aspects()
-	return
+/mob/proc/apply_aspects(var/aspect_types = 0)
+	var/do_update = FALSE
+	if(LAZYLEN(personal_aspects))
+		if(need_aspect_sort)
+			personal_aspects = dd_sortedObjectList(personal_aspects)
+			need_aspect_sort = FALSE
+		for(var/thing in personal_aspects)
+			var/decl/aspect/A = thing
+			if(!aspect_types || (aspect_types & A.aspect_flags))
+				A.apply(src)
+				do_update = TRUE
+	return do_update
 
-/mob/living/carbon/human/apply_aspects()
-	if(!mind || !LAZYLEN(mind.aspects))
-		return
-	for(var/aspect in mind.aspects)
-		var/decl/aspect/A = aspects_by_name[aspect]
-		if(istype(A))
-			A.do_post_spawn(src)
-	if(psi) psi.update() // In case of psi aspects, which defer the update to avoid spamming it 20 times in a row.
+/mob/living/apply_aspects(var/aspect_type)
+	// In case of psi aspects, which defer the update to avoid spamming it 20 times in a row.
+	. = ..(aspect_type)
+	if(. && psi)
+		psi.update()
+
+/mob/living/carbon/human/apply_aspects(var/aspect_type)
+	. = ..(aspect_type)
+	if(.)
+		update_body()
+		regenerate_icons()

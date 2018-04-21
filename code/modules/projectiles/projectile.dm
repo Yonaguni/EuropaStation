@@ -371,9 +371,8 @@
 				P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
-	if(ispath(impact_type))
+	if(ispath(impact_type) && location)
 		var/obj/effect/projectile/P = new impact_type(location.loc)
-
 		if(istype(P))
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
