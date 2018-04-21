@@ -64,7 +64,7 @@
 
 /decl/aspect/sharpeyed/apply(var/mob/living/carbon/human/holder)
 	. = ..()
-	if(.)
+	if(. && holder.dark_plane)
 		holder.dark_plane.alpha = initial(holder.dark_plane.alpha) + 15
 
 /decl/aspect/company_man
