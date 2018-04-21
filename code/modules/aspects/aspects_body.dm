@@ -95,10 +95,76 @@
 /decl/aspect/prosthesis_durability/apply(var/mob/living/carbon/human/holder)
 	. = ..()
 	if(.)
-		for(var/obj/item/organ/external/E in holder.organs)
+		for(var/thing in holder.organs)
+			var/obj/item/organ/external/E = thing
 			if(E.robotic >= ORGAN_ROBOT)
 				E.brute_mod -= initial(E.brute_mod) * 0.25
 				E.burn_mod -= initial(E.burn_mod) * 0.25
 				E.min_bruised_damage += initial(E.min_bruised_damage)*0.25
 				E.min_broken_damage +=  initial(E.min_broken_damage)*0.25
 				E.max_damage +=         initial(E.max_damage)*0.25
+		for(var/thing in holder.internal_organs)
+			var/obj/item/organ/internal/I = thing
+			if(I.robotic >= ORGAN_ROBOT)
+				I.max_damage += initial(I.max_damage)*0.25
+
+/decl/aspect/prosthesis_emp
+	name = ASPECT_EMP_HARDENING
+	parent_name = ASPECT_NEURAL_INTERFACE
+	category = "Amputations and Prosthetics"
+	sort_value = 3
+	aspect_flags = ASPECTS_EQUIPMENT
+
+/decl/aspect/prosthesis_emp/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
+		for(var/obj/item/organ/internal/I in holder.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT)
+				I.emp_hardening++
+
+// Exactly as above, just applies it for a second time.
+/decl/aspect/prosthesis_emp/adv
+	name = ASPECT_EMP_HARDENING_PLUS
+	parent_name = ASPECT_EMP_HARDENING
+
+/decl/aspect/prosthetic_organ
+	name = ASPECT_PROSTHETIC_HEART
+	parent_name = ASPECT_NEURAL_INTERFACE
+	aspect_flags = ASPECTS_EQUIPMENT
+	desc = "You have a synthetic heart."
+	aspect_cost = 1
+	category = "Amputations and Prosthetics"
+	sort_value = 2
+	var/apply_to_organ = BP_HEART
+
+/decl/aspect/prosthetic_organ/apply(var/mob/living/carbon/human/holder)
+	. = ..()
+	if(.)
+		var/obj/item/organ/internal/I = holder.internal_organs_by_name[apply_to_organ]
+		if(istype(I))
+			I.robotize()
+
+/decl/aspect/prosthetic_organ/eyes
+	name = ASPECT_PROSTHETIC_EYES
+	desc = "Your vision is augmented."
+	apply_to_organ = BP_EYES
+
+/decl/aspect/prosthetic_organ/kidneys
+	name = ASPECT_PROSTHETIC_KIDNEYS
+	desc = "You have synthetic kidneys."
+	apply_to_organ = BP_KIDNEYS
+
+/decl/aspect/prosthetic_organ/liver
+	name = ASPECT_PROSTHETIC_LIVER
+	desc = "You have a literal iron liver."
+	apply_to_organ = BP_LIVER
+
+/decl/aspect/prosthetic_organ/lungs
+	name = ASPECT_PROSTHETIC_LUNGS
+	desc = "You have synthetic lungs."
+	apply_to_organ = BP_LUNGS
+
+/decl/aspect/prosthetic_organ/stomach
+	name = ASPECT_PROSTHETIC_STOMACH
+	desc = "You have a literal iron stomach."
+	apply_to_organ = BP_STOMACH

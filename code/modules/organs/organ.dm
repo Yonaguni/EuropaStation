@@ -28,6 +28,7 @@ var/list/organ_cache = list()
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	var/emp_hardening = 0             // Amount to reduce incoming EMP damage by.
 
 /obj/item/organ/Destroy()
 	if(owner)           owner = null
@@ -248,15 +249,15 @@ var/list/organ_cache = list()
 	min_broken_damage = 35
 
 /obj/item/organ/emp_act(severity)
-	if(!(robotic >= ORGAN_ROBOT))
-		return
-	switch (severity)
-		if (1)
-			take_damage(9)
-		if (2)
-			take_damage(3)
-		if (3)
-			take_damage(1)
+	if(robotic >= ORGAN_ROBOT)
+		severity += emp_hardening
+		if(severity <= 3)
+			if(severity == 1)
+				take_damage(9)
+			else if(severity == 2)
+				take_damage(3)
+			else if(severity == 3)
+				take_damage(1)
 
 //disconnected the organ from it's owner but does not remove it, instead it becomes an implant that can be removed with implant surgery
 //TODO move this to organ/internal once the FPB port comes through

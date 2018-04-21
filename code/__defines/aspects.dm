@@ -85,7 +85,7 @@
 #define ASPECT_PSI_REDACTOR_L   "Latent Biokinetic Faculty"
 #define ASPECT_PSI_REDACTOR_O   "Operant Biokinetic Faculty"
 #define ASPECT_PSI_REDACTOR_MC  "Master Biokinetic"
-#define ASPECT_PSI_REDACTOR_GMC      "Grandmaster Biokinetic"
+#define ASPECT_PSI_REDACTOR_GMC "Grandmaster Biokinetic"
 
 // Restricted aspects.
 #define ASPECT_XRAY                  "X-Ray Vision"
@@ -100,5 +100,14 @@
 #define ASPECT_AMPUTATED_RIGHT_FOOT  "Amputated Right Foot"
 #define ASPECT_AMPUTATED_RIGHT_LEG   "Amputated Right Leg"
 
+#define ASPECT_PROSTHETIC_HEART      "Synthetic Heart"
+#define ASPECT_PROSTHETIC_EYES       "Synthetic Eyes"
+#define ASPECT_PROSTHETIC_KIDNEYS    "Synthetic Kidneys"
+#define ASPECT_PROSTHETIC_LIVER      "Synthetic Liver"
+#define ASPECT_PROSTHETIC_LUNGS      "Synthetic Lungs"
+#define ASPECT_PROSTHETIC_STOMACH    "Synthetic Stomach"
+
 #define ASPECT_NEURAL_INTERFACE      "Neural Interface"
 #define ASPECT_IMPROVED_PROSTHETICS  "Improved Prosthetics"
+#define ASPECT_EMP_HARDENING         "EMP Hardening"
+#define ASPECT_EMP_HARDENING_PLUS    "Advanced EMP Hardening"
