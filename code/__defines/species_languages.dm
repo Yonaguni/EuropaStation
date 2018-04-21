@@ -24,6 +24,7 @@
 #define RADIATION_GLOWS   0x40   // Radiation causes this character to glow.
 
 // Languages.
+#define LANGUAGE_SIGN       "Sign Language"
 #define LANGUAGE_EAL        "Encoded Audio Language"
 #define LANGUAGE_CEPHLAPODA "Cephalopoda"
 #define LANGUAGE_CORVID     "Corvid"

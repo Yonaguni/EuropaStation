@@ -63,6 +63,15 @@
 	key = "3"
 	syllables = list ("gra","ba","ba","breh","bra","rah","dur","ra","ro","gro","go","ber","bar","geh","heh", "gra")
 
+/datum/language/sign
+	name = LANGUAGE_SIGN
+	desc = "A sign language commonly used for those who are deaf or mute."
+	signlang_verb = list("gestures")
+	colour = "say_quote"
+	key = "s"
+	flags = SIGNLANG | NO_STUTTER | NONVERBAL
+
+
 //Syllable Lists
 /*
 	This list really long, mainly because I can't make up my mind about which mandarin syllables should be removed,
