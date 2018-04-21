@@ -1,6 +1,7 @@
 /datum/psi_complexus/proc/update(var/force)
 
 	var/last_rating = rating
+	var/highest_faculty
 	var/combined_rank = 0
 	for(var/faculty in ranks)
 		var/check_rank = get_rank(faculty)
@@ -12,6 +13,9 @@
 		else
 			LAZYREMOVE(latencies, faculty)
 		combined_rank += check_rank
+		if(!highest_faculty || get_rank(highest_faculty) < check_rank)
+			highest_faculty = faculty
+
 	UNSETEMPTY(latencies)
 
 	if(force || last_rating != ceil(combined_rank/ranks.len))
@@ -34,6 +38,20 @@
 			if(!suppressed && owner.client)
 				for(var/thing in all_aura_images)
 					owner.client.images |= thing
+
+			if(rating >= PSI_RANK_PARAMOUNT) // spooky boosters
+				aura_color = "#AAFFAA"
+				aura_image.blend_mode = BLEND_SUBTRACT
+			else
+				aura_image.blend_mode = BLEND_MULTIPLY
+				if(highest_faculty == PSI_COERCION)
+					aura_color = "#CC3333"
+				else if(highest_faculty == PSI_PSYCHOKINESIS)
+					aura_color = "#3333CC"
+				else if(highest_faculty == PSI_REDACTION)
+					aura_color = "#33CC33"
+				else if(highest_faculty == PSI_ENERGISTICS)
+					aura_color = "#CCCC33"
 		else
 			qdel(src)
 

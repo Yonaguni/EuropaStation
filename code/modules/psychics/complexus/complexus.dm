@@ -39,9 +39,9 @@
 	//aura_image = image(loc = owner, icon = 'icons/effects/psi_aura.dmi', icon_state = "aura")
 	aura_image = image(loc = owner, icon = 'icons/effects/psi_aura_small.dmi', icon_state = "aura")
 
-	aura_image.blend_mode = BLEND_SUBTRACT
 	//aura_image.pixel_x = -25
 	//aura_image.pixel_y = -25
+	aura_image.blend_mode = BLEND_MULTIPLY
 	aura_image.layer = TURF_LAYER + 0.5
 	aura_image.alpha = 0
 	aura_image.mouse_opacity = 0
