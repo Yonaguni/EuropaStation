@@ -67,7 +67,6 @@
 
 /datum/species/monkey/handle_post_spawn(var/mob/living/carbon/human/H)
 	. = ..(H)
-	var/use_name = "[lowertext(name)] ([rand(100,999)])"
-	if(H.mind) H.mind.name = use_name
-	H.real_name = H.mind.name
+	H.real_name = "[lowertext(name)] ([rand(100,999)])"
 	H.name = H.real_name
+	if(H.mind) H.mind.name = H.real_name

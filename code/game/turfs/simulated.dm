@@ -152,7 +152,7 @@
 		else
 			M.inertia_dir = 0
 
-	..()
+	. = ..()
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(var/mob/living/carbon/human/M)

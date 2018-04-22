@@ -144,13 +144,13 @@
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = 1
 		src.used = 1
-	..()
+	. = ..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = 0
-	..()
+	. = ..()
 
 /obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.
 	if(tank)

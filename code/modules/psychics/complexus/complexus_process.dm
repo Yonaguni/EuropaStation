@@ -69,8 +69,7 @@
 			update_hud = TRUE
 		return
 
-	var/turf/T = get_turf(owner)
-	if(owner.is_psi_null() || (istype(T) && T.is_psi_null()))
+	if(owner.do_psionics_check())
 		if(stamina > 0)
 			stamina = max(0, stamina - rand(3,5))
 			if(prob(5)) to_chat(owner, "<span class='danger'>You feel your psi-power leeched away into the void...</span>")

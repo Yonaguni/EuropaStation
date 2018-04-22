@@ -25,11 +25,15 @@
 	return 0 //Always hungry, but you can't actually eat. :(
 
 /mob/living/carbon/human/proc/set_home_system(var/datum/stellar_location/_system)
+	if(ispath(_system))
+		_system = get_stellar_location(_system)
 	home_system = _system
 	if(home_system.default_language)
 		add_language(home_system.default_language)
 
 /mob/living/carbon/human/proc/set_personal_faction(var/datum/faction/_faction)
+	if(ispath(_faction))
+		_faction = get_faction(_faction)
 	personal_faction = _faction
 	faction = personal_faction.mob_faction
 	if(personal_faction.default_language)

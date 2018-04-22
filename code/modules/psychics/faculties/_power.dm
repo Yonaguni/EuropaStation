@@ -27,11 +27,11 @@
 	if(cooldown)
 		user.psi.set_cooldown(cooldown)
 
-	if(user.is_psi_null(cost))
+	if(user.do_psionics_check(cost, user))
 		to_chat(user, "<span class='warning'>Your power strikes a barrier and is leeched away as fast as you can focus it...</span>")
 		return FALSE
 
-	if(target.is_psi_null(cost))
+	if(target.do_psionics_check(cost, user))
 		to_chat(user, "<span class='warning'>Your power skates across \the [target], but cannot get a grip...</span>")
 		return FALSE
 

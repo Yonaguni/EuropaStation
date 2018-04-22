@@ -11,6 +11,9 @@
 	LAZYADD(psi_null_atoms, src)
 	..()
 
+/obj/item/soulstone/disrupts_psionics()
+	return TRUE
+
 /obj/item/soulstone/attackby(var/obj/item/thing, var/mob/user)
 	if(!thing.force)
 		return ..()
@@ -26,12 +29,11 @@
 		M.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/soulstone/withstand_psi_stress(var/stress)
-	. = ..()
+/obj/item/soulstone/withstand_psi_stress(var/stress, var/atom/source)
+	. = ..(stress, source)
 	if(. > 0)
 		. = max(0, . - rand(2,5))
 		shatter()
-
 
 /obj/item/storage/belt/soulstone
 	name = "soul stone belt"
