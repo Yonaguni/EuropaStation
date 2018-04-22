@@ -62,11 +62,11 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.psi.set_cooldown(5)
 
-	if(user.is_psi_null(5))
+	if(user.do_psionics_check(5, user))
 		to_chat(user, "<span class='warning'>You reach for \the [target] but your telekinetic power is leeched away...</span>")
 		return
 
-	if(target.is_psi_null(5))
+	if(target.do_psionics_check(5, user))
 		to_chat(user, "<span class='warning'>Your telekinetic power skates over \the [target] but cannot get a grip...</span>")
 		return
 

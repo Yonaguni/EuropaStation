@@ -170,7 +170,7 @@ var/list/turf_edge_cache = list()
 var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
-	..()
+	. = ..()
 
 	if(!istype(atom, /atom/movable))
 		return

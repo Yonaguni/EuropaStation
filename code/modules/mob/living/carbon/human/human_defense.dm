@@ -134,7 +134,7 @@ meteor_act
 /mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
 	var/obj/item/projectile/P = damage_source
-	if(istype(P) && psi && P.starting && prob(psi.get_armour(P.check_armour) * 0.5) && psi.spend_power(round(damage/10)))
+	if(istype(P) && !P.disrupts_psionics() && psi && P.starting && prob(psi.get_armour(P.check_armour) * 0.5) && psi.spend_power(round(damage/10)))
 		visible_message("<span class='danger'>\The [src] deflects [attack_text]!</span>")
 		P.redirect(P.starting.x + rand(-2,2), P.starting.y + rand(-2,2), get_turf(src), src)
 		return PROJECTILE_FORCE_MISS
