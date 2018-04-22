@@ -256,6 +256,7 @@ datum/preferences
 		if(istype(A))
 			character.personal_aspects += A
 			character.personal_aspects_by_name[aspect] = TRUE
+	character.need_aspect_sort = TRUE
 	character.apply_aspects(ASPECTS_MENTAL|ASPECTS_PHYSICAL)
 
 	character.force_update_limbs()
