@@ -30,7 +30,7 @@
 			return
 		var/gun_type = pick(gun_types)
 		var/obj/item/gun = new gun_type(holder)
-		if(has_holster && !(locate(/obj/item/clothing/accessory/holster) in holder.w_uniform))
+		if(holder.w_uniform && has_holster && !(locate(/obj/item/clothing/accessory/holster) in holder.w_uniform))
 			var/obj/item/clothing/accessory/holster/W = new (holder)
 			holder.w_uniform.attackby(W, holder)
 			W.holster(gun, holder)
