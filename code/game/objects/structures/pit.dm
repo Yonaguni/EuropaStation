@@ -168,8 +168,8 @@
 /obj/structure/gravemarker/random/proc/generate()
 	icon_state = pick("wood","cross")
 
-	var/datum/species/S = all_species["Human"]
-	var/nam = S.get_random_name(pick(MALE,FEMALE))
+	var/datum/faction/faction = factions_by_name[pick(factions_by_name)]
+	var/nam = faction.get_random_name(pick(MALE,FEMALE))
 	var/born = game_year - rand(5,150)
 	var/died = max(game_year - rand(0,70),born)
 	message = "Here lies [nam], [born] - [died]."

@@ -6,8 +6,15 @@
 
 	// Descriptors and strings.
 	var/name                                             // Species name.
+	var/bodytype
 	var/name_plural                                      // Pluralized name (since "[name]s" is not always valid)
 	var/blurb = "A completely nondescript species."      // A brief lore summary for use in the chargen screen.
+	var/associated_faction                               // Faction datum to display on chargen screen.
+	var/can_go_bald = TRUE
+	var/baldness_noun = "hair"
+
+	var/force_faction
+	var/force_homeworld
 
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
@@ -45,19 +52,13 @@
 	var/hunger_factor = DEFAULT_HUNGER_FACTOR            // Multiplier for hunger.
 	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
 
-	var/has_genotypes
+	var/economic_modifier = 1
 
 	var/min_age = 17
 	var/max_age = 70
 
-	// Language/culture vars.
-	var/default_language = "Sol Common" // Default language is used when 'say' is used without modifiers.
-	var/language = "Sol Common"         // Default racial language, if any.
-	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
 	var/list/speech_sounds                   // A list of sounds to potentially play when speaking.
 	var/list/speech_chance                   // The likelihood of a speech sound playing.
-	var/num_alternate_languages = 0          // How many secondary languages are available to select at character creation
-	var/name_language = "Sol Common"    // The language to use when determining names for this species, or null to use the first name/last name generator
 
 	// Combat vars.
 	var/total_health = 100                   // Point at which the mob will enter crit.

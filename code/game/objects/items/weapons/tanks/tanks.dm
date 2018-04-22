@@ -22,8 +22,8 @@ var/list/global/tank_gauge_cache = list()
 	throw_range = 4
 
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/back.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/back.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/back.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/back.dmi'
 		)
 
 	var/datum/gas_mixture/air_contents = null

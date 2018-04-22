@@ -531,7 +531,7 @@
 		return SURGERY_FAILURE
 
 	if(!target.should_have_organ(BP_BRAIN))
-		user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
+		user << "<span class='danger'>You're pretty sure [target.species.get_bodytype(target)] don't normally have a brain.</span>"
 		return SURGERY_FAILURE
 
 	if(!isnull(target.internal_organs[BP_BRAIN]))

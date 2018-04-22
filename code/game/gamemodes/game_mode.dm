@@ -379,15 +379,7 @@ var/global/list/additional_antag_types = list()
 
 		if (special_role in disregard_roles)
 			continue
-		else if(man.client.prefs.corporate_relation == COMPANY_OPPOSED && prob(50) || \
-			man.client.prefs.corporate_relation == COMPANY_SKEPTICAL && prob(20))
-			suspects += man
-		// Antags
-		else if(special_role_data && prob(special_role_data.suspicion_chance))
-			suspects += man
-
-		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
+		if(prob(10) || (special_role_data && prob(special_role_data.suspicion_chance)))
 			suspects += man
 
 	for(var/mob/M in suspects)
@@ -531,17 +523,6 @@ proc/display_roundstart_logout_report()
 	for(var/mob/M in mob_list)
 		if(M.client && M.client.holder)
 			M << msg
-
-proc/get_nt_opposed()
-	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
-		if(man.client)
-			if(man.client.prefs.corporate_relation == COMPANY_OPPOSED)
-				dudes += man
-			else if(man.client.prefs.corporate_relation == COMPANY_SKEPTICAL && prob(50))
-				dudes += man
-	if(dudes.len == 0) return null
-	return pick(dudes)
 
 /proc/show_objectives(var/datum/mind/player)
 

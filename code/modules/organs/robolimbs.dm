@@ -19,7 +19,7 @@ var/datum/robolimb/basic_robolimb
 	var/can_eat
 	var/use_eye_icon = "eyes_s"
 	var/can_feel_pain
-	var/list/species_cannot_use = list("Neo-Corvid", "Octopus")
+	var/list/species_cannot_use = list(SPECIES_CORVID, SPECIES_OCTOPUS)
 	var/list/restricted_to = list()
 	var/list/applies_to_part = list() //TODO.
 

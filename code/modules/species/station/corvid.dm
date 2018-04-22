@@ -1,21 +1,23 @@
 /datum/species/corvid
-	name = "Neo-Corvid"
-	name_plural = "Neo-Corvidae"
+	name = SPECIES_CORVID
+	bodytype = BODYTYPE_CORVID
+	name_plural = "Corvidae"
 	blurb = "Corvid uplifts were among the first sophonts produced by human science to aid in colonizing Mars. These days they \
 	are more commonly found pursuing their own careers and goals on the fringes of human space or around their adopted homeworld \
 	of Hyperion. Corvid naming conventions are a chosen name followed by the species of the person, followed by the location they were hatched."
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/chicken
-	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_CORVID)
-	name_language = LANGUAGE_CORVID
 	min_age = 12
 	max_age = 45
 	health_hud_intensity = 3
+	economic_modifier = 0.5
+	baldness_noun = "feathers"
+
+	associated_faction = FACTION_NONHUMAN_BLOC
 
 	base_color = "#000616"
 	base_hair_color = "#000a28"
-	has_default_hair = "Neo-Corvid Plumage"
+	has_default_hair = "Corvid Plumage"
 
 	tail = "corvidtail"
 	tail_hair = "feathers"

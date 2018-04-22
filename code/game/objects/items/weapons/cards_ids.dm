@@ -99,7 +99,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state_slots = list(slot_wear_id_str = "id")
 
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/id.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/id.dmi'
 		)
 
 	var/access = list()

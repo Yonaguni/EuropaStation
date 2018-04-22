@@ -23,11 +23,14 @@ datum/preferences
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	var/datum/species/S = pref.get_current_species()
+	var/datum/faction/F = get_faction(pref.faction)
+	if(!F) F = get_faction(using_map.default_faction)
+
 	pref.age                = sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender             = sanitize_inlist(pref.gender, S.genders, pick(S.genders))
 	pref.real_name          = sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
-		pref.real_name      = random_name(pref.gender, pref.species)
+		pref.real_name = F.get_random_name(pref.gender, pref.species)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
@@ -59,7 +62,10 @@ datum/preferences
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name"])
-		pref.real_name = random_name(pref.gender, pref.species)
+
+		var/datum/faction/F = get_faction(pref.faction)
+		if(!F) F = get_faction(using_map.default_faction)
+		pref.real_name = F.get_random_name(pref.gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name"])

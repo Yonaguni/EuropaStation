@@ -15,13 +15,13 @@
 		)
 
 	//Species-specific stuff.
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/helmet.dmi',
-		"Octopus" = 'icons/mob/species/octopus/helmet.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/helmet.dmi',
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/helmet.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/hats.dmi'
+		BODYTYPE_CORVID = 'icons/obj/clothing/species/corvid/hats.dmi'
 		)
 
 	light_power = 10
@@ -46,14 +46,14 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_spacesuits.dmi'
 		)
 
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 	sprite_sheets = list(
-		"Neo-Corvid" = 'icons/mob/species/corvid/suit.dmi',
-		"Octopus" = 'icons/mob/species/octopus/suit.dmi'
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/suit.dmi',
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/suit.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Neo-Corvid" = 'icons/obj/clothing/species/corvid/suits.dmi'
+		BODYTYPE_CORVID = 'icons/obj/clothing/species/corvid/suits.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.

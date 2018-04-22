@@ -35,7 +35,7 @@
 	dock_name     = "Rhadamanthus Starport"
 	boss_name     = "Administration"
 	boss_short    = "Admin"
-	company_name  = "PicoMotionÂ©"
+	company_name  = "PicoMotion©"
 	company_short = "PM"
 	commanding_role = "Site Director"
 	default_arrival_message = "has arrived at the facility"

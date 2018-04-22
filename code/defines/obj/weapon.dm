@@ -180,7 +180,7 @@
 	w_class = 3.0
 
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
-	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/corvid/handcuffs.dmi')
+	sprite_sheets = list(BODYTYPE_CORVID = 'icons/mob/species/corvid/handcuffs.dmi')
 
 /obj/item/caution
 	desc = "Caution! Wet Floor!"

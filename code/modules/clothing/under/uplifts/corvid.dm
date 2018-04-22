@@ -3,7 +3,7 @@
 	desc = "It looks fitted to nonhuman proportions."
 	icon = 'icons/obj/clothing/species/corvid/uniform.dmi'
 	icon_state = "corvid_white"
-	species_restricted = list("Neo-Corvid")
+	species_restricted = list(BODYTYPE_CORVID)
 
 /obj/item/clothing/under/corvid/medical
 	name = "small medical uniform"
@@ -12,7 +12,3 @@
 /obj/item/clothing/under/corvid/rainbow
 	name = "small rainbow smock"
 	icon_state = "corvid_rainbow"
-
-/obj/item/clothing/under/corvid/science
-	name = "small science uniform"
-	icon_state = "corvid_science"

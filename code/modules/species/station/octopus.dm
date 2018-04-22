@@ -1,23 +1,24 @@
 /datum/species/octopus
-	name = "Octopus"
+	name = SPECIES_OCTOPUS
 	name_plural = "Octopodes"
 	blurb = "Octopus uplifts have been a relatively common sight in aquatic environments since the early days of \
 	Sol expansion. The are renowned as excellent engineers, bartenders, and massage therapists."
+	bodytype = BODYTYPE_OCTOPUS
+
+	associated_faction = FACTION_NONHUMAN_BLOC
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/fish/octopus
+	can_go_bald = FALSE
 
 	slowdown = 2
 	rarity_value = 2
 	gluttonous = GLUT_SMALLER
 	unarmed_types = list(/datum/unarmed_attack/punch/tentacle, /datum/unarmed_attack/bite)
+	economic_modifier = 0.5
 
 	// They don't live too long.
 	min_age = 10
 	max_age = 45
-
-	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_CEPHLAPODA)
-	name_language = null
 
 	icobase = 'icons/mob/human_races/r_octopus.dmi'
 	deform = 'icons/mob/human_races/r_octopus.dmi'

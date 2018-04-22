@@ -33,7 +33,7 @@
 /mob/living/silicon/New()
 	silicon_mob_list |= src
 	..()
-	add_language("Sol Common")
+	add_language(LANGUAGE_SOLCOM)
 	init_id()
 	init_subsystems()
 

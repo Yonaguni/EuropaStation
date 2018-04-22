@@ -17,7 +17,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
-	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/corvid/handcuffs.dmi')
+	sprite_sheets = list(BODYTYPE_CORVID = 'icons/mob/species/corvid/handcuffs.dmi')
 
 /obj/item/handcuffs/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()

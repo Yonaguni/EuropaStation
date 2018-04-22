@@ -94,9 +94,6 @@
 /material/cloth
 	hidden_from_codex = TRUE
 
-/material/cult
-	hidden_from_codex = TRUE
-
 /material/leather
 	hidden_from_codex = TRUE
 

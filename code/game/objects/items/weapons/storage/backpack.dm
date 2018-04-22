@@ -18,8 +18,8 @@
 		slot_r_hand_str = "backpack",
 		)
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/back.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/back.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/back.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/back.dmi'
 		)
 	w_class = 5
 	slot_flags = SLOT_BACK

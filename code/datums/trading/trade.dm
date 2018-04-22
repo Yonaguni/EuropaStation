@@ -168,7 +168,7 @@
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species)
-			specific = H.species.name
+			specific = H.species.get_bodytype(H)
 	else if(istype(user, /mob/living/silicon))
 		specific = "silicon"
 	if(!speech["hail_[specific]"])

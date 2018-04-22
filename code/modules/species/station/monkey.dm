@@ -2,23 +2,28 @@
 	name = "Monkey"
 	name_plural = "Monkeys"
 	blurb = "Ook."
+	bodytype = BODYTYPE_MONKEY
 
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
 	deform = 'icons/mob/human_races/r_monkey.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_monkey.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
-	language = null
-	default_language = "Chimpanzee"
-	greater_form = "Human"
+
+	force_faction =   /datum/faction/test_subjects
+	force_homeworld = /datum/stellar_location/earth
+
+	greater_form = DEFAULT_SPECIES
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
 	show_ssd = null
 	health_hud_intensity = 1.75
+	economic_modifier = 0
 
 	gibbed_anim = "gibbed-m"
 	dusted_anim = "dust-m"
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
 	tail = "chimptail"
+	baldness_noun = "fur"
 
 	unarmed_types = list(/datum/unarmed_attack/bite, /datum/unarmed_attack/claws)
 	inherent_verbs = list(/mob/living/proc/ventcrawl)
@@ -60,5 +65,9 @@
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))
 
-/datum/species/monkey/get_random_name()
-	return "[lowertext(name)] ([rand(100,999)])"
+/datum/species/monkey/handle_post_spawn(var/mob/living/carbon/human/H)
+	. = ..(H)
+	var/use_name = "[lowertext(name)] ([rand(100,999)])"
+	if(H.mind) H.mind.name = use_name
+	H.real_name = H.mind.name
+	H.name = H.real_name

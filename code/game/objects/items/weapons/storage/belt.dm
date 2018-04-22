@@ -9,8 +9,8 @@
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/belt.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/belt.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/belt.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/belt.dmi'
 		)
 	var/show_above_suit = 0
 
@@ -149,26 +149,6 @@
 		/obj/item/gun/composite/premade/pistol/a38/preloaded,
 		/obj/item/taperoll/police
 		)
-
-/obj/item/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away."
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/soulstone
-		)
-
-/obj/item/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/soulstone(src)
-	new /obj/item/soulstone(src)
-	new /obj/item/soulstone(src)
-	new /obj/item/soulstone(src)
-	new /obj/item/soulstone(src)
-	new /obj/item/soulstone(src)
-
 
 /obj/item/storage/belt/champion
 	name = "championship belt"

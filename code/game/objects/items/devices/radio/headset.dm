@@ -17,7 +17,7 @@
 	var/ks1type = /obj/item/encryptionkey
 	var/ks2type = null
 
-	sprite_sheets = list("Neo-Corvid" = 'icons/mob/species/corvid/ears.dmi')
+	sprite_sheets = list(BODYTYPE_CORVID = 'icons/mob/species/corvid/ears.dmi')
 
 /obj/item/radio/headset/New()
 	..()

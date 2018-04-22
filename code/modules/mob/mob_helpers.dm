@@ -563,7 +563,7 @@ proc/is_blind(A)
 		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.get_bodytype(src) != DEFAULT_BODYTYPE)
 			threatcount += 2
 
 	if(check_records || check_arrest)
