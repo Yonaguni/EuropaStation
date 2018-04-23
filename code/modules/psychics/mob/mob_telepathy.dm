@@ -30,9 +30,6 @@
 		to_chat(src, "<span class='warning'>You are suppressing your psi-power and cannot speak telepathically.</span>")
 		return
 
-	if(!psi.spend_power(psi.use_intimate_mode ? 1 : 10))
-		return
-
 	if(!psi.use_intimate_mode)
 		broadcast_range *= 10
 
