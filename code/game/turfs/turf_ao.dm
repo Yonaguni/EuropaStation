@@ -9,9 +9,9 @@ var/list/ao_cache = list()
 	var/tmp/ao_neighbors = 0
 
 /turf/proc/regenerate_ao()
-	for (var/thing in trange(1, src))
+	for (var/thing in RANGE_TURFS(1, src))
 		var/turf/T = thing
-		if (T.permit_ao)
+		if (T && T.permit_ao)
 			T.update_ao()
 
 /turf/update_icon()
@@ -26,7 +26,7 @@ var/list/ao_cache = list()
 
 /turf/proc/update_ao()
 	if (ao_overlays)
-		overlays -= ao_overlays
+		cut_overlay(ao_overlays, TRUE)
 		ao_overlays.Cut()
 
 	calculate_ao_neighbours()
@@ -69,6 +69,6 @@ var/list/ao_cache = list()
 
 	UNSETEMPTY(ao_overlays)
 	if (ao_overlays)
-		overlays += ao_overlays
+		add_overlay(ao_overlays, TRUE)
 
 #undef WALL_AO_ALPHA
