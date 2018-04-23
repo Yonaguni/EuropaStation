@@ -217,7 +217,7 @@
 			affected.implants -= obj
 
 			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
-			obj.forceMove(target.loc)
+			obj.dropInto(target.loc)
 			obj.add_blood(target)
 			obj.update_icon()
 

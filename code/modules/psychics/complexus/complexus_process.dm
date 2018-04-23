@@ -70,9 +70,11 @@
 		return
 
 	if(owner.do_psionics_check())
-		if(stamina > 0)
+		if(stamina > 15)
 			stamina = max(0, stamina - rand(3,5))
 			if(prob(5)) to_chat(owner, "<span class='danger'>You feel your psi-power leeched away into the void...</span>")
+		else
+			stamina++
 		return
 
 	else if(stamina < max_stamina)
