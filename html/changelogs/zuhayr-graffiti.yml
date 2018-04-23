@@ -1,0 +1,5 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - tweak: "Accidentally snuck a lore change into a feature PR. Game year is now 2238."
+  - rscadd: "Added persistent graffiti. Use a sharp object to engrave or a welder to remove."
