@@ -61,6 +61,7 @@
 	gloves =   /obj/item/clothing/gloves/color/gray
 	l_pocket = /obj/item/flash
 	id_type =  /obj/item/card/id/security
+	pda_type = /obj/item/radio/headset/pda/security
 
 /decl/hierarchy/outfit/job/europa_police_officer
 	name = OUTFIT_JOB_NAME("Police Officer")
@@ -69,6 +70,7 @@
 	l_pocket = /obj/item/flash
 	r_pocket = /obj/item/handcuffs
 	id_type =  /obj/item/card/id/security
+	pda_type = /obj/item/radio/headset/pda/security
 
 /decl/hierarchy/outfit/job/europa_scientist
 	name = OUTFIT_JOB_NAME("Scientist")
