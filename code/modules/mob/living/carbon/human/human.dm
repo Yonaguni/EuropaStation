@@ -24,7 +24,25 @@
 		return nutrition + (stomach.ingested.total_volume * 10)
 	return 0 //Always hungry, but you can't actually eat. :(
 
+/mob/living/carbon/human/proc/set_home_system(var/datum/stellar_location/_system)
+	if(ispath(_system))
+		_system = get_stellar_location(_system)
+	home_system = _system
+	if(home_system.default_language)
+		add_language(home_system.default_language)
+
+/mob/living/carbon/human/proc/set_personal_faction(var/datum/faction/_faction)
+	if(ispath(_faction))
+		_faction = get_faction(_faction)
+	personal_faction = _faction
+	faction = personal_faction.mob_faction
+	if(personal_faction.default_language)
+		add_language(personal_faction.default_language)
+
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+
+	set_home_system(get_stellar_location(using_map.default_home_system))
+	set_personal_faction(get_faction(using_map.default_faction))
 
 	if(!species)
 		if(new_species)
@@ -32,8 +50,8 @@
 		else
 			set_species()
 
-	if(species)
-		real_name = species.get_random_name(gender)
+	if(personal_faction)
+		real_name = personal_faction.get_random_name(gender, species.name)
 		name = real_name
 		if(mind)
 			mind.name = real_name
@@ -940,35 +958,25 @@
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
 	if(!new_species)
-		new_species = "Human"
+		new_species = DEFAULT_SPECIES
 
 	if(dark_plane)
 		dark_plane.alpha = initial(dark_plane.alpha)
 
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
-		new_species = "Human"
+		new_species = DEFAULT_SPECIES
 
 	if(species)
 
 		if(species.name && species.name == new_species)
 			return
-		if(species.language)
-			remove_language(species.language)
-		if(species.default_language)
-			remove_language(species.default_language)
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
 
 	species = all_species[new_species]
 	species.do_pre_spawn(src)
-
-	if(species.language)
-		add_language(species.language)
-
-	if(species.default_language)
-		add_language(species.default_language)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1031,11 +1039,9 @@
 
 	full_prosthetic = null
 	if(species)
-		if(mind)
-			for(var/aspect in mind.aspects)
-				var/decl/aspect/A = aspects_by_name[aspect]
-				if(A.apply_post_species_change)
-					A.do_post_spawn(src)
+		if(species.force_faction) set_personal_faction(species.force_faction)
+		if(species.force_homeworld) set_home_system(species.force_homeworld)
+		apply_aspects(ASPECTS_PHYSICAL|ASPECTS_MENTAL)
 		return 1
 	else
 		return 0
@@ -1351,3 +1357,11 @@
 	. = ..()
 	if(. && !paralysis && HAS_ASPECT(src, ASPECT_EPILEPTIC))
 		seizure()
+
+/mob/living/carbon/human/get_default_language()
+	. = ..()
+	if(!.)
+		if(home_system.default_language)
+			. = all_languages[home_system.default_language]
+		else if(personal_faction.default_language)
+			. = all_languages[personal_faction.default_language]

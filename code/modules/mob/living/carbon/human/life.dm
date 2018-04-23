@@ -268,9 +268,9 @@
 					Weaken(3)
 					if(!lying)
 						emote("collapse")
-				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype(src) == "Human") //apes go bald
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.can_go_bald) //apes go bald
 					if((h_style != "Bald" || f_style != "Shaved" ))
-						src << "<span class='warning'>Your hair falls out.</span>"
+						src << "<span class='warning'>Your [species.baldness_noun] fall\s out.</span>"
 						h_style = "Bald"
 						f_style = "Shaved"
 						update_hair()

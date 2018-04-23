@@ -21,8 +21,8 @@
 	return	// Mannequins don't get HUDs
 
 /mob/living/carbon/human/corvid/New(var/new_loc)
-	h_style = "Neo-Corvid Plumage"
-	..(new_loc, "Neo-Corvid")
+	h_style = "Corvid Plumage"
+	..(new_loc, SPECIES_CORVID)
 
 /mob/living/carbon/human/monkey/New(var/new_loc)
-	..(new_loc, "Monkey")
+	..(new_loc, SPECIES_MONKEY)

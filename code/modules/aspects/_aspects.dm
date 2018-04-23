@@ -62,3 +62,8 @@ var/list/aspect_icons = list()      // List of aspect icons for forwarding to th
 			log_debug("ASPECT BUG: [A.parent_name] has no entry in aspects_by_name ([aspects_by_name[A.parent_name]])")
 			continue
 		A.parent.children |= A
+
+/mob
+	var/list/personal_aspects
+	var/list/personal_aspects_by_name
+	var/need_aspect_sort

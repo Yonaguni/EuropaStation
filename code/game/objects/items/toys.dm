@@ -15,7 +15,6 @@
  *      Inflatable duck
  *		Action figures
  *		Plushies
- *		Toy cult sword
  */
 
 
@@ -825,28 +824,7 @@
 	desc = "A farwa plush doll. It's soft and comforting!"
 	icon_state = "farwaplushie"
 
-//Toy cult sword
-/obj/item/toy/cultsword
-	name = "foam sword"
-	desc = "An arcane weapon (made of foam) wielded by the followers of the hit Saturday morning cartoon \"King Nursee and the Acolytes of Heroism\"."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "cultblade"
-	item_state = "cultblade"
-	w_class = 5
-	attack_verb = list("attacked", "slashed", "stabbed", "poked")
-
-/* NYET.
-/obj/item/toddler
-	icon_state = "toddler"
-	name = "toddler"
-	desc = "This baby looks almost real. Wait, did it just burp?"
-	force = 5
-	w_class = 5
-	slot_flags = SLOT_BACK
-*/
-
 //This should really be somewhere else but I don't know where. w/e
-
 /obj/item/inflatable_duck
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"

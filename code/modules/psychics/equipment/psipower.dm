@@ -30,6 +30,18 @@
 	user.drop_from_inventory(src)
 	spawn if(src) qdel(src)
 
+/obj/item/psychic_power/attack(var/mob/living/M, var/mob/living/user, var/target_zone)
+	if(M.do_psionics_check(max(force, maintain_cost), user))
+		to_chat(user, "<span class='danger'>\The [src] flickers violently out of phase!</span>")
+		return 1
+	. = ..()
+
+/obj/item/psychic_power/afterattack(var/atom/target, var/mob/living/user, var/proximity)
+	if(target.do_psionics_check(max(force, maintain_cost), user))
+		to_chat(user, "<span class='danger'>\The [src] flickers violently out of phase!</span>")
+		return
+	. = ..(target, user, proximity)
+
 /obj/item/psychic_power/dropped()
 	..()
 	spawn if(src) qdel(src)
@@ -37,7 +49,7 @@
 /obj/item/psychic_power/process()
 	if(istype(owner))
 		owner.psi.spend_power(maintain_cost)
-	if(!owner || loc != owner || (owner.l_hand != src && owner.r_hand != src))
+	if(!owner || owner.do_psionics_check(maintain_cost, owner) || loc != owner || (owner.l_hand != src && owner.r_hand != src))
 		if(istype(loc,/mob/living))
 			var/mob/living/carbon/human/host = loc
 			if(istype(host))

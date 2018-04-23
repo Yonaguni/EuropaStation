@@ -593,7 +593,7 @@
 	//Departments that the cycler can paint suits to look like.
 	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","Science")
 	//Species that the suits can be configured to fit.
-	var/list/species = list("Human", "Neo-Corvid","Octopus")
+	var/list/species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID, BODYTYPE_OCTOPUS)
 
 	var/target_department
 	var/target_species
@@ -622,42 +622,42 @@
 	model_text = "Engineering"
 	req_access = list(access_construction)
 	departments = list("Engineering","Atmos")
-	species = list("Human", "Neo-Corvid", "Octopus")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID, BODYTYPE_OCTOPUS)
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
 	departments = list("Mining")
-	species = list("Human", "Neo-Corvid")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID)
 
 /obj/machinery/suit_cycler/science
 	name = "Excavation suit cycler"
 	model_text = "Excavation"
 	req_access = list(access_xenoarch)
 	departments = list("Science")
-	species = list("Human", "Neo-Corvid")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID)
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
 	departments = list("Security")
-	species = list("Human", "Neo-Corvid")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID)
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
 	departments = list("Medical")
-	species = list("Human", "Neo-Corvid")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID)
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
 	departments = list("Mercenary")
-	species = list("Human", "Neo-Corvid","Octopus")
+	species = list(BODYTYPE_HUMAN, BODYTYPE_CORVID,BODYTYPE_OCTOPUS)
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(var/mob/user)

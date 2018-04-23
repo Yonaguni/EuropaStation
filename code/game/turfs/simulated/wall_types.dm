@@ -2,17 +2,6 @@
 	icon_state = "rgeneric"
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, "plasteel","plasteel") //3strong
-
-/turf/simulated/wall/cult
-	icon_state = "cult"
-/turf/simulated/wall/cult/New(var/newloc)
-	..(newloc,"cult","cult2")
-/turf/unsimulated/wall/cult
-	name = "cult wall"
-	desc = "Hideous images dance beneath the surface."
-	icon = 'icons/turf/wall_masks.dmi'
-	icon_state = "cult"
-
 /turf/simulated/wall/iron/New(var/newloc)
 	..(newloc,"iron")
 /turf/simulated/wall/uranium/New(var/newloc)
@@ -35,10 +24,3 @@
 	..(newloc,"sandstone","diamond")
 /turf/simulated/wall/titanium/New(var/newloc)
 	..(newloc,"titanium")
-
-/turf/simulated/wall/nullglass
-	color = "#FF00FF"
-
-/turf/simulated/wall/nullglass/New(var/newloc)
-	color = null
-	..(newloc,"nullglass")

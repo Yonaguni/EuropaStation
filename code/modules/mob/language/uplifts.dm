@@ -24,7 +24,7 @@
 
 /datum/language/corvid
 	name = LANGUAGE_CORVID
-	desc = "A rough, loud language spoken by Neo-Corvidae."
+	desc = "A rough, loud language spoken by Corvidae."
 	speech_verb = "chirps"
 	ask_verb = "rattles"
 	exclaim_verb = "calls"

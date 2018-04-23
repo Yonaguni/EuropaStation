@@ -86,6 +86,10 @@ h1.alert, h2.alert		{color: #000000;}
 
 .alien					{color: #543354;}
 .solcom					{color: #22228B;}
+.runglish				{color: #9C250B;}
+.lunar					{color: #6E0B9C;}
+.exterior				{color: #0B819C;}
+.belter					{color: #9C6E0B;}
 .changeling				{color: #800080;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}

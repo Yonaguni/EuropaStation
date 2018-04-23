@@ -212,32 +212,3 @@
 			return
 		else
 	return
-
-/obj/structure/girder/cult
-	icon= 'icons/obj/cult.dmi'
-	icon_state= "cultgirder"
-	health = 250
-	cover = 70
-
-/obj/structure/girder/cult/dismantle()
-	new /obj/item/remains/human(get_turf(src))
-	qdel(src)
-
-/obj/structure/girder/cult/attackby(obj/item/W as obj, var/mob/user)
-	if(W.iswrench())
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << "<span class='notice'>Now disassembling the girder...</span>"
-		if(do_after(user,40,src))
-			user << "<span class='notice'>You dissasembled the girder!</span>"
-			dismantle()
-
-	else if(istype(W, /obj/item/pickaxe/plasmacutter) || istype(W, /obj/item/psychic_power/psiblade/master/grand/paramount))
-		user << "<span class='notice'>Now slicing apart the girder...</span>"
-		if(do_after(user,30,src))
-			user << "<span class='notice'>You slice apart the girder!</span>"
-		dismantle()
-
-	else if(istype(W, /obj/item/pickaxe/diamonddrill))
-		user << "<span class='notice'>You drill through the girder!</span>"
-		new /obj/item/remains/human(get_turf(src))
-		dismantle()

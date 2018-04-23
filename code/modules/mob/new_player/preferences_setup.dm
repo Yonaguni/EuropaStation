@@ -1,6 +1,6 @@
 datum/preferences
 	proc/get_current_species()
-		return all_species[species] ? all_species[species] : all_species["Human"]
+		return all_species[species] ? all_species[species] : all_species[DEFAULT_SPECIES]
 
 	//The mob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
@@ -246,6 +246,8 @@ datum/preferences
 		mannequin.job = previewJob.title
 		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
 		update_icon = TRUE
+
+	mannequin.apply_aspects(ASPECTS_EQUIPMENT)
 
 	if(update_icon)
 		mannequin.update_icons()

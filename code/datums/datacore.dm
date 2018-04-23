@@ -194,9 +194,7 @@
 		G.fields["sex"]			= gender2text(H.gender)
 		G.fields["species"]		= H.get_species()
 		G.fields["home_system"]	= H.home_system
-		G.fields["citizenship"]	= H.citizenship
 		G.fields["faction"]		= H.personal_faction
-		G.fields["religion"]	= H.religion
 		if(H.gen_record && !jobban_isbanned(H, "Records"))
 			G.fields["notes"] = H.gen_record
 
@@ -226,9 +224,7 @@
 
 		L.fields["species"]		= H.get_species()
 		L.fields["home_system"]	= H.home_system
-		L.fields["citizenship"]	= H.citizenship
 		L.fields["faction"]		= H.personal_faction
-		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
 			L.fields["exploit_record"] = H.exploit_record
@@ -265,7 +261,7 @@
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
-	G.fields["species"] = "Human"
+	G.fields["species"] = DEFAULT_SPECIES
 	G.fields["home_system"]	= "Unknown"
 	G.fields["citizenship"]	= "Unknown"
 	G.fields["faction"]		= "Unknown"

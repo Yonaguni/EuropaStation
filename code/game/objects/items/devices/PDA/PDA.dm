@@ -14,8 +14,8 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 	light_color = COLOR_GREEN
 
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/id.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/id.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/id.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/id.dmi'
 		)
 
 	//Main variables

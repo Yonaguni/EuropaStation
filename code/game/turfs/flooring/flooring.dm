@@ -38,10 +38,6 @@ var/list/flooring_types
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
-	var/psi_null
-
-/decl/flooring/proc/is_psi_null()
-	return psi_null
 
 /decl/flooring/grass
 	name = "grass"
@@ -119,15 +115,6 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_dark
 
-/decl/flooring/tiling/nullglass
-	name = "nullglass plating"
-	desc = "You can hear the tiles whispering..."
-	icon_base = "nullglass"
-	has_damage_range = null
-	flags = TURF_REMOVE_SCREWDRIVER
-	build_type = /obj/item/stack/tile/floor_nullglass
-	psi_null = TRUE
-
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
@@ -175,16 +162,6 @@ var/list/flooring_types
 	icon_base = "rcircuit"
 	flags = TURF_ACID_IMMUNE
 	can_paint = 0
-
-/decl/flooring/reinforced/cult
-	name = "engraved floor"
-	desc = "Unsettling whispers waver from the surface..."
-	icon = 'icons/turf/flooring/cult.dmi'
-	icon_base = "cult"
-	build_type = null
-	has_damage_range = 6
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
-	can_paint = null
 
 /decl/flooring/reinforced/shuttle
 	name = "floor"

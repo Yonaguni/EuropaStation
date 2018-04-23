@@ -60,7 +60,7 @@ var/list/limb_icon_cache = list()
 		gender = "_f"
 
 	icon_state = "[icon_name][gender]"
-	icon_cache_key = "[icon_state]_[species ? species.name : "Human"][render_alpha]"
+	icon_cache_key = "[icon_state]_[species ? species.name : DEFAULT_SPECIES][render_alpha]"
 
 	if(force_icon)
 		icon = force_icon
@@ -196,7 +196,7 @@ var/list/robot_hud_colours = list("#FFFFFF","#CCCCCC","#AAAAAA","#888888","#6666
 
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		if(species && species.get_bodytype(owner) != "Human")
+		if(species && species.get_bodytype(owner) != BODYTYPE_HUMAN)
 			applying.SetIntensity(1.5)
 		else
 			applying.SetIntensity(0.7)

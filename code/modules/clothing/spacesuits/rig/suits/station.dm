@@ -22,16 +22,16 @@
 
 /obj/item/clothing/head/helmet/space/rig/industrial
 	camera_networks = list(NETWORK_EXPEDITION)
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/suit/space/rig/industrial
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/shoes/magboots/rig/industrial
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/gloves/rig/industrial
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/rig/industrial/equipped
 
@@ -64,16 +64,16 @@
 /obj/item/clothing/head/helmet/space/rig/eva
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ENGINEERING)
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/suit/space/rig/eva
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/shoes/magboots/rig/eva
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/clothing/gloves/rig/eva
-	species_restricted = list("Human")
+	species_restricted = list(BODYTYPE_HUMAN)
 
 /obj/item/rig/eva/equipped
 	initial_modules = list(

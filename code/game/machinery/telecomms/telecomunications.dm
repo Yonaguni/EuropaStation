@@ -546,11 +546,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				var/race = "unknown"
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					race = "[H.species.name]"
+					race = "[H.species.get_bodytype(H)]"
 					log.parameters["intelligible"] = 1
 				else if(isbrain(M))
 					var/mob/living/carbon/brain/B = M
-					race = "[B.species.name]"
+					race = "[B.species.get_bodytype(B)]"
 					log.parameters["intelligible"] = 1
 				else if(M.isMonkey())
 					race = "Monkey"

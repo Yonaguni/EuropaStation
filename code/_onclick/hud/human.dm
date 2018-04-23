@@ -281,7 +281,7 @@
 //Used for new human mobs created by cloning/etc.
 /mob/living/carbon/human/proc/set_cloned_appearance()
 	f_style = "Shaved"
-	if(get_species() == "Human") //no more xenos losing ears/tentacles
+	if(get_species() == DEFAULT_SPECIES) //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	all_underwear.Cut()
 	regenerate_icons()

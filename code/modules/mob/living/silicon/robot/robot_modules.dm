@@ -22,10 +22,10 @@ var/global/list/robot_modules = list(
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(
-		LANGUAGE_TRADEBAND = 1,
+		LANGUAGE_RUNGLISH = 1,
+		LANGUAGE_EXTERIOR = 1,
 		LANGUAGE_CEPHLAPODA = 0,
-		LANGUAGE_CORVID = 0,
-		LANGUAGE_GUTTER = 0)
+		LANGUAGE_CORVID = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
 	var/no_slip = 0
@@ -424,10 +424,12 @@ var/global/list/robot_modules = list(
 				)
 
 	languages = list(
+					LANGUAGE_RUNGLISH	= 1,
+					LANGUAGE_BELTER		= 1,
+					LANGUAGE_LUNAR		= 1,
+					LANGUAGE_EXTERIOR	= 1,
 					LANGUAGE_CEPHLAPODA	= 1,
 					LANGUAGE_CORVID		= 1,
-					LANGUAGE_TRADEBAND	= 1,
-					LANGUAGE_GUTTER		= 1
 					)
 
 /obj/item/robot_module/clerical/butler/New()
@@ -508,9 +510,9 @@ var/global/list/robot_modules = list(
 	name = "illegal robot module"
 	hide_on_manifest = 1
 	languages = list(
-					LANGUAGE_TRADEBAND = 1,
+					LANGUAGE_RUNGLISH = 1,
 					LANGUAGE_CEPHLAPODA = 0,
-					LANGUAGE_GUTTER = 1
+					LANGUAGE_EXTERIOR = 1
 					)
 	sprites = list(
 					"Dread" = "securityrobot",

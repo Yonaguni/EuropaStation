@@ -43,8 +43,8 @@
 
 /mob/living/simple_animal/spiderbot/New()
 	..()
-	add_language("Sol Common")
-	default_language = all_languages["Sol Common"]
+	add_language(LANGUAGE_SOLCOM)
+	default_language = all_languages[LANGUAGE_SOLCOM]
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 

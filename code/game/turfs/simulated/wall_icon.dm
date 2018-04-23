@@ -26,7 +26,6 @@
 	update_connections(1)
 	update_icon()
 
-
 /turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial

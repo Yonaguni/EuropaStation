@@ -64,6 +64,8 @@
 	to_chat(owner, "<span class='notice'>You are <b>[owner.psi.suppressed ? "now suppressing" : "no longer suppressing"]</b> your psi-power.</span>")
 	if(owner.psi.suppressed)
 		owner.psi.cancel()
+		owner.psi.hide_auras()
 	else
 		owner << 'sound/effects/psi/power_unlock.ogg'
+		owner.psi.show_auras()
 	update_icon()

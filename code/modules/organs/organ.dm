@@ -28,6 +28,7 @@ var/list/organ_cache = list()
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	var/emp_hardening = 0             // Amount to reduce incoming EMP damage by.
 
 /obj/item/organ/Destroy()
 	if(owner)           owner = null
@@ -48,7 +49,7 @@ var/list/organ_cache = list()
 		b_type = holder.b_type
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species["Human"]
+		species = all_species[DEFAULT_SPECIES]
 		if(istype(owner))
 			species = owner.species
 			initial_gender = owner.gender
@@ -181,12 +182,6 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
-	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
-		var/status = owner.client.prefs.organ_data[organ_tag]
-		if(status == "assisted")
-			mechassist()
-		else if(status == "mechanical")
-			robotize()
 
 /obj/item/organ/proc/is_damaged()
 	return damage > 0
@@ -254,15 +249,15 @@ var/list/organ_cache = list()
 	min_broken_damage = 35
 
 /obj/item/organ/emp_act(severity)
-	if(!(robotic >= ORGAN_ROBOT))
-		return
-	switch (severity)
-		if (1)
-			take_damage(9)
-		if (2)
-			take_damage(3)
-		if (3)
-			take_damage(1)
+	if(robotic >= ORGAN_ROBOT)
+		severity += emp_hardening
+		if(severity <= 3)
+			if(severity == 1)
+				take_damage(9)
+			else if(severity == 2)
+				take_damage(3)
+			else if(severity == 3)
+				take_damage(1)
 
 //disconnected the organ from it's owner but does not remove it, instead it becomes an implant that can be removed with implant surgery
 //TODO move this to organ/internal once the FPB port comes through

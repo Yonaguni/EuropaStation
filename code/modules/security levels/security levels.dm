@@ -50,6 +50,9 @@
 			if(FA.z in using_map.contact_levels)
 				FA.set_security_level(newlevel)
 
+	for(var/thing in psi_dampeners)
+		var/obj/item/implant/psi_control/implant = thing
+		implant.update_functionality()
 
 /proc/get_security_level()
 	switch(security_level)

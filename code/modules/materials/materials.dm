@@ -453,23 +453,6 @@ var/list/name_to_material
 	new build_path(T, build_dir, 1)
 	return 1
 
-/material/nullglass
-	name = "nullglass"
-	lore_text = "A poorly understood, brittle, glasslike substance whose production is something of a mystery. Inimical to psi-operant abilities; even touching it is enough to cause physical illness in operants."
-	icon_colour = "#ff6088"
-	conductive = 1
-	stack_type = /obj/item/stack/material/nullglass
-	flags = MATERIAL_BRITTLE
-	opacity = 0.5
-	integrity = 30
-	shard_type = SHARD_SHARD
-	tableslam_noise = 'sound/effects/Glasshit.ogg'
-	hardness = 80
-	weight = 25
-	door_icon_base = "stone"
-	destruction_desc = "shatters"
-	hitsound = 'sound/effects/Glasshit.ogg'
-
 /material/glass/proc/is_reinforced()
 	return (integrity > 75) //todo
 
@@ -653,41 +636,6 @@ var/list/name_to_material
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	conductive = 0
-
-/material/cloth //todo
-	name = "cloth"
-	stack_
-	door_icon_base = "wood"
-	ignition_point = T0C+232
-	melting_point = T0C+300
-	flags = MATERIAL_PADDING
-	conductive = 0
-	hidden_from_codex = TRUE
-
-/material/cult
-	name = "cult"
-	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
-	shard_type = SHARD_STONE_PIECE
-	sheet_singular_name = "brick"
-	sheet_plural_name = "bricks"
-	conductive = 0
-	hidden_from_codex = TRUE
-
-/material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target)
-
-/material/cult/place_dismantled_product(var/turf/target)
-	new /obj/effect/decal/cleanable/blood(target)
-
-/material/cult/reinf
-	name = "cult2"
-	display_name = "human remains"
-
-/material/cult/reinf/place_dismantled_product(var/turf/target)
-	new /obj/item/remains/human(target)
 
 //TODO PLACEHOLDERS:
 /material/leather

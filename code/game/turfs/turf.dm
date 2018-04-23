@@ -126,9 +126,6 @@ var/list/turf_edge_cache = list()
 /turf/ex_act(severity)
 	return 0
 
-/turf/proc/is_psi_null()
-	return 0
-
 /turf/proc/is_solid_structure()
 	return 1
 
@@ -176,7 +173,7 @@ var/list/turf_edge_cache = list()
 var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
-	..()
+	. = ..()
 
 	if(!istype(atom, /atom/movable))
 		return

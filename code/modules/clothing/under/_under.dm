@@ -13,8 +13,8 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	sprite_sheets = list(
-		"Octopus" = 'icons/mob/species/octopus/uniform.dmi',
-		"Neo-Corvid" = 'icons/mob/species/corvid/uniform.dmi'
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/uniform.dmi',
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/uniform.dmi'
 		)
 
 

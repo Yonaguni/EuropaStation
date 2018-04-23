@@ -2,9 +2,6 @@ var/datum/map/using_map = new USING_MAP_DATUM
 var/list/all_maps = list()
 var/list/votable_maps = list()
 
-var/const/MAP_HAS_BRANCH = 1	//Branch system for occupations, togglable
-var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
-
 /hook/startup/proc/initialise_map_list()
 	for(var/type in typesof(/datum/map) - /datum/map)
 		var/datum/map/M
@@ -69,7 +66,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/print_antag_summary = FALSE
 	var/single_card_authentication = FALSE
 
-	var/datum/trade_destination/stellar_location
+	var/datum/stellar_location/stellar_location
 	var/specific_location
 
 	var/list/holodeck_programs = list() // map of string ids to /datum/holodeck_program instances
@@ -108,6 +105,10 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 	var/list/lobby_music_choices = list(/datum/music_track/nebula)
 
+	var/default_stellar_location = /datum/stellar_location/europa
+	var/default_home_system =      /datum/stellar_location/mars
+	var/default_faction =          /datum/faction/inner
+
 /datum/map/New()
 	..()
 	if(!base_area)
@@ -133,7 +134,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	set background = 1
 
 /datum/map/proc/update_locations()
-	stellar_location = default_stellar_location
+	stellar_location = get_stellar_location(default_stellar_location)
 
 /datum/map/proc/get_specific_location()
 	return (specific_location ? specific_location : (stellar_location ? stellar_location.name : "Unknown"))
@@ -184,3 +185,16 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 		world.maxz++
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
+
+/client/verb/check_stellar_location()
+
+	set name = "Check Stellar Location"
+	set desc = "Get info on current location."
+	set category = "IC"
+
+	usr << "The <b>[using_map.full_name]</b> is located in <b>[using_map.stellar_location.name]</b>."
+	usr << "<hr>[using_map.stellar_location.description]<hr>"
+	if(using_map.specific_location)
+		usr << "Specifically, you are in the vicinity of <b>[using_map.specific_location]</b>."
+		if(using_map.stellar_location.flavour_locations[using_map.specific_location])
+			usr << "<hr>[using_map.stellar_location.flavour_locations[using_map.specific_location]]<hr>"

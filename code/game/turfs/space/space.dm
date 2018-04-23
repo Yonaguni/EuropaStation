@@ -42,7 +42,7 @@ var/image/exterior_light_overlay
 
 // Ported from unstable r355
 /turf/space/Entered(var/atom/movable/A)
-	..()
+	. = ..()
 	if(A && A.loc == src && ticker && ticker.mode)
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "mercenary")	return

@@ -32,7 +32,7 @@
 	return race_key
 
 /datum/species/proc/get_bodytype(var/mob/living/carbon/human/H)
-	return name
+	return bodytype
 
 /datum/species/proc/get_knockout_message(var/mob/living/carbon/human/H)
 	return ((H && H.isSynthetic()) ? "encounters a hardware fault and suddenly reboots!" : knockout_message)
@@ -72,20 +72,6 @@
 		if("heat")
 			if(covered)
 				H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
-
-/datum/species/proc/get_random_name(var/gender)
-	if(!name_language)
-		if(gender == FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-
-	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
-		species_language = all_languages[default_language]
-	if(!species_language)
-		return "unknown"
-	return species_language.get_random_name(gender)
 
 /datum/species/proc/get_vision_flags(var/mob/living/carbon/human/H)
 	return vision_flags
