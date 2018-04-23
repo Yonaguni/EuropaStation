@@ -14,6 +14,11 @@
 	var/allow_reagents = 0
 	var/malfunction = 0
 
+	proc/removed()
+		part = null
+		imp_in = null
+		implanted = 0
+
 	proc/trigger(emote, source as mob)
 		return
 
