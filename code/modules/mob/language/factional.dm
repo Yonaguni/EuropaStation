@@ -3,14 +3,14 @@
 	name = LANGUAGE_RUNGLISH
 	desc = "The official language of space, first pioneered on the International Space Station in days of yore. A combination of English and Russian."
 	key = "1"
-	colour = ".secradio"
+	colour = "runglish"
 	syllables = list("al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it",
 	"le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to",
 	"ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
 	"his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi",
 	"rus","zem","ave","groz","ski","ska","ven","konst","pol","lin","svy",
 	"danya","da","mied","zan","das","krem","muka","kom","rad","to","st","no","na","ni",
-	"ko","ne","en","po","ra","li","on","byl","cto","eni","ost","ol","ego","ver","stv","pro")
+	"ko","ne","en","po","ra","li","on","byl","sto","eni","ost","ol","ego","ver","pro")
 
 /datum/language/lunar
 	name = LANGUAGE_LUNAR
@@ -19,7 +19,7 @@
 	speech_verb = "enunciates"
 	ask_verb = "demands"
 	exclaim_verb = "declaims"
-	colour = ".sciradio"
+	colour = "lunar"
 	syllables = list("a","e","i","o","u","a","e","i","o","u",
 	"nu","du","tnu","ku","knu","su","snu","ru","pu","chu","fku","pru","plu","smu","sku","kvu","mu",
 	"ra","ka","ak","ag","af","an","at","ad","al","re","ke","ek","age","afe","ane","ate","ade","ale",
@@ -36,7 +36,7 @@
 	name = LANGUAGE_EXTERIOR
 	desc = "A curt, efficient language developed to make best use of limited bandwidth in ship-to-ship transmissions. The common language of the outer solar system."
 	key = "3"
-	colour = ".medradio"
+	colour = "exterior"
 	speech_verb = "babbles"
 	ask_verb = "inquires"
 	syllables = list("cy","ber","spes","hy","per","drive","sup","er","lum","in","al","spe","ed","la","ne",
@@ -49,14 +49,14 @@
 	"fis","fus","ion","qu","ark","ti","po","si","tron","pro","ton","neu","tron",
 	"plu","to","ni","um","un","obt","ain","ium","ro","bot","dro","oid","qua","si","nor","mal",
 	"feed","ba","ack","at","me","tal","ma","te","ri","al","ul","tra","den","se","mi","cro","na","no",
-	"bots","blo","od","stre","am","po","si","ti","ne","ga","ti","ec","to","do","pla","sma","chro","no","jar","gon"
+	"bots","blod","oid","stre","am","po","si","ti","ne","ga","ti","ec","to","do","pla","sma","chro","no","jar","gon"
 	)
 
 /datum/language/belter
 	name = LANGUAGE_BELTER
 	desc = "An informal Runglish-derived pidgin language used in the Halo asteroid belt."
 	key = "4"
-	colour = ".engradio"
+	colour = "belter"
 	speech_verb = "butchers"
 	exclaim_verb = "shouts"
 	syllables = list("ayel", "ayen", "aye", "ayes", "ayeh", "aye", "ed", "en", "ah", "es", "haye", "he", "hoi", "in", "is", "it",
@@ -65,12 +65,13 @@
 	"his", "in", "ion", "ith", "noh", "ome", "oul", "our", "sho", "ted", "tah", "theh", "the", "thi","mayet","belt",
 	"rus","zem","ehve","groz","skoi","skaye","ven","konsh","pol","loin","svy",
 	"daye","nya","mied","zehn","dehs","krem","sukay","blyeh","sukeh","blyeh","to","sh","no","nay","ni",
-	"ne","en","ray","loi","on","byl","cto","eni","osh","ol","ego","vah","stv","pro",
-	"xuj","sraye","poi","zdaye","de","rayes","mu","dehk","kay","zo","paye","oi","bayet","doir","mo")
-
-/datum/language/belter/scramble(var/input)
+	"ne","en","ray","loi","on","byl","sto","eni","osh","ol","ego","vah","st","pro",
+	"chuj","sraye","poi","zdaye","de","rayes","mu","dehk","kay","zo","paye","oi","bayet","doir","mo")
+	
+/datum/language/belter/scramble(var/input) //mate
     . = ..()
+    var/input_size = length(.)
     if(copytext(., input_size) in list("!","?","."))
-        . = "[copytext(.,1,length(.))], mayet[copytext(.,length(.))]"
+        . = "[copytext(.,1,input_size)], mayet[copytext(.,input_size)]"
     else 
         . += ", mayet"
