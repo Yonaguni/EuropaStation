@@ -30,6 +30,8 @@ var/list/turf_edge_cache = list()
 
 	var/list/decals
 
+	var/obj/effect/flood/flood_object
+
 // Parent code is duplicated in here instead of ..() for performance reasons.
 /turf/Initialize(mapload)
 	if(initialized)
@@ -48,8 +50,8 @@ var/list/turf_edge_cache = list()
 
 	regenerate_ao()
 
-/turf/update_icon(var/update_neighbors, var/list/previously_added = list())
-	var/list/overlays_to_add = previously_added
+/turf/update_icon(update_neighbors = FALSE)
+	var/list/ovr
 	if(blend_with_neighbors)
 		for(var/checkdir in cardinal)
 			var/turf/T = get_step(src, checkdir)
@@ -57,24 +59,23 @@ var/list/turf_edge_cache = list()
 				var/cache_key = "[T.icon_state]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
-				overlays_to_add += turf_edge_cache[cache_key]
+				LAZYADD(ovr, turf_edge_cache[cache_key])
 
-	if(is_flooded(absolute=1))
-		if(!(locate(/obj/effect/flood) in contents))
-			new /obj/effect/flood(src)
-	else
-		for(var/obj/effect/flood/F in contents)
-			qdel(F)
+	if(is_flooded(absolute = 1))
+		if (!flood_object)
+			flood_object = new(src)
+	else if (flood_object)
+		QDEL_NULL(flood_object)
 
 	if(config.starlight && using_map.ambient_exterior_light && outside)
-		overlays_to_add += get_exterior_light_overlay()
+		LAZYADD(ovr, get_exterior_light_overlay())
 
-	add_overlay(overlays_to_add)
+	add_overlay(ovr)
 
 	if(update_neighbors)
 		for(var/check_dir in alldirs)
 			var/turf/T = get_step(src, check_dir)
-			if(istype(T))
+			if(isturf(T))
 				T.queue_icon_update()
 
 /turf/attackby(var/obj/item/C, var/mob/user)

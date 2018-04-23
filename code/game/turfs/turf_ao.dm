@@ -14,7 +14,7 @@ var/list/ao_cache = list()
 		if (T.permit_ao)
 			T.update_ao()
 
-/turf/update_icon(var/update_neighbors, var/list/previously_added = list())
+/turf/update_icon()
 	. = ..()
 	if(permit_ao)
 		update_ao()

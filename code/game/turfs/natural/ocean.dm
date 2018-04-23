@@ -44,11 +44,10 @@
 		var/critter = using_map.get_minor_critter(0)
 		new critter(src)
 
-/turf/simulated/ocean/update_icon(var/update_neighbors)
+/turf/simulated/ocean/update_icon(update_neighbors)
 	if(detail_decal)
-		..(update_neighbors, list(get_mining_overlay(detail_decal)))
-	else
-		..(update_neighbors)
+		add_overlay(get_mining_overlay(detail_decal))
+	..()
 
 /turf/simulated/ocean/moving
 	name = "open ocean"

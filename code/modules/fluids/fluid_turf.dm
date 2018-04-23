@@ -18,8 +18,9 @@
 	..()
 	verbs.Cut()
 
-/turf/var/fluid_blocked_dirs = 0
-/turf/var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
+/turf
+	var/fluid_blocked_dirs = 0
+	var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
 
 /turf/proc/add_fluid(var/fluidtype = "water", var/amount)
 	var/obj/effect/fluid/F = locate() in src
@@ -56,18 +57,18 @@
 
 /turf/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	. = ..()
-	var/turf/T = ..()
-	if(istype(T) && !T.flooded && (locate(/obj/effect/flood) in T.contents))
-		for(var/obj/effect/flood/F in T.contents)
-			qdel(F)
+	var/turf/T = .
+	if(isturf(T) && !T.flooded && T.flood_object)
+		QDEL_NULL(flood_object)
 
 /turf/proc/show_bubbles()
 	set waitfor = 0
+
 	if(flooded)
-		var/obj/effect/flood/Fl = locate() in src
-		if(istype(Fl))
-			flick("ocean-bubbles", Fl)
+		if(istype(flood_object))
+			flick("ocean-bubbles", flood_object)
 		return
+
 	var/obj/effect/fluid/F = locate() in src
 	if(istype(F))
 		flick("bubbles",F)
