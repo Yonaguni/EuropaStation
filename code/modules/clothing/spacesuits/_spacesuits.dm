@@ -31,6 +31,11 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi'
 		)
 
+	sprite_sheets = list(
+		BODYTYPE_CORVID = 'icons/mob/species/corvid/helmet.dmi',
+		BODYTYPE_OCTOPUS = 'icons/mob/species/octopus/helmet.dmi'
+		)
+
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
 
