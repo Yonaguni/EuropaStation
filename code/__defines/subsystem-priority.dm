@@ -1,10 +1,11 @@
-#define SS_INIT_SEEDS               9
-#define SS_INIT_MISC_FIRST          8
-#define SS_INIT_ATOMS               7
-#define SS_INIT_WIRELESS            6	// Wireless pair queue flush.
-#define SS_INIT_AIR                 5	// Air setup and pre-bake.
-#define SS_INIT_ICON_UPDATE         4	// Icon update queue flush. Should run before overlays.
-#define SS_INIT_OVERLAY             3	// Overlay flush.
+#define SS_INIT_SEEDS              10
+#define SS_INIT_MISC_FIRST          9
+#define SS_INIT_ATOMS               8
+#define SS_INIT_WIRELESS            7	// Wireless pair queue flush.
+#define SS_INIT_AIR                 6	// Air setup and pre-bake.
+#define SS_INIT_ICON_UPDATE         5	// Icon update queue flush. Should run before overlays.
+#define SS_INIT_OVERLAY             4	// Overlay flush.
+#define SS_INIT_AO                  3
 #define SS_INIT_MISC                2	// Subsystems without an explicitly set initialization order start here.
 #define SS_INIT_OPENTURF            1	// Openturf flush. Should run after SSoverlay & SSicon_smooth so it copies the smoothed sprites.
 #define SS_INIT_TURBOLIFT           0   // Modifies the map pre-init, needs to run first.
