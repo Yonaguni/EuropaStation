@@ -33,8 +33,8 @@
 /turf/simulated/ocean/proc/add_decal()
 	return prob(20)
 
-/turf/simulated/ocean/New()
-	..()
+/turf/simulated/ocean/Initialize()
+	. = ..()
 	if(isnull(detail_decal) && add_decal())
 		detail_decal = "asteroid[rand(0,9)]"
 	place_critter()

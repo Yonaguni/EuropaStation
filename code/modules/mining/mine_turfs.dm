@@ -86,8 +86,8 @@ proc/get_mining_overlay(var/overlay_key)
 	return ..()
 */
 
-/turf/simulated/mineral/New()
-	..()
+/turf/simulated/mineral/Initialize()
+	. = ..()
 	color = null
 
 /turf/simulated/mineral/can_build_cable()

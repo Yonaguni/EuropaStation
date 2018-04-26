@@ -18,8 +18,8 @@ var/global/list/map_sectors = list()
 	opacity = 0
 	density = 1
 
-/turf/unsimulated/map/New()
-	..()
+/turf/unsimulated/map/Initialize()
+	. = ..()
 	name = "[x]-[y]"
 	var/list/numbers = list()
 

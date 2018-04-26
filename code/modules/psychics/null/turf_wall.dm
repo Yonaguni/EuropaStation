@@ -26,6 +26,6 @@
 /turf/simulated/wall/nullglass
 	color = "#ff6088"
 
-/turf/simulated/wall/nullglass/New(var/newloc)
+/turf/simulated/wall/nullglass/Initialize(ml)
 	color = null
-	..(newloc,"nullglass")
+	. = ..(ml,"nullglass")

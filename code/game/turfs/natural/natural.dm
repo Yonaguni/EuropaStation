@@ -109,17 +109,17 @@ var/list/tree_types = list(
 	blend_with_neighbors = 8
 
 /*
-/turf/simulated/floor/natural/grass/forest/New()
-	..()
+/turf/simulated/floor/natural/grass/forest/Initialize()
+	. = ..()
 	if(prob(3) && !(locate(/obj/landmark/animal_spawn) in src)) // This is a placeholder for a proper deer/prey animal spawn setup.
 		new /obj/landmark/animal_spawn/deer(src)                // Accordingly, it will probably be here in ten years.
 */
 
-/turf/simulated/floor/natural/grass/New()
+/turf/simulated/floor/natural/grass/Initialize()
 	if(prob(50))
 		icon_state += "2"
 		blend_with_neighbors++
-	..()
+	return ..()
 
 // It's kinda like a sink!
 /turf/simulated/floor/water

@@ -16,8 +16,8 @@
 	var/corner_overlay_state = "diagonalWall"
 	var/image/corner_overlay
 
-/turf/simulated/shuttle/wall/corner/New()
-	..()
+/turf/simulated/shuttle/wall/corner/Initialize()
+	. = ..()
 	reset_base_appearance()
 	reset_overlay()
 
@@ -31,10 +31,10 @@
 
 /turf/simulated/shuttle/wall/corner/proc/reset_overlay()
 	if(corner_overlay)
-		overlays -= corner_overlay
+		cut_overlay(corner_overlay)
 	else
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state, layer = src.layer, dir = src.dir)
-	overlays += corner_overlay
+	add_overlay(corner_overlay)
 
 //Predefined Shuttle Corners
 /turf/simulated/shuttle/wall/corner/smoothwhite
