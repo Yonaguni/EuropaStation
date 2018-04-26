@@ -75,13 +75,6 @@
 	if(tank && in_range(src,user))
 		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
 
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
-	..()
-	if(istype(helmet))
-		helmet.refit_for_species(target_species)
-	if(istype(boots))
-		boots.refit_for_species(target_species)
-
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 

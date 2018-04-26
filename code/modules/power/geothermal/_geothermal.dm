@@ -107,6 +107,19 @@ var/vent_max_power = solar_gen_rate * 8
 	var/efficiency = 0
 	var/destroyed
 
+/obj/machinery/power/geothermal/attackby(var/obj/item/W, mob/user)
+
+	if(W.iscoil())
+		var/turf/T = get_turf(src)
+		if(T && T.is_plating())
+			var/from_dir = get_dir(src, user)
+			for(var/obj/structure/cable/LC in T)
+				if((LC.d1 == from_dir && LC.d2 == 0) || ( LC.d2 == from_dir && LC.d1 == 0))
+					return
+			var/obj/item/stack/cable_coil/coil = W
+			coil.turf_place(T, user)
+	. = ..()
+
 /obj/machinery/power/geothermal/Destroy()
 	destroyed = 1
 	if(vent) vent.covered = 0

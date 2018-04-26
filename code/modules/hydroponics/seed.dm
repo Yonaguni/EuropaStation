@@ -592,6 +592,11 @@
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
 
+					// Attempt to fix an out of bounds runtime.
+					// This whole file needs a rewrite.
+					if(length(chems[rid]) < i)
+						chems[rid][i] = 0
+
 					if(chems[rid][i])
 						chems[rid][i] = max(1,round((gene_chem[i] + chems[rid][i])/2))
 					else

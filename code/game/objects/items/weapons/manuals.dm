@@ -1193,7 +1193,7 @@
 					<li><a href="#Foreword">A foreword on using EVA gear</a></li>
 					<li><a href="#Civilian">Donning a Civilian Suit</a></li>
 					<li><a href="#Hardsuit">Putting on a Hardsuit</a></li>
-					<li><a href="#Equipment">Cyclers and Other Modification Equipment</a></li>
+					<li><a href="#Equipment">Modification Equipment</a></li>
 					<li><a href="#Final">Final Checks</a></li>
 				</ol>
 				<br>
@@ -1230,13 +1230,7 @@
 
 				<h2><a name="Equipment">Modification Equipment</a></h2>
 				<I>How to actually make hardsuits fit you.</I><BR>
-				There's a variety of equipment that can modify hardsuits to fit species that can't fit into them, making life quite a bit easier.<BR><BR>
-
-				The first piece of equipment is a suit cycler. This is a large machine resembling the storage pods that are in place in some places. These are machines that will automatically tailor a suit to certain specifications.
-				The largest uses of them are for their cleaning functions and their ability to tailor suits for a species. Do not enter them physically. You will die from any of the functions being activated, and it will be painful.
-				These machines can both tailor a suit between species, and between types. This means you can convert engineering hardsuits to atmospherics, or the other way. This is useful. Use it if you can.<BR><BR>
-
-				There's also modification kits that let you modify suits yourself. These are extremely difficult to use unless you understand the actual construction of the suit. I do not reccomend using them unless no other option is available.
+				There's modification kits that let you modify suits yourself. These are extremely difficult to use unless you understand the actual construction of the suit. I do not reccomend using them unless no other option is available.
 
 				<h2><a name="Final">Final Checks</a></h2>
 				<ul>

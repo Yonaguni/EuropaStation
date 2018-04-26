@@ -19,7 +19,7 @@
 		qdel(src)
 
 // Root hardsuit kit defines.
-// Icons for modified hardsuits need to be in the proper .dmis because suit cyclers may cock them up.
+// Icons for modified hardsuits need to be in the proper .dmis.
 /obj/item/kit/suit
 	name = "suit modification kit"
 	desc = "A kit for modifying a pressure suit."

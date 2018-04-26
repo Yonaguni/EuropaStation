@@ -1,4 +1,5 @@
-#define SS_INIT_SEEDS              10
+#define SS_INIT_SEEDS              11
+#define SS_INIT_PERSISTENCE        10	// Initialize round-start map objects from previous rounds.
 #define SS_INIT_MISC_FIRST          9
 #define SS_INIT_ATOMS               8
 #define SS_INIT_WIRELESS            7	// Wireless pair queue flush.

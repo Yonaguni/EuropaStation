@@ -153,7 +153,8 @@ var/global/list/image/splatter_cache=list()
 	drips |= icon_state
 
 /obj/effect/decal/cleanable/blood/writing
-	icon_state = "tracks"
+	icon_state = "writing"
+	icon = 'icons/effects/writing.dmi'
 	desc = "It looks like a writing in blood."
 	gender = NEUTER
 	random_icon_states = list("writing1","writing2","writing3","writing4","writing5")

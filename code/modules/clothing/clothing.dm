@@ -5,7 +5,7 @@
 	var/tint = TINT_NONE							         // Sets the item's level of visual impairment tint.
 
 	//Only these species can wear this kit.
-	var/list/species_restricted = list("exclude")
+	var/list/species_restricted = null
 
 	var/gunshot_residue //Used by forensics.
 	var/list/accessories = list()
@@ -74,29 +74,6 @@
 				H << "<span class='danger'>Your species cannot wear [src].</span>"
 				return 0
 	return 1
-
-/obj/item/clothing/proc/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	species_restricted = list(target_species)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	species_restricted = list(target_species)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects

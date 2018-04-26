@@ -29,6 +29,14 @@
 	var/use_psi_mode = get_psi_mode()
 	return (!malfunction && (use_psi_mode == PSI_IMPLANT_SHOCK || use_psi_mode == PSI_IMPLANT_WARN))
 
+/obj/item/implant/psi_control/removed()
+	var/mob/living/M = imp_in
+	if((src in psi_null_atoms) && istype(M) && M.psi)
+		to_chat(M, "<span class='notice'>You feel the chilly shackles around your psionic faculties fade away.</span>")
+	if(istype(imp_in, /atom))
+		REMOVE_PSI_NULL_ATOM(imp_in, src)
+	. = ..()
+
 /obj/item/implant/psi_control/proc/update_functionality(var/silent)
 	var/mob/living/M = imp_in
 	if(get_psi_mode() == PSI_IMPLANT_DISABLED || malfunction)
