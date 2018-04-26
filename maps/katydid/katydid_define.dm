@@ -88,6 +88,7 @@
 	return 1
 
 /datum/map/katydid/update_locations()
+	stellar_location = pick(all_stellar_locations)
 	. = ..()
 	destination_location = pick(all_stellar_locations - stellar_location)
 	if(stellar_location.flavour_locations && stellar_location.flavour_locations.len)
@@ -211,6 +212,3 @@
 	katydid.ship_name = newname
 	katydid.full_name = "[katydid.ship_prefix] [katydid.ship_name]"
 	world << "<span class='notice'><b>Naval Command has registered this vessel as the [katydid.full_name]!</b></span>"
-
-/datum/map/katydid/update_locations()
-	stellar_location = pick(all_stellar_locations)
