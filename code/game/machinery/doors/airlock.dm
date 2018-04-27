@@ -66,6 +66,7 @@
 /obj/machinery/door/airlock/security
 	name = "Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
+	icon = 'icons/obj/doors/doorsec.dmi'
 
 /obj/machinery/door/airlock/engineering
 	name = "Airlock"
@@ -183,6 +184,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
+	icon = 'icons/obj/doors/doormed.dmi'
 
 /obj/machinery/door/airlock/glass_virology
 	name = "Maintenance Hatch"
@@ -196,6 +198,7 @@
 /obj/machinery/door/airlock/mining
 	name = "Mining Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
+	icon = 'icons/obj/doors/doorcargo.dmi'
 
 /obj/machinery/door/airlock/atmos
 	name = "Atmospherics Airlock"
@@ -204,6 +207,7 @@
 /obj/machinery/door/airlock/research
 	name = "Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
+	icon = 'icons/obj/doors/doorscience.dmi'
 
 /obj/machinery/door/airlock/glass_research
 	name = "Maintenance Hatch"
@@ -214,6 +218,7 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
 	heat_proof = 1
+	icon = 'icons/obj/doors/doorscience.dmi'
 
 /obj/machinery/door/airlock/glass_mining
 	name = "Maintenance Hatch"
@@ -223,6 +228,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
+	icon = 'icons/obj/doors/doorcargo.dmi'
 
 /obj/machinery/door/airlock/glass_atmos
 	name = "Maintenance Hatch"
@@ -248,12 +254,14 @@
 /obj/machinery/door/airlock/science
 	name = "Airlock"
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
+	icon = 'icons/obj/doors/doorscience.dmi'
 
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
+	icon = 'icons/obj/doors/doorscience.dmi'
 
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
