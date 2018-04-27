@@ -1,3 +1,4 @@
+#define SS_INIT_MATERIALS          10   // Initial material list building.
 #define SS_INIT_TURBOLIFT           9   // Modifies the map pre-init, needs to run first.
 #define SS_INIT_SEEDS               8
 #define SS_INIT_PERSISTENCE         7	// Initialize round-start map objects from previous rounds.
