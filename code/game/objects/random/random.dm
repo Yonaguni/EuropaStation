@@ -396,12 +396,12 @@ obj/random/material //Random materials for building stuff
 	icon = 'icons/obj/items.dmi'
 	icon_state = "coin"
 	item_to_spawn()
-		return pick(prob(3);/obj/item/coin/gold,\
-					prob(4);/obj/item/coin/silver,\
-					prob(2);/obj/item/coin/diamond,\
-					prob(4);/obj/item/coin/iron,\
-					prob(3);/obj/item/coin/uranium,\
-					prob(1);/obj/item/coin/platinum)
+		return pick(prob(3);/obj/item/material/coin/gold,\
+					prob(4);/obj/item/material/coin/silver,\
+					prob(2);/obj/item/material/coin/diamond,\
+					prob(4);/obj/item/material/coin/iron,\
+					prob(3);/obj/item/material/coin/uranium,\
+					prob(1);/obj/item/material/coin/platinum)
 
 
 /obj/random/toy

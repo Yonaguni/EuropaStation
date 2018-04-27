@@ -91,4 +91,4 @@
 	max_storage_space = 100
 	max_w_class = 5
 	w_class = 2
-	can_hold = list(/obj/item/coin,/obj/item/spacecash)
+	can_hold = list(/obj/item/material/coin,/obj/item/spacecash)
