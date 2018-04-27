@@ -55,3 +55,12 @@
 	stored_material =  list("steel" = 0, "osmium" = 0, "plastic" = 0)
 	storage_capacity = list("steel" = 0, "osmium" = 0, "plastic" = 0)
 	build_time = 30
+
+/obj/machinery/autolathe/mint
+	name = "coin press"
+	base_icon = "ammo"
+	icon_state = "ammo"
+	lathe_type = LATHE_TYPE_CURRENCY
+	stored_material =  list("gold" = 0, "silver" = 0, "iron" = 0, "diamond" = 0, "uranium" = 0, "platinum" = 0)
+	storage_capacity = list("gold" = 0, "silver" = 0, "iron" = 0, "diamond" = 0, "uranium" = 0, "platinum" = 0)
+	build_time = 10

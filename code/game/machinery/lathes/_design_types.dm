@@ -4,3 +4,4 @@
 #define LATHE_TYPE_ROBOTICS   "robotics"
 #define LATHE_TYPE_HEAVY      "heavy"
 #define LATHE_TYPE_AMMUNITION "ammo"
+#define LATHE_TYPE_CURRENCY   "currency"
