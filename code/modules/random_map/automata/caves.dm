@@ -84,7 +84,6 @@
 			continue
 
 		num_applied += 1
-		world.log << "New turf [new_path] at [T.x],[T.y],[T.z]"
 		new new_path(T)
 
 		CHECK_TICK

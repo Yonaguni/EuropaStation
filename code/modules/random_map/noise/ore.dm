@@ -35,18 +35,15 @@
 
 	while(rare_turfs.len && rare_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(rare_turfs)
-		world.log << "made a rare ore at [rock.x],[rock.y]"
 		rock.mineral = pick("diamond","platinum")
 		rare_ore--
 
 	while(uncommon_turfs.len && uncommon_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(uncommon_turfs)
-		world.log << "made an uncommon ore at [rock.x],[rock.y]"
 		rock.mineral = pick("uranium","silver","gold")
 		uncommon_ore--
 
 	while(common_turfs.len && common_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(common_turfs)
-		world.log << "made a common ore at [rock.x],[rock.y]"
 		rock.mineral = pick("plastic", "iron")
 		common_ore--
