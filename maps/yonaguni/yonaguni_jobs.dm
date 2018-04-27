@@ -28,6 +28,8 @@
 		/datum/job/roboticist,
 		/datum/job/chef,
 		/datum/job/qm,
+		/datum/job/mining,
+		/datum/job/cargo_tech,
 		/datum/job/janitor,
 		/datum/job/hos,
 		/datum/job/warden,
@@ -376,6 +378,41 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/counsellor
+
+/datum/job/cargo_tech
+	title = "Supply Technician"
+	welcome_blurb = "Take orders for new equipment, encode supply chits via the main console, and take supply beacons out for ballistic supply pod delivery. Try not to stand under them."
+	department = "Supply"
+	department_flag = CRG
+	faction = "Crew"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the Chief of Logistics"
+	selection_color = "#515151"
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	outfit_type = /decl/hierarchy/outfit/job/europa_supply
+
+/datum/job/mining
+	title = "Salvage Diver"
+	welcome_blurb = "Head out into the abyssal caves to find and recover scrap metal, materials, black box recorders and artefacts."
+	department = "Supply"
+	department_flag = CRG
+	faction = "Crew"
+	total_positions = 3
+	spawn_positions = 3
+	supervisors = "the Chief of Logistics"
+	selection_color = "#515151"
+	economic_modifier = 5
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
+	outfit_type = /decl/hierarchy/outfit/job/europa_salvager
+
+/obj/effect/landmark/start/salvage
+	name = "Salvage Diver"
+
+/obj/effect/landmark/start/supply_tech
+	name = "Supply Technician"
 
 /obj/effect/landmark/start/employee
 	name = "Employee"

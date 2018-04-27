@@ -1889,6 +1889,7 @@
 #include "code\modules\random_map\automata\asteroids.dm"
 #include "code\modules\random_map\automata\automata.dm"
 #include "code\modules\random_map\automata\caves.dm"
+#include "code\modules\random_map\automata\caves_underwater.dm"
 #include "code\modules\random_map\drop\drop_types.dm"
 #include "code\modules\random_map\drop\droppod.dm"
 #include "code\modules\random_map\drop\droppod_doors.dm"

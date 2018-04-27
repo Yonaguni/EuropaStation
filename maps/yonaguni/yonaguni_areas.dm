@@ -453,6 +453,34 @@
 	name = "Shipping - Disposals Sorting"
 	icon_state = "cargo_sorting"
 
+/area/europa/cargo/salvage_top
+	name = "Salvage - Processing"
+
+/area/europa/cargo/salvage_mid
+	name = "Salvage - Elevator Shaft"
+
+/area/europa/cargo/salvage_bottom
+	name = "Salvage - Operations"
+
+/area/europa/cargo/salvage_bottom_storage
+	name = "Salvage - Operations Storage"
+
+/area/europa/cargo/salvage_bottom_airlock
+	name = "Salvage - Operations Airlock"
+
+/area/turbolift/salvage_sublevel
+	name = "Abyss - Salvage Facility"
+	lift_announce_str = "Arriving at the salvage facility."
+	base_turf = /turf/simulated/floor/plating
+
+/area/turbolift/salvage_maintenance
+	name = "Maintenance - Salvage Facility"
+	lift_announce_str = "Arriving at sublevel maintenance, below shipping docks."
+
+/area/turbolift/salvage_station
+	name = "Station - Salvage Facility"
+	lift_announce_str = "Arriving at Shipping and Receiving."
+
 // Science.
 /area/europa/science
 	name = "Research Sector"

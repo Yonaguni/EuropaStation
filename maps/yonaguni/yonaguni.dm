@@ -8,6 +8,7 @@
 	#include "yonaguni_elevators.dm"
 	#include "yonaguni_shuttles.dm"
 
+	#include "yonaguni-0.dmm"
 	#include "yonaguni-1.dmm"
 	#include "yonaguni-2.dmm"
 	#include "yonaguni-3.dmm"
