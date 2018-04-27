@@ -9,17 +9,19 @@
 	var/open = 1
 
 /obj/structure/pit/attackby(obj/item/W, mob/user)
-	if( istype(W,/obj/item/shovel) )
-		visible_message("<span class='notice'>\The [user] starts [open ? "filling" : "digging open"] \the [src]</span>")
-		if( do_after(user, 50) )
-			visible_message("<span class='notice'>\The [user] [open ? "fills" : "digs open"] \the [src]!</span>")
-			if(open)
-				close(user)
+	if( istype(W,/obj/item/pickaxe))
+		var/obj/item/pickaxe/P = W
+		if(P.dig_sand)
+			visible_message("<span class='notice'>\The [user] starts [open ? "filling" : "[P.drill_verb] open"] \the [src]</span>")
+			if( do_after(user, 50) )
+				visible_message("<span class='notice'>\The [user] [open ? "fills" : "digs open"] \the [src]!</span>")
+				if(open)
+					close(user)
+				else
+					open()
 			else
-				open()
-		else
-			user << "<span class='notice'>You stop shoveling.</span>"
-		return
+				user << "<span class='notice'>You stop shoveling.</span>"
+			return
 	if (!open && istype(W,/obj/item/stack/material/wood))
 		if(locate(/obj/structure/gravemarker) in src.loc)
 			user << "<span class='notice'>There's already a grave marker here.</span>"

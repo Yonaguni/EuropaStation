@@ -77,6 +77,8 @@ var/datum/controller/subsystem/persistence/SSpersistence
 		new_graffiti.message = _message
 		new_graffiti.graffiti_age = _n+1
 		new_graffiti.author = _author
+		CHECK_TICK
+	. = ..()
 
 /datum/controller/subsystem/persistence/Shutdown()
 	// Goodnight sweet prince.

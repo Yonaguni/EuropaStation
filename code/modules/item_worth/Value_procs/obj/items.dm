@@ -15,10 +15,12 @@
 	return material.value * amount
 
 /obj/item/ore/Value()
-	var/material/mat = get_material_by_name(material)
-	if(mat)
-		return mat.value
-	return 0
+	var/total = 0
+	for(var/_mat in matter)
+		var/material/mat = SSmaterials.get_material_by_name(_mat)
+		if(istype(mat))
+			total += (mat.value * matter[_mat])
+	return total
 
 /obj/item/material/Value()
 	return material.value * worth_multiplier

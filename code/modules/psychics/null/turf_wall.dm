@@ -12,7 +12,7 @@
 	. = ..(devastated, explode, no_product)
 
 /turf/simulated/wall/disrupts_psionics()
-	return (material.is_psi_null() || (reinf_material && reinf_material.is_psi_null())) ? TRUE : ..()
+	return ((material && material.is_psi_null()) || (reinf_material && reinf_material.is_psi_null())) ? TRUE : ..()
 
 /turf/simulated/wall/withstand_psi_stress(var/stress, var/atom/source)
 	. = ..(stress, source)

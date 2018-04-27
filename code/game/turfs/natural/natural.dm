@@ -38,18 +38,20 @@ var/list/tree_types = list(
 	return ..()
 
 /turf/simulated/floor/natural/attackby(obj/item/C, mob/user)
-	if(diggable && istype(C,/obj/item/shovel))
-		var/obj/structure/pit/P = locate(/obj/structure/pit) in src
-		if(P)
-			P.attackby(C, user)
-		else
-			visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
-			if(do_after(user, 50))
-				user << "<span class='notice'>You dig a deep pit.</span>"
-				if(!(locate(/obj/structure/pit) in src))
-					new /obj/structure/pit(src)
+	if(diggable && istype(C,/obj/item/pickaxe))
+		var/obj/item/pickaxe/PA = C
+		if(PA.dig_sand)
+			var/obj/structure/pit/P = locate(/obj/structure/pit) in src
+			if(P)
+				P.attackby(C, user)
 			else
-				user << "<span class='notice'>You stop shoveling.</span>"
+				visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+				if(do_after(user, 50))
+					user << "<span class='notice'>You dig a deep pit.</span>"
+					if(!(locate(/obj/structure/pit) in src))
+						new /obj/structure/pit(src)
+				else
+					user << "<span class='notice'>You stop shoveling.</span>"
 	else
 		..()
 
