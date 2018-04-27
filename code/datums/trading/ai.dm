@@ -85,7 +85,7 @@ They sell generic supplies and ask for generic supplies.
 								/obj/item/stack/material/osmium           = TRADER_THIS_TYPE,
 								/obj/item/stack/material/steel            = TRADER_THIS_TYPE,
 								/obj/item/stack/material/plasteel         = TRADER_THIS_TYPE,
-								/obj/machinery/mining                     = TRADER_SUBTYPES_ONLY
+								/obj/machinery/mineral                    = TRADER_SUBTYPES_ONLY
 								)
 
 /datum/trader/trading_beacon/manufacturing
