@@ -13,8 +13,13 @@
 	var/floor_type = /turf/simulated/floor/tiled/dark
 	var/door_type =  /obj/machinery/door/airlock/lift
 	var/list/panel_offsets = list()
+
+	var/exterior_panel_type = /obj/structure/lift/button
+	var/interior_panel_type = /obj/structure/lift/panel
+
 	var/place_exterior_doors = TRUE
 	var/place_interior_doors = TRUE
+	var/place_walls = TRUE
 
 	var/list/areas_to_use = list()
 
@@ -125,8 +130,8 @@
 
 				// Update path appropriately if needed.
 				var/swap_to = /turf/simulated/open
-				if(cz == uz)                                                                       // Elevator.
-					if((tx == ux || ty == uy || tx == ex || ty == ey) && !(tx >= door_x1 && tx <= door_x2 && ty >= door_y1 && ty <= door_y2))
+				if(cz == uz) // Elevator.
+					if(place_walls && (tx == ux || ty == uy || tx == ex || ty == ey) && !(tx >= door_x1 && tx <= door_x2 && ty >= door_y1 && ty <= door_y2))
 						swap_to = wall_type
 					else
 						swap_to = floor_type
@@ -143,36 +148,37 @@
 				if(tx >= ux && tx <= ex && ty >= uy && ty <= ey)
 					floor_turfs += checking
 
-		// Place exterior doors.
-		for(var/tx = door_x1 to door_x2)
-			for(var/ty = door_y1 to door_y2)
-				var/turf/checking = locate(tx,ty,cz)
-				var/internal = 1
-				if(!(checking in floor_turfs))
-					internal = 0
-					if(!place_exterior_doors)
+		// Place doors.
+		if(place_exterior_doors || place_interior_doors)
+			for(var/tx = door_x1 to door_x2)
+				for(var/ty = door_y1 to door_y2)
+					var/turf/checking = locate(tx,ty,cz)
+					var/internal = 1
+					if(!(checking in floor_turfs))
+						internal = 0
+						if(!place_exterior_doors)
+							continue
+						if(checking.type != floor_type)
+							checking.ChangeTurf(floor_type)
+							checking = locate(tx,ty,cz)
+						for(var/atom/movable/thing in checking.contents)
+							qdel(thing)
+
+					if(internal && !place_interior_doors)
 						continue
-					if(checking.type != floor_type)
-						checking.ChangeTurf(floor_type)
-						checking = locate(tx,ty,cz)
-					for(var/atom/movable/thing in checking.contents)
-						qdel(thing)
 
-				if(internal && !place_interior_doors)
-					continue
-
-				if(checking.type == floor_type) // Don't build over empty space on lower levels.
-					var/obj/machinery/door/airlock/lift/newdoor = new door_type(checking)
-					if(internal)
-						lift.doors += newdoor
-						newdoor.lift = cfloor
-					else
-						cfloor.doors += newdoor
-						newdoor.floor = cfloor
+					if(checking.type == floor_type) // Don't build over empty space on lower levels.
+						var/obj/machinery/door/airlock/lift/newdoor = new door_type(checking)
+						if(internal)
+							lift.doors += newdoor
+							newdoor.lift = cfloor
+						else
+							cfloor.doors += newdoor
+							newdoor.floor = cfloor
 
 		// Place exterior control panel.
 		var/turf/placing = locate(ext_panel_x, ext_panel_y, cz)
-		var/obj/structure/lift/button/panel_ext = new(placing, lift)
+		var/obj/structure/lift/button/panel_ext = new exterior_panel_type(placing, lift)
 		panel_ext.floor = cfloor
 		panel_ext.set_dir(udir)
 		cfloor.ext_panel = panel_ext
@@ -192,7 +198,7 @@
 
 	// Place lift panel.
 	var/turf/T = locate(int_panel_x, int_panel_y, uz)
-	lift.control_panel_interior = new(T, lift)
+	lift.control_panel_interior = new interior_panel_type(T, lift)
 	lift.control_panel_interior.set_dir(udir)
 	lift.current_floor = lift.floors[uz]
 
