@@ -53,19 +53,20 @@
 
 /obj/machinery/autolathe/proc/update_recipe_list()
 	populate_lathe_recipes()
-	switch(lathe_type)
-		if(LATHE_TYPE_ROBOTICS)
-			machine_recipes = autolathe_robotics
-		if(LATHE_TYPE_CIRCUIT)
-			machine_recipes = autolathe_circuits
-		if(LATHE_TYPE_ADVANCED)
-			machine_recipes = autolathe_advanced
-		if(LATHE_TYPE_HEAVY)
-			machine_recipes = autolathe_heavy
-		if(LATHE_TYPE_AMMUNITION)
-			machine_recipes = autolathe_ammo
-		else
-			machine_recipes = autolathe_generic
+	if(lathe_type == LATHE_TYPE_ROBOTICS)
+		machine_recipes = autolathe_robotics
+	if(lathe_type == LATHE_TYPE_CIRCUIT)
+		machine_recipes = autolathe_circuits
+	if(lathe_type == LATHE_TYPE_ADVANCED)
+		machine_recipes = autolathe_advanced
+	if(lathe_type == LATHE_TYPE_HEAVY)
+		machine_recipes = autolathe_heavy
+	if(lathe_type == LATHE_TYPE_AMMUNITION)
+		machine_recipes = autolathe_ammo
+	if(lathe_type == LATHE_TYPE_CURRENCY)
+		machine_recipes = autolathe_currency
+	else
+		machine_recipes = autolathe_generic
 
 /obj/machinery/autolathe/attack_ai(var/mob/user)
 	return attack_hand(user)
