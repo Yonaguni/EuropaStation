@@ -11,10 +11,9 @@
 
 	var/default_type = DEFAULT_WALL_MATERIAL
 	var/material/material
-	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
 
-/obj/item/stack/material/New(atom/newloc, var/amount=null)
+/obj/item/stack/material/New(var/atom/newloc, var/amount)
 	..(newloc, amount)
 
 	if(!default_type)

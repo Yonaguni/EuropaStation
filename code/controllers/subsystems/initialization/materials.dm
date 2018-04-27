@@ -35,6 +35,9 @@ var/datum/controller/subsystem/materials/SSmaterials
 					processable_ores[component] = TRUE
 					alloy_components[component] = TRUE
 		CHECK_TICK
+	// TEMPORARY
+	name_to_material = materials_by_name
+	// END TEMPORARY
 	. = ..()
 
 /datum/controller/subsystem/materials/proc/get_material_by_name(name)
@@ -43,10 +46,11 @@ var/datum/controller/subsystem/materials/SSmaterials
 // PLACEHOLDERS KEPT FOR LEGACY PURPOSES,
 // REMOVE THESE PROCS WHEN POSSIBLE PLS.
 // Builds the datum list above.
+var/list/name_to_material
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
 	name_to_material = list()
-	for(var/type in typesof(/material) - /material)
+	for(var/type in subtypesof(/material))
 		var/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
@@ -55,7 +59,8 @@ var/datum/controller/subsystem/materials/SSmaterials
 
 // Safety proc to make sure the material list exists before trying to grab from it.
 /proc/get_material_by_name(name)
-	if(SSmaterials) return SSmaterials.get_material_by_name(name)
+	if(SSmaterials && SSmaterials.materials)
+		return SSmaterials.get_material_by_name(name)
 	if(!name_to_material)
 		populate_material_list()
 	return name_to_material[name]

@@ -27,18 +27,6 @@
 
 	var/obj/item/wrapped = null // Item currently being held.
 
-// VEEEEERY limited version for mining borgs. Basically only for swapping cells and upgrading the drills.
-/obj/item/gripper/miner
-	name = "drill maintenance gripper"
-	desc = "A simple grasping tool for the maintenance of heavy drilling machines."
-	icon_state = "gripper-mining"
-
-	can_hold = list(
-	/obj/item/cell,
-	/obj/item/stock_parts,
-	/obj/item/circuitboard/miningdrill
-	)
-
 /obj/item/gripper/paperwork
 	name = "paperwork gripper"
 	desc = "A simple grasping tool for clerical work."

@@ -44,6 +44,7 @@
 	var/flags = 0                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
+	var/units_per_sheet = SHEET_MATERIAL_AMOUNT
 	var/is_fusion_fuel
 
 	// Shards/tables/structures
@@ -334,7 +335,7 @@
 	shard_type = SHARD_NONE
 	conductive = 0
 	hidden_from_codex = TRUE
-	composite_material = NULL
+	composite_material = null
 	alloy_product = FALSE
 
 /material/plasteel
@@ -361,7 +362,7 @@
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
-	composite_material = NULL
+	composite_material = null
 	alloy_product = FALSE
 
 /material/glass

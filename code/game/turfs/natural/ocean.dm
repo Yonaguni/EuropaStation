@@ -54,9 +54,8 @@
 
 /turf/simulated/ocean/update_icon(var/update_neighbors)
 	if(detail_decal)
-		..(update_neighbors, list(get_mining_overlay(detail_decal)))
-	else
-		..(update_neighbors)
+		ADD_MINING_OVERLAY(src, detail_decal, null, null)
+	..(update_neighbors)
 
 /turf/simulated/ocean/moving
 	name = "open ocean"

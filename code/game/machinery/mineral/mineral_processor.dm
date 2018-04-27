@@ -99,7 +99,7 @@
 				new M.stack_type(output_turf, amount = max(1, making))
 
 /obj/machinery/mineral/processing_unit/proc/attempt_smelt(var/material/metal, var/max_result)
-	. = Clamp(ores_stored[metal.name],1,max_result)
+	. = Clamp(Floor(ores_stored[metal.name]/metal.units_per_sheet),1,max_result)
 	ores_stored[metal.name] -= . * metal.units_per_sheet
 	var/material/M = SSmaterials.get_material_by_name(metal.ore_smelts_to)
 	if(istype(M))
@@ -108,14 +108,17 @@
 		. = -(.)
 
 /obj/machinery/mineral/processing_unit/proc/attempt_compression(var/material/metal, var/max_result)
-	var/making = Clamp(ores_stored[metal.name],1,max_result)
-	ores_stored[metal.name] -= making * metal.units_per_sheet
-	. = Floor(making * 0.5)
-	var/material/M = SSmaterials.get_material_by_name(metal.ore_compresses_to)
-	if(istype(M))
-		new M.stack_type(output_turf, amount = .)
+	var/making = Clamp(Floor(ores_stored[metal.name]/metal.units_per_sheet),1,max_result)
+	if(making >= 2)
+		ores_stored[metal.name] -= making * metal.units_per_sheet
+		. = Floor(making * 0.5)
+		var/material/M = SSmaterials.get_material_by_name(metal.ore_compresses_to)
+		if(istype(M))
+			new M.stack_type(output_turf, amount = .)
+		else
+			. = -(.)
 	else
-		. = -(.)
+		. = 0
 
 /obj/machinery/mineral/processing_unit/get_console_data()
 	. = ..()
@@ -143,24 +146,25 @@
 
 /obj/machinery/mineral/processing_unit/Topic(href, href_list)
 	. = ..()
-	if(href_list["toggle_smelting"])
-		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
-		if(!choice) return
-		switch(choice)
-			if("Nothing")     choice = ORE_DISABLED
-			if("Smelting")    choice = ORE_SMELT
-			if("Compressing") choice = ORE_COMPRESS
-			if("Alloying")    choice = ORE_ALLOY
-		ores_processing[href_list["toggle_smelting"]] = choice
-		. = TRUE
-	else if(href_list["toggle_power"])
-		active = !active
-		. = TRUE
-	else if(href_list["toggle_ores"])
-		report_all_ores = !report_all_ores
-		. = TRUE
-	if(. && console)
-		console.updateUsrDialog()
+	if(can_use(usr))
+		if(href_list["toggle_smelting"])
+			var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
+			if(!choice) return
+			switch(choice)
+				if("Nothing")     choice = ORE_DISABLED
+				if("Smelting")    choice = ORE_SMELT
+				if("Compressing") choice = ORE_COMPRESS
+				if("Alloying")    choice = ORE_ALLOY
+			ores_processing[href_list["toggle_smelting"]] = choice
+			. = TRUE
+		else if(href_list["toggle_power"])
+			active = !active
+			. = TRUE
+		else if(href_list["toggle_ores"])
+			report_all_ores = !report_all_ores
+			. = TRUE
+		if(. && console)
+			console.updateUsrDialog()
 
 #undef ORE_DISABLED
 #undef ORE_SMELT

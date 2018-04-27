@@ -33,14 +33,18 @@
 /obj/machinery/mineral/proc/get_console_data()
 	return list("=== <a href='?src=\ref[src];configure_input_output=1'>\[Configure Input/Output\]</a>")
 
+/obj/machinery/mineral/proc/can_use(var/mob/user)
+	return (user && (istype(usr, /mob/living/silicon) || usr.Adjacent(src) || (console && usr.Adjacent(console))))
+
 /obj/machinery/mineral/Topic(href, href_list)
 	. = ..()
-	if(href_list["configure_input_output"])
-		interact(usr)
-		. = TRUE
-	if(console && usr.Adjacent(console))
-		usr.set_machine(console)
-		console.add_fingerprint(usr)
+	if(can_use(usr))
+		if(href_list["configure_input_output"])
+			interact(usr)
+			. = TRUE
+		if(console && usr.Adjacent(console))
+			usr.set_machine(console)
+			console.add_fingerprint(usr)
 
 /obj/machinery/mineral/attack_ai(var/mob/user)
 	interact(user)

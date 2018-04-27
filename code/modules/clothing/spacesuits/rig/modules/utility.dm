@@ -62,18 +62,6 @@
 
 	device_type = /obj/item/pickaxe/diamonddrill
 
-/obj/item/rig_module/device/orescanner
-	name = "ore scanner module"
-	desc = "A clunky old ore scanner."
-	icon_state = "scanner"
-	interface_name = "ore detector"
-	interface_desc = "A sonar system for detecting large masses of ore."
-	engage_string = "Begin Scan"
-	usable = 1
-	selectable = 0
-	use_power_cost = 200
-	device_type = /obj/item/mining_scanner
-
 /obj/item/rig_module/device/rcd
 	name = "RCD mount"
 	desc = "A cell-powered rapid construction device for a hardsuit."

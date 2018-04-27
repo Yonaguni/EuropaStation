@@ -9,10 +9,23 @@
 "i" = (/obj/effect/landmark{name = "Observer-Start"},/turf/simulated/floor/tiled,/area/arrival)
 "j" = (/obj/effect/landmark/start,/turf/simulated/floor/tiled,/area/arrival)
 "k" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/centcom)
-"l" = (/obj/machinery/power/apc/east,/turf/simulated/floor/tiled,/area/centcom)
+"l" = (/obj/structure/table/standard,/obj/item/ore/coal,/obj/item/ore/diamond,/obj/item/ore/glass,/obj/item/ore/gold,/obj/item/ore/hydrogen,/obj/item/ore/iron,/obj/item/ore/osmium,/obj/item/ore/silver,/obj/item/ore/uranium,/obj/item/ore/slag,/turf/simulated/floor/tiled,/area/centcom)
 "m" = (/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/centcom)
 "n" = (/obj/effect/landmark{name = "JoinLate"},/turf/simulated/floor/tiled,/area/centcom)
 "o" = (/obj/effect/landmark/start/crewman,/turf/simulated/floor/tiled,/area/centcom)
+"p" = (/obj/machinery/conveyor{dir = 4; icon_state = "conveyor0"; id = "testbelt"},/turf/simulated/floor/tiled,/area/centcom)
+"q" = (/obj/machinery/conveyor_switch{id = "testbelt"},/turf/simulated/floor/tiled,/area/centcom)
+"r" = (/obj/machinery/conveyor{dir = 4; icon_state = "conveyor0"; id = "testbelt"},/obj/machinery/mineral/processing_unit,/turf/simulated/floor/tiled,/area/centcom)
+"s" = (/obj/machinery/conveyor{dir = 4; icon_state = "conveyor0"; id = "testbelt"},/obj/machinery/mineral/stacking_machine,/turf/simulated/floor/tiled,/area/centcom)
+"t" = (/obj/machinery/mineral/unloading_machine,/turf/simulated/floor/tiled,/area/centcom)
+"u" = (/obj/effect/wingrille_spawn/reinforced,/turf/simulated/floor/tiled,/area/centcom)
+"v" = (/obj/machinery/conveyor{dir = 4; icon_state = "conveyor0"; id = "testbelt"},/obj/structure/plasticflaps,/turf/simulated/floor/tiled,/area/centcom)
+"w" = (/obj/item/material/coin/diamond,/obj/item/material/coin/gold,/obj/item/material/coin/iron,/obj/item/material/coin/platinum,/obj/item/material/coin/silver,/obj/item/material/coin/uranium,/turf/simulated/floor/tiled,/area/centcom)
+"x" = (/obj/structure/ore_box,/turf/simulated/floor/tiled,/area/centcom)
+"y" = (/obj/structure/table/standard,/obj/item/storage/ore,/turf/simulated/floor/tiled,/area/centcom)
+"z" = (/obj/item/material/coin/diamond,/obj/item/material/coin/gold,/obj/item/material/coin/gold,/obj/item/material/coin/iron,/obj/item/material/coin/platinum,/obj/item/material/coin/silver,/obj/item/material/coin/uranium,/turf/simulated/floor/tiled,/area/centcom)
+"A" = (/obj/machinery/computer/mining,/turf/simulated/wall,/area/centcom)
+"B" = (/obj/structure/table/standard,/obj/item/ore/coal,/obj/item/ore/diamond,/obj/item/ore/glass,/obj/item/ore/gold,/obj/item/ore/hydrogen,/obj/item/ore/iron,/obj/item/ore/osmium,/obj/item/ore/silver,/obj/item/ore/uranium,/obj/item/ore/slag,/obj/machinery/power/apc/east,/turf/simulated/floor/tiled,/area/centcom)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -22,21 +35,21 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaabbccbbaaaabbccbbaaaaaaa
-aaaaaaabeeedbaaaabdddhbaaaaaaa
-aaaaaaacejifbbccbbgdddcaaaaaaa
-aaaaaaaceeeddddddddddlcaaaaaaa
-aaaaaaabdddddmddmdddddbaaaaaaa
+aaaaaaabbccbbbccbbbccbbaaaaaaa
+aaaaaaabeeebprpsvdxlyhbaaaaaaa
+aaaaaaacejibtAuAuddddlcaaaaaaa
+aaaaaaaceeeqdddddddddlcaaaaaaa
+aaaaaaabdddddmddmddddBbaaaaaaa
 aaaaaaabbbddbbccbbddbbbaaaaaaa
 aaaaaaaaabdfbaaaabgdbaaaaaaaaa
 aaaaaaaaacddcaaaacddcaaaaaaaaa
 aaaaaaaaacddcaaaacddcaaaaaaaaa
 aaaaaaaaabdfbaaaabgdbaaaaaaaaa
 aaaaaaabbbddbbccbbddbbbaaaaaaa
-aaaaaaabdddddkddkdddddbaaaaaaa
-aaaaaaacddddddddddddddcaaaaaaa
-aaaaaaacdonfbbccbbgdddcaaaaaaa
-aaaaaaabddddbaaaabddddbaaaaaaa
+aaaaaaabdddddkddkddddwbaaaaaaa
+aaaaaaacdddddddddddddwcaaaaaaa
+aaaaaaacdonfbbccbbgddwcaaaaaaa
+aaaaaaabddddbaaaabzwwwbaaaaaaa
 aaaaaaabbccbbaaaabbccbbaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -46,4 +59,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-
