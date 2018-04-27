@@ -1,13 +1,13 @@
-#define SS_INIT_SEEDS               9
-#define SS_INIT_PERSISTENCE         8	// Initialize round-start map objects from previous rounds.
-#define SS_INIT_MISC_FIRST          7
-#define SS_INIT_WIRELESS            6	// Wireless pair queue flush.
-#define SS_INIT_AIR                 5	// Air setup and pre-bake.
-#define SS_INIT_ICON_UPDATE         4	// Icon update queue flush. Should run before overlays.
-#define SS_INIT_OVERLAY             3	// Overlay flush.
-#define SS_INIT_MISC                2	// Subsystems without an explicitly set initialization order start here.
-#define SS_INIT_OPENTURF            1	// Openturf flush. Should run after SSoverlay & SSicon_smooth so it copies the smoothed sprites.
-#define SS_INIT_TURBOLIFT           0   // Modifies the map pre-init, needs to run first.
+#define SS_INIT_TURBOLIFT           9   // Modifies the map pre-init, needs to run first.
+#define SS_INIT_SEEDS               8
+#define SS_INIT_PERSISTENCE         7	// Initialize round-start map objects from previous rounds.
+#define SS_INIT_MISC_FIRST          6
+#define SS_INIT_WIRELESS            5	// Wireless pair queue flush.
+#define SS_INIT_AIR                 4	// Air setup and pre-bake.
+#define SS_INIT_ICON_UPDATE         3	// Icon update queue flush. Should run before overlays.
+#define SS_INIT_OVERLAY             2	// Overlay flush.
+#define SS_INIT_MISC                1	// Subsystems without an explicitly set initialization order start here.
+#define SS_INIT_OPENTURF            0	// Openturf flush. Should run after SSoverlay & SSicon_smooth so it copies the smoothed sprites.
 #define SS_INIT_LOBBY              -1	// Lobby timer starts here.
 
 // Something to remember when setting priorities: SS_TICKER runs before Normal, which runs before SS_BACKGROUND.
