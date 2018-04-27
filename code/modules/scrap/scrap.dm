@@ -90,39 +90,13 @@
 	..(over_object)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/shovel))
+	if(istype(W,/obj/item/pickaxe))
 		var/list/ways = list("pokes around", "digs through", "rummages through", "goes through","picks through")
 		visible_message("<span class='notice'>\The [user] [pick(ways)] \the [src].</span>")
 		shuffle_loot()
 		if(!(loot.contents.len || contents.len > 1))
 			user << "<span class='notice'>There doesn't seem to be anything of interest left in \the [src]...</span>"
 	..()
-
-/obj/structure/scrap/vehicle
-	name = "debris pile"
-	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
-	loot_list = list(
-		/obj/item/vehicle_part,
-		/obj/item/vehicle_part,
-		/obj/item/vehicle_part,
-		/obj/item/vehicle_part,
-		/obj/item/stack/rods/scrap,
-		/obj/item/stack/material/plastic/scrap,
-		/obj/item/stack/material/scrap,
-		/obj/item/material/shard
-		)
-
-/obj/structure/scrap/large
-	name = "large scrap pile"
-	opacity = 1
-	density = 1
-	icon_state = "big"
-	loot_min = 10
-	loot_max = 20
-
-	base_min = 9
-	base_max = 14
-	base_spread = 16
 
 /obj/item/storage/internal/updating/update_icon()
 	master_item.update_icon()

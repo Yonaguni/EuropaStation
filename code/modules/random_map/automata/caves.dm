@@ -1,6 +1,6 @@
 /datum/random_map/automata/asteroids/cave_system
 	iterations = 5
-	descriptor = "moon caves"
+	descriptor = "caves"
 
 /datum/random_map/automata/asteroids/cave_system/get_appropriate_path(var/value)
 	switch(value)
@@ -27,20 +27,20 @@
 	for (var/x = 1 to limit_x)
 		for (var/y = 1 to limit_y)
 			tmp_cell = TRANSLATE_COORD(x, y)
-			if (CELL_ALIVE(map[tmp_cell]))
-				ore_turfs += tmp_cell
+			if (!CELL_ALIVE(map[tmp_cell]))
+				clear_turfs += tmp_cell
 
-	game_log("ASGEN", "Found [ore_turfs.len] ore turfs.")
-	var/ore_count = round(map.len/20)
+	game_log("ASGEN", "Found [clear_turfs.len] clear turfs.")
+	var/ore_count = round(map.len/ore_divisor)
 	var/door_count = 0
 	var/empty_count = 0
-	while((ore_count>0) && (ore_turfs.len>0))
+	while((ore_count>0) && (clear_turfs.len>0))
 
 		if(!minimize_lag)
 			CHECK_TICK
 
-		var/check_cell = pick(ore_turfs)
-		ore_turfs -= check_cell
+		var/check_cell = pick(clear_turfs)
+		clear_turfs -= check_cell
 		if(prob(75))
 			map[check_cell] = DOOR_CHAR  // Mineral block
 			door_count += 1
@@ -61,7 +61,8 @@
 	var/tmp_cell
 	var/new_path
 	var/num_applied = 0
-	for (var/thing in block(locate(origin_x, origin_y, origin_z), locate(origin_x + limit_x, origin_y + limit_y, origin_z)))
+
+	for (var/thing in block(locate(origin_x, origin_y, origin_z), locate((origin_x + limit_x)-1, (origin_y + limit_y)-1, origin_z)))
 		var/turf/T = thing
 		new_path = null
 		if (!T || (target_turf_type && !istype(T, target_turf_type)))
@@ -83,16 +84,9 @@
 			continue
 
 		num_applied += 1
+		world.log << "New turf [new_path] at [T.x],[T.y],[T.z]"
 		new new_path(T)
 
 		CHECK_TICK
 
 	game_log("ASGEN", "Applied [num_applied] turfs.")
-
-/datum/random_map/automata/asteroids/cave_system/underwater
-	descriptor = "underwater caves"
-	target_turf_type = /turf/simulated/mineral
-	wall_type =  /turf/simulated/mineral/flooded
-	floor_type = /turf/simulated/mineral/floor/flooded
-	mineral_sparse =  /turf/simulated/mineral/flooded
-	mineral_rich = /turf/simulated/mineral/flooded

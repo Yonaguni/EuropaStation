@@ -14,6 +14,14 @@
 	outside = 1
 	var/detail_decal
 
+/turf/simulated/ocean/abyss
+	name = "abyssal silt"
+	desc = "Unfathomably silty."
+	icon_state = "mud_light"
+
+/turf/simulated/ocean/abyss/place_critter()
+	return
+
 /turf/simulated/ocean/open
 	name = "open ocean"
 	icon_state = "still"
