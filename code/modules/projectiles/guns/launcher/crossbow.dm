@@ -41,7 +41,7 @@
 /obj/item/gun/launcher/crossbow
 	name = "powered crossbow"
 	desc = "A 2557AD twist on an old classic. Pick up that can."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/crossbow.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow-solid"
 	fire_sound = 'sound/weapons/punchmiss.ogg' // TODO: Decent THWOK noise.
@@ -54,6 +54,7 @@
 	var/release_speed = 5                   // Speed per unit of tension.
 	var/obj/item/cell/cell = null    // Used for firing superheated rods.
 	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
+	var/base_icon = "crossbow"
 
 /obj/item/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed
@@ -73,7 +74,7 @@
 /obj/item/gun/launcher/crossbow/attack_self(var/mob/living/user)
 	if(tension)
 		if(bolt)
-			user.visible_message("[user] relaxes the tension on [src]'s string and removes [bolt].","You relax the tension on [src]'s string and remove [bolt].")
+			user.visible_message("[user] removes \the [bolt] from \the [src].","You relax the tension on [src]'s string and remove [bolt].")
 			bolt.loc = get_turf(src)
 			var/obj/item/arrow/A = bolt
 			bolt = null
@@ -123,7 +124,6 @@
 
 	if(!bolt || !tension || current_user != user) //Arrow has been fired, bow has been relaxed or user has changed.
 		return
-
 
 /obj/item/gun/launcher/crossbow/attackby(obj/item/W as obj, var/mob/user)
 	if(!bolt)
@@ -179,17 +179,17 @@
 
 /obj/item/gun/launcher/crossbow/update_icon()
 	if(tension > 1)
-		icon_state = "crossbow-drawn"
+		icon_state = "[base_icon]-drawn"
 	else if(bolt)
-		icon_state = "crossbow-nocked"
+		icon_state = "[base_icon]-nocked"
 	else
-		icon_state = "crossbow"
-
+		icon_state = "[base_icon]"
 
 // Crossbow construction.
 /obj/item/crossbowframe
 	name = "crossbow frame"
 	desc = "A half-finished crossbow."
+	icon = 'icons/obj/crossbow.dmi'
 	icon_state = "crossbowframe0"
 	item_state = "crossbow-solid"
 
