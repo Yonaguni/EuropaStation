@@ -55,15 +55,15 @@
 	populate_lathe_recipes()
 	if(lathe_type == LATHE_TYPE_ROBOTICS)
 		machine_recipes = autolathe_robotics
-	if(lathe_type == LATHE_TYPE_CIRCUIT)
+	else if(lathe_type == LATHE_TYPE_CIRCUIT)
 		machine_recipes = autolathe_circuits
-	if(lathe_type == LATHE_TYPE_ADVANCED)
+	else if(lathe_type == LATHE_TYPE_ADVANCED)
 		machine_recipes = autolathe_advanced
-	if(lathe_type == LATHE_TYPE_HEAVY)
+	else if(lathe_type == LATHE_TYPE_HEAVY)
 		machine_recipes = autolathe_heavy
-	if(lathe_type == LATHE_TYPE_AMMUNITION)
+	else if(lathe_type == LATHE_TYPE_AMMUNITION)
 		machine_recipes = autolathe_ammo
-	if(lathe_type == LATHE_TYPE_CURRENCY)
+	else if(lathe_type == LATHE_TYPE_CURRENCY)
 		machine_recipes = autolathe_currency
 	else
 		machine_recipes = autolathe_generic
