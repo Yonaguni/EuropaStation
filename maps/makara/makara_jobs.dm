@@ -1,7 +1,3 @@
-/datum/antagonist/changeling/New()
-	protected_job_types |= list(/datum/job/makara/crew/captain)
-	..()
-
 /datum/antagonist/revolutionary/New()
 	restricted_job_types |= list(/datum/job/makara/crew/captain)
 	protected_job_types |= list(/datum/job/makara/crew/gunner)
