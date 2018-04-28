@@ -53,6 +53,6 @@
 /obj/item/ore/osmium/New(var/newloc)
 	..(newloc, MATERIAL_PLATINUM)
 /obj/item/ore/hydrogen/New(var/newloc)
-	..(newloc, "mhydrogen")
+	..(newloc, MATERIAL_MHYDROGEN)
 /obj/item/ore/slag/New(var/newloc)
 	..(newloc, MATERIAL_WASTE)

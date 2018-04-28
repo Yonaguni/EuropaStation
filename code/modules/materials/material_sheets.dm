@@ -160,7 +160,7 @@
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
-	default_type = "mhydrogen"
+	default_type = MATERIAL_MHYDROGEN
 
 /obj/item/stack/material/mhydrogen/five
 	amount = 5
@@ -188,7 +188,7 @@
 /obj/item/stack/material/deuterium
 	name = "deuterium"
 	icon_state = "sheet-silver"
-	default_type = "deuterium"
+	default_type = MATERIAL_DEUTERIUM
 	apply_colour = 1
 
 /obj/item/stack/material/deuterium/fifty
@@ -225,7 +225,7 @@
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"
-	default_type = "cloth"
+	default_type = MATERIAL_CLOTH
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
@@ -239,7 +239,7 @@
 	name = "leather"
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
-	default_type = "leather"
+	default_type = MATERIAL_LEATHER
 
 /obj/item/stack/material/glass
 	name = "glass"

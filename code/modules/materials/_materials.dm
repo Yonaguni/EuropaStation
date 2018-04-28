@@ -545,7 +545,7 @@
 	icon_colour = "#E6C5DE"
 	is_fusion_fuel = 1
 	ore_smelts_to = MATERIAL_TRITIUM
-	ore_compresses_to = "mhydrogen"
+	ore_compresses_to = MATERIAL_MHYDROGEN
 	ore_overlay = "gems"
 	ore_name = "raw hydrogen"
 

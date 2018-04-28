@@ -49,6 +49,7 @@
 #define MATERIAL_LIME_CLOTH    /material/cloth_lime
 #define MATERIAL_PLACEHOLDER   /material/placeholder
 #define MATERIAL_NULLGLASS     /material/nullglass
+#define MATERIAL_MHYDROGEN     /material/mhydrogen
 
 #define DEFAULT_TABLE_MATERIAL MATERIAL_PLASTIC
 #define DEFAULT_WALL_MATERIAL  MATERIAL_STEEL
