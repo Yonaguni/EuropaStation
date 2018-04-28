@@ -1,5 +1,5 @@
 /obj/item/weldpack
-	name = "Welding kit"
+	name = "welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
 	icon = 'icons/obj/storage.dmi'
@@ -7,7 +7,7 @@
 	w_class = 4
 	var/max_fuel = 350
 
-/obj/item/weldpack/New()
+/obj/item/weldpack/initialize()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src

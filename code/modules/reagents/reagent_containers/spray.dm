@@ -99,7 +99,7 @@
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
-/obj/item/reagent_containers/spray/cleaner/New()
+/obj/item/reagent_containers/spray/cleaner/initialize()
 	..()
 	reagents.add_reagent("cleaner", volume)
 
@@ -107,7 +107,7 @@
 	name = "antiseptic bottle"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
-/obj/item/reagent_containers/spray/antiseptic/New()
+/obj/item/reagent_containers/spray/antiseptic/initialize()
 	..()
 	reagents.add_reagent("antiseptic", volume)
 
@@ -121,7 +121,7 @@
 	volume = 40
 	var/safety = 1
 
-/obj/item/reagent_containers/spray/pepper/New()
+/obj/item/reagent_containers/spray/pepper/initialize()
 	..()
 	reagents.add_reagent("condensedcapsaicin", 40)
 
@@ -149,7 +149,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/reagent_containers/spray/waterflower/New()
+/obj/item/reagent_containers/spray/waterflower/initialize()
 	..()
 	reagents.add_reagent("water", 10)
 
@@ -193,7 +193,7 @@
 	item_state = "plantbgone"
 	volume = 100
 
-/obj/item/reagent_containers/spray/plantbgone/New()
+/obj/item/reagent_containers/spray/plantbgone/initialize()
 	..()
 	reagents.add_reagent("weedkiller", 100)
 

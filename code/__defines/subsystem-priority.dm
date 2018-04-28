@@ -1,3 +1,4 @@
+#define SS_INIT_CHEMISTRY          12   // Init reagent lists.
 #define SS_INIT_MATERIALS          11	// Initial material list building.
 #define SS_INIT_SEEDS              10
 #define SS_INIT_PERSISTENCE         9	// Initialize round-start map objects from previous rounds.

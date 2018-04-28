@@ -122,12 +122,12 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("enzyme", 50)
 
 /obj/item/reagent_containers/food/condiment/sugar
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sugar", 50)
 
@@ -138,7 +138,7 @@
 	possible_transfer_amounts = "1;20" //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sodiumchloride", 20)
 
@@ -149,7 +149,7 @@
 	possible_transfer_amounts = "1;20" //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("blackpepper", 20)
 
@@ -160,7 +160,7 @@
 	icon_state = "flour"
 	item_state = "flour"
 	randpixel = 10
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("flour", 30)
 
@@ -170,6 +170,6 @@
 	icon_state = "soysauce"
 	amount_per_transfer_from_this = 1
 	volume = 20
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("soysauce", 20)

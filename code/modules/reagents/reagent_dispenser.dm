@@ -7,6 +7,7 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
+	auto_init = TRUE
 
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = "10;25;50;100"
@@ -14,7 +15,7 @@
 	attackby(var/obj/item/W, var/mob/user)
 		return
 
-	New()
+	initialize()
 		var/datum/reagents/R = new/datum/reagents(1000)
 		reagents = R
 		R.my_atom = src
@@ -71,7 +72,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("water",1000)
 
@@ -83,7 +84,7 @@
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/assembly_holder/rig = null
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("fuel",1000)
 
@@ -189,7 +190,7 @@
 	anchored = 1
 	density = 0
 	amount_per_transfer_from_this = 45
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("condensedcapsaicin",1000)
 
@@ -202,7 +203,7 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("water",500)
 
@@ -228,7 +229,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("beer",1000)
 
@@ -240,7 +241,7 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("virusfood", 1000)
 
@@ -252,6 +253,6 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sacid", 1000)

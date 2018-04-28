@@ -264,7 +264,7 @@
 			data = pick("styptazine", "fotiazine", "anti_toxin", "adrenaline", "glint", "sugar",
 						"morphine", "dexalin", "cryptobiolin", "impedrezene", "jumpstart", "ethylredoxrazine",
 						"lsd", "glucose")
-		var/datum/reagent/R = chemical_reagents_list[data]
+		var/datum/reagent/R = SSchemistry.get_reagent(data)
 		name = "[initial(name)] ([initial(R.name)])"
 
 	activate(var/mob/living/carbon/mob,var/multiplier)

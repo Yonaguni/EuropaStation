@@ -13,7 +13,7 @@
 	var/obj/item/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
 
-/obj/item/reagent_containers/food/drinks/bottle/New()
+/obj/item/reagent_containers/food/drinks/bottle/initialize()
 	..()
 	if(isGlass) unacidable = 1
 
@@ -176,7 +176,7 @@
 	desc = "A bottle of high-quality Terran State gin, produced in the Year of the Bastard."
 	icon_state = "ginbottle"
 	center_of_mass = "x=16;y=4"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("gin", 100)
 
@@ -185,7 +185,7 @@
 	desc = "A premium single-malt whiskey produced in the abandoned fission stacks rimward of Neith. The fumes alone can strip paint."
 	icon_state = "whiskeybottle"
 	center_of_mass = "x=16;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("whiskey", 100)
 
@@ -194,7 +194,7 @@
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
 	center_of_mass = "x=16;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("tequilla", 100)
 
@@ -204,7 +204,7 @@
 	desc = "A premium '79 red wine shipped brinkward at great expense."
 	icon_state = "winebottle"
 	center_of_mass = "x=16;y=4"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("wine", 100)
 
@@ -213,7 +213,7 @@
 	desc = "You know you're in for a good night when there's a picture of a bleeding polar bear on the label."
 	icon_state = "absinthebottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("absinthe", 100)
 
@@ -222,7 +222,7 @@
 	desc = "Silver-laced tequilla, served in every night club sunward of Saturn."
 	icon_state = "patronbottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("patron", 100)
 
@@ -232,7 +232,7 @@
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
 	icon_state = "vodkabottle"
 	center_of_mass = "x=17;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("vodka", 100)
 
@@ -241,7 +241,7 @@
 	desc = "Sweet, spicy and sour."
 	icon_state = "rumbottle"
 	center_of_mass = "x=16;y=8"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("rum", 100)
 
@@ -250,7 +250,7 @@
 	desc = "A flask of the chaplain's holy water."
 	icon_state = "holyflask"
 	center_of_mass = "x=17;y=10"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("holywater", 100)
 
@@ -259,7 +259,7 @@
 	desc = "Sweet, sweet dryness."
 	icon_state = "vermouthbottle"
 	center_of_mass = "x=17;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("vermouth", 100)
 
@@ -268,7 +268,7 @@
 	desc = "A widely-known coffee-flavoured liqueur. In production since 1936."
 	icon_state = "kahluabottle"
 	center_of_mass = "x=17;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("kahlua", 100)
 
@@ -277,7 +277,7 @@
 	desc = "A bottle of gold-flecked 100-proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
 	center_of_mass = "x=15;y=3"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("goldschlager", 100)
 
@@ -286,7 +286,7 @@
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing."
 	icon_state = "cognacbottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("cognac", 100)
 
@@ -295,7 +295,7 @@
 	desc = "What a delightful packaging for a surely high quality wine! The vintage must be amazing!"
 	icon_state = "pwinebottle"
 	center_of_mass = "x=16;y=4"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("pwine", 100)
 
@@ -306,7 +306,7 @@
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
 	icon_state = "alco-green" //Placeholder.
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("melonliquor", 100)
 
@@ -315,7 +315,7 @@
 	desc = "A fruity, exceptionally azure liquor."
 	icon_state = "alco-blue" //Placeholder.
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("bluecuracao", 100)
 
@@ -324,7 +324,7 @@
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	icon_state = "grenadinebottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("grenadine", 100)
 
@@ -333,7 +333,7 @@
 	desc = "Cadre Cola - it'll keep you running!"
 	icon_state = "colabottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("cola", 100)
 
@@ -342,7 +342,7 @@
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up_bottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("space_up", 100)
 
@@ -351,7 +351,7 @@
 	desc = "The label reads 'Bouncy Bubble Beverage'. Enjoying this refreshing drink is mandatory."
 	icon_state = "space_mountain_wind_bottle"
 	center_of_mass = "x=16;y=6"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("spacemountainwind", 100)
 
@@ -364,7 +364,7 @@
 	item_state = "carton"
 	center_of_mass = "x=16;y=7"
 	isGlass = 0
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("orangejuice", 100)
 
@@ -375,7 +375,7 @@
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"
 	isGlass = 0
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("cream", 100)
 
@@ -389,14 +389,14 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/eggnog/nonalcoholic
 	desc = "It's eggnog. Christmas is here already? This one seems to be non-alcoholic."
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("eggnog", 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/eggnog/alcoholic
 	desc = "It's eggnog. Christmas is here already? This one seems to be alcoholic."
 	icon_state = "nog2"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("eggnog", 80)
 		reagents.add_reagent("rum", 20)
@@ -408,7 +408,7 @@
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"
 	isGlass = 0
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("tomatojuice", 100)
 
@@ -419,7 +419,7 @@
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"
 	isGlass = 0
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("limejuice", 100)
 
@@ -435,7 +435,7 @@
 	desc = "Saint Peter Beer, sourced from Callisto. Now with added Salt Peter."
 	icon_state = "beer"
 	center_of_mass = "x=16;y=12"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("beer", 30)
 
@@ -445,6 +445,6 @@
 	icon_state = "alebottle"
 	item_state = "beer"
 	center_of_mass = "x=16;y=10"
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("ale", 30)

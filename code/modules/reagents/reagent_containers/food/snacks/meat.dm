@@ -8,7 +8,7 @@
 
 	var/source_mob
 
-/obj/item/reagent_containers/food/snacks/meat/New()
+/obj/item/reagent_containers/food/snacks/meat/initialize()
 	..()
 	reagents.add_reagent("protein", 9)
 	src.bitesize = 3
@@ -63,7 +63,7 @@
 	filling_color = "#DB0000"
 	center_of_mass = "x=16;y=10"
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("protein", 12)
 		reagents.add_reagent("jumpstart", 5)

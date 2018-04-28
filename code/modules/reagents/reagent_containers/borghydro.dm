@@ -23,12 +23,12 @@
 /obj/item/reagent_containers/borghypo/crisis
 	reagent_ids = list("adrenaline", "morphine")
 
-/obj/item/reagent_containers/borghypo/New()
+/obj/item/reagent_containers/borghypo/initialize()
 	..()
 
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
-		var/datum/reagent/R = chemical_reagents_list[T]
+		var/datum/reagent/R = SSchemistry.get_reagent(T)
 		reagent_names += R.name
 
 	processing_objects.Add(src)
@@ -101,14 +101,14 @@
 		if(t)
 			playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
-			var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+			var/datum/reagent/R = SSchemistry.get_reagent(reagent_ids[mode])
 			usr << "<span class='notice'>Synthesizer is now producing '[R.name]'.</span>"
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	if(!..(user, 2))
 		return
 
-	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+	var/datum/reagent/R = SSchemistry.get_reagent(reagent_ids[mode])
 
 	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
 

@@ -205,13 +205,13 @@
 	flags = OPENCONTAINER
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("cryoxadone", 30)
 		update_icon()
 
 /obj/item/reagent_containers/glass/beaker/sulphuric
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("sacid", 60)
 		update_icon()

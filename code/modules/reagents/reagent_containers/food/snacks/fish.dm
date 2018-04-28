@@ -17,7 +17,7 @@
 	fish_type = "tako"
 
 /obj/item/reagent_containers/food/snacks/meat/fish/chicken
-	fish_type = "chicken" // ¯\_(:))_/¯
+	fish_type = "chicken" // ï¿½\_(:))_/ï¿½
 
 // End subtypes.
 
@@ -26,7 +26,7 @@
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
 
-/obj/item/reagent_containers/food/snacks/meat/fish/poison/New()
+/obj/item/reagent_containers/food/snacks/meat/fish/poison/initialize()
 	..()
 	reagents.add_reagent("carpotoxin", 6)
 

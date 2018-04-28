@@ -15,10 +15,16 @@
 /*
  * Soap
  */
+/obj/item/soap
+	auto_init = TRUE
+
 /obj/item/soap/New()
 	..()
 	create_reagents(10)
+
+/obj/item/soap/initialize()
 	wet()
+	. = ..()
 
 /obj/item/soap/proc/wet()
 	reagents.add_reagent("cleaner", 5)

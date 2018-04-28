@@ -21,7 +21,7 @@
 
 	var/blood_type = null
 
-	New()
+	initialize()
 		..()
 		if(blood_type != null)
 			name = "BloodPack [blood_type]"

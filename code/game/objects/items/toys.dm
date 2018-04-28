@@ -331,7 +331,7 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/New()
+/obj/item/toy/waterflower/initialize()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src

@@ -9,10 +9,10 @@
 
 	var/list/checked = list()
 
-	for(var/var/datum/chemical_reaction/react in all_chemical_reactions)
+	for(var/var/datum/chemical_reaction/react in SSchemistry._chemical_reactions)
 		if(!istype(react) || react.loaded_at_runtime || !react.required_reagents || !react.required_reagents.len)
 			continue
-		var/datum/reagent/reagent = chemical_reagents_list[react.result]
+		var/datum/reagent/reagent = SSchemistry.get_reagent(react.result)
 		if(!istype(reagent))
 			continue
 		checked += react.id
@@ -35,10 +35,10 @@
 	usr << "| Chemical | Effects |"
 	usr << "| --- | --- |"
 
-	for(var/rid in chemical_reagents_list)
+	for(var/rid in SSchemistry._chemical_reagents)
 		if(rid in checked)
 			continue
-		var/datum/reagent/reagent = chemical_reagents_list[rid]
+		var/datum/reagent/reagent = SSchemistry.get_reagent(rid)
 		usr <<  "| [reagent.name] | [reagent.lore_text] |"
 
 	usr << "<br>"

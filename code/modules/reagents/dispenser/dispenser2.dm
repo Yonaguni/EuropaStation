@@ -20,10 +20,15 @@
 
 /obj/machinery/chemical_dispenser/New()
 	..()
-
 	if(spawn_cartridges)
-		for(var/type in spawn_cartridges)
-			add_cartridge(new type(src))
+		for(var/cart in spawn_cartridges)
+			new cart(src)
+	
+/obj/machinery/chemical_dispenser/initialize()
+	for(var/obj/item/reagent_containers/chem_disp_cartridge/cart in contents)
+		add_cartridge(cart)
+	. = ..()
+
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	..()

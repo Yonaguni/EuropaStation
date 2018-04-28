@@ -182,7 +182,7 @@
 	desc = "A packet of six Acme Company cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
 
-/obj/item/storage/fancy/cigarettes/killthroat/New()
+/obj/item/storage/fancy/cigarettes/killthroat/initialize()
 	..()
 	fill_cigarre_package(src,list("fuel" = 4))
 

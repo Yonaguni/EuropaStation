@@ -178,9 +178,10 @@
 	var/ice_creamed = 0
 	var/cone_type
 
-/obj/item/reagent_containers/food/snacks/icecream/New()
+/obj/item/reagent_containers/food/snacks/icecream/initialize()
 	create_reagents(20)
 	reagents.add_reagent("nutriment", 5)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
 	name = "[flavour_name] icecream"

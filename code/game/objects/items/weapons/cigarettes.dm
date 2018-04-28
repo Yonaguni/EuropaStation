@@ -18,7 +18,7 @@
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
 
-/obj/item/clothing/mask/smokable/New()
+/obj/item/clothing/mask/smokable/initialize()
 	..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
@@ -140,7 +140,7 @@
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
-/obj/item/clothing/mask/smokable/cigarette/New()
+/obj/item/clothing/mask/smokable/cigarette/initialize()
 	..()
 	reagents.add_reagent("nicotine", 1)
 
@@ -148,7 +148,7 @@
 	name = "menthol cigarette"
 	desc = "A cigarette with a little minty kick. Well, minty in theory."
 
-/obj/item/clothing/mask/smokable/cigarette/menthol/New()
+/obj/item/clothing/mask/smokable/cigarette/menthol/initialize()
 	..()
 	reagents.add_reagent("nicotine", 1)
 	reagents.add_reagent("menthol", 1)
@@ -203,7 +203,7 @@
 	weldermes = "<span class='notice'>USER insults NAME by lighting it with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("nicotine", 5)
 
@@ -223,7 +223,7 @@
 	smoketime = 3000
 	chem_volume = 20
 
-	New()
+	initialize()
 		..()
 		reagents.add_reagent("nicotine", 10)
 
@@ -237,7 +237,7 @@
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/cigbutt/New()
+/obj/item/cigbutt/initialize()
 	..()
 	transform = turn(transform,rand(0,360))
 
@@ -272,7 +272,7 @@
 	weldermes = "<span class='notice'>USER recklessly lights NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
 
-/obj/item/clothing/mask/smokable/pipe/New()
+/obj/item/clothing/mask/smokable/pipe/initialize()
 	..()
 	name = "empty [initial(name)]"
 
