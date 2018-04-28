@@ -33,7 +33,6 @@
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/psychiatrist,
-		/datum/job/xenobiologist,
 		/datum/job/ai,
 		/datum/job/cyborg
 		)
@@ -291,28 +290,12 @@
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
 	minimal_player_age = 14
 	ideal_character_age = 50
+	alt_titles = list("Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/europa_scientist
 
-/datum/job/xenobiologist
-	title = "Xenobiologist"
-	welcome_blurb = "Feed and crossbreed slimes to extract their cores, or grow and splice together exotic plants in the Xenoflora laboratory."
-	department = "Science"
-	department_flag = SCI
-	faction = "Crew"
-	total_positions = 3
-	spawn_positions = 2
-	supervisors = "the Site Director"
-	selection_color = "#ad6bad"
-	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics)
-	alt_titles = list(
-		"Xenobotanist"
-		)
-	minimal_player_age = 7
-	outfit_type = /decl/hierarchy/outfit/job/europa_doctor/xenobiologist
 
 /datum/job/cmo
 	title = "Chief of Medicine"
