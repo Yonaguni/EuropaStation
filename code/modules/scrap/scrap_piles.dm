@@ -25,8 +25,7 @@
 		/obj/item/ore/gold,
 		/obj/item/ore/diamond,
 		/obj/item/ore/osmium,
-		/obj/item/ore/hydrogen,
-		/obj/item/ore/slag
+		/obj/item/ore/hydrogen
 		)
 
 /obj/structure/scrap/large

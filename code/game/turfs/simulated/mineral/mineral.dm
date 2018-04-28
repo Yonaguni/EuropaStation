@@ -33,7 +33,7 @@
 
 	playsound(src, P.drill_sound, 100, 1)
 	being_dug = TRUE
-	user.visible_message("<span class='notice'>\The [src] begins [P.drill_verb] into \the [src].</span>")
+	user.visible_message("<span class='notice'>\The [user] begins [P.drill_verb] into \the [src].</span>")
 
 	var/dig_delay = P.digspeed
 	if(HAS_ASPECT(user, ASPECT_GROUNDBREAKER))
@@ -41,11 +41,11 @@
 
 	if(do_after(user, dig_delay, src))
 		if(density)
-			user.visible_message("<span class='notice'>\The [src] finishes [P.drill_verb] \the [src].</span>")
+			user.visible_message("<span class='notice'>\The [user] finishes [P.drill_verb] \the [src].</span>")
 			DROP_ORE(src)
 			MAKE_FLOOR(src)
 		else
-			user.visible_message("<span class='notice'>\The [src] finishes [P.drill_verb] a hole.</span>")
+			user.visible_message("<span class='notice'>\The [user] finishes [P.drill_verb] a hole in \the [src].</span>")
 			DROP_SAND(src)
 	being_dug = FALSE
 
@@ -64,10 +64,14 @@
 		var/obj/item/W = M.get_active_hand()
 		if(istype(W, /obj/item/pickaxe) || istype(W, /obj/item/storage/ore))
 			attackby(W, M)
-		else
-			W = M.get_inactive_hand()
-			if(istype(W, /obj/item/pickaxe) || istype(W, /obj/item/storage/ore))
-				attackby(W, M)
+			return
+		W = M.get_inactive_hand()
+		if(istype(W, /obj/item/pickaxe) || istype(W, /obj/item/storage/ore))
+			attackby(W, M)
+			return
+		var/obj/item/rig/rig = M.get_rig()
+		if(rig && istype(rig.selected_module, /obj/item/rig_module/device/plasmacutter))
+			M.HardsuitClickOn(src)
 
 /turf/simulated/mineral/can_build_cable()
 	return !density

@@ -41,3 +41,12 @@
 	ore_can_alloy = 1
 	ore_result_amount = 5
 	ore_overlay = "lump"
+
+/material/waste
+	name = "waste"
+	lore_text = "Someone messed up..."
+	stack_type = null
+	icon_colour = "#2E3A07"
+	ore_overlay = "lump"
+	ore_name = "slag"
+	ore_desc = "Someone messed up..."
