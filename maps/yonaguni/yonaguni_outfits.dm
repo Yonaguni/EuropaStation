@@ -116,3 +116,15 @@
 	name = OUTFIT_JOB_NAME("Xenobiologist")
 	id_type = /obj/item/card/id/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+
+/decl/hierarchy/outfit/job/europa_supply
+	name = OUTFIT_JOB_NAME("Supply Technician")
+	id_type = /obj/item/card/id/civilian
+	pda_type = /obj/item/radio/headset/pda/supply
+	head = /obj/item/clothing/head/soft/brown
+
+/decl/hierarchy/outfit/job/europa_salvager
+	name = OUTFIT_JOB_NAME("Salvage Diver")
+	id_type = /obj/item/card/id/civilian
+	pda_type = /obj/item/radio/headset/pda/supply
+	head = /obj/item/clothing/head/hardhat
