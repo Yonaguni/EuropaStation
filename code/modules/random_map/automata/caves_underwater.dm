@@ -38,12 +38,15 @@
 					new /obj/structure/scrap/large/anomalous(T)
 
 		// Place SHARK WEEK.
-		var/shark_week = rand(10,20)
+		var/shark_week = rand(30,50)
 		while(shark_week && clear_turfs.len)
 			var/turf/T = pick_n_take(clear_turfs)
 			if(T && !length(T.contents))
-				if(shark_week != 1)
-					new /mob/living/simple_animal/hostile/aquatic/shark(T)
-				else
-					new /mob/living/simple_animal/hostile/aquatic/shark/huge(T)
+				new /mob/living/simple_animal/hostile/aquatic/shark(T)
+				shark_week--
+		shark_week = rand(2,5)
+		while(shark_week && clear_turfs.len)
+			var/turf/T = pick_n_take(clear_turfs)
+			if(T && !length(T.contents))
+				new /mob/living/simple_animal/hostile/aquatic/shark/huge(T)
 				shark_week--

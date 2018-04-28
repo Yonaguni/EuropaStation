@@ -42,6 +42,9 @@
 		layer = TURF_LAYER
 	update()
 
+/turf/simulated/open/is_solid_structure()
+	return locate(/obj/structure/lattice) in src
+
 /turf/simulated/open/proc/update()
 	below = GetBelow(src)
 	// Edge case for when an open turf is above space on the lowest level.
@@ -100,6 +103,9 @@
 
 	// See if something prevents us from falling. Long drops don't care.
 	if(locate(/obj/structure/ladder) in src)
+		return ..()
+
+	if(locate(/obj/structure/lattice) in src)
 		return ..()
 
 	var/soft = 0

@@ -38,7 +38,7 @@ var/image/exterior_light_overlay
 		O.hide(0)
 
 /turf/space/is_solid_structure()
-	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
+	return locate(/obj/structure/lattice) in src //counts as solid structure if it has a lattice
 
 // Ported from unstable r355
 /turf/space/Entered(var/atom/movable/A)

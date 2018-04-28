@@ -60,8 +60,9 @@ var/global/list/antag_names_to_ids = list()
 			antag.update_all_icons()
 
 /proc/populate_antag_type_list()
-	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
+	for(var/antag_type in subtypesof(/datum/antagonist))
 		var/datum/antagonist/A = new antag_type
+		if(!A.id) continue
 		all_antag_types[A.id] = A
 		antag_names_to_ids[A.role_text] = A.id
 		if(A.landmark_id)
