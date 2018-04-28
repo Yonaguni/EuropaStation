@@ -3,7 +3,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
 
-	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 50, "waste" = 10)
+	matter = list(MATERIAL_STEEL = 500, MATERIAL_GLASS = 50, MATERIAL_WASTE = 10)
 
 	wires = WIRE_PULSE
 

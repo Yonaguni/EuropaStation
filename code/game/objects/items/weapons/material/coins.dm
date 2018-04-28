@@ -39,19 +39,19 @@
 
 // Subtypes.
 /obj/item/material/coin/gold
-	default_material = "gold"
+	default_material = MATERIAL_GOLD
 
 /obj/item/material/coin/silver
-	default_material = "silver"
+	default_material = MATERIAL_SILVER
 
 /obj/item/material/coin/diamond
-	default_material = "diamond"
+	default_material = MATERIAL_DIAMOND
 
 /obj/item/material/coin/iron
-	default_material = "iron"
+	default_material = MATERIAL_IRON
 
 /obj/item/material/coin/uranium
-	default_material = "uranium"
+	default_material = MATERIAL_URANIUM
 
 /obj/item/material/coin/platinum
-	default_material = "platinum"
+	default_material = MATERIAL_PLATINUM

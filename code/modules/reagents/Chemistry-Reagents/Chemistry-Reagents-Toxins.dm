@@ -17,7 +17,7 @@
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
-	taste_description = "plastic"
+	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 5

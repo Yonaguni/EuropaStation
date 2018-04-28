@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT
 	update_icon_on_init = TRUE
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	matter = list(MATERIAL_STEEL = 50,MATERIAL_GLASS = 20)
 
 	light_power = 6
 	light_range = 5

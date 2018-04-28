@@ -6,7 +6,7 @@
 /var/const/DRINK_ICON_NOISY = "_noise"
 
 /obj/item/reagent_containers/food/drinks/glass2
-	name = "glass" // Name when empty
+	name = MATERIAL_GLASS // Name when empty
 	desc = "A generic drinking glass." // Description when empty
 	icon = DRINK_ICON_FILE
 	volume = 30
@@ -14,9 +14,9 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = "5;10;15;30"
 	flags = OPENCONTAINER
-	matter = list("glass" = 150)
+	matter = list(MATERIAL_GLASS = 150)
 
-	var/base_name = "glass" // Name to put in front of drinks, i.e. "[base_name] of [contents]"
+	var/base_name = MATERIAL_GLASS // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon = "square" // Base icon name
 	var/filling_states // List of percentages full that have icons
 	var/list/extras = list() // List of extras. Two extras maximum

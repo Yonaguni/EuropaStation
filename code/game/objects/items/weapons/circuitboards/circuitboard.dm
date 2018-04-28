@@ -23,7 +23,7 @@
 	var/list/req_components = null
 	var/contain_parts = 1
 
-	matter = list("glass" = 2500, "gold" = 100)
+	matter = list(MATERIAL_GLASS = 2500, MATERIAL_GOLD = 100)
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/circuitboard/proc/construct(var/obj/machinery/M)

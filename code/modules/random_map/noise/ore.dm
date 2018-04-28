@@ -35,15 +35,15 @@
 
 	while(rare_turfs.len && rare_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(rare_turfs)
-		rock.mineral = pick("diamond","platinum")
+		rock.mineral = pick(MATERIAL_DIAMOND,MATERIAL_PLATINUM)
 		rare_ore--
 
 	while(uncommon_turfs.len && uncommon_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(uncommon_turfs)
-		rock.mineral = pick("uranium","silver","gold")
+		rock.mineral = pick(MATERIAL_URANIUM,MATERIAL_SILVER,MATERIAL_GOLD)
 		uncommon_ore--
 
 	while(common_turfs.len && common_ore)
 		var/turf/simulated/mineral/rock = pick_n_take(common_turfs)
-		rock.mineral = pick("plastic", "iron")
+		rock.mineral = pick(MATERIAL_PLASTIC, MATERIAL_IRON)
 		common_ore--

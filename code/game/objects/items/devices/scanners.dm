@@ -20,7 +20,7 @@ REAGENT SCANNER
 	w_class = 2.0
 	throw_speed = 5
 	throw_range = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MATERIAL_STEEL = 200)
 
 	var/mode = TRUE
 
@@ -57,7 +57,7 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
 
 
 
@@ -91,7 +91,7 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
 
 
 	var/details = 0
@@ -152,7 +152,7 @@ REAGENT SCANNER
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
 
 
 	var/details = 0
@@ -198,7 +198,7 @@ REAGENT SCANNER
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 3
-	matter = list(DEFAULT_WALL_MATERIAL = 25, "glass" = 25)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_GLASS = 25)
 
 /obj/item/price_scanner/afterattack(atom/movable/target, var/mob/user, proximity)
 	if(!proximity)

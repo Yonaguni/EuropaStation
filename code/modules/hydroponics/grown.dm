@@ -89,7 +89,7 @@
 			descriptors |= "hallucinogenic"
 		if(reagents.has_reagent("styptazine"))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold"))
+		if(reagents.has_reagent(MATERIAL_GOLD))
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"

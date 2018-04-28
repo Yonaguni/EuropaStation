@@ -6,7 +6,7 @@
 	w_class = 2
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_STEEL = 150)
 
 
 	var/list/scanned = list()

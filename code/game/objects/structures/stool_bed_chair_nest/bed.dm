@@ -27,7 +27,7 @@
 	..(newloc)
 	color = null
 	if(!new_material)
-		new_material = DEFAULT_WALL_MATERIAL
+		new_material = MATERIAL_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
 		qdel(src)
@@ -164,10 +164,10 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/New(var/newloc)
-	..(newloc,"wood","leather")
+	..(newloc,MATERIAL_WOOD,"leather")
 
 /obj/structure/bed/padded/New(var/newloc)
-	..(newloc,"plastic","cotton")
+	..(newloc,MATERIAL_PLASTIC,"cotton")
 
 /*
  * Roller beds

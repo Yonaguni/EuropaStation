@@ -525,7 +525,7 @@
 
 /* Solidification */
 /datum/chemical_reaction/plastication
-	name = "Plastic"
+	name = MATERIAL_PLASTIC
 	id = "solidplastic"
 	result = null
 	required_reagents = list("pacid" = 1, "plasticide" = 2)

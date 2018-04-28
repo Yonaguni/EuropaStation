@@ -11,7 +11,7 @@
 	flags = NOSLIP
 	climbing_effectiveness = 1 //TODO: work out a more subtle system so this can be lowered.
 	hitsound = 'sound/effects/plunger.ogg'
-	matter = list("steel" = 5000) // This is so that they are buildable in the autolathe. TODO: plastic and rubber.
+	matter = list(MATERIAL_STEEL = 5000) // This is so that they are buildable in the autolathe. TODO: plastic and rubber.
 
 	var/taped = FALSE
 	var/doubled = FALSE

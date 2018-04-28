@@ -59,7 +59,7 @@
 	..(newloc, "deuterium")
 
 /obj/item/fuel_assembly/tritium/New(var/newloc)
-	..(newloc, "tritium")
+	..(newloc, MATERIAL_TRITIUM)
 
 /obj/item/fuel_assembly/phoron/New(var/newloc)
 	..(newloc, "phoron")
@@ -68,4 +68,4 @@
 	..(newloc, "hydrogen")
 
 /obj/item/fuel_assembly/supermatter/New(var/newloc)
-	..(newloc, "exotic matter")
+	..(newloc, MATERIAL_EXOTIC_MATTER)

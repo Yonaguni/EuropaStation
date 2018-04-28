@@ -35,7 +35,7 @@ var/list/mining_overlays = list()
 #define DROP_SAND(_turf) \
 	if(!sand_dug) { \
 		for(var/sand = 1 to rand(3,5)) { \
-			new /obj/item/ore(_turf, "glass"); \
+			new /obj/item/ore(_turf, MATERIAL_GLASS); \
 		} \
 		_turf.sand_dug = TRUE; \
 		_turf.update_icon(); \

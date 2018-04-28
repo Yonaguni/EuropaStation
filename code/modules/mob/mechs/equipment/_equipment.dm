@@ -4,7 +4,7 @@
 	name = "mech hardpoint system"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = ""
-	matter = list("steel" = 10000, "plastic" = 5000, "osmium" = 500)
+	matter = list(MATERIAL_STEEL = 10000, MATERIAL_PLASTIC = 5000, MATERIAL_OSMIUM = 500)
 	force = 10
 
 	var/restricted_hardpoints

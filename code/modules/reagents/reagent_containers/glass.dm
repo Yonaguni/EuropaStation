@@ -116,7 +116,7 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	center_of_mass = "x=15;y=10"
-	matter = list("glass" = 500)
+	matter = list(MATERIAL_GLASS = 500)
 
 	New()
 		..()
@@ -165,7 +165,7 @@
 	desc = "A large beaker."
 	icon_state = "beakerlarge"
 	center_of_mass = "x=16;y=10"
-	matter = list("glass" = 5000)
+	matter = list(MATERIAL_GLASS = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = "5;10;15;25;30;60;120"
@@ -176,7 +176,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without reactions."
 	icon_state = "beakernoreact"
 	center_of_mass = "x=16;y=8"
-	matter = list("glass" = 500)
+	matter = list(MATERIAL_GLASS = 500)
 	volume = 60
 	amount_per_transfer_from_this = 10
 	flags = OPENCONTAINER | NOREACT
@@ -186,7 +186,7 @@
 	desc = "A strange beaker, powered by experimental space-folding technology."
 	icon_state = "beakerbluespace"
 	center_of_mass = "x=16;y=10"
-	matter = list("glass" = 5000)
+	matter = list(MATERIAL_GLASS = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = "5;10;15;25;30;60;120;300"
@@ -197,7 +197,7 @@
 	desc = "A small glass vial."
 	icon_state = "vial"
 	center_of_mass = "x=15;y=8"
-	matter = list("glass" = 250)
+	matter = list(MATERIAL_GLASS = 250)
 	volume = 30
 	w_class = 1 //half the volume of a bottle, half the size
 	amount_per_transfer_from_this = 10
@@ -223,7 +223,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	center_of_mass = "x=16;y=9"
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MATERIAL_STEEL = 200)
 	w_class = 3.0
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = "10;20;30;60;120"

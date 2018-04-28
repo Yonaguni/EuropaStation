@@ -3,8 +3,8 @@
 	base_icon = "robotics"
 	icon_state = "robotics"
 	lathe_type = LATHE_TYPE_ROBOTICS
-	stored_material =  list("steel" = 0, "glass" = 0, "gold" = 0, "plastic" = 0, "osmium" = 0)
-	storage_capacity = list("steel" = 0, "glass" = 0, "gold" = 0, "plastic" = 0, "osmium" = 0)
+	stored_material =  list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0)
+	storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0)
 	build_time = 60
 
 /obj/machinery/autolathe/robotics/RefreshParts()
@@ -17,8 +17,8 @@
 	base_icon = "circuit"
 	icon_state = "circuit"
 	lathe_type = LATHE_TYPE_CIRCUIT
-	stored_material =  list("glass" = 0, "gold" = 0)
-	storage_capacity = list("glass" = 0, "gold" = 0)
+	stored_material =  list(MATERIAL_GLASS = 0, MATERIAL_GOLD = 0)
+	storage_capacity = list(MATERIAL_GLASS = 0, MATERIAL_GOLD = 0)
 	build_time = 45
 
 /obj/machinery/autolathe/advanced
@@ -26,8 +26,8 @@
 	base_icon = "advlathe"
 	icon_state = "advlathe"
 	lathe_type = LATHE_TYPE_ADVANCED
-	stored_material =  list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
-	storage_capacity = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plastic" = 0, "osmium" = 0, "uranium" = 0, "diamond" = 0)
+	stored_material =  list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0, MATERIAL_URANIUM = 0, MATERIAL_DIAMOND = 0)
+	storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0, MATERIAL_URANIUM = 0, MATERIAL_DIAMOND = 0)
 	build_time = 35
 
 /obj/machinery/autolathe/heavy
@@ -37,8 +37,8 @@
 	icon_state = "h_lathe"
 	pixel_x = -16
 	lathe_type = LATHE_TYPE_HEAVY
-	stored_material =  list("steel" = 0, "plastic" = 0, "osmium" = 0)
-	storage_capacity = list("steel" = 0, "plastic" = 0, "osmium" = 0)
+	stored_material =  list(MATERIAL_STEEL = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0)
+	storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_PLASTIC = 0, MATERIAL_OSMIUM = 0)
 	build_time = 75
 
 // Heavy fabs need a LOT of materials.
@@ -52,8 +52,8 @@
 	base_icon = "ammo"
 	icon_state = "ammo"
 	lathe_type = LATHE_TYPE_AMMUNITION
-	stored_material =  list("steel" = 0, "osmium" = 0, "plastic" = 0)
-	storage_capacity = list("steel" = 0, "osmium" = 0, "plastic" = 0)
+	stored_material =  list(MATERIAL_STEEL = 0, MATERIAL_OSMIUM = 0, MATERIAL_PLASTIC = 0)
+	storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_OSMIUM = 0, MATERIAL_PLASTIC = 0)
 	build_time = 30
 
 /obj/machinery/autolathe/mint
@@ -61,6 +61,6 @@
 	base_icon = "ammo"
 	icon_state = "ammo"
 	lathe_type = LATHE_TYPE_CURRENCY
-	stored_material =  list("gold" = 0, "silver" = 0, "iron" = 0, "diamond" = 0, "uranium" = 0, "platinum" = 0)
-	storage_capacity = list("gold" = 0, "silver" = 0, "iron" = 0, "diamond" = 0, "uranium" = 0, "platinum" = 0)
+	stored_material =  list(MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_IRON = 0, MATERIAL_DIAMOND = 0, MATERIAL_URANIUM = 0, MATERIAL_PLATINUM = 0)
+	storage_capacity = list(MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_IRON = 0, MATERIAL_DIAMOND = 0, MATERIAL_URANIUM = 0, MATERIAL_PLATINUM = 0)
 	build_time = 10

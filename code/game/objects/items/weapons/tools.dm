@@ -59,7 +59,7 @@
 	throwforce = 7.0
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_STEEL = 150)
 	center_of_mass = "x=17;y=16"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
@@ -81,7 +81,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 75)
+	matter = list(MATERIAL_STEEL = 75)
 	center_of_mass = "x=16;y=7"
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
@@ -140,7 +140,7 @@
 	throw_range = 9
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 80)
+	matter = list(MATERIAL_STEEL = 80)
 	center_of_mass = "x=18;y=10"
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
@@ -187,7 +187,7 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 30)
 
 	//R&D tech level
 
@@ -380,21 +380,21 @@
 	name = "industrial welding tool"
 	max_fuel = 40
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 60)
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 	var/last_gen = 0
 
 
@@ -421,7 +421,7 @@
 	item_state = "crowbar"
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MATERIAL_STEEL = 50)
 	center_of_mass = "x=16;y=20"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 

@@ -305,7 +305,7 @@
 /datum/reagent/silicate
 	name = "Silicate"
 	id = "silicate"
-	taste_description = "plastic"
+	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#C7FFFF"
 

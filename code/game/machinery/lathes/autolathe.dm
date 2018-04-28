@@ -14,8 +14,8 @@
 	var/base_icon = "autolathe"
 	var/lathe_type = LATHE_TYPE_GENERIC
 	var/list/machine_recipes
-	var/list/stored_material =  list("steel" = 0, "glass" = 0, "plastic" = 0)
-	var/list/storage_capacity = list("steel" = 0, "glass" = 0, "plastic" = 0)
+	var/list/stored_material =  list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_PLASTIC = 0)
+	var/list/storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_PLASTIC = 0)
 	var/show_category = "All"
 
 	var/hacked = 0

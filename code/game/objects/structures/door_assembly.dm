@@ -116,7 +116,7 @@
 	glass_type = "/multi_tile/glass"
 	airlock_type = "/multi_tile/maint"
 	glass = 1*/
-	base_icon_state = "g" //Remember to delete this line when reverting "glass" var to 1.
+	base_icon_state = "g" //Remember to delete this line when reverting MATERIAL_GLASS var to 1.
 	airlock_type = "/multi_tile/glass"
 	glass = -1 //To prevent bugs in deconstruction process.
 
@@ -247,7 +247,7 @@
 		var/material_name = S.get_material_name()
 		if (S)
 			if (S.get_amount() >= 1)
-				if(material_name == "rglass")
+				if(material_name == MATERIAL_RGLASS)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 					user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 					if(do_after(user, 40,src) && !glass)
@@ -256,7 +256,7 @@
 							glass = 1
 				else if(material_name)
 					// Ugly hack, will suffice for now. Need to fix it upstream as well, may rewrite mineral walls. ~Z
-					if(!(material_name in list("gold", "silver", "diamond", "uranium", "sandstone")))
+					if(!(material_name in list(MATERIAL_GOLD, MATERIAL_SILVER, MATERIAL_DIAMOND, MATERIAL_URANIUM, MATERIAL_SANDSTONE)))
 						user << "You cannot make an airlock out of that material."
 						return
 					if(S.get_amount() >= 2)

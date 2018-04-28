@@ -218,8 +218,8 @@
 /obj/item/clothing/accessory/medal/silver
 	name = "silver medal"
 	desc = "A simple silver medal."
-	icon_state = "silver"
-	item_state = "silver"
+	icon_state = MATERIAL_SILVER
+	item_state = MATERIAL_SILVER
 
 /obj/item/clothing/accessory/medal/silver/sword
 	name = "combat action medal"
@@ -239,8 +239,8 @@
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A simple gold medal."
-	icon_state = "gold"
-	item_state = "gold"
+	icon_state = MATERIAL_GOLD
+	item_state = MATERIAL_GOLD
 
 /obj/item/clothing/accessory/medal/gold/star
 	name = "gold star medal"

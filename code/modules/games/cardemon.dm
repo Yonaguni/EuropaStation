@@ -17,7 +17,7 @@
 			else
 				rarity = "Silver"
 
-		var/nam = pick("Death","Life","Plant","Leaf","Air","Earth","Fire","Water","Killer","Holy", "God", "Ordinary","Demon","Angel", "Mad", "Insane", "Metal", "Steel", "Secret")
+		var/nam = pick("Death","Life","Plant","Leaf","Air","Earth","Fire","Water","Killer","Holy", "God", "Ordinary","Demon","Angel", "Mad", "Insane", "Metal", MATERIAL_STEEL, "Secret")
 		var/nam2 = pick("Carp", "Corgi", "Cat", "Mouse", "Octopus", "Lizard", "Monkey", "Plant", "Duck", "Demon", "Spider", "Bird", "Shark", "Rock")
 
 		P = new()

@@ -271,7 +271,7 @@
 	seed_name = "golden apple"
 	display_name = "gold apple tree"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "gold" = list(1,5))
+	chems = list("nutriment" = list(1,10), MATERIAL_GOLD = list(1,5))
 	kitchen_tag = "goldapple"
 
 /datum/seed/apple/gold/New()
@@ -428,7 +428,7 @@
 	name = "amanita"
 	seed_name = "fly amanita"
 	display_name = "fly amanita mushrooms"
-	mutants = list("destroyingangel","plastic")
+	mutants = list("destroyingangel",MATERIAL_PLASTIC)
 	chems = list("nutriment" = list(1), "amatoxin" = list(3,3), "psilocybin" = list(1,25))
 
 /datum/seed/mushroom/poison/New()
@@ -495,7 +495,7 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom7")
 
 /datum/seed/mushroom/plastic
-	name = "plastic"
+	name = MATERIAL_PLASTIC
 	seed_name = "plastellium"
 	display_name = "plastellium"
 	mutants = null

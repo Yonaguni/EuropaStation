@@ -1,5 +1,5 @@
 /obj/item/frame_holder
-	matter = list("steel" = 175000, "plastic" = 50000, "osmium" = 30000)
+	matter = list(MATERIAL_STEEL = 175000, MATERIAL_PLASTIC = 50000, MATERIAL_OSMIUM = 30000)
 
 /obj/item/frame_holder/New(var/newloc)
 	new /obj/structure/heavy_vehicle_frame(newloc)
@@ -188,7 +188,7 @@
 	// Installing metal.
 	else if(istype(thing, /obj/item/stack/material))
 		var/obj/item/stack/material/M = thing
-		if(M.material && M.material.name == "plasteel")
+		if(M.material && M.material.name == MATERIAL_PLASTEEL)
 			if(is_reinforced)
 				user << "<span class='warning'>There is already plasteel reinforcement installed in \the [src].</span>"
 				return
