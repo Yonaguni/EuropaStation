@@ -103,12 +103,11 @@ var/datum/antagonist/traitor/traitors
 	var/obj/item/R //Hide the uplink in a PDA if available, otherwise radio
 
 	if(traitor_mob.client.prefs.uplinklocation == "None")
-		traitor_mob << "You have elected to not have an AntagCorp portable teleportation relay installed!"
+		traitor_mob << "You have elected to not have a portable teleportation relay installed!"
 	else
-		if(traitor_mob.client.prefs.uplinklocation == "Wrist Computer")
-			R = locate(/obj/item/radio/headset/pda) in traitor_mob.contents
-			if(!R)
-				traitor_mob << "Unfortunately, an uplink relay could be installed."
+		R = locate(/obj/item/radio/headset/pda) in traitor_mob.contents
+		if(!R)
+			traitor_mob << "Unfortunately, an uplink relay could not be installed."
 
 	if (istype(R, /obj/item/radio/headset/pda))
 		// generate a passcode if the uplink is hidden in a PDA
