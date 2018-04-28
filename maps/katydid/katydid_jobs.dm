@@ -2,11 +2,6 @@
 	protected_job_types |= list(/datum/job/katydid/crew/captain)
 	..()
 
-/datum/antagonist/cultist/New()
-	restricted_job_types |= list(/datum/job/katydid/crew/gunner, /datum/job/katydid/crew/captain)
-	protected_job_types |= list(/datum/job/katydid/crew/mate)
-	..()
-
 /datum/antagonist/revolutionary/New()
 	restricted_job_types |= list(/datum/job/katydid/crew/captain)
 	protected_job_types |= list(/datum/job/katydid/crew/gunner)

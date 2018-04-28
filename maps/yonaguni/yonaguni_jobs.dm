@@ -2,11 +2,6 @@
 	protected_job_types |= list(/datum/job/officer, /datum/job/warden, /datum/job/qm, /datum/job/captain, /datum/job/hos)
 	..()
 
-/datum/antagonist/cultist/New()
-	restricted_job_types |= list(/datum/job/hos, /datum/job/captain)
-	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
-	..()
-
 /datum/antagonist/revolutionary/New()
 	restricted_job_types |= list(/datum/job/chief_engineer, /datum/job/administrator, /datum/job/captain, /datum/job/hos, /datum/job/scientist, /datum/job/cmo)
 	protected_job_types |= list(/datum/job/officer, /datum/job/warden)
