@@ -4,7 +4,7 @@
 /turf/simulated/floor/fixed
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = MATERIAL_STEEL
+	icon_state = "steel"
 	initial_flooring = null
 
 /turf/simulated/floor/fixed/attackby(var/obj/item/C, var/mob/user)

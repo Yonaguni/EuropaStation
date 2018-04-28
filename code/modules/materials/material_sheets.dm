@@ -16,9 +16,8 @@
 /obj/item/stack/material/New(var/atom/newloc, var/amount)
 	..(newloc, amount)
 
-	if(!default_type)
-		default_type = MATERIAL_STEEL
-	material = get_material_by_name("[default_type]")
+	if(!default_type) default_type = MATERIAL_STEEL
+	material = SSmaterials.get_material(default_type)
 	if(!material)
 		qdel(src)
 		return
@@ -106,7 +105,7 @@
 	amount = 50
 
 /obj/item/stack/material/diamond
-	name = MATERIAL_DIAMOND
+	name = "diamond"
 	icon_state = "sheet-diamond"
 	default_type = MATERIAL_DIAMOND
 
@@ -125,7 +124,7 @@
 	amount = 50
 
 /obj/item/stack/material/plastic
-	name = MATERIAL_PLASTIC
+	name = "plastic"
 	icon_state = "sheet-plastic"
 	default_type = MATERIAL_PLASTIC
 
@@ -150,7 +149,7 @@
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
-	name = MATERIAL_PLATINUM
+	name = "platinum"
 	icon_state = "sheet-adamantine"
 	default_type = MATERIAL_PLATINUM
 
@@ -168,7 +167,7 @@
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
-	name = MATERIAL_TRITIUM
+	name = "tritium"
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
@@ -196,7 +195,7 @@
 	amount = 50
 
 /obj/item/stack/material/steel
-	name = MATERIAL_STEEL
+	name = "steel"
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
 
@@ -204,7 +203,7 @@
 	amount = 50
 
 /obj/item/stack/material/plasteel
-	name = MATERIAL_PLASTEEL
+	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	default_type = MATERIAL_PLASTEEL
@@ -243,7 +242,7 @@
 	default_type = "leather"
 
 /obj/item/stack/material/glass
-	name = MATERIAL_GLASS
+	name = "glass"
 	icon_state = "sheet-glass"
 	default_type = MATERIAL_GLASS
 

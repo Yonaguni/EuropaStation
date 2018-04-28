@@ -272,7 +272,7 @@
 
 /obj/machinery/autolathe/dismantle()
 	for(var/mat in stored_material)
-		var/material/M = SSmaterials.get_material_by_name(mat)
+		var/material/M = SSmaterials.get_material(mat)
 		if(istype(M) && stored_material[mat] >= M.units_per_sheet)
 			new M.stack_type(get_turf(src), amount = Floor(stored_material[mat] / M.units_per_sheet))
 	. = ..()

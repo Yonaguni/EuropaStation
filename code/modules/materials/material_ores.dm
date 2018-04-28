@@ -11,7 +11,7 @@
 		matter[_mat] = SHEET_MATERIAL_AMOUNT
 
 	for(var/stuff in matter)
-		var/material/M = SSmaterials.get_material_by_name(stuff)
+		var/material/M = SSmaterials.get_material(stuff)
 		if(M)
 			name = M.ore_name
 			color = M.icon_colour

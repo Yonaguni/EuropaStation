@@ -56,8 +56,8 @@
 
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
-		return get_material_by_name(mineral)
-	return get_material_by_name(MATERIAL_STEEL)
+		return SSmaterials.get_material(mineral)
+	return SSmaterials.get_material(MATERIAL_STEEL)
 
 /obj/machinery/door/airlock/command
 	name = "Airlock"

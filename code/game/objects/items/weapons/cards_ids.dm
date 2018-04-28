@@ -204,13 +204,13 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/card/id/silver
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
-	icon_state = MATERIAL_SILVER
+	icon_state = "silver"
 	item_state = "silver_id"
 
 /obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
-	icon_state = MATERIAL_GOLD
+	icon_state = "gold"
 	item_state = "gold_id"
 
 /obj/item/card/id/syndicate_command
@@ -223,7 +223,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/card/id/captains_spare
 	name = "director's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	icon_state = MATERIAL_GOLD
+	icon_state = "gold"
 	item_state = "gold_id"
 	registered_name = "Colony Director"
 	assignment = "Colony Director"

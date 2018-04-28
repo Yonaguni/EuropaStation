@@ -27,10 +27,10 @@
 				if(H.can_feel_pain())
 					H.emote("scream")
 				for(var/i = 1 to rand(3,5))
-					new /obj/item/material/shard(get_turf(E), "nullglass")
+					new /obj/item/material/shard(get_turf(E), MATERIAL_NULLGLASS)
 				E.droplimb(0, DROPLIMB_BLUNT)
 				return
 	M << "<span class='danger'>Your flesh is being lacerated from within!</span>"
 	M.adjustBruteLoss(rand(3,6))
 	if(prob(10))
-		new /obj/item/material/shard(get_turf(M), "nullglass")
+		new /obj/item/material/shard(get_turf(M), MATERIAL_NULLGLASS)

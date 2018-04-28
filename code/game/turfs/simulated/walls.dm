@@ -31,9 +31,9 @@
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = DEFAULT_WALL_MATERIAL
-	material = get_material_by_name(materialtype)
+	material = SSmaterials.get_material(materialtype)
 	if(!isnull(rmaterialtype))
-		reinf_material = get_material_by_name(rmaterialtype)
+		reinf_material = SSmaterials.get_material(rmaterialtype)
 	update_material()
 	hitsound = material.hitsound
 	START_PROCESSING(SSprocessing, src)
@@ -164,7 +164,7 @@
 			O.loc = src
 
 	clear_plants()
-	material = get_material_by_name("placeholder")
+	material = SSmaterials.get_material(MATERIAL_PLACEHOLDER)
 	reinf_material = null
 	update_connections(1)
 

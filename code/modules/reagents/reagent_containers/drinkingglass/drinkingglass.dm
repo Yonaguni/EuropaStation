@@ -6,7 +6,7 @@
 /var/const/DRINK_ICON_NOISY = "_noise"
 
 /obj/item/reagent_containers/food/drinks/glass2
-	name = MATERIAL_GLASS // Name when empty
+	name = "glass" // Name when empty
 	desc = "A generic drinking glass." // Description when empty
 	icon = DRINK_ICON_FILE
 	volume = 30

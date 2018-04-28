@@ -76,7 +76,7 @@ var/list/flooring_types
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_base = MATERIAL_STEEL
+	icon_base = "steel"
 	has_damage_range = 4
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
@@ -94,7 +94,7 @@ var/list/flooring_types
 
 /decl/flooring/tiling/steel
 	name = "floor"
-	icon_base = MATERIAL_STEEL
+	icon_base = "steel"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_steel

@@ -42,7 +42,7 @@
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = MATERIAL_STEEL
+	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
 
 /turf/simulated/floor/reinforced
@@ -111,7 +111,7 @@
 
 /turf/simulated/floor/tiled/steel
 	name = "steel floor"
-	icon_state = MATERIAL_STEEL
+	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling/steel
 
 /turf/simulated/floor/tiled/steel/airless

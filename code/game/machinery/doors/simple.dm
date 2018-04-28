@@ -19,7 +19,7 @@
 	..()
 	if(!material_name)
 		material_name = MATERIAL_STEEL
-	material = get_material_by_name(material_name)
+	material = SSmaterials.get_material(material_name)
 	if(!material)
 		qdel(src)
 		return
@@ -215,7 +215,7 @@
 	..(newloc, MATERIAL_DIAMOND, complexity)
 
 /obj/machinery/door/unpowered/simple/wood
-	icon_state = MATERIAL_WOOD
+	icon_state = "wood"
 	color = "#824B28"
 
 /obj/machinery/door/unpowered/simple/wood/New(var/newloc,var/material_name,var/complexity)

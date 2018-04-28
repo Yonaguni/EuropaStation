@@ -35,7 +35,7 @@
 	material = material_key
 
 	if(!isnull(material) && !istype(material))
-		material = get_material_by_name(material)
+		material = SSmaterials.get_material(material)
 	if(!istype(material))
 		qdel(src)
 	name = "[material.display_name] [initial(name)]"

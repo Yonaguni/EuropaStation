@@ -20,15 +20,17 @@
 
 /obj/item/fuel_assembly/Initialize()
 	. = ..()
-	var/material/material = get_material_by_name(fuel_type)
-	if(istype(material))
+	var/material/material
+	if(ispath(fuel_type))
+		material = SSmaterials.get_material(fuel_type)
+	if(istype(material) && material.is_fusion_fuel)
 		name = "[material.use_name] fuel rod assembly"
 		desc = "A fuel rod for a fusion reactor. This one is made from [material.use_name]."
 		fuel_colour = material.icon_colour
 		fuel_type = material.use_name
 		if(material.radioactivity)
 			radioactivity = material.radioactivity
-			desc += " It is warm to the touch."
+			desc += " It is warm to the touch."	
 			processing_objects += src
 		if(material.luminescence)
 			set_light(material.luminescence, material.luminescence, material.icon_colour)
@@ -56,13 +58,10 @@
 
 // Mapper shorthand.
 /obj/item/fuel_assembly/deuterium/New(var/newloc)
-	..(newloc, "deuterium")
+	..(newloc, MATERIAL_DEUTERIUM)
 
 /obj/item/fuel_assembly/tritium/New(var/newloc)
 	..(newloc, MATERIAL_TRITIUM)
-
-/obj/item/fuel_assembly/phoron/New(var/newloc)
-	..(newloc, "phoron")
 
 /obj/item/fuel_assembly/hydrogen/New(var/newloc)
 	..(newloc, "hydrogen")

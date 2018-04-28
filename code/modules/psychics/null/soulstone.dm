@@ -23,7 +23,7 @@
 /obj/item/soulstone/proc/shatter()
 	playsound(loc, "shatter", 70, 1)
 	for(var/i=1 to rand(2,5))
-		new /obj/item/material/shard(get_turf(src), "nullglass")
+		new /obj/item/material/shard(get_turf(src), MATERIAL_NULLGLASS)
 	var/mob/M = loc
 	if(istype(M))
 		M.drop_from_inventory(src)
