@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/cracker
 	name = "molecular cracking unit"
-	desc = "An integrated catalytic water cracking system used to break H2O down into H2 and O. An advanced molecular extractor also allows it to isolate liquid deuterium from seawater."
+	desc = "An integrated catalytic water cracking system used to break H2O down into H and O. An advanced molecular extractor also allows it to isolate liquid deuterium from seawater."
 	icon = 'icons/obj/machines/cracker.dmi'
 	icon_state = "cracker"
 	density = 1
@@ -11,8 +11,10 @@
 	var/tmp/fluid_consumption_per_tick = 100
 	var/tmp/gas_generated_per_tick = 1
 	var/tmp/max_reagents = 100
+	var/tmp/deuterium_generation_chance = 10
+	var/tmp/deuterium_generation_amount = 1
 
-	volume = 500
+	volume = 5000
 	use_power = 1
 	idle_power_usage = 100
 	active_power_usage = 10000
@@ -86,7 +88,7 @@
 			air_contents.merge(produced)
 
 			// Deuterium extraction.
-			if(prob(1) && (!reagent_buffer["deuterium"] || reagent_buffer["deuterium"] <= max_reagents))
+			if(prob(deuterium_generation_chance) && (!reagent_buffer["deuterium"] || reagent_buffer["deuterium"] <= max_reagents))
 				if(!reagent_buffer["deuterium"])
 					reagent_buffer["deuterium"] = 0
-				reagent_buffer["deuterium"]++
+				reagent_buffer["deuterium"] += deuterium_generation_amount

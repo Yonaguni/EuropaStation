@@ -107,6 +107,12 @@
 	if(istype(cooking_obj, /obj/item/holder))
 		for(var/mob/living/M in cooking_obj.contents)
 			M.death()
+			M.ghostize()
+			// In case they're carrying anything important.
+			for(var/obj/item/W in M)
+				M.drop_from_inventory(W) // Clear up dangling refs, delete on drop, etc.
+				if(W) W.forceMove(get_turf(src))
+			qdel(M)
 
 	// Cook the food.
 	var/cook_path
