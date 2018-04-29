@@ -48,7 +48,8 @@ var/list/turf_edge_cache = list()
 
 	turfs += src
 
-	regenerate_ao()
+	if (mapload && permit_ao)
+		queue_ao()
 
 /turf/update_icon(update_neighbors = FALSE)
 	var/list/ovr

@@ -50,6 +50,9 @@
 
 	var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
 
+	if (permit_ao)
+		regenerate_ao()
+
 	if(ispath(N, /turf/simulated))
 		if(old_fire)
 			fire = old_fire
