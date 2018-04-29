@@ -13,6 +13,11 @@
 	if(proj)
 		if(model && !isnull(model.produced_by.damage_mod))
 			proj.damage = round(proj.damage * model.produced_by.damage_mod)
+
+		if(well_maintained)
+			proj.damage *= 1.1
+			well_maintained--
+
 		chamber.modify_shot(proj)
 		if(proj) barrel.modify_shot(proj)
 

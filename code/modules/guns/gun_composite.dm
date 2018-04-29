@@ -11,6 +11,7 @@
 	var/dam_type                               // General class of projectile.
 	var/jammed                                 // Are we jammed?
 	var/installed_in_turret = FALSE            // Are we installed in a turret?
+	var/well_maintained = FALSE
 
 	// Component helpers.
 	var/obj/item/gun_component/barrel/barrel   // Max caliber size/velocity, projectile type.
@@ -227,6 +228,11 @@
 
 /obj/item/gun/composite/proc/jam()
 	if(jammed) return
+
+	if(well_maintained)
+		well_maintained--
+		return
+
 	var/mob/M = loc
 	if(istype(M))
 		to_chat(M, "<span class='danger'>\The [src] jams!</span>")

@@ -1315,6 +1315,7 @@
 #include "code\modules\guns\components\chambers\chamber_energy.dm"
 #include "code\modules\guns\components\chambers\chamber_energy_auto.dm"
 #include "code\modules\guns\components\chambers\chamber_energy_burst.dm"
+#include "code\modules\guns\maintenance\kit.dm"
 #include "code\modules\guns\manufacturers\manufacturer.dm"
 #include "code\modules\guns\manufacturers\manufacturer_picomotion.dm"
 #include "code\modules\guns\manufacturers\models\model.dm"
