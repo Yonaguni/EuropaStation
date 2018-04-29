@@ -32,7 +32,7 @@
 	if(owner.life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
-		if(round(owner.vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
+		if(round(owner.vessel.get_reagent_amount(REAGENT_BLOOD)) <= BLOOD_VOLUME_BAD)	//how much blood do we have
 			pulse  = PULSE_THREADY	//not enough :(
 
 		else if(owner.status_flags & FAKEDEATH || owner.chem_effects[CE_NOPULSE])
@@ -60,7 +60,7 @@
 	if(owner.stat == DEAD || owner.bodytemperature < 170)	//Dead or cryosleep people do not pump the blood.
 		return
 
-	var/blood_volume_raw = owner.vessel.get_reagent_amount("blood")
+	var/blood_volume_raw = owner.vessel.get_reagent_amount(REAGENT_BLOOD)
 	var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
 	blood_volume *= efficiency
@@ -105,7 +105,7 @@
 			if(CE_BLOODRESTORE in owner.chem_effects)
 				B.volume += owner.chem_effects[CE_BLOODRESTORE]
 		else
-			owner.vessel.add_reagent("blood", 0.1 + owner.chem_effects[CE_BLOODRESTORE])
+			owner.vessel.add_reagent(REAGENT_BLOOD, 0.1 + owner.chem_effects[CE_BLOODRESTORE])
 
 	// Blood loss or liver damage make you lose nutriments
 	if(blood_volume < BLOOD_VOLUME_SAFE || is_bruised())

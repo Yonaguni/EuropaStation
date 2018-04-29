@@ -6,7 +6,13 @@
 		return
 
 	var/turf/T = get_turf(A)
-	var/logstr = "[usr ? key_name(usr) : "EVENT"] mixed [R.name] ([R.result]) (x[multiplier]) in \the [A] at [T ? "[T.x],[T.y],[T.z]" : "*null*"]"
+	var/logstr = "[usr ? key_name(usr) : "EVENT"] mixed "
+	if(ispath(R.result))
+		var/datum/reagent/reagent = R.result
+		logstr += "[initial(reagent.name)] "
+	else
+		logstr += "[R.product_name] "
+	logstr += "(x[multiplier]) in \the [A] at [T ? "[T.x],[T.y],[T.z]" : "*null*"]"
 
 	chemical_reaction_logs += "\[[time_stamp()]\] [logstr]"
 

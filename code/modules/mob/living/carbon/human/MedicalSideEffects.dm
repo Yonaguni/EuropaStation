@@ -82,8 +82,8 @@
 // ========
 /datum/medical_effect/headache
 	name = "Headache"
-	triggers = list("cryoxadone" = 10, "styptazine" = 15)
-	cures = list("alkysine", "morphine", "paracetamol", "oxycodone")
+	triggers = list(REAGENT_CRYOXADONE = 10, REAGENT_STYPTAZINE = 15)
+	cures = list(REAGENT_ALKYSINE, REAGENT_MORPHINE, REAGENT_PARACETAMOL, REAGENT_OXYCODONE)
 	cure_message = "Your head stops throbbing..."
 
 /datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)
@@ -99,8 +99,8 @@
 // ===========
 /datum/medical_effect/bad_stomach
 	name = "Bad Stomach"
-	triggers = list("fotiazine" = 30)
-	cures = list("anti_toxin")
+	triggers = list(REAGENT_FOTIAZINE = 30)
+	cures = list(REAGENT_ANTITOXIN)
 	cure_message = "Your stomach feels a little better now..."
 
 /datum/medical_effect/bad_stomach/on_life(mob/living/carbon/human/H, strength)
@@ -116,8 +116,8 @@
 // ======
 /datum/medical_effect/cramps
 	name = "Cramps"
-	triggers = list("anti_toxin" = 30, "morphine" = 15)
-	cures = list("adrenaline")
+	triggers = list(REAGENT_ANTITOXIN = 30, REAGENT_MORPHINE = 15)
+	cures = list(REAGENT_ADRENALINE)
 	cure_message = "The cramps let up..."
 
 /datum/medical_effect/cramps/on_life(mob/living/carbon/human/H, strength)
@@ -134,8 +134,8 @@
 // ====
 /datum/medical_effect/itch
 	name = "Itch"
-	triggers = list("glint" = 10)
-	cures = list("adrenaline")
+	triggers = list(REAGENT_GLINT = 10)
+	cures = list(REAGENT_ADRENALINE)
 	cure_message = "The itching stops..."
 
 /datum/medical_effect/itch/on_life(mob/living/carbon/human/H, strength)

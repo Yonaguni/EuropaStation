@@ -201,7 +201,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(REAGENT_FUEL, max_fuel)
 	. = ..()
 
 /obj/item/weldingtool/Destroy()
@@ -288,7 +288,7 @@
 
 //Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(REAGENT_FUEL)
 
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
@@ -316,10 +316,10 @@
 
 	if(in_mob)
 		amount = max(amount, 2)
-		reagents.trans_id_to(in_mob, "fuel", amount)
+		reagents.trans_id_to(in_mob, REAGENT_FUEL, amount)
 		in_mob.IgniteMob()
 	else
-		reagents.remove_reagent("fuel", amount)
+		reagents.remove_reagent(REAGENT_FUEL, amount)
 		var/turf/location = get_turf(src.loc)
 		if(location)
 			location.hotspot_expose(700, 5)
@@ -526,7 +526,7 @@
 /obj/item/combitool/omni/Initialize()
 	. = ..()
 	create_reagents(max_fuel)
-	reagents.add_reagent("fuel", max_fuel)
+	reagents.add_reagent(REAGENT_FUEL, max_fuel)
 
 /obj/item/combitool/omni/update_tool()
 	..()
@@ -541,8 +541,8 @@
 /obj/item/combitool/omni/proc/remove_fuel(var/amount = 1, var/mob/user)
 	if(!welding)
 		return 0
-	if(reagents.get_reagent_amount("fuel") >= amount)
-		reagents.remove_reagent("fuel", amount)
+	if(reagents.get_reagent_amount(REAGENT_FUEL) >= amount)
+		reagents.remove_reagent(REAGENT_FUEL, amount)
 		var/turf/location = get_turf(src.loc)
 		if(location)
 			location.hotspot_expose(700, 5)

@@ -2,7 +2,6 @@
 
 /datum/reagent/nutriment
 	name = "Nutriment"
-	id = "nutriment"
 	taste_mult = 4
 	reagent_state = SOLID
 	metabolism = REM * 4
@@ -50,7 +49,6 @@
 
 /datum/reagent/nutriment/glucose
 	name = "Glucose"
-	id = "glucose"
 	color = "#FFFFFF"
 
 	injectable = 1
@@ -58,7 +56,6 @@
 /datum/reagent/nutriment/protein
 	name = "animal protein"
 	taste_description = "some sort of protein"
-	id = "protein"
 	color = "#440000"
 
 /datum/reagent/nutriment/protein/adjust_nutrition(var/mob/living/carbon/M, var/alien, var/removed)
@@ -66,22 +63,19 @@
 		if(IS_CORVID) removed *= 1.25
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 
-/datum/reagent/nutriment/protein/egg.
+/datum/reagent/nutriment/protein/egg
 	name = "egg yolk"
 	taste_description = "egg"
-	id = "egg"
 	color = "#FFFFAA"
 
 /datum/reagent/nutriment/honey
 	name = "Honey"
-	id = "honey"
 	taste_description = "sweetness"
 	nutriment_factor = 10
 	color = "#FFFF00"
 
 /datum/reagent/nutriment/flour
-	name = "flour"
-	id = "flour"
+	name = REAGENT_FLOUR
 	taste_description = "chalky wheat"
 	reagent_state = SOLID
 	nutriment_factor = 1
@@ -93,7 +87,6 @@
 
 /datum/reagent/nutriment/coco
 	name = "Coco Powder"
-	id = "coco"
 	taste_description = "bitterness"
 	taste_mult = 1.3
 	reagent_state = SOLID
@@ -102,7 +95,6 @@
 
 /datum/reagent/nutriment/soysauce
 	name = "Soysauce"
-	id = "soysauce"
 	taste_description = "umami"
 	taste_mult = 1.1
 	reagent_state = LIQUID
@@ -111,15 +103,13 @@
 
 /datum/reagent/nutriment/ketchup
 	name = "Ketchup"
-	id = "ketchup"
-	taste_description = "ketchup"
+	taste_description = REAGENT_KETCHUP
 	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#731008"
 
 /datum/reagent/nutriment/rice
 	name = "Rice"
-	id = "rice"
 	taste_description = "rice"
 	taste_mult = 0.4
 	reagent_state = SOLID
@@ -128,7 +118,6 @@
 
 /datum/reagent/nutriment/cherryjelly
 	name = "Cherry Jelly"
-	id = "cherryjelly"
 	taste_description = "cherry"
 	taste_mult = 1.3
 	reagent_state = LIQUID
@@ -137,7 +126,6 @@
 
 /datum/reagent/nutriment/cornoil
 	name = "Corn Oil"
-	id = "cornoil"
 	taste_description = "slime"
 	taste_mult = 0.1
 	reagent_state = LIQUID
@@ -161,7 +149,6 @@
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
-	id = "virusfood"
 	taste_description = "vomit"
 	taste_mult = 2
 	reagent_state = LIQUID
@@ -170,21 +157,18 @@
 
 /datum/reagent/nutriment/sprinkles
 	name = "Sprinkles"
-	id = "sprinkles"
 	taste_description = "childhood whimsy"
 	nutriment_factor = 1
 	color = "#FF00FF"
 
 /datum/reagent/nutriment/mint
 	name = "Mint"
-	id = "mint"
 	taste_description = "mint"
 	reagent_state = LIQUID
 	color = "#CF3600"
 
 /datum/reagent/lipozine // The anti-nutriment.
 	name = "Lipozine"
-	id = "lipozine"
 	taste_description = "mothballs"
 	reagent_state = LIQUID
 	color = "#BBEDA4"
@@ -197,7 +181,6 @@
 
 /datum/reagent/sodiumchloride
 	name = "Table Salt"
-	id = "sodiumchloride"
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -205,14 +188,12 @@
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"
-	id = "blackpepper"
 	taste_description = "pepper"
 	reagent_state = SOLID
 	color = "#000000"
 
 /datum/reagent/enzyme
 	name = "Universal Enzyme"
-	id = "enzyme"
 	taste_description = "sweetness"
 	taste_mult = 0.7
 	reagent_state = LIQUID
@@ -221,7 +202,6 @@
 
 /datum/reagent/frostoil
 	name = "Frost Oil"
-	id = "frostoil"
 	taste_description = "mint"
 	taste_mult = 1.5
 	reagent_state = LIQUID
@@ -231,11 +211,10 @@
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
-	holder.remove_reagent("capsaicin", 5)
+	holder.remove_reagent(REAGENT_CAPSAICIN, 5)
 
 /datum/reagent/capsaicin
 	name = "Capsaicin Oil"
-	id = "capsaicin"
 	taste_description = "hot peppers"
 	taste_mult = 1.5
 	reagent_state = LIQUID
@@ -260,11 +239,10 @@
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
 			M << "<span class='danger'>You feel like your insides are burning!</span>"
-	holder.remove_reagent("frostoil", 5)
+	holder.remove_reagent(REAGENT_FROSTOIL, 5)
 
 /datum/reagent/capsaicin/condensed
 	name = "Condensed Capsaicin"
-	id = "condensedcapsaicin"
 	taste_description = "scorching agony"
 	taste_mult = 10
 	reagent_state = LIQUID
@@ -333,13 +311,12 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	holder.remove_reagent("frostoil", 5)
+	holder.remove_reagent(REAGENT_FROSTOIL, 5)
 
 /* Drinks */
 
 /datum/reagent/drink
 	name = "Drink"
-	id = "drink"
 	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per unit
@@ -364,7 +341,6 @@
 
 /datum/reagent/drink/juice/banana
 	name = "Banana Juice"
-	id = "banana"
 	taste_description = "banana"
 	color = "#C3AF00"
 
@@ -373,7 +349,6 @@
 
 /datum/reagent/drink/juice/berry
 	name = "Berry Juice"
-	id = "berryjuice"
 	taste_description = "berries"
 	color = "#990066"
 
@@ -382,7 +357,6 @@
 
 /datum/reagent/drink/juice/carrot
 	name = "Carrot juice"
-	id = "carrotjuice"
 	taste_description = "carrots"
 	color = "#FF8C00" // rgb: 255, 140, 0
 
@@ -391,11 +365,10 @@
 
 /datum/reagent/drink/juice/carrot/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.reagents.add_reagent("imidazoline", removed * 0.2)
+	M.reagents.add_reagent(REAGENT_IMIDAZOLINE, removed * 0.2)
 
 /datum/reagent/drink/juice/grape
 	name = "Grape Juice"
-	id = "grapejuice"
 	taste_description = "grapes"
 	color = "#863333"
 
@@ -404,7 +377,6 @@
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
-	id = "lemonjuice"
 	taste_description = "sourness"
 	taste_mult = 1.1
 	color = "#AFAF00"
@@ -414,7 +386,6 @@
 
 /datum/reagent/drink/juice/lime
 	name = "Lime Juice"
-	id = "limejuice"
 	taste_description = "unbearable sourness"
 	taste_mult = 1.1
 	color = "#365E30"
@@ -428,7 +399,6 @@
 
 /datum/reagent/drink/juice/orange
 	name = "Orange juice"
-	id = "orangejuice"
 	taste_description = "oranges"
 	color = "#E78108"
 
@@ -441,7 +411,6 @@
 
 /datum/reagent/toxin/poisonberryjuice // It has more in common with toxins than drinks... but it's a juice
 	name = "Poison Berry Juice"
-	id = "poisonberryjuice"
 	taste_description = "berries"
 	color = "#863353"
 	strength = 5
@@ -451,7 +420,6 @@
 
 /datum/reagent/drink/juice/potato
 	name = "Potato Juice"
-	id = "potato"
 	taste_description = "nothing much"
 	nutrition = 2
 	color = "#302000"
@@ -461,7 +429,6 @@
 
 /datum/reagent/drink/juice/tomato
 	name = "Tomato Juice"
-	id = "tomatojuice"
 	taste_description = "tomatoes"
 	color = "#731008"
 
@@ -474,7 +441,6 @@
 
 /datum/reagent/drink/juice/watermelon
 	name = "Watermelon Juice"
-	id = "watermelonjuice"
 	taste_description = "sweet watermelon"
 	color = "#B83333"
 
@@ -485,7 +451,6 @@
 
 /datum/reagent/drink/milk
 	name = "Milk"
-	id = "milk"
 	taste_description = "milk"
 	color = "#DFDFDF"
 
@@ -494,7 +459,6 @@
 
 /datum/reagent/drink/milk/chocolate
 	name =  "Chocolate Milk"
-	id = "chocolate_milk"
 	taste_description = "chocolate milk"
 	color = "#74533b"
 
@@ -504,11 +468,10 @@
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
-	holder.remove_reagent("capsaicin", 10 * removed)
+	holder.remove_reagent(REAGENT_CAPSAICIN, 10 * removed)
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"
-	id = "cream"
 	taste_description = "creamy milk"
 	color = "#DFD7AF"
 
@@ -517,7 +480,6 @@
 
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
-	id = "soymilk"
 	taste_description = "soy milk"
 	color = "#DFDFC7"
 
@@ -526,7 +488,6 @@
 
 /datum/reagent/drink/milk/eggnog
 	name = "Eggnog"
-	id = "eggnog"
 	taste_description = "sweet, creamy richness"
 	color = "#CEC6AE"
 	adj_drowsy = 1
@@ -537,7 +498,6 @@
 
 /datum/reagent/drink/tea
 	name = "Tea"
-	id = "tea"
 	taste_description = "tart black tea"
 	color = "#101000"
 	adj_dizzy = -2
@@ -554,7 +514,6 @@
 
 /datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
-	id = "icetea"
 	taste_description = "sweet tea"
 	color = "#104038" // rgb: 16, 64, 56
 	adj_temp = -5
@@ -565,7 +524,6 @@
 
 /datum/reagent/drink/coffee
 	name = "Coffee"
-	id = "coffee"
 	taste_description = "bitterness"
 	taste_mult = 1.3
 	color = "#482000"
@@ -581,7 +539,7 @@
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(adj_temp > 0)
-		holder.remove_reagent("frostoil", 10 * removed)
+		holder.remove_reagent(REAGENT_FROSTOIL, 10 * removed)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
@@ -590,7 +548,6 @@
 
 /datum/reagent/drink/coffee/icecoffee
 	name = "Iced Coffee"
-	id = "icecoffee"
 	taste_description = "bitter coldness"
 	color = "#102838"
 	adj_temp = -5
@@ -601,7 +558,6 @@
 
 /datum/reagent/drink/coffee/soy_latte
 	name = "Soy Latte"
-	id = "soy_latte"
 	taste_description = "creamy coffee"
 	color = "#C65905"
 	adj_temp = 5
@@ -615,7 +571,6 @@
 
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
-	id = "cafe_latte"
 	taste_description = "bitter cream"
 	color = "#C65905"
 	adj_temp = 5
@@ -629,7 +584,6 @@
 
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
-	id = "hot_coco"
 	taste_description = "creamy chocolate"
 	reagent_state = LIQUID
 	color = "#403010"
@@ -641,7 +595,6 @@
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"
-	id = "sodawater"
 	taste_description = "carbonated water"
 	color = "#619494"
 	adj_dizzy = -5
@@ -654,7 +607,6 @@
 
 /datum/reagent/drink/grapesoda
 	name = "Grape Soda"
-	id = "grapesoda"
 	taste_description = "grape soda"
 	color = "#421C52"
 	adj_drowsy = -3
@@ -665,7 +617,6 @@
 
 /datum/reagent/drink/tonic
 	name = "Tonic Water"
-	id = "tonic"
 	taste_description = "tart and fresh"
 	color = "#619494"
 	adj_dizzy = -5
@@ -676,21 +627,9 @@
 	glass_name = "tonic water"
 	glass_desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 
-/datum/reagent/drink/lemonade
-	name = "Lemonade"
-	taste_description = "tartness"
-	id = "lemonade"
-	color = "#FFFF00"
-	adj_temp = -5
-
-	glass_name = "lemonade"
-	glass_desc = "Oh the nostalgia..."
-	glass_special = list(DRINK_FIZZ)
-
 /datum/reagent/drink/kiraspecial
 	name = "Kira Special"
 	taste_description = "fruity sweetness"
-	id = "kiraspecial"
 	color = "#CCCC99"
 	adj_temp = -5
 
@@ -701,7 +640,6 @@
 /datum/reagent/drink/brownstar
 	name = "Brown Star"
 	taste_description = "orange and cola soda"
-	id = "brownstar"
 	color = "#9F3400"
 	adj_temp = -2
 
@@ -711,7 +649,6 @@
 /datum/reagent/drink/milkshake
 	name = "Milkshake"
 	taste_description = "creamy vanilla"
-	id = "milkshake"
 	color = "#AEE5E4"
 	adj_temp = -9
 
@@ -721,7 +658,6 @@
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
 	taste_description = "a bad night out"
-	id = "rewriter"
 	color = "#485000"
 	adj_temp = -5
 
@@ -734,7 +670,6 @@
 
 /datum/reagent/drink/nuka_cola
 	name = "Nuka Cola"
-	id = "nuka_cola"
 	taste_description = "last Tuesday"
 	color = "#100800"
 	adj_temp = -5
@@ -754,7 +689,6 @@
 
 /datum/reagent/drink/grenadine
 	name = "Grenadine Syrup"
-	id = "grenadine"
 	taste_description = "100% pure pomegranate"
 	color = "#FF004F"
 
@@ -763,7 +697,6 @@
 
 /datum/reagent/drink/space_cola
 	name = "Space Cola"
-	id = "cola"
 	taste_description = "cola"
 	reagent_state = LIQUID
 	color = "#100800"
@@ -776,7 +709,6 @@
 
 /datum/reagent/drink/spacemountainwind
 	name = "Soda"
-	id = "spacemountainwind"
 	taste_description = "sweet citrus soda"
 	color = "#102000"
 	adj_drowsy = -7
@@ -789,7 +721,6 @@
 
 /datum/reagent/drink/dr_gibb
 	name = "cherry cola"
-	id = "dr_gibb"
 	taste_description = "cherry cola"
 	color = "#102000"
 	adj_drowsy = -6
@@ -800,7 +731,6 @@
 
 /datum/reagent/drink/space_up
 	name = "Space-Up"
-	id = "space_up"
 	taste_description = "a hull breach"
 	color = "#202800"
 	adj_temp = -8
@@ -812,7 +742,6 @@
 /datum/reagent/drink/lemon_lime
 	name = "Lemon Lime"
 	taste_description = "tangy lime and lemon soda"
-	id = "lemon_lime"
 	color = "#878F00"
 	adj_temp = -8
 
@@ -822,7 +751,6 @@
 
 /datum/reagent/drink/doctor_delight
 	name = "The Doctor's Delight"
-	id = "doctorsdelight"
 	taste_description = "homely fruit"
 	reagent_state = LIQUID
 	color = "#FF8CFF"
@@ -843,7 +771,6 @@
 
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"
-	id = "dry_ramen"
 	taste_description = "dry and cheap noodles"
 	reagent_state = SOLID
 	nutrition = 1
@@ -851,7 +778,6 @@
 
 /datum/reagent/drink/hot_ramen
 	name = "Hot Ramen"
-	id = "hot_ramen"
 	taste_description = "wet and cheap noodles"
 	reagent_state = LIQUID
 	color = "#302000"
@@ -860,7 +786,6 @@
 
 /datum/reagent/drink/hell_ramen
 	name = "Hell Ramen"
-	id = "hell_ramen"
 	taste_description = "wet and cheap noodles on fire"
 	reagent_state = LIQUID
 	color = "#302000"
@@ -872,7 +797,6 @@
 
 /datum/reagent/drink/ice
 	name = "Ice"
-	id = "ice"
 	taste_description = "ice"
 	taste_mult = 1.5
 	reagent_state = SOLID
@@ -889,7 +813,6 @@
 
 /datum/reagent/ethanol/absinthe
 	name = "Absinthe"
-	id = "absinthe"
 	taste_description = "death and licorice"
 	taste_mult = 1.5
 	color = "#33EE00"
@@ -900,7 +823,6 @@
 
 /datum/reagent/ethanol/ale
 	name = "Ale"
-	id = "ale"
 	taste_description = "hearty barley ale"
 	color = "#4C3100"
 	strength = 50
@@ -910,7 +832,6 @@
 
 /datum/reagent/ethanol/beer
 	name = "Beer"
-	id = "beer"
 	taste_description = "piss water"
 	color = "#FFD300"
 	strength = 50
@@ -925,7 +846,6 @@
 
 /datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
-	id = "bluecuracao"
 	taste_description = "oranges"
 	taste_mult = 1.1
 	color = "#0000CD"
@@ -936,7 +856,6 @@
 
 /datum/reagent/ethanol/cognac
 	name = "Cognac"
-	id = "cognac"
 	taste_description = "rich and smooth alcohol"
 	taste_mult = 1.1
 	color = "#AB3C05"
@@ -947,7 +866,6 @@
 
 /datum/reagent/ethanol/deadrum
 	name = "Deadrum"
-	id = "deadrum"
 	taste_description = "salty sea water"
 	color = "#ECB633"
 	strength = 50
@@ -961,7 +879,6 @@
 
 /datum/reagent/ethanol/gin
 	name = "Gin"
-	id = "gin"
 	taste_description = "an alcoholic christmas tree"
 	color = "#0064C6"
 	strength = 50
@@ -983,7 +900,6 @@
 
 /datum/reagent/ethanol/coffee/kahlua
 	name = "Kahlua"
-	id = "kahlua"
 	taste_description = "spiked latte"
 	taste_mult = 1.1
 	color = "#4C3100"
@@ -994,7 +910,6 @@
 
 /datum/reagent/ethanol/melonliquor
 	name = "Melon Liquor"
-	id = "melonliquor"
 	taste_description = "fruity alcohol"
 	color = "#138808" // rgb: 19, 136, 8
 	strength = 50
@@ -1004,7 +919,6 @@
 
 /datum/reagent/ethanol/rum
 	name = "Rum"
-	id = "rum"
 	taste_description = "spiked butterscotch"
 	taste_mult = 1.1
 	color = "#ECB633"
@@ -1015,7 +929,6 @@
 
 /datum/reagent/ethanol/sake
 	name = "Sake"
-	id = "sake"
 	taste_description = "dry alcohol"
 	color = "#DDDDDD"
 	strength = 25
@@ -1025,7 +938,6 @@
 
 /datum/reagent/ethanol/tequilla
 	name = "Tequila"
-	id = "tequilla"
 	taste_description = "paint stripper"
 	color = "#FFFF91"
 	strength = 25
@@ -1035,7 +947,6 @@
 
 /datum/reagent/ethanol/thirteenloko
 	name = "Thirteen Loko"
-	id = "thirteenloko"
 	taste_description = "jitters and death"
 	color = "#102000"
 	strength = 25
@@ -1054,7 +965,6 @@
 
 /datum/reagent/ethanol/vermouth
 	name = "Vermouth"
-	id = "vermouth"
 	taste_description = "dry alcohol"
 	taste_mult = 1.3
 	color = "#91FF91" // rgb: 145, 255, 145
@@ -1065,7 +975,6 @@
 
 /datum/reagent/ethanol/vodka
 	name = "Vodka"
-	id = "vodka"
 	taste_description = "grain alcohol"
 	color = "#0064C8" // rgb: 0, 100, 200
 	strength = 15
@@ -1079,7 +988,6 @@
 
 /datum/reagent/ethanol/whiskey
 	name = "Whiskey"
-	id = "whiskey"
 	taste_description = "molasses"
 	color = "#4C3100"
 	strength = 25
@@ -1089,7 +997,6 @@
 
 /datum/reagent/ethanol/wine
 	name = "Wine"
-	id = "wine"
 	taste_description = "bitter sweetness"
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 15
@@ -1101,7 +1008,6 @@
 
 /datum/reagent/ethanol/acid_spit
 	name = "Acid Spit"
-	id = "acidspit"
 	taste_description = "stomach acid"
 	reagent_state = LIQUID
 	color = "#365000"
@@ -1112,7 +1018,6 @@
 
 /datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
-	id = "alliescocktail"
 	taste_description = "bitter yet free"
 	color = "#D8AC45"
 	strength = 25
@@ -1122,7 +1027,6 @@
 
 /datum/reagent/ethanol/aloe
 	name = "Aloe"
-	id = "aloe"
 	taste_description = "sweet 'n creamy"
 	color = "#B7EA75"
 	strength = 15
@@ -1132,7 +1036,6 @@
 
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
-	id = "amasec"
 	taste_description = "dark and metallic"
 	reagent_state = LIQUID
 	color = "#FF975D"
@@ -1143,7 +1046,6 @@
 
 /datum/reagent/ethanol/andalusia
 	name = "Andalusia"
-	id = "andalusia"
 	taste_description = "lemons"
 	color = "#F4EA4A"
 	strength = 15
@@ -1153,7 +1055,6 @@
 
 /datum/reagent/ethanol/antifreeze
 	name = "Anti-freeze"
-	id = "antifreeze"
 	taste_description = "cold enough to freeze oxygen"
 	color = "#56DEEA"
 	strength = 12
@@ -1165,7 +1066,6 @@
 
 /datum/reagent/ethanol/atomicbomb
 	name = "Atomic Bomb"
-	id = "atomicbomb"
 	taste_description = "radioactive"
 	reagent_state = LIQUID
 	color = "#666300"
@@ -1177,7 +1077,6 @@
 
 /datum/reagent/ethanol/coffee/b52
 	name = "B-52"
-	id = "b52"
 	taste_description = "smooth but bitter"
 	taste_mult = 1.3
 	color = "#997650"
@@ -1188,7 +1087,6 @@
 
 /datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
-	id = "bahama_mama"
 	taste_description = "lime and orange"
 	color = "#FF7F3B"
 	strength = 25
@@ -1198,7 +1096,6 @@
 
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
-	id = "bananahonk"
 	taste_description = "a bad joke"
 	nutriment_factor = 1
 	color = "#FFFF91"
@@ -1209,7 +1106,6 @@
 
 /datum/reagent/ethanol/beepsky_smash
 	name = "Beepsky Smash"
-	id = "beepskysmash"
 	taste_description = "JUSTICE"
 	taste_mult = 2
 	reagent_state = LIQUID
@@ -1225,18 +1121,16 @@
 
 /datum/reagent/ethanol/bilk
 	name = "Bilk"
-	id = "bilk"
 	taste_description = "desperation and lactate"
 	color = "#895C4C"
 	strength = 50
 	nutriment_factor = 2
 
-	glass_name = "bilk"
+	glass_name = REAGENT_BILK
 	glass_desc = "A brew of milk and beer. For those alcoholics who fear osteoporosis."
 
 /datum/reagent/ethanol/black_russian
 	name = "Black Russian"
-	id = "blackrussian"
 	taste_description = "bitterness"
 	color = "#360000"
 	strength = 15
@@ -1246,7 +1140,6 @@
 
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
-	id = "bloodymary"
 	taste_description = "tomatoes with a hint of lime"
 	color = "#B40000"
 	strength = 15
@@ -1256,7 +1149,6 @@
 
 /datum/reagent/ethanol/booger
 	name = "Booger"
-	id = "booger"
 	taste_description = "sweet 'n creamy"
 	color = "#8CFF8C"
 	strength = 30
@@ -1266,7 +1158,6 @@
 
 /datum/reagent/ethanol/coffee/brave_bull
 	name = "Brave Bull"
-	id = "bravebull"
 	taste_description = "alcoholic bravery"
 	taste_mult = 1.1
 	color = "#4C3100"
@@ -1277,7 +1168,6 @@
 
 /datum/reagent/ethanol/changelingsting
 	name = "Changeling Sting"
-	id = "changelingsting"
 	taste_description = "your brain coming out your nose"
 	color = "#2E6671"
 	strength = 10
@@ -1287,7 +1177,6 @@
 
 /datum/reagent/ethanol/martini
 	name = "Classic Martini"
-	id = "martini"
 	taste_description = "dry class"
 	color = "#0064C8"
 	strength = 25
@@ -1297,7 +1186,6 @@
 
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
-	id = "cubalibre"
 	taste_description = "cola"
 	color = "#3E1B00"
 	strength = 30
@@ -1307,7 +1195,6 @@
 
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
-	id = "demonsblood"
 	taste_description = "sweet iron"
 	taste_mult = 1.5
 	color = "#820000"
@@ -1318,7 +1205,6 @@
 
 /datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
-	id = "devilskiss"
 	taste_description = "bitter iron"
 	color = "#A68310"
 	strength = 15
@@ -1328,7 +1214,6 @@
 
 /datum/reagent/ethanol/ginfizz
 	name = "Gin Fizz"
-	id = "ginfizz"
 	taste_description = "dry, tart lemons"
 	color = "#FFFFAE"
 	strength = 30
@@ -1338,7 +1223,6 @@
 
 /datum/reagent/ethanol/grog
 	name = "Grog"
-	id = "grog"
 	taste_description = "a poor excuse for alcohol"
 	reagent_state = LIQUID
 	color = "#FFBB00"
@@ -1350,7 +1234,6 @@
 
 /datum/reagent/ethanol/erikasurprise
 	name = "Erika Surprise"
-	id = "erikasurprise"
 	taste_description = "tartness and bananas"
 	color = "#2E6671"
 	strength = 15
@@ -1360,7 +1243,6 @@
 
 /datum/reagent/ethanol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
-	id = "gargleblaster"
 	taste_description = "having your brains smashed out by a slice of lemon wrapped around a large gold brick"
 	taste_mult = 5
 	reagent_state = LIQUID
@@ -1372,7 +1254,6 @@
 
 /datum/reagent/ethanol/gintonic
 	name = "Gin and Tonic"
-	id = "gintonic"
 	taste_description = "mild and tart"
 	color = "#0064C8"
 	strength = 50
@@ -1382,7 +1263,6 @@
 
 /datum/reagent/ethanol/goldschlager
 	name = "Goldschlager"
-	id = "goldschlager"
 	taste_description = "burning cinnamon"
 	taste_mult = 1.3
 	color = "#F4E46D"
@@ -1393,7 +1273,6 @@
 
 /datum/reagent/ethanol/hippies_delight
 	name = "Hippies' Delight"
-	id = "hippiesdelight"
 	taste_description = "giving peace a chance"
 	reagent_state = LIQUID
 	color = "#FF88FF"
@@ -1405,7 +1284,6 @@
 
 /datum/reagent/ethanol/hooch
 	name = "Hooch"
-	id = "hooch"
 	taste_description = "pure resignation"
 	color = "#4C3100"
 	strength = 25
@@ -1416,7 +1294,6 @@
 
 /datum/reagent/ethanol/iced_beer
 	name = "Iced Beer"
-	id = "iced_beer"
 	taste_description = "refreshingly cold"
 	color = "#FFD300"
 	strength = 50
@@ -1429,7 +1306,6 @@
 
 /datum/reagent/ethanol/irishcarbomb
 	name = "Irish Car Bomb"
-	id = "irishcarbomb"
 	taste_description = "chocolate cake"
 	color = "#2E6671"
 	strength = 15
@@ -1439,7 +1315,6 @@
 
 /datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
-	id = "irishcoffee"
 	taste_description = "giving up on the day"
 	color = "#4C3100"
 	strength = 15
@@ -1449,7 +1324,6 @@
 
 /datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"
-	id = "irishcream"
 	taste_description = "creamy alcohol"
 	color = "#DDDD9A3"
 	strength = 25
@@ -1459,7 +1333,6 @@
 
 /datum/reagent/ethanol/longislandicedtea
 	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
 	taste_description = "a mixture of cola and alcohol"
 	color = "#895B1F"
 	strength = 12
@@ -1469,7 +1342,6 @@
 
 /datum/reagent/ethanol/manhattan
 	name = "Manhattan"
-	id = "manhattan"
 	taste_description = "mild dryness"
 	color = "#C13600"
 	strength = 15
@@ -1479,7 +1351,6 @@
 
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
-	id = "manhattan_proj"
 	taste_description = "death, the destroyer of worlds"
 	color = "#C15D00"
 	strength = 10
@@ -1490,7 +1361,6 @@
 
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
-	id = "manlydorf"
 	taste_description = "hair on your chest and your chin"
 	color = "#4C3100"
 	strength = 25
@@ -1500,17 +1370,15 @@
 
 /datum/reagent/ethanol/margarita
 	name = "Margarita"
-	id = "margarita"
 	taste_description = "dry and salty"
 	color = "#8CFF8C"
 	strength = 15
 
-	glass_name = "margarita"
+	glass_name = REAGENT_MARGARITA
 	glass_desc = "On the rocks with salt on the rim. Arriba~!"
 
 /datum/reagent/ethanol/mead
 	name = "Mead"
-	id = "mead"
 	taste_description = "sweet, sweet alcohol"
 	reagent_state = LIQUID
 	color = "#FFBB00"
@@ -1522,18 +1390,16 @@
 
 /datum/reagent/ethanol/moonshine
 	name = "Moonshine"
-	id = "moonshine"
 	taste_description = "bitterness"
 	taste_mult = 2.5
 	color = "#0064C8"
 	strength = 12
 
-	glass_name = "moonshine"
+	glass_name = REAGENT_MOONSHINE
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/ethanol/neurotoxin
 	name = "Neurotoxin"
-	id = "neurotoxin"
 	taste_description = "a numbing sensation"
 	reagent_state = LIQUID
 	color = "#2E2E61"
@@ -1551,7 +1417,6 @@
 
 /datum/reagent/ethanol/patron
 	name = "Patron"
-	id = "patron"
 	taste_description = "metallic and expensive"
 	color = "#585840"
 	strength = 30
@@ -1561,7 +1426,6 @@
 
 /datum/reagent/ethanol/pwine
 	name = "Poison Wine"
-	id = "pwine"
 	taste_description = "purified alcoholic death"
 	color = "#000000"
 	strength = 10
@@ -1586,7 +1450,6 @@
 
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"
-	id = "red_mead"
 	taste_description = "sweet and salty alcohol"
 	color = "#C73C00"
 	strength = 30
@@ -1596,7 +1459,6 @@
 
 /datum/reagent/ethanol/sbiten
 	name = "Sbiten"
-	id = "sbiten"
 	taste_description = "hot and spice"
 	color = "#FFA371"
 	strength = 15
@@ -1608,7 +1470,6 @@
 
 /datum/reagent/ethanol/screwdrivercocktail
 	name = "Screwdriver"
-	id = "screwdrivercocktail"
 	taste_description = "oranges"
 	color = "#A68310"
 	strength = 15
@@ -1618,7 +1479,6 @@
 
 /datum/reagent/ethanol/singulo
 	name = "Singulo"
-	id = "singulo"
 	taste_description = "concentrated matter"
 	color = "#2E6671"
 	strength = 10
@@ -1628,7 +1488,6 @@
 
 /datum/reagent/ethanol/snowwhite
 	name = "Snow White"
-	id = "snowwhite"
 	taste_description = "refreshing cold"
 	color = "#FFFFFF"
 	strength = 30
@@ -1638,7 +1497,6 @@
 
 /datum/reagent/ethanol/suidream
 	name = "Sui Dream"
-	id = "suidream"
 	taste_description = "fruit"
 	color = "#00A86B"
 	strength = 100
@@ -1648,7 +1506,6 @@
 
 /datum/reagent/ethanol/syndicatebomb
 	name = "Syndicate Bomb"
-	id = "syndicatebomb"
 	taste_description = "purified antagonism"
 	color = "#2E6671"
 	strength = 10
@@ -1658,7 +1515,6 @@
 
 /datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
-	id = "tequillasunrise"
 	taste_description = "oranges"
 	color = "#FFE48C"
 	strength = 25
@@ -1668,7 +1524,6 @@
 
 /datum/reagent/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
-	id = "threemileisland"
 	taste_description = "dry"
 	color = "#666340"
 	strength = 10
@@ -1679,7 +1534,6 @@
 
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
-	id = "toxinsspecial"
 	taste_description = "spicy toxins"
 	reagent_state = LIQUID
 	color = "#7F00FF"
@@ -1692,7 +1546,6 @@
 
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
-	id = "vodkamartini"
 	taste_description = "shaken, not stirred"
 	color = "#0064C8"
 	strength = 12
@@ -1703,7 +1556,6 @@
 
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
-	id = "vodkatonic"
 	taste_description = "tart bitterness"
 	color = "#0064C8" // rgb: 0, 100, 200
 	strength = 15
@@ -1714,7 +1566,6 @@
 
 /datum/reagent/ethanol/white_russian
 	name = "White Russian"
-	id = "whiterussian"
 	taste_description = "bitter cream"
 	color = "#A68340"
 	strength = 15
@@ -1725,7 +1576,6 @@
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
-	id = "whiskeycola"
 	taste_description = "cola"
 	color = "#3E1B00"
 	strength = 25
@@ -1736,7 +1586,6 @@
 
 /datum/reagent/ethanol/whiskeysoda
 	name = "Whiskey Soda"
-	id = "whiskeysoda"
 	color = "#EAB300"
 	strength = 15
 

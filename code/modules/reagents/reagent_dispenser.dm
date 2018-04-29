@@ -74,7 +74,7 @@
 	amount_per_transfer_from_this = 10
 	initialize()
 		..()
-		reagents.add_reagent("water",1000)
+		reagents.add_reagent(REAGENT_WATER,1000)
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -86,7 +86,7 @@
 	var/obj/item/assembly_holder/rig = null
 	initialize()
 		..()
-		reagents.add_reagent("fuel",1000)
+		reagents.add_reagent(REAGENT_FUEL,1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
@@ -179,7 +179,7 @@
 		return
 
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent("fuel",amount)
+	reagents.remove_reagent(REAGENT_FUEL,amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
 
 /obj/structure/reagent_dispensers/peppertank
@@ -192,7 +192,7 @@
 	amount_per_transfer_from_this = 45
 	initialize()
 		..()
-		reagents.add_reagent("condensedcapsaicin",1000)
+		reagents.add_reagent(REAGENT_CAPSAICINPLUS,1000)
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -205,7 +205,7 @@
 	anchored = 1
 	initialize()
 		..()
-		reagents.add_reagent("water",500)
+		reagents.add_reagent(REAGENT_WATER,500)
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(var/obj/item/W, var/mob/user)
 	if (W.iswrench())
@@ -231,7 +231,7 @@
 	amount_per_transfer_from_this = 10
 	initialize()
 		..()
-		reagents.add_reagent("beer",1000)
+		reagents.add_reagent(REAGENT_BEER,1000)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
@@ -243,7 +243,7 @@
 
 	initialize()
 		..()
-		reagents.add_reagent("virusfood", 1000)
+		reagents.add_reagent(REAGENT_VIRUSFOOD, 1000)
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
@@ -255,4 +255,4 @@
 
 	initialize()
 		..()
-		reagents.add_reagent("sacid", 1000)
+		reagents.add_reagent(REAGENT_SULFURIC_ACID, 1000)

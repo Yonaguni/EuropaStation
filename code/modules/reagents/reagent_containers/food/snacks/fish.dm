@@ -28,7 +28,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/fish/poison/initialize()
 	..()
-	reagents.add_reagent("carpotoxin", 6)
+	reagents.add_reagent(REAGENT_CARPOTOXIN, 6)
 
 ///////////
 // SUSHI //

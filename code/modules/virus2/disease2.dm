@@ -80,14 +80,14 @@
 			majormutate()
 
 	//Space antibiotics stop disease completely
-	if(mob.reagents.has_reagent("antibiotic"))
+	if(mob.reagents.has_reagent(REAGENT_ANTIBIOTICS))
 		if(stage == 1 && prob(20))
 			src.cure(mob)
 		return
 
 	//Virus food speeds up disease progress
-	if(mob.reagents.has_reagent("virusfood"))
-		mob.reagents.remove_reagent("virusfood",0.1)
+	if(mob.reagents.has_reagent(REAGENT_VIRUSFOOD))
+		mob.reagents.remove_reagent(REAGENT_VIRUSFOOD,0.1)
 		clicks += 10
 
 	if(prob(1) && prob(stage)) // Increasing chance of curing as the virus progresses

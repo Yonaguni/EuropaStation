@@ -55,7 +55,7 @@
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
 			the_volume = A.volume
-			the_id = A.id
+			the_id = A.type
 
 	return the_id
 
@@ -63,7 +63,7 @@
 	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
-			del_reagent(R.id)
+			del_reagent(R.type)
 		else
 			total_volume += R.volume
 	return
@@ -94,7 +94,7 @@
 
 		//need to rebuild this to account for chain reactions
 		for(var/datum/reagent/R in reagent_list)
-			eligible_reactions |= SSchemistry.get_reaction(R.id)
+			eligible_reactions |= SSchemistry.get_reaction(R.type)
 
 		for(var/datum/chemical_reaction/C in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
@@ -122,7 +122,7 @@
 	amount = min(amount, get_free_space())
 
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(current.type == id)
 			current.volume += amount
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
@@ -153,7 +153,7 @@
 	if(!isnum(amount))
 		return 0
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(current.type == id)
 			current.volume -= amount // It can go negative, but it doesn't matter
 			update_total() // Because this proc will delete it then
 			if(!safety)
@@ -165,7 +165,7 @@
 
 /datum/reagents/proc/del_reagent(var/id)
 	for(var/datum/reagent/current in reagent_list)
-		if (current.id == id)
+		if (current.type == id)
 			reagent_list -= current
 			qdel(current)
 			update_total()
@@ -175,7 +175,7 @@
 
 /datum/reagents/proc/has_reagent(var/id, var/amount = null)
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(current.type == id)
 			if((isnull(amount) && current.volume > 0) || current.volume >= amount)
 				return 1
 			else
@@ -184,8 +184,8 @@
 
 /datum/reagents/proc/has_any_reagent(var/list/check_reagents)
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id in check_reagents)
-			if(current.volume >= check_reagents[current.id])
+		if(current.type in check_reagents)
+			if(current.volume >= check_reagents[current.type])
 				return 1
 			else
 				return 0
@@ -195,19 +195,19 @@
 	//this only works if check_reagents has no duplicate entries... hopefully okay since it expects an associative list
 	var/missing = check_reagents.len
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id in check_reagents)
-			if(current.volume >= check_reagents[current.id])
+		if(current.type in check_reagents)
+			if(current.volume >= check_reagents[current.type])
 				missing--
 	return !missing
 
 /datum/reagents/proc/clear_reagents()
 	for(var/datum/reagent/current in reagent_list)
-		del_reagent(current.id)
+		del_reagent(current.type)
 	return
 
 /datum/reagents/proc/get_reagent_amount(var/id)
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(current.type == id)
 			return current.volume
 	return 0
 
@@ -221,14 +221,14 @@
 
 /datum/reagents/proc/get_data(var/id)
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(current.type == id)
 			return current.get_data()
 	return 0
 
 /datum/reagents/proc/get_reagents()
 	. = list()
 	for(var/datum/reagent/current in reagent_list)
-		. += "[current.id] ([current.volume])"
+		. += "[current.name] ([current.volume])"
 	return english_list(., "EMPTY", "", ", ", ", ")
 
 /* Holder-to-holder and similar procs */
@@ -243,7 +243,7 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_remove = current.volume * part
-		remove_reagent(current.id, amount_to_remove, 1)
+		remove_reagent(current.type, amount_to_remove, 1)
 
 	update_total()
 	handle_reactions()
@@ -262,9 +262,9 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(current.type, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
 		if(!copy)
-			remove_reagent(current.id, amount_to_transfer, 1)
+			remove_reagent(current.type, amount_to_transfer, 1)
 
 	if(!copy)
 		handle_reactions()

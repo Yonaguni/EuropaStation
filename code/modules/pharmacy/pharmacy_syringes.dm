@@ -102,7 +102,7 @@
 				return
 
 			if(ismob(target))//Blood!
-				if(reagents.has_reagent("blood"))
+				if(reagents.has_reagent(REAGENT_BLOOD))
 					to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 					return
 				if(istype(target, /mob/living/carbon))

@@ -24,17 +24,17 @@
 /obj/machinery/icecream_vat/proc/get_ingredient_list(var/type)
 	switch(type)
 		if(ICECREAM_CHOCOLATE)
-			return list("milk", "ice", "coco")
+			return list(REAGENT_MILK, REAGENT_ICE, REAGENT_COCOA)
 		if(ICECREAM_STRAWBERRY)
-			return list("milk", "ice", "berryjuice")
+			return list(REAGENT_MILK, REAGENT_ICE, REAGENT_BERRY_JUICE)
 		if(ICECREAM_BLUE)
-			return list("milk", "ice", "singulo")
+			return list(REAGENT_MILK, REAGENT_ICE, REAGENT_SINGULO)
 		if(CONE_WAFFLE)
-			return list("flour", "sugar")
+			return list(REAGENT_FLOUR, REAGENT_SUGAR)
 		if(CONE_CHOC)
-			return list("flour", "sugar", "coco")
+			return list(REAGENT_FLOUR, REAGENT_SUGAR, REAGENT_COCOA)
 		else
-			return list("milk", "ice")
+			return list(REAGENT_MILK, REAGENT_ICE)
 
 /obj/machinery/icecream_vat/proc/get_flavour_name(var/flavour_type)
 	switch(flavour_type)
@@ -56,10 +56,10 @@
 	create_reagents(100)
 	while(product_types.len < 6)
 		product_types.Add(5)
-	reagents.add_reagent("milk", 5)
-	reagents.add_reagent("flour", 5)
-	reagents.add_reagent("sugar", 5)
-	reagents.add_reagent("ice", 5)
+	reagents.add_reagent(REAGENT_MILK, 5)
+	reagents.add_reagent(REAGENT_FLOUR, 5)
+	reagents.add_reagent(REAGENT_SUGAR, 5)
+	reagents.add_reagent(REAGENT_ICE, 5)
 
 /obj/machinery/icecream_vat/attack_hand(var/mob/user)
 	user.set_machine(src)
@@ -80,7 +80,7 @@
 	dat += "<b>VAT CONTENT</b><br>"
 	for(var/datum/reagent/R in reagents.reagent_list)
 		dat += "[R.name]: [R.volume]"
-		dat += "<A href='?src=\ref[src];disposeI=[R.id]'>Purge</A><BR>"
+		dat += "<A href='?src=\ref[src];disposeI=[R.type]'>Purge</A><BR>"
 	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
 
 	var/datum/browser/popup = new(user, "icecreamvat","Icecream Vat", 700, 500, src)
@@ -98,7 +98,7 @@
 			//	if(beaker)
 			//		beaker.reagents.trans_to(I, 10)
 				if(I.reagents.total_volume < 10)
-					I.reagents.add_reagent("sugar", 10 - I.reagents.total_volume)
+					I.reagents.add_reagent(REAGENT_SUGAR, 10 - I.reagents.total_volume)
 			else
 				user << "<span class='warning'>There is not enough icecream left!</span>"
 		else
@@ -156,7 +156,7 @@
 		make(usr, C, amount)
 
 	if(href_list["disposeI"])
-		reagents.del_reagent(href_list["disposeI"])
+		reagents.del_reagent(text2path(href_list["disposeI"]))
 
 	updateDialog()
 
@@ -180,7 +180,7 @@
 
 /obj/item/reagent_containers/food/snacks/icecream/initialize()
 	create_reagents(20)
-	reagents.add_reagent("nutriment", 5)
+	reagents.add_reagent(REAGENT_NUTRIMENT, 5)
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)

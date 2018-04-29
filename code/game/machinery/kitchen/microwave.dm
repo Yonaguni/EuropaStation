@@ -87,7 +87,7 @@
 				"<span class='notice'>\The [user] starts to clean the microwave.</span>", \
 				"<span class='notice'>You start to clean the microwave.</span>" \
 			)
-			if (do_after(user, 20, src))
+			if (do_after(user, 20, src))	
 				user.visible_message( \
 					"<span class='notice'>\The [user] has cleaned the microwave.</span>", \
 					"<span class='notice'>You have cleaned the microwave.</span>" \
@@ -126,7 +126,7 @@
 		if (!O.reagents)
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
-			if (!(R.id in acceptable_reagents))
+			if (!(R.type in acceptable_reagents))
 				user << "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>"
 				return 1
 		return
@@ -208,9 +208,9 @@
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
-			if (R.id == "capsaicin")
+			if (R.type == REAGENT_CAPSAICIN)
 				display_name = "Hotsauce"
-			if (R.id == "frostoil")
+			else if (R.type == REAGENT_FROSTOIL)
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
@@ -368,8 +368,8 @@
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(REAGENT_CARBON, amount)
+	ffuu.reagents.add_reagent(REAGENT_TOXIN, amount/10)
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)

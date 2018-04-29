@@ -109,7 +109,7 @@
 	center_of_mass = "x=16;y=9"
 	initialize()
 		..()
-		reagents.add_reagent("milk", 50)
+		reagents.add_reagent(REAGENT_MILK, 50)
 
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "soymilk carton"
@@ -119,7 +119,7 @@
 	center_of_mass = "x=16;y=9"
 	initialize()
 		..()
-		reagents.add_reagent("soymilk", 50)
+		reagents.add_reagent(REAGENT_SOYMILK, 50)
 
 /obj/item/reagent_containers/food/drinks/milk/smallcarton
 	name = "small milk carton"
@@ -127,7 +127,7 @@
 	icon_state = "mini-milk"
 /obj/item/reagent_containers/food/drinks/milk/smallcarton/initialize()
 	..()
-	reagents.add_reagent("milk", 30)
+	reagents.add_reagent(REAGENT_MILK, 30)
 
 /obj/item/reagent_containers/food/drinks/milk/smallcarton/chocolate
 	name = "small chocolate milk carton"
@@ -135,7 +135,7 @@
 
 /obj/item/reagent_containers/food/drinks/milk/smallcarton/chocolate/initialize()
 	..()
-	reagents.add_reagent("chocolate_milk", 30)
+	reagents.add_reagent(REAGENT_CHOCOLATE_MILK, 30)
 
 
 /obj/item/reagent_containers/food/drinks/coffee
@@ -145,7 +145,7 @@
 	center_of_mass = "x=15;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("coffee", 30)
+		reagents.add_reagent(REAGENT_COFFEE, 30)
 
 /obj/item/reagent_containers/food/drinks/tea
 	name = "cup of Duke Purple Tea"
@@ -155,7 +155,7 @@
 	center_of_mass = "x=16;y=14"
 	initialize()
 		..()
-		reagents.add_reagent("tea", 30)
+		reagents.add_reagent(REAGENT_TEA, 30)
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "cup of ice"
@@ -164,7 +164,7 @@
 	center_of_mass = "x=15;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("ice", 30)
+		reagents.add_reagent(REAGENT_ICE, 30)
 
 /obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "cup of Dutch hot coco"
@@ -174,7 +174,7 @@
 	center_of_mass = "x=15;y=13"
 	initialize()
 		..()
-		reagents.add_reagent("hot_coco", 30)
+		reagents.add_reagent(REAGENT_HOT_COCOA, 30)
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
@@ -184,7 +184,7 @@
 	center_of_mass = "x=16;y=11"
 	initialize()
 		..()
-		reagents.add_reagent("dry_ramen", 30)
+		reagents.add_reagent(REAGENT_DRY_RAMEN, 30)
 
 
 /obj/item/reagent_containers/food/drinks/sillycup

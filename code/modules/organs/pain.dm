@@ -55,9 +55,9 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		return
 	if(!can_feel_pain())
 		return
-	if(reagents.has_reagent("morphine"))
+	if(reagents.has_reagent(REAGENT_MORPHINE))
 		return
-	if(reagents.has_reagent("oxycodone"))
+	if(reagents.has_reagent(REAGENT_OXYCODONE))
 		return
 	if(analgesic)
 		return

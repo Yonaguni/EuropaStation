@@ -7,7 +7,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("ammonia", 60)
+		reagents.add_reagent(REAGENT_AMMONIA, 60)
 		update_icon()
 
 /obj/item/reagent_containers/glass/bottle/pacid
@@ -17,7 +17,7 @@
 	icon_state = "bottle-4"
 	New()
 		..()
-		reagents.add_reagent("pacid", 60)
+		reagents.add_reagent(REAGENT_POLYACID, 60)
 		update_icon()
 
 /obj/item/reagent_containers/glass/bottle/capsaicin
@@ -27,7 +27,7 @@
 	icon_state = "bottle-4"
 	New()
 		..()
-		reagents.add_reagent("capsaicin", 60)
+		reagents.add_reagent(REAGENT_CAPSAICIN, 60)
 		update_icon()
 
 /obj/item/reagent_containers/glass/bottle/frostoil
@@ -37,5 +37,5 @@
 	icon_state = "bottle-4"
 	New()
 		..()
-		reagents.add_reagent("frostoil", 60)
+		reagents.add_reagent(REAGENT_FROSTOIL, 60)
 		update_icon()

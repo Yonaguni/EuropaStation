@@ -43,9 +43,9 @@
 	if(!src.lit)
 		src.lit = 1
 		damtype = "fire"
-		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
+		if(reagents.get_reagent_amount(REAGENT_FUEL)) // the fuel explodes, too, but much less violently
 			var/datum/effect/system/reagents_explosion/e = new()
-			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), 0, get_turf(src), 0, 0)
+			e.set_up(round(reagents.get_reagent_amount(REAGENT_FUEL) / 5, 1), 0, get_turf(src), 0, 0)
 			e.start()
 			qdel(src)
 			return
@@ -142,7 +142,7 @@
 
 /obj/item/clothing/mask/smokable/cigarette/initialize()
 	..()
-	reagents.add_reagent("nicotine", 1)
+	reagents.add_reagent(REAGENT_NICOTINE, 1)
 
 /obj/item/clothing/mask/smokable/cigarette/menthol
 	name = "menthol cigarette"
@@ -150,8 +150,8 @@
 
 /obj/item/clothing/mask/smokable/cigarette/menthol/initialize()
 	..()
-	reagents.add_reagent("nicotine", 1)
-	reagents.add_reagent("menthol", 1)
+	reagents.add_reagent(REAGENT_NICOTINE, 1)
+	reagents.add_reagent(REAGENT_MENTHOL, 1)
 
 /obj/item/clothing/mask/smokable/cigarette/attackby(var/obj/item/W, var/mob/user)
 	..()
@@ -205,7 +205,7 @@
 
 	initialize()
 		..()
-		reagents.add_reagent("nicotine", 5)
+		reagents.add_reagent(REAGENT_NICOTINE, 5)
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
@@ -225,7 +225,7 @@
 
 	initialize()
 		..()
-		reagents.add_reagent("nicotine", 10)
+		reagents.add_reagent(REAGENT_NICOTINE, 10)
 
 /obj/item/cigbutt
 	name = "cigarette butt"

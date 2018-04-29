@@ -178,7 +178,7 @@
 	center_of_mass = "x=16;y=4"
 	initialize()
 		..()
-		reagents.add_reagent("gin", 100)
+		reagents.add_reagent(REAGENT_GIN, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/whiskey
 	name = "Ape's Breath Freon Whiskey"
@@ -187,7 +187,7 @@
 	center_of_mass = "x=16;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("whiskey", 100)
+		reagents.add_reagent(REAGENT_WHISKEY, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -196,7 +196,7 @@
 	center_of_mass = "x=16;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("tequilla", 100)
+		reagents.add_reagent(REAGENT_TEQUILLA, 100)
 
 
 /obj/item/reagent_containers/food/drinks/bottle/wine
@@ -206,7 +206,7 @@
 	center_of_mass = "x=16;y=4"
 	initialize()
 		..()
-		reagents.add_reagent("wine", 100)
+		reagents.add_reagent(REAGENT_WINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "Life Cry Absinthe"
@@ -215,7 +215,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("absinthe", 100)
+		reagents.add_reagent(REAGENT_ABSINTHE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
 	name = "Teraton Silver Tequila"
@@ -224,7 +224,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("patron", 100)
+		reagents.add_reagent(REAGENT_PATRON, 100)
 
 // TODO RESKIN THESE
 /obj/item/reagent_containers/food/drinks/bottle/vodka
@@ -234,7 +234,7 @@
 	center_of_mass = "x=17;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("vodka", 100)
+		reagents.add_reagent(REAGENT_VODKA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/rum
 	name = "spiced rum"
@@ -243,7 +243,7 @@
 	center_of_mass = "x=16;y=8"
 	initialize()
 		..()
-		reagents.add_reagent("rum", 100)
+		reagents.add_reagent(REAGENT_RUM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
@@ -252,7 +252,7 @@
 	center_of_mass = "x=17;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("holywater", 100)
+		reagents.add_reagent(REAGENT_HOLY_WATER, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
 	name = "vermouth"
@@ -261,7 +261,7 @@
 	center_of_mass = "x=17;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("vermouth", 100)
+		reagents.add_reagent(REAGENT_VERMOUTH, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/kahlua
 	name = "coffee liqueur"
@@ -270,7 +270,7 @@
 	center_of_mass = "x=17;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("kahlua", 100)
+		reagents.add_reagent(REAGENT_KAHLUA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager
 	name = "Goldschlager"
@@ -279,7 +279,7 @@
 	center_of_mass = "x=15;y=3"
 	initialize()
 		..()
-		reagents.add_reagent("goldschlager", 100)
+		reagents.add_reagent(REAGENT_GOLDSCHLAGER, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac
 	name = "cognac"
@@ -288,7 +288,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("cognac", 100)
+		reagents.add_reagent(REAGENT_COGNAC, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
@@ -297,7 +297,7 @@
 	center_of_mass = "x=16;y=4"
 	initialize()
 		..()
-		reagents.add_reagent("pwine", 100)
+		reagents.add_reagent(REAGENT_POISON_WINE, 100)
 
 // END TODO
 
@@ -308,7 +308,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("melonliquor", 100)
+		reagents.add_reagent(REAGENT_MELON_LIQUOR, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "blue curacao"
@@ -317,7 +317,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("bluecuracao", 100)
+		reagents.add_reagent(REAGENT_BLUE_CURACAO, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
 	name = "grenadine syrup"
@@ -326,7 +326,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("grenadine", 100)
+		reagents.add_reagent(REAGENT_GRENADINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cola
 	name = "cola"
@@ -335,7 +335,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("cola", 100)
+		reagents.add_reagent(REAGENT_COLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_up
 	name = "lemonade"
@@ -344,7 +344,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("space_up", 100)
+		reagents.add_reagent(REAGENT_LEMONADE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind
 	name = "soda"
@@ -353,7 +353,7 @@
 	center_of_mass = "x=16;y=6"
 	initialize()
 		..()
-		reagents.add_reagent("spacemountainwind", 100)
+		reagents.add_reagent(REAGENT_CITRUS_SODA, 100)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
@@ -366,7 +366,7 @@
 	isGlass = 0
 	initialize()
 		..()
-		reagents.add_reagent("orangejuice", 100)
+		reagents.add_reagent(REAGENT_ORANGE_JUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
 	name = "milk cream"
@@ -377,7 +377,7 @@
 	isGlass = 0
 	initialize()
 		..()
-		reagents.add_reagent("cream", 100)
+		reagents.add_reagent(REAGENT_CREAM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/eggnog // empty, do not use
 	name = "eggnog"
@@ -391,15 +391,15 @@
 	desc = "It's eggnog. Christmas is here already? This one seems to be non-alcoholic."
 	initialize()
 		..()
-		reagents.add_reagent("eggnog", 100)
+		reagents.add_reagent(REAGENT_EGGNOG, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/eggnog/alcoholic
 	desc = "It's eggnog. Christmas is here already? This one seems to be alcoholic."
 	icon_state = "nog2"
 	initialize()
 		..()
-		reagents.add_reagent("eggnog", 80)
-		reagents.add_reagent("rum", 20)
+		reagents.add_reagent(REAGENT_EGGNOG, 80)
+		reagents.add_reagent(REAGENT_RUM, 20)
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "tomato juice"
@@ -410,7 +410,7 @@
 	isGlass = 0
 	initialize()
 		..()
-		reagents.add_reagent("tomatojuice", 100)
+		reagents.add_reagent(REAGENT_TOMATO_JUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
 	name = "lime juice"
@@ -421,7 +421,7 @@
 	isGlass = 0
 	initialize()
 		..()
-		reagents.add_reagent("limejuice", 100)
+		reagents.add_reagent(REAGENT_LIME_JUICE, 100)
 
 //Small bottles
 /obj/item/reagent_containers/food/drinks/bottle/small
@@ -437,7 +437,7 @@
 	center_of_mass = "x=16;y=12"
 	initialize()
 		..()
-		reagents.add_reagent("beer", 30)
+		reagents.add_reagent(REAGENT_BEER, 30)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/ale
 	name = "ale"
@@ -447,4 +447,4 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("ale", 30)
+		reagents.add_reagent(REAGENT_ALE, 30)

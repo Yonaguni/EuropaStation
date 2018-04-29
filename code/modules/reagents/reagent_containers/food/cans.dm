@@ -12,7 +12,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("cola", 30)
+		reagents.add_reagent(REAGENT_COLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
@@ -21,7 +21,7 @@
 	center_of_mass = "x=15;y=8"
 	initialize()
 		..()
-		reagents.add_reagent("water", 30)
+		reagents.add_reagent(REAGENT_WATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Bouncy Bubble Beverage"
@@ -30,7 +30,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("spacemountainwind", 30)
+		reagents.add_reagent(REAGENT_CITRUS_SODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -39,7 +39,7 @@
 	center_of_mass = "x=16;y=8"
 	initialize()
 		..()
-		reagents.add_reagent("thirteenloko", 30)
+		reagents.add_reagent(REAGENT_THIRTEEN_LOKO, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/sarge
 	name = "\improper Sarge"
@@ -48,7 +48,7 @@
 	center_of_mass = "x=16;y=8"
 	initialize()
 		..()
-		reagents.add_reagent("spacemountainwind", 30)
+		reagents.add_reagent(REAGENT_CITRUS_SODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper cherry cola"
@@ -57,7 +57,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("dr_gibb", 30)
+		reagents.add_reagent(REAGENT_CHERRY_COLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
 	name = "orange soda"
@@ -66,7 +66,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("brownstar", 30)
+		reagents.add_reagent(REAGENT_BROWN_STAR, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_up
 	name = "lemonade"
@@ -75,7 +75,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("space_up", 30)
+		reagents.add_reagent(REAGENT_LEMONADE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime
 	name = "lemon-lime soda"
@@ -84,7 +84,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("lemon_lime", 30)
+		reagents.add_reagent(REAGENT_LEMON_LIME, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea
 	name = "iced tea"
@@ -93,7 +93,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("icetea", 30)
+		reagents.add_reagent(REAGENT_ICETEA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice
 	name = "grape juice"
@@ -102,7 +102,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("grapejuice", 30)
+		reagents.add_reagent(REAGENT_GRAPE_JUICE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/tonic
 	name = "tonic water"
@@ -111,7 +111,7 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("tonic", 50)
+		reagents.add_reagent(REAGENT_TONIC, 50)
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
@@ -120,4 +120,4 @@
 	center_of_mass = "x=16;y=10"
 	initialize()
 		..()
-		reagents.add_reagent("sodawater", 50)
+		reagents.add_reagent(REAGENT_SODAWATER, 50)

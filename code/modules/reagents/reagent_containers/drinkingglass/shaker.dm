@@ -25,8 +25,8 @@
 	name = "protein shake"
 
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/initialize()
-	reagents.add_reagent("nutriment", 30)
-	reagents.add_reagent("iron", 10)
-	reagents.add_reagent("protein", 15)
-	reagents.add_reagent("water", 45)
+	reagents.add_reagent(REAGENT_NUTRIMENT, 30)
+	reagents.add_reagent(REAGENT_IRON, 10)
+	reagents.add_reagent(REAGENT_PROTEIN, 15)
+	reagents.add_reagent(REAGENT_WATER, 45)
 	. = ..()

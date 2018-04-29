@@ -10,7 +10,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/initialize()
 	..()
-	reagents.add_reagent("protein", 9)
+	reagents.add_reagent(REAGENT_PROTEIN, 9)
 	src.bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/meat/Initialize()
@@ -65,6 +65,6 @@
 
 	initialize()
 		..()
-		reagents.add_reagent("protein", 12)
-		reagents.add_reagent("jumpstart", 5)
+		reagents.add_reagent(REAGENT_PROTEIN, 12)
+		reagents.add_reagent(REAGENT_JUMPSTART, 5)
 		src.bitesize = 3

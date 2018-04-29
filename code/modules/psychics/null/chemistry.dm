@@ -1,9 +1,8 @@
 /datum/chemical_reaction/nullglass
-	name = "nullglass"
-	id = "nullglass"
 	result = null
-	required_reagents = list("blood" = 15, "crystalagent" = 1)
+	required_reagents = list(REAGENT_BLOOD = 15, REAGENT_CRYSTAL_AGENT = 1)
 	result_amount = 1
+	product_name = "Nullglass Soulstone"
 
 /datum/chemical_reaction/nullglass/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -11,8 +10,7 @@
 		new /obj/item/soulstone(location)
 
 /datum/reagent/crystal
-	name = "Crystallizing Agent"
-	id = "crystalagent"
+	name = "crystallizing agent"
 	taste_description = "sharpness"
 	reagent_state = LIQUID
 	color = "#13BC5E"

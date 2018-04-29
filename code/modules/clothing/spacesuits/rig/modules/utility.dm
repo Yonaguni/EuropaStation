@@ -113,12 +113,12 @@
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream."
 
 	charges = list(
-		list("morphine",      "morphine",      0, 80),
-		list("antibiotics",   "antibiotic",  0, 80),
-		list("antitoxins",    "anti_toxin",    0, 80),
-		list("nutrients",     "glucose",     0, 80),
-		list("entolimod",     "entolimod",     0, 80),
-		list("radium",        "radium",        0, 80)
+		list("Morphine",      REAGENT_MORPHINE,      0, 80),
+		list("Antibiotics",   REAGENT_ANTIBIOTICS,  0, 80),
+		list("Antitoxins",    REAGENT_ANTITOXIN,    0, 80),
+		list("Nutrients",     REAGENT_GLUCOSE,     0, 80),
+		list("Entolimod",     REAGENT_ENTOLIMOD,     0, 80),
+		list("Radium",        REAGENT_RADIUM,        0, 80)
 		)
 
 	var/max_reagent_volume = 80 //Used when refilling.
@@ -128,12 +128,12 @@
 
 	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
-		list("morphine",      "morphine",      0, 20),
-		list("antibiotics",   "antibiotic",  0, 20),
-		list("antitoxins",    "anti_toxin",    0, 20),
-		list("nutrients",     "glucose",     0, 80),
-		list("entolimod",     "entolimod",     0, 20),
-		list("radium",        "radium",        0, 20)
+		list("Morphine",      REAGENT_MORPHINE,      0, 20),
+		list("Antibiotics",   REAGENT_ANTIBIOTICS,  0, 20),
+		list("Antitoxins",    REAGENT_ANTITOXIN,    0, 20),
+		list("Nutrients",     REAGENT_GLUCOSE,     0, 80),
+		list("Entolimod",     REAGENT_ENTOLIMOD,     0, 20),
+		list("Radium",        REAGENT_RADIUM,        0, 20)
 		)
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
@@ -150,7 +150,7 @@
 	for(var/datum/reagent/R in input_item.reagents.reagent_list)
 		for(var/chargetype in charges)
 			var/datum/rig_charge/charge = charges[chargetype]
-			if(charge.display_name == R.id)
+			if(charge.display_name == R.type)
 
 				var/chems_to_transfer = R.volume
 
@@ -158,7 +158,7 @@
 					chems_to_transfer = max_reagent_volume - charge.charges
 
 				charge.charges += chems_to_transfer
-				input_item.reagents.remove_reagent(R.id, chems_to_transfer)
+				input_item.reagents.remove_reagent(R.type, chems_to_transfer)
 				total_transferred += chems_to_transfer
 
 				break
@@ -217,10 +217,10 @@
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
 
 	charges = list(
-		list("synaptizine",   "synaptizine",   0, 30),
-		list("jumpstart",     "jumpstart",     0, 30),
-		list("oxycodone",     "oxycodone",     0, 30),
-		list("nutrients",     "glucose",     0, 80),
+		list("Synaptizine",   REAGENT_SYNAPTIZINE,   0, 30),
+		list("Jumpstart",     REAGENT_JUMPSTART,     0, 30),
+		list("Oxycodone",     REAGENT_OXYCODONE,     0, 30),
+		list("Nutrients",     REAGENT_GLUCOSE,     0, 80),
 		)
 
 	interface_name = "combat chem dispenser"

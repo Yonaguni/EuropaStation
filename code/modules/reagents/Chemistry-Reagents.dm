@@ -1,8 +1,6 @@
 
 /datum/reagent
 	var/name = "Reagent"
-	var/id = "reagent"
-	//var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
 	var/datum/reagents/holder = null
@@ -19,7 +17,6 @@
 	var/color = "#000000"
 	var/color_weight = 1
 	var/flags = 0
-
 	var/glass_icon = DRINK_ICON_DEFAULT
 	var/glass_name = "something"
 	var/glass_desc = "It's a glass of... what, exactly?"
@@ -28,7 +25,7 @@
 	var/disinfectant
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
-	if(!QDELETED(src)) holder.remove_reagent(id, amount)
+	if(!QDELETED(src)) holder.remove_reagent(type, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
 /datum/reagent/proc/touch_mob(var/mob/M, var/amount)

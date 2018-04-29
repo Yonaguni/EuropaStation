@@ -15,7 +15,7 @@
 		var/datum/reagent/reagent = SSchemistry.get_reagent(react.result)
 		if(!istype(reagent))
 			continue
-		checked += react.id
+		checked += react.type
 
 		var/recipe_string = ""
 		for(var/rid in react.required_reagents)
@@ -28,8 +28,13 @@
 			recipe_string += "**Inhibitors:** "
 			for(var/rid in react.inhibitors)
 				recipe_string += "[react.inhibitors[rid]] [rid] "
-
-		usr <<  "| [react.name] | [recipe_string] | [react.result_amount]u | [reagent.lore_text] |"
+		var/resultstr = " | "
+		if(ispath(react.result))
+			var/datum/reagent/result_reagent = react.result
+			resultstr += "[initial(result_reagent.name)]"
+		else
+			resultstr += "[react.product_name]"
+		usr <<  "[resultstr] | [recipe_string] | [react.result_amount]u | [reagent.lore_text] |"
 
 	usr << "<br>"
 	usr << "| Chemical | Effects |"

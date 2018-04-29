@@ -207,13 +207,13 @@
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	initialize()
 		..()
-		reagents.add_reagent("cryoxadone", 30)
+		reagents.add_reagent(REAGENT_CRYOXADONE, 30)
 		update_icon()
 
 /obj/item/reagent_containers/glass/beaker/sulphuric
 	initialize()
 		..()
-		reagents.add_reagent("sacid", 60)
+		reagents.add_reagent(REAGENT_SULFURIC_ACID, 60)
 		update_icon()
 
 /obj/item/reagent_containers/glass/bucket

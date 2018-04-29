@@ -2,7 +2,6 @@
 
 /datum/reagent/crayon_dust
 	name = "Crayon dust"
-	id = "crayon_dust"
 	taste_description = "the back of class"
 	reagent_state = LIQUID
 	color = "#888888"
@@ -10,47 +9,38 @@
 
 /datum/reagent/crayon_dust/red
 	name = "Red crayon dust"
-	id = "crayon_dust_red"
 	color = "#FE191A"
 
 /datum/reagent/crayon_dust/orange
 	name = "Orange crayon dust"
-	id = "crayon_dust_orange"
 	color = "#FFBE4F"
 
 /datum/reagent/crayon_dust/yellow
 	name = "Yellow crayon dust"
-	id = "crayon_dust_yellow"
 	color = "#FDFE7D"
 
 /datum/reagent/crayon_dust/green
 	name = "Green crayon dust"
-	id = "crayon_dust_green"
 	color = "#18A31A"
 
 /datum/reagent/crayon_dust/blue
 	name = "Blue crayon dust"
-	id = "crayon_dust_blue"
 	color = "#247CFF"
 
 /datum/reagent/crayon_dust/purple
 	name = "Purple crayon dust"
-	id = "crayon_dust_purple"
 	color = "#CC0099"
 
 /datum/reagent/crayon_dust/grey //Mime
 	name = "Grey crayon dust"
-	id = "crayon_dust_grey"
 	color = "#808080"
 
 /datum/reagent/crayon_dust/brown //Rainbow
 	name = "Brown crayon dust"
-	id = "crayon_dust_brown"
 	color = "#846F35"
 
 /datum/reagent/paint
 	name = "Paint"
-	id = "paint"
 	taste_description = "chalk"
 	reagent_state = LIQUID
 	color = "#808080"
@@ -106,7 +96,6 @@
 
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
-	id = "adminordrazine"
 	taste_description = "100% abuse"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -141,21 +130,18 @@
 
 /datum/reagent/gold
 	name = "Gold"
-	id = "gold"
 	taste_description = "expensive metal"
 	reagent_state = SOLID
 	color = "#F7C430"
 
 /datum/reagent/silver
 	name = "Silver"
-	id = "silver"
 	taste_description = "expensive yet reasonable metal"
 	reagent_state = SOLID
 	color = "#D0D0D0"
 
 /datum/reagent/uranium
 	name ="Uranium"
-	id = "uranium"
 	taste_description = "the inside of a reactor"
 	reagent_state = SOLID
 	color = "#B8B8C0"
@@ -176,7 +162,6 @@
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"
-	id = "adrenaline"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -188,7 +173,6 @@
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
-	id = "holywater"
 	color = "#E0E8EF"
 
 	glass_name = "holy water"
@@ -201,28 +185,24 @@
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
-	id = "diethylamine"
 	taste_description = "iron"
 	reagent_state = LIQUID
 	color = "#604030"
 
 /datum/reagent/surfactant // Foam precursor
 	name = "Azosurfactant"
-	id = "surfactant"
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#9E6B38"
 
 /datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
-	id = "foaming_agent"
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#664B63"
 
 /datum/reagent/thermite
 	name = "Thermite"
-	id = "thermite"
 	taste_description = "sweet tasting metal"
 	reagent_state = SOLID
 	color = "#673910"
@@ -246,7 +226,6 @@
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
-	id = "cleaner"
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#A5F0EE"
@@ -291,7 +270,6 @@
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
-	id = "lube"
 	taste_description = "slime"
 	reagent_state = LIQUID
 	color = "#009CA8"
@@ -304,7 +282,6 @@
 
 /datum/reagent/silicate
 	name = "Silicate"
-	id = "silicate"
 	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#C7FFFF"
@@ -318,14 +295,12 @@
 
 /datum/reagent/glycerol
 	name = "Glycerol"
-	id = "glycerol"
 	taste_description = "sweetness"
 	reagent_state = LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
-	id = "nitroglycerin"
 	taste_description = "oil"
 	reagent_state = LIQUID
 	color = "#808080"
@@ -336,7 +311,6 @@
 
 /datum/reagent/coolant
 	name = "Coolant"
-	id = "coolant"
 	taste_description = "sourness"
 	taste_mult = 1.1
 	reagent_state = LIQUID
@@ -344,20 +318,17 @@
 
 /datum/reagent/ultraglue
 	name = "Ultra Glue"
-	id = "glue"
 	taste_description = "a special education class"
 	color = "#FFFFCC"
 
 /datum/reagent/woodpulp
 	name = "Wood Pulp"
-	id = "woodpulp"
 	taste_description = "wood"
 	reagent_state = LIQUID
 	color = "#B97A57"
 
 /datum/reagent/luminol
 	name = "Luminol"
-	id = "luminol"
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#F2F3F4"

@@ -109,14 +109,14 @@
 /obj/item/reagent_containers/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	fertilizer = "eznutrient"
+	fertilizer = REAGENT_EZNUTRIENT
 
 /obj/item/reagent_containers/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	fertilizer = "left4zed"
+	fertilizer =REAGENT_LEFT4ZED
 
 /obj/item/reagent_containers/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	fertilizer = "robustharvest"
+	fertilizer = REAGENT_ROBUSTHARVEST

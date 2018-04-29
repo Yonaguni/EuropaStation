@@ -493,8 +493,8 @@ default behaviour is:
 		damaging.take_damage(2)
 		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state worsens from": "wounds are aggravated by"] being dragged!</span>")
 		loc.add_blood(src)
-		if(vessel.get_reagent_amount("blood") > 0)
-			vessel.remove_reagent("blood", 1)
+		if(vessel.get_reagent_amount(REAGENT_BLOOD) > 0)
+			vessel.remove_reagent(REAGENT_BLOOD, 1)
 
 /mob/living/Move(a, b, flag)
 	if (buckled)

@@ -36,7 +36,7 @@
 
 /obj/item/extinguisher/initialize()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
+	reagents.add_reagent(REAGENT_WATER, max_water)
 	..()
 
 /obj/item/extinguisher/examine(mob/user)

@@ -258,12 +258,12 @@
 		"brainloss" = H.getBrainLoss(),
 		"paralysis" = H.paralysis,
 		"bodytemp" = H.bodytemperature,
-		"inaprovaline_amount" = H.reagents.get_reagent_amount("adrenaline"),
-		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
-		"stoxin_amount" = H.reagents.get_reagent_amount("stoxin"),
-		"styptazine_amount" = H.reagents.get_reagent_amount("styptazine"),
-		"fotiazine_amount" = H.reagents.get_reagent_amount("fotiazine"),
-		"blood_amount" = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100),
+		"inaprovaline_amount" = H.reagents.get_reagent_amount(REAGENT_ADRENALINE),
+		"dexalin_amount" = H.reagents.get_reagent_amount(REAGENT_DEXALIN),
+		"stoxin_amount" = H.reagents.get_reagent_amount(REAGENT_SLEEPTOXIN),
+		"styptazine_amount" = H.reagents.get_reagent_amount(REAGENT_STYPTAZINE),
+		"REAGENT_FOTIAZINE_amount" = H.reagents.get_reagent_amount(REAGENT_FOTIAZINE),
+		"blood_amount" = round((H.vessel.get_reagent_amount(REAGENT_BLOOD) / H.species.blood_volume)*100),
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -301,7 +301,7 @@
 
 	dat += text("Adrenaline: [] units<BR>", occ["inaprovaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["stoxin_amount"])
-	dat += text("[]\tFotiazine: [] units</FONT><BR>", ("<font color='[occ["fotiazine_amount"] < 30  ? "black" : "red"]'>"), occ["fotiazine_amount"])
+	dat += text("[]\tFotiazine: [] units</FONT><BR>", ("<font color='[occ["REAGENT_FOTIAZINE_amount"] < 30  ? "black" : "red"]'>"), occ["REAGENT_FOTIAZINE_amount"])
 	dat += text("[]\tStyptazine: [] units</font><BR>", ("<font color='[occ["styptazine_amount"] < 30  ? "black" : "red"]'>"), occ["styptazine_amount"])
 	dat += text("[]\tDexalin: [] units</font><BR>", ("<font color='[occ["dexalin_amount"] < 30  ? "black" : "red"]'>"), occ["dexalin_amount"])
 

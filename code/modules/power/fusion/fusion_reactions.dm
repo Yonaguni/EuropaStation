@@ -94,7 +94,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	energy_production = 0
 	instability = 5
 	radiation = 5
-	products = list("silicon"= 1)
+	products = list(REACTANT_SILICON= 1)
 
 /decl/fusion_reaction/iron_iron
 	p_react = REACTANT_IRON

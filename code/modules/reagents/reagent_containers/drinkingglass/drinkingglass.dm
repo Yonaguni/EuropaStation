@@ -1,7 +1,7 @@
 #define DRINK_ICON_FILE 'icons/pdrink.dmi'
 
 /var/const/DRINK_FIZZ = "fizz"
-/var/const/DRINK_ICE = "ice"
+/var/const/DRINK_ICE = REAGENT_ICE
 /var/const/DRINK_ICON_DEFAULT = ""
 /var/const/DRINK_ICON_NOISY = "_noise"
 
@@ -42,8 +42,8 @@
 /obj/item/reagent_containers/food/drinks/glass2/proc/has_ice()
 	if(reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
-		if(!((R.id == "ice") || ("ice" in R.glass_special))) // if it's not a cup of ice, and it's not already supposed to have ice in, see if the bartender's put ice in it
-			if(reagents.has_reagent("ice", reagents.total_volume / 10)) // 10% ice by volume
+		if(!((R.type == REAGENT_ICE) || (REAGENT_ICE in R.glass_special))) // if it's not a cup of ice, and it's not already supposed to have ice in, see if the bartender's put ice in it
+			if(reagents.has_reagent(REAGENT_ICE, reagents.total_volume / 10)) // 10% ice by volume
 				return 1
 
 	return 0

@@ -28,11 +28,9 @@ var/datum/controller/subsystem/chemistry/SSchemistry
 	_chemical_reagents = list()
 	_chemical_reagents_by_id = list()
 	for(var/path in subtypesof(/datum/reagent))
-		var/datum/reagent/D = path
-		if(initial(D.id))
-			D = new D()
-			_chemical_reagents += D
-			_chemical_reagents_by_id[D.id] = D
+		var/datum/reagent/D = new path
+		_chemical_reagents += D
+		_chemical_reagents_by_id[D.type] = D
 
 	// Init reaction list.
 	//Chemical Reactions - Initialises all /datum/chemical_reaction into a list

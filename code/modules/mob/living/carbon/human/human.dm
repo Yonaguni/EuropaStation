@@ -76,9 +76,9 @@
 	spawn(0)
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
-			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
+			vessel.add_reagent(REAGENT_BLOOD, species.blood_volume - vessel.total_volume)
 		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
+			vessel.remove_reagent(REAGENT_BLOOD, vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
 	. = ..()
@@ -789,7 +789,7 @@
 /mob/living/carbon/human/revive()
 
 	if(should_have_organ(BP_HEART))
-		vessel.add_reagent("blood",species.blood_volume-vessel.total_volume)
+		vessel.add_reagent(REAGENT_BLOOD,species.blood_volume-vessel.total_volume)
 		fixblood()
 
 	species.create_organs(src) // Reset our organs/limbs.
@@ -1032,9 +1032,9 @@
 		spawn(0)
 			if(vessel.total_volume < species.blood_volume)
 				vessel.maximum_volume = species.blood_volume
-				vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
+				vessel.add_reagent(REAGENT_BLOOD, species.blood_volume - vessel.total_volume)
 			else if(vessel.total_volume > species.blood_volume)
-				vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
+				vessel.remove_reagent(REAGENT_BLOOD, vessel.total_volume - species.blood_volume)
 				vessel.maximum_volume = species.blood_volume
 			fixblood()
 

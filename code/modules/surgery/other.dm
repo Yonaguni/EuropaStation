@@ -137,7 +137,7 @@
 
 /datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/reagent_containers/container = tool
-	if(!istype(container) || !container.reagents.has_reagent("peridaxon"))
+	if(!istype(container) || !container.reagents.has_reagent(REAGENT_PERIDAXON))
 		return 0
 
 	if(!hasorgans(target))
@@ -168,7 +168,7 @@
 	var/datum/reagents/temp = new(amount)
 	container.reagents.trans_to_holder(temp, amount)
 
-	var/rejuvenate = temp.has_reagent("peridaxon")
+	var/rejuvenate = temp.has_reagent(REAGENT_PERIDAXON)
 
 	var/trans = temp.trans_to_mob(target, temp.total_volume, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 	if (trans > 0)

@@ -120,9 +120,9 @@
 		if(seed.consume_gasses)
 			seed.consume_gasses[GAS_FUEL] = null
 			seed.consume_gasses[GAS_CARBON_DIOXIDE] = null
-		if(seed.chems && !isnull(seed.chems["pacid"]))
-			seed.chems["pacid"] = null // Eating through the hull will make these plants completely inviable, albeit very dangerous.
-			seed.chems -= "pacid"
+		if(seed.chems && !isnull(seed.chems[REAGENT_POLYACID]))
+			seed.chems[REAGENT_POLYACID] = null // Eating through the hull will make these plants completely inviable, albeit very dangerous.
+			seed.chems -= REAGENT_POLYACID
 		seed.set_trait(TRAIT_IDEAL_HEAT,293)
 		seed.set_trait(TRAIT_HEAT_TOLERANCE,20)
 		seed.set_trait(TRAIT_IDEAL_LIGHT,8)

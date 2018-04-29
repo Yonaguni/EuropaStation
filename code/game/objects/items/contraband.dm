@@ -2,14 +2,14 @@
 //Illicit drugs~
 /obj/item/reagent_containers/glass/beaker/vial/random
 	flags = 0
-	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
+	var/list/random_reagent_list = list(list(REAGENT_WATER = 15) = 1, list(REAGENT_CLEANER = 15) = 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
-		list("lsd" = 10, "glint" = 20)	= 3,
-		list("carpotoxin" = 15)							= 2,
-		list("impedrezene" = 15)						= 2,
-		list("byphodine" = 10)						= 1)
+		list(REAGENT_LSD = 10, REAGENT_GLINT = 20)	= 3,
+		list(REAGENT_CARPOTOXIN = 15)							= 2,
+		list(REAGENT_IMPEDREZENE = 15)						= 2,
+		list(REAGENT_BYPHODINE = 10)						= 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/New()
 	..()

@@ -254,22 +254,22 @@
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.lore_text];name=[G.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.lore_text];name=[N.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
@@ -307,11 +307,11 @@
 	var/limit = 10
 	var/list/holdingitems = list()
 	var/list/sheet_reagents = list(
-		/obj/item/stack/material/iron =      "iron",
-		/obj/item/stack/material/uranium =   "uranium",
-		/obj/item/stack/material/gold =      "gold",
-		/obj/item/stack/material/silver =    "silver",
-		/obj/item/stack/material/mhydrogen = "hydrazine"
+		/obj/item/stack/material/iron =      REAGENT_IRON,
+		/obj/item/stack/material/uranium =   REAGENT_URANIUM,
+		/obj/item/stack/material/gold =      REAGENT_GOLD,
+		/obj/item/stack/material/silver =    REAGENT_SILVER,
+		/obj/item/stack/material/mhydrogen = REAGENT_HYDRAZINE
 		)
 
 /obj/machinery/reagentgrinder/New()

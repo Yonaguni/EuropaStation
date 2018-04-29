@@ -27,7 +27,7 @@
 	. = ..()
 
 /obj/item/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	reagents.add_reagent(REAGENT_CLEANER, 5)
 
 /obj/item/soap/Crossed(AM as mob|obj)
 	if (istype(AM, /mob/living))

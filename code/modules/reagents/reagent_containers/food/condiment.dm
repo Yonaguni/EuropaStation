@@ -55,51 +55,51 @@
 		user << "<span class='notice'>You swallow some of contents of \the [src].</span>"
 
 	on_reagent_change()
-		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
+		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == REAGENT_FLOUR)
 			return
 		if(reagents.reagent_list.len > 0)
 			switch(reagents.get_master_reagent_id())
-				if("ketchup")
+				if(REAGENT_KETCHUP)
 					name = "Ketchup"
 					desc = "You feel more American already."
 					icon_state = "ketchup"
 					center_of_mass = "x=16;y=6"
-				if("capsaicin")
+				if(REAGENT_CAPSAICIN)
 					name = "Hotsauce"
 					desc = "You can almost TASTE the stomach ulcers now!"
 					icon_state = "hotsauce"
 					center_of_mass = "x=16;y=6"
-				if("enzyme")
+				if(REAGENT_ENZYME)
 					name = "Universal Enzyme"
 					desc = "Used in cooking various dishes."
 					icon_state = "enzyme"
 					center_of_mass = "x=16;y=6"
-				if("soysauce")
+				if(REAGENT_SOYSAUCE)
 					name = "Soy Sauce"
 					desc = "A dark, salty, savoury flavoring."
 					icon_state = "soysauce"
 					center_of_mass = "x=16;y=6"
-				if("frostoil")
+				if(REAGENT_FROSTOIL)
 					name = "Coldsauce"
 					desc = "Leaves the tongue numb in its passage."
 					icon_state = "coldsauce"
 					center_of_mass = "x=16;y=6"
-				if("sodiumchloride")
+				if(REAGENT_SALT)
 					name = "Salt Shaker"
 					desc = "Salt. From space oceans, presumably."
 					icon_state = "saltshaker"
 					center_of_mass = "x=16;y=10"
-				if("blackpepper")
+				if(REAGENT_PEPPER)
 					name = "Pepper Mill"
 					desc = "Often used to flavor food or make people sneeze."
 					icon_state = "peppermillsmall"
 					center_of_mass = "x=16;y=10"
-				if("cornoil")
+				if(REAGENT_CORNOIL)
 					name = "Corn Oil"
 					desc = "A delicious oil used in cooking. Made from corn."
 					icon_state = "oliveoil"
 					center_of_mass = "x=16;y=6"
-				if("sugar")
+				if(REAGENT_SUGAR)
 					name = "Sugar"
 					desc = "Tastey space sugar!"
 					center_of_mass = "x=16;y=6"
@@ -124,12 +124,12 @@
 	icon_state = "enzyme"
 	initialize()
 		..()
-		reagents.add_reagent("enzyme", 50)
+		reagents.add_reagent(REAGENT_ENZYME, 50)
 
 /obj/item/reagent_containers/food/condiment/sugar
 	initialize()
 		..()
-		reagents.add_reagent("sugar", 50)
+		reagents.add_reagent(REAGENT_SUGAR, 50)
 
 /obj/item/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
@@ -140,7 +140,7 @@
 	volume = 20
 	initialize()
 		..()
-		reagents.add_reagent("sodiumchloride", 20)
+		reagents.add_reagent(REAGENT_SALT, 20)
 
 /obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"
@@ -151,7 +151,7 @@
 	volume = 20
 	initialize()
 		..()
-		reagents.add_reagent("blackpepper", 20)
+		reagents.add_reagent(REAGENT_PEPPER, 20)
 
 /obj/item/reagent_containers/food/condiment/flour
 	name = "flour sack"
@@ -162,7 +162,7 @@
 	randpixel = 10
 	initialize()
 		..()
-		reagents.add_reagent("flour", 30)
+		reagents.add_reagent(REAGENT_FLOUR, 30)
 
 /obj/item/reagent_containers/food/condiment/soysauce
 	name = "Soy-Sauce"
@@ -172,4 +172,4 @@
 	volume = 20
 	initialize()
 		..()
-		reagents.add_reagent("soysauce", 20)
+		reagents.add_reagent(REAGENT_SOYSAUCE, 20)

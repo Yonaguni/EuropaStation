@@ -60,7 +60,7 @@
 	volume = 5
 
 /obj/item/reagent_containers/hypospray/autoinjector/initialize()
-	reagents.add_reagent("adrenaline", 5)
+	reagents.add_reagent(REAGENT_ADRENALINE, 5)
 	update_icon()
 	. = ..()
 

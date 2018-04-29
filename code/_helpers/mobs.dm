@@ -355,7 +355,7 @@ Proc for attack log creation, because really why not
 			for(var/A in C.reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = "<span class='notice'>    [round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]</span>"
+					reagentdata["[R.name]"] = "<span class='notice'>    [round(C.reagents.get_reagent_amount(R.type), 1)]u [R.name]</span>"
 				else
 					unknown++
 			if(reagentdata.len)
@@ -415,7 +415,7 @@ Proc for attack log creation, because really why not
 				user.show_message(text("<span class='warning'>Internal bleeding detected. Advanced scanner required for location.</span>"), 1)
 				break
 		if(M:vessel)
-			var/blood_volume = H.vessel.get_reagent_amount("blood")
+			var/blood_volume = H.vessel.get_reagent_amount(REAGENT_BLOOD)
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.b_type
 			if((blood_percent <= BLOOD_VOLUME_SAFE) && (blood_percent > BLOOD_VOLUME_BAD))

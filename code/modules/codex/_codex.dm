@@ -36,7 +36,7 @@ var/datum/controller/subsystem/codex/SScodex
 		)
 
 		var/list/production_strings = list()
-		for(var/datum/chemical_reaction/reaction in SSchemistry.get_reactions_by_result(reagent.id))
+		for(var/datum/chemical_reaction/reaction in SSchemistry.get_reactions_by_result(reagent.type))
 
 			if(reaction.hidden_from_codex)
 				continue
