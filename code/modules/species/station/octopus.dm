@@ -23,6 +23,7 @@
 	icobase = 'icons/mob/human_races/r_octopus.dmi'
 	deform = 'icons/mob/human_races/r_octopus.dmi'
 	icon_template = 'icons/mob/human_races/r_octopus.dmi'
+	robot_icon = 'icons/mob/human_races/cyberlimbs/octobot.dmi'
 
 	damage_overlays = 'icons/mob/human_races/masks/dam_octopus.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_octopus.dmi'
@@ -81,7 +82,7 @@
 	var/need_update
 	for(var/thing in H.organs)
 		var/obj/item/organ/external/limb = thing
-		if(limb.species == src && limb.render_alpha != newval)
+		if(limb.robotic < ORGAN_ROBOT && limb.species == src && limb.render_alpha != newval)
 			limb.render_alpha = newval
 			need_update = 1
 	if(need_update)

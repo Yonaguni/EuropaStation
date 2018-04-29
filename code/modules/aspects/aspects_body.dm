@@ -74,7 +74,7 @@
 
 /decl/aspect/prosthesis_base/apply(var/mob/living/carbon/human/holder)
 	. = ..()
-	if(. && holder.species.get_bodytype(holder) == BODYTYPE_HUMAN)
+	if(.)
 		for(var/organ_label in holder.species.has_limbs)
 			var/obj/item/organ/external/E = holder.organs_by_name[organ_label]
 			if(!istype(E))

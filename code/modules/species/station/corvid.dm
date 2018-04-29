@@ -27,6 +27,7 @@
 	deform = 'icons/mob/human_races/r_corvid.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_corvid.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_corvid.dmi'
+	robot_icon = 'icons/mob/human_races/cyberlimbs/crowbot.dmi'
 
 	total_health = 80
 	brute_mod = 1.35
