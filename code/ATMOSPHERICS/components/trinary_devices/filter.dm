@@ -42,13 +42,13 @@
 		if(0) //removing hydrocarbons
 			filtered_out = list(GAS_FUEL)
 		if(1) //removing O2
-			filtered_out = list("oxygen")
+			filtered_out = list(GAS_OXYGEN)
 		if(2) //removing N2
-			filtered_out = list("nitrogen")
+			filtered_out = list(GAS_NITROGEN)
 		if(3) //removing CO2
-			filtered_out = list("carbon_dioxide")
+			filtered_out = list(GAS_CARBON_DIOXIDE)
 		if(4)//removing N2O
-			filtered_out = list("sleeping_agent")
+			filtered_out = list(GAS_SLEEPING)
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -201,13 +201,13 @@
 			if(0) //removing hydrocarbons
 				filtered_out += GAS_FUEL
 			if(1) //removing O2
-				filtered_out += "oxygen"
+				filtered_out += GAS_OXYGEN
 			if(2) //removing N2
-				filtered_out += "nitrogen"
+				filtered_out += GAS_NITROGEN
 			if(3) //removing CO2
-				filtered_out += "carbon_dioxide"
+				filtered_out += GAS_CARBON_DIOXIDE
 			if(4)//removing N2O
-				filtered_out += "sleeping_agent"
+				filtered_out += GAS_SLEEPING
 
 	if (href_list["temp"])
 		src.temp = null

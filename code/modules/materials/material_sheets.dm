@@ -225,7 +225,7 @@
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"
-	default_type = MATERIAL_CLOTH
+	default_type = MATERIAL_COTTON
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"

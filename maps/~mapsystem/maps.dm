@@ -148,7 +148,7 @@ var/list/votable_maps = list()
 
 /datum/map/proc/get_exterior_air()
 	var/datum/gas_mixture/GM = new
-	GM.adjust_multi("oxygen", MOLES_O2STANDARD, "nitrogen", MOLES_N2STANDARD)
+	GM.adjust_multi(GAS_OXYGEN, MOLES_O2STANDARD, GAS_NITROGEN, MOLES_N2STANDARD)
 	GM.temperature = ambient_exterior_temperature
 	return GM
 

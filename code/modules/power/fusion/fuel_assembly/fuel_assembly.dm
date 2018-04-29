@@ -64,7 +64,7 @@
 	..(newloc, MATERIAL_TRITIUM)
 
 /obj/item/fuel_assembly/hydrogen/New(var/newloc)
-	..(newloc, "hydrogen")
+	..(newloc, GAS_HYDROGEN)
 
 /obj/item/fuel_assembly/supermatter/New(var/newloc)
 	..(newloc, MATERIAL_EXOTIC_MATTER)

@@ -9,6 +9,8 @@
 #define REACTANT_DEUTERIUM     "deuterium"
 #define REACTANT_TRITIUM       "tritium"
 #define REACTANT_LITHIUM       "lithium"
+#define REACTANT_HELIUM        "helium"
+#define REACTANT_OXYGEN        "oxygen"
 
 var/list/fusion_reactions
 
@@ -172,3 +174,5 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 #undef REACTANT_DEUTERIUM
 #undef REACTANT_TRITIUM
 #undef REACTANT_LITHIUM
+#undef REACTANT_HELIUM
+#undef REACTANT_OXYGEN

@@ -235,7 +235,7 @@
 		GM = using_map.get_exterior_air()
 	else
 		GM = new
-		GM.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, GAS_FUEL, phoron)
+		GM.adjust_multi(GAS_OXYGEN, oxygen, GAS_CARBON_DIOXIDE, carbon_dioxide, GAS_NITROGEN, nitrogen, GAS_FUEL, phoron)
 		GM.temperature = temperature
 	return GM
 
@@ -244,9 +244,9 @@
 
 	var/sum = oxygen + carbon_dioxide + nitrogen + phoron
 	if(sum>0)
-		GM.gas["oxygen"] = (oxygen/sum)*amount
-		GM.gas["carbon_dioxide"] = (carbon_dioxide/sum)*amount
-		GM.gas["nitrogen"] = (nitrogen/sum)*amount
+		GM.gas[GAS_OXYGEN] = (oxygen/sum)*amount
+		GM.gas[GAS_CARBON_DIOXIDE] = (carbon_dioxide/sum)*amount
+		GM.gas[GAS_NITROGEN] = (nitrogen/sum)*amount
 		GM.gas[GAS_FUEL] = (phoron/sum)*amount
 
 	GM.temperature = temperature
@@ -294,7 +294,7 @@
 /turf/proc/make_air()
 	air = new/datum/gas_mixture
 	air.temperature = temperature
-	air.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, GAS_FUEL, phoron)
+	air.adjust_multi(GAS_OXYGEN, oxygen, GAS_CARBON_DIOXIDE, carbon_dioxide, GAS_NITROGEN, nitrogen, GAS_FUEL, phoron)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 

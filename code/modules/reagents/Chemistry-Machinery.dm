@@ -307,11 +307,11 @@
 	var/limit = 10
 	var/list/holdingitems = list()
 	var/list/sheet_reagents = list(
-		/obj/item/stack/material/iron = "iron",
-		/obj/item/stack/material/uranium = "uranium",
-		/obj/item/stack/material/gold = "gold",
-		/obj/item/stack/material/silver = "silver",
-		/obj/item/stack/material/mhydrogen = "hydrogen"
+		/obj/item/stack/material/iron =      "iron",
+		/obj/item/stack/material/uranium =   "uranium",
+		/obj/item/stack/material/gold =      "gold",
+		/obj/item/stack/material/silver =    "silver",
+		/obj/item/stack/material/mhydrogen = "hydrazine"
 		)
 
 /obj/machinery/reagentgrinder/New()

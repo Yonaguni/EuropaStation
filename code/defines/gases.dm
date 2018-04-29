@@ -1,5 +1,5 @@
 /decl/xgm_gas/oxygen
-	id = "oxygen"
+	id = GAS_OXYGEN
 	name = "Oxygen"
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.032	// kg/mol
@@ -7,13 +7,13 @@
 	flags = XGM_GAS_OXIDIZER | XGM_GAS_FUSION_FUEL
 
 /decl/xgm_gas/nitrogen
-	id = "nitrogen"
+	id = GAS_NITROGEN
 	name = "Nitrogen"
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.028	// kg/mol
 
 /decl/xgm_gas/carbon_dioxide
-	id = "carbon_dioxide"
+	id = GAS_CARBON_DIOXIDE
 	name = "Carbon Dioxide"
 	specific_heat = 30	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol
@@ -37,7 +37,7 @@
 	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT | XGM_GAS_FUSION_FUEL
 
 /decl/xgm_gas/sleeping_agent
-	id = "sleeping_agent"
+	id = GAS_SLEEPING
 	name = "Sleeping Agent"
 	specific_heat = 40	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol. N2O
@@ -49,14 +49,14 @@
 // This is only to be used for abstract stuff (drowning on Europa etc) for the moment
 // may add it as 'Steam' at some point down the track
 /decl/xgm_gas/water
-	id = "steam"
+	id = GAS_STEAM
 	name = "Steam"
 	specific_heat = 30	// J/(mol*K)
 	molar_mass = 0.020	// kg/mol
 	tile_overlay = "gas_dense"
 
 /decl/xgm_gas/hydrogen
-	id = "hydrogen"
+	id = GAS_HYDROGEN
 	name = "Hydrogen"
 
 	specific_heat = 100	// J/(mol*K)
@@ -64,73 +64,22 @@
 
 	flags = XGM_GAS_FUEL|XGM_GAS_FUSION_FUEL
 
-	burn_product = "steam"
+	burn_product = GAS_STEAM
 
 /decl/xgm_gas/hydrogen/deuterium
-	id = "deuterium"
+	id = GAS_DEUTERIUM
 	name = "Deuterium"
 
 /decl/xgm_gas/hydrogen/tritium
-	id = "tritium"
+	id = GAS_TRITIUM
 	name = "Tritium"
 
 /decl/xgm_gas/helium
-	id = "helium"
+	id = GAS_HELIUM
 	name = "Helium"
 
 	specific_heat = 80	// J/(mol*K)
 	molar_mass = 0.004	// kg/mol
 
 	flags = XGM_GAS_FUSION_FUEL
-
-/decl/xgm_gas/argon
-	id = "argon"
-	name = "Argon"
-
-	specific_heat = 10	// J/(mol*K)
-	molar_mass = 0.018	// kg/mol
-
-/decl/xgm_gas/krypton
-	id = "krypton"
-	name = "Krypton"
-
-	specific_heat = 5	// J/(mol*K)
-	molar_mass = 0.036	// kg/mol
-
-/decl/xgm_gas/neon
-	id = "neon"
-	name = "Neon"
-
-	specific_heat = 20	// J/(mol*K)
-	molar_mass = 0.01	// kg/mol
-
-/decl/xgm_gas/xenon
-	id = "xenon"
-	name = "Xenon"
-
-	specific_heat = 3	// J/(mol*K)
-	molar_mass = 0.054	// kg/mol
-
-/decl/xgm_gas/nitrodioxide
-	id = "nitrodioxide"
-	name = "Nitrogen Dioxide"
-
-	specific_heat = 37	// J/(mol*K)
-	molar_mass = 0.054	// kg/mol
-	flags = XGM_GAS_OXIDIZER
-
-/decl/xgm_gas/nitricoxide
-	id = "nitricoxide"
-	name = "Nitric Oxide"
-
-	specific_heat = 10	// J/(mol*K)
-	molar_mass = 0.030	// kg/mol
-	flags = XGM_GAS_OXIDIZER
-
-/decl/xgm_gas/chlorine
-	id = "chlorine"
-	name = "Chlorine"
-
-	specific_heat = 5	// J/(mol*K)
-	molar_mass = 0.017	// kg/mol
-	flags = XGM_GAS_CONTAMINANT
+	

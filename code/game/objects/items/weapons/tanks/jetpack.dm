@@ -64,7 +64,7 @@
 
 	var/datum/gas_mixture/G = src.air_contents.remove(num)
 
-	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas[GAS_FUEL]
+	var/allgases = G.gas[GAS_CARBON_DIOXIDE] + G.gas[GAS_NITROGEN] + G.gas[GAS_OXYGEN] + G.gas[GAS_FUEL]
 	if(allgases >= 0.005)
 		return 1
 
@@ -83,7 +83,7 @@
 
 /obj/item/tank/jetpack/void/New()
 	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/tank/jetpack/oxygen
@@ -94,7 +94,7 @@
 
 /obj/item/tank/jetpack/oxygen/New()
 	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/tank/jetpack/carbondioxide
@@ -106,7 +106,7 @@
 
 /obj/item/tank/jetpack/carbondioxide/New()
 	..()
-	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/tank/jetpack/rig
@@ -133,7 +133,7 @@
 
 	var/datum/gas_mixture/G = pressure_vessel.air_contents.remove(num)
 
-	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas[GAS_FUEL]
+	var/allgases = G.gas[GAS_CARBON_DIOXIDE] + G.gas[GAS_NITROGEN] + G.gas[GAS_OXYGEN] + G.gas[GAS_FUEL]
 	if(allgases >= 0.005)
 		return 1
 	qdel(G)
