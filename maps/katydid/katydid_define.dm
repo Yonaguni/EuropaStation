@@ -89,7 +89,7 @@
 
 /datum/map/katydid/update_locations()
 	. = ..()
-	stellar_location = pick(all_stellar_locations)
+	stellar_location = all_stellar_locations[pick(all_stellar_locations)]
 	destination_location = pick(all_stellar_locations - stellar_location)
 	if(stellar_location.flavour_locations && stellar_location.flavour_locations.len)
 		specific_location = pick(stellar_location.flavour_locations)
