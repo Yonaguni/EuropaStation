@@ -8,8 +8,8 @@
 
 	var/ore_divisor = 20
 	var/mineral_sparse =  /turf/simulated/mineral //random
-	var/mineral_rich = /turf/simulated/mineral //random/high_chance
-	var/list/ore_turfs = list()
+	var/mineral_rich =    /turf/simulated/mineral //random/high_chance
+	var/list/clear_turfs = list()
 
 /datum/random_map/automata/asteroids/get_map_char(var/value)
 	switch(value)
@@ -40,9 +40,9 @@
 
 /datum/random_map/automata/asteroids/cleanup()
 	var/ore_count = round(map.len/ore_divisor)
-	while((ore_count>0) && (ore_turfs.len>0))
-		var/check_cell = pick(ore_turfs)
-		ore_turfs -= check_cell
+	while((ore_count>0) && (clear_turfs.len>0))
+		var/check_cell = pick(clear_turfs)
+		clear_turfs -= check_cell
 		if(prob(75))
 			map[check_cell] = DOOR_CHAR  // Mineral block
 		else

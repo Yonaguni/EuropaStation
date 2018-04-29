@@ -53,19 +53,20 @@
 
 /obj/machinery/autolathe/proc/update_recipe_list()
 	populate_lathe_recipes()
-	switch(lathe_type)
-		if(LATHE_TYPE_ROBOTICS)
-			machine_recipes = autolathe_robotics
-		if(LATHE_TYPE_CIRCUIT)
-			machine_recipes = autolathe_circuits
-		if(LATHE_TYPE_ADVANCED)
-			machine_recipes = autolathe_advanced
-		if(LATHE_TYPE_HEAVY)
-			machine_recipes = autolathe_heavy
-		if(LATHE_TYPE_AMMUNITION)
-			machine_recipes = autolathe_ammo
-		else
-			machine_recipes = autolathe_generic
+	if(lathe_type == LATHE_TYPE_ROBOTICS)
+		machine_recipes = autolathe_robotics
+	if(lathe_type == LATHE_TYPE_CIRCUIT)
+		machine_recipes = autolathe_circuits
+	if(lathe_type == LATHE_TYPE_ADVANCED)
+		machine_recipes = autolathe_advanced
+	if(lathe_type == LATHE_TYPE_HEAVY)
+		machine_recipes = autolathe_heavy
+	if(lathe_type == LATHE_TYPE_AMMUNITION)
+		machine_recipes = autolathe_ammo
+	if(lathe_type == LATHE_TYPE_CURRENCY)
+		machine_recipes = autolathe_currency
+	else
+		machine_recipes = autolathe_generic
 
 /obj/machinery/autolathe/attack_ai(var/mob/user)
 	return attack_hand(user)
@@ -270,15 +271,8 @@
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
 /obj/machinery/autolathe/dismantle()
-
 	for(var/mat in stored_material)
-		var/material/M = get_material_by_name(mat)
-		if(!istype(M))
-			continue
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		if(stored_material[mat] > S.perunit)
-			S.amount = round(stored_material[mat] / S.perunit)
-		else
-			qdel(S)
-	..()
-	return 1
+		var/material/M = SSmaterials.get_material_by_name(mat)
+		if(istype(M) && stored_material[mat] >= M.units_per_sheet)
+			new M.stack_type(get_turf(src), amount = Floor(stored_material[mat] / M.units_per_sheet))
+	. = ..()

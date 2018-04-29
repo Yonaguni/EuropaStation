@@ -955,10 +955,7 @@ proc/is_hot(obj/item/W as obj)
 /obj/item/weldingtool/can_puncture()
 	return 1
 
-/obj/item/screwdriver/can_puncture()
-	return 1
-
-/obj/item/shovel/can_puncture() //includes spades
+/obj/item/pickaxe/can_puncture() //includes spades
 	return 1
 
 /obj/item/flame/can_puncture()

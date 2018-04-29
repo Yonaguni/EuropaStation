@@ -28,7 +28,7 @@ var/list/global_huds
 	screen.icon_state = icon_state
 	screen.layer = SCREEN_LAYER
 	screen.mouse_opacity = 0
-
+	screen.alpha = 80
 	return screen
 
 /datum/global_hud/New()

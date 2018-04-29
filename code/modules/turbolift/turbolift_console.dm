@@ -11,6 +11,7 @@
 	light_color = "#FFAA00"
 
 	var/datum/turbolift/lift
+	var/apply_offsets = TRUE
 
 /obj/structure/lift/Initialize()
 	. = ..()
@@ -20,14 +21,15 @@
 	. = ..()
 	pixel_x = 0
 	pixel_y = 0
-	if(dir & NORTH)
-		pixel_y = -32
-	else if(dir & SOUTH)
-		pixel_y = 32
-	else if(dir & EAST)
-		pixel_x = -32
-	else if(dir & WEST)
-		pixel_x = 32
+	if(apply_offsets)
+		if(dir & NORTH)
+			pixel_y = -32
+		else if(dir & SOUTH)
+			pixel_y = 32
+		else if(dir & EAST)
+			pixel_x = -32
+		else if(dir & WEST)
+			pixel_x = 32
 
 /obj/structure/lift/proc/pressed(var/mob/user)
 	if(!istype(user, /mob/living/silicon))
@@ -63,8 +65,13 @@
 	icon_state = "button"
 	var/datum/turbolift_floor/floor
 
+/obj/structure/lift/button/freestanding
+	icon_state = "button_pedestal"
+	density = TRUE
+	apply_offsets = FALSE
+
 /obj/structure/lift/button/proc/reset()
-	icon_state = "button"
+	icon_state = initial(icon_state)
 
 /obj/structure/lift/button/interact(var/mob/user)
 	if(!..())
@@ -73,18 +80,24 @@
 	pressed(user)
 	if(floor == lift.current_floor)
 		spawn(3)
-			icon_state = "button"
+			reset()
 		return
 	lift.queue_move_to(floor)
 
 /obj/structure/lift/button/proc/light_up()
-	icon_state = "button_lit"
+	reset()
+	icon_state += "_lit"
 // End button.
 
 // Panel. Lists floors (HTML), moves with the elevator, schedules a move to a given floor.
 /obj/structure/lift/panel
 	name = "elevator control panel"
 	icon_state = "panel"
+
+/obj/structure/lift/panel/freestanding
+	icon_state = "panel_pedestal"
+	density = TRUE
+	apply_offsets = FALSE
 
 /obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())

@@ -430,14 +430,13 @@
 			if (istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != 11)
-					H << "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>"
+					H << "<span class=\"notice\">You look directly into \the [src.name], good thing you had your protective eyewear on!</span>"
 					return
 				else
-					H << "<span class=\"warning\">You look directly into The [src.name], but your eyewear does absolutely nothing to protect you from it!</span>"
-		M << "<span class='danger'>You look directly into The [src.name] and feel [current_size == 11 ? "helpless" : "weak"].</span>"
+					H << "<span class=\"warning\">You look directly into \the [src.name], but your eyewear does absolutely nothing to protect you from it!</span>"
+		M << "<span class='danger'>You look directly into \the [src.name] and feel [current_size == 11 ? "helpless" : "weak"].</span>"
 		M.apply_effect(3, STUN)
-		for(var/mob/O in viewers(M, null))
-			O.show_message(text("<span class='danger'>[] stares blankly at The []!</span>", M, src), 1)
+		M.visible_message("<span class='danger'>\The [M] stares blankly at \the [src]!</span>")
 
 /obj/singularity/proc/emp_area()
 	if(current_size != 11)

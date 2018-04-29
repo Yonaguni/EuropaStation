@@ -14,6 +14,14 @@
 	outside = 1
 	var/detail_decal
 
+/turf/simulated/ocean/abyss
+	name = "abyssal silt"
+	desc = "Unfathomably silty."
+	icon_state = "mud_light"
+
+/turf/simulated/ocean/abyss/place_critter()
+	return
+
 /turf/simulated/ocean/open
 	name = "open ocean"
 	icon_state = "still"
@@ -46,8 +54,8 @@
 
 /turf/simulated/ocean/update_icon(update_neighbors)
 	if(detail_decal)
-		add_overlay(get_mining_overlay(detail_decal))
-	..()
+		ADD_MINING_OVERLAY(src, detail_decal, null, null)
+	..(update_neighbors)
 
 /turf/simulated/ocean/moving
 	name = "open ocean"

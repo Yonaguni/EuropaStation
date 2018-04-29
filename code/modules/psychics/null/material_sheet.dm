@@ -1,4 +1,4 @@
-/obj/item/stack/material/New()
+/obj/item/stack/material/New(var/atom/newloc, var/amount)
 	..()
 	if(disrupts_psionics())
 		LAZYADD(psi_null_atoms, src)

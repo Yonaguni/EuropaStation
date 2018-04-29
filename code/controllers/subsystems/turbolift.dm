@@ -3,7 +3,6 @@
 /datum/controller/subsystem/turbolift
 	name = "Turbolift"
 	wait = 1 SECOND
-	init_order = SS_INIT_TURBOLIFT
 	flags = SS_NO_INIT
 
 	var/list/turbolifts = list()

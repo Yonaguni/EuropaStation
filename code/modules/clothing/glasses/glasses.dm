@@ -35,7 +35,7 @@
 		user.update_action_buttons()
 
 /obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state = "glasses"
@@ -57,7 +57,7 @@
 	prescription = 1
 
 /obj/item/clothing/glasses/science
-	name = "Science Goggles"
+	name = "science goggles"
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
 	item_state = "glasses"
@@ -68,7 +68,7 @@
 	overlay = global_hud.science
 
 /obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
+	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
@@ -97,7 +97,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/material
-	name = "Optical Material Scanner"
+	name = "optical material scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
@@ -106,7 +106,7 @@
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
@@ -229,7 +229,7 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical HUD"
-	desc = "Flash-resistant goggles with inbuilt security information. Made from durable synthetic."
+	desc = "Flash-resistant goggles with inbuilt security information. Made from durable synthetics."
 	icon_state = "swatgoggles"
 	armor = list(melee = 20, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
 	siemens_coefficient = 0.6
@@ -249,7 +249,7 @@
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = src.loc
-			M << "<span class='danger'>The Optical Thermal Scanner overloads and blinds you!</span>"
+			M << "<span class='danger'>\The [src] overloads and blinds you!</span>"
 			if(M.glasses == src)
 				M.eye_blind = 3
 				M.eye_blurry = 5
@@ -260,7 +260,7 @@
 	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 

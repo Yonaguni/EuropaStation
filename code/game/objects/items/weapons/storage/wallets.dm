@@ -12,7 +12,7 @@
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/flashlight/pen,
 		/obj/item/seeds,
-		/obj/item/coin,
+		/obj/item/material/coin,
 		/obj/item/dice,
 		/obj/item/disk,
 		/obj/item/implanter,
@@ -79,7 +79,7 @@
 	var/item2_type
 	if(prob(50))
 		item2_type = pick( /obj/item/spacecash/bundle/c10,/obj/item/spacecash/bundle/c100,/obj/item/spacecash/bundle/c1000,/obj/item/spacecash/bundle/c20,/obj/item/spacecash/bundle/c200,/obj/item/spacecash/bundle/c50, /obj/item/spacecash/bundle/c500)
-	var/item3_type = pick( /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron )
+	var/item3_type = pick( /obj/item/material/coin/silver, /obj/item/material/coin/silver, /obj/item/material/coin/gold, /obj/item/material/coin/iron, /obj/item/material/coin/iron, /obj/item/material/coin/iron )
 
 	spawn(2)
 		if(item1_type)

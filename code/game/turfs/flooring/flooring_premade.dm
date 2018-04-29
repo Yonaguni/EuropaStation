@@ -106,6 +106,9 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/tiled/flooded
+	flooded = 1
+
 /turf/simulated/floor/tiled/steel
 	name = "steel floor"
 	icon_state = "steel"

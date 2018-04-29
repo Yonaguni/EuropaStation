@@ -7,6 +7,7 @@ var/list/autolathe_circuits = list()
 var/list/autolathe_advanced = list()
 var/list/autolathe_heavy =    list()
 var/list/autolathe_ammo =     list()
+var/list/autolathe_currency = list()
 
 /proc/populate_lathe_recipes()
 
@@ -21,19 +22,20 @@ var/list/autolathe_ammo =     list()
 		autolathe_recipes += recipe
 		autolathe_categories |= recipe.category
 
-		switch(recipe.lathe_type)
-			if(LATHE_TYPE_ROBOTICS)
-				autolathe_robotics += recipe
-			if(LATHE_TYPE_CIRCUIT)
-				autolathe_circuits += recipe
-			if(LATHE_TYPE_ADVANCED)
-				autolathe_advanced += recipe
-			if(LATHE_TYPE_HEAVY)
-				autolathe_heavy += recipe
-			if(LATHE_TYPE_AMMUNITION)
-				autolathe_ammo += recipe
-			else
-				autolathe_generic += recipe
+		if(recipe.lathe_type == LATHE_TYPE_ROBOTICS)
+			autolathe_robotics += recipe
+		else if(recipe.lathe_type == LATHE_TYPE_CIRCUIT)
+			autolathe_circuits += recipe
+		else if(recipe.lathe_type == LATHE_TYPE_ADVANCED)
+			autolathe_advanced += recipe
+		else if(recipe.lathe_type == LATHE_TYPE_HEAVY)
+			autolathe_heavy += recipe
+		else if(recipe.lathe_type == LATHE_TYPE_AMMUNITION)
+			autolathe_ammo += recipe
+		else if(recipe.lathe_type == LATHE_TYPE_CURRENCY)
+			autolathe_currency += recipe
+		else
+			autolathe_generic += recipe
 
 		var/obj/item/I = new recipe.path
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.

@@ -62,7 +62,7 @@
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
 	var/scan_id = 1
-	var/obj/item/coin/coin
+	var/obj/item/material/coin/coin
 	var/datum/wires/vending/wires = null
 
 /obj/machinery/vending/New()
@@ -189,7 +189,7 @@
 		if(src.panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/coin) && premium.len > 0)
+	else if(istype(W, /obj/item/material/coin) && premium.len > 0)
 		user.drop_item()
 		W.forceMove(src)
 		coin = W
