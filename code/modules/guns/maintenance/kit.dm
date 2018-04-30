@@ -10,9 +10,9 @@
 	to_chat(user, "<span class='notice'>You [open ? "open" : "close"] \the [src].</span>")
 
 // Returns true if the action needs to break out of gun attackby.
-/obj/item/gun_maintenance_kit/proc/try_maintain(var/obj/item/gun/gun, var/mob/user)
+/obj/item/gun_maintenance_kit/proc/try_maintain(var/obj/item/gun/composite/gun, var/mob/user)
 
-	if(closed)
+	if(open)
 		to_chat(user, "<span class='warning'>Open \the [src] first.</span>")
 		return TRUE
 

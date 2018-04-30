@@ -20,4 +20,4 @@ var/list/weapon_manufacturers = list()
 	var/recoil     // Modifies recoil.
 	var/fire_rate  // Modifies fire delay.
 	var/weight     // Modifies w_class.
-
+	var/component_colour

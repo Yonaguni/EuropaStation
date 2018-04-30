@@ -54,9 +54,12 @@
 
 /obj/item/gun_component/update_icon()
 	if(model && model.use_icon)
+		if(model.produced_by)
+			color = model.produced_by.component_colour
 		icon = model.use_icon
 		icon_state = component_type
 	else
+		color = null
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 	..()

@@ -155,6 +155,10 @@
 /obj/item/gun_component/chamber/laser/pistol/taser
 	design_caliber = /decl/weapon_caliber/laser/shock
 
+/obj/item/gun_component/chamber/laser/pistol/self_charging
+	name = "prototype charging mechanism"
+	self_recharge_time = 4
+
 /obj/item/gun_component/chamber/laser/rifle
 	icon_state="las_rifle"
 	name = "precision lens"

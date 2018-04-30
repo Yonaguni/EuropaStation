@@ -1,0 +1,4 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - rscadd: "Gun maintenance kits have been added. Well maintained guns get a small damage boost and are less likely to jam."

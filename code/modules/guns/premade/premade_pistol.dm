@@ -1,7 +1,6 @@
 /obj/item/gun/composite/premade/revolver
 	name = "revolver"
 	icon_state = "revolver"
-	set_model = /decl/weapon_model/revolver
 	variant_chamber = /obj/item/gun_component/chamber/ballistic/breech/revolver
 	variant_body =    /obj/item/gun_component/body/pistol/revolver
 	variant_barrel =  /obj/item/gun_component/barrel/pistol/revolver

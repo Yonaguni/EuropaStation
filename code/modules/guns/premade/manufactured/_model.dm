@@ -23,3 +23,7 @@ var/list/weapon_models = list()
 	..()
 	if(producer_path)
 		produced_by = get_manufacturer_by_path(producer_path)
+
+/decl/weapon_model/revolver/toy
+	model_name = "BLAM! Co. Ages 6 And Up"
+	model_desc = "It's a cheap plastic piece of junk that fires caps."

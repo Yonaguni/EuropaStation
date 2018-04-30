@@ -85,3 +85,8 @@
 /obj/item/gun/composite/premade/laser_assault/practice
 	name = "practice laser assault rifle"
 	set_caliber = /decl/weapon_caliber/laser/practice
+
+/obj/item/gun/composite/premade/laser_pistol/self_charging
+	name = "self-charging laser pistol"
+	icon_state = "caplaser"
+	variant_chamber = /obj/item/gun_component/chamber/laser/pistol/self_charging
