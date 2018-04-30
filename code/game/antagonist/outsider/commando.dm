@@ -1,38 +1,49 @@
-var/datum/antagonist/deathsquad/mercenary/commandos
+var/datum/antagonist/commando/commandos
 
 /obj/effect/landmark/start/navy
-	name = "Syndicate-Commando"
+	name = "NavyCommando"
 
-/datum/antagonist/deathsquad/mercenary
+/datum/antagonist/commando
 	id = MODE_COMMANDO
-	landmark_id = "Syndicate-Commando"
+	landmark_id = "NavyCommando"
 	role_text = "Navy Commando"
 	role_text_plural = "Navy Commandos"
-	welcome_text = "You are a highly trained commando in the employ of the Sol navy."
+	welcome_text = "You are a highly trained special forces soldier in the employ of the Central Solar Authority. To speak on the team's private channel use :t."
+	leader_welcome_text = "You are the leader of a CSA Navy strike team. Use :t to speak to your soldiers."
 	id_type = /obj/item/card/id/centcom/ERT
-
 	hard_cap = 4
 	hard_cap_round = 8
 	initial_spawn_req = 4
 	initial_spawn_target = 6
+	flags = ANTAG_VOTABLE | ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_SET_APPEARANCE | ANTAG_HAS_LEADER
 
-
-/datum/antagonist/deathsquad/mercenary/New()
-	..(1)
+/datum/antagonist/commando/New()
+	..()
 	commandos = src
 
-/datum/antagonist/deathsquad/mercenary/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/commando/equip(var/mob/living/carbon/human/player)
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/lower/camo/tacticool(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/gun/composite/premade/pistol/a9/silenced(player), slot_belt)
+	player.equip_to_slot_or_del(new /obj/item/gun/composite/premade/pistol/a9/preloaded/grand_tack(player), slot_belt)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(player), slot_glasses)
-	player.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(player), slot_wear_mask)
-	player.equip_to_slot_or_del(new /obj/item/storage/box(player), slot_in_backpack)
-	player.equip_to_slot_or_del(new /obj/item/rig/merc(player), slot_back)
-	player.equip_to_slot_or_del(new /obj/item/gun/composite/premade/assault_rifle(player), slot_r_hand)
-	player.equip_to_slot_or_del(new /obj/item/melee/energy/sword(player), slot_l_hand)
-
+	player.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(player), slot_wear_mask)
+	player.equip_to_slot_or_del(new /obj/item/rig/combat/navy(player), slot_back)
+	var/gun_type = pick( \
+		/obj/item/gun/composite/premade/assault_rifle/preloaded/grand_tack, \
+		/obj/item/gun/composite/premade/assault_rifle/a762/preloaded/grand_tack, \
+		/obj/item/gun/composite/premade/shotgun/combat/preloaded/grand_tack, \
+		/obj/item/gun/composite/premade/smg/a10/preloaded/grand_tack \
+		)
+	player.equip_to_slot_or_del(new gun_type(player), slot_r_hand)
 	create_id("Navy Commando", player)
 	create_radio(SYND_FREQ, player)
+	return 1
+
+// TODO, we don't have objectives enabled anyway.
+/datum/antagonist/commando/create_global_objectives()
+	if(!..())
+		return 0
+	global_objectives = list()
+	global_objectives += new /datum/objective/nuclear
 	return 1

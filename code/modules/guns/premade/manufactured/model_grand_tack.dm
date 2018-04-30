@@ -25,19 +25,19 @@
 	model_name = "GT-CS-6"
 	model_desc = "A Grand Tack Combat Shotgun, model 6. A hefty weapon originally issued to CSA military police."
 
-/obj/item/gun/composite/premade/assault_rifle/grand_tack
+/obj/item/gun/composite/premade/assault_rifle/preloaded/grand_tack
 	set_model = /decl/weapon_model/grand_tack/assault_rifle
 
-/obj/item/gun/composite/premade/assault_rifle/a762/grand_tack
+/obj/item/gun/composite/premade/assault_rifle/a762/preloaded/grand_tack
 	set_model = /decl/weapon_model/grand_tack/battle_rifle
 
-/obj/item/gun/composite/premade/shotgun/combat/grand_tack
+/obj/item/gun/composite/premade/shotgun/combat/preloaded/grand_tack
 	set_model = /decl/weapon_model/grand_tack/shotgun
 
-/obj/item/gun/composite/premade/smg/a10/grand_tack
+/obj/item/gun/composite/premade/smg/a10/preloaded/grand_tack
 	set_model = /decl/weapon_model/grand_tack/smg
 
-/obj/item/gun/composite/premade/pistol/a9/grand_tack
+/obj/item/gun/composite/premade/pistol/a9/preloaded/grand_tack
 	set_model = /decl/weapon_model/grand_tack/pistol
 
 /obj/item/gun/composite/premade/rifle/antimaterial/grand_tack
