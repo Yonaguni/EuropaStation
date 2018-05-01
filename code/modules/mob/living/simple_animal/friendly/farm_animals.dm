@@ -24,6 +24,36 @@
 	melee_damage_upper = 5
 	var/datum/reagents/udder = null
 
+/mob/living/simple_animal/hostile/retaliate/goat/upy
+	name = "\improper Upy"
+	gender = FEMALE
+	desc = "It's HER."
+	icon_state = "upy"
+	icon_living = "upy"
+	speak_emote = list("bleats")
+	emote_hear =  list("bleats")
+	speak = list(
+		"I HAVE HOOVES!!!!!!!!!!",
+		"im a GIRL who loves her FRIENDS",
+		"thats ME",
+		"THANKS",
+		"OH YES OH YA",
+		"i have HUNDREDS of wonderful images"
+		)
+	emote_see = list("is POASTING", "shows off some figurines of herself")
+
+/mob/living/simple_animal/hostile/retaliate/goat/upy/New()
+	..()
+	var/matrix/M = matrix()
+	var/immense = rand()*2
+	M.Scale(immense, immense)
+	transform = M
+
+/mob/living/simple_animal/hostile/retaliate/goat/upy/death()
+	..()
+	explosion(get_turf(src), -1, -1, 3, 5)
+	qdel(src)
+
 /mob/living/simple_animal/hostile/retaliate/goat/New()
 	udder = new(50)
 	udder.my_atom = src
