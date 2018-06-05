@@ -41,8 +41,8 @@
 /turf/simulated/ocean/proc/add_decal()
 	return prob(20)
 
-/turf/simulated/ocean/New()
-	..()
+/turf/simulated/ocean/Initialize()
+	. = ..()
 	if(isnull(detail_decal) && add_decal())
 		detail_decal = "asteroid[rand(0,9)]"
 	place_critter()
@@ -52,7 +52,7 @@
 		var/critter = using_map.get_minor_critter(0)
 		new critter(src)
 
-/turf/simulated/ocean/update_icon(var/update_neighbors)
+/turf/simulated/ocean/update_icon(update_neighbors)
 	if(detail_decal)
 		ADD_MINING_OVERLAY(src, detail_decal, null, null)
 	..(update_neighbors)

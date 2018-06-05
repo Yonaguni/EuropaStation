@@ -11,12 +11,13 @@
 	var/overlay_detail
 	var/being_dug
 
-/turf/simulated/mineral/initialize()
+/turf/simulated/mineral/Initialize()
+	. = ..()
 	if(!istype(mineral) && !isnull(mineral))
 		mineral = SSmaterials.get_material_by_name(mineral)
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
-	update_icon(1)
+	queue_icon_update(1)
 
 /turf/simulated/mineral/attackby(var/obj/item/thing, var/mob/user)
 

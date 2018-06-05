@@ -7,6 +7,7 @@
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
+	update_icon_on_init = TRUE
 
 	light_color = COLOR_GREEN
 
@@ -22,9 +23,9 @@
 	overlay_layer = layer
 	..()
 
-/obj/machinery/computer/initialize()
+/obj/machinery/computer/Initialize()
+	. = ..()
 	power_change()
-	update_icon()
 
 /obj/machinery/computer/process()
 	if(stat & (NOPOWER|BROKEN))

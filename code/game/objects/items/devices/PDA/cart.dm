@@ -5,7 +5,6 @@
 	icon_state = "cart"
 	item_state = "electronic"
 	w_class = 1
-	auto_init = TRUE
 
 	var/obj/item/radio/integrated/radio = null
 	var/access_security = 0
@@ -59,9 +58,9 @@
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/cartridge/security/initialize()
+/obj/item/cartridge/security/Initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
@@ -111,9 +110,9 @@
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/signal/initialize()
-    radio = new /obj/item/radio/integrated/signal(src)
-    ..()
+/obj/item/cartridge/signal/Initialize()
+	radio = new /obj/item/radio/integrated/signal(src)
+	. = ..()
 
 /obj/item/cartridge/signal/Destroy()
 	qdel(radio)
@@ -125,9 +124,9 @@
 	icon_state = "cart-q"
 	access_quartermaster = 1
 
-/obj/item/cartridge/quartermaster/initialize()
+/obj/item/cartridge/quartermaster/Initialize()
 	radio = new /obj/item/radio/integrated/mule(src)
-	..()
+	. = ..()
 
 /obj/item/cartridge/head
 	name = "\improper Easy-Record DELUXE"
@@ -142,8 +141,9 @@
 	access_janitor = 1
 	access_security = 1
 
-/obj/item/cartridge/hop/initialize()
+/obj/item/cartridge/hop/Initialize()
 	radio = new /obj/item/radio/integrated/mule(src)
+	. = ..()
 
 /obj/item/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE"
@@ -151,9 +151,9 @@
 	access_status_display = 1
 	access_security = 1
 
-/obj/item/cartridge/hos/initialize()
+/obj/item/cartridge/hos/Initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/cartridge/ce
 	name = "\improper Power-On DELUXE"
@@ -176,9 +176,9 @@
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/rd/initialize()
+/obj/item/cartridge/rd/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
-	..()
+	. = ..()
 
 /obj/item/cartridge/captain
 	name = "\improper Value-PAK cartridge"

@@ -3,11 +3,7 @@
 	icon_state = "stacker"
 	console = /obj/machinery/computer/mining
 	var/stack_amt = 50
-	var/list/stacks
-
-/obj/machinery/mineral/stacking_machine/initialize()
-	stacks = list()
-	. = ..()
+	var/list/stacks = list()
 
 /obj/machinery/mineral/stacking_machine/process()
 	if(input_turf)

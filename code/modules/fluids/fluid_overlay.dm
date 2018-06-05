@@ -8,7 +8,6 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_OCEAN
-	auto_init = TRUE
 
 	var/temperature = T20C
 	var/fluid_amount = 0
@@ -20,7 +19,7 @@
 /obj/effect/fluid/airlock_crush()
 	qdel(src)
 
-/obj/effect/fluid/initialize()
+/obj/effect/fluid/Initialize()
 	. = ..()
 	start_loc = get_turf(src)
 	if(!istype(start_loc))
@@ -51,14 +50,14 @@
 	alpha = 125
 	icon_state = "shallow_still"
 	color = "#66D1FF"
-	auto_init = TRUE
 
 	var/fluid_amount = FLUID_MAX_DEPTH
 
-/obj/effect/fluid_mapped/initialize()
+/obj/effect/fluid_mapped/Initialize()
 	var/turf/T = get_turf(src)
 	if(istype(T))
 		var/obj/effect/fluid/F = locate() in T
 		if(!F) F = new(T)
 		SET_FLUID_DEPTH(F, fluid_amount)
-		qdel(src)
+
+	return INITIALIZE_HINT_QDEL

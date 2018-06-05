@@ -36,6 +36,4 @@ var/map_submerged
 
 	// This list will be empty if this verb is run post-roundstart. This is
 	// used to clean up if it's run before roundstart but after turf init.
-	for(var/thing in init_turfs)
-		var/turf/T = thing
-		T.initialize()
+	SSatoms.InitializeAtoms(init_turfs)

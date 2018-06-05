@@ -126,8 +126,8 @@ var/vent_max_power = solar_gen_rate * 8
 	update_neighbors()
 	..()
 
-/obj/machinery/power/geothermal/initialize()
-	..()
+/obj/machinery/power/geothermal/Initialize()
+	. = ..()
 	vent = locate() in get_turf(src)
 	if(vent) vent.covered = 1
 	if(powernet)

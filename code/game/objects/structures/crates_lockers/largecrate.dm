@@ -4,10 +4,9 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
 	density = 1
-	auto_init = TRUE
 
-/obj/structure/largecrate/initialize()
-	..()
+/obj/structure/largecrate/Initialize()
+	. = ..()
 	for(var/obj/I in src.loc)
 		if(I.density || I.anchored || I == src || !I.simulated)
 			continue

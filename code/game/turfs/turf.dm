@@ -30,25 +30,29 @@ var/list/turf_edge_cache = list()
 
 	var/list/decals
 
-/turf/New()
-	..()
-	for(var/atom/movable/AM in src)
-		spawn( 0 )
-			src.Entered(AM)
-			return
-	turfs |= src
-	if(blend_with_neighbors || flooded || outside)
-		if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
-			initialize()
-		else
-			init_turfs += src
+	var/obj/effect/flood/flood_object
 
-/turf/proc/initialize()
-	update_icon(1)
-	regenerate_ao()
+// Parent code is duplicated in here instead of ..() for performance reasons.
+/turf/Initialize(mapload)
+	if(initialized)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	initialized = TRUE
 
-/turf/update_icon(var/update_neighbors, var/list/previously_added = list())
-	var/list/overlays_to_add = previously_added
+	if (mapload && (blend_with_neighbors || flooded || outside))
+		queue_icon_update(TRUE)
+	else if (update_icon_on_init)
+		queue_icon_update()
+
+	for (var/atom/movable/AM in src)
+		src.Entered(AM)
+
+	turfs += src
+
+	if (mapload && permit_ao)
+		queue_ao()
+
+/turf/update_icon(update_neighbors = FALSE)
+	var/list/ovr
 	if(blend_with_neighbors)
 		for(var/checkdir in cardinal)
 			var/turf/T = get_step(src, checkdir)
@@ -56,24 +60,24 @@ var/list/turf_edge_cache = list()
 				var/cache_key = "[T.icon_state]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
 					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
-				overlays_to_add += turf_edge_cache[cache_key]
+				LAZYADD(ovr, turf_edge_cache[cache_key])
 
-	if(is_flooded(absolute=1))
-		if(!(locate(/obj/effect/flood) in contents))
-			new /obj/effect/flood(src)
-	else
-		for(var/obj/effect/flood/F in contents)
-			qdel(F)
+	if(is_flooded(absolute = 1))
+		if (!flood_object)
+			flood_object = new(src)
+	else if (flood_object)
+		QDEL_NULL(flood_object)
 
 	if(config.starlight && using_map.ambient_exterior_light && outside)
-		overlays_to_add += get_exterior_light_overlay()
+		LAZYADD(ovr, get_exterior_light_overlay())
 
-	overlays = overlays_to_add
+	add_overlay(ovr)
+
 	if(update_neighbors)
 		for(var/check_dir in alldirs)
 			var/turf/T = get_step(src, check_dir)
-			if(istype(T))
-				T.update_icon()
+			if(isturf(T))
+				T.queue_icon_update()
 
 /turf/attackby(var/obj/item/C, var/mob/user)
 

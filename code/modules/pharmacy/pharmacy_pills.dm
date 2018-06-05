@@ -12,7 +12,6 @@
 	w_class = 1
 	slot_flags = SLOT_EARS
 	volume = 60
-	auto_init = TRUE
 	var/obfuscate_contents = TRUE
 	var/actual_reagent_name
 	var/medication_name
@@ -28,8 +27,7 @@
 /obj/item/reagent_containers/pill/attack(var/mob/M, var/mob/user, var/def_zone)
 	return standard_feed_mob(user, M)
 
-/obj/item/reagent_containers/pill/initialize()
-
+/obj/item/reagent_containers/pill/Initialize()
 	. = ..()
 
 	if(reagents && reagents.total_volume && obfuscate_contents)

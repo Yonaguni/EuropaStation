@@ -49,8 +49,8 @@
 	..()
 	cockpit = new(20)
 
-/obj/item/mech_component/chassis/initialize()
-	..()
+/obj/item/mech_component/chassis/Initialize()
+	. = ..()
 	update_air()
 
 /obj/item/mech_component/chassis/proc/update_air(var/take_from_supply)

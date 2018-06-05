@@ -6,10 +6,9 @@
 	name = "bone"
 	desc = "Looks like someone went out on a limb."
 	icon_state = "bone"
-	auto_init = TRUE
 
-/obj/item/bone/single/initialize()
-	..()
+/obj/item/bone/single/Initialize()
+	. = ..()
 	var/matrix/M = matrix()
 	M.Turn(rand(1,360))
 	transform = M

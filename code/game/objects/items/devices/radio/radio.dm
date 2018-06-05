@@ -27,7 +27,6 @@ var/global/list/default_medbay_channels = list(
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
-	auto_init = TRUE
 
 	var/on = 1 // 0 for off
 	var/last_transmission
@@ -77,8 +76,8 @@ var/global/list/default_medbay_channels = list(
 	return ..()
 
 
-/obj/item/radio/initialize()
-
+/obj/item/radio/Initialize()
+	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)

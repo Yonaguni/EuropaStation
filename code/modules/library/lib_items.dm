@@ -18,13 +18,13 @@
 	anchored = 1
 	density = 1
 	opacity = 1
-	auto_init = TRUE
+	update_icon_on_init = TRUE
 
-/obj/structure/bookcase/initialize()
+/obj/structure/bookcase/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
-			I.loc = src
-	update_icon()
+			I.forceMove(src)
 
 /obj/structure/bookcase/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/book))

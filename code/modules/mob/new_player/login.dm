@@ -1,16 +1,15 @@
-/var/obj/effect/lobby_image = new/obj/effect/lobby_image()
+/var/obj/effect/lobby_image/lobby_image = new/obj/effect/lobby_image()
 
 /obj/effect/lobby_image
 	name = "ES13"
 	desc = "This shouldn't be read."
 	icon = 'icons/misc/title.dmi'
 	screen_loc = "WEST,SOUTH"
-	auto_init = TRUE
 
 /obj/effect/lobby_image/update_plane()
 	return
 
-/obj/effect/lobby_image/initialize()
+/obj/effect/lobby_image/proc/setup()	// Called in EMI.
 	var/list/known_icon_states = icon_states(icon)
 	for(var/lobby_screen in config.lobby_screens)
 		if(!(lobby_screen in known_icon_states))

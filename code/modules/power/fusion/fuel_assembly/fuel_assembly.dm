@@ -3,7 +3,6 @@
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel_assembly"
 	layer = 4
-	auto_init = TRUE
 
 	var/material_name
 
@@ -19,7 +18,7 @@
 	fuel_colour = _colour
 	..(newloc)
 
-/obj/item/fuel_assembly/initialize()
+/obj/item/fuel_assembly/Initialize()
 	. = ..()
 	var/material/material = get_material_by_name(fuel_type)
 	if(istype(material))

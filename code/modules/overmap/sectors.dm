@@ -7,7 +7,6 @@ var/list/points_of_interest = list()
 	name = "map object"
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "object"
-	auto_init = TRUE
 
 	var/map_z = list()
 	var/list/generic_waypoints = list()    //waypoints that any shuttle can use
@@ -20,7 +19,7 @@ var/list/points_of_interest = list()
 
 	color = "#6666FF"
 
-/obj/effect/overmap/initialize()
+/obj/effect/overmap/Initialize()
 	if(!using_map.use_overmap)
 		qdel(src)
 		return
@@ -84,8 +83,8 @@ var/list/points_of_interest = list()
 	icon_state = "sector"
 	anchored = 1
 
-/obj/effect/overmap/sector/initialize()
-	..()
+/obj/effect/overmap/sector/Initialize()
+	. = ..()
 	for(var/obj/machinery/computer/helm/H in machines)
 		H.get_known_sectors()
 

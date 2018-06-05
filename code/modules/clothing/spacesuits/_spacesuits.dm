@@ -23,7 +23,6 @@
 	randpixel = 0
 	species_restricted = null
 	flash_protection = FLASH_PROTECTION_MAJOR
-	auto_init = TRUE
 
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/head_space.dmi',
@@ -43,9 +42,9 @@
 	light_overlay = "helmet_light"
 	on = 0
 
-/obj/item/clothing/head/helmet/space/initialize()
-	..()
-	if(camera_networks && camera_networks.len)
+/obj/item/clothing/head/helmet/space/Initialize()
+	. = ..()
+	if(LAZYLEN(camera_networks))
 		verbs += /obj/item/clothing/head/helmet/space/proc/toggle_camera
 
 /obj/item/clothing/head/helmet/space/proc/toggle_camera()

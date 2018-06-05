@@ -53,9 +53,9 @@
 		B.clean_blood()
 	..()
 
-/turf/simulated/New()
-	..()
-	var/area/A = get_area(src)
+/turf/simulated/Initialize()
+	. = ..()
+	var/area/A = loc
 	if(istype(A))
 		holy = A.holy
 	levelupdate()

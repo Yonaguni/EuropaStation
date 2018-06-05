@@ -13,7 +13,8 @@
 	console = null
 	. = ..()
 
-/obj/machinery/mineral/initialize()
+/obj/machinery/mineral/Initialize()
+	. = ..()
 	set_input(input_turf)
 	set_output(output_turf)
 	if(ispath(console))
@@ -22,7 +23,6 @@
 			if(T)
 				console = locate(console) in T
 				if(console) break
-	. = ..()
 
 /obj/machinery/mineral/proc/set_input(var/_dir)
 	input_turf = _dir ? get_step(loc, _dir) : null

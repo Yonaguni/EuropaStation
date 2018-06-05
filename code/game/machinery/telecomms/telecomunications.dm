@@ -122,7 +122,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		var/turf/position = get_turf(src)
 		listening_level = position.z
 
-/obj/machinery/telecomms/initialize()
+/obj/machinery/telecomms/Initialize()
+	. = ..()
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)

@@ -7,7 +7,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
-	auto_init = TRUE
+	update_icon_on_init = TRUE
 
 	force = 5.0
 	throwforce = 5.0
@@ -20,15 +20,10 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	var/overlay_state
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 
-
 /obj/item/cell/New()
 	..()
 	charge = maxcharge
 	c_uid = cell_uid++
-
-/obj/item/cell/initialize()
-	..()
-	update_icon()
 
 /obj/item/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 
@@ -247,3 +242,4 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"
 	maxcharge = 20
+

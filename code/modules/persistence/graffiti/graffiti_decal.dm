@@ -6,15 +6,13 @@
 	gender = NEUTER
 	blend_mode = BLEND_SUBTRACT
 	alpha = 80
-	auto_init = TRUE
 
 	var/message
 	var/graffiti_age = 0
 	var/author = "unknown"
 
-/obj/effect/decal/writing/initialize()
-
-	var/list/random_icon_states = list("writing1","writing2","writing3","writing4","writing5")
+/obj/effect/decal/writing/Initialize()
+	var/static/list/random_icon_states = list("writing1","writing2","writing3","writing4","writing5")
 	for(var/obj/effect/decal/writing/W in loc)
 		random_icon_states.Remove(W.icon_state)
 	if(random_icon_states.len)

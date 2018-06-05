@@ -186,7 +186,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
 	density = 1
-	auto_init = TRUE
 
 	var/obj/structure/c_tray/connected = null
 	anchored = 1.0
@@ -196,8 +195,8 @@
 	var/_wifi_id
 	var/datum/wifi/receiver/button/crematorium/wifi_receiver
 
-/obj/structure/crematorium/initialize()
-	..()
+/obj/structure/crematorium/Initialize()
+	. = ..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 

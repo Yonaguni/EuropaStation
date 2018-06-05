@@ -7,8 +7,7 @@
 /area
 	var/datum/area_initializer/turf_initializer = null
 
-/area/initialize()
-	..()
+/area/LateInitialize()
 	if(turf_initializer)
 		for(var/turf/simulated/T in src)
 			turf_initializer.initialize(T)

@@ -11,7 +11,6 @@
 	w_class = 2
 	flags = 0
 	volume = 60
-	auto_init = TRUE
 	var/draw_contents
 	var/obfuscate_contents = FALSE
 	var/actual_reagent_name
@@ -32,7 +31,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/glass/bottle/initialize()
+/obj/item/reagent_containers/glass/bottle/Initialize()
 	. = ..()
 	if(reagents && reagents.total_volume && obfuscate_contents)
 		var/reagent_id = reagents.get_master_reagent_id()

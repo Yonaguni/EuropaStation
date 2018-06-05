@@ -212,7 +212,8 @@
 /obj/item/radio/integrated/signal
 
 	var/code = 30.0
-	initialize()
+	Initialize()
+		. = ..()
 		if(!radio_controller)
 			return
 

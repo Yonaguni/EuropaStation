@@ -19,10 +19,10 @@
 	var/lastorder = 0
 	var/list/supplylist
 
-/obj/machinery/computer/supply/initialize()
+/obj/machinery/computer/supply/Initialize()
 	if(ispath(control_system))
 		control_system = new control_system(src)
-	..()
+	. = ..()
 	generateSupplyList()
 
 /obj/machinery/computer/supply/proc/generateSupplyList()

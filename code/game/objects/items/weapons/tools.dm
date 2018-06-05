@@ -461,7 +461,6 @@
 	icon = 'icons/obj/combitool.dmi'
 	icon_state = "combitool"
 	w_class = 2
-	auto_init = TRUE
 
 	var/list/tools = list(
 		"screwdriver",
@@ -470,9 +469,9 @@
 		)
 	var/current_tool = 1
 
-/obj/item/combitool/initialize()
+/obj/item/combitool/Initialize()
 	desc = "[initial(desc)] ([tools.len]. [tools.len] possibilit[tools.len == 1 ? "y" : "ies"])"
-	..()
+	. = ..()
 
 /obj/item/combitool/examine(var/mob/user)
 	. = ..()
@@ -525,12 +524,10 @@
 	var/welding
 	var/max_fuel = 15
 
-/obj/item/combitool/omni/initialize()
-	// I am sure there is a proc for this, but I can't find it now.
-	reagents = new(max_fuel)
-	reagents.my_atom = src
+/obj/item/combitool/omni/Initialize()
+	. = ..()
+	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)
-	..()
 
 /obj/item/combitool/omni/update_tool()
 	..()

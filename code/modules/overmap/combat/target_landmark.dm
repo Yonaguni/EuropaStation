@@ -1,10 +1,10 @@
 /obj/effect/landmark/overmap_target
 	var/difficulty = 20 // Percentage chance of missing.
 
-/obj/effect/landmark/overmap_target/initialize()
+/obj/effect/landmark/overmap_target/Initialize()
 	var/obj/effect/overmap/ship/linked = map_sectors["[z]"]
 	if(istype(linked)) linked.targets |= src
-	..()
+	. = ..()
 
 /obj/effect/landmark/overmap_target/power_plant
 	name = "fusion core"

@@ -17,13 +17,13 @@
 	var/report_all_ores
 	var/active = FALSE
 
-/obj/machinery/mineral/processing_unit/initialize()
+/obj/machinery/mineral/processing_unit/Initialize()
+	. = ..()
 	ores_processing = list()
 	ores_stored = list()
 	for(var/orename in SSmaterials.processable_ores)
 		ores_processing[orename] = 0
 		ores_stored[orename] = 0
-	. = ..()
 
 /obj/machinery/mineral/processing_unit/process()
 

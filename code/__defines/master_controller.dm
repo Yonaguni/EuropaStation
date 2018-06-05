@@ -62,6 +62,9 @@
 //	This flag overrides SS_KEEP_TIMING
 #define SS_POST_FIRE_TIMING 128
 
+// Don't display in MC panel.
+#define SS_NO_DISPLAY 256
+
 
 //SUBSYSTEM STATES
 #define SS_IDLE 0		//aint doing shit.

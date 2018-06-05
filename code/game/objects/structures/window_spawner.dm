@@ -9,7 +9,6 @@
 	icon_state = "wingrille"
 	density = 1
 	anchored = 1.0
-	auto_init = TRUE
 
 	var/win_path = /obj/structure/window/basic
 	var/activated = FALSE
@@ -28,8 +27,8 @@
 /obj/effect/wingrille_spawn/attack_generic()
 	activate()
 
-/obj/effect/wingrille_spawn/initialize()
-	..()
+/obj/effect/wingrille_spawn/Initialize()
+	. = ..()
 	if(!win_path)
 		return
 	//if(ticker && ticker.current_state < GAME_STATE_PLAYING)

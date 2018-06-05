@@ -89,8 +89,8 @@
 
 /datum/map/katydid/update_locations()
 	. = ..()
-	stellar_location = pick(all_stellar_locations)
-	destination_location = pick(all_stellar_locations - stellar_location)
+	stellar_location = all_stellar_locations[pick(all_stellar_locations)]
+	destination_location = all_stellar_locations[pick(all_stellar_locations - stellar_location)]
 	if(stellar_location.flavour_locations && stellar_location.flavour_locations.len)
 		specific_location = pick(stellar_location.flavour_locations)
 		initial_announcement = "Wave jump complete. The SHIPNAME has safely arrived in the vicinity of [specific_location], [stellar_location.is_a_planet ? "orbiting" : "within"] [stellar_location.name]. Gravity drive systems are fully disengaged and all crewmembers are cleared to resume their regular duties."
@@ -113,7 +113,7 @@
 	desc = "An independant freight vessel."
 	height = 1
 
-/obj/effect/landmark/map_data/katydid/initialize()
+/obj/effect/landmark/map_data/katydid/Initialize()
 	if(using_map)
 		name = using_map.full_name
 	. = ..()

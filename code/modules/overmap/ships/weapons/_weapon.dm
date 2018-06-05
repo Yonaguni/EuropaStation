@@ -25,8 +25,8 @@
 		data["status"] = "<b><font color='#00FF00'>READY</font></b>"
 	return data
 
-/obj/machinery/power/ship_weapon/initialize()
-	..()
+/obj/machinery/power/ship_weapon/Initialize()
+	. = ..()
 	linked = map_sectors["[z]"]
 	weapon_number++
 	name = "[initial(name)] #[weapon_number]"

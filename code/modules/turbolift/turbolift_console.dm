@@ -5,7 +5,6 @@
 	anchored = 1
 	density = 0
 	layer = 4
-	auto_init = TRUE
 
 	light_power = 10
 	light_range = 1
@@ -14,8 +13,8 @@
 	var/datum/turbolift/lift
 	var/apply_offsets = TRUE
 
-/obj/structure/lift/initialize()
-	..()
+/obj/structure/lift/Initialize()
+	. = ..()
 	set_light()
 
 /obj/structure/lift/set_dir(var/newdir)

@@ -16,7 +16,6 @@
 	icon_state = "filingcabinet"
 	density = 1
 	anchored = 1
-	auto_init = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -27,10 +26,11 @@
 	icon_state = "tallcabinet"
 
 
-/obj/structure/filingcabinet/initialize()
+/obj/structure/filingcabinet/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
-			I.loc = src
+			I.forceMove(src)
 
 
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, var/mob/user)

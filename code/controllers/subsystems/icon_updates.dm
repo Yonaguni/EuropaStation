@@ -2,10 +2,11 @@
 
 /datum/controller/subsystem/icon
 	name = "Icon Updates"
-	wait = 1	// ds
+	wait = 1	// ticks
+	flags = SS_TICKER
 	priority = SS_PRIORITY_ICON_UPDATE
 	init_order = SS_INIT_ICON_UPDATE
-
+	
 	var/list/queue = list()
 
 /datum/controller/subsystem/icon/New()
@@ -27,10 +28,15 @@
 
 	while (curr.len)
 		var/atom/A = curr[curr.len]
+		var/list/argv = curr[A]
 		curr.len--
 
 		A.icon_update_queued = FALSE
-		A.update_icon()
+		if (islist(argv))
+			A.update_icon(arglist(argv))
+		else
+			A.update_icon()
+
 		A.update_above()
 
 		if (no_mc_tick)
@@ -41,12 +47,11 @@
 /atom
 	var/tmp/icon_update_queued
 
-// Almost nothing calls parent in this proc stack, so don't expect this base proc to actually get called.
 /atom/proc/update_icon()
 
-/atom/proc/queue_icon_update()
+/atom/proc/queue_icon_update(...)
 	if (!icon_update_queued)
 		icon_update_queued = TRUE
-		SSicon_update.queue += src
+		SSicon_update.queue[src] = args.len ? args : TRUE
 		if (SSicon_update.suspended)
 			SSicon_update.wake()

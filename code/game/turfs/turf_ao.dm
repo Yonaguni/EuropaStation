@@ -1,74 +1,96 @@
-#define WALL_AO_ALPHA 100
-#define AO_ALL_NEIGHBORS 1910
-
-var/list/ao_cache = list()
+#define AO_TURF_CHECK(T) (!T.density || !T.opacity || !T.permit_ao)
 
 /turf
-	var/permit_ao
-	var/tmp/list/ao_overlays // Current ambient occlusion overlays. Tracked so we can reverse them without dropping all overlays.
-	var/tmp/ao_neighbors = 0
+	var/permit_ao = TRUE
+	var/tmp/list/ao_overlays	// Current ambient occlusion overlays. Tracked so we can reverse them without dropping all priority overlays.
+	var/tmp/ao_neighbors
+	var/ao_queued = AO_UPDATE_NONE
 
 /turf/proc/regenerate_ao()
-	for (var/thing in trange(1, src))
-		var/turf/T = thing
+	for (var/turf/T in RANGE_TURFS(1, src))
+		//var/turf/T = thing
 		if (T.permit_ao)
-			T.update_ao()
+			T.queue_ao(TRUE)
 
-/turf/update_icon(var/update_neighbors, var/list/previously_added = list())
-	. = ..()
-	if(permit_ao)
-		update_ao()
-
-/turf/proc/calculate_ao_neighbours()
+/turf/proc/calculate_ao_neighbors()
 	ao_neighbors = 0
-	var/turf/T
-	CALCULATE_NEIGHBORS(src, ao_neighbors, T, !T || !T.opacity || !T.density)
-
-/turf/proc/update_ao()
-	if (ao_overlays)
-		overlays -= ao_overlays
-		ao_overlays.Cut()
-
-	calculate_ao_neighbours()
-
-	if (ao_neighbors == AO_ALL_NEIGHBORS)	// If all our neighbors are not solid, why bother with the rest of the checks?
+	if (!permit_ao)
 		return
 
-	if(!density && !opacity)
-		for(var/i = 1 to 4)
-			var/cdir = cornerdirs[i]
-			var/corner = 0
+	var/turf/T
+	if (AO_TURF_CHECK(src))
+		CALCULATE_NEIGHBORS(src, ao_neighbors, T, AO_TURF_CHECK(T))
 
-			if (ao_neighbors & (1 << cdir))
-				corner |= 2
-			if (ao_neighbors & (1 << turn(cdir, 45)))
-				corner |= 1
-			if (ao_neighbors & (1 << turn(cdir, -45)))
-				corner |= 4
+/proc/make_ao_image(corner, i, px = 0, py = 0, pz = 0, pw = 0)
+	var/list/cache = SSocclusion.cache
+	var/cstr = "[corner]"
+	var/key = "[cstr]-[i]-[px]/[py]/[pz]/[pw]"
 
-			if (corner != 7)	// 7 is the 'no shadows' state, no reason to add overlays for it.
-				var/cache_key = "[corner]-[i]"
-				var/image/I = ao_cache[cache_key]
-				if (!I)
-					I = image('icons/turf/flooring/shadows.dmi', "[corner]", dir = 1 << (i-1))
-					I.layer = TURF_LAYER + 0.05
-					I.alpha = WALL_AO_ALPHA
-					I.appearance_flags = RESET_ALPHA|RESET_COLOR|TILE_BOUND
-					ao_cache[cache_key] = I
+	var/image/I = image('icons/turf/flooring/shadows.dmi', cstr, dir = 1 << (i-1))
+	I.alpha = WALL_AO_ALPHA
+	I.blend_mode = BLEND_OVERLAY
+	I.appearance_flags = RESET_ALPHA|RESET_COLOR|TILE_BOUND
 
-				if (!pixel_x && !pixel_y)
-					LAZYADD(ao_overlays, I)
-				else
-					// Turf is pixel-shifted, so we need to counteract the shift on the AO overlays.
-					var/image/shifted = new()
-					shifted.appearance = I
-					shifted.pixel_x = -(pixel_x)
-					shifted.pixel_y = -(pixel_y)
+	// If there's an offset, counteract it.
+	if (px || py || pz || pw)
+		I.pixel_x = -px
+		I.pixel_y = -py
+		I.pixel_z = -pz
+		I.pixel_w = -pw
 
-					LAZYADD(ao_overlays, shifted)
+	. = cache[key] = I
 
-	UNSETEMPTY(ao_overlays)
-	if (ao_overlays)
-		overlays += ao_overlays
+/turf/proc/queue_ao(rebuild = TRUE)
+	if (!ao_queued)
+		SSocclusion.queue += src
 
-#undef WALL_AO_ALPHA
+	var/new_level = rebuild ? AO_UPDATE_REBUILD : AO_UPDATE_OVERLAY
+	if (ao_queued < new_level)
+		ao_queued = new_level
+
+#define PROCESS_AO_CORNER(AO_LIST, NEIGHBORS, CORNER_INDEX, CDIR) \
+	corner = 0; \
+	if (NEIGHBORS & (1 << CDIR)) { \
+		corner |= 2; \
+	} \
+	if (NEIGHBORS & (1 << turn(CDIR, 45))) { \
+		corner |= 1; \
+	} \
+	if (NEIGHBORS & (1 << turn(CDIR, -45))) { \
+		corner |= 4; \
+	} \
+	if (corner != 7) {	/* 7 is the 'no shadows' state, no reason to add overlays for it. */ \
+		var/image/I = cache["[corner]-[CORNER_INDEX]-[pixel_x]/[pixel_y]/[pixel_z]/[pixel_w]"]; \
+		if (!I) { \
+			I = make_ao_image(corner, CORNER_INDEX, pixel_x, pixel_y, pixel_z, pixel_w)	/* this will also add the image to the cache. */ \
+		} \
+		LAZYADD(AO_LIST, I); \
+	}
+
+#define CUT_AO(TARGET, AO_LIST) \
+	if (AO_LIST) { \
+		TARGET.cut_overlay(AO_LIST, TRUE); \
+		AO_LIST.Cut(); \
+	}
+
+#define REGEN_AO(TARGET, AO_LIST, NEIGHBORS) \
+	if (permit_ao && NEIGHBORS != AO_ALL_NEIGHBORS) { \
+		var/corner;\
+		PROCESS_AO_CORNER(AO_LIST, NEIGHBORS, 1, NORTHWEST); \
+		PROCESS_AO_CORNER(AO_LIST, NEIGHBORS, 2, SOUTHEAST); \
+		PROCESS_AO_CORNER(AO_LIST, NEIGHBORS, 3, NORTHEAST); \
+		PROCESS_AO_CORNER(AO_LIST, NEIGHBORS, 4, SOUTHWEST); \
+	} \
+	UNSETEMPTY(AO_LIST); \
+	if (AO_LIST) { \
+		TARGET.add_overlay(AO_LIST, TRUE); \
+	}
+
+/turf/proc/update_ao()
+	var/list/cache = SSocclusion.cache
+	CUT_AO(src, ao_overlays)
+	if (AO_TURF_CHECK(src))
+		REGEN_AO(src, ao_overlays, ao_neighbors)
+
+#undef REGEN_AO
+#undef PROCESS_AO_CORNER

@@ -16,7 +16,7 @@
 			loader.launcher = src
 			loader.layer = layer+0.1
 
-/obj/machinery/power/ship_weapon/torpedo/initialize()
+/obj/machinery/power/ship_weapon/torpedo/Initialize()
 	find_loader()
 	. = ..()
 

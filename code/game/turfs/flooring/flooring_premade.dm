@@ -50,6 +50,18 @@
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
+	var/adjust_gas_id
+	var/adjust_gas_amt
+
+/turf/simulated/floor/reinforced/Initialize()
+	. = ..()
+	if (adjust_gas_id && adjust_gas_amt)
+		addtimer(CALLBACK(src, .proc/setup_gas))
+
+/turf/simulated/floor/reinforced/proc/setup_gas()
+	if(!air)
+		make_air()
+	air.adjust_gas(adjust_gas_id, adjust_gas_amt)
 
 /turf/simulated/floor/reinforced/airless
 	oxygen = 0
@@ -66,12 +78,8 @@
 /turf/simulated/floor/reinforced/hydrogen
 	oxygen = 0
 	nitrogen = 0
-
-/turf/simulated/floor/reinforced/hydrogen/New()
-	..()
-	sleep(-1)
-	if(!air) make_air()
-	air.adjust_gas("hydrogen", ATMOSTANK_HYDROGEN)
+	adjust_gas_id = "hydrogen"
+	adjust_gas_amt = ATMOSTANK_HYDROGEN
 
 /turf/simulated/floor/reinforced/oxygen
 	oxygen = ATMOSTANK_OXYGEN
@@ -90,12 +98,8 @@
 /turf/simulated/floor/reinforced/n20
 	oxygen = 0
 	nitrogen = 0
-
-/turf/simulated/floor/reinforced/n20/New()
-	..()
-	sleep(-1)
-	if(!air) make_air()
-	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
+	adjust_gas_id = "sleeping_agent"
+	adjust_gas_amt = ATMOSTANK_NITROUSOXIDE
 
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"
@@ -204,6 +208,6 @@
 /turf/simulated/floor/beach/water/ocean
 	icon_state = "seadeep"
 
-/turf/simulated/floor/beach/water/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+/turf/simulated/floor/beach/water/Initialize()
+	. = ..()
+	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))

@@ -7,7 +7,7 @@
 	var/datum/console_program/fire_control/control_system = /datum/console_program/fire_control
 	var/obj/effect/overmap/ship/linked
 
-/obj/machinery/computer/weapons/initialize()
+/obj/machinery/computer/weapons/Initialize()
 	linked = map_sectors["[z]"]
 	if(ispath(control_system))
 		control_system = new control_system(src)

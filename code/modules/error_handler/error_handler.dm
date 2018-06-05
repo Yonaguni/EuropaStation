@@ -1,9 +1,10 @@
-var/list/error_last_seen = list()
+var/list/error_last_seen
 // error_cooldown items will either be positive (cooldown time) or negative (silenced error)
 //  If negative, starts at -1, and goes down by 1 each time that error gets skipped
-var/list/error_cooldown = list()
+var/list/error_cooldown
 var/total_runtimes = 0
 var/total_runtimes_skipped = 0
+
 // The ifdef needs to be down here, since the error viewer references total_runtimes
 #ifdef DEBUG
 /world/Error(var/exception/e, var/datum/e_src)
@@ -13,6 +14,10 @@ var/total_runtimes_skipped = 0
 	if(!error_last_seen) // A runtime is occurring too early in start-up initialization
 		return ..()
 	total_runtimes++
+
+	// It's quite possible for runtimes to happen before globals initialize, so we do it here.
+	LAZYINITLIST(error_last_seen)
+	LAZYINITLIST(error_cooldown)
 
 	var/erroruid = "[e.file][e.line]"
 	var/last_seen = error_last_seen[erroruid]

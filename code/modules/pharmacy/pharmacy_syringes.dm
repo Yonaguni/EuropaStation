@@ -19,7 +19,6 @@
 	slot_flags = SLOT_EARS
 	sharp = 1
 	unacidable = 1 //glass
-	auto_init = TRUE
 	var/image/filling // Reference to overlay, used by syringe gun canisters.
 	var/actual_reagent_name
 	var/obfuscate_contents = TRUE
@@ -27,7 +26,7 @@
 	var/visible_name = "a syringe"
 	var/time = 30
 
-/obj/item/reagent_containers/syringe/initialize()
+/obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
 	if(reagents && reagents.total_volume)
 		mode = SYRINGE_INJECT

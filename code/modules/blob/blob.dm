@@ -11,7 +11,6 @@
 	mouse_opacity = 2
 	light_range = 2
 	light_color = "#103300"
-	auto_init = TRUE
 
 	var/maxHealth = 30
 	var/health
@@ -24,11 +23,11 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/initialize()
+/obj/effect/blob/Initialize()
 	. = ..()
 	set_light()
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target, var/height = 0, var/air_group = 0)
+/obj/effect/blob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
 		return 1
 	return 0

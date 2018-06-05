@@ -33,6 +33,7 @@ var/list/stellar_locs_by_name
 	var/building = pick(random_map_locations)
 	if(!ispath(random_map_locations[building]))
 		return
+	building = random_map_locations[building]
 	new building(null, 1, 1, tz, 255, 255)
 	new /obj/effect/overmap/sector/generated (locate(128,128,tz), pick(random_map_locations), "A sector falling within the umbrella of [name].")
 	var/sanity = 1000

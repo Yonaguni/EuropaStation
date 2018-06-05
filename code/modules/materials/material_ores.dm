@@ -4,15 +4,12 @@
 	icon = 'icons/obj/materials/ore.dmi'
 	randpixel = 8
 	w_class = 2
-	auto_init = TRUE
 
-/obj/item/ore/New(var/newloc, var/_mat)
+/obj/item/ore/Initialize(ml, _mat)
 	if(_mat)
 		matter = list()
 		matter[_mat] = SHEET_MATERIAL_AMOUNT
-	..(newloc)
 
-/obj/item/ore/initialize()
 	for(var/stuff in matter)
 		var/material/M = SSmaterials.get_material_by_name(stuff)
 		if(M)
@@ -24,7 +21,7 @@
 			if(icon_state == "dust")
 				slot_flags = SLOT_HOLSTER
 			break
-	. = ..()
+	..(ml)
 
 // POCKET SAND!
 /obj/item/ore/throw_impact(atom/hit_atom)

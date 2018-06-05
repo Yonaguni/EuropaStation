@@ -27,19 +27,23 @@
 /turf/simulated/floor/is_plating()
 	return !flooring
 
-/turf/simulated/floor/New(var/newloc, var/floortype)
-	..(newloc)
+/turf/simulated/floor/Initialize(ml, floortype)
+	. = ..(ml)
 	if(floortype)
 		initial_flooring = floortype
 	if(initial_flooring)
-		set_flooring(get_flooring_data(initial_flooring))
+		set_flooring(get_flooring_data(initial_flooring), ml)
 
-/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
+/turf/simulated/floor/proc/set_flooring(decl/flooring/newflooring, mapload)
 	if(flooring)
 		make_plating(defer_icon_update = 1)
 	flooring = newflooring
 	footstep_type = flooring ? flooring.footstep_type : initial(footstep_type)
-	update_icon(1)
+	if (mapload)
+		queue_icon_update(FALSE)
+	else
+		update_icon(TRUE)
+
 	levelupdate()
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf

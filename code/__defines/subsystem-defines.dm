@@ -30,3 +30,42 @@
 // -- SSopenturf --
 #define CHECK_OO_EXISTENCE(OO) if (OO && !isopenturf(OO.loc)) { qdel(OO); }
 #define UPDATE_OO_IF_PRESENT CHECK_OO_EXISTENCE(bound_overlay); if (bound_overlay) { update_above(); }
+
+
+// -- SSatoms stuff --
+// Technically this check will fail if someone loads a map mid-round, but that's not enabled right now.
+#define SSATOMS_IS_PROBABLY_DONE (SSatoms.initialized == INITIALIZATION_INNEW_REGULAR)
+
+//type and all subtypes should always call Initialize in New()
+#define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
+    ..();\
+    if(!initialized) {\
+        args[1] = TRUE;\
+        SSatoms.InitAtom(src, args);\
+    }\
+}
+
+// 	SSatoms Initialization state.
+#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
+#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+
+//	Initialize() hints for SSatoms.
+#define INITIALIZE_HINT_NORMAL 0    //Nothing happens
+#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
+#define INITIALIZE_HINT_QDEL 2  //Call qdel on the atom
+#define INITIALIZE_HINT_LATEQDEL 3	//Call qdel on the atom instead of LateInitialize
+
+// -- SSoverlays --
+#define CUT_OVERLAY_IN(ovr, time) addtimer(CALLBACK(src, /atom/.proc/cut_overlay, ovr), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
+#define ATOM_USING_SSOVERLAY(atom) !!(atom.our_overlays || atom.priority_overlays)
+
+// -- SSao --
+#define WALL_AO_ALPHA 80
+
+#define AO_UPDATE_NONE 0
+#define AO_UPDATE_OVERLAY 1
+#define AO_UPDATE_REBUILD 2
+
+// If ao_neighbors equals this, no AO shadows are present.
+#define AO_ALL_NEIGHBORS 1910

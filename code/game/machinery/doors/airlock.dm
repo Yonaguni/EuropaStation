@@ -960,14 +960,14 @@ About the new airlock wires panel:
 	var/area/A = get_area(src)
 	name = "[initial(name)] - [A.name]"
 
-/obj/machinery/door/airlock/initialize()
+/obj/machinery/door/airlock/Initialize()
 	if(src.closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in world)
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
 
-	if(!istype(loc, /turf))
+	if(!isturf(loc))
 		return ..()
 
 	var/founddir

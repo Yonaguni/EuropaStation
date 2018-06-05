@@ -25,13 +25,15 @@
 	qdel(holding)
 	return ..()
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
-	spawn()
-		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
-		if(port)
-			connect(port)
-			update_icon()
+	addtimer(CALLBACK(src, .proc/post_init), 0)
+
+/obj/machinery/portable_atmospherics/proc/post_init()
+	var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
+	if(port)
+		connect(port)
+		update_icon()
 
 /obj/machinery/portable_atmospherics/process()
 	if(!connected_port) //only react when pipe_network will ont it do it for you
@@ -41,7 +43,7 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
+	QDEL_NULL(air_contents)
 	return ..()
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()

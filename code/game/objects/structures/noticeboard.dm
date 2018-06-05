@@ -5,15 +5,15 @@
 	icon_state = "nboard00"
 	density = 0
 	anchored = 1
-	auto_init = TRUE
 
 	var/notices = 0
 
-/obj/structure/noticeboard/initialize()
+/obj/structure/noticeboard/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(notices > 4) break
 		if(istype(I, /obj/item/paper))
-			I.loc = src
+			I.forceMove(src)
 			notices++
 	icon_state = "nboard0[notices]"
 
