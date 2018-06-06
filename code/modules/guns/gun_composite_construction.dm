@@ -1,7 +1,8 @@
 var/list/can_dismantle_guns = list(
 	/obj/item/screwdriver,
 	/obj/item/pen,
-	/obj/item/material/kitchen/utensil
+	/obj/item/material/kitchen/utensil,
+	/obj/item/gun_maintenance_kit
 	)
 
 /obj/item/gun/composite/proc/dismantle(var/mob/user)
@@ -31,6 +32,11 @@ var/list/can_dismantle_guns = list(
 	qdel(src)
 
 /obj/item/gun/composite/attackby(var/obj/item/thing, var/mob/user)
+
+	if(istype(thing, /obj/item/gun_maintenance_kit))
+		var/obj/item/gun_maintenance_kit/kit = thing
+		if(kit.try_maintain(src, user))
+			return
 
 	if(istype(thing, /obj/item/ammo_casing) || istype(thing, /obj/item/ammo_magazine) || istype(thing, /obj/item/cell))
 		chamber.load_ammo(thing, user)
@@ -83,6 +89,10 @@ var/list/can_dismantle_guns = list(
 				accessories -= removing
 				update_from_components()
 				update_icon(regenerate = TRUE)
+				return
+
+			if(!(locate(/obj/structure/table) in loc))
+				to_chat(user, "<span class='warning'>\The [src] needs to be flat on a table or rack for you to work on it.</span>")
 				return
 
 			user.visible_message("<span class='notice'>\The [user] begins field-stripping \the [src] with \the [thing].</span>")

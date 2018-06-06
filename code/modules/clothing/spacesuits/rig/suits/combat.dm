@@ -39,3 +39,16 @@
 		/obj/item/rig_module/electrowarfare_suite,
 		/obj/item/rig_module/chem_dispenser/combat
 		)
+
+/obj/item/rig/combat/navy
+	name = "military hardsuit control module"
+	desc = "A cutting-edge military-issue hardsuit for naval special forces."
+	icon_state = "navy_rig"
+	suit_type = "naval hardsuit"
+	initial_modules = list(
+		/obj/item/rig_module/device/plasmacutter,
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/vision/thermal,
+		/obj/item/rig_module/grenade_launcher,
+		/obj/item/rig_module/chem_dispenser/combat
+		)

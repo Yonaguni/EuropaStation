@@ -15,7 +15,7 @@
 	variant_barrel = /obj/item/gun_component/barrel/rifle/large
 
 /obj/item/gun/composite/premade/rifle/sawnoff
-	name = "rifle sawn-off"
+	name = "sawn-off rifle"
 	variant_barrel = /obj/item/gun_component/barrel/rifle/short
 	variant_stock =  null
 
@@ -23,7 +23,6 @@
 	variant_barrel = /obj/item/gun_component/barrel/rifle/short/large
 
 /obj/item/gun/composite/premade/rifle/antimaterial
-	set_model = /decl/weapon_model/anti_materiel_rifle
 	name = "anti-materiel rifle"
 	variant_barrel = /obj/item/gun_component/barrel/rifle/am
 	variant_body =   /obj/item/gun_component/body/rifle/black

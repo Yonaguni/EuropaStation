@@ -7,10 +7,17 @@
 	anchored = 1
 	unacidable = 1//Dissolving the case would also delete the gun.
 
-	var/gun_type = /obj/item/gun/composite/premade/laser_pistol/prototype
+	var/gun_type
 	var/health = 30
 	var/occupied = 1
 	var/destroyed = 0
+
+/obj/structure/displaycase/New()
+	..()
+	gun_type = pick(/obj/item/gun/composite/premade/laser_pistol/self_charging/picomotion, \
+		/obj/item/gun/composite/premade/laser_pistol/daystar, \
+		/obj/item/gun/composite/premade/laser_pistol/dei_consentes \
+	)
 
 /obj/structure/displaycase/ex_act(severity)
 	switch(severity)
