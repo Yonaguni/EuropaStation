@@ -33,8 +33,8 @@
 	usr << "\[3/5\] - All ZAS Zones removed."
 
 	var/list/unsorted_overlays = list()
-	for(var/id in gas_data.tile_overlay)
-		unsorted_overlays |= gas_data.tile_overlay[id]
+	for(var/id in SSmaterials.gas_tile_overlays)
+		unsorted_overlays |= SSmaterials.gas_tile_overlays[id]
 
 	for(var/turf/simulated/T in world)
 		T.air = null

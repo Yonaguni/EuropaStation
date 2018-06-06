@@ -69,7 +69,8 @@
 				<table><tr><th><b>Name</b></th><th><b>Amount</b></th></tr>
 			"}
 			for(var/reagent in cur_viewed_device.owned_field.reactants)
-				dat += "<tr><td>[reagent]</td><td>[cur_viewed_device.owned_field.reactants[reagent]]</td></tr>"
+				var/material/M = SSmaterials.get_material(reagent)
+				dat += "<tr><td>[M.name]</td><td>[cur_viewed_device.owned_field.reactants[reagent]]</td></tr>"
 			dat += "</table><hr>"
 
 	else

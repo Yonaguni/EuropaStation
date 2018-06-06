@@ -24,8 +24,8 @@
 	cell = new/obj/item/cell/apc(src)
 	if(!scrubbing_gas)
 		scrubbing_gas = list()
-		for(var/g in gas_data.gases)
-			if(g != GAS_OXYGEN && g != GAS_NITROGEN)
+		for(var/g in SSmaterials.materials_by_path)
+			if(g != MATERIAL_OXYGEN && g != MATERIAL_NITROGEN)
 				scrubbing_gas += g
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)

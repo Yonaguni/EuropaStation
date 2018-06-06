@@ -214,7 +214,7 @@
 						else
 							var/list/nicename = null
 							var/list/tankcheck = null
-							var/breathes = GAS_OXYGEN    //default, we'll check later
+							var/breathes = MATERIAL_OXYGEN    //default, we'll check later
 							var/list/contents = list()
 							var/from = "on"
 
@@ -245,21 +245,21 @@
 																		//These tanks we're sure of their contents
 										if("nitrogen") 							//So we're a bit more picky about them.
 
-											if(t.air_contents.gas[GAS_NITROGEN] && !t.air_contents.gas[GAS_OXYGEN])
-												contents.Add(t.air_contents.gas[GAS_NITROGEN])
+											if(t.air_contents.gas[MATERIAL_NITROGEN] && !t.air_contents.gas[MATERIAL_OXYGEN])
+												contents.Add(t.air_contents.gas[MATERIAL_NITROGEN])
 											else
 												contents.Add(0)
 
-										if (GAS_OXYGEN)
-											if(t.air_contents.gas[GAS_OXYGEN] && !t.air_contents.gas[GAS_FUEL])
-												contents.Add(t.air_contents.gas[GAS_OXYGEN])
+										if (MATERIAL_OXYGEN)
+											if(t.air_contents.gas[MATERIAL_OXYGEN] && !t.air_contents.gas[MATERIAL_FUEL])
+												contents.Add(t.air_contents.gas[MATERIAL_OXYGEN])
 											else
 												contents.Add(0)
 
 										// No races breath this, but never know about downstream servers.
 										if ("carbon dioxide")
-											if(t.air_contents.gas[GAS_CARBON_DIOXIDE] && !t.air_contents.gas[GAS_FUEL])
-												contents.Add(t.air_contents.gas[GAS_CARBON_DIOXIDE])
+											if(t.air_contents.gas[MATERIAL_CO2] && !t.air_contents.gas[MATERIAL_FUEL])
+												contents.Add(t.air_contents.gas[MATERIAL_CO2])
 											else
 												contents.Add(0)
 
@@ -291,7 +291,7 @@
 								if(C.internals)
 									C.internals.icon_state = "internal1"
 							else
-								C << "<span class='notice'>You don't have a[breathes==GAS_OXYGEN ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
+								C << "<span class='notice'>You don't have a[breathes==MATERIAL_OXYGEN ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
 		if("act_intent")
 			usr.a_intent_change("right")
 		if(I_HELP)

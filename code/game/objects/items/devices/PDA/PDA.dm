@@ -404,17 +404,17 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 			var/total_moles = environment.total_moles
 
 			if (total_moles)
-				var/o2_level = environment.gas[GAS_OXYGEN]/total_moles
-				var/n2_level = environment.gas[GAS_NITROGEN]/total_moles
-				var/co2_level = environment.gas[GAS_CARBON_DIOXIDE]/total_moles
-				var/phoron_level = environment.gas[GAS_FUEL]/total_moles
+				var/o2_level = environment.gas[MATERIAL_OXYGEN]/total_moles
+				var/n2_level = environment.gas[MATERIAL_NITROGEN]/total_moles
+				var/co2_level = environment.gas[MATERIAL_CO2]/total_moles
+				var/phoron_level = environment.gas[MATERIAL_FUEL]/total_moles
 				var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
 				data["aircontents"] = list(\
 					"pressure" = "[round(pressure,0.1)]",\
-					GAS_NITROGEN = "[round(n2_level*100,0.1)]",\
-					GAS_OXYGEN = "[round(o2_level*100,0.1)]",\
-					GAS_CARBON_DIOXIDE = "[round(co2_level*100,0.1)]",\
-					GAS_FUEL = "[round(phoron_level*100,0.01)]",\
+					MATERIAL_NITROGEN = "[round(n2_level*100,0.1)]",\
+					MATERIAL_OXYGEN = "[round(o2_level*100,0.1)]",\
+					MATERIAL_CO2 = "[round(co2_level*100,0.1)]",\
+					MATERIAL_FUEL = "[round(phoron_level*100,0.01)]",\
 					"other" = "[round(unknown_level, 0.01)]",\
 					"temp" = "[round(environment.temperature-T0C,0.1)]",\
 					"reading" = 1\

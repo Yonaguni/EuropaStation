@@ -99,11 +99,11 @@
 		"power" = use_power,
 		"scrubbing" = scrubbing,
 		"panic" = panic,
-		"filter_o2" = (GAS_OXYGEN in scrubbing_gas),
-		"filter_n2" = (GAS_NITROGEN in scrubbing_gas),
-		"filter_co2" = (GAS_CARBON_DIOXIDE in scrubbing_gas),
-		"filter_phoron" = (GAS_FUEL in scrubbing_gas),
-		"filter_n2o" = (GAS_SLEEPING in scrubbing_gas),
+		"filter_o2" = (MATERIAL_OXYGEN in scrubbing_gas),
+		"filter_n2" = (MATERIAL_NITROGEN in scrubbing_gas),
+		"filter_co2" = (MATERIAL_CO2 in scrubbing_gas),
+		"filter_phoron" = (MATERIAL_FUEL in scrubbing_gas),
+		"filter_n2o" = (MATERIAL_N2O in scrubbing_gas),
 		"sigtype" = "status"
 	)
 	if(!initial_loc.air_scrub_names[id_tag])
@@ -124,8 +124,8 @@
 		src.broadcast_status()
 	if(!scrubbing_gas)
 		scrubbing_gas = list()
-		for(var/g in gas_data.gases)
-			if(g != GAS_OXYGEN && g != GAS_NITROGEN)
+		for(var/g in SSmaterials.materials_by_path)
+			if(g != MATERIAL_OXYGEN && g != MATERIAL_NITROGEN)
 				scrubbing_gas += g
 
 /obj/machinery/atmospherics/unary/vent_scrubber/process()
@@ -208,30 +208,30 @@
 
 	var/list/toggle = list()
 
-	if(!isnull(signal.data["o2_scrub"]) && text2num(signal.data["o2_scrub"]) != (GAS_OXYGEN in scrubbing_gas))
-		toggle += GAS_OXYGEN
+	if(!isnull(signal.data["o2_scrub"]) && text2num(signal.data["o2_scrub"]) != (MATERIAL_OXYGEN in scrubbing_gas))
+		toggle += MATERIAL_OXYGEN
 	else if(signal.data["toggle_o2_scrub"])
-		toggle += GAS_OXYGEN
+		toggle += MATERIAL_OXYGEN
 
-	if(!isnull(signal.data["n2_scrub"]) && text2num(signal.data["n2_scrub"]) != (GAS_NITROGEN in scrubbing_gas))
-		toggle += GAS_NITROGEN
+	if(!isnull(signal.data["n2_scrub"]) && text2num(signal.data["n2_scrub"]) != (MATERIAL_NITROGEN in scrubbing_gas))
+		toggle += MATERIAL_NITROGEN
 	else if(signal.data["toggle_n2_scrub"])
-		toggle += GAS_NITROGEN
+		toggle += MATERIAL_NITROGEN
 
-	if(!isnull(signal.data["co2_scrub"]) && text2num(signal.data["co2_scrub"]) != (GAS_CARBON_DIOXIDE in scrubbing_gas))
-		toggle += GAS_CARBON_DIOXIDE
+	if(!isnull(signal.data["co2_scrub"]) && text2num(signal.data["co2_scrub"]) != (MATERIAL_CO2 in scrubbing_gas))
+		toggle += MATERIAL_CO2
 	else if(signal.data["toggle_co2_scrub"])
-		toggle += GAS_CARBON_DIOXIDE
+		toggle += MATERIAL_CO2
 
-	if(!isnull(signal.data["tox_scrub"]) && text2num(signal.data["tox_scrub"]) != (GAS_FUEL in scrubbing_gas))
-		toggle += GAS_FUEL
+	if(!isnull(signal.data["tox_scrub"]) && text2num(signal.data["tox_scrub"]) != (MATERIAL_FUEL in scrubbing_gas))
+		toggle += MATERIAL_FUEL
 	else if(signal.data["toggle_tox_scrub"])
-		toggle += GAS_FUEL
+		toggle += MATERIAL_FUEL
 
-	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != (GAS_SLEEPING in scrubbing_gas))
-		toggle += GAS_SLEEPING
+	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != (MATERIAL_N2O in scrubbing_gas))
+		toggle += MATERIAL_N2O
 	else if(signal.data["toggle_n2o_scrub"])
-		toggle += GAS_SLEEPING
+		toggle += MATERIAL_N2O
 
 	scrubbing_gas ^= toggle
 

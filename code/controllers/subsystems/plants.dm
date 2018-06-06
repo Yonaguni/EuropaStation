@@ -118,8 +118,8 @@
 
 	if(survive_on_station)
 		if(seed.consume_gasses)
-			seed.consume_gasses[GAS_FUEL] = null
-			seed.consume_gasses[GAS_CARBON_DIOXIDE] = null
+			seed.consume_gasses[MATERIAL_FUEL] = null
+			seed.consume_gasses[MATERIAL_CO2] = null
 		if(seed.chems && !isnull(seed.chems[REAGENT_POLYACID]))
 			seed.chems[REAGENT_POLYACID] = null // Eating through the hull will make these plants completely inviable, albeit very dangerous.
 			seed.chems -= REAGENT_POLYACID

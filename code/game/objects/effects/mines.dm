@@ -49,7 +49,7 @@
 
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas(GAS_SLEEPING, 30)
+			target.assume_gas(MATERIAL_N2O, 30)
 
 	spawn(0)
 		qdel(src)
@@ -57,7 +57,7 @@
 /obj/effect/mine/proc/triggerphoron(obj)
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas(GAS_FUEL, 30)
+			target.assume_gas(MATERIAL_FUEL, 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
 
