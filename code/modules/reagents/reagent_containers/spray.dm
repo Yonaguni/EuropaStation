@@ -99,16 +99,16 @@
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
-/obj/item/reagent_containers/spray/cleaner/initialize()
-	..()
+/obj/item/reagent_containers/spray/cleaner/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_CLEANER, volume)
 
 /obj/item/reagent_containers/spray/antiseptic
 	name = "antiseptic bottle"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
-/obj/item/reagent_containers/spray/antiseptic/initialize()
-	..()
+/obj/item/reagent_containers/spray/antiseptic/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ANTISEPTIC, volume)
 
 /obj/item/reagent_containers/spray/pepper
@@ -121,8 +121,8 @@
 	volume = 40
 	var/safety = 1
 
-/obj/item/reagent_containers/spray/pepper/initialize()
-	..()
+/obj/item/reagent_containers/spray/pepper/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_CAPSAICINPLUS, 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
@@ -149,8 +149,8 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/reagent_containers/spray/waterflower/initialize()
-	..()
+/obj/item/reagent_containers/spray/waterflower/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_WATER, 10)
 
 /obj/item/reagent_containers/spray/chemsprayer
@@ -193,8 +193,8 @@
 	item_state = "plantbgone"
 	volume = 100
 
-/obj/item/reagent_containers/spray/plantbgone/initialize()
-	..()
+/obj/item/reagent_containers/spray/plantbgone/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_WEEDKILLER, 100)
 
 /obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, var/mob/user, proximity)

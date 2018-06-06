@@ -59,10 +59,10 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 
-/obj/item/reagent_containers/hypospray/autoinjector/initialize()
+/obj/item/reagent_containers/hypospray/autoinjector/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ADRENALINE, 5)
 	update_icon()
-	. = ..()
 
 /obj/item/reagent_containers/hypospray/autoinjector/attack(var/mob/M, var/mob/user)
 	..()

@@ -15,14 +15,8 @@
 /*
  * Soap
  */
-/obj/item/soap
-	auto_init = TRUE
-
-/obj/item/soap/New()
-	..()
+/obj/item/soap/Initialize(mapload)
 	create_reagents(10)
-
-/obj/item/soap/initialize()
 	wet()
 	. = ..()
 

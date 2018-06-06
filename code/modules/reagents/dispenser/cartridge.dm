@@ -14,8 +14,8 @@
 	var/spawn_reagent = null
 	var/label = ""
 
-/obj/item/reagent_containers/chem_disp_cartridge/initialize()
-	..()
+/obj/item/reagent_containers/chem_disp_cartridge/Initialize(mapload)
+	. = ..()
 	if(spawn_reagent)
 		reagents.add_reagent(spawn_reagent, volume)
 		var/datum/reagent/R = SSchemistry.get_reagent(spawn_reagent)

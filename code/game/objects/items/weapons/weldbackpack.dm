@@ -7,11 +7,10 @@
 	w_class = 4
 	var/max_fuel = 350
 
-/obj/item/weldpack/initialize()
-	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
-	reagents = R
-	R.my_atom = src
-	R.add_reagent(REAGENT_FUEL, max_fuel)
+/obj/item/weldpack/Initialize(mapload)
+	. = ..()
+	create_reagents(max_fuel) //Lotsa refills
+	reagents.add_reagent(REAGENT_FUEL, max_fuel)
 
 /obj/item/weldpack/attackby(obj/item/W as obj, var/mob/user)
 	if(W.iswelder())

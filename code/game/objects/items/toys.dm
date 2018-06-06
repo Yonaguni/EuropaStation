@@ -331,11 +331,10 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/initialize()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent(REAGENT_WATER, 10)
+/obj/item/toy/waterflower/Initialize(mapload)
+	create_reagents(10)
+	reagents.add_reagent(REAGENT_WATER, 10)
+	. = ..()
 
 /obj/item/toy/waterflower/attack(var/mob/living/carbon/human/M, var/mob/user)
 	return

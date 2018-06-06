@@ -26,7 +26,7 @@
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
 	new /obj/item/reagent_containers/food/snacks/sashimi(get_turf(src), fish_type)
 
-/obj/item/reagent_containers/food/snacks/meat/fish/poison/initialize()
+/obj/item/reagent_containers/food/snacks/meat/fish/poison/Initialize(mapload)
 	..()
 	reagents.add_reagent(REAGENT_CARPOTOXIN, 6)
 

@@ -23,8 +23,8 @@
 		for(var/cart in spawn_cartridges)
 			new cart(src)
 	..()
-	
-/obj/machinery/chemical_dispenser/initialize()
+
+/obj/machinery/chemical_dispenser/Initialize(mapload)
 	for(var/obj/item/reagent_containers/chem_disp_cartridge/cart in contents)
 		add_cartridge(cart)
 	. = ..()

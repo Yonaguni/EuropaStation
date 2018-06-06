@@ -122,14 +122,14 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_ENZYME, 50)
 
-/obj/item/reagent_containers/food/condiment/sugar
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_SUGAR, 50)
+/obj/item/reagent_containers/food/condiment/enzyme/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ENZYME, 50)
+
+/obj/item/reagent_containers/food/condiment/sugar/Initialize(mapload)
+	. =..()
+	reagents.add_reagent(REAGENT_SUGAR, 50)
 
 /obj/item/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
@@ -138,9 +138,10 @@
 	possible_transfer_amounts = "1;20" //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_SALT, 20)
+
+/obj/item/reagent_containers/food/condiment/saltshaker/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_SALT, 20)
 
 /obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"
@@ -149,9 +150,10 @@
 	possible_transfer_amounts = "1;20" //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_PEPPER, 20)
+
+/obj/item/reagent_containers/food/condiment/peppermill/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_PEPPER, 20)
 
 /obj/item/reagent_containers/food/condiment/flour
 	name = "flour sack"
@@ -160,9 +162,10 @@
 	icon_state = "flour"
 	item_state = "flour"
 	randpixel = 10
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_FLOUR, 30)
+
+/obj/item/reagent_containers/food/condiment/flour/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_FLOUR, 30)
 
 /obj/item/reagent_containers/food/condiment/soysauce
 	name = "Soy-Sauce"
@@ -170,6 +173,7 @@
 	icon_state = "soysauce"
 	amount_per_transfer_from_this = 1
 	volume = 20
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_SOYSAUCE, 20)
+
+/obj/item/reagent_containers/food/condiment/soysauce/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_SOYSAUCE, 20)

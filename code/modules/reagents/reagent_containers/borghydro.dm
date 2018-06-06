@@ -23,15 +23,13 @@
 /obj/item/reagent_containers/borghypo/crisis
 	reagent_ids = list(REAGENT_ADRENALINE, REAGENT_MORPHINE)
 
-/obj/item/reagent_containers/borghypo/initialize()
-	..()
-
+/obj/item/reagent_containers/borghypo/Initialize(mapload)
+	. = ..()
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
 		var/datum/reagent/R = SSchemistry.get_reagent(T)
 		reagent_names += R.name
-
-	processing_objects.Add(src)
+	START_PROCESSING(SSprocessing, src)
 
 /obj/item/reagent_containers/borghypo/Destroy()
 	processing_objects.Remove(src)

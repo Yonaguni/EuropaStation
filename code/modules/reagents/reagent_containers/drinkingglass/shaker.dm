@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/initialize()
-	reagents.add_reagent(REAGENT_NUTRIMENT, 30)
-	reagents.add_reagent(REAGENT_IRON, 10)
-	reagents.add_reagent(REAGENT_PROTEIN, 15)
-	reagents.add_reagent(REAGENT_WATER, 45)
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/Initialize(mapload)
 	. = ..()
+	reagents.add_reagent(REAGENT_NUTRIMENT, 30)
+	reagents.add_reagent(REAGENT_PROTEIN, 15)
+	reagents.add_reagent(REAGENT_IRON, 10)
+	reagents.add_reagent(REAGENT_WATER, 45)

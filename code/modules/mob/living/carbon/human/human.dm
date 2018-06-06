@@ -70,7 +70,7 @@
 	human_mob_list |= src
 	..()
 
-/mob/living/carbon/human/initialize()
+/mob/living/carbon/human/Initialize(mapload)
 	sync_organ_dna()
 	make_blood()
 	spawn(0)

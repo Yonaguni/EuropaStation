@@ -18,10 +18,10 @@
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
 
-/obj/item/clothing/mask/smokable/initialize()
-	..()
+/obj/item/clothing/mask/smokable/Initialize(mapload)
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
+	. = ..()
 
 /obj/item/clothing/mask/smokable/process()
 	var/turf/location = get_turf(src)
@@ -140,16 +140,16 @@
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
-/obj/item/clothing/mask/smokable/cigarette/initialize()
-	..()
+/obj/item/clothing/mask/smokable/cigarette/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_NICOTINE, 1)
 
 /obj/item/clothing/mask/smokable/cigarette/menthol
 	name = "menthol cigarette"
 	desc = "A cigarette with a little minty kick. Well, minty in theory."
 
-/obj/item/clothing/mask/smokable/cigarette/menthol/initialize()
-	..()
+/obj/item/clothing/mask/smokable/cigarette/menthol/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_NICOTINE, 1)
 	reagents.add_reagent(REAGENT_MENTHOL, 1)
 
@@ -203,9 +203,9 @@
 	weldermes = "<span class='notice'>USER insults NAME by lighting it with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
 
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_NICOTINE, 5)
+/obj/item/clothing/mask/smokable/cigarette/cigar/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_NICOTINE, 5)
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
@@ -223,9 +223,9 @@
 	smoketime = 3000
 	chem_volume = 20
 
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_NICOTINE, 10)
+/obj/item/clothing/mask/smokable/cigarette/cigar/havana/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_NICOTINE, 10)
 
 /obj/item/cigbutt
 	name = "cigarette butt"
@@ -237,8 +237,8 @@
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/cigbutt/initialize()
-	..()
+/obj/item/cigbutt/Initialize(mapload)
+	. = ..()
 	transform = turn(transform,rand(0,360))
 
 /obj/item/cigbutt/cigarbutt
@@ -272,8 +272,8 @@
 	weldermes = "<span class='notice'>USER recklessly lights NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
 
-/obj/item/clothing/mask/smokable/pipe/initialize()
-	..()
+/obj/item/clothing/mask/smokable/pipe/Initialize(mapload)
+	. = ..()
 	name = "empty [initial(name)]"
 
 /obj/item/clothing/mask/smokable/pipe/light(var/flavor_text = "[usr] lights the [name].")

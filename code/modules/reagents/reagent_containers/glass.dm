@@ -204,17 +204,15 @@
 	possible_transfer_amounts = "5;10;15;25"
 	flags = OPENCONTAINER
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_CRYOXADONE, 30)
-		update_icon()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_CRYOXADONE, 30)
+	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/sulphuric
-	initialize()
-		..()
-		reagents.add_reagent(REAGENT_SULFURIC_ACID, 60)
-		update_icon()
+/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_SULFURIC_ACID, 60)
+	update_icon()
 
 /obj/item/reagent_containers/glass/bucket
 	desc = "It's a bucket."
