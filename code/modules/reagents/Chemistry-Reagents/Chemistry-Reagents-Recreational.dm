@@ -29,7 +29,6 @@
 
 /datum/reagent/lsd
 	name = "LSD"
-	id = "lsd"
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#B31008"
@@ -41,7 +40,6 @@
 
 /datum/reagent/psilocybin
 	name = "Psilocybin"
-	id = "psilocybin"
 	taste_description = "mushroom"
 	color = "#E700E7"
 	overdose = REAGENTS_OVERDOSE
@@ -72,7 +70,6 @@
 
 /datum/reagent/jumpstart
 	name = "Jumpstart"
-	id = "jumpstart"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
@@ -87,7 +84,6 @@
 
 /datum/reagent/glint
 	name = "Glint"
-	id = "glint"
 	taste_description = "bitterness"
 	taste_mult = 0.4
 	reagent_state = LIQUID
@@ -105,7 +101,6 @@
 
 /datum/reagent/pax
 	name = "Pax"
-	id = "pax"
 	taste_description = "nothing at all"
 	taste_mult = 0.4
 	reagent_state = LIQUID
@@ -121,7 +116,6 @@
 
 /datum/reagent/ladder
 	name = "Ladder"
-	id = "ladder"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FFCC00"
@@ -135,7 +129,6 @@
 
 /datum/reagent/threeeye
 	name = "Three Eye"
-	id = "threeeye"
 	taste_description = "starlight"
 	reagent_state = LIQUID
 	color = "#CCCCFF"
@@ -186,7 +179,6 @@ var/static/list/threeeye_overdose_messages = list(
 
 /datum/reagent/short
 	name = "Short"
-	id = "short"
 	taste_description = "wax"
 	reagent_state = LIQUID
 	color = "#FFCCCC"

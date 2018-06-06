@@ -9,13 +9,13 @@
 
 	var/list/checked = list()
 
-	for(var/var/datum/chemical_reaction/react in all_chemical_reactions)
+	for(var/var/datum/chemical_reaction/react in SSchemistry._chemical_reactions)
 		if(!istype(react) || react.loaded_at_runtime || !react.required_reagents || !react.required_reagents.len)
 			continue
-		var/datum/reagent/reagent = chemical_reagents_list[react.result]
+		var/datum/reagent/reagent = SSchemistry.get_reagent(react.result)
 		if(!istype(reagent))
 			continue
-		checked += react.id
+		checked += react.type
 
 		var/recipe_string = ""
 		for(var/rid in react.required_reagents)
@@ -28,17 +28,22 @@
 			recipe_string += "**Inhibitors:** "
 			for(var/rid in react.inhibitors)
 				recipe_string += "[react.inhibitors[rid]] [rid] "
-
-		usr <<  "| [react.name] | [recipe_string] | [react.result_amount]u | [reagent.lore_text] |"
+		var/resultstr = " | "
+		if(ispath(react.result))
+			var/datum/reagent/result_reagent = react.result
+			resultstr += "[initial(result_reagent.name)]"
+		else
+			resultstr += "[react.product_name]"
+		usr <<  "[resultstr] | [recipe_string] | [react.result_amount]u | [reagent.lore_text] |"
 
 	usr << "<br>"
 	usr << "| Chemical | Effects |"
 	usr << "| --- | --- |"
 
-	for(var/rid in chemical_reagents_list)
+	for(var/rid in SSchemistry._chemical_reagents)
 		if(rid in checked)
 			continue
-		var/datum/reagent/reagent = chemical_reagents_list[rid]
+		var/datum/reagent/reagent = SSchemistry.get_reagent(rid)
 		usr <<  "| [reagent.name] | [reagent.lore_text] |"
 
 	usr << "<br>"

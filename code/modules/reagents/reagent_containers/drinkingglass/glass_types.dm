@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/drinks/glass2/square
 	name = "half-pint glass"
-	base_name = "glass"
+	base_name = MATERIAL_GLASS
 	base_icon = "square"
 	desc = "Your standard drinking glass."
 	filling_states = "20;40;60;80;100"
@@ -10,7 +10,7 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/rocks
 	name = "rocks glass"
-	base_name = "glass"
+	base_name = MATERIAL_GLASS
 	base_icon = "rocks"
 	filling_states = "25;50;75;100"
 	volume = 20
@@ -19,7 +19,7 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/shake
 	name = "milkshake glass"
-	base_name = "glass"
+	base_name = MATERIAL_GLASS
 	base_icon = "shake"
 	filling_states = "25;50;75;100"
 	volume = 30
@@ -28,7 +28,7 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/cocktail
 	name = "cocktail glass"
-	base_name = "glass"
+	base_name = MATERIAL_GLASS
 	base_icon = "cocktail"
 	filling_states = "33;66;100"
 	volume = 15
@@ -64,7 +64,7 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/wine
 	name = "wine glass"
-	base_name = "glass"
+	base_name = MATERIAL_GLASS
 	base_icon = "wine"
 	filling_states = "20;40;60;80;100"
 	volume = 25

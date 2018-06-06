@@ -27,13 +27,13 @@
 	..(newloc)
 	color = null
 	if(!new_material)
-		new_material = DEFAULT_WALL_MATERIAL
-	material = get_material_by_name(new_material)
+		new_material = MATERIAL_STEEL
+	material = SSmaterials.get_material(new_material)
 	if(!istype(material))
 		qdel(src)
 		return
 	if(new_padding_material)
-		padding_material = get_material_by_name(new_padding_material)
+		padding_material = SSmaterials.get_material(new_padding_material)
 	update_icon()
 
 /obj/structure/bed/get_material()
@@ -149,7 +149,7 @@
 	update_icon()
 
 /obj/structure/bed/proc/add_padding(var/padding_type)
-	padding_material = get_material_by_name(padding_type)
+	padding_material = SSmaterials.get_material(padding_type)
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
@@ -164,10 +164,10 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/New(var/newloc)
-	..(newloc,"wood","leather")
+	..(newloc,MATERIAL_WOOD,MATERIAL_LEATHER)
 
 /obj/structure/bed/padded/New(var/newloc)
-	..(newloc,"plastic","cotton")
+	..(newloc,MATERIAL_PLASTIC,MATERIAL_COTTON)
 
 /*
  * Roller beds

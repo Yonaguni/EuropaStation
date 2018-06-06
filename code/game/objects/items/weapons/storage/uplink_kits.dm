@@ -135,26 +135,26 @@
 	..()
 	var/obj/item/storage/fancy/cigarettes/pack
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("aluminum" = 1, "potassium" = 1, "sulfur" = 1))
+	fill_cigarre_package(pack, list(REAGENT_ALUMINIUM = 1, REAGENT_POTASSIUM = 1, REAGENT_SULFUR = 1))
 	pack.desc += " 'F' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("aluminum" = 1, "potassium" = 1, "sulfur" = 1))
+	fill_cigarre_package(pack, list(REAGENT_ALUMINIUM = 1, REAGENT_POTASSIUM = 1, REAGENT_SULFUR = 1))
 	pack.desc += " 'F' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 1, "sugar" = 1, "phosphorus" = 1))
+	fill_cigarre_package(pack, list(REAGENT_POTASSIUM = 1, REAGENT_SUGAR = 1, REAGENT_PHOSPHORUS = 1))
 	pack.desc += " 'S' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 1, "sugar" = 1, "phosphorus" = 1))
+	fill_cigarre_package(pack, list(REAGENT_POTASSIUM = 1, REAGENT_SUGAR = 1, REAGENT_PHOSPHORUS = 1))
 	pack.desc += " 'S' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 1, "ammonia" = 1, "silicon" = 1))
+	fill_cigarre_package(pack, list(REAGENT_POTASSIUM = 1, REAGENT_AMMONIA = 1, REAGENT_SILICON = 1))
 
 	// LSD
-	fill_cigarre_package(pack, list("silicon" = 1, "hydrazine" = 1, "anti_toxin" = 1))
+	fill_cigarre_package(pack, list(REAGENT_SILICON = 1, REAGENT_HYDRAZINE = 1, REAGENT_ANTITOXIN = 1))
 	pack.desc += " 'LSD' has been scribbled on it."
 
 	new /obj/item/flame/lighter/zippo(src)

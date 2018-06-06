@@ -11,7 +11,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 10.0
-	matter = list(DEFAULT_WALL_MATERIAL = 90)
+	matter = list(MATERIAL_STEEL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
 	var/spray_particles = 3
@@ -34,10 +34,10 @@
 	max_water = 200
 	sprite_name = "miniFE"
 
-/obj/item/extinguisher/New()
+/obj/item/extinguisher/Initialize(mapload)
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
-	..()
+	reagents.add_reagent(REAGENT_WATER, max_water)
+	. = ..()
 
 /obj/item/extinguisher/examine(mob/user)
 	if(..(user, 0))

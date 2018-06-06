@@ -11,7 +11,7 @@
 	var/damage_state = 1
 	var/list/has_hardpoints = list()
 
-	matter = list("steel" = 15000, "plastic" = 1000, "osmium" = 500)
+	matter = list(MATERIAL_STEEL = 15000, MATERIAL_PLASTIC = 1000, MATERIAL_OSMIUM = 500)
 
 /obj/item/mech_component/emp_act(var/severity)
 	take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))

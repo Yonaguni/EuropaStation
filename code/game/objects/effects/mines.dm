@@ -49,7 +49,7 @@
 
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("sleeping_agent", 30)
+			target.assume_gas(GAS_SLEEPING, 30)
 
 	spawn(0)
 		qdel(src)

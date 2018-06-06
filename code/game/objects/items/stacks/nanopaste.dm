@@ -5,7 +5,7 @@
 	icon = 'icons/obj/nanopaste.dmi'
 	icon_state = "tube"
 	amount = 10
-	matter = list("steel" = 10000, "gold" = 10000)
+	matter = list(MATERIAL_STEEL = 10000, MATERIAL_GOLD = 10000)
 
 /obj/item/stack/nanopaste/attack(var/mob/living/M, var/mob/user)
 	if (!istype(M) || !istype(user))

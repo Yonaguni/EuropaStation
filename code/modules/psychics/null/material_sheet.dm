@@ -19,7 +19,7 @@
 /obj/item/stack/material/nullglass
 	name = "nullglass"
 	icon_state = "sheet-nullglass"
-	default_type = "nullglass"
+	default_type = MATERIAL_NULLGLASS
 
 /obj/item/stack/material/nullglass/fifty
 	amount = 50

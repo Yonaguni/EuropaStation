@@ -2,7 +2,7 @@
 	return reagents
 
 /mob/living/carbon/proc/get_fullness()
-	return nutrition + (reagents.get_reagent_amount("nutriment") * 25)
+	return nutrition + (reagents.get_reagent_amount(REAGENT_NUTRIMENT) * 25)
 
 /mob/living/carbon/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
 	if(!istype(target))
@@ -34,7 +34,7 @@ calculate text size per text.
 		for(var/datum/reagent/R in reagent_list)
 			if(!R.taste_mult)
 				continue
-			if(R.id == "nutriment") //this is ugly but apparently only nutriment (not subtypes) has taste data TODO figure out why
+			if(R.type == REAGENT_NUTRIMENT) //this is ugly but apparently only nutriment (not subtypes) has taste data TODO figure out why
 				var/list/taste_data = R.get_data()
 				for(var/taste in taste_data)
 					if(taste in tastes)
@@ -43,7 +43,7 @@ calculate text size per text.
 						tastes[taste] = taste_data[taste]
 			else
 				var/taste_desc = R.taste_description
-				var/taste_amount = get_reagent_amount(R.id) * R.taste_mult
+				var/taste_amount = get_reagent_amount(R.type) * R.taste_mult
 				if(R.taste_description in tastes)
 					tastes[taste_desc] += taste_amount
 				else

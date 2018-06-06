@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT
 	update_icon_on_init = TRUE
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	matter = list(MATERIAL_STEEL = 50,MATERIAL_GLASS = 20)
 
 	light_power = 6
 	light_range = 5
@@ -95,8 +95,8 @@
 		if(H.getBrainLoss() > 15)
 			user << "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>"
 
-		var/list/pinpoint = list("oxycodone"=1,"morphine"=5)
-		var/list/dilating = list("glint"=5,"lsd"=1)
+		var/list/pinpoint = list(REAGENT_OXYCODONE=1,REAGENT_MORPHINE=5)
+		var/list/dilating = list(REAGENT_GLINT=5,REAGENT_LSD=1)
 		var/datum/reagents/R = H.get_ingested_reagents()
 		if(H.reagents.has_any_reagent(pinpoint) || (istype(R) && R.has_any_reagent(pinpoint)))
 			user << "<span class='notice'>\The [H]'s pupils are already pinpoint and cannot narrow any more.</span>"

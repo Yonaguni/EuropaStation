@@ -23,13 +23,8 @@ var/datum/controller/subsystem/codex/SScodex
 				entries_by_string[centry.display_name] = centry
 
 	// Create entries for reagents/recipes.
-	if(!chemical_reagents_list)
-		initialize_chemical_reagents()
-	if(!chemical_reactions_list)
-		initialize_chemical_reactions()
-
-	for(var/rid in chemical_reagents_list)
-		var/datum/reagent/reagent = chemical_reagents_list[rid]
+	for(var/thing in SSchemistry._chemical_reagents)
+		var/datum/reagent/reagent = thing
 		if(!istype(reagent) || reagent.hidden_from_codex)
 			continue
 		var/datum/codex_entry/entry = new( \
@@ -41,33 +36,32 @@ var/datum/controller/subsystem/codex/SScodex
 		)
 
 		var/list/production_strings = list()
-		if(chemical_reactions_by_result[reagent.id])
-			for(var/datum/chemical_reaction/reaction in chemical_reactions_by_result[reagent.id])
+		for(var/datum/chemical_reaction/reaction in SSchemistry.get_reactions_by_result(reagent.type))
 
-				if(reaction.hidden_from_codex)
-					continue
+			if(reaction.hidden_from_codex)
+				continue
 
-				var/list/reactant_values = list()
-				for(var/reactant_id in reaction.required_reagents)
-					var/datum/reagent/reactant = chemical_reagents_list[reactant_id]
-					if(istype(reactant))
-						reactant_values += "[reaction.required_reagents[reactant_id]]u [reactant.name]"
+			var/list/reactant_values = list()
+			for(var/reactant_id in reaction.required_reagents)
+				var/datum/reagent/reactant = SSchemistry.get_reagent(reactant_id)
+				if(istype(reactant))
+					reactant_values += "[reaction.required_reagents[reactant_id]]u [reactant.name]"
 
-				if(!reactant_values.len)
-					continue
+			if(!reactant_values.len)
+				continue
 
-				var/list/catalysts = list()
-				for(var/catalyst_id in reaction.catalysts)
-					var/datum/reagent/catalyst = chemical_reagents_list[catalyst_id]
-					if(istype(catalyst))
-						catalysts += "[reaction.catalysts[catalyst_id]]u [catalyst.name]"
+			var/list/catalysts = list()
+			for(var/catalyst_id in reaction.catalysts)
+				var/datum/reagent/catalyst = SSchemistry.get_reagent(catalyst_id)
+				if(istype(catalyst))
+					catalysts += "[reaction.catalysts[catalyst_id]]u [catalyst.name]"
 
-				var/datum/reagent/result = chemical_reagents_list[reaction.result]
-				if(istype(result))
-					if(catalysts.len)
-						production_strings += "- [jointext(reactant_values, " + ")] (catalysts: [jointext(catalysts, ", ")]): [reaction.result_amount]u [result.name]"
-					else
-						production_strings += "- [jointext(reactant_values, " + ")]: [reaction.result_amount]u [result.name]"
+			var/datum/reagent/result = SSchemistry.get_reagent(reaction.result)
+			if(istype(result))
+				if(catalysts.len)
+					production_strings += "- [jointext(reactant_values, " + ")] (catalysts: [jointext(catalysts, ", ")]): [reaction.result_amount]u [result.name]"
+				else
+					production_strings += "- [jointext(reactant_values, " + ")]: [reaction.result_amount]u [result.name]"
 
 		if(production_strings.len)
 			if(!entry.mechanics_text)
@@ -77,21 +71,14 @@ var/datum/controller/subsystem/codex/SScodex
 			entry.mechanics_text += jointext(production_strings, "<br>")
 		entries_by_string[entry.display_name] = entry
 
-	// Create entries for materials.
-	get_material_by_name() // Make sure the list has been populated already.
-	for(var/material_name in name_to_material)
-		var/material/mat = name_to_material[material_name]
-		if(!istype(mat) || mat.hidden_from_codex)
-			continue
-
-		var/datum/codex_entry/entry = new(_display_name = "[mat.display_name] (material)")
-		entry.lore_text = mat.lore_text
-		entry.antag_text = mat.antag_text
-
-		//TODO: summary of material properties and uses.
-		entry.mechanics_text = mat.mechanics_text ? mat.mechanics_text : ""
-
-		entries_by_string[entry.display_name] = entry
+	for(var/thing in SSmaterials.materials)
+		var/material/mat = thing
+		if(!mat.hidden_from_codex)
+			var/datum/codex_entry/entry = new(_display_name = "[mat.display_name] (material)")
+			entry.lore_text = mat.lore_text
+			entry.antag_text = mat.antag_text
+			entry.mechanics_text = mat.mechanics_text ? mat.mechanics_text : ""
+			entries_by_string[entry.display_name] = entry
 
 	// Create entries for locations.
 	get_stellar_location()

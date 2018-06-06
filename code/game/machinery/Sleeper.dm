@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	var/mob/living/carbon/human/occupant = null
-	var/list/available_chemicals = list("adrenaline" = "Adrenaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/available_chemicals = list(REAGENT_ADRENALINE = "Adrenaline", REAGENT_SLEEPTOXIN = "Soporific", REAGENT_PARACETAMOL = "Paracetamol", REAGENT_ANTITOXIN = "Dylovene", REAGENT_DEXALIN = "Dexalin")
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = 0
 

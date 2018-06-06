@@ -2,7 +2,6 @@
 
 /datum/reagent/toxin
 	name = "toxin"
-	id = "toxin"
 	taste_description = "bitterness"
 	taste_mult = 1.2
 	reagent_state = LIQUID
@@ -16,15 +15,13 @@
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
-	id = "plasticide"
-	taste_description = "plastic"
+	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 5
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
-	id = "amatoxin"
 	taste_description = "mushroom"
 	reagent_state = LIQUID
 	color = "#792300"
@@ -32,7 +29,6 @@
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
-	id = "carpotoxin"
 	taste_description = "fish"
 	reagent_state = LIQUID
 	color = "#003333"
@@ -40,7 +36,6 @@
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
-	id = "cyanide"
 	taste_mult = 0.6
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -54,7 +49,6 @@
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
-	id = "potassium_chloride"
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -75,7 +69,6 @@
 
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
@@ -95,7 +88,6 @@
 
 /datum/reagent/toxin/byphodine
 	name = "Byphodine"
-	id = "byphodine"
 	taste_description = "death"
 	reagent_state = SOLID
 	color = "#669900"
@@ -118,8 +110,7 @@
 	return ..()
 
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
-	name = "fertilizer"
-	id = "fertilizer"
+	name = REAGENT_FERTILIZER
 	taste_description = "plant food"
 	taste_mult = 0.5
 	reagent_state = LIQUID
@@ -128,19 +119,15 @@
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
-	id = "eznutrient"
 
 /datum/reagent/toxin/fertilizer/left4zed
 	name = "Left-4-Zed"
-	id = "left4zed"
 
 /datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
-	id = "robustharvest"
 
 /datum/reagent/toxin/weedkiller
 	name = "Weed Killer"
-	id = "weedkiller"
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
@@ -160,7 +147,6 @@
 
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
-	id = "pacid"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#8E18A9"
@@ -169,14 +155,12 @@
 
 /datum/reagent/acid/stomach
 	name = "stomach acid"
-	id = "stomach_acid"
 	taste_description = "foulness"
 	power = 1
 	color = "#d8ff00"
 
 /datum/reagent/lexorin
 	name = "Lexorin"
-	id = "lexorin"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -189,7 +173,6 @@
 
 /datum/reagent/gc161
 	name = "GC-161"
-	id = "gc161"
 	taste_description = "slime"
 	taste_mult = 0.9
 	reagent_state = LIQUID
@@ -213,7 +196,6 @@
 
 /datum/reagent/soporific
 	name = "Soporific"
-	id = "stoxin"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#009CA8"
@@ -238,7 +220,6 @@
 
 /datum/reagent/chloralhydrate
 	name = "Chloral Hydrate"
-	id = "chloralhydrate"
 	taste_description = "bitterness"
 	reagent_state = SOLID
 	color = "#000067"
@@ -261,8 +242,7 @@
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
-	id = "beer2"
-	taste_description = "shitty piss water"
+	taste_description = "strong yeast"
 	reagent_state = LIQUID
 	color = "#FFD300"
 
@@ -271,7 +251,6 @@
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
-	id = "serotrotium"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#202040"
@@ -285,7 +264,6 @@
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
-	id = "cryptobiolin"
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#000055"
@@ -298,7 +276,6 @@
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
-	id = "impedrezene"
 	taste_description = "numbness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -315,14 +292,12 @@
 
 /datum/reagent/nanites
 	name = "Nanomachines"
-	id = "nanites"
 	taste_description = "slimy metal"
 	reagent_state = LIQUID
 	color = "#535E66"
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
-	id = "xenomicrobes"
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#535E66"

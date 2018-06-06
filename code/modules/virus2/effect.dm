@@ -261,10 +261,10 @@
 		if(c_data)
 			data = c_data
 		else
-			data = pick("styptazine", "fotiazine", "anti_toxin", "adrenaline", "glint", "sugar",
-						"morphine", "dexalin", "cryptobiolin", "impedrezene", "jumpstart", "ethylredoxrazine",
-						"lsd", "glucose")
-		var/datum/reagent/R = chemical_reagents_list[data]
+			data = pick(REAGENT_STYPTAZINE, REAGENT_FOTIAZINE, REAGENT_ANTITOXIN, REAGENT_ADRENALINE, REAGENT_GLINT, REAGENT_SUGAR,
+						REAGENT_MORPHINE, REAGENT_DEXALIN, REAGENT_CRYPTOBIOLIN, REAGENT_IMPEDREZENE, REAGENT_JUMPSTART, REAGENT_ETHYLREDOXRAZINE,
+						REAGENT_LSD, REAGENT_GLUCOSE)
+		var/datum/reagent/R = SSchemistry.get_reagent(data)
 		name = "[initial(name)] ([initial(R.name)])"
 
 	activate(var/mob/living/carbon/mob,var/multiplier)
@@ -337,8 +337,8 @@
 	stage = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob << "<span class='notice'>You feel a rush of energy inside you!</span>"
-		if (mob.reagents.get_reagent_amount("jumpstart") < 10)
-			mob.reagents.add_reagent("jumpstart", 4)
+		if (mob.reagents.get_reagent_amount(REAGENT_JUMPSTART) < 10)
+			mob.reagents.add_reagent(REAGENT_JUMPSTART, 4)
 		if (prob(30))
 			mob.jitteriness += 10
 

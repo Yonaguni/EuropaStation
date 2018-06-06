@@ -129,10 +129,10 @@
 	startswith = list(/obj/item/clothing/mask/smokable/cigarette = 6)
 
 /obj/item/storage/fancy/cigarettes/New()
-	..()
 	flags |= NOREACT
-	create_reagents(5 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 	flags |= OPENCONTAINER
+	create_reagents(5 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
+	..()
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 	// Don't try to transfer reagents to lighters
@@ -182,9 +182,9 @@
 	desc = "A packet of six Acme Company cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
 
-/obj/item/storage/fancy/cigarettes/killthroat/New()
-	..()
-	fill_cigarre_package(src,list("fuel" = 4))
+/obj/item/storage/fancy/cigarettes/killthroat/Initialize(mapload)
+	. = ..()
+	fill_cigarre_package(src,list(REAGENT_FUEL = 4))
 
 // New exciting ways to kill your lungs! - Earthcrusher //
 

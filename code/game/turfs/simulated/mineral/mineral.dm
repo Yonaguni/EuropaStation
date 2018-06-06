@@ -14,7 +14,7 @@
 /turf/simulated/mineral/Initialize()
 	. = ..()
 	if(!istype(mineral) && !isnull(mineral))
-		mineral = SSmaterials.get_material_by_name(mineral)
+		mineral = SSmaterials.get_material(mineral)
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	queue_icon_update(1)

@@ -21,11 +21,11 @@
 
 	var/blood_type = null
 
-	New()
-		..()
+	Initialize(mapload)
+		. = ..()
 		if(blood_type != null)
 			name = "BloodPack [blood_type]"
-			reagents.add_reagent("blood", 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+			reagents.add_reagent(REAGENT_BLOOD, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
 			update_icon()
 
 	on_reagent_change()

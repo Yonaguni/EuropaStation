@@ -22,7 +22,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(DEFAULT_WALL_MATERIAL = 400)
+	matter = list(MATERIAL_STEEL = 400)
 
 /obj/item/locator/attack_self(var/mob/user)
 	user.set_machine(src)
@@ -133,7 +133,7 @@ Frequency:
 	throw_speed = 3
 	throw_range = 5
 
-	matter = list(DEFAULT_WALL_MATERIAL = 10000)
+	matter = list(MATERIAL_STEEL = 10000)
 	var/max_portals = 3
 	var/list/spawned_portals
 

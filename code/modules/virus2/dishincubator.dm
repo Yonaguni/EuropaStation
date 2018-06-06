@@ -128,18 +128,18 @@
 		SSnanoui.update_uis(src)
 
 	if(beaker)
-		if(foodsupply < 100 && beaker.reagents.remove_reagent("virusfood",5))
+		if(foodsupply < 100 && beaker.reagents.remove_reagent(REAGENT_VIRUSFOOD,5))
 			if(foodsupply + 10 <= 100)
 				foodsupply += 10
 			else
-				beaker.reagents.add_reagent("virusfood",(100 - foodsupply)/2)
+				beaker.reagents.add_reagent(REAGENT_VIRUSFOOD,(100 - foodsupply)/2)
 				foodsupply = 100
 			SSnanoui.update_uis(src)
 
 		if (locate(/datum/reagent/toxin) in beaker.reagents.reagent_list && toxins < 100)
 			for(var/datum/reagent/toxin/T in beaker.reagents.reagent_list)
 				toxins += max(T.strength,1)
-				beaker.reagents.remove_reagent(T.id,1)
+				beaker.reagents.remove_reagent(T.type,1)
 				if(toxins > 100)
 					toxins = 100
 					break

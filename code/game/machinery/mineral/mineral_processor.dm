@@ -53,7 +53,7 @@
 			if(ores_stored[metal] <= 0 || ores_processing[metal] == ORE_DISABLED)
 				continue
 
-			var/material/M = SSmaterials.get_material_by_name(metal)
+			var/material/M = SSmaterials.get_material(metal)
 			var/result = 0
 
 			var/ore_mode = ores_processing[metal]
@@ -71,7 +71,7 @@
 
 			sheets += abs(result)
 			while(result < 0)
-				new /obj/item/ore(output_turf, "waste")
+				new /obj/item/ore(output_turf, MATERIAL_WASTE)
 				result++
 
 		// Try to make any available alloys.
@@ -101,7 +101,7 @@
 /obj/machinery/mineral/processing_unit/proc/attempt_smelt(var/material/metal, var/max_result)
 	. = Clamp(Floor(ores_stored[metal.name]/metal.units_per_sheet),1,max_result)
 	ores_stored[metal.name] -= . * metal.units_per_sheet
-	var/material/M = SSmaterials.get_material_by_name(metal.ore_smelts_to)
+	var/material/M = SSmaterials.get_material(metal.ore_smelts_to)
 	if(istype(M))
 		new M.stack_type(output_turf, amount = .)
 	else
@@ -112,7 +112,7 @@
 	if(making >= 2)
 		ores_stored[metal.name] -= making * metal.units_per_sheet
 		. = Floor(making * 0.5)
-		var/material/M = SSmaterials.get_material_by_name(metal.ore_compresses_to)
+		var/material/M = SSmaterials.get_material(metal.ore_compresses_to)
 		if(istype(M))
 			new M.stack_type(output_turf, amount = .)
 		else
@@ -124,7 +124,7 @@
 	. = ..()
 	for(var/ore in ores_processing)
 		if(!ores_stored[ore] && !report_all_ores) continue
-		var/material/M = SSmaterials.get_material_by_name(ore)
+		var/material/M = SSmaterials.get_material(ore)
 		var/line = "=== [Floor(ores_stored[ore] / M.units_per_sheet)] x [capitalize(M.display_name)] ([ores_stored[ore]]u) "
 		while(length(line) < 30) line += "="
 		if(ores_processing[ore])

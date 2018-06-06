@@ -22,4 +22,4 @@
 		check_health(consumed = TRUE)
 
 /obj/item/material/shard/nullglass/New(var/newloc)
-	..(newloc, "nullglass")
+	..(newloc, MATERIAL_NULLGLASS)

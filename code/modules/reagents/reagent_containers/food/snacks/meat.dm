@@ -5,13 +5,13 @@
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = "x=16;y=14"
+	bitesize = 3
 
 	var/source_mob
 
-/obj/item/reagent_containers/food/snacks/meat/New()
-	..()
-	reagents.add_reagent("protein", 9)
-	src.bitesize = 3
+/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_PROTEIN, 9)
 
 /obj/item/reagent_containers/food/snacks/meat/Initialize()
 	. = ..()
@@ -62,9 +62,9 @@
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
 	center_of_mass = "x=16;y=10"
+	protein_amt = 12
+	bitesize = 3
 
-	New()
-		..()
-		reagents.add_reagent("protein", 12)
-		reagents.add_reagent("jumpstart", 5)
-		src.bitesize = 3
+/obj/item/reagent_containers/food/snacks/meat/bearmeat/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_JUMPSTART, 5)

@@ -30,12 +30,12 @@
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/20),IRRADIATE, blocked = L.getarmor(null, "rad"))
 
-/obj/structure/railing/Initialize(mapload, material_key = "steel")
+/obj/structure/railing/Initialize(mapload, material_key = MATERIAL_STEEL)
 	. = ..(mapload)
 	material = material_key
 
 	if(!isnull(material) && !istype(material))
-		material = get_material_by_name(material)
+		material = SSmaterials.get_material(material)
 	if(!istype(material))
 		qdel(src)
 	name = "[material.display_name] [initial(name)]"

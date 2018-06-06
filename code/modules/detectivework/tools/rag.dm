@@ -159,7 +159,7 @@
 //rag must have a minimum of 2 units welder fuel and at least 80% of the reagents must be welder fuel.
 //maybe generalize flammable reagents someday
 /obj/item/reagent_containers/glass/rag/proc/can_ignite()
-	var/fuel = reagents.get_reagent_amount("fuel")
+	var/fuel = reagents.get_reagent_amount(REAGENT_FUEL)
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
 /obj/item/reagent_containers/glass/rag/proc/ignite()
@@ -207,6 +207,6 @@
 		qdel(src)
 		return
 
-	reagents.remove_reagent("fuel", reagents.maximum_volume/25)
+	reagents.remove_reagent(REAGENT_FUEL, reagents.maximum_volume/25)
 	update_name()
 	burn_time--

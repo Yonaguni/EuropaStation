@@ -11,7 +11,7 @@
 		matter[_mat] = SHEET_MATERIAL_AMOUNT
 
 	for(var/stuff in matter)
-		var/material/M = SSmaterials.get_material_by_name(stuff)
+		var/material/M = SSmaterials.get_material(stuff)
 		if(M)
 			name = M.ore_name
 			color = M.icon_colour
@@ -37,22 +37,22 @@
 
 // Map definitions.
 /obj/item/ore/uranium/New(var/newloc)
-	..(newloc, "pitchblende")
+	..(newloc, MATERIAL_PITCHBLENDE)
 /obj/item/ore/iron/New(var/newloc)
-	..(newloc, "hematite")
+	..(newloc, MATERIAL_HEMATITE)
 /obj/item/ore/coal/New(var/newloc)
-	..(newloc, "graphene")
+	..(newloc, MATERIAL_GRAPHENE)
 /obj/item/ore/glass/New(var/newloc)
-	..(newloc, "sand")
+	..(newloc, MATERIAL_SAND)
 /obj/item/ore/silver/New(var/newloc)
-	..(newloc, "silver")
+	..(newloc, MATERIAL_SILVER)
 /obj/item/ore/gold/New(var/newloc)
-	..(newloc, "gold")
+	..(newloc, MATERIAL_GOLD)
 /obj/item/ore/diamond/New(var/newloc)
-	..(newloc, "diamond")
+	..(newloc, MATERIAL_DIAMOND)
 /obj/item/ore/osmium/New(var/newloc)
-	..(newloc, "platinum")
+	..(newloc, MATERIAL_PLATINUM)
 /obj/item/ore/hydrogen/New(var/newloc)
-	..(newloc, "mhydrogen")
+	..(newloc, MATERIAL_MHYDROGEN)
 /obj/item/ore/slag/New(var/newloc)
-	..(newloc, "waste")
+	..(newloc, MATERIAL_WASTE)

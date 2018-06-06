@@ -17,7 +17,7 @@
 /obj/item/ore/Value()
 	var/total = 0
 	for(var/_mat in matter)
-		var/material/mat = SSmaterials.get_material_by_name(_mat)
+		var/material/mat = SSmaterials.get_material(_mat)
 		if(istype(mat))
 			total += (mat.value * matter[_mat])
 	return total

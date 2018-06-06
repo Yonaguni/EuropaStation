@@ -4,7 +4,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/adrenaline/Initialize()
-	reagents.add_reagent("adrenaline", 60)
+	reagents.add_reagent(REAGENT_ADRENALINE, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/toxin
@@ -13,7 +13,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/toxin/Initialize()
-	reagents.add_reagent("toxin", 60)
+	reagents.add_reagent(REAGENT_TOXIN, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/cyanide
@@ -22,7 +22,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/cyanide/Initialize()
-	reagents.add_reagent("cyanide", 30)
+	reagents.add_reagent(REAGENT_CYANIDE, 30)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/stoxin
@@ -31,7 +31,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/stoxin/Initialize()
-	reagents.add_reagent("stoxin", 60)
+	reagents.add_reagent(REAGENT_SLEEPTOXIN, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
@@ -40,7 +40,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate/Initialize()
-	reagents.add_reagent("chloralhydrate", 30)
+	reagents.add_reagent(REAGENT_CHLORALHYDRATE, 30)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/antitoxin
@@ -49,7 +49,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/antitoxin/Initialize()
-	reagents.add_reagent("anti_toxin", 60)
+	reagents.add_reagent(REAGENT_ANTITOXIN, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/gc161
@@ -58,7 +58,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/gc161/Initialize()
-	reagents.add_reagent("gc161", 60)
+	reagents.add_reagent(REAGENT_GC161, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/diethylamine
@@ -67,7 +67,7 @@
 	obfuscate_contents = TRUE
 
 /obj/item/reagent_containers/glass/bottle/diethylamine/Initialize()
-	reagents.add_reagent("diethylamine", 60)
+	reagents.add_reagent(REAGENT_DIETHYLAMINE, 60)
 	. = ..()
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
@@ -77,6 +77,6 @@
 	icon_state = "holyflask"
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine/Initialize()
-	reagents.add_reagent("adminordrazine", 60)
+	reagents.add_reagent(REAGENT_ADMINORDRAZINE, 60)
 	. = ..()
 

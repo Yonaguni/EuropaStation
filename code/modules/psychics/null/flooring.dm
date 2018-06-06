@@ -17,5 +17,5 @@
 	name = "nullglass floor tile"
 	singular_name = "nullglass floor tile"
 	icon_state = "tile_nullglass"
-	matter = list("nullglass" = 937.5)
+	matter = list(MATERIAL_NULLGLASS = 937.5)
 	builds_flooring = /decl/flooring/tiling/nullglass

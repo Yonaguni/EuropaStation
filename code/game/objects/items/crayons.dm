@@ -95,7 +95,7 @@
 	if(istype(M) && M == user)
 		M << "You take a bite of the crayon and swallow it."
 		M.nutrition += 1
-		M.reagents.add_reagent("crayon_dust",min(5,uses)/3)
+		M.reagents.add_reagent(REAGENT_CRAYON_DUST,min(5,uses)/3)
 		if(uses)
 			uses -= 5
 			if(uses <= 0)

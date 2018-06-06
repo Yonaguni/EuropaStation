@@ -50,7 +50,7 @@
 			var/list/data = list()
 			if(reagent_data.len > 1 && potency > 0)
 				rtotal += round(potency/reagent_data[2])
-			if(rid == "nutriment")
+			if(rid == REAGENT_NUTRIMENT)
 				data[seed.seed_name] = max(1,rtotal)
 			reagents.add_reagent(rid,max(1,rtotal),data)
 	update_desc()
@@ -67,33 +67,33 @@
 		desc = SSplants.product_descs["[seed.uid]"]
 	else
 		var/list/descriptors = list()
-		if(reagents.has_reagent("sugar") || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
+		if(reagents.has_reagent(REAGENT_SUGAR) || reagents.has_reagent(REAGENT_CHERRY_JELLY) || reagents.has_reagent(REAGENT_HONEY) || reagents.has_reagent(REAGENT_BERRY_JUICE))
 			descriptors |= "sweet"
-		if(reagents.has_reagent("anti_toxin"))
+		if(reagents.has_reagent(REAGENT_ANTITOXIN))
 			descriptors |= "astringent"
-		if(reagents.has_reagent("frostoil"))
+		if(reagents.has_reagent(REAGENT_FROSTOIL))
 			descriptors |= "numbing"
-		if(reagents.has_reagent("nutriment"))
+		if(reagents.has_reagent(REAGENT_NUTRIMENT))
 			descriptors |= "nutritious"
-		if(reagents.has_reagent("condensedcapsaicin") || reagents.has_reagent("capsaicin"))
+		if(reagents.has_reagent(REAGENT_CAPSAICINPLUS) || reagents.has_reagent(REAGENT_CAPSAICIN))
 			descriptors |= "spicy"
-		if(reagents.has_reagent("coco"))
+		if(reagents.has_reagent(REAGENT_COCOA))
 			descriptors |= "bitter"
-		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
+		if(reagents.has_reagent(REAGENT_ORANGE_JUICE) || reagents.has_reagent(REAGENT_LEMON_JUICE) || reagents.has_reagent(REAGENT_LIME_JUICE))
 			descriptors |= "sweet-sour"
-		if(reagents.has_reagent("radium") || reagents.has_reagent("uranium"))
+		if(reagents.has_reagent(REAGENT_RADIUM) || reagents.has_reagent(REAGENT_URANIUM))
 			descriptors |= "radioactive"
-		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
+		if(reagents.has_reagent(REAGENT_AMATOXIN) || reagents.has_reagent(REAGENT_TOXIN))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("glint"))
+		if(reagents.has_reagent(REAGENT_PSYLOCYBIN) || reagents.has_reagent(REAGENT_GLINT))
 			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("styptazine"))
+		if(reagents.has_reagent(REAGENT_STYPTAZINE))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold"))
+		if(reagents.has_reagent(MATERIAL_GOLD))
 			descriptors |= "shiny"
-		if(reagents.has_reagent("lube"))
+		if(reagents.has_reagent(REAGENT_LUBE))
 			descriptors |= "slippery"
-		if(reagents.has_reagent("pacid") || reagents.has_reagent("sacid") || reagents.has_reagent("hclacid"))
+		if(reagents.has_reagent(REAGENT_POLYACID) || reagents.has_reagent(REAGENT_SULFURIC_ACID) || reagents.has_reagent(REAGENT_HCLACID))
 			descriptors |= "acidic"
 		if(seed.get_trait(TRAIT_JUICY))
 			descriptors |= "juicy"
@@ -186,7 +186,7 @@
 				qdel(src)
 				return
 			else if(seed.chems)
-				if(istype(W,/obj/item/material/hatchet) && !isnull(seed.chems["woodpulp"]))
+				if(istype(W,/obj/item/material/hatchet) && !isnull(seed.chems[REAGENT_WOOD_PULP]))
 					user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 					if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)
@@ -202,17 +202,17 @@
 						user << "You add the newly-formed wood to the stack. It now contains [NG.amount] planks."
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["potato"]))
+				else if(!isnull(seed.chems[REAGENT_POTATO]))
 					user << "You slice \the [src] into sticks."
 					new /obj/item/reagent_containers/food/snacks/rawsticks(get_turf(src))
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["carrotjuice"]))
+				else if(!isnull(seed.chems[REAGENT_CARROT_JUICE]))
 					user << "You slice \the [src] into sticks."
 					new /obj/item/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["soymilk"]))
+				else if(!isnull(seed.chems[REAGENT_SOYMILK]))
 					user << "You roughly chop up \the [src]."
 					new /obj/item/reagent_containers/food/snacks/soydope(get_turf(src))
 					qdel(src)

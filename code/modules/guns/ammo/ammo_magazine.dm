@@ -6,7 +6,7 @@
 	icon = 'icons/obj/gun_components/ammo.dmi'
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
-	matter = list("steel" = 500, "plastic" = 100)
+	matter = list(MATERIAL_STEEL = 500, MATERIAL_PLASTIC = 100)
 	throwforce = 5
 	w_class = 2
 	throw_speed = 4

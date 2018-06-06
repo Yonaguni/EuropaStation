@@ -40,7 +40,7 @@
 	user.set_machine(src)
 
 	var/data[0]
-	data["antibodies"] = null
+	data[REAGENT_ANTIBODIES] = null
 	data["pathogens"] = null
 	data["is_antibody_sample"] = null
 
@@ -54,7 +54,7 @@
 		if (sample)
 			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
 			if (B)
-				data["antibodies"] = antigens2string(B.data["antibodies"], none=null)
+				data[REAGENT_ANTIBODIES] = antigens2string(B.data[REAGENT_ANTIBODIES], none=null)
 
 				var/list/pathogens[0]
 				var/list/virus = B.data["virus2"]
@@ -68,7 +68,7 @@
 			else
 				var/datum/reagent/antibodies/A = locate(/datum/reagent/antibodies) in sample.reagents.reagent_list
 				if(A)
-					data["antibodies"] = antigens2string(A.data["antibodies"], none=null)
+					data[REAGENT_ANTIBODIES] = antigens2string(A.data[REAGENT_ANTIBODIES], none=null)
 				data["is_antibody_sample"] = 1
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -126,7 +126,7 @@
 				return 1
 
 			var/has_toxins = locate(/datum/reagent/toxin) in sample.reagents.reagent_list
-			var/has_radium = sample.reagents.has_reagent("radium")
+			var/has_radium = sample.reagents.has_reagent(REAGENT_RADIUM)
 			if (has_toxins || has_radium)
 				state("\The [src] beeps, \"Pathogen purging speed above nominal.\"", "blue")
 				if (has_toxins)
@@ -152,10 +152,10 @@
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
 	if (!B) return
 
-	var/list/data = list("antibodies" = B.data["antibodies"])
-	var/amt= sample.reagents.get_reagent_amount("blood")
-	sample.reagents.remove_reagent("blood", amt)
-	sample.reagents.add_reagent("antibodies", amt, data)
+	var/list/data = list(REAGENT_ANTIBODIES = B.data[REAGENT_ANTIBODIES])
+	var/amt= sample.reagents.get_reagent_amount(REAGENT_BLOOD)
+	sample.reagents.remove_reagent(REAGENT_BLOOD, amt)
+	sample.reagents.add_reagent(REAGENT_ANTIBODIES, amt, data)
 
 	SSnanoui.update_uis(src)
 	update_icon()
@@ -187,7 +187,7 @@
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
 	if (B)
 		P.info += "<u>Antibodies:</u> "
-		P.info += antigens2string(B.data["antibodies"])
+		P.info += antigens2string(B.data[REAGENT_ANTIBODIES])
 		P.info += "<br>"
 
 		var/list/virus = B.data["virus2"]
@@ -203,7 +203,7 @@
 		var/datum/reagent/antibodies/A = locate(/datum/reagent/antibodies) in sample.reagents.reagent_list
 		if (A)
 			P.info += "The following antibodies have been isolated from the blood sample: "
-			P.info += antigens2string(A.data["antibodies"])
+			P.info += antigens2string(A.data[REAGENT_ANTIBODIES])
 			P.info += "<br>"
 
 	P.info += {"

@@ -246,7 +246,7 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
-	ore_smelts_to = "gold"
+	ore_smelts_to = MATERIAL_GOLD
 	ore_result_amount = 5
 	ore_deposit_radius = 1
 	ore_overlay = "nugget"
@@ -270,7 +270,7 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
-	ore_smelts_to = "silver"
+	ore_smelts_to = MATERIAL_SILVER
 	ore_result_amount = 5
 	ore_deposit_radius = 2
 	ore_overlay = "shiny"
@@ -317,7 +317,7 @@
 	stack_type = /obj/item/stack/material/marble
 
 /material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = "steel"
 	lore_text = "A strong, flexible alloy of iron and carbon. Probably the single most fundamentally useful and ubiquitous substance in human space."
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
@@ -325,12 +325,12 @@
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
-	composite_material = list("hematite" = 1875, "graphene" = 1875)
+	composite_material = list(MATERIAL_HEMATITE = 1875, MATERIAL_GRAPHENE = 1875)
 	alloy_product = TRUE
 
 /material/steel/holographic
-	name = "holo" + DEFAULT_WALL_MATERIAL
-	display_name = DEFAULT_WALL_MATERIAL
+	name = "holosteel"
+	display_name = MATERIAL_STEEL
 	stack_type = null
 	shard_type = SHARD_NONE
 	conductive = 0
@@ -350,7 +350,7 @@
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23
-	composite_material = list("hematite" = 1250, "graphene" = 1250, "platinum" = 1250)
+	composite_material = list(MATERIAL_HEMATITE = 1250, MATERIAL_GRAPHENE = 1250, MATERIAL_PLATINUM = 1250)
 	hitsound = 'sound/effects/blobattack.ogg'
 	alloy_product = TRUE
 
@@ -460,7 +460,7 @@
 	return ..() && !is_reinforced()
 
 /material/glass/reinforced
-	name = "rglass"
+	name = "reinforced glass"
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
 	flags = MATERIAL_BRITTLE
@@ -470,14 +470,14 @@
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	weight = 17
-	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
+	composite_material = list(MATERIAL_STEEL = 1875,MATERIAL_GLASS = 3750)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null
 
 /material/glass/phoron_reinforced
-	name = "rphglass"
+	name = "reinforced borosilicate glass"
 	flags = MATERIAL_BRITTLE
 	lore_text = "An extremely heat-resistant form of glass."
 	icon_colour = "#FC2BC5"
@@ -504,14 +504,14 @@
 
 /material/plastic/holographic
 	name = "holoplastic"
-	display_name = "plastic"
+	display_name = MATERIAL_PLASTIC
 	stack_type = null
 	shard_type = SHARD_NONE
 	hidden_from_codex = TRUE
 
 /material/osmium
 	name = "osmium"
-	lore_text = ""
+	lore_text = "An extremely hard platinum group metal."
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	sheet_singular_name = "ingot"
@@ -538,14 +538,14 @@
 	is_fusion_fuel = 1
 
 /material/mhydrogen
-	name = "mhydrogen"
+	name = "metallic hydrogen"
 	display_name = "metallic hydrogen"
 	lore_text = "When hydrogen is exposed to extremely high pressures and temperatures, such as at the core of gas giants like Jupiter, it can take on metallic properties and - more importantly - acts as a room temperature superconductor. Achieving solid metallic hydrogen at room temperature, though, has proven to be rather tricky."
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	is_fusion_fuel = 1
-	ore_smelts_to = "tritium"
-	ore_compresses_to = "mhydrogen"
+	ore_smelts_to = MATERIAL_TRITIUM
+	ore_compresses_to = MATERIAL_MHYDROGEN
 	ore_overlay = "gems"
 	ore_name = "raw hydrogen"
 
@@ -558,8 +558,8 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
-	ore_smelts_to = "platinum"
-	ore_compresses_to = "osmium"
+	ore_smelts_to = MATERIAL_PLATINUM
+	ore_compresses_to = MATERIAL_OSMIUM
 	ore_can_alloy = 1
 	ore_result_amount = 5
 	ore_deposit_radius = 2
@@ -703,7 +703,7 @@
 	conductive = 0
 	hidden_from_codex = TRUE
 
-/material/cloth_puple
+/material/cloth_purple
 	name = "purple"
 	display_name = "purple"
 	use_name = "purple cloth"

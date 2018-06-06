@@ -9,16 +9,15 @@
 	center_of_mass = null
 	randpixel = 3
 
-	var/default_type = DEFAULT_WALL_MATERIAL
+	var/default_type = MATERIAL_STEEL
 	var/material/material
 	var/apply_colour //temp pending icon rewrite
 
 /obj/item/stack/material/New(var/atom/newloc, var/amount)
 	..(newloc, amount)
 
-	if(!default_type)
-		default_type = DEFAULT_WALL_MATERIAL
-	material = get_material_by_name("[default_type]")
+	if(!default_type) default_type = MATERIAL_STEEL
+	material = SSmaterials.get_material(default_type)
 	if(!material)
 		qdel(src)
 		return
@@ -83,7 +82,7 @@
 /obj/item/stack/material/iron
 	name = "iron"
 	icon_state = "sheet-silver"
-	default_type = "iron"
+	default_type = MATERIAL_IRON
 	apply_colour = 1
 
 /obj/item/stack/material/iron/fifty
@@ -92,7 +91,7 @@
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
-	default_type = "sandstone"
+	default_type = MATERIAL_SANDSTONE
 
 /obj/item/stack/material/sandstone/fifty
 	amount = 50
@@ -100,7 +99,7 @@
 /obj/item/stack/material/marble
 	name = "marble brick"
 	icon_state = "sheet-marble"
-	default_type = "marble"
+	default_type = MATERIAL_MARBLE
 
 /obj/item/stack/material/marble/fifty
 	amount = 50
@@ -108,7 +107,7 @@
 /obj/item/stack/material/diamond
 	name = "diamond"
 	icon_state = "sheet-diamond"
-	default_type = "diamond"
+	default_type = MATERIAL_DIAMOND
 
 /obj/item/stack/material/diamond/five
 	amount = 5
@@ -116,7 +115,7 @@
 /obj/item/stack/material/uranium
 	name = "uranium"
 	icon_state = "sheet-uranium"
-	default_type = "uranium"
+	default_type = MATERIAL_URANIUM
 
 /obj/item/stack/material/uranium/twenty
 	amount = 20
@@ -127,7 +126,7 @@
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
-	default_type = "plastic"
+	default_type = MATERIAL_PLASTIC
 
 /obj/item/stack/material/plastic/fifty
 	amount = 50
@@ -135,7 +134,7 @@
 /obj/item/stack/material/gold
 	name = "gold"
 	icon_state = "sheet-gold"
-	default_type = "gold"
+	default_type = MATERIAL_GOLD
 
 /obj/item/stack/material/gold/twenty
 	amount = 20
@@ -143,7 +142,7 @@
 /obj/item/stack/material/silver
 	name = "silver"
 	icon_state = "sheet-silver"
-	default_type = "silver"
+	default_type = MATERIAL_SILVER
 
 /obj/item/stack/material/silver/twenty
 	amount = 20
@@ -152,7 +151,7 @@
 /obj/item/stack/material/platinum
 	name = "platinum"
 	icon_state = "sheet-adamantine"
-	default_type = "platinum"
+	default_type = MATERIAL_PLATINUM
 
 /obj/item/stack/material/platinum/twenty
 	amount = 20
@@ -161,7 +160,7 @@
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
-	default_type = "mhydrogen"
+	default_type = MATERIAL_MHYDROGEN
 
 /obj/item/stack/material/mhydrogen/five
 	amount = 5
@@ -170,7 +169,7 @@
 /obj/item/stack/material/tritium
 	name = "tritium"
 	icon_state = "sheet-silver"
-	default_type = "tritium"
+	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
 
 /obj/item/stack/material/tritium/fifty
@@ -179,7 +178,7 @@
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
-	default_type = "osmium"
+	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 
 /obj/item/stack/material/osmium/fifty
@@ -189,16 +188,16 @@
 /obj/item/stack/material/deuterium
 	name = "deuterium"
 	icon_state = "sheet-silver"
-	default_type = "deuterium"
+	default_type = MATERIAL_DEUTERIUM
 	apply_colour = 1
 
 /obj/item/stack/material/deuterium/fifty
 	amount = 50
 
 /obj/item/stack/material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = "steel"
 	icon_state = "sheet-metal"
-	default_type = DEFAULT_WALL_MATERIAL
+	default_type = MATERIAL_STEEL
 
 /obj/item/stack/material/steel/fifty
 	amount = 50
@@ -207,7 +206,7 @@
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	default_type = "plasteel"
+	default_type = MATERIAL_PLASTEEL
 
 /obj/item/stack/material/plasteel/twenty
 	amount = 20
@@ -218,7 +217,7 @@
 /obj/item/stack/material/wood
 	name = "wooden plank"
 	icon_state = "sheet-wood"
-	default_type = "wood"
+	default_type = MATERIAL_WOOD
 
 /obj/item/stack/material/wood/fifty
 	amount = 50
@@ -226,12 +225,12 @@
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"
-	default_type = "cloth"
+	default_type = MATERIAL_COTTON
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
-	default_type = "cardboard"
+	default_type = MATERIAL_CARDBOARD
 
 /obj/item/stack/material/cardboard/fifty
 	amount = 50
@@ -240,12 +239,12 @@
 	name = "leather"
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
-	default_type = "leather"
+	default_type = MATERIAL_LEATHER
 
 /obj/item/stack/material/glass
 	name = "glass"
 	icon_state = "sheet-glass"
-	default_type = "glass"
+	default_type = MATERIAL_GLASS
 
 /obj/item/stack/material/glass/fifty
 	amount = 50
@@ -253,14 +252,14 @@
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
-	default_type = "rglass"
+	default_type = MATERIAL_RGLASS
 
 /obj/item/stack/material/glass/phoronrglass
 	name = "reinforced borosilicate glass"
 	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-phoronrglass"
-	default_type = "rphglass"
+	default_type = MATERIAL_RPHGLASS
 
 /obj/item/stack/material/glass/phoronrglass/fifty
 	amount = 50

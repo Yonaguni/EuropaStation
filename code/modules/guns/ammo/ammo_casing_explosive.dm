@@ -4,7 +4,7 @@
 	caliber = /decl/weapon_caliber/gyrojet
 	icon_state = "gyro"
 	spent_icon = "gyro-spent"
-	matter = list("steel" = 500)
+	matter = list(MATERIAL_STEEL = 500)
 	var/detonation_range_dev =  -1
 	var/detonation_range_heavy = 0
 	var/detonation_range_light = 2
@@ -14,7 +14,7 @@
 	name = "explosive charge"
 	icon_state = "rocket"
 	spent_icon = "rocket-spent"
-	matter = list("steel" = 1000)
+	matter = list(MATERIAL_STEEL = 1000)
 	caliber = /decl/weapon_caliber/rocket
 	detonation_range_dev =   1
 	detonation_range_heavy = 2

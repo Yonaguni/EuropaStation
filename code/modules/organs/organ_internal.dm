@@ -154,7 +154,7 @@
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 
 		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
+		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent(REAGENT_ANTITOXIN))
 			//Healthy liver suffers on its own
 			if (src.damage < min_broken_damage)
 				src.damage += 0.2 * PROCESS_ACCURACY
@@ -165,7 +165,7 @@
 					O.take_damage(0.2)
 
 		//Detox can heal small amounts of damage
-		if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
+		if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent(REAGENT_ANTITOXIN))
 			src.damage -= 0.2 * PROCESS_ACCURACY
 
 		if(src.damage < 0)

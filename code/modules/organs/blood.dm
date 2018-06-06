@@ -22,14 +22,14 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if(!should_have_organ(BP_HEART)) //We want the var for safety but we can do without the actual blood.
 		return
 
-	vessel.add_reagent("blood",species.blood_volume)
+	vessel.add_reagent(REAGENT_BLOOD,species.blood_volume)
 	spawn(1)
 		fixblood()
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
-		if(B.id == "blood")
+		if(B.type == REAGENT_BLOOD)
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=get_dna_hash(),"blood_colour"= species.get_blood_colour(src),"blood_type"= b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
 			B.color = B.data["blood_colour"]
@@ -82,7 +82,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		return 0
 	if(!amt)
 		return 0
-	return vessel.remove_reagent("blood", amt * (src.mob_size/MOB_MEDIUM))
+	return vessel.remove_reagent(REAGENT_BLOOD, amt * (src.mob_size/MOB_MEDIUM))
 
 /****************************************************
 				BLOOD TRANSFERS
@@ -114,8 +114,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in src.reagents.reagent_list)
-		temp_chem += R.id
-		temp_chem[R.id] = R.volume
+		temp_chem += R.type
+		temp_chem[R.type] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)
 	return B
 
@@ -124,11 +124,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if(!should_have_organ(BP_HEART))
 		return null
 
-	if(vessel.get_reagent_amount("blood") < amount)
+	if(vessel.get_reagent_amount(REAGENT_BLOOD) < amount)
 		return null
 
 	. = ..()
-	vessel.remove_reagent("blood",amount) // Removes blood if human
+	vessel.remove_reagent(REAGENT_BLOOD,amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
@@ -150,7 +150,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 /mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(!should_have_organ(BP_HEART))
-		reagents.add_reagent("blood", amount, injected.data)
+		reagents.add_reagent(REAGENT_BLOOD, amount, injected.data)
 		reagents.update_total()
 		return
 
@@ -159,10 +159,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if (!injected || !our)
 		return
 	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
-		reagents.add_reagent("toxin",amount * 0.5)
+		reagents.add_reagent(REAGENT_TOXIN,amount * 0.5)
 		reagents.update_total()
 	else
-		vessel.add_reagent("blood", amount, injected.data)
+		vessel.add_reagent(REAGENT_BLOOD, amount, injected.data)
 		vessel.update_total()
 	..()
 

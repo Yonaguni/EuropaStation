@@ -1,7 +1,6 @@
 /datum/reagent/blood
 	data = new/list("donor" = null, "viruses" = null, "species" = DEFAULT_SPECIES, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
-	name = "Blood"
-	id = "blood"
+	name = "blood"
 	reagent_state = LIQUID
 	metabolism = REM * 5
 	color = "#C80000"
@@ -65,9 +64,8 @@
 // pure concentrated antibodies
 /datum/reagent/antibodies
 	data = list("antibodies"=list())
-	name = "Antibodies"
+	name = "antibodies"
 	taste_description = "slime"
-	id = "antibodies"
 	reagent_state = LIQUID
 	color = "#0050F0"
 
@@ -78,8 +76,7 @@
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water
-	name = "Water"
-	id = "water"
+	name = "water"
 	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
@@ -88,8 +85,7 @@
 	glass_desc = "The father of all refreshments."
 
 /datum/reagent/water/deuterium
-	name = "Deuterium"
-	id = "deuterium"
+	name = "deuterium"
 	glass_name = "heavy water" // I know this isn't accurate, but it's kinda funny.
 	glass_desc = "Perfect for refreshing a heavy thirst, or performing fusion."
 
@@ -135,8 +131,7 @@
 			remove_self(amount)
 
 /datum/reagent/fuel
-	name = "Welding fuel"
-	id = "fuel"
+	name = "welding fuel"
 	taste_description = "gross metal"
 	reagent_state = LIQUID
 	color = "#660000"

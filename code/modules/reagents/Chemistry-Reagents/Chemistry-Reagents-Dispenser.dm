@@ -1,6 +1,5 @@
 /datum/reagent/acetone
 	name = "Acetone"
-	id = "acetone"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#808080"
@@ -23,9 +22,8 @@
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
 	return
 
-/datum/reagent/aluminum
-	name = "Aluminum"
-	id = "aluminum"
+/datum/reagent/aluminium
+	name = "Aluminium"
 	taste_description = "metal"
 	taste_mult = 1.1
 	reagent_state = SOLID
@@ -33,7 +31,6 @@
 
 /datum/reagent/ammonia
 	name = "Ammonia"
-	id = "ammonia"
 	taste_description = "mordant"
 	taste_mult = 2
 	reagent_state = LIQUID
@@ -45,7 +42,6 @@
 
 /datum/reagent/carbon
 	name = "Carbon"
-	id = "carbon"
 	taste_description = "sour chalk"
 	taste_mult = 1.5
 	reagent_state = SOLID
@@ -59,7 +55,7 @@
 		for(var/datum/reagent/react in R.reagent_list)
 			if(react == src)
 				continue
-			R.remove_reagent(react.id, removed * effect)
+			R.remove_reagent(react.type, removed * effect)
 
 /datum/reagent/carbon/touch_turf(var/turf/T)
 	if(!istype(T, /turf/space) && !T.open_space)
@@ -72,13 +68,11 @@
 
 /datum/reagent/copper
 	name = "Copper"
-	id = "copper"
 	taste_description = "copper"
 	color = "#6E3B08"
 
 /datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
-	id = "ethanol"
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
 	color = "#404030"
@@ -153,7 +147,6 @@
 
 /datum/reagent/hydrazine
 	name = "Hydrazine"
-	id = "hydrazine"
 	taste_description = "sweet tasting metal"
 	reagent_state = LIQUID
 	color = "#808080"
@@ -174,7 +167,6 @@
 
 /datum/reagent/iron
 	name = "Iron"
-	id = "iron"
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#353535"
@@ -184,7 +176,6 @@
 
 /datum/reagent/lithium
 	name = "Lithium"
-	id = "lithium"
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#808080"
@@ -197,7 +188,6 @@
 
 /datum/reagent/mercury
 	name = "Mercury"
-	id = "mercury"
 	taste_mult = 0 //mercury apparently is tasteless. IDK
 	reagent_state = LIQUID
 	color = "#484848"
@@ -211,21 +201,18 @@
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
-	id = "phosphorus"
 	taste_description = "vinegar"
 	reagent_state = SOLID
 	color = "#832828"
 
 /datum/reagent/potassium
 	name = "Potassium"
-	id = "potassium"
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
 	reagent_state = SOLID
 	color = "#A0A0A0"
 
 /datum/reagent/radium
 	name = "Radium"
-	id = "radium"
 	taste_description = "the color blue, and regret"
 	reagent_state = SOLID
 	color = "#C7C7C7"
@@ -251,7 +238,6 @@
 
 /datum/reagent/acid
 	name = "Sulphuric acid"
-	id = "sacid"
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#DB5008"
@@ -337,7 +323,6 @@
 
 /datum/reagent/acid/hydrochloric //Like sulfuric, but less toxic and more acidic.
 	name = "Hydrochloric Acid"
-	id = "hclacid"
 	taste_description = "stomach acid"
 	reagent_state = LIQUID
 	color = "#808080"
@@ -346,20 +331,17 @@
 
 /datum/reagent/silicon
 	name = "Silicon"
-	id = "silicon"
 	reagent_state = SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/sodium
 	name = "Sodium"
-	id = "sodium"
 	taste_description = "salty metal"
 	reagent_state = SOLID
 	color = "#808080"
 
 /datum/reagent/sugar
 	name = "Sugar"
-	id = "sugar"
 	taste_description = "sugar"
 	taste_mult = 1.8
 	reagent_state = SOLID
@@ -374,14 +356,12 @@
 
 /datum/reagent/sulfur
 	name = "Sulfur"
-	id = "sulfur"
 	taste_description = "old eggs"
 	reagent_state = SOLID
 	color = "#BF8C00"
 
 /datum/reagent/tungsten
 	name = "Tungsten"
-	id = "tungsten"
 	taste_mult = 0 //no taste
 	reagent_state = SOLID
 	color = "#DCDCDC"

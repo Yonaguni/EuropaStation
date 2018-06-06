@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = 1
-	matter = list("steel" = 100)
+	matter = list(MATERIAL_STEEL = 100)
 
 	var/leaves_residue = 1
 	var/decl/weapon_caliber/caliber     // Which kind of guns it can be loaded into

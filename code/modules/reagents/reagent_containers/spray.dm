@@ -37,13 +37,13 @@
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
-	if(reagents.has_reagent("sacid"))
+	if(reagents.has_reagent(REAGENT_SULFURIC_ACID))
 		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
 		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
+	if(reagents.has_reagent(REAGENT_POLYACID))
 		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
+	if(reagents.has_reagent(REAGENT_LUBE))
 		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
@@ -99,17 +99,17 @@
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
-/obj/item/reagent_containers/spray/cleaner/New()
-	..()
-	reagents.add_reagent("cleaner", volume)
+/obj/item/reagent_containers/spray/cleaner/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_CLEANER, volume)
 
 /obj/item/reagent_containers/spray/antiseptic
 	name = "antiseptic bottle"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
-/obj/item/reagent_containers/spray/antiseptic/New()
-	..()
-	reagents.add_reagent("antiseptic", volume)
+/obj/item/reagent_containers/spray/antiseptic/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ANTISEPTIC, volume)
 
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
@@ -121,9 +121,9 @@
 	volume = 40
 	var/safety = 1
 
-/obj/item/reagent_containers/spray/pepper/New()
-	..()
-	reagents.add_reagent("condensedcapsaicin", 40)
+/obj/item/reagent_containers/spray/pepper/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_CAPSAICINPLUS, 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	if(..(user, 1))
@@ -149,9 +149,9 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/reagent_containers/spray/waterflower/New()
-	..()
-	reagents.add_reagent("water", 10)
+/obj/item/reagent_containers/spray/waterflower/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_WATER, 10)
 
 /obj/item/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
@@ -193,9 +193,9 @@
 	item_state = "plantbgone"
 	volume = 100
 
-/obj/item/reagent_containers/spray/plantbgone/New()
-	..()
-	reagents.add_reagent("weedkiller", 100)
+/obj/item/reagent_containers/spray/plantbgone/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_WEEDKILLER, 100)
 
 /obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, var/mob/user, proximity)
 	if(!proximity) return

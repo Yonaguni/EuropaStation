@@ -96,16 +96,16 @@
 /proc/mode_to_gasid(var/mode)
 	switch(mode)
 		if(ATM_O2)
-			return "oxygen"
+			return GAS_OXYGEN
 		if(ATM_N2)
-			return "nitrogen"
+			return GAS_NITROGEN
 		if(ATM_H2)
-			return "hydrogen"
+			return GAS_HYDROGEN
 		if(ATM_CO2)
-			return "carbon_dioxide"
+			return GAS_CARBON_DIOXIDE
 		if(ATM_P)
 			return GAS_FUEL
 		if(ATM_N2O)
-			return "sleeping_agent"
+			return GAS_SLEEPING
 		else
 			return null

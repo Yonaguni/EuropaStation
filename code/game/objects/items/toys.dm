@@ -58,7 +58,7 @@
 			if(O.reagents.total_volume < 1)
 				user << "The [O] is empty."
 			else if(O.reagents.total_volume >= 1)
-				if(O.reagents.has_reagent("pacid", 1))
+				if(O.reagents.has_reagent(REAGENT_POLYACID, 1))
 					user << "The acid chews through the balloon!"
 					O.reagents.splash(user, reagents.total_volume)
 					qdel(src)
@@ -331,11 +331,10 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
+/obj/item/toy/waterflower/Initialize(mapload)
+	create_reagents(10)
+	reagents.add_reagent(REAGENT_WATER, 10)
+	. = ..()
 
 /obj/item/toy/waterflower/attack(var/mob/living/carbon/human/M, var/mob/user)
 	return

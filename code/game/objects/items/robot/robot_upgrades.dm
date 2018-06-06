@@ -6,7 +6,7 @@
 	desc = "Protected by FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
-	matter = list("glass" = 1000, "plastic" = 1000, "steel" = 1000, "osmium" = 200)
+	matter = list(MATERIAL_GLASS = 1000, MATERIAL_PLASTIC = 1000, MATERIAL_STEEL = 1000, MATERIAL_OSMIUM = 200)
 	var/locked = 0
 	var/require_module = 0
 	var/installed = 0

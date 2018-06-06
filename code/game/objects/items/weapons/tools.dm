@@ -59,7 +59,7 @@
 	throwforce = 7.0
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_STEEL = 150)
 	center_of_mass = "x=17;y=16"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
@@ -81,7 +81,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 75)
+	matter = list(MATERIAL_STEEL = 75)
 	center_of_mass = "x=16;y=7"
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
@@ -140,7 +140,7 @@
 	throw_range = 9
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 80)
+	matter = list(MATERIAL_STEEL = 80)
 	center_of_mass = "x=18;y=10"
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
@@ -187,7 +187,7 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 30)
 
 	//R&D tech level
 
@@ -197,13 +197,9 @@
 	var/status = 1 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 
-/obj/item/weldingtool/New()
-//	var/random_fuel = min(rand(10,20),max_fuel)
-	var/datum/reagents/R = new/datum/reagents(max_fuel)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
-	..()
+/obj/item/weldingtool/Initialize(mapload)
+	create_reagents(max_fuel)
+	. = ..()
 
 /obj/item/weldingtool/Destroy()
 	if(welding)
@@ -289,7 +285,7 @@
 
 //Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(REAGENT_FUEL)
 
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
@@ -317,10 +313,10 @@
 
 	if(in_mob)
 		amount = max(amount, 2)
-		reagents.trans_id_to(in_mob, "fuel", amount)
+		reagents.trans_id_to(in_mob, REAGENT_FUEL, amount)
 		in_mob.IgniteMob()
 	else
-		reagents.remove_reagent("fuel", amount)
+		reagents.remove_reagent(REAGENT_FUEL, amount)
 		var/turf/location = get_turf(src.loc)
 		if(location)
 			location.hotspot_expose(700, 5)
@@ -380,21 +376,21 @@
 	name = "industrial welding tool"
 	max_fuel = 40
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 60)
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 	var/last_gen = 0
 
 
@@ -421,7 +417,7 @@
 	item_state = "crowbar"
 	w_class = 2.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MATERIAL_STEEL = 50)
 	center_of_mass = "x=16;y=20"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
@@ -527,7 +523,7 @@
 /obj/item/combitool/omni/Initialize()
 	. = ..()
 	create_reagents(max_fuel)
-	reagents.add_reagent("fuel", max_fuel)
+	reagents.add_reagent(REAGENT_FUEL, max_fuel)
 
 /obj/item/combitool/omni/update_tool()
 	..()
@@ -542,8 +538,8 @@
 /obj/item/combitool/omni/proc/remove_fuel(var/amount = 1, var/mob/user)
 	if(!welding)
 		return 0
-	if(reagents.get_reagent_amount("fuel") >= amount)
-		reagents.remove_reagent("fuel", amount)
+	if(reagents.get_reagent_amount(REAGENT_FUEL) >= amount)
+		reagents.remove_reagent(REAGENT_FUEL, amount)
 		var/turf/location = get_turf(src.loc)
 		if(location)
 			location.hotspot_expose(700, 5)

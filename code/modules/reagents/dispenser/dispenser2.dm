@@ -19,11 +19,16 @@
 	anchored = 1
 
 /obj/machinery/chemical_dispenser/New()
+	if(spawn_cartridges)
+		for(var/cart in spawn_cartridges)
+			new cart(src)
 	..()
 
-	if(spawn_cartridges)
-		for(var/type in spawn_cartridges)
-			add_cartridge(new type(src))
+/obj/machinery/chemical_dispenser/Initialize(mapload)
+	for(var/obj/item/reagent_containers/chem_disp_cartridge/cart in contents)
+		add_cartridge(cart)
+	. = ..()
+
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	..()
@@ -117,7 +122,7 @@
 	var/data[0]
 	data["amount"] = amount
 	data["isBeakerLoaded"] = container ? 1 : 0
-	data["glass"] = accept_drinking
+	data[MATERIAL_GLASS] = accept_drinking
 	var beakerD[0]
 	if(container && container.reagents && container.reagents.reagent_list.len)
 		for(var/datum/reagent/R in container.reagents.reagent_list)

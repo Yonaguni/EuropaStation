@@ -88,7 +88,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = "chili"
 
 /obj/item/seeds/plastiseed
-	seed_type = "plastic"
+	seed_type = MATERIAL_PLASTIC
 
 /obj/item/seeds/grapeseed
 	seed_type = "grapes"

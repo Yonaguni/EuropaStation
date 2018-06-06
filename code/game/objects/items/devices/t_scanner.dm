@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	w_class = 2
 	item_state = "electronic"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_STEEL = 150)
 
 
 	var/scan_range = 1

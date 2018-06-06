@@ -1,7 +1,7 @@
 // Dummy item for lathes.
 /obj/item/supply_beacon
 	name = "supply beacon"
-	matter = list("steel" = 8000)
+	matter = list(MATERIAL_STEEL = 8000)
 
 /obj/item/supply_beacon/Initialize()
 	..()

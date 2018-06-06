@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	dir = SOUTH
-	matter = list("steel" = 5000, "glass" = 1000, "plastic" = 1000, "osmium" = 100)
+	matter = list(MATERIAL_STEEL = 5000, MATERIAL_GLASS = 1000, MATERIAL_PLASTIC = 1000, MATERIAL_OSMIUM = 100)
 
 	var/list/part = null // Order of args is important for installing robolimbs.
 	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
@@ -75,7 +75,7 @@
 	name = "endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
-	matter = list("steel" = 25000, "glass" = 7500, "plastic" = 3000, "osmium" = 1500)
+	matter = list(MATERIAL_STEEL = 25000, MATERIAL_GLASS = 7500, MATERIAL_PLASTIC = 3000, MATERIAL_OSMIUM = 1500)
 
 	var/obj/item/robot_parts/l_arm/l_arm = null
 	var/obj/item/robot_parts/r_arm/r_arm = null
@@ -114,7 +114,7 @@
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W, var/mob/user)
 	..()
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 		var/obj/item/stack/material/M = W
 		if (M.use(1))
 			var/obj/item/secbot_assembly/ed209_assembly/B = new /obj/item/secbot_assembly/ed209_assembly

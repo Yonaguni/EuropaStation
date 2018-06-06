@@ -38,9 +38,9 @@
  */
 /obj/item/organ/internal/lungs/proc/sync_breath_types()
 	min_breath_pressure = species.breath_pressure
-	breath_type = species.breath_type ? species.breath_type : "oxygen"
+	breath_type = species.breath_type ? species.breath_type : GAS_OXYGEN
 	poison_type = species.poison_type ? species.poison_type : GAS_FUEL
-	exhale_type = species.exhale_type ? species.exhale_type : "carbon_dioxide"
+	exhale_type = species.exhale_type ? species.exhale_type : GAS_CARBON_DIOXIDE
 
 /obj/item/organ/internal/lungs/process()
 	..()
@@ -147,15 +147,15 @@
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
-		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		owner.reagents.add_reagent(REAGENT_TOXIN, Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		owner.toxins_alert = 1
 	else
 		owner.toxins_alert = 0
 
 	// If there's some other shit in the air lets deal with it here.
-	if(breath.gas["sleeping_agent"])
-		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
+	if(breath.gas[GAS_SLEEPING])
+		var/SA_pp = (breath.gas[GAS_SLEEPING] / breath.total_moles) * breath_pressure
 		if(SA_pp > SA_para_min)		// Enough to make us paralysed for a bit
 			owner.Paralyse(3)	// 3 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
@@ -164,7 +164,7 @@
 			if(prob(20))
 				owner.emote(pick("giggle", "laugh"))
 
-		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+		breath.adjust_gas(GAS_SLEEPING, -breath.gas[GAS_SLEEPING]/6, update = 0) //update after
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale

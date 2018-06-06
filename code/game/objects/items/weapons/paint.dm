@@ -9,7 +9,7 @@ var/global/list/cached_icons = list()
 	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"
 	item_state = "paintcan"
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MATERIAL_STEEL = 200)
 	w_class = 3.0
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = "10;20;30;60"
@@ -29,7 +29,7 @@ var/global/list/cached_icons = list()
 /obj/item/reagent_containers/glass/paint/New()
 	..()
 	if(paint_hex && lentext(paint_hex) > 0)
-		reagents.add_reagent("paint", volume, paint_hex)
+		reagents.add_reagent(REAGENT_PAINT, volume, paint_hex)
 
 /obj/item/reagent_containers/glass/paint/red
 	name = "red paint bucket"

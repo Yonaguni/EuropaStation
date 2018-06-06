@@ -13,7 +13,7 @@
 	throw_speed = 5
 	throw_range = 10
 
-	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
+	matter = list(MATERIAL_STEEL = 500, MATERIAL_GLASS = 200)
 	var/mode = 1;
 
 /obj/item/robotanalyzer/attack(var/mob/living/M, var/mob/living/user)

@@ -583,7 +583,7 @@ obj/machinery/light/proc/burn_out()
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	matter = list(DEFAULT_WALL_MATERIAL = 60)
+	matter = list(MATERIAL_STEEL = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/broken_chance = 2
 
@@ -598,7 +598,7 @@ obj/machinery/light/proc/burn_out()
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list("glass" = 100)
+	matter = list(MATERIAL_GLASS = 100)
 
 	brightness_range = 5 // luminosity when on, also used in power calculation
 	brightness_power = 7
@@ -620,7 +620,7 @@ obj/machinery/light/proc/burn_out()
 	base_state = "lbulb"
 	item_state = "contvapour"
 	broken_chance = 5
-	matter = list("glass" = 100)
+	matter = list(MATERIAL_GLASS = 100)
 
 	brightness_range = 5
 	brightness_power = 6
@@ -643,7 +643,7 @@ obj/machinery/light/proc/burn_out()
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list("glass" = 100)
+	matter = list(MATERIAL_GLASS = 100)
 	brightness_range = 5
 	brightness_power = 2
 
@@ -685,7 +685,7 @@ obj/machinery/light/proc/burn_out()
 
 		user << "You inject the solution into the [src]."
 
-		if(S.reagents.has_reagent("fuel", 5))
+		if(S.reagents.has_reagent(REAGENT_FUEL, 5))
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a light with fuel, rigging it to explode.")

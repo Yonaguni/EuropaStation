@@ -13,25 +13,23 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("adrenaline", "antibiotic")
+	var/list/reagent_ids = list(REAGENT_ADRENALINE, REAGENT_ANTIBIOTICS)
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
 /obj/item/reagent_containers/borghypo/surgeon
-	reagent_ids = list("styptazine", "adrenaline", "dexalin")
+	reagent_ids = list(REAGENT_STYPTAZINE, REAGENT_ADRENALINE, REAGENT_DEXALIN)
 
 /obj/item/reagent_containers/borghypo/crisis
-	reagent_ids = list("adrenaline", "morphine")
+	reagent_ids = list(REAGENT_ADRENALINE, REAGENT_MORPHINE)
 
-/obj/item/reagent_containers/borghypo/New()
-	..()
-
+/obj/item/reagent_containers/borghypo/Initialize(mapload)
+	. = ..()
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
-		var/datum/reagent/R = chemical_reagents_list[T]
+		var/datum/reagent/R = SSchemistry.get_reagent(T)
 		reagent_names += R.name
-
-	processing_objects.Add(src)
+	START_PROCESSING(SSprocessing, src)
 
 /obj/item/reagent_containers/borghypo/Destroy()
 	processing_objects.Remove(src)
@@ -101,14 +99,14 @@
 		if(t)
 			playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
-			var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+			var/datum/reagent/R = SSchemistry.get_reagent(reagent_ids[mode])
 			usr << "<span class='notice'>Synthesizer is now producing '[R.name]'.</span>"
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	if(!..(user, 2))
 		return
 
-	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+	var/datum/reagent/R = SSchemistry.get_reagent(reagent_ids[mode])
 
 	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
 
@@ -121,7 +119,7 @@
 	recharge_time = 3
 	volume = 60
 	possible_transfer_amounts = "5;10;20;30"
-	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
+	reagent_ids = list(REAGENT_BEER, REAGENT_KAHLUA, REAGENT_WHISKEY, REAGENT_WINE, REAGENT_VODKA, REAGENT_GIN, REAGENT_RUM, REAGENT_TEQUILLA, REAGENT_VERMOUTH, REAGENT_COGNAC, REAGENT_ALE, REAGENT_MEAD, REAGENT_WATER, REAGENT_SUGAR, REAGENT_ICE, REAGENT_TEA, REAGENT_ICETEA, REAGENT_COLA, REAGENT_CITRUS_SODA, REAGENT_CHERRY_COLA, REAGENT_LEMONADE, REAGENT_TONIC, REAGENT_SODAWATER, REAGENT_LEMON_LIME, REAGENT_ORANGE_JUICE, REAGENT_LIME_JUICE, REAGENT_WATERMELONJUICE)
 
 /obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return

@@ -2,7 +2,6 @@
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"
-	id = "adrenaline"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
@@ -18,7 +17,6 @@
 
 /datum/reagent/styptazine
 	name = "Styptazine"
-	id = "styptazine"
 	taste_description = "bitterness"
 	taste_mult = 3
 	reagent_state = LIQUID
@@ -32,7 +30,6 @@
 
 /datum/reagent/fotiazine
 	name = "Fotiazine"
-	id = "fotiazine"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFA800"
@@ -45,7 +42,6 @@
 
 /datum/reagent/dylovene
 	name = "Dylovene"
-	id = "anti_toxin"
 	taste_description = "a roll of gauze"
 	reagent_state = LIQUID
 	color = "#00A000"
@@ -59,7 +55,6 @@
 
 /datum/reagent/dexalin
 	name = "Dexalin"
-	id = "dexalin"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0080FF"
@@ -70,11 +65,10 @@
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustOxyLoss(-15 * removed)
 
-	holder.remove_reagent("lexorin", 2 * removed)
+	holder.remove_reagent(REAGENT_LEXORIN, 2 * removed)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
-	id = "cryoxadone"
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#8080FF"
@@ -92,7 +86,6 @@
 
 /datum/reagent/clonexadone
 	name = "Clonexadone"
-	id = "clonexadone"
 	taste_description = "slime"
 	reagent_state = LIQUID
 	color = "#80BFFF"
@@ -112,7 +105,6 @@
 
 /datum/reagent/paracetamol
 	name = "Paracetamol"
-	id = "paracetamol"
 	taste_description = "sickness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -130,7 +122,6 @@
 
 /datum/reagent/morphine
 	name = "Morphine"
-	id = "morphine"
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
@@ -148,7 +139,6 @@
 
 /datum/reagent/oxycodone
 	name = "Oxycodone"
-	id = "oxycodone"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#800080"
@@ -168,7 +158,6 @@
 
 /datum/reagent/synaptizine
 	name = "Synaptizine"
-	id = "synaptizine"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#99CCFF"
@@ -181,14 +170,13 @@
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
-	holder.remove_reagent("lsd", 5)
+	holder.remove_reagent(REAGENT_LSD, 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/alkysine
 	name = "Alkysine"
-	id = "alkysine"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFFF66"
@@ -203,7 +191,6 @@
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
-	id = "imidazoline"
 	taste_description = "dull toxin"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -224,7 +211,6 @@
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
-	id = "peridaxon"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#561EC3"
@@ -242,7 +228,6 @@
 
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
-	id = "ethylredoxrazine"
 	reagent_state = SOLID
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
@@ -261,7 +246,6 @@
 
 /datum/reagent/entolimod
 	name = "Entolimod"
-	id = "entolimod"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#408000"
@@ -275,7 +259,6 @@
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
-	id = "arithrazine"
 	reagent_state = LIQUID
 	color = "#008000"
 	metabolism = REM * 0.25
@@ -291,7 +274,6 @@
 
 /datum/reagent/antibiotic
 	name = "Antibiotic"
-	id = "antibiotic"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
@@ -301,7 +283,6 @@
 
 /datum/reagent/antiseptic
 	name = "Antiseptic"
-	id = "antiseptic"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -326,7 +307,6 @@
 
 /datum/reagent/leporazine
 	name = "Leporazine"
-	id = "leporazine"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -345,7 +325,6 @@
 
 /datum/reagent/methylphenidate
 	name = "Methylphenidate"
-	id = "methylphenidate"
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#BF80BF"
@@ -363,7 +342,6 @@
 
 /datum/reagent/citalopram
 	name = "Citalopram"
-	id = "citalopram"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FF80FF"
@@ -381,7 +359,6 @@
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
-	id = "paroxetine"
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
@@ -402,7 +379,6 @@
 
 /datum/reagent/nicotine
 	name = "Nicotine"
-	id = "nicotine"
 	taste_description = "smoke"
 	reagent_state = LIQUID
 	color = "#181818"
@@ -423,7 +399,6 @@
 
 /datum/reagent/menthol
 	name = "Menthol"
-	id = "menthol"
 	taste_description = "mint"
 	reagent_state = LIQUID
 	color = "#80AF9C"
@@ -439,7 +414,6 @@
 
 /datum/reagent/rezadone
 	name = "Rezadone"
-	id = "rezadone"
 	taste_description = "sickness"
 	reagent_state = SOLID
 	color = "#669900"

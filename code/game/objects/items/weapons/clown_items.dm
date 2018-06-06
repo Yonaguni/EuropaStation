@@ -15,13 +15,13 @@
 /*
  * Soap
  */
-/obj/item/soap/New()
-	..()
+/obj/item/soap/Initialize(mapload)
 	create_reagents(10)
 	wet()
+	. = ..()
 
 /obj/item/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	reagents.add_reagent(REAGENT_CLEANER, 5)
 
 /obj/item/soap/Crossed(AM as mob|obj)
 	if (istype(AM, /mob/living))

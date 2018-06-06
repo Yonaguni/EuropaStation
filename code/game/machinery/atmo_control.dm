@@ -43,18 +43,18 @@
 			var/total_moles = air_sample.total_moles
 			if(total_moles > 0)
 				if(output&4)
-					signal.data["oxygen"] = round(100*air_sample.gas["oxygen"]/total_moles,0.1)
+					signal.data[GAS_OXYGEN] = round(100*air_sample.gas[GAS_OXYGEN]/total_moles,0.1)
 				if(output&8)
 					signal.data[GAS_FUEL] = round(100*air_sample.gas[GAS_FUEL]/total_moles,0.1)
 				if(output&16)
-					signal.data["nitrogen"] = round(100*air_sample.gas["nitrogen"]/total_moles,0.1)
+					signal.data[GAS_NITROGEN] = round(100*air_sample.gas[GAS_NITROGEN]/total_moles,0.1)
 				if(output&32)
-					signal.data["carbon_dioxide"] = round(100*air_sample.gas["carbon_dioxide"]/total_moles,0.1)
+					signal.data[GAS_CARBON_DIOXIDE] = round(100*air_sample.gas[GAS_CARBON_DIOXIDE]/total_moles,0.1)
 			else
-				signal.data["oxygen"] = 0
+				signal.data[GAS_OXYGEN] = 0
 				signal.data[GAS_FUEL] = 0
-				signal.data["nitrogen"] = 0
-				signal.data["carbon_dioxide"] = 0
+				signal.data[GAS_NITROGEN] = 0
+				signal.data[GAS_CARBON_DIOXIDE] = 0
 		signal.data["sigtype"]="status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -123,14 +123,14 @@ obj/machinery/computer/general_air_control/Destroy()
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data["oxygen"]||data[GAS_FUEL]||data["nitrogen"]||data["carbon_dioxide"])
+				if(data[GAS_OXYGEN]||data[GAS_FUEL]||data[GAS_NITROGEN]||data[GAS_CARBON_DIOXIDE])
 					sensor_part += "   <B>Gas Composition :</B>"
-					if(data["oxygen"])
-						sensor_part += "[data["oxygen"]]% O2; "
-					if(data["nitrogen"])
-						sensor_part += "[data["nitrogen"]]% N; "
-					if(data["carbon_dioxide"])
-						sensor_part += "[data["carbon_dioxide"]]% CO2; "
+					if(data[GAS_OXYGEN])
+						sensor_part += "[data[GAS_OXYGEN]]% O2; "
+					if(data[GAS_NITROGEN])
+						sensor_part += "[data[GAS_NITROGEN]]% N; "
+					if(data[GAS_CARBON_DIOXIDE])
+						sensor_part += "[data[GAS_CARBON_DIOXIDE]]% CO2; "
 					if(data[GAS_FUEL])
 						sensor_part += "[data[GAS_FUEL]]% TX; "
 				sensor_part += "<HR>"

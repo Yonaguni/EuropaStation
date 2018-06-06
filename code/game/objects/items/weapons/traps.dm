@@ -10,7 +10,7 @@
 	throwforce = 0
 	w_class = 3
 
-	matter = list(DEFAULT_WALL_MATERIAL = 18750)
+	matter = list(MATERIAL_STEEL = 18750)
 	can_buckle = 0 //disallow manual un/buckling
 	var/deployed = 0
 

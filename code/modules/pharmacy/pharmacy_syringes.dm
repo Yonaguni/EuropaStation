@@ -11,7 +11,7 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	matter = list("glass" = 150)
+	matter = list(MATERIAL_GLASS = 150)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
@@ -102,7 +102,7 @@
 				return
 
 			if(ismob(target))//Blood!
-				if(reagents.has_reagent("blood"))
+				if(reagents.has_reagent(REAGENT_BLOOD))
 					to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 					return
 				if(istype(target, /mob/living/carbon))

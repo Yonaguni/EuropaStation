@@ -68,8 +68,8 @@ for reference:
 /obj/structure/barricade/New(var/newloc, var/material_name)
 	..(newloc)
 	if(!material_name)
-		material_name = "wood"
-	material = get_material_by_name("[material_name]")
+		material_name = MATERIAL_WOOD
+	material = SSmaterials.get_material("[material_name]")
 	if(!material)
 		qdel(src)
 		return

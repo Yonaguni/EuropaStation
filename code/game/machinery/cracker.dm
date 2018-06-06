@@ -42,13 +42,13 @@
 /obj/machinery/portable_atmospherics/cracker/attackby(var/obj/item/thing, var/mob/user)
 	// remove deuterium as a reagent
 	if(thing.is_open_container() && thing.reagents)
-		if(!reagent_buffer["deuterium"] || reagent_buffer["deuterium"] <= 0)
+		if(!reagent_buffer[GAS_DEUTERIUM] || reagent_buffer[GAS_DEUTERIUM] <= 0)
 			to_chat(user, "<span class='warning'>There is no deuterium stored in \the [src].</span>")
 			return
-		var/transfer_amt = min(thing.reagents.maximum_volume, reagent_buffer["deuterium"])
-		thing.reagents.add_reagent("deuterium", transfer_amt)
+		var/transfer_amt = min(thing.reagents.maximum_volume, reagent_buffer[GAS_DEUTERIUM])
+		thing.reagents.add_reagent(GAS_DEUTERIUM, transfer_amt)
 		thing.update_icon()
-		reagent_buffer["deuterium"] -= transfer_amt
+		reagent_buffer[GAS_DEUTERIUM] -= transfer_amt
 		user.visible_message("<span class='notice'>\The [user] siphons [transfer_amt] unit\s of deuterium from \the [src] into \the [thing].</span>")
 		return
 	. = ..()
@@ -82,13 +82,13 @@
 			// Gas production.
 			var/datum/gas_mixture/produced = new
 			var/gen_amt = min(1, (gas_generated_per_tick * (consuming/fluid_consumption_per_tick)))
-			produced.adjust_gas("oxygen",  gen_amt)
-			produced.adjust_gas("hydrogen", gen_amt * 2)
+			produced.adjust_gas(GAS_OXYGEN,  gen_amt)
+			produced.adjust_gas(GAS_HYDROGEN, gen_amt * 2)
 			produced.temperature = T20C //todo water temperature
 			air_contents.merge(produced)
 
 			// Deuterium extraction.
-			if(prob(deuterium_generation_chance) && (!reagent_buffer["deuterium"] || reagent_buffer["deuterium"] <= max_reagents))
-				if(!reagent_buffer["deuterium"])
-					reagent_buffer["deuterium"] = 0
-				reagent_buffer["deuterium"] += deuterium_generation_amount
+			if(prob(deuterium_generation_chance) && (!reagent_buffer[GAS_DEUTERIUM] || reagent_buffer[GAS_DEUTERIUM] <= max_reagents))
+				if(!reagent_buffer[GAS_DEUTERIUM])
+					reagent_buffer[GAS_DEUTERIUM] = 0
+				reagent_buffer[GAS_DEUTERIUM] += deuterium_generation_amount

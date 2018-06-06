@@ -28,4 +28,4 @@
 
 /turf/simulated/wall/nullglass/Initialize(ml)
 	color = null
-	. = ..(ml,"nullglass")
+	..(ml,MATERIAL_NULLGLASS)

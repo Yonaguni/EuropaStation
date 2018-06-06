@@ -6,7 +6,7 @@
 	icon_state = "fitness-cup_black"
 	base_icon = "fitness-cup"
 	volume = 100
-	matter = list("plastic" = 2000)
+	matter = list(MATERIAL_PLASTIC = 2000)
 	filling_states = "10;20;30;40;50;60;70;80;90;100"
 	possible_transfer_amounts = "5;10;15;25"
 	rim_pos = null // no fruit slices
@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/New()
-	..()
-	reagents.add_reagent("nutriment", 30)
-	reagents.add_reagent("iron", 10)
-	reagents.add_reagent("protein", 15)
-	reagents.add_reagent("water", 45)
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_NUTRIMENT, 30)
+	reagents.add_reagent(REAGENT_PROTEIN, 15)
+	reagents.add_reagent(REAGENT_IRON, 10)
+	reagents.add_reagent(REAGENT_WATER, 45)

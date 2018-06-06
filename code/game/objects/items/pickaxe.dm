@@ -9,7 +9,7 @@
 	icon_state = "pickaxe"
 	item_state = "jackhammer"
 	w_class = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 3750)
+	matter = list(MATERIAL_STEEL = 3750)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
 
@@ -99,7 +99,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 8
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MATERIAL_STEEL = 50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
 	edge = 1

@@ -18,7 +18,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	var/charge = 0			// Current charge
 	var/maxcharge = 1000	// Capacity in Wh
 	var/overlay_state
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50)
 
 /obj/item/cell/New()
 	..()
@@ -132,7 +132,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 1000
-	matter = list("metal" = 350, "glass" = 50)
+	matter = list("metal" = 350, MATERIAL_GLASS = 50)
 
 /obj/item/cell/device/variable/New(newloc, charge_amount)
 	..(newloc)
@@ -146,7 +146,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	desc = "A cheap old power cell. It's probably been in use for quite some time now."
 
 	maxcharge = 100
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 40)
 
 /obj/item/cell/crap/empty/New()
 	..()
@@ -158,7 +158,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	desc = "A standard and relatively cheap power cell, commonly used around the station."
 
 	maxcharge = 250
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 40)
 
 /obj/item/cell/crap/empty/New()
 	..()
@@ -170,7 +170,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	desc = "A special power cell designed for heavy-duty use in area power controllers."
 
 	maxcharge = 500
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50)
 
 
 /obj/item/cell/high
@@ -179,7 +179,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 
 	icon_state = "hcell"
 	maxcharge = 1000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 60)
 
 /obj/item/cell/high/empty/New()
 	..()
@@ -192,7 +192,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 
 	icon_state = "hcell"
 	maxcharge = 1500
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 70)
 
 
 /obj/item/cell/super
@@ -201,7 +201,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 
 	icon_state = "scell"
 	maxcharge = 2000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 70)
 
 /obj/item/cell/super/empty/New()
 	..()
@@ -214,7 +214,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 
 	icon_state = "hpcell"
 	maxcharge = 3000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 80)
 
 /obj/item/cell/hyper/empty/New()
 	..()
@@ -226,7 +226,7 @@ var/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglie
 	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from zero-point energy."
 	icon_state = "icell"
 	maxcharge = 3000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 80)
 
 /obj/item/cell/infinite/check_charge()
 	return 1

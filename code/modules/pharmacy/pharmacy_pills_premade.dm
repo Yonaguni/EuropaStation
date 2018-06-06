@@ -1,60 +1,60 @@
 /obj/item/reagent_containers/pill/antitox/Initialize()
-	reagents.add_reagent("anti_toxin", 25)
+	reagents.add_reagent(REAGENT_ANTITOXIN, 25)
 	. = ..()
 
 /obj/item/reagent_containers/pill/tox/Initialize()
-	reagents.add_reagent("toxin", 50)
+	reagents.add_reagent(REAGENT_TOXIN, 50)
 	. = ..()
 
 /obj/item/reagent_containers/pill/cyanide/Initialize()
-	reagents.add_reagent("cyanide", 50)
+	reagents.add_reagent(REAGENT_CYANIDE, 50)
 
 /obj/item/reagent_containers/pill/stox/Initialize()
-	reagents.add_reagent("stoxin", 15)
+	reagents.add_reagent(REAGENT_SLEEPTOXIN, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/fotiazine/Initialize()
-	reagents.add_reagent("fotiazine", 15)
+	reagents.add_reagent(REAGENT_FOTIAZINE, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/paracetamol/Initialize()
-	reagents.add_reagent("paracetamol", 15)
+	reagents.add_reagent(REAGENT_PARACETAMOL, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/morphine/Initialize()
-	reagents.add_reagent("morphine", 15)
+	reagents.add_reagent(REAGENT_MORPHINE, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/antibiotic/Initialize()
-	reagents.add_reagent("antibiotic", 15)
+	reagents.add_reagent(REAGENT_ANTIBIOTICS, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/diet/Initialize()
-	reagents.add_reagent("lipozine", 2)
+	reagents.add_reagent(REAGENT_LIPOZINE, 2)
 	. = ..()
 
 /obj/item/reagent_containers/pill/methylphenidate/Initialize()
-	reagents.add_reagent("methylphenidate", 15)
+	reagents.add_reagent(REAGENT_METHYLPHENIDATE, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/citalopram/Initialize()
-	reagents.add_reagent("citalopram", 15)
+	reagents.add_reagent(REAGENT_CITALOPRAM, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/adrenaline/Initialize()
-	reagents.add_reagent("adrenaline", 30)
+	reagents.add_reagent(REAGENT_ADRENALINE, 30)
 	. = ..()
 
 /obj/item/reagent_containers/pill/dexalin/Initialize()
-	reagents.add_reagent("dexalin", 15)
+	reagents.add_reagent(REAGENT_DEXALIN, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/dylovene/Initialize()
-	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent(REAGENT_ANTITOXIN, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/styptazine/Initialize()
-	reagents.add_reagent("styptazine", 20)
+	reagents.add_reagent(REAGENT_STYPTAZINE, 20)
 	. = ..()
 
 /obj/item/reagent_containers/pill/happy
@@ -64,8 +64,8 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/happy/Initialize()
-	reagents.add_reagent("glint", 18)
-	reagents.add_reagent("sugar", 12)
+	reagents.add_reagent(REAGENT_GLINT, 18)
+	reagents.add_reagent(REAGENT_SUGAR, 12)
 	. = ..()
 
 /obj/item/reagent_containers/pill/zoom
@@ -75,9 +75,9 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/zoom/Initialize()
-	reagents.add_reagent("impedrezene", 10)
-	reagents.add_reagent("synaptizine", 5)
-	reagents.add_reagent("jumpstart", 5)
+	reagents.add_reagent(REAGENT_IMPEDREZENE, 10)
+	reagents.add_reagent(REAGENT_SYNAPTIZINE, 5)
+	reagents.add_reagent(REAGENT_JUMPSTART, 5)
 	. = ..()
 
 /obj/item/reagent_containers/pill/pax
@@ -87,7 +87,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/pax/Initialize()
-	reagents.add_reagent("pax", 15)
+	reagents.add_reagent(REAGENT_PAX, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/ladder
@@ -97,7 +97,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/ladder/Initialize()
-	reagents.add_reagent("ladder", 15)
+	reagents.add_reagent(REAGENT_LADDER, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/threeeye
@@ -107,7 +107,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/threeeye/Initialize()
-	reagents.add_reagent("threeeye", 15)
+	reagents.add_reagent(REAGENT_THREEEYE, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/lsd
@@ -117,7 +117,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/lsd/Initialize()
-	reagents.add_reagent("lsd", 15)
+	reagents.add_reagent(REAGENT_LSD, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/glint
@@ -127,7 +127,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/glint/Initialize()
-	reagents.add_reagent("glint", 15)
+	reagents.add_reagent(REAGENT_GLINT, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/jumpstart
@@ -137,7 +137,7 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/jumpstart/Initialize()
-	reagents.add_reagent("jumpstart", 15)
+	reagents.add_reagent(REAGENT_JUMPSTART, 15)
 	. = ..()
 
 /obj/item/reagent_containers/pill/adminordrazine
@@ -147,5 +147,5 @@
 	obfuscate_contents = FALSE
 
 /obj/item/reagent_containers/pill/adminordrazine/Initialize()
-	reagents.add_reagent("adminordrazine", 50)
+	reagents.add_reagent(REAGENT_ADMINORDRAZINE, 50)
 	. = ..()

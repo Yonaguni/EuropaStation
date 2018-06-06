@@ -141,21 +141,21 @@
 			bodytemperature += ((environment.temperature - bodytemperature) / 5)
 
 		if(atmos_suitable) // don't bother checking it twice if we got a supplied 0 val.
-			if(min_oxy && environment.gas["oxygen"] < min_oxy)
+			if(min_oxy && environment.gas[GAS_OXYGEN] < min_oxy)
 				atmos_suitable = 0
-			else if(max_oxy && environment.gas["oxygen"] > max_oxy)
+			else if(max_oxy && environment.gas[GAS_OXYGEN] > max_oxy)
 				atmos_suitable = 0
 			else if(min_tox && environment.gas[GAS_FUEL] < min_tox)
 				atmos_suitable = 0
 			else if(max_tox && environment.gas[GAS_FUEL] > max_tox)
 				atmos_suitable = 0
-			else if(min_n2 && environment.gas["nitrogen"] < min_n2)
+			else if(min_n2 && environment.gas[GAS_NITROGEN] < min_n2)
 				atmos_suitable = 0
-			else if(max_n2 && environment.gas["nitrogen"] > max_n2)
+			else if(max_n2 && environment.gas[GAS_NITROGEN] > max_n2)
 				atmos_suitable = 0
-			else if(min_co2 && environment.gas["carbon_dioxide"] < min_co2)
+			else if(min_co2 && environment.gas[GAS_CARBON_DIOXIDE] < min_co2)
 				atmos_suitable = 0
-			else if(max_co2 && environment.gas["carbon_dioxide"] > max_co2)
+			else if(max_co2 && environment.gas[GAS_CARBON_DIOXIDE] > max_co2)
 				atmos_suitable = 0
 
 	//Atmos effect

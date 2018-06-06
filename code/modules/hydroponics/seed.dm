@@ -409,29 +409,29 @@
 
 	if(prob(5))
 		consume_gasses = list()
-		var/gas = pick("oxygen","nitrogen",GAS_FUEL,"carbon_dioxide")
+		var/gas = pick(GAS_OXYGEN,GAS_NITROGEN,GAS_FUEL,GAS_CARBON_DIOXIDE)
 		consume_gasses[gas] = rand(3,9)
 
 	if(prob(5))
 		exude_gasses = list()
-		var/gas = pick("oxygen","nitrogen",GAS_FUEL,"carbon_dioxide")
+		var/gas = pick(GAS_OXYGEN,GAS_NITROGEN,GAS_FUEL,GAS_CARBON_DIOXIDE)
 		exude_gasses[gas] = rand(3,9)
 
 	chems = list()
 	if(prob(80))
-		chems["nutriment"] = list(rand(1,10),rand(10,20))
+		chems[REAGENT_NUTRIMENT] = list(rand(1,10),rand(10,20))
 
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
 		var/list/banned_chems = list(
-			"adminordrazine",
-			"nutriment",
-			"nanites"
+			REAGENT_ADMINORDRAZINE,
+			REAGENT_NUTRIMENT,
+			REAGENT_NANITES
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
-			var/new_chem = pick(chemical_reagents_list)
+			var/new_chem = pick(SSchemistry._chemical_reagents)
 			if(new_chem in banned_chems)
 				continue
 			banned_chems += new_chem

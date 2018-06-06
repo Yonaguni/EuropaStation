@@ -5,7 +5,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
-	matter = list("steel" = 800, "gold" = 200, "glass" = 300)
+	matter = list(MATERIAL_STEEL = 800, MATERIAL_GOLD = 200, MATERIAL_GLASS = 300)
 
 	var/flush = null
 

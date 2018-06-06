@@ -140,8 +140,6 @@
 	lore_text = "A delicious blend of several different kinds of berries."
 
 /datum/reagent/drink/juice/carrot
-	name = "Carrot juice"
-	id = "carrotjuice"
 	lore_text = "It is just like a carrot but without crunching."
 
 /datum/reagent/drink/juice/grape

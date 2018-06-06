@@ -14,7 +14,7 @@
 	throw_range = 5
 	w_class = 3.0
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50000)
+	matter = list(MATERIAL_STEEL = 50000)
 	var/datum/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/working = 0
@@ -158,7 +158,7 @@
 	item_state = "rcdammo"
 	w_class = 2
 
-	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
+	matter = list(MATERIAL_STEEL = 30000,MATERIAL_GLASS = 15000)
 
 /obj/item/rcd/borg
 	canRwall = 1
