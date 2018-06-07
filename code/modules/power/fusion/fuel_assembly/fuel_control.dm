@@ -50,7 +50,7 @@
 			dat += "<td><span class='danger'>ERROR</span></td>"
 			dat += "<td><span class='danger'>ERROR</span></td>"
 		else
-			dat += "<td>[I.cur_assembly ? I.cur_assembly.fuel_type : "NONE"]</td>"
+			dat += "<td>[I.cur_assembly ? I.cur_assembly.name : "NONE"]</td>"
 			if(I.cur_assembly)
 				dat += "<td><a href='?src=\ref[src];toggle_injecting=\ref[I]'>\[[I.injecting ? "Halt injecting" : "Begin injecting"]\]</a></td>"
 			else

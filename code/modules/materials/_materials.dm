@@ -104,6 +104,16 @@
 	var/ore_deposit_radius
 	var/ore_overlay
 
+	// Gas behavior.
+	var/specific_heat = 20 // J/(mol*K)
+	var/molar_mass = 0.032 // kg/mol
+
+	var/gas_tile_overlay
+	var/gas_tile_overlay_colour
+	var/gas_overlay_limit
+	var/gas_flags = 0
+	var/gas_burn_product = MATERIAL_CO2
+
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
@@ -517,33 +527,36 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
-/material/tritium
-	name = "tritium"
-	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
-	mechanics_text = "Tritium can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
-	stack_type = /obj/item/stack/material/tritium
+/material/hydrogen
+	name = "hydrogen"
+	lore_text = "An extremely abundant element."
+	specific_heat = 100
+	molar_mass = 0.002
+	gas_flags = XGM_GAS_FUEL|XGM_GAS_FUSION_FUEL
+	gas_burn_product = MATERIAL_STEAM
+	is_fusion_fuel = 1
 	icon_colour = "#777777"
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	is_fusion_fuel = 1
+	mechanics_text = "Hydrogen and its isotopes (deuterium and tritium) can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. They are the most common fusion fuels."
 
-/material/deuterium
+/material/hydrogen/tritium
+	name = "tritium"
+	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
+	stack_type = /obj/item/stack/material/tritium
+
+/material/hydrogen/deuterium
 	name = "deuterium"
 	lore_text = "One of the two stable isotopes of hydrogen; also known as heavy hydrogen. Useful as a chemically synthesised fusion reactor fuel material."
 	stack_type = /obj/item/stack/material/deuterium
-	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It is the most 'basic' fusion fuel."
 	icon_colour = "#999999"
-	sheet_singular_name = "ingot"
-	sheet_plural_name = "ingots"
-	is_fusion_fuel = 1
 
-/material/mhydrogen
+/material/hydrogen/metallic
 	name = "metallic hydrogen"
 	display_name = "metallic hydrogen"
 	lore_text = "When hydrogen is exposed to extremely high pressures and temperatures, such as at the core of gas giants like Jupiter, it can take on metallic properties and - more importantly - acts as a room temperature superconductor. Achieving solid metallic hydrogen at room temperature, though, has proven to be rather tricky."
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
-	is_fusion_fuel = 1
 	ore_smelts_to = MATERIAL_TRITIUM
 	ore_compresses_to = MATERIAL_MHYDROGEN
 	ore_overlay = "gems"
@@ -746,3 +759,61 @@
 	melting_point = T0C+300
 	conductive = 0
 	hidden_from_codex = TRUE
+
+/material/oxygen
+	name = "oxygen"
+	specific_heat = 20
+	molar_mass = 0.032
+	gas_flags = XGM_GAS_OXIDIZER | XGM_GAS_FUSION_FUEL
+	is_fusion_fuel = TRUE
+
+/material/nitrogen
+	name = "nitrogen"
+	specific_heat = 20
+	molar_mass = 0.028
+
+/material/carbon_dioxide
+	name = "carbon dioxide"
+	specific_heat = 30
+	molar_mass = 0.044
+
+/material/petroleum
+	name = "petroleum"
+	lore_text = "An ubiquitous fossil fuel with many uses."
+	specific_heat = 200
+	molar_mass = 0.405
+	gas_tile_overlay = "gas_dense"
+	gas_tile_overlay_colour = "#FFBB00"
+	gas_overlay_limit = 0.7
+	gas_flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT | XGM_GAS_FUSION_FUEL
+
+/material/nitrous_oxide
+	name = "nitrous oxide"
+	specific_heat = 40
+	molar_mass = 0.044
+	gas_tile_overlay = "gas_sparse"
+	gas_overlay_limit = 1
+	gas_flags = XGM_GAS_OXIDIZER
+
+/material/water
+	name = "steam"
+	specific_heat = 30
+	molar_mass = 0.020
+	gas_tile_overlay = "gas_dense"
+
+/material/helium
+	name = "helium"
+	specific_heat = 80
+	molar_mass = 0.004
+	gas_flags = XGM_GAS_FUSION_FUEL
+
+/material/fusion_reactant
+	name = "boron"
+	gas_flags = XGM_GAS_FUSION_FUEL
+	is_fusion_fuel = TRUE
+
+/material/fusion_reactant/silicon
+	name = "silicon"
+
+/material/fusion_reactant/lithium
+	name = "lithium"

@@ -21,7 +21,8 @@
 	if (total_moles>0)
 		results += "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
 		for(var/mix in mixture.gas)
-			results += "<span class='notice'>[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%</span>"
+			var/material/M = SSmaterials.get_material(mix)
+			results += "<span class='notice'>[capitalize(M.name)]: [round((mixture.gas[mix] / total_moles) * 100)]%</span>"
 		results += "<span class='notice'>Temperature: [round(mixture.temperature-T0C)]&deg;C</span>"
 	else
 		results += "<span class='notice'>\The [target] is empty!</span>"

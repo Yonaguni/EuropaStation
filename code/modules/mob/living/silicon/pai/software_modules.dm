@@ -428,7 +428,8 @@
 			var/gases[0]
 			for(var/g in env.gas)
 				var/gas[0]
-				gas["name"] = gas_data.name[g]
+				var/material/M = SSmaterials.get_material(g)
+				gas["name"] = M.name
 				gas["percent"] = round((env.gas[g] / t_moles) * 100)
 				gases[++gases.len] = gas
 			data["gas"] = gases

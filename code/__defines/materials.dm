@@ -30,8 +30,10 @@
 #define MATERIAL_HOLOPLASTIC   /material/plastic/holographic
 #define MATERIAL_PLATINUM      /material/platinum
 #define MATERIAL_OSMIUM        /material/osmium
-#define MATERIAL_TRITIUM       /material/deuterium
-#define MATERIAL_DEUTERIUM     /material/deuterium
+#define MATERIAL_HYDROGEN      /material/hydrogen
+#define MATERIAL_TRITIUM       /material/hydrogen/tritium
+#define MATERIAL_DEUTERIUM     /material/hydrogen/deuterium
+#define MATERIAL_MHYDROGEN     /material/hydrogen/metallic
 #define MATERIAL_IRON          /material/iron
 #define MATERIAL_ELEVATORIUM   /material/elevatorium
 #define MATERIAL_WOOD          /material/wood
@@ -49,7 +51,16 @@
 #define MATERIAL_LIME_CLOTH    /material/cloth_lime
 #define MATERIAL_PLACEHOLDER   /material/placeholder
 #define MATERIAL_NULLGLASS     /material/nullglass
-#define MATERIAL_MHYDROGEN     /material/mhydrogen
+#define MATERIAL_OXYGEN        /material/oxygen
+#define MATERIAL_NITROGEN      /material/nitrogen
+#define MATERIAL_CO2           /material/carbon_dioxide
+#define MATERIAL_FUEL          /material/petroleum
+#define MATERIAL_N2O           /material/nitrous_oxide
+#define MATERIAL_STEAM         /material/water
+#define MATERIAL_HELIUM        /material/helium
+#define MATERIAL_BORON         /material/fusion_reactant
+#define MATERIAL_SILICON       /material/fusion_reactant/silicon
+#define MATERIAL_LITHIUM       /material/fusion_reactant/lithium
 
 #define DEFAULT_TABLE_MATERIAL MATERIAL_PLASTIC
 #define DEFAULT_WALL_MATERIAL  MATERIAL_STEEL

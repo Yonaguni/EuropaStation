@@ -169,9 +169,10 @@ Class Procs:
 /zone/proc/dbg_data(mob/M)
 	M << name
 	for(var/g in air.gas)
-		M << "[gas_data.name[g]]: [air.gas[g]]"
+		var/material/tmp_mat = SSmaterials.get_material(g)
+		M << "[tmp_mat.name]: [air.gas[g]]"
 	M << "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]�K ([air.temperature - T0C]�C)"
-	M << "O2 per N2: [(air.gas[GAS_NITROGEN] ? air.gas[GAS_OXYGEN]/air.gas[GAS_NITROGEN] : "N/A")] Moles: [air.total_moles]"
+	M << "O2 per N2: [(air.gas[MATERIAL_NITROGEN] ? air.gas[MATERIAL_OXYGEN]/air.gas[MATERIAL_NITROGEN] : "N/A")] Moles: [air.total_moles]"
 	M << "Simulated: [contents.len] ([air.group_multiplier])"
 	//M << "Unsimulated: [unsimulated_contents.len]"
 	//M << "Edges: [edges.len]"

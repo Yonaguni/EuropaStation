@@ -72,7 +72,7 @@
 	var/datum/radio_frequency/radio_connection
 
 	var/list/TLV = list()
-	var/list/trace_gas = list(GAS_SLEEPING) //list of other gases that this air alarm is able to detect
+	var/list/trace_gas = list(MATERIAL_N2O) //list of other gases that this air alarm is able to detect
 
 	var/danger_level = 0
 	var/pressure_dangerlevel = 0
@@ -141,9 +141,9 @@
 		wires = new(src)
 
 	// breathable air according to human/Life()
-	TLV[GAS_OXYGEN] =			list(16, 19, 135, 140) // Partial pressure, kpa
+	TLV[MATERIAL_OXYGEN] =			list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV[GAS_FUEL] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV[MATERIAL_FUEL] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
@@ -254,9 +254,9 @@
 		other_moles += environment.gas[g] //this is only going to be used in a partial pressure calc, so we don't need to worry about group_multiplier here.
 
 	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	oxygen_dangerlevel = get_danger_level(environment.gas[GAS_OXYGEN]*partial_pressure, TLV[GAS_OXYGEN])
-	co2_dangerlevel = get_danger_level(environment.gas[GAS_CARBON_DIOXIDE]*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.gas[GAS_FUEL]*partial_pressure, TLV[GAS_FUEL])
+	oxygen_dangerlevel = get_danger_level(environment.gas[MATERIAL_OXYGEN]*partial_pressure, TLV[MATERIAL_OXYGEN])
+	co2_dangerlevel = get_danger_level(environment.gas[MATERIAL_CO2]*partial_pressure, TLV["carbon dioxide"])
+	phoron_dangerlevel = get_danger_level(environment.gas[MATERIAL_FUEL]*partial_pressure, TLV[MATERIAL_FUEL])
 	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
@@ -522,9 +522,9 @@
 	if(total)
 		var/pressure = environment.return_pressure()
 		environment_data[++environment_data.len] = list("name" = "Pressure", "value" = pressure, "unit" = "kPa", "danger_level" = pressure_dangerlevel)
-		environment_data[++environment_data.len] = list("name" = "Oxygen", "value" = environment.gas[GAS_OXYGEN] / total * 100, "unit" = "%", "danger_level" = oxygen_dangerlevel)
-		environment_data[++environment_data.len] = list("name" = "Carbon dioxide", "value" = environment.gas[GAS_CARBON_DIOXIDE] / total * 100, "unit" = "%", "danger_level" = co2_dangerlevel)
-		environment_data[++environment_data.len] = list("name" = "Toxins", "value" = environment.gas[GAS_FUEL] / total * 100, "unit" = "%", "danger_level" = phoron_dangerlevel)
+		environment_data[++environment_data.len] = list("name" = "Oxygen", "value" = environment.gas[MATERIAL_OXYGEN] / total * 100, "unit" = "%", "danger_level" = oxygen_dangerlevel)
+		environment_data[++environment_data.len] = list("name" = "Carbon dioxide", "value" = environment.gas[MATERIAL_CO2] / total * 100, "unit" = "%", "danger_level" = co2_dangerlevel)
+		environment_data[++environment_data.len] = list("name" = "Toxins", "value" = environment.gas[MATERIAL_FUEL] / total * 100, "unit" = "%", "danger_level" = phoron_dangerlevel)
 		environment_data[++environment_data.len] = list("name" = "Temperature", "value" = environment.temperature, "unit" = "K ([round(environment.temperature - T0C, 0.1)]C)", "danger_level" = temperature_dangerlevel)
 	data["total_danger"] = danger_level
 	data["environment"] = environment_data
@@ -588,9 +588,9 @@
 			var/thresholds[0]
 
 			var/list/gas_names = list(
-				GAS_OXYGEN         = "O<sub>2</sub>",
+				MATERIAL_OXYGEN         = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
-				GAS_FUEL         = "Toxin",
+				MATERIAL_FUEL         = "Toxin",
 				"other"          = "Other")
 			for (var/g in gas_names)
 				thresholds[++thresholds.len] = list("name" = gas_names[g], "settings" = list())

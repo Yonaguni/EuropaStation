@@ -40,15 +40,15 @@
 	..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons
-			filtered_out = list(GAS_FUEL)
+			filtered_out = list(MATERIAL_FUEL)
 		if(1) //removing O2
-			filtered_out = list(GAS_OXYGEN)
+			filtered_out = list(MATERIAL_OXYGEN)
 		if(2) //removing N2
-			filtered_out = list(GAS_NITROGEN)
+			filtered_out = list(MATERIAL_NITROGEN)
 		if(3) //removing CO2
-			filtered_out = list(GAS_CARBON_DIOXIDE)
+			filtered_out = list(MATERIAL_CO2)
 		if(4)//removing N2O
-			filtered_out = list(GAS_SLEEPING)
+			filtered_out = list(MATERIAL_N2O)
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -199,15 +199,15 @@
 		filtered_out.Cut()	//no need to create new lists unnecessarily
 		switch(filter_type)
 			if(0) //removing hydrocarbons
-				filtered_out += GAS_FUEL
+				filtered_out += MATERIAL_FUEL
 			if(1) //removing O2
-				filtered_out += GAS_OXYGEN
+				filtered_out += MATERIAL_OXYGEN
 			if(2) //removing N2
-				filtered_out += GAS_NITROGEN
+				filtered_out += MATERIAL_NITROGEN
 			if(3) //removing CO2
-				filtered_out += GAS_CARBON_DIOXIDE
+				filtered_out += MATERIAL_CO2
 			if(4)//removing N2O
-				filtered_out += GAS_SLEEPING
+				filtered_out += MATERIAL_N2O
 
 	if (href_list["temp"])
 		src.temp = null

@@ -316,7 +316,7 @@ datum/objective/steal
 
 				for(var/obj/item/I in all_items)
 					if(istype(I, steal_target))
-						found_amount += (target_name=="28 moles of fuel (full tank)" ? (I:air_contents:gas[GAS_FUEL]) : (I:amount))
+						found_amount += (target_name=="28 moles of fuel (full tank)" ? (I:air_contents:gas[MATERIAL_FUEL]) : (I:amount))
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")

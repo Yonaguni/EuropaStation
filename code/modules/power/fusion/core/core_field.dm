@@ -269,7 +269,7 @@
 /obj/effect/fusion_em_field/proc/AddParticles(var/name, var/quantity = 1)
 	if(name in reactants)
 		reactants[name] += quantity
-	else if(name != "proton" && name != "electron" && name != "neutron")
+	else
 		reactants.Add(name)
 		reactants[name] = quantity
 
@@ -280,8 +280,6 @@
 	if(istype(T))
 		var/datum/gas_mixture/plasma
 		for(var/reactant in reactants)
-			if(!gas_data.name[reactant])
-				continue
 			if(!plasma)
 				plasma = new
 			plasma.adjust_gas(reactant, max(1,round(reactants[reactant]*0.1)), 0) // *0.1 to compensate for *10 when uptaking gas.

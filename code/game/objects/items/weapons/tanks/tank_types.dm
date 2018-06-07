@@ -13,13 +13,13 @@
 /obj/item/tank/oxygen
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
-	icon_state = GAS_OXYGEN
+	icon_state = "oxygen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
 
 /obj/item/tank/oxygen/New()
 	..()
-	air_contents.adjust_gas(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas(MATERIAL_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 
 /obj/item/tank/oxygen/yellow
@@ -43,8 +43,8 @@
 /obj/item/tank/anesthetic/New()
 	..()
 
-	air_contents.gas[GAS_OXYGEN] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
-	air_contents.gas[GAS_SLEEPING] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
+	air_contents.gas[MATERIAL_OXYGEN] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
+	air_contents.gas[MATERIAL_N2O] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
 	air_contents.update_values()
 
 	return
@@ -60,7 +60,7 @@
 /obj/item/tank/air/New()
 	..()
 
-	src.air_contents.adjust_multi(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, GAS_NITROGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
+	src.air_contents.adjust_multi(MATERIAL_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, MATERIAL_NITROGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 	return
 
@@ -80,7 +80,7 @@
 /obj/item/tank/phoron/New()
 	..()
 
-	src.air_contents.adjust_gas(GAS_FUEL, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas(MATERIAL_FUEL, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/tank/phoron/attackby(var/obj/item/W, var/mob/user)
@@ -118,7 +118,7 @@
 
 /obj/item/tank/emergency/oxygen/New()
 	..()
-	src.air_contents.adjust_gas(GAS_OXYGEN, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas(MATERIAL_OXYGEN, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/tank/emergency/oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
@@ -146,5 +146,5 @@
 /obj/item/tank/nitrogen/New()
 	..()
 
-	src.air_contents.adjust_gas(GAS_NITROGEN, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas(MATERIAL_NITROGEN, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return

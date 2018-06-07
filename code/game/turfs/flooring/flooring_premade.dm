@@ -78,7 +78,7 @@
 /turf/simulated/floor/reinforced/hydrogen
 	oxygen = 0
 	nitrogen = 0
-	adjust_gas_id = GAS_HYDROGEN
+	adjust_gas_id = MATERIAL_HYDROGEN
 	adjust_gas_amt = ATMOSTANK_HYDROGEN
 
 /turf/simulated/floor/reinforced/oxygen
@@ -98,7 +98,7 @@
 /turf/simulated/floor/reinforced/n20
 	oxygen = 0
 	nitrogen = 0
-	adjust_gas_id = GAS_SLEEPING
+	adjust_gas_id = MATERIAL_N2O
 	adjust_gas_amt = ATMOSTANK_NITROUSOXIDE
 
 /turf/simulated/floor/tiled/dark
