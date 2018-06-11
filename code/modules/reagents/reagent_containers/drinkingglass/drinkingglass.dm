@@ -53,7 +53,8 @@
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(!("fizz" in R.glass_special))
 			var/totalfizzy = 0
-			for(var/datum/reagent/re in reagents.reagent_list)
+			for(var/rid in reagents.reagent_list)
+				var/datum/reagent/re = SSchemistry.get_reagent(rid)
 				if("fizz" in re.glass_special)
 					totalfizzy += re.volume
 			if(totalfizzy >= reagents.total_volume / 5) // 20% fizzy by volume

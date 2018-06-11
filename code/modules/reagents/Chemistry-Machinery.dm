@@ -92,7 +92,8 @@
 			if(!condi)
 				if(href_list["name"] == "Blood")
 					var/datum/reagent/blood/G
-					for(var/datum/reagent/F in R.reagent_list)
+					for(var/rid in R.reagent_list)
+						var/datum/reagent/F = SSchemistry.get_reagent(rid)
 						if(F.name == href_list["name"])
 							G = F
 							break
@@ -251,7 +252,8 @@
 			dat += "Beaker is empty."
 		else
 			dat += "Add to buffer:<BR>"
-			for(var/datum/reagent/G in R.reagent_list)
+			for(var/rid in R.reagent_list)
+				var/datum/reagent/G = SSchemistry.get_reagent(rid)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.lore_text];name=[G.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
@@ -262,7 +264,8 @@
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
-			for(var/datum/reagent/N in reagents.reagent_list)
+			for(var/rid in reagents.reagent_list)
+				var/datum/reagent/N = SSchemistry.get_reagent(rid)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.lore_text];name=[N.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
@@ -409,7 +412,8 @@
 			is_beaker_ready = 1
 			beaker_contents = "<B>The beaker contains:</B><br>"
 			var/anything = 0
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for(var/rid in beaker.reagents.reagent_list)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				anything = 1
 				beaker_contents += "[R.volume] - [R.name]<br>"
 			if(!anything)

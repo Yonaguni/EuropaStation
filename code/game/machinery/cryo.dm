@@ -113,19 +113,13 @@
 		data["cellTemperatureStatus"] = "average"
 
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	/* // Removing beaker contents list from front-end, replacing with a total remaining volume
-	var beakerContents[0]
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
-		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
-	data["beakerContents"] = beakerContents
-	*/
 	data["beakerLabel"] = null
 	data["beakerVolume"] = 0
 	if(beaker)
 		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
 		if (beaker.reagents && beaker.reagents.reagent_list.len)
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for(var/rid in beaker.reagents.reagent_list)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found

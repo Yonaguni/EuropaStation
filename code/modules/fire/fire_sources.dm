@@ -157,16 +157,16 @@ var/list/fire_sounds = list(
 		var/obj/item/reagent_containers/RG = thing
 		if(RG.is_open_container() && RG.reagents && RG.reagents.total_volume)
 			user.visible_message("<span class='danger'>\The [user] pours the contents of \the [thing] into \the [src]!</span>")
-			for(var/datum/reagent/R in RG.reagents.reagent_list)
-
+			for(var/rid in RG.reagents.reagent_list)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				// Hardcode this for now.
-				if(R.type == REAGENT_WATER)
+				if(rid == REAGENT_WATER)
 					steam.start() // HISSSSSS!
 
 				// This could be better.
-				if(R.type == REAGENT_FUEL)
+				if(rid == REAGENT_FUEL)
 					fuel += R.volume
-				else if(R.type == REAGENT_WATER) // Quench.
+				else if(rid == REAGENT_WATER) // Quench.
 					fuel -= R.volume
 
 			RG.reagents.clear_reagents()

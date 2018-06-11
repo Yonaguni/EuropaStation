@@ -95,8 +95,9 @@
 		dat += "<h2>Reagent Data</h2>"
 
 		dat += "<br>This sample contains: "
-		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.type)] unit(s)"
+		for(var/rid in grown_reagents.reagent_list)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
+			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(rid)] unit(s)"
 
 	dat += "<h2>Other Data</h2>"
 

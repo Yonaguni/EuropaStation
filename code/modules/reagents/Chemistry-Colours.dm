@@ -7,12 +7,13 @@
 
 	var/list/colors = list(0, 0, 0, 0)
 	var/tot_w = 0
-	for(var/datum/reagent/R in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		var/hex = uppertext(R.color)
 		if(length(hex) == 7)
 			hex += "FF"
 		if(length(hex) != 9) // PANIC PANIC PANIC
-			warning("Reagent [R.name] ([R.type]) has an incorrect color set ([R.color])")
+			warning("Reagent [R.name] ([rid]) has an incorrect color set ([R.color])")
 			hex = "#FFFFFFFF"
 		colors[1] += hex2num(copytext(hex, 2, 4)) * R.volume * R.color_weight
 		colors[2] += hex2num(copytext(hex, 4, 6)) * R.volume * R.color_weight

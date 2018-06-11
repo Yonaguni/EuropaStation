@@ -19,7 +19,8 @@
 	// Check if they're using something that can disinfect wounds.
 	var/disinfect_amt = 5
 	if(tool.reagents)
-		for(var/datum/reagent/R in tool.reagents.reagent_list)
+		for(var/rid in tool.reagents.reagent_list)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			if(R.disinfectant)
 				disinfect_amt -= R.volume
 				if(disinfect_amt <= 0)

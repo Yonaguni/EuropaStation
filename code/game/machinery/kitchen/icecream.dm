@@ -78,9 +78,10 @@
 	dat += "<b>Chocolate cones:</b> <a href='?src=\ref[src];cone=[CONE_CHOC]'><b>Dispense</b></a> <a href='?src=\ref[src];make=[CONE_CHOC];amount=1'><b>Make</b></a> <a href='?src=\ref[src];make=[CONE_CHOC];amount=5'><b>x5</b></a> [product_types[CONE_CHOC]] cones left. (Ingredients: flour, sugar, coco powder)<br></div>"
 	dat += "<br>"
 	dat += "<b>VAT CONTENT</b><br>"
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for(var/rid in reagents.reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		dat += "[R.name]: [R.volume]"
-		dat += "<A href='?src=\ref[src];disposeI=[R.type]'>Purge</A><BR>"
+		dat += "<A href='?src=\ref[src];disposeI=[rid]'>Purge</A><BR>"
 	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
 
 	var/datum/browser/popup = new(user, "icecreamvat","Icecream Vat", 700, 500, src)

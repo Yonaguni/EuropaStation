@@ -3,7 +3,6 @@
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
 	metabolism = REM * 0.5
@@ -19,7 +18,6 @@
 	name = "Styptazine"
 	taste_description = "bitterness"
 	taste_mult = 3
-	reagent_state = LIQUID
 	color = "#BF0000"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
@@ -31,7 +29,6 @@
 /datum/reagent/fotiazine
 	name = "Fotiazine"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#FFA800"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
@@ -43,7 +40,6 @@
 /datum/reagent/dylovene
 	name = "Dylovene"
 	taste_description = "a roll of gauze"
-	reagent_state = LIQUID
 	color = "#00A000"
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
@@ -56,13 +52,12 @@
 /datum/reagent/dexalin
 	name = "Dexalin"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.adjustOxyLoss(-15 * removed)
 
 	holder.remove_reagent(REAGENT_LEXORIN, 2 * removed)
@@ -70,7 +65,6 @@
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
 	taste_description = "sludge"
-	reagent_state = LIQUID
 	color = "#8080FF"
 	metabolism = REM * 0.5
 	scannable = 1
@@ -87,7 +81,6 @@
 /datum/reagent/clonexadone
 	name = "Clonexadone"
 	taste_description = "slime"
-	reagent_state = LIQUID
 	color = "#80BFFF"
 	metabolism = REM * 0.5
 	scannable = 1
@@ -106,7 +99,6 @@
 /datum/reagent/paracetamol
 	name = "Paracetamol"
 	taste_description = "sickness"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = 60
 	scannable = 1
@@ -123,7 +115,6 @@
 /datum/reagent/morphine
 	name = "Morphine"
 	taste_description = "sourness"
-	reagent_state = LIQUID
 	color = "#CB68FC"
 	overdose = 30
 	scannable = 1
@@ -140,7 +131,6 @@
 /datum/reagent/oxycodone
 	name = "Oxycodone"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
 	metabolism = 0.02
@@ -159,13 +149,12 @@
 /datum/reagent/synaptizine
 	name = "Synaptizine"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#99CCFF"
 	metabolism = REM * 0.05
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.drowsyness = max(M.drowsyness - 5, 0)
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
@@ -178,7 +167,6 @@
 /datum/reagent/alkysine
 	name = "Alkysine"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#FFFF66"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -192,7 +180,6 @@
 /datum/reagent/imidazoline
 	name = "Imidazoline"
 	taste_description = "dull toxin"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
@@ -212,7 +199,6 @@
 /datum/reagent/peridaxon
 	name = "Peridaxon"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#561EC3"
 	overdose = 10
 	scannable = 1
@@ -228,11 +214,10 @@
 
 /datum/reagent/ethylredoxrazine
 	name = "Ethylredoxrazine"
-	reagent_state = SOLID
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
@@ -240,14 +225,14 @@
 
 	var/datum/reagents/ingested = M.get_ingested_reagents()
 	if(istype(ingested))
-		for(var/datum/reagent/R in ingested.reagent_list)
+		for(var/rid in ingested.reagent_list)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 5, 0)
+				holder.doses[rid] = max(holder.doses[rid] - removed * 5, 0)
 
 /datum/reagent/entolimod
 	name = "Entolimod"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#408000"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -259,7 +244,6 @@
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
-	reagent_state = LIQUID
 	color = "#008000"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -275,7 +259,6 @@
 /datum/reagent/antibiotic
 	name = "Antibiotic"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#C1C1C1"
 	metabolism = REM * 0.05
 	overdose = REAGENTS_OVERDOSE
@@ -284,7 +267,6 @@
 /datum/reagent/antiseptic
 	name = "Antiseptic"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	touch_met = 5
 
@@ -308,7 +290,6 @@
 /datum/reagent/leporazine
 	name = "Leporazine"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
@@ -326,12 +307,12 @@
 /datum/reagent/methylphenidate
 	name = "Methylphenidate"
 	taste_description = "sourness"
-	reagent_state = LIQUID
 	color = "#BF80BF"
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	var/dose = holder.doses[type]
 	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 		data = world.time
 		M << "<span class='warning'>You lose focus...</span>"
@@ -343,12 +324,12 @@
 /datum/reagent/citalopram
 	name = "Citalopram"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#FF80FF"
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	var/dose = holder.doses[type]
 	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 		data = world.time
 		M << "<span class='warning'>Your mind feels a little less stable...</span>"
@@ -359,12 +340,12 @@
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
-	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
 	data = 0
 
-/datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	var/dose = holder.doses[type]
 	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 		data = world.time
 		M << "<span class='warning'>Your mind feels much less stable...</span>"
@@ -380,15 +361,16 @@
 /datum/reagent/nicotine
 	name = "Nicotine"
 	taste_description = "smoke"
-	reagent_state = LIQUID
+
 	color = "#181818"
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 	data = 0
 
-/datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.add_chemical_effect(CE_PULSE, 1)
+	var/dose = holder.doses[type]
 	if(volume <= 0.02 && dose >= 0.05 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
 		data = world.time
 		M << "<span class='warning'>You feel antsy, your concentration wavers...</span>"
@@ -400,7 +382,6 @@
 /datum/reagent/menthol
 	name = "Menthol"
 	taste_description = "mint"
-	reagent_state = LIQUID
 	color = "#80AF9C"
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
@@ -415,17 +396,17 @@
 /datum/reagent/rezadone
 	name = "Rezadone"
 	taste_description = "sickness"
-	reagent_state = SOLID
 	color = "#669900"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
 
-/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.adjustCloneLoss(-20 * removed)
 	M.adjustOxyLoss(-2 * removed)
 	M.heal_organ_damage(20 * removed, 20 * removed)
 	M.adjustToxLoss(-20 * removed)
+	var/dose = holder.doses[type]
 	if(dose > 3 && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/external/E in H.organs)

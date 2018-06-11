@@ -147,10 +147,11 @@
 
 	// Magical chemical filtration system, do not question it.
 	var/total_transferred = 0
-	for(var/datum/reagent/R in input_item.reagents.reagent_list)
+	for(var/rid in input_item.reagents.reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		for(var/chargetype in charges)
 			var/datum/rig_charge/charge = charges[chargetype]
-			if(charge.display_name == R.type)
+			if(charge.display_name == rid)
 
 				var/chems_to_transfer = R.volume
 
@@ -158,7 +159,7 @@
 					chems_to_transfer = max_reagent_volume - charge.charges
 
 				charge.charges += chems_to_transfer
-				input_item.reagents.remove_reagent(R.type, chems_to_transfer)
+				input_item.reagents.remove_reagent(rid, chems_to_transfer)
 				total_transferred += chems_to_transfer
 
 				break

@@ -48,11 +48,11 @@
 		dat = "Virus production in progress"
 	else if(container)
 		// see if there's any blood in the container
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in container.reagents.reagent_list
-
-		if(B)
+		var/datum/reagent/blood/B = container.reagents.get_reagent(REAGENT_BLOOD)
+		if(B && islist(container.reagents.data[B.type]))
+			var/list/data = container.reagents.data[B.type]
 			dat = "Blood sample inserted."
-			dat += "<BR>Antibodies: [antigens2string(B.data["antibodies"])]"
+			dat += "<BR>Antibodies: [antigens2string(data["antibodies"])]"
 			dat += "<BR><A href='?src=\ref[src];antibody=1'>Begin antibody production</a>"
 		else
 			dat += "<BR>Please check container contents."

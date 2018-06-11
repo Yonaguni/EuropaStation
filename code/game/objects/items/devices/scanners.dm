@@ -117,13 +117,14 @@ REAGENT SCANNER
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.type != REAGENT_BLOOD)
+		for(var/rid in reagents.reagent_list)
+			if(rid != REAGENT_BLOOD)
 				reagents.clear_reagents()
 				user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
 				return
 			else
-				blood_traces = params2list(R.data["trace_chem"])
+				var/list/data = reagents.data[rid]
+				blood_traces = islist(data) ? params2list(data["trace_chem"]) : list()
 				break
 		var/dat = "Trace Chemicals Found: "
 		for(var/R in blood_traces)

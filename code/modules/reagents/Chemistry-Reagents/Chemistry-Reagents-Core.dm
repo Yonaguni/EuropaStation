@@ -1,7 +1,6 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = DEFAULT_SPECIES, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	name = "blood"
-	reagent_state = LIQUID
+	initial_data = list("donor" = null, "viruses" = null, "species" = DEFAULT_SPECIES, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	metabolism = REM * 5
 	color = "#C80000"
 	taste_description = "iron"
@@ -9,64 +8,52 @@
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
-/datum/reagent/blood/initialize_data(var/newdata)
-	..()
-	if(data && data["blood_colour"])
-		color = data["blood_colour"]
-	return
-
-/datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
-	var/t = data.Copy()
-	if(t["virus2"])
-		var/list/v = t["virus2"]
-		t["virus2"] = v.Copy()
-	return t
-
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
-	if(!istype(T) || volume < 3)
-		return
-	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
+	if(istype(T) && volume < 3)
 		blood_splatter(T, src, 1)
 
-/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-
+/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	var/dose = holder.doses[type]
 	if(dose > 5)
 		M.adjustToxLoss(removed)
 	if(dose > 15)
 		M.adjustToxLoss(removed)
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
-		if(vlist.len)
-			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
+	if(islist(holder.data[type]))
+		var/list/data = holder.data[type]
+		if(data["virus2"])
+			var/list/vlist = data["virus2"]
+			if(vlist.len)
+				for(var/ID in vlist)
+					var/datum/disease2/disease/V = vlist[ID]
+					if(V.spreadtype == "Contact")
+						infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
 			return
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
-		if(vlist.len)
-			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
-	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
+	if(islist(holder.data[type]))
+		var/list/data = holder.data[type]
+		if(data["virus2"])
+			var/list/vlist = data["virus2"]
+			if(vlist.len)
+				for(var/ID in vlist)
+					var/datum/disease2/disease/V = vlist[ID]
+					if(V.spreadtype == "Contact")
+						infect_virus2(M, V.getcopy())
+		if(data["antibodies"])
+			M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.inject_blood(src, volume)
-	remove_self(volume)
+	remove_self(volume, holder)
 
 // pure concentrated antibodies
 /datum/reagent/antibodies
 	data = list("antibodies"=list())
 	name = "antibodies"
 	taste_description = "slime"
-	reagent_state = LIQUID
 	color = "#0050F0"
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -77,7 +64,6 @@
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water
 	name = "water"
-	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
 	taste_description = "water"
@@ -119,31 +105,29 @@
 		if(!cube.wrapped)
 			cube.Expand()
 
-/datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/water/touch_mob(var/mob/living/L, var/amount, var/datum/reagents/holder)
 	if(istype(L))
 		var/needed = L.fire_stacks * 10
 		if(amount > needed)
 			L.fire_stacks = 0
 			L.ExtinguishMob()
-			remove_self(needed)
+			remove_self(needed, holder)
 		else
 			L.adjust_fire_stacks(-(amount / 10))
-			remove_self(amount)
+			remove_self(amount, holder)
 
 /datum/reagent/fuel
 	name = "welding fuel"
 	taste_description = "gross metal"
-	reagent_state = LIQUID
 	color = "#660000"
 	touch_met = 5
 
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
-/datum/reagent/fuel/touch_turf(var/turf/T)
+/datum/reagent/fuel/touch_turf(var/turf/T, var/datum/reagents/holder)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
-	return
+	remove_self(volume, holder)
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(2 * removed)

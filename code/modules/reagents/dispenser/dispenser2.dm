@@ -125,7 +125,8 @@
 	data[MATERIAL_GLASS] = accept_drinking
 	var beakerD[0]
 	if(container && container.reagents && container.reagents.reagent_list.len)
-		for(var/datum/reagent/R in container.reagents.reagent_list)
+		for(var/rid in container.reagents.reagent_list)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			beakerD[++beakerD.len] = list("name" = R.name, "volume" = R.volume)
 	data["beakerContents"] = beakerD
 

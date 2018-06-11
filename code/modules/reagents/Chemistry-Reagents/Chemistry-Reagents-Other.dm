@@ -3,7 +3,6 @@
 /datum/reagent/crayon_dust
 	name = "Crayon dust"
 	taste_description = "the back of class"
-	reagent_state = LIQUID
 	color = "#888888"
 	overdose = 5
 
@@ -42,7 +41,6 @@
 /datum/reagent/paint
 	name = "Paint"
 	taste_description = "chalk"
-	reagent_state = LIQUID
 	color = "#808080"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
@@ -97,15 +95,14 @@
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
 	taste_description = "100% abuse"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	flags = AFFECTS_DEAD //This can even heal dead people.
 
 	glass_name = "liquid gold"
 	glass_desc = "It's magic. We don't have to explain it."
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed)
+/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	affect_blood(M, alien, removed, holder)
 
 /datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.setCloneLoss(0)
@@ -131,23 +128,20 @@
 /datum/reagent/gold
 	name = "Gold"
 	taste_description = "expensive metal"
-	reagent_state = SOLID
 	color = "#F7C430"
 
 /datum/reagent/silver
 	name = "Silver"
 	taste_description = "expensive yet reasonable metal"
-	reagent_state = SOLID
 	color = "#D0D0D0"
 
 /datum/reagent/uranium
 	name ="Uranium"
 	taste_description = "the inside of a reactor"
-	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_ingest(M, alien, removed)
+/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	affect_ingest(M, alien, removed, holder)
 
 /datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.apply_effect(5 * removed, IRRADIATE, blocked = 0)
@@ -163,7 +157,6 @@
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 
 /datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -186,35 +179,31 @@
 /datum/reagent/diethylamine
 	name = "Diethylamine"
 	taste_description = "iron"
-	reagent_state = LIQUID
 	color = "#604030"
 
 /datum/reagent/surfactant // Foam precursor
 	name = "Azosurfactant"
 	taste_description = "metal"
-	reagent_state = LIQUID
 	color = "#9E6B38"
 
 /datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	taste_description = "metal"
-	reagent_state = SOLID
 	color = "#664B63"
 
 /datum/reagent/thermite
 	name = "Thermite"
 	taste_description = "sweet tasting metal"
-	reagent_state = SOLID
 	color = "#673910"
 	touch_met = 50
 
-/datum/reagent/thermite/touch_turf(var/turf/T)
+/datum/reagent/thermite/touch_turf(var/turf/T, var/datum/reagents/holder)
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
-			remove_self(5)
+			remove_self(5, holder)
 	return
 
 /datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
@@ -227,7 +216,6 @@
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
 	taste_description = "sourness"
-	reagent_state = LIQUID
 	color = "#A5F0EE"
 	touch_met = 50
 
@@ -271,7 +259,6 @@
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
 	taste_description = "slime"
-	reagent_state = LIQUID
 	color = "#009CA8"
 
 /datum/reagent/lube/touch_turf(var/turf/simulated/T)
@@ -283,26 +270,23 @@
 /datum/reagent/silicate
 	name = "Silicate"
 	taste_description = MATERIAL_PLASTIC
-	reagent_state = LIQUID
 	color = "#C7FFFF"
 
-/datum/reagent/silicate/touch_obj(var/obj/O)
+/datum/reagent/silicate/touch_obj(var/obj/O, var/datum/reagents/holder)
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		W.apply_silicate(volume)
-		remove_self(volume)
+		remove_self(volume, holder)
 	return
 
 /datum/reagent/glycerol
 	name = "Glycerol"
 	taste_description = "sweetness"
-	reagent_state = LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
 	taste_description = "oil"
-	reagent_state = LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -313,7 +297,6 @@
 	name = "Coolant"
 	taste_description = "sourness"
 	taste_mult = 1.1
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 
 /datum/reagent/ultraglue
@@ -324,13 +307,11 @@
 /datum/reagent/woodpulp
 	name = "Wood Pulp"
 	taste_description = "wood"
-	reagent_state = LIQUID
 	color = "#B97A57"
 
 /datum/reagent/luminol
 	name = "Luminol"
 	taste_description = "metal"
-	reagent_state = LIQUID
 	color = "#F2F3F4"
 
 /datum/reagent/luminol/touch_obj(var/obj/O)

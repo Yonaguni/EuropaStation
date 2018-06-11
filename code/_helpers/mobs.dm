@@ -368,7 +368,8 @@ Proc for attack log creation, because really why not
 		var/datum/reagents/ingested = C.get_ingested_reagents()
 		if(ingested && ingested.total_volume)
 			var/unknown = 0
-			for(var/datum/reagent/R in ingested.reagent_list)
+			for(var/rid in ingested.reagent_list)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				if(R.scannable)
 					user << "<span class='notice'>[R.name] found in subject's stomach.</span>"
 				else

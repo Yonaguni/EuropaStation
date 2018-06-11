@@ -71,14 +71,13 @@
 	data["blood_already_infected"] = null
 
 	if (beaker)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in beaker.reagents.reagent_list
+		var/datum/reagent/blood/B = get_blood(beaker.reagents)
 		data["can_breed_virus"] = dish && dish.virus2 && B
-
-		if (B)
-			if (!B.data["virus2"])
-				B.data["virus2"] = list()
-
-			var/list/virus = B.data["virus2"]
+		if(istype(B))
+			var/list/blood_data = beaker.reagents.data[B.type]
+			if(!blood_data["virus2"])
+				blood_data["virus2"] = list()
+			var/list/virus = blood_data["virus2"]
 			for (var/ID in virus)
 				data["blood_already_infected"] = virus[ID]
 
@@ -137,12 +136,14 @@
 			SSnanoui.update_uis(src)
 
 		if (locate(/datum/reagent/toxin) in beaker.reagents.reagent_list && toxins < 100)
-			for(var/datum/reagent/toxin/T in beaker.reagents.reagent_list)
-				toxins += max(T.strength,1)
-				beaker.reagents.remove_reagent(T.type,1)
-				if(toxins > 100)
-					toxins = 100
-					break
+			for(var/rid in beaker.reagents.reagent_list)
+				var/datum/reagent/toxin/T = SSchemistry.get_reagent(rid)
+				if(istype(T))
+					toxins += max(T.strength,1)
+					beaker.reagents.remove_reagent(T.type,1)
+					if(toxins > 100)
+						toxins = 100
+						break
 			SSnanoui.update_uis(src)
 
 /obj/machinery/disease2/incubator/Topic(href, href_list)
@@ -190,15 +191,15 @@
 		if (!dish)
 			return 1
 
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in beaker.reagents.reagent_list
-		if (!B)
+		var/datum/reagent/blood/B = get_blood(beaker.reagents)
+		if(!istype(B))
 			return 1
-
-		if (!B.data["virus2"])
-			B.data["virus2"] = list()
+		var/list/blood_data = beaker.reagents.data[B.type]
+		if (!blood_data["virus2"])
+			blood_data["virus2"] = list()
 
 		var/list/virus = list("[dish.virus2.uniqueID]" = dish.virus2.getcopy())
-		B.data["virus2"] += virus
+		blood_data["virus2"] += virus
 
 		ping("\The [src] pings, \"Injection complete.\"")
 		return 1

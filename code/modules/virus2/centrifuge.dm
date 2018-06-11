@@ -52,7 +52,7 @@
 		data["sample_inserted"] = !!sample
 
 		if (sample)
-			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+			var/datum/reagent/blood/B = get_blood(sample.reagents)
 			if (B)
 				data[REAGENT_ANTIBODIES] = antigens2string(B.data[REAGENT_ANTIBODIES], none=null)
 
@@ -109,7 +109,7 @@
 		return 1
 
 	if(href_list["isolate"])
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+		var/datum/reagent/blood/B = get_blood(sample.reagents)
 		if (B)
 			var/datum/disease2/disease/virus = locate(href_list["isolate"])
 			virus2 = virus.getcopy()
@@ -120,7 +120,7 @@
 	switch(href_list["action"])
 		if ("antibody")
 			var/delay = 20
-			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+			var/datum/reagent/blood/B = get_blood(sample.reagents)
 			if (!B)
 				state("\The [src] buzzes, \"No antibody carrier detected.\"", "blue")
 				return 1
@@ -149,7 +149,7 @@
 
 /obj/machinery/computer/centrifuge/proc/cure()
 	if (!sample) return
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+	var/datum/reagent/blood/B = get_blood(sample.reagents)
 	if (!B) return
 
 	var/list/data = list(REAGENT_ANTIBODIES = B.data[REAGENT_ANTIBODIES])
@@ -184,7 +184,7 @@
 
 	P.info += "<hr>"
 
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+	var/datum/reagent/blood/B = get_blood(sample.reagents)
 	if (B)
 		P.info += "<u>Antibodies:</u> "
 		P.info += antigens2string(B.data[REAGENT_ANTIBODIES])

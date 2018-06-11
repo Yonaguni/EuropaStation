@@ -21,7 +21,8 @@
 		reagents.add_reagent(reagent, picked_reagents[reagent])
 
 	var/list/names = new
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for(var/rid in reagents.reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		names += R.name
 
 	desc = "Contains [english_list(names)]."

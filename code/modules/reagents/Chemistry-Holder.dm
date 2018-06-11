@@ -5,6 +5,9 @@
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/atom/my_atom = null
+	var/list/doses =   list()
+	var/list/volumes = list()
+	var/list/data =    list()
 
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()
@@ -16,8 +19,6 @@
 	if(SSchemistry._active_holders)
 		SSchemistry._active_holders -= src
 
-	for(var/datum/reagent/R in reagent_list)
-		qdel(R)
 	reagent_list.Cut()
 	reagent_list = null
 	if(my_atom && my_atom.reagents == src)
@@ -32,7 +33,8 @@
 	var/the_reagent = null
 	var/the_volume = 0
 
-	for(var/datum/reagent/A in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/A = SSchemistry.get_reagent(rid)
 		if(A.volume > the_volume)
 			the_volume = A.volume
 			the_reagent = A
@@ -42,7 +44,8 @@
 /datum/reagents/proc/get_master_reagent_name() // Returns the name of the reagent with the biggest volume.
 	var/the_name = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/A = SSchemistry.get_reagent(rid)
 		if(A.volume > the_volume)
 			the_volume = A.volume
 			the_name = A.name
@@ -52,7 +55,8 @@
 /datum/reagents/proc/get_master_reagent_id() // Returns the id of the reagent with the biggest volume.
 	var/the_id = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/A = SSchemistry.get_reagent(rid)
 		if(A.volume > the_volume)
 			the_volume = A.volume
 			the_id = A.type
@@ -61,7 +65,8 @@
 
 /datum/reagents/proc/update_total() // Updates volume.
 	total_volume = 0
-	for(var/datum/reagent/R in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
 			del_reagent(R.type)
 		else
@@ -69,8 +74,6 @@
 	return
 
 /datum/reagents/proc/delete()
-	for(var/datum/reagent/R in reagent_list)
-		R.holder = null
 	if(my_atom)
 		my_atom.reagents = null
 
@@ -93,8 +96,8 @@
 		reaction_occured = 0
 
 		//need to rebuild this to account for chain reactions
-		for(var/datum/reagent/R in reagent_list)
-			eligible_reactions |= SSchemistry.get_reaction(R.type)
+		for(var/rid in reagent_list)
+			eligible_reactions |= SSchemistry.get_reaction(rid)
 
 		for(var/datum/chemical_reaction/C in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
@@ -121,8 +124,9 @@
 	update_total()
 	amount = min(amount, get_free_space())
 
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid == id)
 			current.volume += amount
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
@@ -135,8 +139,7 @@
 	var/datum/reagent/D = SSchemistry.get_reagent(id)
 	if(D)
 		var/datum/reagent/R = new D.type()
-		reagent_list += R
-		R.holder = src
+		reagent_list += id
 		R.volume = amount
 		R.initialize_data(data)
 		update_total()
@@ -152,8 +155,9 @@
 /datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)
 	if(!isnum(amount))
 		return 0
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid == id)
 			current.volume -= amount // It can go negative, but it doesn't matter
 			update_total() // Because this proc will delete it then
 			if(!safety)
@@ -164,8 +168,9 @@
 	return 0
 
 /datum/reagents/proc/del_reagent(var/id)
-	for(var/datum/reagent/current in reagent_list)
-		if (current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if (rid == id)
 			reagent_list -= current
 			qdel(current)
 			update_total()
@@ -174,8 +179,9 @@
 			return 0
 
 /datum/reagents/proc/has_reagent(var/id, var/amount = null)
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid == id)
 			if((isnull(amount) && current.volume > 0) || current.volume >= amount)
 				return 1
 			else
@@ -183,8 +189,9 @@
 	return 0
 
 /datum/reagents/proc/has_any_reagent(var/list/check_reagents)
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type in check_reagents)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid in check_reagents)
 			if(current.volume >= check_reagents[current.type])
 				return 1
 			else
@@ -194,40 +201,45 @@
 /datum/reagents/proc/has_all_reagents(var/list/check_reagents)
 	//this only works if check_reagents has no duplicate entries... hopefully okay since it expects an associative list
 	var/missing = check_reagents.len
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type in check_reagents)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid in check_reagents)
 			if(current.volume >= check_reagents[current.type])
 				missing--
 	return !missing
 
 /datum/reagents/proc/clear_reagents()
-	for(var/datum/reagent/current in reagent_list)
-		del_reagent(current.type)
+	for(var/rid in reagent_list)
+		del_reagent(rid)
 	return
 
 /datum/reagents/proc/get_reagent_amount(var/id)
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid == id)
 			return current.volume
 	return 0
 
 
 /datum/reagents/proc/get_reagent_amount_by_type(var/rtype)
 	var/amt = 0
-	for(var/datum/reagent/current in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		if(istype(current, rtype))
 			amt += current.volume
 	return amt
 
 /datum/reagents/proc/get_data(var/id)
-	for(var/datum/reagent/current in reagent_list)
-		if(current.type == id)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		if(rid == id)
 			return current.get_data()
 	return 0
 
 /datum/reagents/proc/get_reagents()
 	. = list()
-	for(var/datum/reagent/current in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		. += "[current.name] ([current.volume])"
 	return english_list(., "EMPTY", "", ", ", ", ")
 
@@ -241,9 +253,10 @@
 
 	var/part = amount / total_volume
 
-	for(var/datum/reagent/current in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		var/amount_to_remove = current.volume * part
-		remove_reagent(current.type, amount_to_remove, 1)
+		remove_reagent(rid, amount_to_remove, 1)
 
 	update_total()
 	handle_reactions()
@@ -260,9 +273,10 @@
 
 	var/part = amount / total_volume
 
-	for(var/datum/reagent/current in reagent_list)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.type, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(rid, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.type, amount_to_transfer, 1)
 
@@ -321,37 +335,39 @@
 // even if they are wearing an impermeable suit that prevents the reagents from contacting the skin.
 /datum/reagents/proc/touch(var/atom/target)
 	if(ismob(target))
-		touch_mob(target)
+		touch_mob(target, src)
 	if(isturf(target))
-		touch_turf(target)
+		touch_turf(target, src)
 	if(isobj(target))
-		touch_obj(target)
-	return
+		touch_obj(target, src)
 
-/datum/reagents/proc/touch_mob(var/mob/target)
+/datum/reagents/proc/touch_mob(var/mob/target, var/datum/reagents/holder)
 	if(!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
-		current.touch_mob(target, current.volume)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		current.touch_mob(target, current.volume, holder)
 
 	update_total()
 
-/datum/reagents/proc/touch_turf(var/turf/target)
+/datum/reagents/proc/touch_turf(var/turf/target, var/datum/reagents/holder)
 	if(!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
-		current.touch_turf(target, current.volume)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		current.touch_turf(target, current.volume, holder)
 
 	update_total()
 
-/datum/reagents/proc/touch_obj(var/obj/target)
+/datum/reagents/proc/touch_obj(var/obj/target, var/datum/reagents/holder)
 	if(!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
-		current.touch_obj(target, current.volume)
+	for(var/rid in reagent_list)
+		var/datum/reagent/current = SSchemistry.get_reagent(rid)
+		current.touch_obj(target, current.volume, holder)
 
 	update_total()
 

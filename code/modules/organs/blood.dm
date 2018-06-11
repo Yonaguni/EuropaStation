@@ -28,8 +28,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
-	for(var/datum/reagent/blood/B in vessel.reagent_list)
-		if(B.type == REAGENT_BLOOD)
+	for(var/rid in vessel.reagent_list)
+		var/datum/reagent/blood/B = SSchemistry.get_reagent(rid)
+		if(istype(B))
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=get_dna_hash(),"blood_colour"= species.get_blood_colour(src),"blood_type"= b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
 			B.color = B.data["blood_colour"]
@@ -93,9 +94,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
-		B = new /datum/reagent/blood
-	B.holder = container
-	B.volume += amount
+		container.reagents.add_reagent(REAGENT_BLOOD, amount)
+		B = get_blood(container.reagents)
+	else
+		B.volume += amount
 
 	//set reagent data
 	B.data["donor"] = src
@@ -113,9 +115,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		B.color = B.data["blood_colour"]
 
 	var/list/temp_chem = list()
-	for(var/datum/reagent/R in src.reagents.reagent_list)
-		temp_chem += R.type
-		temp_chem[R.type] = R.volume
+	for(var/rid in src.reagents.reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
+		temp_chem[rid] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)
 	return B
 
@@ -156,12 +158,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	var/datum/reagent/blood/our = get_blood(vessel)
 
-	if (!injected || !our)
-		return
-	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
-		reagents.add_reagent(REAGENT_TOXIN,amount * 0.5)
-		reagents.update_total()
-	else
+	if(injected && our)
 		vessel.add_reagent(REAGENT_BLOOD, amount, injected.data)
 		vessel.update_total()
 	..()
@@ -171,8 +168,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
 	if(res) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
-			for(var/datum/reagent/blood/D in container.reagent_list)
-				if(D.data["donor"] == src)
+			for(var/rid in container.reagent_list)
+				var/datum/reagent/blood/D = SSchemistry.get_reagent(rid)
+				if(istype(D) && D.data["donor"] == src)
 					return D
 	return res
 

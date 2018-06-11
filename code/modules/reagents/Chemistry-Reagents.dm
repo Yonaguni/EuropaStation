@@ -3,14 +3,9 @@
 	var/name = "Reagent"
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/datum/reagents/holder = null
-	var/reagent_state = SOLID
-	var/list/data = null
-	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0
 	var/touch_met = 0
-	var/dose = 0
 	var/max_dose = 0
 	var/overdose = 0
 	var/scannable = 0 // Shows up on health analyzers.
@@ -21,10 +16,12 @@
 	var/glass_name = "something"
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
-
 	var/disinfectant
+	var/list/initial_data
+	var/volume = 0
 
-/datum/reagent/proc/remove_self(var/amount) // Shortcut
+
+/datum/reagent/proc/remove_self(var/amount, var/datum/reagents/holder) // Shortcut
 	if(!QDELETED(src)) holder.remove_reagent(type, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
@@ -37,7 +34,7 @@
 /datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location, var/datum/reagents/holder) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
 		return
 	if(!(flags & AFFECTS_DEAD) && M.stat == DEAD)
@@ -62,59 +59,28 @@
 		effective *= (MOB_MEDIUM/M.mob_size)
 		max_dose *= (MOB_MEDIUM/M.mob_size)
 
-	dose = min(dose + effective, max_dose)
+	holder.doses[type] = min(holder.doses[type] + effective, max_dose)
 	if(effective >= (metabolism * 0.1) || effective >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
 		switch(location)
 			if(CHEM_BLOOD)
-				affect_blood(M, alien, effective)
+				affect_blood(M, alien, effective, holder)
 			if(CHEM_INGEST)
-				affect_ingest(M, alien, effective)
+				affect_ingest(M, alien, effective, holder)
 			if(CHEM_TOUCH)
-				affect_touch(M, alien, effective)
+				affect_touch(M, alien, effective, holder)
 
-	remove_self(removed)
+	remove_self(removed, holder)
 	return
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed * 0.5)
-	return
+/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	affect_blood(M, alien, removed * 0.5, holder)
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
 	M.adjustToxLoss(REM)
 	return
-
-/datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
-	if(!isnull(newdata))
-		data = newdata
-	return
-
-/datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
-	return
-
-/datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.
-	if(data && istype(data, /list))
-		return data.Copy()
-	else if(data)
-		return data
-	return null
-
-/datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
-	. = ..()
-	holder = null
-
-/* DEPRECATED - TODO: REMOVE EVERYWHERE */
-
-/datum/reagent/proc/reaction_turf(var/turf/target)
-	touch_turf(target)
-
-/datum/reagent/proc/reaction_obj(var/obj/target)
-	touch_obj(target)
-
-/datum/reagent/proc/reaction_mob(var/mob/target)
-	touch_mob(target)

@@ -100,7 +100,7 @@ var/list/organ_cache = list()
 		return
 
 	if(!owner && reagents)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+		var/datum/reagent/blood/B = get_blood(reagents)
 		if(B && prob(40))
 			reagents.remove_reagent(REAGENT_BLOOD,0.1)
 			blood_splatter(src,B,1)
@@ -292,8 +292,11 @@ var/list/organ_cache = list()
 	processing_objects |= src
 	rejecting = null
 	if(robotic < ORGAN_ROBOT)
-		var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list //TODO fix this and all other occurences of locate(/datum/reagent/blood) horror
-		if(!organ_blood || !organ_blood.data["blood_DNA"])
+		var/datum/reagent/blood/organ_blood = get_blood(reagents.reagent_list)
+		var/list/blood_data = list()
+		if(istype(organ_blood))
+			blood_data = reagents.data[organ_blood.type]
+		if(!organ_blood || !blood_data || !blood_data["blood_DNA"])
 			owner.vessel.trans_to(src, 5, 1, 1)
 
 	if(owner && owner.stat != DEAD && vital)
@@ -331,7 +334,7 @@ var/list/organ_cache = list()
 		return
 
 	user << "<span class='notice'>You take an experimental bite out of \the [src].</span>"
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/blood/B = get_blood(reagents)
 	blood_splatter(src,B,1)
 
 	user.drop_from_inventory(src)

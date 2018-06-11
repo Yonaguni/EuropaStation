@@ -1,7 +1,6 @@
 /datum/reagent/acetone
 	name = "Acetone"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#808080"
 	metabolism = REM * 0.2
 
@@ -26,14 +25,12 @@
 	name = "Aluminium"
 	taste_description = "metal"
 	taste_mult = 1.1
-	reagent_state = SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/ammonia
 	name = "Ammonia"
 	taste_description = "mordant"
 	taste_mult = 2
-	reagent_state = LIQUID
 	color = "#404030"
 	metabolism = REM * 0.5
 
@@ -44,7 +41,6 @@
 	name = "Carbon"
 	taste_description = "sour chalk"
 	taste_mult = 1.5
-	reagent_state = SOLID
 	color = "#1C1300"
 	ingest_met = REM * 5
 
@@ -52,7 +48,8 @@
 	var/datum/reagents/R = M.get_ingested_reagents()
 	if(istype(R) && R.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = 1 / (R.reagent_list.len - 1)
-		for(var/datum/reagent/react in R.reagent_list)
+		for(var/rid in R.reagent_list)
+			var/datum/reagent/react = SSchemistry.get_reagent(rid)
 			if(react == src)
 				continue
 			R.remove_reagent(react.type, removed * effect)
@@ -74,7 +71,6 @@
 /datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	taste_description = "pure alcohol"
-	reagent_state = LIQUID
 	color = "#404030"
 	touch_met = 5
 	disinfectant = TRUE
@@ -99,11 +95,12 @@
 	M.adjustToxLoss(removed * 2 * toxicity)
 	return
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.nutrition += nutriment_factor * removed
 	var/strength_mod = 1
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
+	var/dose = holder.doses[type]
 	if(dose * strength_mod >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
 	if(dose * strength_mod >= strength * 2) // Slurring
@@ -148,7 +145,6 @@
 /datum/reagent/hydrazine
 	name = "Hydrazine"
 	taste_description = "sweet tasting metal"
-	reagent_state = LIQUID
 	color = "#808080"
 	metabolism = REM * 0.2
 	touch_met = 5
@@ -160,15 +156,13 @@
 	M.adjust_fire_stacks(removed / 12)
 	M.adjustToxLoss(0.2 * removed)
 
-/datum/reagent/hydrazine/touch_turf(var/turf/T)
+/datum/reagent/hydrazine/touch_turf(var/turf/T, var/datum/reagents/holder)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
-	return
+	remove_self(volume, holder)
 
 /datum/reagent/iron
 	name = "Iron"
 	taste_description = "metal"
-	reagent_state = SOLID
 	color = "#353535"
 
 /datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -177,7 +171,6 @@
 /datum/reagent/lithium
 	name = "Lithium"
 	taste_description = "metal"
-	reagent_state = SOLID
 	color = "#808080"
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -189,7 +182,6 @@
 /datum/reagent/mercury
 	name = "Mercury"
 	taste_mult = 0 //mercury apparently is tasteless. IDK
-	reagent_state = LIQUID
 	color = "#484848"
 
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -202,19 +194,16 @@
 /datum/reagent/phosphorus
 	name = "Phosphorus"
 	taste_description = "vinegar"
-	reagent_state = SOLID
 	color = "#832828"
 
 /datum/reagent/potassium
 	name = "Potassium"
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
-	reagent_state = SOLID
 	color = "#A0A0A0"
 
 /datum/reagent/radium
 	name = "Radium"
 	taste_description = "the color blue, and regret"
-	reagent_state = SOLID
 	color = "#C7C7C7"
 
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -239,7 +228,6 @@
 /datum/reagent/acid
 	name = "Sulphuric acid"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#DB5008"
 	metabolism = REM * 2
 	touch_met = 50 // It's acid!
@@ -251,13 +239,13 @@
 /datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(0, removed * power * 2)
 
-/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
+/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder) // This is the most interesting
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
 				H << "<span class='danger'>Your [H.head] protects you from the acid.</span>"
-				remove_self(volume)
+				remove_self(volume, holder)
 				return
 			else if(removed > meltdose)
 				H << "<span class='danger'>Your [H.head] melts away!</span>"
@@ -271,7 +259,7 @@
 		if(H.wear_mask)
 			if(H.wear_mask.unacidable)
 				H << "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>"
-				remove_self(volume)
+				remove_self(volume, holder)
 				return
 			else if(removed > meltdose)
 				H << "<span class='danger'>Your [H.wear_mask] melts away!</span>"
@@ -310,7 +298,7 @@
 					H.emote("scream")
 				affecting.disfigured = 1
 
-/datum/reagent/acid/touch_obj(var/obj/O)
+/datum/reagent/acid/touch_obj(var/obj/O, var/datum/reagents/holder)
 	if(O.unacidable)
 		return
 	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
@@ -319,32 +307,27 @@
 		for(var/mob/M in viewers(5, O))
 			M << "<span class='warning'>\The [O] melts.</span>"
 		qdel(O)
-		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
+		remove_self(meltdose, holder) // 10 units of acid will not melt EVERYTHING on the tile
 
 /datum/reagent/acid/hydrochloric //Like sulfuric, but less toxic and more acidic.
 	name = "Hydrochloric Acid"
 	taste_description = "stomach acid"
-	reagent_state = LIQUID
 	color = "#808080"
 	power = 3
-	meltdose = 8
 
 /datum/reagent/silicon
 	name = "Silicon"
-	reagent_state = SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/sodium
 	name = "Sodium"
 	taste_description = "salty metal"
-	reagent_state = SOLID
 	color = "#808080"
 
 /datum/reagent/sugar
 	name = "Sugar"
 	taste_description = "sugar"
 	taste_mult = 1.8
-	reagent_state = SOLID
 	color = "#FFFFFF"
 
 	glass_name = "sugar"
@@ -357,11 +340,9 @@
 /datum/reagent/sulfur
 	name = "Sulfur"
 	taste_description = "old eggs"
-	reagent_state = SOLID
 	color = "#BF8C00"
 
 /datum/reagent/tungsten
 	name = "Tungsten"
 	taste_mult = 0 //no taste
-	reagent_state = SOLID
 	color = "#DCDCDC"

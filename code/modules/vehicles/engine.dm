@@ -107,7 +107,8 @@
 	reagents.trans_to(temp_reagents_holder,min(reagents.total_volume,15))
 	var/multiplier = 1
 	var/actually_flameable = 0
-	for(var/datum/reagent/R in temp_reagents_holder.reagents.reagent_list)
+	for(var/rid in temp_reagents_holder.reagents.reagent_list)
+		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		var/new_multiplier = 1
 		if(istype(R,/datum/reagent/ethanol))
 			var/datum/reagent/ethanol/E = R
