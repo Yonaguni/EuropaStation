@@ -7,14 +7,14 @@
 /datum/reagent/acetone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(removed * 3)
 
-/datum/reagent/acetone/touch_obj(var/obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
+/datum/reagent/acetone/touch_obj(var/obj/O, var/datum/reagents/holder)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
 	if(istype(O, /obj/item/paper))
 		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
 		return
 	if(istype(O, /obj/item/book))
-		if(volume < 5)
+		if(holder.volumes[type] < 5)
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
@@ -46,16 +46,17 @@
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	var/datum/reagents/R = M.get_ingested_reagents()
-	if(istype(R) && R.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
-		var/effect = 1 / (R.reagent_list.len - 1)
-		for(var/rid in R.reagent_list)
+	if(istype(R) && R.volumes.len > 1) // Need to have at least 2 reagents - cabon and something to remove
+		var/effect = 1 / (R.volumes.len - 1)
+		for(var/rid in R.volumes)
 			var/datum/reagent/react = SSchemistry.get_reagent(rid)
 			if(react == src)
 				continue
 			R.remove_reagent(react.type, removed * effect)
 
-/datum/reagent/carbon/touch_turf(var/turf/T)
+/datum/reagent/carbon/touch_turf(var/turf/T, var/datum/reagents/holder)
 	if(!istype(T, /turf/space) && !T.open_space)
+		var/volume = holder.volumes[type]
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if (!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
@@ -128,14 +129,14 @@
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci)
 
-/datum/reagent/ethanol/touch_obj(var/obj/O)
+/datum/reagent/ethanol/touch_obj(var/obj/O, var/datum/reagents/holder)
 	if(istype(O, /obj/item/paper))
 		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
 		return
 	if(istype(O, /obj/item/book))
-		if(volume < 5)
+		if(holder.volumes[type] < 5)
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
@@ -157,8 +158,8 @@
 	M.adjustToxLoss(0.2 * removed)
 
 /datum/reagent/hydrazine/touch_turf(var/turf/T, var/datum/reagents/holder)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume, holder)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, holder.volumes[type])
+	holder.del_reagent(type)
 
 /datum/reagent/iron
 	name = "Iron"
@@ -209,8 +210,8 @@
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.apply_effect(10 * removed, IRRADIATE, blocked = 0)
 
-/datum/reagent/radium/touch_turf(var/turf/T)
-	if(volume >= 3)
+/datum/reagent/radium/touch_turf(var/turf/T, var/datum/reagents/holder)
+	if(holder.volumes[type] >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
@@ -232,6 +233,7 @@
 	M.take_organ_damage(0, removed * power * 2)
 
 /datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder) // This is the most interesting
+	var/volume = holder.volumes[type]
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
@@ -293,7 +295,7 @@
 /datum/reagent/acid/touch_obj(var/obj/O, var/datum/reagents/holder)
 	if(O.unacidable)
 		return
-	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
+	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (holder.volumes[type] > meltdose))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))

@@ -107,7 +107,7 @@
 	reagents.trans_to(temp_reagents_holder,min(reagents.total_volume,15))
 	var/multiplier = 1
 	var/actually_flameable = 0
-	for(var/rid in temp_reagents_holder.reagents.reagent_list)
+	for(var/rid in temp_reagents_holder.reagents.volumes)
 		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		var/new_multiplier = 1
 		if(istype(R,/datum/reagent/ethanol))
@@ -123,7 +123,7 @@
 			new_multiplier = 0.1
 		else if(istype(R,/datum/reagent/water))
 			new_multiplier = 0.4
-		else if(istype(R,/datum/reagent/sugar)  && R.volume > 1)
+		else if(istype(R,/datum/reagent/sugar) && temp_reagents_holder.reagents.volumes[rid] > 1)
 			stat = DEAD
 			explosion(get_turf(src),-1,0,2,3,0)
 			return 0

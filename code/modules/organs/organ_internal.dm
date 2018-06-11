@@ -55,7 +55,7 @@
 	// Coffee is really bad for you with busted kidneys.
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
-	for(var/rid in owner.reagents.reagent_list)
+	for(var/rid in owner.reagents.volumes)
 		var/datum/reagent/drink/coffee/R = SSchemistry.get_reagent(rid)
 		if(istype(R))
 			if(is_bruised())

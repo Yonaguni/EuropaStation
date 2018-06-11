@@ -6,7 +6,7 @@ Structure: ///////////////////          //////////////////////////
 		   ///////////////////          //////////////////////////
 		   			|				    			 |
     The object that holds everything.   			 V
-		   							      reagent_list var (list)   	A List of datums, each datum is a reagent.
+		   							      volumes var (list)   	A List of datums, each datum is a reagent.
 
 		   							      |          |          |
 		   							      V          V          V
@@ -25,7 +25,7 @@ About the Holder:
 	currently in the object.It also has all the procs needed to manipulate reagents
 
 	Vars:
-		list/datum/reagent/reagent_list
+		list/datum/reagent/volumes
 			List of reagent datums.
 
 		total_volume

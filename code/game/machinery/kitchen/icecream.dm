@@ -78,9 +78,9 @@
 	dat += "<b>Chocolate cones:</b> <a href='?src=\ref[src];cone=[CONE_CHOC]'><b>Dispense</b></a> <a href='?src=\ref[src];make=[CONE_CHOC];amount=1'><b>Make</b></a> <a href='?src=\ref[src];make=[CONE_CHOC];amount=5'><b>x5</b></a> [product_types[CONE_CHOC]] cones left. (Ingredients: flour, sugar, coco powder)<br></div>"
 	dat += "<br>"
 	dat += "<b>VAT CONTENT</b><br>"
-	for(var/rid in reagents.reagent_list)
+	for(var/rid in reagents.volumes)
 		var/datum/reagent/R = SSchemistry.get_reagent(rid)
-		dat += "[R.name]: [R.volume]"
+		dat += "[R.name]: [reagents.volumes[rid]]"
 		dat += "<A href='?src=\ref[src];disposeI=[rid]'>Purge</A><BR>"
 	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
 

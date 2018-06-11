@@ -2,7 +2,7 @@
 	return reagents
 
 /mob/living/carbon/proc/get_fullness()
-	return nutrition + (reagents.get_reagent_amount(REAGENT_NUTRIMENT) * 25)
+	return nutrition + (reagents.get_reagent_amount_by_type(REAGENT_NUTRIMENT) * 25)
 
 /mob/living/carbon/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
 	if(!istype(target))
@@ -13,7 +13,7 @@
 
 		var/text_output = temp.generate_taste_message(src)
 		if(text_output != last_taste_text || last_taste_time + 100 < world.time) //We dont want to spam the same message over and over again at the person. Give it a bit of a buffer.
-			src << "<span class='notice'>You can taste[text_output].</span>" //no taste means there are too many tastes and not enough flavor.
+			src << "<span class='notice'>You can taste [text_output].</span>" //no taste means there are too many tastes and not enough flavor.
 			last_taste_time = world.time
 			last_taste_text = text_output
 	return from.trans_to_holder(target,amount,multiplier,copy) //complete transfer
@@ -31,7 +31,7 @@ calculate text size per text.
 	var/list/out = list()
 	var/list/tastes = list() //descriptor = strength
 	if(minimum_percent <= 100)
-		for(var/rid in reagent_list)
+		for(var/rid in volumes)
 			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			if(!R.taste_mult)
 				continue
@@ -50,11 +50,11 @@ calculate text size per text.
 			var/percent = tastes[taste_desc]/total_taste * 100
 			if(percent < minimum_percent)
 				continue
-			var/intensity_desc = "a hint of"
+			var/intensity_desc = "a hint of "
 			if(percent > minimum_percent * 2 || percent == 100)
 				intensity_desc = ""
 			else if(percent > minimum_percent * 3)
-				intensity_desc = "the strong flavor of"
-			out += "[intensity_desc] [taste_desc]"
+				intensity_desc = "the strong flavor of "
+			out += "[intensity_desc][taste_desc]"
 
 	return english_list(out, "something indescribable")

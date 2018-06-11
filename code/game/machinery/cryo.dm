@@ -117,10 +117,8 @@
 	data["beakerVolume"] = 0
 	if(beaker)
 		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
-		if (beaker.reagents && beaker.reagents.reagent_list.len)
-			for(var/rid in beaker.reagents.reagent_list)
-				var/datum/reagent/R = SSchemistry.get_reagent(rid)
-				data["beakerVolume"] += R.volume
+		if (beaker.reagents)
+			data["beakerVolume"] += beaker.reagents.total_volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)

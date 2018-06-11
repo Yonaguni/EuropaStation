@@ -7,8 +7,8 @@
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
-/datum/reagent/blood/touch_turf(var/turf/simulated/T)
-	if(istype(T) && volume < 3)
+/datum/reagent/blood/touch_turf(var/turf/simulated/T, var/datum/reagents/holder)
+	if(istype(T) && holder.volumes[type] >= 3)
 		blood_splatter(T, src, 1)
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
@@ -19,8 +19,8 @@
 		M.adjustToxLoss(removed)
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
-	M.inject_blood(src, volume)
-	remove_self(volume, holder)
+	M.inject_blood(src, holder.volumes[type])
+	holder.del_reagent(type)
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water
@@ -36,7 +36,7 @@
 	glass_name = "heavy water" // I know this isn't accurate, but it's kinda funny.
 	glass_desc = "Perfect for refreshing a heavy thirst, or performing fusion."
 
-/datum/reagent/water/touch_turf(var/turf/simulated/T)
+/datum/reagent/water/touch_turf(var/turf/simulated/T, var/datum/reagents/holder)
 	if(!istype(T))
 		return
 
@@ -51,6 +51,7 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
+	var/volume = holder.volumes[type]
 	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
@@ -87,8 +88,8 @@
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/datum/reagents/holder)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume, holder)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, holder.volumes[type])
+	holder.del_reagent(type)
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(2 * removed)

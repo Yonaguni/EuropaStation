@@ -109,10 +109,11 @@ REAGENT SCANNER
 
 	if(!isnull(O.reagents))
 		var/dat = ""
-		if(O.reagents.reagent_list.len > 0)
+		if(O.reagents.volumes.len > 0)
 			var/one_percent = O.reagents.total_volume / 100
-			for (var/datum/reagent/R in O.reagents.reagent_list)
-				dat += "\n \t <span class='notice'>[R][details ? ": [R.volume / one_percent]%" : ""]</span>"
+			for (var/rid in O.reagents.volumes)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
+				dat += "\n \t <span class='notice'>[R.name][details ? ": [O.reagents.volumes[rid] / one_percent]%" : ""]</span>"
 		if(dat)
 			user << "<span class='notice'>Chemicals found: [dat]</span>"
 		else

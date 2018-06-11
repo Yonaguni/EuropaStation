@@ -1,9 +1,9 @@
 /obj/item/reagent_containers/Value()
 	. = ..()
 	if(reagents)
-		for(var/a in reagents.reagent_list)
-			var/datum/reagent/reg = a
-			. += reg.value * reg.volume
+		for(var/a in reagents.volumes)
+			var/datum/reagent/reg = SSchemistry.get_reagent(a)
+			. += reg.value * reagents.volumes[a]
 	. = round(.)
 
 /obj/item/stack/Value(var/base)

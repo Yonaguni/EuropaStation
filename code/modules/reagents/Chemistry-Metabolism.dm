@@ -16,7 +16,7 @@
 		var/mob/living/carbon/human/H = parent
 		metabolism_type = H.species.reagent_tag
 
-	for(var/rid in reagent_list)
+	for(var/rid in volumes)
 		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		current.on_mob_life(parent, metabolism_type, metabolism_class, src)
 	update_total()

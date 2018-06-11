@@ -113,8 +113,8 @@
 /datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.apply_effect(5 * removed, IRRADIATE, blocked = 0)
 
-/datum/reagent/uranium/touch_turf(var/turf/T)
-	if(volume >= 3)
+/datum/reagent/uranium/touch_turf(var/turf/T, var/datum/reagents/holder)
+	if(holder.volumes[type] >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
@@ -138,8 +138,8 @@
 	glass_name = "holy water"
 	glass_desc = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 
-/datum/reagent/water/holywater/touch_turf(var/turf/T)
-	if(volume >= 5)
+/datum/reagent/water/holywater/touch_turf(var/turf/T, var/datum/reagents/holder)
+	if(holder.volumes[type] >= 5)
 		T.holy = 1
 	return
 
@@ -165,7 +165,7 @@
 	touch_met = 50
 
 /datum/reagent/thermite/touch_turf(var/turf/T, var/datum/reagents/holder)
-	if(volume >= 5)
+	if(holder.volumes[type] >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
@@ -189,8 +189,8 @@
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
 	O.clean_blood()
 
-/datum/reagent/space_cleaner/touch_turf(var/turf/T)
-	if(volume >= 1)
+/datum/reagent/space_cleaner/touch_turf(var/turf/T, var/datum/reagents/holder)
+	if(holder.volumes[type] >= 1)
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
 			S.dirt = 0
@@ -228,10 +228,10 @@
 	taste_description = "slime"
 	color = "#009CA8"
 
-/datum/reagent/lube/touch_turf(var/turf/simulated/T)
+/datum/reagent/lube/touch_turf(var/turf/simulated/T, var/datum/reagents/holder)
 	if(!istype(T))
 		return
-	if(volume >= 1)
+	if(holder.volumes[type] >= 1)
 		T.wet_floor(2)
 
 /datum/reagent/silicate
@@ -242,8 +242,8 @@
 /datum/reagent/silicate/touch_obj(var/obj/O, var/datum/reagents/holder)
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
-		W.apply_silicate(volume)
-		remove_self(volume, holder)
+		W.apply_silicate(holder.volumes[type])
+		holder.del_reagent(type)
 	return
 
 /datum/reagent/glycerol

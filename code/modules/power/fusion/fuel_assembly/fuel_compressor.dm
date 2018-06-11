@@ -16,16 +16,19 @@
 
 /obj/machinery/fusion_fuel_compressor/proc/do_fuel_compression(var/obj/item/thing, var/mob/user)
 	if(istype(thing) && thing.reagents && thing.reagents.total_volume && thing.is_open_container())
-		if(thing.reagents.reagent_list.len > 1)
+		if(thing.reagents.volumes.len > 1)
 			to_chat(user, "<span class='warning'>The contents of \the [thing] are impure and cannot be used as fuel.</span>")
 			return 1
 		if(thing.reagents.total_volume < 50)
 			to_chat(user, "<span class='warning'>You need at least fifty units of material to form a fuel rod.</span>")
 			return 1
-		var/datum/reagent/R = thing.reagents.reagent_list[1]
+		var/datum/reagent/R = SSchemistry.get_reagent(thing.reagents.volumes[1])
+		if(!istype(R))
+			to_chat(user, "<span class='warning'>The contents of \the [thing] are cannot be used as fuel.</span>")
+			return 1
 		visible_message("<span class='notice'>\The [src] compresses the contents of \the [thing] into a new fuel assembly.</span>")
 		var/obj/item/fuel_assembly/F = new(get_turf(src), R.type, R.color)
-		thing.reagents.remove_reagent(R.type, R.volume)
+		thing.reagents.del_reagent(R.type)
 		user.put_in_hands(F)
 		return 1
 	else if(istype(thing, /obj/machinery/power/supermatter/shard))

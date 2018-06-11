@@ -34,7 +34,7 @@
 /obj/item/reagent_containers/glass/bottle/Initialize()
 	. = ..()
 	if(reagents && reagents.total_volume && obfuscate_contents)
-		var/reagent_id = reagents.get_master_reagent_id()
+		var/reagent_id = reagents.get_master_reagent()
 		if(reagent_id)
 			var/medication_name = get_random_medication_name_for_reagent(reagent_id)
 			actual_reagent_name = reagents.get_master_reagent_name()

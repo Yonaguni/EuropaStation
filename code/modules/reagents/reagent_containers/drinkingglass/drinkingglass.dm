@@ -16,11 +16,11 @@
 	flags = OPENCONTAINER
 	matter = list(MATERIAL_GLASS = 150)
 
-	var/base_name = MATERIAL_GLASS // Name to put in front of drinks, i.e. "[base_name] of [contents]"
+	var/base_name = "glass"  // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon = "square" // Base icon name
-	var/filling_states // List of percentages full that have icons
+	var/filling_states       // List of percentages full that have icons
 	var/list/extras = list() // List of extras. Two extras maximum
-	var/rim_pos // Position of the rim for fruit slices. list(y, x_left, x_right)
+	var/rim_pos              // Position of the rim for fruit slices. list(y, x_left, x_right)
 
 /obj/item/reagent_containers/food/drinks/glass2/examine(var/mob/M)
 	..()
@@ -40,8 +40,8 @@
 		M << "It is fizzing slightly."
 
 /obj/item/reagent_containers/food/drinks/glass2/proc/has_ice()
-	if(reagents.reagent_list.len > 0)
-		var/datum/reagent/R = reagents.get_master_reagent()
+	if(reagents.volumes.len > 0)
+		var/datum/reagent/R = SSchemistry.get_reagent(reagents.get_master_reagent())
 		if(!((R.type == REAGENT_ICE) || (REAGENT_ICE in R.glass_special))) // if it's not a cup of ice, and it's not already supposed to have ice in, see if the bartender's put ice in it
 			if(reagents.has_reagent(REAGENT_ICE, reagents.total_volume / 10)) // 10% ice by volume
 				return 1
@@ -49,14 +49,14 @@
 	return 0
 
 /obj/item/reagent_containers/food/drinks/glass2/proc/has_fizz()
-	if(reagents.reagent_list.len > 0)
-		var/datum/reagent/R = reagents.get_master_reagent()
+	if(reagents.volumes.len > 0)
+		var/datum/reagent/R = SSchemistry.get_reagent(reagents.get_master_reagent())
 		if(!("fizz" in R.glass_special))
 			var/totalfizzy = 0
-			for(var/rid in reagents.reagent_list)
+			for(var/rid in reagents.volumes)
 				var/datum/reagent/re = SSchemistry.get_reagent(rid)
 				if("fizz" in re.glass_special)
-					totalfizzy += re.volume
+					totalfizzy += reagents.volumes[rid]
 			if(totalfizzy >= reagents.total_volume / 5) // 20% fizzy by volume
 				return 1
 	return 0
@@ -79,43 +79,47 @@
 /obj/item/reagent_containers/food/drinks/glass2/update_icon()
 	underlays.Cut()
 
-	if (reagents.reagent_list.len > 0)
-		var/datum/reagent/R = reagents.get_master_reagent()
-		name = "[base_name] of [R.glass_name ? R.glass_name : "something"]"
-		desc = R.glass_desc ? R.glass_desc : initial(desc)
+	var/filled = FALSE
+	if (reagents.volumes.len > 0)
+		var/datum/reagent/R = SSchemistry.get_reagent(reagents.get_master_reagent())
+		if(istype(R))
+			filled = TRUE
+			name = "[base_name] of [R.glass_name ? R.glass_name : "something"]"
+			desc = R.glass_desc ? R.glass_desc : initial(desc)
 
-		var/list/under_liquid = list()
-		var/list/over_liquid = list()
+			var/list/under_liquid = list()
+			var/list/over_liquid = list()
 
-		var/amnt = 100
-		var/percent = round((reagents.total_volume / volume) * 100)
-		for(var/k in cached_number_list_decode(filling_states))
-			if(percent <= k)
-				amnt = k
-				break
+			var/amnt = 100
+			var/percent = round((reagents.total_volume / volume) * 100)
+			for(var/k in cached_number_list_decode(filling_states))
+				if(percent <= k)
+					amnt = k
+					break
 
-		if(has_ice())
-			over_liquid |= "[base_icon][amnt]_ice"
+			if(has_ice())
+				over_liquid |= "[base_icon][amnt]_ice"
 
-		if(has_fizz())
-			over_liquid |= "[base_icon][amnt]_fizz"
+			if(has_fizz())
+				over_liquid |= "[base_icon][amnt]_fizz"
 
-		for(var/S in R.glass_special)
-			if("[base_icon]_[S]" in icon_states(DRINK_ICON_FILE))
-				under_liquid |= "[base_icon]_[S]"
-			else if("[base_icon][amnt]_[S]" in icon_states(DRINK_ICON_FILE))
-				over_liquid |= "[base_icon][amnt]_[S]"
+			for(var/S in R.glass_special)
+				if("[base_icon]_[S]" in icon_states(DRINK_ICON_FILE))
+					under_liquid |= "[base_icon]_[S]"
+				else if("[base_icon][amnt]_[S]" in icon_states(DRINK_ICON_FILE))
+					over_liquid |= "[base_icon][amnt]_[S]"
 
-		for(var/k in under_liquid)
-			underlays += image(DRINK_ICON_FILE, src, k, -3)
+			for(var/k in under_liquid)
+				underlays += image(DRINK_ICON_FILE, src, k, -3)
 
-		var/image/filling = image(DRINK_ICON_FILE, src, "[base_icon][amnt][R.glass_icon]", -2)
-		filling.color = reagents.get_color()
-		underlays += filling
+			var/image/filling = image(DRINK_ICON_FILE, src, "[base_icon][amnt][R.glass_icon]", -2)
+			filling.color = reagents.get_color()
+			underlays += filling
 
-		for(var/k in over_liquid)
-			underlays += image(DRINK_ICON_FILE, src, k, -1)
-	else
+			for(var/k in over_liquid)
+				underlays += image(DRINK_ICON_FILE, src, k, -1)
+
+	if(!filled)
 		name = initial(name)
 		desc = initial(desc)
 

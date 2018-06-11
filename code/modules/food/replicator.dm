@@ -35,9 +35,8 @@
 	if(istype(O, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = O
 		user.drop_item(O)
-		for(var/rid in S.reagents.reagent_list)
-			var/datum/reagent/R = SSchemistry.get_reagent(rid)
-			biomass = Clamp(biomass + round(R.volume*deconstruct_eff),1,biomass_max)
+		for(var/rid in S.reagents.volumes)
+			biomass = Clamp(biomass + round(S.reagents.volumes[rid]),1,biomass_max)
 		qdel(O)
 	else if(istype(O, /obj/item/storage/plants))
 		if(!O.contents || !O.contents.len)
@@ -46,10 +45,10 @@
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
 			var/obj/item/storage/S = O
 			S.remove_from_storage(G, null)
-			for(var/rid in G.reagents.reagent_list)
+			for(var/rid in G.reagents.volumes)
 				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				if(istype(R, REAGENT_NUTRIMENT))
-					biomass = Clamp(biomass + round(R.volume*deconstruct_eff),1,biomass_max)
+					biomass = Clamp(biomass + round(G.reagents.volumes[rid]*deconstruct_eff),1,biomass_max)
 			qdel(G)
 
 	if (O.iswrench())

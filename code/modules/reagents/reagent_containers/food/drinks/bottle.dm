@@ -31,7 +31,7 @@
 	if(isGlass && istype(M) && M.a_intent == I_HURT)
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
-			if(reagents)
+			if(reagents && reagents.total_volume)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)

@@ -23,10 +23,10 @@
 	if(!..(user, 2))
 		return
 	user << "\blue It contains:"
-	if(reagents && reagents.reagent_list.len)
-		for(var/rid in reagents.reagent_list)
+	if(reagents && reagents.volumes.len)
+		for(var/rid in reagents.volumes)
 			var/datum/reagent/R = SSchemistry.get_reagent(rid)
-			user << "\blue [R.volume] units of [R.name]"
+			user << "\blue [reagents.volumes[rid]] units of [R.name]"
 	else
 		user << "\blue Nothing."
 

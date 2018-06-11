@@ -31,7 +31,7 @@
 	. = ..()
 
 	if(reagents && reagents.total_volume && obfuscate_contents)
-		var/reagent_id = reagents.get_master_reagent_id()
+		var/reagent_id = reagents.get_master_reagent()
 		if(reagent_id)
 			actual_reagent_name = reagents.get_master_reagent_name()
 			if(actual_reagent_name && istype(loc, /obj/item/storage/firstaid))

@@ -240,27 +240,29 @@
 			dat += "Beaker is empty."
 		else
 			dat += "Add to buffer:<BR>"
-			for(var/rid in R.reagent_list)
+			for(var/rid in R.volumes)
 				var/datum/reagent/G = SSchemistry.get_reagent(rid)
-				dat += "[G.name] , [G.volume] Units - "
+				var/volume = reagents.volumes[rid]
+				dat += "[G.name], [volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.lore_text];name=[G.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];add=[rid];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=[volume]]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];addcustom=[rid]'>(Custom)</A><BR>"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
-			for(var/rid in reagents.reagent_list)
+			for(var/rid in reagents.volumes)
 				var/datum/reagent/N = SSchemistry.get_reagent(rid)
-				dat += "[N.name] , [N.volume] Units - "
+				var/volume = reagents.volumes[rid]
+				dat += "[N.name], [volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.lore_text];name=[N.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=[volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];removecustom=[rid]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
@@ -400,10 +402,10 @@
 			is_beaker_ready = 1
 			beaker_contents = "<B>The beaker contains:</B><br>"
 			var/anything = 0
-			for(var/rid in beaker.reagents.reagent_list)
+			for(var/rid in beaker.reagents.volumes)
 				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				anything = 1
-				beaker_contents += "[R.volume] - [R.name]<br>"
+				beaker_contents += "[beaker.reagents.volumes[rid]] - [R.name]<br>"
 			if(!anything)
 				beaker_contents += "Nothing<br>"
 

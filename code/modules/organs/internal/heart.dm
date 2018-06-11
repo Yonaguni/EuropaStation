@@ -99,13 +99,7 @@
 
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
-		var/datum/reagent/blood/B = owner.get_blood(owner.vessel)
-		if(B)
-			B.volume += 0.1 // regenerate blood VERY slowly
-			if(CE_BLOODRESTORE in owner.chem_effects)
-				B.volume += owner.chem_effects[CE_BLOODRESTORE]
-		else
-			owner.vessel.add_reagent(REAGENT_BLOOD, 0.1 + owner.chem_effects[CE_BLOODRESTORE])
+		owner.vessel.add_reagent(REAGENT_BLOOD, max(0.1, 0.1 + (CE_BLOODRESTORE in owner.chem_effects)))
 
 	// Blood loss or liver damage make you lose nutriments
 	if(blood_volume < BLOOD_VOLUME_SAFE || is_bruised())

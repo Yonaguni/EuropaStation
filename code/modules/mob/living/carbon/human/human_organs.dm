@@ -186,7 +186,7 @@
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
 	//New are added for reagents to random organs.
-	for(var/rid in reagents.reagent_list)
+	for(var/rid in reagents.volumes)
 		var/obj/item/organ/O = pick(organs)
 		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		O.trace_chemicals[R.name] = 100

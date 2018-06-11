@@ -11,7 +11,7 @@
 	. = ..()
 	vessel.remove_reagent(REAGENT_BLOOD,amount) // Removes blood if human
 
-//Transfers blood from container ot vessels
+//Transfers blood from container to vessels
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	return //todo
 

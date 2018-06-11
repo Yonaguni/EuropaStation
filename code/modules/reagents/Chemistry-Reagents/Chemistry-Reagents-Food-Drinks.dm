@@ -104,7 +104,7 @@
 	nutriment_factor = 20
 	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
+/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T, var/datum/reagents/holder)
 	if(!istype(T))
 		return
 
@@ -116,7 +116,7 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if(volume >= 3)
+	if(holder.volumes[type] >= 3)
 		T.wet_floor()
 
 /datum/reagent/nutriment/sprinkles

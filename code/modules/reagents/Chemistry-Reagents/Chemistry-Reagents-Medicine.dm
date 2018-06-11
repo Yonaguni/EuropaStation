@@ -225,7 +225,7 @@
 
 	var/datum/reagents/ingested = M.get_ingested_reagents()
 	if(istype(ingested))
-		for(var/rid in ingested.reagent_list)
+		for(var/rid in ingested.volumes)
 			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			if(istype(R, /datum/reagent/ethanol))
 				holder.doses[rid] = max(holder.doses[rid] - removed * 5, 0)
@@ -276,12 +276,12 @@
 		I.was_bloodied = null
 	M.was_bloodied = null
 
-/datum/reagent/antiseptic/touch_obj(var/obj/O)
-	O.germ_level -= min(volume*20, O.germ_level)
+/datum/reagent/antiseptic/touch_obj(var/obj/O, var/datum/reagents/holder)
+	O.germ_level -= min(holder.volumes[type]*20, O.germ_level)
 	O.was_bloodied = null
 
-/datum/reagent/antiseptic/touch_turf(var/turf/T)
-	T.germ_level -= min(volume*20, T.germ_level)
+/datum/reagent/antiseptic/touch_turf(var/turf/T, var/datum/reagents/holder)
+	T.germ_level -= min(holder.volumes[type]*20, T.germ_level)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)
@@ -312,7 +312,7 @@
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+	if(holder.volumes[type] <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
 		holder.last_message_tick = world.time
 		M << "<span class='warning'>You lose focus...</span>"
 	else
@@ -328,7 +328,7 @@
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+	if(holder.volumes[type] <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
 		holder.last_message_tick = world.time
 		M << "<span class='warning'>Your mind feels a little less stable...</span>"
 	else
@@ -343,7 +343,7 @@
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+	if(holder.volumes[type] <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
 		holder.last_message_tick = world.time
 		M << "<span class='warning'>Your mind feels much less stable...</span>"
 	else
@@ -367,7 +367,7 @@
 /datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.add_chemical_effect(CE_PULSE, 1)
 	var/dose = holder.doses[type]
-	if(volume <= 0.02 && dose >= 0.05 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
+	if(holder.volumes[type] <= 0.02 && dose >= 0.05 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
 		holder.last_message_tick = world.time
 		M << "<span class='warning'>You feel antsy, your concentration wavers...</span>"
 	else

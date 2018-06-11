@@ -47,7 +47,7 @@
 	examine(var/mob/user)
 		if(!..(user, 2))
 			return
-		if(reagents && reagents.reagent_list.len)
+		if(reagents && reagents.volumes.len)
 			user << "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
 		else
 			user << "<span class='notice'>It is empty.</span>"

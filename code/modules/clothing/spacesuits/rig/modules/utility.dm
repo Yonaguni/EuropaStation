@@ -129,9 +129,9 @@
 	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
 		list("Morphine",      REAGENT_MORPHINE,      0, 20),
-		list("Antibiotics",   REAGENT_ANTIBIOTICS,  0, 20),
-		list("Antitoxins",    REAGENT_ANTITOXIN,    0, 20),
-		list("Nutrients",     REAGENT_GLUCOSE,     0, 80),
+		list("Antibiotics",   REAGENT_ANTIBIOTICS,   0, 20),
+		list("Antitoxins",    REAGENT_ANTITOXIN,     0, 20),
+		list("Nutrients",     REAGENT_GLUCOSE,       0, 80),
 		list("Entolimod",     REAGENT_ENTOLIMOD,     0, 20),
 		list("Radium",        REAGENT_RADIUM,        0, 20)
 		)
@@ -147,17 +147,14 @@
 
 	// Magical chemical filtration system, do not question it.
 	var/total_transferred = 0
-	for(var/rid in input_item.reagents.reagent_list)
+	for(var/rid in input_item.reagents.volumes)
 		var/datum/reagent/R = SSchemistry.get_reagent(rid)
 		for(var/chargetype in charges)
 			var/datum/rig_charge/charge = charges[chargetype]
-			if(charge.display_name == rid)
-
-				var/chems_to_transfer = R.volume
-
+			if(charge.display_name == R.name)
+				var/chems_to_transfer = input_item.reagents.volumes[rid]
 				if((charge.charges + chems_to_transfer) > max_reagent_volume)
 					chems_to_transfer = max_reagent_volume - charge.charges
-
 				charge.charges += chems_to_transfer
 				input_item.reagents.remove_reagent(rid, chems_to_transfer)
 				total_transferred += chems_to_transfer

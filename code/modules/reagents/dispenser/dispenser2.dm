@@ -2,21 +2,17 @@
 	name = "industrial chemical dispenser"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
-
-	var/list/spawn_cartridges = null // Set to a list of types to spawn one of each on New()
-
-	var/list/cartridges = list() // Associative, label -> cartridge
-	var/obj/item/reagent_containers/container = null
-
-	var/ui_title = "Chemical Dispenser"
-
-	var/accept_drinking = 0
-	var/amount = 30
-
 	use_power = 1
 	idle_power_usage = 100
 	density = 1
 	anchored = 1
+
+	var/list/spawn_cartridges = null // Set to a list of types to spawn one of each on New()
+	var/list/cartridges = list() // Associative, label -> cartridge
+	var/obj/item/reagent_containers/container = null
+	var/ui_title = "Chemical Dispenser"
+	var/accept_drinking = 0
+	var/amount = 30
 
 /obj/machinery/chemical_dispenser/New()
 	if(spawn_cartridges)
@@ -28,7 +24,6 @@
 	for(var/obj/item/reagent_containers/chem_disp_cartridge/cart in contents)
 		add_cartridge(cart)
 	. = ..()
-
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	..()
@@ -46,9 +41,14 @@
 		return
 
 	if(!C.label)
-		if(user)
-			user << "<span class='warning'>\The [C] does not have a label!</span>"
-		return
+		var/datum/reagent/R = SSchemistry.get_reagent(C.spawn_reagent)
+		C.setLabel(R.name)
+		if(!C.label)
+			if(user)
+				user << "<span class='warning'>\The [C] does not have a label!</span>"
+			else
+				to_chat(world.log, "DEBUG: chem cartridge ([C.type]) has no label.")
+			return
 
 	if(cartridges[C.label])
 		if(user)
@@ -124,10 +124,10 @@
 	data["isBeakerLoaded"] = container ? 1 : 0
 	data[MATERIAL_GLASS] = accept_drinking
 	var beakerD[0]
-	if(container && container.reagents && container.reagents.reagent_list.len)
-		for(var/rid in container.reagents.reagent_list)
+	if(container && container.reagents && container.reagents.volumes.len)
+		for(var/rid in container.reagents.volumes)
 			var/datum/reagent/R = SSchemistry.get_reagent(rid)
-			beakerD[++beakerD.len] = list("name" = R.name, "volume" = R.volume)
+			beakerD[++beakerD.len] = list("name" = R.name, "volume" = container.reagents.volumes[rid])
 	data["beakerContents"] = beakerD
 
 	if(container)
