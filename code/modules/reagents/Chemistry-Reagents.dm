@@ -17,9 +17,7 @@
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
 	var/disinfectant
-	var/list/initial_data
-	var/volume = 0
-
+	var/volume
 
 /datum/reagent/proc/remove_self(var/amount, var/datum/reagents/holder) // Shortcut
 	if(!QDELETED(src)) holder.remove_reagent(type, amount)

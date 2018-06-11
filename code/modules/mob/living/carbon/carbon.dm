@@ -7,9 +7,6 @@
 
 /mob/living/carbon/Life()
 	..()
-
-	handle_viruses()
-
 	// Increase germ_level regularly
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
@@ -371,8 +368,6 @@
 	if(now_pushing || !yes)
 		return
 	..()
-	if(istype(AM, /mob/living/carbon) && prob(10))
-		src.spread_disease_to(AM, "Contact")
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
 	if(buckled)

@@ -103,9 +103,6 @@
 /datum/reagent/nutriment/cornoil
 	lore_text = "An oil derived from various types of corn."
 
-/datum/reagent/nutriment/virus_food
-	lore_text = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
-
 /datum/reagent/nutriment/sprinkles
 	lore_text = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 

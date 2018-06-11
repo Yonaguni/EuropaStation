@@ -289,19 +289,4 @@
 	update_icon()
 
 /obj/item/reagent_containers/syringe/proc/take_blood_sample(var/mob/living/carbon/T, var/amount)
-	var/datum/reagent/B
-	if(istype(T, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if(!H.should_have_organ(BP_HEART))
-			H.reagents.trans_to_obj(src, amount)
-		else
-			B = T.take_blood(src, amount)
-	else
-		B = T.take_blood(src,amount)
-
-	if (B)
-		reagents.reagent_list += B
-		reagents.update_total()
-		on_reagent_change()
-		reagents.handle_reactions()
-	return B
+	return

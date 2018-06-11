@@ -309,16 +309,15 @@
 	taste_description = "sourness"
 	color = "#BF80BF"
 	metabolism = 0.01
-	data = 0
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-		data = world.time
+	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+		holder.last_message_tick = world.time
 		M << "<span class='warning'>You lose focus...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-			data = world.time
+		if(world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+			holder.last_message_tick = world.time
 			M << "<span class='notice'>Your mind feels focused and undivided.</span>"
 
 /datum/reagent/citalopram
@@ -326,32 +325,30 @@
 	taste_description = "bitterness"
 	color = "#FF80FF"
 	metabolism = 0.01
-	data = 0
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-		data = world.time
+	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+		holder.last_message_tick = world.time
 		M << "<span class='warning'>Your mind feels a little less stable...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-			data = world.time
+		if(world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+			holder.last_message_tick = world.time
 			M << "<span class='notice'>Your mind feels stable... a little stable.</span>"
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
 	color = "#FF80BF"
 	metabolism = 0.01
-	data = 0
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	var/dose = holder.doses[type]
-	if(volume <= 0.1 && dose >= 0.5 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-		data = world.time
+	if(volume <= 0.1 && dose >= 0.5 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+		holder.last_message_tick = world.time
 		M << "<span class='warning'>Your mind feels much less stable...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
-			data = world.time
+		if(world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY)
+			holder.last_message_tick = world.time
 			if(prob(90))
 				M << "<span class='notice'>Your mind feels much more stable.</span>"
 			else
@@ -366,17 +363,16 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
-	data = 0
 
 /datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.add_chemical_effect(CE_PULSE, 1)
 	var/dose = holder.doses[type]
-	if(volume <= 0.02 && dose >= 0.05 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
-		data = world.time
+	if(volume <= 0.02 && dose >= 0.05 && world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
+		holder.last_message_tick = world.time
 		M << "<span class='warning'>You feel antsy, your concentration wavers...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
-			data = world.time
+		if(world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
+			holder.last_message_tick = world.time
 			M << "<span class='notice'>You feel invigorated and calm.</span>"
 
 /datum/reagent/menthol
@@ -386,11 +382,10 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
-	data = 0
 
-/datum/reagent/menthol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.35)
-		data = world.time
+/datum/reagent/menthol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	if(world.time > holder.last_message_tick + ANTIDEPRESSANT_MESSAGE_DELAY * 0.35)
+		holder.last_message_tick = world.time
 		M << "<span class='notice'>You feel faintly sore in the throat.</span>"
 
 /datum/reagent/rezadone

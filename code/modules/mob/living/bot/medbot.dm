@@ -25,7 +25,6 @@
 	var/treatment_oxy = REAGENT_DEXALIN
 	var/treatment_fire = REAGENT_FOTIAZINE
 	var/treatment_tox = REAGENT_ANTITOXIN
-	var/treatment_virus = REAGENT_ANTIBIOTICS
 	var/treatment_emag = REAGENT_TOXIN
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 

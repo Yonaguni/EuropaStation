@@ -29,7 +29,7 @@
 
 /obj/item/clothing/mask/surgical
 	name = "sterile mask"
-	desc = "A sterile mask designed to help prevent the spread of diseases."
+	desc = "A sterile mask designed to help prevent the spread of germs."
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = 2

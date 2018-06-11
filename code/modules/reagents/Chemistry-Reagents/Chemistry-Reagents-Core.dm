@@ -1,6 +1,5 @@
 /datum/reagent/blood
 	name = "blood"
-	initial_data = list("donor" = null, "viruses" = null, "species" = DEFAULT_SPECIES, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	metabolism = REM * 5
 	color = "#C80000"
 	taste_description = "iron"
@@ -18,48 +17,10 @@
 		M.adjustToxLoss(removed)
 	if(dose > 15)
 		M.adjustToxLoss(removed)
-	if(islist(holder.data[type]))
-		var/list/data = holder.data[type]
-		if(data["virus2"])
-			var/list/vlist = data["virus2"]
-			if(vlist.len)
-				for(var/ID in vlist)
-					var/datum/disease2/disease/V = vlist[ID]
-					if(V.spreadtype == "Contact")
-						infect_virus2(M, V.getcopy())
-
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.isSynthetic())
-			return
-	if(islist(holder.data[type]))
-		var/list/data = holder.data[type]
-		if(data["virus2"])
-			var/list/vlist = data["virus2"]
-			if(vlist.len)
-				for(var/ID in vlist)
-					var/datum/disease2/disease/V = vlist[ID]
-					if(V.spreadtype == "Contact")
-						infect_virus2(M, V.getcopy())
-		if(data["antibodies"])
-			M.antibodies |= data["antibodies"]
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.inject_blood(src, volume)
 	remove_self(volume, holder)
-
-// pure concentrated antibodies
-/datum/reagent/antibodies
-	data = list("antibodies"=list())
-	name = "antibodies"
-	taste_description = "slime"
-	color = "#0050F0"
-
-/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(src.data)
-		M.antibodies |= src.data["antibodies"]
-	..()
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water

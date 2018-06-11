@@ -220,7 +220,7 @@
 				objholder = get_path_from_partial_text(/obj/structure/closet)
 
 			if(3) // Edit
-				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
+				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "cuffed", "ka", "last_eaten", "urine")
 
 				master.buildmode.varholder = input(usr,"Enter variable name:" ,"Name", "name")
 				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))

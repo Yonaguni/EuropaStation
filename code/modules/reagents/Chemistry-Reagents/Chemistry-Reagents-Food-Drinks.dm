@@ -119,13 +119,6 @@
 	if(volume >= 3)
 		T.wet_floor()
 
-/datum/reagent/nutriment/virus_food
-	name = "Virus Food"
-	taste_description = "vomit"
-	taste_mult = 2
-	nutriment_factor = 2
-	color = "#899613"
-
 /datum/reagent/nutriment/sprinkles
 	name = "Sprinkles"
 	taste_description = "childhood whimsy"

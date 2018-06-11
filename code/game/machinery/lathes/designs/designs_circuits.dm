@@ -118,14 +118,6 @@
 	name = "operating computer circuit"
 	path = /obj/item/circuitboard/operating
 
-/datum/autolathe/recipe/circuit/medical/cure
-	name = "cure fabricator circuit"
-	path = /obj/item/circuitboard/curefab
-
-/datum/autolathe/recipe/circuit/medical/splicer
-	name = "splicer circuit"
-	path = /obj/item/circuitboard/splicer
-
 // ENTERTAINMENT
 /datum/autolathe/recipe/circuit/arcade
 	name = "arcade machine circuit (Battle)"

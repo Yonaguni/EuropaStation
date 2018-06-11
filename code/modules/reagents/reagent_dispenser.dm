@@ -225,18 +225,6 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_BEER,1000)
 
-/obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
-	desc = "A dispenser of virus food."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = 1
-
-/obj/structure/reagent_dispensers/virusfood/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_VIRUSFOOD, 1000)
-
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
 	desc = "A dispenser of acid for industrial processes."

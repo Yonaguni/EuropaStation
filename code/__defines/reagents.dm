@@ -84,8 +84,6 @@
 #define REAGENT_CRYOXADONE        /datum/reagent/cryoxadone
 #define REAGENT_ANTISEPTIC        /datum/reagent/antiseptic
 #define REAGENT_BEER              /datum/reagent/ethanol/beer
-#define REAGENT_VIRUSFOOD         /datum/reagent/nutriment/virus_food
-#define REAGENT_ANTIBODIES        /datum/reagent/antibodies
 #define REAGENT_ACETONE           /datum/reagent/acetone
 #define REAGENT_HCLACID           /datum/reagent/acid/hydrochloric
 #define REAGENT_RADIUM            /datum/reagent/radium

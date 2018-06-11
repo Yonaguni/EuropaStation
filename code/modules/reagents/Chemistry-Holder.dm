@@ -7,7 +7,7 @@
 	var/atom/my_atom = null
 	var/list/doses =   list()
 	var/list/volumes = list()
-	var/list/data =    list()
+	var/last_message_tick = 0
 
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()
@@ -118,39 +118,33 @@
 /* Holder-to-chemical */
 
 /datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
+
+	if(!SSchemistry.get_reagent(id))
+		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
+		return 0
+
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
 	update_total()
 	amount = min(amount, get_free_space())
 
+	var/present = FALSE
 	for(var/rid in reagent_list)
-		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		if(rid == id)
-			current.volume += amount
-			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
-				current.mix_data(data, amount)
-			update_total()
-			if(!safety)
-				handle_reactions()
-			if(my_atom)
-				my_atom.on_reagent_change()
-			return 1
-	var/datum/reagent/D = SSchemistry.get_reagent(id)
-	if(D)
-		var/datum/reagent/R = new D.type()
-		reagent_list += id
-		R.volume = amount
-		R.initialize_data(data)
-		update_total()
-		if(!safety)
-			handle_reactions()
-		if(my_atom)
-			my_atom.on_reagent_change()
-		return 1
+			present = TRUE
+			break
+
+	if(present)
+		volumes[id] += amount
 	else
-		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
-	return 0
+		reagent_list += id
+		volumes[id] = amount
+
+	update_total()
+	if(!safety) handle_reactions()
+	if(my_atom) my_atom.on_reagent_change()
+	return 1
 
 /datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)
 	if(!isnum(amount))
@@ -229,13 +223,6 @@
 			amt += current.volume
 	return amt
 
-/datum/reagents/proc/get_data(var/id)
-	for(var/rid in reagent_list)
-		var/datum/reagent/current = SSchemistry.get_reagent(rid)
-		if(rid == id)
-			return current.get_data()
-	return 0
-
 /datum/reagents/proc/get_reagents()
 	. = list()
 	for(var/rid in reagent_list)
@@ -276,7 +263,7 @@
 	for(var/rid in reagent_list)
 		var/datum/reagent/current = SSchemistry.get_reagent(rid)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(rid, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(rid, amount_to_transfer * multiplier, safety = 1) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.type, amount_to_transfer, 1)
 
@@ -323,8 +310,7 @@
 		return
 
 	var/datum/reagents/F = new /datum/reagents(amount)
-	var/tmpdata = get_data(id)
-	F.add_reagent(id, amount, tmpdata)
+	F.add_reagent(id, amount)
 	remove_reagent(id, amount)
 
 	return F.trans_to(target, amount) // Let this proc check the atom's type

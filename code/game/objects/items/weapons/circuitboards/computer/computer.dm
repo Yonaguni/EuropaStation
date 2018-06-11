@@ -94,24 +94,13 @@
 	name = T_BOARD("crew monitoring console")
 	build_path = /obj/machinery/computer/crew
 
-
 /obj/item/circuitboard/operating
 	name = T_BOARD("patient monitoring console")
 	build_path = /obj/machinery/computer/operating
 
-
-/obj/item/circuitboard/curefab
-	name = T_BOARD("cure fabricator")
-	build_path = /obj/machinery/computer/curer
-
-/obj/item/circuitboard/splicer
-	name = T_BOARD("disease splicer")
-	build_path = /obj/machinery/computer/diseasesplicer
-
 /obj/item/circuitboard/aifixer
 	name = T_BOARD("AI integrity restorer")
 	build_path = /obj/machinery/computer/aifixer
-
 
 /obj/item/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
