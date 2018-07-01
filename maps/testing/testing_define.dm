@@ -17,6 +17,8 @@
 	test_x = 10
 	test_y = 10
 	test_z = 1
+	has_weather = TRUE
+	apply_environmental_lighting = TRUE
 
 /datum/map/testing/perform_map_generation()
 	map_submerged = TRUE

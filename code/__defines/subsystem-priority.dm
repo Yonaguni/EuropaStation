@@ -42,6 +42,7 @@
 #define SS_PRIORITY_OBJECTS       15	// processing_objects processing.
 #define SS_PRIORITY_WIRELESS      12	// Handles pairing of wireless devices. Usually will be asleep.
 #define SS_PRIORITY_SUN            3	// Sun movement & Solar tracking.
+#define SS_PRIORITY_ENVIRONMENT    3	// World lighting controller.
 #define SS_PRIORITY_GARBAGE        2	// Garbage collection.
 
 

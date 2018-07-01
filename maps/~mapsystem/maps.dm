@@ -109,6 +109,9 @@ var/list/votable_maps = list()
 	var/default_home_system =      /datum/stellar_location/mars
 	var/default_faction =          /datum/faction/inner
 
+	var/has_weather = FALSE
+	var/apply_environmental_lighting = FALSE
+
 /datum/map/New()
 	..()
 	if(!base_area)
