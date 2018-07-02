@@ -34,9 +34,6 @@
 			var/obj/effect/light/L = thing
 			L.affecting_turfs -= src
 
-	//world << "Replacing [src.type] with [N]"
-
-
 	if(connections) connections.erase_all()
 
 	overlays.Cut()
