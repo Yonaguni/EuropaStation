@@ -1,5 +1,6 @@
 /obj/machinery/fusion_fuel_compressor
 	name = "fuel compressor"
+	desc = "It puts fuel material under a lot of pressure to perform. Harsh but fair."
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel_compressor1"
 	density = 1

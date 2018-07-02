@@ -135,7 +135,7 @@
 
 	var/turf/new_turf = target.ChangeTurf(source.type, 1, 1)
 	if(!new_turf)
-		CRASH_WITH("Missing new turf in transport_turf_contents call to transport_properties_from!")
+		crash_with("Missing new turf in transport_turf_contents call to transport_properties_from!")
 	new_turf.transport_properties_from(source)
 
 	for(var/obj/O in source)
