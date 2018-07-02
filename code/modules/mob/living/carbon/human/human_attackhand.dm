@@ -48,9 +48,6 @@
 
 			return
 
-	if(istype(M,/mob/living/carbon))
-		M.spread_disease_to(src, "Contact")
-
 	switch(M.a_intent)
 		if(I_HELP)
 			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)

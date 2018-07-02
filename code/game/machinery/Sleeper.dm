@@ -28,7 +28,7 @@
 		if(beaker)
 			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
 				var/pumped = 0
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
+				for(var/rid in occupant.reagents.volumes)
 					occupant.reagents.trans_to_obj(beaker, 3)
 					pumped++
 				if(ishuman(occupant))

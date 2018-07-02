@@ -154,7 +154,7 @@
 	if(!location)
 		return
 
-	if(chemholder.reagents.reagent_list.len) //reagent application - only run if there are extra reagents in the smoke
+	if(chemholder.reagents.volumes.len) //reagent application - only run if there are extra reagents in the smoke
 		for(var/turf/T in wallList)
 			chemholder.reagents.touch_turf(T)
 		for(var/turf/T in targetTurfs)
@@ -220,7 +220,7 @@
 	else
 		smoke = PoolOrNew(/obj/effect/smoke/chem, list(location, smoke_duration + rand(0, 20), T, I))
 
-	if(chemholder.reagents.reagent_list.len)
+	if(chemholder.reagents.volumes.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 
 	//Kinda ugly, but needed unless the system is reworked

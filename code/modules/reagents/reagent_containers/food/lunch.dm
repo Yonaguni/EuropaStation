@@ -90,12 +90,12 @@ var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
 
 /proc/lunchables_drink_reagents()
 	if(!(lunchables_drink_reagents_[lunchables_drink_reagents_[1]]))
-		lunchables_drink_reagents_ = init_lunchable_reagent_list(lunchables_drink_reagents_, /datum/reagent/drink)
+		lunchables_drink_reagents_ = init_lunchable_volumes(lunchables_drink_reagents_, /datum/reagent/drink)
 	return lunchables_drink_reagents_
 
 /proc/lunchables_ethanol_reagents()
 	if(!(lunchables_ethanol_reagents_[lunchables_ethanol_reagents_[1]]))
-		lunchables_ethanol_reagents_ = init_lunchable_reagent_list(lunchables_ethanol_reagents_, /datum/reagent/ethanol)
+		lunchables_ethanol_reagents_ = init_lunchable_volumes(lunchables_ethanol_reagents_, /datum/reagent/ethanol)
 	return lunchables_ethanol_reagents_
 
 /proc/init_lunchable_list(var/list/lunches)
@@ -105,7 +105,7 @@ var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
 		.[initial(O.name)] = lunch
 	return sortAssoc(.)
 
-/proc/init_lunchable_reagent_list(var/list/banned_reagents, var/reagent_types)
+/proc/init_lunchable_volumes(var/list/banned_reagents, var/reagent_types)
 	. = list()
 	for(var/reagent_type in subtypesof(reagent_types))
 		if(reagent_type in banned_reagents)

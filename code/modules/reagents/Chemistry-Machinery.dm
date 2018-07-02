@@ -90,18 +90,7 @@
 		if (href_list["analyze"])
 			var/dat = ""
 			if(!condi)
-				if(href_list["name"] == "Blood")
-					var/datum/reagent/blood/G
-					for(var/datum/reagent/F in R.reagent_list)
-						if(F.name == href_list["name"])
-							G = F
-							break
-					var/A = G.name
-					var/B = G.data["blood_type"]
-					var/C = G.data["blood_DNA"]
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
-				else
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+				dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 			else
 				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 			usr << browse(dat, "window=chem_master;size=575x400")
@@ -251,25 +240,29 @@
 			dat += "Beaker is empty."
 		else
 			dat += "Add to buffer:<BR>"
-			for(var/datum/reagent/G in R.reagent_list)
-				dat += "[G.name] , [G.volume] Units - "
+			for(var/rid in R.volumes)
+				var/datum/reagent/G = SSchemistry.get_reagent(rid)
+				var/volume = reagents.volumes[rid]
+				dat += "[G.name], [volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.lore_text];name=[G.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];add=[rid];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[rid];amount=[volume]]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];addcustom=[rid]'>(Custom)</A><BR>"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
-			for(var/datum/reagent/N in reagents.reagent_list)
-				dat += "[N.name] , [N.volume] Units - "
+			for(var/rid in reagents.volumes)
+				var/datum/reagent/N = SSchemistry.get_reagent(rid)
+				var/volume = reagents.volumes[rid]
+				dat += "[N.name], [volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.lore_text];name=[N.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[rid];amount=[volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];removecustom=[rid]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
@@ -409,9 +402,10 @@
 			is_beaker_ready = 1
 			beaker_contents = "<B>The beaker contains:</B><br>"
 			var/anything = 0
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for(var/rid in beaker.reagents.volumes)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				anything = 1
-				beaker_contents += "[R.volume] - [R.name]<br>"
+				beaker_contents += "[beaker.reagents.volumes[rid]] - [R.name]<br>"
 			if(!anything)
 				beaker_contents += "Nothing<br>"
 

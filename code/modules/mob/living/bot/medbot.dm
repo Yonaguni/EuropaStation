@@ -25,7 +25,6 @@
 	var/treatment_oxy = REAGENT_DEXALIN
 	var/treatment_fire = REAGENT_FOTIAZINE
 	var/treatment_tox = REAGENT_ANTITOXIN
-	var/treatment_virus = REAGENT_ANTIBIOTICS
 	var/treatment_emag = REAGENT_TOXIN
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
@@ -267,8 +266,8 @@
 
 	// If they're injured, we're using a beaker, and they don't have on of the chems in the beaker
 	if(reagent_glass && use_beaker && ((H.getBruteLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getOxyLoss() >= (heal_threshold + 15))))
-		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(!H.reagents.has_reagent(R))
+		for(var/rid in reagent_glass.reagents.volumes)
+			if(!H.reagents.has_reagent(rid))
 				return 1
 			continue
 

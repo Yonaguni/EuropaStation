@@ -27,7 +27,7 @@
 
 // For secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
 #define      HEALTH_HUD 1 // A simple line rounding the mob's number health.
-#define      STATUS_HUD 2 // Alive, dead, diseased, etc.
+#define      STATUS_HUD 2 // Alive, dead, etc.
 #define          ID_HUD 3 // The job asigned to your ID.
 #define      WANTED_HUD 4 // Wanted, released, paroled, security status.
 #define    IMPLOYAL_HUD 5 // Loyality implant.

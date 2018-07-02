@@ -352,8 +352,8 @@ Proc for attack log creation, because really why not
 		if(C.reagents.total_volume)
 			var/unknown = 0
 			var/reagentdata[0]
-			for(var/A in C.reagents.reagent_list)
-				var/datum/reagent/R = A
+			for(var/A in C.reagents.volumes)
+				var/datum/reagent/R = SSchemistry.get_reagent(A)
 				if(R.scannable)
 					reagentdata["[R.name]"] = "<span class='notice'>    [round(C.reagents.get_reagent_amount(R.type), 1)]u [R.name]</span>"
 				else
@@ -368,19 +368,14 @@ Proc for attack log creation, because really why not
 		var/datum/reagents/ingested = C.get_ingested_reagents()
 		if(ingested && ingested.total_volume)
 			var/unknown = 0
-			for(var/datum/reagent/R in ingested.reagent_list)
+			for(var/rid in ingested.volumes)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
 				if(R.scannable)
 					user << "<span class='notice'>[R.name] found in subject's stomach.</span>"
 				else
 					++unknown
 			if(unknown)
 				user << "<span class='warning'>Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.</span>"
-		if(C.virus2.len)
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					user.show_message("<span class='warning'>Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]</span>")
-//			user.show_message(text("<span class='warning'>Warning: Unknown pathogen detected in subject's blood.</span>"))
 	if (M.getCloneLoss())
 		user.show_message("<span class='warning'>Subject appears to have been imperfectly cloned.</span>")
 

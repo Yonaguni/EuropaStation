@@ -23,9 +23,10 @@
 	if(!..(user, 2))
 		return
 	user << "\blue It contains:"
-	if(reagents && reagents.reagent_list.len)
-		for(var/datum/reagent/R in reagents.reagent_list)
-			user << "\blue [R.volume] units of [R.name]"
+	if(reagents && reagents.volumes.len)
+		for(var/rid in reagents.volumes)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
+			user << "\blue [reagents.volumes[rid]] units of [R.name]"
 	else
 		user << "\blue Nothing."
 
@@ -223,18 +224,6 @@
 /obj/structure/reagent_dispensers/beerkeg/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_BEER,1000)
-
-/obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
-	desc = "A dispenser of virus food."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = 1
-
-/obj/structure/reagent_dispensers/virusfood/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_VIRUSFOOD, 1000)
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"

@@ -6,9 +6,6 @@
 /datum/reagent/blood
 	value = 2
 
-/datum/reagent/antibodies
-	value = 6
-
 /datum/reagent/water
 	value = 0
 
@@ -68,9 +65,6 @@
 
 /datum/reagent/nutriment
 	value = 0.1
-
-/datum/reagent/nutriment/virus_food
-	value = 0.15
 
 /datum/reagent/nutriment/sprinkles
 	value = 0.05

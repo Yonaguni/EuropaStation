@@ -44,11 +44,6 @@
 	..(newloc)
 
 	if(istype(topping))
-
-		for(var/taste_thing in topping.nutriment_desc)
-			if(!nutriment_desc[taste_thing]) nutriment_desc[taste_thing] = 0
-			nutriment_desc[taste_thing] += topping.nutriment_desc[taste_thing]
-
 		if(istype(topping, /obj/item/reagent_containers/food/snacks/sashimi))
 			var/obj/item/reagent_containers/food/snacks/sashimi/sashimi = topping
 			fish_type = sashimi.fish_type

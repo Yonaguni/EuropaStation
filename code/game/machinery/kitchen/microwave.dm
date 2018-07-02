@@ -87,7 +87,7 @@
 				"<span class='notice'>\The [user] starts to clean the microwave.</span>", \
 				"<span class='notice'>You start to clean the microwave.</span>" \
 			)
-			if (do_after(user, 20, src))	
+			if (do_after(user, 20, src))
 				user.visible_message( \
 					"<span class='notice'>\The [user] has cleaned the microwave.</span>", \
 					"<span class='notice'>You have cleaned the microwave.</span>" \
@@ -125,8 +125,8 @@
 		)
 		if (!O.reagents)
 			return 1
-		for (var/datum/reagent/R in O.reagents.reagent_list)
-			if (!(R.type in acceptable_reagents))
+		for (var/rid in O.reagents.volumes)
+			if (!(rid in acceptable_reagents))
 				user << "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>"
 				return 1
 		return
@@ -206,15 +206,16 @@
 				else
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
 
-		for (var/datum/reagent/R in reagents.reagent_list)
+		for (var/rid in reagents.volumes)
+			var/datum/reagent/R = SSchemistry.get_reagent(rid)
 			var/display_name = R.name
 			if (R.type == REAGENT_CAPSAICIN)
 				display_name = "Hotsauce"
 			else if (R.type == REAGENT_FROSTOIL)
 				display_name = "Coldsauce"
-			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
+			dat += {"<B>[display_name]:</B> [reagents.volumes[rid]] unit\s<BR>"}
 
-		if (items_counts.len==0 && reagents.reagent_list.len==0)
+		if (items_counts.len==0 && reagents.volumes.len==0)
 			dat = {"<B>The microwave is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
@@ -363,7 +364,7 @@
 	for (var/obj/O in (InsertedContents()-ffuu))
 		amount++
 		if (O.reagents)
-			var/id = O.reagents.get_master_reagent_id()
+			var/id = O.reagents.get_master_reagent()
 			if (id)
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)

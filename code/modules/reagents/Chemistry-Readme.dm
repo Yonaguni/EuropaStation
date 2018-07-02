@@ -6,7 +6,7 @@ Structure: ///////////////////          //////////////////////////
 		   ///////////////////          //////////////////////////
 		   			|				    			 |
     The object that holds everything.   			 V
-		   							      reagent_list var (list)   	A List of datums, each datum is a reagent.
+		   							      volumes var (list)   	A List of datums, each datum is a reagent.
 
 		   							      |          |          |
 		   							      V          V          V
@@ -25,7 +25,7 @@ About the Holder:
 	currently in the object.It also has all the procs needed to manipulate reagents
 
 	Vars:
-		list/datum/reagent/reagent_list
+		list/datum/reagent/volumes
 			List of reagent datums.
 
 		total_volume
@@ -146,18 +146,6 @@ About Reagents:
 		description
 			Description that shows up in-game.
 
-		datum/reagents/holder
-			Reference to holder.
-
-		reagent_state
-			Could be GAS, LIQUID, or SOLID. Affects nothing. Reserved for future use.
-
-		list/data
-			Use varies by reagent. Custom variable. For example, blood stores blood group and viruses.
-
-		volume
-			Current volume.
-
 		metabolism
 			How quickly reagent is processed in mob's bloodstream; by default aslo affects ingest and touch metabolism.
 
@@ -166,9 +154,6 @@ About Reagents:
 
 		touch_met
 			Ditto when touching.
-
-		dose
-			How much of the reagent has been processed, limited by [max_dose]. Used for reagents with varying effects (e.g. ethanol or rezadone) and overdosing.
 
 		max_dose
 			Maximum amount of reagent that has ever been in a mob. Exists so dose won't grow infinitely when small amounts of reagent are added over time.

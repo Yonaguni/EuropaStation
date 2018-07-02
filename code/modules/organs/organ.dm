@@ -100,7 +100,7 @@ var/list/organ_cache = list()
 		return
 
 	if(!owner && reagents)
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+		var/datum/reagent/blood/B = get_blood(reagents)
 		if(B && prob(40))
 			reagents.remove_reagent(REAGENT_BLOOD,0.1)
 			blood_splatter(src,B,1)
@@ -154,12 +154,7 @@ var/list/organ_cache = list()
 			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
-	// Process unsuitable transplants. TODO: consider some kind of
-	// immunosuppressant that changes transplant data to make it match.
-	if(!rejecting)
-		if(blood_incompatible(b_type, owner.b_type, species, owner.species))
-			rejecting = 1
-	else
+	if(rejecting)
 		rejecting++ //Rejection severity increases over time.
 		if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
 			switch(rejecting)
@@ -292,9 +287,8 @@ var/list/organ_cache = list()
 	processing_objects |= src
 	rejecting = null
 	if(robotic < ORGAN_ROBOT)
-		var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list //TODO fix this and all other occurences of locate(/datum/reagent/blood) horror
-		if(!organ_blood || !organ_blood.data["blood_DNA"])
-			owner.vessel.trans_to(src, 5, 1, 1)
+		var/datum/reagent/blood/organ_blood = get_blood(reagents)
+		if(!organ_blood) owner.vessel.trans_to(src, 5, 1, 1)
 
 	if(owner && owner.stat != DEAD && vital)
 		if(user)
@@ -331,7 +325,7 @@ var/list/organ_cache = list()
 		return
 
 	user << "<span class='notice'>You take an experimental bite out of \the [src].</span>"
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
+	var/datum/reagent/blood/B = get_blood(reagents)
 	blood_splatter(src,B,1)
 
 	user.drop_from_inventory(src)

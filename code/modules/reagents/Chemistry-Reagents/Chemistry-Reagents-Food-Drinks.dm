@@ -3,38 +3,17 @@
 /datum/reagent/nutriment
 	name = "Nutriment"
 	taste_mult = 4
-	reagent_state = SOLID
 	metabolism = REM * 4
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
 	color = "#664330"
 
-/datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
-	if(!islist(newdata) || !newdata.len)
-		return
-
-	//add the new taste data
-	for(var/taste in newdata)
-		if(taste in data)
-			data[taste] += newdata[taste]
-		else
-			data[taste] = newdata[taste]
-
-	//cull all tastes below 10% of total
-	var/totalFlavor = 0
-	for(var/taste in data)
-		totalFlavor += data[taste]
-	if(totalFlavor)
-		for(var/taste in data)
-			if(data[taste]/totalFlavor < 0.1)
-				data -= taste
-
-/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(!injectable)
 		M.adjustToxLoss(0.2 * removed)
 		return
-	affect_ingest(M, alien, removed)
+	affect_ingest(M, alien, removed, holder)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(0.5 * removed, 0) //what
@@ -77,7 +56,6 @@
 /datum/reagent/nutriment/flour
 	name = REAGENT_FLOUR
 	taste_description = "chalky wheat"
-	reagent_state = SOLID
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
@@ -89,7 +67,6 @@
 	name = "Coco Powder"
 	taste_description = "bitterness"
 	taste_mult = 1.3
-	reagent_state = SOLID
 	nutriment_factor = 5
 	color = "#302000"
 
@@ -97,14 +74,12 @@
 	name = "Soysauce"
 	taste_description = "umami"
 	taste_mult = 1.1
-	reagent_state = LIQUID
 	nutriment_factor = 2
 	color = "#792300"
 
 /datum/reagent/nutriment/ketchup
 	name = "Ketchup"
 	taste_description = REAGENT_KETCHUP
-	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#731008"
 
@@ -112,7 +87,6 @@
 	name = "Rice"
 	taste_description = "rice"
 	taste_mult = 0.4
-	reagent_state = SOLID
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
@@ -120,7 +94,6 @@
 	name = "Cherry Jelly"
 	taste_description = "cherry"
 	taste_mult = 1.3
-	reagent_state = LIQUID
 	nutriment_factor = 1
 	color = "#801E28"
 
@@ -128,11 +101,10 @@
 	name = "Corn Oil"
 	taste_description = "slime"
 	taste_mult = 0.1
-	reagent_state = LIQUID
 	nutriment_factor = 20
 	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
+/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T, var/datum/reagents/holder)
 	if(!istype(T))
 		return
 
@@ -144,16 +116,8 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if(volume >= 3)
+	if(holder.volumes[type] >= 3)
 		T.wet_floor()
-
-/datum/reagent/nutriment/virus_food
-	name = "Virus Food"
-	taste_description = "vomit"
-	taste_mult = 2
-	reagent_state = LIQUID
-	nutriment_factor = 2
-	color = "#899613"
 
 /datum/reagent/nutriment/sprinkles
 	name = "Sprinkles"
@@ -164,13 +128,11 @@
 /datum/reagent/nutriment/mint
 	name = "Mint"
 	taste_description = "mint"
-	reagent_state = LIQUID
 	color = "#CF3600"
 
 /datum/reagent/lipozine // The anti-nutriment.
 	name = "Lipozine"
 	taste_description = "mothballs"
-	reagent_state = LIQUID
 	color = "#BBEDA4"
 	overdose = REAGENTS_OVERDOSE
 
@@ -182,21 +144,18 @@
 /datum/reagent/sodiumchloride
 	name = "Table Salt"
 	taste_description = "salt"
-	reagent_state = SOLID
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"
 	taste_description = "pepper"
-	reagent_state = SOLID
 	color = "#000000"
 
 /datum/reagent/enzyme
 	name = "Universal Enzyme"
 	taste_description = "sweetness"
 	taste_mult = 0.7
-	reagent_state = LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
 
@@ -204,10 +163,9 @@
 	name = "Frost Oil"
 	taste_description = "mint"
 	taste_mult = 1.5
-	reagent_state = LIQUID
 	color = "#B31008"
 
-/datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
@@ -217,7 +175,6 @@
 	name = "Capsaicin Oil"
 	taste_description = "hot peppers"
 	taste_mult = 1.5
-	reagent_state = LIQUID
 	color = "#B31008"
 	var/agony_dose = 5
 	var/agony_amount = 2
@@ -226,11 +183,12 @@
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(0.5 * removed)
 
-/datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
+	var/dose = holder.doses[type]
 	if(dose < agony_dose)
 		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
 			M << discomfort_message
@@ -245,7 +203,6 @@
 	name = "Condensed Capsaicin"
 	taste_description = "scorching agony"
 	taste_mult = 10
-	reagent_state = LIQUID
 	touch_met = 50 // Get rid of it quickly
 	color = "#B31008"
 	agony_dose = 0.5
@@ -300,11 +257,12 @@
 		M.Stun(5)
 		M.Weaken(5)
 
-/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
+	var/dose = holder.doses[type]
 	if(dose == metabolism)
 		M << "<span class='danger'>You feel like your insides are burning!</span>"
 	else
@@ -317,7 +275,6 @@
 
 /datum/reagent/drink
 	name = "Drink"
-	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per unit
 	var/adj_dizzy = 0 // Per tick
@@ -465,7 +422,7 @@
 	glass_name = "chocolate milk"
 	glass_desc = "Deliciously fattening!"
 
-/datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
 	holder.remove_reagent(REAGENT_CAPSAICIN, 10 * removed)
@@ -536,7 +493,7 @@
 	glass_name = "cup of coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
-/datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	..()
 	if(adj_temp > 0)
 		holder.remove_reagent(REAGENT_FROSTOIL, 10 * removed)
@@ -585,7 +542,6 @@
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
 	taste_description = "creamy chocolate"
-	reagent_state = LIQUID
 	color = "#403010"
 	nutrition = 2
 	adj_temp = 5
@@ -698,7 +654,6 @@
 /datum/reagent/drink/space_cola
 	name = "Space Cola"
 	taste_description = "cola"
-	reagent_state = LIQUID
 	color = "#100800"
 	adj_drowsy = -3
 	adj_temp = -5
@@ -752,7 +707,6 @@
 /datum/reagent/drink/doctor_delight
 	name = "The Doctor's Delight"
 	taste_description = "homely fruit"
-	reagent_state = LIQUID
 	color = "#FF8CFF"
 	nutrition = 1
 
@@ -772,14 +726,12 @@
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"
 	taste_description = "dry and cheap noodles"
-	reagent_state = SOLID
 	nutrition = 1
 	color = "#302000"
 
 /datum/reagent/drink/hot_ramen
 	name = "Hot Ramen"
 	taste_description = "wet and cheap noodles"
-	reagent_state = LIQUID
 	color = "#302000"
 	nutrition = 5
 	adj_temp = 5
@@ -787,7 +739,6 @@
 /datum/reagent/drink/hell_ramen
 	name = "Hell Ramen"
 	taste_description = "wet and cheap noodles on fire"
-	reagent_state = LIQUID
 	color = "#302000"
 	nutrition = 5
 
@@ -799,7 +750,6 @@
 	name = "Ice"
 	taste_description = "ice"
 	taste_mult = 1.5
-	reagent_state = SOLID
 	color = "#619494"
 	adj_temp = -5
 
@@ -1009,7 +959,6 @@
 /datum/reagent/ethanol/acid_spit
 	name = "Acid Spit"
 	taste_description = "stomach acid"
-	reagent_state = LIQUID
 	color = "#365000"
 	strength = 30
 
@@ -1037,7 +986,6 @@
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
 	taste_description = "dark and metallic"
-	reagent_state = LIQUID
 	color = "#FF975D"
 	strength = 25
 
@@ -1067,7 +1015,6 @@
 /datum/reagent/ethanol/atomicbomb
 	name = "Atomic Bomb"
 	taste_description = "radioactive"
-	reagent_state = LIQUID
 	color = "#666300"
 	strength = 10
 	druggy = 50
@@ -1108,7 +1055,6 @@
 	name = "Beepsky Smash"
 	taste_description = "JUSTICE"
 	taste_mult = 2
-	reagent_state = LIQUID
 	color = "#404040"
 	strength = 12
 
@@ -1224,7 +1170,6 @@
 /datum/reagent/ethanol/grog
 	name = "Grog"
 	taste_description = "a poor excuse for alcohol"
-	reagent_state = LIQUID
 	color = "#FFBB00"
 	strength = 100
 
@@ -1245,7 +1190,6 @@
 	name = "Pan-Galactic Gargle Blaster"
 	taste_description = "having your brains smashed out by a slice of lemon wrapped around a large gold brick"
 	taste_mult = 5
-	reagent_state = LIQUID
 	color = "#7F00FF"
 	strength = 10
 
@@ -1274,7 +1218,6 @@
 /datum/reagent/ethanol/hippies_delight
 	name = "Hippies' Delight"
 	taste_description = "giving peace a chance"
-	reagent_state = LIQUID
 	color = "#FF88FF"
 	strength = 15
 	druggy = 50
@@ -1380,7 +1323,6 @@
 /datum/reagent/ethanol/mead
 	name = "Mead"
 	taste_description = "sweet, sweet alcohol"
-	reagent_state = LIQUID
 	color = "#FFBB00"
 	strength = 30
 	nutriment_factor = 1
@@ -1401,7 +1343,6 @@
 /datum/reagent/ethanol/neurotoxin
 	name = "Neurotoxin"
 	taste_description = "a numbing sensation"
-	reagent_state = LIQUID
 	color = "#2E2E61"
 	strength = 10
 
@@ -1435,8 +1376,9 @@
 	glass_name = "???"
 	glass_desc = "A black ichor with an oily purple sheen on top. Are you sure you should drink this?"
 
-/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	..()
+	var/dose = holder.doses[type]
 	if(dose > 30)
 		M.adjustToxLoss(2 * removed)
 	if(dose > 60 && ishuman(M) && prob(5))
@@ -1535,7 +1477,6 @@
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
 	taste_description = "spicy toxins"
-	reagent_state = LIQUID
 	color = "#7F00FF"
 	strength = 10
 	adj_temp = 15

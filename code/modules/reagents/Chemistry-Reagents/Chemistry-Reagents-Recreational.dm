@@ -30,7 +30,6 @@
 /datum/reagent/lsd
 	name = "LSD"
 	taste_description = "sourness"
-	reagent_state = LIQUID
 	color = "#B31008"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -45,9 +44,10 @@
 	overdose = REAGENTS_OVERDOSE
 	metabolism = REM * 0.5
 
-/datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	M.druggy = max(M.druggy, 30)
 
+	var/dose = holder.doses[type]
 	if(dose < 1)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
@@ -71,7 +71,6 @@
 /datum/reagent/jumpstart
 	name = "Jumpstart"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE * 0.5
@@ -86,7 +85,6 @@
 	name = "Glint"
 	taste_description = "bitterness"
 	taste_mult = 0.4
-	reagent_state = LIQUID
 	color = "#60A584"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE
@@ -103,7 +101,6 @@
 	name = "Pax"
 	taste_description = "nothing at all"
 	taste_mult = 0.4
-	reagent_state = LIQUID
 	color = "#CCCCCC"
 	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE
@@ -117,7 +114,6 @@
 /datum/reagent/ladder
 	name = "Ladder"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#FFCC00"
 	metabolism = REM * 0.5
 
@@ -130,7 +126,6 @@
 /datum/reagent/threeeye
 	name = "Three Eye"
 	taste_description = "starlight"
-	reagent_state = LIQUID
 	color = "#CCCCFF"
 	metabolism = REM * 0.15
 	overdose = 20
@@ -180,7 +175,6 @@ var/static/list/threeeye_overdose_messages = list(
 /datum/reagent/short
 	name = "Short"
 	taste_description = "wax"
-	reagent_state = LIQUID
 	color = "#FFCCCC"
 	metabolism = REM * 0.15
 

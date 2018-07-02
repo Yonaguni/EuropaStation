@@ -57,8 +57,8 @@
 	on_reagent_change()
 		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == REAGENT_FLOUR)
 			return
-		if(reagents.reagent_list.len > 0)
-			switch(reagents.get_master_reagent_id())
+		if(reagents.volumes.len > 0)
+			switch(reagents.get_master_reagent())
 				if(REAGENT_KETCHUP)
 					name = "Ketchup"
 					desc = "You feel more American already."
@@ -105,7 +105,7 @@
 					center_of_mass = "x=16;y=6"
 				else
 					name = "Misc Condiment Bottle"
-					if (reagents.reagent_list.len==1)
+					if (reagents.volumes.len==1)
 						desc = "Looks like it is [reagents.get_master_reagent_name()], but you are not sure."
 					else
 						desc = "A mixture of various condiments. [reagents.get_master_reagent_name()] is one of them."

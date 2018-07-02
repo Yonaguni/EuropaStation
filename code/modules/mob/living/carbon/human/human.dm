@@ -80,7 +80,6 @@
 		else if(vessel.total_volume > species.blood_volume)
 			vessel.remove_reagent(REAGENT_BLOOD, vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
-		fixblood()
 	. = ..()
 
 /mob/living/carbon/human/Destroy()
@@ -790,7 +789,6 @@
 
 	if(should_have_organ(BP_HEART))
 		vessel.add_reagent(REAGENT_BLOOD,species.blood_volume-vessel.total_volume)
-		fixblood()
 
 	species.create_organs(src) // Reset our organs/limbs.
 	restore_all_organs()       // Reapply robotics/amputated status from preferences.
@@ -802,12 +800,6 @@
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
-
-
-	for (var/ID in virus2)
-		var/datum/disease2/disease/V = virus2[ID]
-		V.cure(src)
-
 	losebreath = 0
 
 	..()
@@ -1036,7 +1028,6 @@
 			else if(vessel.total_volume > species.blood_volume)
 				vessel.remove_reagent(REAGENT_BLOOD, vessel.total_volume - species.blood_volume)
 				vessel.maximum_volume = species.blood_volume
-			fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

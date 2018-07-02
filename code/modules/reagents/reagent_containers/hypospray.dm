@@ -79,7 +79,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..(user)
-	if(reagents && reagents.reagent_list.len)
+	if(reagents && reagents.volumes.len)
 		user << "<span class='notice'>It is currently loaded.</span>"
 	else
 		user << "<span class='notice'>It is spent.</span>"

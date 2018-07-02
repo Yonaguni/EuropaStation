@@ -18,7 +18,7 @@
 	var/result_amount = 0
 	var/loaded_at_runtime = FALSE // TODO
 	var/product_name
- 
+
 	//how far the reaction proceeds each time it is processed. Used with either REACTION_RATE or HALF_LIFE macros.
 	var/reaction_rate = HALF_LIFE(1)
 
@@ -90,18 +90,15 @@
 
 	var/reaction_progress = min(reaction_limit, progress_limit) //no matter what, the reaction progress cannot exceed the stoichiometric limit.
 
-	//need to obtain the new reagent's data before anything is altered
-	var/data = send_data(holder, reaction_progress)
-
 	//remove the reactants
 	for(var/reactant in required_reagents)
 		var/amt_used = required_reagents[reactant] * reaction_progress
-		holder.remove_reagent(reactant, amt_used, safety = 1)
+		holder.remove_reagent(reactant, amt_used, 1)
 
 	//add the product
 	var/amt_produced = result_amount * reaction_progress
 	if(result)
-		holder.add_reagent(result, amt_produced, data, safety = 1)
+		holder.add_reagent(result, amt_produced, 1)
 
 	on_reaction(holder, amt_produced)
 
@@ -120,11 +117,6 @@
 		for(var/mob/M in seen)
 			M.show_message("<span class='notice'>\icon[container] [mix_message]</span>", 1)
 		playsound(T, reaction_sound, 80, 1)
-
-//obtains any special data that will be provided to the reaction products
-//this is called just before reactants are removed.
-/datum/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
-	return null
 
 /* Common reactions */
 
@@ -220,11 +212,6 @@
 	required_reagents = list(REAGENT_STYPTAZINE = 2, REAGENT_CLONEXADONE = 2)
 	catalysts = list(REAGENT_ENZYME = 5)
 	result_amount = 2
-
-/datum/chemical_reaction/virus_food
-	result = REAGENT_VIRUSFOOD
-	required_reagents = list(REAGENT_WATER = 1, REAGENT_MILK = 1)
-	result_amount = 5
 
 /datum/chemical_reaction/leporazine
 	result = REAGENT_LEPORAZINE
@@ -586,187 +573,115 @@
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_RED = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/red_paint/send_data()
-	return "#FE191A"
-
 /datum/chemical_reaction/orange_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_ORANGE = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/orange_paint/send_data()
-	return "#FFBE4F"
 
 /datum/chemical_reaction/yellow_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_YELLOW = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/yellow_paint/send_data()
-	return "#FDFE7D"
-
 /datum/chemical_reaction/green_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_GREEN = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/green_paint/send_data()
-	return "#18A31A"
 
 /datum/chemical_reaction/blue_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_BLUE = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/blue_paint/send_data()
-	return "#247CFF"
-
 /datum/chemical_reaction/purple_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_PURPLE = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/purple_paint/send_data()
-	return "#CC0099"
 
 /datum/chemical_reaction/grey_paint //mime
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_GREY = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/grey_paint/send_data()
-	return "#808080"
-
 /datum/chemical_reaction/brown_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CRAYON_D_BROWN = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/brown_paint/send_data()
-	return "#846F35"
 
 /datum/chemical_reaction/blood_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_BLOOD = 2)
 	result_amount = 5
 
-/datum/chemical_reaction/blood_paint/send_data(var/datum/reagents/T)
-	var/t = T.get_data(REAGENT_BLOOD)
-	if(t && t["blood_colour"])
-		return t["blood_colour"]
-	return "#FE191A" // Probably red
-
 /datum/chemical_reaction/milk_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_MILK = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/milk_paint/send_data()
-	return "#F0F8FF"
 
 /datum/chemical_reaction/orange_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_ORANGE_JUICE = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/orange_juice_paint/send_data()
-	return "#E78108"
-
 /datum/chemical_reaction/tomato_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_TOMATO_JUICE = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/tomato_juice_paint/send_data()
-	return "#731008"
 
 /datum/chemical_reaction/lime_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_LIME_JUICE = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/lime_juice_paint/send_data()
-	return "#365E30"
-
 /datum/chemical_reaction/carrot_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CARROT_JUICE = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/carrot_juice_paint/send_data()
-	return "#973800"
 
 /datum/chemical_reaction/berry_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_BERRY_JUICE = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/berry_juice_paint/send_data()
-	return "#990066"
-
 /datum/chemical_reaction/grape_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_GRAPE_JUICE = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/grape_juice_paint/send_data()
-	return "#863333"
 
 /datum/chemical_reaction/poisonberry_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_POISON_BERRY = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/poisonberry_juice_paint/send_data()
-	return "#863353"
-
 /datum/chemical_reaction/watermelon_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_WATERMELONJUICE = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/watermelon_juice_paint/send_data()
-	return "#B83333"
 
 /datum/chemical_reaction/lemon_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_LEMON_JUICE = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/lemon_juice_paint/send_data()
-	return "#AFAF00"
-
 /datum/chemical_reaction/banana_juice_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_BANANA = 5)
 	result_amount = 5
 
-/datum/chemical_reaction/banana_juice_paint/send_data()
-	return "#C3AF00"
-
 /datum/chemical_reaction/potato_juice_paint
 	result = REAGENT_PAINT
-	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, "potatojuice" = 5)
+	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_POTATO = 5)
 	result_amount = 5
-
-/datum/chemical_reaction/potato_juice_paint/send_data()
-	return "#302000"
 
 /datum/chemical_reaction/carbon_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_CARBON = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/carbon_paint/send_data()
-	return "#333333"
-
 /datum/chemical_reaction/aluminum_paint
 	result = REAGENT_PAINT
 	required_reagents = list(REAGENT_PLASTICIDE = 1, REAGENT_WATER = 3, REAGENT_ALUMINIUM = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/aluminum_paint/send_data()
-	return "#F0F8FF"
 
 /datum/chemical_reaction/soap_key
 	result = null

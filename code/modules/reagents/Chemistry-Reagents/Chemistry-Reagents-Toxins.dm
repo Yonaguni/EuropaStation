@@ -4,7 +4,6 @@
 	name = "toxin"
 	taste_description = "bitterness"
 	taste_mult = 1.2
-	reagent_state = LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.25 // 0.05 by default. They last a while and slowly kill you.
 	var/strength = 4 // How much damage it deals per unit
@@ -16,28 +15,24 @@
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	taste_description = MATERIAL_PLASTIC
-	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 5
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	taste_description = "mushroom"
-	reagent_state = LIQUID
 	color = "#792300"
 	strength = 10
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	taste_description = "fish"
-	reagent_state = LIQUID
 	color = "#003333"
 	strength = 10
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
 	taste_mult = 0.6
-	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 20
 	metabolism = REM * 2
@@ -50,7 +45,6 @@
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
 	taste_description = "salt"
-	reagent_state = SOLID
 	color = "#FFFFFF"
 	strength = 0
 	overdose = REAGENTS_OVERDOSE
@@ -70,7 +64,6 @@
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	taste_description = "salt"
-	reagent_state = SOLID
 	color = "#FFFFFF"
 	strength = 10
 	overdose = 20
@@ -89,7 +82,6 @@
 /datum/reagent/toxin/byphodine
 	name = "Byphodine"
 	taste_description = "death"
-	reagent_state = SOLID
 	color = "#669900"
 	metabolism = REM
 	strength = 3
@@ -103,17 +95,10 @@
 	M.tod = stationtime2text()
 	M.add_chemical_effect(CE_NOPULSE, 1)
 
-/datum/reagent/toxin/byphodine/Destroy()
-	if(holder && holder.my_atom && ismob(holder.my_atom))
-		var/mob/M = holder.my_atom
-		M.status_flags &= ~FAKEDEATH
-	return ..()
-
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
 	name = REAGENT_FERTILIZER
 	taste_description = "plant food"
 	taste_mult = 0.5
-	reagent_state = LIQUID
 	strength = 0.5 // It's not THAT poisonous.
 	color = "#664330"
 
@@ -129,7 +114,6 @@
 /datum/reagent/toxin/weedkiller
 	name = "Weed Killer"
 	taste_mult = 1
-	reagent_state = LIQUID
 	color = "#49002E"
 	strength = 4
 
@@ -148,7 +132,6 @@
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
@@ -162,7 +145,6 @@
 /datum/reagent/lexorin
 	name = "Lexorin"
 	taste_description = "acid"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
@@ -175,16 +157,15 @@
 	name = "GC-161"
 	taste_description = "slime"
 	taste_mult = 0.9
-	reagent_state = LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/gc161/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/gc161/affect_touch(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(prob(33))
-		affect_blood(M, alien, removed)
+		affect_blood(M, alien, removed, holder)
 
-/datum/reagent/gc161/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/gc161/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(prob(67))
-		affect_blood(M, alien, removed)
+		affect_blood(M, alien, removed, holder)
 
 /datum/reagent/gc161/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic())
@@ -197,13 +178,12 @@
 /datum/reagent/soporific
 	name = "Soporific"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#009CA8"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-
+/datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
+	var/dose = holder.doses[type]
 	if(dose < 1)
 		if(dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
@@ -221,13 +201,13 @@
 /datum/reagent/chloralhydrate
 	name = "Chloral Hydrate"
 	taste_description = "bitterness"
-	reagent_state = SOLID
 	color = "#000067"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 
-/datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 
+	var/dose = holder.doses[type]
 	if(dose == metabolism)
 		M.confused += 2
 		M.drowsyness += 2
@@ -243,7 +223,6 @@
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	taste_description = "strong yeast"
-	reagent_state = LIQUID
 	color = "#FFD300"
 
 	glass_name = "beer"
@@ -252,7 +231,6 @@
 /datum/reagent/serotrotium
 	name = "Serotrotium"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -265,7 +243,6 @@
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
 	taste_description = "sourness"
-	reagent_state = LIQUID
 	color = "#000055"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -277,7 +254,6 @@
 /datum/reagent/impedrezene
 	name = "Impedrezene"
 	taste_description = "numbness"
-	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
@@ -293,11 +269,10 @@
 /datum/reagent/nanites
 	name = "Nanomachines"
 	taste_description = "slimy metal"
-	reagent_state = LIQUID
+
 	color = "#535E66"
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
 	taste_description = "sludge"
-	reagent_state = LIQUID
 	color = "#535E66"

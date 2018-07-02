@@ -79,68 +79,6 @@ REAGENT SCANNER
 	analyze_gases(src, user)
 	return
 
-/obj/item/mass_spectrometer
-	name = "mass spectrometer"
-	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
-	icon_state = "spectrometer"
-	item_state = "analyzer"
-	w_class = 2.0
-	flags = CONDUCT | OPENCONTAINER
-	slot_flags = SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
-
-
-	var/details = 0
-	var/recent_fail = 0
-
-/obj/item/mass_spectrometer/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(5)
-	reagents = R
-	R.my_atom = src
-
-/obj/item/mass_spectrometer/on_reagent_change()
-	if(reagents.total_volume)
-		icon_state = initial(icon_state) + "_s"
-	else
-		icon_state = initial(icon_state)
-
-/obj/item/mass_spectrometer/attack_self(var/mob/user)
-	if (user.stat)
-		return
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
-		return
-	if(reagents.total_volume)
-		var/list/blood_traces = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.type != REAGENT_BLOOD)
-				reagents.clear_reagents()
-				user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
-				return
-			else
-				blood_traces = params2list(R.data["trace_chem"])
-				break
-		var/dat = "Trace Chemicals Found: "
-		for(var/R in blood_traces)
-			if(details)
-				dat += "[R] ([blood_traces[R]] units) "
-			else
-				dat += "[R] "
-		user << "[dat]"
-		reagents.clear_reagents()
-	return
-
-/obj/item/mass_spectrometer/adv
-	name = "advanced mass spectrometer"
-	icon_state = "adv_spectrometer"
-	details = 1
-
-
 /obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
@@ -171,10 +109,11 @@ REAGENT SCANNER
 
 	if(!isnull(O.reagents))
 		var/dat = ""
-		if(O.reagents.reagent_list.len > 0)
+		if(O.reagents.volumes.len > 0)
 			var/one_percent = O.reagents.total_volume / 100
-			for (var/datum/reagent/R in O.reagents.reagent_list)
-				dat += "\n \t <span class='notice'>[R][details ? ": [R.volume / one_percent]%" : ""]</span>"
+			for (var/rid in O.reagents.volumes)
+				var/datum/reagent/R = SSchemistry.get_reagent(rid)
+				dat += "\n \t <span class='notice'>[R.name][details ? ": [O.reagents.volumes[rid] / one_percent]%" : ""]</span>"
 		if(dat)
 			user << "<span class='notice'>Chemicals found: [dat]</span>"
 		else

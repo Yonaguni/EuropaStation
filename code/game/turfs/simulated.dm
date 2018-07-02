@@ -166,7 +166,6 @@
 			var/checkdna = M.get_dna_hash()
 			if(!B.blood_DNA[checkdna])
 				B.blood_DNA[checkdna] = M.b_type
-				B.virus2 = virus_copylist(M.virus2)
 			return 1 //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
 		return 1 //we bloodied the floor

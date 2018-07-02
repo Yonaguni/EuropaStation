@@ -30,7 +30,7 @@ var/datum/controller/subsystem/chemistry/SSchemistry
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path
 		_chemical_reagents += D
-		_chemical_reagents_by_id[D.type] = D
+		_chemical_reagents_by_id[path] = D
 
 	// Init reaction list.
 	//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
@@ -76,7 +76,7 @@ var/datum/controller/subsystem/chemistry/SSchemistry
 
 		if (MC_TICK_CHECK)
 			return
-		
+
 /datum/controller/subsystem/chemistry/proc/mark_for_update(var/datum/reagents/holder)
 	if (holder in _active_holders)
 		return

@@ -25,7 +25,7 @@ obj/item/storage/pill_bottle
 	if(obfuscate_contents)
 		for(var/obj/item/reagent_containers/pill/P in contents)
 			if(P.obfuscate_contents && P.reagents)
-				var/reagent_id = P.reagents.get_master_reagent_id()
+				var/reagent_id = P.reagents.get_master_reagent()
 				if(!isnull(reagent_id))
 					actual_reagent_name = P.reagents.get_master_reagent_name()
 					medication_name = get_random_medication_name_for_reagent(reagent_id)

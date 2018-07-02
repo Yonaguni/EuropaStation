@@ -31,11 +31,9 @@
 		/mob/living/bot/medbot,
 		/obj/item/storage/secure/safe,
 		/obj/machinery/iv_drip,
-		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
-		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
@@ -49,7 +47,7 @@
 	examine(var/mob/user)
 		if(!..(user, 2))
 			return
-		if(reagents && reagents.reagent_list.len)
+		if(reagents && reagents.volumes.len)
 			user << "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
 		else
 			user << "<span class='notice'>It is empty.</span>"

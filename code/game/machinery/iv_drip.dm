@@ -113,7 +113,7 @@
 			var/datum/reagent/B = T.take_blood(beaker,amount)
 
 			if (B)
-				beaker.reagents.reagent_list |= B
+				beaker.reagents.volumes |= B
 				beaker.reagents.update_total()
 				beaker.on_reagent_change()
 				beaker.reagents.handle_reactions()
@@ -152,7 +152,7 @@ obj/machinery/iv_drip/attack_ai(var/mob/user)
 	user << "The IV drip is [mode ? "injecting" : "taking blood"]."
 
 	if(beaker)
-		if(beaker.reagents && beaker.reagents.reagent_list.len)
+		if(beaker.reagents && beaker.reagents.volumes.len)
 			usr << "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>"
 		else
 			usr << "<span class='notice'>Attached is an empty [beaker].</span>"

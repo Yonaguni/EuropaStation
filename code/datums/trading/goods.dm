@@ -183,7 +183,6 @@ Sells devices, odds and ends, and medical stuff
 								/obj/item/camera_film               = TRADER_THIS_TYPE,
 								/obj/item/camera                    = TRADER_THIS_TYPE,
 								/obj/item/destTagger                = TRADER_THIS_TYPE,
-								/obj/item/antibody_scanner          = TRADER_THIS_TYPE,
 								/obj/item/stack/medical/advanced           = TRADER_BLACKLIST)
 	speech = list("hail_generic"    = "Hello hello! Bits and bobs and everything in between, I hope you find what you're looking for!",
 				"hail_silicon"      = "Ah! Hello, robot. We only sell things that hm.... people can hold in their hands, unfortunately. You are still allowed to buy, though!",

@@ -158,9 +158,7 @@
 	name = "bioprinter"
 	desc = "It's a machine that prints replacement organs."
 	icon_state = "bioprinter"
-
 	var/amount_per_slab = 50
-	var/loaded_dna //Blood sample for DNA hashing.
 
 /obj/machinery/organ_printer/flesh/mapped/Initialize()
 	. = ..()
@@ -181,32 +179,18 @@
 
 /obj/machinery/organ_printer/flesh/print_organ(var/choice)
 	var/obj/item/organ/O = ..()
-	if(loaded_dna)
-		if(O.species)
-			O.w_class = max(O.w_class + mob_size_difference(O.species.mob_size, MOB_MEDIUM), 1)
-		visible_message("<span class='info'>\The [src] churns for a moment, injects its stored DNA into the biomass, then spits out \a [O].</span>")
-	else
-		visible_message("<span class='info'>\The [src] churns for a moment, then spits out \a [O].</span>")
+	if(O.species) O.w_class = max(O.w_class + mob_size_difference(O.species.mob_size, MOB_MEDIUM), 1)
+	visible_message("<span class='info'>\The [src] churns for a moment, then spits out \a [O].</span>")
 	return O
 
 /obj/machinery/organ_printer/flesh/attackby(var/obj/item/W, mob/user)
 	// Load with matter for printing.
 	if(istype(W, /obj/item/reagent_containers/food/snacks/meat))
 		if((max_stored_matter - stored_matter) < amount_per_slab)
-			user << "<span class='warning'>\The [src] is too full.</span>"
+			to_chat(user, "<span class='warning'>\The [src] is too full.</span>")
 			return
 		stored_matter += amount_per_slab
-		user.drop_item()
-		user << "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>"
+		to_chat(user, "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>")
+		user.drop_from_inventory(W)
 		qdel(W)
 		return
-	// DNA sample from syringe.
-	else if(istype(W,/obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = W
-		var/datum/reagent/blood/injected = locate() in S.reagents.reagent_list //Grab some blood
-		if(injected && injected.data)
-			loaded_dna = injected.data
-			user << "<span class='info'>You inject the blood sample into the bioprinter.</span>"
-		return
-	return ..()
-// END FLESH ORGAN PRINTER

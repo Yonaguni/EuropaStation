@@ -31,7 +31,7 @@
 	if(reagents && reagents.total_volume)
 		mode = SYRINGE_INJECT
 		if(obfuscate_contents)
-			var/reagent_id = reagents.get_master_reagent_id()
+			var/reagent_id = reagents.get_master_reagent()
 			if(reagent_id)
 				actual_reagent_name = reagents.get_master_reagent_name()
 				var/medication_name = get_random_medication_name_for_reagent(reagent_id)
@@ -289,19 +289,4 @@
 	update_icon()
 
 /obj/item/reagent_containers/syringe/proc/take_blood_sample(var/mob/living/carbon/T, var/amount)
-	var/datum/reagent/B
-	if(istype(T, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if(!H.should_have_organ(BP_HEART))
-			H.reagents.trans_to_obj(src, amount)
-		else
-			B = T.take_blood(src, amount)
-	else
-		B = T.take_blood(src,amount)
-
-	if (B)
-		reagents.reagent_list += B
-		reagents.update_total()
-		on_reagent_change()
-		reagents.handle_reactions()
-	return B
+	return

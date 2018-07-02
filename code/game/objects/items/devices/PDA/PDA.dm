@@ -1203,10 +1203,10 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 			if(!isobj(A))
 				return
 			if(!isnull(A.reagents))
-				if(A.reagents.reagent_list.len > 0)
-					var/reagents_length = A.reagents.reagent_list.len
+				if(A.reagents.volumes.len > 0)
+					var/reagents_length = A.reagents.volumes.len
 					user << "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>"
-					for (var/re in A.reagents.reagent_list)
+					for (var/re in A.reagents.volumes)
 						user << "<span class='notice'>    [re]</span>"
 				else
 					user << "<span class='notice'>No active chemical agents found in [A].</span>"

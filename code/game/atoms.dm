@@ -403,6 +403,7 @@ its easier to just keep the beam vertical.
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 		if(istype(inject_reagents) && inject_reagents.total_volume)
 			inject_reagents.trans_to_obj(this, min(15, inject_reagents.total_volume))
+			this.color = this.reagents.get_color()
 			this.reagents.add_reagent(REAGENT_STOMACH_ACID, 5)
 		// Make toxins vomit look different
 		if(toxvomit)

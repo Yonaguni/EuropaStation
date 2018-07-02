@@ -283,7 +283,6 @@
 							wearer << "<font color='blue'>\The [piece] hisses [!seal_target ? "closed" : "open"].</font>"
 							wearer.update_inv_head()
 
-					//sealed pieces become airtight, protecting against diseases
 					if (!seal_target)
 						piece.armor["bio"] = 100
 					else
