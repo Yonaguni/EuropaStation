@@ -29,6 +29,10 @@
 /obj/proc/get_material()
 	return null
 
+/obj/proc/is_material(var/mat_type)
+	var/material/M = get_material()
+	return (M && M.type == mat_type)
+
 //mostly for convenience
 /obj/proc/get_material_name()
 	var/material/material = get_material()

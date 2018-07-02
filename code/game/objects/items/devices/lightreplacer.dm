@@ -66,7 +66,7 @@
 		user << "It has [uses] lights remaining."
 
 /obj/item/lightreplacer/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_GLASS)
+	if(istype(W, /obj/item/stack/material) && W.is_material(MATERIAL_GLASS))
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
 			user << "<span class='warning'>[src.name] is full.</span>"
