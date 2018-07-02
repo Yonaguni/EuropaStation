@@ -11,13 +11,13 @@
 	..()
 
 /obj/item/clothing/gloves/boxing/blue
-	icon_state = "boxing_blue"
-	item_state = "boxing_blue"
+	icon_state = "boxingblue"
+	item_state = "boxingblue"
 
 /obj/item/clothing/gloves/boxing/green
-	icon_state = "boxing_green"
-	item_state = "boxing_green"
+	icon_state = "boxinggreen"
+	item_state = "boxinggreen"
 
 /obj/item/clothing/gloves/boxing/yellow
-	icon_state = "boxing_yellow"
-	item_state = "boxing_yellow"
+	icon_state = "boxingyellow"
+	item_state = "boxingyellow"
