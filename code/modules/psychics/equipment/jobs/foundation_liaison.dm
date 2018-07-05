@@ -13,3 +13,6 @@
 	minimal_player_age = 14
 	economic_modifier = 12
 	outfit_type = /decl/hierarchy/outfit/job/foundation
+	psi_faculties = list(
+		PSI_REDACTION = PSI_RANK_GRANDMASTER
+	)

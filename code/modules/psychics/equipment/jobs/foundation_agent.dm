@@ -13,3 +13,7 @@
 	minimal_player_age = 14
 	economic_modifier = 15
 	outfit_type = /decl/hierarchy/outfit/job/foundation
+	psi_faculties = list(
+		PSI_COERCION = PSI_RANK_MASTER,
+		PSI_ENERGISTICS = PSI_RANK_MASTER
+	)

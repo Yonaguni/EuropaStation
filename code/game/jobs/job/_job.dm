@@ -28,6 +28,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
+	var/list/psi_faculties
 
 /datum/job/Topic(href, href_list)
 	. = ..()
@@ -52,9 +53,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	equip_species(H, alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
-	if(!outfit)
-		return FALSE
-	. = outfit.equip(H, title, alt_title)
+	if(islist(psi_faculties))
+		for(var/psi in psi_faculties)
+			H.set_psi_rank(psi, psi_faculties[psi], take_larger = TRUE, defer_update = TRUE)
+	if(outfit) . = outfit.equip(H, title, alt_title)
 
 /datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
 	if(alt_title && alt_titles)
