@@ -470,3 +470,9 @@
 	id = access_merchant
 	desc = "Merchant"
 	access_type = ACCESS_TYPE_NONE
+
+/var/const/access_foundation = 202
+/datum/access/foundation
+	id = access_foundation
+	desc = "Foundation"
+	access_type = ACCESS_TYPE_NONE
