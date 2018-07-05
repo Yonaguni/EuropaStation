@@ -163,7 +163,7 @@ var/image/exterior_light_overlay
 	return
 
 /turf/space/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	return ..(N, tell_universe, 1)
+	. = ..(N, tell_universe, 1)
 
 //Bluespace turfs for shuttles and possible future transit use
 /turf/space/bluespace

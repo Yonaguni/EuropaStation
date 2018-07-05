@@ -16,7 +16,7 @@
 	flags = OPENCONTAINER
 	matter = list(MATERIAL_GLASS = 150)
 
-	var/base_name = MATERIAL_GLASS // Name to put in front of drinks, i.e. "[base_name] of [contents]"
+	var/base_name = "glass" // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon = "square" // Base icon name
 	var/filling_states // List of percentages full that have icons
 	var/list/extras = list() // List of extras. Two extras maximum
