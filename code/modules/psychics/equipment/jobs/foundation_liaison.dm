@@ -13,11 +13,12 @@
 	minimal_player_age = 14
 	economic_modifier = 12
 	outfit_type = /decl/hierarchy/outfit/job/foundation
-	psi_faculties = list(
-		PSI_REDACTION = PSI_RANK_GRANDMASTER
-	)
 	access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
 	minimal_access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
+
+/datum/job/foundation_liaison/New()
+	..()
+	psi_faculties = list("[PSI_REDACTION]" = PSI_RANK_GRANDMASTER)
 
 /obj/effect/landmark/start/foundation_counsellor
 	name = "Psionics Liaison"

@@ -13,9 +13,12 @@
 	minimal_player_age = 14
 	economic_modifier = 9
 	outfit_type = /decl/hierarchy/outfit/job/foundation/agent
+
+/datum/job/foundation_agent/New()
+	..()
 	psi_faculties = list(
-		PSI_COERCION = PSI_RANK_MASTER,
-		PSI_ENERGISTICS = PSI_RANK_MASTER
+		"[PSI_COERCION]" = PSI_RANK_MASTER,
+		"[PSI_ENERGISTICS]" = PSI_RANK_MASTER
 	)
 
 /obj/effect/landmark/start/foundation_agent
