@@ -25,6 +25,7 @@
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
+		/datum/job/forensics,
 		/datum/job/scientist,
 		/datum/job/cmo,
 		/datum/job/doctor,
@@ -41,8 +42,8 @@
 	welcome_blurb = "Research facilities often need people to do odd jobs. Today, that would be you."
 
 /datum/job/captain
-	title = "Site Director"
-	welcome_blurb = "You are in charge of the entire facility and everyone on it. Keep it running smoothly. The buck stops with you."
+	title = "Colony Director"
+	welcome_blurb = "You are in charge of the entire colony and everyone on it. Keep it running smoothly. The buck stops with you."
 	department = "Command"
 	head_position = 1
 	department_flag = COM
@@ -69,13 +70,13 @@
 
 /datum/job/administrator
 	title = "Deputy Director"
-	welcome_blurb = "Assist the Site Director in managing the crew and keeping the station running. Hand out access to those who need it, or terminate access for those who have been fired."
+	welcome_blurb = "Assist the Colony Director in managing the crew and keeping the station running. Hand out access to those who need it, or terminate access for those who have been fired."
 	head_position = 1
 	department_flag = COM|CIV
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 1
-	supervisors = "the Site Director"
+	supervisors = "the Colony Director"
 	selection_color = "#2f2f7f"
 	minimal_player_age = 14
 	economic_modifier = 10
@@ -106,7 +107,7 @@
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Site Director"
+	supervisors = "the Colony Director"
 	selection_color = "#7f6e2c"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -183,7 +184,7 @@
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Site Director"
+	supervisors = "the Colony Director"
 	selection_color = "#737373"
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
@@ -207,16 +208,16 @@
 	outfit_type = /decl/hierarchy/outfit/job/europa_janitor
 
 /datum/job/hos
-	title = "Chief of Security"
-	welcome_blurb = "Direct and coordinate the Security forces on the station."
+	title = "Chief of Police"
+	welcome_blurb = "Direct and coordinate the colonial police."
 	head_position = 1
-	department = "Security"
+	department = "Police"
 	department_flag = SEC|COM
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Site Director"
-	selection_color = "#8e2929"
+	supervisors = "the Colony Director"
+	selection_color = "#000050"
 	req_admin_notify = 1
 	economic_modifier = 10
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
@@ -228,7 +229,7 @@
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimal_player_age = 14
-	outfit_type = /decl/hierarchy/outfit/job/europa_chief_of_police
+	outfit_type = /decl/hierarchy/outfit/job/police/chief
 
 /datum/job/hos/equip(var/mob/living/carbon/human/H)
 	. = ..()
@@ -236,37 +237,53 @@
 		H.implant_loyalty(H)
 
 /datum/job/warden
-	title = "Security Quartermaster"
+	title = "Police Quartermaster"
 	welcome_blurb = "Look after the armory, hand out weapons as directed, and keep an eye on any prisoners in the brig."
-	department = "Security"
+	department = "Police"
 	department_flag = SEC
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Security Chief"
-	selection_color = "#601c1c"
+	supervisors = "the Chief of Police"
+	selection_color = "#000080"
 	economic_modifier = 5
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 7
-	outfit_type = /decl/hierarchy/outfit/job/europa_police_quartermaster
+	outfit_type = /decl/hierarchy/outfit/job/police/quartermaster
 
 /datum/job/officer
-	title = "Security Officer"
+	title = "Police Officer"
 	welcome_blurb = "Keep the peace amongst the crew. Sort out small disturbances and fights, and coordinate with your team to respond to larger crises."
-	department = "Security"
+	department = "Police"
 	department_flag = SEC
 	faction = "Crew"
-	total_positions = 4
-	spawn_positions = 4
-	supervisors = "the Security Chief"
-	selection_color = "#601c1c"
+	total_positions = 3
+	spawn_positions = 3
+	supervisors = "the Chief of Police"
+	selection_color = "#000080"
 	alt_titles = list("Junior Officer")
 	economic_modifier = 4
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 7
-	outfit_type = /decl/hierarchy/outfit/job/europa_police_officer
+	outfit_type = /decl/hierarchy/outfit/job/police
+
+/datum/job/forensics
+	title = "Forensic Technician"
+	welcome_blurb = "Examine evidence, conduct investiations, and follow leads."
+	department = "Police"
+	department_flag = SEC
+	faction = "Crew"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Chief of Police"
+	selection_color = "#000080"
+	economic_modifier = 4
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/police/forensics
 
 /datum/job/scientist
 	title = "Scientist"
@@ -276,7 +293,7 @@
 	faction = "Crew"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Site Director"
+	supervisors = "the Colony Director"
 	selection_color = "#ad6bad"
 	req_admin_notify = 1
 	economic_modifier = 15
@@ -304,7 +321,7 @@
 	faction = "Crew"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Site Director"
+	supervisors = "the Colony Director"
 	selection_color = "#026865"
 	req_admin_notify = 1
 	economic_modifier = 10
@@ -384,6 +401,51 @@
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	outfit_type = /decl/hierarchy/outfit/job/europa_salvager
 
+/datum/job/foundation_agent
+	title = "Foundation Agent"
+	welcome_blurb = "You are a Cuchulain Foundation field agent on secondment to your current site. When there's something strange in the neighborhood, you're the one they call."
+	department = "Medical"
+	department_flag = MED
+	faction = "Crew"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Cuchulain Foundation advisory board, the Psionics Liaison, the Chief of Medicine, and your own conscience, in that order"
+	selection_color = "#6755e0"
+	access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
+	minimal_access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
+	minimal_player_age = 14
+	economic_modifier = 9
+	outfit_type = /decl/hierarchy/outfit/job/foundation/agent
+
+/datum/job/foundation_agent/New()
+	..()
+	psi_faculties = list(
+		"[PSI_COERCION]" = PSI_RANK_MASTER,
+		"[PSI_ENERGISTICS]" = PSI_RANK_MASTER
+	)
+
+/datum/job/foundation_liaison
+	title = "Psionics Liaison"
+	welcome_blurb = "You are a representative of the Cuchulain Foundation, serving as a consultant to the crew on psionic matters."
+	department = "Medical"
+	department_flag = MED
+	faction = "Crew"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Cuchulain Foundation advisory board, the Chief of Medicine, and your own conscience, in that order"
+	selection_color = "#8271f2"
+	access = list()
+	minimal_access = list()
+	minimal_player_age = 14
+	economic_modifier = 12
+	outfit_type = /decl/hierarchy/outfit/job/foundation
+	access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
+	minimal_access = list(access_foundation, access_medical, access_medical_equip, access_surgery, access_psychiatrist)
+
+/datum/job/foundation_liaison/New()
+	..()
+	psi_faculties = list("[PSI_REDACTION]" = PSI_RANK_GRANDMASTER)
+
 /obj/effect/landmark/start/salvage
 	name = "Salvage Diver"
 
@@ -394,7 +456,7 @@
 	name = "Employee"
 
 /obj/effect/landmark/start/site_director
-	name = "Site Director"
+	name = "Colony Director"
 
 /obj/effect/landmark/start/deputy_director
 	name = "Deputy Director"
@@ -436,14 +498,22 @@
 	name = "Scientist"
 
 /obj/effect/landmark/start/cos
-	name = "Chief of Security"
+	name = "Chief of Police"
 
 /obj/effect/landmark/start/munitions_officer
-	name = "Security Quartermaster"
+	name = "Police Quartermaster"
 
 /obj/effect/landmark/start/security_officer
-	name = "Security Officer"
+	name = "Police Officer"
+
+/obj/effect/landmark/start/security_forensics
+	name = "Forensic Technician"
 
 /obj/effect/landmark/start/colonist
 	name = "Colonist"
 
+/obj/effect/landmark/start/foundation_agent
+	name = "Foundation Agent"
+
+/obj/effect/landmark/start/foundation_counsellor
+	name = "Psionics Liaison"

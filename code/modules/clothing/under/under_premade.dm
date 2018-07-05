@@ -32,6 +32,14 @@
 		)
 	..()
 
+/obj/item/clothing/under/lower/pants/police_uniform/New()
+	color = "#0b2a47"
+	name = "officer's pants"
+	under_parts = list(
+		PARTIAL_UNIFORM_UPPER = new /obj/item/clothing/under/upper/longsleeve/police(src)
+		)
+	..()
+
 /obj/item/clothing/under/lower/pants/beige/navy_uniform/New()
 	under_parts = list(
 		PARTIAL_UNIFORM_UPPER = new /obj/item/clothing/under/upper/shirt/beige(src),

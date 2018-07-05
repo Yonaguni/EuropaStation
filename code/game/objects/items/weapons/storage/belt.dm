@@ -124,8 +124,8 @@
 	item_state = "emsbelt"
 
 /obj/item/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
+	name = "duty belt"
+	desc = "A police officer's belt. Holds police tools like handcuffs, neural stunners and donuts."
 	icon_state = "securitybelt"
 	item_state = "security"
 	can_hold = list(
@@ -136,7 +136,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
-		/obj/item/reagent_containers/food/snacks/donut/,
+		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/melee/baton,
 		/obj/item/flame/lighter,
 		/obj/item/clothing/glasses/hud/security,
@@ -146,7 +146,7 @@
 		/obj/item/hailer,
 		/obj/item/megaphone,
 		/obj/item/melee,
-		/obj/item/gun/composite/premade/pistol/a38/preloaded,
+		/obj/item/gun/composite/premade/pistol,
 		/obj/item/taperoll/police
 		)
 

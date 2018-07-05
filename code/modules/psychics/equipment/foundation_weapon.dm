@@ -20,3 +20,15 @@
 	recoil     = 0.8
 	fire_rate  = 1.2
 	weight     = 0.8
+
+/obj/item/storage/briefcase/foundation
+	name = "\improper Foundation briefcase"
+	desc = "A handsome leather briefcase embossed with the Cuchulain Foundation logo."
+
+/obj/item/storage/briefcase/foundation/New()
+	..()
+	new /obj/item/ammo_magazine/speedloader/nullglass(src)
+	new /obj/item/ammo_magazine/speedloader/nullglass(src)
+	new /obj/item/ammo_magazine/speedloader/nullglass(src)
+	new /obj/item/gun/composite/premade/revolver/foundation(src)
+	make_exact_fit()

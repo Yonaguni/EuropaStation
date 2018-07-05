@@ -4,7 +4,7 @@
 var/global/list/obj/item/radio/headset/pda/PDAs = list()
 
 /obj/item/radio/headset/pda
-	name = "\improper wrist computer"
+	name = "wrist computer"
 	desc = "A portable wrist-mounted microcomputer, also known as a Personal Data Assistant."
 	icon = 'icons/obj/wristcomp.dmi'
 	icon_state = "wc"
@@ -106,8 +106,8 @@ var/global/list/obj/item/radio/headset/pda/PDAs = list()
 
 /obj/item/radio/headset/pda/security
 	default_cartridge = /obj/item/cartridge/security
-	icon_state = "wc-security"
-	item_state = "wc-security"
+	icon_state = "wc-police"
+	item_state = "wc-police"
 	ks2type = /obj/item/encryptionkey/headset_sec
 
 /obj/item/radio/headset/pda/science
