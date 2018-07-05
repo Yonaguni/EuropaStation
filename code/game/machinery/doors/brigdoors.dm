@@ -317,6 +317,16 @@
 	name = "Cell 6"
 	id = "Cell 6"
 
+/obj/machinery/door_timer/psi_1
+	name = "Holding 1"
+	id = "psi_1"
+	pixel_y = -32
+
+/obj/machinery/door_timer/psi_2
+	name = "Holding 2"
+	id = "psi_2"
+	pixel_y = -32
+
 #undef FONT_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE

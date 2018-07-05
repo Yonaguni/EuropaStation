@@ -29,6 +29,8 @@
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/psychiatrist,
+		/datum/job/foundation_agent,
+		/datum/job/foundation_liaison,
 		/datum/job/ai,
 		/datum/job/cyborg
 		)

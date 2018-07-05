@@ -312,7 +312,7 @@
 	icon_state = "hospital_break"
 
 /area/europa/hospital/vacant
-	name = "Hospital - Vacant Space"
+	name = "Hospital - Foundation Liaison"
 	icon_state = "hospital_vacant"
 
 /area/europa/hospital/foyer

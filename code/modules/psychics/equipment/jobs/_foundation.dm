@@ -1,11 +1,14 @@
 /decl/hierarchy/outfit/job/foundation
-	name = OUTFIT_JOB_NAME("Cuchulain Foundation")
+	name = OUTFIT_JOB_NAME("Cuchulain Foundation Counsellor")
 	glasses =  /obj/item/clothing/glasses/sunglasses
 	uniform =  /obj/item/clothing/under/lower/pants/black/hospitality
 	suit =     /obj/item/clothing/suit/black_suit
-	id_type =  /obj/item/card/id/science
-	pda_type = /obj/item/radio/headset/pda/science
+	id_type =  /obj/item/card/id/medical
+	pda_type = /obj/item/radio/headset/pda/medical
 	shoes =    /obj/item/clothing/shoes/black
+
+/decl/hierarchy/outfit/job/foundation/agent
+	name = OUTFIT_JOB_NAME("Cuchulain Foundation Agent")
 	l_hand =   /obj/item/storage/briefcase/foundation
 
 /decl/hierarchy/outfit/job/foundation/post_equip(mob/living/carbon/human/H)

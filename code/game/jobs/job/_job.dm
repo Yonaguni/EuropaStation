@@ -28,6 +28,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
 	var/outfit_type                       // The outfit the employee will be dressed in, if any
+	var/list/psi_faculties                // Starting psi faculties, if any.
+	var/psi_latency_chance = 15           // Chance of an additional psi latency, if any.
 
 /datum/job/Topic(href, href_list)
 	. = ..()
@@ -50,11 +52,21 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			return 1
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+
+	// Give species gear (survival boxes etc)
 	equip_species(H, alt_title)
+
+	// Give psi stuff.
+	if(psi_latency_chance && prob(psi_latency_chance))
+		H.set_psi_rank(pick(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS), 1, defer_update = TRUE)
+	if(islist(psi_faculties))
+		for(var/psi in psi_faculties)
+			H.set_psi_rank(psi, psi_faculties[psi], take_larger = TRUE, defer_update = TRUE)
+	if(H.psi) H.psi.update()
+
+	// Give outfit stuff.
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
-	if(!outfit)
-		return FALSE
-	. = outfit.equip(H, title, alt_title)
+	if(outfit) . = outfit.equip(H, title, alt_title)
 
 /datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
 	if(alt_title && alt_titles)

@@ -14,7 +14,7 @@
 	enhancers that can turn a moderate to advanced operant psychokinetic into the human equivalent of a laser cannon."
 
 	mechanics_text = "Psi-operancy is a complex topic. If you are (un)lucky enough to manifest psionic powers, \
-	either from Aspects in character generation, Signal exposure during a round, or rolling the paramount \
+	either from random chance during character generation, Signal exposure during a round, or rolling the paramount \
 	antagonist role, you will get a small brain HUD element on the bottom right. Clicking this element will \
 	suppress/release your psi-power, and shift-left-clicking it to examine it will give you a breakdown of \
 	your available powers, your ranks, and how to evoke each effect."

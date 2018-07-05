@@ -320,8 +320,6 @@ var/global/datum/controller/gameticker/ticker
 
 		mode.process()
 
-//		emergency_shuttle.process() //handled in scheduler
-
 		var/game_finished = 0
 		var/mode_finished = 0
 		if (config.continous_rounds)

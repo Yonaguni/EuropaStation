@@ -1,0 +1,7 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - tweak: "Psioncs are no longer available on character gen."
+  - rscadd: "All jobs have a small chance of granting psionic latencies."
+  - rscadd: "Jobs can also grant specific ranks of psionic power."
+  - rscadd: "Added the Foundation Agent and Psionic Liaison to the Yonaguni map. They are psionic (coercion/energistics and redation respectively)."
