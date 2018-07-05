@@ -68,25 +68,6 @@
 #define ASPECT_DAREDEVIL        "Daredevil"
 #define ASPECT_PHARMACIST       "Pharmacist"
 
-// Psychic aspects.
-#define ASPECT_PSI_ROOT         "Gifted"
-#define ASPECT_PSI_COERCION_L   "Latent Coercive Faculty"
-#define ASPECT_PSI_COERCION_O   "Operant Coercive Faculty"
-#define ASPECT_PSI_COERCION_MC  "Master Coercor"
-#define ASPECT_PSI_COERCION_GMC "Grandmaster Coercor"
-#define ASPECT_PSI_CREATIVE_L   "Latent Energistic Faculty"
-#define ASPECT_PSI_CREATIVE_O   "Operant Energistic Faculty"
-#define ASPECT_PSI_CREATIVE_MC  "Master Energizer"
-#define ASPECT_PSI_CREATIVE_GMC "Grandmaster Creator"
-#define ASPECT_PSI_PKINESIS_L   "Latent Psychokinetic Faculty"
-#define ASPECT_PSI_PKINESIS_O   "Operant Psychokinetic Faculty"
-#define ASPECT_PSI_PKINESIS_MC  "Master Psychokinetic"
-#define ASPECT_PSI_PKINESIS_GMC "Grandmaster Psychokinetic"
-#define ASPECT_PSI_REDACTOR_L   "Latent Redactive Faculty"
-#define ASPECT_PSI_REDACTOR_O   "Operant Redactive Faculty"
-#define ASPECT_PSI_REDACTOR_MC  "Master Redactor"
-#define ASPECT_PSI_REDACTOR_GMC "Grandmaster Redactor"
-
 // Restricted aspects.
 #define ASPECT_XRAY                  "X-Ray Vision"
 

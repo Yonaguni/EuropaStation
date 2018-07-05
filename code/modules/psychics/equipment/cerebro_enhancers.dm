@@ -125,10 +125,6 @@
 		to_chat(usr, "<span class='warning'>\The [src] must be worn on your head in order to be activated.</span>")
 		return
 
-	if(!HAS_ASPECT(H, ASPECT_PSI_ROOT))
-		to_chat(usr, "<span class='warning'>You have no psionic potential - \the [src] can't boost something that doesn't exist.</span>")
-		return
-
 	canremove = FALSE
 	operating = TRUE
 	to_chat(H, "<span class='warning'>You feel a series of sharp pinpricks as \the [src] anaesthetises your scalp before drilling down into your brain...</span>")
