@@ -1,4 +1,0 @@
-author: Zuhayr
-delete-after: True
-changes: 
-  - rscadd: "Surgery has been refactored to be a bit more straightforward and intuitive. Please check https://github.com/Yonaguni/EuropaStation/wiki/Surgery for details."

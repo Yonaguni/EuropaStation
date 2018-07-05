@@ -1,6 +1,0 @@
-author: Zuhayr
-delete-after: True
-changes: 
-  - rscadd: "Added a bunch of new aspects."
-  - rscdel: "Removed Uncanny aspect pending a negative effect for it."
-  - tweak:  "Adjusted a lot of aspect costs and gating, particularly Gunslinger."

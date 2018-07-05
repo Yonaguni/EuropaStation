@@ -1,6 +1,0 @@
-author: Zuhayr
-delete-after: True
-changes: 
-  - wip: "Implemented all of the redactive powers."
-  - wip: "Implemented the remaining coercive powers."
-  - tweak: "Backblast will now blow the user's head up if they would otherwise die from brain damage resulting."
