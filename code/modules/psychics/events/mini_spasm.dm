@@ -11,7 +11,7 @@
 
 /datum/event/minispasm/announce()
 	priority_announcement.Announce( \
-		"PRIORITY ALERT: SIGMA-LEVEL SAGGITARIUS SIGNAL LOCAL TRAMISSION DETECTED (97% MATCH, NONVARIANT) \
+		"PRIORITY ALERT: SIGMA-[rand(50,80)] SAGGITARIUS SIGNAL LOCAL TRAMISSION DETECTED (97% MATCH, NONVARIANT) \
 		(SIGNAL SOURCE TRIANGULATED [rand(300,800)]KM BELOW LOCAL SITE): All personnel are advised to avoid \
 		exposure to active audio transmission equipment including radio headsets and intercoms \
 		for the duration of the signal broadcast.", \
