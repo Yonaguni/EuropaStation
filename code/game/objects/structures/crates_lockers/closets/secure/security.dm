@@ -25,8 +25,14 @@
 		new /obj/item/clothing/under/jumpsuit/red(src)
 		new /obj/item/gun/composite/premade/taser_pistol(src)
 		new /obj/item/clothing/accessory/holster/armpit(src)
-		return
 
+/obj/structure/closet/secure_closet/security/police
+	icon_state =  "pol1"
+	icon_closed = "pol"
+	icon_locked = "pol1"
+	icon_opened = "polopen"
+	icon_broken = "polbroken"
+	icon_off =    "poloff"
 
 /obj/structure/closet/secure_closet/wall
 	name = "wall locker"

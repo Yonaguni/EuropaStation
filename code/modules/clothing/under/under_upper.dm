@@ -31,6 +31,10 @@
 	desc = "Your arms might get hot."
 	icon_state = "longsleeve"
 
+/obj/item/clothing/under/upper/longsleeve/police
+	name = "officer's shirt"
+	color = "#98caf9"
+
 /obj/item/clothing/under/upper/turtleneck
 	name = "turtleneck"
 	desc = "It excudes calming vibes."

@@ -60,11 +60,11 @@
 
 /obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
-		user << "<span class='danger'>\The [src] is already cracked.</span>"
+		to_chat(user, "<span class='danger'>\The [src] is already cracked.</span>")
 		return
 	else
 		emagged = 1
-		user << "<span class='danger'>You crack the holobadge security checks.</span>"
+		to_chat(user, "<span class='danger'>You crack the holobadge security checks.</span>")
 		return 1
 
 /obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O, var/mob/user)
@@ -79,10 +79,10 @@
 			id_card = pda.id
 
 		if(access_security in id_card.access || emagged)
-			user << "You imprint your ID details onto the badge."
+			to_chat(user, "You imprint your ID details onto the badge.")
 			set_name(user.real_name)
 		else
-			user << "[src] rejects your insufficient access rights."
+			to_chat(user, "[src] rejects your insufficient access rights.")
 		return
 	..()
 
@@ -100,9 +100,9 @@
 		return
 
 
-/obj/item/clothing/accessory/badge/security
-	name = "security forces badge"
-	desc = "A silver law enforcement badge. Stamped with the words 'Master at Arms'."
+/obj/item/clothing/accessory/badge/police
+	name = "police badge"
+	desc = "A silver law enforcement badge."
 	icon_state = "silverbadge"
 	slot_flags = SLOT_TIE
 	badge_string = "Sol Central Government"
@@ -129,7 +129,7 @@
 
 /obj/item/clothing/accessory/badge/interstellarintel
 	name = "agent's badge"
-	desc = "A synthleather holographic badge bearing the crest of the Office of Interstellar Intelligence."
+	desc = "A synthleather holographic badge bearing the crest of the Cuchulain Foundation."
 	icon_state = "intelbadge"
 	slot_flags = SLOT_TIE
 	badge_string = "Office of Interstellar Intelligence"

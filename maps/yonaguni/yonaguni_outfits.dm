@@ -49,28 +49,46 @@
 	pda_type = /obj/item/radio/headset/pda/supply
 	id_type =  /obj/item/card/id/civilian
 
-/decl/hierarchy/outfit/job/europa_chief_of_police
-	name = OUTFIT_JOB_NAME("Chief of Police")
+/decl/hierarchy/outfit/job/police
+	name = OUTFIT_JOB_NAME("Police Officer")
+	head = /obj/item/clothing/head/police_cap
 	gloves =   /obj/item/clothing/gloves/color/gray
-	id_type =  /obj/item/card/id/security/head
-	pda_type = /obj/item/radio/headset/pda/command/sec
 	backpack_contents = list(/obj/item/handcuffs = 1)
-
-/decl/hierarchy/outfit/job/europa_police_quartermaster
-	name = OUTFIT_JOB_NAME("Police Quartermaster")
-	gloves =   /obj/item/clothing/gloves/color/gray
-	l_pocket = /obj/item/flash
+	uniform = /obj/item/clothing/under/lower/pants/police_uniform
 	id_type =  /obj/item/card/id/security
 	pda_type = /obj/item/radio/headset/pda/security
-
-/decl/hierarchy/outfit/job/europa_police_officer
-	name = OUTFIT_JOB_NAME("Police Officer")
-	head =     /obj/item/clothing/head/soft
-	gloves =   /obj/item/clothing/gloves/color/gray
+	belt = /obj/item/storage/belt/security
 	l_pocket = /obj/item/flash
 	r_pocket = /obj/item/handcuffs
+	var/list/uniform_accessories = list(/obj/item/clothing/accessory/badge/police)
+
+/decl/hierarchy/outfit/job/police/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	if(H.w_uniform && uniform_accessories)
+		for(var/atype in uniform_accessories)
+			if(!(locate(atype) in H.w_uniform))
+				var/obj/item/clothing/accessory/W = new atype(H)
+				H.w_uniform.attackby(W, H)
+				if(W.loc != H.w_uniform) qdel(W)
+
+/decl/hierarchy/outfit/job/police/chief
+	name = OUTFIT_JOB_NAME("Chief of Police")
+	id_type =  /obj/item/card/id/security/head
+	pda_type = /obj/item/radio/headset/pda/command/sec
+	head = /obj/item/clothing/head/police_hat
+	uniform_accessories = list(/obj/item/clothing/accessory/black, /obj/item/clothing/accessory/badge/police)
+
+/decl/hierarchy/outfit/job/police/quartermaster
+	name = OUTFIT_JOB_NAME("Police Quartermaster")
+	head = /obj/item/clothing/head/police_hat
+
+/decl/hierarchy/outfit/job/police/forensics
+	name = OUTFIT_JOB_NAME("Forensic Technician")
+	gloves =   /obj/item/clothing/gloves/color/gray
 	id_type =  /obj/item/card/id/security
 	pda_type = /obj/item/radio/headset/pda/security
+	uniform =  /obj/item/clothing/under/lower/pants/police_uniform
+	head = /obj/item/clothing/head/police_cap
 
 /decl/hierarchy/outfit/job/europa_scientist
 	name = OUTFIT_JOB_NAME("Scientist")
@@ -128,3 +146,25 @@
 	id_type = /obj/item/card/id/civilian
 	pda_type = /obj/item/radio/headset/pda/supply
 	head = /obj/item/clothing/head/hardhat
+
+/decl/hierarchy/outfit/job/foundation
+	name = OUTFIT_JOB_NAME("Cuchulain Foundation Counsellor")
+	glasses =  /obj/item/clothing/glasses/sunglasses
+	uniform =  /obj/item/clothing/under/lower/pants/black/hospitality
+	suit =     /obj/item/clothing/suit/black_suit
+	id_type =  /obj/item/card/id/medical
+	pda_type = /obj/item/radio/headset/pda/medical
+	shoes =    /obj/item/clothing/shoes/black
+
+/decl/hierarchy/outfit/job/foundation/agent
+	name = OUTFIT_JOB_NAME("Cuchulain Foundation Agent")
+	l_hand =   /obj/item/storage/briefcase/foundation
+
+/decl/hierarchy/outfit/job/foundation/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	if(H.w_uniform)
+		for(var/atype in list(/obj/item/clothing/accessory/holster, /obj/item/clothing/accessory/black))
+			if(!(locate(atype) in H.w_uniform))
+				var/obj/item/clothing/accessory/W = new atype(H)
+				H.w_uniform.attackby(W, H)
+				if(W.loc != H.w_uniform) qdel(W)

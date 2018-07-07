@@ -26,19 +26,19 @@
 	ambient_exterior_temperature = 110 // -160 degrees celcius (surface temperature of Europa)
 	ambient_exterior_light = FALSE
 
-	map_info = "<b>Yonaguni Dome 13</b> is a research facility administrated by industrial giant PicoMotion. The sprawling complex is a privately owned, \
-	well-hidden research base on the floor of the Europan ocean, dedicated to studying the strange and often horrifying experiences waiting for humanity \
-	under the ice."
+	map_info = "<b>Yonaguni Dome 13</b> is a combined colony and research facility administrated by the Central Solar government. \
+	It is remote and poorly funded, but still hosts facilities dedicated to studying the strange creatures and experiences waiting \
+	for humanity under the ocean."
 
 	full_name     = "Yonaguni Dome 13"
 	station_short = "Yonaguni"
-	dock_name     = "Rhadamanthus Starport"
+	dock_name     = "Rhadamanthus Docks"
 	boss_name     = "Administration"
 	boss_short    = "Admin"
-	company_name  = "PicoMotion©"
-	company_short = "PM"
-	commanding_role = "Site Director"
-	default_arrival_message = "has arrived at the facility"
+	company_name  = "Sol Colonial Administration"
+	company_short = "CSA-CA"
+	commanding_role = "Colony Director"
+	default_arrival_message = "has arrived on the colony"
 	captain_arrival_sound = null
 
 	lobby_music_choices = list(

@@ -349,75 +349,75 @@
 
 // Police Sector.
 /area/europa/navy
-	name = "Security Precinct"
+	name = "Police Precinct"
 	icon_state = "navy"
 
 /area/europa/navy/foyer
-	name = "Security Precinct - Foyer"
+	name = "Police Precinct - Foyer"
 	icon_state = "navy_foyer"
 
 /area/europa/navy/armory
-	name = "Security Precinct - Armory"
+	name = "Police Precinct - Armory"
 	icon_state = "armory"
 
 /area/europa/navy/interrogation
-	name = "Security Precinct - Interrogation"
+	name = "Police Precinct - Interrogation"
 	icon_state = "interrogation"
 
 /area/europa/navy/evidence_storage
-	name = "Security Precinct - Evidence Storage"
+	name = "Police Precinct - Evidence Storage"
 	icon_state = "evidence"
 
 /area/europa/navy/cells
-	name = "Security Precinct - Cells"
+	name = "Police Precinct - Cells"
 	icon_state = "cells"
 
 /area/europa/navy/interview
-	name = "Security Precinct - Interview Office"
+	name = "Police Precinct - Interview Office"
 	icon_state = "interview"
 
 /area/europa/navy/forensics
-	name = "Security Precinct - Forensic Office"
+	name = "Police Precinct - Forensic Office"
 	icon_state = "forensics"
 
 /area/europa/navy/legal
-	name = "Security Precinct - Legal Office"
+	name = "Police Precinct - Legal Office"
 	icon_state = "legal"
 
 /area/europa/navy/marshal
-	name = "Security Precinct - Chief of Security's Office"
+	name = "Police Precinct - Chief of Police's Office"
 	icon_state = "marshal"
 
 /area/europa/navy/armory_secure
-	name = "Security Precinct - Secure Armory"
+	name = "Police Precinct - Secure Armory"
 	icon_state = "armory_secure"
 
 /area/europa/navy/requisitions
-	name = "Security Precinct - Requisitions"
+	name = "Police Precinct - Requisitions"
 	icon_state = "armory_office"
 
 /area/europa/navy/meeting
-	name = "Security Precinct - Meeting Room"
+	name = "Police Precinct - Meeting Room"
 	icon_state = "navy1"
 
 /area/europa/navy/lockers
-	name = "Security Precinct - Locker Room"
+	name = "Police Precinct - Locker Room"
 	icon_state = "navy2"
 
 /area/hallway/europa/navy
-	name = "Security Precinct - Hallway"
+	name = "Police Precinct - Hallway"
 	icon_state = "navy_hallway"
 
 /area/maintenance/europa/navy_east
-	name = "Security Precinct - Eastern Maintenance"
+	name = "Police Precinct - Eastern Maintenance"
 	icon_state = "navy_maint_east"
 
 /area/maintenance/europa/navy_west
-	name = "Security Precinct - Western Maintenance"
+	name = "Police Precinct - Western Maintenance"
 	icon_state = "navy_maint_west"
 
 /area/maintenance/europa/substation/navy
-	name = "Security Precinct - Power Station"
+	name = "Police Precinct - Power Station"
 	icon_state = "navy_substation"
 
 // Industrial Sector.
@@ -730,12 +730,12 @@
 //ELEVATORS//
 /////////////
 /area/turbolift/security_station
-	name = "Station - By Security Precinct"
-	lift_announce_str = "Arriving at the station level, by the Security Precinct."
+	name = "Station - By Police Precinct"
+	lift_announce_str = "Arriving at the station level, by the Police Precinct."
 
 /area/turbolift/security_maintenance
-	name = "Maintenance - Below Security Precinct"
-	lift_announce_str = "Arriving at the maintenance level, below the Security Precinct."
+	name = "Maintenance - Below Police Precinct"
+	lift_announce_str = "Arriving at the maintenance level, below the Police Precinct."
 	base_turf = /turf/simulated/floor/plating
 
 /area/turbolift/research_station

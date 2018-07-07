@@ -19,6 +19,11 @@
 	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
 	body_parts_covered = UPPER_TORSO
 
+/obj/item/clothing/suit/storage/hazardvest/police
+	name = "police hazard vest"
+	desc = "A high-visibility vest used by police."
+	icon_state = "police_hazard"
+
 /obj/item/clothing/suit/storage/waiter_vest
 	name = "waiter's vest"
 	desc = "It has a special pocket for tips."
