@@ -355,9 +355,7 @@ SUBSYSTEM_DEF(jobs)
 	for(var/mob/new_player/player in unassigned_roundstart)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			var/datum/job/ass = /datum/job/assistant
-			if((GLOB.using_map.flags & MAP_HAS_BRANCH) && player.client.prefs.branches[initial(ass.title)])
-				var/datum/mil_branch/branch = mil_branches.get_branch(player.client.prefs.branches[initial(ass.title)])
-				ass = branch.assistant_job
+
 			assign_role(player, initial(ass.title))
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned_roundstart)
@@ -388,48 +386,17 @@ SUBSYSTEM_DEF(jobs)
 		for(var/thing in H.client.prefs.Gear())
 			var/datum/gear/G = gear_datums[thing]
 			if(G)
-				var/permitted = 0
-				if(G.allowed_branches)
-					if(H.char_branch && H.char_branch.type in G.allowed_branches)
-						permitted = 1
-				else
-					permitted = 1
-
-				if(permitted)
-					if(G.allowed_roles)
-						if(job.type in G.allowed_roles)
-							permitted = 1
-						else
-							permitted = 0
-					else
-						permitted = 1
-
+				var/permitted = (!G.allowed_roles || (job.type in G.allowed_roles))
 				if(G.whitelisted && (!(H.species.name in G.whitelisted)))
 					permitted = 0
-
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current species, job, branch or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, "<span class='warning'>Your current species, job, or whitelist status does not permit you to spawn with [thing]!</span>")
 					continue
 
 				if(!G.slot || G.slot == slot_tie || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
 					spawn_in_storage.Add(G)
 				else
 					loadout_taken_slots.Add(G.slot)
-
-	// do accessories last so they don't attach to a suit that will be replaced
-	if(H.char_rank && H.char_rank.accessory)
-		for(var/accessory_path in H.char_rank.accessory)
-			var/list/accessory_data = H.char_rank.accessory[accessory_path]
-			if(islist(accessory_data))
-				var/amt = accessory_data[1]
-				var/list/accessory_args = accessory_data.Copy()
-				accessory_args[1] = src
-				for(var/i in 1 to amt)
-					H.equip_to_slot_or_del(new accessory_path(arglist(accessory_args)), slot_tie)
-			else
-				for(var/i in 1 to (isnull(accessory_data)? 1 : accessory_data))
-					H.equip_to_slot_or_del(new accessory_path(src), slot_tie)
-
 	return spawn_in_storage
 
 /datum/controller/subsystem/jobs/proc/equip_rank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
@@ -454,17 +421,12 @@ SUBSYSTEM_DEF(jobs)
 
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
-			var/domain
-			var/desired_name
-			if(H.char_branch && H.char_branch.email_domain)
-				domain = H.char_branch.email_domain
-			else
-				domain = "freemail.net"
-			desired_name = H.real_name
+			var/domain = "freemail.net"
+			var/desired_name = H.real_name
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
 
-		job.equip(H, H.mind ? H.mind.role_alt_title : "", H.char_branch, H.char_rank)
+		job.equip(H, H.mind ? H.mind.role_alt_title : "")
 		job.apply_fingerprints(H)
 		spawn_in_storage = equip_custom_loadout(H, job)
 	else

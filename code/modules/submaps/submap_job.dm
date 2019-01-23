@@ -14,8 +14,6 @@
 	skill_points = 25
 
 	var/info = "You have survived a terrible disaster. Make the best of things that you can."
-	var/rank
-	var/branch
 	var/list/spawnpoints
 	var/datum/submap/owner
 	var/list/blacklisted_species

@@ -47,19 +47,6 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 6)
 	device_type = /obj/item/weapon/pickaxe/diamonddrill
 
-/obj/item/rig_module/device/anomaly_scanner
-	name = "hardsuit anomaly scanner"
-	desc = "You think it's called an Elder Sarsparilla or something."
-	icon_state = "eldersasparilla"
-	interface_name = "Alden-Saraspova counter"
-	interface_desc = "An exotic particle detector commonly used by xenoarchaeologists."
-	engage_string = "Begin Scan"
-	use_power_cost = 200
-	usable = 1
-	selectable = 0
-	device_type = /obj/item/device/ano_scanner
-	origin_tech = list(TECH_BLUESPACE = 4, TECH_MAGNET = 4, TECH_ENGINEERING = 6)
-
 /obj/item/rig_module/device/orescanner
 	name = "ore scanner module"
 	desc = "A clunky old ore scanner."
@@ -395,7 +382,7 @@
 
 /obj/item/rig_module/device/pen
 	name = "mounted pen"
-	desc = "For mecha John Hancocks."
+	desc = "For mechanized John Hancocks."
 	icon_state = "pen"
 	interface_name = "mounted pen"
 	interface_desc = "Signatures with style(tm)."

@@ -4,7 +4,7 @@
 #define TECH_ENGINEERING "engineering"
 #define TECH_PHORON "phorontech"
 #define TECH_POWER "powerstorage"
-#define TECH_BLUESPACE "bluespace"
+#define TECH_EXOTIC "exotic"
 #define TECH_BIO "biotech"
 #define TECH_COMBAT "combat"
 #define TECH_MAGNET "magnets"

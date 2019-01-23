@@ -451,13 +451,6 @@ BLIND     // can't see anything
 		else
 			D.wear_hat(src)
 			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
-		if(D.hat)
-			success = 2
-		else
-			D.wear_hat(src)
-			success = 1
 
 	if(!success)
 		return 0
@@ -718,8 +711,21 @@ BLIND     // can't see anything
 	var/worn_state = null
 	//Whether the clothing item has gender-specific states when worn.
 	var/gender_icons = 0
-	valid_accessory_slots = list(ACCESSORY_SLOT_UTILITY,ACCESSORY_SLOT_HOLSTER,ACCESSORY_SLOT_ARMBAND,ACCESSORY_SLOT_RANK,ACCESSORY_SLOT_DEPT,ACCESSORY_SLOT_DECOR,ACCESSORY_SLOT_MEDAL,ACCESSORY_SLOT_INSIGNIA)
-	restricted_accessory_slots = list(ACCESSORY_SLOT_UTILITY,ACCESSORY_SLOT_HOLSTER,ACCESSORY_SLOT_ARMBAND,ACCESSORY_SLOT_RANK,ACCESSORY_SLOT_DEPT)
+	valid_accessory_slots = list(
+		ACCESSORY_SLOT_UTILITY,
+		ACCESSORY_SLOT_HOLSTER,
+		ACCESSORY_SLOT_ARMBAND,
+		ACCESSORY_SLOT_DEPT,
+		ACCESSORY_SLOT_DECOR,
+		ACCESSORY_SLOT_MEDAL,
+		ACCESSORY_SLOT_INSIGNIA
+	)
+	restricted_accessory_slots = list(
+		ACCESSORY_SLOT_UTILITY,
+		ACCESSORY_SLOT_HOLSTER,
+		ACCESSORY_SLOT_ARMBAND,
+		ACCESSORY_SLOT_DEPT
+	)
 
 /obj/item/clothing/under/New()
 	..()

@@ -385,7 +385,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 			pref.body_markings.Cut() // Basically same as above.
 
-			prune_occupation_prefs()
+			prune_job_prefs()
 			pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)
 
 			pref.cultural_info = mob_species.default_cultural_info.Copy()

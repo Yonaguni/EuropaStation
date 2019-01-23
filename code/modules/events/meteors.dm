@@ -125,3 +125,56 @@
 		. = round(. * 0.6)
 	if(victim.get_speed() > victim.max_speed * 0.75) //Sanic stahp
 		. *= 2
+
+/proc/spawn_meteors(var/number = 10, var/list/meteortypes, var/startSide, var/zlevel)
+	for(var/i = 0; i < number; i++)
+		spawn_meteor(meteortypes, startSide, zlevel)
+
+/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
+	var/turf/pickedstart = spaceDebrisStartLoc(startSide, zlevel)
+	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
+
+	var/Me = pickweight(meteortypes)
+	var/obj/effect/meteor/M = new Me(pickedstart)
+	M.dest = pickedgoal
+	spawn(0)
+		walk_towards(M, M.dest, 1)
+	return
+
+/proc/spaceDebrisStartLoc(startSide, Z)
+	var/starty
+	var/startx
+	switch(startSide)
+		if(NORTH)
+			starty = world.maxy-(TRANSITIONEDGE+1)
+			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+		if(EAST)
+			starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
+			startx = world.maxx-(TRANSITIONEDGE+1)
+		if(SOUTH)
+			starty = (TRANSITIONEDGE+1)
+			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+		if(WEST)
+			starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
+			startx = (TRANSITIONEDGE+1)
+	var/turf/T = locate(startx, starty, Z)
+	return T
+
+/proc/spaceDebrisFinishLoc(startSide, Z)
+	var/endy
+	var/endx
+	switch(startSide)
+		if(NORTH)
+			endy = TRANSITIONEDGE
+			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+		if(EAST)
+			endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
+			endx = TRANSITIONEDGE
+		if(SOUTH)
+			endy = world.maxy-TRANSITIONEDGE
+			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+		if(WEST)
+			endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
+			endx = world.maxx-TRANSITIONEDGE
+	var/turf/T = locate(endx, endy, Z)
+	return T

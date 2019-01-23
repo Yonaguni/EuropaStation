@@ -1,10 +1,3 @@
-/mob/living/proc/convert_to_rev(mob/M as mob in able_mobs_in_oview(src))
-	set name = "Convert Bourgeoise"
-	set category = "Abilities"
-	if(!M.mind || !M.client)
-		return
-	convert_to_faction(M.mind, GLOB.revs)
-
 /mob/living/proc/convert_to_faction(var/datum/mind/player, var/datum/antagonist/faction)
 
 	if(!player || !faction || !player.current)
@@ -38,10 +31,3 @@
 		else
 			to_chat(player, "<span class='danger'>You reject this traitorous cause!</span>")
 	to_chat(src, "<span class='danger'>\The [player.current] does not support the [faction.faction_descriptor]!</span>")
-
-/mob/living/proc/convert_to_loyalist(mob/M as mob in able_mobs_in_oview(src))
-	set name = "Convert Recidivist"
-	set category = "Abilities"
-	if(!M.mind || !M.client)
-		return
-	convert_to_faction(M.mind, GLOB.loyalists)

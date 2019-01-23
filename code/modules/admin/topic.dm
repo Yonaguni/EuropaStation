@@ -232,10 +232,7 @@
 
 		switch(href_list["simplemake"])
 			if("observer")			M.change_mob_type( /mob/observer/ghost , null, null, delmob )
-			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("slime")				M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
@@ -246,11 +243,6 @@
 			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
 			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
-
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
@@ -1196,16 +1188,6 @@
 		log_and_message_admins("AIized [key_name_admin(H)]!")
 		H.AIize()
 
-	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-			return
-
-		usr.client.cmd_admin_slimeize(H)
-
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -1384,48 +1366,6 @@
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		SSstatistics.add_field("admin_cookies_spawned",1)
 		to_chat(H, "<span class='notice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>")
-
-	else if(href_list["BlueSpaceArtillery"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
-
-		var/mob/living/M = locate(href_list["BlueSpaceArtillery"])
-		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living")
-			return
-
-		if(alert(src.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
-			return
-
-		if(BSACooldown)
-			to_chat(src.owner, "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!")
-			return
-
-		BSACooldown = 1
-		spawn(50)
-			BSACooldown = 0
-
-		to_chat(M, "You've been hit by bluespace artillery!")
-		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
-		message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
-
-		var/obj/effect/stop/S
-		S = new /obj/effect/stop(M.loc)
-		S.victim = M
-		spawn(20)
-			qdel(S)
-
-		var/turf/simulated/floor/T = get_turf(M)
-		if(istype(T))
-			if(prob(80))	T.break_tile_to_plating()
-			else			T.break_tile()
-
-		if(M.health == 1)
-			M.gib()
-		else
-			M.adjustBruteLoss( min( 99 , (M.health - 1) )    )
-			M.Stun(20)
-			M.Weaken(20)
-			M.stuttering = 20
 
 	else if(href_list["CentcommReply"])
 		var/mob/living/L = locate(href_list["CentcommReply"])

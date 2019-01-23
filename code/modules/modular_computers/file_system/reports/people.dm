@@ -68,13 +68,7 @@
 /datum/report_field/people/list_from_manifest/get_value(in_line = 0)
 	var/dat = list()
 	for(var/entry in value)
-		var/milrank = entry["milrank"]
-		if(in_line && (GLOB.using_map.flags & MAP_HAS_RANK))
-			var/datum/computer_file/report/crew_record/CR = get_crewmember_record(entry["name"])
-			if(CR)
-				var/datum/mil_rank/rank_obj = mil_branches.get_rank(CR.get_branch(), CR.get_rank())
-				milrank = (rank_obj ? rank_obj.name_short : "")
-		dat += format_output(entry["name"], in_line ? null : entry["rank"], milrank)
+		dat += format_output(entry["name"], in_line ? null : entry["rank"], "")
 	return jointext(dat, in_line ? ", " : "<br>")
 
 /datum/report_field/people/list_from_manifest/set_value(given_value)

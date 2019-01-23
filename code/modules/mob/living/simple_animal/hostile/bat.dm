@@ -53,10 +53,3 @@
 		if(prob(15))
 			L.Stun(1)
 			L.visible_message("<span class='danger'>\the [src] scares \the [L]!</span>")
-
-/mob/living/simple_animal/hostile/scarybat/cult
-	faction = "cult"
-	supernatural = 1
-
-/mob/living/simple_animal/hostile/scarybat/cult/cultify()
-	return

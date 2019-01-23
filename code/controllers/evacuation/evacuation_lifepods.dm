@@ -1,6 +1,40 @@
 #define EVAC_OPT_ABANDON_SHIP "abandon_ship"
 #define EVAC_OPT_CANCEL_ABANDON_SHIP "cancel_abandon_ship"
 
+/datum/evacuation_option/abandon_ship
+	option_text = "Abandon spacecraft"
+	option_desc = "abandon the spacecraft"
+	option_target = EVAC_OPT_ABANDON_SHIP
+	needs_syscontrol = TRUE
+	silicon_allowed = TRUE
+	abandon_ship = TRUE
+
+/datum/evacuation_option/abandon_ship/execute(mob/user)
+	if (!evacuation_controller)
+		return
+	if (evacuation_controller.deny)
+		to_chat(user, "Unable to initiate escape procedures.")
+		return
+	if (evacuation_controller.is_on_cooldown())
+		to_chat(user, evacuation_controller.get_cooldown_message())
+		return
+	if (evacuation_controller.is_evacuating())
+		to_chat(user, "Escape procedures already in progress.")
+		return
+	if (evacuation_controller.call_evacuation(user, 1))
+		log_and_message_admins("[user? key_name(user) : "Autotransfer"] has initiated abandonment of the spacecraft.")
+
+/datum/evacuation_option/cancel_abandon_ship
+	option_text = "Cancel abandonment"
+	option_desc = "cancel abandonment of the spacecraft"
+	option_target = EVAC_OPT_CANCEL_ABANDON_SHIP
+	needs_syscontrol = TRUE
+	silicon_allowed = FALSE
+
+/datum/evacuation_option/cancel_abandon_ship/execute(mob/user)
+	if (evacuation_controller && evacuation_controller.cancel_evacuation())
+		log_and_message_admins("[key_name(user)] has cancelled abandonment of the spacecraft.")
+
 /datum/evacuation_controller/lifepods
 	name = "escape pod controller"
 

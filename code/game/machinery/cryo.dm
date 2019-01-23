@@ -184,7 +184,7 @@
 		return TOPIC_REFRESH
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || isslime(user) || ispAI(user))
+		if(!occupant || ispAI(user))
 			return TOPIC_HANDLED // don't update UIs attached to this object
 		go_out()
 		return TOPIC_REFRESH
@@ -208,15 +208,8 @@
 		user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
 	else if(istype(G, /obj/item/grab))
 		var/obj/item/grab/grab = G
-		if(!ismob(grab.affecting))
-			return
-		for(var/mob/living/carbon/slime/M in range(1,grab.affecting))
-			if(M.Victim == grab.affecting)
-				to_chat(user, "[grab.affecting.name] will not fit into the cryo because they have a slime latched onto their head.")
-				return
-		if(put_mob(grab.affecting))
+		if(ismob(grab.affecting) && put_mob(grab.affecting))
 			qdel(G)
-	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/on_update_icon()
 	overlays.Cut()
@@ -355,10 +348,6 @@
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			to_chat(usr, "You're too busy getting your life sucked out of you.")
-			return
 	if (usr.stat != 0)
 		return
 	put_mob(usr)

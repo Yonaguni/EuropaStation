@@ -435,19 +435,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/deity/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/carbon/human/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/brain/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/observer/ghost/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
@@ -968,8 +962,6 @@ var/global/list/common_tools = list(
 	if(locate(/obj/structure/bed, T))
 		. = TRUE
 	if(locate(/obj/structure/table, T))
-		. = TRUE
-	if(locate(/obj/effect/rune/, T))
 		. = TRUE
 
 	if(M == user)

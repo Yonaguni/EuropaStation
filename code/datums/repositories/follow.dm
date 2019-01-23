@@ -178,11 +178,6 @@
 	followed_type = /mob/living/carbon/brain
 	suffix = "Brain"
 
-/datum/follow_holder/alien
-	sort_order = 4
-	followed_type = /mob/living/carbon/alien
-	suffix = "Alien"
-
 /datum/follow_holder/ghost
 	sort_order = 5
 	followed_type = /mob/observer/ghost
@@ -192,11 +187,6 @@
 	sort_order = 6
 	followed_type = /mob/living/simple_animal
 	suffix = "Animal"
-
-/datum/follow_holder/slime
-	sort_order = 6
-	followed_type = /mob/living/carbon/slime
-	suffix = "Slime"
 
 /datum/follow_holder/spiderling
 	sort_order = 6
@@ -215,36 +205,6 @@
 	sort_order = 7
 	followed_type = /mob/living // List all other (living) mobs we haven't given a special suffix
 	suffix = "Mob"
-
-/datum/follow_holder/mech
-	sort_order = 8
-	followed_type = /obj/mecha
-	suffix = "Mech"
-
-/datum/follow_holder/mech/get_suffix(var/obj/mecha/M)
-	suffix = M.occupant ? "\[[M.occupant]\] \[[initial(suffix)]\]" : "\[[initial(suffix)]\]"
-	return ..()
-
-/datum/follow_holder/blob
-	sort_order = 9
-	followed_type = /obj/effect/blob/core
-	suffix = "Blob"
-
-/datum/follow_holder/supermatter
-	sort_order = 10
-	followed_type = /obj/machinery/power/supermatter
-
-/datum/follow_holder/singularity
-	sort_order = 10
-	followed_type = /obj/singularity
-
-/datum/follow_holder/nuke_disc
-	sort_order = 11
-	followed_type = /obj/item/weapon/disk/nuclear
-
-/datum/follow_holder/nuclear_bomb
-	sort_order = 12
-	followed_type = /obj/machinery/nuclearbomb
 
 /datum/follow_holder/captains_spare
 	sort_order = 13

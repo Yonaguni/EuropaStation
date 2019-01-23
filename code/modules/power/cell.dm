@@ -180,15 +180,6 @@
 /obj/item/weapon/cell/high/empty
 	charge = 0
 
-/obj/item/weapon/cell/mecha
-	name = "exosuit power cell"
-	desc = "A special power cell designed for heavy-duty use in industrial exosuits."
-	origin_tech = list(TECH_POWER = 3)
-	icon_state = "hcell"
-	maxcharge = 1500
-	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 70, MATERIAL_ALUMINIUM = 20)
-
-
 /obj/item/weapon/cell/super
 	name = "enhanced power cell"
 	desc = "A very advanced power cell with increased energy density, for use in critical applications."
@@ -213,7 +204,7 @@
 
 /obj/item/weapon/cell/infinite
 	name = "experimental power cell"
-	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from contained bluespace pocket."
+	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from the false vacuum."
 	icon_state = "icell"
 	origin_tech =  null
 	maxcharge = 3000

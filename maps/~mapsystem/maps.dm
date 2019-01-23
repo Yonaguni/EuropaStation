@@ -1,9 +1,6 @@
 GLOBAL_DATUM_INIT(using_map, /datum/map, new using_map_DATUM)
 GLOBAL_LIST_EMPTY(all_maps)
 
-var/const/MAP_HAS_BRANCH = 1	//Branch system for occupations, togglable
-var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
-
 /hook/startup/proc/initialise_map_list()
 	for(var/type in typesof(/datum/map) - /datum/map)
 		var/datum/map/M
@@ -29,7 +26,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
 	var/list/player_levels = list()  // Z-levels a character can typically reach
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
-	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
+	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by transit)
 
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 
@@ -113,76 +110,24 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 	var/list/available_cultural_info = list(
 		TAG_HOMEWORLD = list(
-			HOME_SYSTEM_MARS,
-			HOME_SYSTEM_LUNA,
-			HOME_SYSTEM_EARTH,
-			HOME_SYSTEM_VENUS,
-			HOME_SYSTEM_CERES,
-			HOME_SYSTEM_PLUTO,
-			HOME_SYSTEM_TAU_CETI,
-			HOME_SYSTEM_HELIOS,
-			HOME_SYSTEM_TERRA,
-			HOME_SYSTEM_TERSTEN,
-			HOME_SYSTEM_LORRIMAN,
-			HOME_SYSTEM_CINU,
-			HOME_SYSTEM_YUKLID,
-			HOME_SYSTEM_LORDANIA,
-			HOME_SYSTEM_KINGSTON,
-			HOME_SYSTEM_GAIA,
-			HOME_SYSTEM_MAGNITKA,
 			HOME_SYSTEM_OTHER
 		),
 		TAG_FACTION = list(
-			FACTION_SOL_CENTRAL,
-			FACTION_INDIE_CONFED,
-			FACTION_CORPORATE,
-			FACTION_NANOTRASEN,
-			FACTION_FREETRADE,
-			FACTION_XYNERGY,
-			FACTION_HEPHAESTUS,
-			FACTION_DAIS,
-			FACTION_EXPEDITIONARY,
-			FACTION_FLEET,
-			FACTION_PCRC,
 			FACTION_OTHER
 		),
 		TAG_CULTURE = list(
-			CULTURE_HUMAN_MARTIAN,
-			CULTURE_HUMAN_MARSTUN,
-			CULTURE_HUMAN_LUNAPOOR,
-			CULTURE_HUMAN_LUNARICH,
-			CULTURE_HUMAN_VENUSIAN,
-			CULTURE_HUMAN_VENUSLOW,
-			CULTURE_HUMAN_BELTER,
-			CULTURE_HUMAN_PLUTO,
-			CULTURE_HUMAN_EARTH,
-			CULTURE_HUMAN_CETI,
-			CULTURE_HUMAN_SPACER,
-			CULTURE_HUMAN_SPAFRO,
-			CULTURE_HUMAN_CONFED,
-			CULTURE_HUMAN_OTHER,
 			CULTURE_OTHER
 		),
 		TAG_RELIGION = list(
-			RELIGION_OTHER,
-			RELIGION_JUDAISM,
-			RELIGION_HINDUISM,
-			RELIGION_BUDDHISM,
-			RELIGION_ISLAM,
-			RELIGION_CHRISTIANITY,
-			RELIGION_AGNOSTICISM,
-			RELIGION_DEISM,
-			RELIGION_ATHEISM,
-			RELIGION_THELEMA,
-			RELIGION_SPIRITUALISM
+			RELIGION_OTHER
 		)
 	)
 
 	var/list/default_cultural_info = list(
-		TAG_HOMEWORLD = HOME_SYSTEM_MARS,
-		TAG_FACTION =   FACTION_SOL_CENTRAL,
-		TAG_CULTURE =   CULTURE_HUMAN_MARTIAN,
-		TAG_RELIGION =  RELIGION_AGNOSTICISM
+		TAG_HOMEWORLD = HOME_SYSTEM_OTHER,
+		TAG_FACTION =   FACTION_OTHER,
+		TAG_CULTURE =   CULTURE_OTHER,
+		TAG_RELIGION =  RELIGION_OTHER
 	)
 
 	var/access_modify_region = list(
@@ -302,11 +247,6 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map/proc/setup_economy()
 	news_network.CreateFeedChannel("Nyx Daily", "SolGov Minister of Information", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
-
-	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)
-		var/datum/trade_destination/D = new loc_type
-		weighted_randomevent_locations[D] = D.viable_random_events.len
-		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
 
 	if(!station_account)
 		station_account = create_account("[station_name()] Primary Account", starting_money)

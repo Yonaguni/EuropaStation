@@ -169,9 +169,8 @@ var/list/gear_datums = list()
 		entry += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=\ref[G]'>[G.display_name]</a></td>"
 		entry += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
-		var/allowed = 1
-
-		if(allowed && G.allowed_roles)
+		var/allowed = TRUE
+		if(G.allowed_roles)
 			var/good_job = 0
 			var/bad_job = 0
 			entry += "<br><i>"
@@ -295,7 +294,6 @@ var/list/gear_datums = list()
 	var/cost = 1           //Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
 	var/slot               //Slot to equip to.
 	var/list/allowed_roles //Roles that can spawn with this item.
-	var/list/allowed_branches //Service branches that can spawn with it.
 	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category = "General"
 	var/flags              //Special tweaks in new

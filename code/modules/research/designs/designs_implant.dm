@@ -22,7 +22,7 @@
 /datum/design/item/implant/tracking
 	name = "tracking"
 	id = "implant_tracking"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_BLUESPACE = 3)
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_EXOTIC = 3)
 	build_path = /obj/item/weapon/implantcase/tracking
 	sort_string = "MFAAC"
 

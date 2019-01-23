@@ -388,7 +388,6 @@
 		/obj/item/device/geiger,
 		/obj/item/device/flashlight,
 		/obj/item/device/radio,
-		/obj/item/device/gps,
 		/obj/item/weapon/mining_scanner,
 		/obj/item/device/slime_scanner,
 		/obj/item/device/analyzer/plant_analyzer,
@@ -397,7 +396,6 @@
 		/obj/item/weapon/pen,
 		/obj/item/device/spaceflare,
 		/obj/item/device/radio/beacon,
-		/obj/item/weapon/pinpointer/radio,
 		/obj/item/device/taperecorder,
 		/obj/item/device/tape,
 		/obj/item/device/analyzer
@@ -405,26 +403,6 @@
 	can_holster = list(/obj/item/weapon/material/hatchet/machete)
 	sound_in = 'sound/effects/holster/sheathin.ogg'
 	sound_out = 'sound/effects/holster/sheathout.ogg'
-
-/obj/item/weapon/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away."
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	can_hold = list(
-		/obj/item/device/soulstone
-		)
-
-/obj/item/weapon/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

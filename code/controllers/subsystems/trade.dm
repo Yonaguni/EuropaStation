@@ -34,23 +34,15 @@ SUBSYSTEM_DEF(trade)
 	..("Traders: [traders.len]")
 
 /datum/controller/subsystem/trade/proc/generate_trader(var/stations = 0)
-	var/list/possible = list()
-	if(stations)
-		possible += subtypesof(/datum/trader) - typesof(/datum/trader/ship)
-	else
-		if(prob(5))
-			possible += subtypesof(/datum/trader/ship/unique)
-		else
-			possible += subtypesof(/datum/trader/ship) - typesof(/datum/trader/ship/unique)
-
-	for(var/i in 1 to 10)
-		var/type = pick(possible)
-		var/bad = 0
-		for(var/trader in traders)
-			if(istype(trader,type))
-				bad = 1
+	var/list/possible = subtypesof(/datum/trader)
+	if(LAZYLEN(possible))
+		for(var/i in 1 to 10)
+			var/type = pick(possible)
+			var/bad = 0
+			for(var/trader in traders)
+				if(istype(trader,type))
+					bad = 1
+					break
+			if(!bad)
+				traders += new type
 				break
-		if(bad)
-			continue
-		traders += new type
-		return

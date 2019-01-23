@@ -99,12 +99,6 @@
 				if((C.installed == -1) && cell.checked_use(100 KILOWATTS * CELLRATE))
 					C.repair()
 
-	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
-		var/obj/item/organ/internal/cell/potato = H.internal_organs_by_name[BP_CELL]
-		if(potato)
-			target = potato.cell
-
 	if(target && !target.fully_charged())
 		var/diff = min(target.maxcharge - target.charge, charging_power * CELLRATE) // Capped by charging_power / tick
 		if(ishuman(occupant))

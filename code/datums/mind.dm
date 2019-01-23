@@ -53,7 +53,6 @@
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
 	var/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
 
@@ -77,9 +76,6 @@
 	if(!istype(new_character))
 		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
 	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
-			current.remove_changeling_powers()
-			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
 		SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
@@ -90,12 +86,6 @@
 
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
-
-	if(learned_spells && learned_spells.len)
-		restore_spells(new_character)
-
-	if(changeling)
-		new_character.make_changeling()
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
@@ -366,7 +356,7 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb")
+			if("download","capture")
 				var/def_num
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
@@ -382,9 +372,6 @@
 					if("capture")
 						new_objective = new /datum/objective/capture
 						new_objective.explanation_text = "Accumulate [target_number] capture points."
-					if("absorb")
-						new_objective = new /datum/objective/absorb
-						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
 				new_objective.owner = src
 				new_objective.target_amount = target_number
 
@@ -540,8 +527,6 @@
 	special_role =    null
 	role_alt_title =  null
 	assigned_job =    null
-	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
 	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
@@ -578,15 +563,6 @@
 	if(!mind.assigned_role)
 		mind.assigned_role = GLOB.using_map.default_assistant_title
 
-//slime
-/mob/living/carbon/slime/mind_initialize()
-	..()
-	mind.assigned_role = "slime"
-
-/mob/living/carbon/alien/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
-
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()
@@ -611,22 +587,3 @@
 /mob/living/simple_animal/corgi/mind_initialize()
 	..()
 	mind.assigned_role = "Corgi"
-
-/mob/living/simple_animal/shade/mind_initialize()
-	..()
-	mind.assigned_role = "Shade"
-
-/mob/living/simple_animal/construct/builder/mind_initialize()
-	..()
-	mind.assigned_role = "Artificer"
-	mind.special_role = "Cultist"
-
-/mob/living/simple_animal/construct/wraith/mind_initialize()
-	..()
-	mind.assigned_role = "Wraith"
-	mind.special_role = "Cultist"
-
-/mob/living/simple_animal/construct/armoured/mind_initialize()
-	..()
-	mind.assigned_role = "Juggernaut"
-	mind.special_role = "Cultist"

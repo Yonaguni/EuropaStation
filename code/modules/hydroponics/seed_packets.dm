@@ -132,9 +132,6 @@ var/global/list/plant_seed_sprites = list()
 /obj/item/seeds/bluetomatoseed
 	seed_type = "bluetomato"
 
-/obj/item/seeds/bluespacetomatoseed
-	seed_type = "bluespacetomato"
-
 /obj/item/seeds/cornseed
 	seed_type = "corn"
 

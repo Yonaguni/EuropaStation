@@ -168,14 +168,11 @@
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
-		/obj/item/integrated_circuit/manipulation/bluespace_rift,
-		/obj/item/integrated_circuit/input/teleporter_locator,
 		/obj/item/weapon/card/id/captains_spare,
 		/obj/item/weapon/aicard,
 		/obj/item/device/mmi,
 		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
-		/obj/item/weapon/pinpointer,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
@@ -500,11 +497,6 @@
 	if(src.occupant)
 		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 		return
-
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			to_chat(usr, "You're too busy getting your life sucked out of you.")
-			return
 
 	visible_message("[usr] starts climbing into \the [src].", 3)
 

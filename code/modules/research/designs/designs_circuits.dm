@@ -109,26 +109,12 @@
 	build_path = /obj/item/weapon/circuitboard/roboprinter
 	sort_string = "FAGAM"
 
-/datum/design/circuit/teleconsole
-	name = "teleporter control console"
-	id = "teleconsole"
-	req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 5)
-	build_path = /obj/item/weapon/circuitboard/teleporter
-	sort_string = "HAAAA"
-
 /datum/design/circuit/robocontrol
 	name = "robotics control console"
 	id = "robocontrol"
 	req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/weapon/circuitboard/robotics
 	sort_string = "HAAAB"
-
-/datum/design/circuit/mechacontrol
-	name = "exosuit control console"
-	id = "mechacontrol"
-	req_tech = list(TECH_DATA = 3)
-	build_path = /obj/item/weapon/circuitboard/mecha_control
-	sort_string = "HAAAC"
 
 /datum/design/circuit/rdconsole
 	name = "R&D control console"
@@ -401,105 +387,6 @@
 	build_path = /obj/item/weapon/circuitboard/miningdrillbrace
 	sort_string = "KCAAB"
 
-/datum/design/circuit/bsafront
-	name = "bluespace particle beam generator mark VI."
-	id = "bsafront"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_COMBAT = 2, TECH_BLUESPACE = 2)
-	build_path = /obj/item/weapon/circuitboard/bsafront
-	sort_string = "KCAAC"
-
-/datum/design/circuit/bsamiddle
-	name = "bluespace fusor mark VI."
-	id = "bsamiddle"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_COMBAT = 2, TECH_BLUESPACE = 2)
-	build_path = /obj/item/weapon/circuitboard/bsamiddle
-	sort_string = "KCAAD"
-
-/datum/design/circuit/bsaback
-	name = "bluespace material deconstructor mark VI."
-	id = "bsaback"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_COMBAT = 2, TECH_BLUESPACE = 2)
-	build_path = /obj/item/weapon/circuitboard/bsaback
-	sort_string = "KCAAE"
-
-/datum/design/circuit/mecha
-	req_tech = list(TECH_DATA = 3)
-
-/datum/design/circuit/mecha/AssembleDesignName()
-	name = "Exosuit module circuit design ([name])"
-/datum/design/circuit/mecha/AssembleDesignDesc()
-	desc = "Allows for the construction of \a [name] module."
-
-/datum/design/circuit/mecha/ripley_main
-	name = "APLU 'Ripley' central control"
-	id = "ripley_main"
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/circuitboard/mecha/ripley/main
-	sort_string = "NAAAA"
-
-/datum/design/circuit/mecha/ripley_peri
-	name = "APLU 'Ripley' peripherals control"
-	id = "ripley_peri"
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/circuitboard/mecha/ripley/peripherals
-	sort_string = "NAAAB"
-
-/datum/design/circuit/mecha/odysseus_main
-	name = "'Odysseus' central control"
-	id = "odysseus_main"
-	req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
-	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/main
-	sort_string = "NAABA"
-
-/datum/design/circuit/mecha/odysseus_peri
-	name = "'Odysseus' peripherals control"
-	id = "odysseus_peri"
-	req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
-	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/peripherals
-	sort_string = "NAABB"
-
-/datum/design/circuit/mecha/gygax_main
-	name = "'Gygax' central control"
-	id = "gygax_main"
-	req_tech = list(TECH_DATA = 4)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/main
-	sort_string = "NAACA"
-
-/datum/design/circuit/mecha/gygax_peri
-	name = "'Gygax' peripherals control"
-	id = "gygax_peri"
-	req_tech = list(TECH_DATA = 4)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/peripherals
-	sort_string = "NAACB"
-
-/datum/design/circuit/mecha/gygax_targ
-	name = "'Gygax' weapon control and targeting"
-	id = "gygax_targ"
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
-	sort_string = "NAACC"
-
-/datum/design/circuit/mecha/durand_main
-	name = "'Durand' central control"
-	id = "durand_main"
-	req_tech = list(TECH_DATA = 4)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
-	sort_string = "NAADA"
-
-/datum/design/circuit/mecha/durand_peri
-	name = "'Durand' peripherals control"
-	id = "durand_peri"
-	req_tech = list(TECH_DATA = 4)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
-	sort_string = "NAADB"
-
-/datum/design/circuit/mecha/durand_targ
-	name = "'Durand' weapon control and targeting"
-	id = "durand_targ"
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
-	sort_string = "NAADC"
-
 /datum/design/circuit/tcom
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 
@@ -535,21 +422,21 @@
 /datum/design/circuit/tcom/relay
 	name = "relay mainframe"
 	id = "tcom-relay"
-	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 3)
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 4, TECH_EXOTIC = 3)
 	build_path = /obj/item/weapon/circuitboard/telecomms/relay
 	sort_string = "PAAAE"
 
 /datum/design/circuit/tcom/broadcaster
 	name = "subspace broadcaster"
 	id = "tcom-broadcaster"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_EXOTIC = 2)
 	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
 	sort_string = "PAAAF"
 
 /datum/design/circuit/tcom/receiver
 	name = "subspace receiver"
 	id = "tcom-receiver"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_EXOTIC = 2)
 	build_path = /obj/item/weapon/circuitboard/telecomms/receiver
 	sort_string = "PAAAG"
 

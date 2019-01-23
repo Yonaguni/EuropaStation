@@ -123,15 +123,10 @@ client
 		if(GetAssignment(H) != "Unassigned")
 			job = ", [uppertext(GetAssignment(H))]"
 		var/used_name = H.real_name
-		var/datum/computer_file/report/crew_record/R = get_crewmember_record(H.real_name)
-		if(R && R.get_rank())
-			var/datum/mil_rank/rank = mil_branches.get_rank(R.get_branch(), R.get_rank())
-			if(rank.name_short)
-				used_name = "[rank.name_short] [used_name]"
 		if(prob(90))
 			var/decl/cultural_info/actor_culture = SSculture.get_culture(H.get_cultural_value(TAG_CULTURE))
 			if(!actor_culture || !(H.species.spawn_flags & SPECIES_CAN_JOIN) || prob(10))
-				actor_culture = SSculture.get_culture(CULTURE_HUMAN)
+				actor_culture = SSculture.get_culture(CULTURE_OTHER)
 			chunk += "[actor_culture.get_random_name(H.gender)]\t \t \t \t[uppertext(used_name)][job]"
 		else
 			var/datum/gender/G = gender_datums[H.gender]

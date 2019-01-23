@@ -87,20 +87,7 @@
 	return	//immune
 
 /mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
-
-	if (istype(source, /obj/machinery/containment_field))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		s.set_up(5, 1, loc)
-		s.start()
-
-		shock_damage *= 0.75	//take reduced damage
-		take_overall_damage(0, shock_damage)
-		visible_message("<span class='warning'>\The [src] was shocked by \the [source]!</span>", \
-			"<span class='danger'>Energy pulse detected, system damaged!</span>", \
-			"<span class='warning'>You hear an electrical crack</span>")
-		if(prob(20))
-			Stun(2)
-		return
+	return
 
 /mob/living/silicon/proc/damage_mob(var/brute = 0, var/fire = 0, var/tox = 0)
 	return
@@ -340,12 +327,6 @@
 
 /mob/living/silicon/proc/is_traitor()
 	return mind && (mind in GLOB.traitors.current_antagonists)
-
-/mob/living/silicon/proc/is_malf()
-	return mind && (mind in GLOB.malf.current_antagonists)
-
-/mob/living/silicon/proc/is_malf_or_traitor()
-	return is_traitor() || is_malf()
 
 /mob/living/silicon/adjustEarDamage()
 	return

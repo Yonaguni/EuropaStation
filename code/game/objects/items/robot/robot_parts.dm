@@ -154,74 +154,7 @@
 			src.parts[part.bp_tag] = part
 			src.update_icon()
 
-	if(istype(W, /obj/item/device/mmi) || istype(W, /obj/item/organ/internal/posibrain))
-		var/mob/living/carbon/brain/B
-		if(istype(W, /obj/item/device/mmi))
-			var/obj/item/device/mmi/M = W
-			B = M.brainmob
-		else
-			var/obj/item/organ/internal/posibrain/P = W
-			B = P.brainmob
-		if(check_completion())
-			if(!istype(loc,/turf))
-				to_chat(user, "<span class='warning'>You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.</span>")
-				return
-			if(!B)
-				to_chat(user, "<span class='warning'>Sticking an empty [W] into the frame would sort of defeat the purpose.</span>")
-				return
-			if(!B.key)
-				var/ghost_can_reenter = 0
-				if(B.mind)
-					for(var/mob/observer/ghost/G in GLOB.player_list)
-						if(G.can_reenter_corpse && G.mind == B.mind)
-							ghost_can_reenter = 1
-							break
-				if(!ghost_can_reenter)
-					to_chat(user, "<span class='notice'>\The [W] is completely unresponsive; there's no point.</span>")
-					return
-
-			if(B.stat == DEAD)
-				to_chat(user, "<span class='warning'>Sticking a dead [W] into the frame would sort of defeat the purpose.</span>")
-				return
-
-			if(jobban_isbanned(B, "Robot"))
-				to_chat(user, "<span class='warning'>This [W] does not seem to fit.</span>")
-				return
-			if(!user.unEquip(W))
-				return
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
-			if(!O)	return
-
-			O.mmi = W
-			O.set_invisibility(0)
-			O.custom_name = created_name
-			O.updatename("Default")
-
-			B.mind.transfer_to(O)
-
-			if(O.mind && O.mind.special_role)
-				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
-
-			O.job = "Robot"
-
-			var/obj/item/robot_parts/chest/chest = parts[BP_CHEST]
-			O.cell = chest.cell
-			O.cell.forceMove(O)
-			W.forceMove(O) //Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
-
-			// Since we "magically" installed a cell, we also have to update the correct component.
-			if(O.cell)
-				var/datum/robot_component/cell_component = O.components["power cell"]
-				cell_component.wrapped = O.cell
-				cell_component.installed = 1
-
-			SSstatistics.add_field("cyborg_birth",1)
-			callHook("borgify", list(O))
-			O.Namepick()
-
-			qdel(src)
-		else
-			to_chat(user, "<span class='warning'>The MMI must go in after everything else!</span>")
+		// TODO robot completion
 
 	if (istype(W, /obj/item/weapon/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)

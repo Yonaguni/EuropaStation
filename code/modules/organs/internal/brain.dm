@@ -21,12 +21,6 @@
 	var/healed_threshold = 1
 	var/oxygen_reserve = 6
 
-/obj/item/organ/internal/brain/robotize()
-	replace_self_with(/obj/item/organ/internal/posibrain)
-
-/obj/item/organ/internal/brain/mechassist()
-	replace_self_with(/obj/item/organ/internal/mmi_holder)
-
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0
 
@@ -85,17 +79,9 @@
 /obj/item/organ/internal/brain/removed(var/mob/living/user)
 	if(!istype(owner))
 		return ..()
-
 	if(name == initial(name))
 		name = "\the [owner.real_name]'s [initial(name)]"
-
-	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
-
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
-
 	transfer_identity(owner)
-
 	..()
 
 /obj/item/organ/internal/brain/replaced(var/mob/living/target)

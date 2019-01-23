@@ -98,21 +98,6 @@ var/const/EXTRA_COST_FACTOR = 1.25
 	path = /obj/item/weapon/crowbar/prybar
 	category = "Tools"
 
-/datum/autolathe/recipe/int_wirer
-	name = "integrated circuit wirer"
-	path = /obj/item/device/integrated_electronics/wirer
-	category = "Tools"
-
-/datum/autolathe/recipe/int_debugger
-	name = "integrated circuit debugger"
-	path = /obj/item/device/integrated_electronics/debugger
-	category = "Tools"
-
-/datum/autolathe/recipe/int_analyzer
-	name = "integrated circuit analyzer"
-	path = /obj/item/device/integrated_electronics/analyzer
-	category = "Tools"
-
 /datum/autolathe/recipe/multitool
 	name = "multitool"
 	path = /obj/item/device/multitool

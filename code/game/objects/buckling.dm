@@ -66,9 +66,6 @@
 		return 0
 	if(M == buckled_mob)
 		return 0
-	if(istype(M, /mob/living/carbon/slime))
-		to_chat(user, "<span class='warning'>\The [M] is too squishy to buckle in.</span>")
-		return 0
 
 	add_fingerprint(user)
 	unbuckle_mob()

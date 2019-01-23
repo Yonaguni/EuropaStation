@@ -102,16 +102,6 @@
 	cost = 30
 	containername = "phoron tank crate"
 
-/decl/hierarchy/supply_pack/atmospherics/voidsuit
-	name = "EVA - Atmospherics voidsuit"
-	contains = list(/obj/item/clothing/suit/space/void/atmos/alt,
-					/obj/item/clothing/head/helmet/space/void/atmos/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "atmospherics voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_atmospherics
-
 /decl/hierarchy/supply_pack/atmospherics/scanner_module
 	name = "Electronics - Atmospherics scanner modules"
 	contains = list(/obj/item/weapon/computer_hardware/scanner/atmos = 4)

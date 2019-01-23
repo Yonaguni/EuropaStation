@@ -75,12 +75,8 @@
 			else
 				dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Engage [security_state.high_security_level.name]</A></li>"
 
-		if(!config.ert_admin_call_only)
-			dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
-
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Nuclear Authorization Code'>Grant Nuclear Authorization Code</A></li>"
 		dat += "</ul>"
 		user << browse(dat, "window=keycard_auth;size=500x250")
 	if(screen == 2)
@@ -168,20 +164,6 @@
 		if("Revoke Emergency Maintenance Access")
 			GLOB.using_map.revoke_maint_all_access()
 			SSstatistics.add_field("alert_keycard_auth_maintRevoke",1)
-		if("Emergency Response Team")
-			if(is_ert_blocked())
-				to_chat(usr, "<span class='warning'>All emergency response teams are dispatched and can not be called at this time.</span>")
-				return
-
-			trigger_armed_response_team(1)
-			SSstatistics.add_field("alert_keycard_auth_ert",1)
-		if("Grant Nuclear Authorization Code")
-			var/obj/machinery/nuclearbomb/nuke = locate(/obj/machinery/nuclearbomb/station) in world
-			if(nuke)
-				to_chat(usr, "The nuclear authorization code is [nuke.r_code]")
-			else
-				to_chat(usr, "No self destruct terminal found.")
-			SSstatistics.add_field("alert_keycard_auth_nukecode",1)
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
 	if(config.ert_admin_call_only) return 1

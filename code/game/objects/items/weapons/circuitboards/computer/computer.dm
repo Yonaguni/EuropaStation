@@ -17,11 +17,6 @@
 	build_path = /obj/machinery/computer/upload/robot
 	origin_tech = list(TECH_DATA = 4)
 
-/obj/item/weapon/circuitboard/teleporter
-	name = T_BOARD("teleporter control console")
-	build_path = /obj/machinery/computer/teleporter
-	origin_tech = list(TECH_DATA = 2, TECH_BLUESPACE = 4)
-
 /obj/item/weapon/circuitboard/atmos_alert
 	name = T_BOARD("atmospheric alert console")
 	build_path = /obj/machinery/computer/atmos_alert
@@ -78,10 +73,6 @@
 /obj/item/weapon/circuitboard/prisoner
 	name = T_BOARD("prisoner management console")
 	build_path = /obj/machinery/computer/prisoner
-
-/obj/item/weapon/circuitboard/mecha_control
-	name = T_BOARD("exosuit control console")
-	build_path = /obj/machinery/computer/mecha
 
 /obj/item/weapon/circuitboard/rdservercontrol
 	name = T_BOARD("R&D server control console")

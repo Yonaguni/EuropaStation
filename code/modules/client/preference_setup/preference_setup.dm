@@ -43,12 +43,6 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
-/datum/category_group/player_setup_category/law_pref
-	name = "Laws"
-	sort_order = 8
-	category_item_type = /datum/category_item/player_setup_item/law_pref
-
-
 /****************************
 * Category Collection Setup *
 ****************************/

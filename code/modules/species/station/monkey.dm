@@ -1,3 +1,4 @@
+
 /datum/species/monkey
 	name = "Monkey"
 	name_plural = "Monkeys"
@@ -47,12 +48,6 @@
 		/datum/mob_descriptor/build = -2
 	)
 
-	force_cultural_info = list(
-		TAG_CULTURE =   CULTURE_MONKEY,
-		TAG_HOMEWORLD = HOME_SYSTEM_STATELESS,
-		TAG_FACTION =   FACTION_TEST_SUBJECTS
-	)
-
 /datum/species/monkey/New()
 	equip_adjust = list(
 		slot_l_hand_str = list("[NORTH]" = list("x" = 1, "y" = 3), "[EAST]" = list("x" = -3, "y" = 2), "[SOUTH]" = list("x" = -1, "y" = 3), "[WEST]" = list("x" = 3, "y" = 2)),
@@ -83,7 +78,7 @@
 				touchables += O
 		var/obj/touchy = pick(touchables)
 		touchy.attack_hand(H)
-	
+
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))
 
@@ -102,60 +97,3 @@
 /datum/species/monkey/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
 	H.item_state = lowertext(name)
-
-/datum/species/monkey/alien
-	name = "Farwa"
-	name_plural = "Farwa"
-	health_hud_intensity = 2
-
-	icobase = 'icons/mob/human_races/species/monkey/farwa_body.dmi'
-	deform = 'icons/mob/human_races/species/monkey/farwa_body.dmi'
-
-	flesh_color = "#afa59e"
-	base_color = "#333333"
-	tail = "farwatail"
-	force_cultural_info = list(
-		TAG_CULTURE =   CULTURE_FARWA,
-		TAG_HOMEWORLD = HOME_SYSTEM_STATELESS,
-		TAG_FACTION =   FACTION_TEST_SUBJECTS
-	)
-
-/datum/species/monkey/skrell
-	name = "Neaera"
-	name_plural = "Neaera"
-	health_hud_intensity = 1.75
-
-	icobase = 'icons/mob/human_races/species/monkey/neaera_body.dmi'
-	deform = 'icons/mob/human_races/species/monkey/neaera_body.dmi'
-
-	greater_form = SPECIES_SKRELL
-	flesh_color = "#8cd7a3"
-	blood_color = "#1d2cbf"
-	reagent_tag = IS_SKRELL
-	tail = null
-	force_cultural_info = list(
-		TAG_CULTURE =   CULTURE_NEARA,
-		TAG_HOMEWORLD = HOME_SYSTEM_STATELESS,
-		TAG_FACTION =   FACTION_TEST_SUBJECTS
-	)
-
-
-/datum/species/monkey/unathi
-	name = "Stok"
-	name_plural = "Stok"
-	health_hud_intensity = 1.5
-
-	icobase = 'icons/mob/human_races/species/monkey/stok_body.dmi'
-	deform = 'icons/mob/human_races/species/monkey/stok_body.dmi'
-
-	tail = "stoktail"
-	greater_form = SPECIES_UNATHI
-	flesh_color = "#34af10"
-	base_color = "#066000"
-	reagent_tag = IS_UNATHI
-	force_cultural_info = list(
-		TAG_CULTURE =   CULTURE_STOK,
-		TAG_HOMEWORLD = HOME_SYSTEM_STATELESS,
-		TAG_FACTION =   FACTION_TEST_SUBJECTS
-	)
-

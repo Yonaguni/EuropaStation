@@ -96,24 +96,11 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xeno/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
-		if(P)
-			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
-
-		var/obj/item/organ/internal/cell/potato = internal_organs_by_name[BP_CELL]
-		if(potato && potato.cell)
-			stat("Battery charge:", "[potato.get_charge()]/[potato.cell.maxcharge]")
-
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back
 			var/cell_status = "ERROR"
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
-
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

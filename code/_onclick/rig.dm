@@ -23,13 +23,13 @@
 	..()
 
 /mob/living/proc/can_use_rig()
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/can_use_rig()
-	return 1
+	return TRUE
 
 /mob/living/carbon/brain/can_use_rig()
-	return istype(loc, /obj/item/device/mmi)
+	return FALSE
 
 /mob/living/silicon/ai/can_use_rig()
 	return carded

@@ -101,22 +101,6 @@
 			paiController.pai_candidates.Remove(candidate)
 	SSstatistics.add_field_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_slimeize(var/mob/M in SSmobs.mob_list)
-	set category = "Fun"
-	set name = "Make slime"
-
-	if(GAME_STATE < RUNLEVEL_GAME)
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has slimeized [M.key].")
-		spawn(10)
-			M:slimeize()
-			SSstatistics.add_field_details("admin_verb","MKMET") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_and_message_admins("made [key_name(M)] into a slime.")
-	else
-		alert("Invalid mob")
-
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
@@ -318,56 +302,6 @@
 		H.delete_inventory(TRUE)
 	outfit.equip(H)
 	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
-
-/client/proc/startSinglo()
-	set category = "Debug"
-	set name = "Start Singularity"
-	set desc = "Sets up the singularity and all machines to get power flowing"
-
-	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
-		return
-
-	for(var/obj/machinery/power/emitter/E in world)
-		if(E.anchored)
-			E.active = 1
-
-	for(var/obj/machinery/field_generator/F in world)
-		if(F.anchored)
-			F.Varedit_start = 1
-	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in world)
-			if(G.anchored)
-				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
-				spawn(0)
-					qdel(G)
-				S.energy = 1750
-				S.current_size = 7
-				S.icon = 'icons/effects/224x224.dmi'
-				S.icon_state = "singularity_s7"
-				S.pixel_x = -96
-				S.pixel_y = -96
-				S.grav_pull = 0
-				//S.consume_range = 3
-				S.dissipate = 0
-				//S.dissipate_delay = 10
-				//S.dissipate_track = 0
-				//S.dissipate_strength = 10
-
-	for(var/obj/machinery/power/rad_collector/Rad in world)
-		if(Rad.anchored)
-			if(!Rad.P)
-				var/obj/item/weapon/tank/phoron/Phoron = new/obj/item/weapon/tank/phoron(Rad)
-				Phoron.air_contents.gas["phoron"] = 70
-				Rad.drainratio = 0
-				Rad.P = Phoron
-				Phoron.forceMove(Rad)
-
-			if(!Rad.active)
-				Rad.toggle_power()
-
-	for(var/obj/machinery/power/smes/SMES in world)
-		if(SMES.anchored)
-			SMES.input_attempt = 1
 
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"

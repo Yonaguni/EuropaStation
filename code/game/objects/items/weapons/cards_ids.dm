@@ -65,22 +65,6 @@
 	detail_overlay.color = detail_color
 	overlays += detail_overlay
 
-/obj/item/weapon/card/data/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/device/integrated_electronics/detailer))
-		var/obj/item/device/integrated_electronics/detailer/D = I
-		detail_color = D.detail_color
-		update_icon()
-	return ..()
-
-/obj/item/weapon/card/data/clown
-	name = "\proper the coordinates to clown planet"
-	icon_state = "data"
-	item_state = "card-id"
-	level = 2
-	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
-	function = "teleporter"
-	data = "Clown Land"
-
 /obj/item/weapon/card/data/full_color
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."
 	icon_state = "data_2"
@@ -154,9 +138,6 @@ var/const/NO_EMAG_ACT = -50
 
 	var/job_access_type     // Job type to acquire access rights from, if any
 
-	var/datum/mil_branch/military_branch = null //Vars for tracking branches and ranks on multi-crewtype maps
-	var/datum/mil_rank/military_rank = null
-
 	var/formal_name_prefix
 	var/formal_name_suffix
 
@@ -217,9 +198,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/proc/get_display_name()
 	. = registered_name
-	if(military_rank && military_rank.name_short)
-		. ="[military_rank.name_short] [.][formal_name_suffix]"
-	else if(formal_name_prefix || formal_name_suffix)
+	if(formal_name_prefix || formal_name_suffix)
 		. = "[formal_name_prefix][.][formal_name_suffix]"
 	if(assignment)
 		. += ", [assignment]"
@@ -257,22 +236,12 @@ var/const/NO_EMAG_ACT = -50
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
-	if(GLOB.using_map.flags & MAP_HAS_BRANCH)
-		id_card.military_branch = char_branch
-	if(GLOB.using_map.flags & MAP_HAS_RANK)
-		id_card.military_rank = char_rank
 
 /obj/item/weapon/card/id/proc/dat()
 	var/list/dat = list("<table><tr><td>")
 	dat += text("Name: []</A><BR>", "[formal_name_prefix][registered_name][formal_name_suffix]")
 	dat += text("Sex: []</A><BR>\n", sex)
 	dat += text("Age: []</A><BR>\n", age)
-
-	if(GLOB.using_map.flags & MAP_HAS_BRANCH)
-		dat += text("Branch: []</A><BR>\n", military_branch ? military_branch.name : "\[UNSET\]")
-	if(GLOB.using_map.flags & MAP_HAS_RANK)
-		dat += text("Rank: []</A><BR>\n", military_rank ? military_rank.name : "\[UNSET\]")
-
 	dat += text("Assignment: []</A><BR>\n", assignment)
 	dat += text("Fingerprint: []</A><BR>\n", fingerprint_hash)
 	dat += text("Blood Type: []<BR>\n", blood_type)
@@ -501,9 +470,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/civilian/internal_affairs_agent
 	job_access_type = /datum/job/lawyer
 	detail_color = COLOR_NAVY_BLUE
-
-/obj/item/weapon/card/id/civilian/chaplain
-	job_access_type = /datum/job/chaplain
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"

@@ -32,19 +32,11 @@
 	materials = list(MATERIAL_ALUMINIUM = 2500, MATERIAL_STEEL = 500, MATERIAL_PLASTIC = 200)
 	build_path = /obj/item/weapon/mop/advanced
 
-/datum/design/blutrash
-	name = "Trashbag of Holding"
-	desc = "An advanced trash bag with bluespace properties; capable of holding a plethora of garbage."
-	id = "blutrash"
-	req_tech = list(TECH_BLUESPACE = 5, TECH_MATERIALS = 6)
-	materials = list(MATERIAL_PLASTIC = 5000, MATERIAL_GOLD = 1500, MATERIAL_URANIUM = 250, MATERIAL_PHORON = 1500)
-	build_path = /obj/item/weapon/storage/bag/trash/bluespace
-
 /datum/design/item/holosign
 	name = "Holographic Sign Projector"
 	desc = "A holograpic projector used to project various warning signs."
 	id = "holosign"
-	req_tech = list(TECH_ENGINEERING = 5, TECH_BLUESPACE = 4, TECH_POWER = 4)
+	req_tech = list(TECH_ENGINEERING = 5, TECH_EXOTIC = 4, TECH_POWER = 4)
 	materials = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 1000)
 	build_path = /obj/item/holosign_creator
 

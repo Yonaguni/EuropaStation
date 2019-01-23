@@ -73,30 +73,6 @@
 	containername = "emitter crate"
 	access = access_engine_equip
 
-/decl/hierarchy/supply_pack/engineering/field_gen
-	name = "Equipment - Field generator"
-	contains = list(/obj/machinery/field_generator = 2)
-	containertype = /obj/structure/closet/crate/large
-	cost = 10
-	containername = "field generator crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/sing_gen
-	name = "Equipment - Singularity generator"
-	contains = list(/obj/machinery/the_singularitygen)
-	cost = 10
-	containertype = /obj/structure/closet/crate/secure/large
-	containername = "singularity generator crate"
-	access = access_ce
-
-/decl/hierarchy/supply_pack/engineering/collector
-	name = "Power - Collector"
-	contains = list(/obj/machinery/power/rad_collector = 2)
-	cost = 8
-	containertype = /obj/structure/closet/crate/secure/large
-	containername = "collector crate"
-	access = access_engine_equip
-
 /decl/hierarchy/supply_pack/engineering/PA
 	name = "Equipment - Particle accelerator"
 	contains = list(/obj/structure/particle_accelerator/fuel_chamber,
@@ -173,14 +149,6 @@
 	containername = "shield generator construction kit crate"
 	access = access_engine
 
-/decl/hierarchy/supply_pack/engineering/smbig
-	name = "Power - Supermatter core"
-	contains = list(/obj/machinery/power/supermatter)
-	cost = 150
-	containertype = /obj/structure/closet/crate/secure/large/phoron
-	containername = "\improper Supermatter crate (CAUTION)"
-	access = access_ce
-
 /decl/hierarchy/supply_pack/engineering/fueltank
 	name = "Liquid - Fuel tank"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
@@ -207,16 +175,16 @@
 	containertype = /obj/structure/closet/radiation
 	containername = "radiation suit locker"
 
-/decl/hierarchy/supply_pack/engineering/bluespacerelay
-	name = "Parts - Emergency Bluespace Relay parts"
-	contains = list(/obj/item/weapon/circuitboard/bluespacerelay,
+/decl/hierarchy/supply_pack/engineering/commrelay
+	name = "Parts - Emergency Comm Relay parts"
+	contains = list(/obj/item/weapon/circuitboard/commrelay,
 					/obj/item/weapon/stock_parts/manipulator,
 					/obj/item/weapon/stock_parts/manipulator,
 					/obj/item/weapon/stock_parts/subspace/filter,
 					/obj/item/weapon/stock_parts/subspace/crystal,
 					/obj/item/weapon/storage/toolbox/electrical)
 	cost = 75
-	containername = "emergency bluespace relay assembly kit"
+	containername = "emergency comm relay assembly kit"
 
 /decl/hierarchy/supply_pack/engineering/firefighter
 	name = "Gear - Firefighting equipment"
@@ -228,13 +196,3 @@
 	cost = 20
 	containertype = /obj/structure/closet/firecloset
 	containername = "fire-safety closet"
-
-/decl/hierarchy/supply_pack/engineering/voidsuit_engineering
-	name = "EVA - Voidsuit, Engineering"
-	contains = list(/obj/item/clothing/suit/space/void/engineering/alt,
-					/obj/item/clothing/head/helmet/space/void/engineering/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "engineering voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_engine

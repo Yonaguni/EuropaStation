@@ -86,13 +86,6 @@
 	containername = "snack foods crate"
 	supply_method = /decl/supply_method/randomized
 
-/decl/hierarchy/supply_pack/supply/coolanttank
-	name = "Liquid - Coolant tank"
-	contains = list(/obj/structure/reagent_dispensers/coolanttank)
-	cost = 16
-	containertype = /obj/structure/largecrate
-	containername = "coolant tank crate"
-
 /decl/hierarchy/supply_pack/supply/fueltank
 	name = "Liquid - Fuel tank"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)

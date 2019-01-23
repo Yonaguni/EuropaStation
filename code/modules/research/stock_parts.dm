@@ -134,7 +134,7 @@
 	name = "subspace ansible"
 	icon_state = "subspace_ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 5 ,TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 5 ,TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 10)
 
 /obj/item/weapon/stock_parts/subspace/filter
@@ -148,35 +148,35 @@
 	name = "subspace amplifier"
 	icon_state = "subspace_amplifier"
 	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 10)
 
 /obj/item/weapon/stock_parts/subspace/treatment
 	name = "subspace treatment disk"
 	icon_state = "treatment_disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 5, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 5, TECH_EXOTIC = 2)
 	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 10)
 
 /obj/item/weapon/stock_parts/subspace/analyzer
 	name = "subspace wavelength analyzer"
 	icon_state = "wavelength_analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNETS = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_DATA = 3, TECH_MAGNETS = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 10)
 
 /obj/item/weapon/stock_parts/subspace/crystal
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	origin_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	matter = list(MATERIAL_GLASS = 50)
 
 /obj/item/weapon/stock_parts/subspace/transmitter
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
-	origin_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
+	origin_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_EXOTIC = 3)
 	matter = list(MATERIAL_STEEL = 50)
 /obj/item/weapon/stock_parts/capacitor
 	name = "capacitor"
@@ -219,4 +219,4 @@
 	desc = "Instant research tool. For testing purposes only."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"
-	origin_tech = list(TECH_MATERIAL = 19, TECH_ENGINEERING = 19, TECH_PHORON = 19, TECH_POWER = 19, TECH_BLUESPACE = 19, TECH_BIO = 19, TECH_COMBAT = 19, TECH_MAGNET = 19, TECH_DATA = 19, TECH_ILLEGAL = 19, TECH_ARCANE = 19)
+	origin_tech = list(TECH_MATERIAL = 19, TECH_ENGINEERING = 19, TECH_PHORON = 19, TECH_POWER = 19, TECH_EXOTIC = 19, TECH_BIO = 19, TECH_COMBAT = 19, TECH_MAGNET = 19, TECH_DATA = 19, TECH_ILLEGAL = 19, TECH_ARCANE = 19)

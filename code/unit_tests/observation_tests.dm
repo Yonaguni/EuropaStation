@@ -205,7 +205,6 @@
 
 /datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop/conduct_test()
 	var/turf/T = get_safe_turf()
-	var/obj/mecha/mech = get_named_instance(/obj/mecha, T, "Mech")
 	var/obj/item/weapon/wrench/held_item = get_named_instance(/obj/item/weapon/wrench, T, "Wrench")
 	var/mob/living/carbon/human/dummy/held_mob = get_named_instance(/mob/living/carbon/human/dummy, T, "Held Mob")
 	var/mob/living/carbon/human/dummy/holding_mob = get_named_instance(/mob/living/carbon/human/dummy, T, "Holding Mob")
@@ -213,10 +212,6 @@
 	held_mob.mob_size = MOB_SMALL
 	held_mob.put_in_active_hand(held_item)
 	held_mob.get_scooped(holding_mob)
-
-	holding_mob.forceMove(mech)
-
-	mech.occupant = holding_mob
 
 	GLOB.moved_event.register(held_item, src, /datum/unit_test/observation/proc/receive_move)
 	holding_mob.drop_from_inventory(held_item)
@@ -227,15 +222,12 @@
 		return 1
 
 	var/list/event = received_moves[1]
-	if(event[1] != held_item || event[2] != held_mob || event[3] != mech)
-		fail("Unexpected move event received. Expected [held_item], was [event[1]]. Expected [held_mob], was [event[2]]. Expected [mech], was [event[3]]")
-	else if(!(held_item in mech.dropped_items))
-		fail("Expected \the [held_item] to be in the mechs' dropped item list")
+	if(event[1] != held_item || event[2] != held_mob)
+		fail("Unexpected move event received. Expected [held_item], was [event[1]]. Expected [held_mob], was [event[2]].")
 	else
 		pass("One one moved event with expected arguments raised.")
 
 	GLOB.moved_event.unregister(held_item, src)
-	qdel(mech)
 	qdel(held_item)
 	qdel(held_mob)
 	qdel(holding_mob)

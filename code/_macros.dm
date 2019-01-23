@@ -13,8 +13,6 @@
 
 #define isAI(A) istype(A, /mob/living/silicon/ai)
 
-#define isalien(A) istype(A, /mob/living/carbon/alien)
-
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
 #define isairlock(A) istype(A, /obj/machinery/door/airlock)
@@ -66,8 +64,6 @@
 #define isrobot(A) istype(A, /mob/living/silicon/robot)
 
 #define issilicon(A) istype(A, /mob/living/silicon)
-
-#define isslime(A) istype(A, /mob/living/carbon/slime)
 
 #define isunderwear(A) istype(A, /obj/item/underwear)
 

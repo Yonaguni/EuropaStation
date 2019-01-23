@@ -474,17 +474,12 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay) //Time to vend
-		if(prob(diona_spawn_chance)) //Hehehe
-			var/turf/T = get_turf(src)
-			var/mob/living/carbon/alien/diona/S = new(T)
-			src.visible_message("<span class='notice'>\The [src] makes an odd grinding noise before coming to a halt as \a [S.name] slurmps out from the receptacle.</span>")
-		else //Just a normal vend, then
-			R.get_product(get_turf(src))
-			src.visible_message("\The [src] whirs as it vends \the [R.item_name].")
-			if(prob(1)) //The vending gods look favorably upon you
-				sleep(3)
-				if(R.get_product(get_turf(src)))
-					src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional [R.item_name].</span>")
+		R.get_product(get_turf(src))
+		src.visible_message("\The [src] whirs as it vends \the [R.item_name].")
+		if(prob(1)) //The vending gods look favorably upon you
+			sleep(3)
+			if(R.get_product(get_turf(src)))
+				src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional [R.item_name].</span>")
 
 		src.status_message = ""
 		src.status_error = 0
@@ -1005,16 +1000,6 @@
 
 			src.product_records.Add(product)
 
-/obj/machinery/vending/magivend
-	name = "MagiVend"
-	desc = "A magic vending machine."
-	icon_state = "MagiVend"
-	product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
-	vend_delay = 15
-	vend_reply = "Have an enchanted evening!"
-	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Down with Central!;Admin conspiracies since forever!;Space-time bending hardware!"
-	products = list(/obj/item/clothing/head/wizard = 1,/obj/item/clothing/suit/wizrobe = 1,/obj/item/clothing/head/wizard/red = 1,/obj/item/clothing/suit/wizrobe/red = 1,/obj/item/clothing/shoes/sandal = 1,/obj/item/weapon/staff = 2)
-
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
@@ -1146,8 +1131,14 @@
 	name = "prop dispenser"
 	desc = "All the props an actor could need. Probably."
 	icon_state = "Theater"
-	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/flashlight/lamp = 2, /obj/item/device/flashlight/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = 1,
-					/obj/item/weapon/nullrod = 1, /obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2)
+	products = list(
+		/obj/structure/flora/pottedplant = 2, 
+		/obj/item/device/flashlight/lamp = 2, 
+		/obj/item/device/flashlight/lamp/green = 2, 
+		/obj/item/weapon/reagent_containers/food/drinks/jar = 1,
+		/obj/item/toy/cultsword = 4, 
+		/obj/item/toy/katana = 2
+	)
 
 //FOR ACTORS GUILD - Containers
 /obj/machinery/vending/containers

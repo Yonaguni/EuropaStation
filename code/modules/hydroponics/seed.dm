@@ -38,7 +38,7 @@
 	set_trait(TRAIT_SPREAD,               0)            // 0 limits plant to tray, 1 = creepers, 2 = vines.
 	set_trait(TRAIT_MATURATION,           0)            // Time taken before the plant is mature.
 	set_trait(TRAIT_PRODUCTION,           0)            // Time before harvesting can be undertaken again.
-	set_trait(TRAIT_TELEPORTING,          0)            // Uses the bluespace tomato effect.
+	set_trait(TRAIT_TELEPORTING,          0)            // Teleports the victim.
 	set_trait(TRAIT_BIOLUM,               0)            // Plant is bioluminescent.
 	set_trait(TRAIT_ALTER_TEMP,           0)            // If set, the plant will periodically alter local temp by this amount.
 	set_trait(TRAIT_PRODUCT_ICON,         0)            // Icon to use for fruit coming from this plant.
@@ -322,7 +322,7 @@
 	do_sting(target,thrown)
 	do_thorns(target,thrown)
 
-	// Bluespace tomato code copied over from grown.dm.
+	// Teleporting code copied over from grown.dm.
 	if(get_trait(TRAIT_TELEPORTING))
 
 		//Plant potency determines radius of teleport.
@@ -435,7 +435,6 @@
 			/datum/reagent/adminordrazine,
 			/datum/reagent/nutriment,
 			/datum/reagent/nanites,
-			/datum/reagent/water/holywater,
 			/datum/reagent/toxin/plantbgone,
 			/datum/reagent/chloralhydrate/beer2
 			)
@@ -742,14 +741,6 @@
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
 				product.set_light(0.5, 0.1, 3, l_color = clr)
-
-			//Handle spawning in living, mobile products (like dionaea).
-			if(istype(product,/mob/living))
-				product.visible_message("<span class='notice'>The pod disgorges [product]!</span>")
-				handle_living_product(product)
-				if(istype(product,/mob/living/simple_animal/mushroom)) // Gross.
-					var/mob/living/simple_animal/mushroom/mush = product
-					mush.seed = src
 
 // When the seed in this machine mutates/is modified, the tray seed value
 // is set to a new datum copied from the original. This datum won't actually

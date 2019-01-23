@@ -23,7 +23,6 @@
 #define ACCESSORY_SLOT_UTILITY  "Utility"
 #define ACCESSORY_SLOT_HOLSTER	"Holster"
 #define ACCESSORY_SLOT_ARMBAND  "Armband"
-#define ACCESSORY_SLOT_RANK     "Rank"
 #define ACCESSORY_SLOT_DEPT		"Department"
 #define ACCESSORY_SLOT_DECOR    "Decor"
 #define ACCESSORY_SLOT_MEDAL    "Medal"

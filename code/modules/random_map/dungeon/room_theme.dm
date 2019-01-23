@@ -68,7 +68,7 @@
 	floor_type = /turf/simulated/floor/plating
 	lock_complexity_max = 2
 	layout_chance = 30
-	room_layouts = list(/datum/random_room/mimic = 1, /datum/random_room/tomb = 1)
+	room_layouts = list(/datum/random_room/tomb = 1)
 
 /datum/room_theme/metal/secure
 	layout_chance = 100

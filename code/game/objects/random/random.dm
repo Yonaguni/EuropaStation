@@ -582,18 +582,6 @@ obj/random/obstruction/spawn_choices()
 				/obj/structure/inflatable/wall,
 				/obj/structure/inflatable/door)
 
-/obj/random/assembly
-	name = "random assembly"
-	desc = "This is a random circuit assembly."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "gift1"
-
-/obj/random/assembly/spawn_choices()
-	return list(/obj/item/device/electronic_assembly,
-				/obj/item/device/electronic_assembly/medium,
-				/obj/item/device/electronic_assembly/large,
-				/obj/item/device/electronic_assembly/drone)
-
 /obj/random/advdevice
 	name = "random advanced device"
 	desc = "This is a random advanced device."
@@ -957,9 +945,6 @@ something, make sure it's not in one of the other lists.*/
 /obj/random/loot/spawn_choices()
 	return list(/obj/random/energy = 10,
 				/obj/random/projectile = 10,
-				/obj/random/voidhelmet = 10,
-				/obj/random/voidsuit = 10,
-				/obj/random/hardsuit = 10,
 				/obj/item/clothing/mask/muzzle = 7,
 				/obj/item/clothing/mask/gas/vox = 8,
 				/obj/item/clothing/mask/gas/syndicate = 10,
@@ -987,8 +972,6 @@ something, make sure it's not in one of the other lists.*/
 				/obj/item/weapon/storage/box/monkeycubes/farwacubes = 4,
 				/obj/item/weapon/storage/firstaid/surgery = 4,
 				/obj/item/weapon/cell/infinite = 1,
-				/obj/item/weapon/archaeological_find = 2,
-				/obj/machinery/artifact = 1,
 				/obj/item/device/multitool/hacktool = 2,
 				/obj/item/weapon/surgicaldrill = 7,
 				/obj/item/weapon/FixOVein = 7,
@@ -1002,63 +985,6 @@ something, make sure it's not in one of the other lists.*/
 				/obj/item/weapon/melee/baton/loaded = 9,
 				/obj/item/device/radio/headset/syndicate = 6)
 
-/obj/random/voidhelmet
-	name = "Random Voidsuit Helmet"
-	desc = "This is a random voidsuit helmet."
-	icon = 'icons/obj/clothing/obj_head.dmi'
-	icon_state = "void"
-
-/obj/random/voidhelmet/spawn_choices()
-	return list(/obj/item/clothing/head/helmet/space/void,
-				/obj/item/clothing/head/helmet/space/void/engineering,
-				/obj/item/clothing/head/helmet/space/void/engineering/alt,
-				/obj/item/clothing/head/helmet/space/void/engineering/salvage,
-				/obj/item/clothing/head/helmet/space/void/mining,
-				/obj/item/clothing/head/helmet/space/void/mining/alt,
-				/obj/item/clothing/head/helmet/space/void/security,
-				/obj/item/clothing/head/helmet/space/void/security/alt,
-				/obj/item/clothing/head/helmet/space/void/atmos,
-				/obj/item/clothing/head/helmet/space/void/atmos/alt,
-				/obj/item/clothing/head/helmet/space/void/merc,
-				/obj/item/clothing/head/helmet/space/void/medical,
-				/obj/item/clothing/head/helmet/space/void/medical/alt)
-
-/obj/random/voidsuit
-	name = "Random Voidsuit"
-	desc = "This is a random voidsuit."
-	icon = 'icons/obj/clothing/obj_suit.dmi'
-	icon_state = "void"
-
-/obj/random/voidsuit/spawn_choices()
-	return list(/obj/item/clothing/suit/space/void,
-				/obj/item/clothing/suit/space/void/engineering,
-				/obj/item/clothing/suit/space/void/engineering/alt,
-				/obj/item/clothing/suit/space/void/engineering/salvage,
-				/obj/item/clothing/suit/space/void/mining,
-				/obj/item/clothing/suit/space/void/mining/alt,
-				/obj/item/clothing/suit/space/void/security,
-				/obj/item/clothing/suit/space/void/security/alt,
-				/obj/item/clothing/suit/space/void/atmos,
-				/obj/item/clothing/suit/space/void/atmos/alt,
-				/obj/item/clothing/suit/space/void/merc,
-				/obj/item/clothing/suit/space/void/medical,
-				/obj/item/clothing/suit/space/void/medical/alt)
-
-/obj/random/hardsuit
-	name = "Random Hardsuit"
-	desc = "This is a random hardsuit control module."
-	icon = 'icons/obj/rig_modules.dmi'
-	icon_state = "generic"
-
-/obj/random/hardsuit/spawn_choices()
-	return list(/obj/item/weapon/rig/industrial,
-				/obj/item/weapon/rig/eva,
-				/obj/item/weapon/rig/light/hacker,
-				/obj/item/weapon/rig/light/stealth,
-				/obj/item/weapon/rig/light,
-				/obj/item/weapon/rig/unathi,
-				/obj/item/weapon/rig/unathi/fancy)
-
 /obj/random/hostile
 	name = "Random Hostile Mob"
 	desc = "This is a random hostile mob."
@@ -1067,10 +993,10 @@ something, make sure it's not in one of the other lists.*/
 	spawn_nothing_percentage = 80
 
 obj/random/hostile/spawn_choices()
-	return list(/mob/living/simple_animal/hostile/viscerator,
-				/mob/living/simple_animal/hostile/carp,
-				/mob/living/simple_animal/hostile/carp/pike,
-				/mob/living/simple_animal/hostile/vagrant/swarm)
+	return list(
+		/mob/living/simple_animal/hostile/carp,
+		/mob/living/simple_animal/hostile/carp/pike
+	)
 
 /*
 	Selects one spawn point out of a group of points with the same ID and asks it to generate its items

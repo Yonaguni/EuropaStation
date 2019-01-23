@@ -38,8 +38,7 @@
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
-		/obj/machinery/constructable_frame,
-		/obj/machinery/radiocarbon_spectrometer
+		/obj/machinery/constructable_frame
 	)
 
 /obj/item/weapon/reagent_containers/glass/New()
@@ -190,17 +189,6 @@
 	volume = 60
 	amount_per_transfer_from_this = 10
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
-
-/obj/item/weapon/reagent_containers/glass/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology."
-	icon_state = "beakerbluespace"
-	center_of_mass = "x=16;y=10"
-	matter = list(MATERIAL_GLASS = 5000)
-	volume = 300
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = "5;10;15;25;30;60;120;150;200;250;300"
-	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"

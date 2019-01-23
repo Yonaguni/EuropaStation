@@ -16,8 +16,6 @@
 			if(!istype(screenobj) || !screenobj.globalscreen)
 				qdel(screenobj)
 		client.screen = list()
-	if(mind && mind.current == src)
-		spellremove(src)
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
@@ -336,8 +334,6 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
 	if(hand)
 		var/obj/item/W = l_hand
 		if (W)
@@ -457,29 +453,6 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 	var/list/creatures = list()
-
-	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
-		if(!O.loc)
-			continue
-		if(istype(O, /obj/item/weapon/disk/nuclear))
-			var/name = "Nuclear Disk"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
-		if(istype(O, /obj/singularity))
-			var/name = "Singularity"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
 
 	for(var/mob/M in sortAtom(SSmobs.mob_list))
 		var/name = M.name
@@ -984,15 +957,6 @@
 		if(!pinned.len)
 			anchored = 0
 	return 1
-
-//Check for brain worms in head.
-/mob/proc/has_brain_worms()
-
-	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
-			return I
-
-	return 0
 
 // A mob should either use update_icon(), overriding this definition, or use update_icons(), not touching update_icon().
 // It should not use both.

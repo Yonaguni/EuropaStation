@@ -181,7 +181,6 @@ What is the naming convention for planes or layers?
 #define EFFECTS_ABOVE_LIGHTING_PLANE   -1 // For glowy eyes, laser beams, etc. that shouldn't be affected by darkness
 	#define EYE_GLOW_LAYER         1
 	#define BEAM_PROJECTILE_LAYER  2
-	#define SUPERMATTER_WALL_LAYER 3
 
 #define BASE_PLANE 				        0 // Not for anything, but this is the default.
 	#define BASE_AREA_LAYER 999

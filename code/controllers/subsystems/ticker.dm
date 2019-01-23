@@ -123,18 +123,9 @@ SUBSYSTEM_DEF(ticker)
 		if(END_GAME_READY_TO_END)
 			end_game_state = END_GAME_ENDING
 			callHook("roundend")
-			if (universe_has_ended)
-				if(mode.station_was_nuked)
-					SSstatistics.set_field_details("end_proper","nuke")
-				else
-					SSstatistics.set_field_details("end_proper","universe destroyed")
-				if(!delay_end)
-					to_world("<span class='notice'><b>Rebooting due to destruction of [station_name()] in [restart_timeout/10] seconds</b></span>")
-
-			else
-				SSstatistics.set_field_details("end_proper","proper completion")
-				if(!delay_end)
-					to_world("<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>")
+			SSstatistics.set_field_details("end_proper","proper completion")
+			if(!delay_end)
+				to_world("<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>")
 			handle_tickets()
 		if(END_GAME_ENDING)
 			restart_timeout -= (world.time - last_fire)
@@ -343,7 +334,7 @@ Helpers
 	if(config.continous_rounds)
 		return evacuation_controller.round_over() || mode.station_was_nuked
 	else
-		return mode.check_finished() || (evacuation_controller.round_over() && evacuation_controller.emergency_evacuation) || universe_has_ended
+		return mode.check_finished() || (evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 
 /datum/controller/subsystem/ticker/proc/mode_finished()
 	if(config.continous_rounds)

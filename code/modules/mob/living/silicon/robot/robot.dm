@@ -91,6 +91,7 @@
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
 	var/intenselight = 0	// Whether cyborg's integrated light was upgraded
+	var/obj/screen/cells
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
@@ -303,9 +304,7 @@
 	if(prefix)
 		modtype = prefix
 
-	if(istype(mmi, /obj/item/organ/internal/posibrain))
-		braintype = "Robot"
-	else if(istype(mmi, /obj/item/device/mmi/digital/robot))
+	if(istype(mmi, /obj/item/device/mmi/digital/robot))
 		braintype = "Drone"
 	else
 		braintype = "Cyborg"
@@ -919,7 +918,7 @@
 					S.dirt = 0
 				for(var/A in tile)
 					if(istype(A, /obj/effect))
-						if(istype(A, /obj/effect/rune) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
+						if(istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 							qdel(A)
 					else if(istype(A, /obj/item))
 						var/obj/item/cleaned_item = A

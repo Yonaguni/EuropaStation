@@ -27,9 +27,6 @@
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/hygiene/sink) || istype(A, /obj/structure/janitorialcart))
 		return
 
-	if(istype(A, /spell))
-		return
-
 	if(proximity)
 		if(standard_dispenser_refill(user, A))
 			return
@@ -210,14 +207,6 @@
 /obj/item/weapon/reagent_containers/spray/plantbgone/New()
 	..()
 	reagents.add_reagent(/datum/reagent/toxin/plantbgone, 100)
-
-/obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
-
-	if(istype(A, /obj/effect/blob)) // blob damage in blob code
-		return
-
-	..()
 
 /obj/item/weapon/reagent_containers/spray/cleaner/deodorant
 	name = "deodorant"

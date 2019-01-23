@@ -9,12 +9,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-	/mob/living/simple_animal/borer,
-	/obj/item/clothing/head/culthood,
-	/obj/item/clothing/suit/cultrobes,
-	/obj/item/weapon/book/tome,
-	/obj/item/weapon/paper/,
-	/obj/item/weapon/melee/cultblade
+	/obj/item/weapon/paper
 	)
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -39,12 +34,6 @@ var/list/ventcrawl_machinery = list(
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
 		remove_ventcrawl()
 		add_ventcrawl(loc)
-
-/mob/living/carbon/slime/can_ventcrawl()
-	if(Victim)
-		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
-		return FALSE
-	. = ..()
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(is_type_in_list(carried_item, can_enter_vent_with))
@@ -92,9 +81,6 @@ var/list/ventcrawl_machinery = list(
 		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
 	if(!is_physically_disabled() && pipe)
 		return pipe
-
-/mob/living/carbon/alien/ventcrawl_carry()
-	return 1
 
 /mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
 	if(!can_ventcrawl())

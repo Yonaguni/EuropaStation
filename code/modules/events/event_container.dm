@@ -132,7 +132,6 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Computer Update",				/datum/event/computer_update,		20),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Brand Intelligence",			/datum/event/brand_intelligence,	10, 	list(ASSIGNMENT_JANITOR = 10),	1),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Camera Damage",					/datum/event/camera_damage,			20, 	list(ASSIGNMENT_ENGINEER = 10)),
-		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Economic News",					/datum/event/economic_event,		300),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Lost Carp",						/datum/event/carp_migration, 		20, 	list(ASSIGNMENT_SECURITY = 10), 1),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Money Hacker",					/datum/event/money_hacker, 			0, 		list(ASSIGNMENT_ANY = 4), 1, 10, 25),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Money Lotto",					/datum/event/money_lotto, 			0, 		list(ASSIGNMENT_ANY = 1), 1, 5, 15),
@@ -179,7 +178,6 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	severity = EVENT_LEVEL_MAJOR
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Nothing",							/datum/event/nothing,				1320),
-		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Blob",							/datum/event/blob, 					0,	list(ASSIGNMENT_ENGINEER = 40), 1),
 		new /datum/event_meta/no_overmap(EVENT_LEVEL_MAJOR, "Carp Migration",		/datum/event/carp_migration,		0,	list(ASSIGNMENT_SECURITY =  5), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Containment Breach",				/datum/event/prison_break/station,	0,	list(ASSIGNMENT_ANY = 5)),
 		new /datum/event_meta/no_overmap(EVENT_LEVEL_MAJOR, "Meteor Wave",			/datum/event/meteor_wave,			0,	list(ASSIGNMENT_ENGINEER = 10),	1),

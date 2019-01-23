@@ -1,0 +1,1 @@
+#define FUSION_HEAT_CAP 1.57e7

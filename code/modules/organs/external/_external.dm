@@ -229,17 +229,10 @@
 				if(organs.len)
 					var/obj/item/removing = pick(organs)
 					var/obj/item/organ/external/current_child = removing.loc
-
 					current_child.implants.Remove(removing)
 					current_child.internal_organs.Remove(removing)
-
 					status |= ORGAN_CUT_AWAY
-					if(istype(removing, /obj/item/organ/internal/mmi_holder))
-						var/obj/item/organ/internal/mmi_holder/O = removing
-						removing = O.transfer_and_delete()
-
 					removing.forceMove(get_turf(user))
-
 					if(!(user.l_hand && user.r_hand))
 						user.put_in_hands(removing)
 					user.visible_message("<span class='danger'><b>[user]</b> extracts [removing] from [src] with [W]!</span>")

@@ -75,16 +75,6 @@
 	containername = "lava lamp crate"
 	supply_method = /decl/supply_method/randomized
 
-
-/decl/hierarchy/supply_pack/nonessent/wizard
-	name = "Costume - Wizard"
-	contains = list(/obj/item/weapon/staff,
-					/obj/item/clothing/suit/wizrobe/fake,
-					/obj/item/clothing/shoes/sandal,
-					/obj/item/clothing/head/wizard/fake)
-	cost = 20
-	containername = "wizard costume crate"
-
 /decl/hierarchy/supply_pack/nonessent/costume
 	num_contained = 2
 	contains = list(/obj/item/clothing/suit/pirate,
@@ -170,16 +160,6 @@
 	containername = "\improper Collectable hats crate! Brought to you by Bass.inc!"
 	supply_method = /decl/supply_method/randomized
 
-/decl/hierarchy/supply_pack/nonessent/witch
-	name = "Costume - Witch"
-	contains = list(/obj/item/clothing/suit/wizrobe/marisa/fake,
-					/obj/item/clothing/shoes/sandal,
-					/obj/item/clothing/head/wizard/marisa/fake,
-					/obj/item/weapon/staff/broom)
-	cost = 20
-	containername = "witch costume crate"
-	containertype = /obj/structure/closet
-
 /decl/hierarchy/supply_pack/nonessent/costume_hats
 	name = "Costume - Regular hats"
 	contains = list(/obj/item/clothing/head/redcoat,
@@ -247,65 +227,3 @@
 					/obj/item/weapon/storage/candle_box = 3)
 	cost = 10
 	containername = "chaplain equipment crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_ripl1
-	name = "Mod - Ripley APLU modkit"
-	contains = list(/obj/item/device/kit/paint/ripley)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_ripl2
-	name = "Mod - Death APLU modkit"
-	contains = list(/obj/item/device/kit/paint/ripley/death)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_ripl3
-	name = "Mod - Hot Rod APLU modkit"
-	contains = list(/obj/item/device/kit/paint/ripley/flames_red)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_ripl4
-	num_contained = 1
-	name = "Mod - Cool Ice APLU modkit"
-	contains = list(/obj/item/device/kit/paint/ripley/flames_blue)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_durand1
-	name = "Mod - Durand exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/durand)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-	supply_method = /decl/supply_method/randomized
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_durand2
-	name = "Mod - Seraph Durand exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/durand/seraph)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_durand3
-	name = "Mod - Phazon Durand exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/durand/phazon)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_gygax1
-	name = "Mod - Gygax exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/gygax)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_gygax2
-	name = "Mod - Dark Gygax exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/gygax/darkgygax)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"
-
-/decl/hierarchy/supply_pack/nonessent/exosuit_mod_gygax3
-	name = "Mod - Recitence Gygax exosuit modkit"
-	contains = list(/obj/item/device/kit/paint/gygax/recitence)
-	cost = 50
-	containername = "\improper EXO modkit heavy crate"

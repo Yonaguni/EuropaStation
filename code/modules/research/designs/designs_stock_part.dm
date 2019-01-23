@@ -125,7 +125,7 @@
 
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"
-	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	materials = list(MATERIAL_STEEL = 80, MATERIAL_SILVER = 20)
 	build_path = /obj/item/weapon/stock_parts/subspace/ansible
 	sort_string = "UAAAA"
@@ -139,35 +139,35 @@
 
 /datum/design/item/stock_part/subspace_amplifier
 	id = "s-amplifier"
-	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	materials = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 30, MATERIAL_URANIUM = 15)
 	build_path = /obj/item/weapon/stock_parts/subspace/amplifier
 	sort_string = "UAAAC"
 
 /datum/design/item/stock_part/subspace_treatment
 	id = "s-treatment"
-	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	materials = list(MATERIAL_STEEL = 10, MATERIAL_SILVER = 20)
 	build_path = /obj/item/weapon/stock_parts/subspace/treatment
 	sort_string = "UAAAD"
 
 /datum/design/item/stock_part/subspace_analyzer
 	id = "s-analyzer"
-	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	materials = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 15)
 	build_path = /obj/item/weapon/stock_parts/subspace/analyzer
 	sort_string = "UAAAE"
 
 /datum/design/item/stock_part/subspace_crystal
 	id = "s-crystal"
-	req_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_EXOTIC = 2)
 	materials = list(MATERIAL_GLASS = 1000, MATERIAL_SILVER = 20, MATERIAL_GOLD = 20)
 	build_path = /obj/item/weapon/stock_parts/subspace/crystal
 	sort_string = "UAAAF"
 
 /datum/design/item/stock_part/subspace_transmitter
 	id = "s-transmitter"
-	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
+	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_EXOTIC = 3)
 	materials = list(MATERIAL_GLASS = 100, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 15)
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
 	sort_string = "UAAAG"

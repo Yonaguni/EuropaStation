@@ -48,7 +48,7 @@ var/list/ai_verbs_default = list(
 	anchored = 1 // -- TLE
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
-	shouldnt_see = list(/obj/effect/rune)
+	shouldnt_see = list()
 	maxHealth = 200
 	var/list/network = list("Exodus")
 	var/obj/machinery/camera/camera = null
@@ -81,7 +81,6 @@ var/list/ai_verbs_default = list(
 	var/datum/malf_research/research = null		// Malfunction research datum.
 	var/obj/machinery/power/apc/hack = null		// APC that is currently being hacked.
 	var/list/hacked_apcs = null					// List of all hacked APCs
-	var/APU_power = 0							// If set to 1 AI runs on APU power
 	var/hacking = 0								// Set to 1 if AI is hacking APC, cyborg, other AI, or running system override.
 	var/system_override = 0						// Set to 1 if system override is initiated, 2 if succeeded.
 	var/hack_can_fail = 1						// If 0, all abilities have zero chance of failing.
@@ -202,10 +201,8 @@ var/list/ai_verbs_default = list(
 			radio_text += ", "
 
 	to_chat(src, radio_text)
-
-	if (GLOB.malf && !(mind in GLOB.malf.current_antagonists))
-		show_laws()
-		to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
+	show_laws()
+	to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
 	job = "AI"
 	setup_icon()
@@ -370,10 +367,10 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 	if(!is_relay_online())
-		to_chat(usr, "<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>")
+		to_chat(usr, "<span class='warning'>No emergency comm relay detected. Unable to transmit message.</span>")
 		return
 	if(emergency_message_cooldown)
-		to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
+		to_chat(usr, "<span class='warning'>Arrays cycling. Please stand by.</span>")
 		return
 	var/input = sanitize(input(usr, "Please choose a message to transmit to [GLOB.using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
@@ -532,7 +529,7 @@ var/list/ai_verbs_default = list(
 		var/personnel_list[] = list()
 
 		for(var/datum/computer_file/report/crew_record/t in GLOB.all_crew_records)//Look in data core locked.
-			personnel_list["[t.get_name()]: [t.get_rank()]"] = t.photo_front//Pull names, rank, and image.
+			personnel_list["[t.get_name()]"] = t.photo_front//Pull names, rank, and image.
 
 		if(personnel_list.len)
 			input = input("Select a crew member:") as null|anything in personnel_list

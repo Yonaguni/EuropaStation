@@ -408,7 +408,6 @@ datum/objective/steal
 
 	var/global/possible_items[] = list(
 		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
-		"a bluespace rift generator" = /obj/item/integrated_circuit/manipulation/bluespace_rift,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
@@ -417,7 +416,6 @@ datum/objective/steal
 		"the [station_name()] blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/void,
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
-		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 		"a chief science officer's jumpsuit" = /obj/item/clothing/under/rank/research_director,
 		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
@@ -425,7 +423,6 @@ datum/objective/steal
 		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
 		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
-		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 	)
 
@@ -433,7 +430,6 @@ datum/objective/steal
 		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
 		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
 		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
-		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/hyper,
 		"10 diamonds" = /obj/item/stack/material/diamond,
 		"50 gold bars" = /obj/item/stack/material/gold,
@@ -553,315 +549,6 @@ datum/objective/capture
 				continue
 			captured_amount += worth
 
-		for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
-			if(M.stat==DEAD)
-				captured_amount+=0.5
-				continue
-			captured_amount+=1
-
-
 		if(captured_amount<target_amount)
 			return 0
 		return 1
-
-
-/datum/objective/absorb
-	proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
-		target_amount = rand (lowbound,highbound)
-		var/n_p = 1 //autowin
-		if (GAME_STATE == RUNLEVEL_SETUP)
-			for(var/mob/new_player/P in GLOB.player_list)
-				if(P.client && P.ready && P.mind!=owner)
-					n_p ++
-		else if (GAME_STATE == RUNLEVEL_GAME)
-			for(var/mob/living/carbon/human/P in GLOB.player_list)
-				if(P.client && !(P.mind.changeling) && P.mind!=owner)
-					n_p ++
-		target_amount = min(target_amount, n_p)
-
-		explanation_text = "Absorb [target_amount] compatible genomes."
-		return target_amount
-
-	check_completion()
-		if(owner && owner.changeling && owner.changeling.absorbed_dna && (owner.changeling.absorbedcount >= target_amount))
-			return 1
-		else
-			return 0
-
-// Heist objectives.
-datum/objective/heist
-	proc/choose_target()
-		return
-
-datum/objective/heist/kidnap
-	choose_target()
-		var/list/roles = list("Chief Engineer","Chief Science Officer","Roboticist","Chemist","Engineer")
-		var/list/possible_targets = list()
-		var/list/priority_targets = list()
-
-		for(var/datum/mind/possible_target in SSticker.minds)
-			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2) && (!possible_target.special_role))
-				possible_targets += possible_target
-				for(var/role in roles)
-					if(possible_target.assigned_role == role)
-						priority_targets += possible_target
-						continue
-
-		if(priority_targets.len > 0)
-			target = pick(priority_targets)
-		else if(possible_targets.len > 0)
-			target = pick(possible_targets)
-
-		if(target && target.current)
-			explanation_text = "We can get a good price for [target.current.real_name], the [target.assigned_role]. Take them alive."
-		else
-			explanation_text = "Free Objective"
-		return target
-
-	check_completion()
-		if(target && target.current)
-			if (target.current.stat == 2)
-				return 0 // They're dead. Fail.
-			//if (!target.current.restrained())
-			//	return 0 // They're loose. Close but no cigar.
-
-			var/area/skipjack_station/start/A = locate()
-			for(var/mob/living/carbon/human/M in A)
-				if(target.current == M)
-					return 1 //They're restrained on the shuttle. Success.
-		else
-			return 0
-
-datum/objective/heist/loot
-
-	choose_target()
-		var/loot = "an object"
-		switch(rand(1,8))
-			if(1)
-				target = /obj/structure/particle_accelerator
-				target_amount = 6
-				loot = "a complete particle accelerator"
-			if(2)
-				target = /obj/machinery/the_singularitygen
-				target_amount = 1
-				loot = "a gravitational generator"
-			if(3)
-				target = /obj/machinery/power/emitter
-				target_amount = 4
-				loot = "four emitters"
-			if(4)
-				target = /obj/machinery/nuclearbomb
-				target_amount = 1
-				loot = "a nuclear bomb"
-			if(5)
-				target = /obj/item/weapon/gun
-				target_amount = 6
-				loot = "six guns"
-			if(6)
-				target = /obj/item/weapon/gun/energy
-				target_amount = 4
-				loot = "four energy guns"
-			if(7)
-				target = /obj/item/weapon/gun/energy/laser
-				target_amount = 2
-				loot = "two laser guns"
-			if(8)
-				target = /obj/item/weapon/gun/energy/ionrifle
-				target_amount = 1
-				loot = "an ion gun"
-
-		explanation_text = "It's a buyer's market out here. Steal [loot] for resale."
-
-	check_completion()
-
-		var/total_amount = 0
-
-		for(var/obj/O in locate(/area/skipjack_station/start))
-			if(istype(O,target)) total_amount++
-			for(var/obj/I in O.contents)
-				if(istype(I,target)) total_amount++
-			if(total_amount >= target_amount) return 1
-
-		for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
-			if(raider.current)
-				for(var/obj/O in raider.current.get_contents())
-					if(istype(O,target)) total_amount++
-					if(total_amount >= target_amount) return 1
-
-		return 0
-
-datum/objective/heist/salvage
-
-	choose_target()
-		switch(rand(1,8))
-			if(1)
-				target = MATERIAL_STEEL
-				target_amount = 300
-			if(2)
-				target = MATERIAL_GLASS
-				target_amount = 200
-			if(3)
-				target = MATERIAL_PLASTEEL
-				target_amount = 100
-			if(4)
-				target = MATERIAL_PHORON
-				target_amount = 100
-			if(5)
-				target = MATERIAL_SILVER
-				target_amount = 50
-			if(6)
-				target = MATERIAL_GOLD
-				target_amount = 20
-			if(7)
-				target = MATERIAL_URANIUM
-				target_amount = 20
-			if(8)
-				target = MATERIAL_DIAMOND
-				target_amount = 20
-
-		explanation_text = "Ransack the [station_name()] and escape with [target_amount] [target]."
-
-	check_completion()
-
-		var/total_amount = 0
-
-		for(var/obj/item/O in locate(/area/skipjack_station/start))
-
-			var/obj/item/stack/material/S
-			if(istype(O,/obj/item/stack/material))
-				if(O.name == target)
-					S = O
-					total_amount += S.get_amount()
-			for(var/obj/I in O.contents)
-				if(istype(I,/obj/item/stack/material))
-					if(I.name == target)
-						S = I
-						total_amount += S.get_amount()
-
-		for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
-			if(raider.current)
-				for(var/obj/item/O in raider.current.get_contents())
-					if(istype(O,/obj/item/stack/material))
-						if(O.name == target)
-							var/obj/item/stack/material/S = O
-							total_amount += S.get_amount()
-
-		if(total_amount >= target_amount) return 1
-		return 0
-
-
-/datum/objective/heist/preserve_crew
-	explanation_text = "Do not leave anyone behind, alive or dead."
-
-	check_completion()
-		if(GLOB.raiders && GLOB.raiders.is_raider_crew_safe()) return 1
-		return 0
-
-//Borer objective(s).
-/datum/objective/borer_survive
-	explanation_text = "Survive in a host until the end of the round."
-
-/datum/objective/borer_survive/check_completion()
-	if(owner)
-		var/mob/living/simple_animal/borer/B = owner
-		if(istype(B) && B.stat < 2 && B.host && B.host.stat < 2) return 1
-	return 0
-
-/datum/objective/borer_reproduce
-	explanation_text = "Reproduce at least once."
-
-/datum/objective/borer_reproduce/check_completion()
-	if(owner && owner.current)
-		var/mob/living/simple_animal/borer/B = owner.current
-		if(istype(B) && B.has_reproduced) return 1
-	return 0
-
-/datum/objective/ninja_highlander
-   explanation_text = "You aspire to be a Grand Master of the Spider Clan. Kill all of your fellow acolytes."
-
-/datum/objective/ninja_highlander/check_completion()
-	if(owner)
-		for(var/datum/mind/ninja in get_antags("ninja"))
-			if(ninja != owner)
-				if(ninja.current.stat < 2) return 0
-		return 1
-	return 0
-
-/datum/objective/cult/survive
-	explanation_text = "Our knowledge must live on."
-	target_amount = 5
-
-/datum/objective/cult/survive/New()
-	..()
-	explanation_text = "Our knowledge must live on. Make sure at least [target_amount] acolytes escape on the shuttle to spread their work on an another station."
-
-/datum/objective/cult/survive/check_completion()
-	var/acolytes_survived = 0
-	if(!GLOB.cult)
-		return 0
-	for(var/datum/mind/cult_mind in GLOB.cult.current_antagonists)
-		if (cult_mind.current && cult_mind.current.stat!=2)
-			var/area/A = get_area(cult_mind.current )
-			if ( is_type_in_list(A, GLOB.using_map.post_round_safe_areas))
-				acolytes_survived++
-	if(acolytes_survived >= target_amount)
-		return 0
-	else
-		return 1
-
-/datum/objective/cult/eldergod
-	explanation_text = "Summon Nar-Sie via the use of the appropriate rune (Hell join self). It will only work if nine cultists stand on and around it. The convert rune is join blood self."
-
-/datum/objective/cult/eldergod/check_completion()
-	return (locate(/obj/singularity/narsie/large) in SSmachines.machinery)
-
-/datum/objective/cult/sacrifice
-	explanation_text = "Conduct a ritual sacrifice for the glory of Nar-Sie."
-
-/datum/objective/cult/sacrifice/find_target()
-	var/list/possible_targets = list()
-	if(!possible_targets.len)
-		for(var/mob/living/carbon/human/player in GLOB.player_list)
-			if(player.mind && !(player.mind in GLOB.cult.current_antagonists))
-				possible_targets += player.mind
-	if(possible_targets.len > 0)
-		target = pick(possible_targets)
-	if(target) explanation_text = "Sacrifice [target.name], the [target.assigned_role]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
-
-/datum/objective/cult/sacrifice/check_completion()
-	return (target && GLOB.cult && !GLOB.cult.sacrificed.Find(target))
-
-/datum/objective/rev/find_target()
-	..()
-	if(target && target.current)
-		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [target.assigned_role]."
-	else
-		explanation_text = "Free Objective"
-	return target
-
-
-/datum/objective/rev/find_target_by_role(role, role_type=0)
-	..(role, role_type)
-	if(target && target.current)
-		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
-	else
-		explanation_text = "Free Objective"
-	return target
-
-/datum/objective/rev/check_completion()
-	var/rval = 1
-	if(target && target.current)
-		var/mob/living/carbon/human/H = target.current
-		if(!istype(H))
-			return 1
-		if(H.stat == DEAD || H.restrained())
-			return 1
-		// Check if they're converted
-		if(target in GLOB.revs.current_antagonists)
-			return 1
-		var/turf/T = get_turf(H)
-		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
-			rval = 2
-		return 0
-	return rval
-

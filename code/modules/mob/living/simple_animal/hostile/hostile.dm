@@ -79,12 +79,6 @@
 			var/mob/living/carbon/human/H = M
 			if (H.is_cloaked())
 				return FALSE
-
-	if(istype(A, /obj/mecha))
-		var/obj/mecha/M = A
-		if(!M.occupant)
-			return FALSE
-
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/Found(var/atom/A)
@@ -140,10 +134,6 @@
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext,environment_smash,damtype,defense)
 		return L
-	if(istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE
@@ -155,12 +145,7 @@
 	walk(src, 0)
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
-	var/list/L = hearers(src, dist)
-
-	for (var/obj/mecha/M in mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
-			L += M
-	return L
+	return hearers(src, dist)
 
 /mob/living/simple_animal/hostile/proc/get_accuracy()
 	var/accuracy_holder = sa_accuracy

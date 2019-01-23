@@ -12,7 +12,7 @@
 	set name = "Add Trader"
 	set desc = "Adds a trader to the list."
 
-	var/list/possible = subtypesof(/datum/trader) - /datum/trader/ship - /datum/trader/ship/unique
+	var/list/possible = subtypesof(/datum/trader)
 	var/type = input(src,"Choose a type to add.") as null|anything in possible
 	if(!type)
 		return

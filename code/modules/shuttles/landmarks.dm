@@ -113,7 +113,7 @@
 			T.ChangeTurf(get_base_turf_by_area(T))
 
 /obj/item/device/spaceflare
-	name = "bluespace flare"
+	name = "locator flare"
 	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
 	icon_state = "bluflare"
 	light_color = "#3728ff"

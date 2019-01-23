@@ -56,10 +56,3 @@
 	l_hand = /obj/item/weapon/storage/briefcase
 	id_type = /obj/item/weapon/card/id/civilian/internal_affairs_agent
 	pda_type = /obj/item/modular_computer/pda/heads/paperpusher
-
-/decl/hierarchy/outfit/job/chaplain
-	name = OUTFIT_JOB_NAME("Chaplain")
-	uniform = /obj/item/clothing/under/rank/chaplain
-	l_hand = /obj/item/weapon/storage/bible
-	id_type = /obj/item/weapon/card/id/civilian/chaplain
-	pda_type = /obj/item/modular_computer/pda/medical

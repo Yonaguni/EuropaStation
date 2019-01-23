@@ -1,10 +1,3 @@
-// fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
-		return istype(H.species, /datum/species/xenos)
-	return 0
-
 /proc/issmall(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
@@ -375,7 +368,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isslime(src))
+	if(ishuman(src) || isbrain(src))
 		switch(input)
 			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = input

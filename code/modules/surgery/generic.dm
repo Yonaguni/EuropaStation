@@ -12,8 +12,6 @@
 	shock_level = 10
 
 /datum/surgery_step/generic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (isslime(target))
-		return 0
 	if (target_zone == BP_EYES)	//there are specific steps for eye surgery
 		return 0
 	if (!hasorgans(target))

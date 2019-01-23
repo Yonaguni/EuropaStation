@@ -306,13 +306,3 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "security biohazard gear crate"
 	access = access_security
-
-/decl/hierarchy/supply_pack/security/voidsuit_security
-	name = "EVA - Security (armored) voidsuit"
-	contains = list(/obj/item/clothing/suit/space/void/security/alt,
-					/obj/item/clothing/head/helmet/space/void/security/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "security voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_brig

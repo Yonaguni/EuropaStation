@@ -40,12 +40,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg
 
-/datum/recipe/dionaroast
-	fruit = list("apple" = 1)
-	reagents = list(/datum/reagent/acid/polyacid = 5) //It dissolves the carapace. Still poisonous, though.
-	items = list(/obj/item/weapon/holder/diona)
-	result = /obj/item/weapon/reagent_containers/food/snacks/dionaroast
-
 /datum/recipe/classichotdog
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -122,13 +116,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/tofu
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofuburger
-
-/datum/recipe/ghostburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/ectoplasm //where do you even find this stuff
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
 
 /datum/recipe/clownburger
 	items = list(
@@ -525,13 +512,6 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
 
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meatburger,
-		/obj/item/clothing/head/wizard,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
 /datum/recipe/bigbiteburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meatburger,
@@ -795,13 +775,6 @@ I said no!
 	reagents = list(/datum/reagent/water = 10, /datum/reagent/slimejelly = 5)
 	items = list()
 	result = /obj/item/weapon/reagent_containers/food/snacks/slimesoup
-
-/datum/recipe/boiledslimeextract
-	reagents = list(/datum/reagent/water = 10)
-	items = list(
-		/obj/item/slime_extract,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
 
 /datum/recipe/chocolateegg
 	items = list(

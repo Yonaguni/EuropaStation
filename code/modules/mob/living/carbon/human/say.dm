@@ -71,22 +71,14 @@
 
 /mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 
-	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
-		return 1
-
 	if(species.can_understand(other))
 		return 1
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon/alien/diona))
-			if(other.languages.len >= 2) //They've sucked down some blood and can speak common now.
-				return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
 		if (istype(other, /mob/living/carbon/brain))
-			return 1
-		if (istype(other, /mob/living/carbon/slime))
 			return 1
 
 	//This is already covered by mob/say_understands()
@@ -114,8 +106,6 @@
 				voice_sub = changer.voice
 	if(voice_sub)
 		return voice_sub
-	if(mind && mind.changeling && mind.changeling.mimicing)
-		return mind.changeling.mimicing
 	return real_name
 
 /mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)

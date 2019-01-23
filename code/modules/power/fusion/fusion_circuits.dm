@@ -29,7 +29,7 @@
 	name = "internal circuitry (fusion core)"
 	build_path = /obj/machinery/power/fusion_core
 	board_type = "machine"
-	origin_tech = list(TECH_BLUESPACE = 2, TECH_MAGNET = 4, TECH_POWER = 4)
+	origin_tech = list(TECH_EXOTIC = 2, TECH_MAGNET = 4, TECH_POWER = 4)
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator/pico = 2,
 							/obj/item/weapon/stock_parts/micro_laser/ultra = 1,

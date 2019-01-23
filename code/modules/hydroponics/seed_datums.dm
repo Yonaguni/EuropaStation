@@ -213,20 +213,13 @@
 	name = "bluetomato"
 	seed_name = "blue tomato"
 	display_name = "blue tomato plant"
-	mutants = list("bluespacetomato")
+	mutants = null
 	chems = list(/datum/reagent/nutriment = list(1,20), /datum/reagent/lube = list(1,5))
 
 /datum/seed/tomato/blue/New()
 	..()
 	set_trait(TRAIT_PRODUCT_COLOUR,"#4d86e8")
 	set_trait(TRAIT_PLANT_COLOUR,"#070aad")
-
-/datum/seed/tomato/blue/teleport
-	name = "bluespacetomato"
-	seed_name = "bluespace tomato"
-	display_name = "bluespace tomato plant"
-	mutants = null
-	chems = list(/datum/reagent/nutriment = list(1,20), /datum/reagent/ethanol/singulo = list(10,5))
 
 /datum/seed/tomato/blue/teleport/New()
 	..()
@@ -1093,67 +1086,6 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#6f7a63")
 	set_trait(TRAIT_PLANT_ICON,"vine2")
 	set_trait(TRAIT_WATER_CONSUMPTION, 0.5)
-
-/datum/seed/diona
-	name = "diona"
-	seed_name = "diona"
-	seed_noun = SEED_NOUN_NODES
-	display_name = "replicant pods"
-	can_self_harvest = 1
-	has_mob_product = /mob/living/carbon/alien/diona
-
-/datum/seed/diona/New()
-	..()
-	set_trait(TRAIT_IMMUTABLE,1)
-	set_trait(TRAIT_ENDURANCE,8)
-	set_trait(TRAIT_MATURATION,5)
-	set_trait(TRAIT_PRODUCTION,10)
-	set_trait(TRAIT_YIELD,1)
-	set_trait(TRAIT_POTENCY,30)
-	set_trait(TRAIT_PRODUCT_ICON,"diona")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#799957")
-	set_trait(TRAIT_PLANT_COLOUR,"#66804b")
-	set_trait(TRAIT_PLANT_ICON,"alien4")
-
-/datum/seed/shand
-	name = "shand"
-	seed_name = "S'randar's hand"
-	display_name = "S'randar's hand leaves"
-	chems = list(/datum/reagent/bicaridine = list(0,10))
-	kitchen_tag = "shand"
-
-/datum/seed/shand/New()
-	..()
-	set_trait(TRAIT_MATURATION,3)
-	set_trait(TRAIT_PRODUCTION,5)
-	set_trait(TRAIT_YIELD,4)
-	set_trait(TRAIT_POTENCY,10)
-	set_trait(TRAIT_PRODUCT_ICON,"alien3")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#378c61")
-	set_trait(TRAIT_PLANT_COLOUR,"#378c61")
-	set_trait(TRAIT_PLANT_ICON,"tree5")
-	set_trait(TRAIT_IDEAL_HEAT, 283)
-	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
-
-/datum/seed/mtear
-	name = "mtear"
-	seed_name = "Messa's tear"
-	display_name = "Messa's tear leaves"
-	chems = list(/datum/reagent/nutriment/honey = list(1,10), /datum/reagent/kelotane = list(3,5))
-	kitchen_tag = "mtear"
-
-/datum/seed/mtear/New()
-	..()
-	set_trait(TRAIT_MATURATION,3)
-	set_trait(TRAIT_PRODUCTION,5)
-	set_trait(TRAIT_YIELD,4)
-	set_trait(TRAIT_POTENCY,10)
-	set_trait(TRAIT_PRODUCT_ICON,"alien4")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#4cc5c7")
-	set_trait(TRAIT_PLANT_COLOUR,"#4cc789")
-	set_trait(TRAIT_PLANT_ICON,"bush7")
-	set_trait(TRAIT_IDEAL_HEAT, 283)
-	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/tobacco
 	name = "tobacco"

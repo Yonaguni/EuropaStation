@@ -119,9 +119,6 @@
 	name = "Scientist"
 	corpse_outfits = list(/decl/hierarchy/outfit/job/science/scientist)
 
-/obj/effect/landmark/corpse/engineer/rig
-	corpse_outfits = list(/decl/hierarchy/outfit/job/engineering/engineer/void)
-
 /obj/effect/landmark/corpse/clown
 	name = "Clown"
 	corpse_outfits = list(/decl/hierarchy/outfit/clown)
@@ -129,10 +126,6 @@
 /obj/effect/landmark/corpse/miner
 	name = "Miner"
 	corpse_outfits = list(/decl/hierarchy/outfit/job/cargo/mining)
-
-/obj/effect/landmark/corpse/miner/rig
-	corpse_outfits = list(/decl/hierarchy/outfit/job/cargo/mining/void)
-
 
 /obj/effect/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
@@ -158,12 +151,3 @@
 
 /obj/effect/landmark/corpse/russian/ranged
 	corpse_outfits = list(/decl/hierarchy/outfit/soviet_soldier)
-
-/obj/effect/landmark/corpse/syndicate
-	name = "Syndicate Operative"
-	corpse_outfits = list(/decl/hierarchy/outfit/mercenary/syndicate)
-	spawn_flags = CORPSE_SPAWNER_NO_RANDOMIZATION
-
-/obj/effect/landmark/corpse/syndicate/commando
-	name = "Syndicate Commando"
-	corpse_outfits = list(/decl/hierarchy/outfit/mercenary/syndicate/commando)

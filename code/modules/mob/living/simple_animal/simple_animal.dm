@@ -61,10 +61,6 @@
 	var/defense = "melee" //what armor protects against its attacks
 	var/flash_vulnerability = 1 // whether or not the mob can be flashed; 0 = no, 1 = yes, 2 = very yes
 
-	//Null rod stuff
-	var/supernatural = 0
-	var/purge = 0
-	
 	var/bleed_ticks = 0
 	var/bleed_colour = COLOR_BLOOD_HUMAN
 	var/can_bleed = TRUE
@@ -100,7 +96,6 @@
 	handle_weakened()
 	handle_paralysed()
 	handle_confused()
-	handle_supernatural()
 	handle_impaired_vision()
 	
 	if(can_bleed && bleed_ticks > 0)
@@ -183,10 +178,6 @@
 /mob/living/simple_animal/proc/escape(mob/living/M, obj/O)
 	O.unbuckle_mob(M)
 	visible_message("<span class='danger'>\The [M] escapes from \the [O]!</span>")
-
-/mob/living/simple_animal/proc/handle_supernatural()
-	if(purge)
-		purge -= 1
 
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
@@ -283,9 +274,6 @@
 		damage = 0
 	if (O.damtype == STUN)
 		damage = (O.force / 8)
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
-		damage *= 2
-		purge = 3
 	adjustBruteLoss(damage)
 	if(O.edge || O.sharp)
 		adjustBleedTicks(damage)
@@ -293,15 +281,7 @@
 	return 0
 
 /mob/living/simple_animal/movement_delay()
-	var/tally = ..() //Incase I need to add stuff other than "speed" later
-
-	tally += speed
-	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
-		if(tally <= 0)
-			tally = 1
-		tally *= purge
-
-	return tally+config.animal_delay
+	return ..() + speed + config.animal_delay
 
 /mob/living/simple_animal/Stat()
 	. = ..()
@@ -356,10 +336,6 @@
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
-			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
 			return (0)
 	return 1
 

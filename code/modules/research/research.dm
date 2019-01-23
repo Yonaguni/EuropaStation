@@ -160,10 +160,10 @@ research holder datum.
 	desc = "The various technologies behind the storage and generation of electicity."
 	id = TECH_POWER
 
-/datum/tech/bluespace
-	name = "'Blue-space' Technology"
-	desc = "Devices that utilize the sub-reality known as 'blue-space'"
-	id = TECH_BLUESPACE
+/datum/tech/exotic
+	name = "Exotic Particle Physics"
+	desc = "Devices that utilize the edge cases of physical law."
+	id = TECH_EXOTIC
 
 /datum/tech/biotech
 	name = "Biological Technology"

@@ -240,15 +240,6 @@
 		..()
 		reagents.add_reagent(/datum/reagent/ethanol/rum, 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater
-	name = "Flask of Holy Water"
-	desc = "A flask of the chaplain's holy water."
-	icon_state = "holyflask"
-	center_of_mass = "x=17;y=10"
-	New()
-		..()
-		reagents.add_reagent(/datum/reagent/water/holywater, 100)
-
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
 	desc = "Sweet, sweet dryness~"

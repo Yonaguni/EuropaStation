@@ -445,7 +445,7 @@
 		var/datum/job/job = SSjobs.get_by_title(mind.assigned_role)
 		if(!job)
 			job = SSjobs.get_by_title(GLOB.using_map.default_assistant_title)
-		var/datum/spawnpoint/spawnpoint = job.get_spawnpoint(client, client.prefs.ranks[job.title])
+		var/datum/spawnpoint/spawnpoint = job.get_spawnpoint(client, job.title)
 		spawn_turf = pick(spawnpoint.turfs)
 
 	if(chosen_species)
@@ -453,9 +453,6 @@
 			spawning = 0 //abort
 			return null
 		new_character = new(spawn_turf, chosen_species.name)
-		if(chosen_species.has_organ[BP_POSIBRAIN] && client && client.prefs.is_shackled)
-			var/obj/item/organ/internal/posibrain/B = new_character.internal_organs_by_name[BP_POSIBRAIN]
-			if(B)	B.shackle(client.prefs.get_lawset())
 
 	if(!new_character)
 		new_character = new(spawn_turf)

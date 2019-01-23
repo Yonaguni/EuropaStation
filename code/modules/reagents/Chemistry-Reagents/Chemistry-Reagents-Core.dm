@@ -80,10 +80,6 @@
 	W = W.resolve()
 	if(ishuman(W))
 		blood_splatter(T, src, 1)
-	else if(isalien(W))
-		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
-		if(B)
-			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -148,16 +144,6 @@
 	heating_point = T100C
 	heating_message = "starts to boil."
 
-/datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!istype(M, /mob/living/carbon/slime) && alien != IS_SLIME)
-		return
-	M.adjustToxLoss(2 * removed)
-
-/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!istype(M, /mob/living/carbon/slime) && alien != IS_SLIME)
-		return
-	M.adjustToxLoss(2 * removed)
-
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
@@ -199,20 +185,6 @@
 		else
 			L.adjust_fire_stacks(-(amount / 10))
 			remove_self(amount)
-
-/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!istype(M, /mob/living/carbon/slime) && alien != IS_SLIME)
-		return
-	M.adjustToxLoss(10 * removed)	// Babies have 150 health, adults have 200; So, 15 units and 20
-	var/mob/living/carbon/slime/S = M
-	if(!S.client && istype(S))
-		if(S.Target) // Like cats
-			S.Target = null
-		if(S.Victim)
-			S.Feedstop()
-	if(M.chem_doses[type] == removed)
-		M.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
-		M.confused = max(M.confused, 2)
 
 /datum/reagent/water/boiling
 	name = "Boiling water"

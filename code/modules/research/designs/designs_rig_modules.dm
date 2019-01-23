@@ -75,15 +75,6 @@
 	build_path = /obj/item/rig_module/device/orescanner
 	sort_string = "WCDAA"
 
-/datum/design/item/rig/anomaly_scanner
-	name = "Anomaly Scanner"
-	desc = "An exotic particle detector commonly used by xenoarchaeologists, mountable on a RIG."
-	id = "rig_anomaly_scanner"
-	req_tech = list(TECH_BLUESPACE = 4, TECH_MAGNET = 4, TECH_ENGINEERING = 6)
-	materials = list(MATERIAL_PLASTIC = 1000, MATERIAL_STEEL = 800, MATERIAL_GLASS = 500)
-	build_path = /obj/item/rig_module/device/anomaly_scanner
-	sort_string = "WCDAB"
-
 /datum/design/item/rig/rcd
 	name = "RCD"
 	desc = "A Rapid Construction Device, mountable on a RIG."
@@ -183,30 +174,3 @@
 	materials = list(MATERIAL_STEEL = 3000, MATERIAL_GLASS = 3500, MATERIAL_PLASTIC = 2000)
 	build_path = /obj/item/rig_module/cooling_unit
 	sort_string = "WCLAB"
-
-/datum/design/item/integrated_printer
-	name = "Integrated Circuit Printer"
-	desc = "This machine provides all the necessary things for circuitry."
-	id = "icprinter"
-	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_GLASS = 5000)
-	build_path = /obj/item/device/integrated_circuit_printer
-	sort_string = "WCLAC"
-
-/datum/design/item/integrated_printer_upgrade_advanced
-	name = "Integrated Circuit Printer Upgrade Disk"
-	desc = "This disk allows for integrated circuit printers to print advanced circuitry designs."
-	id = "icupgradv"
-	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_GLASS = 10000)
-	build_path = /obj/item/disk/integrated_circuit/upgrade/advanced
-	sort_string = "WCLAD"
-
-/datum/design/item/integrated_printer_upgrade_clone
-	name = "Integrated Circuit Printer Clone Disk"
-	desc = "This disk allows for integrated circuit printers to copy and clone designs instantaneously."
-	id = "icupclo"
-	req_tech = list(TECH_DATA = 3, TECH_MATERIAL = 5)
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_GLASS = 10000)
-	build_path = /obj/item/disk/integrated_circuit/upgrade/clone
-	sort_string = "WCLAE"

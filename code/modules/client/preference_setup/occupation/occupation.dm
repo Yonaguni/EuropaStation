@@ -10,8 +10,6 @@
 	var/list/job_medium        //List of all things selected for medium weight
 	var/list/job_low           //List of all the things selected for low weight
 	var/list/player_alt_titles // the default name of a job like "Medical Doctor"
-	var/list/branches
-	var/list/ranks
 	var/list/hiding_maps = list()
 
 	//Keeps track of preferrence for not getting any wanted jobs
@@ -66,7 +64,7 @@
 
 	// We could have something like Captain set to high while on a non-rank map,
 	// so we prune here to make sure we don't spawn as a PFC captain
-	prune_occupation_prefs()
+	prune_job_prefs()
 
 	pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		//this proc also automatically computes and updates points_by_job
 
@@ -83,6 +81,7 @@
 		return
 
 	var/datum/species/S = preference_species()
+
 	. = list()
 	. += "<style>.Points,a.Points{background: #cc5555;}</style>"
 	. += "<style>a.Points:hover{background: #55cc55;}</style>"
@@ -116,29 +115,9 @@
 
 			for(var/datum/job/job in map_job_list)
 
-				var/datum/mil_rank/player_rank
-				var/datum/mil_branch/player_branch
-
 				// Assemble component strings.
-				var/rank_branch_string = ""
-				if(LAZYLEN(job.allowed_branches) && GLOB.using_map.flags & MAP_HAS_BRANCH)
-					player_branch = mil_branches.get_branch(pref.branches[job.title])
-					if(player_branch)
-						if(LAZYLEN(job.allowed_branches) > 1)
-							rank_branch_string += "<td width='10%' align='left'><a href='?src=\ref[src];char_branch=1;checking_job=\ref[job]'>[player_branch.name_short || player_branch.name]</a></td>"
-						else
-							rank_branch_string += "<td width='10%' align='left'>[player_branch.name_short || player_branch.name]</td>"
 
-				if(player_branch && LAZYLEN(job.allowed_ranks) && GLOB.using_map.flags & MAP_HAS_RANK)
-					player_rank = mil_branches.get_rank(player_branch.name, pref.ranks[job.title])
-					if(player_rank)
-						if(LAZYLEN(get_ranks_for_job(job, player_branch)) > 1)
-							rank_branch_string += "<td width='10%' align='left'><a href='?src=\ref[src];char_rank=1;checking_job=\ref[job]'>[player_rank.name_short || player_rank.name]</a></td>"
-						else
-							rank_branch_string += "<td width='10%' align='left'>[player_rank.name_short || player_rank.name]</td>"
 
-				if(rank_branch_string == "")
-					rank_branch_string = "<td>-</td>"
 
 				var/title = job.title
 				var/title_link = job.alt_titles ? "<a href='?src=\ref[src];select_alt_title=\ref[job]'>[pref.GetPlayerAltTitle(job)]</a>" : job.title
@@ -190,8 +169,6 @@
 					index = 0
 
 				. += "<tr bgcolor='[job.selection_color]'>"
-				if(rank_branch_string && rank_branch_string != "")
-					. += "[rank_branch_string]"
 				. += "<td width='30%' align='left'>"
 
 				if(bad_message)
@@ -325,33 +302,6 @@
 		if(SetJob(user, set_job, set_to)) 
 			return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
-	else if(href_list["char_branch"])
-		var/datum/job/job = locate(href_list["checking_job"])
-		if(istype(job))
-			var/list/options = list()
-			for(var/branch_type in job.allowed_branches)
-				var/datum/mil_branch/branch = mil_branches.get_branch(branch_type)
-				if(branch)
-					options |= branch.name
-			var/choice = input(user, "Choose your branch of ser@vice.", CHARACTER_PREFERENCE_INPUT_TITLE) as null|anything in options
-			if(choice && CanUseTopic(user) && mil_branches.is_spawn_branch(choice, preference_species()))
-				pref.branches[job.title] = choice
-				pref.ranks -= job.title
-				pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// Check our skillset is still valid
-				validate_branch_and_rank()
-			return TOPIC_REFRESH
-
-	else if(href_list["char_rank"])
-		var/datum/job/job = locate(href_list["checking_job"])
-		if(istype(job))
-			var/datum/mil_branch/branch = mil_branches.get_branch(pref.branches[job.title])
-			var/list/options = get_ranks_for_job(job, branch)
-			var/choice = input(user, "Choose your rank.", CHARACTER_PREFERENCE_INPUT_TITLE) as null|anything in options
-			if(choice && CanUseTopic(user) && mil_branches.is_spawn_rank(branch.name, choice, preference_species()))
-				pref.ranks[job.title] = choice
-				pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// Check our skillset is still valid
-				validate_branch_and_rank()
-			return TOPIC_REFRESH
 	else if(href_list["set_skills"])
 		var/rank = href_list["set_skills"]
 		var/datum/job/job = SSjobs.get_by_title(rank, TRUE)
@@ -404,11 +354,6 @@
 
 		dat += "You answer to <b>[job.supervisors]</b> normally."
 
-		if(job.allowed_branches)
-			dat += "You can be of following ranks:"
-			for(var/T in job.allowed_branches)
-				var/datum/mil_branch/B = mil_branches.get_branch_by_type(T)
-				dat += "<li>[B.name]: [job.get_ranks(B.name)]"
 		dat += "<hr style='clear:left;'>"
 		if(config.wikiurl)
 			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
@@ -508,9 +453,7 @@
 	return options
 
 /**
- *  Prune a player's job preferences based on current branch, rank and species
- *
- *  This proc goes through all the preferred jobs, and removes the ones incompatible with current rank or branch.
+ *  Prune a player's job preferences based on current species
  */
 /datum/category_item/player_setup_item/proc/prune_job_prefs()
 	var/allowed_titles = list()
@@ -541,10 +484,6 @@
 	for(var/job_title in pref.job_low)
 		if(!(job_title in allowed_titles))
 			pref.job_low -= job_title
-
-datum/category_item/player_setup_item/proc/prune_occupation_prefs()
-	prune_job_prefs()
-	validate_branch_and_rank()
 
 /datum/category_item/player_setup_item/occupation/proc/ResetJobs()
 	pref.job_high = null

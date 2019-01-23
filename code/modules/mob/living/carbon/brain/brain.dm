@@ -43,12 +43,10 @@
 			return 1
 	if (istype(other, /mob/living/carbon/human))
 		return 1
-	if (istype(other, /mob/living/carbon/slime))
-		return 1
 	return ..()
 
 /mob/living/carbon/brain/UpdateLyingBuckledAndVerbStatus()
-	if(in_contents_of(/obj/mecha) || istype(loc, /obj/item/device/mmi))
+	if(istype(loc, /obj/item/device/mmi))
 		use_me = 1
 
 /mob/living/carbon/brain/isSynthetic()

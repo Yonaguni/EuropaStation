@@ -35,13 +35,6 @@
 	contraband = 1
 	supply_method = /decl/supply_method/randomized
 
-/decl/hierarchy/supply_pack/operations/hoverpod
-	name = "Equipment - Hoverpod Shipment"
-	contains = list()
-	cost = 80
-	containertype = /obj/structure/largecrate/hoverpod
-	containername = "hoverpod crate"
-
 /decl/hierarchy/supply_pack/operations/webbing
 	name = "Gear - Webbing, vests, holsters."
 	num_contained = 4
@@ -55,36 +48,6 @@
 					/obj/item/clothing/accessory/storage/webbing)
 	cost = 15
 	containername = "webbing crate"
-
-/decl/hierarchy/supply_pack/operations/voidsuit_engineering
-	name = "EVA - Engineering voidsuit"
-	contains = list(/obj/item/clothing/suit/space/void/engineering/alt,
-					/obj/item/clothing/head/helmet/space/void/engineering/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "engineering voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_engine
-
-/decl/hierarchy/supply_pack/operations/voidsuit_medical
-	name = "EVA - Medical voidsuit"
-	contains = list(/obj/item/clothing/suit/space/void/medical/alt,
-					/obj/item/clothing/head/helmet/space/void/medical/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "medical voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_medical_equip
-
-/decl/hierarchy/supply_pack/operations/voidsuit_security
-	name = "EVA - Security (armored) voidsuit"
-	contains = list(/obj/item/clothing/suit/space/void/security/alt,
-					/obj/item/clothing/head/helmet/space/void/security/alt,
-					/obj/item/clothing/shoes/magboots)
-	cost = 120
-	containername = "security voidsuit crate"
-	containertype = /obj/structure/closet/crate/secure/large
-	access = access_brig
 
 /decl/hierarchy/supply_pack/operations/bureaucracy
 	contains = list(/obj/item/weapon/clipboard,

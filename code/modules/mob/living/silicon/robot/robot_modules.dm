@@ -326,7 +326,7 @@ var/global/list/robot_modules = list(
 	name = "engineering robot module"
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
-	subsystems = list(/datum/nano_module/power_monitor, /datum/nano_module/supermatter_monitor)
+	subsystems = list(/datum/nano_module/power_monitor)
 	supported_upgrades = list(/obj/item/borg/upgrade/rcd)
 	sprites = list(
 					"Basic" = "Engineering",
@@ -651,7 +651,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/gripper/chemistry(src)
-	src.emag = new /obj/prefab/hand_teleporter(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
 	synths += nanite

@@ -7,7 +7,6 @@
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
 	var/obj/item/weapon/circuitboard/circuit = null
-	var/obj/item/device/mmi/brain = null
 	var/authorized
 
 /obj/structure/AIcore/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
@@ -87,15 +86,12 @@
 				return
 		if(3)
 			if(isWirecutter(P))
-				if (brain)
-					to_chat(user, "Get that brain out of there first")
-				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
-					to_chat(user, "<span class='notice'>You remove the cables.</span>")
-					state = 2
-					icon_state = "2"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
-					A.amount = 5
+				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				to_chat(user, "<span class='notice'>You remove the cables.</span>")
+				state = 2
+				icon_state = "2"
+				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
+				A.amount = 5
 
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == MATERIAL_REINFORCED_GLASS)
 				var/obj/item/stack/RG = P
@@ -131,50 +127,12 @@
 				var/obj/item/weapon/aiModule/freeform/M = P
 				laws.add_inherent_law(M.newFreeFormLaw)
 				to_chat(usr, "Added a freeform law.")
-
-			if(istype(P, /obj/item/device/mmi) || istype(P, /obj/item/organ/internal/posibrain))
-				var/mob/living/carbon/brain/B
-				if(istype(P, /obj/item/device/mmi))
-					var/obj/item/device/mmi/M = P
-					B = M.brainmob
-				else
-					var/obj/item/organ/internal/posibrain/PB = P
-					B = PB.brainmob
-				if(!B)
-					to_chat(user, "<span class='warning'>Sticking an empty [P] into the frame would sort of defeat the purpose.</span>")
-					return
-				if(B.stat == 2)
-					to_chat(user, "<span class='warning'>Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
-					return
-
-				if(jobban_isbanned(B, "AI"))
-					to_chat(user, "<span class='warning'>This [P] does not seem to fit.</span>")
-					return
-				if(!user.unEquip(P, src))
-					return
-				if(B.mind)
-					clear_antag_roles(B.mind, 1)
-
-				brain = P
-				to_chat(usr, "Added [P].")
-				icon_state = "3b"
-
-			if(isCrowbar(P) && brain)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-				to_chat(user, "<span class='notice'>You remove the brain.</span>")
-				brain.dropInto(loc)
-				brain = null
-				icon_state = "3"
-
 		if(4)
 			if(isCrowbar(P))
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
 				state = 3
-				if (brain)
-					icon_state = "3b"
-				else
-					icon_state = "3"
+				icon_state = "3"
 				new /obj/item/stack/material/glass/reinforced( loc, 2 )
 				return
 
@@ -185,16 +143,7 @@
 
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
-				if(!brain)
-					var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
-					var/obj/structure/AIcore/deactivated/D = new(loc)
-					if(open_for_latejoin)
-						empty_playable_ai_cores += D
-				else
-					var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
-					if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
-						A.on_mob_init()
-						A.rename_self("ai", 1)
+				empty_playable_ai_cores += new /obj/structure/AIcore/deactivated
 				SSstatistics.add_field("cyborg_ais_created",1)
 				qdel(src)
 
@@ -227,12 +176,6 @@
 		card.clear()
 
 	qdel(src)
-
-/obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
-	if(!ai) return
-	for (var/datum/mind/malfai in GLOB.malf.current_antagonists)
-		if (ai.mind == malfai)
-			return 1
 
 /obj/structure/AIcore/deactivated/attackby(var/obj/item/weapon/W, var/mob/user)
 

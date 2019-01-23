@@ -27,12 +27,7 @@
 
 	var/features_budget = 2
 	//pre-defined list of features templates to pick from
-	var/list/possible_features = list(
-									/datum/map_template/ruin/exoplanet/monolith,
-									/datum/map_template/ruin/exoplanet/hydrobase,
-									/datum/map_template/ruin/exoplanet/crashed_pod,
-									/datum/map_template/ruin/exoplanet/hut,
-									/datum/map_template/ruin/exoplanet/playablecolony)
+	var/list/possible_features = list()
 
 /obj/effect/overmap/sector/exoplanet/New(nloc, max_x, max_y)
 	if(!GLOB.using_map.use_overmap)
@@ -95,7 +90,6 @@
 					animals += S
 					GLOB.death_event.register(S, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
 					GLOB.destroyed_event.register(S, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
-					adapt_animal(S)
 			if(animals.len >= max_animal_count)
 				repopulating = 0
 
@@ -156,9 +150,6 @@
 	for(var/datum/seed/S in seeds)
 		adapt_seed(S)
 
-	for(var/mob/living/simple_animal/A in animals)
-		adapt_animal(A)
-
 /obj/effect/overmap/sector/exoplanet/proc/generate_daycycle()
 	if(lightlevel)
 		night = FALSE //we start with a day if we have light.
@@ -186,39 +177,6 @@
 			S.chems.Cut()
 			S.chems[/datum/reagent/nutriment] = nutriment
 			S.chems[chem_type] = list(rand(1,10),rand(10,20))
-
-/obj/effect/overmap/sector/exoplanet/proc/adapt_animal(var/mob/living/simple_animal/A)
-	if(species[A.type])
-		A.SetName(species[A.type])
-		A.real_name = species[A.type]
-	else
-		A.SetName("alien creature")
-		A.real_name = "alien creature"
-		A.verbs |= /mob/living/simple_animal/proc/name_species
-	A.minbodytemp = atmosphere.temperature - 20
-	A.maxbodytemp = atmosphere.temperature + 30
-	A.bodytemperature = (A.maxbodytemp+A.minbodytemp)/2
-	if(A.min_gas)
-		A.min_gas = breathgas.Copy()
-	if(A.max_gas)
-		A.max_gas = list()
-		A.max_gas[badgas] = 5
-
-/obj/effect/overmap/sector/exoplanet/proc/get_random_species_name()
-	return pick("nol","shan","can","fel","xor")+pick("a","e","o","t","ar")+pick("ian","oid","ac","ese","inian","rd")
-
-/obj/effect/overmap/sector/exoplanet/proc/rename_species(var/species_type, var/newname, var/force = FALSE)
-	if(species[species_type] && !force)
-		return FALSE
-
-	species[species_type] = newname
-	log_and_message_admins("renamed [species_type] to [newname]")
-	for(var/mob/living/simple_animal/A in animals)
-		if(istype(A,species_type))
-			A.SetName(newname)
-			A.real_name = newname
-			A.verbs -= /mob/living/simple_animal/proc/name_species
-	return TRUE
 
 //Tries to generate num landmarks, but avoids repeats.
 /obj/effect/overmap/sector/exoplanet/proc/generate_landing(num = 1)

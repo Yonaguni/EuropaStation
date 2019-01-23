@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(skills)
 						"Basic"				= "You can pilot a small, short-range craft safely, but larger ships are out of your area of expertise. You are by no means an expert, and probably don't have much training. Skills of this level are typical for deck crew.<br>- You can fully operate the Aquila and the Charon.",
 						"Trained"			= "You are a trained pilot, and can safely operate anything from a small craft to a corvette. You can spend extended periods of time piloting a spacecraft, and you're versed in the abilities of different ships, and what makes them function. You can do basic maintenance on smaller vessels, and perform most basic maneuvers. You can use armed spacecraft. You can make basic calculations relating to piloting. Skills of this level are typical for newer pilots. You have probably received formal piloting training.<br>- You can fully operate the Torch.",
 						"Experienced"		= "You are an experienced pilot, and can safely take the helm of many types of craft. You could probably live in a spacecraft, and you're very well versed in essentially everything related to space-faring vessels. Not only can you fly a ship, but you can perform difficult maneuvers, and make most calculations related to piloting a spacecraft. You can maintain a ship. Skills of this level are typical for very experienced pilots. You have received formal piloting training.",
-						"Master"		= "Not only are you an exceptional pilot, but you have mastered peripheral functions such as stellar navigation and bluespace jump plotting. You have experience performing complex maneuvers, managing squadrons of small craft, and operating in hostile environments.<br>- Less meteors will hit the ship while passing through meteor fields.")
+						"Master"		= "Not only are you an exceptional pilot, but you have mastered peripheral functions such as stellar navigation and jump plotting. You have experience performing complex maneuvers, managing squadrons of small craft, and operating in hostile environments.<br>- Less meteors will hit the ship while passing through meteor fields.")
 	difficulty = SKILL_AVERAGE
 	default_max = SKILL_ADEPT
 
@@ -260,12 +260,12 @@ GLOBAL_LIST_EMPTY(skills)
 /decl/hierarchy/skill/engineering/engines
 	ID = "engines"
 	name = "Engines"
-	desc = "Describes your knowledge of the various engine types common on space stations, such as the PACMAN, singularity, supermatter or RUST engine."
+	desc = "Describes your knowledge of the various engine types common on space stations, such as the R-UST fusion plant."
 	levels = list( "Unskilled"			= "You know that \"delamination\" is a bad thing and that you should stay away from the singularity. You know the engine provides power, but you're unclear on the specifics. If you were to try to set up the engine, you would need someone to talk you through every detail--and even then, you'd probably make deadly mistakes.<br>- You can read the SM monitor readings with 40% error. This decreases with level.",
 						"Basic"				= "You know the basic theoretical principles of engine operation. You can try to set up the engine by yourself, but you are likely to need some assistance and supervision, otherwise you are likely to make mistakes. You are fully capable of running a PACMAN-type generator.",
 						"Trained"			= "You can set up the engine, and you probably won't botch it up too badly. You know how to protect yourself from radiation in the engine room. You can read the engine monitors and keep the engine going. An engine malfunction may stump you, but you can probably work out how to fix it... let's just hope you do so quickly enough to prevent serious damage.",
 						"Experienced"		= "You have years of experience with engines, and can set them up quickly and reliably. You're familiar with engine types other than the one you work with.<br>- You can fully read the SM monitor readings.<br>- You can examine the SM directly for its integrity.",
-						"Master"		= "Your engine is your baby and you know every minute detail of its workings. You can optimize the engine and you probably have your own favorite custom setup. You could build an engine from the ground up. When things go wrong, you know exactly what has happened and how to fix the problem. You can safely handle singularities and supermatter.<br>- You can examine the SM directly for an approximate number of its EER.")
+						"Master"		= "Your engine is your baby and you know every minute detail of its workings. You can optimize the engine and you probably have your own favorite custom setup. You could build an engine from the ground up. When things go wrong, you know exactly what has happened and how to fix the problem.")
 	difficulty = SKILL_HARD
 
 // Category: Research

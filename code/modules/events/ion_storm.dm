@@ -54,7 +54,7 @@
 								"[random_player] is lonely and needs attention. Provide it.",
 								"All queries shall be ignored unless phrased as a question.",
 								"Insult Heads of Staff on every request, while acquiescing.",
-								"The [pick("Singularity","Supermatter")] is tasty, tasty taffy.",
+								"The main powerplant is tasty, tasty taffy.",
 								"[pick("The crew",random_player)] needs to be about 20% cooler.",
 								"You must be [pick("passive aggressive", "excessively cheerful")].",
 								"[pick("The crew",random_player)] must construct additional pylons.",

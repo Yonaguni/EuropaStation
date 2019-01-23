@@ -73,9 +73,6 @@
 	else if(istype(check, /obj/item/weapon/reagent_containers/glass))
 		to_chat(user, "<span class='warning'>That would probably break [src].</span>")
 		return 0
-	else if(istype(check, /obj/item/weapon/disk/nuclear))
-		to_chat(user, "Central Command would kill you if you [cook_type] that.")
-		return 0
 	else if(!istype(check) && !istype(check, /obj/item/weapon/holder))
 		to_chat(user, "<span class='warning'>That's not edible.</span>")
 		return 0

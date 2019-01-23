@@ -99,13 +99,6 @@
 	nutriment_factor = 10
 	color = "#ffff00"
 
-/datum/reagent/nutriment/honey/affect_ingest(var/mob/living/carbon/human/M, var/alien, var/removed)
-	..()
-
-	if(alien == IS_UNATHI)
-		var/datum/species/unathi/S = M.species
-		S.handle_sugar(M,src)
-
 /datum/reagent/nutriment/flour
 	name = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
@@ -357,8 +350,6 @@
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
-	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 	holder.remove_reagent(/datum/reagent/capsaicin, 5)
 
 /datum/reagent/capsaicin
@@ -393,8 +384,6 @@
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
 			to_chat(M, "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent(/datum/reagent/frostoil, 5)
 
 /datum/reagent/capsaicin/condensed
@@ -474,8 +463,6 @@
 		M.apply_effect(4, PAIN, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(15, 30)
 	holder.remove_reagent(/datum/reagent/frostoil, 5)
 
 /datum/reagent/nutriment/vinegar
@@ -525,9 +512,6 @@
 /datum/reagent/drink/juice/affect_ingest(var/mob/living/carbon/human/M, var/alien, var/removed)
 	..()
 	M.immunity = min(M.immunity + 0.25, M.immunity_norm*1.5)
-	if(alien == IS_UNATHI)
-		var/datum/species/unathi/S = M.species
-		S.handle_sugar(M,src,0.5)
 
 /datum/reagent/drink/juice/banana
 	name = "Banana Juice"
@@ -918,12 +902,6 @@
 	glass_name = "milkshake"
 	glass_desc = "Glorious brainfreezing mixture."
 
-/datum/reagent/milkshake/affect_ingest(var/mob/living/carbon/human/M, var/alien, var/removed)
-	..()
-
-	if(alien == IS_UNATHI)
-		var/datum/species/unathi/S = M.species
-		S.handle_sugar(M,src,0.5)
 
 /datum/reagent/drink/rewriter
 	name = "Rewriter"

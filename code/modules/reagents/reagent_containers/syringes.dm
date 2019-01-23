@@ -133,9 +133,6 @@
 			to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 			return
 		if(istype(target, /mob/living/carbon))
-			if(istype(target, /mob/living/carbon/slime))
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
 			var/amount = reagents.get_free_space()
 			var/mob/living/carbon/T = target
 			if(!T.dna)
@@ -177,7 +174,7 @@
 			to_chat(user, "<span class='notice'>[target] is empty.</span>")
 			return
 
-		if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+		if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers))
 			to_chat(user, "<span class='notice'>You cannot directly remove reagents from this object.</span>")
 			return
 
@@ -200,7 +197,7 @@
 	if(istype(target, /obj/item/weapon/implantcase/chem))
 		return
 
-	if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
+	if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
 		to_chat(user, "<span class='notice'>You cannot directly fill this object.</span>")
 		return
 	if(!target.reagents.get_free_space())
@@ -389,16 +386,6 @@
 	..()
 	reagents.add_reagent(/datum/reagent/adrenaline, 5)
 	reagents.add_reagent(/datum/reagent/hyperzine, 10)
-
-
-// TG ports
-
-/obj/item/weapon/reagent_containers/syringe/bluespace
-	name = "bluespace syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals."
-	amount_per_transfer_from_this = 20
-	volume = 60
-	icon_state = "bs"
 
 /obj/item/weapon/reagent_containers/syringe/noreact
 	name = "cryostasis syringe"

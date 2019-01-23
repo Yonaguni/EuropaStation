@@ -40,32 +40,6 @@
 /*
  * Backpack Types
  */
-
-/obj/item/weapon/storage/backpack/holding
-	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of Blue Space."
-	origin_tech = list(TECH_BLUESPACE = 4)
-	icon_state = "holdingpack"
-	max_w_class = ITEM_SIZE_NORMAL
-	max_storage_space = 56
-
-/obj/item/weapon/storage/backpack/holding/New()
-	..()
-	return
-
-/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/storage/backpack/holding) || istype(W, /obj/item/weapon/storage/bag/trash/bluespace))
-		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
-		qdel(W)
-		return 1
-	return ..()
-
-	//Please don't clutter the parent storage item with stupid hacks.
-/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
-	if(istype(W, /obj/item/weapon/storage/backpack/holding))
-		return 1
-	return ..()
-
 /obj/item/weapon/storage/backpack/santabag
 	name = "\improper Santa's gift bag"
 	desc = "Space Santa uses this to deliver toys to all the nice children in space for Christmas! Wow, it's pretty big!"

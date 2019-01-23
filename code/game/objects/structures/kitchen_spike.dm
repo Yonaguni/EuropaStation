@@ -36,9 +36,6 @@
 			return 0
 		meat_type = H.species.meat_type
 		icon_state = "spikebloody"
-	else if(istype(victim, /mob/living/carbon/alien))
-		meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
-		icon_state = "spikebloodygreen"
 	else
 		return 0
 

@@ -271,10 +271,8 @@ var/global/list/additional_antag_types = list()
 		"wormholes to another dimension",
 		"a telescience mishap",
 		"radiation flares",
-		"supermatter dust",
 		"leaks into a negative reality",
 		"antiparticle clouds",
-		"residual bluespace energy",
 		"suspected criminal operatives",
 		"malfunctioning von Neumann probe swarms",
 		"shadowy interlopers",
@@ -466,7 +464,8 @@ var/global/list/additional_antag_types = list()
 				antag_templates |= antag
 
 	shuffle(antag_templates) //In the case of multiple antag types
-	newscaster_announcements = pick(newscaster_standard_feeds)
+	if(LAZYLEN(newscaster_standard_feeds))
+		newscaster_announcements = pick(newscaster_standard_feeds)
 
 /datum/game_mode/proc/check_victory()
 	return

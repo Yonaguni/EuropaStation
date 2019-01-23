@@ -80,7 +80,7 @@
 
 /obj/effect/vine/proc/entangle(var/mob/living/victim)
 	var/mob/living/carbon/human/H = victim
-	if(istype(H) && (isalien(victim) || (H.species.species_flags & SPECIES_FLAG_NO_TANGLE)))
+	if(istype(H) && (H.species.species_flags & SPECIES_FLAG_NO_TANGLE))
 		return
 
 	if(buckled_mob)
