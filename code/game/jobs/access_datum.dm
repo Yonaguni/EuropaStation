@@ -7,6 +7,7 @@
 /datum/access/dd_SortValue()
 	return "[access_type][desc]"
 
+
 /*****************
 * Station access *
 *****************/
@@ -16,11 +17,35 @@
 	desc = "Security Equipment"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_brig = 2 // Brig timers and permabrig
-/datum/access/holding
-	id = access_brig
-	desc = "Holding Cells"
-	region = ACCESS_REGION_SECURITY
+/var/const/access_robotics = 29
+/datum/access/robotics
+	id = access_robotics
+	desc = "Robotics"
+	region = ACCESS_REGION_RESEARCH
+
+/var/const/access_maint_tunnels = 12
+/datum/access/maint_tunnels
+	id = access_maint_tunnels
+	desc = "Maintenance"
+	region = ACCESS_REGION_ENGINEERING
+
+/var/const/access_change_ids = 15
+/datum/access/change_ids
+	id = access_change_ids
+	desc = "ID Computer"
+	region = ACCESS_REGION_COMMAND
+
+/var/const/access_bridge = 19
+/datum/access/bridge
+	id = access_bridge
+	desc = "Bridge"
+	region = ACCESS_REGION_COMMAND
+
+/var/const/access_atmospherics = 24
+/datum/access/atmospherics
+	id = access_atmospherics
+	desc = "Atmospherics"
+	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_armory = 3
 /datum/access/armory
@@ -28,17 +53,59 @@
 	desc = "Armory"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_forensics_lockers = 4
-/datum/access/forensics_lockers
-	id = access_forensics_lockers
-	desc = "Forensics"
-	region = ACCESS_REGION_SECURITY
+/var/const/access_janitor = 26
+/datum/access/janitor
+	id = access_janitor
+	desc = "Custodial Closet"
+	region = ACCESS_REGION_GENERAL
+
+/var/const/access_cargo = 31
+/datum/access/cargo
+	id = access_cargo
+	desc = "Cargo Bay"
+	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_medical = 5
 /datum/access/medical
 	id = access_medical
 	desc = "Medical"
 	region = ACCESS_REGION_MEDBAY
+
+/var/const/access_merchant = 301
+/datum/access/merchant
+	id = access_merchant
+	desc = "Merchant"
+	access_type = ACCESS_TYPE_NONE
+
+/var/const/access_engine = 10
+/datum/access/engine
+	id = access_engine
+	desc = "Engineering"
+	region = ACCESS_REGION_ENGINEERING
+
+/var/const/access_network = 42
+/datum/access/network
+	id = access_network
+	desc = "Primary Network"
+	region = ACCESS_REGION_RESEARCH
+
+/var/const/access_criminal = 150//General Syndicate Access
+/datum/access/syndicate
+	id = access_criminal
+	desc = "Syndicate"
+	access_type = ACCESS_TYPE_SYNDICATE
+
+/var/const/access_brig = 2 // Brig timers and permabrig
+/datum/access/holding
+	id = access_brig
+	desc = "Holding Cells"
+	region = ACCESS_REGION_SECURITY
+
+/var/const/access_forensics_lockers = 4
+/datum/access/forensics_lockers
+	id = access_forensics_lockers
+	desc = "Forensics"
+	region = ACCESS_REGION_SECURITY
 
 /var/const/access_morgue = 6
 /datum/access/morgue
@@ -60,22 +127,12 @@
 
 // /var/const/free_access_id = 9 // goodbye, genetics
 
-/var/const/access_engine = 10
-/datum/access/engine
-	id = access_engine
-	desc = "Engineering"
-	region = ACCESS_REGION_ENGINEERING
+
 
 /var/const/access_engine_equip = 11
 /datum/access/engine_equip
 	id = access_engine_equip
 	desc = "Engine Room"
-	region = ACCESS_REGION_ENGINEERING
-
-/var/const/access_maint_tunnels = 12
-/datum/access/maint_tunnels
-	id = access_maint_tunnels
-	desc = "Maintenance"
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_external_airlocks = 13
@@ -89,12 +146,6 @@
 	id = access_emergency_storage
 	desc = "Emergency Storage"
 	region = ACCESS_REGION_ENGINEERING
-
-/var/const/access_change_ids = 15
-/datum/access/change_ids
-	id = access_change_ids
-	desc = "ID Computer"
-	region = ACCESS_REGION_COMMAND
 
 /var/const/access_ai_upload = 16
 /datum/access/ai_upload
@@ -112,12 +163,6 @@
 /datum/access/eva
 	id = access_eva
 	desc = "EVA"
-	region = ACCESS_REGION_COMMAND
-
-/var/const/access_bridge = 19
-/datum/access/bridge
-	id = access_bridge
-	desc = "Bridge"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_captain = 20
@@ -144,22 +189,10 @@
 	desc = "Technical Storage"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_atmospherics = 24
-/datum/access/atmospherics
-	id = access_atmospherics
-	desc = "Atmospherics"
-	region = ACCESS_REGION_ENGINEERING
-
 /var/const/access_bar = 25
 /datum/access/bar
 	id = access_bar
 	desc = "Bar"
-	region = ACCESS_REGION_GENERAL
-
-/var/const/access_janitor = 26
-/datum/access/janitor
-	id = access_janitor
-	desc = "Custodial Closet"
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_crematorium = 27
@@ -174,23 +207,12 @@
 	desc = "Kitchen"
 	region = ACCESS_REGION_GENERAL
 
-/var/const/access_robotics = 29
-/datum/access/robotics
-	id = access_robotics
-	desc = "Robotics"
-	region = ACCESS_REGION_RESEARCH
-
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
 	desc = "Chief Science Officer"
 	region = ACCESS_REGION_RESEARCH
 
-/var/const/access_cargo = 31
-/datum/access/cargo
-	id = access_cargo
-	desc = "Cargo Bay"
-	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_construction = 32
 /datum/access/construction
@@ -252,11 +274,7 @@
 	desc = "Quartermaster"
 	region = ACCESS_REGION_SUPPLY
 
-/var/const/access_network = 42
-/datum/access/network
-	id = access_network
-	desc = "Primary Network"
-	region = ACCESS_REGION_RESEARCH
+
 
 // /var/const/free_access_id = 43
 // /var/const/free_access_id = 44
@@ -446,11 +464,7 @@
 /***************
 * Antag access *
 ***************/
-/var/const/access_syndicate = 150//General Syndicate Access
-/datum/access/syndicate
-	id = access_syndicate
-	desc = "Syndicate"
-	access_type = ACCESS_TYPE_SYNDICATE
+
 
 /*******
 * Misc *
@@ -465,10 +479,4 @@
 /datum/access/crate_cash
 	id = access_crate_cash
 	desc = "Crate cash"
-	access_type = ACCESS_TYPE_NONE
-
-/var/const/access_merchant = 301
-/datum/access/merchant
-	id = access_merchant
-	desc = "Merchant"
 	access_type = ACCESS_TYPE_NONE

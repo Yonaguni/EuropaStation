@@ -195,7 +195,7 @@ FIELD_SHORT("Faction", faction, access_bridge, access_bridge)
 FIELD_LONG("Qualifications", skillset, access_bridge, access_bridge)
 
 // ANTAG RECORDS
-FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_syndicate)
+FIELD_LONG("Exploitable Information", antagRecord, access_criminal, access_criminal)
 
 /datum/report_field/options/crew_record/sex/proc/record_genders()
 	. = list()

@@ -73,7 +73,7 @@
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
 	item_cost = 24
-	path = /obj/item/clothing/glasses/thermal/syndi
+	path = /obj/item/clothing/glasses/thermal
 
 /datum/uplink_item/item/tools/flashdark
 	name = "Flashdark"

@@ -46,16 +46,6 @@
 	mask_type = /obj/item/clothing/mask/breath
 	req_access = list(access_eva)
 
-/obj/machinery/suit_storage_unit/merc
-	name = "Nonstandard Voidsuit Storage Unit"
-	suit_type = /obj/item/clothing/suit/space/void/merc
-	helmet_type = /obj/item/clothing/head/helmet/space/void/merc
-	boots_type = /obj/item/clothing/shoes/magboots
-	tank_type = /obj/item/weapon/tank/oxygen
-	mask_type = /obj/item/clothing/mask/breath
-	req_access = list(access_syndicate)
-	islocked = 1
-
 /obj/machinery/suit_storage_unit/Initialize()
 	. = ..()
 	if(suit_type)
@@ -660,7 +650,7 @@
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
-	req_access = list(access_syndicate)
+	req_access = list(access_criminal)
 	available_modifications = list(/decl/item_modifier/space_suit/mercenary)
 	species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
 	can_repair = 1

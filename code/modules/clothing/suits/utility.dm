@@ -32,28 +32,6 @@
 	..()
 	slowdown_per_slot[slot_wear_suit] = 1.0
 
-/obj/item/clothing/suit/fire/firefighter
-	icon_state = "firesuit"
-	item_state_slots = list(
-		slot_l_hand_str = "firefighter",
-		slot_r_hand_str = "firefighter",
-	)
-
-
-/obj/item/clothing/suit/fire/heavy
-	name = "firesuit"
-	desc = "A suit that protects against extreme fire and heat."
-	//icon_state = "thermal"
-	item_state_slots = list(
-		slot_l_hand_str = "ro_suit",
-		slot_r_hand_str = "ro_suit",
-	)
-	w_class = ITEM_SIZE_HUGE//bulky item
-
-/obj/item/clothing/suit/fire/heavy/New()
-	..()
-	slowdown_per_slot[slot_wear_suit] = 1.5
-
 /*
  * Bomb protection
  */
@@ -65,7 +43,6 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0
-
 
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
@@ -83,15 +60,6 @@
 /obj/item/clothing/suit/bomb_suit/New()
 	..()
 	slowdown_per_slot[slot_wear_suit] = 2
-
-/obj/item/clothing/head/bomb_hood/security
-	icon_state = "bombsuitsec"
-	body_parts_covered = HEAD
-
-/obj/item/clothing/suit/bomb_suit/security
-	icon_state = "bombsuitsec"
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
 /*
  * Radiation protection

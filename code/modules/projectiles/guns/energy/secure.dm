@@ -78,4 +78,4 @@
 	name = "laser carbine"
 	desc = "A Hephaestus Industries G40E carbine, designed to kill with concentrated energy blasts. Fitted with an NT1019 chip to make sure killcount is tracked appropriately."
 	icon_state = "lasersec"
-	req_one_access = list(access_brig, access_bridge)
+	req_one_access = list(access_security, access_bridge)

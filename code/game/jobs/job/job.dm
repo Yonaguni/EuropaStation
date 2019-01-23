@@ -304,6 +304,8 @@
 /datum/job/proc/post_equip_rank(var/mob/person)
 	return
 
+/datum/job/proc/finalize(var/mob/finalizing)
+	return
 /datum/job/proc/get_alt_title_for(var/client/C)
 	return C.prefs.GetPlayerAltTitle(src)
 

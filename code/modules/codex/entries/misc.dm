@@ -8,10 +8,6 @@
 	associated_paths = list(/obj/structure/sign/double/barsign)
 	mechanics_text = "If your ID has bar access, you may swipe it on this sign to alter its display."
 
-/datum/codex_entry/sneakies
-	associated_paths = list(/obj/item/clothing/shoes/laceup/sneakies)
-	lore_text =  "Originally designed to confuse Terran troops on the swamp moon of Nabier XI, where they were proven somewhat effective. Not bad on a space vessel, either."
-
 /datum/codex_entry/moneygun
 	associated_paths = list(/obj/item/weapon/gun/launcher/money)
 	mechanics_text = "Load money into the cannon by picking it up with the gun, or feeding it directly by hand. Use in your hand to configure how much money you want to fire per shot."

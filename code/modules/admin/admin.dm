@@ -72,7 +72,6 @@ var/global/floorIsLava = 0
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
@@ -196,13 +195,6 @@ var/global/floorIsLava = 0
 			<br>
 			<A href='?src=\ref[src];forcespeech=\ref[M]'>Forcesay</A>
 			"}
-	if (M.client)
-		body += {" |
-			<A href='?src=\ref[src];tdome1=\ref[M]'>Thunderdome 1</A> |
-			<A href='?src=\ref[src];tdome2=\ref[M]'>Thunderdome 2</A> |
-			<A href='?src=\ref[src];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
-			<A href='?src=\ref[src];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
-		"}
 	// language toggles
 	body += "<br><br><b>Languages:</b><br>"
 	var/f = 1
@@ -957,22 +949,7 @@ var/global/floorIsLava = 0
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in SSmobs.mob_list)
-	set category = "Admin"
-	set name = "Unprison"
-	if (isAdminLevel(M.z))
-		if (config.allow_admin_jump)
-			M.forceMove(pick(GLOB.latejoin))
-			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
-			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
-		else
-			alert("Admin jumping disabled")
-	else
-		alert("[M.name] is not prisoned.")
-	SSstatistics.add_field_details("admin_verb","UP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
-
 /proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
 	if(!SSticker.mode)
 		return 0

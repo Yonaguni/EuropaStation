@@ -18,24 +18,9 @@
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_mask_unathi.dmi',
 		)
 
-/obj/item/clothing/mask/breath/medical
-	desc = "A close-fitting sterile mask that can be manually connected to an air supply for treatment."
-	name = "medical mask"
-	icon_state = "medical"
-	item_state = "medical"
-	permeability_coefficient = 0.01
-
-/obj/item/clothing/mask/breath/anesthetic
-	desc = "A close-fitting sterile mask that is used by the anesthetic wallmounted pump."
-	name = "anesthetic mask"
-	icon_state = "medical"
-	item_state = "medical"
-	permeability_coefficient = 0.01
-
 /obj/item/clothing/mask/breath/emergency
 	desc = "A close-fitting  mask that is used by the wallmounted emergency oxygen pump."
 	name = "emergency mask"
 	icon_state = "breath"
 	item_state = "breath"
 	permeability_coefficient = 0.50
-

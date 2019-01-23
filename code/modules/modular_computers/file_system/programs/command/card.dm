@@ -219,7 +219,7 @@
 				else
 					var/list/access = list()
 					if(module.is_centcom)
-						access = get_centcom_access(t1)
+						access = get_all_centcom_access()
 					else
 						var/datum/job/jobdatum
 						for(var/jobtype in typesof(/datum/job))

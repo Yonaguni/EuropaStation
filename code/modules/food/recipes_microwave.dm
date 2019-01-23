@@ -117,20 +117,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofuburger
 
-/datum/recipe/clownburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/mask/gas/clown_hat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/clownburger
-
-/datum/recipe/mimeburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/head/beret
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/mimeburger
-
 /datum/recipe/bunbun
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,

@@ -636,7 +636,6 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/research/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/weapon/gripper/research(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/device/robotanalyzer(src)

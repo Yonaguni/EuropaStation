@@ -58,4 +58,5 @@
 	item_state = "toolbox_syndi"
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	attack_cooldown = 10
-	startswith = list(/obj/item/clothing/gloves/insulated, /obj/item/weapon/screwdriver, /obj/item/weapon/wrench, /obj/item/weapon/weldingtool, /obj/item/weapon/crowbar, /obj/item/weapon/wirecutters, /obj/item/device/multitool)
+	startswith = list(
+		/obj/item/clothing/gloves/insulated, /obj/item/weapon/screwdriver, /obj/item/weapon/wrench, /obj/item/weapon/weldingtool, /obj/item/weapon/crowbar, /obj/item/weapon/wirecutters, /obj/item/device/multitool)

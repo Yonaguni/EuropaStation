@@ -4,6 +4,15 @@
 	icon_state = "wm_10"
 	density = 1
 	anchored = 1.0
+	var/global/list/blacklisted_clothing = list(
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/suit/bomb_suit,
+		/obj/item/clothing/suit/armor,
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/smokable/cigarette,
+		/obj/item/clothing/head/helmet
+	)
+
 	var/state = 1
 	//1 = empty, open door
 	//2 = empty, closed door
@@ -147,46 +156,14 @@
 		else
 			..()
 	else if(istype(W,/obj/item/stack/hairlesshide) || \
-		istype(W,/obj/item/clothing/under)  || \
-		istype(W,/obj/item/clothing/mask)   || \
-		istype(W,/obj/item/clothing/head)   || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes)  || \
-		istype(W,/obj/item/clothing/suit)   || \
-		istype(W,/obj/item/weapon/bedsheet) || \
-		istype(W,/obj/item/underwear/))
+	 istype(W, /obj/item/clothing) || \
+	 istype(W,/obj/item/weapon/bedsheet) || \
+	 istype(W,/obj/item/underwear))
 
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/mask/smokable/cigarette ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
-			to_chat(user, "This item does not fit.")
-			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
-			to_chat(user, "This item does not fit.")
-			return
+		for(var/clothestype in blacklisted_clothing)
+			if (istype(W, clothestype))
+				to_chat(user, "This item does not fit.")
+				return
 
 		if(contents.len < 5)
 			if ( state in list(1, 3) )

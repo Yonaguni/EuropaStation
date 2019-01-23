@@ -104,11 +104,7 @@
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(W, /obj/item/clothing/suit/storage/vest) || istype(W, /obj/item/clothing/suit/armor/pcarrier) || istype(W, /obj/item/clothing/accessory/armorplate))
-				if(istype(W, /obj/item/clothing/suit/armor/pcarrier))
-					if(!locate(/obj/item/clothing/accessory/armorplate) in W.contents)
-						to_chat(user, "There's no armor plates on this [W].")
-						return
+			if(istype(W, /obj/item/clothing/suit/storage/vest))
 				qdel(W)
 				build_step++
 				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")

@@ -198,10 +198,6 @@
 	modifier = "large"
 	req_amount = 5
 
-/datum/stack_recipe/sandals
-	title = "sandals"
-	result_type = /obj/item/clothing/shoes/sandal
-
 /datum/stack_recipe/zipgunframe
 	title = "zip gun frame"
 	result_type = /obj/item/weapon/zipgunframe

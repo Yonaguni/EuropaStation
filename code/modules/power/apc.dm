@@ -75,7 +75,7 @@
 	plane = ABOVE_HUMAN_PLANE
 	anchored = 1
 	use_power = POWER_USE_OFF
-	req_access = list(access_engine_equip)
+	req_access = list(access_engine)
 	clicksound = "switch"
 	layer = ABOVE_WINDOW_LAYER
 	var/needs_powerdown_sound

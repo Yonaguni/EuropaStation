@@ -160,113 +160,6 @@
 	else
 		..()
 
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco
-	name = "pack of Dromedary Co. cigarettes"
-	desc = "A packet of six imported Dromedary Company cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\"."
-	icon_state = "Dpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/dromedaryco = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/killthroat
-	name = "pack of Acme Co. cigarettes"
-	desc = "A packet of six Acme Company cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
-	icon_state = "Bpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/killthroat = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/killthroat/New()
-	..()
-	fill_cigarre_package(src,list(/datum/reagent/fuel = 4))
-
-// New exciting ways to kill your lungs! - Earthcrusher //
-
-/obj/item/weapon/storage/fancy/cigarettes/luckystars
-	name = "pack of Lucky Stars"
-	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
-	icon_state = "LSpacket"
-	item_state = "Dpacket" //I actually don't mind cig packs not showing up in the hand. whotf doesn't just keep them in their pockets/coats //
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/luckystars = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/jerichos
-	name = "pack of Jerichos"
-	desc = "Typically seen dangling from the lips of Martian soldiers and border world hustlers. Tastes like hickory smoke, feels like warm liquid death down your lungs."
-	icon_state = "Jpacket"
-	item_state = "Dpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/jerichos = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/menthols
-	name = "pack of Temperamento Menthols"
-	desc = "With a sharp and natural organic menthol flavor, these Temperamentos are a favorite of NDV crews. Hardly anyone knows they make 'em in non-menthol!"
-	icon_state = "TMpacket"
-	item_state = "Dpacket"
-
-	key_type = /obj/item/clothing/mask/smokable/cigarette/menthol
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/menthol = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/carcinomas
-	name = "pack of Carcinoma Angels"
-	desc = "This unknown brand was slated for the chopping block, until they were publicly endorsed by an old Earthling gonzo journalist. The rest is history. They sell a variety for cats, too. Yes, actual cats."
-	icon_state = "CApacket"
-	item_state = "Dpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/carcinomas = 6)
-
-/obj/item/weapon/storage/fancy/cigarettes/professionals
-	name = "pack of Professional 120s"
-	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They taste disgusting, too."
-	icon_state = "P100packet"
-	item_state = "Dpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/professionals = 6)
-
-//cigarellos
-/obj/item/weapon/storage/fancy/cigarettes/cigarello
-	name = "pack of Trident Original cigars"
-	desc = "The Trident brand's wood tipped little cigar, favored by the Sol corps diplomatique for their pleasant aroma. Machine made on Mars for over 100 years."
-	icon_state = "CRpacket"
-	item_state = "Dpacket"
-	max_storage_space = 5
-	key_type = /obj/item/clothing/mask/smokable/cigarette/trident
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/trident = 5)
-
-/obj/item/weapon/storage/fancy/cigarettes/cigarello/variety
-	name = "pack of Trident Fruit cigars"
-	desc = "The Trident brand's wood tipped little cigar, favored by the Sol corps diplomatique for their pleasant aroma. Machine made on Mars for over 100 years. This is a fruit variety pack."
-	icon_state = "CRFpacket"
-	startswith = list(	/obj/item/clothing/mask/smokable/cigarette/trident/watermelon,
-						/obj/item/clothing/mask/smokable/cigarette/trident/orange,
-						/obj/item/clothing/mask/smokable/cigarette/trident/grape,
-						/obj/item/clothing/mask/smokable/cigarette/trident/cherry,
-						/obj/item/clothing/mask/smokable/cigarette/trident/berry)
-
-/obj/item/weapon/storage/fancy/cigarettes/cigarello/mint
-	name = "pack of Trident Menthol cigars"
-	desc = "The Trident brand's wood tipped little cigar, favored by the Sol corps diplomatique for their pleasant aroma. Machine made on Mars for over 100 years. These are the menthol variety."
-	icon_state = "CRMpacket"
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/trident/mint = 5)
-
-/obj/item/weapon/storage/fancy/cigar
-	name = "cigar case"
-	desc = "A case for holding your cigars when you are not smoking them."
-	icon_state = "cigarcase"
-	item_state = "cigpacket"
-	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_SMALL
-	max_w_class = ITEM_SIZE_TINY
-	throwforce = 2
-	slot_flags = SLOT_BELT
-	storage_slots = 7
-
-	key_type = /obj/item/clothing/mask/smokable/cigarette/cigar
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 6)
-
-/obj/item/weapon/storage/fancy/cigar/New()
-	..()
-	atom_flags |= ATOM_FLAG_NO_REACT
-	create_reagents(10 * storage_slots)
-
-/obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
-	var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
-	if(!istype(C)) return
-	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
-	..()
-
 /*
  * Vial Box
  */
@@ -299,7 +192,7 @@
 	max_w_class = ITEM_SIZE_TINY
 	max_storage_space = null
 	storage_slots = 12
-	req_access = list(access_virology)
+	req_access = list(access_medical)
 
 /obj/item/weapon/storage/lockbox/vials/New()
 	..()

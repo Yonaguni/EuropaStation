@@ -143,6 +143,7 @@ var/const/NO_EMAG_ACT = -50
 
 	var/detail_color
 	var/extra_details
+	var/modify_threatcount
 
 /obj/item/weapon/card/id/Initialize()
 	.=..()
@@ -275,27 +276,11 @@ var/const/NO_EMAG_ACT = -50
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
-/obj/item/weapon/card/id/silver
+/obj/item/weapon/card/id/civilian
 	name = "identification card"
-	desc = "A silver card which shows honour and dedication."
-	item_state = "silver_id"
-	job_access_type = /datum/job/hop
-
-/obj/item/weapon/card/id/gold
-	name = "identification card"
-	desc = "A golden card which shows power and might."
-	job_access_type = /datum/job/captain
-	color = "#d4c780"
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/syndicate_command
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
-	assignment = "Syndicate Overlord"
-	access = list(access_syndicate, access_external_airlocks)
-	color = COLOR_RED_GRAY
-	detail_color = COLOR_GRAY40
+	desc = "A card issued to civilian staff."
+	job_access_type = /datum/job/assistant
+	detail_color = COLOR_CIVIE_GREEN
 
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"
@@ -320,34 +305,9 @@ var/const/NO_EMAG_ACT = -50
 	access = get_all_station_access() + access_synth
 	..()
 
-/obj/item/weapon/card/id/centcom
-	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
-	registered_name = "Central Command"
-	assignment = "General"
-	color = COLOR_GRAY40
-	detail_color = COLOR_COMMAND_BLUE
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/centcom/New()
-	access = get_all_centcom_access()
-	..()
-
-/obj/item/weapon/card/id/centcom/station/New()
-	..()
-	access |= get_all_station_access()
-
-/obj/item/weapon/card/id/centcom/ERT
-	name = "\improper Emergency Response Team ID"
-	assignment = "Emergency Response Team"
-
-/obj/item/weapon/card/id/centcom/ERT/New()
-	..()
-	access |= get_all_station_access()
-
 /obj/item/weapon/card/id/all_access
-	name = "\improper Administrator's spare ID"
-	desc = "The spare ID of the Lord of Lords himself."
+	name = "administrator's ID"
+	desc = "An all-access key to the Universe."
 	registered_name = "Administrator"
 	assignment = "Administrator"
 	detail_color = COLOR_MAROON
@@ -356,129 +316,3 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()
-
-// Department-flavor IDs
-/obj/item/weapon/card/id/medical
-	name = "identification card"
-	desc = "A card issued to medical staff."
-	job_access_type = /datum/job/doctor
-	detail_color = COLOR_PALE_BLUE_GRAY
-
-/obj/item/weapon/card/id/medical/chemist
-	job_access_type = /datum/job/chemist
-
-/obj/item/weapon/card/id/medical/geneticist
-	job_access_type = /datum/job/geneticist
-
-/obj/item/weapon/card/id/medical/psychiatrist
-	job_access_type = /datum/job/psychiatrist
-
-/obj/item/weapon/card/id/medical/paramedic
-	job_access_type = /datum/job/Paramedic
-
-/obj/item/weapon/card/id/medical/head
-	name = "identification card"
-	desc = "A card which represents care and compassion."
-	job_access_type = /datum/job/cmo
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/security
-	name = "identification card"
-	desc = "A card issued to security staff."
-	job_access_type = /datum/job/officer
-	color = COLOR_OFF_WHITE
-	detail_color = COLOR_MAROON
-
-/obj/item/weapon/card/id/security/warden
-	job_access_type = /datum/job/warden
-
-/obj/item/weapon/card/id/security/detective
-	job_access_type = /datum/job/detective
-
-/obj/item/weapon/card/id/security/head
-	name = "identification card"
-	desc = "A card which represents honor and protection."
-	job_access_type = /datum/job/hos
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/engineering
-	name = "identification card"
-	desc = "A card issued to engineering staff."
-	job_access_type = /datum/job/engineer
-	detail_color = COLOR_SUN
-
-/obj/item/weapon/card/id/engineering/head
-	name = "identification card"
-	desc = "A card which represents creativity and ingenuity."
-	job_access_type = /datum/job/chief_engineer
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/science
-	name = "identification card"
-	desc = "A card issued to science staff."
-	job_access_type = /datum/job/scientist
-	detail_color = COLOR_PALE_PURPLE_GRAY
-
-/obj/item/weapon/card/id/science/xenobiologist
-	job_access_type = /datum/job/xenobiologist
-
-/obj/item/weapon/card/id/science/roboticist
-	job_access_type = /datum/job/roboticist
-
-/obj/item/weapon/card/id/science/head
-	name = "identification card"
-	desc = "A card which represents knowledge and reasoning."
-	job_access_type = /datum/job/rd
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/cargo
-	name = "identification card"
-	desc = "A card issued to cargo staff."
-	job_access_type = /datum/job/cargo_tech
-	detail_color = COLOR_BROWN
-
-/obj/item/weapon/card/id/cargo/mining
-	job_access_type = /datum/job/mining
-
-/obj/item/weapon/card/id/cargo/head
-	name = "identification card"
-	desc = "A card which represents service and planning."
-	job_access_type = /datum/job/qm
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/civilian
-	name = "identification card"
-	desc = "A card issued to civilian staff."
-	job_access_type = /datum/job/assistant
-	detail_color = COLOR_CIVIE_GREEN
-
-/obj/item/weapon/card/id/civilian/bartender
-	job_access_type = /datum/job/bartender
-
-/obj/item/weapon/card/id/civilian/chef
-	job_access_type = /datum/job/chef
-
-/obj/item/weapon/card/id/civilian/botanist
-	job_access_type = /datum/job/hydro
-
-/obj/item/weapon/card/id/civilian/janitor
-	job_access_type = /datum/job/janitor
-
-/obj/item/weapon/card/id/civilian/librarian
-	job_access_type = /datum/job/librarian
-
-/obj/item/weapon/card/id/civilian/internal_affairs_agent
-	job_access_type = /datum/job/lawyer
-	detail_color = COLOR_NAVY_BLUE
-
-/obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
-	name = "identification card"
-	desc = "A card which represents common sense and responsibility."
-	extra_details = list("goldstripe")
-
-/obj/item/weapon/card/id/merchant
-	name = "identification card"
-	desc = "A card issued to Merchants, indicating their right to sell and buy goods."
-	access = list(access_merchant)
-	color = COLOR_OFF_WHITE
-	detail_color = COLOR_BEIGE

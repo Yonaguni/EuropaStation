@@ -776,21 +776,6 @@
 /obj/item/device/radio/announcer/subspace
 	subspace_transmission = 1
 
-/obj/item/device/radio/phone
-	broadcasting = 0
-	icon = 'icons/obj/items.dmi'
-	icon_state = "red_phone"
-	randpixel = 0
-	listening = 1
-	name = "phone"
-
-/obj/item/device/radio/phone/medbay
-	frequency = MED_I_FREQ
-
-/obj/item/device/radio/phone/medbay/New()
-	..()
-	internal_channels = GLOB.default_medbay_channels.Copy()
-
 /obj/item/device/radio/CouldUseTopic(var/mob/user)
 	..()
 	if(istype(user, /mob/living/carbon))

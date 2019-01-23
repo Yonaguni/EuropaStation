@@ -1,26 +1,6 @@
 // Returns which access is relevant to passed network. Used by the program.
 /proc/get_camera_access(var/network)
-	if(!network)
-		return 0
-	. = GLOB.using_map.get_network_access(network)
-	if(.)
-		return
-
-	switch(network)
-		if(NETWORK_ENGINEERING, NETWORK_ALARM_ATMOS, NETWORK_ALARM_CAMERA, NETWORK_ALARM_FIRE, NETWORK_ALARM_POWER)
-			return access_engine
-		if(NETWORK_CRESCENT, NETWORK_ERT)
-			return access_cent_specops
-		if(NETWORK_MEDICAL)
-			return access_medical
-		if(NETWORK_MINE)
-			return access_mailsorting // Cargo office - all cargo staff should have access here.
-		if(NETWORK_RESEARCH)
-			return access_research
-		if(NETWORK_THUNDER)
-			return 0
-
-	return access_security // Default for all other networks
+	return network ? GLOB.using_map.get_network_access(network) : 0
 
 /datum/computer_file/program/camera_monitor
 	filename = "cammon"

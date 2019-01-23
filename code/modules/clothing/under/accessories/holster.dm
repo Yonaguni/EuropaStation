@@ -51,34 +51,3 @@
 		if(remove_verb)
 			has_suit.verbs -= /atom/proc/holster_verb
 	..()
-
-/obj/item/clothing/accessory/storage/holster/armpit
-	name = "armpit holster"
-	desc = "A worn-out handgun holster. Perfect for concealed carry."
-	icon_state = "holster"
-
-/obj/item/clothing/accessory/storage/holster/waist
-	name = "waist holster"
-	desc = "A handgun holster. Made of expensive leather."
-	icon_state = "holster"
-	overlay_state = "holster_low"
-
-/obj/item/clothing/accessory/storage/holster/hip
-	name = "hip holster"
-	desc = "A handgun holster slung low on the hip, draw pardner!"
-	icon_state = "holster_hip"
-
-/obj/item/clothing/accessory/storage/holster/thigh
-	name = "thigh holster"
-	desc = "A drop leg holster made of a durable synthetic fiber."
-	icon_state = "holster_thigh"
-	sound_in = 'sound/effects/holster/tactiholsterin.ogg'
-	sound_out = 'sound/effects/holster/tactiholsterout.ogg'
-
-/obj/item/clothing/accessory/storage/holster/machete
-	name = "machete sheath"
-	desc = "A handsome synthetic leather sheath with matching belt."
-	icon_state = "holster_machete"
-	can_holster = list(/obj/item/weapon/material/hatchet/machete)
-	sound_in = 'sound/effects/holster/sheathin.ogg'
-	sound_out = 'sound/effects/holster/sheathout.ogg'

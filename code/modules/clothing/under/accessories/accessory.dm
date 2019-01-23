@@ -96,22 +96,3 @@
 	if(has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()
-
-//Necklaces
-/obj/item/clothing/accessory/necklace
-	name = "necklace"
-	desc = "A simple necklace."
-	icon_state = "necklace"
-	slot_flags = SLOT_MASK | SLOT_TIE
-
-//Misc
-/obj/item/clothing/accessory/kneepads
-	name = "kneepads"
-	desc = "A pair of synthetic kneepads. Doesn't provide protection from more than arthritis."
-	icon_state = "kneepads"
-
-//Scarves
-/obj/item/clothing/accessory/scarf
-	name = "scarf"
-	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
-	icon_state = "whitescarf"

@@ -38,22 +38,6 @@
 			GLOB.latejoin_cyborg += loc
 			delete_me = 1
 			return
-		if("prisonwarp")
-			GLOB.prisonwarp += loc
-			delete_me = 1
-			return
-		if("tdome1")
-			GLOB.tdome1 += loc
-		if("tdome2")
-			GLOB.tdome2 += loc
-		if("tdomeadmin")
-			GLOB.tdomeadmin += loc
-		if("tdomeobserve")
-			GLOB.tdomeobserve += loc
-		if("prisonsecuritywarp")
-			GLOB.prisonsecuritywarp += loc
-			delete_me = 1
-			return
 		if("endgame_exit")
 			endgame_safespawns += loc
 			delete_me = 1

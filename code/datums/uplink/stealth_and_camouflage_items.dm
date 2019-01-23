@@ -4,11 +4,6 @@
 /datum/uplink_item/item/stealth_items
 	category = /datum/uplink_category/stealth_items
 
-/datum/uplink_item/item/stealth_items/syndigaloshes
-	name = "No-Slip Shoes"
-	item_cost = 4
-	path = /obj/item/clothing/shoes/syndigaloshes
-
 /datum/uplink_item/item/stealth_items/spy
 	name = "Bug Kit"
 	desc = "For when you want to conduct voyeurism from afar."
@@ -35,11 +30,6 @@
 	name = "Chameleon-Projector"
 	item_cost = 32
 	path = /obj/item/device/chameleon
-
-/datum/uplink_item/item/stealth_items/sneakies
-	name = "Sneakies"
-	item_cost = 4
-	path = /obj/item/clothing/shoes/laceup/sneakies
 
 /datum/uplink_item/item/stealth_items/smuggler_satchel
 	name = "Smuggler's Satchel"

@@ -53,23 +53,6 @@ obj/item/clothing/mask/chewable/Destroy()
 		extinguish()
 		return
 
-/obj/item/clothing/mask/chewable/tobacco
-	name = "wad"
-	desc = "A chewy wad of tobacco. Cut in long strands and treated with syrups so it doesn't taste like a ash-tray when you stuff it into your face."
-	throw_speed = 0.5
-	icon_state = "chew"
-	type_butt = /obj/item/trash/cigbutt/spitwad
-	w_class = ITEM_SIZE_TINY
-	slot_flags = SLOT_EARS | SLOT_MASK
-	chem_volume = 50
-	chewtime = 300
-	brand = "tobacco"
-
-/obj/item/trash/cigbutt/spitwad
-	name = "spit wad"
-	desc = "A disgusting spitwad."
-	icon_state = "spit-chew"
-
 /obj/item/clothing/mask/chewable/proc/extinguish(var/mob/user, var/no_message)
 	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
@@ -83,26 +66,6 @@ obj/item/clothing/mask/chewable/Destroy()
 			if (!no_message)
 				to_chat(M, "<span class='notice'>You spit out the [name].</span>")
 		qdel(src)
-
-/obj/item/clothing/mask/chewable/tobacco/lenni
-	name = "chewing tobacco"
-	desc = "A chewy wad of tobacco. Cut in long strands and treated with syrups so it tastes less like a ash-tray when you stuff it into your face."
-	filling = list(/datum/reagent/tobacco = 2)
-
-/obj/item/clothing/mask/chewable/tobacco/redlady
-	name = "chewing tobacco"
-	desc = "A chewy wad of fine tobacco. Cut in long strands and treated with syrups so it doesn't taste like a ash-tray when you stuff it into your face"
-	filling = list(/datum/reagent/tobacco/fine = 2)
-
-/obj/item/clothing/mask/chewable/tobacco/nico
-	name = "nicotine gum"
-	desc = "A chewy wad of synthetic rubber, laced with nicotine. Possibly the least disgusting method of nicotine delivery."
-	icon_state = "nic_gum"
-	type_butt = /obj/item/trash/cigbutt/spitgum
-/obj/item/clothing/mask/chewable/tobacco/nico/New()
-	..()
-	reagents.add_reagent(/datum/reagent/nicotine, 2)
-	color = reagents.get_color()
 
 /obj/item/clothing/mask/chewable/candy
 	name = "wad"
