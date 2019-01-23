@@ -8,7 +8,7 @@ COPY . /bs12
 WORKDIR /bs12
 
 RUN apt-get update && apt-get install -y gosu
-RUN scripts/dm.sh $BUILD_ARGS baystation12.dme
+RUN scripts/dm.sh $BUILD_ARGS europa.dme
 
 EXPOSE 8000
 VOLUME /bs12/data
