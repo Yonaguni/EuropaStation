@@ -34,7 +34,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_BIO = 3)
 
 	req_access = list(access_robotics)
 
@@ -141,7 +140,6 @@
 /obj/item/device/mmi/radio_enabled
 	name = "radio-enabled man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
-	origin_tech = list(TECH_BIO = 4)
 
 	var/obj/item/device/radio/radio = null//Let's give it a radio.
 

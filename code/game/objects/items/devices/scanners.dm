@@ -22,7 +22,6 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	matter = list(MATERIAL_ALUMINIUM = 200)
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
 
 /obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
@@ -353,7 +352,6 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 
 	matter = list(MATERIAL_ALUMINIUM = 30,MATERIAL_GLASS = 20)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	var/advanced_mode = 0
 
 /obj/item/device/analyzer/verb/verbosity(mob/user)
@@ -400,7 +398,6 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 
 	matter = list(MATERIAL_ALUMINIUM = 30,MATERIAL_GLASS = 20)
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
 	var/recent_fail = 0
 
@@ -458,7 +455,6 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
 /obj/item/device/reagent_scanner
 	name = "reagent scanner"
@@ -473,7 +469,6 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 	throw_range = 20
 	matter = list(MATERIAL_ALUMINIUM = 30,MATERIAL_GLASS = 20)
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
 	var/recent_fail = 0
 
@@ -503,13 +498,11 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
 /obj/item/device/price_scanner
 	name = "price scanner"
 	desc = "Using an up-to-date database of various costs and prices, this device estimates the market price of an item up to 0.001% accuracy."
 	icon_state = "price_scanner"
-	origin_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4)
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	throwforce = 0
@@ -532,7 +525,6 @@ proc/get_wound_severity(var/damage_ratio, var/can_heal_overkill = 0)
 	item_state = "analyzer"
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	matter = list(MATERIAL_ALUMINIUM = 30 ,MATERIAL_GLASS = 20, MATERIAL_PLASTIC = 15)
 

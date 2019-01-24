@@ -16,7 +16,6 @@
 
 	matter = list(MATERIAL_PLASTIC = 50, MATERIAL_GLASS = 20, MATERIAL_STEEL = 5)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/buffer_name
 	var/atom/buffer_object

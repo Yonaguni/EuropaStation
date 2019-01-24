@@ -9,7 +9,6 @@
 	organ_tag = BP_STACK
 	status = ORGAN_ROBOTIC
 	vital = 1
-	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_DATA = 3)
 	relative_size = 10
 
 	var/ownerckey

@@ -6,7 +6,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = "4mm"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/c4mm
 	multi_aim = 1
@@ -37,7 +36,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/c45
 	magazine_type = /obj/item/ammo_magazine/c45uzi
@@ -65,7 +63,6 @@
 	w_class = ITEM_SIZE_LARGE
 	force = 10
 	caliber = "10mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a10mm
@@ -97,7 +94,6 @@
 	w_class = ITEM_SIZE_HUGE
 	force = 10
 	caliber = "a556"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 5)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c556
@@ -131,7 +127,6 @@
 	item_state = "wt550"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
 	load_method = MAGAZINE
@@ -161,7 +156,6 @@
 	w_class = ITEM_SIZE_HUGE
 	force = 10
 	caliber = "a762"
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	ammo_type = /obj/item/ammo_casing/a762
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
@@ -236,7 +230,6 @@
 	slot_flags = 0
 	max_shells = 50
 	caliber = "a556"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = 0 //need sprites for SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a556
 	load_method = MAGAZINE

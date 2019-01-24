@@ -5,17 +5,14 @@
 /obj/item/weapon/circuitboard/message_monitor
 	name = T_BOARD("message monitor console")
 	build_path = /obj/machinery/computer/message_monitor
-	origin_tech = list(TECH_DATA = 3)
 
 /obj/item/weapon/circuitboard/aiupload
 	name = T_BOARD("AI upload console")
 	build_path = /obj/machinery/computer/upload/ai
-	origin_tech = list(TECH_DATA = 4)
 
 /obj/item/weapon/circuitboard/borgupload
 	name = T_BOARD("cyborg upload console")
 	build_path = /obj/machinery/computer/upload/robot
-	origin_tech = list(TECH_DATA = 4)
 
 /obj/item/weapon/circuitboard/atmos_alert
 	name = T_BOARD("atmospheric alert console")
@@ -28,22 +25,18 @@
 /obj/item/weapon/circuitboard/robotics
 	name = T_BOARD("robotics control console")
 	build_path = /obj/machinery/computer/robotics
-	origin_tech = list(TECH_DATA = 3)
 
 /obj/item/weapon/circuitboard/drone_control
 	name = T_BOARD("drone control console")
 	build_path = /obj/machinery/computer/drone_control
-	origin_tech = list(TECH_DATA = 3)
 
 /obj/item/weapon/circuitboard/arcade/battle
 	name = T_BOARD("battle arcade machine")
 	build_path = /obj/machinery/computer/arcade/battle
-	origin_tech = list(TECH_DATA = 1)
 
 /obj/item/weapon/circuitboard/arcade/orion_trail
 	name = T_BOARD("orion trail arcade machine")
 	build_path = /obj/machinery/computer/arcade/orion_trail
-	origin_tech = list(TECH_DATA = 1)
 
 /obj/item/weapon/circuitboard/turbine_control
 	name = T_BOARD("turbine control console")
@@ -52,7 +45,6 @@
 /obj/item/weapon/circuitboard/solar_control
 	name = T_BOARD("solar control console")
 	build_path = /obj/machinery/power/solar_control
-	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
 
 /obj/item/weapon/circuitboard/powermonitor
 	name = T_BOARD("power monitoring console")
@@ -81,12 +73,10 @@
 /obj/item/weapon/circuitboard/crew
 	name = T_BOARD("crew monitoring console")
 	build_path = /obj/machinery/computer/crew
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2, TECH_MAGNET = 2)
 
 /obj/item/weapon/circuitboard/operating
 	name = T_BOARD("patient monitoring console")
 	build_path = /obj/machinery/computer/operating
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/weapon/circuitboard/curefab
 	name = T_BOARD("cure fabricator")
@@ -111,27 +101,22 @@
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = T_BOARD("mining shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/engineering_shuttle
 	name = T_BOARD("engineering shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/engineering
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/research_shuttle
 	name = T_BOARD("research shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/rcon_console
 	name = T_BOARD("RCON remote control console")
 	build_path = /obj/machinery/computer/rcon
-	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_POWER = 5)
 
 /obj/item/weapon/circuitboard/account_database
 	name = T_BOARD("accounts uplink terminal")

@@ -39,7 +39,6 @@
 	burn_armor = 5
 	melting_point = T0C + 2000
 	icon_colour = GLASS_COLOR_PHORON
-	stack_origin_tech = list(TECH_MATERIAL = 4)
 	wire_product = null
 	construction_difficulty = 2
 	alloy_product = TRUE

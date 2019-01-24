@@ -11,7 +11,6 @@ var/list/holder_mob_icon_cache = list()
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_head_vox.dmi',
 		)
 
-	origin_tech = null
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/onmob/items/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/onmob/items/righthand_holder.dmi',
@@ -111,17 +110,14 @@ var/list/holder_mob_icon_cache = list()
 
 //Mob specific holders.
 /obj/item/weapon/holder/drone
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 
 /obj/item/weapon/holder/mouse
 	w_class = ITEM_SIZE_TINY
 
 /obj/item/weapon/holder/borer
-	origin_tech = list(TECH_BIO = 6)
 
 //need own subtype to work with recipies
 /obj/item/weapon/holder/corgi
-	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)

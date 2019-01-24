@@ -32,7 +32,6 @@
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
 	use_power_cost = 200
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ENGINEERING = 5)
 	device_type = /obj/item/device/healthanalyzer
 
 /obj/item/rig_module/device/drill
@@ -44,7 +43,6 @@
 	suit_overlay_active = "mounted-drill"
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 75
-	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 6)
 	device_type = /obj/item/weapon/pickaxe/diamonddrill
 
 /obj/item/rig_module/device/orescanner
@@ -58,7 +56,6 @@
 	selectable = 0
 	use_power_cost = 200
 	device_type = /obj/item/weapon/mining_scanner
-	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 4, TECH_ENGINEERING = 6)
 
 /obj/item/rig_module/device/rcd
 	name = "RCD mount"
@@ -69,7 +66,6 @@
 	usable = 1
 	engage_string = "Configure RCD"
 	use_power_cost = 300
-	origin_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 5, TECH_ENGINEERING = 7)
 	device_type = /obj/item/weapon/rcd/mounted
 
 /obj/item/rig_module/device/Initialize()
@@ -311,7 +307,6 @@
 
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
-	origin_tech = list(TECH_MATERIAL = 6,  TECH_ENGINEERING = 7)
 	var/obj/item/weapon/tank/jetpack/rig/jets
 
 /obj/item/rig_module/maneuvering_jets/engage()
@@ -426,13 +421,11 @@
 	icon_state = "ewar"
 	interface_name = "mounted matter decompiler"
 	interface_desc = "Eats trash like no one's business."
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 	device_type = /obj/item/weapon/matter_decompiler
 
 /obj/item/rig_module/cooling_unit
 	name = "mounted cooling unit"
 	toggleable = 1
-	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 5)
 	interface_name = "mounted cooling unit"
 	interface_desc = "A heat sink with a liquid cooled radiator."
 	module_cooldown = 0 SECONDS //no cd because its critical for a life-support module

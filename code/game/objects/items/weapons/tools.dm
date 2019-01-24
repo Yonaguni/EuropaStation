@@ -25,7 +25,6 @@
 	force = 7
 	throwforce = 7.0
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 150)
 	center_of_mass = "x=17;y=16"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -106,7 +105,6 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 80)
 	center_of_mass = "x=18;y=10"
 	attack_verb = list("pinched", "nipped")
@@ -170,7 +168,6 @@
 	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 30)
 
 	//R&D tech level
-	origin_tech = list(TECH_ENGINEERING = 1)
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -488,7 +485,6 @@
 	icon_state = "welder_s"
 	item_state = "welder"
 	desc = "A smaller welder, meant for quick or emergency use."
-	origin_tech = list(TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_GLASS = 5)
 	w_class = ITEM_SIZE_SMALL
 	tank = /obj/item/weapon/welder_tank/mini
@@ -505,7 +501,6 @@
 	icon_state = "welder_l"
 	item_state = "welder"
 	desc = "A heavy-duty portable welder, made to ensure it won't suddenly go cold on you."
-	origin_tech = list(TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 60)
 	w_class = ITEM_SIZE_LARGE
 	tank = /obj/item/weapon/welder_tank/large
@@ -522,7 +517,6 @@
 	item_state = "welder"
 	desc = "A sizable welding tool with room to accomodate the largest of fuel tanks."
 	w_class = ITEM_SIZE_HUGE
-	origin_tech = list(TECH_ENGINEERING = 3)
 	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 	tank = /obj/item/weapon/welder_tank/huge
 
@@ -538,7 +532,6 @@
 	item_state = "welder"
 	desc = "This welding tool feels heavier in your possession than is normal. There appears to be no external fuel port."
 	w_class = ITEM_SIZE_LARGE
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
 	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 	tank = /obj/item/weapon/welder_tank/experimental
 
@@ -605,7 +598,6 @@
 	throw_range = 3
 	item_state = "crowbar"
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 140)
 	center_of_mass = "x=16;y=20"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")

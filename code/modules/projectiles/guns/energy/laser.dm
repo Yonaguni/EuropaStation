@@ -9,7 +9,6 @@
 	force = 10
 	one_hand_penalty = 2
 	accuracy = 2
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
 	wielded_item_state = "laser-wielded"
@@ -70,7 +69,6 @@ obj/item/weapon/gun/energy/retro
 	slot_flags = SLOT_BELT //too unusually shaped to fit in a holster
 	w_class = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
-	origin_tech = null
 	max_shots = 5 //to compensate a bit for self-recharging
 	one_hand_penalty = 1 //a little bulky
 	self_recharge = 1
@@ -81,7 +79,6 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "lasercannon"
 	icon = 'icons/obj/guns/laser_cannon.dmi'
 	item_state = null
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	one_hand_penalty = 6 //large and heavy
 	w_class = ITEM_SIZE_HUGE
@@ -108,7 +105,6 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "xray"
 	item_state = "xray"
 	slot_flags = SLOT_BELT|SLOT_BACK
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	projectile_type = /obj/item/projectile/beam/xray/midlaser
 	one_hand_penalty = 2
 	w_class = ITEM_SIZE_LARGE
@@ -123,7 +119,6 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "oldxray"
 	item_state = "oldxray"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	one_hand_penalty = 1
 	w_class = ITEM_SIZE_NORMAL
@@ -135,7 +130,6 @@ obj/item/weapon/gun/energy/retro
 	icon = 'icons/obj/guns/laser_sniper.dmi'
 	icon_state = "sniper"
 	item_state = "laser"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	one_hand_penalty = 5 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	slot_flags = SLOT_BACK

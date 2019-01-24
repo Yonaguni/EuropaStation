@@ -148,7 +148,6 @@
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
 	icon_state = "9x19p"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MATERIAL_STEEL = 480)
 	caliber = "9mm"
@@ -191,7 +190,6 @@
 /obj/item/ammo_magazine/box/c9mm
 	name = "ammunition box (9mm)"
 	icon_state = "9mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	matter = list(MATERIAL_STEEL = 1800)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -203,7 +201,6 @@
 /obj/item/ammo_magazine/box/emp
 	name = "ammunition box (.38, haywire)"
 	icon_state = "empbox"
-	origin_tech = list(TECH_COMBAT = 2)
 	max_ammo = 10
 	ammo_type = /obj/item/ammo_casing/c38/emp
 	caliber = ".38"
@@ -246,7 +243,6 @@
 /obj/item/ammo_magazine/box/c45
 	name = "ammunition box (.45)"
 	icon_state = "9mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	caliber = ".45"
 	matter = list(MATERIAL_STEEL = 2250)
 	ammo_type = /obj/item/ammo_casing/c45
@@ -258,7 +254,6 @@
 /obj/item/ammo_magazine/a10mm
 	name = "submachine gun magazine (10mm)"
 	icon_state = "10mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
 	matter = list(MATERIAL_STEEL = 1500)
@@ -272,7 +267,6 @@
 /obj/item/ammo_magazine/p10mm
 	name = "pistol magazine (10mm)"
 	icon_state = "p10mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
 	matter = list(MATERIAL_STEEL = 750)
@@ -286,7 +280,6 @@
 /obj/item/ammo_magazine/c4mm
 	name = "submachine gun magazine (4mm)"
 	icon_state = "4mm"
-	origin_tech = list(TECH_COMBAT = 4)
 	mag_type = MAGAZINE
 	caliber = "4mm"
 	matter = list(MATERIAL_STEEL = 2000)
@@ -297,7 +290,6 @@
 /obj/item/ammo_magazine/a762
 	name = "magazine (7.62mm)"
 	icon_state = "762"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(MATERIAL_STEEL = 1800)
@@ -315,7 +307,6 @@
 /obj/item/ammo_magazine/a50
 	name = "magazine (.50)"
 	icon_state = "50ae"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".50"
 	matter = list(MATERIAL_STEEL = 1680)
@@ -341,7 +332,6 @@
 /obj/item/ammo_magazine/box/a556
 	name = "magazine box (5.56mm)"
 	icon_state = "a556"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
 	matter = list(MATERIAL_STEEL = 4500)

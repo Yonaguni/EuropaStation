@@ -10,7 +10,6 @@
 	edge = 0
 	throwforce = 7
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	base_parry_chance = 30
 	var/stunforce = 0

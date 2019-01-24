@@ -5,7 +5,6 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
-	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
@@ -147,7 +146,6 @@
 /obj/item/weapon/cell/crap
 	name = "old power cell"
 	desc = "A cheap old power cell. It's probably been in use for quite some time now."
-	origin_tech = list(TECH_POWER = 0)
 	maxcharge = 100
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 40, MATERIAL_PLASTIC = 20)
 
@@ -157,14 +155,12 @@
 /obj/item/weapon/cell/standard
 	name = "standard power cell"
 	desc = "A standard and relatively cheap power cell, commonly used."
-	origin_tech = list(TECH_POWER = 0)
 	maxcharge = 250
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 40, MATERIAL_PLASTIC = 20)
 
 /obj/item/weapon/cell/apc
 	name = "APC power cell"
 	desc = "A special power cell designed for heavy-duty use in area power controllers."
-	origin_tech = list(TECH_POWER = 1)
 	maxcharge = 500
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50, MATERIAL_PLASTIC = 20)
 
@@ -172,7 +168,6 @@
 /obj/item/weapon/cell/high
 	name = "advanced power cell"
 	desc = "An advanced high-grade power cell, for use in important systems."
-	origin_tech = list(TECH_POWER = 2)
 	icon_state = "hcell"
 	maxcharge = 1000
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 60, MATERIAL_PLASTIC = 20)
@@ -183,7 +178,6 @@
 /obj/item/weapon/cell/super
 	name = "enhanced power cell"
 	desc = "A very advanced power cell with increased energy density, for use in critical applications."
-	origin_tech = list(TECH_POWER = 5)
 	icon_state = "scell"
 	maxcharge = 2000
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 70, MATERIAL_ALUMINIUM = 20)
@@ -194,7 +188,6 @@
 /obj/item/weapon/cell/hyper
 	name = "superior power cell"
 	desc = "Pinnacle of power storage technology, this very expensive power cell provides the best energy density reachable with conventional electrochemical cells."
-	origin_tech = list(TECH_POWER = 6)
 	icon_state = "hpcell"
 	maxcharge = 3000
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 80, MATERIAL_ALUMINIUM = 20)
@@ -206,7 +199,6 @@
 	name = "experimental power cell"
 	desc = "This special experimental power cell has both very large capacity, and ability to recharge itself by draining power from the false vacuum."
 	icon_state = "icell"
-	origin_tech =  null
 	maxcharge = 3000
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 80, MATERIAL_ALUMINIUM = 20)
 
@@ -220,7 +212,6 @@
 /obj/item/weapon/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
-	origin_tech = list(TECH_POWER = 1)
 	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"
 	maxcharge = 20
@@ -229,7 +220,6 @@
 /obj/item/weapon/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with phoron, it crackles with power."
-	origin_tech = list(TECH_POWER = 2, TECH_BIO = 4)
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
 	maxcharge = 200

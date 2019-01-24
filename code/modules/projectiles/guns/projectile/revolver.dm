@@ -5,7 +5,6 @@
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = ".44"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
 	fire_delay = 6.75 //Revolvers are naturally slower-firing
@@ -45,7 +44,6 @@
 	name = "mateba"
 	icon_state = "mateba"
 	caliber = ".50"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a50
 
 /obj/item/weapon/gun/projectile/revolver/detective
@@ -54,7 +52,6 @@
 	icon_state = "detective"
 	max_shells = 6
 	caliber = ".38"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
@@ -103,7 +100,6 @@
 	icon_state = "revolver-toy"
 	item_state = "revolver"
 	caliber = "caps"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap
@@ -124,5 +120,4 @@
 	item_state = "webley"
 	max_shells = 6
 	caliber = ".357"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c357

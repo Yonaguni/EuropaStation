@@ -3,7 +3,6 @@
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
-	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
 	action_button_name = "Toggle Goggles"
 	toggleable = TRUE

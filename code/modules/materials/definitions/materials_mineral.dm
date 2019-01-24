@@ -7,12 +7,6 @@
 	ore_spread_chance = 10
 	ore_name = "pitchblende"
 	ore_scan_icon = "mineral_uncommon"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
-	xarch_ages = list(
-		"thousand" = 999,
-		"million" = 704
-		)
-	xarch_source_mineral = "potassium"
 	ore_icon_overlay = "nugget"
 	chem_products = list(
 		/datum/reagent/radium = 10,
@@ -223,7 +217,6 @@
 	icon_colour = "#e37108"
 	shard_type = SHARD_SHARD
 	hardness = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PHORON = 2)
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
@@ -237,13 +230,6 @@
 	ore_result_amount = 5
 	ore_spread_chance = 25
 	ore_scan_icon = "mineral_uncommon"
-	xarch_ages = list(
-		"thousand" = 999,
-		"million" = 999,
-		"billion" = 13,
-		"billion_lower" = 10
-		)
-	xarch_source_mineral = MATERIAL_PHORON
 	ore_icon_overlay = "gems"
 	sale_price = 5
 

@@ -1,7 +1,6 @@
 /obj/item/clothing/glasses/hud
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
 	electric = 1
 	gender = NEUTER
 	species_restricted = null

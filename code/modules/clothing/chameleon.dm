@@ -46,7 +46,6 @@
 	item_state = "jumpsuit"
 	worn_state = "jumpsuit"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/under/chameleon/New()
@@ -74,7 +73,6 @@
 	name = "grey cap"
 	icon_state = "greysoft"
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	body_parts_covered = 0
 	var/global/list/clothing_choices
 
@@ -104,7 +102,6 @@
 	icon_state = "armor"
 	item_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/suit/chameleon/New()
@@ -132,13 +129,12 @@
 	icon_state = "black"
 	item_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/shoes/syndigaloshes, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
+		var/blocked = list(src.type)//prevent infinite loops and bad shoes.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
 
 /obj/item/clothing/shoes/chameleon/verb/change(picked in clothing_choices)
@@ -160,7 +156,6 @@
 	icon_state = "backpack"
 	item_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/weapon/storage/backpack/chameleon/New()
@@ -193,7 +188,6 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
@@ -221,7 +215,6 @@
 	icon_state = "fullgas"
 	item_state = "gas_alt"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
 /obj/item/clothing/mask/chameleon/New()
@@ -249,7 +242,6 @@
 	icon_state = "meson"
 	item_state = "glasses"
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()
@@ -277,9 +269,7 @@
 	icon = 'icons/obj/guns/revolvers.dmi'
 	icon_state = "revolver"
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	matter = list()
-
 	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0

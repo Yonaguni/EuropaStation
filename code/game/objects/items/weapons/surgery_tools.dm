@@ -19,7 +19,6 @@
 	matter = list(MATERIAL_STEEL = 10000, MATERIAL_GLASS = 5000)
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 
 /*
  * Hemostat
@@ -32,7 +31,6 @@
 	matter = list(MATERIAL_STEEL = 5000, MATERIAL_GLASS = 2500)
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -46,7 +44,6 @@
 	matter = list(MATERIAL_STEEL = 5000, MATERIAL_GLASS = 2500, MATERIAL_ALUMINIUM = 1000)
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
 
 /*
@@ -62,7 +59,6 @@
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	force = 15.0
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
 
 /*
@@ -82,7 +78,6 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MATERIAL_STEEL = 10000, MATERIAL_GLASS = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -130,7 +125,6 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MATERIAL_STEEL = 20000,MATERIAL_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
@@ -151,7 +145,6 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	w_class = ITEM_SIZE_SMALL
 	var/usage_amount = 10
 

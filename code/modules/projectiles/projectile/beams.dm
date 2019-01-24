@@ -92,61 +92,6 @@
 	tracer_type = /obj/effect/projectile/laser/emitter/tracer
 	impact_type = /obj/effect/projectile/laser/emitter/impact
 
-/obj/item/projectile/beam/lastertag/blue
-	name = "lasertag beam"
-	icon_state = "bluelaser"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
-	damage = 0
-	no_attack_log = 1
-	damage_type = BURN
-	check_armour = "laser"
-
-	muzzle_type = /obj/effect/projectile/laser/blue/muzzle
-	tracer_type = /obj/effect/projectile/laser/blue/tracer
-	impact_type = /obj/effect/projectile/laser/blue/impact
-
-/obj/item/projectile/beam/lastertag/blue/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			M.Weaken(5)
-	return 1
-
-/obj/item/projectile/beam/lastertag/red
-	name = "lasertag beam"
-	icon_state = "laser"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
-	damage = 0
-	no_attack_log = 1
-	damage_type = BURN
-	check_armour = "laser"
-
-/obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			M.Weaken(5)
-	return 1
-
-/obj/item/projectile/beam/lastertag/omni//A laser tag bolt that stuns EVERYONE
-	name = "lasertag beam"
-	icon_state = "omnilaser"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
-	damage = 0
-	damage_type = BURN
-	check_armour = "laser"
-
-	muzzle_type = /obj/effect/projectile/laser/omni/muzzle
-	tracer_type = /obj/effect/projectile/laser/omni/tracer
-	impact_type = /obj/effect/projectile/laser/omni/impact
-
-/obj/item/projectile/beam/lastertag/omni/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = target
-		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
-			M.Weaken(5)
-	return 1
-
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"

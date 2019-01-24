@@ -21,7 +21,6 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MATERIAL_ALUMINIUM = 400)
 
 /obj/item/weapon/locator/attack_self(mob/user as mob)

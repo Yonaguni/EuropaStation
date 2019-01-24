@@ -65,7 +65,6 @@
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 	var/table_icon_base = "metal"
 	var/table_reinf = "reinf_metal"
-	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
 
 	// Attributes
 	var/cut_delay = 0            // Delay in ticks when cutting through this wall.
@@ -114,10 +113,6 @@
 	var/ore_scan_icon
 	var/ore_icon_overlay
 	var/sale_price
-
-	// Xenoarch behavior.
-	var/list/xarch_ages = list("thousand" = 999, "million" = 999)
-	var/xarch_source_mineral = "iron"
 
 // Placeholders for light tiles and rglass.
 /material/proc/reinforce(var/mob/user, var/obj/item/stack/material/used_stack, var/obj/item/stack/material/target_stack)

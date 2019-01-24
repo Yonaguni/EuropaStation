@@ -10,7 +10,6 @@
 	icon_reinf = "reinf_stone"
 	icon_colour = "#007a00"
 	weight = 22
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	chem_products = list(
 				/datum/reagent/uranium = 20
 				)
@@ -25,7 +24,6 @@
 	weight = 25
 	hardness = 25
 	integrity = 100
-	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	chem_products = list(
@@ -37,12 +35,6 @@
 	ore_name = "native gold"
 	ore_spread_chance = 10
 	ore_scan_icon = "mineral_uncommon"
-	xarch_ages = list(
-		"thousand" = 999,
-		"million" = 999,
-		"billion" = 4,
-		"billion_lower" = 3
-		)
 	ore_icon_overlay = "nugget"
 	sale_price = 3
 
@@ -60,7 +52,6 @@
 	icon_colour = "#b87333"
 	weight = 15
 	hardness = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	chem_products = list(
@@ -83,7 +74,6 @@
 	icon_colour = "#d1e6e3"
 	weight = 22
 	hardness = 50
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	chem_products = list(
@@ -170,7 +160,6 @@
 	burn_armor = 10
 	hardness = 80
 	weight = 23
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	hitsound = 'sound/weapons/smash.ogg'
 	construction_difficulty = 2
 	alloy_materials = list(MATERIAL_STEEL = 2500, MATERIAL_PLATINUM = 1250)
@@ -206,7 +195,6 @@
 	brute_armor = 4
 	burn_armor = 20
 	weight = 27
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	alloy_materials = list(MATERIAL_PLASTEEL = 7500, MATERIAL_OSMIUM = 3750)
 	construction_difficulty = 3
 	alloy_product = TRUE
@@ -217,7 +205,6 @@
 	lore_text = "An extremely hard form of platinum."
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999ff"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	construction_difficulty = 3
@@ -230,7 +217,6 @@
 	mechanics_text = "Tritium is useable as a fuel in some forms of portable generator. It can also be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
@@ -242,7 +228,6 @@
 	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by clicking a stack on a fuel compressor. It is the most 'basic' fusion fuel."
 	stack_type = /obj/item/stack/material/deuterium
 	icon_colour = "#999999"
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
@@ -254,7 +239,6 @@
 	display_name = "metallic hydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#e6c5de"
-	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	is_fusion_fuel = 1
 	chem_products = list(
 				/datum/reagent/hydrazine = 20
@@ -273,7 +257,6 @@
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999ff"
 	weight = 27
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	construction_difficulty = 2

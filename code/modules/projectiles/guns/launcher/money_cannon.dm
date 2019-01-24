@@ -3,7 +3,6 @@
 	desc = "A blocky, plastic novelty launcher that claims to be able to shoot thaler at considerable velocities."
 	icon_state = "money_launcher"
 	item_state = "money_launcher"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	release_force = 80

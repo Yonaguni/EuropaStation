@@ -5,7 +5,6 @@
 	icon_state = "thermal"
 	item_state = "glasses"
 	action_button_name = "Toggle Goggles"
-	origin_tech = list(TECH_MAGNET = 3)
 	toggleable = TRUE
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING

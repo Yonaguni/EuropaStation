@@ -4,7 +4,6 @@
 	icon = 'icons/obj/guns/ion_rifle.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEM_SIZE_HUGE
 	force = 10
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
@@ -25,7 +24,6 @@
 	icon = 'icons/obj/guns/ion_pistol.dmi'
 	icon_state = "ionpistol"
 	item_state = "ionpistol"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEM_SIZE_NORMAL
 	force = 5
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -40,7 +38,6 @@
 	icon = 'icons/obj/guns/decloner.dmi'
 	icon_state = "decloner"
 	item_state = "decloner"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
 	max_shots = 10
 	projectile_type = /obj/item/projectile/energy/declone
 	combustion = 0
@@ -54,7 +51,6 @@
 	charge_cost = 10
 	max_shots = 10
 	projectile_type = /obj/item/projectile/energy/floramut
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
 	self_recharge = 1
 	var/decl/plantgene/gene = null
@@ -132,7 +128,6 @@
 	desc = "A custom-built weapon of some kind."
 	icon = 'icons/obj/guns/xray.dmi'
 	icon_state = "xray"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 4)
 	projectile_type = /obj/item/projectile/beam/mindflayer
 
 /obj/item/weapon/gun/energy/toxgun
@@ -141,7 +136,6 @@
 	icon = 'icons/obj/guns/toxgun.dmi'
 	icon_state = "toxgun"
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
 	projectile_type = /obj/item/projectile/energy/phoron
 
 /obj/item/weapon/gun/energy/plasmacutter
@@ -155,7 +149,6 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_NORMAL
 	force = 8
-	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 4000)
 	projectile_type = /obj/item/projectile/beam/plasmacutter
 	max_shots = 10

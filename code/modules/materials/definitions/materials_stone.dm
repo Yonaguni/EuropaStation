@@ -11,14 +11,12 @@
 	hardness = 100
 	brute_armor = 10
 	burn_armor = 50		// Diamond walls are immune to fire, therefore it makes sense for them to be almost undamageable by burn damage type.
-	stack_origin_tech = list(TECH_MATERIAL = 6)
 	conductive = 0
 	construction_difficulty = 3
 	ore_compresses_to = MATERIAL_DIAMOND
 	ore_result_amount = 5
 	ore_spread_chance = 10
 	ore_scan_icon = "mineral_rare"
-	xarch_source_mineral = "nitrogen"
 	ore_icon_overlay = "gems"
 	sale_price = 5
 

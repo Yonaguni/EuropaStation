@@ -5,7 +5,6 @@
 	allowed_magazines = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/colt/on_update_icon()
@@ -22,7 +21,6 @@
 	allowed_magazines = /obj/item/ammo_magazine/c45mds
 	icon_state = "usp"
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 	accuracy = 0.35
 	fire_delay = 6.5
@@ -43,7 +41,6 @@
 	caliber = ".45"
 	accuracy = -0.35
 	fire_delay = 5.5
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/sec/on_update_icon()
@@ -79,7 +76,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	caliber = ".45"
 	silenced = 1
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
 	allowed_magazines = /obj/item/ammo_magazine/c45m
@@ -91,7 +87,6 @@
 	allowed_magazines = /obj/item/ammo_magazine/p10mm
 	icon_state = "p220"
 	caliber = "10mm"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	accuracy = 0.40
 	fire_delay = 7.5
@@ -132,7 +127,6 @@
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = "75"
-	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = /obj/item/ammo_casing/a75
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
@@ -156,7 +150,6 @@
 	allowed_magazines = /obj/item/ammo_magazine/mc9mmds
 	icon_state = "92fs"
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 	accuracy = 0.35
 
@@ -177,7 +170,6 @@
 	caliber = "9mm"
 	silenced = 0
 	fire_delay = 1
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mm
 	allowed_magazines = /obj/item/ammo_magazine/mc9mm

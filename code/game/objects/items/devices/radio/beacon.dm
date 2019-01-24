@@ -4,7 +4,6 @@
 	icon_state = "beacon"
 	item_state = "signaler"
 	var/code = "electronic"
-	origin_tech = list(TECH_EXOTIC = 1)
 
 /obj/item/device/radio/beacon/hear_talk()
 	return

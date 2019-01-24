@@ -10,4 +10,3 @@ obj/item/weapon/nuclear_cylinder
 	throwforce = 15.0
 	throw_speed = 2
 	throw_range = 4
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4)

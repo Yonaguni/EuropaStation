@@ -9,7 +9,6 @@
 	hardness = 10
 	weight = 5
 	melting_point = T0C+371 //assuming heat resistant plastic
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	conductive = 0
 	construction_difficulty = 1
 	chem_products = list(
@@ -42,7 +41,6 @@
 	weight = 18
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
-	stack_origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	dooropen_noise = 'sound/effects/doorcreaky.ogg'
 	door_icon_base = "wood"
 	destruction_desc = "splinters"
@@ -79,14 +77,12 @@
 	weight = 1
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	conductive = 0
 
 /material/cloth //todo
 	name = MATERIAL_CLOTH
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
 	ignition_point = T0C+232
 	melting_point = T0C+300
@@ -101,7 +97,6 @@
 /material/leather
 	name = MATERIAL_LEATHER
 	icon_colour = "#5c4831"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
