@@ -27,8 +27,6 @@
 	from_file(S["job_low"],				pref.job_low)
 	from_file(S["player_alt_titles"],	pref.player_alt_titles)
 	from_file(S["skills_saved"],		pref.skills_saved)
-	from_file(S["branches"],			pref.branches)
-	from_file(S["ranks"],				pref.ranks)
 	from_file(S["hiding_maps"],			pref.hiding_maps)
 	load_skills()
 
@@ -40,16 +38,12 @@
 	to_file(S["job_low"],				pref.job_low)
 	to_file(S["player_alt_titles"],		pref.player_alt_titles)
 	to_file(S["skills_saved"],			pref.skills_saved)
-	to_file(S["branches"],				pref.branches)
-	to_file(S["ranks"],					pref.ranks)
 	to_file(S["hiding_maps"],			pref.hiding_maps)
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	if(!istype(pref.job_medium))		pref.job_medium = list()
 	if(!istype(pref.job_low))			pref.job_low = list()
 	if(!istype(pref.skills_saved))		pref.skills_saved = list()
-	if(!islist(pref.branches))			pref.branches = list()
-	if(!islist(pref.ranks))				pref.ranks = list()
 	if(!islist(pref.hiding_maps))		pref.hiding_maps = list()
 
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
@@ -220,47 +214,6 @@
 	. += "<hr/>"
 	. += "</tt><br>"
 	. = jointext(.,null)
-
-/datum/category_item/player_setup_item/proc/validate_branch_and_rank()
-
-	if(LAZYLEN(pref.branches))
-		for(var/job_name in pref.branches)
-			if(!(job_name in SSjobs.titles_to_datums))
-				pref.branches -= job_name
-
-	if(LAZYLEN(pref.ranks))
-		var/list/removing_ranks
-		for(var/job_name in pref.ranks)
-			var/datum/job/job = SSjobs.get_by_title(job_name, TRUE)
-			if(!job) LAZYADD(removing_ranks, job_name)
-		if(LAZYLEN(removing_ranks))
-			pref.ranks -= removing_ranks
-
-	for(var/job_name in SSjobs.titles_to_datums)
-
-		var/datum/job/job = SSjobs.get_by_title(job_name)
-
-		var/datum/mil_branch/player_branch = pref.branches[job.title] ? mil_branches.get_branch(pref.branches[job.title]) : null
-		if(LAZYLEN(job.allowed_branches) && (!player_branch || !(player_branch.type in job.allowed_branches)))
-			player_branch = mil_branches.get_branch(job.allowed_branches[1])
-
-		var/datum/mil_rank/player_rank = (player_branch && pref.ranks[job.title]) ? mil_branches.get_rank(player_branch.name, pref.ranks[job.title]) : null
-		if(player_branch && LAZYLEN(job.allowed_branches) && (!player_rank || !(player_rank.type in job.allowed_ranks)))
-			player_rank = null
-			for(var/rank in job.allowed_ranks)
-				if(rank in player_branch.rank_types)
-					player_rank = mil_branches.get_rank(player_branch.name, rank)
-					break
-
-		if(player_branch)
-			pref.branches[job.title] = player_branch.name
-			if(player_rank)
-				pref.ranks[job.title] = player_rank.name
-			else
-				pref.ranks -= job.title
-		else
-			pref.branches -= job.title
-			pref.ranks -= job.title
 
 /datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)
 	if(href_list["reset_jobs"])
@@ -442,16 +395,6 @@
 			return !!(job.title in job_low)
 	return 0
 
-/datum/category_item/player_setup_item/occupation/proc/get_ranks_for_job(var/datum/job/job, var/datum/mil_branch/branch)
-	var/list/options = list()
-	for(var/rank_type in job.allowed_ranks)
-		var/datum/mil_rank/temp_rank = rank_type
-		if(initial(temp_rank.name) in branch.spawn_ranks(preference_species()))
-			var/datum/mil_rank/rank = mil_branches.get_rank(branch.type, rank_type)
-			if(rank)
-				options |= rank.name
-	return options
-
 /**
  *  Prune a player's job preferences based on current species
  */
@@ -490,9 +433,6 @@
 	pref.job_medium = list()
 	pref.job_low = list()
 	pref.player_alt_titles.Cut()
-	pref.branches = list()
-	pref.ranks = list()
-	validate_branch_and_rank()
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title

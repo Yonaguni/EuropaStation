@@ -9,8 +9,6 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	hud_icon = "hudblank"
 	available_by_default = FALSE
-	allowed_ranks = null
-	allowed_branches = null
 	skill_points = 25
 
 	var/info = "You have survived a terrible disaster. Make the best of things that you can."

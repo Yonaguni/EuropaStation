@@ -407,11 +407,6 @@ SUBSYSTEM_DEF(jobs)
 	var/list/spawn_in_storage
 
 	if(job)
-		if(H.client)
-			if(GLOB.using_map.flags & MAP_HAS_BRANCH)
-				H.char_branch = mil_branches.get_branch(H.client.prefs.branches[rank])
-			if(GLOB.using_map.flags & MAP_HAS_RANK)
-				H.char_rank = mil_branches.get_rank(H.client.prefs.branches[rank], H.client.prefs.ranks[rank])
 
 		// Transfers the skill settings for the job to the mob
 		H.skillset.obtain_from_client(job, H.client)
@@ -466,14 +461,9 @@ SUBSYSTEM_DEF(jobs)
 		H.mind.assigned_role = rank
 		alt_title = H.mind.role_alt_title
 
-		switch(rank)
-			if("Robot")
-				return H.Robotize()
-			if("AI")
-				return H
-			if("Captain")
-				var/sound/announce_sound = (GAME_STATE <= RUNLEVEL_SETUP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+		var/return_early = job.finalize(H)
+		if(return_early)
+			return return_early
 
 	if(spawn_in_storage)
 		for(var/datum/gear/G in spawn_in_storage)
@@ -502,7 +492,7 @@ SUBSYSTEM_DEF(jobs)
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)
-		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
+		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/prescription(H), slot_glasses)
 		if(equipped)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 7
