@@ -3,35 +3,6 @@
 	title = "box"
 	result_type = /obj/item/weapon/storage/box
 
-/datum/stack_recipe/box/large
-	title = "large box"
-	result_type = /obj/item/weapon/storage/box/large
-	req_amount = 2
-
-/datum/stack_recipe/box/donut
-	title = "donut box"
-	result_type = /obj/item/weapon/storage/box/donut/empty
-
-/datum/stack_recipe/box/egg
-	title = "egg box"
-	result_type = /obj/item/weapon/storage/fancy/egg_box/empty
-
-/datum/stack_recipe/box/light_tubes
-	title = "light tubes box"
-	result_type = /obj/item/weapon/storage/box/lights/tubes/empty
-
-/datum/stack_recipe/box/light_bulbs
-	title = "light bulbs box"
-	result_type = /obj/item/weapon/storage/box/lights/bulbs/empty
-
-/datum/stack_recipe/box/mouse_traps
-	title = "mouse traps box"
-	result_type = /obj/item/weapon/storage/box/mousetraps/empty
-
-/datum/stack_recipe/box/pizza
-	title = "mouse traps box"
-	result_type = /obj/item/pizzabox
-
 /datum/stack_recipe/bag
 	title = "bag"
 	result_type = /obj/item/weapon/storage/bag/plasticbag

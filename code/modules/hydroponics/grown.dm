@@ -182,12 +182,7 @@
 				qdel(src)
 				return
 		else if(W.sharp)
-			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
-				user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
-				new /obj/item/clothing/head/pumpkinhead (user.loc)
-				qdel(src)
-				return
-			else if(seed.chems)
+			if(seed.chems)
 				if(istype(W,/obj/item/weapon/material/hatchet) && !isnull(seed.chems[/datum/reagent/woodpulp]))
 					user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)

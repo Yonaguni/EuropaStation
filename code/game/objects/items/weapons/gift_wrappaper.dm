@@ -50,12 +50,10 @@
 	qdel(src)
 
 /obj/item/weapon/a_gift/attack_self(mob/M as mob)
-	var/gift_type = pick(
+	var/gift_type = pick(list(
 		/obj/item/weapon/storage/wallet,
 		/obj/item/weapon/storage/photo_album,
-		/obj/item/weapon/storage/box/snappops,
 		/obj/item/weapon/storage/fancy/crayons,
-		/obj/item/weapon/storage/belt/champion,
 		/obj/item/weapon/soap/deluxe,
 		/obj/item/weapon/pickaxe/silver,
 		/obj/item/weapon/pen/invisible,
@@ -89,9 +87,8 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/device/paicard,
-		/obj/item/device/synthesized_instrument/violin,
-		/obj/item/weapon/storage/belt/utility/full,
-		/obj/item/clothing/accessory/horrible)
+		/obj/item/device/synthesized_instrument/violin
+	))
 
 	if(!ispath(gift_type,/obj/item))	return
 

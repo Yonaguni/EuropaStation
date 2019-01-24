@@ -585,9 +585,6 @@ var/list/gamemode_cache = list()
 				if("assistant_maint")
 					config.assistant_maint = 1
 
-				if("gateway_delay")
-					config.gateway_delay = text2num(value)
-
 				if("continuous_rounds")
 					config.continous_rounds = 1
 

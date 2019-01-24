@@ -161,15 +161,6 @@
 
 	if(hasHUD(user, HUD_SCIENCE)) //Mob has a research scanner active.
 		desc_comp += "<BR>*--------* <BR>"
-
-		if(origin_tech)
-			desc_comp += "<span class='notice'>Testing potentials:</span><BR>"
-			//var/list/techlvls = params2list(origin_tech)
-			for(var/T in origin_tech)
-				desc_comp += "Tech: Level [origin_tech[T]] [CallTechName(T)] <BR>"
-		else
-			desc_comp += "No tech origins detected.<BR>"
-
 		if(LAZYLEN(matter))
 			desc_comp += "<span class='notice'>Extractable materials:</span><BR>"
 			for(var/mat in matter)

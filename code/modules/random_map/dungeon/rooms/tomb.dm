@@ -17,7 +17,6 @@
 		var/turf/T2 = locate(truex + (direction ? width - 3 : 0), truey + (direction ? 0 : height - 3), zorigin)
 		var/turf/check = locate(truex + (direction ? -1 : 0), truey + (direction ? 0 : -1), zorigin)
 		if(check.density && !T1.density && !T1.contents.len)
-			var/obj/structure/closet/coffin/C1 = new(T1)
 			if(prob(chance_of_corpse))
 				var/type = pickweight(corpses)
 				var/mob/M
@@ -29,11 +28,10 @@
 				else
 					M = new type()
 				M.death(0)
-				M.forceMove(C1)
+				M.forceMove(T1)
 				item_spawns += M
 		check = locate(truex + (direction ? width - 2 : 0), truey + (direction ? 0 : height - 2), zorigin)
 		if(check.density && !T2.density && !T2.contents.len)
-			var/obj/structure/closet/coffin/C2 = new(T2)
 			if(prob(chance_of_corpse))
 				var/type = pickweight(corpses)
 				var/mob/M
@@ -45,5 +43,5 @@
 				else
 					M = new type()
 				M.death(0)
-				M.forceMove(C2)
+				M.forceMove(T2)
 				item_spawns += M

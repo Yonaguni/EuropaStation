@@ -12,11 +12,6 @@
 		var/datum/uplink_item/ui = uplink.items_assoc[item]
 		success = is_valid_uplink_item(ui, "Uplink assoc items") && success
 
-	var/datum/uplink_random_selection/uplink_selection = get_uplink_random_selection_by_type(/datum/uplink_random_selection/blacklist)
-	for(var/item in uplink_selection.items)
-		var/datum/uplink_random_item/uri = item // Basically ensuring random uplink items is a subset of the full range of items
-		success = is_valid_uplink_item(uplink.items_assoc[uri.uplink_item], "Random uplink items", uri.uplink_item) && success
-
 	if(success)
 		pass("All uplink items were valid.")
 	else

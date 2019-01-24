@@ -32,7 +32,6 @@
 	
 	if(!stacktype)
 		stacktype = material.stack_type
-	if(islist(material.stack_origin_tech))
 	
 	if(material.conductive)
 		obj_flags |= OBJ_FLAG_CONDUCTIBLE

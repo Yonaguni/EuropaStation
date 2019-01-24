@@ -139,9 +139,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/firstaid/adv,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/storage/box/autoinjectors)
+		/obj/item/weapon/reagent_containers/glass/bottle/stoxin
+	)
 
 /datum/supply_drop_loot/power
 	name = "Power"

@@ -28,12 +28,6 @@
 	lore_text = "As is the case with most standard-issue tools, crowbars are a simple and timeless design, the only difference being that advanced materials like plasteel have made them uncommonly tough."
 	antag_text = "Need to bypass a bolted door? You can use a crowbar to pry the electronics out of an airlock, provided that it has no power and has been welded shut."
 
-/datum/codex_entry/toolbelt
-	associated_paths = list(/obj/item/weapon/storage/belt/utility)
-	mechanics_text = "The tool-belt has enough slots to carry a full engineer's toolset: screwdriver, crowbar, wrench, welder, cable coil, and multitool. Simply click the belt to move a tool to one of its slots."
-	lore_text = "Good hide is hard to come by in certain regions of the galaxy. When they can't come across it, most TSCs will outfit their crews with toolbelts made of synthesized leather."
-	antag_text = "Only amateurs skip grabbing a tool-belt."
-
 /datum/codex_entry/cable_painter
 	associated_paths = list(/obj/item/device/cable_painter)
 	mechanics_text = "Use this device to select a preferred cable color. Apply it to a bundle of cables on your person, or use it on installed cabling on the floor to paint it in your chosen color."

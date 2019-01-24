@@ -125,8 +125,6 @@
 			return global.SSvote;
 		if("SSwireless")
 			return global.SSwireless;
-		if("WALLITEMS")
-			return global.WALLITEMS;
 		if("_all_globals")
 			return global._all_globals;
 		if("_client_preferences")
@@ -845,8 +843,6 @@
 			return global.uplink;
 		if("uplink_purchase_repository")
 			return global.uplink_purchase_repository;
-		if("uplink_random_selections_")
-			return global.uplink_random_selections_;
 		if("valid_bloodtypes")
 			return global.valid_bloodtypes;
 		if("vendor_account")
@@ -1010,8 +1006,6 @@
 			global.SSvote=newval;
 		if("SSwireless")
 			global.SSwireless=newval;
-		if("WALLITEMS")
-			global.WALLITEMS=newval;
 		if("_all_globals")
 			global._all_globals=newval;
 		if("_client_preferences")
@@ -1730,8 +1724,6 @@
 			global.uplink=newval;
 		if("uplink_purchase_repository")
 			global.uplink_purchase_repository=newval;
-		if("uplink_random_selections_")
-			global.uplink_random_selections_=newval;
 		if("valid_bloodtypes")
 			global.valid_bloodtypes=newval;
 		if("vendor_account")
@@ -1839,7 +1831,6 @@
 	"Tier2Runes",
 	"Tier3Runes",
 	"Tier4Runes",
-	"WALLITEMS",
 	"_all_globals",
 	"_client_preferences",
 	"_client_preferences_by_key",

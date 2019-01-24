@@ -36,17 +36,6 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/mindbreaker
 		)
 
-// Space suit uplink kit
-/obj/item/weapon/storage/backpack/satchel/syndie_kit/space
-	//name = "\improper EVA gear pack"
-
-	startswith = list(
-		/obj/item/clothing/suit/space/void/merc,
-		/obj/item/clothing/head/helmet/space/void/merc,
-		/obj/item/clothing/mask/gas/syndicate,
-		/obj/item/weapon/tank/emergency/oxygen/double,
-		)
-
 // Chameleon uplink kit
 /obj/item/weapon/storage/backpack/chameleon/sydie_kit
 	startswith = list(
@@ -159,8 +148,7 @@
 
 /obj/item/weapon/storage/secure/briefcase/heavysniper
 	startswith = list(
-		/obj/item/weapon/gun/projectile/heavysniper,
-		/obj/item/weapon/storage/box/sniperammo
+		/obj/item/weapon/gun/projectile/heavysniper
 	)
 
 /obj/item/weapon/storage/secure/briefcase/heavysniper/Initialize()
@@ -168,11 +156,4 @@
 	make_exact_fit()
 
 /obj/item/weapon/storage/secure/briefcase/money
-
 	startswith = list(/obj/item/weapon/spacecash/bundle/c1000 = 10)
-
-/obj/item/weapon/storage/backpack/satchel/syndie_kit/armor
-	startswith = list(
-		/obj/item/clothing/suit/armor/pcarrier/merc,
-		/obj/item/clothing/head/helmet/merc
-	)

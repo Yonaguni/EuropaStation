@@ -243,15 +243,6 @@
 	storage_capacity = 2 * MOB_LARGE
 	storage_types = CLOSET_STORAGE_ITEMS|CLOSET_STORAGE_MOBS|CLOSET_STORAGE_STRUCTURES
 
-/obj/structure/closet/crate/secure/biohazard/blanks/WillContain()
-	return list(/obj/structure/closet/body_bag/cryobag/blank)
-
-/obj/structure/closet/crate/secure/biohazard/blanks/can_close()
-	for(var/obj/structure/closet/closet in get_turf(src))
-		if(closet != src && !(istype(closet, /obj/structure/closet/body_bag/cryobag)))
-			return 0
-	return 1
-
 /obj/structure/closet/crate/paper_refill
 	name = "paper refill crate"
 	desc = "A rectangular plastic crate, filled up with blank papers for refilling bins and printers. A bureaucrat's favorite."

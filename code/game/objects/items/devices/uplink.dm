@@ -55,10 +55,10 @@
 	return ..()
 
 /obj/item/device/uplink/Process()
+	/*
 	if(world.time > next_offer_time)
 		next_offer_time = world.time + offer_time
 		discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
-
 		var/datum/uplink_item/new_discount_item
 		do
 			var/datum/uplink_random_selection/uplink_selection = get_uplink_random_selection_by_type(/datum/uplink_random_selection/blacklist)
@@ -67,16 +67,13 @@
 		while(is_improper_item(new_discount_item, discount_amount))
 		if(!new_discount_item)
 			return
-
 		discount_item = new_discount_item
 		update_nano_data()
 		SSnano.update_uis(src)
+	*/
 
 /obj/item/device/uplink/proc/is_improper_item(var/datum/uplink_item/new_discount_item, discount_amount)
 	if(!new_discount_item)
-		return FALSE
-
-	if(istype(new_discount_item, /datum/uplink_item/item/stealthy_weapons/soap))
 		return FALSE
 
 	var/discount_price = round(new_discount_item.cost(uses) * discount_amount)

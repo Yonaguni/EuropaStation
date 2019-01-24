@@ -25,17 +25,19 @@
 		"Food" = list(
 			/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 30,
 			/obj/item/weapon/reagent_containers/food/drinks/milk = 50,
-			/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh = 50),
+			/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh = 50
+		),
 		"Nutrients" = list(
 			/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 60,
 			/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 120,
-			/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 120),
+			/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 120
+		),
 		"Leather" = list(
 			/obj/item/weapon/storage/wallet/leather = 100,
-			/obj/item/weapon/storage/belt/utility = 300,
 			/obj/item/weapon/storage/backpack/satchel = 400,
-			/obj/item/weapon/storage/bag/cash = 400,
-			/obj/item/clothing/suit/storage/hooded/wintercoat = 500))
+			/obj/item/weapon/storage/bag/cash = 400
+		)
+	)
 
 /obj/machinery/biogenerator/New()
 	..()

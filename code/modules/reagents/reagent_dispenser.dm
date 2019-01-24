@@ -223,8 +223,7 @@
 				log_and_message_admins("[key_name_admin(Proj.firer)] shot a fuel tank in \the [area].")
 			else
 				log_and_message_admins("shot a fuel tank outside the world.")
-
-		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
+		if(!istype(Proj ,/obj/item/projectile/beam/practice))
 			explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()

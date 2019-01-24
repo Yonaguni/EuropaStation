@@ -32,7 +32,6 @@
 #define ANTAG_RANDOM_EXCEPTED   0x400 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
 
 // Mode/antag template macros.
-#define MODE_MERCENARY "mercenary"
 #define MODE_TRAITOR "traitor"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 130
