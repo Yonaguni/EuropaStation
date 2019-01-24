@@ -137,32 +137,10 @@
 			W.update_connections()
 			W.update_icon()
 
-	for(var/turf/T in orange(src, 1))
-		var/success = 0
-		for(var/obj/O in T)
-			for(var/b_type in blend_objects)
-				if(istype(O, b_type))
-					success = 1
-				for(var/nb_type in noblend_objects)
-					if(istype(O, nb_type))
-						success = 0
-				if(success)
-					break
-			if(success)
-				break
-
-		if(success)
-			wall_dirs += get_dir(src, T)
-			if(get_dir(src, T) in GLOB.cardinal)
-				other_dirs += get_dir(src, T)
-
 	wall_connections = dirs_to_corner_states(wall_dirs)
 	other_connections = dirs_to_corner_states(other_dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
 		return 1
-	for(var/wb_type in blend_turfs)
-		if(istype(W, wb_type))
-			return 2
 	return 0

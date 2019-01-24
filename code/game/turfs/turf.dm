@@ -40,6 +40,11 @@
 	else
 		luminosity = 1
 
+/turf/Initialize(mapload)
+	. = ..()
+	if (mapload && permit_ao)
+		queue_ao()
+
 /turf/on_update_icon()
 	update_flood_overlay()
 

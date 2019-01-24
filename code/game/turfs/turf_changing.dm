@@ -62,6 +62,9 @@
 	if (keep_air)
 		W.air = old_air
 
+	if(permit_ao)
+		regenerate_ao()
+
 	if(ispath(N, /turf/simulated))
 		if(old_fire)
 			fire = old_fire

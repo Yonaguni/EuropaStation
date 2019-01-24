@@ -93,7 +93,6 @@
 /turf/simulated/wall/alium
 	icon_state = "jaggy"
 	floor_type = /turf/simulated/floor/fixed/alium
-	list/blend_objects = newlist()
 
 /turf/simulated/wall/alium/New(var/newloc)
 	..(newloc,MATERIAL_ALIUMIUM)

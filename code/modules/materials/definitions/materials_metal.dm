@@ -96,7 +96,7 @@
 	brute_armor = 5
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = COLOR_STEEL
+	icon_colour = COLOR_GUNMETAL
 	hitsound = 'sound/weapons/smash.ogg'
 	chem_products = list(
 				/datum/reagent/iron = 15,

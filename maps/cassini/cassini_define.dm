@@ -18,3 +18,6 @@
 	emergency_shuttle_leaving_dock = "The emergency escape shuttle has departed from %dock_name%."
 	emergency_shuttle_called_message = "An emergency escape shuttle has been sent."
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled"
+
+/datum/map/cassini/perform_map_generation()
+	new /datum/random_map/noise/seafloor(null, 1, 1, 1, 64, 64)

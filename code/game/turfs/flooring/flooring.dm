@@ -105,7 +105,7 @@ var/list/flooring_types
 
 /decl/flooring/linoleum
 	name = "linoleum"
-	desc = "It's like the 2390's all over again."
+	desc = "It's like the 2090's all over again."
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 	can_paint = 1
@@ -114,10 +114,10 @@ var/list/flooring_types
 
 /decl/flooring/tiling
 	name = "floor"
-	desc = "Scuffed from the passage of countless greyshirts."
+	desc = "A solid, heavy set of flooring plates."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "tiled"
-	color = COLOR_DARK_GUNMETAL
+	color = COLOR_GRAY40
 	has_damage_range = 4
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
@@ -189,16 +189,16 @@ var/list/flooring_types
 
 /decl/flooring/tiling/new_tile/monofloor
 	icon_base = "monofloor"
-	color = COLOR_GUNMETAL
+	color = COLOR_GRAY40
 
 /decl/flooring/tiling/new_tile/steel_grid
 	icon_base = "grid"
-	color = COLOR_GUNMETAL
+	color = COLOR_GRAY40
 	build_type = /obj/item/stack/tile/grid
 
 /decl/flooring/tiling/new_tile/steel_ridged
 	icon_base = "ridged"
-	color = COLOR_GUNMETAL
+	color = COLOR_GRAY40
 	build_type = /obj/item/stack/tile/ridge
 
 /decl/flooring/wood

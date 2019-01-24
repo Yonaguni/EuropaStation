@@ -76,9 +76,10 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 			var/list/qualifications
 			for(var/culturetag in H.client.prefs.cultural_info)
 				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info[culturetag])
-				var/extra_note = culture.get_qualifications()
-				if(extra_note)
-					LAZYADD(qualifications, extra_note)
+				if(culture)
+					var/extra_note = culture.get_qualifications()
+					if(extra_note)
+						LAZYADD(qualifications, extra_note)
 			if(LAZYLEN(qualifications))
 				employment_record = "[employment_record ? "[employment_record]\[br\]" : ""][jointext(qualifications, "\[br\]>")]"
 	set_emplRecord(employment_record)
