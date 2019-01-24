@@ -8,6 +8,9 @@
 	flooded = TRUE
 	var/detail_decal
 
+/turf/simulated/ocean/dry
+	flooded = FALSE
+
 /turf/simulated/ocean/abyss
 	name = "abyssal silt"
 	desc = "Unfathomably silty."
@@ -30,7 +33,7 @@
 	. = ..()
 	if(isnull(detail_decal) && add_decal())
 		detail_decal = "asteroid[rand(0,9)]"
-		update_icon()
+	queue_icon_update()
 
 /turf/simulated/ocean/on_update_icon(update_neighbors)
 	..(update_neighbors)
