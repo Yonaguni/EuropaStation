@@ -48,12 +48,10 @@
 
 		var/tmp_icon_state = overlay_state? overlay_state : icon_state
 
-		if(istype(loc,/obj/item/clothing/under))
-			var/obj/item/clothing/under/C = loc
+		if(istype(loc,/obj/item/clothing/under/jumpsuit))
+			var/obj/item/clothing/under/jumpsuit/C = loc
 			if(on_rolled["down"] && C.rolled_down > 0)
 				tmp_icon_state = on_rolled["down"]
-			else if(on_rolled["rolled"] && C.rolled_sleeves > 0)
-				tmp_icon_state = on_rolled["rolled"]
 
 		var/use_sprite_sheet = accessory_icons[slot]
 		if(sprite_sheets[bodytype])

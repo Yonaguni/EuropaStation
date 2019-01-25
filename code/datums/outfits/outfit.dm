@@ -22,7 +22,11 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit
 	name = "Naked"
 
-	var/uniform = null
+	var/list/uniform_accessories
+	var/uniform_lower = null
+	var/uniform_upper = null
+	var/uniform_over = null
+
 	var/suit = null
 	var/back = null
 	var/belt = null
@@ -127,9 +131,35 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit/proc/equip_base(mob/living/carbon/human/H, var/equip_adjustments)
 	pre_equip(H)
 
-	//Start with uniform,suit,backpack for additional slots
-	if(uniform)
-		H.equip_to_slot_or_del(new uniform(H),slot_w_uniform)
+	//Start with uniform.
+	var/obj/item/clothing/under/uniform_object
+	for(var/thing in list(uniform_lower, uniform_upper, uniform_over))
+		if(ispath(thing))
+			var/obj/item/clothing/under/component = new thing
+			if(uniform_object)
+				if(uniform_object.under_parts && uniform_object.under_parts[component.under_type])
+					qdel(component)
+				else
+					component.forceMove(uniform_object)
+					if(!uniform_object.under_parts)
+						uniform_object.under_parts = list()
+					uniform_object.under_parts[component.under_type] = component
+			else
+				uniform_object = component
+
+	if(uniform_object)
+		uniform_object.update_values()
+		uniform_object.update_icon()
+		H.equip_to_slot_or_del(uniform_object, slot_w_uniform)
+
+	if(H.w_uniform && uniform_accessories)
+		for(var/atype in uniform_accessories)
+			if(!(locate(atype) in H.w_uniform))
+				var/obj/item/clothing/accessory/W = new atype(H)
+				H.w_uniform.attackby(W, H)
+				if(W.loc != H.w_uniform) qdel(W)
+
+	// Handle everything else.
 	if(suit)
 		H.equip_to_slot_or_del(new suit(H),slot_wear_suit)
 	if(back)

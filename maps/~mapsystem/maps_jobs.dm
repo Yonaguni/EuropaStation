@@ -3,7 +3,6 @@
 	var/species_to_job_blacklist = list()
 	var/job_to_species_whitelist = list()
 	var/job_to_species_blacklist = list()
-
 	var/default_assistant_title = "Assistant"
 
 // The white, and blacklist are type specific, any subtypes (of both species and jobs) have to be added explicitly

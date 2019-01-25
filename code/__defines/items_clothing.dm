@@ -20,19 +20,18 @@
 #define SLOT_TIE        0x4000
 #define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
 
-#define ACCESSORY_SLOT_UTILITY  "Utility"
-#define ACCESSORY_SLOT_HOLSTER	"Holster"
-#define ACCESSORY_SLOT_ARMBAND  "Armband"
-#define ACCESSORY_SLOT_DEPT		"Department"
-#define ACCESSORY_SLOT_DECOR    "Decor"
-#define ACCESSORY_SLOT_MEDAL    "Medal"
-#define ACCESSORY_SLOT_INSIGNIA "Insignia"
-#define ACCESSORY_SLOT_ARMOR_C  "Chest armor"
-#define ACCESSORY_SLOT_ARMOR_A  "Arm armor"
-#define ACCESSORY_SLOT_ARMOR_L  "Leg armor"
-#define ACCESSORY_SLOT_ARMOR_S  "Armor storage"
-#define ACCESSORY_SLOT_ARMOR_M  "Misc armor"
-#define ACCESSORY_SLOT_HELM_C	"Helmet cover"
+#define ACCESSORY_SLOT_UTILITY  "utility"
+#define ACCESSORY_SLOT_HOLSTER	"holster"
+#define ACCESSORY_SLOT_ARMBAND  "armband"
+#define ACCESSORY_SLOT_DEPT		"department"
+#define ACCESSORY_SLOT_DECOR    "decor"
+#define ACCESSORY_SLOT_MEDAL    "medal"
+#define ACCESSORY_SLOT_INSIGNIA "insignia"
+#define ACCESSORY_SLOT_ARMOR_C  "chest armor"
+#define ACCESSORY_SLOT_ARMOR_A  "arm armor"
+#define ACCESSORY_SLOT_ARMOR_L  "leg armor"
+#define ACCESSORY_SLOT_ARMOR_S  "armor storage"
+#define ACCESSORY_SLOT_ARMOR_M  "misc armor"
 
 // Bitmasks for the flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!

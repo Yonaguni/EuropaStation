@@ -44,7 +44,6 @@
 	name = "jumpsuit"
 	icon_state = "jumpsuit"
 	item_state = "jumpsuit"
-	worn_state = "jumpsuit"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	var/global/list/clothing_choices
 

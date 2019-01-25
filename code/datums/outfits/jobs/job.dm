@@ -1,7 +1,7 @@
 /decl/hierarchy/outfit/job
 	name = "Standard Gear"
 	hierarchy_type = /decl/hierarchy/outfit/job
-	uniform = /obj/item/clothing/under/color/grey
+	uniform_over = /obj/item/clothing/under/jumpsuit/gray
 	shoes = /obj/item/clothing/shoes
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/civilian
