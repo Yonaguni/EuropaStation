@@ -30,14 +30,17 @@
 	infowindow.set_window_options("can_close=0")
 	infowindow.set_content(output)
 	infowindow.open()
-	return
 
 client/Topic(href, href_list[])
+	. = ..()
+	if (.)
+		return
+
 	if(href_list["upstream_link"])
-		src << link(config.upstreamurl)
+		open_link(src, config.upstreamurl)
 
 	if (href_list["bugtracker_link"])
-		src << link(config.githuburl)
+		open_link(src, config.githuburl)
 
 	if(href_list["wiki_link"])
 		src.wiki()
@@ -55,4 +58,3 @@ client/Topic(href, href_list[])
 			if(!(src.ckey in GLOB.acceptedKeys)) //If they've yet to view the info window they must be just joining so we note this then show them the normal menu.
 				M.new_player_panel()
 				GLOB.acceptedKeys.Add(src.ckey)
-	..()

@@ -1630,6 +1630,7 @@
 #include "code\modules\mob\new_player\new_player.dm"
 #include "code\modules\mob\new_player\poll.dm"
 #include "code\modules\mob\new_player\preferences_setup.dm"
+#include "code\modules\mob\new_player\server_info_window.dm"
 #include "code\modules\mob\observer\observer.dm"
 #include "code\modules\mob\observer\freelook\chunk.dm"
 #include "code\modules\mob\observer\freelook\eye.dm"
