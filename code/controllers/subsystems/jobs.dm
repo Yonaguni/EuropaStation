@@ -393,10 +393,14 @@ SUBSYSTEM_DEF(jobs)
 					to_chat(H, "<span class='warning'>Your current species, job, or whitelist status does not permit you to spawn with [thing]!</span>")
 					continue
 
-				if(!G.slot || G.slot == slot_tie || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
+				world.log << "aaaa [G.slot] [G.path] [json_encode(loadout_taken_slots)] aaaa"
+				if(!G.slot || G.slot == slot_tie || (G.slot != slot_w_uniform && (G.slot in loadout_taken_slots)))
 					spawn_in_storage.Add(G)
+				else if(G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
+					loadout_taken_slots |= G.slot
 				else
-					loadout_taken_slots.Add(G.slot)
+					spawn_in_storage.Add(G)
+
 	return spawn_in_storage
 
 /datum/controller/subsystem/jobs/proc/equip_rank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
@@ -421,9 +425,9 @@ SUBSYSTEM_DEF(jobs)
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
 
+		spawn_in_storage = equip_custom_loadout(H, job)
 		job.equip(H, H.mind ? H.mind.role_alt_title : "")
 		job.apply_fingerprints(H)
-		spawn_in_storage = equip_custom_loadout(H, job)
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 

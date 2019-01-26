@@ -148,12 +148,12 @@
 			var/mob/living/carbon/human/H = user
 			if(istype(H) && H.w_uniform == src)
 				if(under.under_type == under_type)
-					to_chat(user, "<span class='warning'>You cannot wear two of that kind of garment at once, no matter how fashionable it is.</span>")
+					to_chat(user, SPAN_WARNING("You cannot wear \the [under] with \the [src], no matter how fashionable it is."))
 					return
 				if(!islist(under_parts))
 					under_parts = list()
 				if(!isnull(under_parts[under.under_type]))
-					to_chat(user, "<span class='warning'>You cannot wear two of that kind of garment at once, no matter how fashionable it is.</span>")
+					to_chat(user, SPAN_WARNING("You cannot wear \the [under] with \the [under_parts[under.under_type]], no matter how fashionable it is."))
 					return
 				user.drop_from_inventory(thing)
 				thing.forceMove(src)
@@ -163,9 +163,18 @@
 				return
 	. = ..()
 
+/obj/item/clothing/under/examine(var/mob/user)
+	. = ..(user)
+	if(under_parts)
+		to_chat(user, "The outfit consists of: ")
+		for(var/thing in under_parts)
+			var/obj/item/clothes = under_parts[thing]
+			to_chat(user, "\icon[clothes] \A [clothes]. [clothes.desc]")
+
 /obj/item/clothing/under/proc/update_values()
 
 	name = initial(name)
+	desc = initial(desc)
 	body_parts_covered = initial(body_parts_covered)
 
 	var/list/under_names = list(name)
@@ -175,7 +184,8 @@
 			if(istype(thing))
 				under_names += thing.name
 				body_parts_covered |= thing.body_parts_covered
-		name = english_list(under_names, is_item_list = TRUE)
+		name = english_list(under_names)
+		desc = null
 
 	if(islist(under_parts) && istype(under_parts[PARTIAL_UNIFORM_OVER], /obj/item/clothing/under/jumpsuit))
 		verbs |= /obj/item/clothing/under/verb/toggle_wrapper
@@ -185,9 +195,11 @@
 		verbs -= /obj/item/clothing/under/verb/rollsuit_wrapper
 
 /obj/item/clothing/under/Destroy()
-	for(var/thing in under_parts)
-		qdel(thing)
-	under_parts.Cut()
+	if(islist(under_parts))
+		for(var/thing in under_parts)
+			if(under_parts[thing])
+				qdel(under_parts[thing])
+		under_parts.Cut()
 	. = ..()
 
 /obj/item/clothing/under/equipped()

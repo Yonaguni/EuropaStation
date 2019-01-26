@@ -132,25 +132,22 @@ var/list/outfits_decls_by_type_
 	pre_equip(H)
 
 	//Start with uniform.
-	var/obj/item/clothing/under/uniform_object
+	var/obj/item/clothing/under/uniform_object = H.w_uniform
 	for(var/thing in list(uniform_lower, uniform_upper, uniform_over))
 		if(ispath(thing))
-			var/obj/item/clothing/under/component = new thing
+			var/obj/item/clothing/under/component = new thing(H)
 			if(uniform_object)
-				if(uniform_object.under_parts && uniform_object.under_parts[component.under_type])
+				uniform_object.attackby(component, H)
+				if(component.loc != uniform_object)
 					qdel(component)
-				else
-					component.forceMove(uniform_object)
-					if(!uniform_object.under_parts)
-						uniform_object.under_parts = list()
-					uniform_object.under_parts[component.under_type] = component
 			else
 				uniform_object = component
 
 	if(uniform_object)
 		uniform_object.update_values()
 		uniform_object.update_icon()
-		H.equip_to_slot_or_del(uniform_object, slot_w_uniform)
+		if(uniform_object != H.w_uniform)
+			H.equip_to_slot_or_del(uniform_object, slot_w_uniform)
 
 	if(H.w_uniform && uniform_accessories)
 		for(var/atype in uniform_accessories)

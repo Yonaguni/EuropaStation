@@ -1,5 +1,6 @@
 /obj/item/clothing/under/jumpsuit
 	name = "jumpsuit"
+	desc = "A utilitarian, robust jumpsuit."
 	icon_state = "jumpsuit"
 	under_type = PARTIAL_UNIFORM_OVER
 
