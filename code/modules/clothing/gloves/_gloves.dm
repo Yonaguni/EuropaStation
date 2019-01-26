@@ -16,6 +16,8 @@
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_hands_unathi.dmi',
 		)
 	blood_overlay_type = "bloodyhands"
+
+	var/can_be_coloured
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
 	var/clipped = 0

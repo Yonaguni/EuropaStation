@@ -39,7 +39,6 @@
 	open_icon = icon(base_icon, "base")
 	open_icon.Blend(icon(base_icon, "open"), ICON_OVERLAY)
 	open_icon.Blend(color, BLEND_ADD)
-	open_icon.Blend(icon(base_icon, "interior"), ICON_OVERLAY)
 
 	// Generate basic closed icons.
 	closed_emagged_icon = icon(base_icon, "base")
@@ -51,8 +50,12 @@
 			var/icon/this_decal_icon = icon(decal_icon, thing)
 			this_decal_icon.Blend(decals[thing], BLEND_ADD)
 			closed_emagged_icon.Blend(this_decal_icon, ICON_OVERLAY)
+			open_icon.Blend(this_decal_icon, ICON_OVERLAY)
 	closed_locked_icon =   icon(closed_emagged_icon)
 	closed_unlocked_icon = icon(closed_emagged_icon)
+
+	// Finish up open icon.
+	open_icon.Blend(icon(base_icon, "interior"), ICON_OVERLAY)
 
 	// Add lock lights.
 	if(can_lock)
@@ -225,7 +228,7 @@
 	)
 	extra_decals = list(
 		"electric" = COLOR_BEASTY_BROWN,
-		"vertical_stripe_simple" = COLOR_BEASTY_BROWN
+		"horizontal_stripe_simple" = COLOR_BEASTY_BROWN
 	)
 
 /decl/closet_appearance/secure_closet/engineering/atmos
@@ -241,7 +244,7 @@
 	)
 	extra_decals = list(
 		"fire" = COLOR_BEASTY_BROWN,
-		"vertical_stripe_simple" = COLOR_BEASTY_BROWN
+		"horizontal_stripe_simple" = COLOR_BEASTY_BROWN
 	)
 
 /decl/closet_appearance/secure_closet/engineering/tools
@@ -251,7 +254,7 @@
 	)
 	extra_decals = list(
 		"tool" = COLOR_BEASTY_BROWN,
-		"vertical_stripe_simple" = COLOR_BEASTY_BROWN
+		"horizontal_stripe_simple" = COLOR_BEASTY_BROWN
 	)
 
 /decl/closet_appearance/secure_closet/engineering/tools/radiation
@@ -415,7 +418,7 @@
 	color = COLOR_RED_GRAY
 	extra_decals = list(
 		"extinguisher" = COLOR_OFF_WHITE,
-		"vertical_stripe_simple" = COLOR_OFF_WHITE,
+		"horizontal_stripe_simple" = COLOR_OFF_WHITE,
 	)
 
 /decl/closet_appearance/alien

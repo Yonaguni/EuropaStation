@@ -185,7 +185,9 @@
 		verbs -= /obj/item/clothing/under/verb/rollsuit_wrapper
 
 /obj/item/clothing/under/Destroy()
-	explode()
+	for(var/thing in under_parts)
+		qdel(thing)
+	under_parts.Cut()
 	. = ..()
 
 /obj/item/clothing/under/equipped()

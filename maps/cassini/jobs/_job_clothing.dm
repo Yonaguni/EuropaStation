@@ -5,15 +5,36 @@
 	stripe_colour = COLOR_TEAL
 	gender = PLURAL
 
+/obj/item/clothing/under/jumpsuit/cassini/police
+	desc = "Some sturdy, hard-worn coveralls. The tag reads 'PROPERTY OF CASSINI'. It has white stripes indicating the Colonial Police."
+	color = COLOR_POLICE
+	stripe_colour = COLOR_POLICE_LIGHT
+
+/obj/item/clothing/under/jumpsuit/cassini/police/manager
+	collar_colour = COLOR_GOLD
+
+/obj/item/clothing/under/jumpsuit/cassini/admin
+	stripe_colour = COLOR_OFF_WHITE
+	desc = "Some sturdy, hard-worn coveralls. The tag reads 'PROPERTY OF CASSINI'. It has white stripes indicating Adminstration."
+
+/obj/item/clothing/under/jumpsuit/cassini/admin/manager
+	collar_colour = COLOR_GOLD
+
 /obj/item/clothing/under/jumpsuit/cassini/utilities
 	desc = "Some sturdy, hard-worn coveralls. The tag reads 'PROPERTY OF CASSINI'. It has orange stripes indicating Utilities."
 	color = COLOR_WARM_YELLOW
 	stripe_colour = COLOR_ORANGE
 
+/obj/item/clothing/under/jumpsuit/cassini/utilities/manager
+	collar_colour = COLOR_GOLD
+
 /obj/item/clothing/under/jumpsuit/cassini/medical
 	desc = "Some sturdy, bleached coveralls. The tag reads 'PROPERTY OF CASSINI'. It has blue stripes indicating Civil Health."
 	color = COLOR_OFF_WHITE
 	stripe_colour = COLOR_BLUE_GRAY
+
+/obj/item/clothing/under/jumpsuit/cassini/medical/manager
+	collar_colour = COLOR_GOLD
 
 /obj/item/clothing/under/lower/pants/police
 	name = "officer's pants"
@@ -30,7 +51,7 @@
 
 /obj/item/clothing/head/police_hat
 	name = "police hat"
-	desc = "A hat presumably belonging to a police officer."
+	desc = "A hat presumably belonging to a police officer. Do not ask what is under it."
 	icon_state = "police_hat"
 
 /obj/item/clothing/accessory/police_badge
@@ -60,3 +81,7 @@
 	name = "black tie"
 	desc = "A simple, formal black tie."
 	color = COLOR_GRAY20
+
+/obj/item/clothing/suit/armor/vest/police
+	name = "police vest"
+	icon_state = "policevest"

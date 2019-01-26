@@ -2,8 +2,6 @@
 	desc = "These gloves will protect the wearer from electric shocks."
 	name = "insulated gloves"
 	color = COLOR_YELLOW
-	icon_state = "white"
-	item_state = "lgloves"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 

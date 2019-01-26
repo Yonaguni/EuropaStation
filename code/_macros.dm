@@ -23,7 +23,7 @@
 
 #define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define iscolorablegloves(A) (istype(A, /obj/item/clothing/gloves/color))
+#define iscolorablegloves(A) (istype(A, /obj/item/clothing/gloves) && A:can_be_coloured)
 
 #define isclient(A) istype(A, /client)
 

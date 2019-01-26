@@ -7,6 +7,7 @@
 	var/sensor_mode = 0               // 1 = Report living/dead, 2 = Report detailed damages, 3 = Report location
 	var/rolled_down = -1               // 0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/stripe_colour
+	var/collar_colour
 
 /obj/item/clothing/under/jumpsuit/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
@@ -15,6 +16,13 @@
 		I.plane = ret.plane
 		I.layer = ret.layer
 		I.color = stripe_colour
+		I.appearance_flags |= RESET_COLOR
+		ret.add_overlay(I)
+	if(collar_colour)
+		var/image/I = image(ret.icon, "[ret.icon_state]_collar")
+		I.plane = ret.plane
+		I.layer = ret.layer
+		I.color = collar_colour
 		I.appearance_flags |= RESET_COLOR
 		ret.add_overlay(I)
 	return ret
@@ -43,6 +51,12 @@
 	if(stripe_colour)
 		var/image/I = image(icon, "[icon_state]_stripe")
 		I.color = stripe_colour
+		I.appearance_flags |= RESET_COLOR
+		overlays += I
+
+	if(collar_colour)
+		var/image/I = image(icon, "[icon_state]_collar")
+		I.color = collar_colour
 		I.appearance_flags |= RESET_COLOR
 		overlays += I
 

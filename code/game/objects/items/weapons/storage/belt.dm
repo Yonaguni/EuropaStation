@@ -130,3 +130,43 @@
 		/obj/item/device/binoculars,
 		/obj/item/clothing/gloves
 		)
+
+/obj/item/weapon/storage/belt/utility
+	name = "tool belt"
+	desc = "A durable belt, festooned with hooks, slots, and pouches."
+	icon_state = "utilitybelt"
+	item_state = "utility"
+	overlay_flags = BELT_OVERLAY_ITEMS
+	can_hold = list(
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/taperoll/engineering,
+		/obj/item/inducer/,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/taperoll,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/marshalling_wand,
+		/obj/item/weapon/hand_labeler,
+		/obj/item/clothing/gloves
+		)
+
+/obj/item/weapon/storage/belt/utility/full/New()
+	..()
+	new /obj/item/weapon/screwdriver(src)
+	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/stack/cable_coil/random(src, 30)
+	update_icon()
