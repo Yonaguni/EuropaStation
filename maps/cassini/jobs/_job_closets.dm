@@ -2,7 +2,7 @@
 	color = COLOR_CASSINI
 	decals = list(
 		"lower_vent",
-		"inset" = COLOR_GRAY
+		"inset" = COLOR_GRAY40
 	)
 
 /decl/closet_appearance/cassini/secure
