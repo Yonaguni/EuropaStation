@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 /datum/map
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
+	var/map_info = "This map has no specific information"
 	var/path
 
 	var/list/station_levels = list() // Z-levels the station exists on

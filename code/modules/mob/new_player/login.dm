@@ -35,7 +35,7 @@
 	set_sight(sight|SEE_TURFS)
 	GLOB.player_list |= src
 
-	if (client.ckey in acceptedKeys) //Check if they've already clicked the I ACCEPT info window thing, each round once.
+	if (client.ckey in GLOB.acceptedKeys) //Check if they've already clicked the I ACCEPT info window thing, each round once.
 		new_player_panel()
 	else
 		client.check_server_info()

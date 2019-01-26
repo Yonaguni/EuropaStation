@@ -206,10 +206,10 @@ GUEST_BAN
 # GITHUBURL https://github.com/example-user/example-repository
 
 ## Upstream Github address - just for things like "This is a modified fork of [Baystation]"
-# UPSTREAMURL https://github.com/example-user/example-repository
+UPSTREAMURL https://github.com/Baystation12/Baystation12/
 
 ## Upstream name
-# UPSTREAM Baystation12
+UPSTREAM Baystation12
 
 ## GitHub new issue address
 # ISSUEREPORTURL https://github.com/example-user/example-repository/issues/new

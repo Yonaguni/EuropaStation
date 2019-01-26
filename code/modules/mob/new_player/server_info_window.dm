@@ -12,7 +12,7 @@
 	<br>
 	[file2text("config/rules.html")]
 	<p><b>Map info:</b></p>
-	[using_map.motd]
+	[GLOB.using_map.map_info]
 	<br>
 	<br>
 	<div align='center'>
@@ -52,7 +52,7 @@ client/Topic(href, href_list[])
 		src.infowindow.close()
 		if(isnewplayer(src.mob))
 			var/mob/new_player/M = src.mob
-			if(!(src.ckey in acceptedKeys)) //If they've yet to view the info window they must be just joining so we note this then show them the normal menu.
+			if(!(src.ckey in GLOB.acceptedKeys)) //If they've yet to view the info window they must be just joining so we note this then show them the normal menu.
 				M.new_player_panel()
-				acceptedKeys.Add(src.ckey)
+				GLOB.acceptedKeys.Add(src.ckey)
 	..()
