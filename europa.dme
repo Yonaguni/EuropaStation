@@ -2220,8 +2220,6 @@
 #include "maps\away_sites_testing\away_sites_testing_define.dm"
 #include "maps\cassini\cassini.dm"
 #include "maps\cassini\cassini_define.dm"
-#include "maps\cassini\cassini-1.dmm"
-#include "maps\cassini\jobs\_job_closets.dm"
 #include "maps\example\example_define.dm"
 #include "maps\overmap_example\overmap_example_define.dm"
 #include "maps\random_ruins\exoplanet_ruins\exoplanet_ruins.dm"

@@ -41,6 +41,8 @@
 			return global.SSalarm;
 		if("SSantags")
 			return global.SSantags;
+		if("SSao")
+			return global.SSao;
 		if("SSatoms")
 			return global.SSatoms;
 		if("SScharacter_setup")
@@ -89,6 +91,8 @@
 			return global.SSobj;
 		if("SSopen_space")
 			return global.SSopen_space;
+		if("SSoverlays")
+			return global.SSoverlays;
 		if("SSpersistence")
 			return global.SSpersistence;
 		if("SSplants")
@@ -922,6 +926,8 @@
 			global.SSalarm=newval;
 		if("SSantags")
 			global.SSantags=newval;
+		if("SSao")
+			global.SSao=newval;
 		if("SSatoms")
 			global.SSatoms=newval;
 		if("SScharacter_setup")
@@ -970,6 +976,8 @@
 			global.SSobj=newval;
 		if("SSopen_space")
 			global.SSopen_space=newval;
+		if("SSoverlays")
+			global.SSoverlays=newval;
 		if("SSpersistence")
 			global.SSpersistence=newval;
 		if("SSplants")
@@ -1782,11 +1790,10 @@
 	"SSairflow",
 	"SSalarm",
 	"SSantags",
+	"SSao",
 	"SSatoms",
 	"SScharacter_setup",
 	"SSchemistry",
-	"SScircuit",
-	"SScircuit_components",
 	"SScodex",
 	"SSculture",
 	"SSevac",
@@ -1808,6 +1815,7 @@
 	"SSnano",
 	"SSobj",
 	"SSopen_space",
+	"SSoverlays",
 	"SSpersistence",
 	"SSplants",
 	"SSprocessing",
@@ -1826,11 +1834,6 @@
 	"SSvines",
 	"SSvote",
 	"SSwireless",
-	"SSxenoarch",
-	"Tier1Runes",
-	"Tier2Runes",
-	"Tier3Runes",
-	"Tier4Runes",
 	"_all_globals",
 	"_client_preferences",
 	"_client_preferences_by_key",
@@ -1881,7 +1884,6 @@
 	"antag_add_finished",
 	"appearance_manager",
 	"area_repository",
-	"artefact_feedback",
 	"ascii_esc",
 	"ascii_green",
 	"ascii_red",
@@ -1898,7 +1900,6 @@
 	"base_miss_chance",
 	"basic_robolimb",
 	"blocked",
-	"bomb_set",
 	"cable_list",
 	"cached_icons",
 	"cached_space",
@@ -1906,8 +1907,6 @@
 	"camera_range_display_status",
 	"camera_repository",
 	"cameranet",
-	"can_call_ert",
-	"captain_announcement",
 	"changelog_hash",
 	"channel_color_presets",
 	"channel_to_radio_key",
@@ -1954,7 +1953,6 @@
 	"empty_playable_ai_cores",
 	"endgame_exits",
 	"endgame_safespawns",
-	"ert_base_chance",
 	"escape_pods",
 	"escape_pods_by_name",
 	"evacuation_controller",
@@ -1968,7 +1966,6 @@
 	"failed_unit_tests",
 	"file_uid",
 	"fileaccess_timer",
-	"finds_as_strings",
 	"fire_alarm",
 	"flesh_hud_colours",
 	"floorIsLava",
@@ -2001,7 +1998,6 @@
 	"gzn_check",
 	"hadevent",
 	"hazard_overlays",
-	"hivemind_bank",
 	"holder_mob_icon_cache",
 	"host",
 	"href_logfile",
@@ -2047,15 +2043,9 @@
 	"merged",
 	"message_delay",
 	"message_servers",
-	"meteors_armageddon",
-	"meteors_cataclysm",
-	"meteors_catastrophic",
-	"meteors_dust",
 	"meteors_major",
 	"meteors_minor",
 	"meteors_moderate",
-	"meteors_normal",
-	"meteors_threatening",
 	"mining_floors",
 	"mining_walls",
 	"minor_air_alarms",
@@ -2065,9 +2055,6 @@
 	"motion_alarm",
 	"moving_levels",
 	"multi_point_spawns",
-	"narsie_behaviour",
-	"narsie_cometh",
-	"narsie_list",
 	"navbeacons",
 	"news_network",
 	"newscaster_standard_feeds",
@@ -2080,7 +2067,6 @@
 	"ntnet_global",
 	"ntnrc_uid",
 	"nttransfer_uid",
-	"nuke_disks",
 	"num_financial_terminals",
 	"organ_cache",
 	"organ_rel_size",
@@ -2097,8 +2083,6 @@
 	"plant_seed_sprites",
 	"playable_species",
 	"power_alarm",
-	"powerinstances",
-	"powers",
 	"priority_air_alarms",
 	"priority_announcement",
 	"priv_all_access",
@@ -2109,9 +2093,6 @@
 	"priv_region_access",
 	"priv_station_access",
 	"priv_syndicate_access",
-	"prometheans",
-	"protected_objects",
-	"rad_collectors",
 	"radio_controller",
 	"radiochannels",
 	"random_junk_",
@@ -2123,7 +2104,6 @@
 	"req_console_assistance",
 	"req_console_information",
 	"req_console_supplies",
-	"responsive_carriers",
 	"restricted_camera_networks",
 	"revdata",
 	"robot_custom_icons",
@@ -2136,7 +2116,6 @@
 	"runtime_diary",
 	"same_wires",
 	"secret_force_mode",
-	"send_emergency_team",
 	"sent_spiders_to_station",
 	"server_name",
 	"severity_to_string",
@@ -2152,7 +2131,6 @@
 	"sounds_cache",
 	"spacevines_spawned",
 	"sparring_attack_cache",
-	"spells",
 	"splatter_cache",
 	"sqladdress",
 	"sqldb",
@@ -2213,10 +2191,8 @@
 	"turbolifts",
 	"turret_icons",
 	"uniqueness_repository",
-	"universe_has_ended",
 	"uplink",
 	"uplink_purchase_repository",
-	"uplink_random_selections_",
 	"valid_bloodtypes",
 	"vendor_account",
 	"ventcrawl_machinery",
