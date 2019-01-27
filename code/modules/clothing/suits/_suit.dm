@@ -10,12 +10,6 @@
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_suit_vox.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_suit_unathi.dmi',
-		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_suit_gas.dmi',
-		)
-
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc

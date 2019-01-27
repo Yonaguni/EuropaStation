@@ -1393,31 +1393,6 @@
 	obj_flags = 0
 	wrapped = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube
-	name = "farwa cube"
-	monkey_type = /mob/living/carbon/human/farwa
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
-	name = "farwa cube"
-	monkey_type = /mob/living/carbon/human/farwa
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube
-	name = "stok cube"
-	monkey_type = /mob/living/carbon/human/stok
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
-	name = "stok cube"
-	monkey_type = /mob/living/carbon/human/stok
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube
-	name = "neaera cube"
-	monkey_type = /mob/living/carbon/human/neaera
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
-	name = "neaera cube"
-	monkey_type = /mob/living/carbon/human/neaera
-
-
 //Spider cubes, all that's left of the cube PR
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/spidercube

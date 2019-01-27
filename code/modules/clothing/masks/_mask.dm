@@ -3,10 +3,6 @@
 	icon = 'icons/obj/clothing/obj_mask.dmi'
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_mask_vox.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_mask_unathi.dmi',
-		)
 
 	var/voicechange = 0
 	var/list/say_messages

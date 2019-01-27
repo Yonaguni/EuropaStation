@@ -20,7 +20,6 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude", SPECIES_NABBER, SPECIES_DIONA, "Xenophage")
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 	var/obj/machinery/camera/camera
@@ -86,7 +85,6 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude", SPECIES_NABBER, SPECIES_DIONA, "Xenophage")
 	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA)
 
 /obj/item/clothing/suit/space/New()

@@ -6,11 +6,6 @@ var/list/holder_mob_icon_cache = list()
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
-
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_head_vox.dmi',
-		)
-
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/onmob/items/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/onmob/items/righthand_holder.dmi',
