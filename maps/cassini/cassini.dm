@@ -1,5 +1,6 @@
 #if !defined(using_map_DATUM)
 	#include "cassini_areas.dm"
+	#include "cassini_unit_testing.dm"
 	#include "jobs/_jobs.dm"
 	#include "jobs/_job_closets.dm"
 	#include "jobs/_job_clothing.dm"

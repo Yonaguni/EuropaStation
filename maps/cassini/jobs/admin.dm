@@ -6,7 +6,6 @@
 	head_position = TRUE
 	total_positions = 1
 	spawn_positions = 1
-	hud_icon = "hudcaptain"
 	selection_color = "#1d1d4f"
 	req_admin_notify = 1
 	outfit_type = /decl/hierarchy/outfit/job/cassini/clerk/administrator
@@ -24,7 +23,6 @@
 	department = "Command"
 	total_positions = 1
 	spawn_positions = 1
-	hud_icon = "hudheadofpersonnel"
 	supervisors = "the Civil Administrator"
 	selection_color = "#2f2f7f"
 	outfit_type = /decl/hierarchy/outfit/job/cassini/clerk

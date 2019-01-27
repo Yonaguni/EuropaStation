@@ -66,6 +66,18 @@
 /obj/effect/landmark/start,
 /turf/simulated/floor/tiled/dark,
 /area/cassini)
+"s" = (
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	icon_state = "map_scrubber_on";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/cassini)
+"t" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/cassini)
 "u" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -78,6 +90,10 @@
 "w" = (
 /obj/structure/closet/secure_closet/cassini,
 /turf/simulated/floor/tiled/dark,
+/area/cassini)
+"x" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
 /area/cassini)
 "y" = (
 /obj/machinery/power/debug_items/infinite_generator,
@@ -102,9 +118,25 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/cassini)
+"E" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/steel_grid,
+/area/cassini)
 "F" = (
 /obj/structure/closet/secure_closet/cassini/police,
 /turf/simulated/floor/tiled/dark,
+/area/cassini)
+"G" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/cassini)
+"H" = (
+/obj/effect/landmark/test/space_turf,
+/turf/simulated/ocean,
+/area/space/ocean)
+"I" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel_grid,
 /area/cassini)
 "J" = (
 /obj/machinery/light{
@@ -140,12 +172,25 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/cassini)
+"Q" = (
+/obj/machinery/alarm{
+	pixel_y = 12
+	},
+/turf/simulated/floor/tiled/dark,
+/area/cassini)
 "R" = (
 /obj/machinery/light{
 	icon_state = "tube_map";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
+/area/cassini)
+"S" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	icon_state = "map_vent";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
 /area/cassini)
 "T" = (
 /obj/structure/closet/secure_closet/cassini/medical,
@@ -154,6 +199,11 @@
 "U" = (
 /obj/structure/closet/secure_closet/cassini/utilities,
 /turf/simulated/floor/tiled/dark,
+/area/cassini)
+"V" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/cassini)
 "W" = (
 /obj/machinery/light{
@@ -368,7 +418,7 @@ a
 a
 a
 a
-a
+H
 a
 a
 "}
@@ -1471,7 +1521,7 @@ j
 j
 j
 j
-f
+Q
 u
 b
 b
@@ -1597,11 +1647,11 @@ d
 j
 f
 l
-k
-i
-d
-d
-i
+V
+E
+G
+G
+S
 k
 f
 f
@@ -1927,11 +1977,11 @@ k
 h
 f
 l
-k
-i
-d
-d
-i
+t
+I
+x
+x
+s
 k
 f
 R

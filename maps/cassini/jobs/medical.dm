@@ -10,7 +10,6 @@
 	welcome_blurb = "Treat wounds, mix medicines, administer pills, and conduct surgery. Try to keep at least some of the colonists alive."
 	total_positions = 3
 	spawn_positions = 3
-	hud_icon = "hudmedicaldoctor"
 	outfit_type = /decl/hierarchy/outfit/job/cassini/medical
 
 /datum/job/medical/physician_chief
