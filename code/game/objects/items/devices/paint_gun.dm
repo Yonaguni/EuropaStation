@@ -78,7 +78,7 @@
 		to_chat(usr, "<span class='notice'>You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>.</span>")
 		return
 
-	var/turf/simulated/wall/W = A
+	var/turf/simulated/wall/constructed/W = A
 	if(istype(W))
 		W.paint_color = paint_colour
 		W.update_icon()

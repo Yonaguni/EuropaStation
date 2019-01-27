@@ -84,7 +84,7 @@
 	name = "Near CSV Bearcat Starboard Astern"
 	landmark_tag = "nav_bearcat_below_starboardastern"
 
-/turf/simulated/wall //landlubbers go home
+/turf/simulated/wall/constructed //landlubbers go home
 	name = "bulkhead"
 
 /turf/simulated/floor
@@ -96,7 +96,7 @@
 /decl/flooring/tiling
 	name = "deck"
 
-/turf/simulated/wall/r_wall/hull
+/turf/simulated/wall/constructed/r_wall/hull
 	color = COLOR_DARK_BROWN
 
 /obj/machinery/door/airlock/hatch/autoname

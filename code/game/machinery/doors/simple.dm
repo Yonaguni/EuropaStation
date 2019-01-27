@@ -210,8 +210,8 @@
 /obj/machinery/door/unpowered/simple/uranium/New(var/newloc,var/material_name,var/complexity)
 	..(newloc, MATERIAL_URANIUM, complexity)
 
-/obj/machinery/door/unpowered/simple/sandstone/New(var/newloc,var/material_name,var/complexity)
-	..(newloc, MATERIAL_SANDSTONE, complexity)
+/obj/machinery/door/unpowered/simple/limestone/New(var/newloc,var/material_name,var/complexity)
+	..(newloc, MATERIAL_LIMESTONE, complexity)
 
 /obj/machinery/door/unpowered/simple/diamond/New(var/newloc,var/material_name,var/complexity)
 	..(newloc, MATERIAL_DIAMOND, complexity)

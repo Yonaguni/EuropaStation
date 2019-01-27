@@ -29,13 +29,13 @@
 	hidden_from_codex = TRUE
 
 /material/stone
-	name = MATERIAL_SANDSTONE
-	lore_text = "A clastic sedimentary rock. The cost of boosting it to orbit is almost universally much higher than the actual value of the material."
-	stack_type = /obj/item/stack/material/sandstone
-	icon_base = "stone"
-	table_icon_base = "stone"
+	name = MATERIAL_LIMESTONE
+	lore_text = "A clastic sedimentary rock."
+	stack_type = /obj/item/stack/material/limestone
+	icon_base = "rock"
+	table_icon_base = "rock"
 	icon_reinf = "reinf_stone"
-	icon_colour = "#d9c179"
+	icon_colour = "#b7cfe2"
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
 	hardness = 55

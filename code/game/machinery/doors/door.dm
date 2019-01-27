@@ -493,14 +493,14 @@
 		var/turf/T = get_step(src, direction)
 		var/success = 0
 
-		if( istype(T, /turf/simulated/wall))
+		if( istype(T, /turf/simulated/wall/constructed))
 			success = 1
 			if(propagate)
-				var/turf/simulated/wall/W = T
+				var/turf/simulated/wall/constructed/W = T
 				W.update_connections(1)
 				W.update_icon()
 
-		else if( istype(T, /turf/simulated/shuttle/wall) ||  istype(T, /turf/unsimulated/wall))
+		else if( istype(T, /turf/simulated/shuttle/wall) ||  istype(T, /turf/unsimulated/wall/constructed))
 			success = 1
 		else
 			for(var/obj/O in T)

@@ -29,10 +29,10 @@
 		return INITIALIZE_HINT_QDEL
 	if(default_reinf_type)
 		reinf_material = SSmaterials.get_material_by_name(default_reinf_type)
-	
+
 	if(!stacktype)
 		stacktype = material.stack_type
-	
+
 	if(material.conductive)
 		obj_flags |= OBJ_FLAG_CONDUCTIBLE
 	else
@@ -43,7 +43,7 @@
 
 /obj/item/stack/material/list_recipes(mob/user, recipes_sublist)
 	recipes = material.get_recipes(reinf_material && reinf_material.name)
-	..() 
+	..()
 
 /obj/item/stack/material/get_codex_value()
 	return (material && !material.hidden_from_codex) ? "[lowertext(material.display_name)] (material)" : ..()
@@ -71,7 +71,7 @@
 
 	if(material_flags & USE_MATERIAL_PLURAL_NAME)
 		plural_name = material.sheet_plural_name
-	
+
 	if(amount>1)
 		SetName("[material.use_name] [plural_name]")
 		desc = "A stack of [material.use_name] [plural_name]."
@@ -146,10 +146,10 @@
 	default_type = MATERIAL_IRON
 	material_flags = USE_MATERIAL_COLOR|USE_MATERIAL_SINGULAR_NAME|USE_MATERIAL_PLURAL_NAME
 
-/obj/item/stack/material/sandstone
-	name = "sandstone brick"
-	icon_state = "sheet-sandstone"
-	default_type = MATERIAL_SANDSTONE
+/obj/item/stack/material/limestone
+	name = "limestone brick"
+	icon_state = "sheet-limestone"
+	default_type = MATERIAL_LIMESTONE
 
 /obj/item/stack/material/marble
 	name = "marble brick"
@@ -355,7 +355,7 @@
 
 /obj/item/stack/material/glass/on_update_icon()
 	..()
-	if(reinf_material) 
+	if(reinf_material)
 		icon_state = "sheet-rglass"
 	else
 		icon_state = "sheet-glass"

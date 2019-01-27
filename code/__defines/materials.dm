@@ -10,7 +10,7 @@
 #define MATERIAL_COTTON                  "cotton"
 #define MATERIAL_CRYSTAL                 "crystal"
 #define MATERIAL_WOOD                    "wood"
-#define MATERIAL_SANDSTONE               "sandstone"
+#define MATERIAL_LIMESTONE				 "limestone"
 #define MATERIAL_LEATHER                 "leather"
 #define MATERIAL_IRON                    "iron"
 #define MATERIAL_PLATINUM                "platinum"

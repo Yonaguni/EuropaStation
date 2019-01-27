@@ -121,7 +121,7 @@
 		other.zone.remove(other)
 	return 1
 
-/turf/simulated/wall/transport_properties_from(turf/simulated/wall/other)
+/turf/simulated/wall/constructed/transport_properties_from(turf/simulated/wall/constructed/other)
 	if(!..())
 		return 0
 	paint_color = other.paint_color

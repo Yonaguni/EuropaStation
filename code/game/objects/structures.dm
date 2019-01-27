@@ -103,7 +103,7 @@
 			if(istype(T, b_type))
 				success = 1
 				if(propagate)
-					var/turf/simulated/wall/W = T
+					var/turf/simulated/wall/constructed/W = T
 					if(istype(W))
 						W.update_connections(1)
 						W.update_icon()

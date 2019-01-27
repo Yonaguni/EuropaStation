@@ -298,7 +298,7 @@
 	pixel_y = 0
 
 	var/turf/T = get_step(get_turf(src), turn(src.dir, 180))
-	if(istype(T, /turf/simulated/wall))
+	if(istype(T, /turf/simulated/wall/constructed))
 		if(dir == SOUTH)
 			pixel_y = 21
 		else if(dir == WEST)
@@ -346,7 +346,7 @@
 
 /atom/proc/auto_turn()
 	//Automatically turns based on nearby walls.
-	var/turf/simulated/wall/T = null
+	var/turf/simulated/wall/constructed/T = null
 	for(var/i = 1, i <= 8; i += i)
 		T = get_ranged_target_turf(src, i, 1)
 		if(istype(T))

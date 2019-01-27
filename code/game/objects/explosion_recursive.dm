@@ -122,13 +122,13 @@ proc/explosion_rec(turf/epicenter, power, shaped)
 /turf/simulated/floor
 	explosion_resistance = 1
 
-/turf/simulated/mineral
+/turf/simulated/wall/natural
 	explosion_resistance = 2
 
 /turf/simulated/shuttle/wall
 	explosion_resistance = 10
 
-/turf/simulated/wall
+/turf/simulated/wall/constructed
 	explosion_resistance = 10
 
 /obj/machinery/door/get_explosion_resistance()

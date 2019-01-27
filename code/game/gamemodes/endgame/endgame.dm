@@ -26,8 +26,8 @@
 
 // Actually decay the turf.
 /datum/universal_state/proc/DecayTurf(var/turf/T)
-	if(istype(T,/turf/simulated/wall))
-		var/turf/simulated/wall/W=T
+	if(istype(T,/turf/simulated/wall/constructed))
+		var/turf/simulated/wall/constructed/W=T
 		W.melt()
 		return
 	if(istype(T,/turf/simulated/floor))

@@ -201,7 +201,7 @@
 	stack_type = null
 	icon_colour = "#e2dbb5"
 	ore_smelts_to = MATERIAL_GLASS
-	ore_compresses_to = MATERIAL_SANDSTONE
+	ore_compresses_to = MATERIAL_LIMESTONE
 	ore_name = "sand"
 	ore_icon_overlay = "dust"
 	chem_products = list(

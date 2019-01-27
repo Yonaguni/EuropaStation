@@ -5,7 +5,7 @@
 	self-explanatory but the various object types may have their own documentation. ~Z
 
 	PATHS THAT USE DATUMS
-		turf/simulated/wall
+		turf/simulated/wall/constructed
 		obj/item/weapon/material
 		obj/structure/barricade
 		obj/item/stack/material

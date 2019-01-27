@@ -213,7 +213,7 @@ move an amendment</a> to the drawing, or <a href='?src=\ref[src];action=delete_a
 		return BORDER_SPACE
 	if (get_area_type(T2.loc)!=AREA_SPACE)
 		return BORDER_BETWEEN
-	if (istype(T2, /turf/simulated/wall))
+	if (istype(T2, /turf/simulated/wall/constructed))
 		return BORDER_2NDTILE
 	if (!istype(T2, /turf/simulated))
 		return BORDER_BETWEEN

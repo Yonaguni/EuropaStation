@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 	set waitfor = 0
 
 	for(var/thing in mining_walls["[zlevel]"])
-		var/turf/simulated/mineral/M = thing
+		var/turf/simulated/wall/natural/M = thing
 		M.update_icon()
 	for(var/thing in mining_floors["[zlevel]"])
 		var/turf/simulated/floor/asteroid/M = thing

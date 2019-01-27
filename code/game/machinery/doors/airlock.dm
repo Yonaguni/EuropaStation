@@ -296,10 +296,10 @@ var/list/airlock_overlays = list()
 	var/last_event = 0
 	var/rad_power = 7.5
 
-/obj/machinery/door/airlock/sandstone
-	name = "\improper Sandstone Airlock"
-	door_color = COLOR_BEIGE
-	mineral = MATERIAL_SANDSTONE
+/obj/machinery/door/airlock/limestone
+	name = "\improper Limestone Airlock"
+	door_color = COLOR_WHITE
+	mineral = MATERIAL_LIMESTONE
 
 /obj/machinery/door/airlock/phoron
 	name = "\improper Phoron Airlock"
@@ -397,7 +397,7 @@ var/list/airlock_overlays = list()
 	for(var/turf/simulated/floor/target_tile in range(2,loc))
 		target_tile.assume_gas("phoron", 35, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(temperature, 400)
-	for(var/turf/simulated/wall/W in range(3,src))
+	for(var/turf/simulated/wall/constructed/W in range(3,src))
 		W.burn((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
 	for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
 		D.ignite(temperature/4)

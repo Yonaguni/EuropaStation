@@ -3,7 +3,7 @@
 /turf/simulated/ocean,
 /area/space/ocean)
 "b" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/constructed/r_wall,
 /area/cassini)
 "c" = (
 /obj/effect/wingrille_spawn/reinforced/full,
@@ -32,7 +32,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/cassini)
 "j" = (
-/turf/simulated/wall,
+/turf/simulated/wall/constructed,
 /area/cassini)
 "k" = (
 /turf/simulated/floor/tiled/steel_ridged,
