@@ -159,6 +159,7 @@
 	id_tag = "example_shuttle_port";
 	pixel_x = -28
 	},
+/obj/effect/shuttle_landmark/lower_level,
 /turf/simulated/floor/plating,
 /area/shuttle/escape)
 "C" = (
@@ -213,6 +214,9 @@
 "J" = (
 /obj/effect/landmark/test/space_turf,
 /turf/space,
+/area/space)
+"K" = (
+/turf/simulated/wall/constructed,
 /area/space)
 
 (1,1,1) = {"
@@ -743,9 +747,9 @@ a
 a
 a
 a
-b
+K
 t
-b
+K
 a
 a
 a
@@ -777,9 +781,9 @@ a
 a
 a
 a
-b
+K
 u
-b
+K
 a
 a
 a
@@ -803,21 +807,21 @@ a
 a
 a
 a
-b
-b
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
+K
+K
 v
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
 a
 a
 a
@@ -837,7 +841,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 c
@@ -851,7 +855,7 @@ h
 F
 G
 H
-b
+K
 a
 a
 a
@@ -871,7 +875,7 @@ a
 a
 a
 a
-b
+K
 c
 e
 e
@@ -885,7 +889,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -905,7 +909,7 @@ a
 a
 a
 a
-b
+K
 c
 e
 e
@@ -919,7 +923,7 @@ x
 x
 x
 c
-b
+K
 a
 a
 a
@@ -939,7 +943,7 @@ a
 a
 a
 a
-b
+K
 d
 e
 e
@@ -953,7 +957,7 @@ x
 x
 x
 I
-b
+K
 a
 a
 a
@@ -973,7 +977,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 c
@@ -987,7 +991,7 @@ x
 x
 x
 c
-b
+K
 a
 a
 J
@@ -1007,7 +1011,7 @@ a
 a
 a
 a
-b
+K
 c
 f
 f
@@ -1021,7 +1025,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1041,7 +1045,7 @@ a
 a
 a
 a
-b
+K
 c
 b
 f
@@ -1055,7 +1059,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1075,7 +1079,7 @@ a
 a
 a
 a
-b
+K
 c
 f
 f
@@ -1089,7 +1093,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1109,7 +1113,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 c
@@ -1123,7 +1127,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1143,7 +1147,7 @@ a
 a
 a
 a
-b
+K
 d
 c
 c
@@ -1157,7 +1161,7 @@ c
 c
 c
 I
-b
+K
 a
 a
 a
@@ -1177,7 +1181,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 c
@@ -1191,7 +1195,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1211,7 +1215,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 c
@@ -1225,7 +1229,7 @@ c
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1245,7 +1249,7 @@ a
 a
 a
 a
-b
+K
 c
 c
 g
@@ -1259,7 +1263,7 @@ j
 c
 c
 c
-b
+K
 a
 a
 a
@@ -1279,21 +1283,21 @@ a
 a
 a
 a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
 a
 a
 a

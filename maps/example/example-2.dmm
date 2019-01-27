@@ -9,7 +9,7 @@
 /turf/space,
 /area/space)
 "c" = (
-/turf/simulated/wall,
+/turf/simulated/wall/constructed,
 /area/medical/surgery)
 "d" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
@@ -67,7 +67,7 @@
 "m" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/structure/hygiene/sink{
-	 icon_state = "sink";
+	icon_state = "sink";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -90,7 +90,7 @@
 "p" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/machinery/body_scanconsole{
-	 icon_state = "body_scannerconsole";
+	icon_state = "body_scannerconsole";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -98,7 +98,7 @@
 "q" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/machinery/bodyscanner{
-	 icon_state = "body_scanner_0";
+	icon_state = "body_scanner_0";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -106,7 +106,7 @@
 "r" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/machinery/sleeper{
-	 icon_state = "sleeper_0";
+	icon_state = "sleeper_0";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -166,7 +166,7 @@
 "B" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	 icon_state = "intact";
+	icon_state = "intact";
 	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
@@ -180,7 +180,7 @@
 "D" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	 icon_state = "intact";
+	icon_state = "intact";
 	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
@@ -197,7 +197,7 @@
 /area/medical/surgery)
 "G" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	 icon_state = "intact";
+	icon_state = "intact";
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/blue/diagonal,
@@ -205,7 +205,7 @@
 /area/medical/surgery)
 "H" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	 icon_state = "intact";
+	icon_state = "intact";
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/blue/diagonal,
@@ -213,7 +213,7 @@
 /area/medical/surgery)
 "I" = (
 /obj/machinery/atmospherics/portables_connector{
-	 icon_state = "map_connector";
+	icon_state = "map_connector";
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air,
@@ -242,7 +242,7 @@
 /area/medical/surgery)
 "L" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	 icon_state = "intact";
+	icon_state = "intact";
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/blue/diagonal,
@@ -250,7 +250,7 @@
 /area/medical/surgery)
 "M" = (
 /obj/machinery/atmospherics/portables_connector{
-	 icon_state = "map_connector";
+	icon_state = "map_connector";
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -266,7 +266,7 @@
 /area/medical/surgery)
 "O" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	 icon_state = "map_scrubber_on";
+	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/blue/diagonal,
