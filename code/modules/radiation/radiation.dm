@@ -46,7 +46,7 @@
 	// Looks like storing the contents length is meant to be a basic check if the cache is stale due to items enter/exiting.  Better than nothing so I'm leaving it as is. ~Leshana
 	SSradiation.resistance_cache[src] = (length(contents) + 1)
 
-/turf/simulated/wall/calc_rad_resistance()
+/turf/simulated/wall/constructed/calc_rad_resistance()
 	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	cached_rad_resistance = (density ? material.weight / config.radiation_material_resistance_divisor : 0)
 

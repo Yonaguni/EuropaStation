@@ -179,8 +179,8 @@
 
 /datum/reagent/thermite/touch_turf(var/turf/T)
 	if(volume >= 5)
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/simulated/wall/constructed))
+			var/turf/simulated/wall/constructed/W = T
 			W.thermite = 1
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)

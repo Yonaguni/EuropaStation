@@ -18,10 +18,10 @@
 
 /datum/random_map/winding_dungeon
 	descriptor = "winding dungeon"
-	wall_type = /turf/simulated/mineral
+	wall_type = /turf/simulated/wall/natural
 	floor_type = /turf/simulated/floor/tiled
-	var/room_wall_type = /turf/simulated/wall
-	var/border_wall_type = /turf/unsimulated/mineral
+	var/room_wall_type = /turf/simulated/wall/constructed
+	var/border_wall_type = /turf/unsimulated/wall/natural
 
 	target_turf_type = /turf/unsimulated/mask
 

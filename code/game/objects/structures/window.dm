@@ -21,7 +21,7 @@
 	var/polarized = 0
 	var/basestate = "window"
 	var/reinf_basestate = "rwindow"
-	blend_objects = list(/obj/machinery/door, /turf/simulated/wall) // Objects which to blend with
+	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/constructed) // Objects which to blend with
 	noblend_objects = list(/obj/machinery/door/window)
 
 	atmos_canpass = CANPASS_PROC
@@ -40,7 +40,7 @@
 	material = SSmaterials.get_material_by_name(new_material)
 	if(!istype(material))
 		return INITIALIZE_HINT_QDEL
-	
+
 	if(new_reinf_material)
 		reinf_material = SSmaterials.get_material_by_name(new_reinf_material)
 
@@ -77,7 +77,7 @@
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
 	if(reinf_material)
-		to_chat(user, "<span class='notice'>It is reinforced with the [reinf_material.display_name] lattice.</span>") 
+		to_chat(user, "<span class='notice'>It is reinforced with the [reinf_material.display_name] lattice.</span>")
 	if(health == maxhealth)
 		to_chat(user, "<span class='notice'>It looks fully intact.</span>")
 	else
@@ -536,7 +536,7 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		new /obj/item/frame/light_switch/windowtint(user.loc, 1)
 		qdel(src)
- 
+
 /obj/machinery/button/windowtint/proc/toggle_tint()
 	use_power_oneoff(5)
 

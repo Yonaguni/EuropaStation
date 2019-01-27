@@ -260,8 +260,8 @@
 	heating_products = list(/datum/reagent/toxin, /datum/reagent/water)
 
 /datum/reagent/toxin/plantbgone/touch_turf(var/turf/T)
-	if(istype(T, /turf/simulated/wall))
-		var/turf/simulated/wall/W = T
+	if(istype(T, /turf/simulated/wall/constructed))
+		var/turf/simulated/wall/constructed/W = T
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)

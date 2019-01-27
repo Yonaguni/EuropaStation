@@ -6,7 +6,7 @@
 	var/turf/coordinate_B
 
 	var/floor_type = /turf/simulated/floor/plating
-	var/wall_type = /turf/simulated/wall
+	var/wall_type = /turf/simulated/wall/constructed
 
 /datum/build_mode/room_builder/Help()
 	to_chat(user, "<span class='notice'>***********************************************************</span>")

@@ -164,8 +164,8 @@
 		wall_fake = 1
 
 	var/turf/Tsrc = get_turf(src)
-	Tsrc.ChangeTurf(/turf/simulated/wall)
-	var/turf/simulated/wall/T = get_turf(src)
+	Tsrc.ChangeTurf(/turf/simulated/wall/constructed)
+	var/turf/simulated/wall/constructed/T = get_turf(src)
 	T.set_material(M, reinf_material)
 	if(wall_fake)
 		T.can_open = 1

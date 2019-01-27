@@ -69,3 +69,6 @@
 
 /material/leather
 	value = 3
+
+/material/stone
+	value = 1

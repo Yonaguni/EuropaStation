@@ -17,7 +17,7 @@
 	var/paint_color
 	var/stripe_color
 
-	blend_objects = list(/obj/machinery/door, /turf/simulated/wall) // Objects which to blend with
+	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/constructed) // Objects which to blend with
 	noblend_objects = list(/obj/machinery/door/window)
 	var/material/material = DEFAULT_WALL_MATERIAL
 

@@ -24,7 +24,7 @@
 
 /obj/effect/paint/Initialize()
 	..()
-	var/turf/simulated/wall/W = get_turf(src)
+	var/turf/simulated/wall/constructed/W = get_turf(src)
 	if(istype(W))
 		W.paint_color = color
 		W.update_icon()
@@ -60,7 +60,7 @@
 
 /obj/effect/paint_stripe/Initialize()
 	..()
-	var/turf/simulated/wall/W = get_turf(src)
+	var/turf/simulated/wall/constructed/W = get_turf(src)
 	if(istype(W))
 		W.stripe_color = color
 		W.update_icon()

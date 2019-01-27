@@ -64,7 +64,7 @@
 	return null
 
 /datum/room_theme/metal
-	wall_type = /turf/simulated/wall
+	wall_type = /turf/simulated/wall/constructed
 	floor_type = /turf/simulated/floor/plating
 	lock_complexity_max = 2
 	layout_chance = 30

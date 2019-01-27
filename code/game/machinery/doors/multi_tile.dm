@@ -57,10 +57,10 @@
 		if(direction in list(NORTH, EAST))
 			T = get_step(T, direction)
 
-		if( istype(T, /turf/simulated/wall))
+		if( istype(T, /turf/simulated/wall/constructed))
 			success = 1
 			if(propagate)
-				var/turf/simulated/wall/W = T
+				var/turf/simulated/wall/constructed/W = T
 				W.update_connections()
 				W.update_icon()
 
