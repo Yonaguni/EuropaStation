@@ -1,7 +1,3 @@
-/decl/cultural_info/religion/other
-	name = RELIGION_OTHER
-	description = "One of the many, many niche or relatively unknown religions of the galaxy."
-
 /decl/cultural_info/religion/jewish
 	name = RELIGION_JUDAISM
 	description = "An Abrahamic monotheistic religion held to by the Jewish people. Someone who practices Judaism and is of the Jewish culture is called a Jew."

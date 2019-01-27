@@ -17,3 +17,7 @@
 	if(!isnull(distance))
 		. += "<b>Distance from Sol:</b> [distance]."
 	. += ..()
+
+/decl/cultural_info/location/other
+	name = HOME_SYSTEM_OTHER
+	description = "You are not from any known system."
