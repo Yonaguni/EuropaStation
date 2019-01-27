@@ -4,68 +4,68 @@
 /area/space)
 "b" = (
 /turf/simulated/wall,
-/area/space)
+/area/constructionsite)
 "c" = (
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "d" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "e" = (
 /obj/effect/landmark{
 	name = "tdome1"
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "f" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "g" = (
 /obj/machinery/light_switch{
 	pixel_x = 25
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "h" = (
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "i" = (
 /obj/structure/ladder/up,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "j" = (
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "k" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "l" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	icon_state = "intact";
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "m" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	icon_state = "intact";
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "n" = (
 /obj/machinery/atmospherics/portables_connector{
 	icon_state = "map_connector";
@@ -73,28 +73,28 @@
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "o" = (
 /obj/machinery/light_switch{
 	pixel_x = -25
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "p" = (
 /obj/effect/landmark/start,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "q" = (
 /obj/effect/landmark/test/safe_turf,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "r" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	icon_state = "intact";
 	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "s" = (
 /obj/machinery/atmospherics/portables_connector{
 	icon_state = "map_connector";
@@ -102,14 +102,14 @@
 	},
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "t" = (
 /obj/machinery/door/airlock/external/bolted{
 	frequency = 1379;
 	id_tag = "lower_level_dock_hatch"
 	},
 /turf/simulated/floor,
-/area/space)
+/area/constructionsite)
 "u" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "lower_level_dock";
@@ -117,23 +117,23 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor,
-/area/space)
+/area/constructionsite)
 "v" = (
 /turf/simulated/floor,
-/area/space)
+/area/constructionsite)
 "w" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "x" = (
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "y" = (
 /turf/simulated/wall/constructed/iron,
 /area/shuttle/escape)
@@ -192,7 +192,7 @@
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "G" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -201,23 +201,23 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "H" = (
 /obj/structure/cable,
 /obj/machinery/power/debug_items/infinite_generator,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "I" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/constructionsite)
 "J" = (
 /obj/effect/landmark/test/space_turf,
 /turf/space,
 /area/space)
 "K" = (
 /turf/simulated/wall/constructed,
-/area/space)
+/area/constructionsite)
 
 (1,1,1) = {"
 a
