@@ -23,7 +23,7 @@
 	return -1
 
 /obj/machinery/atmospherics/pipe/New()
-	if(istype(get_turf(src), /turf/simulated/wall/constructed) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall/constructed))
+	if(istype(get_turf(src), /turf/simulated/wall/constructed) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall))
 		level = 1
 	..()
 
