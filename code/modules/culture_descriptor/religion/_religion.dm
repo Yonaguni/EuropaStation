@@ -5,3 +5,7 @@
 	economic_power = null
 	secondary_langs = null
 	additional_langs = null
+
+/decl/cultural_info/religion/other
+	name = RELIGION_OTHER
+	description = "You do not follow any known religion."

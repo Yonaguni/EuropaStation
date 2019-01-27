@@ -280,25 +280,10 @@
 #define CORPSE_CAN_REENTER_AND_RESPAWN 2
 
 #define SPECIES_HUMAN       "Human"
-#define SPECIES_DIONA       "Diona"
-#define SPECIES_VOX         "Vox"
-#define SPECIES_IPC         "Machine"
-#define SPECIES_UNATHI      "Unathi"
-#define SPECIES_SKRELL      "Skrell"
-#define SPECIES_NABBER      "giant armoured serpentid"
-#define SPECIES_PROMETHEAN  "Promethean"
-#define SPECIES_XENO        "Xenophage"
-#define SPECIES_ALIEN       "Humanoid"
-#define SPECIES_ADHERENT    "Adherent"
-#define SPECIES_GOLEM       "Golem"
-#define SPECIES_YEOSA       "Yeosa'Unathi"
-#define SPECIES_VATGROWN    "Vat-Grown Human"
-#define SPECIES_SPACER      "Space-Adapted Human"
-#define SPECIES_TRITONIAN   "Tritonian"
-#define SPECIES_GRAVWORLDER "Grav-Adapted Human"
+#define SPECIES_MONKEY      "Monkey"
 
-#define STATION_SPECIES list(SPECIES_HUMAN, SPECIES_DIONA, SPECIES_IPC, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_TRITONIAN, SPECIES_SPACER, SPECIES_VATGROWN, SPECIES_GRAVWORLDER)
-#define RESTRICTED_SPECIES list(SPECIES_VOX, SPECIES_XENO, SPECIES_ALIEN, SPECIES_GOLEM)
+#define STATION_SPECIES list(SPECIES_HUMAN)
+#define RESTRICTED_SPECIES list()
 
 #define SURGERY_CLOSED 0
 #define SURGERY_OPEN 1

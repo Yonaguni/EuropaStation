@@ -9,12 +9,6 @@
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude",SPECIES_NABBER, SPECIES_UNATHI,SPECIES_VOX)
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_hands_vox.dmi',
-		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_hands_gas.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_hands_unathi.dmi',
-		)
 	blood_overlay_type = "bloodyhands"
 
 	var/can_be_coloured
@@ -71,9 +65,7 @@
 	clipped = 1
 	name = "modified [name]"
 	desc = "[desc]<br>They have been modified to accommodate a different shape."
-	if("exclude" in species_restricted)
-		species_restricted -= SPECIES_UNATHI
-	return
+	species_restricted = null
 
 /obj/item/clothing/gloves/mob_can_equip(mob/user)
 	var/mob/living/carbon/human/H = user

@@ -13,7 +13,7 @@ env:
     - TEST=CODE
     - TEST=WEB
     - TEST=MAP MAP_PATH=example
-    - TEST=MAP MAP_PATH=overmap_example
+    - TEST=MAP MAP_PATH=cassini
     - TEST=MAP MAP_PATH=away_sites_testing
 
 cache:

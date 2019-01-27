@@ -1,60 +1,14 @@
 /datum/map/away_sites_testing
 	// Unit test exemptions
 	apc_test_exempt_areas = list(
-		/area/AIsattele = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/constructionsite = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/constructionsite/ai = NO_SCRUBBER|NO_VENT,
-		/area/constructionsite/atmospherics = NO_SCRUBBER,
-		/area/constructionsite/teleporter = NO_SCRUBBER,
-		/area/derelict/ship = NO_SCRUBBER|NO_VENT,
-		/area/djstation = NO_SCRUBBER|NO_APC,
-		/area/mine/explored = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/mine/unexplored = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/outpost/abandoned = NO_SCRUBBER,
-		/area/space = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/ship/scrap/maintenance/engine/port = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/maintenance/engine/starboard = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/crew/hallway/port= NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/crew/hallway/starboard= NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/maintenance/hallway = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/maintenance/lower = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/maintenance/atmos = NO_SCRUBBER,
-		/area/ship/scrap/escape_port = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/escape_star = NO_SCRUBBER|NO_VENT,
-		/area/ship/scrap/shuttle/lift = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/ship/scrap/command/hallway = NO_SCRUBBER|NO_VENT,
-		/area/lost_supply_base/solar = NO_SCRUBBER,
-		/area/smugglers/base = NO_SCRUBBER,
-		/area/smugglers/dorms = NO_SCRUBBER|NO_VENT,
-		/area/smugglers/office = NO_SCRUBBER|NO_VENT,
-		/area/casino/casino_solar_control = NO_SCRUBBER,
-		/area/casino/casino_maintenance = NO_SCRUBBER,
-		/area/casino/casino_hangar = NO_SCRUBBER,
-		/area/casino/casino_cutter = NO_SCRUBBER|NO_VENT,
-		/area/bluespaceriver/underground = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/bluespaceriver/ground = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/slavers_base/hangar = NO_SCRUBBER,
-		/area/map_template/hydrobase = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/map_template/hydrobase/station = NO_SCRUBBER,
-		/area/mobius_rift = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/map_template/marooned = NO_SCRUBBER|NO_VENT|NO_APC,
-		/area/map_template/datacapsule = NO_SCRUBBER|NO_VENT|NO_APC
-//		/area/icarus/vessel = NO_APC,
-//		/area/icarus/open = NO_SCRUBBER|NO_VENT|NO_APC,
+		/area/space = NO_SCRUBBER|NO_VENT|NO_APC
 	)
 
 	area_coherency_test_exempt_areas = list(
-		/area/space,
-		/area/mine/explored,
-		/area/mine/unexplored,
-//		/area/icarus/open,
-//		/area/icarus/vessel,
+		/area/space
 	)
 
 	area_coherency_test_subarea_count = list(
-		/area/constructionsite = 7,
-		/area/constructionsite/maintenance = 14,
-		/area/constructionsite/solar = 3,
 	)
 
 	area_usage_test_exempted_areas = list(
@@ -92,12 +46,10 @@
 		/area/syndicate_mothership/elite_squad,
 		/area/wizard_station,
 		/area/beach,
-		/area/turbolift,
-		/area/map_template/hydrobase
+		/area/turbolift
 	)
 
 	area_usage_test_exempted_root_areas = list(
 		/area/exoplanet,
-		/area/map_template,
-		/area/unishi
+		/area/map_template
 	)

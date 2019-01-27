@@ -500,7 +500,7 @@
 				W.update_connections(1)
 				W.update_icon()
 
-		else if( istype(T, /turf/simulated/shuttle/wall) ||  istype(T, /turf/unsimulated/wall/constructed))
+		else if( istype(T, /turf/simulated/shuttle/wall) ||  istype(T, /turf/unsimulated/wall))
 			success = 1
 		else
 			for(var/obj/O in T)

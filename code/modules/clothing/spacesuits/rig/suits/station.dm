@@ -10,25 +10,17 @@
 	offline_vision_restriction = TINT_BLIND
 	emp_protection = -20
 
-	chest_type = /obj/item/clothing/suit/space/rig/industrial
+	chest_type = /obj/item/clothing/suit/space/rig
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
-	boot_type = /obj/item/clothing/shoes/magboots/rig/industrial
+	boot_type = /obj/item/clothing/shoes/magboots/rig
 	glove_type = /obj/item/clothing/gloves/rig/industrial
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/storage/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
 
 /obj/item/clothing/head/helmet/space/rig/industrial
 	camera = /obj/machinery/camera/network/mining
-	species_restricted = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
-
-/obj/item/clothing/suit/space/rig/industrial
-	species_restricted = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
-
-/obj/item/clothing/shoes/magboots/rig/industrial
-	species_restricted = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
 
 /obj/item/clothing/gloves/rig/industrial
-	species_restricted = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/industrial/equipped

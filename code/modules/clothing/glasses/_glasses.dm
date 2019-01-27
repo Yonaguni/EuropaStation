@@ -13,10 +13,6 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_suit_vox.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_eyes_unathi.dmi',
-		)
 
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2

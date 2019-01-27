@@ -337,16 +337,12 @@ var/list/gear_datums = list()
 
 /datum/gear/proc/spawn_on_mob(var/mob/living/carbon/human/H, var/metadata)
 	var/obj/item/item = spawn_item(H, metadata)
-	world.log << "foo [path] [display_name] [slot] [H.w_uniform]"
 	if(slot == slot_w_uniform && istype(item, /obj/item/clothing/under) && istype(H.w_uniform, /obj/item/clothing/under))
-		world.log << "bar"
 		H.w_uniform.attackby(item, H)
 		if(item.loc == H.w_uniform)
-			world.log << "bing"
 			. = item
 
 	if(!. && H.equip_to_slot_if_possible(item, slot, del_on_fail = 1, force = 1))
-		world.log << "baz"
 		. = item
 
 	if(.)
