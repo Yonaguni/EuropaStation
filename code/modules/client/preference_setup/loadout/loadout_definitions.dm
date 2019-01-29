@@ -59,3 +59,37 @@
 /datum/gear/upper/longshirt
 	display_name = "long-sleeved shirt"
 	path = /obj/item/clothing/under/upper/longsleeve
+
+/datum/gear/head
+	category = /datum/gear/head
+	//sort_category = "Hats and Headwear"
+	slot = slot_head
+	flags = GEAR_HAS_COLOR_SELECTION
+
+/datum/gear/head/bandana
+	display_name = "bandana"
+	path = /obj/item/clothing/head/bandana
+
+/datum/gear/head/hijab
+	display_name = "hijab"
+	path = /obj/item/clothing/head/hijab
+
+/datum/gear/head/kippa
+	display_name = "kippa"
+	path = /obj/item/clothing/head/kippa
+
+/datum/gear/head/turban
+	display_name = "turban"
+	path = /obj/item/clothing/head/turban
+
+/datum/gear/head/soft_cap
+	display_name = "soft cap"
+	path = /obj/item/clothing/head/soft
+
+/datum/gear/head/hairflower
+	display_name = "hair flower pin"
+	path = /obj/item/clothing/head/hairflower
+
+/datum/gear/head/beret
+	display_name = "beret"
+	path = /obj/item/clothing/head/beret
