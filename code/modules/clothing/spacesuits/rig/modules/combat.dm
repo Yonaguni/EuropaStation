@@ -249,16 +249,10 @@
 	M.put_in_hands(blade)
 
 /obj/item/rig_module/mounted/energy_blade/deactivate()
-
 	..()
-
-	var/mob/living/M = holder.wearer
-
-	if(!M)
-		return
-
-	for(var/obj/item/weapon/melee/energy/blade/blade in M.contents)
-		qdel(blade)
+	if(holder && holder.wearer)
+		for(var/obj/item/weapon/melee/energy/blade/blade in holder.wearer.contents)
+			qdel(blade)
 
 /obj/item/rig_module/fabricator
 

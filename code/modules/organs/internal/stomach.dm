@@ -14,8 +14,7 @@
 
 /obj/item/organ/internal/stomach/New()
 	..()
-	ingested = new/datum/reagents/metabolism(240, owner, CHEM_INGEST)
-	if(!ingested.my_atom) ingested.my_atom = src
+	ingested = new/datum/reagents/metabolism(240, (owner || src), CHEM_INGEST)
 
 /obj/item/organ/internal/stomach/removed()
 	. = ..()

@@ -14,6 +14,8 @@
 /obj/item/weapon/card
 	name = "card"
 	desc = "Does card things."
+	icon_state = "base"
+	item_state = "card-id"
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
@@ -112,8 +114,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access."
-	icon_state = "base"
-	item_state = "card-id"
 	slot_flags = SLOT_ID
 
 	var/access = list()
