@@ -228,7 +228,7 @@
 
 	if(istype(lightbulb, /obj/item/weapon/light/))
 		var/image.I = image(icon, src, _state)
-		I.color = lightbulb.b_colour
+		I.color = lightbulb.b_color
 		overlays += I
 
 	if(on)
@@ -239,14 +239,14 @@
 		if(current_mode && (current_mode in lightbulb.lighting_modes))
 			changed = set_light(arglist(lightbulb.lighting_modes[current_mode]))
 		else
-			changed = set_light(lightbulb.b_max_bright, lightbulb.b_inner_range, lightbulb.b_outer_range, lightbulb.b_curve, lightbulb.b_colour)
+			changed = set_light(lightbulb.b_range, lightbulb.b_power, lightbulb.b_color)
 
 		if(trigger && changed && get_status() == LIGHT_OK)
 			switch_check()
 	else
 		update_use_power(POWER_USE_OFF)
 		set_light(0)
-	change_power_consumption((light_outer_range * light_max_bright) * LIGHTING_POWER_FACTOR, POWER_USE_ACTIVE)
+	change_power_consumption((light_range * light_power) * LIGHTING_POWER_FACTOR, POWER_USE_ACTIVE)
 
 /obj/machinery/light/proc/get_status()
 	if(!lightbulb)
@@ -567,11 +567,9 @@
 	var/rigged = 0		// true if rigged to explode
 	var/broken_chance = 2
 
-	var/b_max_bright = 0.9
-	var/b_inner_range = 1
-	var/b_outer_range = 5
-	var/b_curve = 2
-	var/b_colour = "#fffee0"
+	var/b_power = 0.9
+	var/b_range = 5
+	var/b_color = "#fffee0"
 	var/list/lighting_modes = list()
 	var/sound_on
 
@@ -583,28 +581,26 @@
 	item_state = "c_tube"
 	matter = list(MATERIAL_GLASS = 100, MATERIAL_ALUMINIUM = 20)
 
-	b_outer_range = 5
-	b_colour = "#fffee0"
+	b_range = 5
+	b_color = "#fffee0"
 	lighting_modes = list(
-		LIGHTMODE_EMERGENCY = list(l_outer_range = 4, l_max_bright = 1, l_color = "#da0205"),
+		LIGHTMODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = "#da0205"),
 		)
 	sound_on = 'sound/machines/lightson.ogg'
 
 /obj/item/weapon/light/tube/party/Initialize() //Randomly colored light tubes. Mostly for testing, but maybe someone will find a use for them.
 	. = ..()
-	b_colour = rgb(pick(0,255), pick(0,255), pick(0,255))
+	b_color = rgb(pick(0,255), pick(0,255), pick(0,255))
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEM_SIZE_SMALL
 	name = "large light tube"
-	b_max_bright = 0.95
-	b_inner_range = 2
-	b_outer_range = 8
-	b_curve = 2.5
+	b_power = 0.95
+	b_range = 8
 
 /obj/item/weapon/light/tube/large/party/Initialize() //Randomly colored light tubes. Mostly for testing, but maybe someone will find a use for them.
 	. = ..()
-	b_colour = rgb(pick(0,255), pick(0,255), pick(0,255))
+	b_color = rgb(pick(0,255), pick(0,255), pick(0,255))
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -615,22 +611,20 @@
 	broken_chance = 3
 	matter = list(MATERIAL_GLASS = 100)
 
-	b_max_bright = 0.6
-	b_inner_range = 0.1
-	b_outer_range = 4
-	b_curve = 3
-	b_colour = "#fcfcc7"
+	b_power = 0.6
+	b_range = 4
+	b_color = "#fcfcc7"
 	lighting_modes = list(
-		LIGHTMODE_EMERGENCY = list(l_outer_range = 3, l_max_bright = 1, l_color = "#da0205"),
+		LIGHTMODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#da0205"),
 		)
 
 /obj/item/weapon/light/bulb/red
 	color = "#da0205"
-	b_colour = "#da0205"
+	b_color = "#da0205"
 
 /obj/item/weapon/light/bulb/red/readylight
 	lighting_modes = list(
-		LIGHTMODE_READY = list(l_outer_range = 5, l_max_bright = 1, l_color = "#00ff00"),
+		LIGHTMODE_READY = list(l_range = 5, l_power = 1, l_color = "#00ff00"),
 		)
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
@@ -647,7 +641,7 @@
 
 // update the icon state and description of the light
 /obj/item/weapon/light/on_update_icon()
-	color = b_colour
+	color = b_color
 	var/broken
 	switch(status)
 		if(LIGHT_OK)

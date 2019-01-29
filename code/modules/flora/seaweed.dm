@@ -18,5 +18,5 @@
 
 /obj/structure/flora/seaweed/glow/Initialize()
 	. = ..()
-	set_light(0.25, 0.1, 1, 2, l_color = light_color)
+	set_light(2, 0.25, l_color = light_color)
 	icon_state = "glowweed[rand(1,3)]"

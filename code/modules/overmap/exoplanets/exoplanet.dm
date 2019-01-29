@@ -119,7 +119,7 @@
 	if(!night)
 		light = lightlevel
 	for(var/turf/simulated/floor/exoplanet/T in block(locate(daycolumn,1,min(map_z)),locate(daycolumn,maxy,max(map_z))))
-		T.set_light(light, 0.1, 2)
+		T.set_light(light)
 	daycolumn++
 	if(daycolumn > maxx)
 		daycolumn = 0
@@ -444,7 +444,7 @@
 				initial_gas = E.atmosphere.gas.Copy()
 				temperature = E.atmosphere.temperature
 			//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
-			set_light(E.lightlevel, 0.1, 2)
+			set_light(E.lightlevel)
 	..()
 
 /turf/simulated/floor/exoplanet/attackby(obj/item/C, mob/user)

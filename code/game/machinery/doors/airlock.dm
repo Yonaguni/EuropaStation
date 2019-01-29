@@ -673,7 +673,7 @@ About the new airlock wires panel:
 			if(lights && src.arePowerSystemsOn())
 				if(locked)
 					lights_overlay = bolts_file
-					set_light(0.25, 0.1, 1, 2, COLOR_RED_LIGHT)
+					set_light(2, 0.75, COLOR_RED_LIGHT)
 
 		if(AIRLOCK_DENY)
 			if(!src.arePowerSystemsOn())
@@ -688,7 +688,7 @@ About the new airlock wires panel:
 				weld_overlay = welded_file
 			if(lights && src.arePowerSystemsOn())
 				lights_overlay = deny_file
-				set_light(0.25, 0.1, 1, 2, COLOR_RED_LIGHT)
+				set_light(2, 0.75, COLOR_RED_LIGHT)
 
 		if(AIRLOCK_EMAG)
 			sparks_overlay = emag_file
@@ -704,7 +704,7 @@ About the new airlock wires panel:
 		if(AIRLOCK_CLOSING)
 			if(lights && src.arePowerSystemsOn())
 				lights_overlay = lights_file
-				set_light(0.25, 0.1, 1, 2, COLOR_LIME)
+				set_light(2, 0.75, COLOR_LIME)
 			if(p_open)
 				panel_overlay = panel_file
 
@@ -717,7 +717,7 @@ About the new airlock wires panel:
 		if(AIRLOCK_OPENING)
 			if(lights && src.arePowerSystemsOn())
 				lights_overlay = lights_file
-				set_light(0.25, 0.1, 1, 2, COLOR_LIME)
+				set_light(2, 0.75, COLOR_LIME)
 			if(p_open)
 				panel_overlay = panel_file
 

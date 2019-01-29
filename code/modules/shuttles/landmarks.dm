@@ -20,7 +20,7 @@
 	//Will also leave this type of turf behind if set.
 	var/turf/base_turf
 	//Name of the shuttle, null for generic waypoint
-	var/shuttle_restricted 
+	var/shuttle_restricted
 	var/flags = 0
 
 /obj/effect/shuttle_landmark/Initialize()
@@ -143,4 +143,4 @@
 /obj/item/device/spaceflare/on_update_icon()
 	if(active)
 		icon_state = "bluflare_on"
-		set_light(0.3, 0.1, 6, 2, "85d1ff")
+		set_light(6, 2, "85d1ff")
