@@ -1184,6 +1184,7 @@
 #include "code\modules\clothing\head\_head.dm"
 #include "code\modules\clothing\head\cardborg.dm"
 #include "code\modules\clothing\head\headwear.dm"
+#include "code\modules\clothing\head\helmet.dm"
 #include "code\modules\clothing\head\soft_caps.dm"
 #include "code\modules\clothing\head\welding.dm"
 #include "code\modules\clothing\masks\_mask.dm"

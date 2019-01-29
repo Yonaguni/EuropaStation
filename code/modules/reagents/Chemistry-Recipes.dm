@@ -521,23 +521,16 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, location)
 	s.start()
-	for(var/mob/living/carbon/M in viewers(world.view, location))
-		switch(get_dist(M, location))
-			if(0 to 3)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-						continue
-
-				M.flash_eyes()
-				M.Weaken(15)
-
-			if(4 to 5)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-						continue
-
-				M.flash_eyes()
-				M.Stun(5)
+	for(var/mob/living/carbon/human/M in viewers(world.view, location))
+		var/obj/item/clothing/glasses/glasses = M.glasses
+		if(istype(glasses) && glasses.flash_protection >= FLASH_PROTECTION_MODERATE)
+			switch(get_dist(M, location))
+				if(0 to 3)
+					M.flash_eyes()
+					M.Weaken(15)
+				if(4 to 5)
+					M.flash_eyes()
+					M.Stun(5)
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"

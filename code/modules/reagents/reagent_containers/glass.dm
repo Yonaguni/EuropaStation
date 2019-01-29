@@ -7,15 +7,14 @@
 	var/base_name = " "
 	desc = ""
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "null"
-	item_state = "null"
+	icon_state = null
+	item_state = null
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = "5;10;15;25;30;60"
 	volume = 60
 	w_class = ITEM_SIZE_SMALL
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
-
 
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,

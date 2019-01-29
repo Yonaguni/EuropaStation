@@ -271,7 +271,7 @@
 /obj/item/weapon/toolbox_tiles
 	desc = "It's a toolbox with tiles sticking out the top."
 	name = "tiles and toolbox"
-	icon = 'icons/mob/bot/floorbot.dmi'
+	icon = 'icons/obj/floorbot.dmi'
 	icon_state = "toolbox_tiles"
 	force = 3.0
 	throwforce = 10.0
@@ -302,7 +302,7 @@
 /obj/item/weapon/toolbox_tiles_sensor
 	desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
 	name = "tiles, toolbox and sensor arrangement"
-	icon = 'icons/mob/bot/floorbot.dmi'
+	icon = 'icons/obj/floorbot.dmi'
 	icon_state = "toolbox_tiles_sensor"
 	force = 3.0
 	throwforce = 10.0

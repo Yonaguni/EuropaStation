@@ -757,11 +757,6 @@ I said no!
 	reagents = list(/datum/reagent/blood = 30)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bloodsoup
 
-/datum/recipe/slimesoup
-	reagents = list(/datum/reagent/water = 10, /datum/reagent/slimejelly = 5)
-	items = list()
-	result = /obj/item/weapon/reagent_containers/food/snacks/slimesoup
-
 /datum/recipe/chocolateegg
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,

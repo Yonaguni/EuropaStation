@@ -57,27 +57,35 @@
 	max_storage_space = 10
 	throwforce = 2
 	slot_flags = SLOT_BELT
-	startswith = list(/obj/item/paper/cig = 10)
+	startswith = list(/obj/item/weapon/paper/cig = 10)
 
 /obj/item/weapon/storage/cigpaper/filters
 	name = "box of cigarette filters"
 	desc = "A box of generic cigarette filters for those who rolls their own but prefers others to inhale the fumes. Not endorsed by Late General Osmundsun."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "filterbin"
-	startswith = list(/obj/item/paper/cig/filter = 10)
+	startswith = list(/obj/item/weapon/paper/cig/filter = 10)
 
-/obj/item/weapon/storage/chewables/candy/gum
+/obj/item/weapon/storage/gum
 	name = "pack of gum"
 	desc = "A mixed pack of delicious fruit flavored bubble-gums!"
+	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "gumpack"
 	max_storage_space = 8
 	startswith = list(/obj/item/clothing/mask/chewable/candy/gum = 8)
-	make_exact_fit()
 
-/obj/item/weapon/storage/chewables/candy/medicallollis
+/obj/item/weapon/storage/gum/Initialize()
+	make_exact_fit()
+	..()
+
+/obj/item/weapon/storage/medicallollis
 	name = "pack of medicinal lolipops"
 	desc = "A mixed pack of medicinal flavored lollipops. These have no business being on store shelves."
+	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "lollipack"
 	max_storage_space = 20
 	startswith = list(/obj/item/clothing/mask/chewable/candy/lolli/meds = 20)
+
+/obj/item/weapon/storage/medicallollis/Initialize()
 	make_exact_fit()
+	..()

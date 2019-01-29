@@ -8,6 +8,7 @@
 	max_amount = 60
 	randpixel = 3
 	icon = 'icons/obj/materials.dmi'
+	icon_state = "sheet-silver"
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material
@@ -148,7 +149,7 @@
 
 /obj/item/stack/material/limestone
 	name = "limestone brick"
-	icon_state = "sheet-limestone"
+	icon_state = "sheet-marble"
 	default_type = MATERIAL_LIMESTONE
 
 /obj/item/stack/material/marble
@@ -398,9 +399,6 @@
 
 /obj/item/stack/material/aliumium/ten
 	amount = 10
-
-/obj/item/stack/material/generic
-	icon_state = "sheet-silver"
 
 /obj/item/stack/material/generic/Initialize()
 	. = ..()

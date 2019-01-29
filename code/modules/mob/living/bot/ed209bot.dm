@@ -71,7 +71,7 @@
 /obj/item/weapon/secbot_assembly/ed209_assembly
 	name = "ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
-	icon = 'icons/mob/bot/ED209.dmi'
+	icon = 'icons/obj/ED209.dmi'
 	icon_state = "ed209_frame"
 	item_state = "ed209_frame"
 	created_name = "ED-209 Security Robot"
@@ -104,7 +104,7 @@
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(W, /obj/item/clothing/suit/storage/vest))
+			if(istype(W, /obj/item/clothing/suit/armor/vest))
 				qdel(W)
 				build_step++
 				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")

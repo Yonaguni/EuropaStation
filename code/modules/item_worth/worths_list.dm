@@ -211,7 +211,6 @@ var/list/worths = list(
 					/obj/item/weapon/rcd = 1000,
 					/obj/item/weapon/rcd_ammo = 50,
 					/obj/item/weapon/rsf = 300,
-					/obj/item/weapon/teleportation_scroll = 1000,
 					/obj/item/weapon/shield/buckler = 300, //More expensive because people don't make them anymore,
 					/obj/item/weapon/shield/riot = 150,
 					/obj/item/weapon/shield/energy = 1200,

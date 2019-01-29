@@ -570,13 +570,15 @@
 	force = 2
 	throwforce = 5
 	w_class = ITEM_SIZE_TINY
-	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
-	var/base_state
-	var/switchcount = 0	// number of times switched
 	matter = list(MATERIAL_STEEL = 60)
+	icon_state = "ltube"
+	item_state = "c_tube"
+
+	var/base_state
+	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	var/switchcount = 0	// number of times switched
 	var/rigged = 0		// true if rigged to explode
 	var/broken_chance = 2
-
 	var/b_power = 0.9
 	var/b_range = 5
 	var/b_color = "#fffee0"
@@ -586,10 +588,8 @@
 /obj/item/weapon/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
-	icon_state = "ltube"
-	base_state = "ltube"
-	item_state = "c_tube"
 	matter = list(MATERIAL_GLASS = 100, MATERIAL_ALUMINIUM = 20)
+	base_state = "ltube"
 
 	b_range = 5
 	b_color = "#fffee0"
@@ -640,14 +640,6 @@
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
-
-/obj/item/weapon/light/bulb/fire
-	name = "fire bulb"
-	desc = "A replacement fire bulb."
-	icon_state = "fbulb"
-	base_state = "fbulb"
-	item_state = "egg4"
-	matter = list(MATERIAL_GLASS = 100)
 
 // update the icon state and description of the light
 /obj/item/weapon/light/on_update_icon()

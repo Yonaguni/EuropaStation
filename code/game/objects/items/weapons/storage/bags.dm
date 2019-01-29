@@ -2,6 +2,8 @@
 	Represents flexible bags that expand based on the size of their contents.
 */
 /obj/item/weapon/storage/bag
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "cashbag"
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	use_to_pickup = 1
@@ -83,8 +85,6 @@
 
 /obj/item/weapon/storage/bag/cash
 	name = "cash bag"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "cashbag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_HUGE
