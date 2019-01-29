@@ -296,3 +296,13 @@ block( \
 	locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
 	locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
 )
+
+#define IS_VALID_ZINDEX(z) !((z) > z_levels.len || (z) < 1)
+
+#define HAS_ABOVE(z) (IS_VALID_ZINDEX(z) && z_levels[z])
+#define HAS_BELOW(z) (IS_VALID_ZINDEX(z) && (z) != 1 && z_levels[(z) - 1])
+
+#define GET_ABOVE(A) (HAS_ABOVE(A:z) ? get_step(A, UP) : null)
+#define GET_BELOW(A) (HAS_BELOW(A:z) ? get_step(A, DOWN) : null)
+
+#define isopenturf(T) istype(T, /turf/simulated/open)

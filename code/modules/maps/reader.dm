@@ -182,7 +182,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 							++xcrd
 					--ycrd
 				if (zexpansion)
-					create_lighting_overlays_zlevel(zcrd)
+					SSlighting.CreateLobjForZ(zcrd)
 
 			bounds[MAP_MAXX] = Clamp(max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx), x_lower, x_upper)
 

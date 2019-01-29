@@ -47,14 +47,14 @@
 		crash_with("Warning: [src]([type]) initialized multiple times!")
 	atom_flags |= ATOM_FLAG_INITIALIZED
 
-	if(light_max_bright && light_outer_range)
+	if(light_power && light_range)
 		update_light()
 
 	if(opacity)
 		updateVisibility(src)
 		var/turf/T = loc
 		if(istype(T))
-			T.handle_opacity_change(src)
+			T.has_opaque_atom = TRUE
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -63,6 +63,7 @@
 	return
 
 /atom/Destroy()
+	QDEL_NULL(light)
 	QDEL_NULL(reagents)
 	. = ..()
 
