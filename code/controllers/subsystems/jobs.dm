@@ -393,7 +393,6 @@ SUBSYSTEM_DEF(jobs)
 					to_chat(H, "<span class='warning'>Your current species, job, or whitelist status does not permit you to spawn with [thing]!</span>")
 					continue
 
-				world.log << "aaaa [G.slot] [G.path] [json_encode(loadout_taken_slots)] aaaa"
 				if(!G.slot || G.slot == slot_tie || (G.slot != slot_w_uniform && (G.slot in loadout_taken_slots)))
 					spawn_in_storage.Add(G)
 				else if(G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
