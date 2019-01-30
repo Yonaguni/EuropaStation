@@ -97,6 +97,8 @@ var/list/gamemode_cache = list()
 	var/wikiurl
 	var/forumurl
 	var/githuburl
+	var/upstreamurl
+	var/upstream
 	var/issuereporturl
 
 	var/forbid_singulo_possession = 0
@@ -431,6 +433,12 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("upstreamurl")
+					config.upstreamurl = value
+
+				if ("upstream")
+					config.upstream = value
 
 				if ("issuereporturl")
 					config.issuereporturl = value

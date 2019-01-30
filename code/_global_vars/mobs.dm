@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(clients)   //all clients
 GLOBAL_LIST_EMPTY(admins)    //all clients whom are admins
 GLOBAL_PROTECT(admins)
 GLOBAL_LIST_EMPTY(ckey_directory) //all ckeys with associated client
-
+GLOBAL_LIST_EMPTY(acceptedKeys) //all ckeys which have pressed the "I accept joining the server" button
 
 GLOBAL_LIST_EMPTY(player_list)      //List of all mobs **with clients attached**. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(human_mob_list)   //List of all human mobs and sub-types, including clientless
