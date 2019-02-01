@@ -40,6 +40,8 @@ SUBSYSTEM_DEF(materials)
 	. = ..()
 
 /datum/controller/subsystem/materials/proc/get_material_by_name(name)
+	if(!name || name == "")
+		return null
 	if(!materials_by_name)
 		build_material_lists()
 	. = materials_by_name[name]

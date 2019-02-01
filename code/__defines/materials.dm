@@ -46,7 +46,6 @@
 #define MATERIAL_BAUXITE                 "bauxite"
 #define MATERIAL_COPPER                  "copper"
 #define MATERIAL_CARDBOARD               "cardboard"
-#define MATERIAL_CLOTH                   "cloth"
 #define MATERIAL_CARPET                  "carpet"
 #define MATERIAL_ALUMINIUM               "aluminium"
 

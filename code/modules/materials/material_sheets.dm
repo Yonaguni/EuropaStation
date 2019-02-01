@@ -25,7 +25,6 @@
 		default_type = _material
 	if(_reinf_material)
 		default_reinf_type = _reinf_material
-	world.log << "[type] [default_type]" 
 	material = SSmaterials.get_material_by_name(default_type)
 	if(!material)
 		return INITIALIZE_HINT_QDEL
@@ -330,7 +329,7 @@
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"
-	default_type = MATERIAL_CLOTH
+	default_type = MATERIAL_COTTON
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
