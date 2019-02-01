@@ -1,5 +1,6 @@
 /obj/item/clothing/ears
 	name = "ears"
+	icon = 'icons/obj/clothing/obj_ears.dmi'
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
@@ -15,3 +16,13 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+
+/obj/item/clothing/ears/hairflower
+	name = "flower pin"
+	icon_state = "hairflower"
+	desc = "It smells nice."
+	slot_flags = SLOT_EARS
+	body_parts_covered = 0
+	color = COLOR_RED
+
+POPULATE_COLOURED_VARIANTS_OF(/obj/item/clothing/ears/hairflower, "flower pin")

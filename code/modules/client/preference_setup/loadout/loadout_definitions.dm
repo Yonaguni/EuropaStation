@@ -86,10 +86,40 @@
 	display_name = "soft cap"
 	path = /obj/item/clothing/head/soft
 
-/datum/gear/head/hairflower
-	display_name = "hair flower pin"
-	path = /obj/item/clothing/head/hairflower
-
 /datum/gear/head/beret
 	display_name = "beret"
 	path = /obj/item/clothing/head/beret
+
+/datum/gear/ears
+	category = /datum/gear/ears
+	//sort_category = "Earrings"
+	slot = slot_ears
+
+/datum/gear/ears/hairflower
+	display_name = "hair flower pin"
+	path = /obj/item/clothing/head/hairflower
+	flags = GEAR_HAS_COLOR_SELECTION
+
+/datum/gear/ears/earrings_stud_glass
+	display_name = "glass stud earrings"
+	path = /obj/item/clothing/ears/earring
+
+/datum/gear/ears/earrings_stud_silver
+	display_name = "silver stud earrings"
+	path = /obj/item/clothing/ears/earring/silver
+
+/datum/gear/ears/earrings_stud_gold
+	display_name = "gold earrings"
+	path = /obj/item/clothing/ears/earring/gold
+
+/datum/gear/ears/earrings_dangle_glass
+	display_name = "glass earrings"
+	path = /obj/item/clothing/ears/earring/dangle
+
+/datum/gear/ears/earrings_dangle_silver
+	display_name = "silver earrings"
+	path = /obj/item/clothing/ears/earring/dangle/silver
+
+/datum/gear/ears/earrings_dangle_gold
+	display_name = "gold earrings"
+	path = /obj/item/clothing/ears/earring/dangle/gold

@@ -41,14 +41,5 @@
 	body_parts_covered = 0
 	color = COLOR_ORANGE
 
-/obj/item/clothing/head/hairflower
-	name = "flower pin"
-	icon_state = "hairflower"
-	desc = "It smells nice."
-	slot_flags = SLOT_HEAD | SLOT_EARS
-	body_parts_covered = 0
-	color = COLOR_RED
-
 POPULATE_COLOURED_VARIANTS_OF(/obj/item/clothing/head/beret, "beret")
-POPULATE_COLOURED_VARIANTS_OF(/obj/item/clothing/head/hairflower, "flower pin")
 POPULATE_COLOURED_VARIANTS_OF(/obj/item/clothing/head/bandana, "bandana")
