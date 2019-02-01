@@ -25,6 +25,7 @@
 		default_type = _material
 	if(_reinf_material)
 		default_reinf_type = _reinf_material
+	world.log << "[type] [default_type]" 
 	material = SSmaterials.get_material_by_name(default_type)
 	if(!material)
 		return INITIALIZE_HINT_QDEL
