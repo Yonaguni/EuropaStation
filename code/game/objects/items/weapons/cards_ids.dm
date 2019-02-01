@@ -115,6 +115,7 @@ var/const/NO_EMAG_ACT = -50
 	name = "identification card"
 	desc = "A card used to provide ID and determine access."
 	slot_flags = SLOT_ID
+	item_state = "id"
 
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card

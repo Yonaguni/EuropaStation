@@ -92,12 +92,12 @@
 
 /datum/gear/ears
 	category = /datum/gear/ears
-	//sort_category = "Earrings"
-	slot = slot_ears
+	//sort_category = "Earwear"
+	slot = slot_l_ear
 
 /datum/gear/ears/hairflower
 	display_name = "hair flower pin"
-	path = /obj/item/clothing/head/hairflower
+	path = /obj/item/clothing/ears/hairflower
 	flags = GEAR_HAS_COLOR_SELECTION
 
 /datum/gear/ears/earrings_stud_glass
