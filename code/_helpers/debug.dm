@@ -46,8 +46,8 @@
 		/obj/item/seeds/cutting,
 		/obj/item/weapon/grown,
 		/obj/item/weapon/contraband,
-		/obj/item/weapon/grenade/flashbang/cluster,             // These both should not be on here, but
-		/obj/item/weapon/grenade/flashbang/clusterbang/segment, // rewriting them now is out of scope.
+		/obj/item/weapon/grenade/flashbang/cluster,
+		/obj/item/weapon/grenade/flashbang/clusterbang/segment,
 		/obj/item/organ,
 		/obj/item/organ/internal,
 		/obj/item/organ/internal/augment,
@@ -131,7 +131,7 @@
 	// Types that should be skipped along with all descendants.
 	var/list/skip_types_and_subtypes = list(
 		/obj/item/proxy_debug,
-		/obj/item/weapon/gun, // Uses a lot of overlays.
+		/obj/item/weapon/gun,
 		/obj/item/weapon/hand,
 		/obj/item/weapon/storage/internal,
 		/obj/item/weapon/robot_module,
@@ -142,8 +142,8 @@
 		/obj/item/borg,
 		/obj/item/weapon/holder,
 		/obj/item/weapon/stool,
-		/obj/item/modular_computer, // They break the proc via NanoUI.
-		/obj/item/organ/external // Too specialized for this to easily cope with.
+		/obj/item/modular_computer,
+		/obj/item/organ/external
 	)
 
 	for(var/thing in skip_types_and_subtypes)

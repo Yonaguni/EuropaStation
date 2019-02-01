@@ -115,7 +115,7 @@
 	desc = "A golden cup."
 	name = "golden cup"
 	icon_state = "golden_cup"
-	item_state = "" //nope :(
+	item_state = "empty"
 	w_class = ITEM_SIZE_HUGE
 	force = 14
 	throwforce = 10

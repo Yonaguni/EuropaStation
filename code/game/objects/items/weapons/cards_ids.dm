@@ -15,7 +15,7 @@
 	name = "card"
 	desc = "Does card things."
 	icon_state = "base"
-	item_state = "card-id"
+	item_state = "id"
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
@@ -83,13 +83,13 @@
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
+	item_state = "id"
 
 /obj/item/weapon/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
+	item_state = "id"
 	var/uses = 10
 
 var/const/NO_EMAG_ACT = -50
@@ -284,10 +284,11 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
+	color = COLOR_GOLD
 	detail_color = COLOR_AMBER
+	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()

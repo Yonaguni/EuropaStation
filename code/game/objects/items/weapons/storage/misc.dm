@@ -75,8 +75,8 @@
 	startswith = list(/obj/item/clothing/mask/chewable/candy/gum = 8)
 
 /obj/item/weapon/storage/gum/Initialize()
+	. = ..()
 	make_exact_fit()
-	..()
 
 /obj/item/weapon/storage/medicallollis
 	name = "pack of medicinal lolipops"
@@ -87,5 +87,5 @@
 	startswith = list(/obj/item/clothing/mask/chewable/candy/lolli/meds = 20)
 
 /obj/item/weapon/storage/medicallollis/Initialize()
+	. = ..()
 	make_exact_fit()
-	..()

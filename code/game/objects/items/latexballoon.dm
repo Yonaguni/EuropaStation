@@ -2,7 +2,7 @@
 	name = "latex glove"
 	desc = "A latex glove, usually used as a balloon."
 	icon_state = "latexballon"
-	item_state = "lgloves"
+	item_state = "gloves"
 	force = 0
 	throwforce = 0
 	w_class = ITEM_SIZE_SMALL
@@ -23,7 +23,7 @@
 		return
 	playsound(src, 'sound/weapons/gunshot/gunshot.ogg', 100, 1)
 	icon_state = "latexballon_bursted"
-	item_state = "lgloves"
+	item_state = "gloves"
 	loc.assume_air(air_contents)
 
 /obj/item/latexballon/ex_act(severity)

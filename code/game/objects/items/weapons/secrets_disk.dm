@@ -1,7 +1,7 @@
 /obj/item/weapon/disk
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
-	item_state = "card-id"
+	item_state = "id"
 
 /obj/item/weapon/disk/secret_project
 	name = "'classified' project data disk"

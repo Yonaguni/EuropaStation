@@ -3,7 +3,7 @@
 	desc = ""	// Nothing to see here
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0"
-	item_state = "nothing"
+	item_state = "empty"
 	plane = OBJ_PLANE
 	layer = BELOW_TABLE_LAYER
 
