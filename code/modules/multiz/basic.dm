@@ -1,14 +1,12 @@
 // If you add a more comprehensive system, just untick this file.
-var/list/z_levels = list()// Each bit re... haha just kidding this is a list of bools now
+var/z_levels = 0
 
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
 	..()
 
-	for(var/i = (z - height + 1) to (z-1))
-		if (z_levels.len <i)
-			z_levels.len = i
-		z_levels[i] = TRUE
+	for(var/i = (z - height) to (z - 2))
+		global.z_levels |= (1 << i)
 
 /obj/effect/landmark/map_data/Initialize()
 	..()

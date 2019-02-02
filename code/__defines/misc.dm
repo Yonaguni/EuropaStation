@@ -1,4 +1,11 @@
 #define DEBUG
+
+#if DM_VERSION < 512
+#define BITWISE_MAX_BITS 16
+#else
+#define BITWISE_MAX_BITS 24
+#endif
+
 // Turf-only flags.
 #define TURF_FLAG_NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 #define TURF_FLAG_NORUINS 2
@@ -297,10 +304,10 @@ block( \
 	locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
 )
 
-#define IS_VALID_ZINDEX(z) !((z) > z_levels.len || (z) < 1)
+#define IS_VALID_ZINDEX(z) !((z) > world.maxz || (z) > (BITWISE_MAX_BITS + 1))
 
-#define HAS_ABOVE(z) (IS_VALID_ZINDEX(z) && z_levels[z])
-#define HAS_BELOW(z) (IS_VALID_ZINDEX(z) && (z) != 1 && z_levels[(z) - 1])
+#define HAS_ABOVE(z) (IS_VALID_ZINDEX(z) && global.z_levels & (1 << (z - 1)))
+#define HAS_BELOW(z) (IS_VALID_ZINDEX(z) && (z) != 1 && global.z_levels & (1 << (z - 2)))
 
 #define GET_ABOVE(A) (HAS_ABOVE(A:z) ? get_step(A, UP) : null)
 #define GET_BELOW(A) (HAS_BELOW(A:z) ? get_step(A, DOWN) : null)
