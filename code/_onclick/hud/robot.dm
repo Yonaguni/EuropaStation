@@ -105,6 +105,7 @@ var/obj/screen/robot_inventory
 
 //Temp
 	mymob.bodytemp = new /obj/screen()
+	mymob.bodytemp.icon = 'icons/mob/status_indicators.dmi'
 	mymob.bodytemp.icon_state = "temp0"
 	mymob.bodytemp.SetName("body temperature")
 	mymob.bodytemp.screen_loc = ui_temp
@@ -115,12 +116,6 @@ var/obj/screen/robot_inventory
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.SetName("oxygen")
 	mymob.oxygen.screen_loc = ui_oxygen
-
-	mymob.fire = new /obj/screen()
-	mymob.fire.icon = 'icons/mob/screen1_robot.dmi'
-	mymob.fire.icon_state = "fire0"
-	mymob.fire.SetName("fire")
-	mymob.fire.screen_loc = ui_fire
 
 	mymob.pullin = new /obj/screen()
 	mymob.pullin.icon = 'icons/mob/screen1_robot.dmi'
@@ -140,7 +135,7 @@ var/obj/screen/robot_inventory
 	mymob.radio_use_icon = new /obj/screen/gun/radio(null)
 
 	mymob.client.screen = list()
-	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.fire, mymob.hands, mymob.healths, mymob:cells, mymob.pullin, robot_inventory, mymob.gun_setting_icon)
+	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.hands, mymob.healths, mymob:cells, mymob.pullin, robot_inventory, mymob.gun_setting_icon)
 	mymob.client.screen += src.adding + src.other
 
 /datum/hud/proc/toggle_show_robot_modules()
