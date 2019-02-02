@@ -33,15 +33,17 @@
 	var/fluid_blocked_dirs = 0
 	var/flooded // Whether or not this turf is absolutely flooded ie. a water source.
 
-/turf/New()
-	..()
+/turf/Initialize(mapload)
 	if(dynamic_lighting)
 		luminosity = 0
 	else
 		luminosity = 1
 
-/turf/Initialize(mapload)
+	if (opacity)
+		has_opaque_atom = TRUE
+
 	. = ..()
+
 	if (mapload && permit_ao)
 		queue_ao()
 

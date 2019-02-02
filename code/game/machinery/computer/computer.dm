@@ -11,9 +11,8 @@
 
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
-	var/light_max_bright_on = 0.2
-	var/light_inner_range_on = 0.1
-	var/light_outer_range_on = 2
+	var/light_power_on = 0.2
+	var/light_range_on = 2
 	var/overlay_layer
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
 	clicksound = "keyboard"
@@ -63,7 +62,7 @@
 			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
 		return
 	else
-		set_light(light_max_bright_on, light_inner_range_on, light_outer_range_on, 2, light_color)
+		set_light(light_power_on, light_range_on, light_color)
 
 	if(stat & BROKEN)
 		overlays += image(icon,"[icon_state]_broken", overlay_layer)

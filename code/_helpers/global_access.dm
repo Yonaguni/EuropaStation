@@ -33,6 +33,8 @@
 			return global.Master;
 		if("OOClog")
 			return global.OOClog;
+		if("REVERSE_LIGHTING_CORNER_DIAGONAL")
+			return global.REVERSE_LIGHTING_CORNER_DIAGONAL;
 		if("SSair")
 			return global.SSair;
 		if("SSairflow")
@@ -499,8 +501,6 @@
 			return global.last_round_duration;
 		if("light_overlay_cache")
 			return global.light_overlay_cache;
-		if("lighting_overlays_initialised")
-			return global.lighting_overlays_initialised;
 		if("limb_icon_cache")
 			return global.limb_icon_cache;
 		if("loadout_categories")
@@ -827,12 +827,6 @@
 			return global.ticket_panels;
 		if("tickets")
 			return global.tickets;
-		if("total_lighting_corners")
-			return global.total_lighting_corners;
-		if("total_lighting_overlays")
-			return global.total_lighting_overlays;
-		if("total_lighting_sources")
-			return global.total_lighting_sources;
 		if("total_unit_tests")
 			return global.total_unit_tests;
 		if("transfer_controller")
@@ -918,6 +912,8 @@
 			global.Master=newval;
 		if("OOClog")
 			global.OOClog=newval;
+		if("REVERSE_LIGHTING_CORNER_DIAGONAL")
+			global.REVERSE_LIGHTING_CORNER_DIAGONAL=newval;
 		if("SSair")
 			global.SSair=newval;
 		if("SSairflow")
@@ -1384,8 +1380,6 @@
 			global.last_round_duration=newval;
 		if("light_overlay_cache")
 			global.light_overlay_cache=newval;
-		if("lighting_overlays_initialised")
-			global.lighting_overlays_initialised=newval;
 		if("limb_icon_cache")
 			global.limb_icon_cache=newval;
 		if("loadout_categories")
@@ -1712,12 +1706,6 @@
 			global.ticket_panels=newval;
 		if("tickets")
 			global.tickets=newval;
-		if("total_lighting_corners")
-			global.total_lighting_corners=newval;
-		if("total_lighting_overlays")
-			global.total_lighting_overlays=newval;
-		if("total_lighting_sources")
-			global.total_lighting_sources=newval;
 		if("total_unit_tests")
 			global.total_unit_tests=newval;
 		if("transfer_controller")
@@ -1786,6 +1774,7 @@
 	"LIGHTING_CORNER_DIAGONAL",
 	"Master",
 	"OOClog",
+	"REVERSE_LIGHTING_CORNER_DIAGONAL",
 	"SSair",
 	"SSairflow",
 	"SSalarm",
@@ -2019,7 +2008,6 @@
 	"last_message_id",
 	"last_round_duration",
 	"light_overlay_cache",
-	"lighting_overlays_initialised",
 	"limb_icon_cache",
 	"loadout_categories",
 	"lobby_image",
@@ -2183,9 +2171,6 @@
 	"tg_z_state",
 	"ticket_panels",
 	"tickets",
-	"total_lighting_corners",
-	"total_lighting_overlays",
-	"total_lighting_sources",
 	"total_unit_tests",
 	"transfer_controller",
 	"turbolifts",

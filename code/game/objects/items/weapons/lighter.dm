@@ -29,7 +29,7 @@
 	lit = 1
 	update_icon()
 	light_effects(user)
-	set_light(0.6, 0.5, 2)
+	set_light(2, 0.5)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/flame/lighter/proc/light_effects(mob/living/carbon/user)
@@ -95,7 +95,7 @@
 		if(ismob(loc) && prob(10) && reagents.get_reagent_amount(/datum/reagent/fuel) < 1)
 			to_chat(loc, "<span class='warning'>\The [src]'s flame flickers.</span>")
 			set_light(0)
-			addtimer(CALLBACK(src, .atom/proc/set_light, 0.6, 0.5, 2), 4)
+			addtimer(CALLBACK(src, .atom/proc/set_light, 2, 0.5), 4)
 		reagents.remove_reagent(/datum/reagent/fuel, 0.05)
 	else
 		extinguish()

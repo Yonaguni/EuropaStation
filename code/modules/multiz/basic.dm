@@ -1,41 +1,35 @@
 // If you add a more comprehensive system, just untick this file.
-var/list/z_levels = list()// Each bit re... haha just kidding this is a list of bools now
+var/z_levels = 0
 
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
 	..()
 
-	for(var/i = (z - height + 1) to (z-1))
-		if (z_levels.len <i)
-			z_levels.len = i
-		z_levels[i] = TRUE
+	for(var/i = (z - height) to (z - 2))
+		global.z_levels |= (1 << i)
 
 /obj/effect/landmark/map_data/Initialize()
 	..()
 	return INITIALIZE_HINT_QDEL
 
 /proc/HasAbove(var/z)
-	if(z >= world.maxz || z < 1 || z > z_levels.len)
-		return 0
-	return z_levels[z]
+	return HAS_ABOVE(z)
 
 /proc/HasBelow(var/z)
-	if(z > world.maxz || z < 2 || (z-1) > z_levels.len)
-		return 0
-	return z_levels[z-1]
+	return HAS_BELOW(z)
 
 // Thankfully, no bitwise magic is needed here.
 /proc/GetAbove(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
 		return null
-	return HasAbove(turf.z) ? get_step(turf, UP) : null
+	return GET_ABOVE(atom)
 
 /proc/GetBelow(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
 		return null
-	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
+	return GET_BELOW(atom)
 
 /proc/GetConnectedZlevels(z)
 	. = list(z)

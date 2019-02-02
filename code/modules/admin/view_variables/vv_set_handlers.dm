@@ -118,17 +118,19 @@
 
 /decl/vv_set_handler/light_handler
 	handled_type = /atom
-	handled_vars = list("light_max_bright","light_inner_range","light_outer_range","light_falloff_curve")
+	handled_vars = list("light_range","light_power","light_color","light_wedge")
 
 /decl/vv_set_handler/light_handler/handle_set_var(var/atom/A, variable, var_value, client)
-	var_value = text2num(var_value)
-	if(!is_num_predicate(var_value, client))
-		return
+	if (variable != "light_color")
+		var_value = text2num(var_value)
+		if(!is_num_predicate(var_value, client))
+			return
+
 	// More sanity checks
 
-	var/new_max = variable == "light_max_bright" ? var_value : A.light_max_bright
-	var/new_inner = variable == "light_inner_range" ? var_value : A.light_inner_range
-	var/new_outer = variable == "light_outer_range" ? var_value : A.light_outer_range
-	var/new_falloff = variable == "light_falloff_curve" ? var_value : A.light_falloff_curve
+	var/new_range = variable == "light_range" ? var_value : A.light_range
+	var/new_power = variable == "light_power" ? var_value : A.light_power
+	var/new_color = variable == "light_color" ? var_value : A.light_color
+	var/new_angle = variable == "light_wedge" ? var_value : A.light_wedge
 
-	A.set_light(new_max, new_inner, new_outer, new_falloff)
+	A.set_light(new_range, new_power, new_color, new_angle)

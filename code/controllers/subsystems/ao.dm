@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(ao)
 	init_order = SS_INIT_AO
 	wait = 1
 	priority = 50
-	runlevels = RUNLEVEL_LOBBY
+	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	var/list/queue = list()
 	var/list/cache = list()
 
