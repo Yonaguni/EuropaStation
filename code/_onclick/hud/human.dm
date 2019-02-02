@@ -219,11 +219,17 @@
 	if(hud_data.has_nutrition)
 		mymob.nutrition_icon = new /obj/screen()
 		mymob.nutrition_icon.icon = 'icons/mob/status_hunger.dmi'
-		mymob.nutrition_icon.icon_state = "nutrition0"
+		mymob.nutrition_icon.icon_state = "nutrition1"
 		mymob.nutrition_icon.SetName("nutrition")
 		mymob.nutrition_icon.screen_loc = ui_nutrition
 		hud_elements |= mymob.nutrition_icon
 
+		mymob.hydration_icon = new /obj/screen()
+		mymob.hydration_icon.icon = 'icons/mob/status_hunger.dmi'
+		mymob.hydration_icon.icon_state = "hydration1"
+		mymob.hydration_icon.SetName("hydration")
+		mymob.hydration_icon.screen_loc = ui_nutrition
+		hud_elements |= mymob.hydration_icon
 
 	mymob.pain = new /obj/screen/fullscreen/pain( null )
 	hud_elements |= mymob.pain
