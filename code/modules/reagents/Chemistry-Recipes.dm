@@ -522,8 +522,7 @@
 	s.set_up(2, 1, location)
 	s.start()
 	for(var/mob/living/carbon/human/M in viewers(world.view, location))
-		var/obj/item/clothing/glasses/glasses = M.glasses
-		if(istype(glasses) && glasses.flash_protection >= FLASH_PROTECTION_MODERATE)
+		if(M.flash_protection < FLASH_PROTECTION_MODERATE)
 			switch(get_dist(M, location))
 				if(0 to 3)
 					M.flash_eyes()
