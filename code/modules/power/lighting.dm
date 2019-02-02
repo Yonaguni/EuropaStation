@@ -182,6 +182,16 @@
 
 	s.set_up(1, 1, src)
 
+	switch (dir)
+		if (NORTH)
+			light_offset_y = WORLD_ICON_SIZE * 0.5
+		if (SOUTH)
+			light_offset_y = WORLD_ICON_SIZE * -0.5
+		if (EAST)
+			light_offset_x = WORLD_ICON_SIZE * 0.5
+		if (WEST)
+			light_offset_x = WORLD_ICON_SIZE * -0.5
+
 	if(construct)
 		construct_type = construct.type
 		construct.transfer_fingerprints_to(src)
