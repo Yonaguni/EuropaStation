@@ -87,6 +87,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/cassini)
+"v" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal,
+/turf/simulated/floor/tiled,
+/area/cassini)
 "w" = (
 /obj/structure/closet/secure_closet/cassini,
 /turf/simulated/floor/tiled/dark,
@@ -119,7 +123,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/cassini)
 "E" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /turf/simulated/floor/tiled/steel_grid,
 /area/cassini)
 "F" = (
@@ -135,7 +139,7 @@
 /turf/simulated/ocean,
 /area/space/ocean)
 "I" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/red,
 /turf/simulated/floor/tiled/steel_grid,
 /area/cassini)
 "J" = (
@@ -1649,7 +1653,7 @@ f
 l
 V
 E
-G
+v
 G
 S
 k
@@ -1979,7 +1983,7 @@ f
 l
 t
 I
-x
+v
 x
 s
 k
