@@ -9,6 +9,7 @@
 	else
 		hud_data = target.species.hud
 
+	world.log << "[hud_data.has_nutrition]"
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
@@ -215,9 +216,9 @@
 		mymob.bodytemp.screen_loc = ui_temp
 		hud_elements |= mymob.bodytemp
 
-	else if(hud_data.has_nutrition)
+	if(hud_data.has_nutrition)
 		mymob.nutrition_icon = new /obj/screen()
-		mymob.nutrition_icon.icon = ui_style
+		mymob.nutrition_icon.icon = 'icons/mob/status_hunger.dmi'
 		mymob.nutrition_icon.icon_state = "nutrition0"
 		mymob.nutrition_icon.SetName("nutrition")
 		mymob.nutrition_icon.screen_loc = ui_nutrition
