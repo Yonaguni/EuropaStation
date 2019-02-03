@@ -35,6 +35,15 @@
 	set_sight(sight|SEE_TURFS)
 	GLOB.player_list |= src
 
+	/*
+	 * We need to ensure the new player panel isn't still open if the server has restarted without the client disconnecting!
+	 * Otherwise the panel will still be open once the server restarts, and the user may be left with a non-responsive panel.
+	 * We have to close the window by manually browsing null on the same windowid, because we may no longer have the reference.
+	 * (It's null, but the client is still showing it, and it's unresponsive)
+ 	 */
+	close_browser(src, "window=[NEW_PLAYER_PANEL_ID]")
+	//And now the client will magically see the panel disappear.
+
 	if(!SScharacter_setup.initialized)
 		SScharacter_setup.newplayers_requiring_init += src
 	else
