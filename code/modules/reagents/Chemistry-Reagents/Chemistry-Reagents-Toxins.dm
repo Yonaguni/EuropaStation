@@ -556,7 +556,6 @@
 		threshold = 1.2
 
 	M.druggy = max(M.druggy, 30)
-
 	if(M.chem_doses[type] < 1 * threshold)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
@@ -611,7 +610,7 @@
 	if(alien == IS_SKRELL)	//skrell can't have hair unless you hack it in, also to prevent tentacles from falling off
 		return
 	M.species.set_default_hair(M)
-	to_chat(M, "<span class='warning'>Your feel a chill, your skin feels lighter..</span>")
+	to_chat(M, "<span class='warning'>You feel a chill and your skin feels lighter..</span>")
 	remove_self(volume)
 
 /datum/reagent/toxin/zombie

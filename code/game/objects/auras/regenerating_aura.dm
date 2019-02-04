@@ -36,13 +36,13 @@
 
 	if(brute_mult && H.getBruteLoss())
 		H.adjustBruteLoss(-brute_mult * config.organ_regeneration_multiplier)
-		H.nutrition -= nutrition_damage_mult
+		H.adjust_nutrition(-nutrition_damage_mult)
 	if(fire_mult && H.getFireLoss())
 		H.adjustFireLoss(-fire_mult * config.organ_regeneration_multiplier)
-		H.nutrition -= nutrition_damage_mult
+		H.adjust_nutrition(-nutrition_damage_mult)
 	if(tox_mult && H.getToxLoss())
 		H.adjustToxLoss(-tox_mult * config.organ_regeneration_multiplier)
-		H.nutrition -= nutrition_damage_mult
+		H.adjust_nutrition(-nutrition_damage_mult)
 
 	if(organ_mult)
 		if(prob(10) && H.nutrition >= 150 && !H.getBruteLoss() && !H.getFireLoss())
@@ -50,7 +50,7 @@
 			if (D.status & ORGAN_DISFIGURED)
 				if (H.nutrition >= 20)
 					D.status &= ~ORGAN_DISFIGURED
-					H.nutrition -= 20
+					H.adjust_nutrition(-20)
 				else
 					low_nut_warning("head")
 
@@ -62,7 +62,7 @@
 				if(regen_organ.damage > 0 && !(regen_organ.status & ORGAN_DEAD))
 					if (H.nutrition >= organ_mult)
 						regen_organ.damage = max(regen_organ.damage - organ_mult, 0)
-						H.nutrition -= organ_mult
+						H.adjust_nutrition(-organ_mult)
 						if(prob(5))
 							to_chat(H, replacetext(regen_message,"ORGAN", regen_organ.name))
 					else

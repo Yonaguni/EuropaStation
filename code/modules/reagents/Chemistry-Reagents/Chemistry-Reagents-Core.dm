@@ -144,6 +144,9 @@
 	heating_point = T100C
 	heating_message = "starts to boil."
 
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjust_hydration(removed * 10)
+
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
@@ -192,7 +195,7 @@
 	chilling_point =   99 CELCIUS
 	chilling_message = "stops boiling."
 	heating_products =  list(null)
-	heating_point =    null
+	heating_point =     null
 
 // Ice is a drink for some reason.
 /datum/reagent/drink/ice
@@ -208,9 +211,13 @@
 	glass_desc = "Generally, you're supposed to put something else in there too..."
 	glass_icon = DRINK_ICON_NOISY
 
+	hydration = 10
 	heating_message = "cracks and melts."
 	heating_products = list(/datum/reagent/water)
-	heating_point = 299 // This is about 26C, higher than the actual melting point of ice but allows drinks to be made properly without weird workarounds.
+	// This is about 26C, higher than the actual melting point of ice but
+	// allows drinks to be made properly without weird workarounds. 
+	// (note from future self: this IS a weird workaround)
+	heating_point = 299
 
 // Fuel.
 /datum/reagent/fuel

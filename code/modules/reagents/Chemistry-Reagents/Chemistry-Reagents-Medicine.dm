@@ -733,6 +733,7 @@
 	flags = IGNORE_MOB_SIZE
 
 /datum/reagent/noexcutite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.make_jittery(-50)
 
 	if(alien != IS_DIONA)
 		M.make_jittery(-50)
