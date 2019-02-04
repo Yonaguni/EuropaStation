@@ -313,3 +313,5 @@ block( \
 #define GET_BELOW(A) (HAS_BELOW(A:z) ? get_step(A, DOWN) : null)
 
 #define isopenturf(T) istype(T, /turf/simulated/open)
+
+#define NEW_PLAYER_PANEL_ID "NewPlayerPanel"
