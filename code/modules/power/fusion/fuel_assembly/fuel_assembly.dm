@@ -5,7 +5,6 @@
 	layer = 4
 
 	var/material_name
-
 	var/percent_depleted = 1
 	var/list/rod_quantities = list()
 	var/fuel_type = "composite"
@@ -66,5 +65,5 @@
 /obj/item/weapon/fuel_assembly/tritium/New(var/newloc)
 	..(newloc, MATERIAL_TRITIUM)
 
-/obj/item/fuel_assembly/hydrogen/New(var/newloc)
+/obj/item/weapon/fuel_assembly/hydrogen/New(var/newloc)
 	..(newloc, MATERIAL_HYDROGEN)

@@ -7,6 +7,7 @@
 /obj/item/weapon/deck
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
+	icon_state = "deck"
 	var/list/cards = list()
 
 /obj/item/weapon/deck/holder
@@ -17,7 +18,6 @@
 /obj/item/weapon/deck/cards
 	name = "deck of cards"
 	desc = "A simple deck of playing cards."
-	icon_state = "deck"
 
 /obj/item/weapon/deck/cards/New()
 	..()

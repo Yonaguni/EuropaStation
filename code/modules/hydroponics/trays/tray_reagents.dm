@@ -8,15 +8,15 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
+	icon_state = "weedspray"
+
 	var/toxicity = 4
 	var/pest_kill_str = 0
 	var/weed_kill_str = 0
 
 /obj/item/weapon/plantspray/weeds // -- Skie
-
 	name = "weed-spray"
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
-	icon_state = "weedspray"
 	weed_kill_str = 6
 
 /obj/item/weapon/plantspray/pests

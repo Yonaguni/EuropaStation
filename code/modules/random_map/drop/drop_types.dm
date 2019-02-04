@@ -105,8 +105,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 	contents = list(
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/suit/armor/vest,
-		/obj/item/clothing/suit/storage/vest,
-		/obj/item/clothing/suit/storage/vest
+		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/armor/vest
 	)
 
 /datum/supply_drop_loot/materials

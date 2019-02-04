@@ -94,13 +94,6 @@
 	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/obj/item/weapon/grenade/flashbang/instant/Initialize()
-	. = ..()
-	name = "arcane energy"
-	icon_state = null
-	item_state = null
-	detonate()
-
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."
 	name = "clusterbang"

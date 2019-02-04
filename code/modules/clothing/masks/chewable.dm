@@ -79,6 +79,13 @@ obj/item/clothing/mask/chewable/Destroy()
 	chewtime = 300
 	filling = list(/datum/reagent/sugar = 2)
 
+/obj/item/trash/cigbutt
+	name = "cigarette butt"
+	desc = "A manky old cigarette butt."
+	icon = 'icons/obj/clothing/obj_mask.dmi'
+	icon_state = "cigbutt"
+	randpixel = 10
+
 /obj/item/trash/cigbutt/spitgum
 	name = "old gum"
 	desc = "A disgusting chewed up wad of gum."

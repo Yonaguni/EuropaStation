@@ -4,8 +4,10 @@
 	var/const/NO_SCRUBBER = 4
 
 	// Unit test vars
+	var/default_apc_check_exemptions = 0
 	var/list/apc_test_exempt_areas = list(
-		/area/exoplanet             = NO_SCRUBBER|NO_VENT|NO_APC	)
+		/area/exoplanet = NO_SCRUBBER|NO_VENT|NO_APC	
+	)
 
 	var/list/area_coherency_test_exempt_areas = list(
 		/area/space,

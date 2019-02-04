@@ -1,9 +1,11 @@
+/obj/item/weapon/disk
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "datadisk0"
+	item_state = "id"
+
 /obj/item/weapon/disk/secret_project
 	name = "'classified' project data disk"
 	desc = "A special disk for storing massive amounts of data. It is marked as classified, and has an ID card slot on top."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk0"
-	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
 	req_access = access_ce
 	var/subject = "some strange, incomprehensible design"

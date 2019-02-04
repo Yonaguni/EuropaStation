@@ -163,7 +163,7 @@
 /obj/item/weapon/bucket_sensor
 	desc = "It's a bucket. With a sensor attached."
 	name = "proxy bucket"
-	icon = 'icons/mob/bot/cleanbot.dmi'
+	icon = 'icons/obj/cleanbot.dmi'
 	icon_state = "bucket_proxy"
 	force = 3.0
 	throwforce = 10.0

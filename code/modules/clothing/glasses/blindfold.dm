@@ -1,4 +1,4 @@
-/obj/item/clothing/glasses/sunglasses/blindfold
+/obj/item/clothing/glasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	action_button_name = "Adjust Blindfold"
@@ -8,10 +8,10 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	var/up = FALSE
 
-/obj/item/clothing/glasses/sunglasses/blindfold/attack_self()
+/obj/item/clothing/glasses/blindfold/attack_self()
 	toggle()
 
-/obj/item/clothing/glasses/sunglasses/blindfold/verb/toggle()
+/obj/item/clothing/glasses/blindfold/verb/toggle()
 	set category = "Object"
 	set name = "Adjust blindfold"
 	set src in usr
@@ -37,7 +37,7 @@
 		update_vision()
 		usr.update_action_buttons()
 
-/obj/item/clothing/glasses/sunglasses/blindfold/tape
+/obj/item/clothing/glasses/blindfold/tape
 	name = "length of tape"
 	desc = "It's a robust DIY blindfold!"
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -46,6 +46,6 @@
 	item_state = null
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/clothing/glasses/sunglasses/blindfold/tape/toggle()
+/obj/item/clothing/glasses/blindfold/tape/toggle()
 	to_chat(usr, SPAN_WARNING("You can't adjust \the [src]!"))
 	return

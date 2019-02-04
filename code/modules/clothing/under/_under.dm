@@ -264,22 +264,3 @@
 		var/obj/item/clothing/under/clothes = under_parts[thing]
 		if(clothes.has_sensors_somewhere() != -1)
 			. |= clothes
-
-
-/obj/item/debug_random_uniform/New()
-	var/upper_type = pick(subtypesof(/obj/item/clothing/under/upper))
-	var/obj/item/clothing/under/upper = new upper_type(get_turf(src))
-	upper.color = get_random_colour()
-	upper.under_parts = list()
-	var/lower_type = pick(subtypesof(/obj/item/clothing/under/lower))
-	var/obj/lower = new lower_type(upper)
-	lower.color = get_random_colour()
-	upper.under_parts[PARTIAL_UNIFORM_LOWER] = lower
-	if(prob(10))
-		var/jumpsuit_type = pick(subtypesof(/obj/item/clothing/under/jumpsuit))
-		var/obj/jump = new jumpsuit_type(upper)
-		jump.color = get_random_colour()
-		upper.under_parts[PARTIAL_UNIFORM_OVER] = jump
-	upper.update_values()
-	upper.update_icon()
-	qdel(src)

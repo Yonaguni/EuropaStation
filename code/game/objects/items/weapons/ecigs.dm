@@ -2,18 +2,19 @@
 	name = "electronic cigarette"
 	desc = "Device with modern approach to smoking."
 	icon = 'icons/obj/ecig.dmi'
+	w_class = ITEM_SIZE_TINY
+	slot_flags = SLOT_EARS | SLOT_MASK
+	attack_verb = list("attacked", "poked", "battered")
+	body_parts_covered = 0
+	chem_volume = 0 //ecig has no storage on its own but has reagent container created by parent obj
+	item_state = "ecigoff"
+
 	var/active = 0
 	var/obj/item/weapon/cell/cigcell
 	var/cartridge_type = /obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine
 	var/obj/item/weapon/reagent_containers/ecig_cartridge/ec_cartridge
 	var/cell_type = /obj/item/weapon/cell/device/standard
-	w_class = ITEM_SIZE_TINY
-	slot_flags = SLOT_EARS | SLOT_MASK
-	attack_verb = list("attacked", "poked", "battered")
-	body_parts_covered = 0
 	var/brightness_on = 1
-	chem_volume = 0 //ecig has no storage on its own but has reagent container created by parent obj
-	item_state = "ecigoff"
 	var/icon_off
 	var/icon_empty
 	var/power_usage = 450 //value for simple ecig, enough for about 1 cartridge, in JOULES!

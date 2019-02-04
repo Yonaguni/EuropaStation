@@ -1,8 +1,10 @@
+/obj/item/stack/animalhide
+	icon_state = "sheet-hide"
+	
 /obj/item/stack/animalhide/human
 	name = "human skin"
 	desc = "The by-product of human farming."
 	singular_name = "human skin piece"
-	icon_state = "sheet-hide"
 
 /obj/item/stack/animalhide/corgi
 	name = "corgi hide"

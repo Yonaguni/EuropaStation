@@ -19,6 +19,7 @@
 	w_class = ITEM_SIZE_TINY
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
+	item_state = "empty"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = "5"
 	volume = 10

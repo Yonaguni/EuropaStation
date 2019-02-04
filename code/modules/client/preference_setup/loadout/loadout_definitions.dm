@@ -59,3 +59,67 @@
 /datum/gear/upper/longshirt
 	display_name = "long-sleeved shirt"
 	path = /obj/item/clothing/under/upper/longsleeve
+
+/datum/gear/head
+	category = /datum/gear/head
+	//sort_category = "Hats and Headwear"
+	slot = slot_head
+	flags = GEAR_HAS_COLOR_SELECTION
+
+/datum/gear/head/bandana
+	display_name = "bandana"
+	path = /obj/item/clothing/head/bandana
+
+/datum/gear/head/hijab
+	display_name = "hijab"
+	path = /obj/item/clothing/head/hijab
+
+/datum/gear/head/kippa
+	display_name = "kippa"
+	path = /obj/item/clothing/head/kippa
+
+/datum/gear/head/turban
+	display_name = "turban"
+	path = /obj/item/clothing/head/turban
+
+/datum/gear/head/soft_cap
+	display_name = "soft cap"
+	path = /obj/item/clothing/head/soft
+
+/datum/gear/head/beret
+	display_name = "beret"
+	path = /obj/item/clothing/head/beret
+
+/datum/gear/ears
+	category = /datum/gear/ears
+	//sort_category = "Earwear"
+	slot = slot_l_ear
+
+/datum/gear/ears/hairflower
+	display_name = "hair flower pin"
+	path = /obj/item/clothing/ears/hairflower
+	flags = GEAR_HAS_COLOR_SELECTION
+
+/datum/gear/ears/earrings_stud_glass
+	display_name = "glass stud earrings"
+	path = /obj/item/clothing/ears/earring
+
+/datum/gear/ears/earrings_stud_silver
+	display_name = "silver stud earrings"
+	path = /obj/item/clothing/ears/earring/silver
+
+/datum/gear/ears/earrings_stud_gold
+	display_name = "gold earrings"
+	path = /obj/item/clothing/ears/earring/gold
+
+/datum/gear/ears/earrings_dangle_glass
+	display_name = "glass earrings"
+	path = /obj/item/clothing/ears/earring/dangle
+
+/datum/gear/ears/earrings_dangle_silver
+	display_name = "silver earrings"
+	path = /obj/item/clothing/ears/earring/dangle/silver
+
+/datum/gear/ears/earrings_dangle_gold
+	display_name = "gold earrings"
+	path = /obj/item/clothing/ears/earring/dangle/gold

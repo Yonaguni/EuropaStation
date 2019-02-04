@@ -321,7 +321,6 @@
 				/obj/item/toy/figure/atmos,
 				/obj/item/toy/figure/bartender,
 				/obj/item/toy/figure/borg,
-				/obj/item/toy/figure/gardener,
 				/obj/item/toy/figure/captain,
 				/obj/item/toy/figure/cargotech,
 				/obj/item/toy/figure/ce,
@@ -687,7 +686,6 @@ obj/random/obstruction/spawn_choices()
 
 /obj/random/glasses/spawn_choices()
 	return list(
-		/obj/item/clothing/glasses/sunglasses = 3,
 		/obj/item/clothing/glasses/prescription = 7,
 		/obj/item/clothing/glasses/meson = 5,
 		/obj/item/clothing/glasses/material = 5,
@@ -718,8 +716,7 @@ obj/random/obstruction/spawn_choices()
 	return list(
 		/obj/item/clothing/suit/storage/toggle/labcoat = 4,
 		/obj/item/clothing/suit/armor/vest = 4,
-		/obj/item/clothing/suit/storage/vest/tactical = 1,
-		/obj/item/clothing/suit/storage/vest = 3
+		/obj/item/clothing/suit/armor/vest = 3
 	)
 
 /obj/random/clothing
@@ -820,7 +817,6 @@ something, make sure it's not in one of the other lists.*/
 				/obj/item/clothing/mask/muzzle = 7,
 				/obj/item/clothing/glasses/night = 3,
 				/obj/item/clothing/glasses/thermal = 1,
-				/obj/item/clothing/suit/storage/vest/merc = 3,
 				/obj/item/clothing/suit/straight_jacket = 6,
 				/obj/item/stack/material/diamond/ten = 7,
 				/obj/item/stack/material/glass/phoronrglass/ten = 7,

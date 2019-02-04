@@ -129,7 +129,7 @@
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = "empty"
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_EARS
 	w_class = ITEM_SIZE_TINY
@@ -176,7 +176,7 @@
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = "empty"
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	w_class = ITEM_SIZE_TINY
 	flashlight_power = 0.25

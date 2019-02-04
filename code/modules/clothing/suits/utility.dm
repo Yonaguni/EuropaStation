@@ -12,7 +12,7 @@
 /obj/item/clothing/suit/fire
 	name = "firesuit"
 	desc = "A suit that protects against fire and heat."
-	icon_state = "fire"
+	icon_state = "firesuit"
 	item_state_slots = list(
 		slot_l_hand_str = "fire_suit",
 		slot_r_hand_str = "fire_suit",

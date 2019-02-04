@@ -20,7 +20,7 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
-	var/item_state = null // Used to specify the item state for the on-mob overlays.
+	var/item_state = "empty" // Used to specify the item state for the on-mob overlays.
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
 
 /atom/movable/Destroy()

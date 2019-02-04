@@ -77,7 +77,7 @@
 
 	place_grille(user, user.loc, src)
 
-/obj/item/stack/rods/on_update_icon()
+/obj/item/stack/material/rods/on_update_icon()
 	..()
 	if(amount == 1)
 		icon_state = "single-rod"

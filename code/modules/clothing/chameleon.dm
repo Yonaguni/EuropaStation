@@ -160,7 +160,7 @@
 /obj/item/weapon/storage/backpack/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/grey/withwallet)
+		var/blocked = list(src.type)
 		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/backpack, blocked)
 
 /obj/item/weapon/storage/backpack/chameleon/verb/change(picked in clothing_choices)
@@ -183,9 +183,7 @@
 //********************
 
 /obj/item/clothing/gloves/chameleon
-	name = "black gloves"
-	icon_state = "black"
-	item_state = "bgloves"
+	name = "gloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
 	var/global/list/clothing_choices
 

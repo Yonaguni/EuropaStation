@@ -324,7 +324,7 @@
 	desc = "A big bag of flour. Good for baking!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
-	item_state = "flour"
+	item_state = "empty"
 	randpixel = 10
 	starting_reagents = list(/datum/reagent/nutriment/flour = 50)
 
@@ -336,7 +336,7 @@
 	desc = "A nonsensically large bag of salt. Carefully refined from countless shifts."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "salt"
-	item_state = "flour"
+	item_state = "empty"
 	randpixel = 10
 	volume = 500
 	w_class = ITEM_SIZE_LARGE

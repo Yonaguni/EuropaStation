@@ -425,6 +425,7 @@
 
 /obj/item/rig_module/cooling_unit
 	name = "mounted cooling unit"
+	icon_state = "suitcooler"
 	toggleable = 1
 	interface_name = "mounted cooling unit"
 	interface_desc = "A heat sink with a liquid cooled radiator."

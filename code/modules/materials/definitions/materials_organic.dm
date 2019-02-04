@@ -81,18 +81,6 @@
 	destruction_desc = "crumples"
 	conductive = 0
 
-/material/cloth //todo
-	name = MATERIAL_CLOTH
-	door_icon_base = "wood"
-	ignition_point = T0C+232
-	melting_point = T0C+300
-	flags = MATERIAL_PADDING
-	brute_armor = 1
-	conductive = 0
-	stack_type = null
-	hidden_from_codex = TRUE
-	construction_difficulty = 1
-
 //TODO PLACEHOLDERS:
 /material/leather
 	name = MATERIAL_LEATHER
@@ -131,6 +119,8 @@
 	stack_type = null
 	hidden_from_codex = TRUE
 	construction_difficulty = 1
+	door_icon_base = "wood"
+	brute_armor = 1
 
 /material/cloth/carpet
 	name = "carpet"

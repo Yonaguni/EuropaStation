@@ -15,6 +15,7 @@
 
 
 /datum/unit_test/apc_area_test/start_test()
+
 	var/list/bad_areas = list()
 	var/area_test_count = 0
 
@@ -28,6 +29,8 @@
 		var/bad_msg = "--------------- [A.name]([A.type])"
 
 		var/exemptions = get_exemptions(A)
+		if(exemptions == -1) 
+			exemptions = GLOB.using_map.default_apc_check_exemptions
 		if(!A.apc && !(exemptions & GLOB.using_map.NO_APC))
 			log_bad("[bad_msg] lacks an APC.")
 			area_good = 0
@@ -61,10 +64,12 @@
 
 /datum/unit_test/apc_area_test/proc/get_exemptions(var/area)
 	// We assume deeper types come last
+	. = -1
 	for(var/i = GLOB.using_map.apc_test_exempt_areas.len; i>0; i--)
 		var/exempt_type = GLOB.using_map.apc_test_exempt_areas[i]
 		if(istype(area, exempt_type))
-			return GLOB.using_map.apc_test_exempt_areas[exempt_type]
+			. = GLOB.using_map.apc_test_exempt_areas[exempt_type]
+			break
 
 //=======================================================================================
 

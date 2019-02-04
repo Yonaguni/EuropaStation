@@ -157,7 +157,7 @@
 			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
 
 	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I, /obj/item/toy/ammo/crossbow))
+		if(istype(I, /obj/item/toy/ammo_crossbow))
 			if(bullets <= 4)
 				if(!user.unEquip(I))
 					return
@@ -192,21 +192,21 @@
 						if(M == user) continue
 						for(var/mob/O in viewers(world.view, D))
 							O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), 1)
-						new /obj/item/toy/ammo/crossbow(M.loc)
+						new /obj/item/toy/ammo_crossbow(M.loc)
 						qdel(D)
 						return
 
 					for(var/atom/A in D.loc)
 						if(A == user) continue
 						if(A.density)
-							new /obj/item/toy/ammo/crossbow(A.loc)
+							new /obj/item/toy/ammo_crossbow(A.loc)
 							qdel(D)
 
 				sleep(1)
 
 			spawn(10)
 				if(D)
-					new /obj/item/toy/ammo/crossbow(D.loc)
+					new /obj/item/toy/ammo_crossbow(D.loc)
 					qdel(D)
 
 			return
@@ -229,7 +229,7 @@
 					O.show_message(text("<span class='warning'>\The [] was hit in the head by the foam dart!</span>", M), 1)
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
-			new /obj/item/toy/ammo/crossbow(M.loc)
+			new /obj/item/toy/ammo_crossbow(M.loc)
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
@@ -237,7 +237,7 @@
 			user.Weaken(5)
 		return
 
-/obj/item/toy/ammo/crossbow
+/obj/item/toy/ammo_crossbow
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
 	icon = 'icons/obj/toy.dmi'
@@ -465,11 +465,6 @@
 	name = "Cyborg action figure"
 	desc = "A \"Space Life\" brand Cyborg action figure."
 	icon_state = "borg"
-
-/obj/item/toy/figure/gardener
-	name = "Gardener action figure"
-	desc = "A \"Space Life\" brand Gardener action figure."
-	icon_state = "botanist"
 
 /obj/item/toy/figure/captain
 	name = "Captain action figure"

@@ -200,7 +200,7 @@
 	name = "defibrillator paddles"
 	desc = "A pair of plastic-gripped paddles with flat metal surfaces that are used to deliver powerful electric shocks."
 	icon = 'icons/obj/defibrillator.dmi'
-	icon_state = "defibpaddles"
+	icon_state = "defibpaddles0"
 	item_state = "defibpaddles"
 	gender = PLURAL
 	force = 2
@@ -588,17 +588,6 @@
 	if(new_fail && !fail_counter)
 		START_PROCESSING(SSobj, src)
 	fail_counter = new_fail
-
-/obj/item/weapon/shockpaddles/standalone/traitor
-	name = "defibrillator paddles"
-	desc = "A pair of unusual looking paddles powered by an experimental miniaturized reactor. It possesses both the ability to penetrate armor and to deliver powerful shocks."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "defibpaddles0"
-	item_state = "defibpaddles0"
-	combat = 1
-	safety = 0
-	chargetime = (1 SECONDS)
-	burn_damage_amt = 15
 
 #undef DEFIB_TIME_LIMIT
 #undef DEFIB_TIME_LOSS

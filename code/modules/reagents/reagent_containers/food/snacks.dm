@@ -1174,17 +1174,6 @@
 	reagents.add_reagent(/datum/reagent/nutriment/protein, 8)
 	reagents.add_reagent(/datum/reagent/water, 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/slimesoup
-	name = "slime soup"
-	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup"//nonexistant?
-	filling_color = "#c4dba0"
-	bitesize = 5
-/obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
-	.=..()
-	reagents.add_reagent(/datum/reagent/slimejelly, 5)
-	reagents.add_reagent(/datum/reagent/water, 10)
-
 /obj/item/weapon/reagent_containers/food/snacks/bloodsoup
 	name = "tomato soup"
 	desc = "Smells like copper."
@@ -1836,16 +1825,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry/Initialize()
 	.=..()
 	reagents.add_reagent(/datum/reagent/nutriment/cherryjelly, 5)
-
-/obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
-	name = "boiled slime core"
-	desc = "A boiled red thing."
-	icon_state = "boiledslimecore"//nonexistant?
-	bitesize = 3
-/obj/item/weapon/reagent_containers/food/snacks/boiledslimecore/Initialize()
-	.=..()
-	reagents.add_reagent(/datum/reagent/slimejelly, 5)
-
 
 /obj/item/weapon/reagent_containers/food/snacks/mint
 	name = "mint"
