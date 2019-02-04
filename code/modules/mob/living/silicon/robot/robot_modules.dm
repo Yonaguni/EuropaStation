@@ -677,9 +677,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gun/energy/pulse_rifle/destroyer(src)
 	src.modules += new /obj/item/weapon/crowbar(src)
 	src.modules += new /obj/item/weapon/card/emag(src)
-	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
-	src.modules += jetpack
-	R.internals = jetpack
+	src.modules += new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 
 	id = R.idcard
 	src.modules += id
@@ -731,9 +729,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/spray/cleaner/drone(src)
 	src.modules += new /obj/item/borg/sight/hud/jani(src)
-
-	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
-	src.modules += robot.internals
+	src.modules += new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 
 	src.emag = new /obj/item/weapon/gun/energy/plasmacutter(src)
 	src.emag.SetName("Plasma Cutter")

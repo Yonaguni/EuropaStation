@@ -1,10 +1,16 @@
 GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
+GLOBAL_DATUM_INIT(rig_state, /datum/topic_state/default/rig, new)
 
 /datum/topic_state/default/href_list(var/mob/user)
 	return list()
 
 /datum/topic_state/default/can_use_topic(var/src_object, var/mob/user)
 	return user.default_can_use_topic(src_object)
+
+/datum/topic_state/default/rig/can_use_topic(var/atom/movable/src_object, var/mob/user)
+	if(istype(src_object) && istype(src_object.loc, /obj/item/weapon/rig))
+		return user.default_can_use_topic(src_object.loc)
+	. = ..()
 
 /mob/proc/default_can_use_topic(var/src_object)
 	return STATUS_CLOSE // By default no mob can do anything with NanoUI
@@ -47,7 +53,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	if(src_object in view(client.view, src))
 		return STATUS_INTERACTIVE
 
-	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera view
+	// If we're installed in a chassis, rather than transfered to an inteliCard or other container, then check if we have camera view
 	if(is_in_chassis())
 		//stop AIs from leaving windows open and using then after they lose vision
 		if(cameranet && !cameranet.is_turf_visible(get_turf(src_object)))

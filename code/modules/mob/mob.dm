@@ -24,7 +24,6 @@
 	hands = null
 	pullin = null
 	purged = null
-	internals = null
 	oxygen = null
 	i_select = null
 	m_select = null

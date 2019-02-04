@@ -24,6 +24,7 @@
 	siemens_coefficient = 0.2
 	permeability_coefficient = 0.1
 	unacidable = 1
+	action_button_name = "Adjust Air Supply"
 
 	var/equipment_overlay_icon = 'icons/mob/onmob/onmob_rig_modules.dmi'
 	var/hides_uniform = 1 	//used to determinate if uniform should be visible whenever the suit is sealed or not
@@ -106,6 +107,12 @@
 
 		if(open)
 			to_chat(usr, "It's equipped with [english_list(installed_modules)].")
+
+/obj/item/weapon/rig/attack_self(var/mob/user)
+	if(air_supply)
+		air_supply.attack_self(user)
+	else
+		to_chat(user, SPAN_WARNING("\The [src] has no air supply installed."))
 
 /obj/item/weapon/rig/Initialize()
 	. = ..()

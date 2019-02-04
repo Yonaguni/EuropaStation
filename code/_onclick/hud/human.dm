@@ -169,14 +169,6 @@
 		src.hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
-	if(hud_data.has_internals)
-		mymob.internals = new /obj/screen()
-		mymob.internals.icon = ui_style
-		mymob.internals.icon_state = "internal0"
-		mymob.internals.SetName("internal")
-		mymob.internals.screen_loc = ui_internal
-		hud_elements |= mymob.internals
-
 	if(hud_data.has_warnings)
 		mymob.healths = new /obj/screen()
 		mymob.healths.icon = ui_style

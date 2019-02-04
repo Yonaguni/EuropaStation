@@ -12,6 +12,7 @@ var/list/global/tank_gauge_cache = list()
 	var/gauge_cap = 6
 	var/previous_gauge_pressure = null
 
+	action_button_name = "Adjust Release Valve"
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_LARGE
@@ -186,17 +187,13 @@ var/list/global/tank_gauge_cache = list()
 				to_chat(user, "<span class='notice'>The emergency pressure relief valve has already been welded.</span>")
 		add_fingerprint(user)
 
-/obj/item/weapon/tank/attack_self(mob/user as mob)
+/obj/item/weapon/tank/attack_self(var/mob/user)
 	add_fingerprint(user)
-	if (!air_contents)
-		return
 	ui_interact(user)
-
-// There's GOT to be a better way to do this
 	if (proxyassembly.assembly)
 		proxyassembly.assembly.attack_self(user)
 
-/obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, var/datum/topic_state/state = GLOB.rig_state)
 	var/mob/living/carbon/location = null
 
 	if(istype(loc, /obj/item/weapon/rig))		// check for tanks in rigs
@@ -239,17 +236,11 @@ var/list/global/tank_gauge_cache = list()
 				if(H.head && (H.head.item_flags & ITEM_FLAG_AIRTIGHT))
 					data["maskConnected"] = 1
 
-	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
-		// when the ui is first opened this is the data it will use
+		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300, state = state)
 		ui.set_initial_data(data)
-		// open the new ui window
 		ui.open()
-		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
 /obj/item/weapon/tank/Topic(user, href_list, state = GLOB.inventory_state)
@@ -276,10 +267,7 @@ var/list/global/tank_gauge_cache = list()
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
 			location.internal = null
-			location.internals.icon_state = "internal0"
 			to_chat(user, "<span class='notice'>You close the tank release valve.</span>")
-			if (location.internals)
-				location.internals.icon_state = "internal0"
 		else
 			var/can_open_valve
 			if(location.wear_mask && (location.wear_mask.item_flags & ITEM_FLAG_AIRTIGHT))
@@ -292,8 +280,6 @@ var/list/global/tank_gauge_cache = list()
 			if(can_open_valve)
 				location.internal = src
 				to_chat(user, "<span class='notice'>You open \the [src] valve.</span>")
-				if (location.internals)
-					location.internals.icon_state = "internal1"
 			else
 				to_chat(user, "<span class='warning'>You need something to connect to \the [src].</span>")
 

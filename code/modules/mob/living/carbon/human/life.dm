@@ -266,20 +266,15 @@
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=STD_BREATH_VOLUME)
 	if(internal)
-
 		var/obj/item/weapon/tank/rig_supply
 		if(istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/rig = back
 			if(!rig.offline && (rig.air_supply && internal == rig.air_supply))
 				rig_supply = rig.air_supply
-
 		if (!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & ITEM_FLAG_AIRTIGHT)) || (head && (head.item_flags & ITEM_FLAG_AIRTIGHT)))))
 			internal = null
-
 		if(internal)
 			return internal.remove_air_volume(volume_needed)
-		else if(internals)
-			internals.icon_state = "internal0"
 	return null
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
