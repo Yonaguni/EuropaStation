@@ -41,11 +41,11 @@
 	var/obj/screen/i_select = null
 	var/obj/screen/m_select = null
 	var/obj/screen/toxin = null
-	var/obj/screen/fire = null
 	var/obj/screen/bodytemp = null
 	var/obj/screen/healths = null
 	var/obj/screen/throw_icon = null
 	var/obj/screen/nutrition_icon = null
+	var/obj/screen/hydration_icon = null
 	var/obj/screen/pressure = null
 	var/obj/screen/pain = null
 	var/obj/screen/gun/item/item_use_icon = null
@@ -76,8 +76,6 @@
 	var/next_move = null
 	var/hand = null
 	var/real_name = null
-
-	var/bhunger = 0			//Carbon
 
 	var/druggy = 0			//Carbon
 	var/confused = 0		//Carbon
