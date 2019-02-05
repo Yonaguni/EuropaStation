@@ -1,7 +1,7 @@
 #! /bin/bash
 
 [[ -z $DME ]] && DME=europa # DME file/BYOND project to compile and run
-[[ -z $PORT ]] && PORT=5000 # Port to run Dream Daemon on
+[[ -z $PORT ]] && PORT=8001 # Port to run Dream Daemon on
 [[ -z $GIT ]] && GIT=false # true, false, or any valid command; return value decides whether git is called to update the code
 [[ -z $REPO ]] && REPO=upstream # Repo to fetch and pull from when updating
 [[ -z $BRANCH ]] && BRANCH=dev # Branch to pull when updating
@@ -28,7 +28,7 @@ exec 5>&1 # duplicate fd 5 to fd 1 (stdout); this allows us to echo the log duri
 
 [[ -e stopserver ]] && rm stopserver
 while [[ ! -e stopserver ]]; do
-	MAP="$(cat use_map || echo "torch")"
+	MAP="$(cat use_map || echo "cassini")"
 
 	# Any part of the update process can set this to immediately halt all further updating and kill the script
 	# This is NOT for trivial errors; only set this if the error is such that the server should NOT be started
