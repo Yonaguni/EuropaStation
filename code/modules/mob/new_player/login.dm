@@ -1,7 +1,7 @@
 /var/obj/effect/lobby_image = new/obj/effect/lobby_image()
 
 /obj/effect/lobby_image
-	name = "Baystation12"
+	name = "Europa Station"
 	desc = "This shouldn't be read."
 	screen_loc = "WEST,SOUTH"
 
