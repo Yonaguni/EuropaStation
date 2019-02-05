@@ -1,7 +1,7 @@
 #! /bin/bash
 
 [[ -z $DME ]] && DME=europa # DME file/BYOND project to compile and run
-[[ -z $PORT ]] && PORT=5000 # Port to run Dream Daemon on
+[[ -z $PORT ]] && PORT=8001 # Port to run Dream Daemon on
 [[ -z $GIT ]] && GIT=false # true, false, or any valid command; return value decides whether git is called to update the code
 [[ -z $REPO ]] && REPO=upstream # Repo to fetch and pull from when updating
 [[ -z $BRANCH ]] && BRANCH=dev # Branch to pull when updating
