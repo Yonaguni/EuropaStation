@@ -1257,6 +1257,7 @@
 #include "code\modules\culture_descriptor\culture\_culture.dm"
 #include "code\modules\culture_descriptor\culture\cultures.dm"
 #include "code\modules\culture_descriptor\faction\_faction.dm"
+#include "code\modules\culture_descriptor\faction\factions.dm"
 #include "code\modules\culture_descriptor\location\_location.dm"
 #include "code\modules\culture_descriptor\location\locations.dm"
 #include "code\modules\culture_descriptor\religion\_religion.dm"

@@ -55,9 +55,9 @@
 	"chuj","sraye","poi","zdaye","de","rayes","mu","dehk","kay","zo","paye","oi","bayet","doir","mo")
 	
 /datum/language/belter/scramble(var/input) //mate
-    . = ..()
-    var/input_size = length(.)
-    if(copytext(., input_size) in list("!","?","."))
-        . = "[copytext(.,1,input_size)], mayet[copytext(.,input_size)]"
-    else 
-        . += ", mayet"
+	. = ..()
+	var/input_size = length(.)
+	if(copytext(., input_size) in list("!","?","."))
+		. = "[copytext(.,1,input_size)], mayet[copytext(.,input_size)]"
+	else 
+		. += ", mayet"

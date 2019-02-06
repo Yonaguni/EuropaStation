@@ -19,10 +19,15 @@
 
 /decl/cultural_info/culture/earth
 	name = CULTURE_EARTH
-	description = "Earth is a corporate playground and a polluted, overpopulated hellhole - most people born there \
-	try to leave as soon as possible, assuming they aren't part of the Lunar Trade Council and consequently living it up \
-	in the hyper-rich dome city of Asphodel on the moon. The Terran State considers itself independant of the Central \
+	description = "Earth is a corporate playground and a polluted, overpopulated hellhole - most people \
+	born there try to leave as soon as possible. The Terran State considers itself independant of the Central \
 	Solar Authority, leading to strained relations between Earth and the rest of the system."
+
+/decl/cultural_info/culture/luna
+	name = CULTURE_LUNA
+	description = "The glitterati, socialites and first families of the rich Lunar dome city Asphodel \
+	are renowned for their chilly, sterile beauty, their deep pockets, and the casual ease with \
+	which they discard human lives for their own benefit."
 
 /decl/cultural_info/culture/mars
 	name = CULTURE_MARS
@@ -47,7 +52,7 @@
 	name = CULTURE_SATURN
 	description = "Although it doesn't have a large population by comparison to Mars or Jupiter, Saturn is reputed to be the most \
 	frenetic and lively place in the system. Large populations of brinkers, permissive genetic modification laws and highly advanced, \
-	automated habitats make it an extremely appealing place to live for the less conservative and stodgy portions of the population."
+	densely populated habitats make it an extremely appealing place to live for the less conservative and stodgy portions of the population."
 
 /decl/cultural_info/culture/uranus
 	name = CULTURE_URANUS
