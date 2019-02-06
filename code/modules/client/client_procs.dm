@@ -376,3 +376,16 @@ client/verb/character_setup()
 /client/proc/apply_fps(var/client_fps)
 	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)
 		vars["fps"] = prefs.clientfps
+
+/client/verb/SetWindowIconSize(var/val as num|text)
+	set hidden = 1
+	winset(src, "mapwindow.map", "icon-size=[val]")
+	OnResize()
+
+/client/verb/OnResize()
+	set hidden = 1
+	var/divisor = text2num(winget(src, "mapwindow.map", "icon-size")) || world.icon_size
+	var/winsize_string = winget(src, "mapwindow.map", "size")
+	view = "[round(text2num(winsize_string) / divisor)]x[round(text2num(copytext(winsize_string,findtext(winsize_string,"x")+1,0)) / divisor)]"
+	perspective = MOB_PERSPECTIVE
+	eye = mob

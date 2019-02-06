@@ -96,6 +96,7 @@
 	user.reset_view()
 	if(user.client)
 		user.client.view = world.view
+		user.client.OnResize()
 	GLOB.moved_event.unregister(user, src, /obj/machinery/computer/ship/sensors/proc/unlook)
 	GLOB.stat_set_event.unregister(user, src, /obj/machinery/computer/ship/sensors/proc/unlook)
 	LAZYREMOVE(viewers, weakref(user))
