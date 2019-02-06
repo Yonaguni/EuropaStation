@@ -1,8 +1,10 @@
 // Languages.
-#define LANGUAGE_GALCOM         "Galactic Common"
+#define LANGUAGE_RUNGLISH       "Runglish"
 #define LANGUAGE_EAL            "Encoded Audio Language"
-#define LANGUAGE_SOL_COMMON     "Sol Common"
 #define LANGUAGE_SIGN           "Sign Language"
+#define LANGUAGE_BELTER         "Belter Cant"
+#define LANGUAGE_EXTERIOR       "Exterior"
+#define LANGUAGE_LUNAR          "Lunar"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

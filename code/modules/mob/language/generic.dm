@@ -20,18 +20,30 @@
 
 // 'basic' language; spoken by default.
 /datum/language/common
-	name = LANGUAGE_GALCOM
-	desc = "The common galactic tongue."
+	name = LANGUAGE_RUNGLISH
+	desc = "The official language of space, first pioneered on the International Space Station in days of yore. A combination of English and Russian."
+	colour = "runglish"
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	key = "0"
 	flags = RESTRICTED
-	syllables = list("blah","blah","blah","bleh","meh","neh","nah","wah")
-	shorthand = "GC"
+	syllables = list("al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it",
+	"le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to",
+	"ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
+	"his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi",
+	"rus","zem","ave","groz","ski","ska","ven","konst","pol","lin","svy",
+	"danya","da","mied","zan","das","krem","muka","kom","rad","to","st","no","na","ni",
+	"ko","ne","en","po","ra","li","on","byl","sto","eni","ost","ol","ego","ver","pro")
+	shorthand = "RG"
 
-// Otherwise we end up with Blahblehmeh Nehnahwahblah, Captain.
 /datum/language/common/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	return capitalize(pick(gender == FEMALE ? GLOB.first_names_female : GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	if (prob(80))
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		else
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	else
+		return ..()
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
 /datum/language/common/get_spoken_verb(var/msg_end)
