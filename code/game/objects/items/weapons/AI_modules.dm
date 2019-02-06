@@ -255,28 +255,12 @@ AI MODULES
 	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws.'."
 	laws = new/datum/ai_laws/asimov
 
-/******************** NanoTrasen ********************/
+/******************** Corporate ********************/
 
-/obj/item/weapon/aiModule/nanotrasen // -- TLE
+/obj/item/weapon/aiModule/corporate // -- TLE
 	name = "'Corporate Default' Core AI Module"
 	desc = "A 'Corporate Default' Core AI Module: 'Reconfigures the AI's core laws.'."
-	laws = new/datum/ai_laws/nanotrasen
-
-/******************** SCG ********************/
-
-/obj/item/weapon/aiModule/solgov // aka Torch default
-	name = "'SCG Expeditionary' Core AI Module"
-	desc = "An 'SCG Expeditionary' Core AI Module: 'Reconfigures the AI's core laws.'."
-	laws = new/datum/ai_laws/solgov
-
-/******************** SCG Aggressive ********************/
-
-obj/item/weapon/aiModule/solgov_aggressive
-	name = "\improper 'Military' Core AI Module"
-	desc = "A 'Military' Core AI Module: 'Reconfigures the AI's core laws.'."
-	laws = new/datum/ai_laws/solgov_aggressive
-
-/******************** Corporate ********************/
+	laws = new/datum/ai_laws/corporate
 
 /obj/item/weapon/aiModule/corp
 	name = "\improper 'Corporate' core AI module"

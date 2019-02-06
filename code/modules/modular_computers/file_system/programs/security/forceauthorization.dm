@@ -1,7 +1,7 @@
 /datum/computer_file/program/forceauthorization
 	filename = "forceauthorization"
 	filedesc = "Use of Force Authorization Manager"
-	extended_desc = "Control console used to activate the NT1019 authorization chip."
+	extended_desc = "A control console used to activate firearm authorization chips."
 	size = 4
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	program_icon_state = "security"

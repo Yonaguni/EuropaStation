@@ -1019,14 +1019,6 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/floordetail/traction
 	icon_state = "traction"
 
-/obj/effect/floor_decal/ntlogo
-	icon_state = "ntlogo"
-
-/obj/effect/floor_decal/torchltdlogo
-	alpha = 230
-	icon = 'icons/turf/flooring/corp_floor.dmi'
-	icon_state = "bottomleft"
-
 //Techfloor
 
 /obj/effect/floor_decal/corner_techfloor_gray

@@ -529,7 +529,6 @@ obj/random/closet/spawn_choices()
 
 /obj/random/soap/spawn_choices()
 	return list(/obj/item/weapon/soap = 4,
-				/obj/item/weapon/soap/nanotrasen = 3,
 				/obj/item/weapon/soap/deluxe = 3,
 				/obj/item/weapon/soap/syndie = 1,
 				/obj/item/weapon/soap/gold = 1,
@@ -743,16 +742,6 @@ obj/random/obstruction/spawn_choices()
 				/obj/item/weapon/spacecash/bundle/c50 = 2,
 				/obj/item/weapon/spacecash/bundle/c100 = 2,
 				/obj/item/weapon/spacecash/bundle/c1000 = 1)
-
-/obj/random/documents // top secret documents for SCG eyes only
-	name = "random secret documents"
-	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "docs_generic"
-
-/obj/random/documents/spawn_choices()
-	return list (/obj/item/documents/scg/verified = 10,
-	/obj/item/documents/scg/red = 10,
-	/obj/item/documents/scg/blue = 10)
 
 /obj/random/maintenance //Clutter and loot for maintenance and away missions
 	name = "random maintenance item"
