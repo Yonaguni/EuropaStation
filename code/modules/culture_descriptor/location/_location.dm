@@ -1,5 +1,5 @@
 /decl/cultural_info/location
-	desc_type = "Home System"
+	desc_type = "Residence"
 	secondary_langs = list(
 		LANGUAGE_SIGN
 	)
@@ -7,6 +7,7 @@
 	var/distance = 0
 	var/ruling_body = FACTION_OTHER
 	var/capital
+	var/list/flavour_locations
 
 /decl/cultural_info/location/get_text_details()
 	. = list()
@@ -19,5 +20,5 @@
 	. += ..()
 
 /decl/cultural_info/location/other
-	name = HOME_SYSTEM_OTHER
+	name = LOCATION_OTHER
 	description = "You are not from any known system."

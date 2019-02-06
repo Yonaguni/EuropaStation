@@ -238,12 +238,7 @@
 		/datum/mob_descriptor/build = 0
 	)
 
-	var/list/available_cultural_info = list(
-		TAG_CULTURE =   list(CULTURE_OTHER),
-		TAG_HOMEWORLD = list(HOME_SYSTEM_OTHER),
-		TAG_FACTION =   list(FACTION_OTHER),
-		TAG_RELIGION =  list(RELIGION_OTHER)
-	)
+	var/list/available_cultural_info =            list()
 	var/list/force_cultural_info =                list()
 	var/list/default_cultural_info =              list()
 	var/list/additional_available_cultural_info = list()

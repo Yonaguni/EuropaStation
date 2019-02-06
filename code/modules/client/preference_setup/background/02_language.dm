@@ -28,7 +28,7 @@
 		for(var/lang in show_langs)
 			. += lang
 	else
-		. += "Your current species, faction or home system selection does not allow you to choose additional languages.<br>"
+		. += "Your current species, faction or residence selection does not allow you to choose additional languages.<br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/background/languages/OnTopic(var/href,var/list/href_list, var/mob/user)
