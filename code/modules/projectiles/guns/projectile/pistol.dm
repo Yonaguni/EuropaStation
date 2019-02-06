@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/projectile/sigsauer
 	name = "10mm pistol"
-	desc = "The HelTek Optimus, best known as the standard-issue sidearm for the ICCG Navy. Uses 10mm rounds."
+	desc = "A standard-issue military sidearm. Uses 10mm rounds."
 	magazine_type = /obj/item/ammo_magazine/p10mm
 	allowed_magazines = /obj/item/ammo_magazine/p10mm
 	icon_state = "p220"
@@ -100,7 +100,7 @@
 
 /obj/item/weapon/gun/projectile/magnum_pistol
 	name = ".50 magnum pistol"
-	desc = "The HelTek Magnus, a robust Terran handgun that uses .50 AE ammo."
+	desc = "A robust handgun that uses .50 AE ammo."
 	icon_state = "magnum"
 	item_state = "revolver"
 	force = 9

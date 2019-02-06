@@ -109,8 +109,6 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/mouse
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/weapon/holder/borer
-
 //need own subtype to work with recipies
 /obj/item/weapon/holder/corgi
 

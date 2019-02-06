@@ -355,10 +355,3 @@ AI MODULES
 	name = "\improper 'Antimov' core AI module"
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'."
 	laws = new/datum/ai_laws/antimov()
-
-/******************** DAIS ********************/
-
-/obj/item/weapon/aiModule/dais
-	name = "\improper 'DAIS Experimental' core AI module"
-	desc = "A 'DAIS Experimental' Core AI Module: 'Reconfigures the AI's core laws.'."
-	laws = new/datum/ai_laws/dais()

@@ -209,8 +209,7 @@
 				/obj/item/stack/telecrystal = 1,
 				/obj/item/weapon/reagent_containers/syringe = 3,
 				/obj/item/weapon/reagent_containers/syringe/steroid = 2,
-				/obj/item/weapon/reagent_containers/syringe/drugs = 1,
-				/obj/item/weapon/reagent_containers/food/snacks/egg/lizard = 3)
+				/obj/item/weapon/reagent_containers/syringe/drugs = 1)
 
 /obj/random/drinkbottle
 	name = "random drink"
@@ -629,9 +628,7 @@ obj/random/obstruction/spawn_choices()
 		/obj/item/pizzabox/vegetable,
 		/obj/item/pizzabox/margherita,
 		/obj/item/pizzabox/mushroom,
-		/obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit,
-		/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
-	)
+		/obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit)
 
 /obj/random/storage
 	name = "random storage item"

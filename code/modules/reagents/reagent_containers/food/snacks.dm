@@ -324,18 +324,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/yellow
 	icon_state = "egg-yellow"
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/lizard
-	name = "unathi egg"
-	desc = "Large, slightly elongated egg with a thick shell."
-	icon_state = "lizard_egg"
-	w_class = ITEM_SIZE_SMALL
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/lizard/Initialize()
-	.=..()
-	reagents.add_reagent(/datum/reagent/nutriment/protein/egg, 5)
-	if(prob(30))	//extra nutriment
-		reagents.add_reagent(/datum/reagent/nutriment/protein, 5)
-
 /obj/item/weapon/reagent_containers/food/snacks/friedegg
 	name = "fried egg"
 	desc = "A fried egg, with a touch of salt and pepper."
@@ -3095,9 +3083,9 @@
 	bitesize = 0.5
 
 /obj/item/weapon/reagent_containers/food/snacks/caviar
-	name = "\improper Terran Caviar"
+	name = "Caviar"
 	icon_state = "fisheggs"
-	desc = "Terran caviar, or space carp eggs. Carefully faked using alginate, artificial flavoring and salt. Skrell approved!"
+	desc = "Caviar, or fish eggs. Carefully faked using alginate, artificial flavoring and salt."
 	trash = /obj/item/trash/caviar
 	filling_color = "#000000"
 	center_of_mass = "x=15;y=9"
@@ -3123,7 +3111,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/croutons
 	name = "\improper Suhariki"
 	icon_state = "croutons"
-	desc = "Fried bread cubes. Popular in Terran territories."
+	desc = "Fried bread cubes. Popular in the rougher kind of bar."
 	trash = /obj/item/trash/croutons
 	filling_color = "#c6b17f"
 	center_of_mass = "x=15;y=9"
@@ -3196,16 +3184,6 @@
 	nutriment_desc = list("bread" = 2, "sweetness" = 3)
 	nutriment_amt = 6
 	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
-	name = "\improper SkrellSnax"
-	desc = "Cured fungus shipped all the way from Jargon 4, almost like jerky! Almost."
-	icon_state = "skrellsnacks"
-	filling_color = "#a66829"
-	center_of_mass = "x=15;y=12"
-	nutriment_desc = list("mushroom" = 5, "salt" = 5)
-	nutriment_amt = 10
-	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
 	name = "candy"

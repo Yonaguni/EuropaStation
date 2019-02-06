@@ -91,13 +91,13 @@
 
 /decl/poster/bay_19
 	icon_state="bsposter19"
-	name = "Respect an Unathi"
-	desc = "This poster depicts a well dressed looking Unathi receiving a prestigious award. It appears to espouse greater co-operation and harmony between the two races."
+	name = "Respect A Brinker"
+	desc = "This poster depicts a well-dressed lizard-like man receiving a prestigious award. It appears to espouse greater co-operation and harmony between the two cultures."
 
 /decl/poster/bay_20
 	icon_state="bsposter20"
-	name = "Skrell Twilight"
-	desc = "This poster depicts a mysteriously inscrutable, alien scene. Numerous Skrell can be seen conversing amidst great, crystalline towers rising above crashing waves"
+	name = "Alien Twilight"
+	desc = "This poster depicts a mysteriously inscrutable, alien scene. Numerous creatures can be seen conversing amidst great, crystalline towers rising above crashing waves"
 
 /decl/poster/bay_21
 	icon_state="bsposter21"

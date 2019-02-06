@@ -78,7 +78,7 @@ var/list/event_last_fired = list()
 	debug_message += "|||Picked:[picked_event]"
 	log_debug(debug_message)
 
- 	return picked_event ? new picked_event : 0
+	return picked_event ? new picked_event : 0
 
 // Returns how many characters are currently active(not logged out, not AFK for more than 10 minutes)
 // with a specific role.
