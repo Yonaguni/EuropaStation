@@ -581,7 +581,7 @@
 	var/broken_chance = 2
 	var/b_power = 0.9
 	var/b_range = 5
-	var/b_color = "#fffee0"
+	var/b_color = LIGHT_COLOR_HALOGEN
 	var/list/lighting_modes = list()
 	var/sound_on
 
@@ -592,7 +592,7 @@
 	base_state = "ltube"
 
 	b_range = 5
-	b_color = "#fffee0"
+	b_color = LIGHT_COLOR_HALOGEN
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = "#da0205"),
 		)
@@ -623,7 +623,7 @@
 
 	b_power = 0.6
 	b_range = 4
-	b_color = "#fcfcc7"
+	b_color = LIGHT_COLOR_TUNGSTEN
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#da0205"),
 		)
