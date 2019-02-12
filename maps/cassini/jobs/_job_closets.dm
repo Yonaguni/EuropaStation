@@ -35,7 +35,8 @@
 	return list(
 		/obj/item/clothing/under/lower/pants/beige,
 		/obj/item/clothing/under/upper/shirt/beige,
-		/obj/item/clothing/under/jumpsuit/cassini
+		/obj/item/clothing/under/jumpsuit/cassini,
+		/obj/item/modular_computer/pda/wrist/cassini
 	)
 
 /obj/structure/closet/cassini/empty/WillContain()
@@ -64,7 +65,8 @@
 	return list(
 		/obj/item/clothing/under/jumpsuit/cassini/utilities,
 		/obj/item/weapon/storage/belt/utility/full,
-		/obj/item/clothing/gloves/insulated
+		/obj/item/clothing/gloves/insulated,
+		/obj/item/modular_computer/pda/wrist/cassini_utilities
 	)
 
 /obj/structure/closet/secure_closet/cassini/police
@@ -83,7 +85,8 @@
 		/obj/item/device/flash,
 		/obj/item/weapon/handcuffs,
 		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/handcuffs
+		/obj/item/weapon/handcuffs,
+		/obj/item/modular_computer/pda/wrist/cassini_police
 	)
 
 /obj/structure/closet/secure_closet/cassini/medical
@@ -93,5 +96,6 @@
 /obj/structure/closet/secure_closet/cassini/medical/WillContain()
 	return list(
 		/obj/item/clothing/under/jumpsuit/cassini/medical,
-		/obj/item/clothing/gloves/nitrile
+		/obj/item/clothing/gloves/nitrile,
+		/obj/item/modular_computer/pda/wrist/cassini_medical
 	)
