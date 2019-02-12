@@ -17,25 +17,8 @@
 	var/locked = 1
 	var/lockable = 1
 
+/obj/item/weapon/airlock_electronics/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, var/datum/topic_state/state = GLOB.default_state)
 
-/obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
-	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
-		return ..(user)
-
-	tg_ui_interact(user)
-
-
-
-//tgui interact code generously lifted from tgstation.
-/obj/item/weapon/airlock_electronics/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
-	datum/tgui/master_ui = null, datum/ui_state/state = tg_hands_state)
-
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "airlock_electronics", src.name, 1000, 500, master_ui, state)
-		ui.open()
-
-/obj/item/weapon/airlock_electronics/ui_data(mob/user)
 	var/list/data = list()
 	var/list/regions = list()
 
@@ -56,50 +39,58 @@
 	data["locked"] = locked
 	data["lockable"] = lockable
 
-	return data
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "airlock_electronics.tmpl", src.name, 325, 625, master_ui = master_ui, state = state)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
 
-/obj/item/weapon/airlock_electronics/ui_act(action, params)
-	if(..())
-		return TRUE
-	switch(action)
-		if("clear")
-			conf_access = list()
-			one_access = 0
-			return TRUE
-		if("one_access")
-			one_access = !one_access
-			return TRUE
-		if("set")
-			var/access = text2num(params["access"])
-			if (!(access in conf_access))
-				conf_access += access
-			else
-				conf_access -= access
-			return TRUE
-		if("unlock")
-			if(!lockable)
-				return TRUE
-			if(!req_access || istype(usr,/mob/living/silicon))
+/obj/item/weapon/airlock_electronics/OnTopic(var/mob/user, href_list, var/datum/topic_state/state)
+	if(href_list["clear"])
+		conf_access = list()
+		one_access = 0
+		. = TRUE
+	if(href_list["one_access"])
+		one_access = !one_access
+		. = TRUE
+	if(href_list["set"])
+		var/access = text2num(href_list["access"])
+		if (!(access in conf_access))
+			conf_access += access
+		else
+			conf_access -= access
+		. = TRUE
+	if(href_list["unlock"])
+		if(lockable)
+			if(!req_access || istype(user,/mob/living/silicon))
 				locked = 0
-				last_configurator = usr.name
-				return TRUE
+				last_configurator = user.name
+				to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
 			else
-				var/obj/item/weapon/card/id/I = usr.get_active_hand()
+				var/obj/item/weapon/card/id/I = user.get_active_hand()
 				I = I ? I.GetIdCard() : null
 				if(!istype(I, /obj/item/weapon/card/id))
-					to_chat(usr, "<span class='warning'>[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?</span>")
-					return TRUE
-				if (check_access(I))
-					locked = 0
-					last_configurator = I.registered_name
+					to_chat(user, SPAN_WARNING("\The [src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?"))
 				else
-					to_chat(usr, "<span class='warning'>[\src] flashes a red LED near the ID scanner, indicating your access has been denied.</span>")
-					return TRUE
-		if("lock")
-			if(!lockable)
-				return TRUE
+					if (check_access(I))
+						locked = 0
+						last_configurator = I.registered_name
+						to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
+					else
+						to_chat(user, SPAN_WARNING("\The [src] flashes a red LED near the ID scanner, indicating your access has been denied."))
+		else
+			to_chat(user, SPAN_WARNING("\The [src] cannot be locked or unlocked.."))
+		. = TRUE
+	if(href_list["lock"])
+		if(lockable)
 			locked = 1
-			. = TRUE
+		. = TRUE
+
+/obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
+	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
+		return ..(user)
+	ui_interact(user)
 
 /obj/item/weapon/airlock_electronics/secure
 	name = "secure airlock electronics"
@@ -111,9 +102,3 @@
 	req_access = list()
 	locked = 0
 	lockable = 0
-
-/obj/item/weapon/airlock_electronics/brace/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_deep_inventory_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "airlock_electronics", src.name, 1000, 500, master_ui, state)
-		ui.open()
