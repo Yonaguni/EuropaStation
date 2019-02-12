@@ -6,7 +6,6 @@
 	color         = LIGHTING_BASE_MATRIX
 	mouse_opacity = 0
 	layer         = LIGHTING_LAYER
-	plane         = LIGHTING_PLANE
 	invisibility  = INVISIBILITY_LIGHTING
 	simulated     = 0
 	blend_mode    = BLEND_MULTIPLY

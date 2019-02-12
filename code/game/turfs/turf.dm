@@ -1,8 +1,6 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
-
-	plane = TURF_PLANE
 	layer = BASE_TURF_LAYER
 
 	var/turf_flags
@@ -93,7 +91,6 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(S.use_to_pickup && S.collection_mode)
 			S.gather_all(src, user)
 	return ..()
-
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 
@@ -195,6 +192,7 @@ var/const/enterloopsanity = 100
 	return
 
 /turf/proc/levelupdate()
+	layer = is_plating() ? PLATING_LAYER : initial(layer)
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 

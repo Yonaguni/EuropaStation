@@ -42,7 +42,6 @@
 			if(!human_icon_cache[cache_key])
 				var/image/eye_glow = image(I)
 				eye_glow.layer = EYE_GLOW_LAYER
-				eye_glow.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 				human_icon_cache[cache_key] = eye_glow
 			return human_icon_cache[cache_key]
 

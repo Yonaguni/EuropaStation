@@ -1,11 +1,9 @@
 /mob
 	density = 1
-	plane = MOB_PLANE
-
 	appearance_flags = PIXEL_SCALE
 	animate_movement = 2
 	movable_flags = MOVABLE_FLAG_PROXMOVE
-
+	layer = BASE_MOB_LAYER
 	virtual_mob = /mob/observer/virtual/mob
 
 	movement_handlers = list(

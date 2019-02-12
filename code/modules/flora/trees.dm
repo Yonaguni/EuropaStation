@@ -3,7 +3,7 @@
 	name = "tree"
 	pixel_x = -16
 	density = 1
-	layer = 9
+	layer = ABOVE_OBJ_LAYER
 	icon = 'icons/obj/flora/trees.dmi'
 	icon_state = "generic_tree"
 

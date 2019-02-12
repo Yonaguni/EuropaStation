@@ -7,9 +7,7 @@
 	desc = "A little security robot.  He looks less than thrilled."
 	icon = 'icons/mob/bot/secbot.dmi'
 	icon_state = "secbot0"
-	var/attack_state = "secbot-c"
-	plane = MOB_PLANE
-	layer = MOB_LAYER
+	layer = BASE_MOB_LAYER
 	maxHealth = 50
 	health = 50
 	req_one_access = list(access_security, access_robotics)
@@ -34,6 +32,7 @@
 
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bfreeze.ogg')
+	var/attack_state = "secbot-c"
 
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beepsky"

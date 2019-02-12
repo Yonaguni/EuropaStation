@@ -9,7 +9,7 @@
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "emfield_s1"
 	alpha = 50
-	layer = 4
+	layer = FIRE_LAYER
 	light_color = COLOR_BLUE
 
 	var/size = 1

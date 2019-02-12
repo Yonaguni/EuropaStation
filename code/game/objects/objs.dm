@@ -1,5 +1,5 @@
 /obj
-	layer = OBJ_LAYER
+	layer = BASE_OBJECT_LAYER
 
 	var/obj_flags
 

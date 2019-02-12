@@ -57,7 +57,6 @@
 	icon = base_icon
 	icon_state = base_icon_state
 	color = base_color
-	plane = PLATING_PLANE
 
 	if(flooring)
 		flooring.on_remove()
@@ -77,11 +76,6 @@
 /turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && src.flooring)
-
-	if(flooring)
-		plane = TURF_PLANE
-	else
-		plane = PLATING_PLANE
 
 /turf/simulated/floor/can_engrave()
 	return (!flooring || flooring.can_engrave)

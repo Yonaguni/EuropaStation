@@ -1,12 +1,13 @@
 /turf/space
-	plane = SPACE_PLANE
+	plane = SKYBOX_PLANE
+	layer = SPACE_LAYER
 	icon = 'icons/turf/space.dmi'
-
 	name = "\proper space"
 	icon_state = "default"
 	dynamic_lighting = 0
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	permit_ao = FALSE
 	var/static/list/dust_cache
 
 /turf/space/proc/build_dust_cache()
@@ -14,16 +15,16 @@
 	for (var/i in 0 to 25)
 		var/image/im = image('icons/turf/space_dust.dmi',"[i]")
 		im.plane = DUST_PLANE
+		im.layer = DUST_LAYER
 		im.alpha = 80
 		im.blend_mode = BLEND_ADD
 		dust_cache["[i]"] = im
-
 
 /turf/space/Initialize()
 	. = ..()
 	icon_state = "white"
 	update_starlight()
-	if (!dust_cache)
+	if(!dust_cache)
 		build_dust_cache()
 	overlays += dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
 

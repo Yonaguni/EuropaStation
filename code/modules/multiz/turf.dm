@@ -32,7 +32,7 @@
 	plane = OPENSPACE_PLANE
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
-
+	permit_ao = FALSE
 	var/turf/below
 
 /turf/simulated/open/post_change()
@@ -45,7 +45,7 @@
 
 
 /turf/simulated/open/proc/update()
-	plane = OPENSPACE_PLANE + (src.z * PLANE_DIFFERENCE)
+	plane = OPENSPACE_PLANE + z
 	below = GetBelow(src)
 	GLOB.turf_changed_event.register(below, src,/turf/simulated/open/proc/turf_change)
 	GLOB.exited_event.register(below, src, /turf/simulated/open/proc/handle_move)
