@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(skills)
 							"Experienced"		= "Experienced Description",
 							"Master"		= "Professional Description")
 	var/difficulty = SKILL_AVERAGE         //Used to compute how expensive the skill is
-	var/default_max = SKILL_ADEPT          //Makes the skill capped at this value in selection unless overriden at job level.
+	var/default_max = SKILL_MAX          //Makes the skill capped at this value in selection unless overriden at job level.
 	var/prerequisites                      // A list of skill prerequisites, if needed.
 
 /decl/hierarchy/skill/proc/get_cost(var/level)
@@ -41,19 +41,16 @@ GLOBAL_LIST_EMPTY(skills)
 	name = "Organizational"
 	ID	 = "1"
 	difficulty = SKILL_EASY
-	default_max = SKILL_MAX
 
 /decl/hierarchy/skill/general
 	name = "General"
 	ID	 = "2"
 	difficulty = SKILL_EASY
-	default_max = SKILL_MAX
 
 /decl/hierarchy/skill/service
 	name = "Service"
 	ID	 = "service"
 	difficulty = SKILL_EASY
-	default_max = SKILL_MAX
 
 /decl/hierarchy/skill/security
 	name = "Security"
@@ -70,7 +67,6 @@ GLOBAL_LIST_EMPTY(skills)
 /decl/hierarchy/skill/medical
 	name = "Medical"
 	ID	 = "medical"
-	difficulty = SKILL_HARD
 
 // ONLY SKILL DEFINITIONS BELOW THIS LINE
 // Category: Organizational
@@ -114,7 +110,6 @@ GLOBAL_LIST_EMPTY(skills)
 	levels = list("Untrained" = "You are unfamiliar with exosuit controls, and if you attempt to use them you are liable to make mistakes.",
 		"Trained" = "You are proficient in exosuit operation and safety, and can use them without penalties.")
 	prerequisites = list(SKILL_EVA = SKILL_ADEPT)
-	default_max = SKILL_BASIC
 	difficulty = SKILL_AVERAGE
 
 /decl/hierarchy/skill/general/pilot
@@ -126,7 +121,6 @@ GLOBAL_LIST_EMPTY(skills)
 						"Trained"			= "You are a trained pilot, and can safely operate anything from a small craft to a corvette. You can spend extended periods of time piloting a spacecraft, and you're versed in the abilities of different ships, and what makes them function. You can do basic maintenance on smaller vessels, and perform most basic maneuvers. You can use armed spacecraft. You can make basic calculations relating to piloting. Skills of this level are typical for newer pilots. You have probably received formal piloting training.<br>- You can fully operate the Torch.",
 						"Experienced"		= "You are an experienced pilot, and can safely take the helm of many types of craft. You could probably live in a spacecraft, and you're very well versed in essentially everything related to space-faring vessels. Not only can you fly a ship, but you can perform difficult maneuvers, and make most calculations related to piloting a spacecraft. You can maintain a ship. Skills of this level are typical for very experienced pilots. You have received formal piloting training.",
 						"Master"		= "Not only are you an exceptional pilot, but you have mastered peripheral functions such as stellar navigation and jump plotting. You have experience performing complex maneuvers, managing squadrons of small craft, and operating in hostile environments.<br>- Less meteors will hit the ship while passing through meteor fields.")
-	difficulty = SKILL_AVERAGE
 	default_max = SKILL_ADEPT
 
 /decl/hierarchy/skill/general/hauling
