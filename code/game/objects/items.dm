@@ -350,10 +350,6 @@ var/list/global/slot_flags_enumeration = list(
 		if(slot_belt, slot_wear_id)
 			if(slot == slot_belt && (item_flags & ITEM_FLAG_IS_BELT))
 				return 1
-			else if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
-				return 0
 		if(slot_l_store, slot_r_store)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)

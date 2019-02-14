@@ -85,3 +85,35 @@
 /obj/item/clothing/suit/armor/vest/police
 	name = "police vest"
 	icon_state = "policevest"
+
+// wrist comps
+/obj/item/modular_computer/pda/wrist/cassini
+	color = COLOR_CASSINI
+	stripe_color = COLOR_TEAL
+
+/obj/item/modular_computer/pda/wrist/cassini_police
+	color = COLOR_POLICE
+	stripe_color = COLOR_POLICE_LIGHT
+
+/obj/item/modular_computer/pda/wrist/cassini_police/manager
+	stripe_color = COLOR_GOLD
+
+/obj/item/modular_computer/pda/wrist/cassini/admin
+	stripe_color = COLOR_OFF_WHITE
+
+/obj/item/modular_computer/pda/wrist/cassini/manager
+	stripe_color = COLOR_GOLD
+
+/obj/item/modular_computer/pda/wrist/cassini_utilities
+	color = COLOR_WARM_YELLOW
+	stripe_color = COLOR_ORANGE
+
+/obj/item/modular_computer/pda/wrist/cassini_utilities/manager
+	stripe_color = COLOR_GOLD
+
+/obj/item/modular_computer/pda/wrist/cassini_medical
+	color = COLOR_OFF_WHITE
+	stripe_color = COLOR_BLUE_GRAY
+
+/obj/item/modular_computer/pda/wrist/cassini_medical/manager
+	stripe_color = COLOR_GOLD
