@@ -242,7 +242,7 @@ function run_byond_tests {
         source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
     fi
     run_test_ci "check globals build" "python3 tools/GenerateGlobalVarAccess/gen_globals.py europa.dme code/_helpers/global_access.dm"
-    run_test "check globals unchanged" "md5sum -c - <<< 'ca975bc5da8c97aac7412e52f632d795 *code/_helpers/global_access.dm'"
+    run_test "check globals unchanged" "md5sum -c - <<< '4222e99db8583e781af0eb6ae417ba49 *code/_helpers/global_access.dm'"
     run_test "build map unit tests" "scripts/dm.sh -DUNIT_TEST -M$MAP_PATH europa.dme"
     run_test "check no warnings in build" "grep ', 0 warnings' build_log.txt"
     run_test "run unit tests" "DreamDaemon europa.dmb -invisible -trusted -core 2>&1 | tee log.txt"
