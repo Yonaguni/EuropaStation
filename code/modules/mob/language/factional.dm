@@ -58,6 +58,6 @@
 	. = ..()
 	var/input_size = length(.)
 	if(copytext(., input_size) in list("!","?","."))
-		. = "[copytext(.,1,input_size)], mayet[copytext(.,input_size)]"
+		. = "[copytext(., 1, input_size)], mayet[copytext(., input_size)]"
 	else 
 		. += ", mayet"

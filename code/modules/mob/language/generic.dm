@@ -22,7 +22,6 @@
 /datum/language/common
 	name = LANGUAGE_RUNGLISH
 	desc = "The official language of space, first pioneered on the International Space Station in days of yore. A combination of English and Russian."
-	colour = "runglish"
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	key = "0"
@@ -38,7 +37,7 @@
 
 /datum/language/common/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if (prob(80))
-		if(gender==FEMALE)
+		if(gender == FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
 			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
