@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 	var/list/lobby_tracks = list()                  // The list of lobby tracks to pick() from. If left unset will randomly select among all available /music_track subtypes.
 	var/welcome_sound = 'sound/AI/welcome.ogg'		// Sound played on roundstart
 
-	var/default_law_type = /datum/ai_laws/nanotrasen  // The default lawset use by synth units, if not overriden by their laws var.
+	var/default_law_type = /datum/ai_laws/corporate  // The default lawset use by synth units, if not overriden by their laws var.
 	var/security_state = /decl/security_state/default // The default security state system to use.
 
 	var/id_hud_icons = 'icons/mob/hud.dmi' // Used by the ID HUD (primarily sechud) overlay.
@@ -111,21 +111,65 @@ GLOBAL_LIST_EMPTY(all_maps)
 
 	var/list/available_cultural_info = list(
 		TAG_HOMEWORLD = list(
-			HOME_SYSTEM_OTHER
+			LOCATION_OTHER,
+			LOCATION_DAYSTAR,
+			LOCATION_MERCURY,
+			LOCATION_VENUS,
+			LOCATION_EARTH,
+			LOCATION_LUNA,
+			LOCATION_MARS,
+			LOCATION_HALO,
+			LOCATION_CERES,
+			LOCATION_JUPITER,
+			LOCATION_SATURN,
+			LOCATION_URANUS,
+			LOCATION_NEPTUNE,
+			LOCATION_KUIPER,
+			LOCATION_ERIS
 		),
 		TAG_FACTION = list(
-			FACTION_OTHER
+			FACTION_OTHER,
+			FACTION_CENTRAL_SOLAR,
+			FACTION_TERRAN_STATE,
+			FACTION_LUNAR_TRADE,
+			FACTION_OUTER_SYSTEM,
+			FACTION_INNER_SYSTEM,
+			FACTION_CUCHULAIN,
+			FACTION_FIRST_WAVE
 		),
 		TAG_CULTURE = list(
-			CULTURE_OTHER
+			CULTURE_OTHER,
+			CULTURE_SOL,
+			CULTURE_MERCURY,
+			CULTURE_VENUS,
+			CULTURE_EARTH,
+			CULTURE_MARS,
+			CULTURE_HALO,
+			CULTURE_JUPITER,
+			CULTURE_SATURN,
+			CULTURE_URANUS,
+			CULTURE_NEPTUNE,
+			CULTURE_BRINKER,
+			CULTURE_EXILE,
+			CULTURE_LUNA
 		),
 		TAG_RELIGION = list(
-			RELIGION_OTHER
+			RELIGION_OTHER,
+			RELIGION_JUDAISM,
+			RELIGION_HINDUISM,
+			RELIGION_BUDDHISM,
+			RELIGION_ISLAM,
+			RELIGION_CHRISTIANITY,
+			RELIGION_AGNOSTICISM,
+			RELIGION_DEISM,
+			RELIGION_ATHEISM,
+			RELIGION_THELEMA,
+			RELIGION_SPIRITUALISM
 		)
 	)
 
 	var/list/default_cultural_info = list(
-		TAG_HOMEWORLD = HOME_SYSTEM_OTHER,
+		TAG_HOMEWORLD = LOCATION_OTHER,
 		TAG_FACTION =   FACTION_OTHER,
 		TAG_CULTURE =   CULTURE_OTHER,
 		TAG_RELIGION =  RELIGION_OTHER

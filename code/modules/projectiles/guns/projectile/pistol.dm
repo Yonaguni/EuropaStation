@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/projectile/military
 	name = "military .45 pistol"
-	desc = "The WT45 - a mass produced kinetic sidearm in widespread service with the SCGDF. Uses .45 rounds."
+	desc = "The WT45 - a mass produced kinetic sidearm in widespread service. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45mds/flash
 	allowed_magazines = /obj/item/ammo_magazine/c45mds
 	icon_state = "usp"
@@ -34,7 +34,7 @@
 
 /obj/item/weapon/gun/projectile/sec
 	name = ".45 pistol"
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Found pretty much everywhere humans are. Uses .45 rounds."
+	desc = "The Mk58 is a cheap, ubiquitous sidearm. Found pretty much everywhere humans are. Uses .45 rounds."
 	icon_state = "secguncomp"
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 	allowed_magazines = /obj/item/ammo_magazine/c45m
@@ -54,7 +54,7 @@
 	name = ".45 signal pistol"
 
 /obj/item/weapon/gun/projectile/sec/wood
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip, among other modifications. Uses .45 rounds."
+	desc = "The Mk58 is a cheap, ubiquitous sidearm. This one has a sweet wooden grip, among other modifications. Uses .45 rounds."
 	name = "custom .45 Pistol"
 	icon_state = "secgundark"
 	accuracy = 0
@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/projectile/sigsauer
 	name = "10mm pistol"
-	desc = "The HelTek Optimus, best known as the standard-issue sidearm for the ICCG Navy. Uses 10mm rounds."
+	desc = "A standard-issue military sidearm. Uses 10mm rounds."
 	magazine_type = /obj/item/ammo_magazine/p10mm
 	allowed_magazines = /obj/item/ammo_magazine/p10mm
 	icon_state = "p220"
@@ -100,7 +100,7 @@
 
 /obj/item/weapon/gun/projectile/magnum_pistol
 	name = ".50 magnum pistol"
-	desc = "The HelTek Magnus, a robust Terran handgun that uses .50 AE ammo."
+	desc = "A robust handgun that uses .50 AE ammo."
 	icon_state = "magnum"
 	item_state = "revolver"
 	force = 9

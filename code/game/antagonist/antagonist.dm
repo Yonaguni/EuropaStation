@@ -66,7 +66,7 @@
 	var/list/starting_locations =  list()   // Spawn points.
 	var/list/global_objectives =   list()   // Universal objectives if any.
 	var/list/candidates =          list()   // Potential candidates.
-	var/list/faction_members =     list()   // Semi-antags (in-round revs, borer thralls)
+	var/list/faction_members =     list()   // Semi-antags (in-round revs)
 
 	// ID card stuff.
 	var/default_access = list()

@@ -16,7 +16,7 @@
 	var/footer = null
 	var/footerOn = FALSE
 
-	var/logo_list = list("sollogo.png","eclogo.png","torchltd.png","ntlogo.png","daislogo.png","xynlogo.png","terralogo.png")
+	var/logo_list = list()
 	var/logo = ""
 
 /obj/item/weapon/paper/admin/New()
@@ -151,9 +151,10 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 		return
 	
 	if(href_list["changelogo"])
-		logo = input(usr, "What logo?", "Choose a logo", "") as null|anything in (logo_list)
-		generateHeader()
-		updateDisplay()
+		if(LAZYLEN(logo_list))
+			logo = input(usr, "What logo?", "Choose a logo", "") as null|anything in (logo_list)
+			generateHeader()
+			updateDisplay()
 		return
 
 /obj/item/weapon/paper/admin/get_signature()

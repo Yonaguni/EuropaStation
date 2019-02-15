@@ -3,11 +3,11 @@
 	var/desc_type
 	var/description
 	var/economic_power = 1
-	var/language = LANGUAGE_GALCOM
+	var/language = LANGUAGE_RUNGLISH
 	var/name_language
 	var/default_language
 	var/list/additional_langs
-	var/list/secondary_langs
+	var/list/secondary_langs = list(LANGUAGE_BELTER, LANGUAGE_EXTERIOR, LANGUAGE_LUNAR)
 	var/category
 	var/subversive_potential = 0
 	var/hidden

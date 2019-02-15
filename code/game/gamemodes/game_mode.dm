@@ -277,14 +277,14 @@ var/global/list/additional_antag_types = list()
 		"malfunctioning von Neumann probe swarms",
 		"shadowy interlopers",
 		"a stranded Vox arkship",
-		"haywire IPC constructs",
-		"rogue Unathi exiles",
+		"haywire AI constructs",
+		"rogue drones",
 		"artifacts of eldritch horror",
 		"a brain slug infestation",
 		"killer bugs that lay eggs in the husks of the living",
 		"a deserted transport carrying xenomorph specimens",
 		"an emissary for the gestalt requesting a security detail",
-		"radical Skrellian transevolutionaries",
+		"radical transevolutionaries",
 		"classified security operations",
 		"a gargantuan glowing goat"
 		)

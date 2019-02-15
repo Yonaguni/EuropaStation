@@ -315,24 +315,6 @@
 	icon_state = "coffeecup_heart"
 	base_name = "heart cup"
 
-/obj/item/weapon/reagent_containers/food/drinks/coffeecup/SCG
-	name = "\improper SCG coffee cup"
-	desc = "A blue coffee cup emblazoned with the crest of the Sol Central Government."
-	icon_state = "coffeecup_SCG"
-	base_name = "\improper SCG cup"
-
-/obj/item/weapon/reagent_containers/food/drinks/coffeecup/NT
-	name = "\improper NT coffee cup"
-	desc = "A red NanoTrasen coffee cup. 90% guaranteed to not be laced with mind-control drugs."
-	icon_state = "coffeecup_NT"
-	base_name = "NT cup"
-
-/obj/item/weapon/reagent_containers/food/drinks/coffeecup/corp
-	name = "\improper EXO coffee cup"
-	desc = "A tasteful coffee cup in Expeditionary Corps Organisation corporate colours."
-	icon_state = "coffeecup_corp"
-	base_name = "EXO cup"
-
 /obj/item/weapon/reagent_containers/food/drinks/coffeecup/one
 	name = "#1 coffee cup"
 	desc = "A white coffee cup, prominently featuring a #1."

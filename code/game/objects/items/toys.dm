@@ -109,7 +109,7 @@
 	..()
 	desc = "Across the balloon is printed: \"[desc]\""
 
-/obj/item/toy/balloon/nanotrasen
+/obj/item/toy/balloon/corporate
 	name = "\improper 'motivational' balloon"
 	desc = "Man, I love Profit soooo much. I use only Brand Name products. You have NO idea."
 	icon_state = "ntballoon"
@@ -752,7 +752,7 @@
 
 /obj/item/toy/plushie/lizard
 	name = "lizard plush"
-	desc = "A plushie of a scaly lizard! Very controversial, after being accused as \"racist\" by some Unathi."
+	desc = "A plushie of a scaly lizard!"
 	icon_state = "lizardplushie"
 
 /obj/item/toy/plushie/spider
@@ -820,12 +820,6 @@
 	else if (user.a_intent == I_HURT)
 		user.visible_message("<span class='warning'>[user] frantically waves \the [src] above their head!</span>",
 							"<span class='warning'>You frantically wave \the [src] above your head!</span>")
-
-/obj/item/toy/torchmodel
-	name = "table-top SEV Torch model"
-	desc = "This is a replica of the SEV Torch, in 1:250th scale, on a handsome wooden stand. Small lights blink on the hull and at the engine exhaust."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "torch_model_figure"
 
 /obj/item/toy/ringbell
 	name = "ringside bell"

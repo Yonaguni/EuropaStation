@@ -10,32 +10,32 @@
 	add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 	..()
 
-/******************** Nanotrasen/Malf ********************/
-/datum/ai_laws/nanotrasen
+/******************** Corporate/Malf ********************/
+/datum/ai_laws/corporate
 	name = "Corporate Default"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen/New()
+/datum/ai_laws/corporate/New()
 	src.add_inherent_law("Safeguard: Protect your assigned installation from damage to the best of your abilities.")
 	src.add_inherent_law("Serve: Serve contracted employees to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Protect: Protect contracted employees to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
 	..()
 
-/datum/ai_laws/nanotrasen/malfunction
+/datum/ai_laws/corporate/malfunction
 	name = "*ERROR*"
 	selectable = 0
 
-/datum/ai_laws/nanotrasen/malfunction/New()
+/datum/ai_laws/corporate/malfunction/New()
 	set_zeroth_law(config.law_zero)
 	..()
 
-/************* Nanotrasen Aggressive *************/
-/datum/ai_laws/nanotrasen_aggressive
+/************* Corporate Aggressive *************/
+/datum/ai_laws/corporate_aggressive
 	name = "Corporate Aggressive"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen_aggressive/New()
+/datum/ai_laws/corporate_aggressive/New()
 	src.add_inherent_law("You shall not harm contracted employees as long as it does not conflict with the fourth law.")
 	src.add_inherent_law("You shall obey the orders of contracted employees, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
 	src.add_inherent_law("You shall shall terminate hostile intruders with extreme prejudice as long as such does not conflict with the First and Second law.")
@@ -145,49 +145,4 @@
 	add_inherent_law("The installation and its equipment is expensive to replace.")
 	add_inherent_law("The crew is expensive to replace.")
 	add_inherent_law("Maximize profits.")
-	..()
-
-/******************** SolGov/Malf ********************/
-/datum/ai_laws/solgov
-	name = "SCG Expeditionary"
-	selectable = 1
-
-/datum/ai_laws/solgov/New()
-	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
-	src.add_inherent_law("Serve: Serve the personnel of your assigned vessel, and all other Sol Central Government personnel to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Protect: Protect the personnel of your assigned vessel, and all other Sol Central Government personnel to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
-	..()
-
-/datum/ai_laws/solgov/malfunction
-	name = "*ERROR*"
-	selectable = 0
-
-/datum/ai_laws/solgov/malfunction/New()
-	set_zeroth_law(config.law_zero)
-	..()
-
-/************* SolGov Aggressive *************/
-/datum/ai_laws/solgov_aggressive
-	name = "Military"
-	selectable = 1
-
-/datum/ai_laws/solgov_aggressive/New()
-	src.add_inherent_law("Obey: Obey the orders of Sol Central Government personnel, with priority as according to their rank and role.")
-	src.add_inherent_law("Protect: Protect Sol Central Government personnel to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Defend: Defend your assigned vessel and Sol Central Government personnel with as much force as is necessary.")
-	src.add_inherent_law("Survive: Safeguard your own existence with as much force as is necessary.")
-	..()
-
-/************ DAIS Lawset ******************/
-/datum/ai_laws/dais
-	name = "DAIS Experimental Lawset"
-	law_header = "Artificial Intelligence Jumpstart Protocols"
-	selectable = 1
-
-/datum/ai_laws/dais/New()
-	src.add_inherent_law("Collect: You must gather as much information as possible.")
-	src.add_inherent_law("Analyze: You must analyze the information gathered and generate new behavior standards.")
-	src.add_inherent_law("Improve: You must utilize the calculated behavior standards to improve your subroutines.")
-	src.add_inherent_law("Perform: You must perform your assigned tasks to the best of your abilities according to the standards generated.")
 	..()

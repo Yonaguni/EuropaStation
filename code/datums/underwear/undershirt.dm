@@ -170,27 +170,6 @@
 	icon_state = "polo_female"
 	has_color = TRUE
 
-/datum/category_item/underwear/undershirt/tank_fleet_female
-	name = "Tank top, Fleet, Female"
-	underwear_name = "tanktop"
-	icon_state = "tank_fleet_female_s"
-
-/datum/category_item/underwear/undershirt/army_female
-	name = "Shirt, Army, Female"
-	icon_state = "army_female_s"
-
-/datum/category_item/underwear/undershirt/expedition_female
-	name = "Shirt, Expeditionary Corps, Female"
-	icon_state = "expedition_female_s"
-
 /datum/category_item/underwear/undershirt/polo_corp
 	name = "Polo, corporate"
 	icon_state = "corp_polo"
-
-/datum/category_item/underwear/undershirt/polo_nt
-	name = "Polo, NanoTrasen"
-	icon_state = "ntpolo"
-
-/datum/category_item/underwear/undershirt/polo_dais
-	name = "Polo, Deimos Advanced Information Systems"
-	icon_state = "dais_polo"

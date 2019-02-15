@@ -192,7 +192,7 @@ FIELD_SHORT("Fingerprint", fingerprint, access_security, access_security)
 
 // EMPLOYMENT RECORDS
 FIELD_LONG("Employment Record", emplRecord, access_bridge, access_bridge)
-FIELD_SHORT("Home System", homeSystem, access_bridge, access_change_ids)
+FIELD_SHORT("Residence", homeSystem, access_bridge, access_change_ids)
 FIELD_SHORT("Faction", faction, access_bridge, access_bridge)
 FIELD_LONG("Qualifications", skillset, access_bridge, access_bridge)
 

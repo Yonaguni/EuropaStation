@@ -383,7 +383,7 @@
 	dat += "<table>"
 	dat += "<tr><td colspan = 3><b>[GLOB.using_map.station_name]:</b></td></tr>"
 
-	// TORCH JOBS
+	// MAIN MAP JOBS
 	var/list/job_summaries
 	var/list/hidden_reasons = list()
 	for(var/datum/job/job in SSjobs.primary_job_datums)
@@ -398,7 +398,7 @@
 		dat += job_summaries
 	else
 		dat += "No available positions."
-	// END TORCH JOBS
+	// END MAIN MAP JOBS
 
 	// SUBMAP JOBS
 	for(var/thing in SSmapping.submaps)

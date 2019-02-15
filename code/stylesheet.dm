@@ -89,19 +89,11 @@ h1.alert, h2.alert		{color: #000000;}
 /* Languages */
 
 .alien					{color: #543354;}
-.skrell					{color: #00ced1;}
-.soghun					{color: #228b22;}
-.yeosa					{color: #218b89;}
-.nabber_lang			{color: #525252;}
-.solcom					{color: #22228b;}
-.changeling				{color: #800080;}
-.vox					{color: #aa00aa;}
+.lunar					{color: #6E0B9C;}
+.exterior				{color: #0B819C;}
+.belter					{color: #9C6E0B;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
-.terran					{color: #9c250b;}
-.moon					{color: #422863;}
-.spacer					{color: #ff6600;}
-.adherent				{color: #526c7a;}
 
 .interface				{color: #330033;}
 

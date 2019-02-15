@@ -24,7 +24,7 @@ var/global/list/robot_modules = list(
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(
-		LANGUAGE_SOL_COMMON = 1,
+		LANGUAGE_RUNGLISH = 1,
 		LANGUAGE_LUNAR = 1,
 		LANGUAGE_UNATHI = 0,
 		LANGUAGE_SIIK_MAAS = 0,
@@ -477,7 +477,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/janitor/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/weapon/soap/nanotrasen(src)
+	src.modules += new /obj/item/weapon/soap/deluxe(src)
 	src.modules += new /obj/item/weapon/storage/bag/trash(src)
 	src.modules += new /obj/item/weapon/mop/advanced(src)
 	src.modules += new /obj/item/holosign_creator(src)
@@ -502,7 +502,7 @@ var/global/list/robot_modules = list(
 	name = "service robot module"
 	channels = list("Service" = 1)
 	languages = list(
-					LANGUAGE_SOL_COMMON	= 1,
+					LANGUAGE_RUNGLISH	= 1,
 					LANGUAGE_UNATHI		= 1,
 					LANGUAGE_SKRELLIAN	= 1,
 					LANGUAGE_LUNAR	= 1,

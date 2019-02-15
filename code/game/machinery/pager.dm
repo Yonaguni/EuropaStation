@@ -63,10 +63,10 @@
 /obj/machinery/pager/medical
 	department = MED
 
-/obj/machinery/pager/cargo //supply
+/obj/machinery/pager/cargo
 	department = SUP
 
-/obj/machinery/pager/security //torch security
+/obj/machinery/pager/security
 	department = SEC
 
 /obj/machinery/pager/science
