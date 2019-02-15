@@ -47,6 +47,7 @@
 	icon_state = "wc_base"
 	color = COLOR_GUNMETAL
 	item_state_slots = list(slot_wear_id_str = "wc_base")
+	light_color = LIGHT_COLOR_GREEN
 	var/stripe_color
 
 /obj/item/modular_computer/pda/wrist/attack_hand(var/mob/user)
