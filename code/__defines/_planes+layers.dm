@@ -66,23 +66,23 @@
 #define POINTER_LAYER               53
 #define OBSERVER_LAYER              54
 #define LIGHTBULB_LAYER             55
-#define FULLSCREEN_LAYER            56
-#define DAMAGE_LAYER                57
-#define IMPAIRED_LAYER              58
-#define BLIND_LAYER                 59
-#define CRIT_LAYER                  60
-#define LIGHTING_LAYER              61
-#define ABOVE_LIGHTING_LAYER        62
-#define EYE_GLOW_LAYER              63
-#define BEAM_PROJECTILE_LAYER       64
-#define OBFUSCATION_LAYER           65
-#define BASE_AREA_LAYER             66
+#define LIGHTING_LAYER              56
+#define ABOVE_LIGHTING_LAYER        57
+#define EYE_GLOW_LAYER              58
+#define BEAM_PROJECTILE_LAYER       59
+#define OBFUSCATION_LAYER           60
+#define BASE_AREA_LAYER             61
 
 #define HUD_PLANE                    1
 #define UNDER_HUD_LAYER              0
-#define HUD_BASE_LAYER               1
-#define HUD_ITEM_LAYER               2
-#define HUD_ABOVE_ITEM_LAYER         3
+#define FULLSCREEN_LAYER             1
+#define IMPAIRED_LAYER               2
+#define BLIND_LAYER                  3
+#define CRIT_LAYER                   4
+#define DAMAGE_LAYER                 5
+#define HUD_BASE_LAYER               6
+#define HUD_ITEM_LAYER               7
+#define HUD_ABOVE_ITEM_LAYER         8
 
 /atom
 	plane = DEFAULT_PLANE
