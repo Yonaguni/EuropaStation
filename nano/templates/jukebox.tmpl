@@ -8,6 +8,19 @@ Used In File(s): \code\game\machinery\jukebox.dm
     {{:helper.link('Play' , 'play', {'play' : 1}, data.playing == 1 ? 'disabled' : null, null)}}
     {{:helper.link('Stop' , 'stop', {'stop' : 1}, data.playing == 0 ? 'disabled' : null, null)}}
 </div>
+<div class="item">
+    <div class="itemLabel">
+        Volume: {{:data.volume}}
+    </div>
+    <div class="itemContent">
+        {{:helper.link('0' , '', {'volume' : 1, 'level' : 0}, null, null)}}
+        {{:helper.link('10' , '', {'volume' : 1, 'level' : 10}, null, null)}}
+        {{:helper.link('20' , '', {'volume' : 1, 'level' : 20}, null, null)}}
+        {{:helper.link('30' , '', {'volume' : 1, 'level' : 30}, null, null)}}
+        {{:helper.link('40' , '', {'volume' : 1, 'level' : 40}, null, null)}}
+        {{:helper.link('50' , '', {'volume' : 1, 'level' : 50}, null, null)}}
+    </div>
+</div>
 
 <H3><span class="white">Available tracks:</span></H3>
 <div class="itemContent">
@@ -16,4 +29,4 @@ Used In File(s): \code\game\machinery\jukebox.dm
             {{:helper.link( value.track, 'gear', {'change_track' : 1, 'title' : value.track}, value.track == data.current_track ? 'disabled' : null, null)}}    
         </div>
     {{/for}}
-</div>
+</div>	

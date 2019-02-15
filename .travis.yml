@@ -11,14 +11,12 @@ env:
 # IF THEY ARE NOT, YOUR BUILD WILL FAIL
   matrix:
     - TEST=CODE
-    - TEST=WEB
     - TEST=MAP MAP_PATH=example
     - TEST=MAP MAP_PATH=cassini
     - TEST=MAP MAP_PATH=away_sites_testing
 
 cache:
   directories:
-    - tgui/node_modules
     - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
 
 before_script:

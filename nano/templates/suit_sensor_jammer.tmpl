@@ -1,0 +1,61 @@
+<div class = 'item'>
+  <div class = 'itemLabel'>
+    Jammer status
+  </div>
+  <div class = 'itemContent'>
+    {{if data.active}}
+      {{:helper.link('Enabled', 'unlocked', {'disable_jammer' : 1}, null)}}
+    {{else}}
+      {{:helper.link('Disabled', 'locked', {'enable_jammer' : 1}, null)}}
+    {{/if}}
+  </div>
+</div>
+
+<div class = 'item'>
+  <div class ='itemLabel'>
+    Charge
+  </div>
+  <div class ='itemContent'>
+    {{:data.current_charge}}/{{:data.max_charge}}
+  </div>
+</div>
+
+<div class = 'item'>
+  <div class ='itemLabel'>
+    Energy consumption
+  </div>
+  <div class ='itemContent'>
+    ~{{:data.total_cost}}W
+  </div>
+</div>
+
+<div class = 'item'>
+  <div class = 'itemLabel'>
+    Range
+  </div>
+  <div class = 'itemContent'>
+    {{:data.range}} meter(s)<br>
+    {{:helper.link('Decrease', null, {'decrease_range' : 1}, null)}}
+    {{:helper.link('Increase', null, {'increase_range' : 1}, null)}}
+  </div>
+</div>
+
+<div class = 'item'>
+  <div class = 'itemLabel'>
+    Mode
+  </div>
+  <div class = 'itemContent'>
+    <table>
+    {{for data.methods}}
+      <tr><td>
+      {{if data.current_method == value.ref}}
+        {{:helper.link(value.name, null, {'select_method' : 1, 'method' : value.ref}, 'selected')}}
+      {{else}}
+        {{:helper.link(value.name, null, {'select_method' : 1, 'method' : value.ref}, null)}}
+      {{/if}}
+      </td></tr>
+    {{/for}}
+    </table>
+  </div>
+</div>
+

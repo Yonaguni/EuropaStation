@@ -1,0 +1,45 @@
+<H1>Airlock Electronics</H1>
+{{if data.locked}}
+  <div class='item'>
+    {{:helper.link('Access locked! Swipe ID to continue.', 'locked', {'unlock' : 1}, null)}}
+  </div>
+{{else}}
+  <div class='item'>
+    {{if data.oneAccess}}
+      {{:helper.link('One access type required.', 'unlocked', {'one_access' : 1}, null)}}
+    {{else}}
+      {{:helper.link('All access types required.', 'locked', {'one_access' : 1}, null)}}
+  {{/if}}
+  </div>
+  <div class='item'>
+    {{:helper.link('Clear access', null, {'clear' : 1}, null)}}
+    {{if data.lockable}}
+      {{:helper.link('Lock access', null, {'lock' : 1}, null)}}
+    {{/if}}
+  </div>
+  <hr/>
+  <table>
+    <thead>
+      <tr>
+      {{for data.regions}}
+        <th>{{:value.name}}</th>
+      {{/for}}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      {{for data.regions :regionValue:regionIndex}}
+        <td>
+        {{for regionValue.accesses :accessValue:accessIndex}}
+          {{if accessValue.req}}
+            {{:helper.link(accessValue.name, 'locked', {'set' : 1, 'access' : accessValue.id}, null)}}
+          {{else}}
+            {{:helper.link(accessValue.name, 'unlocked', {'set' : 1, 'access' : accessValue.id}, null)}}
+          {{/if}}
+        {{/for}}
+        </td>
+      {{/for}}
+      </tr>
+    </tbody>
+  </table>
+{{/if}}

@@ -37,6 +37,45 @@ datum/track/proc/GetTrack()
 	var/datum/track/current_track
 	var/list/datum/track/tracks
 
+/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, var/datum/topic_state/state = GLOB.default_state)
+	var/list/juke_tracks = new
+	for(var/datum/track/T in tracks)
+		juke_tracks.Add(T.title)
+	var/list/data = list(
+		"current_track" = current_track != null ? current_track.title : "No track selected",
+		"playing" = playing,
+		"tracks" = juke_tracks,
+		"volume" = volume
+	)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "jukebox.tmpl", src.name, 325, 625, master_ui = master_ui, state = state)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/media/jukebox/OnTopic(user, href_list, var/datum/topic_state/state)
+	if(href_list["change_track"])
+		for(var/datum/track/T in tracks)
+			if(T.title == href_list["title"])
+				current_track = T
+				StartPlaying()
+				break
+		. = TRUE
+	if(href_list["stop"])
+		StopPlaying()
+		. = TRUE
+	if(href_list["play"])
+		if(emagged)
+			emag_play()
+		else if(!current_track)
+			to_chat(usr, "No track selected.")
+		else
+			StartPlaying()
+		. = TRUE
+	if(href_list["volume"])
+		AdjustVolume(text2num(href_list["level"]))
+		. = TRUE
 
 /obj/machinery/media/jukebox/old
 	name = "space jukebox"
@@ -93,58 +132,7 @@ datum/track/proc/GetTrack()
 		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 
-	tg_ui_interact(user)
-
-/obj/machinery/media/jukebox/ui_status(mob/user, datum/ui_state/state)
-	if(!anchored || inoperable())
-		return UI_CLOSE
-	return ..()
-
-/obj/machinery/media/jukebox/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "jukebox", "Your Media Library", 340, 440, master_ui, state)
-		ui.open()
-
-/obj/machinery/media/jukebox/ui_data()
-	var/list/juke_tracks = new
-	for(var/datum/track/T in tracks)
-		juke_tracks.Add(T.title)
-
-	var/list/data = list(
-		"current_track" = current_track != null ? current_track.title : "No track selected",
-		"playing" = playing,
-		"tracks" = juke_tracks,
-		"volume" = volume
-	)
-
-	return data
-
-/obj/machinery/media/jukebox/ui_act(action, params)
-	if(..())
-		return TRUE
-	switch(action)
-		if("change_track")
-			for(var/datum/track/T in tracks)
-				if(T.title == params["title"])
-					current_track = T
-					StartPlaying()
-					break
-			. = TRUE
-		if("stop")
-			StopPlaying()
-			. = TRUE
-		if("play")
-			if(emagged)
-				emag_play()
-			else if(!current_track)
-				to_chat(usr, "No track selected.")
-			else
-				StartPlaying()
-			. = TRUE
-		if("volume")
-			AdjustVolume(text2num(params["level"]))
-			. = TRUE
+	ui_interact(user)
 
 /obj/machinery/media/jukebox/proc/emag_play()
 	playsound(loc, 'sound/items/AirHorn.ogg', 100, 1)
