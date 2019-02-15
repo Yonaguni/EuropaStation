@@ -117,10 +117,6 @@
 	set src in oview(1)
 	set name = "Hide"
 	set category = "Object"
-
-	if(usr.incapacitated())
-		return
-
-	plane = ABOVE_TURF_PLANE
-	layer = MOUSETRAP_LAYER
-	to_chat(usr, "<span class='notice'>You hide [src].</span>")
+	if(!usr.incapacitated())
+		layer = MOUSETRAP_LAYER
+		to_chat(usr, "<span class='notice'>You hide [src].</span>")

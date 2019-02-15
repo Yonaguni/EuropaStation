@@ -25,20 +25,16 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable
 	level = 1
 	anchored =1
-	var/datum/powernet/powernet
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond_white.dmi'
 	icon_state = "0-1"
-	var/d1 = 0
-	var/d2 = 1
-
-	plane = ABOVE_TURF_PLANE
 	layer = EXPOSED_WIRE_LAYER
-
 	color = COLOR_MAROON
 	var/obj/machinery/power/breakerbox/breaker_box
-
+	var/datum/powernet/powernet
+	var/d1 = 0
+	var/d2 = 1
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
 

@@ -176,7 +176,6 @@
 			continue
 		heard_something = TRUE
 		var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = src)
-		ping_image.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 		ping_image.layer = BEAM_PROJECTILE_LAYER
 		ping_image.pixel_x = (T.x - src.x) * WORLD_ICON_SIZE
 		ping_image.pixel_y = (T.y - src.y) * WORLD_ICON_SIZE
@@ -207,10 +206,8 @@
 
 /mob/living/carbon/human/reset_layer()
 	if(hiding)
-		plane = HIDING_MOB_PLANE
 		layer = HIDING_MOB_LAYER
 	else if(lying)
-		plane = LYING_HUMAN_PLANE
 		layer = LYING_HUMAN_LAYER
 	else
 		..()

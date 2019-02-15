@@ -5,6 +5,8 @@
 	icon = 'icons/mob/bot/placeholder.dmi'
 	universal_speak = 1
 	density = 0
+	layer = HIDING_MOB_LAYER
+
 	var/obj/item/weapon/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = 1
@@ -37,8 +39,6 @@
 	var/frustration = 0
 	var/max_frustration = 0
 
-	plane = HIDING_MOB_PLANE
-	layer = HIDING_MOB_LAYER
 
 /mob/living/bot/New()
 	..()

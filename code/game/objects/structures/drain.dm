@@ -7,7 +7,7 @@
 	icon_state = "drain"
 	anchored = 1
 	density = 0
-	layer = TURF_LAYER+0.1
+	layer = DECAL_LAYER
 	var/drainage = 0.5
 	var/last_gurgle = 0
 	var/welded

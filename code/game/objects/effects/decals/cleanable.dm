@@ -11,7 +11,7 @@
 /obj/effect/decal/cleanable/Initialize()
 	. = ..()
 	hud_overlay = new /image/hud_overlay('icons/obj/hud_tile.dmi', src, "caution")
-	hud_overlay.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+	hud_overlay.layer = EYE_GLOW_LAYER
 
 /obj/effect/decal/cleanable/Initialize(var/ml, var/_age)
 	if(!isnull(_age))
@@ -24,6 +24,7 @@
 /obj/effect/decal/cleanable/Destroy()
 	SSpersistence.forget_value(src, /datum/persistent/filth)
 	. = ..()
+
 /obj/effect/decal/cleanable/water_act(var/depth)
 	..()
 	qdel(src)

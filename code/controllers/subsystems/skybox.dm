@@ -3,7 +3,7 @@
 
 //Exists to handle a few global variables that change enough to justify this. Technically a parallax, but it exhibits a skybox effect.
 SUBSYSTEM_DEF(skybox)
-	name = "Space skybox"
+	name = "Skybox"
 	init_order = SS_INIT_SKYBOX
 	flags = SS_NO_FIRE
 	var/BGrot
