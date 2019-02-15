@@ -47,6 +47,7 @@
 #define SS_INIT_ALARM           -3
 #define SS_INIT_SHUTTLE         -4
 #define SS_INIT_LIGHTING        -5
+#define SS_INIT_ZCOPY           -6
 #define SS_INIT_XENOARCH        -10
 #define SS_INIT_BAY_LEGACY      -12
 #define SS_INIT_TICKER          -20
@@ -61,3 +62,29 @@
 #define RUNLEVEL_POSTGAME 8
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+
+// Z-mimic (SSzcopy)
+#define TURF_IS_MIMICING(T) (isturf(T) && (T:z_flags & MIMIC_BELOW))
+#define CHECK_OO_EXISTENCE(OO) if (OO && !TURF_IS_MIMICING(OO.loc)) { qdel(OO); }
+#define UPDATE_OO_IF_PRESENT CHECK_OO_EXISTENCE(bound_overlay); if (bound_overlay) { update_above(); }
+
+// Turf MZ flags.
+#define MIMIC_BELOW     1	// If this turf should mimic the turf on the Z below.
+#define MIMIC_OVERWRITE 2	// If this turf is Z-mimicing, overwrite the turf's appearance instead of using a movable. This is faster, but means the turf cannot have an icon.
+#define ALLOW_LIGHTING  4	// If this turf should permit passage of lighting.
+#define ALLOW_ATMOS     8	// If this turf permits passage of air.
+#define MIMIC_NO_AO    16	// If the turf shouldn't apply regular turf AO and only do Z-mimic AO.
+#define MIMIC_QUEUED   32	// If the turf is currently queued for Z-mimic update.
+
+// Convenience flag.
+#define MIMIC_DEFAULTS (MIMIC_BELOW|ALLOW_LIGHTING)
+
+// For debug purposes, should contain the above defines in ascending order.
+var/list/mimic_defines = list(
+	"MIMIC_BELOW",
+	"MIMIC_OVERWRITE",
+	"ALLOW_LIGHTING",
+	"ALLOW_ATMOS",
+	"MIMIC_NO_AO",
+	"MIMIC_QUEUED"
+)

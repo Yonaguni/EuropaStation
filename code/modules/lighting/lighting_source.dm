@@ -378,7 +378,7 @@
 		// Note: above is defined on ALL turfs, but below is only defined on OPEN TURFS.
 
 		// Upwards lights are handled at the corner level, so only search down.
-		if (isopenspace(T))
+		if (T && (T.z_flags & ALLOW_LIGHTING) && T.below)
 			T = get_step(T, DOWN)
 			goto check_t
 

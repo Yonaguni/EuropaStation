@@ -1,9 +1,12 @@
 #define AO_TURF_CHECK(T) (!T.density || !T.opacity || !T.permit_ao)
+#define AO_SELF_CHECK(T) (!T.density && !T.opacity)
 
 /turf
 	var/permit_ao = TRUE
 	var/tmp/list/ao_overlays	// Current ambient occlusion overlays. Tracked so we can reverse them without dropping all priority overlays.
 	var/tmp/ao_neighbors
+	var/tmp/list/ao_overlays_mimic
+	var/tmp/ao_neighbors_mimic
 	var/ao_queued = AO_UPDATE_NONE
 
 /turf/proc/regenerate_ao()
@@ -14,11 +17,14 @@
 
 /turf/proc/calculate_ao_neighbors()
 	ao_neighbors = 0
+	ao_neighbors_mimic = 0
 	if (!permit_ao)
 		return
 
 	var/turf/T
-	if (AO_TURF_CHECK(src))
+	if (z_flags & MIMIC_BELOW)
+		CALCULATE_NEIGHBORS(src, ao_neighbors_mimic, T, (T.z_flags & MIMIC_BELOW))
+	if (AO_SELF_CHECK(src) && !(z_flags & MIMIC_NO_AO))
 		CALCULATE_NEIGHBORS(src, ao_neighbors, T, AO_TURF_CHECK(T))
 
 /proc/make_ao_image(corner, i, px = 0, py = 0, pz = 0, pw = 0)
@@ -32,7 +38,6 @@
 	I.layer = AO_LAYER
 	I.plane = DEFAULT_PLANE
 	I.appearance_flags = RESET_ALPHA|RESET_COLOR|TILE_BOUND
-
 	// If there's an offset, counteract it.
 	if (px || py || pz || pw)
 		I.pixel_x = -px
@@ -90,9 +95,14 @@
 
 /turf/proc/update_ao()
 	var/list/cache = SSao.cache
+	CUT_AO(shadower, ao_overlays_mimic)
 	CUT_AO(src, ao_overlays)
-	if (AO_TURF_CHECK(src))
+	if (z_flags & MIMIC_BELOW)
+		REGEN_AO(shadower, ao_overlays_mimic, ao_neighbors_mimic)
+	if (!has_opaque_atom && !(z_flags & MIMIC_NO_AO))
 		REGEN_AO(src, ao_overlays, ao_neighbors)
 
 #undef REGEN_AO
 #undef PROCESS_AO_CORNER
+#undef AO_TURF_CHECK
+#undef AO_SELF_CHECK

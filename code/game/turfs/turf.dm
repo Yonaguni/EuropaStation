@@ -45,6 +45,9 @@
 	if (mapload && permit_ao)
 		queue_ao()
 
+	if (z_flags & MIMIC_BELOW)
+		setup_zmimic(mapload)
+
 /turf/on_update_icon()
 	update_flood_overlay()
 
@@ -59,6 +62,10 @@
 	remove_cleanables()
 	fluid_update()
 	REMOVE_ACTIVE_FLUID_SOURCE(src)
+
+	if (z_flags & MIMIC_BELOW)
+		cleanup_zmimic()
+
 	..()
 	return QDEL_HINT_IWILLGC
 

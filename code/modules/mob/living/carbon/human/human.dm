@@ -875,7 +875,7 @@
 	for(var/obj/item/organ/external/organ in organs)
 		if(clean_feet || (organ.organ_tag in list(BP_L_HAND,BP_R_HAND)))
 			organ.gunshot_residue = null
-	
+
 	if(clean_feet && !shoes)
 		feet_blood_color = null
 		feet_blood_DNA = null
@@ -972,14 +972,14 @@
 
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
-		if(shadow)
-			if(client.eye == shadow)
+		if(bound_overlay)
+			if(client.eye == bound_overlay)
 				reset_view(0)
 				return
-			if(istype(above, /turf/simulated/open))
+			if((above.z_flags & (MIMIC_BELOW|ALLOW_LIGHTING)) == (MIMIC_BELOW|ALLOW_LIGHTING))
 				to_chat(src, "<span class='notice'>You look up.</span>")
 				if(client)
-					reset_view(shadow)
+					reset_view(bound_overlay)
 				return
 		to_chat(src, "<span class='notice'>You can see \the [above].</span>")
 	else
@@ -1405,7 +1405,7 @@
 	var/bpm = get_pulse_as_number()
 	if(bpm >= PULSE_MAX_BPM)
 		return method ? ">[PULSE_MAX_BPM]" : "extremely weak and fast, patient's artery feels like a thread"
-	
+
 	return "[method ? bpm : bpm + rand(-10, 10)]"
 // output for machines ^	 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ output for people
 
