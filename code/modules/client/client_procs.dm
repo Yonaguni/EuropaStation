@@ -389,3 +389,7 @@ client/verb/character_setup()
 	view = "[round(text2num(winsize_string) / divisor)]x[round(text2num(copytext(winsize_string,findtext(winsize_string,"x")+1,0)) / divisor)]"
 	perspective = MOB_PERSPECTIVE
 	eye = mob
+
+/client/New()
+	..()
+	OnResize()

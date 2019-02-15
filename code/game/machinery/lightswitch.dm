@@ -31,6 +31,7 @@
 	if(!overlay)
 		overlay = image(icon, "light1-overlay")
 		overlay.layer = ABOVE_LIGHTING_LAYER
+		overlay.plane = LIGHTING_PLANE
 
 	overlays.Cut()
 	if(stat & (NOPOWER|BROKEN))

@@ -154,6 +154,7 @@
 	eye_colour = pick(allowed_eye_colours)
 	if(eye_colour)
 		var/image/I = image(icon = icon, icon_state = "[icon_state]_eyes", layer = EYE_GLOW_LAYER)
+		I.plane = LIGHTING_PLANE
 		I.color = eye_colour
 		I.appearance_flags = RESET_COLOR
 		overlays += I

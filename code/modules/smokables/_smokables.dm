@@ -244,6 +244,7 @@
 	if(lit == 1)
 		var/image/ember = overlay_image(res.icon, "cigember", flags=RESET_COLOR)
 		ember.layer = ABOVE_LIGHTING_LAYER
+		ember.plane = LIGHTING_PLANE
 		res.overlays += ember
 	return res
 

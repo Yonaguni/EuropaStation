@@ -767,6 +767,7 @@
 			if(!eye_overlay)
 				eye_overlay = image(icon, eye_icon_state)
 				eye_overlay.layer = EYE_GLOW_LAYER
+				eye_overlay.plane = LIGHTING_PLANE
 				eye_overlays[eye_icon_state] = eye_overlay
 			overlays += eye_overlay
 

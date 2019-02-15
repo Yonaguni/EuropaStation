@@ -12,6 +12,7 @@
 	. = ..()
 	hud_overlay = new /image/hud_overlay('icons/obj/hud_tile.dmi', src, "caution")
 	hud_overlay.layer = EYE_GLOW_LAYER
+	hud_overlay.plane = LIGHTING_PLANE
 
 /obj/effect/decal/cleanable/Initialize(var/ml, var/_age)
 	if(!isnull(_age))

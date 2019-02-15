@@ -177,6 +177,7 @@
 		heard_something = TRUE
 		var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = src)
 		ping_image.layer = BEAM_PROJECTILE_LAYER
+		ping_image.plane = LIGHTING_PLANE
 		ping_image.pixel_x = (T.x - src.x) * WORLD_ICON_SIZE
 		ping_image.pixel_y = (T.y - src.y) * WORLD_ICON_SIZE
 		show_image(src, ping_image)

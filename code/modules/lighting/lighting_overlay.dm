@@ -6,10 +6,11 @@
 	color         = LIGHTING_BASE_MATRIX
 	mouse_opacity = 0
 	layer         = LIGHTING_LAYER
+	plane         = LIGHTING_PLANE
 	invisibility  = INVISIBILITY_LIGHTING
 	simulated     = 0
 	blend_mode    = BLEND_MULTIPLY
-
+	appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_TOGETHER
 	var/needs_update = FALSE
 
 	#if WORLD_ICON_SIZE != 32

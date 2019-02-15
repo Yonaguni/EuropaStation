@@ -3,7 +3,8 @@
 /obj/effect/lobby_image
 	name = "Europa Station"
 	desc = "This shouldn't be read."
-	screen_loc = "WEST,SOUTH"
+	screen_loc = "CENTER-7,CENTER-7"
+	plane = HUD_PLANE
 
 /obj/effect/lobby_image/Initialize()
 	icon = GLOB.using_map.lobby_icon

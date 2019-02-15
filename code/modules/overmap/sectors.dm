@@ -98,6 +98,7 @@
 	. = ..()
 	if(known)
 		layer = ABOVE_LIGHTING_LAYER
+		plane = LIGHTING_PLANE
 		for(var/obj/machinery/computer/ship/helm/H in SSmachines.machinery)
 			H.get_known_sectors()
 
