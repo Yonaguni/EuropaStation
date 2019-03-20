@@ -65,13 +65,13 @@
 #define POINTER_LAYER               52
 #define OBSERVER_LAYER              53
 #define LIGHTBULB_LAYER             54
-#define LIGHTING_LAYER              55
-#define ABOVE_LIGHTING_LAYER        56
-#define EYE_GLOW_LAYER              57
-#define BEAM_PROJECTILE_LAYER       58
-#define FLOODING_LAYER              59
-#define OBFUSCATION_LAYER           60
-#define GAS_LAYER                   61
+#define FLOODING_LAYER              55
+#define GAS_LAYER                   56
+#define LIGHTING_LAYER              57
+#define ABOVE_LIGHTING_LAYER        58
+#define EYE_GLOW_LAYER              59
+#define BEAM_PROJECTILE_LAYER       60
+#define OBFUSCATION_LAYER           61
 #define BASE_AREA_LAYER             62
 
 #define HUD_PLANE                    1
