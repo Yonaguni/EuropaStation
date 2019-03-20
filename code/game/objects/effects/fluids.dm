@@ -5,7 +5,7 @@
 	simulated = 0
 	opacity = 0
 	mouse_opacity = 0
-	layer = FLY_LAYER
+	layer = FLOODING_LAYER
 	alpha = 0
 	color = COLOR_OCEAN
 
@@ -50,7 +50,7 @@
 	overlays.Cut()
 
 	if(fluid_amount > FLUID_OVER_MOB_HEAD)
-		layer = DEEP_FLUID_LAYER
+		layer = FLOODING_LAYER
 	else
 		layer = SHALLOW_FLUID_LAYER
 
@@ -90,7 +90,7 @@
 /obj/effect/flood
 	name = ""
 	mouse_opacity = 0
-	layer = FLY_LAYER
+	layer = FLOODING_LAYER
 	color = COLOR_OCEAN
 	icon = 'icons/effects/liquids.dmi'
 	icon_state = "ocean"

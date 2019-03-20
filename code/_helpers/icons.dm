@@ -604,7 +604,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 				current = process[curIndex]
 				if(current)
 					currentLayer = current:layer
-					if(currentLayer<0) // Special case for FLY_LAYER
+					if(currentLayer<0)
 						if(currentLayer <= -1000) return flat
 						if(pSet == 0) // Underlay
 							currentLayer = A.layer+currentLayer/1000

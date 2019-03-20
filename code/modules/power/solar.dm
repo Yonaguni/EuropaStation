@@ -87,9 +87,9 @@ var/list/solars_list = list()
 	..()
 	overlays.Cut()
 	if(stat & BROKEN)
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
+		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b")
 	else
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
+		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel")
 		src.set_dir(angle2dir(adir))
 	return
 
@@ -359,7 +359,7 @@ var/list/solars_list = list()
 	icon_state = "solar"
 	overlays.Cut()
 	if(cdir > -1)
-		overlays += image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
+		overlays += image('icons/obj/computer.dmi', "solcon-o", dir = angle2dir(cdir))
 	return
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
