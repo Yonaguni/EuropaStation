@@ -390,9 +390,11 @@
 
 /obj/structure/closet/on_update_icon()
 	if(opened)
+		layer = ABOVE_TILE_LAYER
 		icon_state = "open"
 		overlays.Cut()
 	else
+		layer = initial(layer)
 		if(broken)
 			icon_state = "closed_emagged[welded ? "_welded" : ""]"
 		else
