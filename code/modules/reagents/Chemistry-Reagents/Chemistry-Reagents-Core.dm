@@ -81,7 +81,7 @@
 	if(ishuman(W))
 		blood_splatter(T, src, 1)
 
-/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/removed)
 
 	if(M.chem_doses[type] > 5)
 		M.adjustToxLoss(removed)
@@ -95,7 +95,7 @@
 				if(V && V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
@@ -110,7 +110,7 @@
 	if(data && data["antibodies"])
 		M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.inject_blood(src, volume)
 	remove_self(volume)
 
@@ -122,7 +122,7 @@
 	reagent_state = LIQUID
 	color = "#0050f0"
 
-/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/removed)
 	if(src.data)
 		M.antibodies |= src.data["antibodies"]
 	..()
@@ -229,7 +229,7 @@
 	remove_self(volume)
 	return
 
-/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.adjustToxLoss(2 * removed)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)

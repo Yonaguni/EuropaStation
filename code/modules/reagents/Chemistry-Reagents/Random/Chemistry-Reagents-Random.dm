@@ -99,9 +99,9 @@ GLOBAL_LIST_INIT(random_chem_interaction_blacklist, list(
 	if(.)
 		reagents.my_atom.visible_message("The chemicals in \the [reagents.my_atom] bubble slightly!")
 
-/datum/reagent/random/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/random/affect_blood(var/mob/living/carbon/M, var/removed)
 	FOR_ALL_EFFECTS
-		effect.affect_blood(M, alien, removed, data[effect.type])
+		effect.affect_blood(M, removed, data[effect.type])
 
 /datum/reagent/random/proc/on_chemicals_analyze(mob/user)
 	var/list/dat = list()

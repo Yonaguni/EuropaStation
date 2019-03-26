@@ -65,7 +65,7 @@
 /datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(QDELETED(src))
 		return // Something else removed us.
 	if(!istype(M))
@@ -75,7 +75,7 @@
 	if(overdose && (location != CHEM_TOUCH))
 		var/overdose_threshold = overdose * (flags & IGNORE_MOB_SIZE? 1 : MOB_MEDIUM/M.mob_size)
 		if(volume > overdose_threshold)
-			overdose(M, alien)
+			overdose(M)
 
 	//determine the metabolism rate
 	var/removed = metabolism
@@ -94,26 +94,26 @@
 	if(effective >= (metabolism * 0.1) || effective >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
 		switch(location)
 			if(CHEM_BLOOD)
-				affect_blood(M, alien, effective)
+				affect_blood(M, effective)
 			if(CHEM_INGEST)
-				affect_ingest(M, alien, effective)
+				affect_ingest(M, effective)
 			if(CHEM_TOUCH)
-				affect_touch(M, alien, effective)
+				affect_touch(M, effective)
 
 	if(volume)
 		remove_self(removed)
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/removed)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed * 0.5)
+/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/removed)
+	affect_blood(M, removed * 0.5)
 	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/removed)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
+/datum/reagent/proc/overdose(var/mob/living/carbon/M) // Overdose effect. Doesn't happen instantly.
 	M.add_chemical_effect(CE_TOXIN, 1)
 	M.adjustToxLoss(REM)
 	return

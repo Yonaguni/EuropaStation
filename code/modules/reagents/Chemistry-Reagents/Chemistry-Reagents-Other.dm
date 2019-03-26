@@ -107,10 +107,10 @@
 	glass_name = "liquid gold"
 	glass_desc = "It's magic. We don't have to explain it."
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed)
+/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/removed)
+	affect_blood(M, removed)
 
-/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.rejuvenate()
 
 /datum/reagent/gold
@@ -134,10 +134,10 @@
 	reagent_state = SOLID
 	color = "#b8b8c0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_ingest(M, alien, removed)
+/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/removed)
+	affect_ingest(M, removed)
 
-/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.apply_effect(5 * removed, IRRADIATE, blocked = 0)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
@@ -190,7 +190,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.adjustFireLoss(3 * removed)
 
 /datum/reagent/napalm
@@ -233,7 +233,7 @@
 				S.unwet_floor(FALSE)
 		T.clean_blood()
 
-/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/removed)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -297,7 +297,7 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/removed)
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -366,9 +366,7 @@
 	color = "#cccccc"
 	metabolism = 0.05 // So that low dosages have a chance to build up in the body.
 
-/datum/reagent/helium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
+/datum/reagent/helium/affect_blood(var/mob/living/carbon/M, var/removed)
 	..()
 	M.add_chemical_effect(CE_SQUEAKY, 1)
 
@@ -380,10 +378,6 @@
 	reagent_state = LIQUID
 	color = "#cccccc"
 
-/datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 6)
-
 /datum/reagent/carbon_monoxide
 	name = "Carbon Monoxide"
 	description = "A dangerous carbon comubstion byproduct."
@@ -392,8 +386,8 @@
 	color = "#cccccc"
 	metabolism = 0.05 // As with helium.
 
-/datum/reagent/carbon_monoxide/affect_blood(var/mob/living/carbon/human/M, var/alien, var/removed)
-	if(!istype(M) || alien == IS_DIONA)
+/datum/reagent/carbon_monoxide/affect_blood(var/mob/living/carbon/human/M, var/removed)
+	if(!istype(M))
 		return
 	var/warning_message
 	var/warning_prob = 10

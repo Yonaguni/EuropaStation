@@ -6,10 +6,7 @@
 	color = "#808080"
 	metabolism = REM * 0.2
 
-/datum/reagent/acetone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_NABBER)
-		return
-
+/datum/reagent/acetone/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.adjustToxLoss(removed * 3)
 
 /datum/reagent/acetone/touch_obj(var/obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
@@ -44,15 +41,8 @@
 	metabolism = REM * 0.5
 	overdose = 5
 
-/datum/reagent/ammonia/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustOxyLoss(-removed * 10)
-	else if(alien != IS_DIONA)
-		M.adjustToxLoss(removed * 1.5)
-
-/datum/reagent/ammonia/overdose(var/mob/living/carbon/M, var/alien)
-	if(alien != IS_VOX || volume > overdose*6)
-		..()
+/datum/reagent/ammonia/affect_blood(var/mob/living/carbon/M, var/removed)
+	M.adjustToxLoss(removed * 1.5)
 
 /datum/reagent/carbon
 	name = "Carbon"
@@ -63,9 +53,7 @@
 	color = "#1c1300"
 	ingest_met = REM * 5
 
-/datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
+/datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/removed)
 	var/datum/reagents/ingested = M.get_ingested_reagents()
 	if(ingested && ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = 1 / (ingested.reagent_list.len - 1)
@@ -112,20 +100,14 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.adjustToxLoss(removed * 2 * toxicity)
 	return
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/removed)
 	M.nutrition += nutriment_factor * removed
-	var/strength_mod = 1
-	if(alien == IS_SKRELL)
-		strength_mod *= 5
-	if(alien == IS_DIONA)
-		strength_mod = 0
-
 	M.add_chemical_effect(CE_ALCOHOL, 1)
-	var/effective_dose = M.chem_doses[type] * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
+	var/effective_dose = M.chem_doses[type] * (1 + volume/60) //drinking a LOT will make you go down faster
 
 	if(effective_dose >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
@@ -181,10 +163,10 @@
 	metabolism = REM * 0.2
 	touch_met = 5
 
-/datum/reagent/hydrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/hydrazine/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.adjustToxLoss(4 * removed)
 
-/datum/reagent/hydrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // Hydrazine is both toxic and flammable.
+/datum/reagent/hydrazine/affect_touch(var/mob/living/carbon/M, var/removed) // Hydrazine is both toxic and flammable.
 	M.adjust_fire_stacks(removed / 12)
 	M.adjustToxLoss(0.2 * removed)
 
@@ -200,9 +182,8 @@
 	reagent_state = SOLID
 	color = "#353535"
 
-/datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
+/datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/removed)
+	M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/lithium
 	name = "Lithium"
@@ -211,12 +192,11 @@
 	reagent_state = SOLID
 	color = "#808080"
 
-/datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		if(istype(M.loc, /turf/space))
-			M.SelfMove(pick(GLOB.cardinal))
-		if(prob(5))
-			M.emote(pick("twitch", "drool", "moan"))
+/datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/removed)
+	if(istype(M.loc, /turf/space))
+		M.SelfMove(pick(GLOB.cardinal))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
 
 /datum/reagent/mercury
 	name = "Mercury"
@@ -225,13 +205,12 @@
 	reagent_state = LIQUID
 	color = "#484848"
 
-/datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		if(istype(M.loc, /turf/space))
-			M.SelfMove(pick(GLOB.cardinal))
-		if(prob(5))
-			M.emote(pick("twitch", "drool", "moan"))
-		M.adjustBrainLoss(0.1)
+/datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/removed)
+	if(istype(M.loc, /turf/space))
+		M.SelfMove(pick(GLOB.cardinal))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
+	M.adjustBrainLoss(0.1)
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
@@ -247,7 +226,7 @@
 	reagent_state = SOLID
 	color = "#a0a0a0"
 
-/datum/reagent/potassium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/potassium/affect_blood(var/mob/living/carbon/M, var/removed)
 	if(volume > 3)
 		M.add_chemical_effect(CE_PULSE, 1)
 	if(volume > 10)
@@ -260,7 +239,7 @@
 	reagent_state = SOLID
 	color = "#c7c7c7"
 
-/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.apply_effect(10 * removed, IRRADIATE, blocked = 0) // Radium may increase your chances to cure a disease
 	if(M.virus2.len)
 		for(var/ID in M.virus2)
@@ -292,10 +271,10 @@
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
 
-/datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/removed)
 	M.take_organ_damage(0, removed * power * 2)
 
-/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
+/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/removed) // This is the most interesting
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
@@ -399,7 +378,7 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	glass_icon = DRINK_ICON_NOISY
 
-/datum/reagent/sugar/affect_blood(var/mob/living/carbon/human/M, var/alien, var/removed)
+/datum/reagent/sugar/affect_blood(var/mob/living/carbon/human/M, var/removed)
 	M.nutrition += removed * 3
 
 /datum/reagent/sulfur
